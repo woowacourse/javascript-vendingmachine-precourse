@@ -9,6 +9,7 @@ export default class VendingSkeleton {
         this.$coinTap = ButtonById(TAP.coin.title, TAP.coin.id);
         this.$purchaseTap = ButtonById(TAP.purchase.title, TAP.purchase.id);
         this.$skeleton = document.createElement('div');
+        this.$skeleton.style.marginTop = '15px';
     }
 
     getSkeleton() {
