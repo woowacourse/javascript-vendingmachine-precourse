@@ -1,4 +1,4 @@
-import { TITLE_TEXT, MENU_TAPS, MENU_TAP_INFORMATION } from "./constants.js";
+import { TITLE_TEXT, MARGIN_SIZE, MENU_TAP_INFORMATION } from "./constants.js";
 
 const makeTitle = () => {
   const title = document.createElement("h2");
@@ -12,12 +12,12 @@ const resetViewContainer = () => {
   $view_container.innerHTML = "";
 };
 
-const makeMenuButton = menuName => {
-  const [text, id] = MENU_TAP_INFORMATION[`${menuName}`];
+const makeMenuButton = menuInformation => {
+  const [text, id] = menuInformation;
   const button = document.createElement("button");
   button.innerText = text;
   button.id = id;
-  button.style.margin = MENU_TAP_INFORMATION.marginSize;
+  button.style.margin = MARGIN_SIZE;
   button.addEventListener("click", resetViewContainer);
 
   return button;
@@ -25,7 +25,9 @@ const makeMenuButton = menuName => {
 
 const makeNavigationTap = () => {
   const nav = document.createElement("nav");
-  MENU_TAPS.forEach(menu => nav.appendChild(makeMenuButton(menu)));
+  MENU_TAP_INFORMATION.forEach(menuInformation =>
+    nav.appendChild(makeMenuButton(menuInformation))
+  );
 
   return nav;
 };
