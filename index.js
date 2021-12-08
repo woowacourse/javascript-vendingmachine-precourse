@@ -1,6 +1,3 @@
-import header from './src/container/Header.js';
-import { manage, charge, purchase } from './src/container/Main.js';
+import App from './src/App.js';
 
-document.querySelector('#app').innerHTML = `${header}${manage}`;
-// document.querySelector('#app').innerHTML = `${header}${charge}`;
-// document.querySelector('#app').innerHTML = `${header}${purchase}`;
+const app = new App(document.querySelector('#app'));
