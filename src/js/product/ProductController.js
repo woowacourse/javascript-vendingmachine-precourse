@@ -12,6 +12,10 @@ export default class ProductController {
     this.view.renderInputForm(this.container);
     this.initDOMS();
     this.setEvent();
+    this.view.renderProductTable(
+      this.$productTableBody,
+      this.model.getProducts()
+    );
   };
 
   initDOMS = () => {

@@ -1,10 +1,19 @@
+import {
+  getLocalStorage,
+  getLocalStorageAfterSet,
+} from "../util/localStorage.js";
+
 export default class ProductModel {
   constructor() {
-    this.products = [];
+    this.products = getLocalStorage("product") || [];
   }
 
   getProducts = () => {
     return this.products;
+  };
+
+  updateProducts = () => {
+    this.products = getLocalStorageAfterSet("product", this.products);
   };
 
   addProduct = ({ name, price, quantity }) => {
@@ -27,6 +36,7 @@ export default class ProductModel {
     } else {
       this.products.push({ name, price, quantity });
     }
+    this.updateProducts();
   };
 
   findProduct = (name) => {
