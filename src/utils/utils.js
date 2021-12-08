@@ -1,4 +1,11 @@
 import { TITLE_TEXT, MARGIN_SIZE, MENU_TAP_INFORMATION } from "./constants.js";
+import { renderManageProductMenuView } from "../menus/manageProductMenu.js";
+
+const renderArray = [renderManageProductMenuView];
+const menuTapInformations = MENU_TAP_INFORMATION.map((information, index) => [
+  ...information,
+  renderArray[index],
+]);
 
 const makeTitle = () => {
   const title = document.createElement("h2");
@@ -12,21 +19,29 @@ const resetViewContainer = () => {
   $view_container.innerHTML = "";
 };
 
-const makeMenuButton = menuInformation => {
-  const [text, id] = menuInformation;
+const onClickMenuButton = buttonEvent => {
+  event.preventDefault();
+  resetViewContainer();
+  buttonEvent();
+};
+
+const makeMenuButton = buttonInformation => {
+  const [text, id, buttonEvent] = buttonInformation;
   const button = document.createElement("button");
   button.innerText = text;
   button.id = id;
   button.style.margin = MARGIN_SIZE;
-  button.addEventListener("click", resetViewContainer);
+  button.addEventListener("click", () => {
+    onClickMenuButton(buttonEvent);
+  });
 
   return button;
 };
 
 const makeNavigationTap = () => {
   const nav = document.createElement("nav");
-  MENU_TAP_INFORMATION.forEach(menuInformation =>
-    nav.appendChild(makeMenuButton(menuInformation))
+  menuTapInformations.forEach(information =>
+    nav.appendChild(makeMenuButton(information))
   );
 
   return nav;
