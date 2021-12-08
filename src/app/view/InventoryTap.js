@@ -5,8 +5,8 @@ export default class InventoryTap {
     constructor($skeleton) {
         this.$app = document.createElement('div');
         this.$productNameInput = InputNumber(INPUT_ID.productName);
-        this.$productPrice = InputNumber(INPUT_ID.productPrice);
-        this.$productQuantity = InputNumber(INPUT_ID.productQuantity);
+        this.$productPriceInput = InputNumber(INPUT_ID.productPrice);
+        this.$productQuantityInput = InputNumber(INPUT_ID.productQuantity);
 
         $skeleton.append(this.$app);
     }
@@ -23,10 +23,10 @@ export default class InventoryTap {
         const $wrap = document.createElement('div');
         const $inputWrap = document.createElement('div');
 
-        this.$productPrice.style.margin = '0 5px';
+        this.$productPriceInput.style.margin = '0 5px';
         $inputWrap.append(this.$productNameInput);
-        $inputWrap.append(this.$productPrice);
-        $inputWrap.append(this.$productQuantity);
+        $inputWrap.append(this.$productPriceInput);
+        $inputWrap.append(this.$productQuantityInput);
         $wrap.append($inputWrap);
         this.appendToApp($wrap);
     }
