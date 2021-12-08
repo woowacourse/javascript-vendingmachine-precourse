@@ -16,6 +16,7 @@
         "no-alert": "off",
         "no-undef": "warn",
         "no-param-reassign": "off",
-        "class-methods-use-this": "warn"
+        "class-methods-use-this": "warn",
+        "import/prefer-default-export": "off"
     }
 }
