@@ -1,3 +1,5 @@
 import VendingMachine from './app/index.js';
 
-new VendingMachine();
+const vendingMachine = new VendingMachine();
+
+vendingMachine.init();

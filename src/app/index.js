@@ -8,16 +8,32 @@ export default class VendingMachine {
         this.$invetoryTap = ButtonById(TAP_TITLE.inventory);
         this.$coinTap = ButtonById(TAP_TITLE.coin);
         this.$purchase = ButtonById(TAP_TITLE.purchase);
-
-        this.appendToApp(mainTitle(VENDING_MACHINE_TITLE));
-        const $buttonWrap = document.createElement('div');
-        $buttonWrap.append(this.$invetoryTap);
-        $buttonWrap.append(this.$coinTap);
-        $buttonWrap.append(this.$purchase);
-        this.appendToApp($buttonWrap);
     }
 
     appendToApp($element) {
         this.$app.append($element);
+    }
+
+    init() {
+        this.createElement();
+    }
+
+    createElement() {
+        this.createMainTitle();
+        this.createTap();
+    }
+
+    createMainTitle() {
+        this.appendToApp(mainTitle(VENDING_MACHINE_TITLE));
+    }
+
+    createTap() {
+        const $buttonWrap = document.createElement('div');
+
+        this.$coinTap.style.margin = '0 5px';
+        $buttonWrap.append(this.$invetoryTap);
+        $buttonWrap.append(this.$coinTap);
+        $buttonWrap.append(this.$purchase);
+        this.appendToApp($buttonWrap);
     }
 }
