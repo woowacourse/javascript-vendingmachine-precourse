@@ -198,23 +198,30 @@
 ### 🛠 이벤트 관리 모듈 구현하기
 
 **사전 정의**
-- [ ] 이벤트를 클래스 모듈로 관리하며 이벤트 위임을 활용하기
+- [x] 이벤트를 클래스 모듈로 관리하며 이벤트 위임을 활용하기
 
 **추가 사항**
-- 클로저와 call, bind를 활용해봅니다.
+- 클로저와 call~~, bind~~을 활용해봅니다.
+
+<br>
+
+> 커밋 목록
+- [**✒️Feat: 이벤트 모듈 구현**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/8600d4930e0fde4dad5662e959c92b34c2e9cfb0)
 
 <br>
 
 ### 🛠 구조 리팩토링하기
 
 **사전 정의**
-- [ ] 중복된 코드, 기능, 구조가 없는지 확인하기
+- [x] 중복된 코드, 기능, 구조가 없는지 확인하기
 
 <br>
 
 > 커밋 목록
 - [**✒️Feat: helper 함수 정의**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d1bea673baefb380f43bdc8afaffffae8d3c9736)
 - [**🗃Refactor: 컴포넌트 props 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/33cb8e2d657842b06100a0579d20c092dde35e32)
+- [**🗃Refactor: 이벤트 모듈 리팩토링**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/5eccd68c2394a6fcf5c322a6588eee34f51f2b44)
+- [**✒️Feat: 이벤트 모듈 주입**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/37baa3253cce1df12191b203af7e2ea38ca0bbcc)
 
 <hr>
 <br>
