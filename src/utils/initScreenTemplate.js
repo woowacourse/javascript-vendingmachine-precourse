@@ -5,4 +5,5 @@ export const initScreenTemplate = `
     <button id="product-purchase-menu">잔돈 충전</button>
     <button id="vending-machine-manage-menu">상품 구매</button>
   </nav>
+  <div id="app-container"></div>
 `;
