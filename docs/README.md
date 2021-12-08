@@ -49,7 +49,8 @@
    - form 이벤트에 따른 데이터 저장을 확인합니다.
    - form 이벤트에 따른 데이터 불러오기를 확인합니다.
    - 마스터 컴포넌트와 어떻게 의존할지 고민합니다.
-6. 중복된 코드, 기능, 구조가 없는지 확인하고 리팩토링합니다.
+6. 렌더링에 의한 이벤트 중복 등록을 방지하기 위해 이벤트를 관리하는 모듈 작성하기
+7. 중복된 코드, 기능, 구조가 없는지 확인하고 리팩토링합니다.
 
 <hr>
 
@@ -94,47 +95,134 @@
 > 일관성 있는 코드를 위해 ESLint, Prettier를 설정하고 Airbnb 스타일을 적용한 뒤 추가적인 규칙을 정의합니다.
 
 **사전 정의**
-- [ ] 의존성 라이브러리를 설치하고 Linter를 설정합니다.
+- [x] 의존성 라이브러리를 설치하고 Linter를 설정합니다.
 
 <br>
+
+> 커밋 목록
+- [**🔬Chore: 의존성 설치**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/8ac5490434f1387afb905bba5e86e8ea5be43b1b)
 
 <hr>
 <br>
 
 ## 3️⃣ 구조 구현
 ### 🛠 화면 그려보기
-- [ ] 각 화면을 html에 그려 DOM 엘리먼트를 확인하기
+
+**사전 정의**
+- [x] 각 화면을 html에 그려 DOM 엘리먼트를 확인하기
+
+<br>
+
+> 커밋 목록
+- [**🎆Style: link/script 적용**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d0acbfc34e66fc9a4df0f495664a74b9c1dc4298)
+- [**🎆Style: 상품 관리 탭 디자인**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/e5c3d83d2a3a50d76f53c76bda594d8b12df6855)
+- [**🎆Style: 잔돈 충전 탭 디자인**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/c0419f1eab6a15fa5feb769815de28259e284b51)
+- [**🎆Style: 상품 구매 탭 디자인**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/f32d664097db815c7a4a1799d466161feecbfb9c)
 
 <br>
 
 ### 🛠 화면 분리하기
-- [ ] 변하지 않는 헤더, 실제 컨텐츠가 그려지는 메인으로 분리하기
+
+**사전 정의**
+- [x] 변하지 않는 헤더, 실제 컨텐츠가 그려지는 메인으로 분리하기
+
+<br>
+
+> 커밋 목록
+- [**🎆Style: DOM으로 html 렌더링**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/2d7ffad73730eea037b79e36b599110e50a07834)
 
 <br>
 
 ### 🛠 화면을 추상화하기
-- [ ] 헤더와 메인을 추상화하여 공통점을 분리하기
+
+**사전 정의**
+- [x] 헤더와 메인을 추상화하여 공통점을 분리하기
+
+**추가 사항**
+- 헤더와 메인을 수평적 관계로 두지 않고 수직적 관계로 제어하는 것이 구조적 관점에서 옳아 보입니다.
+  - [x] 헤더는 변경되지 않으므로 이벤트 핸들링까지 보유합니다.
+  - [x] 메인은 변경되므로 비즈니스 로직과 UI 렌더링 로직을 분리해야 합니다.
+- 메인 컨텐츠가 여러 개이므로 파라미터를 통해 동적으로 제어하는 부분이 필요합니다.
+  - [x] `<main></main>` 태그가 아닌 자식 중 최상위 `<div ../>` 태그에 `dataset` 속성을 부여합니다.
+
+<br>
+
+> 커밋 목록
+- [**✒️Feat: 화면 추상화**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/a89d7819ac06e4efe50c3866364d24c3e8a67e74)
 
 <br>
 
 ### 🛠 구체화하기
-- [ ] 분리된 공통점을 마스터 컴포넌트로 정의하고, 이벤트 핸들링에 따른 동적 렌더링을 제어하기
+
+**사전 정의**
+- [x] 분리된 공통점을 마스터 컴포넌트로 정의하고, 이벤트 핸들링에 따른 동적 렌더링을 제어하기
+
+**추가 사항**
+- 헤더(Header)와 메인(Main)은 Container Component(이하 컨테이너)로 정의하고 비즈니스 로직을 갖습니다.
+  - 컨테이너는 비즈니스 로직을 담당하며 동작에 대한 역할을 합니다. 따라서 공통된 기능을 상속 받기에 적합합니다.
+- 헤더의 메뉴(Menu)와 메인의 컨텐츠(Content)는 Presentational Component(이하 프레젠테이션)로 정의하고 UI를 담당합니다.
+  - 프렌젠테이션은 UI만을 담당하며 동적으로 제어하기 위한 파라미터만을 받으므로 순수 함수로 구현합니다.
+- 앱을 확장할 수 있는 여지를 남겨두고 싶습니다. nav 하위의 버튼은 그 형태가 비슷하며, 메인을 헤더 버튼에 종속되는 계층으로 설계했기 때문에 상수로 분리할 수 있을 것 같습니다.
+  - [x] 컨테이너는 클래스형 컴포넌트로, 프레젠테이션은 함수형 컴포넌트로 작성합니다.
+  - [x] 메뉴를 상수로 관리합니다.
+  - [x] 엔트리 파일인 index.js에서부터 최상위 > 최하위로 프레젠테이션 컴포넌트의 파라미터로 `앱의 타이틀`, `앱의 메뉴`를 주입하면 보다 효율적으로, 또한 동적으로 관리할 수 있습니다.
+
+<br>
+
+> 커밋 목록
+- [**✒️Feat: 추상화 된 구조의 구체화**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/31b8ac287069601d80bcc34a0b63b7f2e5265781)
 
 <br>
 
 ### 🛠 Local Storage 모듈화하기
-- [ ] form 이벤트에 따른 데이터 저장/불러오기
+
+**사전 정의**
+- [x] form 이벤트에 따른 데이터 저장/불러오기
+
+**추가 사항**
+- 로컬 스토리지를 클래스 모듈로 관리하며, 마스터 컴포넌트의 멤버 변수에 의존성을 주입시킵니다.
+- 로컬 스토리지의 아이템 타입은 `Array`로 한정합니다.
+- 작성할 Storage 모듈이 가져야 하는 기능은 아래와 같습니다.
+  - [x] **C** 새로운 key, value를 가지는 아이템 생성하기
+  - [x] **R** key로 value 가져오기
+  - [x] **U** key로 value update 하기
+  - [x] **D** 저장된 key, value 아이템을 삭제하기
+
+<br>
+
+> 커밋 목록
+- [**✒️Feat: Storage 작성**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/9a4608dbde4189360577708c3caa03e4ad59d32c)
+
+<br>
+
+### 🛠 이벤트 관리 모듈 구현하기
+
+**사전 정의**
+- [ ] 이벤트를 클래스 모듈로 관리하며 이벤트 위임을 활용하기
+
+**추가 사항**
+- 클로저와 call, bind를 활용해봅니다.
 
 <br>
 
 ### 🛠 구조 리팩토링하기
+
+**사전 정의**
 - [ ] 중복된 코드, 기능, 구조가 없는지 확인하기
+
+<br>
+
+> 커밋 목록
+- [**✒️Feat: helper 함수 정의**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d1bea673baefb380f43bdc8afaffffae8d3c9736)
+- [**🗃Refactor: 컴포넌트 props 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/33cb8e2d657842b06100a0579d20c092dde35e32)
 
 <hr>
 <br>
 
 ## 4️⃣ 기능 구현
 ### 🛠 상품 관리 탭
+
+**사전 정의**
 - [ ] 1. 최초 상품 목록은 **비어 있는** 상태
 - [ ] 2. 상품명(text), 가격(number), 수량(number)을 입력해 `추가하기` 버튼을 클릭하여 상품을 추가
 - [ ] 3. 상품 가격은 **100원 이상**, **10 단위**
@@ -143,6 +231,8 @@
 <br>
 
 ### 🛠 잔돈 충전 탭
+
+**사전 정의**
 - [ ] 1. 최초 금액은 **0원**, 동전의 개수도 **0개**
 - [ ] 2. 충전 금액(number)을 입력해 `충전하기` 버튼을 클릭하여 충전
 - [ ] 3. 보유 금액은 `${금액}원` 형식
@@ -153,6 +243,8 @@
 <br>
 
 ### 🛠 상품 구매 탭
+
+**사전 정의**
 - [ ] 1. 최초 충전 금액은 **0원**, 반환된 각 동전의 개수는 **0개**
 - [ ] 2. 투입 금액(number)을 입력해 `투입하기` 버튼을 클릭하여 투입
 - [ ] 3. 10원으로 나누어 떨어지는 금액만 투입 가능
