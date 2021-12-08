@@ -1,3 +1,4 @@
+import { showProducts } from "../../views/productManager/showProducts.js";
 import { getInputValueById } from "../common/getInputValue.js";
 import { isValidInputs } from "./checkInputValues.js";
 import { addProduct } from "./productDataController.js";
@@ -12,7 +13,7 @@ const processing = e => {
 
   if (errorMessage === "") {
     addProduct(name, price, quantity);
-    // 상품 보여주기
+    showProducts();
     resetAddProductInput();
   } else {
     alert(errorMessage);
