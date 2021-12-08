@@ -1,4 +1,5 @@
 import { ALERT_MSG } from "../../utils/constants.js";
+import { isPositiveInteger } from "../chargeManager/checkMoneyInput.js";
 
 const isDuplicateName = name => {
   const strOfProducts = JSON.parse(localStorage.getItem("products"));
@@ -12,30 +13,6 @@ const isDuplicateName = name => {
   }
 
   return productNames.includes(name);
-};
-
-const isInteger = num => {
-  let check = true;
-
-  if (isNaN(num)) {
-    check = false;
-  } else if (Number(num) % 1 !== 0) {
-    check = false;
-  }
-
-  return check;
-};
-
-const isPositiveInteger = num => {
-  let check = true;
-
-  if (!isInteger(num)) {
-    check = false;
-  } else if (parseInt(num, 10) < 1) {
-    check = false;
-  }
-
-  return check;
 };
 
 const isValidPrice = priceStr => {

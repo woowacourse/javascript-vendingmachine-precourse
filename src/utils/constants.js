@@ -3,6 +3,9 @@ const ALERT_MSG = {
   wrongProductName: "이미 같은 이름의 상품이 존재합니다.",
   wrongProductPrice: "가격은 100원 이상이고 10원으로 나누어 떨어져야 합니다.",
   wrongProductQuantity: "재고가 1개 이상이어야 등록할 수 있습니다.",
+  wrongChargeMoney: "액수는 10으로 나누어 떨어지는 자연수만 입력 가능합니다.",
 };
 
-export { ALERT_MSG };
+const COIN_TYPES = [500, 100, 50, 10];
+
+export { ALERT_MSG, COIN_TYPES };
