@@ -1,3 +1,5 @@
+import ProductController from "./product/ProductController.js";
+
 export default class VendingMachine {
   constructor() {
     this.$container = document.getElementById("app");
@@ -5,6 +7,12 @@ export default class VendingMachine {
 
   init = () => {
     this.renderHeader();
+    this.createComponents();
+    this.product.init();
+  };
+
+  createComponents = () => {
+    this.product = new ProductController();
   };
 
   renderHeader = () => {
