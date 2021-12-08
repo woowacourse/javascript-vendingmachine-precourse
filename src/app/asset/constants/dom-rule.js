@@ -24,3 +24,10 @@ export const INPUT_ID = {
 export const SUB_TITLE_TEXT = {
     addProduct: '상품 추가하기',
 };
+
+export const BUTTON = {
+    addProduct: {
+        title: '추가하기',
+        id: 'product-add-button',
+    },
+};
