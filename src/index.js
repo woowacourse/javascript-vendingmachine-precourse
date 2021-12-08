@@ -1,4 +1,5 @@
 import Menu from "./controllers/menu/menu.js";
+import ProductManager from "./controllers/productManager/productManager.js";
 import { showHeader } from "./views/header/showHeader.js";
 import { addChargeManager } from "./views/chargeManager/addChargeManager.js";
 import { addProductManager } from "./views/productManager/addProductManager.js";
@@ -8,6 +9,7 @@ class VendingMachine {
   constructor() {
     this.init();
     this.menu = new Menu();
+    this.productManager = new ProductManager();
   }
 
   init() {
