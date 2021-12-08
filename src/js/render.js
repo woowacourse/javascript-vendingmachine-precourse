@@ -1,3 +1,4 @@
+import store from './store/store.js';
 import { $ } from './util/dom.js';
 
 export const renderTitle = () => {
@@ -48,14 +49,17 @@ export const renderProductItemsTable = () => {
 };
 
 export const renderProductItems = () => {
-  const template = () => {
+  const menu = store.getLocalStorage();
+  const template = index => {
     return `
       <div class='product-manage-item'>
-        <div id='product-manage-name'>상품명</div>
-        <div id='product-manage-price'>가격</div>
-        <div id='product-manage-quantity'>수량</div>
+        <div class='product-items-header' id='product-manage-name'>${menu[index].name}</div>
+        <div class='product-items-header' id='product-manage-price'>${menu[index].price}</div>
+        <div class='product-items-header' id='product-manage-quantity'>${menu[index].quantity}</div>
       </div>
     `;
   };
-  $('#app').innerHTML += template();
+  for (let i = 0; i < menu.length; i++) {
+    $('#app').innerHTML += template(i);
+  }
 };

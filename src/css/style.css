@@ -6,3 +6,10 @@
     padding: 10px;
 }
 
+.product-manage-item {
+    display: flex;
+}
+.product-items-header {
+    border: solid 1px black;
+    padding: 10px;
+}

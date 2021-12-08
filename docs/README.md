@@ -14,7 +14,7 @@
         - [X] 수량이 1이상의 숫자가 아닌 경우 
     - [X] 상품 추가하기에서 만든 상품을 localStorage에 저장하기
 - [] 상품 현황 form 만들기
-    - [] 상품 추가하기에서 만든 상품을 localStorage에서 값을 불러와 render해주기
+    - [X] 상품 추가하기에서 만든 상품을 localStorage에서 값을 불러와 render해주기
     - [] 다른 탭에서 넘어올 때 localStorage에서 값을 불러와 render해주기
 
 ### TODO 잔동 충전 탭 (자판기 보유 동전)
