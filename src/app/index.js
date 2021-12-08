@@ -7,7 +7,7 @@ export default class VendingMachine {
         this.appendToApp(mainTitle(VENDING_MACHINE_TITLE));
     }
 
-    appendToApp(html) {
-        this.$app.insertAdjacentHTML('beforeend', html);
+    appendToApp($element) {
+        this.$app.append($element);
     }
 }

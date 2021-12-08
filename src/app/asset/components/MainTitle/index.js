@@ -1,13 +1,18 @@
 import Style from './Style.js';
 import BeverageIcon from '../BeverageIcon/index.js';
 
-const beverageIcon = BeverageIcon();
+const MainTitle = (mainTitle) => {
+    const ret = document.createElement('div');
+    const title = document.createElement('p');
 
-const MainTitle = (mainTitle) =>
-    `<div style='${Style.index}'>
-        ${beverageIcon}
-        <p style='${Style.title}'>${mainTitle}</p>
-        ${beverageIcon}
-    </div>`;
+    ret.style = Style.index;
+    title.style = Style.title;
+    title.innerText = mainTitle;
+    ret.append(BeverageIcon());
+    ret.append(title);
+    ret.append(BeverageIcon());
+
+    return ret;
+};
 
 export default MainTitle;
