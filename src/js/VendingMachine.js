@@ -8,6 +8,7 @@ export default class VendingMachine {
   init = () => {
     this.renderHeader();
     this.createComponents();
+    this.setEvent();
     this.product.init();
   };
 
@@ -25,5 +26,19 @@ export default class VendingMachine {
       </div>
     `;
     this.$container.insertAdjacentHTML("beforeend", template);
+  };
+
+  setEvent = () => {
+    this.$container.addEventListener("click", this.setClickMenuButton);
+  };
+
+  setClickMenuButton = ({ target }) => {
+    if (target.id === "product-add-menu") {
+      this.renderProductManagePage();
+    }
+  };
+
+  renderProductManagePage = () => {
+    this.product.init();
   };
 }
