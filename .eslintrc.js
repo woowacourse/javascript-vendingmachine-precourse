@@ -12,6 +12,8 @@ module.exports = {
     'class-methods-use-this': 'off',
     'no-alert': 'off',
     'consistent-return': 'off',
+    'no-new': 'off',
+    'react/no-unused-class-component-methods': 'off',
     'prettier/prettier': [
       'error',
       {
