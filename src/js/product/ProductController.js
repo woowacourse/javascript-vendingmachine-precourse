@@ -33,12 +33,16 @@ export default class ProductController {
     const price = this.$productPriceInput.value;
     const quantity = this.$productQuantityInput.value;
 
-    this.model.addProduct({ name, price, quantity });
-    this.view.renderProductTable(
-      this.$productTableBody,
-      this.model.getProducts()
-    );
-    this.resetProductInput();
+    try {
+      this.model.addProduct({ name, price, quantity });
+      this.view.renderProductTable(
+        this.$productTableBody,
+        this.model.getProducts()
+      );
+      this.resetProductInput();
+    } catch (error) {
+      alert(error);
+    }
   };
 
   resetProductInput = () => {
