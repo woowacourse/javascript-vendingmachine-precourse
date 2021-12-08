@@ -1,0 +1,8 @@
+.product-items-table {
+    display: flex;
+}
+.product-items-header {
+    border: solid 1px black;
+    padding: 10px;
+}
+
