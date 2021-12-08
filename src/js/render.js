@@ -46,3 +46,16 @@ export const renderProductItemsTable = () => {
   };
   $('#app').innerHTML += template();
 };
+
+export const renderProductItems = () => {
+  const template = () => {
+    return `
+      <div class='product-manage-item'>
+        <div id='product-manage-name'>상품명</div>
+        <div id='product-manage-price'>가격</div>
+        <div id='product-manage-quantity'>수량</div>
+      </div>
+    `;
+  };
+  $('#app').innerHTML += template();
+};
