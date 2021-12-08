@@ -15,6 +15,7 @@
   </ul>
 </details>
 
+- [x] 앱 고정 UI를 구현한다.
 - [x] 상품관리 고정 UI를 구현한다.
 <details>
   <summary>✅ &nbsp;DOM 선택자 id</summary>
