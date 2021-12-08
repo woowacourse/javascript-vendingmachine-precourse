@@ -55,5 +55,6 @@
 - **refactor**: 코드 개선 (상수화, 작게 쪼개기, 변수명 수정 등)
 - **docs**: 문서 수정 (README .md)
 - **style**: 디자인 요소(.css), 코드 스타일(Prettier, ESLint) 설정
+- **chore** : 그 외 (gitignore 파일 작업)
 
 참고 - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153#allowed-type)
