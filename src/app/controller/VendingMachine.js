@@ -9,5 +9,6 @@ export default class VendingMachine {
 
     init() {
         this.vendingSkeleton.init();
+        this.inventory.init();
     }
 }
