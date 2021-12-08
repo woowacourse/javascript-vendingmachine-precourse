@@ -1,13 +1,8 @@
 import Header from './container/Header.js';
 import Main from './container/Main.js';
+import Component from './container/root/Component.js';
 
-export default class App {
-  constructor(element) {
-    this.$element = element;
-
-    this.render();
-  }
-
+export default class App extends Component {
   template() {
     return `
       <header></header>
@@ -15,13 +10,8 @@ export default class App {
     `;
   }
 
-  render() {
-    this.$element.innerHTML = this.template();
-    this.mount();
-  }
-
   mount() {
-    new Header(document.querySelector('header'));
-    new Main(document.querySelector('main'), { component: 'product-add-menu' });
+    new Header('header', this.$props);
+    new Main('main', { ...this.$props, component: 'product-add-menu' });
   }
 }

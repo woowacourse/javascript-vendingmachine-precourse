@@ -1,4 +1,4 @@
-const Content = component => {
+const Content = ({ component }) => {
   switch (component) {
     case 'product-add-menu': {
       return `
