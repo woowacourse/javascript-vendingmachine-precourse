@@ -14,3 +14,9 @@ export const TAP = {
         id: 'product-purchase-menu',
     },
 };
+
+export const INPUT_ID = {
+    productName: 'product-name-input',
+    productPrice: 'product-price-input',
+    productQuantity: 'product-quantity-input',
+};

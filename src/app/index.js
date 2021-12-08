@@ -1,6 +1,7 @@
 import { VENDING_MACHINE_TITLE, TAP } from './asset/constants/dom-rule.js';
 import mainTitle from './asset/components/MainTitle/index.js';
 import ButtonById from './asset/components/Button/ButtonById.js';
+import Inventory from './controller/Inventory.js';
 
 export default class VendingMachine {
     constructor() {
@@ -9,6 +10,7 @@ export default class VendingMachine {
         this.$coinTap = ButtonById(TAP.coin.title, TAP.coin.id);
         this.$purchase = ButtonById(TAP.purchase.title, TAP.purchase.id);
         this.$skeleton = document.createElement('div');
+        this.inventory = new Inventory(this.$skeleton);
     }
 
     appendToApp($element) {
