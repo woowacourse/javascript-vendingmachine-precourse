@@ -8,6 +8,7 @@ export default class VendingMachine {
         this.$invetoryTap = ButtonById(TAP.inventory.title, TAP.inventory.id);
         this.$coinTap = ButtonById(TAP.coin.title, TAP.coin.id);
         this.$purchase = ButtonById(TAP.purchase.title, TAP.purchase.id);
+        this.$skeleton = document.createElement('div');
     }
 
     appendToApp($element) {
@@ -21,6 +22,7 @@ export default class VendingMachine {
     createElement() {
         this.createMainTitle();
         this.createTap();
+        this.createSkeleton();
     }
 
     createMainTitle() {
@@ -35,5 +37,9 @@ export default class VendingMachine {
         $buttonWrap.append(this.$coinTap);
         $buttonWrap.append(this.$purchase);
         this.appendToApp($buttonWrap);
+    }
+
+    createSkeleton() {
+        this.appendToApp(this.$skeleton);
     }
 }
