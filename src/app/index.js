@@ -1,3 +1,3 @@
-import VendingMachine from './controller/VendingMachine';
+import VendingMachine from './controller/VendingMachine.js';
 
 export default VendingMachine;
