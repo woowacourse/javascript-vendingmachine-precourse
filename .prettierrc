@@ -3,6 +3,5 @@
   "semi": true,
   "useTabs": false,
   "tabWidth": 2,
-  "trailingComma": "none",
-  "printWidth": 80
+  "printWidth": 100
 }
