@@ -13,8 +13,10 @@
 
 ## ⚙ 초기화하기
 
-- linter: `eslint `with airbnb convention
-- code formatter: `prettier`
+[완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commit/664acff5f4795b71cb6d1a8d4ae3e550a8fd12b7)
+
+- [x] linter: `eslint `with airbnb convention
+- [x] code formatter: `prettier`
 
 
 
@@ -22,14 +24,16 @@
 
 ## 🥤 자판기 만들기
 
+[완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commits/leegwae)
+
 자판기 관리자는 다음과 같이 생긴 자판기를 만들기로 했다.
 
-- [ ] 자판기는 간판을 이마에 써붙이고 있다.
-- [ ] 자판기는 세 개의 탭을 가진다.
+- [x] 자판기는 간판을 이마에 써붙이고 있다.
+- [x] 자판기는 세 개의 탭을 가진다.
   - 상품 관리
   - 잔돈 충전
   - 상품 구매
-- [ ] 자판기는 각각의 탭에 대하여 패널을 가진다. 탭을 누르면 해당 패널이 보인다.
+- [x] 자판기는 각각의 탭에 대하여 패널을 가진다. 탭을 누르면 해당 패널이 보인다.
 
 
 
