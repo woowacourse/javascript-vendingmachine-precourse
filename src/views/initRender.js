@@ -1,4 +1,5 @@
 import { $ } from '../dom/dom.js';
+import { APP_TITLE, TAB_INFO_LIST } from '../constants/constants.js';
 
 function createTabContentContainer() {
   const tabContentContainer = document.createElement('div');
@@ -6,27 +7,17 @@ function createTabContentContainer() {
   return tabContentContainer;
 }
 
-function createButtonElement(id) {
+function createButtonElement({ id, title }) {
   const button = document.createElement('button');
   button.id = id;
-  if (id === 'product-add-menu') {
-    button.innerText = '상품관리';
-  } else if (id === 'vending-machine-manage-menu') {
-    button.innerText = '잔돈충전';
-  } else if (id === 'product-purchase-menu') {
-    button.innerText = '상품구매';
-  }
+  button.innerText = title;
   button.style.marginRight = '10px';
   return button;
 }
 
 function createtabElementList() {
   const tabElementListContainer = document.createElement('div');
-  const buttonIdList = [
-    'product-add-menu',
-    'vending-machine-manage-menu',
-    'product-purchase-menu',
-  ];
+  const buttonIdList = TAB_INFO_LIST;
   buttonIdList.forEach((item) => {
     tabElementListContainer.appendChild(createButtonElement(item));
   });
@@ -35,7 +26,7 @@ function createtabElementList() {
 
 function createtitleElement() {
   const titleContainer = document.createElement('h1');
-  titleContainer.innerText = '🥤자판기🥤';
+  titleContainer.innerText = APP_TITLE;
   titleContainer.style.marginBottom = '40px';
   return titleContainer;
 }
