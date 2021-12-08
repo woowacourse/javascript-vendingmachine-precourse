@@ -12,6 +12,6 @@ export default class App extends Component {
 
   mount() {
     new Header('header', this.$props);
-    new Main('main', { ...this.$props, component: 'product-add-menu' });
+    new Main('main', this.$props);
   }
 }
