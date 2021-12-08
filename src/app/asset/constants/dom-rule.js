@@ -20,3 +20,7 @@ export const INPUT_ID = {
     productPrice: 'product-price-input',
     productQuantity: 'product-quantity-input',
 };
+
+export const SUB_TITLE_TEXT = {
+    addProduct: '상품 추가하기',
+};

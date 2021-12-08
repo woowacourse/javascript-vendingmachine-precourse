@@ -1,5 +1,6 @@
 import InputNumber from '../asset/components/Input/InputNumber.js';
-import { INPUT_ID } from '../asset/constants/dom-rule.js';
+import SubTitle from '../asset/components/SubTitle/index.js';
+import { INPUT_ID, SUB_TITLE_TEXT } from '../asset/constants/dom-rule.js';
 
 export default class InventoryTap {
     constructor($skeleton) {
@@ -21,12 +22,14 @@ export default class InventoryTap {
 
     createAddProductForm() {
         const $wrap = document.createElement('div');
+        const $subTitle = SubTitle(SUB_TITLE_TEXT.addProduct);
         const $inputWrap = document.createElement('div');
 
         this.$productPriceInput.style.margin = '0 5px';
         $inputWrap.append(this.$productNameInput);
         $inputWrap.append(this.$productPriceInput);
         $inputWrap.append(this.$productQuantityInput);
+        $wrap.append($subTitle);
         $wrap.append($inputWrap);
         this.appendToApp($wrap);
     }
