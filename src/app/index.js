@@ -1,13 +1,14 @@
 import { VENDING_MACHINE_TITLE, TAP_TITLE } from './asset/constants/dom-text.js';
+import { TAP } from './asset/constants/dom-selector.js';
 import mainTitle from './asset/components/MainTitle/index.js';
 import ButtonById from './asset/components/Button/ButtonById.js';
 
 export default class VendingMachine {
     constructor() {
         this.$app = document.getElementById('app');
-        this.$invetoryTap = ButtonById(TAP_TITLE.inventory);
-        this.$coinTap = ButtonById(TAP_TITLE.coin);
-        this.$purchase = ButtonById(TAP_TITLE.purchase);
+        this.$invetoryTap = ButtonById(TAP_TITLE.inventory, TAP.inventory);
+        this.$coinTap = ButtonById(TAP_TITLE.coin, TAP.coin);
+        this.$purchase = ButtonById(TAP_TITLE.purchase, TAP.purchase);
     }
 
     appendToApp($element) {
