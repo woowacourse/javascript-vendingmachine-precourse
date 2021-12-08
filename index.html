@@ -9,7 +9,46 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <header>
+      <h1>🥤자판기🥤</h1>
+      <nav>
+        <button id="product-add-menu">상품 관리</button>
+        <button id="vending-machine-manage-menu">잔돈 충전</button>
+        <button id="product-purchase-menu">상품 구매</button>
+      </nav>
+    </header>
+    <main data-component="product-add-menu">
+      <div>
+        <h2>상품 추가하기</h2>
+        <form>
+          <input type="text" id="product-name-input" placeholder="상품명" />
+          <input type="number" id="product-price-input" placeholder="가격" />
+          <input type="number" id="product-quantity-input" placeholder="수량" />
+          <button id="product-add-button">추가하기</button>
+        </form>
+      </div>
+      <div>
+        <h2>상품 현황</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>상품명</th>
+              <th>가격</th>
+              <th>수량</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="product-manage-item">
+              <td class="product-manage-name">콜라</td>
+              <td class="product-manage-price">1500</td>
+              <td class="product-manage-quantity">3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
   <script type="module" src="./index.js"></script>
 </body>
 
