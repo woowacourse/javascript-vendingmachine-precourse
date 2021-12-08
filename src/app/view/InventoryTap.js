@@ -26,16 +26,23 @@ export default class InventoryTap {
     createAddProductForm() {
         const $wrap = document.createElement('div');
         const $subTitle = SubTitle(SUB_TITLE_TEXT.addProduct);
+        const $inputWrap = this.getAddProductFormInput();
+
+        $wrap.append($subTitle);
+        $wrap.append($inputWrap);
+        this.appendToApp($wrap);
+    }
+
+    getAddProductFormInput() {
         const $inputWrap = document.createElement('div');
 
-        this.$productPriceInput.style.margin = '0 5px';
         this.$button.style.marginLeft = '5px';
+        this.$productPriceInput.style.margin = '0 5px';
         $inputWrap.append(this.$productNameInput);
         $inputWrap.append(this.$productPriceInput);
         $inputWrap.append(this.$productQuantityInput);
         $inputWrap.append(this.$button);
-        $wrap.append($subTitle);
-        $wrap.append($inputWrap);
-        this.appendToApp($wrap);
+
+        return $inputWrap;
     }
 }
