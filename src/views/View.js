@@ -1,6 +1,5 @@
-import { $ } from '../utils/utils.js';
 import { default as UI } from './templates.js';
-import { default as DOM } from './DOMUtils.js';
+import { $, default as DOM } from './DOMUtils.js';
 
 export default class View {
   constructor() {

@@ -1,4 +1,4 @@
-import { $ } from '../utils/utils.js';
+export const $ = selector => document.querySelector(selector);
 
 const DOMUtils = {
   initElement: selector => {

@@ -1,5 +1,5 @@
 import View from '../views/View.js';
-import { $ } from '../utils/utils.js';
+import { $ } from '../views/DOMUtils.js';
 import ProductPurchaseMenu from './ProductPurchaseMenu.js';
 
 export default class Controller {
