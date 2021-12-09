@@ -27,6 +27,7 @@ export class ChargeView {
   }
 
   showCoins(coins) {
+    console.log(`coins`, coins);
     this.$coin500Quantity.innerText = coins[500];
     this.$coin100Quantity.innerText = coins[100];
     this.$coin50Quantity.innerText = coins[50];

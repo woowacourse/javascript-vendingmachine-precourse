@@ -1,3 +1,10 @@
+export const PRODUCT_MANAGE_TEMPLATE = `
+  <tr class="product-manage-item">
+    <td class="product-manage-name">상품명</td>
+    <td class="product-manage-price">가격</td>
+    <td class="product-manage-quantity">수량</td>
+  </tr>`;
+
 export const PRODUCT_SECTION_TEMPLATE = `
   <h3>상품 추가하기</h3>
   <form>
@@ -8,20 +15,9 @@ export const PRODUCT_SECTION_TEMPLATE = `
   </form>
   <h3>상품 현황</h3>
   <table id="product-manage-table">
-    <tr class="product-manage-item">
-      <td class="product-manage-name">상품명</td>
-      <td class="product-manage-price">가격</td>
-      <td class="product-manage-quantity">수량</td>
-    </tr>
+    ${PRODUCT_MANAGE_TEMPLATE}
   </table>
 `;
-
-export const PRODUCT_MANAGE_TEMPLATE = `
-  <tr class="product-manage-item">
-    <td class="product-manage-name">상품명</td>
-    <td class="product-manage-price">가격</td>
-    <td class="product-manage-quantity">수량</td>
-  </tr>`;
 
 export function printProductTemplate(product) {
   return `
@@ -49,25 +45,25 @@ export const CHARGE_SECTION_TEMPLATE = `
     <tr>
       <td>500원</td>
       <td>
-        <span id="vending-machine-coin-500-quantity"></span>개
+        <span id="vending-machine-coin-500-quantity">0</span>개
       </td>
     </tr>
     <tr>
       <td>100원</td>
       <td>
-        <span id="vending-machine-coin-100-quantity"></span>개
+        <span id="vending-machine-coin-100-quantity">0</span>개
       </td>
     </tr>
     <tr>
       <td>50원</td>
       <td>
-        <span id="vending-machine-coin-50-quantity"></span>개
+        <span id="vending-machine-coin-50-quantity">0</span>개
       </td>
     </tr>
     <tr>
       <td>10원</td>
       <td>
-        <span id="vending-machine-coin-10-quantity"></span>개
+        <span id="vending-machine-coin-10-quantity">0</span>개
       </td>
     </tr>
   </table>
