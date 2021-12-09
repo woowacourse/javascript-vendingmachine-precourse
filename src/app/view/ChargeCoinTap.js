@@ -46,6 +46,7 @@ export default class ChargeCoinTap {
     }
 
     init() {
+        this.hide();
         this.createChargeCoinForm();
         this.createCoinsForm();
     }
@@ -53,6 +54,15 @@ export default class ChargeCoinTap {
     render(chargeAmount, distributedCoin) {
         this.setChargeAmount(chargeAmount);
         this.setCoins(distributedCoin);
+        this.show();
+    }
+
+    hide() {
+        this.$app.style.display = 'none';
+    }
+
+    show() {
+        this.$app.style.display = 'block';
     }
 
     setChargeAmount(chargeAmount) {

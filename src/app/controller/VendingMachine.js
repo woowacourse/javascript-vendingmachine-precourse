@@ -13,6 +13,6 @@ export default class VendingMachine {
         this.vendingSkeleton.init();
         this.inventory.init();
         this.chargeCoin.init();
-        // this.inventory.render();
+        this.chargeCoin.render();
     }
 }

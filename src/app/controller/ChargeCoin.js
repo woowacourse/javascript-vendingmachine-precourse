@@ -18,6 +18,10 @@ export default class ChargeCoin {
         this.chargeCoinTap.render(getChargeAmount(), getCoins());
     }
 
+    hideTap() {
+        this.chargeCoinTap.hide();
+    }
+
     triggerChargeCoinEvent() {
         this.chargeCoinTap.getChargeButton().addEventListener('click', () => {
             const chargeAmount = this.chargeCoinTap.getChargeAmount();
