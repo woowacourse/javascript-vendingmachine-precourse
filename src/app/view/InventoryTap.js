@@ -72,12 +72,10 @@ export default class InventoryTap {
 
     createAddProductForm() {
         const $wrap = document.createElement('div');
-        const $subTitle = SubTitle(SUB_TITLE_TEXT.addProduct);
-        const $inputWrap = this.getAddProductFormInput();
 
         $wrap.style.marginBottom = '15px';
-        $wrap.append($subTitle);
-        $wrap.append($inputWrap);
+        $wrap.append(SubTitle(SUB_TITLE_TEXT.addProduct));
+        $wrap.append(this.getAddProductFormInput());
         this.appendToApp($wrap);
     }
 
@@ -96,10 +94,9 @@ export default class InventoryTap {
 
     createProductInventory() {
         const $wrap = document.createElement('div');
-        const $subTitle = SubTitle(SUB_TITLE_TEXT.productInventory);
 
         this.addRow(TABLE_TITLE.productName, TABLE_TITLE.productPrice, TABLE_TITLE.productQuantity);
-        $wrap.append($subTitle);
+        $wrap.append(SubTitle(SUB_TITLE_TEXT.productInventory));
         $wrap.append(this.$inventoryContainer);
         this.appendToApp($wrap);
     }
