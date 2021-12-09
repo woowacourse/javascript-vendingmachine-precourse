@@ -1,4 +1,6 @@
-const Content = ({ component }) => {
+import { EMPTY } from '../constants/index.js';
+
+const Content = ({ component, tabData }) => {
   switch (component) {
     case 'product-add-menu': {
       return `
@@ -22,11 +24,17 @@ const Content = ({ component }) => {
               </tr>
             </thead>
             <tbody>
-              <tr class="product-manage-item">
-                <td class="product-manage-name">콜라</td>
-                <td class="product-manage-price">1500</td>
-                <td class="product-manage-quantity">3</td>
-              </tr>
+              ${tabData
+                .map(
+                  ({ name, price, quantity }) => `
+                <tr class="product-manage-item">
+                  <td class="product-manage-name">${name}</td>
+                  <td class="product-manage-price">${price}</td>
+                  <td class="product-manage-quantity">${quantity}</td>
+                </tr>
+                `,
+                )
+                .join(EMPTY)}
             </tbody>
           </table>
         </div>

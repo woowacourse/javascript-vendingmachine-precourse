@@ -19,7 +19,9 @@ export default class App extends Component {
   }
 
   mount() {
-    new Header('header', this.$props);
-    new Main('main', this.$props);
+    this.$storage.subscribe(() => {
+      new Header('header', this.$props);
+      new Main('main', this.$props);
+    });
   }
 }

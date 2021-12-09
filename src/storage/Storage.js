@@ -1,6 +1,19 @@
 class Storage {
   constructor() {
     this.state = localStorage;
+    this.listeners = [];
+  }
+
+  subscribe(listener) {
+    this.listeners.push(listener);
+    listener();
+    return () => {
+      this.listeners = this.listeners.filter(l => l !== listener);
+    };
+  }
+
+  notify() {
+    this.listeners.forEach(listener => listener());
   }
 
   /**
@@ -19,7 +32,7 @@ class Storage {
    * @param {any} item
    */
   add(key, item) {
-    const value = this.read(key);
+    const value = this.read(key) || {};
     this.setState({ key, value: [...value, item] });
   }
 
@@ -65,6 +78,7 @@ class Storage {
    */
   setState({ key, value }) {
     this.state.setItem(key, JSON.stringify(value));
+    this.notify();
   }
 }
 

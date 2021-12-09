@@ -21,8 +21,6 @@ export default class Header extends Component {
 
   changeTab({ target }, scope) {
     if (!target.matches('button')) return;
-    const { id: component } = target;
-    const tabData = scope.$storage.read(component);
-    new Main('main', { ...scope.$props, component, tabData });
+    new Main('main', { ...scope.$props, component: target.id });
   }
 }
