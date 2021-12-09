@@ -1,4 +1,4 @@
-import { $ } from '../views/DOMUtils.js';
+import { $, default as DOM } from '../views/DOMUtils.js';
 import { default as V } from '../utils/validators.js';
 
 export default class ProductAddMenu {
@@ -16,9 +16,9 @@ export default class ProductAddMenu {
     $('#product-add-button').addEventListener('click', e => {
       e.preventDefault();
 
-      if (!V.isValidProductName($('#product-name-input').value)) return;
-      if (!V.isValidProductPrice($('#product-price-input').value)) return;
-      if (!V.isValidProductQuantity($('#product-quantity-input').value)) return;
+      if (!V.isValidProductName(DOM.getProduct().name)) return;
+      if (!V.isValidProductPrice(DOM.getProduct().price)) return;
+      if (!V.isValidProductQuantity(DOM.getProduct().quantity)) return;
     });
   }
 }
