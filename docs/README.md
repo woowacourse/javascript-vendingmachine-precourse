@@ -6,6 +6,18 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 - [] 최종 목표 : 반환되는 동전이 최소한이 되는 자판기를 구현한다.
 
+### 데이터 모델
+
+- 상품 현황 목록: [변수명]productObj, [타입]Object
+  - ex) { "콜라": {"가격": 1,500, "수량": 20}, "사이다": {"가격": 1,000, "수량": 10}}
+- 자판기가 보유한 동전 목록: [변수명]coinObj, [타입]Object
+  - ex) { "500": 0, "100": 4, "50": 1, "10": 0}
+  - 충전금액이 주어지면 각 동전들의 개수 조합은 랜덤으로 정해진다.
+  - 자판기가 보유한 금액은 해당 객체의 키(parseInt필요)와 값들을 곱한 값들의 합으로 한다.
+- 투입한 금액 : [변수명]insertedMoney, [타입]Number
+- 잔돈 목록: [변수명]changes, [타입]Object
+  - 잔돈 총액: 투입한금액- 상품금액(구매한 각 상품들의 가격 곱하기 수량의 합)
+
 ### 1) 공통
 
 - 상단에 탭메뉴가 존재한다. 각 탭에 따라 다음과 같은 규칙으로 적절한 기능을 수행한다.
@@ -32,9 +44,9 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
   - 상품 추가 입력 폼의 수량 입력 요소의 id는 product-quantity-input이다.
   - 상품 추가하기 버튼 요소의 id는 product-add-button이다.
   - 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
-  - 상품명에 해당하는 요소의 class명은 product-manage-name이다.
-  - 가격에 해당하는 요소의 class명은 product-manage-price이다.
-  - 수량에 해당하는 요소의 class명은 product-manage-quantity이다.
+    - 상품명에 해당하는 요소의 class명은 product-manage-name이다.
+    - 가격에 해당하는 요소의 class명은 product-manage-price이다.
+    - 수량에 해당하는 요소의 class명은 product-manage-quantity이다.
 
 ### 3) 잔돈 충전 탭 (자판기 보유 동전)
 
