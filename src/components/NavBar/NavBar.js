@@ -1,0 +1,25 @@
+import Component from '../../core/Component.js';
+
+export default class NavBar extends Component {
+  template() {
+    return `
+        <button id='product-add-menu'>상품 관리</button>
+        <button id='vending-machine-manage-menu'>잔돈 충전</button>
+        <button id='product-purchase-menu'>상품 구매</button>
+      `;
+  }
+
+  addRoute(selector, to) {
+    const { navigate } = this.props;
+
+    this.addEvent('click', selector, () => {
+      navigate(to);
+    });
+  }
+
+  setEvent() {
+    this.addRoute('#product-add-menu', '/add');
+    this.addRoute('#vending-machine-manage-menu', '/manage');
+    this.addRoute('#product-purchase-menu', '/purchase');
+  }
+}
