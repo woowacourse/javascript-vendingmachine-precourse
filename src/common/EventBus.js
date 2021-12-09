@@ -7,8 +7,7 @@ class EventBus {
 
   addEvent(elements, selector, type, scope, callback, useCapture = false) {
     const eventKey = this.generateKey(elements, selector, type);
-    if (!this.hasProperty(eventKey))
-      this.handlers[eventKey] = { elements, selector, type, scope, callback, useCapture };
+    this.handlers[eventKey] = { elements, selector, type, scope, callback, useCapture };
   }
 
   dispatch(elements, selector, type) {
