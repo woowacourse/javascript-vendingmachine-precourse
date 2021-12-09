@@ -1,3 +1,10 @@
+export const COINS_PRICE = [500, 100, 50, 10];
+export const COINS_PRICE_MAX = COINS_PRICE[0];
+export const COINS_PRICE_MIN = COINS_PRICE[COINS_PRICE.length - 1];
+
+export const PRODUCT_PRICE_MIN = 100;
+export const PRODUCT_PRICE_MOD = COINS_PRICE_MIN;
+
 export const ELEMENT_ID = {
   APP: 'app',
   // 탭 메뉴 버튼
