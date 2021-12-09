@@ -8,7 +8,7 @@ export class VendingMachineModel {
     50: 0,
     10: 0,
   };
-  chargeAmount = Number(JSON.parse(localStorage.getItem('charge'))) || 0;
+  machineChargeAmount = Number(JSON.parse(localStorage.getItem('machineCharge'))) || 0;
   insertedMoney = 0;
 
   addProduct(productName, price, quantity) {
@@ -18,9 +18,9 @@ export class VendingMachineModel {
   }
 
   addChargeMoney(chargeMoney) {
-    this.chargeAmount += chargeMoney;
-    localStorage.setItem('charge', JSON.stringify(this.chargeAmount));
-    return this.chargeAmount;
+    this.machineChargeAmount += chargeMoney;
+    localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
+    return this.machineChargeAmount;
   }
 
   addCoin(chargeMoney) {

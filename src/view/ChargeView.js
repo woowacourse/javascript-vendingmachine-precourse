@@ -6,7 +6,7 @@ export class ChargeView {
     this.$productBalanceSection = $('#product-balance-section');
     this.$chargeInput;
     this.$chargeButton;
-    this.$chargeAmount;
+    this.$machineChargeAmount;
     this.$coin500Quantity;
     this.$coin100Quantity;
     this.$coin50Quantity;
@@ -22,8 +22,8 @@ export class ChargeView {
     });
   }
 
-  showChargeAmount(chargeAmount) {
-    this.$chargeAmount.innerText = chargeAmount;
+  showChargeAmount(machineChargeAmount) {
+    this.$machineChargeAmount.innerText = machineChargeAmount;
   }
 
   showCoins(coins) {
@@ -37,7 +37,7 @@ export class ChargeView {
     this.$productBalanceSection.innerHTML = CHARGE_SECTION_TEMPLATE;
     this.$chargeInput = $('#vending-machine-charge-input');
     this.$chargeButton = $('#vending-machine-charge-button');
-    this.$chargeAmount = $('#vending-machine-charge-amount');
+    this.$machineChargeAmount = $('#vending-machine-charge-amount');
     this.$coin500Quantity = $('#vending-machine-coin-500-quantity');
     this.$coin100Quantity = $('#vending-machine-coin-100-quantity');
     this.$coin50Quantity = $('#vending-machine-coin-50-quantity');
