@@ -3,7 +3,7 @@ import { isValidMoney } from "../chargeManager/checkMoneyInput.js";
 import { addMoneyCustomer } from "./chargeCustomerDataController.js";
 import { ALERT_MSG } from "../../utils/constants.js";
 import { purchaseProduct } from "./purchaseDataController.js";
-import { showAll } from "../common/showAll.js";
+import { showAll } from "../../views/common/showAll.js";
 
 const onClickCustomerChargeButton = () => {
   const $customerChargeButton = document.getElementById("charge-button");
@@ -50,4 +50,4 @@ const addPurchaseManagerClickEvents = () => {
   onClickCustomerChargeButton();
 };
 
-export { addPurchaseManagerClickEvents, onClickPurchaseButton, showAll };
+export { addPurchaseManagerClickEvents, onClickPurchaseButton };

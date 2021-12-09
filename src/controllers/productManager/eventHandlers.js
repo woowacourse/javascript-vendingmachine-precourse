@@ -2,7 +2,7 @@ import { getInputValueById } from "../common/getInputValue.js";
 import { isValidInputs } from "./checkInputValues.js";
 import { addProduct } from "./productDataController.js";
 import { resetAddProductInput } from "../../views/productManager/resetInput.js";
-import { showAll } from "../common/showAll.js";
+import { showAll } from "../../views/common/showAll.js";
 
 const processing = e => {
   e.preventDefault();
