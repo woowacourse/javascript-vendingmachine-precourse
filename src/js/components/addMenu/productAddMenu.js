@@ -1,5 +1,11 @@
 import { $ } from '../../utils/querySelector.js';
 import { isValidProductValue } from '../../utils/validation.js';
+import { productItemTemplate } from './addMenuTemplate.js';
+
+const addProductItem = (productData) => {
+  const productItem = productItemTemplate(productData);
+  $('.product-manage-list').insertAdjacentHTML('beforeend', productItem);
+};
 
 export default function handleProductMenuSubmit(event) {
   event.preventDefault();
@@ -8,7 +14,9 @@ export default function handleProductMenuSubmit(event) {
     price: $('#product-price-input').value,
     quantity: $('#product-quantity-input').value,
   };
+
   if (!isValidProductValue(productData)) {
-    console.log('부적합');
+    return;
   }
+  addProductItem(productData);
 }

@@ -15,12 +15,16 @@ export const productAddMenuTemplate = `
         <th>수량</th>
       </tr>
     </thead>
-    <tbody>
-      <tr class="product-manage-item">
-        <td class="product-manage-name">콜라</td>
-        <td class="product-manage-price">1000</td>
-        <td class="product-manage-quantity">10</td>
-      </tr>
-    </tbody>
+    <tbody class="product-manage-list"></tbody>
   </table>
 `;
+
+export const productItemTemplate = ({ name, price, quantity }) => {
+  return `
+  <tr class="product-manage-item">
+    <td class="product-manage-name">${name}</td>
+    <td class="product-manage-price">${price}</td>
+    <td class="product-manage-quantity">${quantity}</td>
+  </tr>
+  `;
+};
