@@ -2,7 +2,8 @@ import { addMenu } from './addMenu.js';
 import { addProductManager } from './addProductManager.js';
 import { addVendingMachineChargeManager } from './addVendingMachineChargeManager.js';
 import { addPurchaseManager } from './addPurchaseManager.js';
-import { addListenerToMenuButton } from './addListenerToMenuButton.js';
+import { addListenerToMenuButton } from './addListenerToButton.js';
+import { addListenerToProductAddButton } from './addListenerToButton.js';
 
 export const initDom = () => {
   addMenu();
@@ -10,4 +11,5 @@ export const initDom = () => {
   addVendingMachineChargeManager();
   addPurchaseManager();
   addListenerToMenuButton();
+  addListenerToProductAddButton();
 };

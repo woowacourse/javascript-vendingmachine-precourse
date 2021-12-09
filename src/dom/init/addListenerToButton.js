@@ -1,5 +1,7 @@
 import { getMenuButtons, getManagers } from '../domElement.js';
 import { BLOCK, NONE, CLICK } from '../../constants.js';
+import { getProductAddButton } from '../domElement.js';
+import { vendingMachine } from '../../index.js';
 
 export const addListenerToMenuButton = () => {
   const menuButtons = getMenuButtons();
@@ -19,5 +21,13 @@ const showOrHideManager = (managers, num) => {
     } else {
       manager.style.display = NONE;
     }
+  });
+};
+
+export const addListenerToProductAddButton = () => {
+  const productAddButton = getProductAddButton();
+
+  productAddButton.addEventListener('click', () => {
+    vendingMachine.addProduct();
   });
 };
