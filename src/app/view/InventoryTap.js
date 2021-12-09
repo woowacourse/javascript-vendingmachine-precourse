@@ -22,6 +22,7 @@ export default class InventoryTap {
         this.$button = ButtonById(BUTTON.addProduct.title, BUTTON.addProduct.id);
         this.$inventoryContainer = Table();
 
+        this.hide();
         $skeleton.append(this.$app);
     }
 
@@ -58,6 +59,15 @@ export default class InventoryTap {
         products.forEach(({ productName, productPrice, productQuantity }) => {
             this.addProductRow(productName, productPrice, productQuantity);
         });
+        this.show();
+    }
+
+    hide() {
+        this.$app.style.display = 'none';
+    }
+
+    show() {
+        this.$app.style.display = 'block';
     }
 
     createAddProductForm() {

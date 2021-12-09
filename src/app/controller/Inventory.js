@@ -18,6 +18,10 @@ export default class Inventory {
         this.inventoryTap.render(getProducts());
     }
 
+    hideTap() {
+        this.inventoryTap.hide();
+    }
+
     triggerAddProductEvent() {
         this.inventoryTap.getButton().addEventListener('click', () => {
             const productName = this.inventoryTap.getProductName();
