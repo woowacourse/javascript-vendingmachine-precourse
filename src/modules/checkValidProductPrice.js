@@ -2,6 +2,7 @@ import {
   ALERT_MSG,
   DIVIDE_ERROR,
   PRICE_ERROR,
+  EMPTY_ERROR,
 } from '../constants/errorConstants.js';
 import checkUserInputEmpty from './checkUserInputEmpty.js';
 import checkValidNumberInput from './checkValidNumberInput.js';
@@ -27,6 +28,8 @@ export default function checkValidProductPrice(userinputnumber) {
     if (isTrue) {
       isTrue = checkNumberCondition(userinputnumber);
     }
+  } else {
+    showAlertMsg(ALERT_MSG[EMPTY_ERROR]);
   }
   return isTrue;
 }

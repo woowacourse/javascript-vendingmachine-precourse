@@ -48,6 +48,8 @@
 
     [x] 상품 가격과 수량의 경우 숫자값이 아닌 문자열을 입력할 경우 alert로 처리한다
 
+    [x] 상품명의 경우 localStorage와 비교해 중복될 경우 alert로 처리한다
+
 [ ] 유저의 입력값이 유효한 경우 drink localStorage에 객체 형태로 값을 저장한다
 
 [ ] localStorage 값을 토대로 상품 현황에 유저가 입력한 값을 보여준다
