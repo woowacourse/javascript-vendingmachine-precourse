@@ -1,10 +1,31 @@
 import store from './store/store.js';
 import { $ } from './util/dom.js';
 
+export const renderProductManagePage = () => {
+  renderCommonPart();
+  renderAddProductForm();
+  renderProductItemsTable();
+  renderProductItems();
+};
+export const renderChargeChangesPage = () => {
+  renderCommonPart();
+};
+export const renderPurchaseProductPage = () => {
+  renderCommonPart();
+};
+
+export const renderCommonPart = () => {
+  $('#app').innerHTML = '';
+  renderTitle();
+  renderTabButtons();
+};
+
 export const renderTitle = () => {
+  const header = document.createElement('header');
   let title = document.createElement('h1');
   title.innerHTML = '🥤자판기🥤';
-  $('#app').appendChild(title);
+  $('#app').appendChild(header);
+  $('header').appendChild(title);
 };
 
 export const renderTabButtons = () => {
@@ -16,10 +37,12 @@ export const renderTabButtons = () => {
             <button type='button' id='product-purchase-menu'>상품 구매</button>
         </div>`;
   };
-  $('#app').innerHTML += template();
+  $('header').innerHTML += template();
 };
 
 export const renderAddProductForm = () => {
+  const main = document.createElement('main');
+  $('#app').appendChild(main);
   const template = () => {
     return `
       <h2>상품 추가하기</h2>
@@ -31,7 +54,7 @@ export const renderAddProductForm = () => {
       </form>
     `;
   };
-  $('#app').innerHTML += template();
+  $('main').innerHTML += template();
 };
 
 export const renderProductItemsTable = () => {
@@ -44,29 +67,26 @@ export const renderProductItemsTable = () => {
           <div class='product-items-header' id='product-items-price'>가격</div>
           <div class='product-items-header' id='product-items-quantity'>수량</div>
         </div>
-        <div class='product-manage-table'>
-        </div>
-      <div>
-    `;
-  };
-  $('#app').innerHTML += template();
-};
-
-export const renderProductItems = () => {
-  const menu = store.getLocalStorage();
-  $('.product-manage-table').innerHTML = '';
-  const template = index => {
-    return `
-      <div class='product-manage-item'>
-        <div class='product-items-header' id='product-manage-name'>${menu[index].name}</div>
-        <div class='product-items-header' id='product-manage-price'>${menu[index].price}</div>
-        <div class='product-items-header' id='product-manage-quantity'>${menu[index].quantity}</div>
+        <div class='product-manage-table'></div>
       </div>
     `;
   };
+  $('main').innerHTML += template();
+};
+
+export const renderProductItems = () => {
+  $('.product-manage-table').innerHTML = '';
+  const menu = store.getLocalStorage();
   if (menu !== null) {
-    for (let i = 0; i < menu.length; i++) {
-      $('.product-manage-table').innerHTML += template(i);
-    }
+    const template = menu.map(item => {
+      return `
+        <div class='product-manage-item'>
+          <div class='product-items-header' id='product-manage-name'>${item.name}</div>
+          <div class='product-items-header' id='product-manage-price'>${item.price}</div>
+          <div class='product-items-header' id='product-manage-quantity'>${item.quantity}</div>
+        </div>
+      `;
+    });
+    $('.product-manage-table').innerHTML += template.join('');
   }
 };
