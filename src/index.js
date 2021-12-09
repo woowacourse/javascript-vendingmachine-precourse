@@ -1,6 +1,6 @@
 import { VendingMachineModel } from './model/VendingMachineModel.js';
 import { ProductController } from './controller/ProductController.js';
-import { BalanceController } from './controller/BalanceController.js';
+import { ChargeController } from './controller/ChargeController.js';
 import { BuyController } from './controller/BuyController.js';
 import { CoreView } from './view/CoreView.js';
 
@@ -11,7 +11,7 @@ class App {
     const coreView = new CoreView();
 
     const controllerForProduct = new ProductController(model, coreView);
-    const controllerForBalance = new BalanceController(model, coreView);
+    const controllerForCharge = new ChargeController(model, coreView);
     const controllerForBuy = new BuyController(model, coreView);
   }
 }

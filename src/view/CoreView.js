@@ -1,5 +1,5 @@
 import { $ } from '../utils/DOM.js';
-import { BalanceView } from './BalanceView.js';
+import { ChargeView } from './ChargeView.js';
 import { BuyView } from './BuyView.js';
 import { ProductView } from './ProductView.js';
 
@@ -8,7 +8,7 @@ export class CoreView {
     this.$app = $('#app');
     this.addCommonElements();
     this.productView = new ProductView();
-    this.balanceView = new BalanceView();
+    this.chargeView = new ChargeView();
     this.buyView = new BuyView();
   }
 

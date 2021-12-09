@@ -1,6 +1,6 @@
 import { $ } from '../utils/DOM.js';
 
-export class BalanceView {
+export class ChargeView {
   constructor() {
     this.$productBalanceSection = $('#product-balance-section');
     this.addElements();
