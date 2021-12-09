@@ -14,5 +14,6 @@ export const addMoney = e => {
     }
     changedMoney += parseInt(money);
     $('#vending-machine-charge-amount').innerText += ` ${changedMoney}`;
+    localStorage.setItem('money', JSON.stringify(changedMoney));
   }
 };
