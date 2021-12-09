@@ -1,6 +1,7 @@
 import showMain from './showMain.js';
 import ProductAddView from './ProductAddView.js';
 import MachineManageView from './MachineManageView.js';
+import ProductPurchaseView from './ProductPurchaseView.js';
 
 export default class App {
   constructor() {
@@ -18,6 +19,13 @@ export default class App {
       .addEventListener('click', (e) => {
         e.preventDefault();
         MachineManageView.render();
+      });
+
+    document
+      .getElementById('product-purchase-menu')
+      .addEventListener('click', (e) => {
+        e.preventDefault();
+        ProductPurchaseView.render();
       });
   }
 }
