@@ -1,8 +1,8 @@
-import { createTabs } from "./storage/initialPresent.js";
+import { setInitialPresent } from "./storage/initialPresent.js";
 
 export default function Vendingmachine() {
     this.init = () => {
-        createTabs();
+        setInitialPresent();
     };
 }
 

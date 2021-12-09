@@ -1,7 +1,9 @@
 import { INITIAL_TAB_ID } from "./constant.js";
+import ManagePresenter from "../manage/presenter.js";
 const clickHandler = (id) => {
     switch (id) {
         case INITIAL_TAB_ID.PRODUCT_MANAGE_TAB:
+            new ManagePresenter();
             break;
         case INITIAL_TAB_ID.CHARGE_TAB:
             break;
@@ -21,13 +23,24 @@ const createTab = (id, text) => {
     return $tab;
 };
 
+export const clearContainer = () => {
+    while (getPresetContainer().firstChild)
+        getPresetContainer().removeChild(getPresetContainer().firstChild);
+};
+
 export const getApp = () => {
     return document.getElementById("app");
 };
 
-export const createTabs = () => {
+export const getPresetContainer = () => {
+    return document.getElementById("container");
+};
+
+export const setInitialPresent = () => {
     const $app = getApp();
     const $title = document.createElement("div");
+    const $container = document.createElement("div");
+    $container.id = "container";
     $title.innerHTML = `<p>🥤자판기🥤</p></br>`;
     $app.appendChild($title);
     $app.appendChild(createTab(INITIAL_TAB_ID.PRODUCT_MANAGE_TAB, "상품 관리"));
@@ -35,4 +48,5 @@ export const createTabs = () => {
     $app.appendChild(
         createTab(INITIAL_TAB_ID.PRODUCT_PURCHASE_TAB, "상품 구매"),
     );
+    $app.appendChild($container);
 };
