@@ -3,10 +3,17 @@ import INPUT_ID from '../asset/constants/INPUT_ID.js';
 import SubTitle from '../asset/components/SubTitle/index.js';
 import Table from '../asset/components/Table/index.js';
 import ButtonById from '../asset/components/Button/ButtonById.js';
+import CoinRow from '../asset/components/Row/CoinRow.js';
+import CellById from '../asset/components/Cell/CellById.js';
+import Cell from '../asset/components/Cell/index.js';
 import BUTTON from '../asset/constants/BUTTON.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
+import COIN_ID from '../asset/constants/COIN_ID.js';
+import COIN from '../asset/constants/COIN.js';
 import GUIDE from '../asset/constants/GUIDE.js';
+import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
+import UNIT from '../asset/constants/UNIT.js';
 
 export default class ChargeCoinTap {
     constructor($skeleton) {
@@ -14,7 +21,10 @@ export default class ChargeCoinTap {
         this.$chargeCoinInput = InputNumber(INPUT_ID.chargeCoin, INPUT_ITEM.chargeCoin);
         this.$chargeButton = ButtonById(BUTTON.chargeCoin.title, BUTTON.chargeCoin.id);
         this.$chargeAmount = document.createElement('span');
-        this.$coinContainer = Table();
+        this.$coin500 = CellById('', COIN_ID[0]);
+        this.$coin100 = CellById('', COIN_ID[1]);
+        this.$coin50 = CellById('', COIN_ID[2]);
+        this.$coin10 = CellById('', COIN_ID[3]);
 
         $skeleton.append(this.$app);
     }
@@ -29,6 +39,7 @@ export default class ChargeCoinTap {
 
     init() {
         this.createChargeCoinForm();
+        this.createCoinsForm();
     }
 
     createChargeCoinForm() {
@@ -64,5 +75,28 @@ export default class ChargeCoinTap {
         $guideWrap.append(this.$chargeAmount);
 
         return $guideWrap;
+    }
+
+    createCoinsForm() {
+        const $wrap = document.createElement('div');
+        const $subTitle = SubTitle(SUB_TITLE_TEXT.coins);
+        const $table = this.getCoinTable();
+
+        $wrap.style.marginTop = '30px';
+        $wrap.append($subTitle);
+        $wrap.append($table);
+        this.appendToApp($wrap);
+    }
+
+    getCoinTable() {
+        const $table = Table();
+
+        $table.append(CoinRow(TABLE_TITLE.coin, Cell(TABLE_TITLE.count)));
+        $table.append(CoinRow(`${COIN[0]}${UNIT.count}`, this.$coin500));
+        $table.append(CoinRow(`${COIN[1]}${UNIT.count}`, this.$coin100));
+        $table.append(CoinRow(`${COIN[2]}${UNIT.count}`, this.$coin50));
+        $table.append(CoinRow(`${COIN[3]}${UNIT.count}`, this.$coin10));
+
+        return $table;
     }
 }
