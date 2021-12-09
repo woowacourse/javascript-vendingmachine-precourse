@@ -1,8 +1,16 @@
 import { EMPTY, ERROR_MESSAGES, DIVIDE_CHARGING, ZERO } from '../constants/index.js';
 
-export const $ = selector => document.querySelector(selector);
+/**
+ * 값이 null인지 검사합니다.
+ *
+ * @param {string|number} value
+ * @returns {boolean}
+ */
+export const isNull = value => value === null || value === undefined;
 
-export const $all = selector => document.querySelectorAll(selector);
+export const $ = (selector, target = document) => target.querySelector(selector);
+
+export const $all = (selector, target = document) => target.querySelectorAll(selector);
 
 export const $closest = (element, selector) => {
   if (element.nodeType === 9) return false;
@@ -27,14 +35,6 @@ export const setErrorMessage = (type, description = '') => {
   alert(`${description}${ERROR_MESSAGES[type]}`);
   return EMPTY;
 };
-
-/**
- * 값이 null인지 검사합니다.
- *
- * @param {string|number} value
- * @returns {boolean}
- */
-export const isNull = value => value === null || value === undefined;
 
 /**
  * 첫 번째 인자와 두 번째 인자의 값이 같은지 검사합니다.
@@ -81,4 +81,4 @@ export const isPositiveInteger = (target, description) => {
 
 export const isIncludes = (value, items) => items.includes(value);
 
-export const roundDown = value => Math.floor(value / DIVIDE_CHARGING) * DIVIDE_CHARGING;
+export const roundDown = value => Math.floor(value / +DIVIDE_CHARGING) * +DIVIDE_CHARGING;

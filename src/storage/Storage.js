@@ -24,6 +24,17 @@ class Storage {
     this.setState({ key, value });
   }
 
+  creation(key, items) {
+    Object.keys(items).forEach($key => {
+      if ($key === 'charge-amount') {
+        this.state.setItem(key, JSON.stringify(items));
+      } else {
+        this.state.setItem($key, JSON.stringify(items[$key]));
+      }
+    });
+    this.notify(key, items);
+  }
+
   /**
    * 로컬 스토리지에 접근하여 해당 key의 item에 값을 추가합니다.
    *

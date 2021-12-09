@@ -86,7 +86,7 @@ const Content = ({ component, tabData }) => {
             <input type="number" id="charge-input" maxlength="20" placeholder="투입할 금액" />
             <button id="charge-button">투입하기</button>
           </form>
-          <p id="charge-amount">투입한 금액: ${tabData['charge-amount'] || 0}원</p>
+          <p>투입한 금액: <span id="charge-amount">${tabData['charge-amount'] || 0}</span>원</p>
         </div>
         <div>
           <h2>구매할 수 있는 상품 현황</h2>
@@ -104,10 +104,10 @@ const Content = ({ component, tabData }) => {
                 .map(
                   ({ name, price, quantity }) => `
                 <tr class="product-purchase-item">
-                  <td data-product-name class="product-purchase-name">${name}</td>
-                  <td data-product-price class="product-purchase-price">${price}</td>
-                  <td data-product-quantity class="product-purchase-quantity">${quantity}</td>
-                  <td class="product-purchase-button"><button>구매하기</button></td>
+                  <td data-product-name=${name} class="product-purchase-name">${name}</td>
+                  <td data-product-price=${price} class="product-purchase-price">${price}</td>
+                  <td data-product-quantity=${quantity} class="product-purchase-quantity">${quantity}</td>
+                  <td><button class="purchase-button">구매하기</button></td>
                 </tr>
                 `,
                 )
