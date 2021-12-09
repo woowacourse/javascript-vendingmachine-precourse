@@ -1,5 +1,9 @@
 import { $ } from '../utils/DOM.js';
-import { printProductTemplate, PRODUCT_BASIC_TEMPLATE } from '../utils/template.js';
+import {
+  printProductTemplate,
+  PRODUCT_MANAGE_TEMPLATE,
+  PRODUCT_SECTION_TEMPLATE,
+} from '../utils/template.js';
 
 export class ProductView {
   constructor() {
@@ -26,29 +30,13 @@ export class ProductView {
     if (products.length === 0) {
       return;
     }
-    let productRowHTML = PRODUCT_BASIC_TEMPLATE;
+    let productRowHTML = PRODUCT_MANAGE_TEMPLATE;
     products.map((product) => (productRowHTML += printProductTemplate(product)));
     this.$productTable.innerHTML = productRowHTML;
   }
 
   addElements() {
-    this.$productAddSection.innerHTML = `
-      <h3>상품 추가하기</h3>
-      <form>
-        <input type="text" id="product-name-input" placeholder="상품명" />
-        <input type="number" id="product-price-input" placeholder="가격" />
-        <input type="number" id="product-quantity-input" placeholder="수량" />
-        <button id="product-add-button">추가하기</button>
-      </form>
-      <h3>상품 현황</h3>
-      <table id="product-manage-table">
-        <tr class="product-manage-item">
-          <td class="product-manage-name">상품명</td>
-          <td class="product-manage-price">가격</td>
-          <td class="product-manage-quantity">수량</td>
-        </tr>
-      </table>
-    `;
+    this.$productAddSection.innerHTML = PRODUCT_SECTION_TEMPLATE;
     this.$productNameInput = $('#product-name-input');
     this.$productPriceInput = $('#product-price-input');
     this.$productQuantityInput = $('#product-quantity-input');
