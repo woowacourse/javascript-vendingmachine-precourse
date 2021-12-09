@@ -11,7 +11,7 @@ export default class PurchaseController {
   }
 
   init = () => {
-    this.view.renderPage(this.$container);
+    this.initPage();
     this.initDOMS();
     this.setEvent();
     this.updatePage();
@@ -22,6 +22,11 @@ export default class PurchaseController {
     this.$chargeButton = document.getElementById("charge-button");
     this.$chargeAmountContainer = document.getElementById("charge-amount");
     this.$purchaseTableBody = document.getElementById("purchase-table-body");
+  };
+
+  initPage = () => {
+    this.view.renderPage(this.$container);
+    this.coinStorage.view.renderChangesComponent(this.$container);
   };
 
   setEvent = () => {
@@ -65,6 +70,5 @@ export default class PurchaseController {
     const products = this.product.model.getProducts();
     this.view.renderChargedAmount(this.$chargeAmountContainer, this.model.getChargedMoney());
     this.view.renderPurchaseTable(this.$purchaseTableBody, products);
-    this.coinStorage.view.renderChangesComponent(this.$container);
   };
 }
