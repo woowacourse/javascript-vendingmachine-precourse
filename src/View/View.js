@@ -186,19 +186,19 @@ export default class View {
         this.coinCount = this.createElement("th", "coinCount", "개수");
         tr.append(this.coinType, this.coinCount);
         const trFiveHoundred = this.createElement("tr");
-        this.fiveHoundred = this.createElement("td", "fiveHoundred", "500");
+        this.fiveHoundred = this.createElement("td", "fiveHoundred", "500원");
         this.fiveHoundredCount = this.createElement("td", "fiveHoundredCount");
         trFiveHoundred.append(this.fiveHoundred, this.fiveHoundredCount);
         const trOneHundred = this.createElement("tr");
-        this.oneHundred = this.createElement("td", "oneHundred", "100");
+        this.oneHundred = this.createElement("td", "oneHundred", "100원");
         this.oneHundredCount = this.createElement("td", "oneHundredCount");
         trOneHundred.append(this.oneHundred, this.oneHundredCount);
         const trFifty = this.createElement("tr");
-        this.fifty = this.createElement("td", "fifty", "50");
+        this.fifty = this.createElement("td", "fifty", "50원");
         this.fiftyCount = this.createElement("td", "fiftyCount");
         trFifty.append(this.fifty, this.fiftyCount);
         const trTen = this.createElement("tr");
-        this.ten = this.createElement("td", "ten", "10");
+        this.ten = this.createElement("td", "ten", "10원");
         this.tenCount = this.createElement("td", "ten");
         trTen.append(this.ten, this.tenCount);
 

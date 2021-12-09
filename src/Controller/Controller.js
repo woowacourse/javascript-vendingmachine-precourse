@@ -48,8 +48,28 @@ export default class Controller {
     ) {
       alert("🚨 10으로 나누어 떨어지는 10이상의 정수를 입력해 주세요");
     } else {
+      this.makeMoneyCoin(+chargeMoney);
       return chargeMoney;
     }
+  };
+
+  makeMoneyCoin = (money) => {
+    const coin = new Map();
+    coin[500] = this.model.coin.fiveHoundred;
+    coin[100] = this.model.coin.oneHoundred;
+    coin[50] = this.model.coin.fifty;
+    coin[10] = this.model.coin.ten;
+    let sum = 0;
+    while (sum !== money) {
+      const randomCoin = MissionUtils.Random.pickNumberInList([
+        10, 50, 100, 500,
+      ]);
+      if (sum + randomCoin <= money) {
+        sum += randomCoin;
+        coin[randomCoin]++;
+      }
+    }
+    this.model.addCoin(coin[500], coin[100], coin[50], coin[10]);
   };
 
   onProductChange = (product) => {

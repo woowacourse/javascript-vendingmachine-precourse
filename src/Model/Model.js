@@ -1,16 +1,25 @@
 export default class Model {
   constructor() {
     this.product = JSON.parse(localStorage.getItem("product")) || [];
-    this.coin = JSON.parse(localStorage.getItem("coin")) || [];
+    this.coin = JSON.parse(localStorage.getItem("coin")) || {
+      fiveHoundred: 0,
+      oneHoundred: 0,
+      fifty: 0,
+      ten: 0,
+    };
   }
 
   bindProductChange(callback) {
     this.onProductChange = callback;
   }
 
-  commit(product) {
+  commitProduct(product) {
     this.onProductChange(product);
     localStorage.setItem("product", JSON.stringify(product));
+  }
+
+  commitCoin(coin) {
+    localStorage.setItem("coin", JSON.stringify(coin));
   }
 
   addProduct(name, price, quantity) {
@@ -27,6 +36,15 @@ export default class Model {
 
     if (flag) this.product.push({ name, price, quantity: +quantity });
 
-    this.commit(this.product);
+    this.commitProduct(this.product);
+  }
+
+  addCoin(fiveHoundred, oneHoundred, fifty, ten) {
+    this.coin.fiveHoundred = fiveHoundred;
+    this.coin.oneHoundred = oneHoundred;
+    this.coin.fifty = fifty;
+    this.coin.ten = ten;
+
+    this.commitCoin(this.coin);
   }
 }
