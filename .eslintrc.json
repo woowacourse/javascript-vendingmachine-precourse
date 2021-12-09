@@ -7,7 +7,7 @@
     "extends": [
         "eslint:recommended",
         "airbnb",
-        "plugin:prettier/recommended",
+        "plugin:cypress/recommended",
         "prettier"
     ],
     "parserOptions": {

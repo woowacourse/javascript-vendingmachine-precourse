@@ -1,10 +1,23 @@
 import { INITIAL_TAB_ID } from "./constant.js";
+const clickHandler = (id) => {
+    switch (id) {
+        case INITIAL_TAB_ID.PRODUCT_MANAGE_TAB:
+            break;
+        case INITIAL_TAB_ID.CHARGE_TAB:
+            break;
+        case INITIAL_TAB_ID.PRODUCT_PURCHASE_TAB:
+            break;
+    }
+};
 
 const createTab = (id, text) => {
     const $tab = document.createElement("button");
     $tab.id = id;
     $tab.innerText = text;
-
+    $tab.addEventListener("click", function (e) {
+        e.preventDefault();
+        clickHandler(e.target.id);
+    });
     return $tab;
 };
 
