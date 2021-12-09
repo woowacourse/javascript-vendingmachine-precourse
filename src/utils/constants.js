@@ -32,9 +32,9 @@ export const ERROR_MESSAGE = {
 export const MANAGE_PRODUCT_TAP = {
   addProductTitle: "상품 추가하기",
   addProductInputs: [
-    ["상품명", "product-name-input"],
-    ["가격", "product-price-input"],
-    ["수량", "product-quantity-input"],
+    ["상품명", "product-name-input", "text"],
+    ["가격", "product-price-input", "number"],
+    ["수량", "product-quantity-input", "number"],
   ],
   addProductButton: ["추가하기", "product-add-button"],
 

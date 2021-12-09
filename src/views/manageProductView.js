@@ -16,10 +16,11 @@ const makeAddProductTitle = () => {
 };
 
 const makeInput = inputInformation => {
-  const [placeholder, id] = inputInformation;
+  const [placeholder, id, type] = inputInformation;
   const input = document.createElement("input");
   input.placeholder = placeholder;
   input.id = id;
+  input.type = type;
   input.style.width = INPUT_WITDH;
   input.style.margin = MARGIN_SIZE;
 
