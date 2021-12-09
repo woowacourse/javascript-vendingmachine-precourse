@@ -35,7 +35,6 @@ const addCoinsInMachine = money => {
     for (let i = 0; i < coinQuantity.length; i++) {
       coinQuantity[i] = parseInt(coinQuantity[i], 10) + newCoinQuantity[i];
     }
-    console.log(coinQuantity);
     localStorage.setItem("coins", JSON.stringify(coinQuantity.join(",")));
   } else {
     localStorage.setItem("coins", JSON.stringify(newCoinQuantity.join(",")));
