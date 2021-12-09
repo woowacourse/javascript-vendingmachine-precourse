@@ -1,5 +1,6 @@
 import { $ } from '../utils/utils.js';
 import { default as UI } from './templates.js';
+import { default as DOM } from './DOMUtils.js';
 
 export default class View {
   constructor() {
@@ -7,6 +8,8 @@ export default class View {
   }
 
   showProductPurchase() {
-    $('#app').insertAdjacentHTML('beforeend', UI.productPurchaseHTML);
+    DOM.initElement('#component');
+
+    $('#component').insertAdjacentHTML('beforeend', UI.productPurchaseHTML);
   }
 }
