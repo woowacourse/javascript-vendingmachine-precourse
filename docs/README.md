@@ -1,6 +1,6 @@
 # 📃 **구현할 기능 목록**
 
-## [ ] 상단 탭 버튼 추가하기
+## [✅] 상단 탭 버튼 추가하기
 
 - `상품 구매` 탭으로 이동하는 메뉴 버튼 id는 `product-purchase-menu`이다.
 - `잔돈 충전`탭으로 이동하는 메뉴 버튼 id는 `vending-machine-manage-menu`이다.
