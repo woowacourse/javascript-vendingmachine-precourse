@@ -34,8 +34,7 @@ export default class ProductController {
 
     try {
       this.model.addProduct({ name, price, quantity });
-      this.view.renderProductTable(this.$productTableBody, this.model.getProducts());
-      this.resetProductInput();
+      this.updatePage();
     } catch (error) {
       alert(error);
     }
@@ -45,5 +44,10 @@ export default class ProductController {
     this.$productNameInput.value = "";
     this.$productPriceInput.value = "";
     this.$productQuantityInput.value = "";
+  };
+
+  updatePage = () => {
+    this.view.renderProductTable(this.$productTableBody, this.model.getProducts());
+    this.resetProductInput();
   };
 }
