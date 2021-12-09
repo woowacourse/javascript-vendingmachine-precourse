@@ -12,6 +12,9 @@ export default class Inventory {
     init() {
         this.inventoryTap.init();
         this.triggerAddProductEvent();
+    }
+
+    render() {
         this.inventoryTap.render(getProducts());
     }
 
