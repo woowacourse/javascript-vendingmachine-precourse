@@ -13,6 +13,7 @@ import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
 import CHANGE_COIN_ID from '../asset/constants/CHANGE_COIN_ID.js';
 import GUIDE from '../asset/constants/GUIDE.js';
 import Tap from './Tap.js';
+import PurchaseHeadRow from '../asset/components/Row/PurchaseHeadRow.js';
 
 export default class PurchaseTap extends Tap {
     constructor($skeleton) {
@@ -28,11 +29,17 @@ export default class PurchaseTap extends Tap {
         this.$coin10 = CellById('', CHANGE_COIN_ID[3]);
     }
 
+    appendToPurchaseContainer($element) {
+        this.$purchaseContainer.append($element);
+    }
+
     init() {
         this.createInputCoinForm();
+        this.createPurchaseForm();
     }
 
     createInputCoinForm() {
+        this.$inputButton.style.marginLeft = '5px';
         this.appendToApp(
             SubmitForm(
                 SUB_TITLE_TEXT.inputAmount,
@@ -42,5 +49,15 @@ export default class PurchaseTap extends Tap {
                 this.$inputAmount,
             ),
         );
+    }
+
+    createPurchaseForm() {
+        const $wrap = document.createElement('div');
+
+        $wrap.style.marginTop = '30px';
+        $wrap.append(SubTitle(SUB_TITLE_TEXT.purchageList));
+        $wrap.append(this.$purchaseContainer);
+        this.appendToPurchaseContainer(PurchaseHeadRow());
+        this.appendToApp($wrap);
     }
 }
