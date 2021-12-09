@@ -37,10 +37,6 @@ export default class ChargeCoinTap extends Tap {
         return this.$chargeCoinInput.value;
     }
 
-    appendToApp($element) {
-        this.$app.append($element);
-    }
-
     appendToCoinContainer($element) {
         this.$coinContainer.append($element);
     }

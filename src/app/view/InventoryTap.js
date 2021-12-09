@@ -40,10 +40,6 @@ export default class InventoryTap extends Tap {
         return this.$productQuantityInput.value;
     }
 
-    appendToApp($element) {
-        this.$app.append($element);
-    }
-
     appendToInventoryContainer($element) {
         this.$inventoryContainer.append($element);
     }
