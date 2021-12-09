@@ -6,8 +6,8 @@ export default class VendingModel {
     this._changesObj = {};
   }
 
-  set productObj(newProductObj) {
-    this._productObj = newProductObj;
+  set productObj(obj) {
+    this._productObj[obj.name] = { price: obj.price, quantity: obj.quantity };
   }
 
   get productObj() {
@@ -36,5 +36,13 @@ export default class VendingModel {
 
   get changesObj() {
     return this._changesObj;
+  }
+
+  static setLocalStorage(key, data) {
+    localStorage.setItem(key, data);
+  }
+
+  static getLocalStorage(key) {
+    return localStorage.getItem(key);
   }
 }

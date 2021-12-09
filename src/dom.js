@@ -63,4 +63,14 @@ const newRowOfTab1 = () =>
     productQuantityInput().value
   );
 
-export { tabMenus, tab1, tab2, tab3, tbodyOfTab1, newRowOfTab1 };
+export {
+  tabMenus,
+  tab1,
+  tab2,
+  tab3,
+  tbodyOfTab1,
+  newRowOfTab1,
+  productNameInput,
+  productPriceInput,
+  productQuantityInput,
+};

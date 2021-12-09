@@ -1,10 +1,9 @@
 import * as $ from './dom.js';
 
 export default class VendingController {
-  constructor(model, view, dom) {
+  constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.dom = dom;
   }
 
   app() {
@@ -34,6 +33,11 @@ export default class VendingController {
   addProduct(e) {
     e.preventDefault();
     this.view.addTableRow($.tbodyOfTab1(), $.newRowOfTab1());
+    const name = $.productNameInput().value;
+    const price = $.productPriceInput().value;
+    const quantity = $.productQuantityInput().value;
+    this.model.productObj = { name, price, quantity };
+    console.log(this.model.productObj);
   }
 
   switchTab(tab) {
