@@ -3,6 +3,7 @@ import { getInputValueById } from "../common/getInputValue.js";
 import { isValidInputs } from "./checkInputValues.js";
 import { addProduct } from "./productDataController.js";
 import { resetAddProductInput } from "../../views/productManager/resetInput.js";
+import { showProductsAbleToBuy } from "../../views/purchaseManager/showProductsAbleToBuy.js";
 
 const processing = e => {
   e.preventDefault();
@@ -14,6 +15,7 @@ const processing = e => {
   if (errorMessage === "") {
     addProduct(name, price, quantity);
     showProducts();
+    showProductsAbleToBuy();
     resetAddProductInput();
   } else {
     alert(errorMessage);
