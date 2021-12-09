@@ -4,6 +4,8 @@ const showMoneyCustomer = () => {
 
   if (moneyCustomer) {
     $chargeAmount.innerHTML = `${moneyCustomer}원`;
+  } else {
+    $chargeAmount.innerHTML = "";
   }
 };
 
