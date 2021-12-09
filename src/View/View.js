@@ -97,4 +97,20 @@ export default class View {
       this.form.append(this.addProductForm);
     });
   }
+
+  bindProductAdd(handler) {
+    this.form.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (event.target.id === "product-add-button") {
+        handler(
+          this.productNameInput.value,
+          this.productPriceInput.value,
+          this.productQuantityInput.value
+        );
+        this.productNameInput.value = "";
+        this.productPriceInput.value = "";
+        this.productQuantityInput.value = "";
+      }
+    });
+  }
 }
