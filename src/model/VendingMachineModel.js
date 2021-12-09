@@ -6,6 +6,7 @@ export class VendingMachineModel {
     50: 0,
     10: 0,
   };
+  chargeAmount = Number(JSON.parse(localStorage.getItem('charge'))) || 0;
   insertedMoney = 0;
 
   addProduct(productName, price, quantity) {
@@ -13,4 +14,18 @@ export class VendingMachineModel {
     localStorage.setItem('products', JSON.stringify(this.products));
     return this.products;
   }
+
+  updateCharge(chargeMoney) {
+    this.addChargeMoney(chargeMoney);
+    this.addCoin(chargeMoney);
+  }
+
+  addChargeMoney(chargeMoney) {
+    // 총 금액을 충천
+    // 충전된 만큼 동전 추가
+    this.chargeAmount += chargeMoney;
+    return this.chargeAmount;
+  }
+
+  addCoin(chargeMoney) {}
 }

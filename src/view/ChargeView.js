@@ -14,6 +14,18 @@ export class ChargeView {
     this.addElements();
   }
 
+  setOnChargeSubmit(fn) {
+    this.$chargeButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const chargeMoney = Number(this.$chargeInput.value);
+      fn(chargeMoney);
+    });
+  }
+
+  showChargeAmount(chargeAmount) {
+    this.$chargeAmount.innerText = chargeAmount;
+  }
+
   addElements() {
     this.$productBalanceSection.innerHTML = CHARGE_SECTION_TEMPLATE;
     this.$chargeInput = $('#vending-machine-charge-input');
