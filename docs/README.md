@@ -28,7 +28,7 @@
     - [X] 다른 탭에서 넘어올 때 localStorage에서 값을 불러와 render해주기
 - [] 자판기가 보유한 동전 form 만들기
     - [X] Random.pickNumberInList를 이용해서 동전 갯수를 금액에 맞게 무작위로 구하기
-    - [] 각 동전 갯수를 localStorage에 저장하기
+    - [X] 각 동전 갯수를 localStorage에 저장하기
     - [] 다른 탭에서 넘어올 때 localStorage에서 값을 불러와 render해주기
 
 #### TODO 상품 구매 탭

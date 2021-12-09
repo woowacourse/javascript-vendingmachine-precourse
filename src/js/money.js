@@ -1,6 +1,7 @@
 import { $ } from './util/dom.js';
 import { checkNotNum, checkMenuPriceDivideTen } from './addMenu.js';
 import { renderMoney } from './render.js';
+import { COINS } from './constant/constant.js';
 
 export const addMoney = e => {
   e.preventDefault();
@@ -14,14 +15,22 @@ export const addMoney = e => {
 
 export const getCoins = () => {
   let money = parseInt($('#vending-machine-charge-input').value, 10);
-  const fiveHundredCoin = getRandomCoin(parseInt(money / 500, 10));
-  money -= fiveHundredCoin * 500;
-  const oneHundredCoin = getRandomCoin(parseInt(money / 100, 10));
-  money -= oneHundredCoin * 100;
-  const fiftyCoin = getRandomCoin(parseInt(money / 50, 10));
-  money -= fiftyCoin * 50;
-  const tenCoin = getRandomCoin(parseInt(money / 10, 10));
-  console.log(fiveHundredCoin, oneHundredCoin, fiftyCoin, tenCoin);
+  const fiveHundredCoins = getRandomCoin(parseInt(money / 500, 10));
+  money -= fiveHundredCoins * 500;
+  const oneHundredCoins = getRandomCoin(parseInt(money / 100, 10));
+  money -= oneHundredCoins * 100;
+  const fiftyCoins = getRandomCoin(parseInt(money / 50, 10));
+  money -= fiftyCoins * 50;
+  const tenCoins = getRandomCoin(parseInt(money / 10, 10));
+  setCoins(fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins);
+};
+
+const setCoins = (fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins) => {
+  let coinsArray = [fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins];
+  for (let i = 0; i < COINS.length; i++) {
+    coinsArray[i] += parseInt(localStorage.getItem(`${COINS[i]}`), 10);
+    localStorage.setItem(`${COINS[i]}`, coinsArray[i]);
+  }
 };
 
 export const getRandomCoin = maxCoinNumber => {

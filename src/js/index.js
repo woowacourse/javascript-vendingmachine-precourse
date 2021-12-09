@@ -3,9 +3,13 @@ import { renderProductAddMenu, renderVendingMachineManageMenu, renderProductPurc
 import { $ } from './util/dom.js';
 import { addMenu } from './addMenu.js';
 import { addMoney } from './money.js';
+import { COINS } from './constant/constant.js';
 
 function App() {
   renderProductAddMenu();
+  for (let coin in COINS) {
+    localStorage.setItem(`${COINS[coin]}`, 0);
+  }
   const handleClick = e => {
     if (e.target.id === 'product-add-menu') {
       renderProductAddMenu();
