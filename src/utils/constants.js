@@ -6,5 +6,6 @@ export const DIVISOR_NUMBER = 10;
 
 export const PRODUCT = 'Product';
 export const VALUES = 'values';
+export const CHANGE = 'Change';
 
 export const ERROR_MESSAGE = "유효하지 않은 입력입니다!";

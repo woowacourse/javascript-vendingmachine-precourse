@@ -38,7 +38,7 @@ export default class ProductAddView {
 
         if(localStorage.getItem(PRODUCT) === null) {
             localStorage.setItem(PRODUCT, JSON.stringify({[name]:{values: [price, quantity]}}));
-        }else {
+        } else {
             product[name] = {values: [price, this.checkAlreadyHave(name, price, quantity, product)]};
             localStorage.setItem(PRODUCT, JSON.stringify(product));
         }
