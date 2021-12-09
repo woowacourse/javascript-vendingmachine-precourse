@@ -13,8 +13,7 @@ export default class Controller {
     const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
     $productAddButton.addEventListener('click', () => {
       const productAdd = new ProductAdd();
-      productAdd.getNameInput();
-      productAdd.getPriceInput();
+      productAdd.isValidInputs();
     });
   };
 
