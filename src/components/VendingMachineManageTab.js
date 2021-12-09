@@ -1,12 +1,10 @@
 import { $ } from '../utils/dom.js';
-import { createTitle } from '../view/vendingMachineManageMenu.js';
+import { createTitle, createChargeForm } from '../view/vendingMachineManageMenu.js';
 import { SELECTOR } from '../constants.js';
 
 class VendingMachineManageTab {
   render() {
-    const title = createTitle();
-
-    $(`#${SELECTOR.tabContentContainerId}`).innerHTML = title;
+    $(`#${SELECTOR.tabContentContainerId}`).innerHTML = createTitle() + createChargeForm();
   }
 }
 
