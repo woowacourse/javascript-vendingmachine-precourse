@@ -17,6 +17,7 @@
     "no-useless-return": "off",
     "class-methods-use-this": "off",
     "no-undef": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "consistent-return": "off"
   }
 }
