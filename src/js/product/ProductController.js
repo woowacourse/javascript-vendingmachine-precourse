@@ -12,18 +12,13 @@ export default class ProductController {
     this.view.renderInputForm(this.container);
     this.initDOMS();
     this.setEvent();
-    this.view.renderProductTable(
-      this.$productTableBody,
-      this.model.getProducts()
-    );
+    this.view.renderProductTable(this.$productTableBody, this.model.getProducts());
   };
 
   initDOMS = () => {
     this.$productNameInput = document.getElementById("product-name-input");
     this.$productPriceInput = document.getElementById("product-price-input");
-    this.$productQuantityInput = document.getElementById(
-      "product-quantity-input"
-    );
+    this.$productQuantityInput = document.getElementById("product-quantity-input");
     this.$productAddButton = document.getElementById("product-add-button");
     this.$productTableBody = document.getElementById("product-table-body");
   };
@@ -39,10 +34,7 @@ export default class ProductController {
 
     try {
       this.model.addProduct({ name, price, quantity });
-      this.view.renderProductTable(
-        this.$productTableBody,
-        this.model.getProducts()
-      );
+      this.view.renderProductTable(this.$productTableBody, this.model.getProducts());
       this.resetProductInput();
     } catch (error) {
       alert(error);

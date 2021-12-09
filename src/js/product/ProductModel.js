@@ -1,7 +1,4 @@
-import {
-  getLocalStorage,
-  getLocalStorageAfterSet,
-} from "../util/localStorage.js";
+import { getLocalStorage, getLocalStorageAfterSet } from "../util/localStorage.js";
 
 export default class ProductModel {
   constructor() {

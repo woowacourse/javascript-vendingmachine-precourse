@@ -15,15 +15,9 @@ export default class CoinStorageController {
   };
 
   initDOMS = () => {
-    this.$coinChargeInput = document.getElementById(
-      "vending-machine-charge-input"
-    );
-    this.$coinChargeButton = document.getElementById(
-      "vending-machine-charge-button"
-    );
-    this.$chargedAmount = document.getElementById(
-      "vending-machine-charge-amount"
-    );
+    this.$coinChargeInput = document.getElementById("vending-machine-charge-input");
+    this.$coinChargeButton = document.getElementById("vending-machine-charge-button");
+    this.$chargedAmount = document.getElementById("vending-machine-charge-amount");
   };
 
   setEvent = () => {
