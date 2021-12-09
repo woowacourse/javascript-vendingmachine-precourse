@@ -1,6 +1,6 @@
 import { $ } from '../utils/dom.js';
 import {
-  createTitle,
+  createTitleTemplate,
   createProductAddFormTemplate,
   createProductTableTemplate,
 } from '../view/productAddMenu.js';
@@ -9,7 +9,7 @@ import { SELECTOR } from '../constants.js';
 class ProductAddTab {
   render() {
     $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
-      createTitle() + createProductAddFormTemplate() + createProductTableTemplate();
+      createTitleTemplate() + createProductAddFormTemplate() + createProductTableTemplate();
   }
 }
 

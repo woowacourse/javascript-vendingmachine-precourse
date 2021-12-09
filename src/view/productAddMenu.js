@@ -1,22 +1,22 @@
 import { PRODUCT_ADD_TAB, SELECTOR } from '../constants.js';
 
-export const createTitle = () => `
+export const createTitleTemplate = () => `
 	<h2>${PRODUCT_ADD_TAB}</h2>
 `;
 
-const createTheadTableData = text => `
+const createTheadTableDataTemplate = text => `
 	<td style="border: 1px solid black;padding: 10px 50px;font-weight:bold;">${text}</td>
 `;
 
-const createTbodyTableData = (text, id) => `
+const createTbodyTableDataTemplate = (text, id) => `
 	<td id="${id}" style="border: 1px solid black;padding: 10px 50px;">${text}</td>
 `;
 
-const createProductItem = (name, price, quantity) => `
+const createProductItemTemplate = (name, price, quantity) => `
 	<tr id="${SELECTOR.productManageItemClass}">
-		${createTbodyTableData(name, SELECTOR.productManageNameClass)}
-		${createTbodyTableData(price, SELECTOR.productManagePriceClass)}
-		${createTbodyTableData(quantity, SELECTOR.productManageQuantityClass)}
+		${createTbodyTableDataTemplate(name, SELECTOR.productManageNameClass)}
+		${createTbodyTableDataTemplate(price, SELECTOR.productManagePriceClass)}
+		${createTbodyTableDataTemplate(quantity, SELECTOR.productManageQuantityClass)}
 	</tr>
 `;
 
@@ -35,13 +35,13 @@ export const createProductTableTemplate = () => `
 	<table style="border: 1px solid black;border-collapse: collapse;">
 		<thead>
 			<tr>
-				${createTheadTableData('상품명')}
-				${createTheadTableData('가격')}
-				${createTheadTableData('수량')}
+				${createTheadTableDataTemplate('상품명')}
+				${createTheadTableDataTemplate('가격')}
+				${createTheadTableDataTemplate('수량')}
 			</tr>
 		</thead>
 		<tbody>
-			${createProductItem()}
+			${createProductItemTemplate()}
 		</tbody>
 	</table>
 `;
