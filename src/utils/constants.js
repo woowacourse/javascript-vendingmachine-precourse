@@ -4,6 +4,7 @@ export const ERROR = {
 
   PRODUCT_PRICE_BLANK_SUBMIT: '상품가격을 빈칸으로 제출하실 수 없습니다.',
   PRODUCT_PRICE_INCLUDE_SPECIAL: '상품가격에 특수문자를 입력하실 수 없습니다.',
+  PRODUCT_PRICE_UNDER_HUNDRED: '상품가격은 100원 미만일 수 없습니다.',
 };
 
 export const REGEX = {

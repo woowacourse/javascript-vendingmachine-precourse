@@ -12,6 +12,10 @@ const utils = {
   hasSpecial: string => {
     return string.split('').some(char => REGEX.HAS_SPECIAL.test(char));
   },
+
+  isUnderHundred: string => {
+    return Number(string) < 100;
+  },
 };
 
 export default utils;
