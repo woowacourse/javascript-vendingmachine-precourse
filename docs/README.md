@@ -90,6 +90,16 @@
 ### [ ] 무작위 잔돈 생성
 
 - 잔돈을 무작위로 생성하는 기능은 `MissionUtils` 라이브러리의 `Random.pickNumberInList`를 사용해 구한다.
+- 생성된 잔돈을 자판기에 저장한다.
+- 무작위로 생성된 잔돈들이 기존 동전들에 더해진다
+
+### [ ] 생성된 잔돈 화면 출력
+
+- 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
+  - 500원: vending-machine-coin-500-quantity
+  - 100원: vending-machine-coin-100-quantity
+  - 50원: vending-machine-coin-50-quantity
+  - 10원: vending-machine-coin-10-quantity
 
 ## 상품 구매
 
