@@ -1,4 +1,5 @@
 import { vendingMachine } from "../components/vendingMachine.js";
+import { checkChargeChangeInput } from "../utils/validation.js";
 import { renderChangeAmount, renderCoins } from "../views/chargeChangeView.js";
 
 const resetInput = form => {
@@ -11,8 +12,10 @@ export const onClickChargeButton = event => {
   const form = event.target.parentElement;
   const chargeInput = form.querySelector("#vending-machine-charge-input").value;
 
-  vendingMachine.chargeCoin(parseInt(chargeInput));
-  renderChangeAmount(vendingMachine.getTotalMoney());
-  renderCoins(vendingMachine);
-  resetInput(form);
+  if (checkChargeChangeInput(chargeInput)) {
+    vendingMachine.chargeCoin(parseInt(chargeInput));
+    renderChangeAmount(vendingMachine.getTotalMoney());
+    renderCoins(vendingMachine);
+    resetInput(form);
+  }
 };

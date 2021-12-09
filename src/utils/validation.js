@@ -73,3 +73,16 @@ export const checkAddProductsInputs = (name, price, quantity) => {
 
   return isValid;
 };
+
+export const checkChargeChangeInput = input => {
+  let isValid = true;
+  if (isEmptyInput(input)) {
+    isValid = false;
+  } else if (isNegative(input)) {
+    isValid = false;
+  } else if (isNotDivideByTen(input)) {
+    isValid = false;
+  }
+
+  return isValid;
+};
