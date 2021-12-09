@@ -8,6 +8,7 @@ export const ERROR = {
   PRODUCT_PRICE_NOT_TEN_MULTIPLE: '상품가격은 10의 배수만 입력 가능합니다.',
 
   PRODUCT_QUANTITY_BLANK_SUBMIT: '상품수량은 빈칸으로 제출하실 수 없습니다.',
+  PRODUCT_QUANTITY_INCLUDE_SPECIAL: '상품수량에 특수문자를 입력하실 수 없습니다.',
 };
 
 export const REGEX = {

@@ -20,6 +20,7 @@ const validators = {
 
   isValidProductQuantity: string => {
     if (UT.isBlank(string)) return alert(ERROR.PRODUCT_QUANTITY_BLANK_SUBMIT);
+    if (UT.hasSpecial(string)) return alert(ERROR.PRODUCT_QUANTITY_INCLUDE_SPECIAL);
 
     return true;
   },
