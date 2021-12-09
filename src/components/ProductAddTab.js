@@ -1,12 +1,11 @@
 import { $ } from '../utils/dom.js';
-import { createTitle } from '../view/productAddMenu.js';
+import { createTitle, createProductAddFormTemplate } from '../view/productAddMenu.js';
 import { SELECTOR } from '../constants.js';
 
 class ProductAddTab {
   render() {
-    const title = createTitle();
-
-    $(`#${SELECTOR.tabContentContainerId}`).innerHTML = title;
+    $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
+      createTitle() + createProductAddFormTemplate();
   }
 }
 
