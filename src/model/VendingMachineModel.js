@@ -1,3 +1,5 @@
+import { coinList } from '../utils/constant.js';
+
 export class VendingMachineModel {
   products = JSON.parse(localStorage.getItem('products')) || [];
   coins = {
@@ -28,5 +30,16 @@ export class VendingMachineModel {
     return this.chargeAmount;
   }
 
-  addCoin(chargeMoney) {}
+  addCoin(chargeMoney) {
+    while (chargeMoney > 0) {
+      const randomCoin = MissionUtils.Random.pickNumberInList(coinList);
+      console.log(`randomCoin`, randomCoin);
+      if (chargeMoney - randomCoin >= 0) {
+        chargeMoney -= randomCoin;
+        console.log(this.coins[randomCoin]);
+        this.coins[randomCoin]++;
+      }
+    }
+    console.log(`coins`, this.coins);
+  }
 }
