@@ -50,6 +50,22 @@ export default class ChargeCoinTap {
         this.createCoinsForm();
     }
 
+    render(chargeAmount, distributedCoin) {
+        this.setChargeAmount(chargeAmount);
+        this.setCoins(distributedCoin);
+    }
+
+    setChargeAmount(chargeAmount) {
+        this.$chargeAmount.innerText = `${chargeAmount}${UNIT.amount}`;
+    }
+
+    setCoins(distributedCoin) {
+        this.$coin500.innerText = `${distributedCoin[0]}${UNIT.count}`;
+        this.$coin100.innerText = `${distributedCoin[1]}${UNIT.count}`;
+        this.$coin50.innerText = `${distributedCoin[2]}${UNIT.count}`;
+        this.$coin10.innerText = `${distributedCoin[3]}${UNIT.count}`;
+    }
+
     createChargeCoinForm() {
         const $wrap = document.createElement('div');
 
