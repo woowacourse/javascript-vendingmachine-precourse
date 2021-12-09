@@ -39,10 +39,11 @@ export default class View {
     return element;
   }
 
-  displayProductAdd() {
+  displayProductAdd(product) {
     this.productAddMenu.addEventListener("click", (event) => {
       event.preventDefault();
       if (!this.addProductForm) {
+        this.tab = "add-product";
         this.addProductForm = this.createElement("div");
         this.title = this.createElement(
           "h3",
@@ -95,6 +96,7 @@ export default class View {
         );
       }
       this.form.append(this.addProductForm);
+      if (product) this.displayProductAddChange(product);
     });
   }
 
@@ -111,6 +113,31 @@ export default class View {
         this.productPriceInput.value = "";
         this.productQuantityInput.value = "";
       }
+    });
+  }
+
+  displayProductAddChange(product) {
+    console.log(this.productTable.children);
+    // 초기화
+    while (this.productTable.children.length > 1) {
+      this.productTable.removeChild(this.productTable.lastChild);
+    }
+
+    product.forEach((value) => {
+      const tr = this.createElement("tr");
+      tr.className = "product-manage-item";
+      const productManageName = this.createElement("td", "td", value.name);
+      productManageName.className = "product-manage-name";
+      const productManagePrice = this.createElement("td", "td", value.price);
+      productManagePrice.className = "product-manage-price";
+      const productManageQuantity = this.createElement(
+        "td",
+        "td",
+        value.quantity
+      );
+      productManageQuantity.className = "product-manage-quantity";
+      tr.append(productManageName, productManagePrice, productManageQuantity);
+      this.productTable.append(tr);
     });
   }
 }

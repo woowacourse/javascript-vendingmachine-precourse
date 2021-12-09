@@ -8,7 +8,10 @@ export default class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+    this.model.bindProductChange(this.onProductChange);
     this.view.bindProductAdd(this.productAddHandler);
+
+    this.view.displayProductAdd(this.model.product);
   }
 
   productAddHandler = (name, price, quantity) => {
@@ -30,5 +33,11 @@ export default class Controller {
       alert("🚨 1이상의 정수값을 입력해주세요");
       flag = false;
     }
+
+    if (flag) this.model.addProduct(name, price, quantity);
+  };
+
+  onProductChange = (product) => {
+    this.view.displayProductAddChange(product);
   };
 }
