@@ -1,5 +1,3 @@
-export const TAB_BUTTONS = ['상품 관리', '잔돈 충전', '상품 구매'];
-
 export const SELECTOR = {
   // 공통
   vendingMachineApp: 'app',
@@ -46,3 +44,18 @@ export const SELECTOR = {
   dataProductPriceDataset: 'data-product-price',
   dataProductQuantityDataset: 'data-product-quantity',
 };
+
+export const TAB_BUTTONS = [
+  {
+    text: '상품 관리',
+    id: SELECTOR.productAddMenuId,
+  },
+  {
+    text: '잔돈 충전',
+    id: SELECTOR.productPurchaseMenuId,
+  },
+  {
+    text: '상품 구매',
+    id: SELECTOR.productPurchaseMenuId,
+  },
+];
