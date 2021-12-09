@@ -1,5 +1,5 @@
 import Style from './Style.js';
-import BEVERAGE_ICON_PATH from '../../constants/beverage-img-path.js';
+import BEVERAGE_ICON_PATH from '../../constants/BEVERAGE_ICON_PATH.js';
 
 const BeverageIcon = () => {
     const ret = document.createElement('img');
