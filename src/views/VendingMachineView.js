@@ -7,6 +7,7 @@ export default class VendingMachineView {
     this.renderTitle();
     this.renderContainer();
     this.renderMenu();
+    this.setTableStyle();
   }
 
   renderTitle() {
@@ -27,9 +28,9 @@ export default class VendingMachineView {
   }
 
   renderMenu() {
-    this.productAddMenu = this.renderMenuButton('product-add-menu', '상품 관리');
-    this.vendingMachineManageMenu = this.renderMenuButton('vending-machine-manage-menu', '잔돈 충전');
-    this.productPurchaseMenu = this.renderMenuButton('product-purchase-menu', '상품 구매');
+    this.productAddMenuButton = this.renderMenuButton('product-add-menu', '상품 관리');
+    this.vendingMachineManageMenuButton = this.renderMenuButton('vending-machine-manage-menu', '잔돈 충전');
+    this.productPurchaseMenuButton = this.renderMenuButton('product-purchase-menu', '상품 구매');
   }
 
   renderMenuButton(valueOfID, innerText) {
@@ -38,5 +39,14 @@ export default class VendingMachineView {
     menuButton.innerText = innerText;
     this.menuContainer.appendChild(menuButton);
     return menuButton;
+  }
+
+  setTableStyle() {
+    const style = document.createElement('style');
+    style.innerText = `
+      table { border-collapse: collapse; border: solid 1px black; text-align: center; }
+      th, td { border: solid 1px black; padding: 10px; }
+    `;
+    document.querySelector('head').appendChild(style);
   }
 }
