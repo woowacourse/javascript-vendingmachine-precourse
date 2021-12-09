@@ -1,0 +1,41 @@
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+td,
+th {
+    border: 1px solid black;
+    padding: 10px 10px;
+}
+
+td {
+    text-align: center;
+}
+
+#menu-button-wrap {
+  padding: 0;
+}
+
+#product-manage-table,
+#product-purchase-table {
+  width: 400px;
+}
+
+#vending-machine-table,
+#coin-return-table {
+  width: 150px;
+}
+
+#vending-machine-manage-form, 
+#charge-input-form {
+  margin-bottom: 20px;
+
+}
+
+#product-manage-wrap,
+#vending-machine-coin-wrap,
+#product-purchase-list-wrap,
+#coin-return-wrap {
+  margin-top: 70px;
+}

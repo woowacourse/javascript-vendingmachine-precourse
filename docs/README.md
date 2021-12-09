@@ -1,15 +1,17 @@
 # 🥤 자판기
-
+## 리팩터링
+- [ ] css 연결 html파일에 하드코딩 
+- [ ] template 요소 따로 빼주기 
 ## 🎯 기능 구현 목록  
-**화면에 렌더링**
-- [ ] 탭 메뉴버튼을 만든다. 
-  - 상품 구매 탭으로 이동하는 메뉴 버튼 id는 product-purchase-menu이다.
-  - 잔돈 충전탭으로 이동하는 메뉴 버튼 id는 vending-machine-manage-menu이다.
+**화면에 렌더링하는 기능 구현**
+- [x] 탭 메뉴버튼 렌더링 한다.  
   - 상품 관리탭으로 이동하는 메뉴 버튼 id는 product-add-menu이다.
-- [ ] 요구사항에 나와있는 dom선택자를 참고하여, 아래 기능을 구현한다. 
-  - [ ] 상품 관리 버튼을 클릭하면, 상품 관리 관련 화면이 렌더링된다. 
-  - [ ] 잔돈 충전 버튼을 클릭하면, 잔돈 충전 관련 화면이 렌더링된다. 
-  - [ ] 상품 구매 버튼을 클릭하면, 상품 구매 관련 화면이 렌더링된다. 
+  - 잔돈 충전탭으로 이동하는 메뉴 버튼 id는 vending-machine-manage-menu이다.
+  - 상품 구매 탭으로 이동하는 메뉴 버튼 id는 product-purchase-menu이다.
+- [x] 요구사항에 나와있는 dom선택자를 참고하여, 아래 기능을 구현한다. 
+  - [x] 상품 관리 버튼을 클릭하면, 상품 관리 관련 화면이 렌더링된다. 
+  - [x] 잔돈 충전 버튼을 클릭하면, 잔돈 충전 관련 화면이 렌더링된다. 
+  - [x] 상품 구매 버튼을 클릭하면, 상품 구매 관련 화면이 렌더링된다. 
 
 **1. 상품 관리 탭 기능 구현**
 - [ ] 최초 상품 목록은 비워진 상태이다. 
@@ -72,41 +74,13 @@
 
 ## ✅ 요구 사항 
 (1) DOM 선택자
-**탭 메뉴 버튼**
-- 상품 구매 탭으로 이동하는 메뉴 버튼 id는 product-purchase-menu이다.
-- 잔돈 충전탭으로 이동하는 메뉴 버튼 id는 vending-machine-manage-menu이다.
-- 상품 관리탭으로 이동하는 메뉴 버튼 id는 product-add-menu이다.
-
 **상품 관리(추가) 메뉴**
-- 상품 추가 입력 폼의 상품명 입력 요소의 id는 product-name-input이다.
-- 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 product-price-input이다.
-- 상품 추가 입력 폼의 수량 입력 요소의 id는 product-quantity-input이다.
-- 상품 추가하기 버튼 요소의 id는 product-add-button이다.
 - 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
   - 상품명에 해당하는 요소의 class명은 product-manage-name이다.
   - 가격에 해당하는 요소의 class명은 product-manage-price이다.
   - 수량에 해당하는 요소의 class명은 product-manage-quantity이다.
 
-**잔돈 충전 (자판기 보유 동전) 메뉴**
-- 자판기가 보유할 금액을 충전할 요소의 id는 vending-machine-charge-input이다.
-- 충전하기 버튼에 해당하는 요소의 id는 vending-machine-charge-button이다.
-- 충전된 금액을 확인하는 요소의 id는 vending-machine-charge-amount 이다.
-- 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-    - 500원: vending-machine-coin-500-quantity
-    - 100원: vending-machine-coin-100-quantity
-    - 50원: vending-machine-coin-50-quantity
-    - 10원: vending-machine-coin-10-quantity
-
 **상품 구매 메뉴**
-- 투입 금액 입력 요소의 id는 charge-input이다.
-- 투입하기 버튼 요소의 id는 charge-button이다.
-- 투입한 금액을 확인하는 요소의 id는 charge-amount이다.
-- 반환하기 버튼 요소의 id는 coin-return-button이다.
-- 반환된 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-    - 500원: coin-500-quantity
-    - 100원: coin-100-quantity
-    - 50원: coin-50-quantity
-    - 10원: coin-10-quantity
 - 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
   - 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.
   - 상품명에 해당하는 요소의 class명은 product-purchase-name이다.
@@ -122,9 +96,10 @@
 (3) 공통 요구사항
 - [ ] 스크립트 추가 외에 주어진 index.html파일은 수정할 수 없다.
 - [ ] 모든 예외 발생 상황은 alert메서드를 이용하여 처리한다.
-- [ ] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [ ] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다. (eslint 속성 추가)
   - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
 - [ ] npm run test 
+
 
 
 ## ❗️ 제출 전 확인하기 
