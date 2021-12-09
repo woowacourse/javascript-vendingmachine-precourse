@@ -16,6 +16,19 @@ export const MENU_TAP_INFORMATION = [
   ["상품 구매", "product-purchase-menu"],
 ];
 
+export const STANDARD_PRICE = {
+  minimum: 100,
+  divideNumber: 10,
+};
+
+export const ERROR_MESSAGE = {
+  emptyInput: "빈칸 없이 입력해 주세요.",
+  notInteger: "가격, 수량 칸을 숫자로 입력해 주세요",
+  lessThanStandard: "상품의 가격을 100원 이상으로 입력해 주세요.",
+  notDivideByTen: "상품의 가격을 10원으로 나누어 떨어진 값으로 입력해 주세요.",
+  negativeInput: "상품의 수량을 음수가 아닌 숫자로 입력해 주세요.",
+};
+
 export const MANAGE_PRODUCT_TAP = {
   addProductTitle: "상품 추가하기",
   addProductInputs: [
