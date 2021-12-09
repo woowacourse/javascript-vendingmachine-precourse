@@ -44,14 +44,11 @@ export default class ChargeCoinTap {
 
     createChargeCoinForm() {
         const $wrap = document.createElement('div');
-        const $subTitle = SubTitle(SUB_TITLE_TEXT.chargeCoin);
-        const $inputWrap = this.getChargeCoinFormInput();
-        const $guideWrap = this.getChargeAmountGuideWrap();
 
         $wrap.style.marginBottom = '15px';
-        $wrap.append($subTitle);
-        $wrap.append($inputWrap);
-        $wrap.append($guideWrap);
+        $wrap.append(SubTitle(SUB_TITLE_TEXT.chargeCoin));
+        $wrap.append(this.getChargeCoinFormInput());
+        $wrap.append(this.getChargeAmountGuideWrap());
         this.appendToApp($wrap);
     }
 
@@ -79,12 +76,10 @@ export default class ChargeCoinTap {
 
     createCoinsForm() {
         const $wrap = document.createElement('div');
-        const $subTitle = SubTitle(SUB_TITLE_TEXT.coins);
-        const $table = this.getCoinTable();
 
         $wrap.style.marginTop = '30px';
-        $wrap.append($subTitle);
-        $wrap.append($table);
+        $wrap.append(SubTitle(SUB_TITLE_TEXT.coins));
+        $wrap.append(this.getCoinTable());
         this.appendToApp($wrap);
     }
 
