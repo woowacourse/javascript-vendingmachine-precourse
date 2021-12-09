@@ -1,3 +1,5 @@
+import { INITIAL_TAB_ID } from "./constant.js";
+
 const createTab = (id, text) => {
     const $tab = document.createElement("button");
     $tab.id = id;
@@ -15,8 +17,9 @@ export const createTabs = () => {
     const $title = document.createElement("div");
     $title.innerHTML = `<p>🥤자판기🥤</p></br>`;
     $app.appendChild($title);
-    $app.appendChild(createTab("product-add-menu", "상품 관리"));
-    $app.appendChild(createTab("vending-machine-manage-menu", "잔돈 충전"));
-    $app.appendChild(createTab("product-purchase-menu", "상품 구매"));
-    console.log($app, "@");
+    $app.appendChild(createTab(INITIAL_TAB_ID.PRODUCT_MANAGE_TAB, "상품 관리"));
+    $app.appendChild(createTab(INITIAL_TAB_ID.CHARGE_TAB, "잔돈 충전"));
+    $app.appendChild(
+        createTab(INITIAL_TAB_ID.PRODUCT_PURCHASE_TAB, "상품 구매"),
+    );
 };
