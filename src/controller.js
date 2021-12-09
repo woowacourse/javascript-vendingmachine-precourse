@@ -25,5 +25,15 @@ export default class VendingController {
     document
       .getElementById('product-purchase-menu')
       .addEventListener('click', () => this.view.switchTab('.tab3'));
+    document
+      .getElementById('product-add-button')
+      .addEventListener('click', this.addProduct);
+  }
+
+  addProduct(e) {
+    e.preventDefault();
+    console.log($.productNameInput().value);
+    console.log($.productPriceInput().value);
+    console.log($.productQuantityInput().value);
   }
 }

@@ -39,14 +39,14 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
   - [] 상품 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 한다.
 - [] 사용자는 추가한 상품을 확인할 수 있다.
 - DOM 선택자
-  - 상품 추가 입력 폼의 상품명 입력 요소의 id는 product-name-input이다.
-  - 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 product-price-input이다.
-  - 상품 추가 입력 폼의 수량 입력 요소의 id는 product-quantity-input이다.
-  - 상품 추가하기 버튼 요소의 id는 product-add-button이다.
-  - 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
-    - 상품명에 해당하는 요소의 class명은 product-manage-name이다.
-    - 가격에 해당하는 요소의 class명은 product-manage-price이다.
-    - 수량에 해당하는 요소의 class명은 product-manage-quantity이다.
+  - [x] 상품 추가 입력 폼의 상품명 입력 요소의 id는 product-name-input이다.
+  - [x] 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 product-price-input이다.
+  - [x] 상품 추가 입력 폼의 수량 입력 요소의 id는 product-quantity-input이다.
+  - [x] 상품 추가하기 버튼 요소의 id는 product-add-button이다.
+  - [x] 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
+    - [x] 상품명에 해당하는 요소의 class명은 product-manage-name이다.
+    - [x] 가격에 해당하는 요소의 class명은 product-manage-price이다.
+    - [x] 수량에 해당하는 요소의 class명은 product-manage-quantity이다.
 
 ### 3) 잔돈 충전 탭 (자판기 보유 동전)
 

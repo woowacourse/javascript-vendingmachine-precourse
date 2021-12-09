@@ -11,16 +11,20 @@ const tabMenus = `
 const tab1 = `
 <div class="tab1">
     <h2>상품 추가하기</h2>
-    <input placeholder="상품명" /><input placeholder="수량" /><input
-        placeholder="가격"
-    /><button id="btn">추가하기</button>
+    <form>
+        <input type="text" id="product-name-input" placeholder="상품명" />
+        <input type="number" id="product-price-input" placeholder="수량" />
+        <input type="number" id="product-quantity-input" placeholder="가격"
+        />
+        <input type="submit" id="product-add-button" value="추가하기"></input>
+    </form>
     <h2>상품 현황</h2>
     <table>
         <thead>
-        <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>수량</th>
+        <tr id="product-manage-item">
+            <th id="product-manage-name">상품명</th>
+            <th id="product-manage-price">가격</th>
+            <th id="product-manage-quantity">수량</th>
         </tr>
         </thead>
         <tbody id="tabAddTbody"></tbody>
@@ -40,4 +44,17 @@ const tab3 = `
 </div>
 `;
 
-export { tabMenus, tab1, tab2, tab3 };
+const productNameInput = () => document.getElementById('product-name-input');
+const productPriceInput = () => document.getElementById('product-price-input');
+const productQuantityInput = () =>
+  document.getElementById('product-quantity-input');
+
+export {
+  tabMenus,
+  tab1,
+  tab2,
+  tab3,
+  productNameInput,
+  productPriceInput,
+  productQuantityInput,
+};
