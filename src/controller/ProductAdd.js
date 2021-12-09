@@ -10,6 +10,7 @@ export default class ProductAdd {
   isBlank = ($element) => {
     if ($element.value.length < NUMBER.BLANK_CHECK_LENGTH) {
       this.render.alertMessage(ERROR_MESSAGE.PRODUCT_BLANK($element.placeholder));
+
       return true;
     }
 
@@ -18,7 +19,13 @@ export default class ProductAdd {
 
   isPositiveInteger = ($element) => {
     const productPriceNumber = Number($element.value);
-    return Number.isInteger(productPriceNumber) && productPriceNumber > NUMBER.ZERO;
+    if (!Number.isInteger(productPriceNumber) || productPriceNumber <= NUMBER.ZERO) {
+      this.render.alertMessage(ERROR_MESSAGE.PRODUCT_POSITIVE_INTEGER);
+
+      return false;
+    }
+
+    return true;
   };
 
   isUnitOfTen = () => Number(this.$productPriceInput.value) % NUMBER.UNIT_CHECK_TEN === NUMBER.ZERO;

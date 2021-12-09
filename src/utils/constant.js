@@ -57,4 +57,5 @@ export const ERROR_MESSAGE = {
   PRODUCT_BLANK(placeholder) {
     return `${placeholder}을 입력해주세요.`;
   },
+  PRODUCT_POSITIVE_INTEGER: '양의 정수를 입력해주세요.',
 };
