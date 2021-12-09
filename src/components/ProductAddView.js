@@ -1,9 +1,9 @@
-import { HTML_OF_PRODUCT_ADD_PART } from '../utils/html.js';
+import { HTML_OF_PRODUCT_ADD_PART, HTML_OF_PRODUCT_STATUS_TABLE } from '../utils/html.js';
 
 export default class ProductAddView {
   static render() {
     document.getElementById('bottom-container').innerHTML =
-      HTML_OF_PRODUCT_ADD_PART;
+      HTML_OF_PRODUCT_ADD_PART + HTML_OF_PRODUCT_STATUS_TABLE;
   }
 
   static addEvent() {
@@ -13,23 +13,9 @@ export default class ProductAddView {
         const name = document.getElementById('product-name-input').value;
         const price = document.getElementById('product-price-input').value;
         const quantity = document.getElementById('product-quantity-input').value;
-        
-        this.addProduct(name, price, quantity);
 
-        const product = JSON.parse(localStorage.getItem('Product'));
-        
-        document.getElementById('product-add-table').innerHTML = `
-        <thead>
-          <th>상품명</th>
-          <th>가격</th>
-          <th>수량</th>
-        </thead>
-        ${Object.keys(product).map((name) => `
-        <tr>
-          <td align="center">${name}</td>
-          <td align="center">${product[name]["values"][0]}</td>
-          <td align="center">${product[name]["values"][1]}</td>
-        </tr>`).join('')}`;
+        this.addProduct(name, price, quantity);
+        this.showTable();
     });
   }
 
@@ -42,5 +28,17 @@ export default class ProductAddView {
             product[name] = {values: [price, quantity]};
             localStorage.setItem('Product', JSON.stringify(product));
         }
+    }
+
+    static showTable() {
+        const product = JSON.parse(localStorage.getItem('Product'));
+
+        document.getElementById('product-add-table').innerHTML = HTML_OF_PRODUCT_STATUS_TABLE + `
+        ${Object.keys(product).map((name) => `
+        <tr class="product-manage-item">
+          <td class="product-manage-name">${name}</td>
+          <td class="product-manage-price">${product[name]["values"][0]}</td>
+          <td class="product-manage-quantity">${product[name]["values"][1]}</td>
+        </tr>`).join('')}`;
     }
 }

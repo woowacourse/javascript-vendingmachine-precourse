@@ -4,6 +4,7 @@ export const HTML_OF_MENU_BUTTONS = `
   <button id="product-add-menu">상품 관리</button>
   <button id="vending-machine-manage-menu">잔돈 충전</button>
   <button id="product-purchase-menu">상품 구매</button>`;
+  
 export const HTML_OF_BOTTOM_CONTAINER = `<div id="bottom-container"></div>`;
 
 // 상품 관리 부분
@@ -13,7 +14,9 @@ export const HTML_OF_PRODUCT_ADD_PART = `
   <input type="number" placeholder="가격" id="product-price-input"></input>
   <input type="number" placeholder="수량" id="product-quantity-input"></input>
   <button id="product-add-button">추가하기</button>
-  <h4>상품 현황</h4>
+  <h4>상품 현황</h4>`;
+
+export const HTML_OF_PRODUCT_STATUS_TABLE = `
   <table border="1px" cellspacing="0" cellpadding="5" id="product-add-table">
     <thead>
       <th>상품명</th>
@@ -21,6 +24,7 @@ export const HTML_OF_PRODUCT_ADD_PART = `
       <th>수량</th>
     </thead>
   </table>`;
+
 
 // 잔돈 충전 부분
 export const HTML_OF_MACHINE_MANAGE_PART = `
