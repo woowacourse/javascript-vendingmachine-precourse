@@ -38,11 +38,15 @@ export const renderProductItemsTable = () => {
   const template = () => {
     return `
       <h2>상품 현황</h2>
-      <div class='product-items-table'>
-        <div class='product-items-header' id='product-items-name'>상품명</div>
-        <div class='product-items-header' id='product-items-price'>가격</div>
-        <div class='product-items-header' id='product-items-quantity'>수량</div>
-      </div>
+      <div class='table'>
+        <div class='product-items-table'>
+          <div class='product-items-header' id='product-items-name'>상품명</div>
+          <div class='product-items-header' id='product-items-price'>가격</div>
+          <div class='product-items-header' id='product-items-quantity'>수량</div>
+        </div>
+        <div class='product-manage-table'>
+        </div>
+      <div>
     `;
   };
   $('#app').innerHTML += template();
@@ -50,6 +54,7 @@ export const renderProductItemsTable = () => {
 
 export const renderProductItems = () => {
   const menu = store.getLocalStorage();
+  $('.product-manage-table').innerHTML = '';
   const template = index => {
     return `
       <div class='product-manage-item'>
@@ -59,7 +64,9 @@ export const renderProductItems = () => {
       </div>
     `;
   };
-  for (let i = 0; i < menu.length; i++) {
-    $('#app').innerHTML += template(i);
+  if (menu !== null) {
+    for (let i = 0; i < menu.length; i++) {
+      $('.product-manage-table').innerHTML += template(i);
+    }
   }
 };

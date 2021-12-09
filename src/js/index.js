@@ -7,7 +7,6 @@ import {
 } from './render.js';
 import { $ } from './util/dom.js';
 import { addMenu } from './addMenu.js';
-import store from './store/store.js';
 
 renderTitle();
 renderTabButtons();
@@ -16,6 +15,4 @@ renderProductItemsTable();
 renderProductItems();
 
 $('#product-add-form').addEventListener('submit', addMenu);
-
-const menu = store.getLocalStorage();
-console.log(menu[0].name);
+$('#product-add-button').addEventListener('click', addMenu);
