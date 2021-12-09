@@ -5,9 +5,9 @@ export default class Render {
     this.$app = document.querySelector(DOM.$APP);
   }
 
-  alertMessage = (message) => {
-    alert(message);
-  };
+  inputFocus = ($element) => $element.focus();
+
+  alertMessage = (message) => alert(message);
 
   productAddMenuTemplate = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
