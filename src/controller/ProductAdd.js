@@ -28,7 +28,15 @@ export default class ProductAdd {
     return true;
   };
 
-  isUnitOfTen = () => Number(this.$productPriceInput.value) % NUMBER.UNIT_CHECK_TEN === NUMBER.ZERO;
+  isUnitOfTen = () => {
+    if (Number(this.$productPriceInput.value) % NUMBER.UNIT_CHECK_TEN !== NUMBER.ZERO) {
+      this.render.alertMessage(ERROR_MESSAGE.PRODUCT_UNIT_OF_TEN);
+
+      return false;
+    }
+
+    return true;
+  };
 
   isValidPriceInput = () =>
     !this.isBlank(this.$productPriceInput) && this.isPositiveInteger(this.$productPriceInput) && this.isUnitOfTen();

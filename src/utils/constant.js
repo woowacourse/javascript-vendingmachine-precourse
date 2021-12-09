@@ -58,4 +58,5 @@ export const ERROR_MESSAGE = {
     return `${placeholder}을 입력해주세요.`;
   },
   PRODUCT_POSITIVE_INTEGER: '양의 정수를 입력해주세요.',
+  PRODUCT_UNIT_OF_TEN: '10원 단위로 입력해주세요.',
 };
