@@ -1,9 +1,4 @@
-import {
-  CHARGE_CHANGE_TAP,
-  COIN,
-  COIN_TABLE,
-  QUANTITY,
-} from "../utils/constants.js";
+import { CHARGE_CHANGE_TAP, COIN_TABLE } from "../utils/constants.js";
 
 // ----자판기 동전 충전하기 폼 렌더링 함수----
 const makeChargeChangeTitle = () => {

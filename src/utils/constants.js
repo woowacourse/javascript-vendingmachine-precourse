@@ -1,8 +1,6 @@
 export const TITLE_TEXT = "🥤자판기🥤";
 export const INPUT_WITDH = "125px";
 export const MARGIN_SIZE = "1px";
-export const COIN = "동전";
-export const QUANTITY = "개수";
 
 export const PRODUCT_TABLE = {
   collapse: "collapse",
