@@ -1,4 +1,5 @@
 import { $ } from '../utils/DOM.js';
+import { printProductTemplate, PRODUCT_BASIC_TEMPLATE } from '../utils/template.js';
 
 export class ProductView {
   constructor() {
@@ -25,23 +26,8 @@ export class ProductView {
     if (products.length === 0) {
       return;
     }
-    let productRowHTML = `
-      <tr class="product-manage-item">
-        <td class="product-manage-name">상품명</td>
-        <td class="product-manage-price">가격</td>
-        <td class="product-manage-quantity">수량</td>
-      </tr>
-    `;
-    products.map(
-      (product) =>
-        (productRowHTML += `
-      <tr class="product-manage-item">
-        <td class="product-manage-name">${product.productName}</td>
-        <td class="product-manage-price">${product.price}</td>
-        <td class="product-manage-quantity">${product.quantity}</td>
-      </tr>
-    `),
-    );
+    let productRowHTML = PRODUCT_BASIC_TEMPLATE;
+    products.map((product) => (productRowHTML += printProductTemplate(product)));
     this.$productTable.innerHTML = productRowHTML;
   }
 
