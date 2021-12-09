@@ -21,13 +21,6 @@ const isNotDivideByTen = price => {
   }
 };
 
-const isNotNumber = input => {
-  if (Number.isInteger(parseInt(input)) === false) {
-    alert(ERROR_MESSAGE.notInteger);
-    return true;
-  }
-};
-
 const checkAddProductsNameInput = name => {
   let isError = false;
   if (isEmptyInput(name)) {
@@ -40,8 +33,6 @@ const checkAddProductsNameInput = name => {
 const checkAddProductsPriceInput = price => {
   let isError = false;
   if (isEmptyInput(price)) {
-    isError = true;
-  } else if (isNotNumber(price)) {
     isError = true;
   } else if (isUnderThanMinimumPrice(price)) {
     isError = true;
@@ -62,8 +53,6 @@ const isNegative = quantity => {
 const checkAddProductsQuantityInput = quantity => {
   let isError = false;
   if (isEmptyInput(quantity)) {
-    isError = true;
-  } else if (isNotNumber(quantity)) {
     isError = true;
   } else if (isNegative(quantity)) {
     isError = true;
