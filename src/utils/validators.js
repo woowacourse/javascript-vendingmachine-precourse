@@ -8,6 +8,10 @@ const validators = {
 
     return true;
   },
+
+  isValidProductPrice: string => {
+    if (UT.isBlank(string)) return alert(ERROR.PRODUCT_PRICE_BLANK_SUBMIT);
+  },
 };
 
 export default validators;

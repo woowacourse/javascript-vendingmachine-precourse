@@ -17,6 +17,7 @@ export default class ProductAddMenu {
       e.preventDefault();
 
       if (!V.isValidProductName($('#product-name-input').value)) return;
+      if (!V.isValidProductPrice($('#product-price-input').value)) return;
     });
   }
 }
