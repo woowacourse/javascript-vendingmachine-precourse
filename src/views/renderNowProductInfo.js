@@ -32,7 +32,7 @@ function createProductInfoElement(drinkMenuObjectList) {
 
 export default function renderNowProductInfo() {
   const drinkMenuObjectList = store.getLocalStorage(DRINK_STORAGE_NAME);
-  if (drinkMenuObjectList[0] !== null) {
+  if (drinkMenuObjectList) {
     $('.now-product-table-container').innerHTML = createProductInfoTable(
       createProductInfoElement(drinkMenuObjectList)
     );

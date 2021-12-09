@@ -3,6 +3,22 @@ import checkValidProductName from './checkValidProductName.js';
 import checkValidProductPrice from './checkValidProductPrice.js';
 import checkValidProductQuantity from './checkValidProductQuantity.js';
 
+function setDrinkDataForm(productName, productPrice, productQuantity) {
+  if (
+    productName !== false &&
+    productPrice !== false &&
+    productQuantity !== false
+  ) {
+    const productInfoSet = {
+      menu: productName,
+      price: productPrice,
+      quantity: productQuantity,
+    };
+    return productInfoSet;
+  }
+  return false;
+}
+
 export default function getUserProductInfoInput() {
   let productName = false;
   let productPrice = false;
@@ -16,5 +32,5 @@ export default function getUserProductInfoInput() {
   if (checkValidProductQuantity($('#product-quantity-input').value)) {
     productQuantity = $('#product-quantity-input').value;
   }
-  console.log(productName, productPrice, productQuantity);
+  return setDrinkDataForm(productName, productPrice, productQuantity);
 }

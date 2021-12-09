@@ -10,6 +10,7 @@ import renderProductAddMenu from './views/renderProductAddMenu.js';
 import store from './storage/store.js';
 import renderNowProductInfo from './views/renderNowProductInfo.js';
 import getUserProductInfoInput from './modules/getUserProductInfoInput.js';
+import initProductAddInputElements from './views/initProductAddInputElements.js';
 
 export default function vendingMachine() {
   this.userTotalMoney;
@@ -30,6 +31,7 @@ export default function vendingMachine() {
       if (userProductInput !== false) {
         this.drinkMenuObjectList.push(userProductInput);
         store.setLocalStoreage(DRINK_STORAGE_NAME, this.drinkMenuObjectList);
+        initProductAddInputElements();
         renderNowProductInfo();
       }
     });
