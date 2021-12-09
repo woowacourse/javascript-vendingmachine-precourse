@@ -5,12 +5,17 @@ import { default as DB } from '../model/database.js';
 export default class ProductAddMenu {
   constructor(view) {
     this.view = view;
+    this.checkLocalStorage();
     this.render();
+    this.productAddManager();
+  }
+
+  checkLocalStorage() {
+    DB.init('inventory');
   }
 
   render() {
     this.view.showProductAddComponent();
-    this.productAddManager();
     DOM.showInventory();
   }
 
@@ -23,6 +28,7 @@ export default class ProductAddMenu {
       if (!V.isValidProductQuantity(DOM.getProduct().quantity)) return;
 
       DB.save('inventory', DOM.getProduct());
+
       DOM.showInventory();
     });
   }

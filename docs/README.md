@@ -14,8 +14,8 @@
 
 - [x] 🖨️  `상품 관리` template html 작성
 
-- [ ] 🔍 localStorage의 `inventory`에 상품이 존재하는지 파악한다
-  - [ ] 🖨️  상품 현황에 table에 row를 추가해서 표시한다
+- [x] 🔍 localStorage의 `inventory`에 상품이 존재하는지 파악한다
+  - [x] 🖨️  상품 현황에 table에 row를 추가해서 표시한다
   
 - **상품 추가하기 모듈**
 

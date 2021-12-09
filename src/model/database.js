@@ -1,8 +1,10 @@
 const database = {
+  init: key => {
+    database.load(key) || localStorage.setItem(key, JSON.stringify([]));
+  },
+
   save: (key, value) => {
-    database.load(key)
-      ? localStorage.setItem(key, JSON.stringify([...database.load(key), value]))
-      : localStorage.setItem(key, JSON.stringify([value]));
+    localStorage.setItem(key, JSON.stringify([...database.load(key), value]));
   },
 
   load: key => {
