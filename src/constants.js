@@ -1,3 +1,5 @@
+export const TAB_BUTTONS = ['상품 관리', '잔돈 충전', '상품 구매'];
+
 export const SELECTOR = {
   // 공통
   vendingMachineApp: 'app',
