@@ -11,3 +11,10 @@ export const createChargeFormTemplate = () => `
 		<button type="button" id="${SELECTOR.vendingMachineChargeButtonId}">충전하기</button>
 	</div>
 `;
+
+export const createChargeAmountTemplate = amount => `
+	<div style="margin: 20px 0px">
+		<span>보유 금액:</span>
+		<span>${amount}원</span>
+	</div>
+`;
