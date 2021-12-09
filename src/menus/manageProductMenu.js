@@ -2,8 +2,9 @@ import {
   MANAGE_PRODUCT_TAP,
   INPUT_WITDH,
   MARGIN_SIZE,
-  PRODUCT_STATE_TABLE,
+  PRODUCT_TABLE,
 } from "../utils/constants.js";
+import { vendingMachine } from "../components/vendingMachine.js";
 
 const makeAddProductTitle = () => {
   const title = document.createElement("h3");
@@ -23,6 +24,59 @@ const makeInput = inputInformation => {
   return input;
 };
 
+const makeNameTd = name => {
+  const td = document.createElement("td");
+  td.innerText = name;
+  td.class = MANAGE_PRODUCT_TAP.productNameClass;
+  td.style.border = PRODUCT_TABLE.border;
+
+  return td;
+};
+
+const makePriceTd = price => {
+  const td = document.createElement("td");
+  td.innerText = price;
+  td.class = MANAGE_PRODUCT_TAP.productNameClass;
+  td.style.border = PRODUCT_TABLE.border;
+
+  return td;
+};
+
+const makeQuantityTd = quantity => {
+  const td = document.createElement("td");
+  td.innerText = quantity;
+  td.class = MANAGE_PRODUCT_TAP.productNameClass;
+  td.style.border = PRODUCT_TABLE.border;
+
+  return td;
+};
+
+const makeProductRaw = product => {
+  const tableRaw = document.createElement("tr");
+  tableRaw.class = MANAGE_PRODUCT_TAP.productTableRawClass;
+  tableRaw.appendChild(makeNameTd(product.name));
+  tableRaw.appendChild(makePriceTd(product.price));
+  tableRaw.appendChild(makeQuantityTd(product.quantity));
+
+  return tableRaw;
+};
+
+const renderProduct = product => {
+  const $table = document.querySelector("table");
+  $table.appendChild(makeProductRaw(product));
+};
+
+const onClickAddButton = event => {
+  event.preventDefault();
+  const parent = event.target.parentElement;
+  const name = parent.querySelector("#product-name-input").value;
+  const price = parent.querySelector("#product-price-input").value;
+  const quantity = parent.querySelector("#product-quantity-input").value;
+
+  const newProduct = vendingMachine.addProduct(name, price, quantity);
+  renderProduct(newProduct);
+};
+
 const makeAddButton = () => {
   const [text, id] = MANAGE_PRODUCT_TAP.addProductButton;
   const button = document.createElement("button");
@@ -30,6 +84,7 @@ const makeAddButton = () => {
   button.innerText = text;
   button.id = id;
   button.style.margin = MARGIN_SIZE;
+  button.addEventListener("click", onClickAddButton);
 
   return button;
 };
@@ -62,10 +117,10 @@ const makeProductStateTitle = () => {
 const makeTableHeader = name => {
   const header = document.createElement("th");
   header.innerText = name;
-  header.style.border = PRODUCT_STATE_TABLE.border;
-  header.style.padding = PRODUCT_STATE_TABLE.padding;
-  header.style.paddingLeft = PRODUCT_STATE_TABLE.paddingWidth;
-  header.style.paddingRight = PRODUCT_STATE_TABLE.paddingWidth;
+  header.style.border = PRODUCT_TABLE.border;
+  header.style.padding = PRODUCT_TABLE.padding;
+  header.style.paddingLeft = PRODUCT_TABLE.paddingWidth;
+  header.style.paddingRight = PRODUCT_TABLE.paddingWidth;
 
   return header;
 };
@@ -82,7 +137,8 @@ const makeTableHeaders = () => {
 const makeProductStateGraph = () => {
   const table = document.createElement("table");
   table.appendChild(makeTableHeaders());
-  table.style.borderCollapse = PRODUCT_STATE_TABLE.collapse;
+  table.style.borderCollapse = PRODUCT_TABLE.collapse;
+  table.style.textAlign = PRODUCT_TABLE.textAlign;
 
   return table;
 };

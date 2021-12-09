@@ -2,11 +2,12 @@ export const TITLE_TEXT = "🥤자판기🥤";
 export const INPUT_WITDH = "125px";
 export const MARGIN_SIZE = "1px";
 
-export const PRODUCT_STATE_TABLE = {
+export const PRODUCT_TABLE = {
   collapse: "collapse",
   border: "1px solid black",
   padding: "10px",
   paddingWidth: "40px",
+  textAlign: "center",
 };
 
 export const MENU_TAP_INFORMATION = [
@@ -23,6 +24,11 @@ export const MANAGE_PRODUCT_TAP = {
     ["수량", "product-quantity-input"],
   ],
   addProductButton: ["추가하기", "product-add-button"],
+
   productStateTitle: "상품 현황",
   productStateTableHeader: ["상품명", "가격", "수량"],
+  productTableRawClass: "product-manage-item",
+  productNameClass: "product-manage-name",
+  productPriceClass: "product-manage-price",
+  productQuantityClass: "product-manage-quantity",
 };
