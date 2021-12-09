@@ -8,6 +8,10 @@ const utils = {
   isIncludeSpace: string => {
     return REGEX.IS_INCLUDE_SPACE.test(string);
   },
+
+  hasSpecial: string => {
+    return string.split('').some(char => REGEX.HAS_SPECIAL.test(char));
+  },
 };
 
 export default utils;

@@ -11,6 +11,9 @@ const validators = {
 
   isValidProductPrice: string => {
     if (UT.isBlank(string)) return alert(ERROR.PRODUCT_PRICE_BLANK_SUBMIT);
+    if (UT.hasSpecial(string)) return alert(ERROR.PRODUCT_PRICE_INCLUDE_SPECIAL);
+
+    return true;
   },
 };
 
