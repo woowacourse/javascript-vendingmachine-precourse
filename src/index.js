@@ -1,9 +1,7 @@
-import View from './view/View.js';
+import VendingMachine from './vendingMachine/VendingMachine.js';
 
 function initVendingMachine() {
-  const view = new View();
-
-  view.renderAppHeader();
+  const vendingMachine = new VendingMachine();
 }
 
 initVendingMachine();
