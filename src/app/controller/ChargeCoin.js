@@ -26,9 +26,8 @@ export default class ChargeCoin {
 
     chargeCoin(chargeAmount) {
         const distributedCoin = distributeCoin(chargeAmount);
-        const coins = getCoins();
 
-        coins.forEach((coinCount, idx) => {
+        getCoins().forEach((coinCount, idx) => {
             distributeCoin[idx] += coinCount;
         });
         setChargeAmount(getChargeAmount() + chargeAmount);
