@@ -60,5 +60,6 @@ export const ERROR_MESSAGE = {
     return `${placeholder}을 입력해주세요.`;
   },
   PRODUCT_POSITIVE_INTEGER: '양의 정수를 입력해주세요.',
-  PRODUCT_UNIT_OF_TEN: '10원 단위로 입력해주세요.',
+  PRODUCT_UNIT_OF_TEN: '상품 가격은 10원 단위로 입력해주세요.',
+  PRODUCT_MORE_THAN_ONE_HUNDRED: '상품 가격은 100원 이상으로 입력해주세요.',
 };

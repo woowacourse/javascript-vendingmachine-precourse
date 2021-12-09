@@ -48,11 +48,25 @@ export default class ProductAdd {
     return true;
   };
 
+  isMoreThanOneHundred = () => {
+    if (Number(this.$productPriceInput.value) < 100) {
+      this.render.alertMessage(ERROR_MESSAGE.PRODUCT_MORE_THAN_ONE_HUNDRED);
+      this.render.inputFocus(this.$productPriceInput);
+
+      return false;
+    }
+
+    return true;
+  };
+
   isQuantityInput = () =>
     !this.isBlank(this.$productQuantityInput) && this.isPositiveInteger(this.$productQuantityInput);
 
   isValidPriceInput = () =>
-    !this.isBlank(this.$productPriceInput) && this.isPositiveInteger(this.$productPriceInput) && this.isUnitOfTen();
+    !this.isBlank(this.$productPriceInput) &&
+    this.isPositiveInteger(this.$productPriceInput) &&
+    this.isUnitOfTen() &&
+    this.isMoreThanOneHundred();
 
   isValidNameInput = () => !this.isBlank(this.$productNameInput);
 
