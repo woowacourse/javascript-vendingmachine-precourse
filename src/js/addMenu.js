@@ -29,7 +29,7 @@ export const addMenu = e => {
   }
 };
 
-const checkMenuPrice = menuPrice => {
+export const checkMenuPrice = menuPrice => {
   return (
     checkBlank(menuPrice) ||
     checkNotNum(menuPrice) ||
@@ -37,7 +37,7 @@ const checkMenuPrice = menuPrice => {
     checkMenuPriceDivideTen(menuPrice)
   );
 };
-const checkMenuQuantity = menuQuantity => {
+export const checkMenuQuantity = menuQuantity => {
   return (
     checkBlank(menuQuantity) ||
     checkNotNum(menuQuantity) ||
@@ -45,20 +45,20 @@ const checkMenuQuantity = menuQuantity => {
   );
 };
 
-const checkBlank = inputValue => {
+export const checkBlank = inputValue => {
   return inputValue === '';
 };
-const checkNotNum = inputValue => {
+export const checkNotNum = inputValue => {
   const inputValueToArray = inputValue.split('');
   let checkNum = inputValueToArray.filter(x => NUM.includes(parseInt(x, 10)));
   return !(checkNum.length === inputValueToArray.length);
 };
-const checkMenuPriceRange = menuPrice => {
+export const checkMenuPriceRange = menuPrice => {
   return parseInt(menuPrice, 10) < 100;
 };
-const checkMenuPriceDivideTen = menuPrice => {
+export const checkMenuPriceDivideTen = menuPrice => {
   return parseInt(menuPrice, 10) % 10 !== 0;
 };
-const checkMenuQuantityRange = menuQuantity => {
+export const checkMenuQuantityRange = menuQuantity => {
   return parseInt(menuQuantity, 10) < 1;
 };

@@ -1,27 +1,29 @@
-import {
-  renderProductManagePage,
-  renderPurchaseProductPage,
-  renderChargeChangesPage,
-} from './render.js';
+// prettier-ignore
+import { renderProductAddMenu, renderVendingMachineManageMenu, renderProductPurchaseMenu } from './render.js';
 import { $ } from './util/dom.js';
 import { addMenu } from './addMenu.js';
+import { addMoney } from './money.js';
 
 function App() {
-  renderProductManagePage();
-  $('#app').addEventListener('click', function (e) {
+  renderProductAddMenu();
+  const handleClick = e => {
     if (e.target.id === 'product-add-menu') {
-      renderProductManagePage();
+      renderProductAddMenu();
     } else if (e.target.id === 'vending-machine-manage-menu') {
-      renderChargeChangesPage();
+      renderVendingMachineManageMenu();
     } else if (e.target.id === 'product-purchase-menu') {
-      renderPurchaseProductPage();
     }
-  });
-  $('#app').addEventListener('submit', function (e) {
+  };
+  const handleSubmit = e => {
     if (e.target.id === 'product-add-form') {
       addMenu(e);
+    } else if (e.target.id === 'vending-machine-charge-form') {
+      addMoney(e);
     }
-  });
+  };
+
+  $('#app').addEventListener('click', handleClick);
+  $('#app').addEventListener('submit', handleSubmit);
 }
 
 const app = new App();

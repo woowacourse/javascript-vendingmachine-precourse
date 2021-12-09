@@ -1,33 +1,29 @@
 import store from './store/store.js';
 import { $ } from './util/dom.js';
 
-export const renderProductManagePage = () => {
+export const renderProductAddMenu = () => {
   renderCommonPart();
   renderAddProductForm();
   renderProductItemsTable();
   renderProductItems();
 };
-export const renderChargeChangesPage = () => {
+export const renderVendingMachineManageMenu = () => {
+  renderCommonPart();
+  renderChangeChangesForm();
+};
+export const renderProductPurchaseMenu = () => {
   renderCommonPart();
 };
-export const renderPurchaseProductPage = () => {
-  renderCommonPart();
-};
-
 export const renderCommonPart = () => {
   $('#app').innerHTML = '';
   renderTitle();
   renderTabButtons();
 };
-
 export const renderTitle = () => {
-  const header = document.createElement('header');
   let title = document.createElement('h1');
   title.innerHTML = '🥤자판기🥤';
-  $('#app').appendChild(header);
-  $('header').appendChild(title);
+  $('#app').appendChild(title);
 };
-
 export const renderTabButtons = () => {
   const template = () => {
     return `
@@ -37,12 +33,9 @@ export const renderTabButtons = () => {
             <button type='button' id='product-purchase-menu'>상품 구매</button>
         </div>`;
   };
-  $('header').innerHTML += template();
+  $('#app').innerHTML += template();
 };
-
 export const renderAddProductForm = () => {
-  const main = document.createElement('main');
-  $('#app').appendChild(main);
   const template = () => {
     return `
       <h2>상품 추가하기</h2>
@@ -50,43 +43,56 @@ export const renderAddProductForm = () => {
         <input placeholder='상품명' id='product-name-input'></input>
         <input placeholder='가격' id='product-price-input'></input>
         <input placeholder='수량' id='product-quantity-input'></input>
-        <button type='submit' value='추가하기' id='product-add-button'>추가하기</button>
+        <button type='submit' id='product-add-button'>추가하기</button>
       </form>
     `;
   };
-  $('main').innerHTML += template();
+  $('#app').innerHTML += template();
 };
-
+export const renderChangeChangesForm = () => {
+  const template = () => {
+    return `
+      <h2>상품 추가하기</h2>
+      <form id='vending-machine-charge-form'>
+        <input placeholder='자판기가 보유할 금액' id='vending-machine-charge-input'></input>
+        <button type='submit' id='vending-machine-charge-button'>충전하기</button>
+      </form>
+      <p id='vending-machine-charge-amount'>보유 금액:</p>
+    `;
+  };
+  $('#app').innerHTML += template();
+};
 export const renderProductItemsTable = () => {
   const template = () => {
     return `
       <h2>상품 현황</h2>
-      <div class='table'>
-        <div class='product-items-table'>
-          <div class='product-items-header' id='product-items-name'>상품명</div>
-          <div class='product-items-header' id='product-items-price'>가격</div>
-          <div class='product-items-header' id='product-items-quantity'>수량</div>
-        </div>
-        <div class='product-manage-table'></div>
-      </div>
+      <table class='item-table'>
+        <thead class='item-table-head'>
+          <tr>
+            <th class='product-items-header' id='product-items-name'>상품명</th>
+            <th class='product-items-header' id='product-items-price'>가격</th>
+            <th class='product-items-header' id='product-items-quantity'>수량</th>
+          </tr>
+        </thead>
+        <tbody class='item-table-body'>
+        </tbody>
+      </table>
     `;
   };
-  $('main').innerHTML += template();
+  $('#app').innerHTML += template();
 };
-
 export const renderProductItems = () => {
-  $('.product-manage-table').innerHTML = '';
   const menu = store.getLocalStorage();
   if (menu !== null) {
     const template = menu.map(item => {
       return `
-        <div class='product-manage-item'>
-          <div class='product-items-header' id='product-manage-name'>${item.name}</div>
-          <div class='product-items-header' id='product-manage-price'>${item.price}</div>
-          <div class='product-items-header' id='product-manage-quantity'>${item.quantity}</div>
-        </div>
+        <tr class='product-manage-item'>
+          <td class='product-items-header' id='product-manage-name'>${item.name}</td>
+          <td class='product-items-header' id='product-manage-price'>${item.price}</td>
+          <td class='product-items-header' id='product-manage-quantity'>${item.quantity}</td>
+        </tr>
       `;
     });
-    $('.product-manage-table').innerHTML += template.join('');
+    $('.item-table-body').innerHTML = template.join('');
   }
 };
