@@ -187,19 +187,31 @@ export default class View {
         tr.append(this.coinType, this.coinCount);
         const trFiveHoundred = this.createElement("tr");
         this.fiveHoundred = this.createElement("td", "fiveHoundred", "500원");
-        this.fiveHoundredCount = this.createElement("td", "fiveHoundredCount");
+        this.fiveHoundredCount = this.createElement(
+          "td",
+          "vending-machine-coin-500-quantity"
+        );
         trFiveHoundred.append(this.fiveHoundred, this.fiveHoundredCount);
         const trOneHundred = this.createElement("tr");
         this.oneHundred = this.createElement("td", "oneHundred", "100원");
-        this.oneHundredCount = this.createElement("td", "oneHundredCount");
+        this.oneHundredCount = this.createElement(
+          "td",
+          "vending-machine-coin-100-quantity"
+        );
         trOneHundred.append(this.oneHundred, this.oneHundredCount);
         const trFifty = this.createElement("tr");
         this.fifty = this.createElement("td", "fifty", "50원");
-        this.fiftyCount = this.createElement("td", "fiftyCount");
+        this.fiftyCount = this.createElement(
+          "td",
+          "vending-machine-coin-50-quantity"
+        );
         trFifty.append(this.fifty, this.fiftyCount);
         const trTen = this.createElement("tr");
         this.ten = this.createElement("td", "ten", "10원");
-        this.tenCount = this.createElement("td", "ten");
+        this.tenCount = this.createElement(
+          "td",
+          "vending-machine-coin-10-quantity"
+        );
         trTen.append(this.ten, this.tenCount);
 
         this.coinTable.append(tr, trFiveHoundred, trOneHundred, trFifty, trTen);
@@ -232,5 +244,12 @@ export default class View {
         }
       }
     });
+  }
+
+  displayChargeCoinChange(fiveHoundred, oneHoundred, fifty, ten) {
+    this.fiveHoundredCount.innerHTML = `${fiveHoundred}개`;
+    this.oneHundredCount.innerHTML = `${oneHoundred}개`;
+    this.fiftyCount.innerHTML = `${fifty}개`;
+    this.tenCount.innerHTML = `${ten}개`;
   }
 }

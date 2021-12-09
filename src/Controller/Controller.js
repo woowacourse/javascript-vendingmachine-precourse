@@ -70,6 +70,7 @@ export default class Controller {
       }
     }
     this.model.addCoin(coin[500], coin[100], coin[50], coin[10]);
+    this.view.displayChargeCoinChange(coin[500], coin[100], coin[50], coin[10]);
   };
 
   onProductChange = (product) => {
