@@ -6,8 +6,8 @@ import {
     checkNaturalNumber,
     checkModed,
 } from './index.js';
-import ERROR_MSG from '../constants/ERROR_MSG';
-import INPUT_NUMBER_RULE from '../constants/INPUT_NUMBER_RULE';
+import ERROR_MSG from '../constants/ERROR_MSG.js';
+import INPUT_NUMBER_RULE from '../constants/INPUT_NUMBER_RULE.js';
 
 const isBiggerOrSameMinPrice = (value) => value >= INPUT_NUMBER_RULE.minPrice;
 
