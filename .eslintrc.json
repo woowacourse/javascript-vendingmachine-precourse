@@ -2,6 +2,7 @@
   "env": {
     "browser": true
   },
+  "parser": "@babel/eslint-parser",
   "extends": [
     "airbnb-base",
     "plugin:jsx-a11y/recommended",
@@ -10,6 +11,7 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
+    "no-new": "off",
     "no-unused-vars": "warn",
     "class-methods-use-this": "off",
     "no-alert": "off",

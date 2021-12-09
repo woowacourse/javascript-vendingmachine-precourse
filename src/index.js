@@ -8,11 +8,11 @@ import { CoreView } from './view/CoreView.js';
 class App {
   constructor() {
     const model = new VendingMachineModel();
-    const commonView = new CoreView();
+    const coreView = new CoreView();
 
-    const controllerForProduct = new ProductController(model, commonView);
-    const controllerForBalance = new BalanceController(model, commonView);
-    const controllerForBuy = new BuyController(model, commonView);
+    const controllerForProduct = new ProductController(model, coreView);
+    const controllerForBalance = new BalanceController(model, coreView);
+    const controllerForBuy = new BuyController(model, coreView);
   }
 }
 

@@ -3,8 +3,65 @@ import { $ } from '../utils/DOM.js';
 export class ProductView {
   constructor() {
     this.$productAddSection = $('#product-add-section');
+    this.$productNameInput;
+    this.$productPriceInput;
+    this.$productQuantityInput;
+    this.$productAddButton;
+    this.$productTable;
     this.addElements();
   }
+
+  setOnProductSubmit(fn) {
+    this.$productAddButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const product = this.$productNameInput.value;
+      const price = this.$productPriceInput.value;
+      const quantity = this.$productQuantityInput.value;
+      fn(product, price, quantity);
+    });
+  }
+
+  showProduct(products) {
+    if (products.length === 0) {
+      return;
+    }
+    let productRowHTML = `
+      <tr class="product-manage-item">
+        <td class="product-manage-name">상품명</td>
+        <td class="product-manage-price">가격</td>
+        <td class="product-manage-quantity">수량</td>
+      </tr>
+    `;
+    products.map(
+      (product) =>
+        (productRowHTML += `
+      <tr class="product-manage-item">
+        <td class="product-manage-name">${product.productName}</td>
+        <td class="product-manage-price">${product.price}</td>
+        <td class="product-manage-quantity">${product.quantity}</td>
+      </tr>
+    `),
+    );
+    this.$productTable.innerHTML = productRowHTML;
+  }
+
+  // <table>
+  //         <tr class="product-manage-item">
+  //           <td class="product-manage-name">상품명</td>
+  //           <td class="product-manage-price">가격</td>
+  //           <td class="product-manage-quantity">수량</td>
+  //         </tr>
+  //         <tr class="product-manage-item">
+  //           <td class="product-manage-name">콜라</td>
+  //           <td class="product-manage-price">1500</td>
+  //           <td class="product-manage-quantity">20</td>
+  //         </tr>
+  //         <tr class="product-manage-item">
+  //           <td class="product-manage-name">콜라</td>
+  //           <td class="product-manage-price">1500</td>
+  //           <td class="product-manage-quantity">20</td>
+  //         </tr>
+  //       </table>
 
   addElements() {
     this.$productAddSection.innerHTML = `
@@ -16,7 +73,7 @@ export class ProductView {
         <button id="product-add-button">추가하기</button>
       </form>
       <h3>상품 현황</h3>
-      <table>
+      <table id="product-manage-table">
         <tr class="product-manage-item">
           <td class="product-manage-name">상품명</td>
           <td class="product-manage-price">가격</td>
@@ -24,5 +81,10 @@ export class ProductView {
         </tr>
       </table>
     `;
+    this.$productNameInput = $('#product-name-input');
+    this.$productPriceInput = $('#product-price-input');
+    this.$productQuantityInput = $('#product-quantity-input');
+    this.$productAddButton = $('#product-add-button');
+    this.$productTable = $('#product-manage-table');
   }
 }

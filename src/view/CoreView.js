@@ -7,9 +7,9 @@ export class CoreView {
   constructor() {
     this.$app = $('#app');
     this.addCommonElements();
-    this.ProductView = new ProductView();
-    this.BalanceView = new BalanceView();
-    this.BuyView = new BuyView();
+    this.productView = new ProductView();
+    this.balanceView = new BalanceView();
+    this.buyView = new BuyView();
   }
 
   addCommonElements() {
