@@ -26,6 +26,13 @@ export class ChargeView {
     this.$chargeAmount.innerText = chargeAmount;
   }
 
+  showCoins(coins) {
+    this.$coin500Quantity.innerText = coins[500];
+    this.$coin100Quantity.innerText = coins[100];
+    this.$coin50Quantity.innerText = coins[50];
+    this.$coin10Quantity.innerText = coins[10];
+  }
+
   addElements() {
     this.$productBalanceSection.innerHTML = CHARGE_SECTION_TEMPLATE;
     this.$chargeInput = $('#vending-machine-charge-input');

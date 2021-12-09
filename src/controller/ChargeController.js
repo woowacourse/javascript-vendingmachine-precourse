@@ -9,7 +9,9 @@ export class ChargeController {
 
   loadCharge() {
     const chargeAmount = this.model.chargeAmount;
+    const coins = this.model.coins;
     this.coreView.chargeView.showChargeAmount(chargeAmount);
+    this.coreView.chargeView.showCoins(coins);
   }
 
   triggerEvent() {
@@ -18,7 +20,8 @@ export class ChargeController {
 
   onChargeSubmit(chargeMoney) {
     const chargeAmount = this.model.addChargeMoney(chargeMoney);
-    this.model.addCoin(chargeMoney);
+    const coins = this.model.addCoin(chargeMoney);
     this.coreView.chargeView.showChargeAmount(chargeAmount);
+    this.coreView.chargeView.showCoins(coins);
   }
 }

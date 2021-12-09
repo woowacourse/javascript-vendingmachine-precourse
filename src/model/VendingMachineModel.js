@@ -41,5 +41,6 @@ export class VendingMachineModel {
       }
     }
     console.log(`coins`, this.coins);
+    return this.coins;
   }
 }
