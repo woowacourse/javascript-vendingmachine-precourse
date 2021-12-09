@@ -3,7 +3,7 @@ import {
   createTitleTemplate,
   createProductAddFormTemplate,
   createProductTableTemplate,
-} from '../view/productAddMenu.js';
+} from '../templates/productAddMenu.js';
 import { SELECTOR } from '../constants.js';
 
 class ProductAddTab {

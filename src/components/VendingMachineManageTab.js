@@ -1,5 +1,8 @@
 import { $ } from '../utils/dom.js';
-import { createTitleTemplate, createChargeFormTemplate } from '../view/vendingMachineManageMenu.js';
+import {
+  createTitleTemplate,
+  createChargeFormTemplate,
+} from '../templates/vendingMachineManageMenu.js';
 import { SELECTOR } from '../constants.js';
 
 class VendingMachineManageTab {

@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { createTitle } from '../view/productPurchaseMenu.js';
+import { createTitle } from '../templates/productPurchaseMenu.js';
 import { SELECTOR } from '../constants.js';
 
 class ProductPurchaseTab {
