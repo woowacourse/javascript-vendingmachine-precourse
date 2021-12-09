@@ -1,12 +1,10 @@
-const $app = document.getElementById('app');
+import VendingController from './controller.js';
+import VendingView from './view.js';
+import VendingModel from './model.js';
 
-const $tabMenus = `
-      <div>
-        <h1>🥤자판기🥤</h1>
-        <button id="product-add-menu">상품 관리</button>
-        <button id="vending-machine-manage-menu">잔돈 충전</button>
-        <button id="product-purchase-menu">상품 구매</button>
-      </div>
-`;
-
-$app.insertAdjacentHTML('afterbegin', $tabMenus);
+window.addEventListener('DOMContentLoaded', () => {
+  const model = new VendingModel();
+  const view = new VendingView(model);
+  const controller = new VendingController(model, view);
+  controller.app();
+});
