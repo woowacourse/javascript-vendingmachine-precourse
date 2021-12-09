@@ -86,7 +86,7 @@ const Content = ({ component, tabData }) => {
             <input type="number" id="charge-input" maxlength="20" placeholder="투입할 금액" />
             <button id="charge-button">투입하기</button>
           </form>
-          <p id="charge-amount">투입한 금액: 450원</p>
+          <p id="charge-amount">투입한 금액: ${tabData['charge-amount'] || 0}원</p>
         </div>
         <div>
           <h2>구매할 수 있는 상품 현황</h2>
@@ -100,16 +100,22 @@ const Content = ({ component, tabData }) => {
               </tr>
             </thead>
             <tbody>
-              <tr class="product-purchase-item">
-                <td data-product-name class="product-purchase-name">콜라</td>
-                <td data-product-price class="product-purchase-price">1500</td>
-                <td data-product-quantity class="product-purchase-quantity">3</td>
-                <td class="product-purchase-button"><button>구매하기</button></td>
-              </tr>
+              ${tabData['product-add-menu']
+                .map(
+                  ({ name, price, quantity }) => `
+                <tr class="product-purchase-item">
+                  <td data-product-name class="product-purchase-name">${name}</td>
+                  <td data-product-price class="product-purchase-price">${price}</td>
+                  <td data-product-quantity class="product-purchase-quantity">${quantity}</td>
+                  <td class="product-purchase-button"><button>구매하기</button></td>
+                </tr>
+                `,
+                )
+                .join(EMPTY)}
             </tbody>
           </table>
         </div>
-        <div>
+        <div class="changes">
           <h3>잔돈</h3>
           <button id="coin-return-button">반환하기</button>
           <table>
@@ -120,22 +126,16 @@ const Content = ({ component, tabData }) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>500원</td>
-                <td id="coin-500-quantity"></td>
-              </tr>
-              <tr>
-                <td>100원</td>
-                <td id="coin-100-quantity"></td>
-              </tr>
-              <tr>
-                <td>50원</td>
-                <td id="coin-50-quantity"></td>
-              </tr>
-              <tr>
-                <td>10원</td>
-                <td id="coin-10-quantity"></td>
-              </tr>
+              ${tabData['vending-machine-manage-menu']
+                .map(
+                  ({ description, count }) => `
+                <tr>
+                  <td>${description}원</td>
+                  <td id="coin-${description}-quantity">${count}개</td>
+                </tr>
+                `,
+                )
+                .join(EMPTY)}
             </tbody>
           </table>
         </div>

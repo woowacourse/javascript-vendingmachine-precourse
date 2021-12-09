@@ -51,11 +51,11 @@ class Storage {
    * 로컬 스토리지에 접근하여 해당 key로 저장된 아이템 중 일부를 수정합니다.
    *
    * @param {string} key
-   * @param {any} oldItem
+   * @param {string} subKey
    * @param {any} newItem
    */
-  update(key, oldItem, newItem) {
-    const value = this.read(key).map(item => (item === oldItem ? newItem : item));
+  update(key, subKey, newItem) {
+    const value = { ...this.read(key), [subKey]: newItem };
     this.setState({ key, value });
   }
 

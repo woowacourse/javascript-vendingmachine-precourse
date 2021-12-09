@@ -15,8 +15,21 @@ export default class Main extends Component {
       this.$storage.create(this.$props.component, initItems);
       tabData = initItems;
     }
+    if (this.$props.component === 'product-purchase-menu') {
+      const initItems = {
+        'product-add-menu': this.$storage.read('product-add-menu'),
+        'vending-machine-manage-menu': this.$storage.read('vending-machine-manage-menu'),
+        'charge-amount': this.$storage.read('product-purchase-menu')['charge-amount'],
+      };
+      tabData = initItems;
+    }
     this.$props = { ...this.$props, tabData };
-    this.$eventBus.addEvent('form', 'button', 'click', this, this.eventValidate);
+    // form 버튼
+    this.$eventBus.addEvent('form', 'button', 'click', this, this.formButtonEvent);
+    // td 버튼
+    this.$eventBus.addEvent('table', 'button', 'click', this, this.tableButtonEvent);
+    // div 버튼
+    this.$eventBus.addEvent('.changes', 'button', 'click', this, this.divButtonEvent);
   }
 
   template() {
@@ -29,9 +42,11 @@ export default class Main extends Component {
 
   mount() {
     this.$eventBus.dispatch('form', 'button', 'click');
+    this.$eventBus.dispatch('table', 'button', 'click');
+    this.$eventBus.dispatch('.changes', 'button', 'click');
   }
 
-  eventValidate(event, scope) {
+  formButtonEvent(event, scope) {
     event.preventDefault();
     const { component } = scope.$props;
     const storageItem = scope.$storage.read(component);
@@ -44,6 +59,10 @@ export default class Main extends Component {
 
     scope.clearInput(targets);
   }
+
+  tableButtonEvent({ target }, scope) {}
+
+  divButtonEvent(event, scope) {}
 
   contentInputs() {
     const children = $('form').childNodes;
@@ -92,7 +111,8 @@ export default class Main extends Component {
       }
       case 'product-purchase-menu': {
         const [{ value: charge }] = data;
-        return { charge };
+        const currentAmount = storageItem['charge-amount'] || 0;
+        return this.$storage.update(component, 'charge-amount', +charge + +currentAmount);
       }
       default:
         return {};
