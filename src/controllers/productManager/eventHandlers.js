@@ -1,9 +1,8 @@
-import { showProducts } from "../../views/productManager/showProducts.js";
 import { getInputValueById } from "../common/getInputValue.js";
 import { isValidInputs } from "./checkInputValues.js";
 import { addProduct } from "./productDataController.js";
 import { resetAddProductInput } from "../../views/productManager/resetInput.js";
-import { showProductsAbleToBuy } from "../../views/purchaseManager/showProductsAbleToBuy.js";
+import { showAll } from "../common/showAll.js";
 
 const processing = e => {
   e.preventDefault();
@@ -14,8 +13,7 @@ const processing = e => {
 
   if (errorMessage === "") {
     addProduct(name, price, quantity);
-    showProducts();
-    showProductsAbleToBuy();
+    showAll();
     resetAddProductInput();
   } else {
     alert(errorMessage);
