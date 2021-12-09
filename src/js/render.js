@@ -1,4 +1,3 @@
-import store from './store/store.js';
 import { $ } from './util/dom.js';
 
 export const renderProductAddMenu = () => {
@@ -82,7 +81,7 @@ export const renderProductItemsTable = () => {
   $('#app').innerHTML += template();
 };
 export const renderProductItems = () => {
-  const menu = store.getLocalStorage();
+  const menu = JSON.parse(localStorage.getItem('menu'));
   if (menu !== null) {
     const template = menu.map(item => {
       return `

@@ -1,5 +1,4 @@
 import { $ } from './util/dom.js';
-import store from './store/store.js';
 import { checkNotNum, checkMenuPriceDivideTen } from './addMenu.js';
 
 export const addMoney = e => {
@@ -8,6 +7,12 @@ export const addMoney = e => {
   if (checkNotNum(money) || checkMenuPriceDivideTen(money)) {
     window.alert('잘못된 값을 입력하셨습니다.');
   } else {
-    $('#vending-machine-charge-amount').innerText += ` ${money}`;
+    let changedMoney = 0;
+    const localStorageValue = JSON.parse(localStorage.getItem('money'));
+    if (localStorageValue !== null) {
+      changedMoney = parseInt(localStorageValue, 10);
+    }
+    changedMoney += parseInt(money);
+    $('#vending-machine-charge-amount').innerText += ` ${changedMoney}`;
   }
 };

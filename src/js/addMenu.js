@@ -1,6 +1,5 @@
 import { NUM } from './constant/constant.js';
 import { $ } from './util/dom.js';
-import store from './store/store.js';
 import { renderProductItems } from './render.js';
 
 export const addMenu = e => {
@@ -16,15 +15,14 @@ export const addMenu = e => {
     window.alert('잘못된 값을 입력하셨습니다.');
   } else {
     let menu = [];
-    let items = store.getLocalStorage();
+    let items = JSON.parse(localStorage.getItem('menu'));
     if (items !== null) {
       for (let item in items) {
         menu.push(items[item]);
       }
     }
     menu.push({ name: menuName, price: menuPrice, quantity: menuQuantity });
-    console.log(menu);
-    store.setLocalStorage(menu);
+    localStorage.setItem('menu', JSON.stringify(menu));
     renderProductItems();
   }
 };
