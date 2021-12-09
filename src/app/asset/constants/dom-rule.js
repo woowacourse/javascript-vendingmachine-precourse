@@ -23,6 +23,7 @@ export const INPUT_ID = {
 
 export const SUB_TITLE_TEXT = {
     addProduct: '상품 추가하기',
+    productInventory: '상품 현황',
 };
 
 export const BUTTON = {
@@ -30,4 +31,22 @@ export const BUTTON = {
         title: '추가하기',
         id: 'product-add-button',
     },
+};
+
+export const TABLE_ROW_CLASS_NAME = {
+    inventory: 'product-manage-item',
+};
+
+export const TABLE_CELL_CLASS_NAME = {
+    inventory: {
+        productName: 'product-manage-name',
+        productPrice: 'product-manage-price',
+        productQuantity: 'product-manage-quantity',
+    },
+};
+
+export const TABLE_TITLE = {
+    productName: '상품명',
+    productPrice: '가격',
+    productQuantity: '수량',
 };

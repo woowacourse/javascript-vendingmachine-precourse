@@ -2,7 +2,9 @@ import InputNumber from '../asset/components/Input/InputNumber.js';
 import InputText from '../asset/components/Input/InputText.js';
 import SubTitle from '../asset/components/SubTitle/index.js';
 import ButtonById from '../asset/components/Button/ButtonById.js';
-import { INPUT_ID, SUB_TITLE_TEXT, BUTTON } from '../asset/constants/dom-rule.js';
+import Table from '../asset/components/Table/index.js';
+import InventoryRow from '../asset/components/Row/InventoryRow.js';
+import { INPUT_ID, SUB_TITLE_TEXT, BUTTON, TABLE_TITLE } from '../asset/constants/dom-rule.js';
 
 export default class InventoryTap {
     constructor($skeleton) {
@@ -11,6 +13,7 @@ export default class InventoryTap {
         this.$productPriceInput = InputNumber(INPUT_ID.productPrice);
         this.$productQuantityInput = InputNumber(INPUT_ID.productQuantity);
         this.$button = ButtonById(BUTTON.addProduct.title, BUTTON.addProduct.id);
+        this.$inventoryContainer = Table();
 
         $skeleton.append(this.$app);
     }
@@ -21,6 +24,7 @@ export default class InventoryTap {
 
     init() {
         this.createAddProductForm();
+        this.createProductInventory();
     }
 
     createAddProductForm() {
@@ -44,5 +48,21 @@ export default class InventoryTap {
         $inputWrap.append(this.$button);
 
         return $inputWrap;
+    }
+
+    createProductInventory() {
+        const $wrap = document.createElement('div');
+        const $subTitle = SubTitle(SUB_TITLE_TEXT.productInventory);
+
+        this.$inventoryContainer.append(
+            InventoryRow(
+                TABLE_TITLE.productName,
+                TABLE_TITLE.productPrice,
+                TABLE_TITLE.productQuantity,
+            ),
+        );
+        $wrap.append($subTitle);
+        $wrap.append(this.$inventoryContainer);
+        this.appendToApp($wrap);
     }
 }
