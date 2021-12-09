@@ -23,7 +23,7 @@ export default class Inventory {
     }
 
     triggerAddProductEvent() {
-        this.inventoryTap.getButton().addEventListener('click', () => {
+        this.inventoryTap.getAddButton().addEventListener('click', () => {
             const productName = this.inventoryTap.getProductName();
             const productPrice = this.inventoryTap.getProductPrice();
             const productQuantity = this.inventoryTap.getProductQuantity();

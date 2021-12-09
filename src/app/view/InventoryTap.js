@@ -25,7 +25,7 @@ export default class InventoryTap {
         $skeleton.append(this.$app);
     }
 
-    getButton() {
+    getAddButton() {
         return this.$addButton;
     }
 
