@@ -5,39 +5,38 @@ import {
 import { $ } from '../dom/dom.js';
 import store from '../storage/store.js';
 
-function createProductInfoTable() {
-  const tableContainer = document.createElement('table');
-  tableContainer.className = 'product-table';
-  const tr = document.createElement('tr');
-  NOW_PRODUCT_TABLE_TITLE.forEach((item) => {
-    const th = document.createElement('th');
-    th.innerText = item;
-    tr.appendChild(th);
-  });
-  tableContainer.appendChild(tr);
-  return tableContainer;
+function createProductInfoTable(productinfoelements) {
+  const tabTitleElement = NOW_PRODUCT_TABLE_TITLE.map((item) => {
+    return `<th>${item}</th>`;
+  }).join('');
+  const tableContainerTemplate = `
+  <table class="product-table">
+    <tr>
+     ${tabTitleElement} 
+    </tr>
+    ${productinfoelements}
+  </table>
+  `;
+  return tableContainerTemplate;
 }
 
 function createProductInfoElement(drinkMenuObjectList) {
-  return drinkMenuObjectList.forEach((item) => {
-    const tr = document.createElement('tr');
-    const name = document.createElement('td');
-    name.innerText = item['menu'];
-    const price = document.createElement('td');
-    price.innerText = item['price'];
-    const quantity = document.createElement('td');
-    quantity.innerText = item['quantity'];
-    tr.appendChild(name);
-    tr.appendChild(price);
-    tr.appendChild(quantity);
-    $('.product-table').appendChild(tr);
-  });
+  const drinkInfoElementTemplate = drinkMenuObjectList
+    .map((item) => {
+      console.log(item);
+      return `<tr><td>${item['menu']}</td><td>${item['price']}</td><td>${item['quantity']}</td></tr>`;
+    })
+    .join('');
+  return drinkInfoElementTemplate;
 }
 
 export default function renderNowProductInfo() {
   const drinkMenuObjectList = store.getLocalStorage(DRINK_STORAGE_NAME);
-  $('.now-product-table-container').appendChild(createProductInfoTable());
-  if (drinkMenuObjectList) {
-    createProductInfoElement(drinkMenuObjectList);
+  if (drinkMenuObjectList[0] !== null) {
+    $('.now-product-table-container').innerHTML = createProductInfoTable(
+      createProductInfoElement(drinkMenuObjectList)
+    );
+  } else {
+    $('.now-product-table-container').innerHTML = createProductInfoTable('');
   }
 }

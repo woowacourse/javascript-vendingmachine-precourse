@@ -15,7 +15,7 @@ function createProductInputElement() {
   `;
 }
 
-export default function renderProdutAddMenu() {
+export default function renderProductAddMenu() {
   $('.tab-content-container').innerHTML = createProductInputElement();
   renderNowProductInfo();
 }
