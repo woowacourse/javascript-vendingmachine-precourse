@@ -17,6 +17,12 @@ const validators = {
 
     return true;
   },
+
+  isValidProductQuantity: string => {
+    if (UT.isBlank(string)) return alert(ERROR.PRODUCT_QUANTITY_BLANK_SUBMIT);
+
+    return true;
+  },
 };
 
 export default validators;
