@@ -26,7 +26,12 @@ export default class PurchaseController {
 
   setClickChargeButtonEvent = () => {
     const money = Number(this.$chargeInput.value);
-    this.model.chargeMoney(money);
-    this.view.renderChargedAmount(this.$chargeAmountContainer, this.model.getchargedMoney());
+
+    try {
+      this.model.chargeMoney(money);
+      this.view.renderChargedAmount(this.$chargeAmountContainer, this.model.getchargedMoney());
+    } catch (err) {
+      alert(err);
+    }
   };
 }
