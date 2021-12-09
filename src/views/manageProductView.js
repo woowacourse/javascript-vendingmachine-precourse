@@ -5,7 +5,9 @@ import {
   PRODUCT_TABLE,
 } from "../utils/constants.js";
 import { onClickAddButton } from "../menus/manageProductMenu.js";
+import { vendingMachine } from "../components/vendingMachine.js";
 
+// 상품 추가하기 폼
 const makeAddProductTitle = () => {
   const title = document.createElement("h3");
   title.innerText = MANAGE_PRODUCT_TAP.addProductTitle;
@@ -22,43 +24,6 @@ const makeInput = inputInformation => {
   input.style.margin = MARGIN_SIZE;
 
   return input;
-};
-
-const makeNameTd = name => {
-  const td = document.createElement("td");
-  td.innerText = name;
-  td.class = MANAGE_PRODUCT_TAP.productNameClass;
-  td.style.border = PRODUCT_TABLE.border;
-
-  return td;
-};
-
-const makePriceTd = price => {
-  const td = document.createElement("td");
-  td.innerText = price;
-  td.class = MANAGE_PRODUCT_TAP.productNameClass;
-  td.style.border = PRODUCT_TABLE.border;
-
-  return td;
-};
-
-const makeQuantityTd = quantity => {
-  const td = document.createElement("td");
-  td.innerText = quantity;
-  td.class = MANAGE_PRODUCT_TAP.productNameClass;
-  td.style.border = PRODUCT_TABLE.border;
-
-  return td;
-};
-
-const makeProductRaw = product => {
-  const tableRaw = document.createElement("tr");
-  tableRaw.class = MANAGE_PRODUCT_TAP.productTableRawClass;
-  tableRaw.appendChild(makeNameTd(product.name));
-  tableRaw.appendChild(makePriceTd(product.price));
-  tableRaw.appendChild(makeQuantityTd(product.quantity));
-
-  return tableRaw;
 };
 
 const makeAddButton = () => {
@@ -91,6 +56,7 @@ const makeAddProductContainer = () => {
   return div;
 };
 
+// 상품 현황 테이블
 const makeProductStateTitle = () => {
   const title = document.createElement("h3");
   title.innerText = MANAGE_PRODUCT_TAP.productStateTitle;
@@ -118,9 +84,49 @@ const makeTableHeaders = () => {
   return tableRaw;
 };
 
+const makeNameTd = name => {
+  const td = document.createElement("td");
+  td.innerText = name;
+  td.class = MANAGE_PRODUCT_TAP.productNameClass;
+  td.style.border = PRODUCT_TABLE.border;
+
+  return td;
+};
+
+const makePriceTd = price => {
+  const td = document.createElement("td");
+  td.innerText = price;
+  td.class = MANAGE_PRODUCT_TAP.productPriceClass;
+  td.style.border = PRODUCT_TABLE.border;
+
+  return td;
+};
+
+const makeQuantityTd = quantity => {
+  const td = document.createElement("td");
+  td.innerText = quantity;
+  td.class = MANAGE_PRODUCT_TAP.productQuantityClass;
+  td.style.border = PRODUCT_TABLE.border;
+
+  return td;
+};
+
+const makeProductRaw = product => {
+  const tableRaw = document.createElement("tr");
+  tableRaw.class = MANAGE_PRODUCT_TAP.productTableRawClass;
+  tableRaw.appendChild(makeNameTd(product.name));
+  tableRaw.appendChild(makePriceTd(product.price));
+  tableRaw.appendChild(makeQuantityTd(product.quantity));
+
+  return tableRaw;
+};
+
 const makeProductStateGraph = () => {
   const table = document.createElement("table");
   table.appendChild(makeTableHeaders());
+  vendingMachine.products.forEach(product =>
+    table.appendChild(makeProductRaw(product))
+  );
   table.style.borderCollapse = PRODUCT_TABLE.collapse;
   table.style.textAlign = PRODUCT_TABLE.textAlign;
 

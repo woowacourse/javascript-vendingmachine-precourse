@@ -1,3 +1,3 @@
-import { initializeHeader } from "./views/publicView.js";
+import { initializeHeader } from "./utils/utils.js";
 
 initializeHeader();

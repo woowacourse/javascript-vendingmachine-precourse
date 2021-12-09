@@ -51,7 +51,7 @@ const makeNavigationTap = () => {
   return nav;
 };
 
-const makeHeader = () => {
+export const makeHeader = () => {
   const header = document.createElement("div");
   header.appendChild(makeTitle());
   header.appendChild(makeNavigationTap());
@@ -59,15 +59,9 @@ const makeHeader = () => {
   return header;
 };
 
-const makeView = () => {
+export const makeView = () => {
   const view = document.createElement("div");
   view.id = "view-container";
 
   return view;
-};
-
-export const initializeHeader = () => {
-  const $app = document.getElementById("app");
-  $app.appendChild(makeHeader());
-  $app.appendChild(makeView());
 };
