@@ -30,6 +30,6 @@ export default class CoinStorageController {
   setCoinChargeEvent = () => {
     const money = Number(this.$coinChargeInput.value);
     this.model.addMoney(money);
-    console.log(this.model.totalMoney);
+    console.log(this.model.coins, this.model.totalMoney);
   };
 }
