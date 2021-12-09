@@ -2,7 +2,7 @@ import ChargeCoinTap from '../view/ChargeCoinTap.js';
 import checkChargeAmount from '../asset/validation/checkChargeAmount.js';
 import getEnableChargeAmount from '../asset/util/getEnableChargeAmount.js';
 import distributeCoin from '../asset/util/distributeCoin.js';
-import { getChargeAmount, setCoins } from '../localStorage/coin.js';
+import { getChargeAmount, getCoins, setCoins } from '../localStorage/coin.js';
 
 export default class ChargeCoin {
     constructor($skeleton) {
@@ -12,6 +12,10 @@ export default class ChargeCoin {
     init() {
         this.chargeCoinTap.init();
         this.triggerChargeCoinEvent();
+    }
+
+    render() {
+        this.chargeCoinTap.render(getChargeAmount(), getCoins());
     }
 
     triggerChargeCoinEvent() {
@@ -28,6 +32,7 @@ export default class ChargeCoin {
         const distributedCoin = distributeCoin(getChargeAmount() + chargeAmount);
 
         setCoins(distributedCoin);
-        this.chargeCoinTap.render(getChargeAmount(), distributedCoin);
+        this.chargeCoinTap.setChargeAmount(getChargeAmount());
+        this.chargeCoinTap.setCoins(distributedCoin);
     }
 }
