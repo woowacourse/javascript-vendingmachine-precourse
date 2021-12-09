@@ -1,0 +1,35 @@
+button {
+  cursor: pointer;
+}
+
+table,
+td,
+th {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table {
+  width: 70%;
+  height: 40px;
+}
+
+.tab {
+  display: none;
+}
+
+.tab1 {
+  display: none;
+}
+
+.tab2 {
+  display: none;
+}
+
+.tab3 {
+  display: none;
+}
+
+.show {
+  display: block;
+}

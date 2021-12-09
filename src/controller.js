@@ -1,22 +1,29 @@
+import * as $ from './dom.js';
+
 export default class VendingController {
-  constructor(model, view) {
+  constructor(model, view, dom) {
     this.model = model;
     this.view = view;
+    this.dom = dom;
   }
 
   app() {
-    this.view.renderInApp('afterbegin', VendingController.createTabMenus());
+    this.view.renderInApp('afterbegin', $.tabMenus);
+    this.view.renderInApp('beforeend', $.tab1);
+    this.view.renderInApp('beforeend', $.tab2);
+    this.view.renderInApp('beforeend', $.tab3);
+    this.addAllEventListener();
   }
 
-  static createTabMenus() {
-    const $tabMenus = `
-      <div>
-        <h1>🥤자판기🥤</h1>
-        <button id="product-add-menu" style="cursor: pointer">상품 관리</button>
-        <button id="vending-machine-manage-menu" style="cursor: pointer">잔돈 충전</button>
-        <button id="product-purchase-menu" style="cursor: pointer">상품 구매</button>
-      </div>
-`;
-    return $tabMenus;
+  addAllEventListener() {
+    document
+      .getElementById('product-add-menu')
+      .addEventListener('click', () => this.view.switchTab('.tab1'));
+    document
+      .getElementById('vending-machine-manage-menu')
+      .addEventListener('click', () => this.view.switchTab('.tab2'));
+    document
+      .getElementById('product-purchase-menu')
+      .addEventListener('click', () => this.view.switchTab('.tab3'));
   }
 }
