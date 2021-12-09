@@ -1,7 +1,7 @@
 import Input from './index.js';
 
-const InputText = (id) => {
-    const ret = Input(id);
+const InputText = (id, placeholder) => {
+    const ret = Input(id, placeholder);
 
     ret.type = 'text';
 

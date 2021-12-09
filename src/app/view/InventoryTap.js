@@ -5,6 +5,7 @@ import ButtonById from '../asset/components/Button/ButtonById.js';
 import Table from '../asset/components/Table/index.js';
 import InventoryRow from '../asset/components/Row/InventoryRow.js';
 import INPUT_ID from '../asset/constants/INPUT_ID.js';
+import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
 import BUTTON from '../asset/constants/BUTTON.js';
 import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
@@ -12,9 +13,12 @@ import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
 export default class InventoryTap {
     constructor($skeleton) {
         this.$app = document.createElement('div');
-        this.$productNameInput = InputText(INPUT_ID.productName);
-        this.$productPriceInput = InputNumber(INPUT_ID.productPrice);
-        this.$productQuantityInput = InputNumber(INPUT_ID.productQuantity);
+        this.$productNameInput = InputText(INPUT_ID.productName, INPUT_ITEM.productName);
+        this.$productPriceInput = InputNumber(INPUT_ID.productPrice, INPUT_ITEM.productPrice);
+        this.$productQuantityInput = InputNumber(
+            INPUT_ID.productQuantity,
+            INPUT_ITEM.productQuantity,
+        );
         this.$button = ButtonById(BUTTON.addProduct.title, BUTTON.addProduct.id);
         this.$inventoryContainer = Table();
 
