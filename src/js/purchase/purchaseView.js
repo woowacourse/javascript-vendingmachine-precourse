@@ -28,6 +28,7 @@ export default class PurchaseView {
         <tbody id="purchase-table-body">
         </tbody>
       </table>
+      <br/>
     `;
     this.render(container, template);
   };

@@ -2,10 +2,11 @@ import PurchaseModel from "./purchaseModel.js";
 import PurchaseView from "./purchaseView.js";
 
 export default class PurchaseController {
-  constructor(product) {
+  constructor(product, coinStorage) {
     this.model = new PurchaseModel();
     this.view = new PurchaseView();
     this.product = product;
+    this.coinStorage = coinStorage;
     this.$container = document.getElementById("app");
   }
 
@@ -57,5 +58,6 @@ export default class PurchaseController {
     const products = this.product.model.getProducts();
     this.view.renderChargedAmount(this.$chargeAmountContainer, this.model.getChargedMoney());
     this.view.renderPurchaseTable(this.$purchaseTableBody, products);
+    this.coinStorage.view.renderChangesComponent(this.$container);
   };
 }
