@@ -1,5 +1,7 @@
 import { HTML_OF_PRODUCT_ADD_PART, HTML_OF_PRODUCT_STATUS_TABLE } from '../utils/html.js';
 import { PRODUCT, VALUES } from '../utils/constants.js';
+import ProductAddCheck from './ProductAddCheck.js';
+import { ERROR_MESSAGE } from '../utils/constants.js';
 
 export default class ProductAddView {
   static render() {
@@ -15,10 +17,21 @@ export default class ProductAddView {
         const price = document.getElementById('product-price-input').value;
         const quantity = document.getElementById('product-quantity-input').value;
 
-        this.addProduct(name, price, quantity);
-        this.showTable();
+        const productAddCheck = new ProductAddCheck(name, price, quantity);
+        if(productAddCheck.checkAll()) {
+            this.addProduct(name, price, quantity);
+            this.showTable();
+        } else {
+            alert(ERROR_MESSAGE);
+        }
     });
   }
+
+    static defaultEvent(name, price, quantity) {
+        name = '';
+        price = '';
+        quantity = '';
+    }
 
     static addProduct(name, price, quantity) {
         const product = JSON.parse(localStorage.getItem(PRODUCT));
