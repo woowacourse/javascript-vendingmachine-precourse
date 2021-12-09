@@ -15,7 +15,7 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
   - 충전금액이 주어지면 각 동전들의 개수 조합은 랜덤으로 정해진다.
   - 자판기가 보유한 금액은 해당 객체의 키(parseInt필요)와 값들을 곱한 값들의 합으로 한다.
 - 투입한 금액 : [변수명]insertedMoney, [타입]Number
-- 잔돈 목록: [변수명]changes, [타입]Object
+- 잔돈 목록: [변수명]changesObj, [타입]Object
   - 잔돈 총액: 투입한금액- 상품금액(구매한 각 상품들의 가격 곱하기 수량의 합)
 
 ### 1) 공통
