@@ -230,6 +230,7 @@
 **추가 사항**
 - 클로저와 call을 활용해봅니다.
 - [ ] this 바인딩의 문제로 인자를 추가하여 이벤트를 등록하도록 수정합니다.
+- [ ] 파라미터 인자의 개수가 너무 많으므로 이를 수정합니다.
 
 <br>
 
@@ -258,8 +259,14 @@
 ### 🛠 공통
 
 **사전 정의**
-- [ ] 1. 최초 Storage는 **비어 있는** 상태
-- [ ] 2. key는 탭의 id, item은 탭에 출력되는 정보로 관리
+- [x] 1. 최초 Storage는 **비어 있는** 상태
+- [x] 2. key는 탭의 id, item은 탭에 출력되는 정보로 관리
+- [x] 3. 아이템이 없다면 빈 배열을 반환
+
+<br>
+
+> 커밋 목록
+- [**🗃Refactor: 구조 리팩토링**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/9f0251be498c2975a51bbcfb5a7fefcecd42ed2b)
 
 <br>
 
