@@ -93,7 +93,7 @@
 - 상품 추가 입력 폼의 상품명 입력 요소의 id는 `product-name-input`이다.
 - 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 `product-price-input`이다.
 - 상품 추가 입력 폼의 수량 입력 요소의 id는 `product-quantity-input`이다.
-- 상품 `추가하기` 버튼 요소의 id는 `product-add-button`이다.
+- 상품 `추가하기` 버튼 요소의 id는 `product-add-button`이다.
 - 추가한 각 상품 요소의 class명은 `product-manage-item`이며, 하위에 아래 요소들을 갖는다.
   - 상품명에 해당하는 요소의 class명은 `product-manage-name`이다.
   - 가격에 해당하는 요소의 class명은 `product-manage-price`이다.

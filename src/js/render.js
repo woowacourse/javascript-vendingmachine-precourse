@@ -1,3 +1,4 @@
+import { getCoins } from './money.js';
 import { $ } from './util/dom.js';
 
 export const renderProductAddMenu = () => {
@@ -8,7 +9,9 @@ export const renderProductAddMenu = () => {
 };
 export const renderVendingMachineManageMenu = () => {
   renderCommonPart();
-  renderChangeChangesForm();
+  renderChargeChangesForm();
+  renderChargeChangetAmount();
+  renderCoinTable();
 };
 export const renderProductPurchaseMenu = () => {
   renderCommonPart();
@@ -48,8 +51,7 @@ export const renderAddProductForm = () => {
   };
   $('#app').innerHTML += template();
 };
-export const renderChangeChangesForm = () => {
-  const chargedMoney = JSON.parse(localStorage.getItem('money'));
+export const renderChargeChangesForm = () => {
   const template = () => {
     return `
       <h2>상품 추가하기</h2>
@@ -57,10 +59,67 @@ export const renderChangeChangesForm = () => {
         <input placeholder='자판기가 보유할 금액' id='vending-machine-charge-input'></input>
         <button type='submit' id='vending-machine-charge-button'>충전하기</button>
       </form>
-      <p id='vending-machine-charge-amount'>보유 금액: ${chargedMoney}</p>
     `;
   };
   $('#app').innerHTML += template();
+};
+export const renderChargeChangetAmount = () => {
+  let chargedMoney = 0;
+  if (JSON.parse(localStorage.getItem('money')) !== null) {
+    chargedMoney = parseInt(JSON.parse(localStorage.getItem('money')), 10);
+  }
+  const template = () => {
+    return `
+      <p id='vending-machine-charge-amount'>보유 금액: ${chargedMoney}원</p>
+    `;
+  };
+  $('#app').innerHTML += template();
+};
+export const renderCoinTable = () => {
+  const template = () => {
+    return `
+      <h2>자판기가 보유한 동전</h2>
+      <table class='coin-table'>
+        <thead class='item-table-head'>
+          <tr>
+            <th class='product-items-header'>동전</th>
+            <th class='product-items-header'>개수</th>
+          </tr>
+        </thead>
+        <tbody class='item-table-body'></tbody>
+      </table>
+    `;
+  };
+  $('#app').innerHTML += template();
+};
+export const renderMoney = () => {
+  const money = $('#vending-machine-charge-input').value;
+  const localStorageValue = JSON.parse(localStorage.getItem('money'));
+  let chargedMoney = 0;
+  if (localStorageValue !== null) {
+    chargedMoney = parseInt(localStorageValue, 10);
+  }
+  chargedMoney += parseInt(money);
+  $(
+    '#vending-machine-charge-amount',
+  ).innerText = `보유 금액: ${chargedMoney}원`;
+  getCoins();
+  return chargedMoney;
+};
+
+export const renderCoins = () => {
+  const menu = JSON.parse(localStorage.getItem('menu'));
+  if (menu !== null) {
+    const template = menu.map(item => {
+      return `
+        <tr class='product-manage-item'>
+          <td class='product-items-header' id='product-manage-name'>${item.name}</td>
+          <td class='product-items-header' id='product-manage-price'>${item.price}</td>
+        </tr>
+      `;
+    });
+    $('.item-table-body').innerHTML = template.join('');
+  }
 };
 export const renderProductItemsTable = () => {
   const template = () => {
