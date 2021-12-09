@@ -7,10 +7,6 @@ export default class ProductAddCheck {
         this.quantity = quantity;
     }
 
-    checkAll() {
-        return this.checkEmpty() && this.checkName() && this.checkPrice() && this.checkQuantity();
-    }
-
     checkEmpty() {
         return this.name !== "" && this.price !== "" && this.quantity !== "";
     }
@@ -27,4 +23,7 @@ export default class ProductAddCheck {
         return this.quantity >= MIN_PRODUCT_QUANTITY && this.quantity.indexOf('.') === NOT_EXIST;
     }
 
+    checkAll() {
+        return this.checkEmpty() && this.checkName() && this.checkPrice() && this.checkQuantity();
+    }
 }

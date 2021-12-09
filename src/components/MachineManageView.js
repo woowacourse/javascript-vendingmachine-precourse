@@ -16,6 +16,6 @@ export default class MachineManageView {
         document.getElementById('vending-machine-charge-amount').innerHTML = charge;
         console.log(charge);
         
-    })
+    });
   }
 }

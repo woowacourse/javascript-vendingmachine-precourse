@@ -27,11 +27,11 @@ export default class ProductAddView {
     });
   }
 
-    static defaultEvent(name, price, quantity) {
-        name = '';
-        price = '';
-        quantity = '';
-    }
+    // static defaultEvent(name, price, quantity) {
+    //     name = '';
+    //     price = '';
+    //     quantity = '';
+    // }
 
     static addProduct(name, price, quantity) {
         const product = JSON.parse(localStorage.getItem(PRODUCT));
