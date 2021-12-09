@@ -17,12 +17,14 @@ const calculateMoney = () => {
 
 const showMoneyInMachine = () => {
   const money = calculateMoney();
+  const $chargeAmount = document.getElementById(
+    "vending-machine-charge-amount",
+  );
 
   if (money !== 0) {
-    const $chargeAmount = document.getElementById(
-      "vending-machine-charge-amount",
-    );
     $chargeAmount.innerHTML = `${money}원`;
+  } else {
+    $chargeAmount.innerHTML = "";
   }
 };
 
