@@ -1,11 +1,11 @@
 import Tab from './components/tab/index.js';
 import TabPanel from './components/tabPanel/index.js';
+
+import { KEY_TABS, HEADING_TITLE } from './components/const.js';
+import { ACTION_CLICK_TAB } from './components/tab/const.js';
+
 import createHeading from './components/utils/createHeading.js';
-import {
-  KEY_TABS,
-  ACTION_CLICK_TAB,
-  HEADING_TITLE,
-} from './components/const.js';
+import createBlankNode from './components/utils/createBlankNode.js';
 
 export default class VendingMachine {
   constructor() {
@@ -34,7 +34,7 @@ export default class VendingMachine {
       tabPanel.setVisibility(i === 0);
 
       this.tabContainer.appendChild(tab.getTab());
-      this.tabContainer.appendChild(document.createTextNode(' '));
+      this.tabContainer.appendChild(createBlankNode());
       this.tabPanelContainer.appendChild(tabPanel.getTabPanel());
 
       this.tabs[tabKey] = tab;
@@ -51,7 +51,7 @@ export default class VendingMachine {
   onClick(event) {
     const { action, tabKey } = event.target.dataset;
 
-    if (action) {
+    if (action && tabKey) {
       this[action](event, tabKey);
     }
   }
