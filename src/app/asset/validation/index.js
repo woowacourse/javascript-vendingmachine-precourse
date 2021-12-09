@@ -33,3 +33,11 @@ export const checkNaturalNumber = createValidFunction(isNaturalNumber, ERROR_MSG
 
 // mod로 나뉘는지 검증
 export const checkModed = createValidFunction(isModed, ERROR_MSG.mod);
+
+// 입력 + 숫자 + 자연수 검증
+export const createCheckNumber = (requireMsg) =>
+    createCheckEveryFunction([
+        createValidFunction(isRequired, requireMsg),
+        checkNumber,
+        checkNaturalNumber,
+    ]);

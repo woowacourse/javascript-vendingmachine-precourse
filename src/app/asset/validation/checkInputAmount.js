@@ -8,10 +8,11 @@ import {
 } from './index.js';
 import ERROR_MSG from '../constants/ERROR_MSG.js';
 
-const checkRequired = createValidFunction(isRequired, ERROR_MSG.requireInputAmount);
-
-const checkFunctions = [checkRequired, checkNumber, checkNaturalNumber, checkModed];
-
-const checkInputAmount = createCheckEveryFunction(checkFunctions);
+const checkInputAmount = createCheckEveryFunction([
+    createValidFunction(isRequired, ERROR_MSG.requireInputAmount),
+    checkNumber,
+    checkNaturalNumber,
+    checkModed,
+]);
 
 export default checkInputAmount;

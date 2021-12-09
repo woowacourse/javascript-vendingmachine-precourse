@@ -1,16 +1,6 @@
-import {
-    createValidFunction,
-    createCheckEveryFunction,
-    isRequired,
-    checkNumber,
-    checkNaturalNumber,
-} from './index.js';
+import { createCheckNumber } from './index.js';
 import ERROR_MSG from '../constants/ERROR_MSG.js';
 
-const checkRequired = createValidFunction(isRequired, ERROR_MSG.requireProductQuantity);
-
-const checkFunctions = [checkRequired, checkNumber, checkNaturalNumber];
-
-const checkProductQuantity = createCheckEveryFunction(checkFunctions);
+const checkProductQuantity = createCheckNumber(ERROR_MSG.requireProductQuantity);
 
 export default checkProductQuantity;
