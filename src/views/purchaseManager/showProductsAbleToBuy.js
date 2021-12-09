@@ -1,3 +1,5 @@
+import { onClickPurchaseButton } from "../../controllers/purchaseManager/eventHandlers.js";
+
 const insertAbleProductsToTable = (name, price, quantity) => {
   const $ableBuyProductTable = document.getElementById(
     "able-buy-product-table",
@@ -29,7 +31,6 @@ const makeEmptyTable = () => {
 
 const showProductsAbleToBuy = () => {
   makeEmptyTable();
-
   const strOfProducts = JSON.parse(localStorage.getItem("products"));
 
   if (strOfProducts) {
@@ -41,6 +42,7 @@ const showProductsAbleToBuy = () => {
       }
     });
   }
+  onClickPurchaseButton();
 };
 
 export { showProductsAbleToBuy };
