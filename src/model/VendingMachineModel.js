@@ -2,7 +2,7 @@ import { coinList } from '../utils/constant.js';
 
 export class VendingMachineModel {
   products = JSON.parse(localStorage.getItem('products')) || [];
-  coins = {
+  coins = JSON.parse(localStorage.getItem('products')) || {
     500: 0,
     100: 0,
     50: 0,
@@ -41,6 +41,7 @@ export class VendingMachineModel {
       }
     }
     console.log(`coins`, this.coins);
+    localStorage.setItem('coins', JSON.stringify(this.coins));
     return this.coins;
   }
 }
