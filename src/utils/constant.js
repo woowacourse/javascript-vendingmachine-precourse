@@ -47,6 +47,41 @@ export const TEMPLATE = {
     <td class="product-manage-quantity">${productQuantity}</td>
     `;
   },
+  VENDING_MACHINE_MANAGE_MENU: `
+  <h3>자판기 동전 충전하기</h3>
+  <input type="number" placeholder="자판기가 보유할 금액" id="vending-machine-charge-input"/>
+  <button id="vending-machine-charge-button">충전하기</button>
+  <br /><br />
+  <span id='vending-machine-charge-amount'>보유 금액: </span>
+  <br /><br /><br />
+  <h3>자판기가 보유한 동전</h3>
+  <table id='vending-machine-manage-table'>
+    <thead>
+      <tr>
+        <th>동전</th>
+        <th>개수</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>500원</th>
+        <td id='vednig-machine-coin-500-quantity'>0개</td>
+      </tr>
+      <tr>
+        <th>100원</th>
+        <td id='vending-machine-coin-100-quantity'>0개</td>
+      </tr>
+      <tr>
+        <th>50원</th>
+        <td id='vending-machine-coin-50-quantity'>0개</td>
+      </tr>
+      <tr>
+        <th>10원</th>
+        <td id='vending-machine-coin-10-quantity'>0개</td>
+      </tr>
+    </tbody>
+  </table>
+  `,
 };
 
 export const NUMBER = {

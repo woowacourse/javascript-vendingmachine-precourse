@@ -9,6 +9,11 @@ export default class Render {
 
   alertMessage = (message) => alert(message);
 
+  vendingMachineManageMenuTemplate = () => {
+    const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
+    $vendingMachineSection.innerHTML = TEMPLATE.VENDING_MACHINE_MANAGE_MENU;
+  };
+
   productAddManageTableTemplate = (productName, productPrice, productQuantity) => {
     const $tr = document.createElement('tr');
     $tr.setAttribute('class', 'product-manage-item');

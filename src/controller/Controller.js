@@ -23,6 +23,11 @@ export default class Controller {
         this.render.productAddMenuTemplate();
         this.onClickProductAddButton();
       }
+
+      const $vendingMachineManageMenu = document.querySelector(DOM.$VENDING_MACHINE_MANAGE_MENU);
+      if (event.target === $vendingMachineManageMenu) {
+        this.render.vendingMachineManageMenuTemplate();
+      }
     });
   };
 

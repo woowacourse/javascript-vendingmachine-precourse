@@ -7,10 +7,20 @@ table {
   width: 100px;
   height: 30px;
   border: 1px solid black;
+  font-weight: normal;
   text-align: center;
 }
 
 #product-manage-table th:first-child,
 #product-manage-talbe td:first-child {
   width: 150px;
+}
+
+#vending-machine-manage-table th,
+#vending-machine-manage-table td {
+  width: 70px;
+  height: 30px;
+  border: 1px solid black;
+  font-weight: normal;
+  text-align: center;
 }
