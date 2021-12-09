@@ -65,6 +65,7 @@ export default class ChargeCoinTap extends Tap {
     }
 
     createChargeCoinForm() {
+        this.$chargeButton.style.marginLeft = '5px';
         this.appendToApp(
             SubmitForm(
                 SUB_TITLE_TEXT.chargeCoin,
