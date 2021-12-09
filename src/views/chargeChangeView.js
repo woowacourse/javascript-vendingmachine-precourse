@@ -1,3 +1,4 @@
+import { onClickChargeButton } from "../menus/chargeChangeMenu.js";
 import { CHARGE_CHANGE_TAP, COIN_TABLE } from "../utils/constants.js";
 
 // ----자판기 동전 충전하기 폼 렌더링 함수----
@@ -21,6 +22,7 @@ const makeChargeButton = () => {
   const button = document.createElement("button");
   button.innerText = CHARGE_CHANGE_TAP.chargeButtonText;
   button.id = CHARGE_CHANGE_TAP.chargeButtonId;
+  button.addEventListener("click", onClickChargeButton);
 
   return button;
 };
@@ -62,6 +64,13 @@ const makeChargeChangeContainer = () => {
   div.appendChild(makeChargeChangeForm());
 
   return div;
+};
+
+export const renderChangeAmount = money => {
+  const $vending_machine_charge_amount = document.getElementById(
+    CHARGE_CHANGE_TAP.changeAmoutId
+  );
+  $vending_machine_charge_amount.innerText = money;
 };
 
 // ----자판기가 보유한 동전 렌더링 함수----
@@ -136,6 +145,15 @@ const makeChangeStateContainer = () => {
   div.appendChild(makeChangeStateGraph());
 
   return div;
+};
+
+export const renderCoins = vendingMachine => {
+  const coins = vendingMachine.getCoins();
+  CHARGE_CHANGE_TAP.changeStateTableRaws.forEach((rawInformation, index) => {
+    document.getElementById(
+      `${rawInformation[1]}`
+    ).innerText = `${coins[index]}개`;
+  });
 };
 
 export const renderChargeChangeMenuView = () => {

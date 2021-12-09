@@ -62,7 +62,7 @@ export const CHARGE_CHANGE_TAP = {
   chargeInputId: "vending-machine-charge-input",
   chargeButtonId: "vending-machine-charge-button",
   chargeButtonText: "충전하기",
-  changeAmoutHeader: "보유 금액:",
+  changeAmoutHeader: "보유 금액: ",
   changeAmoutId: "vending-machine-charge-amount",
 
   changeStateTitle: "자판기가 보유한 동전",
