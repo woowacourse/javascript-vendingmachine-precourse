@@ -2,7 +2,7 @@ import {
   ALERT_MSG,
   DIVIDE_ERROR,
   PRICE_ERROR,
-} from '../constants/constants.js';
+} from '../constants/errorConstants.js';
 import checkUserInputEmpty from './checkUserInputEmpty.js';
 import checkValidNumberInput from './checkValidNumberInput.js';
 import showAlertMsg from './showAlertMsg.js';

@@ -1,5 +1,5 @@
 import checkUserInputEmpty from './checkUserInputEmpty.js';
-import { ALERT_MSG, EMPTY_ERROR } from '../constants/constants.js';
+import { ALERT_MSG, EMPTY_ERROR } from '../constants/errorConstants.js';
 import showAlertMsg from './showAlertMsg.js';
 
 export default function checkValidProductName(productNameInput) {

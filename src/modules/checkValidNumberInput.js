@@ -3,7 +3,7 @@ import {
   MINUS_ERROR,
   NOINTEGER_ERROR,
   NOTNUMBER_ERROR,
-} from '../constants/constants.js';
+} from '../constants/errorConstants.js';
 import showAlertMsg from './showAlertMsg.js';
 
 export default function checkValidNumberInput(numberinput) {
