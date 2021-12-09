@@ -160,9 +160,10 @@
 
 **탭 메뉴 버튼**
 
-- [x] `상품 구매` 탭으로 이동하는 메뉴 버튼 id는 `product-purchase-menu`이다.
-- [x] `잔돈 충전`탭으로 이동하는 메뉴 버튼 id는 `vending-machine-manage-menu`이다.
 - [x] `상품 관리`탭으로 이동하는 메뉴 버튼 id는 `product-add-menu`이다.
+- [x] `잔돈 충전`탭으로 이동하는 메뉴 버튼 id는 `vending-machine-manage-menu`이다.
+- [x] `상품 구매` 탭으로 이동하는 메뉴 버튼 id는 `product-purchase-menu`이다.
+
 
 **상품 관리(추가) 메뉴**
 

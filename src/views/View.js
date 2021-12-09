@@ -6,9 +6,9 @@ export default class View {
     $('#app').insertAdjacentHTML('beforeend', UI.commonHTML);
   }
 
-  showProductPurchase() {
+  showProductAddComponent() {
     DOM.initElement('#component');
 
-    $('#component').insertAdjacentHTML('beforeend', UI.productPurchaseHTML);
+    $('#component').insertAdjacentHTML('beforeend', UI.productAddHTML);
   }
 }

@@ -1,10 +1,10 @@
-export default class ProductPurchaseMenu {
+export default class ProductAddMenu {
   constructor(view) {
     this.view = view;
     this.render();
   }
 
   render() {
-    this.view.showProductPurchase();
+    this.view.showProductAddComponent();
   }
 }

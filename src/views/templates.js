@@ -2,13 +2,13 @@ const templates = {
   commonHTML: `
     <h1>🥤 자판기 🥤</h1>
     <nav id="tap-menu">
-        <button id="product-purchase-menu">상품 관리</button>
-        <button id="vending-machine-manage-menu">잔돈 충전</button>
         <button id="product-add-menu">상품 관리</button>
+        <button id="vending-machine-manage-menu">잔돈 충전</button>
+        <button id="product-purchase-menu">상품 구매</button>
     </nav>
     <div id="component"></div>`,
 
-  productPurchaseHTML: ` 
+  productAddHTML: ` 
     <h3>상품 추가하기</h3>
     <form>
         <input type="text" id="product-name-input" placeholder="상품명" />

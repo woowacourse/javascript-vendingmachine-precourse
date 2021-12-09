@@ -1,6 +1,6 @@
 import View from '../views/View.js';
 import { $ } from '../views/DOMUtils.js';
-import ProductPurchaseMenu from './ProductPurchaseMenu.js';
+import ProductAddMenu from './ProductAddMenu.js';
 
 export default class Controller {
   constructor() {
@@ -9,6 +9,6 @@ export default class Controller {
   }
 
   addEventListeners() {
-    $('#product-purchase-menu').addEventListener('click', () => new ProductPurchaseMenu(this.view));
+    $('#product-add-menu').addEventListener('click', () => new ProductAddMenu(this.view));
   }
 }
