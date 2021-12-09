@@ -7,6 +7,7 @@ import {
   showAfterAddOrPurchaseProduct,
   showAfterReturnCoins,
 } from "../../views/common/showAll.js";
+import { returnCoins } from "./returnCoinsDataController.js";
 
 const onClickCustomerChargeButton = () => {
   const $customerChargeButton = document.getElementById("charge-button");
@@ -52,7 +53,8 @@ const onClickCoinReturnButton = () => {
   const $coinReturnButton = document.getElementById("coin-return-button");
 
   $coinReturnButton.addEventListener("click", () => {
-    // 동전 반환
+    const money = parseInt(JSON.parse(localStorage.getItem("money")), 10);
+    returnCoins(money);
     showAfterReturnCoins();
   });
 };
