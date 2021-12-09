@@ -25,7 +25,7 @@ const templates = {
                 <th style="padding:10px;">수량</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="product-inventory">
         </tbody>
     </table>`,
 };

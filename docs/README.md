@@ -40,7 +40,7 @@
   
 - **상품 현황 모듈**
 
-- [ ] 🖨️  상품 현황 table에 row를 추가해서 표시한다
+- [x] 🖨️  상품 현황 table에 row를 추가해서 `inventory`를 표시한다
 
 <hr/>
 
@@ -171,10 +171,10 @@
 - [x] 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 `product-price-input`이다.
 - [x] 상품 추가 입력 폼의 수량 입력 요소의 id는 `product-quantity-input`이다.
 - [x] 상품 `추가하기` 버튼 요소의 id는 `product-add-button`이다.
-- [ ] 추가한 각 상품 요소의 class명은 `product-manage-item`이며, 하위에 아래 요소들을 갖는다.
-  - [ ] 상품명에 해당하는 요소의 class명은 `product-manage-name`이다.
-  - [ ] 가격에 해당하는 요소의 class명은 `product-manage-price`이다.
-  - [ ] 수량에 해당하는 요소의 class명은 `product-manage-quantity`이다.
+- [x] 추가한 각 상품 요소의 class명은 `product-manage-item`이며, 하위에 아래 요소들을 갖는다.
+  - [x] 상품명에 해당하는 요소의 class명은 `product-manage-name`이다.
+  - [x] 가격에 해당하는 요소의 class명은 `product-manage-price`이다.
+  - [x] 수량에 해당하는 요소의 class명은 `product-manage-quantity`이다.
 
 **잔돈 충전 (자판기 보유 동전) 메뉴**
 

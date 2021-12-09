@@ -11,6 +11,7 @@ export default class ProductAddMenu {
   render() {
     this.view.showProductAddComponent();
     this.productAddManager();
+    DOM.showInventory();
   }
 
   productAddManager() {
@@ -22,6 +23,7 @@ export default class ProductAddMenu {
       if (!V.isValidProductQuantity(DOM.getProduct().quantity)) return;
 
       DB.save('inventory', DOM.getProduct());
+      DOM.showInventory();
     });
   }
 }
