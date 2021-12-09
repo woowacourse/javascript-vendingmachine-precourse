@@ -1,5 +1,7 @@
 # 자판기 구현(우테코 프리코스 미션3)
 
+https://github.com/woowacourse/javascript-vendingmachine-precourse
+
 ## 구현 목록
 
 - [] 최종 목표 : 반환되는 동전이 최소한이 되는 자판기를 구현한다.
@@ -12,6 +14,10 @@
 - [] 상품 구매탭은 사용자가 금액을 투입할 수 있으며, 투입한 금액에 맞춰 상품을 구매하고, 남은 금액에 대해서는 잔돈을 반환하는 기능을 수행한다.
 - [] 다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다.
 - [] localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다.
+- DOM 선택자
+  - [x] 상품 관리탭으로 이동하는 메뉴 버튼 id는 product-add-menu이다.
+  - [x] 잔돈 충전탭으로 이동하는 메뉴 버튼 id 는 vending-machine-manage-menu이다.
+  - [x] 상품 구매 탭으로 이동하는 메뉴 버튼 id는 product-purchase-menu이다.
 
 ### 2) 상품 관리 탭
 
@@ -20,6 +26,15 @@
 - [] 상품명, 가격, 수량을 입력해 상품을 추가할 수 있다.
   - [] 상품 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 한다.
 - [] 사용자는 추가한 상품을 확인할 수 있다.
+- DOM 선택자
+  - 상품 추가 입력 폼의 상품명 입력 요소의 id는 product-name-input이다.
+  - 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 product-price-input이다.
+  - 상품 추가 입력 폼의 수량 입력 요소의 id는 product-quantity-input이다.
+  - 상품 추가하기 버튼 요소의 id는 product-add-button이다.
+  - 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
+  - 상품명에 해당하는 요소의 class명은 product-manage-name이다.
+  - 가격에 해당하는 요소의 class명은 product-manage-price이다.
+  - 수량에 해당하는 요소의 class명은 product-manage-quantity이다.
 
 ### 3) 잔돈 충전 탭 (자판기 보유 동전)
 
@@ -30,6 +45,15 @@
 - [] 자판기 보유 금액만큼의 동전이 무작위로 생성된다.
   - [] 동전의 개수는 {개수}개 형식으로 나타낸다.
 - [] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성되어 기존 동전들에 더해진다.
+- DOM 선택자
+  - 자판기가 보유할 금액을 충전할 요소의 id는 vending-machine-charge-input이다.
+  - 충전하기 버튼에 해당하는 요소의 id는 vending-machine-charge-button이다.
+  - 충전된 금액을 확인하는 요소의 id는 vending-machine-charge-amount 이다.
+  - 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
+    - 500원: vending-machine-coin-500-quantity
+    - 100원: vending-machine-coin-100-quantity
+    - 50원: vending-machine-coin-50-quantity
+    - 10원: vending-machine-coin-10-quantity
 
 ### 4) 상품 구매 탭
 
@@ -42,10 +66,23 @@
   - [] 금액은 10원으로 나누어 떨어지는 금액만 투입할 수 있다.
   - [] 자판기가 보유한 금액은 {금액}원 형식으로 나타낸다.
 - [] 금액은 누적으로 투입할 수 있다.
+- DOM 선택자
+  - 투입 금액 입력 요소의 id는 charge-input이다.
+  - 투입하기 버튼 요소의 id는 charge-button이다.
+  - 투입한 금액을 확인하는 요소의 id는 charge-amount이다.
 
 #### 4-2) 상품 구매
 
 - [] 구매하기 버튼을 누르면 해당 제품의 수량이 1개씩 감소하고, 투입한 금액에서도 제품 가격만큼 감소한다.
+- DOM 선택자
+  - 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
+    - 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.
+    - 상품명에 해당하는 요소의 class명은 product-purchase-name이다.
+    - 가격에 해당하는 요소의 class명은 product-purchase-price이다.
+    - 수량에 해당하는 요소의 class명은 product-purchase-quantity이다.
+    - 상품명은 dataset 속성을 사용하고 data-product-name 형식으로 저장한다.
+    - 가격은 dataset 속성을 사용하고 data-product-price 형식으로 저장한다.
+    - 수량은 dataset 속성을 사용하고 data-product-quantity 형식으로 저장한다.
 
 #### 4-3) 잔돈 반환
 
@@ -55,3 +92,10 @@
 - [] 지폐를 잔돈으로 반환하는 경우는 없다고 가정한다.
 - [] 잔돈을 반환할 수 없는 경우 잔돈으로 반환할 수 있는 금액만 반환한다.
 - [] 동전의 개수를 나타내는 정보는 {개수}개 형식으로 나타낸다.
+- DOM 선택자
+  - 반환하기 버튼 요소의 id는 coin-return-button이다.
+  - 반환된 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
+    - 500원: coin-500-quantity
+    - 100원: coin-100-quantity
+    - 50원: coin-50-quantity
+    - 10원: coin-10-quantity
