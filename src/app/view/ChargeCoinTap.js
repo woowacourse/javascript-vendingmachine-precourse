@@ -14,10 +14,11 @@ import COIN from '../asset/constants/COIN.js';
 import GUIDE from '../asset/constants/GUIDE.js';
 import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
 import UNIT from '../asset/constants/UNIT.js';
+import Tap from './Tap.js';
 
-export default class ChargeCoinTap {
+export default class ChargeCoinTap extends Tap {
     constructor($skeleton) {
-        this.$app = document.createElement('div');
+        super($skeleton);
         this.$chargeCoinInput = InputNumber(INPUT_ID.chargeCoin, INPUT_ITEM.chargeCoin);
         this.$chargeButton = ButtonById(BUTTON.chargeCoin.title, BUTTON.chargeCoin.id);
         this.$chargeAmount = document.createElement('span');
@@ -25,8 +26,6 @@ export default class ChargeCoinTap {
         this.$coin100 = CellById('', COIN_ID[1]);
         this.$coin50 = CellById('', COIN_ID[2]);
         this.$coin10 = CellById('', COIN_ID[3]);
-
-        $skeleton.append(this.$app);
     }
 
     getChargeButton() {
@@ -55,14 +54,6 @@ export default class ChargeCoinTap {
         this.setChargeAmount(chargeAmount);
         this.setCoins(distributedCoin);
         this.show();
-    }
-
-    hide() {
-        this.$app.style.display = 'none';
-    }
-
-    show() {
-        this.$app.style.display = 'block';
     }
 
     setChargeAmount(chargeAmount) {

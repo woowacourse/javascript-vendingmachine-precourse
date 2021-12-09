@@ -9,10 +9,11 @@ import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
 import BUTTON from '../asset/constants/BUTTON.js';
 import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
+import Tap from './Tap.js';
 
-export default class InventoryTap {
+export default class InventoryTap extends Tap {
     constructor($skeleton) {
-        this.$app = document.createElement('div');
+        super($skeleton);
         this.$productNameInput = InputText(INPUT_ID.productName, INPUT_ITEM.productName);
         this.$productPriceInput = InputNumber(INPUT_ID.productPrice, INPUT_ITEM.productPrice);
         this.$productQuantityInput = InputNumber(
@@ -21,8 +22,6 @@ export default class InventoryTap {
         );
         this.$addButton = ButtonById(BUTTON.addProduct.title, BUTTON.addProduct.id);
         this.$inventoryContainer = Table();
-
-        $skeleton.append(this.$app);
     }
 
     getAddButton() {
@@ -60,14 +59,6 @@ export default class InventoryTap {
             this.addProductRow(productName, productPrice, productQuantity);
         });
         this.show();
-    }
-
-    hide() {
-        this.$app.style.display = 'none';
-    }
-
-    show() {
-        this.$app.style.display = 'block';
     }
 
     createAddProductForm() {
