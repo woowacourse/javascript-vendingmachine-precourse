@@ -2,7 +2,7 @@ import ERROR_MSG from '../constants/ERROR_MSG.js';
 import INPUT_NUMBER_RULE from '../constants/INPUT_NUMBER_RULE.js';
 
 // 숫자 여부
-const isNumber = (value) => Number(value) >= 0;
+const isNumber = (value) => Number(value) || Number(value) === 0;
 
 // 자연수 여부
 const isNaturalNumber = (value) => value > 0;
