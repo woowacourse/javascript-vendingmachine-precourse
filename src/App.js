@@ -15,7 +15,7 @@ export default class App extends Component {
     this.state = {
       currentTab: '/add',
       items: items.map(
-        ({ name, price, quantity }) => new Item(name, price, quantity)
+        ({ id, name, price, quantity }) => new Item(name, price, quantity, id)
       ),
       change,
     };
@@ -36,7 +36,7 @@ export default class App extends Component {
   }
 
   mounted() {
-    const { navigate, addItem, addChange } = this;
+    const { navigate, addItem, addChange, purchase } = this;
     new NavBar($('#nav-bar'), { navigate: navigate.bind(this) });
     new Router($('#router'), this.state.currentTab);
     new ProductAddMenu($('#product-add-tab'), {
@@ -47,7 +47,10 @@ export default class App extends Component {
       change: this.state.change,
       addChange: addChange.bind(this),
     });
-    new ProductPurchaseMenu($('#product-purchase-tab'));
+    new ProductPurchaseMenu($('#product-purchase-tab'), {
+      items: this.state.items,
+      purchase: purchase.bind(this),
+    });
   }
 
   navigate(to) {
@@ -55,9 +58,7 @@ export default class App extends Component {
   }
 
   addItem(item) {
-    this.props.store.insert('items', item, () => {
-      console.log(`inserted: ${item.toString()}`);
-    });
+    this.props.store.insert(item);
     this.setState({ items: [...this.state.items, item] });
 
     return [...this.state.items, item];
@@ -76,5 +77,17 @@ export default class App extends Component {
     this.setState({ change: newChange });
 
     return newChange;
+  }
+
+  purchase(id) {
+    const result = this.state.items.findIndex((item) => item.id === Number(id));
+
+    if (result === -1) {
+      console.log('error');
+
+      return;
+    }
+
+    this.props.store.update(this.state.items[result]);
   }
 }

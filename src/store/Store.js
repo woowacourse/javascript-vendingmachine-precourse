@@ -3,7 +3,7 @@ export default class Store {
     const { localStorage } = window;
 
     this.getLocalStorage = () => {
-      const initialState = `{"items":[], "change":{"10":0, "50":0, "100":0, "500":0}}`;
+      const initialState = `{"items":[], "change":{"500":0, "100":0, "50":0, "10":0}}`;
 
       return JSON.parse(localStorage.getItem(name) || initialState);
     };
@@ -11,36 +11,38 @@ export default class Store {
     this.setLocalStorage = (state) => {
       localStorage.setItem(name, JSON.stringify(state));
     };
-
-    this.merge = (state, newState) => {
-      return { ...state, ...newState };
-    };
   }
 
-  insert(key, item, callback) {
+  find(query, callback) {
+    const { items } = this.getLocalStorage();
+
+    callback(items.filter((item) => query(item)));
+  }
+
+  insert(item) {
     const state = this.getLocalStorage();
 
-    if (!Array.isArray(state[key])) {
-      throw 'non array state';
-    }
-
-    state[key].push(item);
+    state.items.push(item);
     this.setLocalStorage(state);
-
-    if (callback) {
-      callback();
-    }
   }
 
-  updateChange(change, callback) {
+  update(updatedItem) {
+    const state = this.getLocalStorage();
+    const result = state.items.findIndex((item) => item.id === updatedItem.id);
+
+    if (result === -1) {
+      return { success: false };
+    }
+
+    state.items[result] = updatedItem;
+    this.setLocalStorage(state);
+  }
+
+  updateChange(change) {
     const state = this.getLocalStorage();
 
     state.change = change;
 
     this.setLocalStorage(state);
-
-    if (callback) {
-      callback();
-    }
   }
 }
