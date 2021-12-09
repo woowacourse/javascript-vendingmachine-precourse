@@ -6,7 +6,6 @@ export default class CoinStorageModel {
       50: 0,
       10: 0,
     };
-    this.totalMoney = 0;
   }
 
   addMoney = (money) => {
@@ -17,12 +16,7 @@ export default class CoinStorageModel {
       throw new Error("10으로 나누어 떨어지는 금액을 입력해주세요");
     }
 
-    this.addTotalMoney(money);
     this.addCoin(money);
-  };
-
-  addTotalMoney = (money) => {
-    this.totalMoney += money;
   };
 
   addCoin = (money) => {
@@ -40,6 +34,10 @@ export default class CoinStorageModel {
     }
 
     return remainingMoney;
+  };
+
+  getTotalMoney = () => {
+    return Object.entries(this.coins).reduce((sum, [coin, quantity]) => sum + coin * quantity, 0);
   };
 
   isNotPositiveNumber = (money) => {

@@ -29,7 +29,7 @@ export default class CoinStorageController {
 
     try {
       this.model.addMoney(money);
-      this.view.renderTotalMoney(this.$chargedAmount, this.model.totalMoney);
+      this.view.renderTotalMoney(this.$chargedAmount, this.model.getTotalMoney());
       this.view.renderCoinAmount(this.model.coins);
     } catch (err) {
       alert(err);
