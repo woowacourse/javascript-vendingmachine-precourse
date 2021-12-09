@@ -1,19 +1,14 @@
 import InputNumber from '../asset/components/Input/InputNumber.js';
 import INPUT_ID from '../asset/constants/INPUT_ID.js';
-import SubTitle from '../asset/components/SubTitle/index.js';
-import Table from '../asset/components/Table/index.js';
 import ButtonById from '../asset/components/Button/ButtonById.js';
-import CoinRow from '../asset/components/Row/CoinRow.js';
 import CellById from '../asset/components/Cell/CellById.js';
-import Cell from '../asset/components/Cell/index.js';
 import SubmitForm from '../asset/components/SubmitForm/index.js';
+import CoinTableForm from '../asset/components/CoinTableForm/index.js';
 import BUTTON from '../asset/constants/BUTTON.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
 import COIN_ID from '../asset/constants/COIN_ID.js';
-import COIN from '../asset/constants/COIN.js';
 import GUIDE from '../asset/constants/GUIDE.js';
-import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
 import UNIT from '../asset/constants/UNIT.js';
 import Tap from './Tap.js';
 
@@ -78,23 +73,14 @@ export default class ChargeCoinTap extends Tap {
     }
 
     createCoinsForm() {
-        const $wrap = document.createElement('div');
-
-        $wrap.style.marginTop = '30px';
-        $wrap.append(SubTitle(SUB_TITLE_TEXT.coins));
-        $wrap.append(this.getCoinTable());
-        this.appendToApp($wrap);
-    }
-
-    getCoinTable() {
-        const $table = Table();
-
-        $table.append(CoinRow(TABLE_TITLE.coin, Cell(TABLE_TITLE.count)));
-        $table.append(CoinRow(`${COIN[0]}${UNIT.count}`, this.$coin500));
-        $table.append(CoinRow(`${COIN[1]}${UNIT.count}`, this.$coin100));
-        $table.append(CoinRow(`${COIN[2]}${UNIT.count}`, this.$coin50));
-        $table.append(CoinRow(`${COIN[3]}${UNIT.count}`, this.$coin10));
-
-        return $table;
+        this.appendToApp(
+            CoinTableForm(
+                SUB_TITLE_TEXT.coins,
+                this.$coin500,
+                this.$coin100,
+                this.$coin50,
+                this.$coin10,
+            ),
+        );
     }
 }
