@@ -1,6 +1,7 @@
 import RowByClassName from './RowByClassName.js';
 import CellByClassName from '../Cell/CellByClassName.js';
-import { TABLE_ROW_CLASS_NAME, TABLE_CELL_CLASS_NAME } from '../../constants/dom-rule.js';
+import TABLE_ROW_CLASS_NAME from '../../constants/TABLE_ROW_CLASS_NAME.js';
+import TABLE_CELL_CLASS_NAME from '../../constants/TABLE_CELL_CLASS_NAME.js';
 
 const InventoryRow = (productName, productPrice, productQuantity) => {
     const ret = RowByClassName(TABLE_ROW_CLASS_NAME.inventory);

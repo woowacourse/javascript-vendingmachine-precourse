@@ -1,4 +1,5 @@
-import { VENDING_MACHINE_TITLE, TAP } from '../asset/constants/dom-rule.js';
+import VENDING_MACHINE_TITLE from '../asset/constants/VENDING_MACHINE_TITLE.js';
+import TAP from '../asset/constants/TAP.js';
 import mainTitle from '../asset/components/MainTitle/index.js';
 import ButtonById from '../asset/components/Button/ButtonById.js';
 

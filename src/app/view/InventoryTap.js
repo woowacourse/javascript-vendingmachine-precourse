@@ -4,7 +4,10 @@ import SubTitle from '../asset/components/SubTitle/index.js';
 import ButtonById from '../asset/components/Button/ButtonById.js';
 import Table from '../asset/components/Table/index.js';
 import InventoryRow from '../asset/components/Row/InventoryRow.js';
-import { INPUT_ID, SUB_TITLE_TEXT, BUTTON, TABLE_TITLE } from '../asset/constants/dom-rule.js';
+import INPUT_ID from '../asset/constants/INPUT_ID.js';
+import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
+import BUTTON from '../asset/constants/BUTTON.js';
+import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
 
 export default class InventoryTap {
     constructor($skeleton) {
