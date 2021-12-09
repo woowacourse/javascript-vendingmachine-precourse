@@ -25,9 +25,17 @@ export default class ProductAddView {
         if(localStorage.getItem('Product') === null) {
             localStorage.setItem('Product', JSON.stringify({[name]:{values: [price, quantity]}}));
         }else {
-            product[name] = {values: [price, quantity]};
+            product[name] = {values: [price, this.checkAlreadyHave(name, price, quantity, product)]};
             localStorage.setItem('Product', JSON.stringify(product));
         }
+    }
+
+    static checkAlreadyHave(name, price, quantity, product) {
+        if(product[name] !== undefined && product[name]["values"][0] === price) {
+            return parseInt(product[name]["values"][1]) + parseInt(quantity);
+        };
+
+        return quantity;
     }
 
     static showTable() {
