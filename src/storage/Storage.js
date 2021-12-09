@@ -32,8 +32,7 @@ class Storage {
   read(key) {
     if (!key) throw new Error('올바른 값을 입력해주세요.');
     const item = this.state.getItem(key);
-    if (!item) throw new Error('해당 아이템이 존재하지 않습니다.');
-    return JSON.parse(item);
+    return !item ? [] : JSON.parse(item);
   }
 
   /**
