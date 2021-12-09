@@ -1,6 +1,6 @@
 import { DOM } from '../utils/constant.js';
 import Render from '../view/Render.js';
-import ProductAdd from './ProductAdd.js';
+import ProductAdd from '../model/ProductAdd.js';
 
 export default class Controller {
   constructor() {
