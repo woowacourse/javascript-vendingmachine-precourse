@@ -1,4 +1,4 @@
-import { EMPTY, ERROR_MESSAGES } from '../constants/index.js';
+import { EMPTY, ERROR_MESSAGES, DIVIDE_CHARGING, ZERO } from '../constants/index.js';
 
 export const $ = selector => document.querySelector(selector);
 
@@ -53,7 +53,7 @@ export const isEquals = (value, target) => value === target;
  */
 export const isEmpty = value => {
   if (value instanceof Array) return value.length < 1 || value === [];
-  if (typeof value === 'number') return value === 0;
+  if (typeof value === 'number') return value === ZERO;
   return value === EMPTY;
 };
 
@@ -69,9 +69,9 @@ export const isEmpty = value => {
 export const isPositiveInteger = (target, description) => {
   const parsed = +target;
 
-  if (isEquals(parsed, 0)) return setErrorMessage('zeroError', description);
+  if (isEquals(parsed, ZERO)) return setErrorMessage('zeroError', description);
 
-  if (parsed < 0) return setErrorMessage('negativeError', description);
+  if (parsed < ZERO) return setErrorMessage('negativeError', description);
 
   if (!isEquals(Number.isInteger(parsed), true))
     return setErrorMessage('decimalError', description);
@@ -80,3 +80,5 @@ export const isPositiveInteger = (target, description) => {
 };
 
 export const isIncludes = (value, items) => items.includes(value);
+
+export const roundDown = value => Math.floor(value / DIVIDE_CHARGING) * DIVIDE_CHARGING;

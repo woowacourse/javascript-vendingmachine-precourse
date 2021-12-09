@@ -19,7 +19,15 @@ export default class App extends Component {
   }
 
   mount() {
-    this.$storage.subscribe(() => {
+    new Header('header', this.$props);
+    new Main('main', this.$props);
+
+    this.$storage.subscribe((component, tabData) => {
+      this.$props = {
+        ...this.$props,
+        component,
+        tabData,
+      };
       new Header('header', this.$props);
       new Main('main', this.$props);
     });

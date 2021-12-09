@@ -6,14 +6,13 @@ class Storage {
 
   subscribe(listener) {
     this.listeners.push(listener);
-    listener();
     return () => {
       this.listeners = this.listeners.filter(l => l !== listener);
     };
   }
 
-  notify() {
-    this.listeners.forEach(listener => listener());
+  notify(component, items) {
+    this.listeners.forEach(listener => listener(component, items));
   }
 
   /**
@@ -78,7 +77,7 @@ class Storage {
    */
   setState({ key, value }) {
     this.state.setItem(key, JSON.stringify(value));
-    this.notify();
+    this.notify(key, value);
   }
 }
 
