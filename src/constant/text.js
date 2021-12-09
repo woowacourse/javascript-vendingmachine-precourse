@@ -5,4 +5,11 @@ export const MENU = {
   PURCHASE_PRODUCT: '상품 구매',
 };
 
-export const PRODUCT = {};
+export const PRODUCT = {
+  ADD: '상품 추가하기',
+  ADD_BUTTON: '추가하기',
+  STATUS: '상품 현황',
+  NAME: '상품명',
+  PRICE: '가격',
+  QUANTITY: '수량',
+};

@@ -7,7 +7,7 @@ export const ID = {
     ADD: 'product-add-menu',
   },
   PRODUCT: {
-    ADD_MENU: 'product-add-menu',
+    INPUT_FORM: 'product-add-form',
     NAME_INPUT: 'product-name-input',
     PRICE_INPUT: 'product-price-input',
     QUANTITY_INPUT: 'product-quantity-input',
@@ -62,4 +62,10 @@ export const DATASET = {
   PRODUCT_NAME: 'data-product-name',
   PRODUCT_PRICE: 'data-product-price',
   PRODUCT_QUANTITY: 'data-product-quantity',
+};
+
+export const HINT = {
+  NAME: '상품명',
+  PRICE: '가격',
+  QUANTITY: '수량',
 };

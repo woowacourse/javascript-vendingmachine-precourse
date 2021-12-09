@@ -1,13 +1,14 @@
-import { ID } from '../../../constant/selector.js';
+import { ID } from '../../../constant/attributes.js';
 import { MENU } from '../../../constant/text.js';
-import createElement from '../../../utils/dom-utils.js';
+import { createElement } from '../../../utils/dom-utils.js';
 
 export default class MenuComponents {
-  constructor($element) {
+  constructor($element, setTab) {
     this.$root = $element;
     this.create();
     this.addChildren();
     this.bindEvents();
+    this.setTab = setTab;
   }
 
   create() {
@@ -33,5 +34,9 @@ export default class MenuComponents {
     this.$buttonContainer.addEventListener('click', this.tabChoice.bind(this));
   }
 
-  tabChoice(e) {}
+  tabChoice(e) {
+    if (e.target.id !== '') {
+      this.setTab(e.target.id);
+    }
+  }
 }
