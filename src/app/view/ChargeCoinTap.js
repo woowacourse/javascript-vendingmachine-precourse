@@ -29,6 +29,14 @@ export default class ChargeCoinTap {
         $skeleton.append(this.$app);
     }
 
+    getChargeButton() {
+        return this.$chargeButton;
+    }
+
+    getChargeAmount() {
+        return this.$chargeCoinInput.value;
+    }
+
     appendToApp($element) {
         this.$app.append($element);
     }
