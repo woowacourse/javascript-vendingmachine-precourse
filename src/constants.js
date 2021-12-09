@@ -1,4 +1,7 @@
 export const SELECTOR = {
+  // 공통
+  vendingMachineApp: 'app',
+
   // 탭 메뉴 버튼
   productPurchaseMenuId: 'product-purchase-menu',
   vendingMachineManageMenuId: 'vending-machine-manage-menu',
