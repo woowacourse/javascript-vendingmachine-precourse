@@ -32,6 +32,7 @@ export default class InventoryTap {
         const $subTitle = SubTitle(SUB_TITLE_TEXT.addProduct);
         const $inputWrap = this.getAddProductFormInput();
 
+        $wrap.style.marginBottom = '15px';
         $wrap.append($subTitle);
         $wrap.append($inputWrap);
         this.appendToApp($wrap);
