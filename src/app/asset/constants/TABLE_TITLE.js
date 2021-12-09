@@ -4,6 +4,7 @@ const TABLE_TITLE = {
     productQuantity: '수량',
     coin: '동전',
     count: '개수',
+    purchase: '구매',
 };
 
 export default TABLE_TITLE;

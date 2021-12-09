@@ -4,6 +4,10 @@ export default class Tap {
         $skeleton.append(this.$app);
     }
 
+    appendToApp($element) {
+        this.$app.append($element);
+    }
+
     hide() {
         this.$app.style.display = 'none';
     }
