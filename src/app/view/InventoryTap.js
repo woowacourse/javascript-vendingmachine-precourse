@@ -19,7 +19,7 @@ export default class InventoryTap {
             INPUT_ID.productQuantity,
             INPUT_ITEM.productQuantity,
         );
-        this.$button = ButtonById(BUTTON.addProduct.title, BUTTON.addProduct.id);
+        this.$addButton = ButtonById(BUTTON.addProduct.title, BUTTON.addProduct.id);
         this.$inventoryContainer = Table();
 
         this.hide();
@@ -27,7 +27,7 @@ export default class InventoryTap {
     }
 
     getButton() {
-        return this.$button;
+        return this.$addButton;
     }
 
     getProductName() {
@@ -84,12 +84,12 @@ export default class InventoryTap {
     getAddProductFormInput() {
         const $inputWrap = document.createElement('div');
 
-        this.$button.style.marginLeft = '5px';
+        this.$addButton.style.marginLeft = '5px';
         this.$productPriceInput.style.margin = '0 5px';
         $inputWrap.append(this.$productNameInput);
         $inputWrap.append(this.$productPriceInput);
         $inputWrap.append(this.$productQuantityInput);
-        $inputWrap.append(this.$button);
+        $inputWrap.append(this.$addButton);
 
         return $inputWrap;
     }
