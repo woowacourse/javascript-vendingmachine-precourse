@@ -11,10 +11,10 @@ const PRODUCT_PURCHASE_ID = 'product-purchase-menu';
 const PRODUCT_ADD_TITLE = '상품 추가하기';
 const PRODUCT_LIST_TITLE = '상품 현황';
 
-const PRODUCT_NAME_INPUT_ID = 'product-name-input';
-const PRODUCT_PRICE_INPUT_ID = 'product-price-input';
-const PRODUCT_QUANTITY_INPUT_ID = 'product-quantity-input';
-const PRODUCT_ADD_BUTTON_ID = 'product-add-button';
+export const PRODUCT_NAME_INPUT_ID = 'product-name-input';
+export const PRODUCT_PRICE_INPUT_ID = 'product-price-input';
+export const PRODUCT_QUANTITY_INPUT_ID = 'product-quantity-input';
+export const PRODUCT_ADD_BUTTON_ID = 'product-add-button';
 
 const PRODUCT_NAME_TITLE = '상품명';
 const PRODUCT_PRICE_TITLE = '가격';
@@ -22,7 +22,7 @@ const PRODUCT_QUANTITY_TITLE = '수량';
 
 const PRODUCT_LIST_TABLE_ID = 'product-list-table';
 
-function $(domId) {
+export function $(domId) {
   return document.querySelector(domId);
 }
 
