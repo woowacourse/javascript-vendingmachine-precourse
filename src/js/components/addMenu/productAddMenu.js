@@ -10,7 +10,7 @@ const addProductItem = (productData) => {
 export default function handleProductMenuSubmit(event) {
   event.preventDefault();
   const productData = {
-    name: $('#product-name-input').value,
+    name: $('#product-name-input').value.trim(),
     price: $('#product-price-input').value,
     quantity: $('#product-quantity-input').value,
   };
