@@ -5,11 +5,11 @@ export default class ProductController {
   constructor() {
     this.model = new ProductModel();
     this.view = new ProductView();
-    this.container = document.getElementById("app");
+    this.$container = document.getElementById("app");
   }
 
   init = () => {
-    this.view.renderPage(this.container);
+    this.view.renderPage(this.$container);
     this.initDOMS();
     this.setEvent();
     this.view.renderProductTable(this.$productTableBody, this.model.getProducts());
