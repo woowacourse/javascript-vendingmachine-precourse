@@ -13,7 +13,7 @@ export class BuyView {
         <input type="number" id="charge-input" placeholder="투입할 금액" />
         <button id="charge-button">투입하기</button>
       </form>
-      <div>투입한 금액: </div>
+      <div id="charge-amount">투입한 금액: </div>
       <h3>구매할 수 있는 상품 현황</h3>
       <table>
         <tr class="product-purchase-item">
