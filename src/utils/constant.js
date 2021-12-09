@@ -4,6 +4,10 @@ export const DOM = {
   $VENDING_MACHINE_MANAGE_MENU: '#vending-machine-manage-menu',
   $PRODUCT_PURCHASE_MENU: '#product-purchase-menu',
   $VENDING_MACHINE_SECTION: '#vending-machine-section',
+  $PRODUCT_NAME_INPUT: '#product-name-input',
+  $PRODUCT_PRICE_INPUT: '#product-price-input',
+  $PRODUCT_QUANTITY_INPUT: '#product-quantity-input',
+  $PRODUCT_ADD_BUTTON: '#product-add-button',
 };
 
 export const TEMPLATE = {
@@ -21,7 +25,7 @@ export const TEMPLATE = {
   <input type='text' placeholder='상품명' id='product-name-input' />
   <input type='number' placeholder='가격' id='product-price-input' />
   <input type='number' placeholder='수량' id='product-quantity-input' />
-  <button id='product-add'>추가하기</button>
+  <button id='product-add-button'>추가하기</button>
 
   <h2>상품 현황</h2>
   <table id='product-manage-table'>
@@ -43,4 +47,10 @@ export const TEMPLATE = {
 `,
 };
 
-export const NUMBER = {};
+export const NUMBER = {
+  MIN_LENGTH: 1,
+};
+
+export const ERROR_MESSAGE = {
+  PRODUCT_NAME_IS_BLANK: '상품명을 공백 없이 입력해주세요.',
+};

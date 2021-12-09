@@ -1,5 +1,6 @@
 import { DOM } from '../utils/constant.js';
 import Render from '../view/Render.js';
+import ProductAdd from './ProductAdd.js';
 
 export default class Controller {
   constructor() {
@@ -8,11 +9,20 @@ export default class Controller {
     this.main();
   }
 
-  onMainTemplateButtonClick = () => {
+  onClickProductAddButton = () => {
+    const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
+    $productAddButton.addEventListener('click', () => {
+      const productAdd = new ProductAdd();
+      productAdd.getNameInput();
+    });
+  };
+
+  onClickMainTemplateButton = () => {
     this.$app.addEventListener('click', (event) => {
       const $productAddMenu = document.querySelector(DOM.$PRODUCT_ADD_MENU);
       if (event.target === $productAddMenu) {
         this.render.productAddMenuTemplate();
+        this.onClickProductAddButton();
       }
     });
   };
@@ -23,6 +33,6 @@ export default class Controller {
 
   main = () => {
     this.renderMainTemplate();
-    this.onMainTemplateButtonClick();
+    this.onClickMainTemplateButton();
   };
 }
