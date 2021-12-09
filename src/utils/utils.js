@@ -20,6 +20,10 @@ const utils = {
   isNotTenMultiple: string => {
     return Number(string) % 10 !== 0;
   },
+
+  isZero: string => {
+    return Number(string) === 0;
+  },
 };
 
 export default utils;

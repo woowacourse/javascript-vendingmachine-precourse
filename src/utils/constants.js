@@ -9,6 +9,7 @@ export const ERROR = {
 
   PRODUCT_QUANTITY_BLANK_SUBMIT: '상품수량은 빈칸으로 제출하실 수 없습니다.',
   PRODUCT_QUANTITY_INCLUDE_SPECIAL: '상품수량에 특수문자를 입력하실 수 없습니다.',
+  PRODUCT_QUANTITY_NOT_POSIVITE_INT: '상품수량은 양의 정수 입력만 가능합니다.',
 };
 
 export const REGEX = {
