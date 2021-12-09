@@ -1,5 +1,10 @@
 export default class ProductPurchaseMenu {
   constructor(view) {
-    console.log(view);
+    this.view = view;
+    this.render();
+  }
+
+  render() {
+    this.view.showProductPurchase();
   }
 }

@@ -5,4 +5,8 @@ export default class View {
   constructor() {
     $('#app').insertAdjacentHTML('beforeend', UI.commonHTML);
   }
+
+  showProductPurchase() {
+    $('#app').insertAdjacentHTML('beforeend', UI.productPurchaseHTML);
+  }
 }
