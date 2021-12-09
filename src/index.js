@@ -1,3 +1,6 @@
 import App from './App.js';
+import Store from './store/Store.js';
 
-new App(document.querySelector('#app'));
+const store = new Store('vending-machine');
+
+new App(document.querySelector('#app'), { store });

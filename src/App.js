@@ -5,9 +5,22 @@ import ProductAddMenu from './components/ProductAddMenu/ProductAddMenu.js';
 import ProductPurchaseMenu from './components/ProductPurchaseMenu/ProductPurchaseMenu.js';
 import VendingMachineManageMenu from './components/VendingMachineMenu/VendingMachineManageMenu.js';
 
+import Item from './components/common/Item.js';
+import $ from './helpers.js';
+
 export default class App extends Component {
   setup() {
-    this.state = { currentTab: '/add' };
+    const { items, change } = this.props.store.getLocalStorage();
+
+    this.state = {
+      currentTab: '/add',
+      items: items.map(
+        ({ name, price, quantity }) => new Item(name, price, quantity)
+      ),
+      change,
+    };
+
+    console.log('data loaded', this.state);
   }
 
   template() {
@@ -23,20 +36,27 @@ export default class App extends Component {
   }
 
   mounted() {
-    const { navigate } = this;
+    const { navigate, addItem } = this;
 
-    new NavBar(document.querySelector('#nav-bar'), {
+    new NavBar($('#nav-bar'), {
       navigate: navigate.bind(this),
     });
-    new Router(document.querySelector('#router'), this.state.currentTab);
-    new ProductAddMenu(document.querySelector('#product-add-tab'));
-    new ProductPurchaseMenu(document.querySelector('#product-purchase-tab'));
-    new VendingMachineManageMenu(
-      document.querySelector('#vending-machine-manage-tab')
-    );
+    new Router($('#router'), this.state.currentTab);
+    new ProductAddMenu($('#product-add-tab'), {
+      items: this.state.items,
+      addItem: addItem.bind(this),
+    });
+    new ProductPurchaseMenu($('#product-purchase-tab'));
+    new VendingMachineManageMenu($('#vending-machine-manage-tab'));
   }
 
   navigate(to) {
     this.setState({ currentTab: to });
+  }
+
+  addItem(item) {
+    this.props.store.insert('items', item, () => {
+      console.log(`inserted: ${item.toString()}`);
+    });
   }
 }
