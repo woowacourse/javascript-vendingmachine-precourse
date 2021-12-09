@@ -1,8 +1,10 @@
 export const SELECTOR = {
   // 공통
   vendingMachineApp: 'app',
+  tabContentContainerId: 'tab-content-container',
 
   // 탭 메뉴 버튼
+  tabButtonContainerId: 'tab-button-container',
   productPurchaseMenuId: 'product-purchase-menu',
   vendingMachineManageMenuId: 'vending-machine-manage-menu',
   productAddMenuId: 'product-add-menu',

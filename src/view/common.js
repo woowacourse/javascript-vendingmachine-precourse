@@ -9,6 +9,7 @@ export const createVendingMachineHeader = () => {
 
 export const createTabButtons = () => {
   const tabContainer = document.createElement('div');
+  tabContainer.id = SELECTOR.tabButtonContainerId;
 
   TAB_BUTTONS.forEach(button => {
     const buttonElement = document.createElement('button');
@@ -19,4 +20,10 @@ export const createTabButtons = () => {
   });
 
   $(`#${SELECTOR.vendingMachineApp}`).appendChild(tabContainer);
+};
+
+export const createTabContentContainer = () => {
+  const tabContentContainer = document.createElement('div');
+  tabContentContainer.id = SELECTOR.tabContentContainerId;
+  $(`#${SELECTOR.vendingMachineApp}`).appendChild(tabContentContainer);
 };
