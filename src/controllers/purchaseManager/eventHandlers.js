@@ -3,7 +3,10 @@ import { isValidMoney } from "../chargeManager/checkMoneyInput.js";
 import { addMoneyCustomer } from "./chargeCustomerDataController.js";
 import { ALERT_MSG } from "../../utils/constants.js";
 import { purchaseProduct } from "./purchaseDataController.js";
-import { showAll } from "../../views/common/showAll.js";
+import {
+  showAfterAddOrPurchaseProduct,
+  showAfterReturnCoins,
+} from "../../views/common/showAll.js";
 
 const onClickCustomerChargeButton = () => {
   const $customerChargeButton = document.getElementById("charge-button");
@@ -12,7 +15,7 @@ const onClickCustomerChargeButton = () => {
     const money = getInputValueById("charge-input");
     if (isValidMoney(money)) {
       addMoneyCustomer(money);
-      showAll();
+      showAfterAddOrPurchaseProduct();
     } else {
       alert(ALERT_MSG.wrongChargeMoney);
     }
@@ -23,8 +26,7 @@ const purchaseLogic = index => {
   const name = document.getElementsByClassName("product-purchase-name")[index]
     .dataset.productName;
   const price = parseInt(
-    document.getElementsByClassName("product-purchase-price")[index]
-      .dataset.productPrice,
+    document.getElementsByClassName("product-purchase-price")[index].dataset.productPrice,
     10,
   );
   const money = parseInt(JSON.parse(localStorage.getItem("money")), 10);
@@ -33,7 +35,7 @@ const purchaseLogic = index => {
     alert(ALERT_MSG.lackMoney);
   } else {
     purchaseProduct(name, price, money);
-    showAll();
+    showAfterAddOrPurchaseProduct();
   }
 };
 
@@ -46,8 +48,18 @@ const onClickPurchaseButton = () => {
   }
 };
 
+const onClickCoinReturnButton = () => {
+  const $coinReturnButton = document.getElementById("coin-return-button");
+
+  $coinReturnButton.addEventListener("click", () => {
+    // 동전 반환
+    showAfterReturnCoins();
+  });
+};
+
 const addPurchaseManagerClickEvents = () => {
   onClickCustomerChargeButton();
+  onClickCoinReturnButton();
 };
 
 export { addPurchaseManagerClickEvents, onClickPurchaseButton };

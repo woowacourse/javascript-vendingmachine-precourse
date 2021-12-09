@@ -2,7 +2,7 @@ import { getInputValueById } from "../common/getInputValue.js";
 import { isValidInputs } from "./checkInputValues.js";
 import { addProduct } from "./productDataController.js";
 import { resetAddProductInput } from "../../views/productManager/resetInput.js";
-import { showAll } from "../../views/common/showAll.js";
+import { showAfterAddOrPurchaseProduct } from "../../views/common/showAll.js";
 
 const processing = e => {
   e.preventDefault();
@@ -13,7 +13,7 @@ const processing = e => {
 
   if (errorMessage === "") {
     addProduct(name, price, quantity);
-    showAll();
+    showAfterAddOrPurchaseProduct();
     resetAddProductInput();
   } else {
     alert(errorMessage);

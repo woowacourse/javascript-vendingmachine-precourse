@@ -1,11 +1,19 @@
 import { showProducts } from "../../views/productManager/showProducts.js";
 import { showMoneyCustomer } from "../../views/purchaseManager/showMoneyCustomer.js";
 import { showProductsAbleToBuy } from "../../views/purchaseManager/showProductsAbleToBuy.js";
+import { showCoinsInMachine } from "../chargeManager/showCoinsInMachine.js";
+import { showMoneyInMachine } from "../chargeManager/showMoneyInMachine.js";
 
-const showAll = () => {
+const showAfterAddOrPurchaseProduct = () => {
   showProducts();
   showProductsAbleToBuy();
   showMoneyCustomer();
 };
 
-export { showAll };
+const showAfterReturnCoins = () => {
+  showMoneyInMachine();
+  showCoinsInMachine();
+  showMoneyCustomer();
+};
+
+export { showAfterAddOrPurchaseProduct, showAfterReturnCoins };
