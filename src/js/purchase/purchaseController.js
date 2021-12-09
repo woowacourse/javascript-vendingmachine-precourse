@@ -42,10 +42,14 @@ export default class PurchaseController {
   setClickPurchaseButtonEvent = ({ target }) => {
     if (target.className !== "purchase-button") return;
 
-    const product = target.closest("tr").getElementsByClassName("product-purchase-price")[0];
-    const price = Number(product.dataset.productPrice);
+    const product = target.closest("tr");
+    const name = product.getElementsByClassName("product-purchase-name")[0].dataset.productName;
+    const price = Number(
+      product.getElementsByClassName("product-purchase-price")[0].dataset.productPrice
+    );
 
     this.model.spendMoney(price);
+    this.product.model.buyProduct(name);
     this.updatePage();
   };
 

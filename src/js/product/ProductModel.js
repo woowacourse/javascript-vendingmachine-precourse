@@ -36,6 +36,13 @@ export default class ProductModel {
     this.updateProducts();
   };
 
+  buyProduct = (name) => {
+    const product = this.findProduct(name);
+    console.log(product);
+    product.quantity -= 1;
+    this.updateProducts();
+  };
+
   findProduct = (name) => {
     return this.products.find((product) => product.name === name);
   };
