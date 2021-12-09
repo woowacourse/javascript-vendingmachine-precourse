@@ -7,6 +7,8 @@ export default class MenuButtonController {
     document.addEventListener('click', (e) => {
       const targetId = e.target.id;
 
+      // 나중에 함수로 분리
+
       if (targetId === 'product-add-menu') {
         ProductAddView.render();
         ProductAddView.addEvent();
@@ -17,6 +19,7 @@ export default class MenuButtonController {
       }
       if (targetId === 'product-purchase-menu') {
         ProductPurchaseView.render();
+        // 이벤트 리스너 추가
       }
     });
   }

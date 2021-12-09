@@ -14,7 +14,7 @@ export const HTML_OF_PRODUCT_ADD_PART = `
   <input type="number" placeholder="수량" id="product-quantity-input"></input>
   <button id="product-add-button">추가하기</button>
   <h4>상품 현황</h4>
-  <table border="1px" cellspacing="0" cellpadding="5">
+  <table border="1px" cellspacing="0" cellpadding="5" id="product-add-table">
     <thead>
       <th>상품명</th>
       <th>가격</th>

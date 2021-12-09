@@ -5,4 +5,6 @@ export default class ProductPurchaseView {
     document.getElementById('bottom-container').innerHTML =
       HTML_OF_PRODUCT_PURCHASE_PART;
   }
+
+  // 이벤트 리스너 추가
 }
