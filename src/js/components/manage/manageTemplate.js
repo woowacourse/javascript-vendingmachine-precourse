@@ -1,4 +1,4 @@
-export const productAddMenuTemplate = `
+export const productManageTemplate = `
   <h3>상품 추가하기</h3>
   <form>
     <input type="text" id="product-name-input" placeholder="상품명" />

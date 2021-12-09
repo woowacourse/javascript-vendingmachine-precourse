@@ -1,6 +1,6 @@
 import { $ } from '../../utils/querySelector.js';
 import { isValidProductValue } from '../../utils/validation.js';
-import { productItemTemplate } from './addMenuTemplate.js';
+import { productItemTemplate } from './manageTemplate.js';
 
 const addProductItem = (productData) => {
   const productItem = productItemTemplate(productData);

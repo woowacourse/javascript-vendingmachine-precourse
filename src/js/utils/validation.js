@@ -29,7 +29,7 @@ const isValidProductPrice = (price) => {
 };
 
 export const isValidProductValue = (productData) => {
-  const { name, price, quantity } = productData;
+  const { price, quantity } = productData;
 
   if (isValueBlank(productData)) {
     return alert(CANNOT_BE_BLANK);

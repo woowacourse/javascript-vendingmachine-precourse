@@ -1,13 +1,13 @@
 import { $ } from './utils/querySelector.js';
 import { initScreenTemplate } from './utils/initScreenTemplate.js';
-import handleProductMenuSubmit from './components/addMenu/productAddMenu.js';
-import { productAddMenuTemplate } from './components/addMenu/addMenuTemplate.js';
+import handleProductMenuSubmit from './components/manage/productAddMenu.js';
+import { productManageTemplate } from './components/manage/manageTemplate.js';
 
 const init = () => {
   $('#app').innerHTML = initScreenTemplate;
 
   $('#product-add-menu').addEventListener('click', () => {
-    $('#app-container').innerHTML = productAddMenuTemplate;
+    $('#app-container').innerHTML = productManageTemplate;
     $('form').addEventListener('submit', handleProductMenuSubmit);
   });
 };
