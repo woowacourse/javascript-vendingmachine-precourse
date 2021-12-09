@@ -1,3 +1,4 @@
+import CoinStorageController from "./coinStorage/coinStorageController.js";
 import ProductController from "./product/ProductController.js";
 
 export default class VendingMachine {
@@ -9,11 +10,12 @@ export default class VendingMachine {
     this.renderHeader();
     this.createComponents();
     this.setEvent();
-    this.product.init();
+    this.renderProductManagePage();
   };
 
   createComponents = () => {
     this.product = new ProductController();
+    this.coinStorage = new CoinStorageController();
   };
 
   renderHeader = () => {
@@ -35,10 +37,23 @@ export default class VendingMachine {
   setClickMenuButton = ({ target }) => {
     if (target.id === "product-add-menu") {
       this.renderProductManagePage();
+    } else if (target.id === "vending-machine-manage-menu") {
+      this.renderCoinStoragePage();
     }
   };
 
+  resetpage = () => {
+    this.$container.innerHTML = "";
+    this.renderHeader();
+  };
+
   renderProductManagePage = () => {
+    this.resetpage();
     this.product.init();
+  };
+
+  renderCoinStoragePage = () => {
+    this.resetpage();
+    this.coinStorage.init();
   };
 }
