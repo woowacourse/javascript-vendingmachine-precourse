@@ -12,6 +12,7 @@ export default class CoinStorageController {
     this.view.renderInputForm(this.$container);
     this.initDOMS();
     this.setEvent();
+    this.updatePage();
   };
 
   initDOMS = () => {
@@ -29,10 +30,14 @@ export default class CoinStorageController {
 
     try {
       this.model.addMoney(money);
-      this.view.renderTotalMoney(this.$chargedAmount, this.model.getTotalMoney());
-      this.view.renderCoinAmount(this.model.coins);
+      this.updatePage();
     } catch (err) {
       alert(err);
     }
+  };
+
+  updatePage = () => {
+    this.view.renderTotalMoney(this.$chargedAmount, this.model.getTotalMoney());
+    this.view.renderCoinAmount(this.model.coins);
   };
 }

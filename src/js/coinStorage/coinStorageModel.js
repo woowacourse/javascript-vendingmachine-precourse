@@ -1,11 +1,8 @@
+import { getLocalStorage, setLocalStorage } from "../util/localStorage.js";
+
 export default class CoinStorageModel {
   constructor() {
-    this.coins = {
-      500: 0,
-      100: 0,
-      50: 0,
-      10: 0,
-    };
+    this.coins = getLocalStorage("coin") ?? { 500: 0, 100: 0, 50: 0, 10: 0 };
   }
 
   addMoney = (money) => {
@@ -17,6 +14,7 @@ export default class CoinStorageModel {
     }
 
     this.addCoin(money);
+    setLocalStorage("coin", this.coins);
   };
 
   addCoin = (money) => {
