@@ -25,8 +25,28 @@ export default class InventoryTap {
         $skeleton.append(this.$app);
     }
 
+    getButton() {
+        return this.$button;
+    }
+
+    getProductName() {
+        return this.$productNameInput.value;
+    }
+
+    getProductPrice() {
+        return this.$productPriceInput.value;
+    }
+
+    getProductQuantity() {
+        return this.$productQuantityInput.value;
+    }
+
     appendToApp($element) {
         this.$app.append($element);
+    }
+
+    appendToInventoryContainer($element) {
+        this.$inventoryContainer.append($element);
     }
 
     init() {
@@ -62,15 +82,17 @@ export default class InventoryTap {
         const $wrap = document.createElement('div');
         const $subTitle = SubTitle(SUB_TITLE_TEXT.productInventory);
 
-        this.$inventoryContainer.append(
-            InventoryRow(
-                TABLE_TITLE.productName,
-                TABLE_TITLE.productPrice,
-                TABLE_TITLE.productQuantity,
-            ),
-        );
+        this.addRow(TABLE_TITLE.productName, TABLE_TITLE.productPrice, TABLE_TITLE.productQuantity);
         $wrap.append($subTitle);
         $wrap.append(this.$inventoryContainer);
         this.appendToApp($wrap);
+    }
+
+    addRow(text1, text2, text3) {
+        this.appendToInventoryContainer(InventoryRow(text1, text2, text3));
+    }
+
+    addProductRow(productName, productPrice, productQuantity) {
+        this.addRow(productName, productPrice, productQuantity);
     }
 }
