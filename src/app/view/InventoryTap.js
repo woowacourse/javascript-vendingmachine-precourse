@@ -22,7 +22,6 @@ export default class InventoryTap {
         this.$addButton = ButtonById(BUTTON.addProduct.title, BUTTON.addProduct.id);
         this.$inventoryContainer = Table();
 
-        this.hide();
         $skeleton.append(this.$app);
     }
 
@@ -51,6 +50,7 @@ export default class InventoryTap {
     }
 
     init() {
+        this.hide();
         this.createAddProductForm();
         this.createProductInventory();
     }
