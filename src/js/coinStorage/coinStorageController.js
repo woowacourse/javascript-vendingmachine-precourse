@@ -21,6 +21,9 @@ export default class CoinStorageController {
     this.$coinChargeButton = document.getElementById(
       "vending-machine-charge-button"
     );
+    this.$chargedAmount = document.getElementById(
+      "vending-machine-charge-amount"
+    );
   };
 
   setEvent = () => {
@@ -31,5 +34,6 @@ export default class CoinStorageController {
     const money = Number(this.$coinChargeInput.value);
     this.model.addMoney(money);
     console.log(this.model.coins, this.model.totalMoney);
+    this.view.renderTotalMoney(this.$chargedAmount, this.model.totalMoney);
   };
 }

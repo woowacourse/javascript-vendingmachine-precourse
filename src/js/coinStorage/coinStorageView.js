@@ -7,7 +7,7 @@ export default class CoinStorageView {
         <button id="vending-machine-charge-button">충전하기</button>
       </div>
       <br/>
-      <div id="vending-machine-charge-amount"></div>
+      <div id="vending-machine-charge-amount">보유 금액:</div>
       <br/>
       <h2>자판기가 보유한 동전</h2>
       <table border="1">
@@ -38,6 +38,10 @@ export default class CoinStorageView {
       </table>
     `;
     this.render(container, template);
+  };
+
+  renderTotalMoney = (container, amount) => {
+    container.innerText = `보유 금액: ${amount}`;
   };
 
   render = (container, template) => {
