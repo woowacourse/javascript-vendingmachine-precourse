@@ -1,6 +1,6 @@
 import { DOM } from '../utils/constant.js';
 import Render from '../view/Render.js';
-import ProductAdd from '../model/ProductAdd.js';
+import SetProductAdd from '../model/SetProductAdd.js';
 
 export default class Controller {
   constructor() {
@@ -12,8 +12,7 @@ export default class Controller {
   onClickProductAddButton = () => {
     const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
     $productAddButton.addEventListener('click', () => {
-      const productAdd = new ProductAdd(this.render);
-      productAdd.isValidInputs();
+      new SetProductAdd(this.render);
     });
   };
 

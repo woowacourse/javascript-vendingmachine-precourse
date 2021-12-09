@@ -44,7 +44,7 @@ export const TEMPLATE = {
       </tr>
     </tbody>
   </table>
-`,
+  `,
 };
 
 export const NUMBER = {
