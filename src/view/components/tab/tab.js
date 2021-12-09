@@ -4,12 +4,14 @@ import createElement from '../../../utils/dom-utils.js';
 
 export default class MenuComponents {
   constructor($element) {
-    this.$container = $element;
+    this.$root = $element;
     this.create();
     this.addChildren();
+    this.bindEvents();
   }
 
   create() {
+    this.$container = createElement('div', false, ID.MENU.CONTAINER);
     this.$title = createElement('h1', MENU.TITLE);
     this.$buttonContainer = createElement('div');
     this.$buttonMenuManageProduct = createElement('button', MENU.PRODUCT_MANAGE, ID.MENU.ADD);
@@ -24,9 +26,12 @@ export default class MenuComponents {
       this.$buttonMenuPurchase
     );
     this.$container.append(this.$title, this.$buttonContainer);
+    this.$root.append(this.$container);
   }
 
-  get element() {
-    return this.$container;
+  bindEvents() {
+    this.$buttonContainer.addEventListener('click', this.tabChoice.bind(this));
   }
+
+  tabChoice(e) {}
 }

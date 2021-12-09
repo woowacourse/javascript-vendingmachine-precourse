@@ -1,6 +1,7 @@
 export const ID = {
   APP: 'app',
   MENU: {
+    CONTAINER: 'tab-menu',
     PURCHASE: 'product-purchase-menu',
     CHANGE: 'vending-machine-manage-menu',
     ADD: 'product-add-menu',
