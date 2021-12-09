@@ -3,3 +3,7 @@ export default function Vendingmachine() {
 
     this.init();
 }
+
+const vending = new Vendingmachine();
+
+vending();
