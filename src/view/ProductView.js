@@ -10,7 +10,7 @@ export class ProductView {
     this.$productAddSection.innerHTML = `
       <h3>상품 추가하기</h3>
       <form>
-        <input type="text" id="product-name-input" placeholder="상품" />
+        <input type="text" id="product-name-input" placeholder="상품명" />
         <input type="text" id="product-price-input" placeholder="가격" />
         <input type="text" id="product-quantity-input" placeholder="수량" />
         <button id="product-add-button">추가하기</button>
