@@ -1,0 +1,16 @@
+table {
+  border-collapse: collapse;
+}
+
+#product-manage-table th,
+#product-manage-table td {
+  width: 100px;
+  height: 30px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#product-manage-table th:first-child,
+#product-manage-talbe td:first-child {
+  width: 150px;
+}
