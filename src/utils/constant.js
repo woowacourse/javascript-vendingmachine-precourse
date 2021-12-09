@@ -8,6 +8,7 @@ export const DOM = {
   $PRODUCT_PRICE_INPUT: '#product-price-input',
   $PRODUCT_QUANTITY_INPUT: '#product-quantity-input',
   $PRODUCT_ADD_BUTTON: '#product-add-button',
+  $PRODUCT_MANAGE_TBODY: '#product-manage-tbody',
 };
 
 export const TEMPLATE = {
@@ -36,15 +37,16 @@ export const TEMPLATE = {
         <th>수량</th>
       </tr>
     </thead>
-    <tbody id="product-manage-tbody">
-      <tr class="product-manage-item">
-        <td class="product-manage-name">콜라</td>
-        <td class="product-manage-price">1500</td>
-        <td class="product-manage-quantity">20</td>
-      </tr>
-    </tbody>
+    <tbody id="product-manage-tbody"></tbody>
   </table>
   `,
+  PRODUCT_MANAGE_TBODY(productName, productPrice, productQuantity) {
+    return `
+    <td class="product-manage-name">${productName}</td>
+    <td class="product-manage-price">${productPrice}</td>
+    <td class="product-manage-quantity">${productQuantity}</td>
+    `;
+  },
 };
 
 export const NUMBER = {

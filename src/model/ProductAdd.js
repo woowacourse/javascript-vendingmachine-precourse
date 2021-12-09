@@ -8,6 +8,12 @@ export default class ProductAdd {
     this.$productQuantityInput = document.querySelector(DOM.$PRODUCT_QUANTITY_INPUT);
   }
 
+  getInputs = () => [
+    this.$productNameInput.value,
+    Number(this.$productPriceInput.value),
+    Number(this.$productQuantityInput.value),
+  ];
+
   isBlank = ($element) => {
     if ($element.value.length < NUMBER.BLANK_CHECK_LENGTH) {
       this.render.alertMessage(ERROR_MESSAGE.PRODUCT_BLANK($element.placeholder));
@@ -50,8 +56,5 @@ export default class ProductAdd {
 
   isValidNameInput = () => !this.isBlank(this.$productNameInput);
 
-  isValidInputs = () => {
-    const isValidInput = this.isValidNameInput() && this.isValidPriceInput() && this.isQuantityInput();
-    console.log(isValidInput);
-  };
+  isValidInputs = () => this.isValidNameInput() && this.isValidPriceInput() && this.isQuantityInput();
 }

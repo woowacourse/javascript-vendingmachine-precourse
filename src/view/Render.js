@@ -9,6 +9,15 @@ export default class Render {
 
   alertMessage = (message) => alert(message);
 
+  productAddManageTableTemplate = (productName, productPrice, productQuantity) => {
+    const $tr = document.createElement('tr');
+    $tr.setAttribute('class', 'product-manage-item');
+    $tr.innerHTML = TEMPLATE.PRODUCT_MANAGE_TBODY(productName, productPrice, productQuantity);
+
+    const $productManageTbody = document.querySelector(DOM.$PRODUCT_MANAGE_TBODY);
+    $productManageTbody.appendChild($tr);
+  };
+
   productAddMenuTemplate = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
     $vendingMachineSection.innerHTML = TEMPLATE.PRODUCT_ADD_MENU;
