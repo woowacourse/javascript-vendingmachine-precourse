@@ -1,6 +1,12 @@
 import { INITIAL_TAB_ID } from "./constant.js";
+import { createTab, createDiv, createTitle } from "./createElement.js";
 import ManagePresenter from "../manage/presenter.js";
-const clickHandler = (id) => {
+
+export const clearContainer = () => {
+    while (getPresetContainer().firstChild)
+        getPresetContainer().removeChild(getPresetContainer().firstChild);
+};
+export const clickHandler = (id) => {
     switch (id) {
         case INITIAL_TAB_ID.PRODUCT_MANAGE_TAB:
             new ManagePresenter();
@@ -11,23 +17,6 @@ const clickHandler = (id) => {
             break;
     }
 };
-
-const createTab = (id, text) => {
-    const $tab = document.createElement("button");
-    $tab.id = id;
-    $tab.innerText = text;
-    $tab.addEventListener("click", function (e) {
-        e.preventDefault();
-        clickHandler(e.target.id);
-    });
-    return $tab;
-};
-
-export const clearContainer = () => {
-    while (getPresetContainer().firstChild)
-        getPresetContainer().removeChild(getPresetContainer().firstChild);
-};
-
 export const getApp = () => {
     return document.getElementById("app");
 };
@@ -38,10 +27,9 @@ export const getPresetContainer = () => {
 
 export const setInitialPresent = () => {
     const $app = getApp();
-    const $title = document.createElement("div");
-    const $container = document.createElement("div");
-    $container.id = "container";
-    $title.innerHTML = `<p>🥤자판기🥤</p></br>`;
+    const $title = createTitle("🥤자판기🥤");
+    const $container = createDiv("container");
+
     $app.appendChild($title);
     $app.appendChild(createTab(INITIAL_TAB_ID.PRODUCT_MANAGE_TAB, "상품 관리"));
     $app.appendChild(createTab(INITIAL_TAB_ID.CHARGE_TAB, "잔돈 충전"));
