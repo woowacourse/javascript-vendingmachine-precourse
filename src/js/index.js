@@ -1,14 +1,18 @@
 import { $ } from './utils/querySelector.js';
 import { initScreenTemplate } from './utils/initScreenTemplate.js';
-import { handleProductAddMenu } from './components/addMenu/handleAddMenu.js';
+import handleProductMenuSubmit from './components/addMenu/productAddMenu.js';
+import { productAddMenuTemplate } from './components/addMenu/addMenuTemplate.js';
 
 const init = () => {
-  $('#product-add-menu').addEventListener('click', handleProductAddMenu);
+  $('#app').innerHTML = initScreenTemplate;
+
+  $('#product-add-menu').addEventListener('click', () => {
+    $('#app-container').innerHTML = productAddMenuTemplate;
+    $('form').addEventListener('submit', handleProductMenuSubmit);
+  });
 };
 
 export default function vendingMachineApp() {
-  $('#app').innerHTML = initScreenTemplate;
-
   init();
 }
 
