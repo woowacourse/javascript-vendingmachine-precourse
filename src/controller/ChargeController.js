@@ -3,7 +3,13 @@ export class ChargeController {
     this.model = model;
     this.coreView = coreView;
 
+    this.loadCharge();
     this.triggerEvent();
+  }
+
+  loadCharge() {
+    const chargeAmount = this.model.chargeAmount;
+    this.coreView.chargeView.showChargeAmount(chargeAmount);
   }
 
   triggerEvent() {

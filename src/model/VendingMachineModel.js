@@ -24,6 +24,7 @@ export class VendingMachineModel {
     // 총 금액을 충천
     // 충전된 만큼 동전 추가
     this.chargeAmount += chargeMoney;
+    localStorage.setItem('charge', JSON.stringify(this.chargeAmount));
     return this.chargeAmount;
   }
 
