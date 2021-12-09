@@ -1,19 +1,26 @@
 import { DOM, ERROR_MESSAGE, NUMBER } from '../utils/constant.js';
 
 export default class ProductAdd {
-  constructor() {
-    this.$productNameInput = document.querySelector(DOM.$PRODUCT_NAME_INPUT);
-  }
+  isBlank = ($element) => $element.value.length < NUMBER.MIN_LENGTH;
 
-  isBlank = () => this.$productNameInput.value.length < NUMBER.MIN_LENGTH;
+  getPriceInput = () => {
+    const $productPriceInput = document.querySelector(DOM.$PRODUCT_PRICE_INPUT);
+    if (this.isBlank($productPriceInput)) {
+      console.log(ERROR_MESSAGE.PRODUCT_PRICE_BLANK);
+      return;
+    }
+
+    return $productPriceInput.value;
+  };
 
   getNameInput = () => {
-    if (this.isBlank()) {
-      console.log(ERROR_MESSAGE.PRODUCT_NAME_IS_BLANK);
+    const $productNameInput = document.querySelector(DOM.$PRODUCT_NAME_INPUT);
+    if (this.isBlank($productNameInput)) {
+      console.log(ERROR_MESSAGE.PRODUCT_NAME_BLANK);
 
       return;
     }
 
-    return this.$productNameInput.value;
+    return $productNameInput.value;
   };
 }

@@ -14,6 +14,7 @@ export default class Controller {
     $productAddButton.addEventListener('click', () => {
       const productAdd = new ProductAdd();
       productAdd.getNameInput();
+      productAdd.getPriceInput();
     });
   };
 

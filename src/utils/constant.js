@@ -52,5 +52,6 @@ export const NUMBER = {
 };
 
 export const ERROR_MESSAGE = {
-  PRODUCT_NAME_IS_BLANK: '상품명을 공백 없이 입력해주세요.',
+  PRODUCT_NAME_BLANK: '상품명을 입력해주세요.',
+  PRODUCT_PRICE_BLANK: '가격을 입력해주세요.',
 };
