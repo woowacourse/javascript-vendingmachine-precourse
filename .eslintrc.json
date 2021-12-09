@@ -4,7 +4,12 @@
         "es2021": true,
         "node": true
     },
-    "extends": ["eslint:recommended", "airbnb", "plugin:prettier/recommended"],
+    "extends": [
+        "eslint:recommended",
+        "airbnb",
+        "plugin:prettier/recommended",
+        "prettier"
+    ],
     "parserOptions": {
         "ecmaVersion": 13,
         "sourceType": "module"
@@ -20,9 +25,9 @@
                 "singleQuote": true,
                 "semi": true,
                 "useTabs": false,
-                "tabWidth": 2,
+                "tabWidth": 4,
                 "trailingComma": "all",
-                "printWidth": 100,
+                "printWidth": 80,
                 "bracketSpacing": true,
                 "arrowParens": "avoid",
                 "endOfLine": "auto"
