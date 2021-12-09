@@ -16,6 +16,10 @@ const utils = {
   isUnderHundred: string => {
     return Number(string) < 100;
   },
+
+  isNotTenMultiple: string => {
+    return Number(string) % 10 !== 0;
+  },
 };
 
 export default utils;
