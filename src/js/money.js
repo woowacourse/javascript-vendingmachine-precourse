@@ -7,13 +7,15 @@ export const addMoney = e => {
   if (checkNotNum(money) || checkMenuPriceDivideTen(money)) {
     window.alert('잘못된 값을 입력하셨습니다.');
   } else {
-    let changedMoney = 0;
+    let chargedMoney = 0;
     const localStorageValue = JSON.parse(localStorage.getItem('money'));
     if (localStorageValue !== null) {
-      changedMoney = parseInt(localStorageValue, 10);
+      chargedMoney = parseInt(localStorageValue, 10);
     }
-    changedMoney += parseInt(money);
-    $('#vending-machine-charge-amount').innerText += ` ${changedMoney}`;
-    localStorage.setItem('money', JSON.stringify(changedMoney));
+    chargedMoney += parseInt(money);
+    $(
+      '#vending-machine-charge-amount',
+    ).innerText = `보유 금액: ${chargedMoney}`;
+    localStorage.setItem('money', JSON.stringify(chargedMoney));
   }
 };

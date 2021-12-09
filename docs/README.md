@@ -25,7 +25,7 @@
         - [X] 금액이 0이상의 숫자가 아닌 경우
     - [X] 올바른 값일 경우 보유금액에 해당 금액을 더하기 
     - [X] 보유금액을 localStorage에 저장하기
-    - [] 다른 탭에서 넘어올 때 localStorage에서 값을 불러와 render해주기
+    - [X] 다른 탭에서 넘어올 때 localStorage에서 값을 불러와 render해주기
 - [] 자판기가 보유한 동전 form 만들기
     - [] Random.pickNumberInList를 이용해서 동전 갯수를 금액에 맞게 무작위로 구하기
     - [] 각 동전 갯수를 localStorage에 저장하기
