@@ -18,13 +18,17 @@ export default class VendingController {
   }
 
   loadData() {
-    const productObj = JSON.parse(VendingModel.getLocalStorage('tab1'));
-    for (const name in productObj) {
-      if (Object.hasOwnProperty.call(productObj, name)) {
+    this.model._productObj = JSON.parse(VendingModel.getLocalStorage('tab1'));
+    this.loadTab1Data();
+  }
+
+  loadTab1Data() {
+    for (const name in this.model.productObj) {
+      if (Object.hasOwnProperty.call(this.model.productObj, name)) {
         this.makeTab1Table(
           name,
-          productObj[name].price,
-          productObj[name].quantity
+          this.model.productObj[name].price,
+          this.model.productObj[name].quantity
         );
       }
     }
