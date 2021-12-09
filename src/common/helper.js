@@ -82,3 +82,5 @@ export const isPositiveInteger = (target, description) => {
 export const isIncludes = (value, items) => items.includes(value);
 
 export const roundDown = value => Math.floor(value / +DIVIDE_CHARGING) * +DIVIDE_CHARGING;
+
+export const generateKey = (elements, selector, type) => `${elements}-${selector}-${type}`;
