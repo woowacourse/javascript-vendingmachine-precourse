@@ -10,6 +10,7 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
+    "no-unused-vars": "warn",
     "class-methods-use-this": "off",
     "no-alert": "off",
     "no-plusplus": "off",
