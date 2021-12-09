@@ -5,12 +5,11 @@ import { ProductView } from './ProductView.js';
 
 export class CoreView {
   constructor() {
+    this.$app = $('#app');
+    this.addCommonElements();
     this.ProductView = new ProductView();
     this.BalanceView = new BalanceView();
     this.BuyView = new BuyView();
-
-    this.$app = $('#app');
-    this.addCommonElements();
   }
 
   addCommonElements() {
