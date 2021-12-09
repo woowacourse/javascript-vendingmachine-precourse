@@ -30,7 +30,7 @@ export default class ProductController {
   setAddProductHandler = () => {
     const name = this.$productNameInput.value;
     const price = this.$productPriceInput.value;
-    const quantity = this.$productQuantityInput.value;
+    const quantity = Number(this.$productQuantityInput.value);
 
     try {
       this.model.addProduct({ name, price, quantity });
