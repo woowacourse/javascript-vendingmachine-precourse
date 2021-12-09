@@ -1,5 +1,8 @@
+import { $ } from '../utils/utils.js';
+import { default as UI } from './templates.js';
+
 export default class View {
   constructor() {
-    console.log('hi');
+    $('#app').insertAdjacentHTML('beforeend', UI.commonHTML);
   }
 }
