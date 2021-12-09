@@ -65,3 +65,7 @@ export const TAB_BUTTONS = [
     id: SELECTOR.productPurchaseMenuId,
   },
 ];
+
+export const LOCAL_STORAGE_KEY = {
+  currentTab: 'currentTab',
+};
