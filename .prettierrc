@@ -3,5 +3,6 @@
   "semi": true,
   "useTabs": false,
   "arrowParens": "avoid",
-  "endOfLine": "auto"
+  "endOfLine": "auto",
+  "printWidth": 100
 }
