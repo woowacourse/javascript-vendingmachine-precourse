@@ -9,10 +9,17 @@ export default class VendingView {
     this.$app.insertAdjacentHTML(position, text);
   }
 
-  switchTab(tab) {
+  hideTab() {
     document.querySelector('.tab1').classList.remove('show');
     document.querySelector('.tab2').classList.remove('show');
     document.querySelector('.tab3').classList.remove('show');
+  }
+
+  showTab(tab) {
     document.querySelector(tab).classList.add('show');
+  }
+
+  addTableRow(table, data) {
+    table.insertAdjacentHTML('beforeend', data);
   }
 }

@@ -21,13 +21,13 @@ const tab1 = `
     <h2>상품 현황</h2>
     <table>
         <thead>
-        <tr id="product-manage-item">
-            <th id="product-manage-name">상품명</th>
-            <th id="product-manage-price">가격</th>
-            <th id="product-manage-quantity">수량</th>
-        </tr>
+            <tr id="product-manage-item">
+                <th id="product-manage-name">상품명</th>
+                <th id="product-manage-price">가격</th>
+                <th id="product-manage-quantity">수량</th>
+            </tr>
         </thead>
-        <tbody id="tabAddTbody"></tbody>
+        <tbody id="tbodyOfTab1"></tbody>
     </table>
 </div>
 `;
@@ -48,13 +48,19 @@ const productNameInput = () => document.getElementById('product-name-input');
 const productPriceInput = () => document.getElementById('product-price-input');
 const productQuantityInput = () =>
   document.getElementById('product-quantity-input');
+const tbodyOfTab1 = () => document.getElementById('tbodyOfTab1');
+const createTbody = (name, price, quantity) => `
+  <tr id='product-manage-item'>
+    <td id='product-manage-name'>${name}</td>
+    <td id='product-manage-price'>${price}</td>
+    <td id='product-manage-quantity'>${quantity}</td>
+  </tr>
+`;
+const newRowOfTab1 = () =>
+  createTbody(
+    productNameInput().value,
+    productPriceInput().value,
+    productQuantityInput().value
+  );
 
-export {
-  tabMenus,
-  tab1,
-  tab2,
-  tab3,
-  productNameInput,
-  productPriceInput,
-  productQuantityInput,
-};
+export { tabMenus, tab1, tab2, tab3, tbodyOfTab1, newRowOfTab1 };

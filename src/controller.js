@@ -10,6 +10,7 @@ export default class VendingController {
   app() {
     this.view.renderInApp('afterbegin', $.tabMenus);
     this.view.renderInApp('beforeend', $.tab1);
+    this.view.showTab('.tab1');
     this.view.renderInApp('beforeend', $.tab2);
     this.view.renderInApp('beforeend', $.tab3);
     this.addAllEventListener();
@@ -18,22 +19,25 @@ export default class VendingController {
   addAllEventListener() {
     document
       .getElementById('product-add-menu')
-      .addEventListener('click', () => this.view.switchTab('.tab1'));
+      .addEventListener('click', () => this.switchTab('.tab1'));
     document
       .getElementById('vending-machine-manage-menu')
-      .addEventListener('click', () => this.view.switchTab('.tab2'));
+      .addEventListener('click', () => this.switchTab('.tab2'));
     document
       .getElementById('product-purchase-menu')
-      .addEventListener('click', () => this.view.switchTab('.tab3'));
+      .addEventListener('click', () => this.switchTab('.tab3'));
     document
       .getElementById('product-add-button')
-      .addEventListener('click', this.addProduct);
+      .addEventListener('click', e => this.addProduct.call(this, e));
   }
 
   addProduct(e) {
     e.preventDefault();
-    console.log($.productNameInput().value);
-    console.log($.productPriceInput().value);
-    console.log($.productQuantityInput().value);
+    this.view.addTableRow($.tbodyOfTab1(), $.newRowOfTab1());
+  }
+
+  switchTab(tab) {
+    this.view.hideTab();
+    this.view.showTab(tab);
   }
 }

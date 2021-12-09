@@ -10,12 +10,8 @@ th {
 }
 
 table {
-  width: 70%;
+  width: 600px;
   height: 40px;
-}
-
-.tab {
-  display: none;
 }
 
 .tab1 {
