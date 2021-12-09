@@ -1,6 +1,13 @@
 import { COIN_TYPES } from "../../utils/constants.js";
 import { insertCoinTypeToTable } from "../chargeManager/showCoinsInMachine.js";
 
+const insertQuantityOfCoins = coins => {
+  for (let i = 0; i < COIN_TYPES.length; i++) {
+    const $element = document.getElementById(`coin-${COIN_TYPES[i]}-quantity`);
+    $element.innerHTML = `${coins[i]}개`;
+  }
+};
+
 const insertCoinTypesToTable = $table => {
   COIN_TYPES.forEach(coinType => {
     insertCoinTypeToTable($table, coinType, `coin-${coinType}-quantity`);
@@ -26,4 +33,4 @@ const showReturnCoins = money => {
   }
 };
 
-export { showReturnCoins };
+export { showReturnCoins, insertQuantityOfCoins };
