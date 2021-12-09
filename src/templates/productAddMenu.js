@@ -1,11 +1,8 @@
 import { PRODUCT_ADD_TAB, SELECTOR } from '../constants.js';
+import { createTheadTableDataTemplate } from './common.js';
 
 export const createTitleTemplate = () => `
 	<h2>${PRODUCT_ADD_TAB}</h2>
-`;
-
-const createTheadTableDataTemplate = text => `
-	<td style="border: 1px solid black;padding: 10px 50px;font-weight:bold;">${text}</td>
 `;
 
 const createTbodyTableDataTemplate = (text, id) => `
@@ -26,7 +23,7 @@ export const createProductAddFormTemplate = () => `
 		<input placeholder="상품명" id="${SELECTOR.productNameInputId}" />
 		<input placeholder="가격" id="${SELECTOR.productPriceInputId}" />
 		<input placeholder="수량" id="${SELECTOR.productQuantityInputId}" />
-		<button id="${SELECTOR.productAddButtonId}" >추가하기</button>
+		<button id="${SELECTOR.productAddButtonId}">추가하기</button>
 	</div>
 `;
 

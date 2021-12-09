@@ -17,3 +17,7 @@ export const createTabButtonContainerTemplate = () => `
 export const createTabContentContainerTemplate = () => `
 	<div id="${SELECTOR.tabContentContainerId}"></div>
 `;
+
+export const createTheadTableDataTemplate = text => `
+<td style="border: 1px solid black;padding: 10px 50px;font-weight:bold;text-align: center;">${text}</td>
+`;

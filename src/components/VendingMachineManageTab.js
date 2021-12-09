@@ -3,13 +3,17 @@ import {
   createTitleTemplate,
   createChargeFormTemplate,
   createChargeAmountTemplate,
+  createCoinQuantityTableTemplate,
 } from '../templates/vendingMachineManageMenu.js';
 import { SELECTOR } from '../constants.js';
 
 class VendingMachineManageTab {
   render() {
     $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
-      createTitleTemplate() + createChargeFormTemplate() + createChargeAmountTemplate(0);
+      createTitleTemplate() +
+      createChargeFormTemplate() +
+      createChargeAmountTemplate(0) +
+      createCoinQuantityTableTemplate();
   }
 }
 
