@@ -48,7 +48,7 @@ export const TEMPLATE = {
 };
 
 export const NUMBER = {
-  MIN_LENGTH: 1,
+  BLANK_CHECK_LENGTH: 1,
 };
 
 export const ERROR_MESSAGE = {
