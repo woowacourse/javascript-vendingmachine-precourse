@@ -3,6 +3,13 @@ import { $ } from '../utils/DOM.js';
 export class ChargeView {
   constructor() {
     this.$productBalanceSection = $('#product-balance-section');
+    this.$chargeInput;
+    this.$chargeButton;
+    this.$chargeAmount;
+    this.$coin500Quantity;
+    this.$coin100Quantity;
+    this.$coin50Quantity;
+    this.$coin10Quantity;
     this.addElements();
   }
 
@@ -13,7 +20,7 @@ export class ChargeView {
         <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액" />
         <button id="vending-machine-charge-button">충전하기</button>
       </form>
-      <div id="vending-machine-charge-amount">보유 금액: </div>
+      <div>보유 금액: <span id="vending-machine-charge-amount"></span> </div>
       <h3>자판기가 보유한 동전</h3>
       <table>
         <tr>
@@ -38,5 +45,12 @@ export class ChargeView {
         </tr>
       </table>
     `;
+    this.$chargeInput = $('#vending-machine-charge-input');
+    this.$chargeButton = $('#vending-machine-charge-button');
+    this.$chargeAmount = $('#vending-machine-charge-amount');
+    this.$coin500Quantity = $('#vending-machine-coin-500-quantity');
+    this.$coin100Quantity = $('#vending-machine-coin-100-quantity');
+    this.$coin50Quantity = $('#vending-machine-coin-50-quantity');
+    this.$coin10Quantity = $('#vending-machine-coin-10-quantity');
   }
 }
