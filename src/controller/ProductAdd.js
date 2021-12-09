@@ -10,10 +10,13 @@ export default class ProductAdd {
 
   isPositiveInteger = ($element) => {
     const productPriceNumber = Number($element.value);
-    return Number.isInteger(productPriceNumber) && productPriceNumber > 0;
+    return Number.isInteger(productPriceNumber) && productPriceNumber > NUMBER.ZERO;
   };
 
-  isValidPriceInput = () => !this.isBlank(this.$productPriceInput) && this.isPositiveInteger(this.$productPriceInput);
+  isUnitOfTen = () => Number(this.$productPriceInput.value) % NUMBER.UNIT_CHECK_TEN === NUMBER.ZERO;
+
+  isValidPriceInput = () =>
+    !this.isBlank(this.$productPriceInput) && this.isPositiveInteger(this.$productPriceInput) && this.isUnitOfTen();
 
   isValidNameInput = () => !this.isBlank(this.$productNameInput);
 

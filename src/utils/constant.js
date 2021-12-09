@@ -49,6 +49,8 @@ export const TEMPLATE = {
 
 export const NUMBER = {
   BLANK_CHECK_LENGTH: 1,
+  UNIT_CHECK_TEN: 10,
+  ZERO: 0,
 };
 
 export const ERROR_MESSAGE = {
