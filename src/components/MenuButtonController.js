@@ -9,6 +9,7 @@ export default class MenuButtonController {
 
       if (targetId === 'product-add-menu') {
         ProductAddView.render();
+        ProductAddView.addEvent();
       }
       if (targetId === 'vending-machine-manage-menu') {
         MachineManageView.render();

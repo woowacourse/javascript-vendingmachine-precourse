@@ -2,7 +2,7 @@
     "endOfLine": "auto",
     "arrowParens": "always",
     "bracketSpacing": true,
-    "printWidth": 80,
+    "printWidth": 200,
     "proseWrap": "always",
     "quoteProps": "as-needed",
     "semi": true,
