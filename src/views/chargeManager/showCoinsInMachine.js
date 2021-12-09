@@ -44,4 +44,4 @@ const showCoinsInMachine = () => {
   }
 };
 
-export { showCoinsInMachine };
+export { showCoinsInMachine, insertCoinTypeToTable };
