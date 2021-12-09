@@ -47,4 +47,20 @@ export default class CoinStorageView {
   render = (container, template) => {
     container.insertAdjacentHTML("beforeend", template);
   };
+
+  renderCoinAmount = (coins) => {
+    const $coin500 = document.getElementById("vending-machine-coin-500-quantity");
+    const $coin100 = document.getElementById("vending-machine-coin-100-quantity");
+    const $coin50 = document.getElementById("vending-machine-coin-50-quantity");
+    const $coin10 = document.getElementById("vending-machine-coin-10-quantity");
+
+    $coin500.innerText = this.formatCoinAmount(coins[500]);
+    $coin100.innerText = this.formatCoinAmount(coins[100]);
+    $coin50.innerText = this.formatCoinAmount(coins[50]);
+    $coin10.innerText = this.formatCoinAmount(coins[10]);
+  };
+
+  formatCoinAmount = (amount) => {
+    return `${amount}개`;
+  };
 }
