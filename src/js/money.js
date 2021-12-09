@@ -1,6 +1,6 @@
 import { $ } from './util/dom.js';
 import { checkNotNum, checkMenuPriceDivideTen } from './addMenu.js';
-import { renderMoney } from './render.js';
+import { renderMoney, renderCoinsItems } from './render.js';
 import { COINS } from './constant/constant.js';
 
 export const addMoney = e => {
@@ -28,9 +28,13 @@ export const getCoins = () => {
 const setCoins = (fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins) => {
   let coinsArray = [fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins];
   for (let i = 0; i < COINS.length; i++) {
-    coinsArray[i] += parseInt(localStorage.getItem(`${COINS[i]}`), 10);
+    const localStorageCoin = localStorage.getItem(`${COINS[i]}`);
+    if (localStorageCoin !== null) {
+      coinsArray[i] += parseInt(localStorageCoin, 10);
+    }
     localStorage.setItem(`${COINS[i]}`, coinsArray[i]);
   }
+  renderCoinsItems();
 };
 
 export const getRandomCoin = maxCoinNumber => {

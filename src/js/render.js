@@ -1,5 +1,6 @@
 import { getCoins } from './money.js';
 import { $ } from './util/dom.js';
+import { COINS, COINS_PRICE } from './constant/constant.js';
 
 export const renderProductAddMenu = () => {
   renderCommonPart();
@@ -12,6 +13,7 @@ export const renderVendingMachineManageMenu = () => {
   renderChargeChangesForm();
   renderChargeChangetAmount();
   renderCoinTable();
+  renderCoinsItems();
 };
 export const renderProductPurchaseMenu = () => {
   renderCommonPart();
@@ -106,21 +108,25 @@ export const renderMoney = () => {
   getCoins();
   return chargedMoney;
 };
-
-export const renderCoins = () => {
-  const menu = JSON.parse(localStorage.getItem('menu'));
-  if (menu !== null) {
-    const template = menu.map(item => {
+export const renderCoinsItems = () => {
+  $('.item-table-body').innerHTML = '';
+  for (let i = 0; i < COINS.length; i++) {
+    let coinNum = localStorage.getItem(`${COINS[i]}`);
+    if (coinNum === null) {
+      coinNum = 0;
+    }
+    const template = () => {
       return `
         <tr class='product-manage-item'>
-          <td class='product-items-header' id='product-manage-name'>${item.name}</td>
-          <td class='product-items-header' id='product-manage-price'>${item.price}</td>
+          <td class='product-items-header' id='product-manage-name'>${COINS_PRICE[i]}</td>
+          <td class='product-items-header' id='product-manage-price'>${coinNum}개</td>
         </tr>
       `;
-    });
-    $('.item-table-body').innerHTML = template.join('');
+    };
+    $('.item-table-body').innerHTML += template();
   }
 };
+
 export const renderProductItemsTable = () => {
   const template = () => {
     return `

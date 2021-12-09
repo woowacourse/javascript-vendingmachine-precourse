@@ -7,9 +7,6 @@ import { COINS } from './constant/constant.js';
 
 function App() {
   renderProductAddMenu();
-  for (let coin in COINS) {
-    localStorage.setItem(`${COINS[coin]}`, 0);
-  }
   const handleClick = e => {
     if (e.target.id === 'product-add-menu') {
       renderProductAddMenu();
