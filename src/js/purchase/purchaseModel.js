@@ -17,6 +17,10 @@ export default class PurchaseModel {
     this.chargedMoney += money;
   };
 
+  spendMoney = (price) => {
+    this.chargedMoney -= price;
+  };
+
   isNotPositiveNumber = (money) => {
     return money <= 0;
   };

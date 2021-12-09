@@ -45,7 +45,7 @@ export default class PurchaseView {
           <td class="product-purchase-name" data-product-name=${name}>${name}</td>
           <td class="product-purchase-price" data-product-price=${price}>${price}</td>
           <td class="product-purchase-quantity" data-product-quantity=${quantity}>${quantity}</td>
-          <td class="purchase-button"><button>구매하기</button></td>
+          <td><button class="purchase-button">구매하기</button></td>
         </tr>
         `;
       })

@@ -25,6 +25,7 @@ export default class PurchaseController {
 
   setEvent = () => {
     this.$chargeButton.addEventListener("click", this.setClickChargeButtonEvent);
+    this.$container.addEventListener("click", this.setClickPurchaseButtonEvent);
   };
 
   setClickChargeButtonEvent = () => {
@@ -36,6 +37,16 @@ export default class PurchaseController {
     } catch (err) {
       alert(err);
     }
+  };
+
+  setClickPurchaseButtonEvent = ({ target }) => {
+    if (target.className !== "purchase-button") return;
+
+    const product = target.closest("tr").getElementsByClassName("product-purchase-price")[0];
+    const price = Number(product.dataset.productPrice);
+
+    this.model.spendMoney(price);
+    this.updatePage();
   };
 
   updatePage = () => {
