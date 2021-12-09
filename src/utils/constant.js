@@ -22,13 +22,13 @@ export const TEMPLATE = {
   <section id="vending-machine-section"></section>
   `,
   PRODUCT_ADD_MENU: `
-  <h2>상품 추가하기</h2>
+  <h3>상품 추가하기</h3>
   <input type='text' placeholder='상품명' id='product-name-input' />
   <input type='number' placeholder='가격' id='product-price-input' />
   <input type='number' placeholder='수량' id='product-quantity-input' />
   <button id='product-add-button'>추가하기</button>
 
-  <h2>상품 현황</h2>
+  <h3>상품 현황</h3>
   <table id='product-manage-table'>
     <thead>
       <tr>
