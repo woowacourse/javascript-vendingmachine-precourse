@@ -9,7 +9,7 @@ export default class CoinStorageController {
   }
 
   init = () => {
-    this.view.renderInputForm(this.$container);
+    this.view.renderPage(this.$container);
     this.initDOMS();
     this.setEvent();
     this.updatePage();

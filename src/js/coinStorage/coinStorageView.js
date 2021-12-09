@@ -1,5 +1,5 @@
 export default class CoinStorageView {
-  renderInputForm = (container) => {
+  renderPage = (container) => {
     const template = `
       <h2>자판기 동전 추가하기</h2>
       <div>

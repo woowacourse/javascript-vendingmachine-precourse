@@ -1,5 +1,5 @@
 export default class ProductView {
-  renderInputForm = (container) => {
+  renderPage = (container) => {
     const template = `
     <h2>상품 추가하기</h2>
     <input type="text" id="product-name-input" placeholder="상품명">
