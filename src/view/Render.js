@@ -5,6 +5,10 @@ export default class Render {
     this.$app = document.querySelector(DOM.$APP);
   }
 
+  alertMessage = (message) => {
+    alert(message);
+  };
+
   productAddMenuTemplate = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
     $vendingMachineSection.innerHTML = TEMPLATE.PRODUCT_ADD_MENU;

@@ -12,7 +12,7 @@ export default class Controller {
   onClickProductAddButton = () => {
     const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
     $productAddButton.addEventListener('click', () => {
-      const productAdd = new ProductAdd();
+      const productAdd = new ProductAdd(this.render);
       productAdd.isValidInputs();
     });
   };

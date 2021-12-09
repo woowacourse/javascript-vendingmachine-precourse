@@ -1,12 +1,20 @@
-import { DOM, NUMBER } from '../utils/constant.js';
+import { DOM, ERROR_MESSAGE, NUMBER } from '../utils/constant.js';
 
 export default class ProductAdd {
-  constructor() {
+  constructor(render) {
+    this.render = render;
     this.$productPriceInput = document.querySelector(DOM.$PRODUCT_PRICE_INPUT);
     this.$productNameInput = document.querySelector(DOM.$PRODUCT_NAME_INPUT);
   }
 
-  isBlank = ($element) => $element.value.length < NUMBER.BLANK_CHECK_LENGTH;
+  isBlank = ($element) => {
+    if ($element.value.length < NUMBER.BLANK_CHECK_LENGTH) {
+      this.render.alertMessage(ERROR_MESSAGE.PRODUCT_BLANK($element.placeholder));
+      return true;
+    }
+
+    return false;
+  };
 
   isPositiveInteger = ($element) => {
     const productPriceNumber = Number($element.value);

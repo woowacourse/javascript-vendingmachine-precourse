@@ -54,6 +54,7 @@ export const NUMBER = {
 };
 
 export const ERROR_MESSAGE = {
-  PRODUCT_NAME_BLANK: '상품명을 입력해주세요.',
-  PRODUCT_PRICE_BLANK: '가격을 입력해주세요.',
+  PRODUCT_BLANK(placeholder) {
+    return `${placeholder}을 입력해주세요.`;
+  },
 };
