@@ -1,5 +1,6 @@
 import showMain from './showMain.js';
 import ProductAddView from './ProductAddView.js';
+import MachineManageView from './MachineManageView.js';
 
 export default class App {
   constructor() {
@@ -10,6 +11,13 @@ export default class App {
       .addEventListener('click', (e) => {
         e.preventDefault();
         ProductAddView.render();
+      });
+
+    document
+      .getElementById('vending-machine-manage-menu')
+      .addEventListener('click', (e) => {
+        e.preventDefault();
+        MachineManageView.render();
       });
   }
 }

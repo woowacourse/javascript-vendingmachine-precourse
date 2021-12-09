@@ -16,7 +16,7 @@ export const HTML_OF_PRODUCT_ADD_PART = `
   <h4>상품 현황</h4>`;
 
 // 잔돈 충전 부분
-export const HTML_OF_MANAGE_PART = `
+export const HTML_OF_MACHINE_MANAGE_PART = `
   <h4>자판기 동전 충전하기</h4>
   <input type="number" placeholder="자판기가 보유할 금액" id="vending-machine-charge-input"></input>
   <button id="vending-machine-charge-button">충전하기</button><br><br>
