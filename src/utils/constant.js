@@ -1,12 +1,21 @@
 export const DOM = {
-  $APP: document.querySelector('#app'),
-  $PRODUCT_ADD_MENU: document.querySelector('#product-add-menu'),
-  $VENDING_MACHINE_MANAGE_MENU: document.querySelector('#vending-machine-manage-menu'),
-  $PRODUCT_PURCHASE_MENU: document.querySelector('#product-purchase-menu'),
-  $VENDING_MACHINE_SECTION: document.querySelector('#vending-machine-section'),
+  $APP: '#app',
+  $PRODUCT_ADD_MENU: '#product-add-menu',
+  $VENDING_MACHINE_MANAGE_MENU: '#vending-machine-manage-menu',
+  $PRODUCT_PURCHASE_MENU: '#product-purchase-menu',
+  $VENDING_MACHINE_SECTION: '#vending-machine-section',
 };
 
 export const TEMPLATE = {
+  MAIN: `
+  <header id="vending-machine-header">
+    <h1>🥤자판기🥤</h1>
+    <button id="product-add-menu">상품 관리</button>
+    <button id="vending-machine-manage-menu">잔돈 충전</button>
+    <button id="product-purchase-menu">상품 구매</button>
+  </header>
+  <section id="vending-machine-section"></section>
+  `,
   PRODUCT_ADD_MENU: `
   <h2>상품 추가하기</h2>
   <input type='text' placeholder='상품명' id='product-name-input' />

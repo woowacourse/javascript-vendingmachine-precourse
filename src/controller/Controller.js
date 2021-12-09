@@ -4,18 +4,25 @@ import Render from '../view/Render.js';
 export default class Controller {
   constructor() {
     this.render = new Render();
+    this.$app = document.querySelector(DOM.$APP);
     this.main();
   }
 
   onMainTemplateButtonClick = () => {
-    DOM.$APP.addEventListener('click', (event) => {
-      if (event.target === DOM.$PRODUCT_ADD_MENU) {
+    this.$app.addEventListener('click', (event) => {
+      const $productAddMenu = document.querySelector(DOM.$PRODUCT_ADD_MENU);
+      if (event.target === $productAddMenu) {
         this.render.productAddMenuTemplate();
       }
     });
   };
 
+  renderMainTemplate = () => {
+    this.render.mainTemplate();
+  };
+
   main = () => {
+    this.renderMainTemplate();
     this.onMainTemplateButtonClick();
   };
 }
