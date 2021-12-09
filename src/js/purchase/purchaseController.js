@@ -44,12 +44,19 @@ export default class PurchaseController {
     if (target.className !== "purchase-button") return;
 
     const product = target.closest("tr");
-    const name = product.getElementsByClassName("product-purchase-name")[0].dataset.productName;
-    const price = Number(
-      product.getElementsByClassName("product-purchase-price")[0].dataset.productPrice
-    );
+    const name = product.querySelector(".product-purchase-name").dataset.productName;
+    const price = product.querySelector(".product-purchase-price").dataset.productPrice;
+    const quantity = product.querySelector(".product-purchase-quantity").dataset.productQuantity;
 
-    this.model.spendMoney(price);
+    try {
+      this.buy({ name, price, quantity });
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  buy = ({ name, price, quantity }) => {
+    this.model.spendMoney(Number(price), Number(quantity));
     this.product.model.buyProduct(name);
     this.updatePage();
   };

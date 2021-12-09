@@ -17,7 +17,13 @@ export default class PurchaseModel {
     this.chargedMoney += money;
   };
 
-  spendMoney = (price) => {
+  spendMoney = (price, quantity) => {
+    if (this.isExpesiveThanChargedMoney(price)) {
+      throw new Error("충전금액이 모자릅니다");
+    } else if (this.isZeroQuantity(quantity)) {
+      throw new Error("잔고가 없습니다");
+    }
+
     this.chargedMoney -= price;
   };
 
@@ -27,5 +33,13 @@ export default class PurchaseModel {
 
   isNotPriceDividedByTen = (money) => {
     return money % 10 !== 0;
+  };
+
+  isZeroQuantity = (quantity) => {
+    return quantity === 0;
+  };
+
+  isExpesiveThanChargedMoney = (price) => {
+    return price > this.chargedMoney;
   };
 }
