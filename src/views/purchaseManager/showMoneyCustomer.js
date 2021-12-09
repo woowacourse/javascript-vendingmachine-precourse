@@ -1,11 +1,14 @@
 const showMoneyCustomer = () => {
-  const $chargeAmount = document.getElementById("charge-amount");
+  const $chargeAmountDiv = document.getElementById("charge-amount-div");
   const moneyCustomer = JSON.parse(localStorage.getItem("money"));
 
   if (moneyCustomer) {
-    $chargeAmount.innerHTML = `${moneyCustomer}원`;
+    $chargeAmountDiv.innerHTML = `
+      투입한 금액:
+      <span id="charge-amount">${moneyCustomer}</span>원
+    `;
   } else {
-    $chargeAmount.innerHTML = "";
+    $chargeAmountDiv.innerHTML = "투입한 금액: ";
   }
 };
 

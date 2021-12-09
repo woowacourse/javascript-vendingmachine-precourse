@@ -4,9 +4,7 @@ const addCharge = () => {
     <button id="charge-button">투입하기</button>
     <br />
     <br />
-    <div>투입한 금액: 
-      <span id="charge-amount"></span>
-    </div>
+    <div id="charge-amount-div"></div>
     <br />
   `;
 };

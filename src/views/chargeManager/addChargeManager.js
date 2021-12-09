@@ -4,9 +4,7 @@ const addVendingMachineCharge = () => {
     <button id="vending-machine-charge-button">충전하기</button>
     <br />
     <br />
-    <div>보유 금액: 
-      <span id="vending-machine-charge-amount"></span>
-    </div>
+    <div id="machine-charge-amount-div"></div>
     <br />
   `;
 };
