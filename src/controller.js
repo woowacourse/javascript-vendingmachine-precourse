@@ -1,4 +1,5 @@
 import * as $ from './dom.js';
+import VendingModel from './model.js';
 
 export default class VendingController {
   constructor(model, view) {
@@ -13,6 +14,20 @@ export default class VendingController {
     this.view.renderInApp('beforeend', $.tab2);
     this.view.renderInApp('beforeend', $.tab3);
     this.addAllEventListener();
+    this.loadData();
+  }
+
+  loadData() {
+    const productObj = JSON.parse(VendingModel.getLocalStorage('tab1'));
+    for (const name in productObj) {
+      if (Object.hasOwnProperty.call(productObj, name)) {
+        this.makeTab1Table(
+          name,
+          productObj[name].price,
+          productObj[name].quantity
+        );
+      }
+    }
   }
 
   addAllEventListener() {
@@ -30,14 +45,19 @@ export default class VendingController {
       .addEventListener('click', e => this.addProduct.call(this, e));
   }
 
+  makeTab1Table(name, price, quantity) {
+    const newRowOfTab1 = () => $.createTbody(name, price, quantity);
+    this.view.addTableRow($.tbodyOfTab1(), newRowOfTab1());
+  }
+
   addProduct(e) {
     e.preventDefault();
-    this.view.addTableRow($.tbodyOfTab1(), $.newRowOfTab1());
     const name = $.productNameInput().value;
     const price = $.productPriceInput().value;
     const quantity = $.productQuantityInput().value;
+    this.makeTab1Table(name, price, quantity);
     this.model.productObj = { name, price, quantity };
-    console.log(this.model.productObj);
+    VendingModel.setLocalStorage('tab1', this.model.productObj);
   }
 
   switchTab(tab) {

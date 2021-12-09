@@ -70,6 +70,7 @@ export {
   tab3,
   tbodyOfTab1,
   newRowOfTab1,
+  createTbody,
   productNameInput,
   productPriceInput,
   productQuantityInput,

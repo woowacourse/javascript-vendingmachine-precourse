@@ -39,7 +39,7 @@ export default class VendingModel {
   }
 
   static setLocalStorage(key, data) {
-    localStorage.setItem(key, data);
+    localStorage.setItem(key, JSON.stringify(data));
   }
 
   static getLocalStorage(key) {
