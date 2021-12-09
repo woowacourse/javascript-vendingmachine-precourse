@@ -6,6 +6,7 @@ import ButtonById from '../asset/components/Button/ButtonById.js';
 import CoinRow from '../asset/components/Row/CoinRow.js';
 import CellById from '../asset/components/Cell/CellById.js';
 import Cell from '../asset/components/Cell/index.js';
+import SubmitForm from '../asset/components/SubmitForm/index.js';
 import BUTTON from '../asset/constants/BUTTON.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
@@ -68,35 +69,15 @@ export default class ChargeCoinTap extends Tap {
     }
 
     createChargeCoinForm() {
-        const $wrap = document.createElement('div');
-
-        $wrap.style.marginBottom = '15px';
-        $wrap.append(SubTitle(SUB_TITLE_TEXT.chargeCoin));
-        $wrap.append(this.getChargeCoinFormInput());
-        $wrap.append(this.getChargeAmountGuideWrap());
-        this.appendToApp($wrap);
-    }
-
-    getChargeCoinFormInput() {
-        const $inputWrap = document.createElement('div');
-
-        this.$chargeButton.style.marginLeft = '5px';
-        $inputWrap.append(this.$chargeCoinInput);
-        $inputWrap.append(this.$chargeButton);
-
-        return $inputWrap;
-    }
-
-    getChargeAmountGuideWrap() {
-        const $guideWrap = document.createElement('p');
-        const $guide = document.createElement('span');
-
-        $guideWrap.style.marginTop = '10px';
-        $guide.append(`${GUIDE.chargeCoin}:`);
-        $guideWrap.append($guide);
-        $guideWrap.append(this.$chargeAmount);
-
-        return $guideWrap;
+        this.appendToApp(
+            SubmitForm(
+                SUB_TITLE_TEXT.chargeCoin,
+                this.$chargeCoinInput,
+                this.$chargeButton,
+                GUIDE.chargeCoin,
+                this.$chargeAmount,
+            ),
+        );
     }
 
     createCoinsForm() {

@@ -12,6 +12,7 @@ import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
 import CHANGE_COIN_ID from '../asset/constants/CHANGE_COIN_ID.js';
 import Tap from './Tap.js';
 import GUIDE from '../asset/constants/GUIDE.js';
+import SubmitForm from '../asset/components/SubmitForm/index.js';
 
 export default class PurchaseTap extends Tap {
     constructor($skeleton) {
@@ -28,38 +29,14 @@ export default class PurchaseTap extends Tap {
     }
 
     init() {
-        this.createInputCoinForm();
-    }
-
-    createInputCoinForm() {
-        const $wrap = document.createElement('div');
-
-        $wrap.style.marginBottom = '15px';
-        $wrap.append(SubTitle(SUB_TITLE_TEXT.inputAmount));
-        $wrap.append(this.getInputCoinFormInput());
-        $wrap.append(this.getInputCoinGuideWrap());
-        this.appendToApp($wrap);
-    }
-
-    getInputCoinFormInput() {
-        const $inputWrap = document.createElement('div');
-
-        this.$inputButton.style.marginLeft = '5px';
-        $inputWrap.append(this.$inputAmountInput);
-        $inputWrap.append(this.$inputButton);
-
-        return $inputWrap;
-    }
-
-    getInputCoinGuideWrap() {
-        const $guideWrap = document.createElement('p');
-        const $guide = document.createElement('span');
-
-        $guideWrap.style.marginTop = '10px';
-        $guide.append(`${GUIDE.inputAmount}:`);
-        $guideWrap.append($guide);
-        $guideWrap.append(this.$inputAmount);
-
-        return $guideWrap;
+        this.appendToApp(
+            SubmitForm(
+                SUB_TITLE_TEXT.inputAmount,
+                this.$inputAmountInput,
+                this.$inputButton,
+                GUIDE.inputAmount,
+                this.$inputAmount,
+            ),
+        );
     }
 }
