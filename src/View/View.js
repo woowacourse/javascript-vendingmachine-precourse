@@ -38,4 +38,63 @@ export default class View {
 
     return element;
   }
+
+  displayProductAdd() {
+    this.productAddMenu.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!this.addProductForm) {
+        this.addProductForm = this.createElement("div");
+        this.title = this.createElement(
+          "h3",
+          "add-product-title",
+          "상품 추가하기"
+        );
+        this.productNameInput = this.createElement(
+          "input",
+          "product-name-input"
+        );
+        this.productNameInput.placeholder = "상품명";
+        this.productPriceInput = this.createElement(
+          "input",
+          "product-price-input"
+        );
+        this.productPriceInput.type = "number";
+        this.productPriceInput.placeholder = "가격";
+        this.productQuantityInput = this.createElement(
+          "input",
+          "product-quantity-input"
+        );
+        this.productQuantityInput.type = "number";
+        this.productQuantityInput.placeholder = "수량";
+        this.productAddButton = this.createElement(
+          "button",
+          "product-add-button",
+          "추가하기"
+        );
+        const presentTitle = this.createElement(
+          "h3",
+          "present-title",
+          "상품 현황"
+        );
+        this.productTable = this.createElement("table");
+        this.tr = this.createElement("tr");
+        this.thProductName = this.createElement("th", "th", "상품명");
+        this.thPrice = this.createElement("th", "th", "가격");
+        this.thQuantity = this.createElement("th", "th", "수량");
+        this.tr.append(this.thProductName, this.thPrice, this.thQuantity);
+        this.productTable.append(this.tr);
+
+        this.addProductForm.append(
+          this.title,
+          this.productNameInput,
+          this.productPriceInput,
+          this.productQuantityInput,
+          this.productAddButton,
+          presentTitle,
+          this.productTable
+        );
+      }
+      this.form.append(this.addProductForm);
+    });
+  }
 }
