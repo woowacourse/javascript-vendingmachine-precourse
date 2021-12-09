@@ -1,9 +1,9 @@
 import CellByClassName from './CellByClassName.js';
 
-const CellByClassNameAndDataset = (content, className, dataset) => {
+const CellByClassNameAndDataset = (content, className, datasetKey, datasetVal) => {
     const ret = CellByClassName(content, className);
 
-    ret.dataset = dataset;
+    ret.dataset[datasetKey] = datasetVal;
 
     return ret;
 };
