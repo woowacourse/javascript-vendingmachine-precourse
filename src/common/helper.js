@@ -1,3 +1,5 @@
+import { EMPTY, ERROR_MESSAGES } from '../constants/index.js';
+
 export const $ = selector => document.querySelector(selector);
 
 export const $all = selector => document.querySelectorAll(selector);
@@ -14,3 +16,67 @@ export const $closest = (element, selector) => {
 
   return false;
 };
+
+/**
+ * alert에 출력할 에러 메세지를 설정합니다.
+ *
+ * @param {string} type
+ * @returns {undefined} : Falsy
+ */
+export const setErrorMessage = (type, description = '') => {
+  alert(`${description}${ERROR_MESSAGES[type]}`);
+  return EMPTY;
+};
+
+/**
+ * 값이 null인지 검사합니다.
+ *
+ * @param {string|number} value
+ * @returns {boolean}
+ */
+export const isNull = value => value === null || value === undefined;
+
+/**
+ * 첫 번째 인자와 두 번째 인자의 값이 같은지 검사합니다.
+ *
+ * @param {string|number} value
+ * @param {string|number} target
+ * @returns {boolean}
+ */
+export const isEquals = (value, target) => value === target;
+
+/**
+ * 값이 비어있는지 검사합니다.
+ *
+ * @param {Array|number|string} value
+ * @returns {boolean}
+ */
+export const isEmpty = value => {
+  if (value instanceof Array) return value.length < 1 || value === [];
+  if (typeof value === 'number') return value === 0;
+  return value === EMPTY;
+};
+
+/**
+ * 양의 정수인지 검사합니다.
+ * 1. 값이 0일 수 없습니다.
+ * 2. 값이 음수일 수 없습니다.
+ * 3. 값이 소수일 수 없습니다.
+ *
+ * @param {number|string} target
+ * @returns {number | ''}
+ */
+export const isPositiveInteger = (target, description) => {
+  const parsed = +target;
+
+  if (isEquals(parsed, 0)) return setErrorMessage('zeroError', description);
+
+  if (parsed < 0) return setErrorMessage('negativeError', description);
+
+  if (!isEquals(Number.isInteger(parsed), true))
+    return setErrorMessage('decimalError', description);
+
+  return parsed;
+};
+
+export const isIncludes = (value, items) => items.includes(value);
