@@ -1,23 +1,13 @@
 import Component from '../../core/Component.js';
 import Item from '../common/Item.js';
 import $ from '../../helpers.js';
+import isValidItem from '../../utils/isValidItem.js';
 
 export default class ProductAddMenu extends Component {
   setup() {
     const { items } = this.props;
 
     this.state = { items };
-
-    this.isValidItem = (name, price, quantity) => {
-      return (
-        name.length >= 1 &&
-        Number.isInteger(price) &&
-        price >= 100 &&
-        price % 10 === 0 &&
-        Number.isInteger(quantity) &&
-        quantity >= 1
-      );
-    };
   }
 
   template() {
@@ -47,7 +37,7 @@ export default class ProductAddMenu extends Component {
       const price = $('#product-price-input').valueAsNumber;
       const quantity = $('#product-quantity-input').valueAsNumber;
 
-      if (!this.isValidItem(name, price, quantity)) {
+      if (!isValidItem(name, price, quantity)) {
         alert('error');
 
         return;
@@ -55,11 +45,7 @@ export default class ProductAddMenu extends Component {
 
       const item = new Item(name, price, quantity);
 
-      this.props.addItem(item);
-
-      this.setState({
-        items: [...this.state.items, item],
-      });
+      this.setState({ items: this.props.addItem(item) });
     });
   }
 }

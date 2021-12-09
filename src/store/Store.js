@@ -31,4 +31,16 @@ export default class Store {
       callback();
     }
   }
+
+  updateChange(change, callback) {
+    const state = this.getLocalStorage();
+
+    state.change = change;
+
+    this.setLocalStorage(state);
+
+    if (callback) {
+      callback();
+    }
+  }
 }
