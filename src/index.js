@@ -6,6 +6,8 @@ import {
   USERMONEY,
   VENDINGCOIN_STORGAE_NAME,
 } from './constants/constants.js';
+import renderProdutAddMenu from './views/renderProductAddMenu.js';
+import store from './storage/store.js';
 
 export default function vendingMachine() {
   this.userTotalMoney;
@@ -17,6 +19,13 @@ export default function vendingMachine() {
     this.userTotalMoney = initStorage(USERMONEY);
     this.drinkMenuObjectList = initStorage(DRINK_STORAGE_NAME);
     this.vendingCoinList = initStorage(VENDINGCOIN_STORGAE_NAME);
+    initEventListener();
+  };
+
+  const initEventListener = () => {
+    $('#product-add-menu').addEventListener('click', renderProdutAddMenu);
+    // $('#vending-machine-manage-menu').addEventListener('click', render)
+    // $('#product-purchase-menu').addEventListener('click')
   };
 }
 

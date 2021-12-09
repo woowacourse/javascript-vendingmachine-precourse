@@ -9,3 +9,5 @@ export const TAB_INFO_LIST = [
 export const DRINK_STORAGE_NAME = 'drink';
 export const VENDINGCOIN_STORGAE_NAME = 'vendingCoin';
 export const USERMONEY = 'userMoney';
+
+export const NOW_PRODUCT_TABLE_TITLE = ['상품명', '가격', '수량'];

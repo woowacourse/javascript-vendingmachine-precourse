@@ -16,21 +16,21 @@
 
 [x] 상품관리 탭으로 이동하는 버튼은 product-add-menu id를 가진다
 
-[ ] product-purchase-menu 버튼을 클릭하면 상품관리 탭이 tab-content-container div 내에 랜더링 된다
+[x] product-purchase-menu 버튼을 클릭하면 상품관리 탭이 tab-content-container div 내에 랜더링 된다
 
-[ ] 상품 추가 입력 폼의 상품명 입력 요소는 product-name-input id를 가진다
+[x] 상품 추가 입력 폼의 상품명 입력 요소는 product-name-input id를 가진다
 
-[ ] 상품명 입력 요소의 placeholder은 "상품명"으로 한다
+[x] 상품명 입력 요소의 placeholder은 "상품명"으로 한다
 
-[ ] 상품 추가 입력 폼의 가격 입력 요소는 product-price-input id를 가진다
+[x] 상품 추가 입력 폼의 가격 입력 요소는 product-price-input id를 가진다
 
-[ ] 가격 입력 요소의 placeholder은 "가격"으로 한다
+[x] 가격 입력 요소의 placeholder은 "가격"으로 한다
 
-[ ] 상품명 추가 입력 폼의 수량 입력 요소는 product-quantity-input id를 가진다
+[x] 상품명 추가 입력 폼의 수량 입력 요소는 product-quantity-input id를 가진다
 
-[ ] 수량 입력 요소의 placeholder는 "수량"으로 한다
+[x] 수량 입력 요소의 placeholder는 "수량"으로 한다
 
-[ ] 상품 추가하기 버튼 요소는 product-add-button id를 가진다
+[x] 상품 추가하기 버튼 요소는 product-add-button id를 가진다
 
 [ ] product-add-button 을 누르면 상품명, 가격, 수량 입력값에 대한 유효성 평가를 한다
 
@@ -45,6 +45,8 @@
 [ ] 유저의 입력값이 유효한 경우 drink localStorage에 객체 형태로 값을 저장한다
 
 [ ] localStorage 값을 토대로 상품 현황에 유저가 입력한 값을 보여준다
+
+[ ] 추가하기 버튼을 클릭할 때마다 상품현황이 update 되어 render가 된다
 
 <hr>
 
