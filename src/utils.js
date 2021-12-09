@@ -1,10 +1,9 @@
-export function makeElement({ tag, id, innerText }) {
-  const element = document.createElement(tag);
-  if (id) {
-    element.id = id;
-  }
-  if (innerText) {
-    element.innerText = innerText;
-  }
-  return element;
-}
+export const clearArea = container => {
+  container.innerText = "";
+};
+
+export const clearInputValue = (...inputs) => {
+  inputs.forEach(input => {
+    input.value = "";
+  });
+};

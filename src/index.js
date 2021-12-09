@@ -1,8 +1,13 @@
-import VENDING_MACHINE from "./constant/vendingMachine.js";
-import { makeElement } from "./utils.js";
+import { makeElement } from "./view/template.js";
 import productAddView from "./view/productAddView.js";
 import productPurchaseView from "./view/productPurchaseView.js";
 import coinManageView from "./view/coinMangeView.js";
+import {
+  TITLE,
+  PRODUCT_MANAGE,
+  COIN_MANAGE,
+  PRODUCT_PURCHASE_MANAGE,
+} from "./constant/vendingMachine.js";
 
 class VendingMachine {
   constructor() {
@@ -11,7 +16,7 @@ class VendingMachine {
   }
 
   turnOn() {
-    const vendingMachineTitle = makeElement({ tag: "h1", innerText: VENDING_MACHINE.TITLE });
+    const vendingMachineTitle = makeElement({ tag: "h1", innerText: TITLE });
     const menuButton = this.makeMenuButton();
     this.app.append(vendingMachineTitle, menuButton);
     menuButton.insertAdjacentElement("afterend", this.contentContainer);
@@ -22,17 +27,17 @@ class VendingMachine {
     const productAddMenuButton = makeElement({
       tag: "button",
       id: "product-add-menu",
-      innerText: VENDING_MACHINE.PRODUCT_MANAGE.BUTTON,
+      innerText: PRODUCT_MANAGE.BUTTON,
     });
     const coinManageMenuButton = makeElement({
       tag: "button",
       id: "vending-machine-manage-menu",
-      innerText: VENDING_MACHINE.COIN_MANAGE.BUTTON,
+      innerText: COIN_MANAGE.BUTTON,
     });
     const productPurchaseMenuButton = makeElement({
       tag: "button",
       id: "product-purchase-menu",
-      innerText: VENDING_MACHINE.PRODUCT_PURCHASE_MANAGE.BUTTON,
+      innerText: PRODUCT_PURCHASE_MANAGE.BUTTON,
     });
 
     productAddMenuButton.addEventListener("click", () => productAddView(this.contentContainer));
