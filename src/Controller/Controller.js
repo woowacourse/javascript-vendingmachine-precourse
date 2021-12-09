@@ -3,6 +3,7 @@ const checkInteger = (value) => Number.isInteger(+value);
 const checkOverHundred = (value) => +value >= 100;
 const checkTenTimes = (value) => +value % 10 === 0;
 const checkOverZero = (value) => +value > 0;
+const checkUnderZero = (value) => +value > 10;
 
 export default class Controller {
   constructor(model, view) {
@@ -10,6 +11,7 @@ export default class Controller {
     this.view = view;
     this.model.bindProductChange(this.onProductChange);
     this.view.bindProductAdd(this.productAddHandler);
+    this.view.bindChargeCoin(this.chargeCoinHandler);
 
     this.view.displayProductAdd(this.model.product);
     this.view.displayChargeCoin();
@@ -36,6 +38,18 @@ export default class Controller {
     }
 
     if (flag) this.model.addProduct(name, price, quantity);
+  };
+
+  chargeCoinHandler = (chargeMoney) => {
+    if (
+      !checkInteger(chargeMoney) ||
+      !checkUnderZero(chargeMoney) ||
+      !checkTenTimes(chargeMoney)
+    ) {
+      alert("🚨 10으로 나누어 떨어지는 10이상의 정수를 입력해 주세요");
+    } else {
+      return chargeMoney;
+    }
   };
 
   onProductChange = (product) => {

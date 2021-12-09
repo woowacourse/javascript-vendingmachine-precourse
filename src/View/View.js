@@ -94,7 +94,6 @@ export default class View {
           this.productTable
         );
       }
-      console.log(this.form.children);
       if (this.form.children.length !== 0) {
         this.form.removeChild(this.form.lastChild);
       }
@@ -164,10 +163,17 @@ export default class View {
           "vending-machine-charge-button",
           "충전하기"
         );
-        this.vendingMachinechargeAmount = this.createElement(
+        this.vendingMachinePresentAmount = this.createElement(
           "div",
-          "vending-machine-charge-amount",
-          "보유 금액:"
+          "vending-machine-present-amount",
+          "보유 금액: "
+        );
+        this.vendingMachinechargeAmount = this.createElement(
+          "span",
+          "vending-machine-charge-amount"
+        );
+        this.vendingMachinePresentAmount.append(
+          this.vendingMachinechargeAmount
         );
         const coinTitle = this.createElement(
           "h3",
@@ -201,7 +207,7 @@ export default class View {
           title,
           this.vendingMachineChargeInput,
           this.vendingMachineChargeButton,
-          this.vendingMachinechargeAmount,
+          this.vendingMachinePresentAmount,
           coinTitle,
           this.coinTable
         );
@@ -210,6 +216,21 @@ export default class View {
         this.form.removeChild(this.form.lastChild);
       }
       this.form.append(this.chargeCoinForm);
+    });
+  }
+
+  bindChargeCoin(handler) {
+    this.form.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (event.target.id === "vending-machine-charge-button") {
+        const presentMoney = handler(this.vendingMachineChargeInput.value);
+        this.vendingMachineChargeInput.value = "";
+        if (presentMoney) {
+          let nowMoney = this.vendingMachinechargeAmount.innerHTML;
+          nowMoney = +nowMoney + +presentMoney;
+          this.vendingMachinechargeAmount.innerHTML = nowMoney;
+        }
+      }
     });
   }
 }
