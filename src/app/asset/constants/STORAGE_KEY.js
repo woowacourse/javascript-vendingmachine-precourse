@@ -1,6 +1,5 @@
 const STORAGE_KEY = {
     inventory: 'products',
-    chargeAmount: 'chargeAmount',
     coins: 'coins',
 };
 
