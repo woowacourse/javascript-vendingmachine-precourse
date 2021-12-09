@@ -3,9 +3,10 @@ import {
   MARGIN_SIZE,
   MENU_TAP_INFORMATION,
 } from "../utils/constants.js";
-import { renderManageProductMenuView } from "../views/manageProductView.js";
+import { renderManageProductMenuView } from "./manageProductView.js";
+import { renderChargeChangeMenuView } from "./chargeChangeView.js";
 
-const renderArray = [renderManageProductMenuView];
+const renderArray = [renderManageProductMenuView, renderChargeChangeMenuView];
 const menuTapInformations = MENU_TAP_INFORMATION.map((information, index) => [
   ...information,
   renderArray[index],
