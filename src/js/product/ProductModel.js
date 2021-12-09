@@ -2,7 +2,7 @@ import { getLocalStorage, getLocalStorageAfterSet } from "../util/localStorage.j
 
 export default class ProductModel {
   constructor() {
-    this.products = getLocalStorage("product") || [];
+    this.products = getLocalStorage("product") ?? [];
   }
 
   getProducts = () => {
