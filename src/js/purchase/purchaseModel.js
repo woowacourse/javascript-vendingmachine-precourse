@@ -3,7 +3,7 @@ export default class PurchaseModel {
     this.chargedMoney = 0;
   }
 
-  getchargedMoney = () => {
+  getChargedMoney = () => {
     return this.chargedMoney;
   };
 

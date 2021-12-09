@@ -17,7 +17,7 @@ export default class VendingMachine {
   createComponents = () => {
     this.product = new ProductController();
     this.coinStorage = new CoinStorageController();
-    this.purchase = new PurchaseController();
+    this.purchase = new PurchaseController(this.product);
   };
 
   renderHeader = () => {
