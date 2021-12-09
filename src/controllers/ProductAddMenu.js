@@ -1,3 +1,6 @@
+import { $ } from '../views/DOMUtils.js';
+import { default as V } from '../utils/validators.js';
+
 export default class ProductAddMenu {
   constructor(view) {
     this.view = view;
@@ -6,5 +9,14 @@ export default class ProductAddMenu {
 
   render() {
     this.view.showProductAddComponent();
+    this.productAddManager();
+  }
+
+  productAddManager() {
+    $('#product-add-button').addEventListener('click', e => {
+      e.preventDefault();
+
+      if (!V.isValidProductName($('#product-name-input').value)) return;
+    });
   }
 }
