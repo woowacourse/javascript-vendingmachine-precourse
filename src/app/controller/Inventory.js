@@ -2,7 +2,7 @@ import InventoryTap from '../view/InventoryTap.js';
 import checkProductName from '../asset/validation/checkProductName.js';
 import checkProductPrice from '../asset/validation/checkProductPrice.js';
 import checkProductQuantity from '../asset/validation/checkProductQuantity.js';
-import { addProduct } from '../localStorage/inventory.js';
+import { addProduct, getProducts } from '../localStorage/inventory.js';
 
 export default class Inventory {
     constructor($skeleton) {
@@ -12,6 +12,7 @@ export default class Inventory {
     init() {
         this.inventoryTap.init();
         this.triggerAddProductEvent();
+        this.inventoryTap.render(getProducts());
     }
 
     triggerAddProductEvent() {

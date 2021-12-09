@@ -54,6 +54,12 @@ export default class InventoryTap {
         this.createProductInventory();
     }
 
+    render(products) {
+        products.forEach(({ productName, productPrice, productQuantity }) => {
+            this.addProductRow(productName, productPrice, productQuantity);
+        });
+    }
+
     createAddProductForm() {
         const $wrap = document.createElement('div');
         const $subTitle = SubTitle(SUB_TITLE_TEXT.addProduct);
