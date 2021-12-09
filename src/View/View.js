@@ -8,7 +8,7 @@ export default class View {
       "product-add-menu",
       "상품 구매"
     );
-    const vendingMachineManageMenu = this.createElement(
+    this.vendingMachineManageMenu = this.createElement(
       "button",
       "vending-machine-manage-menu",
       "잔돈 충전"
@@ -21,7 +21,7 @@ export default class View {
 
     this.menu.append(
       this.productAddMenu,
-      vendingMachineManageMenu,
+      this.vendingMachineManageMenu,
       productPurchaseMenu
     );
     this.app.append(title);
@@ -43,7 +43,6 @@ export default class View {
     this.productAddMenu.addEventListener("click", (event) => {
       event.preventDefault();
       if (!this.addProductForm) {
-        this.tab = "add-product";
         this.addProductForm = this.createElement("div");
         this.title = this.createElement(
           "h3",
@@ -95,6 +94,10 @@ export default class View {
           this.productTable
         );
       }
+      console.log(this.form.children);
+      if (this.form.children.length !== 0) {
+        this.form.removeChild(this.form.lastChild);
+      }
       this.form.append(this.addProductForm);
       if (product) this.displayProductAddChange(product);
     });
@@ -117,7 +120,6 @@ export default class View {
   }
 
   displayProductAddChange(product) {
-    console.log(this.productTable.children);
     // 초기화
     while (this.productTable.children.length > 1) {
       this.productTable.removeChild(this.productTable.lastChild);
@@ -138,6 +140,76 @@ export default class View {
       productManageQuantity.className = "product-manage-quantity";
       tr.append(productManageName, productManagePrice, productManageQuantity);
       this.productTable.append(tr);
+    });
+  }
+
+  displayChargeCoin() {
+    this.vendingMachineManageMenu.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!this.chargeCoinForm) {
+        this.chargeCoinForm = this.createElement("div");
+        const title = this.createElement(
+          "h3",
+          "charge-coin-title",
+          "자판기 동전 충전하기"
+        );
+        this.vendingMachineChargeInput = this.createElement(
+          "input",
+          "vending-machine-charge-input"
+        );
+        this.vendingMachineChargeInput.placeholder = "자판기가 보유할 금액";
+        this.vendingMachineChargeInput.type = "number";
+        this.vendingMachineChargeButton = this.createElement(
+          "button",
+          "vending-machine-charge-button",
+          "충전하기"
+        );
+        this.vendingMachinechargeAmount = this.createElement(
+          "div",
+          "vending-machine-charge-amount",
+          "보유 금액:"
+        );
+        const coinTitle = this.createElement(
+          "h3",
+          "coinTitle",
+          "자판기가 보유한 동전"
+        );
+        this.coinTable = this.createElement("table", "coinTable");
+        const tr = this.createElement("tr");
+        this.coinType = this.createElement("th", "coinType", "동전");
+        this.coinCount = this.createElement("th", "coinCount", "개수");
+        tr.append(this.coinType, this.coinCount);
+        const trFiveHoundred = this.createElement("tr");
+        this.fiveHoundred = this.createElement("td", "fiveHoundred", "500");
+        this.fiveHoundredCount = this.createElement("td", "fiveHoundredCount");
+        trFiveHoundred.append(this.fiveHoundred, this.fiveHoundredCount);
+        const trOneHundred = this.createElement("tr");
+        this.oneHundred = this.createElement("td", "oneHundred", "100");
+        this.oneHundredCount = this.createElement("td", "oneHundredCount");
+        trOneHundred.append(this.oneHundred, this.oneHundredCount);
+        const trFifty = this.createElement("tr");
+        this.fifty = this.createElement("td", "fifty", "50");
+        this.fiftyCount = this.createElement("td", "fiftyCount");
+        trFifty.append(this.fifty, this.fiftyCount);
+        const trTen = this.createElement("tr");
+        this.ten = this.createElement("td", "ten", "10");
+        this.tenCount = this.createElement("td", "ten");
+        trTen.append(this.ten, this.tenCount);
+
+        this.coinTable.append(tr, trFiveHoundred, trOneHundred, trFifty, trTen);
+        this.chargeCoinForm.append(
+          title,
+          this.vendingMachineChargeInput,
+          this.vendingMachineChargeButton,
+          this.vendingMachinechargeAmount,
+          coinTitle,
+          this.coinTable
+        );
+      }
+      if (this.form.children.length !== 0) {
+        this.form.removeChild(this.form.lastChild);
+      }
+      this.form.append(this.chargeCoinForm);
     });
   }
 }

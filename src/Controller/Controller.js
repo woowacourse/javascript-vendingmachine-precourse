@@ -12,6 +12,7 @@ export default class Controller {
     this.view.bindProductAdd(this.productAddHandler);
 
     this.view.displayProductAdd(this.model.product);
+    this.view.displayChargeCoin();
   }
 
   productAddHandler = (name, price, quantity) => {

@@ -68,7 +68,7 @@
 
 ## 잔돈 충전
 
-### [ ] 잔돈 충전 화면 출력
+### [✅] 잔돈 충전 화면 출력
 
 - 자판기가 보유할 금액을 충전할 요소의 id는 `vending-machine-charge-input`이다.
 - `충전하기` 버튼에 해당하는 요소의 id는 `vending-machine-charge-button`이다.
