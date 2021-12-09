@@ -1,31 +1,24 @@
-export function useTabButton(targetId){
-    if(targetId.target.id === 'product-add-menu'){
-        const $productAddContent = document.getElementById('product-add-content')
-        const $show = document.querySelector('.show')
+function tabMove($selectedContent){
+    const $show = document.querySelector('.show')
 
-        $productAddContent.classList.remove('hide')
-        $productAddContent.classList.add('show')
-        $show.classList.remove('show')
-        $show.classList.add('hide')
+    $selectedContent.classList.remove('hide')
+    $selectedContent.classList.add('show')
+    $show.classList.remove('show')
+    $show.classList.add('hide')
+}
+
+export function useTabButton(e){
+    let $selectedContent = ''
+    if(e.target.id === 'product-add-menu'){
+        $selectedContent = document.getElementById('product-add-content')
+        tabMove($selectedContent)
     }
-    if(targetId.target.id === 'vending-machine-manage-menu'){
-        //const $productAddContent = document.querySelector('#vending-machine-manage-content')
-        const $productAddContent = document.getElementById('vending-machine-manage-content')
-        const $show = document.querySelector('.show')
-
-        $productAddContent.classList.remove('hide')
-        $productAddContent.classList.add('show')
-        $show.classList.remove('show')
-        $show.classList.add('hide')
+    if(e.target.id === 'vending-machine-manage-menu'){
+        $selectedContent = document.querySelector('#vending-machine-manage-content')
+        tabMove($selectedContent)
     }
-    if(targetId.target.id === 'product-purchase-menu'){
-        //const $productAddContent = document.querySelector('#vending-machine-manage-content')
-        const $productAddContent = document.getElementById('product-purchase-content')
-        const $show = document.querySelector('.show')
-
-        $productAddContent.classList.remove('hide')
-        $productAddContent.classList.add('show')
-        $show.classList.remove('show')
-        $show.classList.add('hide')
+    if(e.target.id === 'product-purchase-menu'){
+        $selectedContent = document.querySelector('#product-purchase-content')
+        tabMove($selectedContent)
     }
 }
