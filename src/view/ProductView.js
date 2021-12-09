@@ -31,24 +31,6 @@ export class ProductView {
     this.$productTable.innerHTML = productRowHTML;
   }
 
-  // <table>
-  //         <tr class="product-manage-item">
-  //           <td class="product-manage-name">상품명</td>
-  //           <td class="product-manage-price">가격</td>
-  //           <td class="product-manage-quantity">수량</td>
-  //         </tr>
-  //         <tr class="product-manage-item">
-  //           <td class="product-manage-name">콜라</td>
-  //           <td class="product-manage-price">1500</td>
-  //           <td class="product-manage-quantity">20</td>
-  //         </tr>
-  //         <tr class="product-manage-item">
-  //           <td class="product-manage-name">콜라</td>
-  //           <td class="product-manage-price">1500</td>
-  //           <td class="product-manage-quantity">20</td>
-  //         </tr>
-  //       </table>
-
   addElements() {
     this.$productAddSection.innerHTML = `
       <h3>상품 추가하기</h3>
