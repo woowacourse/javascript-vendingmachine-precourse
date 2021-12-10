@@ -1,4 +1,5 @@
 import { MENUS } from '../constants/index.js';
+import { $tag } from '../utils/index.js';
 import Component from './base/Component.js';
 import ChangesCharge from './changes-charge/index.js';
 import ProductManage from './product-manage/index.js';
@@ -12,7 +13,7 @@ class Machine extends Component {
   $productPurchase;
 
   constructor(initMenu) {
-    super(document.createElement('div'));
+    super($tag('div'));
     this.setState({ currentMenu: initMenu });
 
     this.$productManage = new ProductManage();

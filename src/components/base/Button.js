@@ -1,11 +1,9 @@
-import Component from './Component.js';
+import { $tag } from '../../utils/index.js';
+import TextComponent from './TextComponent.js';
 
-class Button extends Component {
-  text;
-
+class Button extends TextComponent {
   constructor(text, props) {
-    super(document.createElement('button'), props);
-    this.text = text;
+    super($tag('button'), text, props);
   }
 
   addOnClick(onClick) {
@@ -13,10 +11,6 @@ class Button extends Component {
       e.preventDefault();
       onClick(e);
     });
-  }
-
-  render() {
-    this.$element.innerHTML = this.text;
   }
 }
 

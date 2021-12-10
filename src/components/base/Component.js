@@ -35,6 +35,7 @@ class Component {
     });
   }
 
+  // 제거 예정
   renderText(text) {
     this.$element.innerHTML = text;
   }

@@ -1,8 +1,9 @@
+import { $tag } from '../../utils/index.js';
 import Component from '../base/Component.js';
 
 class ProductPurchase extends Component {
   constructor() {
-    super(document.createElement('div'));
+    super($tag('div'));
   }
 
   render() {

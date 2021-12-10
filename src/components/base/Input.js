@@ -1,8 +1,9 @@
+import { $tag } from '../../utils/index.js';
 import Component from './Component.js';
 
 class Input extends Component {
   constructor(props) {
-    super(document.createElement('input'), props);
+    super($tag('input'), props);
   }
 
   get value() {

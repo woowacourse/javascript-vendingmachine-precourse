@@ -1,7 +1,7 @@
 import Button from './base/Button.js';
 import Component from './base/Component.js';
 import { ELEMENT_ID, MENUS } from '../constants/index.js';
-import { mapObject } from '../utils/index.js';
+import { $tag, mapObject } from '../utils/index.js';
 
 const menuIdRecord = {
   [MENUS.PRODUCT_MANAGE]: ELEMENT_ID.MENU_PRODUCT_MANAGE,
@@ -13,7 +13,7 @@ class Tabs extends Component {
   $tabButtons;
 
   constructor(initTab) {
-    super(document.createElement('div'));
+    super($tag('div'));
     this.setState({ currentTab: initTab });
 
     this.$tabButtons = mapObject(menuIdRecord, ([menu, id]) => [

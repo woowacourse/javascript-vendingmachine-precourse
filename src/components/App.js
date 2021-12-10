@@ -1,6 +1,7 @@
 import { ELEMENT_ID, MENUS } from '../constants/index.js';
-import Label from './base/Label.js';
+import { $tag } from '../utils/index.js';
 import Component from './base/Component.js';
+import TextComponent from './base/TextComponent.js';
 import Machine from './Machine.js';
 import Tabs from './Tabs.js';
 
@@ -14,7 +15,7 @@ class App extends Component {
   constructor() {
     super(document.getElementById(ELEMENT_ID.APP));
     this.$tabs = new Tabs(MENUS.PRODUCT_MANAGE);
-    this.$title = new Label('h2', '🥤자판기🥤');
+    this.$title = new TextComponent($tag('h2'), '🥤자판기🥤');
     this.$machine = new Machine(MENUS.PRODUCT_MANAGE);
     this.setEvent();
   }

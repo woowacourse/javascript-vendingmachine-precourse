@@ -1,9 +1,10 @@
 import { ELEMENT_ID } from '../../constants/index.js';
+import { $tag } from '../../utils/index.js';
 import { parseString, parseNumber } from '../../utils/inputParser.js';
 import Button from '../base/Button.js';
 import Component from '../base/Component.js';
 import Input from '../base/Input.js';
-import Label from '../base/Label.js';
+import TextComponent from '../base/TextComponent.js';
 
 const inputPropsList = [
   {
@@ -32,9 +33,9 @@ class ProductAppend extends Component {
   onSubmit;
 
   constructor() {
-    super(document.createElement('div'));
+    super($tag('div'));
 
-    this.$title = new Label('h3', '상품 추가하기');
+    this.$title = new TextComponent($tag('h3'), '상품 추가하기');
     this.$inputs = inputPropsList.map((prop) => new Input(prop));
     this.$submit = new Button('추가하기', {
       id: ELEMENT_ID.PRODUCT_MANAGE_ADD_BUTTON,
