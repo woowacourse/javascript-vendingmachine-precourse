@@ -142,7 +142,7 @@ export default class View {
     });
   }
 
-  displayChargeCoin() {
+  displayChargeCoin(coin, sum) {
     this.vendingMachineManageMenu.addEventListener("click", (event) => {
       event.preventDefault();
       if (!this.chargeCoinForm) {
@@ -170,7 +170,8 @@ export default class View {
         );
         this.vendingMachinechargeAmount = this.createElement(
           "span",
-          "vending-machine-charge-amount"
+          "vending-machine-charge-amount",
+          `${sum > 0 ? sum : ""}`
         );
         this.vendingMachinePresentAmount.append(
           this.vendingMachinechargeAmount
@@ -228,6 +229,13 @@ export default class View {
         this.form.removeChild(this.form.lastChild);
       }
       this.form.append(this.chargeCoinForm);
+      if (
+        coin &&
+        coin.reduce(
+          (previousValue, currentValue) => previousValue + currentValue
+        ) > 0
+      )
+        this.displayChargeCoinChange(coin);
     });
   }
 
@@ -238,18 +246,16 @@ export default class View {
         const presentMoney = handler(this.vendingMachineChargeInput.value);
         this.vendingMachineChargeInput.value = "";
         if (presentMoney) {
-          let nowMoney = this.vendingMachinechargeAmount.innerHTML;
-          nowMoney = +nowMoney + +presentMoney;
-          this.vendingMachinechargeAmount.innerHTML = nowMoney;
+          this.vendingMachinechargeAmount.innerHTML = presentMoney;
         }
       }
     });
   }
 
-  displayChargeCoinChange(fiveHoundred, oneHoundred, fifty, ten) {
-    this.fiveHoundredCount.innerHTML = `${fiveHoundred}개`;
-    this.oneHundredCount.innerHTML = `${oneHoundred}개`;
-    this.fiftyCount.innerHTML = `${fifty}개`;
-    this.tenCount.innerHTML = `${ten}개`;
+  displayChargeCoinChange(coins) {
+    this.fiveHoundredCount.innerHTML = `${coins[0]}개`;
+    this.oneHundredCount.innerHTML = `${coins[1]}개`;
+    this.fiftyCount.innerHTML = `${coins[2]}개`;
+    this.tenCount.innerHTML = `${coins[3]}개`;
   }
 }
