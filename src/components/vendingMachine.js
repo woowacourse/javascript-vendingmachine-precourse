@@ -8,6 +8,7 @@ class VendingMachine {
     this.coin100 = 0;
     this.coin50 = 0;
     this.coin10 = 0;
+    this.insertedMoney = 0;
   }
 
   addProduct(name, price, quantity) {
@@ -15,6 +16,12 @@ class VendingMachine {
     this.products.push(newProduct);
 
     return newProduct;
+  }
+
+  insertMoney(money) {
+    this.insertedMoney += money;
+
+    return this.insertedMoney;
   }
 
   addCoin(coin) {

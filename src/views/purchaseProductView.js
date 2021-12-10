@@ -9,6 +9,7 @@ import {
   makeTdWithClass,
   makeTitle,
 } from "../utils/utils.js";
+import { onClickInsertButton } from "../menus/purchaseProductMenu.js";
 
 // ----금액 투입하기 폼----
 const makeInsertMoneyContainer = () => {
@@ -17,7 +18,8 @@ const makeInsertMoneyContainer = () => {
   div.appendChild(
     makeInputForm(
       PURCHASE_PRODUCT_TAP.insertMoneyInputInformation,
-      PURCHASE_PRODUCT_TAP.insertMoneyButtonInformation
+      PURCHASE_PRODUCT_TAP.insertMoneyButtonInformation,
+      onClickInsertButton
     )
   );
   div.appendChild(
@@ -28,6 +30,13 @@ const makeInsertMoneyContainer = () => {
   );
 
   return div;
+};
+
+export const renderMoney = money => {
+  const $charge_amount = document.getElementById(
+    PURCHASE_PRODUCT_TAP.insertMoneyAmountId
+  );
+  $charge_amount.innerText = money;
 };
 
 // ----상품 현황----

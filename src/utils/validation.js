@@ -86,3 +86,14 @@ export const checkChargeChangeInput = input => {
 
   return isValid;
 };
+
+export const checkInsertMoneyInput = input => {
+  let isValid = true;
+  if (isEmptyInput(input)) {
+    isValid = false;
+  } else if (isNegative(input)) {
+    isValid = false;
+  }
+
+  return isValid;
+};
