@@ -1,36 +1,40 @@
 class Storage {
-  items;
+  #items;
 
   constructor() {
-    this.items = [];
+    this.#items = [];
+  }
+
+  get items() {
+    return this.#items.map((item) => ({ ...item }));
   }
 
   getItem(idx) {
-    return { ...this.items[idx] };
+    return { ...this.#items[idx] };
   }
 
   setItem(idx, item) {
-    this.items[idx] = { ...item };
+    this.#items[idx] = { ...item };
   }
 
   appendItem(item) {
-    this.items.push({ ...item });
+    this.#items.push({ ...item });
   }
 
   removeItem(itemIdx) {
-    this.items = this.items.filter((_, idx) => idx !== itemIdx);
+    this.#items = this.#items.filter((_, idx) => idx !== itemIdx);
   }
 
   hasEnoughItem(idx, count = 1) {
-    return this.items[idx].count >= count;
+    return this.#items[idx].count >= count;
   }
 
   addItem(idx, count = 1) {
-    this.items[idx].count += count;
+    this.#items[idx].count += count;
   }
 
   useItem(idx, count = 1) {
-    this.items[idx].count -= count;
+    this.#items[idx].count -= count;
   }
 }
 
