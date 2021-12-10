@@ -2,6 +2,8 @@ table {
   border-collapse: collapse;
 }
 
+#product-purchase-menu-table th,
+#product-purchase-menu-table td,
 #product-manage-table th,
 #product-manage-table td {
   width: 100px;
@@ -11,11 +13,15 @@ table {
   text-align: center;
 }
 
+#product-purchase-menu-table th:first-child,
+#product-purchase-menu-table td:first-child,
 #product-manage-table th:first-child,
 #product-manage-talbe td:first-child {
   width: 150px;
 }
 
+#product-purchase-change-table th,
+#product-purchase-change-table td,
 #vending-machine-manage-table th,
 #vending-machine-manage-table td {
   width: 70px;

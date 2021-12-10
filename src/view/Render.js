@@ -18,6 +18,11 @@ export default class Render {
     $vendingMachineSection.innerHTML = template;
   };
 
+  productPurchaseMenuTemplate = () => {
+    const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
+    $vendingMachineSection.innerHTML = TEMPLATE.PRODUCT_PURCHASE_MENU;
+  };
+
   vendingMachineChargeTableTemplate = (coin10, coin50, coin100, coin500) => {
     const $vendingMachineCoin10Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_10_QUANTITY);
     $vendingMachineCoin10Quantity.textContent = coin10 + STRING.GAE;

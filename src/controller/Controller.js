@@ -26,6 +26,9 @@ export default class Controller {
 
       const $vendingMachineManageMenu = document.querySelector(DOM.$VENDING_MACHINE_MANAGE_MENU);
       this.checkEventTarget.isVendingMachineManageMenu(event.target, $vendingMachineManageMenu);
+
+      const $productPurchaseMenu = document.querySelector(DOM.$PRODUCT_PURCHASE_MENU);
+      this.checkEventTarget.isProductPurchaseMenu(event.target, $productPurchaseMenu);
     });
   };
 

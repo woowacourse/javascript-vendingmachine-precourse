@@ -21,6 +21,43 @@ export const DOM = {
   $VENDING_MACHINE_COIN_10_QUANTITY: '#vending-machine-coin-10-quantity',
 };
 
+export const NUMBER = {
+  BLANK_CHECK_LENGTH: 1,
+  UNIT_CHECK_TEN: 10,
+  ZERO: 0,
+};
+
+export const ERROR_MESSAGE = {
+  PRODUCT_BLANK(placeholder) {
+    return `${placeholder}을 입력해주세요.`;
+  },
+  PRODUCT_POSITIVE_INTEGER: '양의 정수를 입력해주세요.',
+  PRODUCT_MORE_THAN_ONE_HUNDRED: '상품 가격은 100원 이상으로 입력해주세요.',
+  UNIT_OF_TEN(placeholder) {
+    return `${placeholder}은 10원 단위로 입력해주세요.`;
+  },
+};
+
+export const LOCAL_STORAGE = {
+  PRODUCTS_INFORMATION: 'productsInformation',
+  COINS_INFORMATION: 'coinsInformation',
+  PRODUCT_ADD_MENU: 'productAddMenu',
+  VENDING_MACHINE_MANAGE_MENU: 'vendingMachineManageMenu',
+};
+
+export const STRING = {
+  WON: '원',
+  GAE: '개',
+};
+
+export const EVENT = {
+  CLICK: 'click',
+};
+
+export const SELECTOR = {
+  CLASS: 'class',
+};
+
 export const TEMPLATE = {
   MAIN: `
   <header id="vending-machine-header">
@@ -37,7 +74,7 @@ export const TEMPLATE = {
   <input type='number' placeholder='가격' id='product-price-input' />
   <input type='number' placeholder='수량' id='product-quantity-input' />
   <button id='product-add-button'>추가하기</button>
-
+  <br /><br /><br />
   <h3>상품 현황</h3>
   <table id='product-manage-table'>
     <thead>
@@ -94,41 +131,65 @@ export const TEMPLATE = {
     </tbody>
   </table>
   `,
-};
-
-export const NUMBER = {
-  BLANK_CHECK_LENGTH: 1,
-  UNIT_CHECK_TEN: 10,
-  ZERO: 0,
-};
-
-export const ERROR_MESSAGE = {
-  PRODUCT_BLANK(placeholder) {
-    return `${placeholder}을 입력해주세요.`;
-  },
-  PRODUCT_POSITIVE_INTEGER: '양의 정수를 입력해주세요.',
-  PRODUCT_MORE_THAN_ONE_HUNDRED: '상품 가격은 100원 이상으로 입력해주세요.',
-  UNIT_OF_TEN(placeholder) {
-    return `${placeholder}은 10원 단위로 입력해주세요.`;
-  },
-};
-
-export const LOCAL_STORAGE = {
-  PRODUCTS_INFORMATION: 'productsInformation',
-  COINS_INFORMATION: 'coinsInformation',
-  PRODUCT_ADD_MENU: 'productAddMenu',
-  VENDING_MACHINE_MANAGE_MENU: 'vendingMachineManageMenu',
-};
-
-export const STRING = {
-  WON: '원',
-  GAE: '개',
-};
-
-export const EVENT = {
-  CLICK: 'click',
-};
-
-export const SELECTOR = {
-  CLASS: 'class',
+  PRODUCT_PURCHASE_MENU: `
+  <h3>금액 투입</h3>
+    <input type="number" id="charge-input" />
+    <button id="charge-button">투입하기</button>
+    <br /><br /><br />
+    <span
+      >투입한 금액:
+      <span id="charge-amount">500원</span>
+    </span>
+    <br /><br /><br />
+    <h3>구매할 수 있는 상품 현황</h3>
+    <table id="product-purchase-menu-table">
+      <thead>
+        <tr>
+          <th>상품명</th>
+          <th>가격</th>
+          <th>수량</th>
+          <th>구매</th>
+        </tr>
+      </thead>
+      <tbody id="product-purchase-menu-tbody">
+        <tr>
+          <td>콜라</td>
+          <td>1500</td>
+          <td>19</td>
+          <td>
+            <button>구매하기</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br /><br />
+    <h3>잔돈</h3>
+    <button id="coin-return-button">반환하기</button>
+    <table id="product-purchase-change-table">
+      <thead>
+        <tr>
+          <th>동전</th>
+          <th>개수</th>
+        </tr>
+      </thead>
+      <tbody id="product-purchase-change-tbody">
+        <tr>
+          <th>500원</th>
+          <td id="coin-500-quantity"></td>
+        </tr>
+        <tr>
+          <th>100원</th>
+          <td id="coin-100-quantity"></td>
+        </tr>
+        <tr>
+          <th>50원</th>
+          <td id="coin-50-quantity"></td>
+        </tr>
+        <tr>
+          <th>10원</th>
+          <td id="coin-10-quantity"></td>
+        </tr>
+      </tbody>
+    </table>
+  `,
 };

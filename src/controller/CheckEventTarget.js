@@ -60,4 +60,14 @@ export default class CheckEventTarget {
       this.hasVendingMachineManageMenuTemplate();
     }
   };
+
+  hasProductPurchaseMenuTemplate = () => {
+    this.render.productPurchaseMenuTemplate();
+  };
+
+  isProductPurchaseMenu = (eventTarget, $productPurchaseMenu) => {
+    if (eventTarget === $productPurchaseMenu) {
+      this.hasProductPurchaseMenuTemplate();
+    }
+  };
 }
