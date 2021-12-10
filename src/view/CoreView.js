@@ -1,4 +1,4 @@
-import { $ } from '../utils/DOM.js';
+import { $, $All } from '../utils/DOM.js';
 import { ChargeView } from './ChargeView.js';
 import { BuyView } from './BuyView.js';
 import { ProductView } from './ProductView.js';
@@ -6,10 +6,32 @@ import { ProductView } from './ProductView.js';
 export class CoreView {
   constructor() {
     this.$app = $('#app');
+    this.$productAddTab;
+    this.$chargeTab;
+    this.$purchaseTab;
+    this.$nav;
     this.addCommonElements();
     this.productView = new ProductView();
     this.chargeView = new ChargeView();
     this.buyView = new BuyView();
+  }
+
+  setOnTabClick(fn) {
+    const $tabArray = Array.from(this.$nav.children);
+    const $sectionArray = Array.from($All('#app > section'));
+
+    $tabArray.map(($tab, i) =>
+      $tab.addEventListener('click', (e) => {
+        fn(i);
+        $sectionArray.map(($section, j) => {
+          if (i === j) {
+            $section.style.display = 'block';
+            return;
+          }
+          $section.style.display = 'none';
+        });
+      }),
+    );
   }
 
   addCommonElements() {
@@ -24,5 +46,9 @@ export class CoreView {
       <section id="product-balance-section"></section>
       <section id="product-buy-section"></section>
     `;
+    this.$nav = $('#app > nav');
+    this.$productAddTab = $('#product-add-menu');
+    this.$chargeTab = $('#vending-machine-manage-menu');
+    this.$purchaseTab = $('#product-purchase-menu');
   }
 }

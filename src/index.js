@@ -8,11 +8,21 @@ import { CoreView } from './view/CoreView.js';
 class App {
   constructor() {
     const model = new VendingMachineModel();
-    const coreView = new CoreView();
+    this.coreView = new CoreView();
 
-    const controllerForProduct = new ProductController(model, coreView);
-    const controllerForCharge = new ChargeController(model, coreView);
-    const controllerForBuy = new BuyController(model, coreView);
+    const controllerForProduct = new ProductController(model, this.coreView);
+    const controllerForCharge = new ChargeController(model, this.coreView);
+    const controllerForBuy = new BuyController(model, this.coreView);
+    this.controllerArray = [controllerForProduct, controllerForCharge, controllerForBuy];
+    this.triggerTabEvent();
+  }
+
+  triggerTabEvent() {
+    this.coreView.setOnTabClick(this.onTabClick.bind(this));
+  }
+
+  onTabClick(i) {
+    this.controllerArray[i].loadLocalStorage();
   }
 }
 
