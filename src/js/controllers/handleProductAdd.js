@@ -41,8 +41,8 @@ const isValidQuantity = quantityInput => {
 };
 
 const handleProductAdd = () => {
-  // 초기값 불러오기
-  const products = store.getLocalStorage('product') ? store.getLocalStorage('product') : [];
+  // 초기값 불러오기 (state)
+  const products = store.getLocalStorage('products') ? store.getLocalStorage('products') : [];
   if (products.length > 1) {
     printAddedProduct();
   }
@@ -57,7 +57,7 @@ const handleProductAdd = () => {
       const addedProduct = new Product(nameInput, priceInput, quantityInput);
 
       products.push(addedProduct);
-      store.setLocalStorage(products);
+      store.setLocalStorage('products', products);
 
       printAddedProduct();
     }

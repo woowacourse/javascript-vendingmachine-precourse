@@ -23,6 +23,7 @@ function VendingMachineApp() {
       </section>
     `;
   };
+
   $('#app').addEventListener('click', e => {
     if (e.target.id === 'product-add-menu') {
       renderProductAdd();

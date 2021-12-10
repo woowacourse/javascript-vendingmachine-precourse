@@ -7,7 +7,7 @@ const renderVendingMachine = () => {
         <h3>자판기 동전 충전하기</h3>
         <form id="vending-machine-manage-form">
           <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액">
-          <button id="vending-machine-charge-button" type="button">충전하기</button>
+          <button id="vending-machine-charge-button">충전하기</button>
         </form>
         보유 금액: <span id="vending-machine-charge-amount"></span>
       </div>

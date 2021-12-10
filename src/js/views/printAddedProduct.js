@@ -3,7 +3,7 @@ import store from '../utils/store.js';
 
 const printAddedProduct = () => {
   const template = store
-    .getLocalStorage('product')
+    .getLocalStorage('products')
     .map(v => {
       return `
       <tr class="product-manage-item">

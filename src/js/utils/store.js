@@ -1,6 +1,6 @@
 const store = {
-  setLocalStorage(data) {
-    return localStorage.setItem('product', JSON.stringify(data));
+  setLocalStorage(key, value) {
+    return localStorage.setItem(key, JSON.stringify(value));
   },
   getLocalStorage(data) {
     return JSON.parse(localStorage.getItem(data));

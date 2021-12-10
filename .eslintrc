@@ -19,6 +19,7 @@
     "no-param-reassign": "off",
     "no-alert": "off",
     "no-undef": "off",
+    "no-continue": "off",
     "import/extensions": "off",
     "prefer-template": "off",
     "max-depth": ["error", 2],

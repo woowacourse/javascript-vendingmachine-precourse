@@ -5,3 +5,7 @@ export const resetProductAddInput = () => {
   $('#product-price-input').value = '';
   $('#product-quantity-input').value = '';
 };
+
+export const resetChargeInput = () => {
+  $('#vending-machine-charge-input').value = '';
+};
