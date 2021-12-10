@@ -1,4 +1,5 @@
 import initProductAdd from './initProductAdd.js';
+import initCharge from './initCharge.js';
 
 const APP_ID = '#app';
 
@@ -30,4 +31,5 @@ export default function initView() {
   const $appDiv = $(APP_ID);
   renderAppHeader($appDiv);
   initProductAdd($appDiv);
+  initCharge($appDiv);
 }
