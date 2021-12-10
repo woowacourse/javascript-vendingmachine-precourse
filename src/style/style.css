@@ -7,10 +7,11 @@ td,
 th {
   border: 1px solid black;
   border-collapse: collapse;
+  text-align: center;
 }
 
 table {
-  width: 600px;
+  width: 400px;
   height: 40px;
 }
 

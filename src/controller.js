@@ -1,16 +1,17 @@
 import VendingModel from './model.js';
-import * as $ from './dom.js';
+import * as $ from './util/dom.js';
 import {
   ERROR_MESSAGE,
-  MINIMUM_PRICE,
-  DIVIDING_STANDARD,
   CHARGING_UNIT_ARRAY,
   NUM_500,
   NUM_100,
   NUM_50,
   NUM_10,
   ZERO,
-} from './constants.js';
+  KEY,
+  SELECTOR,
+} from './util/constants.js';
+import { checkPrice, checkMoney } from './util/helper.js';
 
 export default class VendingController {
   constructor(model, view) {
@@ -21,7 +22,7 @@ export default class VendingController {
   app() {
     this.view.renderInApp('afterbegin', $.tabMenus);
     this.view.renderInApp('beforeend', $.tab1);
-    this.view.showTab('.tab1');
+    this.view.showTab(SELECTOR.tab1);
     this.view.renderInApp('beforeend', $.tab2);
     this.view.renderInApp('beforeend', $.tab3);
     this.loadTab1Data();
@@ -29,8 +30,10 @@ export default class VendingController {
   }
 
   loadTab1Data() {
-    this.model._productObj = JSON.parse(VendingModel.getLocalStorage('tab1'))
-      ? JSON.parse(VendingModel.getLocalStorage('tab1'))
+    this.model._productObj = JSON.parse(
+      VendingModel.getLocalStorage(KEY.productList)
+    )
+      ? JSON.parse(VendingModel.getLocalStorage(KEY.productList))
       : this.model.productObj;
     for (const name in this.model.productObj) {
       if (Object.hasOwnProperty.call(this.model.productObj, name)) {
@@ -44,15 +47,17 @@ export default class VendingController {
   }
 
   loadTab2Data() {
-    this.model.chargedMoney = VendingModel.getLocalStorage('chargedMoney')
-      ? parseInt(VendingModel.getLocalStorage('chargedMoney'), 10)
+    this.model.chargedMoney = VendingModel.getLocalStorage(KEY.chargedMoney)
+      ? parseInt(VendingModel.getLocalStorage(KEY.chargedMoney), 10)
       : this.model.chargedMoney;
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
       this.model.chargedMoney
     );
-    this.model._coinObj = JSON.parse(VendingModel.getLocalStorage('tab2'))
-      ? JSON.parse(VendingModel.getLocalStorage('tab2'))
+    this.model._coinObj = JSON.parse(
+      VendingModel.getLocalStorage(KEY.chargedCoins)
+    )
+      ? JSON.parse(VendingModel.getLocalStorage(KEY.chargedCoins))
       : this.model._coinObj;
     for (const coin in this.model.coinObj) {
       if (Object.hasOwnProperty.call(this.model.coinObj, coin)) {
@@ -62,8 +67,8 @@ export default class VendingController {
   }
 
   loadTab3Data() {
-    this.model._insertedMoney = VendingModel.getLocalStorage('insertedMoney')
-      ? parseInt(VendingModel.getLocalStorage('insertedMoney'), 10)
+    this.model._insertedMoney = VendingModel.getLocalStorage(KEY.insertedMoney)
+      ? parseInt(VendingModel.getLocalStorage(KEY.insertedMoney), 10)
       : this.model._insertedMoney;
     this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
     for (const name in this.model.productObj) {
@@ -84,50 +89,50 @@ export default class VendingController {
 
   addAllEventListener() {
     document
-      .getElementById('product-add-menu')
+      .getElementById(SELECTOR.productAddMenu)
       .addEventListener('click', () => this.loadTab1());
     document
-      .getElementById('vending-machine-manage-menu')
+      .getElementById(SELECTOR.vendingMachineManageMenu)
       .addEventListener('click', () => this.loadTab2());
     document
-      .getElementById('product-purchase-menu')
+      .getElementById(SELECTOR.productPurchaseMenu)
       .addEventListener('click', () => this.loadTab3());
     document
-      .getElementById('product-add-button')
+      .getElementById(SELECTOR.productAddButton)
       .addEventListener('click', e => this.addProduct.call(this, e));
     document
-      .getElementById('vending-machine-charge-button')
+      .getElementById(SELECTOR.vendingMachineChargeButton)
       .addEventListener('click', e => this.chargeMoney.call(this, e));
     document
-      .getElementById('charge-button')
+      .getElementById(SELECTOR.chargeButton)
       .addEventListener('click', e => this.insertMoney.call(this, e));
     document
-      .getElementById('coin-return-button')
+      .getElementById(SELECTOR.coinReturnButton)
       .addEventListener('click', e => this.giveChanges.call(this, e));
   }
 
   loadTab1() {
     this.view.clearTable($.tbodyOfTab1());
     this.loadTab1Data();
-    this.switchTab('.tab1');
+    this.switchTab(SELECTOR.tab1);
   }
 
   loadTab2() {
     this.loadTab2Data();
-    this.switchTab('.tab2');
+    this.switchTab(SELECTOR.tab2);
   }
 
   loadTab3() {
     this.view.clearTable($.tbodyOfTab3());
     this.loadTab3Data();
     document
-      .querySelectorAll('.purchase-button')
+      .querySelectorAll(SELECTOR.purchaseButton)
       .forEach(button =>
         button.addEventListener('click', e =>
           this.purchaseProduct.call(this, e)
         )
       );
-    this.switchTab('.tab3');
+    this.switchTab(SELECTOR.tab3);
   }
 
   makeTableOfTab1(name, price, quantity) {
@@ -140,12 +145,11 @@ export default class VendingController {
     const name = $.productNameInput();
     const price = $.productPriceInput();
     const quantity = $.productQuantityInput();
-
     if (!this.checkName(name)) {
       this.view.alertMessage(ERROR_MESSAGE.sameName);
       return false;
     }
-    if (!this.checkPrice(price)) {
+    if (!checkPrice(price)) {
       this.view.alertMessage(ERROR_MESSAGE.basePrice);
       return false;
     }
@@ -155,7 +159,7 @@ export default class VendingController {
     }
     this.makeTableOfTab1(name, price, quantity);
     this.model.productObj = { name, price, quantity };
-    VendingModel.setLocalStorage('tab1', this.model.productObj);
+    VendingModel.setLocalStorage(KEY.productList, this.model.productObj);
   }
 
   checkName(name) {
@@ -165,18 +169,11 @@ export default class VendingController {
     return true;
   }
 
-  checkPrice(price) {
-    if (price < MINIMUM_PRICE) return false;
-    if (price % DIVIDING_STANDARD !== ZERO) return false;
-    return true;
-  }
-
-  // 잔돈 충전 탭 컨트롤러
   chargeMoney(e) {
     e.preventDefault();
     const money = $.chargedMoney();
-    if (!this.checkInsertedMoney(money)) {
-      this.view.alertMessage(DIVIDING_STANDARD);
+    if (!checkMoney(money)) {
+      this.view.alertMessage(ERROR_MESSAGE.baseInsertingMoney);
       return false;
     }
     this.view.renderValueInSpot(
@@ -188,12 +185,6 @@ export default class VendingController {
     this.makeTableOfTab2();
   }
 
-  checkChargedMoney(money) {
-    if (money < ZERO) return false;
-    if (money % DIVIDING_STANDARD !== ZERO) return false;
-    return true;
-  }
-
   calculateChargedMoney() {
     const { coinObj } = this.model;
     const chargedMoney =
@@ -202,7 +193,7 @@ export default class VendingController {
       coinObj.coin50 * NUM_50 +
       coinObj.coin10 * NUM_10;
     this.model.chargedMoney = chargedMoney;
-    VendingModel.setLocalStorage('chargedMoney', this.model.chargedMoney);
+    VendingModel.setLocalStorage(KEY.chargedMoney, this.model.chargedMoney);
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
       this.model.chargedMoney
@@ -218,7 +209,7 @@ export default class VendingController {
         this.saveCoins(coin);
       }
     }
-    VendingModel.setLocalStorage('tab2', this.model.coinObj);
+    VendingModel.setLocalStorage(KEY.chargedCoins, this.model.coinObj);
   }
 
   saveCoins(coin) {
@@ -267,10 +258,9 @@ export default class VendingController {
     );
   }
 
-  // 금액 충전
   insertMoney(e) {
     e.preventDefault();
-    if (!this.checkInsertedMoney($.insertedMoney())) {
+    if (!checkMoney($.insertedMoney())) {
       this.view.alertMessage(ERROR_MESSAGE.baseInsertingMoney);
       return false;
     }
@@ -279,14 +269,8 @@ export default class VendingController {
   }
 
   setInsertedMoney() {
-    VendingModel.setLocalStorage('insertedMoney', this.model.insertedMoney);
+    VendingModel.setLocalStorage(KEY.insertedMoney, this.model.insertedMoney);
     this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
-  }
-
-  checkInsertedMoney(money) {
-    if (money < ZERO) return false;
-    if (money % DIVIDING_STANDARD !== ZERO) return false;
-    return true;
   }
 
   makeBuyingTableOfTab3(name, price, quantity) {
@@ -294,7 +278,6 @@ export default class VendingController {
     this.view.addTableRow($.tbodyOfTab3(), newRowOfTab3());
   }
 
-  // 상품 구매
   purchaseProduct(e) {
     const target = e.target.parentElement.parentElement;
     const name = target.childNodes[1].dataset.productName;
@@ -308,18 +291,15 @@ export default class VendingController {
       this.view.alertMessage(ERROR_MESSAGE.soldOut);
       return false;
     }
-    // 투입 금액
     this.model.insertedMoney -= price;
     this.setInsertedMoney();
 
-    // 상품 현황
     target.childNodes[5].dataset.productQuantity--;
     target.childNodes[5].innerText--;
     this.model.productObj[name].quantity--;
-    VendingModel.setLocalStorage('tab1', this.model.productObj);
+    VendingModel.setLocalStorage(KEY.productList, this.model.productObj);
   }
 
-  // 잔돈 반환
   giveChanges(e) {
     e.preventDefault();
     const changes = this.model.insertedMoney;
@@ -330,14 +310,16 @@ export default class VendingController {
   }
 
   makeChangesTableOfTab3(changes) {
-    this.model._coinObj = JSON.parse(VendingModel.getLocalStorage('tab2'))
-      ? JSON.parse(VendingModel.getLocalStorage('tab2'))
+    this.model._coinObj = JSON.parse(
+      VendingModel.getLocalStorage(KEY.chargedCoins)
+    )
+      ? JSON.parse(VendingModel.getLocalStorage(KEY.chargedCoins))
       : this.model._coinObj;
     const coin500 = this.calculateCoin500(changes);
     const coin100 = this.calculateCoin100(changes, coin500);
     const coin50 = this.calculateCoin50(changes, coin500, coin100);
     this.calculateCoin10(changes, coin500, coin100, coin50);
-    VendingModel.setLocalStorage('tab2', this.model.coinObj);
+    VendingModel.setLocalStorage(KEY.chargedCoins, this.model.coinObj);
   }
 
   calculateCoin500(changes) {

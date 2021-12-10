@@ -20,6 +20,27 @@ const NUM_50 = 50;
 const NUM_10 = 10;
 const ZERO = 0;
 
+const KEY = Object.freeze({
+  productList: 'productList', // tab1
+  chargedCoins: 'chargedCoins', // tab2
+  chargedMoney: 'chargedMoney',
+  insertedMoney: 'insertedMoney',
+});
+
+const SELECTOR = Object.freeze({
+  productAddMenu: 'product-add-menu',
+  vendingMachineManageMenu: 'vending-machine-manage-menu',
+  productPurchaseMenu: 'product-purchase-menu',
+  productAddButton: 'product-add-button',
+  vendingMachineChargeButton: 'vending-machine-charge-button',
+  chargeButton: 'charge-button',
+  coinReturnButton: 'coin-return-button',
+  tab1: '.tab1',
+  tab2: '.tab2',
+  tab3: '.tab3',
+  purchaseButton: '.purchase-button',
+});
+
 export {
   ERROR_MESSAGE,
   MINIMUM_PRICE,
@@ -30,4 +51,6 @@ export {
   NUM_50,
   NUM_10,
   ZERO,
+  KEY,
+  SELECTOR,
 };

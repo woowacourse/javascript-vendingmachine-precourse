@@ -4,7 +4,7 @@ import VendingModel from './model.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   const model = new VendingModel();
-  const view = new VendingView(model);
+  const view = new VendingView();
   const controller = new VendingController(model, view);
   controller.app();
 });

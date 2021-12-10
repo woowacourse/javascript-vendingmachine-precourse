@@ -1,6 +1,6 @@
+/* eslint-disable class-methods-use-this */
 export default class VendingView {
-  constructor(model) {
-    this.model = model;
+  constructor() {
     this.$app = document.getElementById('app');
     this.$tab = document.getElementById('tab');
   }
