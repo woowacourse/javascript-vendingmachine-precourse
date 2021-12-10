@@ -51,7 +51,9 @@ class PurchaseTable {
     const products = getLocalStorage(LOCAL_DB.PRODUCT);
     const index = products.findIndex(({ name }) => name === productName);
     products[index].quantity--;
-
+    if (products[index].quantity === 0) {
+      products.splice(index, 1);
+    }
     saveLocalStorage(LOCAL_DB.PRODUCT, products);
   }
 
