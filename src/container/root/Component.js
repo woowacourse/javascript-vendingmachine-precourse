@@ -13,6 +13,15 @@ export default class Component {
     this.render();
   }
 
+  set initProps({ APP_TITLE, APP_MENU, component }) {
+    this.$props = {
+      APP_TITLE,
+      APP_MENU,
+      component,
+      tabData: this.itemGetter(component),
+    };
+  }
+
   initialized() {}
 
   template() {
@@ -25,4 +34,8 @@ export default class Component {
   }
 
   mount() {}
+
+  itemGetter(key) {
+    return this.$storage.read(key);
+  }
 }
