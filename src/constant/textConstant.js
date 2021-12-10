@@ -11,6 +11,7 @@ const PRICE = "가격";
 const QUANTITIY = "수량";
 const COIN = "동전";
 const COUNT = "개수";
+const BUY = "구매";
 
 const BUTTON = {
   MANAGE: "상품 관리",
@@ -25,4 +26,4 @@ const CHARGE = {
   SUM: "보유 금액: ",
 };
 
-export { TITLE, NAME, PRICE, QUANTITIY, COIN, COUNT, BUTTON, CHARGE };
+export { TITLE, NAME, PRICE, QUANTITIY, COIN, COUNT, BUY, BUTTON, CHARGE };

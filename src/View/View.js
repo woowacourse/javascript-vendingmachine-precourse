@@ -10,6 +10,7 @@ import {
   ADD_PRODUCT,
   CHARGE_COIN,
   COIN_QUANTITY,
+  LEFT_COIN,
 } from "../constant/HTMLConstant.js";
 import {
   TITLE,
@@ -18,6 +19,7 @@ import {
   QUANTITIY,
   COIN,
   COUNT,
+  BUY,
   BUTTON,
   CHARGE,
 } from "../constant/textConstant.js";
@@ -156,7 +158,7 @@ export default class View {
           this.vendingMachinechargeAmount
         );
         const coinTitle = createH3(TITLE.NOW_COIN);
-        this.coinTable = this.createCoinTable([...COIN_QUANTITY]);
+        this.coinTable = this.createCoinTable(COIN_QUANTITY);
 
         this.chargeCoinForm.append(
           title,
@@ -209,5 +211,66 @@ export default class View {
       coinTable.append(tr);
     });
     return coinTable;
+  }
+
+  // 상품 구매
+  displayProductPurchase(product, coin) {
+    this.productPurchaseMenu.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!this.productPurchaseForm) {
+        this.productPurchaseForm = createDiv();
+        const title = createH3("금액 투입");
+        this.chargeInput = createInput("charge-input", "투입할 금액", "number");
+        this.chargeButton = createButton("charge-button", "투입하기");
+        this.chargeInputSum = createDiv("charge-input-sum", "투입한 금액: ");
+        this.chargeAmount = createSpan("charge-amount");
+        this.chargeInputSum.append(this.chargeAmount);
+
+        const nowProductTitle = createH3("구매할 수 있는 상품 현황");
+
+        this.avaiableProductTable = createTable([NAME, PRICE, QUANTITIY, BUY]);
+
+        const leftMoneyTitle = createH3("잔돈");
+        this.returnButton = createButton("coin-return-button", "반환하기");
+        this.leftOverTable = this.createCoinTable(LEFT_COIN);
+
+        this.productPurchaseForm.append(
+          title,
+          this.chargeInput,
+          this.chargeButton,
+          this.chargeInputSum,
+          nowProductTitle,
+          this.avaiableProductTable,
+          leftMoneyTitle,
+          this.returnButton,
+          this.leftOverTable
+        );
+      }
+      if (this.form.children.length !== 0) {
+        this.form.removeChild(this.form.lastChild);
+      }
+      this.form.append(this.productPurchaseForm);
+      this.displayAvailableProduct(product);
+    });
+  }
+
+  displayAvailableProduct(product) {
+    while (this.avaiableProductTable.children.length > 1) {
+      this.avaiableProductTable.removeChild(
+        this.avaiableProductTable.lastChild
+      );
+    }
+    product.forEach((value) => {
+      const tr = createTr("product-purchase-item");
+      const tdName = createTd("product-purchase-name", value.name);
+      const tdPrice = createTd("product-purchase-price", value.price);
+      const tdQuantity = createTd("product-purchase-quantity", value.quantity);
+      const tdButton = createButton("purchase-button", "구매하기");
+      tdName.setAttribute("data-product-name", `${value.name}`);
+      tdPrice.setAttribute("data-product-price", `${value.price}`);
+      tdQuantity.setAttribute("data-product-quantity", `${value.quantity}`);
+      tr.append(tdName, tdPrice, tdQuantity, tdButton);
+      this.avaiableProductTable.append(tr);
+    });
   }
 }

@@ -33,6 +33,7 @@ export default class Controller {
 
     this.view.displayProductAdd(this.model.product);
     this.view.displayChargeCoin(this.model.coin, this.getCoinSum());
+    this.view.displayProductPurchase(this.model.product);
   }
 
   onProductChange = (product) => {

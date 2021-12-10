@@ -29,4 +29,17 @@ const COIN_QUANTITY = [
   "vending-machine-coin-10-quantity",
 ];
 
-export { VANDING_MACHINE_MENU, ADD_PRODUCT, CHARGE_COIN, COIN_QUANTITY };
+const LEFT_COIN = [
+  "coin-500-quantity",
+  "coin-100-quantity",
+  "coin-50-quantity",
+  "coin-10-quantity",
+];
+
+export {
+  VANDING_MACHINE_MENU,
+  ADD_PRODUCT,
+  CHARGE_COIN,
+  COIN_QUANTITY,
+  LEFT_COIN,
+};

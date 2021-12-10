@@ -105,26 +105,25 @@
 
 ## 상품 구매
 
-### [ ] 상품 구매 화면 출력
+### [✅] 상품 구매 화면 출력
 
 - 투입 금액 입력 요소의 id는 `charge-input`이다.
 - 투입하기 버튼 요소의 id는 `charge-button`이다.
 - 투입한 금액을 확인하는 요소의 id는 `charge-amount`이다.
 - 반환하기 버튼 요소의 id는 `coin-return-button`이다.
-- 반환하기 버튼 요소의 id는 coin-return-button이다.
 - 반환된 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-  - 500원: coin-500-quantity
-  - 100원: coin-100-quantity
-  - 50원: coin-50-quantity
-  - 10원: coin-10-quantity
-- 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
-  - 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.
-  - 상품명에 해당하는 요소의 class명은 product-purchase-name이다.
-  - 가격에 해당하는 요소의 class명은 product-purchase-price이다.
-  - 수량에 해당하는 요소의 class명은 product-purchase-quantity이다.
-  - 상품명은 dataset 속성을 사용하고 data-product-name 형식으로 저장한다.
-  - 가격은 dataset 속성을 사용하고 data-product-price 형식으로 저장한다.
-  - 수량은 dataset 속성을 사용하고 data-product-quantity 형식으로 저장한다.
+  - 500원: `coin-500-quantity`
+  - 100원: `coin-100-quantity`
+  - 50원: `coin-50-quantity`
+  - 10원: `coin-10-quantity`
+- 각 상품 요소의 class명은 `product-purchase-item`이고, 하위에 아래 요소들을 갖는다.
+  - 구매 버튼에 해당하는 요소의 class명은 `purchase-button`이다.
+  - 상품명에 해당하는 요소의 class명은 `product-purchase-name`이다.
+  - 가격에 해당하는 요소의 class명은 `product-purchase-price`이다.
+  - 수량에 해당하는 요소의 class명은 `product-purchase-quantity`이다.
+  - 상품명은 dataset 속성을 사용하고 `data-product-name` 형식으로 저장한다.
+  - 가격은 dataset 속성을 사용하고 `data-product-price` 형식으로 저장한다.
+  - 수량은 dataset 속성을 사용하고 `data-product-quantity` 형식으로 저장한다.
 
 ### [ ] 투입한 금액 입력
 
