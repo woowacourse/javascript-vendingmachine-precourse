@@ -1,4 +1,5 @@
 import { REGEX } from './constants.js';
+import { default as DB } from '../model/database.js';
 
 const utils = {
   isBlank: string => {
@@ -7,6 +8,10 @@ const utils = {
 
   isIncludeSpace: string => {
     return REGEX.IS_INCLUDE_SPACE.test(string);
+  },
+
+  isDuplacted: string => {
+    return DB.load('inventory').some(product => product.name === string);
   },
 
   hasSpecial: string => {
