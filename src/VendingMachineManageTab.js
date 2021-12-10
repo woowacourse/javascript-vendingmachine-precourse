@@ -1,3 +1,4 @@
+import { getVendingMachineCharge } from './utils/localStorage.js';
 import VendingMachineManageTabView from './views/VendingMachineManageTabView.js';
 
 export default class VendingMachineManageTab {
@@ -6,6 +7,7 @@ export default class VendingMachineManageTab {
   }
 
   initialize() {
-    this.view.render();
+    this.vendingMachineCharge = getVendingMachineCharge();
+    this.view.render(this.vendingMachineCharge);
   }
 }

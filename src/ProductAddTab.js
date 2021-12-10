@@ -1,5 +1,5 @@
 import ProductAddTabView from './views/ProductAddTabView.js';
-import { getData, setData } from './utils/localStorage.js';
+import { getProducts, setProducts } from './utils/localStorage.js';
 
 export default class ProductAddTab {
   constructor() {
@@ -7,7 +7,7 @@ export default class ProductAddTab {
   }
 
   initialize() {
-    this.products = getData('products');
+    this.products = getProducts();
     this.view.render(this.products);
     this.initInputElements();
     this.setButtonClickEvent();
@@ -31,7 +31,7 @@ export default class ProductAddTab {
       price: this.productPriceInput.value,
       quantity: this.productQuantityInput.value,
     });
-    setData('products', this.products);
+    setProducts(this.products);
     this.view.rerender(this.products);
     this.clearInputValue();
   }
