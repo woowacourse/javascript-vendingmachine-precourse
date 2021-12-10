@@ -18,20 +18,23 @@ export class CoreView {
 
   setOnTabClick(fn) {
     const $tabArray = Array.from(this.$nav.children);
-    const $sectionArray = Array.from($All('#app > section'));
-
-    $tabArray.map(($tab, i) =>
-      $tab.addEventListener('click', (e) => {
+    $tabArray.map(($tab, i) => {
+      $tab.addEventListener('click', () => {
         fn(i);
-        $sectionArray.map(($section, j) => {
-          if (i === j) {
-            $section.style.display = 'block';
-            return;
-          }
-          $section.style.display = 'none';
-        });
-      }),
-    );
+        this.handleSectionDisplay(i);
+      });
+    });
+  }
+
+  handleSectionDisplay(i) {
+    const $sectionArray = Array.from($All('#app > section'));
+    $sectionArray.map(($section, j) => {
+      if (i === j) {
+        $section.style.display = 'block';
+        return;
+      }
+      $section.style.display = 'none';
+    });
   }
 
   addCommonElements() {
