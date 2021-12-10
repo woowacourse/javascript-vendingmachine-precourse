@@ -1,5 +1,7 @@
 import Component from '../core/Component.js';
-import { MENU } from '../utils/constants.js';
+import { MENU_TYPE } from '../utils/constants.js';
+import { SWITCH_MENU } from '../actions/UI.js';
+import UIStore from '../stores/UIStore.js';
 
 export default class Header extends Component {
   bindEvents() {
@@ -8,8 +10,8 @@ export default class Header extends Component {
 
   onClick(target) {
     const { id } = target;
-    if (!MENU[id]) return;
-    console.log(id);
+    if (!MENU_TYPE[id]) return;
+    UIStore.dispatch(SWITCH_MENU(MENU_TYPE[id]));
   }
 
   render() {
