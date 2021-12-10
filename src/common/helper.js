@@ -1,4 +1,17 @@
-import { EMPTY, ERROR_MESSAGES, DIVIDE_CHARGING, ZERO } from '../constants/index.js';
+import {
+  EMPTY,
+  ERROR_MESSAGES,
+  DIVIDE_CHARGING,
+  ZERO,
+  PRODUCT_ADD,
+  CHARGE_AMOUNT,
+  CHARGE_UNIT,
+  MACHINE_MANAGE,
+  PURCHASE_MENU,
+} from '../constants/index.js';
+
+/* eslint-disable no-undef */
+const { pickNumberInList } = MissionUtils.Random;
 
 /**
  * 값이 null인지 검사합니다.
@@ -91,4 +104,80 @@ export const getChangesCount = (remainCount, changes, coin) => {
   if (remainCount < 1) return ZERO;
   const count = Math.floor(changes / coin);
   return remainCount - count < ZERO ? remainCount : count;
+};
+
+export const calculateProduct = ({ name, quantity, price }, tabData) => [
+  tabData[PRODUCT_ADD].map(item => {
+    if (isEquals(item.name, name)) return { ...item, quantity: quantity - 1 };
+    return item;
+  }),
+  +tabData[CHARGE_AMOUNT] - +price,
+];
+
+export const getChildInput = $element =>
+  Array.from($element.childNodes).reduce((result, node) => {
+    if (node instanceof HTMLInputElement) return [...result, node];
+    return result;
+  }, []);
+
+export const clearInput = targets => {
+  const copied = Array.from(targets);
+  copied.forEach((_, index) => {
+    copied[index].value = EMPTY;
+  });
+};
+
+export const getParsedItem = (charge, unit, item) => [
+  charge,
+  item.map(({ description, count }) => {
+    if (isEquals(description, unit)) return { description, count: count + 1 };
+    return { description, count };
+  }),
+];
+
+export const coinExchange = (changes, charges) => {
+  const copied = [...charges];
+  let leftChanges = changes;
+  let index = 0;
+  while (leftChanges > 0 && index < charges.length) {
+    const { description, count } = copied[index];
+    const changesCount = getChangesCount(count, leftChanges, +description);
+    if (changesCount <= 0) index += 1;
+    else {
+      leftChanges -= +description * changesCount;
+      copied[index] = { ...copied[index], count: count - changesCount };
+    }
+  }
+  return [copied, leftChanges];
+};
+
+export const addItems = elements => {
+  const [{ value: name }, { value: price }, { value: quantity }] = elements;
+  return { name, price, quantity };
+};
+
+export const charging = (storageItem, element) => {
+  let items = [...storageItem];
+  const [{ value }] = element;
+  let parsed = roundDown(value);
+  while (parsed > 0) {
+    const pickUnit = pickNumberInList(CHARGE_UNIT);
+    const restCharge = parsed - pickUnit;
+    if (restCharge >= 0) [parsed, items] = getParsedItem(restCharge, pickUnit, items);
+  }
+  return items;
+};
+
+export const purchase = (storageItem, elements) => {
+  const [{ value: charge }] = elements;
+  const currentAmount = storageItem[CHARGE_AMOUNT] || 0;
+  return +charge + +currentAmount;
+};
+
+export const setStorage = {
+  [PRODUCT_ADD]: (storage, elements) => storage.add(PRODUCT_ADD, addItems(elements)),
+  [MACHINE_MANAGE]: (storage, elements, item) =>
+    storage.create(MACHINE_MANAGE, charging(item, elements)),
+  [PURCHASE_MENU]: (storage, elements, item) =>
+    storage.update(PURCHASE_MENU, CHARGE_AMOUNT, purchase(item, elements)),
 };

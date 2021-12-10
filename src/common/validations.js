@@ -16,6 +16,8 @@ import {
 
 const { PRICE_INPUT, CHARGE_INPUT } = ADDITIONAL_CONDITION;
 
+const isDuplicate = (value, items) => !isNull(items.find(({ name }) => name === value));
+
 const checkedMinimum = (number, placeholder) => {
   if (!isEquals(placeholder, PRICE_INPUT)) return number;
 
@@ -41,8 +43,6 @@ const numbersValidate = (value, placeholder) => {
   return parsed;
 };
 
-const isDuplicate = (value, items) => !isNull(items.find(({ name }) => name === value));
-
 export const isValidate = ({ type, placeholder, value }, items = []) => {
   if (type === 'number') return numbersValidate(value, placeholder);
 
@@ -51,3 +51,19 @@ export const isValidate = ({ type, placeholder, value }, items = []) => {
   if (isDuplicate(value, items)) return setErrorMessage('dupError', `${placeholder}: [${value}]`);
   return value;
 };
+
+export const purchaseValidate = (values, name) =>
+  Object.keys(values).every(key => {
+    if (key === 'quantity' && values[key] < 1) return setErrorMessage('isSoldOutError', name);
+    if (key === 'changes' && values[key] < 0) return setErrorMessage('isExpensiveError', name);
+    return true;
+  });
+
+export const isValidateInput = (targets, storageItem) =>
+  Array.from(targets).reduce((result, target, _, array) => {
+    if (!isValidate(target, storageItem)) {
+      array.splice(1);
+      return [...result];
+    }
+    return [...result, target];
+  }, []);

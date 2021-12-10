@@ -40,6 +40,8 @@ export default class App extends Component {
   }
 
   initMainConfig() {
+    this.$storage.excludeKeys = CHARGE_AMOUNT;
+    this.$storage.optionalKey = PURCHASE_MENU;
     this.initProps = { APP_TITLE, APP_MENU, component: PRODUCT_ADD };
 
     this.machineManageSetter();
@@ -48,15 +50,17 @@ export default class App extends Component {
 
   machineManageSetter() {
     if (!isEmpty(this.itemGetter(MACHINE_MANAGE))) return;
-    this.$storage.create(MACHINE_MANAGE, DEFAULT_VALUES[MACHINE_MANAGE]);
+
+    this.$storage.create(MACHINE_MANAGE, DEFAULT_VALUES[MACHINE_MANAGE], false);
   }
 
   purchaseMenuSetter() {
-    const tabData = {
-      [PRODUCT_ADD]: this.itemGetter(PRODUCT_ADD),
-      [MACHINE_MANAGE]: this.itemGetter(MACHINE_MANAGE),
-      [CHARGE_AMOUNT]: this.itemGetter(PURCHASE_MENU)[CHARGE_AMOUNT] || 0,
-    };
-    this.$storage.creation(PURCHASE_MENU, tabData);
+    if (!isEmpty(this.itemGetter(PURCHASE_MENU))) return;
+
+    this.$storage.creation(PURCHASE_MENU, {
+      [PRODUCT_ADD]: this.itemGetter(PRODUCT_ADD) || [],
+      [MACHINE_MANAGE]: this.itemGetter(MACHINE_MANAGE) || [],
+      [CHARGE_AMOUNT]: this.itemGetter(PURCHASE_MENU) || 0,
+    });
   }
 }

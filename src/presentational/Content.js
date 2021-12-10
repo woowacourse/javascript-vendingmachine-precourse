@@ -1,8 +1,14 @@
-import { EMPTY } from '../constants/index.js';
+import {
+  CHARGE_AMOUNT,
+  EMPTY,
+  MACHINE_MANAGE,
+  PRODUCT_ADD,
+  PURCHASE_MENU,
+} from '../constants/index.js';
 
 const Content = ({ component, tabData }) => {
   switch (component) {
-    case 'product-add-menu': {
+    case PRODUCT_ADD: {
       return `
         <div>
           <h2>상품 추가하기</h2>
@@ -40,7 +46,7 @@ const Content = ({ component, tabData }) => {
         </div>
         `;
     }
-    case 'vending-machine-manage-menu': {
+    case MACHINE_MANAGE: {
       return `
         <div>
           <h2>자판기 동전 충전하기</h2>
@@ -78,7 +84,7 @@ const Content = ({ component, tabData }) => {
         </div>
         `;
     }
-    case 'product-purchase-menu': {
+    case PURCHASE_MENU: {
       return `
         <div>
           <h2>금액 투입</h2>
@@ -86,7 +92,7 @@ const Content = ({ component, tabData }) => {
             <input type="number" id="charge-input" maxlength="20" placeholder="투입할 금액" />
             <button id="charge-button">투입하기</button>
           </form>
-          <p>투입한 금액: <span id="charge-amount">${tabData['charge-amount'] || 0}</span>원</p>
+          <p>투입한 금액: <span id="charge-amount">${tabData[CHARGE_AMOUNT] || 0}</span>원</p>
         </div>
         <div>
           <h2>구매할 수 있는 상품 현황</h2>
@@ -100,9 +106,8 @@ const Content = ({ component, tabData }) => {
               </tr>
             </thead>
             <tbody>
-              ${tabData['product-add-menu']
-                .map(
-                  ({ name, price, quantity }) => `
+              ${tabData[PRODUCT_ADD].map(
+                ({ name, price, quantity }) => `
                 <tr class="product-purchase-item">
                   <td data-product-name=${name} class="product-purchase-name">${name}</td>
                   <td data-product-price=${price} class="product-purchase-price">${price}</td>
@@ -110,8 +115,7 @@ const Content = ({ component, tabData }) => {
                   <td><button class="purchase-button">구매하기</button></td>
                 </tr>
                 `,
-                )
-                .join(EMPTY)}
+              ).join(EMPTY)}
             </tbody>
           </table>
         </div>
@@ -126,16 +130,14 @@ const Content = ({ component, tabData }) => {
               </tr>
             </thead>
             <tbody>
-              ${tabData['vending-machine-manage-menu']
-                .map(
-                  ({ description, count }) => `
+              ${tabData[MACHINE_MANAGE].map(
+                ({ description, count }) => `
                 <tr>
                   <td>${description}원</td>
                   <td id="coin-${description}-quantity">${count}개</td>
                 </tr>
                 `,
-                )
-                .join(EMPTY)}
+              ).join(EMPTY)}
             </tbody>
           </table>
         </div>
