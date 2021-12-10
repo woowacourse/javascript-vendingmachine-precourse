@@ -97,11 +97,9 @@ export default class InventoryTap extends Tap {
         this.appendToApp($wrap);
     }
 
-    addRow(text1, text2, text3) {
-        this.appendToInventoryContainer(InventoryBodyRow(text1, text2, text3));
-    }
-
     addProductRow(productName, productPrice, productQuantity) {
-        this.addRow(productName, productPrice, productQuantity);
+        this.appendToInventoryContainer(
+            InventoryBodyRow(productName, productPrice, productQuantity),
+        );
     }
 }
