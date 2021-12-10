@@ -106,19 +106,19 @@ export const BUY_SECTION_TEMPLATE = `
     </tr>
     <tr>
       <td>500원</td>
-      <td id="coin-500-quantity">0개</td>
+      <td><span id="coin-500-quantity">0</span>개</td>
     </tr>
     <tr>
       <td>100원</td>
-      <td id="coin-100-quantity">0개</td>
+      <td><span id="coin-100-quantity">0</span>개</td>
     </tr>
     <tr>
       <td>50원</td>
-      <td id="coin-50-quantity">0개</td>
+      <td><span id="coin-50-quantity">0</span>개</td>
     </tr>
     <tr>
       <td>10원</td>
-      <td id="coin-10-quantity">0개</td>
+      <td><span id="coin-10-quantity">0</span>개</td>
     </tr>
   </table>
 `;
