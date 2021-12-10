@@ -89,6 +89,7 @@ export default class MachineManageView {
   static storeRandomCoin(countCoin) {
       const coins = JSON.parse(localStorage.getItem(COINS));
 
+      //처음이면 왜 값 안읽히지?
       if(localStorage.getItem(COINS) === null) {
         localStorage.setItem(COINS, JSON.stringify({ [FIVE_HUNDRED]: countCoin[0], [ONE_HUNDRED]: countCoin[1], [FIFTY]: countCoin[2], [TEN]: countCoin[3]}));
         // console.log(coins[500], coins[100], coins[50], coins[10]);
@@ -100,5 +101,15 @@ export default class MachineManageView {
           localStorage.setItem(COINS, JSON.stringify(coins));
       }
         console.log(coins[500], coins[100], coins[50], coins[10]);
+        this.showTable();
+  }
+
+  static showTable() {
+      const coins = JSON.parse(localStorage.getItem(COINS));
+
+      document.getElementById('vending-machine-coin-500-quantity').innerHTML = `${coins[500]}개`;
+      document.getElementById('vending-machine-coin-100-quantity').innerHTML = `${coins[100]}개`;
+      document.getElementById('vending-machine-coin-50-quantity').innerHTML = `${coins[50]}개`;
+      document.getElementById('vending-machine-coin-10-quantity').innerHTML = `${coins[10]}개`;
   }
 }
