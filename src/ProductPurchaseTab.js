@@ -50,7 +50,7 @@ export default class ProductPurchaseTab {
   }
 
   onClickPurchaseButton(e) {
-    const { productName, productPrice, productQuantity } = e.target.dataset;
+    const { productName, productPrice, productQuantity } = this.getProductDataFromPurchaseButton(e.target);
     const productIndex = this.products.findIndex((product) => product.name === productName);
     if ( this.charge < productPrice ) return;
     this.charge -= productPrice;
@@ -58,6 +58,14 @@ export default class ProductPurchaseTab {
     setCharge(this.charge);
     setProducts(this.products);
     this.updateViewOnPurchase();
+  }
+
+  getProductDataFromPurchaseButton(button) {
+    const tableItem = button.parentNode.parentNode;
+    const { productName } = tableItem.querySelector('.product-purchase-name').dataset;
+    const { productPrice } = tableItem.querySelector('.product-purchase-price').dataset;
+    const { productQuantity } = tableItem.querySelector('.product-purchase-quantity').dataset;
+    return { productName, productPrice, productQuantity };
   }
 
   onClickCoinReturnButton() {

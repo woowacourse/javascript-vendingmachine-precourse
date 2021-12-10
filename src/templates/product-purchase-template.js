@@ -47,11 +47,11 @@ const productPurchaseTemplate = {
   `,
   tableItem: (product) => `
   <tr class="product-purchase-item">
-    <td class="product-purchase-name">${product.name}</td>
-    <td class="product-purchase-price">${product.price}</td>
-    <td class="product-purchase-quantity">${product.quantity}</td>
+    <td class="product-purchase-name" data-product-name=${product.name} >${product.name}</td>
+    <td class="product-purchase-price" data-product-price=${product.price}>${product.price}</td>
+    <td class="product-purchase-quantity" data-product-quantity=${product.quantity}>${product.quantity}</td>
     <td>
-      <button class="purchase-button" data-product-name=${product.name} data-product-price=${product.price} data-product-quantity=${product.quantity}>
+      <button class="purchase-button">
         구매하기
       </button>
     </td>
