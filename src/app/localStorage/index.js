@@ -1,18 +1,18 @@
-export const getJsonItem = (key, defaultVal = []) => {
-    const json = localStorage.getItem(key);
+import { getCoins, setCoins, getChargeAmount } from './coin.js';
+import { getInputAmount, setInputAmount } from './inputAmount.js';
+import { getProducts, setProducts, addProduct, isUniqueProductName } from './inventory.js';
+import { getTap, setTap } from './tap.js';
 
-    return json ? JSON.parse(json) : defaultVal;
+export {
+    getCoins,
+    setCoins,
+    getChargeAmount,
+    getInputAmount,
+    setInputAmount,
+    getProducts,
+    setProducts,
+    addProduct,
+    isUniqueProductName,
+    getTap,
+    setTap,
 };
-
-export const setJsonItem = (key, json) => {
-    localStorage.setItem(key, JSON.stringify(json));
-};
-
-export const appendToJsonItem = (key, item) => {
-    const json = getJsonItem(key);
-
-    json.push(item);
-    setJsonItem(key, json);
-};
-
-export const getNumber = (key) => Number(localStorage.getItem(key)) || 0;

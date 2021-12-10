@@ -1,5 +1,5 @@
 import { STORAGE_KEY } from '../asset/constants/index.js';
-import { getNumber } from './index.js';
+import { getNumber } from './common.js';
 
 export const getInputAmount = () => getNumber(STORAGE_KEY.inputAmount);
 
