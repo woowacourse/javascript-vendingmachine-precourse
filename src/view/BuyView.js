@@ -21,7 +21,7 @@ export class BuyView {
   }
 
   setOnCoinReturnClick(fn) {
-    this.$insertButton.addEventListener('click', () => {
+    this.$coinReturnButton.addEventListener('click', () => {
       fn();
     });
   }
