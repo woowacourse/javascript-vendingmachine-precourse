@@ -44,6 +44,7 @@ export const isValidChargeInput = amount => {
 
 export const isPurchaseAvailable = productPrice => {
   if (getLocalStorage(LOCAL_DB.PURCHASE) < Number(productPrice)) {
+    alert(ERROR.CANNNOT_PURCHASE);
     return false;
   }
 
