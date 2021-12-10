@@ -15,7 +15,7 @@ export default class ProductPurchaseTabView {
   }
 
   updateChargeAmount(charge) {
-    this.chargeAmountElement.innerText = `${charge}원`;
+    this.chargeAmountElement.innerText = charge;
   }
 
   updatePurchaseTable(products) {
