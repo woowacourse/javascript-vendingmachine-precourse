@@ -7,6 +7,11 @@ export const DOM_SELECTOR = {
   productPriceInput: 'product-price-input',
   productQuantityInput: 'product-quantity-input',
   productAddButton: 'product-add-button',
+  productManageTable: 'product-manage-table',
+  productManageItem: 'product-manage-item',
+  productManageName: 'product-manage-name',
+  productManagePrice: 'product-manage-price',
+  productManageQuantity: 'product-manage-quantity',
 };
 
 export const BUTTON_MESSAGE = {

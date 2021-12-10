@@ -24,8 +24,7 @@ const makeProductAddForm = () => {
   return $productAddForm;
 };
 
-const makeTable = (headerElements) => {
-  const $table = document.createElement('table');
+const makeTableHeader = (headerElements) => {
   const $tableHeader = document.createElement('thead');
 
   const $tableRow = document.createElement('tr');
@@ -36,7 +35,16 @@ const makeTable = (headerElements) => {
   });
 
   $tableHeader.appendChild($tableRow);
+  return $tableHeader;
+};
+
+const makeTable = (headerElements) => {
+  const $table = document.createElement('table');
+  $table.setAttribute('id', DOM_SELECTOR.productManageTable);
+
+  const $tableHeader = makeTableHeader(headerElements);
   $table.appendChild($tableHeader);
+
   return $table;
 };
 

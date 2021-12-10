@@ -12,7 +12,7 @@ export default class Product {
     this.items[item.name] = { price: item.price, quantity: item.quantity };
   }
 
-  getProductList() {
+  getProductItems() {
     return this.items;
   }
 }
