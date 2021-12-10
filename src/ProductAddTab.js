@@ -9,8 +9,14 @@ export default class ProductAddTab {
   initialize() {
     this.products = getData('products');
     this.view.render(this.products);
+    this.initInputElements();
     this.setButtonClickEvent();
-    console.log(this.products);
+  }
+
+  initInputElements() {
+    this.productNameInput = document.querySelector('#product-name-input');
+    this.productPriceInput = document.querySelector('#product-price-input');
+    this.productQuantityInput = document.querySelector('#product-quantity-input');
   }
 
   setButtonClickEvent() {
@@ -20,14 +26,19 @@ export default class ProductAddTab {
 
   onClickProductAddButton(e) {
     e.preventDefault();
-    const productNameInput = document.querySelector('#product-name-input');
-    const productPriceInput = document.querySelector('#product-price-input');
-    const productQuantityInput = document.querySelector('#product-quantity-input');
     this.products.push({
-      name: productNameInput.value,
-      price: productPriceInput.value,
-      quantity: productQuantityInput.value,
+      name: this.productNameInput.value,
+      price: this.productPriceInput.value,
+      quantity: this.productQuantityInput.value,
     });
     setData('products', this.products);
+    this.view.rerender(this.products);
+    this.clearInputValue();
+  }
+
+  clearInputValue() {
+    this.productNameInput.value = '';
+    this.productPriceInput.value = '';
+    this.productQuantityInput.value = '';
   }
 }

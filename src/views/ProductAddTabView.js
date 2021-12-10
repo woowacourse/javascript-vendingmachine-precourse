@@ -16,4 +16,9 @@ export default class ProductAddTabView {
       this.tableBody.innerHTML += productAddTemplate.tableItem(product);
     });
   }
+
+  rerender(products) {
+    this.tableBody.innerHTML = '';
+    this.renderProductManageTableItems(products);
+  }
 }
