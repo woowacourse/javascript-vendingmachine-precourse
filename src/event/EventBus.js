@@ -8,7 +8,6 @@ class EventBus {
   addEvent(elements, selector, type, callback) {
     const eventKey = generateKey(elements, selector, type);
     this.handlers[eventKey] = { elements, selector, type, callback };
-    return () => delete this.handlers[type];
   }
 
   delegation(parent, target, eventType) {
