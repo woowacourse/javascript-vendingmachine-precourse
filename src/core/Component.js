@@ -41,11 +41,15 @@ export default class Component {
     return this.$container;
   }
 
+  returnHTML() {
+    return this.$container.outerHTML;
+  }
+
   renderChildren() {
-    this.children.updateComponent();
-    this.children.forEach(child =>
-      this.$container.appendChild(child.returnRoot())
-    );
+    this.children.forEach(child => {
+      child.updateComponent();
+      this.$container.appendChild(child.returnRoot());
+    });
   }
 
   updateComponent() {
