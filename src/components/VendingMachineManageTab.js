@@ -5,7 +5,7 @@ import {
   createChargeAmountTemplate,
   createCoinQuantityTableTemplate,
 } from '../templates/vendingMachineManageMenu.js';
-import { SELECTOR } from '../constants.js';
+import SELECTOR from '../constants/selector.js';
 
 class VendingMachineManageTab {
   render() {

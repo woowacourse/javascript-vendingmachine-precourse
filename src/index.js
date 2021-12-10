@@ -6,7 +6,8 @@ import {
   createTabButtonContainerTemplate,
   createTabContentContainerTemplate,
 } from './templates/common.js';
-import { SELECTOR, LOCAL_STORAGE_KEY } from './constants.js';
+import SELECTOR from './constants/selector.js';
+import STORE_KEY from './constants/store.js';
 import { $ } from './utils/dom.js';
 import store from './utils/store.js';
 
@@ -19,8 +20,8 @@ class VendingMachine {
     this.$vendingMachineManageTab = new VendingMachineManageTab();
     this.$productPurchaseTab = new ProductPurchaseTab();
 
-    this.$currentTab = store.getLocalStorage(LOCAL_STORAGE_KEY.currentTab)
-      ? store.getLocalStorage(LOCAL_STORAGE_KEY.currentTab)
+    this.$currentTab = store.getLocalStorage(STORE_KEY.currentTab)
+      ? store.getLocalStorage(STORE_KEY.currentTab)
       : SELECTOR.productAddMenuId;
 
     this.renderTab();
@@ -59,7 +60,7 @@ class VendingMachine {
   onClickTabButton(event) {
     const tabId = event.target.id;
     this.$currentTab = tabId;
-    store.setLocalStorage(LOCAL_STORAGE_KEY.currentTab, tabId);
+    store.setLocalStorage(STORE_KEY.currentTab, tabId);
     this.renderTab();
   }
 }

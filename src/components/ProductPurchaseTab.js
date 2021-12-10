@@ -5,7 +5,7 @@ import {
   createProductTableTemplate,
   createReturnCoinTableTemplate,
 } from '../templates/productPurchaseMenu.js';
-import { SELECTOR } from '../constants.js';
+import SELECTOR from '../constants/selector.js';
 
 class ProductPurchaseTab {
   render() {

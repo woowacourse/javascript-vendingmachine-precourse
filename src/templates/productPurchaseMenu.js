@@ -1,4 +1,5 @@
-import { PRODUCT_PURCHASE_TAB, SELECTOR } from '../constants.js';
+import SELECTOR from '../constants/selector.js';
+import { PRODUCT_PURCHASE_TAB } from '../constants/element.js';
 import { createTheadTableDataTemplate } from './common.js';
 
 const createTbodyTableDataTemplate = (text, className, dataset) => `

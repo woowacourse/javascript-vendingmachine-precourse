@@ -1,4 +1,5 @@
-import { PRODUCT_ADD_TAB, SELECTOR } from '../constants.js';
+import SELECTOR from '../constants/selector.js';
+import { PRODUCT_ADD_TAB } from '../constants/element.js';
 import { createTheadTableDataTemplate } from './common.js';
 
 export const createTitleTemplate = () => `

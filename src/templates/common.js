@@ -1,4 +1,5 @@
-import { SELECTOR, TAB_BUTTONS } from '../constants.js';
+import SELECTOR from '../constants/selector.js';
+import { TAB_BUTTONS } from '../constants/element.js';
 
 const createTabButtonTemplate = (text, id) => `
   <button id="${id}">${text}</button>
