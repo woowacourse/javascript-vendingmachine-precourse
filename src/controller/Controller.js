@@ -1,33 +1,22 @@
 import { DOM } from '../utils/constant.js';
 import Render from '../view/Render.js';
-import SetProductAdd from '../model/SetProductAdd.js';
+import CheckEventTarget from './CheckEventTarget.js';
 
 export default class Controller {
   constructor() {
     this.render = new Render();
+    this.checkEventTarget = new CheckEventTarget(this.render);
     this.$app = document.querySelector(DOM.$APP);
     this.main();
   }
 
-  onClickProductAddButton = () => {
-    const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
-    $productAddButton.addEventListener('click', () => {
-      new SetProductAdd(this.render);
-    });
-  };
-
   onClickMainTemplateButton = () => {
     this.$app.addEventListener('click', (event) => {
       const $productAddMenu = document.querySelector(DOM.$PRODUCT_ADD_MENU);
-      if (event.target === $productAddMenu) {
-        this.render.productAddMenuTemplate();
-        this.onClickProductAddButton();
-      }
+      this.checkEventTarget.isProductAddMenu(event.target, $productAddMenu);
 
       const $vendingMachineManageMenu = document.querySelector(DOM.$VENDING_MACHINE_MANAGE_MENU);
-      if (event.target === $vendingMachineManageMenu) {
-        this.render.vendingMachineManageMenuTemplate();
-      }
+      this.checkEventTarget.isVendingMachineManageMenu(event.target, $vendingMachineManageMenu);
     });
   };
 
