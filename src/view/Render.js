@@ -1,8 +1,10 @@
+import SetLocalStorage from '../model/SetLocalStorage.js';
 import { TEMPLATE, DOM } from '../utils/constant.js';
 
 export default class Render {
   constructor() {
     this.$app = document.querySelector(DOM.$APP);
+    this.setLocalStorage = new SetLocalStorage();
   }
 
   inputFocus = ($element) => $element.focus();
@@ -22,8 +24,7 @@ export default class Render {
     const $productManageTbody = document.querySelector(DOM.$PRODUCT_MANAGE_TBODY);
     $productManageTbody.appendChild($tr);
 
-    const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
-    localStorage.setItem('productAddMenu', $vendingMachineSection.innerHTML);
+    this.setLocalStorage.productAddMenu();
   };
 
   productAddMenuTemplate = () => {
