@@ -65,7 +65,10 @@ export default class PurchaseController {
     if (target.id !== "coin-return-button") return;
 
     const remainingMoney = this.model.getChargedMoney();
+
     this.coinStorage.return(remainingMoney);
+    this.model.reset();
+    this.updatePage();
   };
 
   buy = ({ name, price, quantity }) => {

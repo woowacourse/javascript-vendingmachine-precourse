@@ -46,4 +46,8 @@ export default class PurchaseModel {
   isExpesiveThanChargedMoney = (price) => {
     return price > this.chargedMoney;
   };
+
+  reset = () => {
+    this.chargedMoney = 0;
+  };
 }
