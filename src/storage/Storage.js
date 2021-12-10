@@ -1,71 +1,66 @@
 class Storage {
   constructor() {
     this.state = localStorage;
+    this.listeners = [];
+    this.excludeKeys = '';
+    this.optionalKey = '';
   }
 
-  /**
-   * 로컬 스토리지에 아이템을 생성합니다.
-   *
-   * @param {object{key:string, value:array}} params
-   */
-  create(key, value) {
-    this.setState({ key, value });
+  get keys() {
+    return Array.from({ length: this.state.length }).map((_, index) => this.state.key(index));
   }
 
-  /**
-   * 로컬 스토리지에 접근하여 해당 key의 item에 값을 추가합니다.
-   *
-   * @param {string} key
-   * @param {any} item
-   */
+  subscribe(listener) {
+    this.listeners.push(listener);
+    return () => {
+      this.listeners = this.listeners.filter(l => l !== listener);
+    };
+  }
+
+  notify(component, items) {
+    this.listeners.forEach(listener => listener(component, items));
+  }
+
+  create(key, value, afterSet) {
+    this.setState({ key, value }, afterSet);
+  }
+
+  creation(key, items) {
+    Object.keys(items).forEach($key => {
+      const isExcludeKey = this.excludeKeys === $key;
+      this.state.setItem(
+        isExcludeKey ? key : $key,
+        isExcludeKey ? JSON.stringify(items) : JSON.stringify(items[$key]),
+      );
+    });
+    this.notify(key, items);
+  }
+
   add(key, item) {
-    const value = this.read(key);
+    const value = this.read(key) || {};
     this.setState({ key, value: [...value, item] });
   }
 
-  /**
-   * 로컬 스토리지에 접근하여 해당 key로 저장된 아이템을 가져옵니다.
-   *
-   * @param {string} key
-   * @returns any[]
-   */
   read(key) {
-    if (!key) throw new Error('올바른 값을 입력해주세요.');
     const item = this.state.getItem(key);
-    if (!item) throw new Error('해당 아이템이 존재하지 않습니다.');
-    return JSON.parse(item);
+    return item === 'undefined' ? [] : JSON.parse(item);
   }
 
-  /**
-   * 로컬 스토리지에 접근하여 해당 key로 저장된 아이템 중 일부를 수정합니다.
-   *
-   * @param {string} key
-   * @param {any} oldItem
-   * @param {any} newItem
-   */
-  update(key, oldItem, newItem) {
-    const value = this.read(key).map(item => (item === oldItem ? newItem : item));
-    this.setState({ key, value });
+  update(key, subKey, newItem) {
+    const value = { ...this.read(key), [subKey]: newItem };
+    this.setState({ key, value }, false);
   }
 
-  /**
-   * 로컬 스토리지에 접근하여 해당 key로 저장된 아이템 중 일부를 삭제합니다.
-   *
-   * @param {string} key
-   * @param {any} target
-   */
-  remove(key, target) {
-    const value = this.read(key).filter(item => item !== target);
-    this.setState({ key, value });
-  }
-
-  /**
-   * 로컬 스토리지에 key, item으로 데이터를 저장합니다.
-   *
-   * @param {object{key:string, value:array}} param
-   */
-  setState({ key, value }) {
+  setState({ key, value }, afterSet = true) {
     this.state.setItem(key, JSON.stringify(value));
+    if (afterSet && !this.excludeKeys.includes(key)) this.afterSetState(key, value);
+
+    this.notify(key, value);
+  }
+
+  afterSetState(key, value) {
+    const $key = this.optionalKey;
+    this.state.setItem($key, JSON.stringify({ ...this.read($key), [key]: value }));
   }
 }
 

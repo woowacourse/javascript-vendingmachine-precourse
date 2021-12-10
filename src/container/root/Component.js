@@ -1,6 +1,6 @@
 import { $ } from '../../common/helper.js';
 import Storage from '../../storage/Storage.js';
-import EventBus from '../../common/EventBus.js';
+import EventBus from '../../event/EventBus.js';
 
 export default class Component {
   constructor(selector, props) {
@@ -11,6 +11,15 @@ export default class Component {
 
     this.initialized();
     this.render();
+  }
+
+  set initProps({ APP_TITLE, APP_MENU, component }) {
+    this.$props = {
+      APP_TITLE,
+      APP_MENU,
+      component,
+      tabData: this.itemGetter(component),
+    };
   }
 
   initialized() {}
@@ -25,4 +34,8 @@ export default class Component {
   }
 
   mount() {}
+
+  itemGetter(key) {
+    return this.$storage.read(key);
+  }
 }
