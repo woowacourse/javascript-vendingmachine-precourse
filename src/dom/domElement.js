@@ -23,3 +23,7 @@ export const getProductAddButton = () => {
 export const getProductManagerProductTableBody = () => {
   return document.getElementById('product-manager-product-table-body');
 };
+
+export const getVendingMachineChargeButton = () => {
+  return document.getElementById('vending-machine-charge-button');
+};

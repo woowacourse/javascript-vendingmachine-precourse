@@ -1,6 +1,9 @@
 import { getMenuButtons, getManagers } from '../domElement.js';
 import { BLOCK, NONE, CLICK } from '../../constants.js';
-import { getProductAddButton } from '../domElement.js';
+import {
+  getProductAddButton,
+  getVendingMachineChargeButton,
+} from '../domElement.js';
 import { vendingMachine } from '../../index.js';
 
 export const addListenerToMenuButton = () => {
@@ -29,5 +32,13 @@ export const addListenerToProductAddButton = () => {
 
   productAddButton.addEventListener('click', () => {
     vendingMachine.addProduct();
+  });
+};
+
+export const addListenerToChargeButton = () => {
+  const vendingMachineChargeButton = getVendingMachineChargeButton();
+
+  vendingMachineChargeButton.addEventListener('click', () => {
+    vendingMachine.addCharge();
   });
 };
