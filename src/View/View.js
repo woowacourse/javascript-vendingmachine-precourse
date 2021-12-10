@@ -1,88 +1,77 @@
+import { createTable, createTr, createTd } from "./DOM/createTable.js";
+import { createH1, createH3 } from "./DOM/createTitle.js";
+import createInput from "./DOM/createInput.js";
+import createButton from "./DOM/createButton.js";
+import createDiv from "./DOM/createDiv.js";
+import createSpan from "./DOM/createSpan.js";
+import getElement from "./DOM/getElement.js";
+import {
+  VANDING_MACHINE_MENU,
+  ADD_PRODUCT,
+  CHARGE_COIN,
+  COIN_QUANTITY,
+} from "../constant/HTMLConstant.js";
+import {
+  TITLE,
+  NAME,
+  PRICE,
+  QUANTITIY,
+  COIN,
+  COUNT,
+  BUTTON,
+  CHARGE,
+} from "../constant/textConstant.js";
+
 export default class View {
   constructor() {
     this.app = document.getElementById("app");
-    const title = this.createElement("h1", "vending-machine", "🥤자판기🥤");
-    this.menu = this.createElement("div", "menu");
-    this.productAddMenu = this.createElement(
-      "button",
-      "product-add-menu",
-      "상품 구매"
+    const title = createH1(TITLE.VENDING_MACHINE);
+    this.menu = createDiv();
+    this.productAddMenu = createButton(
+      VANDING_MACHINE_MENU.PRODUCT_ADD,
+      BUTTON.MANAGE
     );
-    this.vendingMachineManageMenu = this.createElement(
-      "button",
-      "vending-machine-manage-menu",
-      "잔돈 충전"
+    this.vendingMachineManageMenu = createButton(
+      VANDING_MACHINE_MENU.MANAGE,
+      BUTTON.CHARGE_COIN
     );
-    const productPurchaseMenu = this.createElement(
-      "button",
-      "product-purchase-menu",
-      "상품 관리"
+    this.productPurchaseMenu = createButton(
+      VANDING_MACHINE_MENU.PURCHASE,
+      BUTTON.BUY
     );
 
     this.menu.append(
       this.productAddMenu,
       this.vendingMachineManageMenu,
-      productPurchaseMenu
+      this.productPurchaseMenu
     );
     this.app.append(title);
     this.app.append(this.menu);
-    this.form = this.createElement("div", "form");
+    this.form = createDiv();
     this.app.append(this.form);
     this.displayProductAdd();
-  }
-
-  createElement(tag, id, textContent) {
-    const element = document.createElement(tag);
-    if (id) element.id = id;
-    if (textContent) element.textContent = textContent;
-
-    return element;
   }
 
   displayProductAdd(product) {
     this.productAddMenu.addEventListener("click", (event) => {
       event.preventDefault();
       if (!this.addProductForm) {
-        this.addProductForm = this.createElement("div");
-        this.title = this.createElement(
-          "h3",
-          "add-product-title",
-          "상품 추가하기"
+        this.addProductForm = createDiv();
+        this.title = createH3(TITLE.ADD_PRODCUT);
+        this.productNameInput = createInput(ADD_PRODUCT.NAME_INPUT, NAME);
+        this.productPriceInput = createInput(
+          ADD_PRODUCT.PRICE_INPUT,
+          PRICE,
+          "number"
         );
-        this.productNameInput = this.createElement(
-          "input",
-          "product-name-input"
+        this.productQuantityInput = createInput(
+          ADD_PRODUCT.QUANTITY_INPUT,
+          QUANTITIY,
+          "number"
         );
-        this.productNameInput.placeholder = "상품명";
-        this.productPriceInput = this.createElement(
-          "input",
-          "product-price-input"
-        );
-        this.productPriceInput.type = "number";
-        this.productPriceInput.placeholder = "가격";
-        this.productQuantityInput = this.createElement(
-          "input",
-          "product-quantity-input"
-        );
-        this.productQuantityInput.type = "number";
-        this.productQuantityInput.placeholder = "수량";
-        this.productAddButton = this.createElement(
-          "button",
-          "product-add-button",
-          "추가하기"
-        );
-        const presentTitle = this.createElement(
-          "h3",
-          "present-title",
-          "상품 현황"
-        );
-        this.productTable = this.createElement("table");
-        this.tr = this.createElement("tr");
-        this.thProductName = this.createElement("th", "th", "상품명");
-        this.thPrice = this.createElement("th", "th", "가격");
-        this.thQuantity = this.createElement("th", "th", "수량");
-        this.tr.append(this.thProductName, this.thPrice, this.thQuantity);
-        this.productTable.append(this.tr);
+        this.productAddButton = createButton(ADD_PRODUCT.BUTTON, BUTTON.ADD);
+        const presentTitle = createH3(TITLE.NOW_PRODUCT);
+        this.productTable = createTable([NAME, PRICE, QUANTITIY]);
 
         this.addProductForm.append(
           this.title,
@@ -105,7 +94,7 @@ export default class View {
   bindProductAdd(handler) {
     this.form.addEventListener("click", (event) => {
       event.preventDefault();
-      if (event.target.id === "product-add-button") {
+      if (event.target.id === ADD_PRODUCT.BUTTON) {
         handler(
           this.productNameInput.value,
           this.productPriceInput.value,
@@ -119,103 +108,56 @@ export default class View {
   }
 
   displayProductAddChange(product) {
-    // 초기화
     while (this.productTable.children.length > 1) {
       this.productTable.removeChild(this.productTable.lastChild);
     }
 
     product.forEach((value) => {
-      const tr = this.createElement("tr");
-      tr.className = "product-manage-item";
-      const productManageName = this.createElement("td", "td", value.name);
-      productManageName.className = "product-manage-name";
-      const productManagePrice = this.createElement("td", "td", value.price);
-      productManagePrice.className = "product-manage-price";
-      const productManageQuantity = this.createElement(
-        "td",
-        "td",
+      const tr = createTr(ADD_PRODUCT.PRODUCT_ITEM);
+      const productManageName = createTd(ADD_PRODUCT.PRODUCT_NAME, value.name);
+      const productManagePrice = createTd(
+        ADD_PRODUCT.PRODUCT_PRICE,
+        value.price
+      );
+      const productManageQuantity = createTd(
+        ADD_PRODUCT.PRODUCT_QUANTITY,
         value.quantity
       );
-      productManageQuantity.className = "product-manage-quantity";
       tr.append(productManageName, productManagePrice, productManageQuantity);
       this.productTable.append(tr);
     });
   }
 
+  // 잔돈 충전
   displayChargeCoin(coin, sum) {
     this.vendingMachineManageMenu.addEventListener("click", (event) => {
       event.preventDefault();
       if (!this.chargeCoinForm) {
-        this.chargeCoinForm = this.createElement("div");
-        const title = this.createElement(
-          "h3",
-          "charge-coin-title",
-          "자판기 동전 충전하기"
+        this.chargeCoinForm = createDiv();
+        const title = createH3(TITLE.CHARGE_COIN);
+        this.vendingMachineChargeInput = createInput(
+          CHARGE_COIN.INPUT,
+          CHARGE.INPUT_VALUE,
+          "number"
         );
-        this.vendingMachineChargeInput = this.createElement(
-          "input",
-          "vending-machine-charge-input"
+        this.vendingMachineChargeButton = createButton(
+          CHARGE_COIN.BUTTON,
+          BUTTON.CHARGE
         );
-        this.vendingMachineChargeInput.placeholder = "자판기가 보유할 금액";
-        this.vendingMachineChargeInput.type = "number";
-        this.vendingMachineChargeButton = this.createElement(
-          "button",
-          "vending-machine-charge-button",
-          "충전하기"
+        this.vendingMachinePresentAmount = createDiv(
+          CHARGE_COIN.DIV,
+          CHARGE.SUM
         );
-        this.vendingMachinePresentAmount = this.createElement(
-          "div",
-          "vending-machine-present-amount",
-          "보유 금액: "
-        );
-        this.vendingMachinechargeAmount = this.createElement(
-          "span",
-          "vending-machine-charge-amount",
+        this.vendingMachinechargeAmount = createSpan(
+          CHARGE_COIN.AMOUNT,
           `${sum > 0 ? sum : ""}`
         );
         this.vendingMachinePresentAmount.append(
           this.vendingMachinechargeAmount
         );
-        const coinTitle = this.createElement(
-          "h3",
-          "coinTitle",
-          "자판기가 보유한 동전"
-        );
-        this.coinTable = this.createElement("table", "coinTable");
-        const tr = this.createElement("tr");
-        this.coinType = this.createElement("th", "coinType", "동전");
-        this.coinCount = this.createElement("th", "coinCount", "개수");
-        tr.append(this.coinType, this.coinCount);
-        const trFiveHoundred = this.createElement("tr");
-        this.fiveHoundred = this.createElement("td", "fiveHoundred", "500원");
-        this.fiveHoundredCount = this.createElement(
-          "td",
-          "vending-machine-coin-500-quantity"
-        );
-        trFiveHoundred.append(this.fiveHoundred, this.fiveHoundredCount);
-        const trOneHundred = this.createElement("tr");
-        this.oneHundred = this.createElement("td", "oneHundred", "100원");
-        this.oneHundredCount = this.createElement(
-          "td",
-          "vending-machine-coin-100-quantity"
-        );
-        trOneHundred.append(this.oneHundred, this.oneHundredCount);
-        const trFifty = this.createElement("tr");
-        this.fifty = this.createElement("td", "fifty", "50원");
-        this.fiftyCount = this.createElement(
-          "td",
-          "vending-machine-coin-50-quantity"
-        );
-        trFifty.append(this.fifty, this.fiftyCount);
-        const trTen = this.createElement("tr");
-        this.ten = this.createElement("td", "ten", "10원");
-        this.tenCount = this.createElement(
-          "td",
-          "vending-machine-coin-10-quantity"
-        );
-        trTen.append(this.ten, this.tenCount);
+        const coinTitle = createH3(TITLE.NOW_COIN);
+        this.coinTable = this.createCoinTable([...COIN_QUANTITY]);
 
-        this.coinTable.append(tr, trFiveHoundred, trOneHundred, trFifty, trTen);
         this.chargeCoinForm.append(
           title,
           this.vendingMachineChargeInput,
@@ -242,7 +184,7 @@ export default class View {
   bindChargeCoin(handler) {
     this.form.addEventListener("click", (event) => {
       event.preventDefault();
-      if (event.target.id === "vending-machine-charge-button") {
+      if (event.target.id === CHARGE_COIN.BUTTON) {
         const presentMoney = handler(this.vendingMachineChargeInput.value);
         this.vendingMachineChargeInput.value = "";
         if (presentMoney) {
@@ -253,9 +195,19 @@ export default class View {
   }
 
   displayChargeCoinChange(coins) {
-    this.fiveHoundredCount.innerHTML = `${coins[0]}개`;
-    this.oneHundredCount.innerHTML = `${coins[1]}개`;
-    this.fiftyCount.innerHTML = `${coins[2]}개`;
-    this.tenCount.innerHTML = `${coins[3]}개`;
+    coins.forEach((value, index) => {
+      getElement(COIN_QUANTITY[index]).innerHTML = `${value}개`;
+    });
+  }
+
+  createCoinTable(className) {
+    const coinTable = createTable([COIN, COUNT]);
+    const coins = [500, 100, 50, 10];
+    className.forEach((value, index) => {
+      const tr = createTr();
+      tr.append(createTd(coins[index], `${coins[index]}원`), createTd(value));
+      coinTable.append(tr);
+    });
+    return coinTable;
   }
 }
