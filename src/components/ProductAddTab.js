@@ -22,7 +22,6 @@ class ProductAddTab {
     const productName = $(`#${SELECTOR.productNameInputId}`).value;
     const productPrice = $(`#${SELECTOR.productPriceInputId}`).value;
     const productQuantity = $(`#${SELECTOR.productQuantityInputId}`).value;
-    console.log(productName, productPrice, productQuantity);
     const item = {
       productName,
       productPrice,
