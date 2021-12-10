@@ -1,3 +1,4 @@
+import Validator from '../validator/Validator.js';
 import initView from '../view/initView.js';
 import Product from './Product.js';
 
@@ -8,6 +9,8 @@ export default class VendingMachine {
   }
 
   addProduct(product) {
-    this.products.push(new Product(product));
+    if (Validator.isValidAddInput(product)) {
+      this.products.push(new Product(product));
+    }
   }
 }
