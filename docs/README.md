@@ -156,7 +156,11 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 #### 2) 발생할 수 있는 예외케이스에 대해 고민한다
 
+- [x] input 예외케이스 확인
+
 #### 3) Boolean을 return 하는 경우 간결하게 한다
+
+- [x] return 간결하게 확인
 
 #### 4) 불필요한 변수를 줄이기 위해 노력한다
 
@@ -164,5 +168,16 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 #### 5) 비즈니스 로직과 UI 로직을 분리해라
 
+- [x] MVC 디자인 패턴으로 설계
+
 #### 6) 함수(메서드) 라인
+
 - [x] 함수(메서드) 15라인 이하로 리팩토링
+
+#### 7) indent depth 제한
+
+- [x] indent depth 2 이하로 리팩토링(함수분리)
+
+#### 8) Cypress 테스트
+
+- [x] 테스트 모두 통과 확인

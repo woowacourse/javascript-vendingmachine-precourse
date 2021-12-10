@@ -133,10 +133,7 @@ export default class VendingController {
 
 
   checkName(name) {
-    if (Object.keys(this.model.productObj).indexOf(name) !== -1) {
-      return false;
-    }
-    return true;
+    return Object.keys(this.model.productObj).indexOf(name);
   }
 
   chargeMoney(e) {
