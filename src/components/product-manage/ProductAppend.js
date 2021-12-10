@@ -4,7 +4,7 @@ import { parseString, parseNumber } from '../../utils/inputParser.js';
 import Button from '../base/Button.js';
 import Component from '../base/Component.js';
 import Input from '../base/Input.js';
-import TextComponent from '../base/TextComponent.js';
+import Label from '../base/Label.js';
 
 const inputPropsList = [
   {
@@ -35,12 +35,13 @@ class ProductAppend extends Component {
   constructor() {
     super($tag('div'));
 
-    this.$title = new TextComponent($tag('h3'), '상품 추가하기');
+    this.$title = new Label('h3', '상품 추가하기');
     this.$inputs = inputPropsList.map((prop) => new Input(prop));
     this.$submit = new Button('추가하기', {
       id: ELEMENT_ID.PRODUCT_MANAGE_ADD_BUTTON,
     });
     this.setEvent();
+    this.children = [this.$title, ...this.$inputs, this.$submit];
   }
 
   resetInputs() {
@@ -57,10 +58,6 @@ class ProductAppend extends Component {
         count: parseNumber(this.$inputs[2].value),
       });
     });
-  }
-
-  render() {
-    this.renderChildrenView([this.$title, ...this.$inputs, this.$submit]);
   }
 }
 

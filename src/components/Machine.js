@@ -14,19 +14,14 @@ class Machine extends Component {
 
   constructor(initMenu) {
     super($tag('div'));
-    this.setState({ currentMenu: initMenu });
 
     this.$productManage = new ProductManage();
     this.$changesCharge = new ChangesCharge();
     this.$productPurchase = new ProductPurchase();
 
+    this.setState({ currentMenu: initMenu });
     this.setEvent();
-  }
-
-  setEvent() {
-    this.onStateChanged = () => {
-      this.render();
-    };
+    this.children = [this.#currentMenuView];
   }
 
   get #currentMenuView() {
@@ -37,14 +32,10 @@ class Machine extends Component {
     }[this.state.currentMenu];
   }
 
-  render() {
-    this.renderChildrenView([this.#currentMenuView]);
-  }
-
   update() {
-    this.$element.removeChild(this.$element.lastChild);
-    this.$element.appendChild(this.#currentMenuView.$element);
-    this.#currentMenuView.render();
+    // 완전갱신
+    this.children = [this.#currentMenuView];
+    this.render();
   }
 }
 

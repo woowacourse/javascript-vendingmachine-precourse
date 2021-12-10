@@ -6,24 +6,23 @@ import ProductAppend from './ProductAppend.js';
 class ProductManage extends Component {
   $append;
 
+  $table;
+
   constructor() {
     super($tag('div'));
 
     this.$append = new ProductAppend();
     this.$table = '';
     this.setEvent();
+    this.children = [this.$append];
   }
 
   setEvent() {
     this.$append.onSubmit = (product) => {
       VendingMachineStore.instance.addProduct(product);
       this.$append.resetInputs();
-      this.$table;
+      // this.$table;
     };
-  }
-
-  render() {
-    this.renderChildrenView([this.$append]);
   }
 }
 

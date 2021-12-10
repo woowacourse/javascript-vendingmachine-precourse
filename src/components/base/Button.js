@@ -1,9 +1,11 @@
 import { $tag } from '../../utils/index.js';
-import TextComponent from './TextComponent.js';
+import Component from './Component.js';
+import TextNode from './TextNode.js';
 
-class Button extends TextComponent {
+class Button extends Component {
   constructor(text, props) {
     super($tag('button'), text, props);
+    this.children = [new TextNode(text)];
   }
 
   addOnClick(onClick) {

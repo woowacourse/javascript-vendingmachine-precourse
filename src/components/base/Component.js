@@ -2,12 +2,16 @@
 class Component {
   $element;
 
+  $children;
+
   #state;
 
   onStateChanged;
 
   constructor($element, props) {
     this.$element = $element;
+
+    this.children = [];
 
     Object.entries(props || {}).forEach(([key, value]) => {
       this.$element[key] = value;
@@ -26,19 +30,12 @@ class Component {
     this.onStateChanged?.(newStateParams);
   }
 
-  render() {}
-
-  renderChildrenView(children) {
+  render() {
     this.$element.innerHTML = '';
-    children.forEach(($child) => {
-      this.$element.appendChild($child.$element);
-      $child.render();
+    this.children.forEach((child) => {
+      this.$element.appendChild(child.$element);
+      child.render();
     });
-  }
-
-  // 제거 예정
-  renderText(text) {
-    this.$element.innerHTML = text;
   }
 
   update() {}

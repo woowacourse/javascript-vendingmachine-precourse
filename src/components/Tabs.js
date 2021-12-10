@@ -22,6 +22,7 @@ class Tabs extends Component {
     ]);
 
     this.setEvent();
+    this.children = Object.values(this.$tabButtons);
   }
 
   setEvent() {
@@ -30,10 +31,6 @@ class Tabs extends Component {
         this.setState({ currentTab: menu });
       });
     });
-  }
-
-  render() {
-    this.renderChildrenView(Object.values(this.$tabButtons));
   }
 }
 
