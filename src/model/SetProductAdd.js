@@ -11,7 +11,7 @@ export default class SetProductAdd {
     this.setProduct();
   }
 
-  getProductInput = () => {
+  getProductInputs = () => {
     [this.productName, this.productPrice, this.productQuantity] = this.productAdd.getInputs();
   };
 
@@ -22,7 +22,7 @@ export default class SetProductAdd {
     if (!this.productAdd.isValidInputs()) {
       return;
     }
-    this.getProductInput();
+    this.getProductInputs();
     this.renderProduct();
   };
 }

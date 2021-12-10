@@ -16,6 +16,11 @@ export default class Render {
     $vendingMachineSection.innerHTML = productAddMenuTemplate;
   };
 
+  vendingMachineChargeAmountTemplate = (vendingMachineChargeAmount) => {
+    const $vendingMachineChargeAmount = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_AMOUNT);
+    $vendingMachineChargeAmount.textContent = vendingMachineChargeAmount + '원';
+  };
+
   vendingMachineManageMenuTemplate = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
     $vendingMachineSection.innerHTML = TEMPLATE.VENDING_MACHINE_MANAGE_MENU;

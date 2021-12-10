@@ -55,7 +55,9 @@ export const TEMPLATE = {
   <input type="number" placeholder="자판기가 보유할 금액" id="vending-machine-charge-input"/>
   <button id="vending-machine-charge-button">충전하기</button>
   <br /><br />
-  <span id='vending-machine-charge-amount'>보유 금액: </span>
+  <span>보유 금액: 
+    <span id='vending-machine-charge-amount'></span>
+  </span>
   <br /><br /><br />
   <h3>자판기가 보유한 동전</h3>
   <table id='vending-machine-manage-table'>

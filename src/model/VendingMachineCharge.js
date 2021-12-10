@@ -6,6 +6,8 @@ export default class VendingMachineCharge {
     this.$vendingMachineChargeInput = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_INPUT);
   }
 
+  getInput = () => Number(this.$vendingMachineChargeInput.value);
+
   isBlank = ($element) => {
     if ($element.value.length < NUMBER.BLANK_CHECK_LENGTH) {
       this.render.alertMessage(ERROR_MESSAGE.PRODUCT_BLANK($element.placeholder));
@@ -40,7 +42,7 @@ export default class VendingMachineCharge {
     return true;
   };
 
-  isValidInputs = () =>
+  isValidInput = () =>
     !this.isBlank(this.$vendingMachineChargeInput) &&
     this.isPositiveInteger(this.$vendingMachineChargeInput) &&
     this.isUnitOfTen();
