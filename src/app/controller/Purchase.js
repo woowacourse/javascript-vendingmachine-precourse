@@ -5,8 +5,8 @@ import {
     setInputAmount,
     getProducts,
     setProducts,
-    getCoins,
-    setCoins,
+    getCoinCnts,
+    setCoinCnts,
 } from '../localStorage/index.js';
 import { ERROR_MSG } from '../asset/constants/index.js';
 import { distributeCoinGreedily, calcCoinAmount } from '../asset/util/index.js';
@@ -80,12 +80,12 @@ export default class Purchase {
                 return;
             }
 
-            const coinCnts = getCoins();
+            const coinCnts = getCoinCnts();
             const distributedCoin = distributeCoinGreedily(getInputAmount(), coinCnts);
 
             this.updateAmount(-calcCoinAmount(distributedCoin));
-            setCoins(coinCnts.map((coinCnt, idx) => coinCnt - distributedCoin[idx]));
-            this.purchaseTap.setCoins(distributedCoin);
+            setCoinCnts(coinCnts.map((coinCnt, idx) => coinCnt - distributedCoin[idx]));
+            this.purchaseTap.setCoinCnts(distributedCoin);
         });
     }
 }

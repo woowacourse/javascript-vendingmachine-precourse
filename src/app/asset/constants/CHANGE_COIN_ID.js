@@ -1,10 +1,10 @@
-import COIN from './COIN.js';
+import COINS from './COINS.js';
 
 const CHANGE_COIN_ID = [
-    `coin-${COIN[0]}-quantity`,
-    `coin-${COIN[1]}-quantity`,
-    `coin-${COIN[2]}-quantity`,
-    `coin-${COIN[3]}-quantity`,
+    `coin-${COINS[0]}-quantity`,
+    `coin-${COINS[1]}-quantity`,
+    `coin-${COINS[2]}-quantity`,
+    `coin-${COINS[3]}-quantity`,
 ];
 
 export default CHANGE_COIN_ID;

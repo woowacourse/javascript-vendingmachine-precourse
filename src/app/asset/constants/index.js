@@ -2,7 +2,7 @@ import BEVERAGE_ICON_PATH from './BEVERAGE_ICON_PATH.js';
 import BUTTON from './BUTTON.js';
 import CHANGE_COIN_ID from './CHANGE_COIN_ID.js';
 import COIN_ID from './COIN_ID.js';
-import COIN from './COIN.js';
+import COINS from './COINS.js';
 import ERROR_MSG from './ERROR_MSG.js';
 import GUIDE from './GUIDE.js';
 import INPUT_ID from './INPUT_ID.js';
@@ -23,7 +23,7 @@ export {
     BUTTON,
     CHANGE_COIN_ID,
     COIN_ID,
-    COIN,
+    COINS,
     ERROR_MSG,
     GUIDE,
     INPUT_ID,

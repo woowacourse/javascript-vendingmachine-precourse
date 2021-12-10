@@ -1,4 +1,4 @@
-import { COIN } from '../constants/index.js';
+import { COINS } from '../constants/index.js';
 
 const coinToIdx = {
     500: 0,
@@ -7,13 +7,13 @@ const coinToIdx = {
     10: 3,
 };
 
-const getPickCoinList = (amount) => COIN.filter((coin) => amount >= coin);
+const getPickCoinList = (amount) => COINS.filter((coin) => amount >= coin);
 
 const distributeCoin = (amount) => {
     let chargeAmount = amount;
-    const ret = Array(COIN.length).fill(0);
+    const ret = Array(COINS.length).fill(0);
 
-    while (chargeAmount >= COIN[COIN.length - 1]) {
+    while (chargeAmount >= COINS[COINS.length - 1]) {
         const coin = MissionUtils.Random.pickNumberInList(getPickCoinList(chargeAmount));
         ret[coinToIdx[coin]] += 1;
         chargeAmount -= coin;

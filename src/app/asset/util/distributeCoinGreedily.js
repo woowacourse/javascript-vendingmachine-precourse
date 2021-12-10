@@ -1,12 +1,12 @@
-import { COIN } from '../constants/index.js';
+import { COINS } from '../constants/index.js';
 
 const distributeCoinGreedily = (amount, coinCnts) => {
     let inputAmount = amount;
 
-    return COIN.map((coinVal, idx) => {
-        const cnt = Math.min(Math.floor(inputAmount / coinVal), coinCnts[idx]);
+    return COINS.map((coin, idx) => {
+        const cnt = Math.min(Math.floor(inputAmount / coin), coinCnts[idx]);
 
-        inputAmount -= coinVal * cnt;
+        inputAmount -= coin * cnt;
 
         return cnt;
     });

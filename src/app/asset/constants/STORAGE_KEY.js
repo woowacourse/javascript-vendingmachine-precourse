@@ -1,6 +1,6 @@
 const STORAGE_KEY = {
     inventory: 'products',
-    coins: 'coins',
+    coinCnts: 'coinCnts',
     inputAmount: 'inputAmount',
     tap: 'recentViewTap',
 };

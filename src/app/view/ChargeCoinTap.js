@@ -50,7 +50,7 @@ export default class ChargeCoinTap extends Tap {
 
     render(chargeAmount, distributedCoin) {
         this.setChargeAmount(chargeAmount);
-        this.setCoins(distributedCoin);
+        this.setCoinCnts(distributedCoin);
         this.show();
     }
 
@@ -58,7 +58,7 @@ export default class ChargeCoinTap extends Tap {
         this.$chargeAmount.innerText = chargeAmount;
     }
 
-    setCoins(distributedCoin) {
+    setCoinCnts(distributedCoin) {
         this.$coin500.innerText = `${distributedCoin[0]}${UNIT.count}`;
         this.$coin100.innerText = `${distributedCoin[1]}${UNIT.count}`;
         this.$coin50.innerText = `${distributedCoin[2]}${UNIT.count}`;
