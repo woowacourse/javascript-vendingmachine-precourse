@@ -16,8 +16,22 @@ import {
 
 const { PRICE_INPUT, CHARGE_INPUT } = ADDITIONAL_CONDITION;
 
+/**
+ * 중복 여부를 검사합니다.
+ *
+ * @param {string} value
+ * @param {any[]} items
+ * @returns {boolean}
+ */
 const isDuplicate = (value, items) => !isNull(items.find(({ name }) => name === value));
 
+/**
+ * 최소 값을 검사합니다.
+ *
+ * @param {number} number
+ * @param {string} placeholder
+ * @returns {number}
+ */
 const checkedMinimum = (number, placeholder) => {
   if (!isEquals(placeholder, PRICE_INPUT)) return number;
 
@@ -26,6 +40,13 @@ const checkedMinimum = (number, placeholder) => {
   return number;
 };
 
+/**
+ * 나누기 값을 검사합니다.
+ *
+ * @param {number} number
+ * @param {string} placeholder
+ * @returns {number}
+ */
 const checkedDivisble = (number, placeholder) => {
   if (!isIncludes(placeholder, [PRICE_INPUT, CHARGE_INPUT])) return number;
 
@@ -35,6 +56,13 @@ const checkedDivisble = (number, placeholder) => {
   return number;
 };
 
+/**
+ * 숫자형에 대한 유효성을 검사합니다.
+ *
+ * @param {number} value
+ * @param {string} placeholder
+ * @returns {number}
+ */
 const numbersValidate = (value, placeholder) => {
   const parsed = isPositiveInteger(value, placeholder);
   if (isEmpty(parsed)) return EMPTY;
@@ -43,6 +71,13 @@ const numbersValidate = (value, placeholder) => {
   return parsed;
 };
 
+/**
+ * 모든 입력에 대한 유효성을 검사합니다.
+ *
+ * @param {object} param
+ * @param {any[]} items
+ * @returns {boolean}
+ */
 export const isValidate = ({ type, placeholder, value }, items = []) => {
   if (type === 'number') return numbersValidate(value, placeholder);
 
@@ -52,6 +87,13 @@ export const isValidate = ({ type, placeholder, value }, items = []) => {
   return value;
 };
 
+/**
+ * 상품 구매 시 유효성을 검사합니다.
+ *
+ * @param {object[]} values
+ * @param {string} name
+ * @returns
+ */
 export const purchaseValidate = (values, name) =>
   Object.keys(values).every(key => {
     if (key === 'quantity' && values[key] < 1) return setErrorMessage('isSoldOutError', name);
@@ -59,6 +101,13 @@ export const purchaseValidate = (values, name) =>
     return true;
   });
 
+/**
+ * input에 대한 유효성을 검사하고, 옳은 input만 반환합니다.
+ *
+ * @param {HTMLInputElement[]} targets
+ * @param {object} storageItem
+ * @returns {HTMLInputElement[]}
+ */
 export const isValidateInput = (targets, storageItem) =>
   Array.from(targets).reduce((result, target, _, array) => {
     if (!isValidate(target, storageItem)) {
