@@ -8,9 +8,9 @@ export class ChargeController {
   }
 
   loadCharge() {
-    const chargeAmount = this.model.chargeAmount;
+    const machineChargeAmount = this.model.machineChargeAmount;
     const coins = this.model.coins;
-    this.coreView.chargeView.showChargeAmount(chargeAmount);
+    this.coreView.chargeView.showChargeAmount(machineChargeAmount);
     this.coreView.chargeView.showCoins(coins);
   }
 
