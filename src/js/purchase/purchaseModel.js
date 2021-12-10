@@ -26,5 +26,6 @@ export default class PurchaseModel {
 
   reset = () => {
     this.chargedMoney = 0;
+    setLocalStorage("charge-money", this.chargedMoney);
   };
 }
