@@ -1,3 +1,4 @@
+import GetRandomCoins from './GetRandomCoins.js';
 import VendingMachineCharge from './VendingMachineCharge.js';
 
 export default class SetVendingMachineCharge {
@@ -17,11 +18,17 @@ export default class SetVendingMachineCharge {
     this.vendingMachineChargeAmount = this.vendingMachineCharge.getInput();
   };
 
+  getRandomCoins = () => {
+    const getRandomCoins = new GetRandomCoins(this.vendingMachineChargeAmount);
+    console.log(getRandomCoins.hash());
+  };
+
   setVendingMachine = () => {
     if (!this.vendingMachineCharge.isValidInput()) {
       return;
     }
     this.getVendingMachineChargeInput();
     this.renderVendingMachineChargeAmount();
+    this.getRandomCoins();
   };
 }
