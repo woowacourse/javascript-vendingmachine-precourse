@@ -1,14 +1,17 @@
 export const DOM = {
   $APP: '#app',
   $PRODUCT_ADD_MENU: '#product-add-menu',
-  $VENDING_MACHINE_MANAGE_MENU: '#vending-machine-manage-menu',
   $PRODUCT_PURCHASE_MENU: '#product-purchase-menu',
-  $VENDING_MACHINE_SECTION: '#vending-machine-section',
   $PRODUCT_NAME_INPUT: '#product-name-input',
   $PRODUCT_PRICE_INPUT: '#product-price-input',
   $PRODUCT_QUANTITY_INPUT: '#product-quantity-input',
   $PRODUCT_ADD_BUTTON: '#product-add-button',
   $PRODUCT_MANAGE_TBODY: '#product-manage-tbody',
+  $VENDING_MACHINE_MANAGE_MENU: '#vending-machine-manage-menu',
+  $VENDING_MACHINE_SECTION: '#vending-machine-section',
+  $VENDING_MACHINE_CHARGE_INPUT: '#vending-machine-charge-input',
+  $VENDING_MACHINE_CHARGE_BUTTON: '#vending-machine-charge-button',
+  $VENDING_MACHINE_CHARGE_AMOUNT: '#vending-machine-charge-amount',
 };
 
 export const TEMPLATE = {
@@ -95,6 +98,8 @@ export const ERROR_MESSAGE = {
     return `${placeholder}을 입력해주세요.`;
   },
   PRODUCT_POSITIVE_INTEGER: '양의 정수를 입력해주세요.',
-  PRODUCT_UNIT_OF_TEN: '상품 가격은 10원 단위로 입력해주세요.',
   PRODUCT_MORE_THAN_ONE_HUNDRED: '상품 가격은 100원 이상으로 입력해주세요.',
+  UNIT_OF_TEN(placeholder) {
+    return `${placeholder}은 10원 단위로 입력해주세요.`;
+  },
 };

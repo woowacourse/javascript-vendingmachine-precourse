@@ -39,7 +39,7 @@ export default class ProductAdd {
 
   isUnitOfTen = () => {
     if (Number(this.$productPriceInput.value) % NUMBER.UNIT_CHECK_TEN !== NUMBER.ZERO) {
-      this.render.alertMessage(ERROR_MESSAGE.PRODUCT_UNIT_OF_TEN);
+      this.render.alertMessage(ERROR_MESSAGE.UNIT_OF_TEN(this.$productPriceInput.placeholder));
       this.render.inputFocus(this.$productPriceInput);
 
       return false;

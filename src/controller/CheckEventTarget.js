@@ -1,6 +1,7 @@
 import GetLocalStorage from '../model/GetLocalStorage.js';
 import SetProductAdd from '../model/SetProductAdd.js';
 import { DOM } from '../utils/constant.js';
+import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
 
 export default class CheckEventTarget {
   constructor(render) {
@@ -34,9 +35,17 @@ export default class CheckEventTarget {
     }
   };
 
+  onClickVendingMachineChargeButton = () => {
+    const $vendingMachineChargetButton = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_BUTTON);
+    $vendingMachineChargetButton.addEventListener('click', () => {
+      new SetVendingMachineCharge(this.render);
+    });
+  };
+
   isVendingMachineManageMenu = (eventTarget, $vendingMachineManageMenu) => {
     if (eventTarget === $vendingMachineManageMenu) {
       this.render.vendingMachineManageMenuTemplate();
+      this.onClickVendingMachineChargeButton();
     }
   };
 }
