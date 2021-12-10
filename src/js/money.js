@@ -4,7 +4,7 @@ import {
   checkMenuPriceDivideTen,
   checkInputMoneyRange,
 } from './addMenu.js';
-import { renderInputedMoneyAmount } from './render.js';
+import { renderInputedMoney } from './render.js';
 
 export const addMoney = e => {
   e.preventDefault();
@@ -16,6 +16,6 @@ export const addMoney = e => {
   ) {
     window.alert('잘못된 값을 입력하셨습니다.');
   } else {
-    localStorage.setItem('money', JSON.stringify(renderInputedMoneyAmount()));
+    localStorage.setItem('money', JSON.stringify(renderInputedMoney()));
   }
 };
