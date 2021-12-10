@@ -19,6 +19,8 @@ export const renderProductPurchaseMenu = () => {
   renderCommonPart();
   renderInputMoneyForm();
   renderInputedMoneyAmount();
+  renderPurchableProductItemsTable();
+  renderPurchableProductItems();
 };
 
 export const renderCommonPart = () => {
@@ -197,4 +199,40 @@ export const renderInputedMoney = () => {
   chargedMoney += parseInt(money);
   $('#charge-amount').innerText = `투입한 금액: ${chargedMoney}원`;
   return chargedMoney;
+};
+export const renderPurchableProductItemsTable = () => {
+  const template = () => {
+    return `
+      <h2>구매할 수 있는 상품 현황</h2>
+      <table class='item-table'>
+        <thead class='item-table-head'>
+          <tr>
+            <th class='product-items-header'>상품명</th>
+            <th class='product-items-header'>가격</th>
+            <th class='product-items-header'>수량</th>
+            <th class='product-items-header'>구매</th>
+          </tr>
+        </thead>
+        <tbody class='item-table-body'>
+        </tbody>
+      </table>
+    `;
+  };
+  $('#app').innerHTML += template();
+};
+export const renderPurchableProductItems = () => {
+  const menu = JSON.parse(localStorage.getItem('menu'));
+  if (menu !== null) {
+    const template = menu.map(item => {
+      return `
+        <tr class='product-manage-item'>
+          <td class='product-items-header' id='product-purchase-name'>${item.name}</td>
+          <td class='product-items-header' id='product-purchase-price'>${item.price}</td>
+          <td class='product-items-header' id='product-purchase-quantity'>${item.quantity}</td>
+          <td class='product-items-header'><button class='purchase-button'>구매하기</button></td>
+        </tr>
+      `;
+    });
+    $('.item-table-body').innerHTML = template.join('');
+  }
 };
