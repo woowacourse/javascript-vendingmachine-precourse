@@ -17,8 +17,8 @@ export default class CheckEventTarget {
     });
   };
 
-  isProductAddMenuTemplate = () => {
-    const productAddMenuTemplate = this.getLocalStorage.productAddMenu();
+  hasProductAddMenuTemplate = () => {
+    const productAddMenuTemplate = localStorage.getItem('productAddMenu');
     if (!productAddMenuTemplate) {
       this.render.productAddMenuTemplate();
       this.onClickProductAddButton();
@@ -26,13 +26,13 @@ export default class CheckEventTarget {
       return;
     }
 
-    this.render.hasProductAddMenuTemplate(productAddMenuTemplate);
+    this.render.haveTemplate(productAddMenuTemplate);
     this.onClickProductAddButton();
   };
 
   isProductAddMenu = (eventTarget, $productAddMenu) => {
     if (eventTarget === $productAddMenu) {
-      this.isProductAddMenuTemplate();
+      this.hasProductAddMenuTemplate();
     }
   };
 
@@ -43,10 +43,22 @@ export default class CheckEventTarget {
     });
   };
 
-  isVendingMachineManageMenu = (eventTarget, $vendingMachineManageMenu) => {
-    if (eventTarget === $vendingMachineManageMenu) {
+  hasVendingMachineManageMenuTemplate = () => {
+    const vendingMachineManageMenuTemplate = localStorage.getItem('vendingMachineManageMenu');
+    if (!vendingMachineManageMenuTemplate) {
       this.render.vendingMachineManageMenuTemplate();
       this.onClickVendingMachineChargeButton();
+
+      return;
+    }
+
+    this.render.haveTemplate(vendingMachineManageMenuTemplate);
+    this.onClickVendingMachineChargeButton();
+  };
+
+  isVendingMachineManageMenu = (eventTarget, $vendingMachineManageMenu) => {
+    if (eventTarget === $vendingMachineManageMenu) {
+      this.hasVendingMachineManageMenuTemplate();
     }
   };
 }

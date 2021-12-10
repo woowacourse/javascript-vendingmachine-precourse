@@ -1,3 +1,3 @@
 export default class GetLocalStorage {
-  productAddMenu = () => localStorage.getItem('productAddMenu');
+  productAddMenu = (item) => localStorage.getItem(item);
 }

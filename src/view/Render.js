@@ -11,9 +11,9 @@ export default class Render {
 
   alertMessage = (message) => alert(message);
 
-  hasProductAddMenuTemplate = (productAddMenuTemplate) => {
+  haveTemplate = (template) => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
-    $vendingMachineSection.innerHTML = productAddMenuTemplate;
+    $vendingMachineSection.innerHTML = template;
   };
 
   vendingMachineChargeTableTemplate = (coin10, coin50, coin100, coin500) => {
