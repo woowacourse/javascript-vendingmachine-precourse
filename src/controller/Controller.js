@@ -1,3 +1,4 @@
+import Coins from '../model/Coins.js';
 import { DOM } from '../utils/constant.js';
 import Render from '../view/Render.js';
 import CheckEventTarget from './CheckEventTarget.js';
@@ -5,7 +6,8 @@ import CheckEventTarget from './CheckEventTarget.js';
 export default class Controller {
   constructor() {
     this.render = new Render();
-    this.checkEventTarget = new CheckEventTarget(this.render);
+    this.coin = new Coins();
+    this.checkEventTarget = new CheckEventTarget(this.render, this.coin);
     this.$app = document.querySelector(DOM.$APP);
     this.main();
   }

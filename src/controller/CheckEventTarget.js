@@ -4,8 +4,9 @@ import { DOM } from '../utils/constant.js';
 import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
 
 export default class CheckEventTarget {
-  constructor(render) {
+  constructor(render, coins) {
     this.render = render;
+    this.coins = coins;
     this.getLocalStorage = new GetLocalStorage();
   }
 
@@ -38,7 +39,7 @@ export default class CheckEventTarget {
   onClickVendingMachineChargeButton = () => {
     const $vendingMachineChargetButton = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_BUTTON);
     $vendingMachineChargetButton.addEventListener('click', () => {
-      new SetVendingMachineCharge(this.render);
+      new SetVendingMachineCharge(this.render, this.coins);
     });
   };
 
