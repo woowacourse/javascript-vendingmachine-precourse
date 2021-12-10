@@ -1,5 +1,6 @@
 import { ID } from '../../constants/index.js';
 import ProductInput from './ProductInput.js';
+import ProductTable from './ProductTable.js';
 
 class ProductContainer {
   constructor($target) {
@@ -32,6 +33,7 @@ class ProductContainer {
 
   mounted() {
     new ProductInput(this.$inputContainer);
+    new ProductTable(this.$tableContainer);
   }
 }
 
