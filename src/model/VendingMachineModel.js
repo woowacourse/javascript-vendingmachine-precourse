@@ -26,6 +26,7 @@ export class VendingMachineModel {
     this.products.some((product) => {
       if (product.productName === productName) {
         product.quantity--;
+        localStorage.setItem('products', JSON.stringify(this.products));
         return true;
       }
     });
