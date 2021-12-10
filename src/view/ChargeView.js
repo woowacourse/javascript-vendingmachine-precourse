@@ -26,11 +26,11 @@ export class ChargeView {
     this.$machineChargeAmount.innerText = machineChargeAmount;
   }
 
-  showCoins(coins) {
-    this.$coin500Quantity.innerText = coins[500];
-    this.$coin100Quantity.innerText = coins[100];
-    this.$coin50Quantity.innerText = coins[50];
-    this.$coin10Quantity.innerText = coins[10];
+  showMachineCoins(machineCoins) {
+    this.$coin500Quantity.innerText = machineCoins[500];
+    this.$coin100Quantity.innerText = machineCoins[100];
+    this.$coin50Quantity.innerText = machineCoins[50];
+    this.$coin10Quantity.innerText = machineCoins[10];
   }
 
   addElements() {

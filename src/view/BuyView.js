@@ -12,7 +12,18 @@ export class BuyView {
     this.$insertInput;
     this.$insertButton;
     this.$totalInsertedMoney;
+    this.$coinReturnButton;
+    this.$coin500Quantity;
+    this.$coin100Quantity;
+    this.$coin50Quantity;
+    this.$coin10Quantity;
     this.addElements();
+  }
+
+  setOnCoinReturnClick(fn) {
+    this.$insertButton.addEventListener('click', () => {
+      fn();
+    });
   }
 
   setOnBuyClick(fn) {
@@ -53,5 +64,10 @@ export class BuyView {
     this.$insertInput = $('#charge-input');
     this.$insertButton = $('#charge-button');
     this.$totalInsertedMoney = $('#charge-amount');
+    this.$coinReturnButton = $('#coin-return-button');
+    this.$coin500Quantity = $('#coin-500-quantity');
+    this.$coin100Quantity = $('#coin-100-quantity');
+    this.$coin50Quantity = $('#coin-50-quantity');
+    this.$coin10Quantity = $('#coin-10-quantity');
   }
 }

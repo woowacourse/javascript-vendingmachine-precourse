@@ -9,9 +9,9 @@ export class ChargeController {
 
   loadLocalStorage() {
     const machineChargeAmount = this.model.machineChargeAmount;
-    const coins = this.model.coins;
+    const machineCoins = this.model.machineCoins;
     this.coreView.chargeView.showChargeAmount(machineChargeAmount);
-    this.coreView.chargeView.showCoins(coins);
+    this.coreView.chargeView.showMachineCoins(machineCoins);
   }
 
   triggerEvent() {
@@ -20,8 +20,8 @@ export class ChargeController {
 
   onChargeSubmit(chargeMoney) {
     const chargeAmount = this.model.addChargeMoney(chargeMoney);
-    const coins = this.model.addCoin(chargeMoney);
+    const machineCoins = this.model.addMachineCoins(chargeMoney);
     this.coreView.chargeView.showChargeAmount(chargeAmount);
-    this.coreView.chargeView.showCoins(coins);
+    this.coreView.chargeView.showMachineCoins(machineCoins);
   }
 }

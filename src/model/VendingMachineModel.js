@@ -2,7 +2,7 @@ import { coinList } from '../utils/constant.js';
 
 export class VendingMachineModel {
   products = JSON.parse(localStorage.getItem('products')) || [];
-  coins = JSON.parse(localStorage.getItem('coins')) || {
+  machineCoins = JSON.parse(localStorage.getItem('machineCoins')) || {
     500: 0,
     100: 0,
     50: 0,
@@ -47,15 +47,17 @@ export class VendingMachineModel {
     return this.totalInsertedMoney;
   }
 
-  addCoin(chargeMoney) {
+  addMachineCoins(chargeMoney) {
     while (chargeMoney > 0) {
       const randomCoin = MissionUtils.Random.pickNumberInList(coinList);
       if (chargeMoney - randomCoin >= 0) {
         chargeMoney -= randomCoin;
-        this.coins[randomCoin]++;
+        this.machineCoins[randomCoin]++;
       }
     }
-    localStorage.setItem('coins', JSON.stringify(this.coins));
-    return this.coins;
+    localStorage.setItem('machineCoins', JSON.stringify(this.machineCoins));
+    return this.machineCoins;
   }
+
+  returnCoin() {}
 }

@@ -20,6 +20,7 @@ export class BuyController {
   triggerEvent() {
     this.coreView.buyView.setOnMoneySubmit(this.onMoneySubmit.bind(this));
     this.coreView.buyView.setOnBuyClick(this.onBuyClick.bind(this));
+    this.coreView.buyView.setOnCoinReturnClick(this.onCoinReturnClick.bind(this));
   }
 
   onMoneySubmit(insertedMoney) {
@@ -39,5 +40,9 @@ export class BuyController {
     const products = this.model.products;
     this.coreView.buyView.showTotalInsertedMoney(totalInsertedMoney);
     this.coreView.buyView.showProductForBuy(products);
+  }
+
+  onCoinReturnClick() {
+    const changeCoin = this.model.returnCoin();
   }
 }
