@@ -58,10 +58,7 @@ export default class Component {
     this.updateComponent();
   }
 
-  appendRootEvents(id, type, handler) {
-    this.$container.addEventListener(type, ({ target }) => {
-      if (target.id !== id) return;
-      handler();
-    });
+  appendRootEvents(type, handler) {
+    this.$container.addEventListener(type, handler);
   }
 }
