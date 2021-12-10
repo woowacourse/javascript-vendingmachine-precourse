@@ -2,6 +2,7 @@ export default class VendingModel {
   constructor() {
     this._productObj = {};
     this._coinObj = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
+    this._chargedMoney = 0;
     this._insertedMoney = 0;
     this._changesObj = {};
   }
@@ -22,8 +23,16 @@ export default class VendingModel {
     return this._coinObj;
   }
 
-  set insertedMoney(newInsertedMoney) {
-    this._insertedMoney = newInsertedMoney;
+  set chargedMoney(money) {
+    this._chargedMoney = money;
+  }
+
+  get chargedMoney() {
+    return this._chargedMoney;
+  }
+
+  set insertedMoney(money) {
+    this._insertedMoney = money;
   }
 
   get insertedMoney() {

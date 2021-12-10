@@ -67,16 +67,22 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 ### 3) 잔돈 충전 탭 (자판기 보유 동전)
 
 - 잔돈 충전 탭에서, 다음과 같은 규칙으로 자판기 보유 금액을 충전한다.
-- [] 잔돈 충전 탭에서 최초 자판기가 보유한 금액은 0원이며, 각 동전의 개수는 0개이다.
-  - 데이터 저장: `model._coinObj`
-- [] 잔돈 충전 입력 요소에 충전할 금액을 입력한 후, 충전하기 버튼을 눌러 자판기 보유 금액을 충전할 수 있다.
+- [x] 잔돈 충전 탭에서 최초 자판기가 보유한 금액은 0원이며, 각 동전의 개수는 0개이다.
+  - 데이터 저장
+    - 보유 동전 조합:`model._coinObj`
+    - 보유 금액:`model._chargedMoney`
+- [x] 잔돈 충전 입력 요소에 충전할 금액을 입력한 후, 충전하기 버튼을 눌러 자판기 보유 금액을 충전할 수 있다.
   - `controller.chargeMoney(e)`
-  - [] 자판기 보유 금액은 {금액}원 형식으로 나타낸다.
-- [] 자판기 보유 금액만큼의 동전이 무작위로 생성된다.
-  - [] 동전의 개수는 {개수}개 형식으로 나타낸다.
-  - 충전금액이 주어지면 각 동전들의 개수 조합은 랜덤으로 정해진다.
-  - 자판기가 보유한 금액은 해당 객체의 키(parseInt필요)와 값들을 곱한 값들의 합으로 한다.
-- [] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성되어 기존 동전들에 더해진다.
+  - `controller.makeTableOfTab2()`
+  - [x] 자판기 보유 금액은 {금액}원 형식으로 나타낸다.
+  - [x] 0원 미만 금액을 충전할 경우 alert 발생 및 이하 동작 미실행
+- [x] 자판기 보유 금액만큼의 동전이 무작위로 생성된다.
+  - `getRandomCoin(money)`
+    - `MissionUtils.Random.pickNumberInList`
+    - `controller.saveCoin(coin)`
+  - [x] 동전의 개수는 {개수}개 형식으로 나타낸다.
+    - `controller.makeTableOfTab2()`
+- [x] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성되어 기존 동전들에 더해진다.
 - DOM 선택자
   - [x] 자판기가 보유할 금액을 충전할 요소의 id는 vending-machine-charge-input이다.
   - [x] 충전하기 버튼에 해당하는 요소의 id는 vending-machine-charge-button이다.

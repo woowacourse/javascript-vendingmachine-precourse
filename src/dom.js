@@ -138,6 +138,9 @@ const vendingMachineCoin50 = () =>
 const vendingMachineCoin10 = () =>
   document.getElementById('vending-machine-coin-10-quantity');
 
+const vendingMachineChargeAmount = () =>
+  document.getElementById('vending-machine-charge-amount');
+
 export {
   tabMenus,
   tab1,
@@ -156,4 +159,5 @@ export {
   vendingMachineCoin100,
   vendingMachineCoin50,
   vendingMachineCoin10,
+  vendingMachineChargeAmount,
 };

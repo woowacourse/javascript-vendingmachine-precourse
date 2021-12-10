@@ -27,7 +27,7 @@ export default class VendingView {
     alert(message);
   }
 
-  changeTableValue(spot, value) {
-    spot.innerHTML = `${value}개`;
+  renderValueInSpot(spot, value) {
+    spot.innerHTML = value;
   }
 }

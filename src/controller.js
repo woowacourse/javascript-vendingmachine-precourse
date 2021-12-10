@@ -88,13 +88,14 @@ export default class VendingController {
   // 잔돈 충전 탭 컨트롤러
   chargeMoney(e) {
     e.preventDefault();
-    const money = $.chargedMoney();
+    const money = parseInt($.chargedMoney(), 10);
     if (money < 0) {
       this.view.alertMessage(
         '충전할 잔돈은 0원 이상이어야 합니다. 다시 입력해주세요.'
       );
       return false;
     }
+    this.model.chargedMoney += money;
     this.getRandomCoin(money);
     this.makeTableOfTab2();
     VendingModel.setLocalStorage('tab2', this.model.coinObj);
@@ -102,35 +103,63 @@ export default class VendingController {
 
   getRandomCoin(money) {
     let changes = 0;
-    while (changes != money) {
+    while (changes !== money) {
       const coin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
 
-      // this.model.coinObj = {
-      //   coin500: this.model._coinObj.coin500++,
-      // };
       if (changes + coin <= money) {
         changes += coin;
-        console.log(coin, changes);
+        this.saveCoin(coin);
       }
     }
   }
 
+  saveCoin(coin) {
+    switch (coin) {
+      case 500:
+        this.model.coinObj = {
+          coin500: this.model._coinObj.coin500++,
+        };
+        break;
+      case 100:
+        this.model.coinObj = {
+          coin100: this.model._coinObj.coin100++,
+        };
+        break;
+      case 50:
+        this.model.coinObj = {
+          coin50: this.model._coinObj.coin50++,
+        };
+        break;
+      case 10:
+        this.model.coinObj = {
+          coin10: this.model._coinObj.coin10++,
+        };
+        break;
+      default:
+        break;
+    }
+  }
+
   makeTableOfTab2() {
-    this.view.changeTableValue(
+    this.view.renderValueInSpot(
+      $.vendingMachineChargeAmount(),
+      `${this.model.chargedMoney}원`
+    );
+    this.view.renderValueInSpot(
       $.vendingMachineCoin500(),
-      this.model.coinObj.coin500
+      `${this.model.coinObj.coin500}개`
     );
-    this.view.changeTableValue(
+    this.view.renderValueInSpot(
       $.vendingMachineCoin100(),
-      this.model.coinObj.coin100
+      `${this.model.coinObj.coin100}개`
     );
-    this.view.changeTableValue(
+    this.view.renderValueInSpot(
       $.vendingMachineCoin50(),
-      this.model.coinObj.coin50
+      `${this.model.coinObj.coin50}개`
     );
-    this.view.changeTableValue(
+    this.view.renderValueInSpot(
       $.vendingMachineCoin10(),
-      this.model.coinObj.coin10
+      `${this.model.coinObj.coin10}개`
     );
   }
 }
