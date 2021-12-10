@@ -35,6 +35,11 @@ export default class VendingController {
     }
   }
 
+  switchTab(tab) {
+    this.view.hideTab();
+    this.view.showTab(tab);
+  }
+
   addAllEventListener() {
     document
       .getElementById('product-add-menu')
@@ -71,14 +76,11 @@ export default class VendingController {
     VendingModel.setLocalStorage('tab1', this.model.productObj);
   }
 
-  switchTab(tab) {
-    this.view.hideTab();
-    this.view.showTab(tab);
-  }
-
   checkPrice(price) {
     if (price < 100) return false;
     if (price % 10 !== 0) return false;
     return true;
   }
+
+  // 잔돈 충전 탭 컨트롤러
 }

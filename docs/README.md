@@ -21,12 +21,18 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 ### 1) 공통
 
 - 상단에 탭메뉴가 존재한다. 각 탭에 따라 다음과 같은 규칙으로 적절한 기능을 수행한다.
+  - `view.renderInApp(position, text)`
+    - 탭 전환 `view.switchTab(tab)` `view.showTab(tab)` `view.hideTab()`
+    - 이벤트 달기 `controller.addAllEventListener()`
 - [] 상품 관리탭은 자판기가 보유하고 있는 상품을 추가하는 기능을 수행한다.
 - [] 잔돈 충전탭은 자판기가 보유할 금액을 충전하는 기능을 수행한다.
 - [] 상품 구매탭은 사용자가 금액을 투입할 수 있으며, 투입한 금액에 맞춰 상품을 구매하고, 남은 금액에 대해서는 잔돈을 반환하는 기능을 수행한다.
 - [x] 다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다.
 - [] localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다.
+  - `model.setLocalStorage(key, data)` `model.getLocalStorage(key)`
+  - `controller.loadData()`
   - [x] 상품 관리탭에서 localStorage 사용
+    - `controller.loadTab1Data()`
   - [ ] 잔동 충전탭에서 localStorage 사용
   - [ ] 상품 구매탭에서 localStorage 사용
 - DOM 선택자
@@ -39,9 +45,14 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 - 상품 관리탭에서, 다음과 같은 규칙을 바탕으로 상품을 추가한다.
 - [x] 최초 상품 목록은 비워진 상태이다.
 - [x] 상품명, 가격, 수량을 입력해 상품을 추가할 수 있다.
+  - `controller.addProduct()`
   - [x] 상품 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 한다.
     - [x] 조건 미충족시 alert 및 데이터 미 입력
+    - `controller.checkPrice() `
+    - `view.alertMessage() `
 - [x] 사용자는 추가한 상품을 확인할 수 있다.
+  - `controller.makeTab1Table(name, price, quantity) `
+    - `view.addTableRow(table, data) `
 - DOM 선택자
   - [x] 상품 추가 입력 폼의 상품명 입력 요소의 id는 product-name-input이다.
   - [x] 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 product-price-input이다.
@@ -56,20 +67,21 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 - 잔돈 충전 탭에서, 다음과 같은 규칙으로 자판기 보유 금액을 충전한다.
 - [] 잔돈 충전 탭에서 최초 자판기가 보유한 금액은 0원이며, 각 동전의 개수는 0개이다.
+  - `model._coinObj`
 - [] 잔돈 충전 입력 요소에 충전할 금액을 입력한 후, 충전하기 버튼을 눌러 자판기 보유 금액을 충전할 수 있다.
   - [] 자판기 보유 금액은 {금액}원 형식으로 나타낸다.
 - [] 자판기 보유 금액만큼의 동전이 무작위로 생성된다.
   - [] 동전의 개수는 {개수}개 형식으로 나타낸다.
 - [] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성되어 기존 동전들에 더해진다.
 - DOM 선택자
-  - 자판기가 보유할 금액을 충전할 요소의 id는 vending-machine-charge-input이다.
-  - 충전하기 버튼에 해당하는 요소의 id는 vending-machine-charge-button이다.
-  - 충전된 금액을 확인하는 요소의 id는 vending-machine-charge-amount 이다.
+  - [x] 자판기가 보유할 금액을 충전할 요소의 id는 vending-machine-charge-input이다.
+  - [x] 충전하기 버튼에 해당하는 요소의 id는 vending-machine-charge-button이다.
+  - [x] 충전된 금액을 확인하는 요소의 id는 vending-machine-charge-amount 이다.
   - 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-    - 500원: vending-machine-coin-500-quantity
-    - 100원: vending-machine-coin-100-quantity
-    - 50원: vending-machine-coin-50-quantity
-    - 10원: vending-machine-coin-10-quantity
+    - [x] 500원: vending-machine-coin-500-quantity
+    - [x] 100원: vending-machine-coin-100-quantity
+    - [x] 50원: vending-machine-coin-50-quantity
+    - [x] 10원: vending-machine-coin-10-quantity
 
 ### 4) 상품 구매 탭
 

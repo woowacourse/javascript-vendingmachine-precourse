@@ -35,6 +35,42 @@ const tab1 = `
 const tab2 = `
 <div class="tab2">
     <h2>자판기 동전 충전하기</h2>
+    <form>
+        <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액"
+        />
+        <input type="submit" id="vending-machine-charge-button" value="충전하기"></input>
+    </form>
+    <br>
+    <span>보유 금액: </span>
+    <span id="vending-machine-charge-amount"></span>
+    <h2>자판기가 보유한 동전</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>동전</th>
+                <th>개수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>500원</th>
+                <td id="vending-machine-coin-500-quantity"></td>
+            </tr>
+            <tr>
+                <th>100원</th>
+                <td id="vending-machine-coin-100-quantity"></td>
+            </tr>
+            <tr>
+                <th>50원</th>
+                <td id="vending-machine-coin-50-quantity"></td>
+            </tr>
+            <tr>
+                <th>10원</th>
+                <td id="vending-machine-coin-10-quantity"></td>
+            </tr>
+        </tbody>
+        <tbody id="tbodyOfTab1"></tbody>
+    </table>
 </div>
 `;
 
@@ -45,10 +81,14 @@ const tab3 = `
 `;
 
 const productNameInput = () => document.getElementById('product-name-input');
+
 const productPriceInput = () => document.getElementById('product-price-input');
+
 const productQuantityInput = () =>
   document.getElementById('product-quantity-input');
+
 const tbodyOfTab1 = () => document.getElementById('tbodyOfTab1');
+
 const createTbody = (name, price, quantity) => `
   <tr id='product-manage-item'>
     <td id='product-manage-name'>${name}</td>
@@ -56,6 +96,7 @@ const createTbody = (name, price, quantity) => `
     <td id='product-manage-quantity'>${quantity}</td>
   </tr>
 `;
+
 const newRowOfTab1 = () =>
   createTbody(
     productNameInput().value,
