@@ -27,6 +27,10 @@ const DOMUtils = {
       )
       .join('');
   },
+
+  hideComponents: () => {
+    Array.from($('#component').children).forEach(menu => (menu.style.display = 'none'));
+  },
 };
 
 export default DOMUtils;

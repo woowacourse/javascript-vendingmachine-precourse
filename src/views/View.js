@@ -1,10 +1,11 @@
 import { default as UI } from './templates.js';
-import { $ } from './DOMUtils.js';
+import { $, default as DOM } from './DOMUtils.js';
 
 export default class View {
   constructor() {
     $('#app').insertAdjacentHTML('beforeend', UI.commonHTML);
     this.makeComponents();
+    DOM.hideComponents();
   }
 
   makeComponents() {
@@ -14,14 +15,14 @@ export default class View {
   }
 
   showProductAddComponent() {
-    $('#app').insertAdjacentHTML('beforeend', UI.productAddHTML);
+    $('#component').insertAdjacentHTML('beforeend', UI.productAddHTML);
   }
 
   showVendingMachineManageComponent() {
-    $('#app').insertAdjacentHTML('beforeend', UI.vendingMachineManageHTML);
+    $('#component').insertAdjacentHTML('beforeend', UI.vendingMachineManageHTML);
   }
 
   showProductPurchaseComponent() {
-    $('#app').insertAdjacentHTML('beforeend', UI.productPurchaseHTML);
+    $('#component').insertAdjacentHTML('beforeend', UI.productPurchaseHTML);
   }
 }
