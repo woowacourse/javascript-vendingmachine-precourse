@@ -38,6 +38,7 @@ export const ERROR = {
   PRODUCT_NAME_IS_BLANK: '상품 이름이 빈값입니다.',
   PRICE_IS_NOT_CORRECT: `금액은 ${NUM.PRICE_MIN_COUNT}원 이상이고, ${NUM.PRICE_MIN_UNIT}원 단위로 입력해주세요.`,
   QUANTITY_IS_NOT_CORRECT: `상품 개수를 ${NUM.QUANTITY_MIN_COUNT}이상의 정수로 입력해주세요.`,
+  CHARGE_AMOUNT_IS_NOT_CORRECT: `투입 금액은 ${NUM.PRICE_MIN_UNIT}원 단위로 입력해주세요.`,
 };
 
 export const LOCAL_DB = {
