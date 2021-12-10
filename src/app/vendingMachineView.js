@@ -5,7 +5,7 @@ import { PRODUCT_LIST_TABLE_HEADER_TEMPLATE } from '../template/constants.js';
 /** View */
 class VendingMachineView {
   constructor() {
-    this.$app = document.getElementById('app');
+    this.$app = $('app');
     this.initView();
     this.initDOM();
   }
@@ -20,8 +20,8 @@ class VendingMachineView {
   }
 
   initDOM() {
-    this.tabMenuSection = document.getElementById(DOM.TAB_MENU_SECTION);
-    this.mainSection = document.getElementById(DOM.MAIN_SECTION);
+    this.tabMenuSection = $(DOM.TAB_MENU_SECTION);
+    this.mainSection = $(DOM.MAIN_SECTION);
   }
 
   renderMain(model) {
