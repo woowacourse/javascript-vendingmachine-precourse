@@ -13,8 +13,8 @@ const tab1 = `
     <h2>상품 추가하기</h2>
     <form>
         <input type="text" id="product-name-input" placeholder="상품명" />
-        <input type="number" id="product-price-input" placeholder="수량" />
-        <input type="number" id="product-quantity-input" placeholder="가격"
+        <input type="number" id="product-price-input" placeholder="가격" />
+        <input type="number" id="product-quantity-input" placeholder="수량"
         />
         <input type="submit" id="product-add-button" value="추가하기"></input>
     </form>
@@ -80,16 +80,18 @@ const tab3 = `
 </div>
 `;
 
-const productNameInput = () => document.getElementById('product-name-input');
+const productNameInput = () =>
+  document.getElementById('product-name-input').value;
 
-const productPriceInput = () => document.getElementById('product-price-input');
+const productPriceInput = () =>
+  document.getElementById('product-price-input').value;
 
 const productQuantityInput = () =>
-  document.getElementById('product-quantity-input');
+  document.getElementById('product-quantity-input').value;
 
 const tbodyOfTab1 = () => document.getElementById('tbodyOfTab1');
 
-const createTbody = (name, price, quantity) => `
+const createTbodyOfTab1 = (name, price, quantity) => `
   <tr id='product-manage-item'>
     <td id='product-manage-name'>${name}</td>
     <td id='product-manage-price'>${price}</td>
@@ -98,11 +100,43 @@ const createTbody = (name, price, quantity) => `
 `;
 
 const newRowOfTab1 = () =>
-  createTbody(
+  createTbodyOfTab1(
     productNameInput().value,
     productPriceInput().value,
     productQuantityInput().value
   );
+
+// 잔돈 충전 탭 DOM
+
+const chargedMoney = () =>
+  document.getElementById('vending-machine-charge-input').value;
+
+const createTbodyOfTab2 = money => `
+  <tr id='product-manage-item'>
+    <td id='product-manage-name'>${name}</td>
+    <td id='product-manage-price'>${price}</td>
+    <td id='product-manage-quantity'>${quantity}</td>
+  </tr>
+`;
+
+const newRowOfTab2 = () =>
+  createTbodyOfTab2(
+    productNameInput().value,
+    productPriceInput().value,
+    productQuantityInput().value
+  );
+
+const vendingMachineCoin500 = () =>
+  document.getElementById('vending-machine-coin-500-quantity');
+
+const vendingMachineCoin100 = () =>
+  document.getElementById('vending-machine-coin-100-quantity');
+
+const vendingMachineCoin50 = () =>
+  document.getElementById('vending-machine-coin-50-quantity');
+
+const vendingMachineCoin10 = () =>
+  document.getElementById('vending-machine-coin-10-quantity');
 
 export {
   tabMenus,
@@ -111,8 +145,15 @@ export {
   tab3,
   tbodyOfTab1,
   newRowOfTab1,
-  createTbody,
+  createTbodyOfTab1,
   productNameInput,
   productPriceInput,
   productQuantityInput,
+  chargedMoney,
+  newRowOfTab2,
+  createTbodyOfTab2,
+  vendingMachineCoin500,
+  vendingMachineCoin100,
+  vendingMachineCoin50,
+  vendingMachineCoin10,
 };

@@ -26,7 +26,7 @@ export default class VendingController {
   loadTab1Data() {
     for (const name in this.model.productObj) {
       if (Object.hasOwnProperty.call(this.model.productObj, name)) {
-        this.makeTab1Table(
+        this.makeTableOfTab1(
           name,
           this.model.productObj[name].price,
           this.model.productObj[name].quantity
@@ -53,25 +53,28 @@ export default class VendingController {
     document
       .getElementById('product-add-button')
       .addEventListener('click', e => this.addProduct.call(this, e));
+    document
+      .getElementById('vending-machine-charge-button')
+      .addEventListener('click', e => this.chargeMoney.call(this, e));
   }
 
-  makeTab1Table(name, price, quantity) {
-    const newRowOfTab1 = () => $.createTbody(name, price, quantity);
+  makeTableOfTab1(name, price, quantity) {
+    const newRowOfTab1 = () => $.createTbodyOfTab1(name, price, quantity);
     this.view.addTableRow($.tbodyOfTab1(), newRowOfTab1());
   }
 
   addProduct(e) {
     e.preventDefault();
-    const name = $.productNameInput().value;
-    const price = $.productPriceInput().value;
-    const quantity = $.productQuantityInput().value;
+    const name = $.productNameInput();
+    const price = $.productPriceInput();
+    const quantity = $.productQuantityInput();
     if (!this.checkPrice(price)) {
       this.view.alertMessage(
         '상품 가격은 100원부터 시작해야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
       );
       return false;
     }
-    this.makeTab1Table(name, price, quantity);
+    this.makeTableOfTab1(name, price, quantity);
     this.model.productObj = { name, price, quantity };
     VendingModel.setLocalStorage('tab1', this.model.productObj);
   }
@@ -83,4 +86,51 @@ export default class VendingController {
   }
 
   // 잔돈 충전 탭 컨트롤러
+  chargeMoney(e) {
+    e.preventDefault();
+    const money = $.chargedMoney();
+    if (money < 0) {
+      this.view.alertMessage(
+        '충전할 잔돈은 0원 이상이어야 합니다. 다시 입력해주세요.'
+      );
+      return false;
+    }
+    this.getRandomCoin(money);
+    this.makeTableOfTab2();
+    VendingModel.setLocalStorage('tab2', this.model.coinObj);
+  }
+
+  getRandomCoin(money) {
+    let changes = 0;
+    while (changes != money) {
+      const coin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+
+      // this.model.coinObj = {
+      //   coin500: this.model._coinObj.coin500++,
+      // };
+      if (changes + coin <= money) {
+        changes += coin;
+        console.log(coin, changes);
+      }
+    }
+  }
+
+  makeTableOfTab2() {
+    this.view.changeTableValue(
+      $.vendingMachineCoin500(),
+      this.model.coinObj.coin500
+    );
+    this.view.changeTableValue(
+      $.vendingMachineCoin100(),
+      this.model.coinObj.coin100
+    );
+    this.view.changeTableValue(
+      $.vendingMachineCoin50(),
+      this.model.coinObj.coin50
+    );
+    this.view.changeTableValue(
+      $.vendingMachineCoin10(),
+      this.model.coinObj.coin10
+    );
+  }
 }

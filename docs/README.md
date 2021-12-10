@@ -11,7 +11,7 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 - 상품 현황 목록: [변수명]productObj, [타입]Object
   - ex) { "콜라": {"가격": 1,500, "수량": 20}, "사이다": {"가격": 1,000, "수량": 10}}
 - 자판기가 보유한 동전 목록: [변수명]coinObj, [타입]Object
-  - ex) { "500": 0, "100": 4, "50": 1, "10": 0}
+  - ex) { "coin500": 0, "coin100": 4, "coin50": 1, "coin10": 0}
   - 충전금액이 주어지면 각 동전들의 개수 조합은 랜덤으로 정해진다.
   - 자판기가 보유한 금액은 해당 객체의 키(parseInt필요)와 값들을 곱한 값들의 합으로 한다.
 - 투입한 금액 : [변수명]insertedMoney, [타입]Number
@@ -45,6 +45,7 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 - 상품 관리탭에서, 다음과 같은 규칙을 바탕으로 상품을 추가한다.
 - [x] 최초 상품 목록은 비워진 상태이다.
 - [x] 상품명, 가격, 수량을 입력해 상품을 추가할 수 있다.
+  - 데이터 저장 : `modle._productObj`
   - `controller.addProduct()`
   - [x] 상품 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 한다.
     - [x] 조건 미충족시 alert 및 데이터 미 입력
@@ -67,11 +68,14 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 - 잔돈 충전 탭에서, 다음과 같은 규칙으로 자판기 보유 금액을 충전한다.
 - [] 잔돈 충전 탭에서 최초 자판기가 보유한 금액은 0원이며, 각 동전의 개수는 0개이다.
-  - `model._coinObj`
+  - 데이터 저장: `model._coinObj`
 - [] 잔돈 충전 입력 요소에 충전할 금액을 입력한 후, 충전하기 버튼을 눌러 자판기 보유 금액을 충전할 수 있다.
+  - `controller.chargeMoney(e)`
   - [] 자판기 보유 금액은 {금액}원 형식으로 나타낸다.
 - [] 자판기 보유 금액만큼의 동전이 무작위로 생성된다.
   - [] 동전의 개수는 {개수}개 형식으로 나타낸다.
+  - 충전금액이 주어지면 각 동전들의 개수 조합은 랜덤으로 정해진다.
+  - 자판기가 보유한 금액은 해당 객체의 키(parseInt필요)와 값들을 곱한 값들의 합으로 한다.
 - [] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성되어 기존 동전들에 더해진다.
 - DOM 선택자
   - [x] 자판기가 보유할 금액을 충전할 요소의 id는 vending-machine-charge-input이다.
