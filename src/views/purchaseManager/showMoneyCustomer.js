@@ -1,6 +1,8 @@
+import { getItemFromLocalStorage } from "../../utils/itemFromLocalStorage.js";
+
 const showMoneyCustomer = () => {
   const $chargeAmountDiv = document.getElementById("charge-amount-div");
-  const moneyCustomer = JSON.parse(localStorage.getItem("money"));
+  const moneyCustomer = getItemFromLocalStorage("money");
 
   if (moneyCustomer) {
     $chargeAmountDiv.innerHTML = `

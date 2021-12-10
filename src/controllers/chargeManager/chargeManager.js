@@ -1,6 +1,6 @@
-import { showCoinsInMachine } from "../../views/chargeManager/showCoinsInMachine.js";
-import { showMoneyInMachine } from "../../views/chargeManager/showMoneyInMachine.js";
 import { onClickMachineChargeButton } from "./eventHandlers.js";
+import { showMoneyInMachine } from "../../views/chargeManager/showMoneyInMachine.js";
+import { showCoinsInMachine } from "../../views/chargeManager/showCoinsInMachine.js";
 
 class ChargeManager {
   constructor() {

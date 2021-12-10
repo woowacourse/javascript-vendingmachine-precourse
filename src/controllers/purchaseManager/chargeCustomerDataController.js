@@ -1,11 +1,16 @@
+import {
+  getItemFromLocalStorage,
+  setItemFromLocalStorage,
+} from "../../utils/itemFromLocalStorage.js";
+
 const addMoneyCustomer = moneyStr => {
-  const moneyBefore = JSON.parse(localStorage.getItem("money"));
+  const moneyBefore = getItemFromLocalStorage("money");
 
   if (moneyBefore) {
     const money = parseInt(moneyBefore, 10) + parseInt(moneyStr, 10);
-    localStorage.setItem("money", JSON.stringify(money));
+    setItemFromLocalStorage("money", money);
   } else {
-    localStorage.setItem("money", JSON.stringify(parseInt(moneyStr, 10)));
+    setItemFromLocalStorage("money", moneyStr);
   }
 };
 

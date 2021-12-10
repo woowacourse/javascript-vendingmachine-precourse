@@ -1,3 +1,5 @@
+import { getItemFromLocalStorage } from "../../utils/itemFromLocalStorage.js";
+
 const insertProductToTable = (name, price, quantity) => {
   const $productTable = document.getElementById("product-table");
 
@@ -21,7 +23,7 @@ const makeEmptyTable = () => {
 };
 
 const showProducts = () => {
-  const strOfProducts = JSON.parse(localStorage.getItem("products"));
+  const strOfProducts = getItemFromLocalStorage("products");
 
   makeEmptyTable();
 

@@ -1,3 +1,4 @@
+import { getItemFromLocalStorage } from "../../utils/itemFromLocalStorage.js";
 import { onClickPurchaseButton } from "../../controllers/purchaseManager/eventHandlers.js";
 
 const insertAbleProductsToTable = (name, price, quantity) => {
@@ -31,7 +32,7 @@ const makeEmptyTable = () => {
 
 const showProductsAbleToBuy = () => {
   makeEmptyTable();
-  const strOfProducts = JSON.parse(localStorage.getItem("products"));
+  const strOfProducts = getItemFromLocalStorage("products");
 
   if (strOfProducts) {
     const products = strOfProducts.split(",");

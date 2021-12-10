@@ -1,8 +1,8 @@
-import { getInputValueById } from "../common/getInputValue.js";
+import { getInputValueById } from "../../utils/inputValue.js";
 import { isValidInputs } from "./checkInputValues.js";
 import { addProduct } from "./productDataController.js";
-import { resetAddProductInput } from "../../views/productManager/resetInput.js";
 import { showAfterAddOrPurchaseProduct } from "../../views/common/showAll.js";
+import { resetAddProductInput } from "../../views/common/resetInput.js";
 
 const processing = e => {
   e.preventDefault();
@@ -14,10 +14,10 @@ const processing = e => {
   if (errorMessage === "") {
     addProduct(name, price, quantity);
     showAfterAddOrPurchaseProduct();
-    resetAddProductInput();
   } else {
     alert(errorMessage);
   }
+  resetAddProductInput();
 };
 
 const onClickProductAddButton = () => {

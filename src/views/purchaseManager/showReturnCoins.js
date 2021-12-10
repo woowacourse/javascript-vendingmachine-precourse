@@ -25,12 +25,8 @@ const makeEmptyTable = () => {
   insertCoinTypesToTable($returnCoinTable);
 };
 
-const showReturnCoins = money => {
+const showReturnCoinTable = () => {
   makeEmptyTable();
-
-  if (money > 0) {
-    // 가진 동전 개수와 잔돈 비교하여 반환
-  }
 };
 
-export { showReturnCoins, insertQuantityOfCoins };
+export { showReturnCoinTable, insertQuantityOfCoins };

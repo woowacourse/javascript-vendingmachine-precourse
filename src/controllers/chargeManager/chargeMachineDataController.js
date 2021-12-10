@@ -1,4 +1,8 @@
 import { COIN_TYPES } from "../../utils/constants.js";
+import {
+  getItemFromLocalStorage,
+  setItemFromLocalStorage,
+} from "../../utils/itemFromLocalStorage.js";
 
 const availableRandomCoin = money => {
   let coin = money;
@@ -10,16 +14,22 @@ const availableRandomCoin = money => {
   return coin;
 };
 
+const incQuantity = (coin, coinQuantity) => {
+  for (let i = 0; i < COIN_TYPES.length; i++) {
+    if (coin === COIN_TYPES[i]) {
+      coinQuantity[i]++;
+    }
+  }
+
+  return coinQuantity;
+};
+
 const makeMoneyToCoins = money => {
-  const coinQuantity = [0, 0, 0, 0];
+  let coinQuantity = [0, 0, 0, 0];
+
   while (money > 0) {
     const coin = availableRandomCoin(money);
-    for (let i = 0; i < COIN_TYPES.length; i++) {
-      if (coin === COIN_TYPES[i]) {
-        coinQuantity[i]++;
-        break;
-      }
-    }
+    coinQuantity = incQuantity(coin, coinQuantity);
     money -= coin;
   }
 
@@ -27,7 +37,7 @@ const makeMoneyToCoins = money => {
 };
 
 const addCoinsInMachine = money => {
-  const coins = JSON.parse(localStorage.getItem("coins"));
+  const coins = getItemFromLocalStorage("coins");
   const newCoinQuantity = makeMoneyToCoins(money);
 
   if (coins) {
@@ -35,9 +45,9 @@ const addCoinsInMachine = money => {
     for (let i = 0; i < coinQuantity.length; i++) {
       coinQuantity[i] = parseInt(coinQuantity[i], 10) + newCoinQuantity[i];
     }
-    localStorage.setItem("coins", JSON.stringify(coinQuantity.join(",")));
+    setItemFromLocalStorage("coins", coinQuantity.join(","));
   } else {
-    localStorage.setItem("coins", JSON.stringify(newCoinQuantity.join(",")));
+    setItemFromLocalStorage("coins", newCoinQuantity.join(","));
   }
 };
 

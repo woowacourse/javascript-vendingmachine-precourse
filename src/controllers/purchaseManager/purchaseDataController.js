@@ -1,5 +1,10 @@
+import {
+  getItemFromLocalStorage,
+  setItemFromLocalStorage,
+} from "../../utils/itemFromLocalStorage.js";
+
 const purchaseProduct = (name, price, money) => {
-  const products = JSON.parse(localStorage.getItem("products")).split(",");
+  const products = getItemFromLocalStorage("products").split(",");
   const newProducts = [];
 
   products.forEach(product => {
@@ -10,8 +15,8 @@ const purchaseProduct = (name, price, money) => {
     newProducts.push(productInfo.join("/"));
   });
 
-  localStorage.setItem("products", JSON.stringify(newProducts.join(",")));
-  localStorage.setItem("money", JSON.stringify(money - price));
+  setItemFromLocalStorage("products", newProducts.join(","));
+  setItemFromLocalStorage("money", money - price);
 };
 
 export { purchaseProduct };

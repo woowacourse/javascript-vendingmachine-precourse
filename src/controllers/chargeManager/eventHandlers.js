@@ -1,12 +1,13 @@
-import { ALERT_MSG } from "../../utils/constants.js";
-import { showCoinsInMachine } from "../../views/chargeManager/showCoinsInMachine.js";
-import { showMoneyInMachine } from "../../views/chargeManager/showMoneyInMachine.js";
-import { getInputValueById } from "../common/getInputValue.js";
-import { addCoinsInMachine } from "./chargeMachineDataController.js";
+import { getInputValueById } from "../../utils/inputValue.js";
 import { isValidMoney } from "../common/checkMoneyInput.js";
+import { addCoinsInMachine } from "./chargeMachineDataController.js";
+import { showMoneyInMachine } from "../../views/chargeManager/showMoneyInMachine.js";
+import { showCoinsInMachine } from "../../views/chargeManager/showCoinsInMachine.js";
+import { ALERT_MSG } from "../../utils/constants.js";
+import { resetChargeMachineInput } from "../../views/common/resetInput.js";
 
-const processing = e => {
-  e.preventDefault();
+// 클릭 이벤트 실행할 함수
+const processing = () => {
   const money = getInputValueById("vending-machine-charge-input");
 
   if (isValidMoney(money)) {
@@ -14,9 +15,9 @@ const processing = e => {
     showMoneyInMachine();
     showCoinsInMachine();
   } else {
-    const { wrongChargeMoney } = ALERT_MSG;
-    alert(wrongChargeMoney);
+    alert(ALERT_MSG.wrongChargeMoney);
   }
+  resetChargeMachineInput();
 };
 
 const onClickMachineChargeButton = () => {

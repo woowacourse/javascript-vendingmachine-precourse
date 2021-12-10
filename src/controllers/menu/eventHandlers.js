@@ -5,29 +5,31 @@ import VisibleProductManager from "../../views/productManager/visibleProductMana
 import VisiblePurchaseManager from "../../views/purchaseManager/visiblePurchaseManager.js";
 
 const onClickProductAddMenu = () => {
-  const $productAddMenu = document.getElementById("product-add-menu");
+  const $productAddMenuButton = document.getElementById("product-add-menu");
 
-  $productAddMenu.addEventListener("click", () => {
+  $productAddMenuButton.addEventListener("click", () => {
     hideAllManager();
     new VisibleProductManager().show();
   });
 };
 
 const onClickVendingMachineManageMenu = () => {
-  const $vendingMachineManageMenu = document.getElementById(
+  const $vendingMachineManageMenuButton = document.getElementById(
     "vending-machine-manage-menu",
   );
 
-  $vendingMachineManageMenu.addEventListener("click", () => {
+  $vendingMachineManageMenuButton.addEventListener("click", () => {
     hideAllManager();
     new VisibleChargeManager().show();
   });
 };
 
 const onClickProductPurchaseMenu = () => {
-  const $productPurchaseMenu = document.getElementById("product-purchase-menu");
+  const $productPurchaseMenuButton = document.getElementById(
+    "product-purchase-menu",
+  );
 
-  $productPurchaseMenu.addEventListener("click", () => {
+  $productPurchaseMenuButton.addEventListener("click", () => {
     hideAllManager();
     new VisiblePurchaseManager().show();
   });
