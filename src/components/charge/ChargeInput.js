@@ -1,5 +1,6 @@
-import { ID } from '../../constants/index.js';
 import { $ } from '../../utils/selector.js';
+import { ID } from '../../constants/index.js';
+import { getRandomCoinArray } from '../../utils/makeCoinArray.js';
 import { chargeInputTemplate } from '../../utils/template/chargeTemplate.js';
 import { isValidChargeInput } from '../../utils/valid.js';
 
@@ -30,6 +31,9 @@ class ChargeInput {
     if (!isValidChargeInput(amount)) {
       return;
     }
+
+    const coinArray = getRandomCoinArray(amount);
+    console.log(coinArray);
   }
 }
 
