@@ -66,6 +66,7 @@ class ReturnCoinTable {
 
   updateView() {
     this.addTemplate();
+    this.state.updateState();
   }
 }
 
