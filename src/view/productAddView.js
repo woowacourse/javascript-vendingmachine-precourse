@@ -21,7 +21,7 @@ const updateTable = () => {
 const renderInputForm = container => {
   const inputFormArea = makeElement({ tag: "form" });
   const inputFormTitle = makeElement({
-    tag: "h2",
+    tag: "h3",
     innerText: PRODUCT_MANAGE.ADD_PRODUCT_TEXT,
   });
   const productNameInput = makeElement({
@@ -61,7 +61,7 @@ const renderInputForm = container => {
 };
 
 const renderProductTable = container => {
-  const productTableTitle = makeElement({ tag: "h2", innerText: PRODUCT_MANAGE.TABLE_TEXT });
+  const productTableTitle = makeElement({ tag: "h3", innerText: PRODUCT_MANAGE.TABLE_TEXT });
   const tableArea = makeElement({ tag: "table" });
   makeTableRow(
     tableArea,

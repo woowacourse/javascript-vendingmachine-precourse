@@ -23,3 +23,32 @@ export const makeTableRow = (container, elements, tag) => {
   });
   container.append(tr);
 };
+
+export const makeInputNumberFormToPrint = ({ textData, inputData, buttonData }) => {
+  const container = makeElement({ tag: "form" });
+  const inputFormTitle = makeElement({ tag: "h3", innerText: textData.title });
+  const input = makeElement({
+    tag: "input",
+    type: "number",
+    placeholder: inputData.placeholder,
+    id: inputData.id,
+  });
+  const button = makeElement({
+    tag: "button",
+    type: "button",
+    innerText: buttonData.innerText,
+    id: buttonData.id,
+  });
+  const printTextArea = makeElement({ tag: "p" });
+  const printTitle = makeElement({
+    tag: "span",
+    innerText: textData.printTitle,
+    id: textData.printTitleId,
+  });
+  const printText = makeElement({ tag: "span", id: "print-text" });
+
+  button.addEventListener("click", () => buttonData.handleClickEvent());
+  printTextArea.append(printTitle, printText);
+  container.append(inputFormTitle, input, button, printTextArea);
+  return container;
+};

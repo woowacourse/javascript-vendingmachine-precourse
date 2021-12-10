@@ -12,6 +12,38 @@ export const PRODUCT_MANAGE = {
 
 export const COIN_MANAGE = {
   BUTTON: "잔돈 충전",
+  COIN_CHARGE_TEXT: "자판기 동전 충전하기",
+  INPUT: {
+    PLACE_HOLDER: "자판기가 보유할 금액",
+    ID: "vending-machine-charge-input",
+  },
+  CHARGE_BUTTON: {
+    TEXT: "충전하기",
+    ID: "vending-machine-charge-button",
+  },
+  HOLDING_AMOUNT: {
+    TEXT: "보유 금액: ",
+    ID: "vending-machine-charge-amount",
+  },
+  CURRENT_COIN_AMOUT: "자판기가 보유한 동전",
+  COIN: "동전",
+  AMOUT: "개수",
+  "COIN-500": {
+    TEXT: "500원",
+    QUANTITY_ID: "vending-machine-coin-500-quantity",
+  },
+  "COIN-100": {
+    TEXT: "100원",
+    QUANTITY_ID: "vending-machine-coin-100-quantity",
+  },
+  "COIN-50": {
+    TEXT: "50원",
+    QUANTITY_ID: "vending-machine-coin-50-quantity",
+  },
+  "COIN-10": {
+    TEXT: "10원",
+    QUANTITY_ID: "vending-machine-coin-10-quantity",
+  },
 };
 
 export const PRODUCT_PURCHASE_MANAGE = {
