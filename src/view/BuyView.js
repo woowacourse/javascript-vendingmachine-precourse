@@ -1,4 +1,4 @@
-import { $ } from '../utils/DOM.js';
+import { $, siblings } from '../utils/DOM.js';
 import {
   BUY_SECTION_TEMPLATE,
   printProductForBuyTemplate,
@@ -13,6 +13,21 @@ export class BuyView {
     this.$insertButton;
     this.$totalInsertedMoney;
     this.addElements();
+  }
+
+  setOnBuyClick(fn) {
+    this.$productPurchaseTable.addEventListener('click', (e) => {
+      const $purchaseButton = e.target.closest('.purchase-button');
+      if ($purchaseButton === null) {
+        return;
+      }
+      const $purchaseButtonSiblings = siblings($purchaseButton);
+      const productName = $purchaseButtonSiblings[0].innerText;
+      const price = $purchaseButtonSiblings[1].innerText;
+      const quantity = $purchaseButtonSiblings[2].innerText;
+      e.preventDefault();
+      fn(productName, price, quantity);
+    });
   }
 
   setOnMoneySubmit(fn) {
