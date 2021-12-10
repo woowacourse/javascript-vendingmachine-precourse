@@ -25,3 +25,9 @@ export const PRODUCT_MANAGE_MESSAGE = {
   productPrice: '가격',
   productQuantity: '수량',
 };
+
+export const ERROR_MESSAGE = {
+  productName: '상품 이름을 확인해주세요.',
+  productPrice: '상품 가격을 확인해주세요.',
+  productQuantity: '상품 수량을 확인해주세요.',
+};
