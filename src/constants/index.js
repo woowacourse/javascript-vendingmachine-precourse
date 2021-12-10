@@ -5,6 +5,12 @@ export const COINS_PRICE_MIN = COINS_PRICE[COINS_PRICE.length - 1];
 export const PRODUCT_PRICE_MIN = 100;
 export const PRODUCT_PRICE_MOD = COINS_PRICE_MIN;
 
+export const MENUS = {
+  PRODUCT_MANAGE: '상품 관리',
+  CHANGES_CHARGE: '잔돈 충전',
+  PRODUCT_PURCHASE: '상품 구매',
+};
+
 export const ELEMENT_ID = {
   APP: 'app',
   // 탭 메뉴 버튼
