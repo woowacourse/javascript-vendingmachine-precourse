@@ -1,6 +1,11 @@
 import { COIN_MANAGE } from "../constant/vendingMachine.js";
 import { clearArea } from "../utils.js";
-import { makeInputNumberFormToPrint, makeTableForm, makeTableRow } from "./template.js";
+import {
+  makeElement,
+  makeInputNumberFormToPrint,
+  makeTableForm,
+  makeTableRow,
+} from "./template.js";
 
 const handleClickEvent = () => {
   const chargeInputValue = document.getElementById(COIN_MANAGE.INPUT.ID).value;
@@ -45,7 +50,8 @@ const renderCoinTable = container => {
 const coinManageView = container => {
   clearArea(container);
   const inputFormArea = makeInputNumberFormToPrint({ textData, inputData, buttonData });
-  container.append(inputFormArea);
+  const tableTitle = makeElement({ tag: "h3", innerText: COIN_MANAGE.CURRENT_COIN_AMOUNT });
+  container.append(inputFormArea, tableTitle);
   renderCoinTable(container);
 };
 

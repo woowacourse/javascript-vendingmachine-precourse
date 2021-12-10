@@ -1,5 +1,7 @@
-const producuctPurchaseView = () => {
-  console.log(`상품 구매하는 페이지`);
+import { clearArea } from "../utils.js";
+
+const producuctPurchaseView = container => {
+  clearArea(container);
 };
 
 export default producuctPurchaseView;
