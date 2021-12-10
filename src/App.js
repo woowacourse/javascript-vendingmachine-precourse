@@ -1,5 +1,6 @@
 import { ID } from './constants/index.js';
 import ProductContainer from './components/product/ProductContainer.js';
+import { $ } from './utils/selector.js';
 
 class App {
   constructor($target) {
@@ -27,10 +28,8 @@ class App {
   }
 
   selectDom() {
-    this.$buttonContainer = document.querySelector(
-      `#${ID.MENU_BUTTON_CONTAINER}`
-    );
-    this.$resultContainer = document.querySelector(`#${ID.RESULT_CONTAINER}`);
+    this.$buttonContainer = $(`#${ID.MENU_BUTTON_CONTAINER}`);
+    this.$resultContainer = $(`#${ID.RESULT_CONTAINER}`);
   }
 
   addEvent() {

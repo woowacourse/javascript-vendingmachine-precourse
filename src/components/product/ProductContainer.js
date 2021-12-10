@@ -1,4 +1,5 @@
 import { ID } from '../../constants/index.js';
+import { $ } from '../../utils/selector.js';
 import State from '../../observer/State.js';
 import ProductInput from './ProductInput.js';
 import ProductTable from './ProductTable.js';
@@ -25,12 +26,8 @@ class ProductContainer {
   }
 
   selectDom() {
-    this.$inputContainer = document.querySelector(
-      `#${ID.PRODUCT_INPUT_CONTAINER}`
-    );
-    this.$tableContainer = document.querySelector(
-      `#${ID.PRODUCT_TABLE_CONTAINER}`
-    );
+    this.$inputContainer = $(`#${ID.PRODUCT_INPUT_CONTAINER}`);
+    this.$tableContainer = $(`#${ID.PRODUCT_TABLE_CONTAINER}`);
   }
 
   mounted() {
