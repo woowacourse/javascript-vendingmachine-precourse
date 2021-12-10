@@ -1,5 +1,5 @@
 import { COIN_TYPES } from "../../utils/constants.js";
-import { insertCoinTypeToTable } from "../chargeManager/showCoinsInMachine.js";
+import { insertCoinTypeToTable } from "../common/insertCoinTypeToTable.js";
 
 const insertQuantityOfCoins = coins => {
   for (let i = 0; i < COIN_TYPES.length; i++) {
