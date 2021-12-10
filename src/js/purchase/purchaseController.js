@@ -32,6 +32,7 @@ export default class PurchaseController {
   setEvent = () => {
     this.$chargeButton.addEventListener("click", this.setClickChargeButtonEvent);
     this.$container.addEventListener("click", this.setClickPurchaseButtonEvent);
+    this.$container.addEventListener("click", this.setClickReturnButtonEvent);
   };
 
   setClickChargeButtonEvent = () => {
@@ -58,6 +59,13 @@ export default class PurchaseController {
     } catch (err) {
       alert(err);
     }
+  };
+
+  setClickReturnButtonEvent = ({ target }) => {
+    if (target.id !== "coin-return-button") return;
+
+    const remainingMoney = this.model.getChargedMoney();
+    this.coinStorage.return(remainingMoney);
   };
 
   buy = ({ name, price, quantity }) => {

@@ -36,6 +36,11 @@ export default class CoinStorageController {
     }
   };
 
+  return = (money) => {
+    const returnedCoins = this.model.returnChanges(money);
+    this.view.renderReturnedCoinAmount(returnedCoins);
+  };
+
   updatePage = () => {
     this.view.renderTotalMoney(this.$chargedAmount, this.model.getTotalMoney());
     this.view.renderCoinAmount(this.model.coins);

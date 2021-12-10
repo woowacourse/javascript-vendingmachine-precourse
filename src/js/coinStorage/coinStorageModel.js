@@ -34,6 +34,41 @@ export default class CoinStorageModel {
     return remainingMoney;
   };
 
+  returnChanges = (money) => {
+    const returnedCoins = this.getChanges(money);
+    this.returnCoins(returnedCoins);
+
+    return returnedCoins;
+  };
+
+  getChanges = (money) => {
+    let remainingMoney = money;
+    const sortedCoin = Object.keys(this.coins).sort((a, b) => b - a);
+
+    return sortedCoin.reduce((acc, coin) => {
+      const maxAvailableAmount = Math.floor(remainingMoney / coin);
+      const coinAmount = this.coins[coin];
+      const amount = this.calculateAvailableAmount(maxAvailableAmount, coinAmount);
+      remainingMoney -= amount * coin;
+      return { ...acc, [coin]: amount };
+    }, {});
+  };
+
+  calculateAvailableAmount = (maxAvailableAmount, coinAmount) => {
+    if (coinAmount > maxAvailableAmount) {
+      return maxAvailableAmount;
+    }
+
+    return coinAmount;
+  };
+
+  returnCoins = (returnedCoins) => {
+    Object.entries(returnedCoins).forEach(([coin, count]) => {
+      this.coins[coin] -= count;
+    });
+    setLocalStorage("coin", this.coins);
+  };
+
   getTotalMoney = () => {
     return Object.entries(this.coins).reduce((sum, [coin, quantity]) => sum + coin * quantity, 0);
   };

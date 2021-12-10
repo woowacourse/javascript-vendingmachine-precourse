@@ -94,6 +94,18 @@ export default class CoinStorageView {
     $coin10.innerText = this.formatCoinAmount(coins[10]);
   };
 
+  renderReturnedCoinAmount = (returnedCoins) => {
+    const $returnedCoin500 = document.getElementById("coin-500-quantity");
+    const $returnedCoin100 = document.getElementById("coin-100-quantity");
+    const $returnedCoin50 = document.getElementById("coin-50-quantity");
+    const $returnedCoin10 = document.getElementById("coin-10-quantity");
+
+    $returnedCoin500.innerText = this.formatCoinAmount(returnedCoins[500]);
+    $returnedCoin100.innerText = this.formatCoinAmount(returnedCoins[100]);
+    $returnedCoin50.innerText = this.formatCoinAmount(returnedCoins[50]);
+    $returnedCoin10.innerText = this.formatCoinAmount(returnedCoins[10]);
+  };
+
   formatCoinAmount = (amount) => {
     return `${amount}개`;
   };
