@@ -24,9 +24,8 @@ export class BuyView {
       const $purchaseButtonSiblings = siblings($purchaseButton);
       const productName = $purchaseButtonSiblings[0].innerText;
       const price = $purchaseButtonSiblings[1].innerText;
-      const quantity = $purchaseButtonSiblings[2].innerText;
       e.preventDefault();
-      fn(productName, price, quantity);
+      fn(productName, price);
     });
   }
 

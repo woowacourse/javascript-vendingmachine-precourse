@@ -17,6 +17,20 @@ export class VendingMachineModel {
     return this.products;
   }
 
+  buyProduct(productName, price) {
+    this.addInsertedMoney(Number(`-${price}`));
+    this.minusQuantity(productName);
+  }
+
+  minusQuantity(productName) {
+    this.products.some((product) => {
+      if (product.productName === productName) {
+        product.quantity--;
+        return true;
+      }
+    });
+  }
+
   addChargeMoney(chargeMoney) {
     this.machineChargeAmount += chargeMoney;
     localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
