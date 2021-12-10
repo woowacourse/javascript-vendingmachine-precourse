@@ -1,4 +1,4 @@
-import initView from './initView.js';
+import initView from '../view/initView.js';
 import Product from './Product.js';
 
 export default class VendingMachine {

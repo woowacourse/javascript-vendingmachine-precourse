@@ -1,10 +1,10 @@
+import { $ } from '../view/initView.js';
 import {
-  $,
   PRODUCT_ADD_BUTTON_ID,
   PRODUCT_NAME_INPUT_ID,
   PRODUCT_PRICE_INPUT_ID,
   PRODUCT_QUANTITY_INPUT_ID,
-} from '../vendingMachine/initView.js';
+} from '../view/initProductAdd.js';
 
 function onAdd(vendingMachine) {
   const product = {

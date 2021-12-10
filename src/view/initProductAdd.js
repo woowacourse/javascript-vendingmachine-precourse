@@ -1,20 +1,5 @@
-const APP_ID = '#app';
-
-const PRODUCT_ADD_TAB_TITLE = '상품 관리';
-const MANAGE_MENU_TAB_TITLE = '잔돈 충전';
-const PRODUCT_PURCHASE_TAB_TITLE = '상품 구매';
-
-const PRODUCT_ADD_ID = 'product-add-menu';
-const MANAGE_MENU_ID = 'vending-machine-manage-menu';
-const PRODUCT_PURCHASE_ID = 'product-purchase-menu';
-
 const PRODUCT_ADD_TITLE = '상품 추가하기';
 const PRODUCT_LIST_TITLE = '상품 현황';
-
-export const PRODUCT_NAME_INPUT_ID = 'product-name-input';
-export const PRODUCT_PRICE_INPUT_ID = 'product-price-input';
-export const PRODUCT_QUANTITY_INPUT_ID = 'product-quantity-input';
-export const PRODUCT_ADD_BUTTON_ID = 'product-add-button';
 
 const PRODUCT_NAME_TITLE = '상품명';
 const PRODUCT_PRICE_TITLE = '가격';
@@ -22,9 +7,10 @@ const PRODUCT_QUANTITY_TITLE = '수량';
 
 const PRODUCT_LIST_TABLE_ID = 'product-list-table';
 
-export function $(domId) {
-  return document.querySelector(domId);
-}
+export const PRODUCT_NAME_INPUT_ID = 'product-name-input';
+export const PRODUCT_PRICE_INPUT_ID = 'product-price-input';
+export const PRODUCT_QUANTITY_INPUT_ID = 'product-quantity-input';
+export const PRODUCT_ADD_BUTTON_ID = 'product-add-button';
 
 function renderProductAddInput($productAdd) {
   const $inputContainer = document.createElement('div');
@@ -55,28 +41,10 @@ function renderProductAddList($productAdd) {
   $productAdd.append($listContainer);
 }
 
-function renderAppHeader($appDiv) {
-  const $header = document.createElement('div');
-
-  $header.innerHTML = `
-    <h1>🥤자판기🥤</h1>
-    <button id="${PRODUCT_ADD_ID}">${PRODUCT_ADD_TAB_TITLE}</button>
-    <button id="${MANAGE_MENU_ID}">${MANAGE_MENU_TAB_TITLE}</button>
-    <button id="${PRODUCT_PURCHASE_ID}">${PRODUCT_PURCHASE_TAB_TITLE}</button>
-  `;
-  $appDiv.append($header);
-}
-
-function renderProductAdd($appDiv) {
+export default function initProductAdd($appDiv) {
   const $productAdd = document.createElement('div');
 
   renderProductAddInput($productAdd);
   renderProductAddList($productAdd);
   $appDiv.append($productAdd);
-}
-
-export default function initView() {
-  const $appDiv = $(APP_ID);
-  renderAppHeader($appDiv);
-  renderProductAdd($appDiv);
 }
