@@ -1,4 +1,4 @@
-import { CLASS, ID, LOCAL_DB } from '../../constants/index.js';
+import { CLASS, COIN_LIST, ID, LOCAL_DB } from '../../constants/index.js';
 import { getLocalStorage } from '../localStorage.js';
 
 export const purchaseInputTemplate = () => {
@@ -55,6 +55,52 @@ export const purchaseTableTemplate = () => {
     <table border="1">
       ${purchaseTableHeader}
       ${purchaseTableRows(getLocalStorage(LOCAL_DB.PRODUCT))}
+    </table>
+  `;
+};
+
+const returnCoinTableTableHeader = `
+  <tr>
+    <td>동전</td>
+    <td>개수</td>
+  </tr>   
+`;
+
+const returnCoinTableRows = list => {
+  let html = '';
+
+  if (!list.length) {
+    COIN_LIST.forEach(coin => {
+      html += `
+        <tr>
+          <td>${coin}원</td>
+          <td></td> 
+        </tr>
+      `;
+    });
+
+    return html;
+  }
+
+  list.forEach(coin => {
+    html += `
+      <tr>
+        <td>${coin[0]}원</td>
+        <td>${coin[1]}개</td> 
+      </tr>
+    `;
+  });
+
+  return html;
+};
+
+export const returnCoinTableTemplate = list => {
+  return `
+    <h3>잔돈</h3>
+    <button id=${ID.COIN_RETURN_BUTTON}>반환하기</button>
+    <table border="1">
+      ${returnCoinTableTableHeader}
+      ${returnCoinTableRows(list)}
     </table>
   `;
 };

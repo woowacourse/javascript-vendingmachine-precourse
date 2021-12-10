@@ -3,6 +3,7 @@ import { ID } from '../../constants/index.js';
 import State from '../../observer/State.js';
 import PurchaseInput from './PurchaseInput.js';
 import PurchaseTable from './PurchaseTable.js';
+import ReturnCoinTable from './ReturnCoinTable.js';
 
 class PurchaseContainer {
   constructor($target) {
@@ -36,6 +37,7 @@ class PurchaseContainer {
   mounted() {
     new PurchaseInput(this.$inputContainer, this.$totalContainer, this.state);
     new PurchaseTable(this.$tableContainer, this.state);
+    new ReturnCoinTable(this.$returnContainer);
   }
 }
 
