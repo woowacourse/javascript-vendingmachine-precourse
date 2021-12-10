@@ -1,4 +1,5 @@
 import { ID } from './constants/index.js';
+import ProductContainer from './components/product/ProductContainer.js';
 
 class App {
   constructor($target) {
@@ -36,6 +37,10 @@ class App {
 
   clickButton(e) {
     const { id } = e.target;
+
+    if (id === ID.PRODUCT_ADD_MENU) {
+      new ProductContainer(this.$resultContainer);
+    }
   }
 }
 
