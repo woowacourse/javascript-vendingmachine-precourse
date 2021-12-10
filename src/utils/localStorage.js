@@ -17,3 +17,10 @@ export const getVendingMachineCharge = () => {
   const vendingMachineCharge = getData('vending-machine-charge');
   return vendingMachineCharge || initialVendingMachineCharge;
 };
+
+const initialCharge = 0;
+export const setCharge = (data) => setData('charge', data);
+export const getCharge = () => {
+  const charge = getData('charge');
+  return charge || initialCharge;
+};
