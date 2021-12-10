@@ -90,16 +90,16 @@ export default class MachineManageView {
       const coins = JSON.parse(localStorage.getItem(COINS));
 
       //처음이면 왜 값 안읽히지?
-      if(localStorage.getItem(COINS) === null) {
-        localStorage.setItem(COINS, JSON.stringify({ [FIVE_HUNDRED]: countCoin[0], [ONE_HUNDRED]: countCoin[1], [FIFTY]: countCoin[2], [TEN]: countCoin[3]}));
-        // console.log(coins[500], coins[100], coins[50], coins[10]);
-      } else {
+    //   if(localStorage.getItem(COINS) === null) {
+    //     localStorage.setItem(COINS, JSON.stringify({ [FIVE_HUNDRED]: countCoin[0], [ONE_HUNDRED]: countCoin[1], [FIFTY]: countCoin[2], [TEN]: countCoin[3]}));
+    //     // console.log(coins[500], coins[100], coins[50], coins[10]);
+    //   } else {
           coins[500] = coins[500] + countCoin[0];
           coins[100] = coins[100] + countCoin[1];
           coins[50] = coins[50] + countCoin[2];
           coins[10] = coins[10] + countCoin[3];
           localStorage.setItem(COINS, JSON.stringify(coins));
-      }
+    //   }
         console.log(coins[500], coins[100], coins[50], coins[10]);
         this.showTable();
   }
