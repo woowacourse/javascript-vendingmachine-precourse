@@ -13,9 +13,3 @@ export const setLocalStorage = (key, value) => {
     return null;
   }
 };
-
-export const getLocalStorageAfterSet = (key, value) => {
-  setLocalStorage(key, value);
-
-  return getLocalStorage(key);
-};

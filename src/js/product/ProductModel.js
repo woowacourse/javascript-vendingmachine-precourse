@@ -1,4 +1,4 @@
-import { getLocalStorage, getLocalStorageAfterSet } from "../util/localStorage.js";
+import { getLocalStorage, setLocalStorage } from "../util/localStorage.js";
 import { checkValidAddProduct } from "../util/validator.js";
 
 export default class ProductModel {
@@ -10,10 +10,6 @@ export default class ProductModel {
     return this.products;
   };
 
-  updateProducts = () => {
-    this.products = getLocalStorageAfterSet("product", this.products);
-  };
-
   addProduct = ({ name, price, quantity }) => {
     checkValidAddProduct({ name, price, quantity });
 
@@ -23,13 +19,14 @@ export default class ProductModel {
     } else {
       this.products.push({ name, price, quantity });
     }
-    this.updateProducts();
+    setLocalStorage("product", this.products);
   };
 
   buyProduct = (name) => {
     const product = this.findProduct(name);
+
     product.quantity -= 1;
-    this.updateProducts();
+    setLocalStorage("product", this.products);
   };
 
   findProduct = (name) => {
