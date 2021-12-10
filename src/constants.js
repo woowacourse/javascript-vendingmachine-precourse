@@ -8,6 +8,10 @@ export const DOM_ID_SELECTOR = {
   productQuantityInput: 'product-quantity-input',
   productAddButton: 'product-add-button',
   productManageTable: 'product-manage-table',
+  vendingMachineChargeInput: 'vending-machine-charge-input',
+  vendingMachineChargeButton: 'vending-machine-charge-button',
+  vendingMachineChargeAmount: 'vending-machine-charge-amount',
+  vendingMachineChargeTable: 'vending-machine-charge-table',
 };
 
 export const DOM_CLASS_SELECTOR = {
@@ -32,6 +36,16 @@ export const PRODUCT_MANAGE_MESSAGE = {
   productName: '상품명',
   productPrice: '가격',
   productQuantity: '수량',
+};
+
+export const VENDING_MACHINE_CHARGE_MESSAGE = {
+  chargeVendingMachine: '자판기 동전 충전하기',
+  vendingMachineAmount: '자판기가 보유한 동전',
+  willChargeAmount: '자판기가 보유할 금액',
+  charge: '충전하기',
+  amount: '보유 금액: ',
+  coin: '동전',
+  quantity: '개수',
 };
 
 export const ERROR_MESSAGE = {
