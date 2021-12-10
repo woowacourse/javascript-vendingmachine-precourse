@@ -2,11 +2,11 @@ import { $, default as DOM } from '../views/DOMUtils.js';
 import { default as V } from '../utils/validators.js';
 import { default as DB } from '../model/database.js';
 
-export default class ProductAddMenu {
+export default class ProductAddManager {
   constructor() {
     this.checkLocalStorage();
     this.render();
-    this.productAddManager();
+    this.manage();
   }
 
   checkLocalStorage() {
@@ -17,7 +17,7 @@ export default class ProductAddMenu {
     DOM.showInventory();
   }
 
-  productAddManager() {
+  manage() {
     $('#product-add-button').addEventListener('click', e => {
       e.preventDefault();
 
