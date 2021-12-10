@@ -11,7 +11,10 @@ export default class Store {
     this.state = state;
     this.reducer = {};
     this.observers = new Set();
+    this.setUpReducer();
   }
+
+  setUpReducer() {}
 
   dispatch({ type, data = null, error = null }) {
     this.reducer[type]({ data, error });
