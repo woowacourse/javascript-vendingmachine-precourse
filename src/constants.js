@@ -52,4 +52,7 @@ export const ERROR_MESSAGE = {
   productName: '상품 이름을 확인해주세요.',
   productPrice: '상품 가격을 확인해주세요.',
   productQuantity: '상품 수량을 확인해주세요.',
+  vendingCharge: '충전할 금액을 확인해주세요.',
 };
+
+export const COIN_LIST = [500, 100, 50, 10];
