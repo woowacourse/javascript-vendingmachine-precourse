@@ -7,8 +7,8 @@ export const createTitleTemplate = () => `
   <h2>${PRODUCT_ADD_TAB}</h2>
 `;
 
-const createTbodyTableDataTemplate = (text, id) => `
-  <td id="${id}" style="${STYLE.tableBodyData}">${text}</td>
+const createTbodyTableDataTemplate = (text, className) => `
+  <td class="${className}" style="${STYLE.tableBodyData}">${text}</td>
 `;
 
 const createProductItemTemplate = (name, price, quantity) => `
@@ -29,7 +29,7 @@ export const createProductAddFormTemplate = () => `
   </div>
 `;
 
-export const createProductTableTemplate = () => `
+export const createProductTableTemplate = productItems => `
   <h3>상품 현황</h3>
   <table style="${STYLE.table}">
     <thead>
@@ -40,7 +40,11 @@ export const createProductTableTemplate = () => `
       </tr>
     </thead>
     <tbody>
-      ${createProductItemTemplate(0, 0, 0)}
+      ${productItems
+        .map(item =>
+          createProductItemTemplate(item.productName, item.productPrice, item.productQuantity),
+        )
+        .join('')}
     </tbody>
   </table>
 `;

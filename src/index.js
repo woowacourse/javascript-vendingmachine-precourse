@@ -55,6 +55,10 @@ class VendingMachine {
       'click',
       this.onClickTabButton.bind(this),
     );
+    $(`#${SELECTOR.tabContentContainerId}`).addEventListener(
+      'click',
+      this.onClickTabContent.bind(this),
+    );
   }
 
   onClickTabButton(event) {
@@ -62,6 +66,12 @@ class VendingMachine {
     this.$currentTab = tabId;
     store.setLocalStorage(STORE_KEY.currentTab, tabId);
     this.renderTab();
+  }
+
+  onClickTabContent(event) {
+    const { id } = event.target;
+
+    if (id === SELECTOR.productAddButtonId) this.$productAddTab.onClickProductAddButton();
   }
 }
 
