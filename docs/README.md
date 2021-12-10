@@ -49,6 +49,7 @@
 ### 3️⃣ **잔돈 충전 탭 (자판기 보유 동전)**
 
 - **초기화**
+- [x] 🖨️  `잔돈 충전` template html 작성
 - [ ] 🔍  localStorage의 `vendingMachineCharge`에 보유 동전이 존재하는지 파악한다
   - [ ] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
     - [ ] 보유 금액은 `{금액}원` 형식으로 나타낸다
@@ -180,14 +181,14 @@
 
 **잔돈 충전 (자판기 보유 동전) 메뉴**
 
-- [ ] 자판기가 보유할 금액을 충전할 요소의 id는 `vending-machine-charge-input`이다.
-- [ ] `충전하기` 버튼에 해당하는 요소의 id는 `vending-machine-charge-button`이다.
-- [ ] 충전된 금액을 확인하는 요소의 id는 `vending-machine-charge-amount` 이다.
-- [ ] 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-  - [ ] 500원: `vending-machine-coin-500-quantity`
-  - [ ] 100원: `vending-machine-coin-100-quantity`
-  - [ ] 50원: `vending-machine-coin-50-quantity`
-  - [ ] 10원: `vending-machine-coin-10-quantity`
+- [x] 자판기가 보유할 금액을 충전할 요소의 id는 `vending-machine-charge-input`이다.
+- [x] `충전하기` 버튼에 해당하는 요소의 id는 `vending-machine-charge-button`이다.
+- [x] 충전된 금액을 확인하는 요소의 id는 `vending-machine-charge-amount` 이다.
+- [x] 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
+  - [x] 500원: `vending-machine-coin-500-quantity`
+  - [x] 100원: `vending-machine-coin-100-quantity`
+  - [x] 50원: `vending-machine-coin-50-quantity`
+  - [x] 10원: `vending-machine-coin-10-quantity`
 
 **상품 구매 메뉴**
 

@@ -35,6 +35,40 @@ const templates = {
   vendingMachineManageHTML: `
     <div id="vending-machine-manage-component">
         <h3>자판기 동전 충전하기</h3>
+        <form>
+            <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액" />
+            <button id="vending-machine-charge-button">충전하기</button>
+        </form>
+        <div style="margin-top:15px;">보유 금액 : 
+            <span id="vending-machine-charge-amount"></span>
+        </div>
+        <h3 style="margin-top:50px;">자판기가 보유한 동전</h3>
+        <table border="1" style="width:135px; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="padding:10px;">동전</th>
+                    <th style="padding:10px;">개수</th>
+                </tr>
+            </thead>
+            <tbody id="vending-machine-charge">
+                <tr>
+                    <td style="padding:10px;">500원</td>
+                    <td id="vending-machine-coin-500-quantity" style="padding:10px;"></td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;">100원</td>
+                    <td id="vending-machine-coin-100-quantity" style="padding:10px;"></td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;">50원</td>
+                    <td id="vending-machine-coin-50-quantity" style="padding:10px;"></td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;">10원</td>
+                    <td id="vending-machine-coin-10-quantity" style="padding:10px;"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>`,
 
   productPurchaseHTML: `
