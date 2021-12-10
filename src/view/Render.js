@@ -28,6 +28,8 @@ export default class Render {
 
     const $vendingMachineCoin500Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_500_QUANTITY);
     $vendingMachineCoin500Quantity.textContent = coin500 + '개';
+
+    this.setLocalStorage.vendingMachineManageMenu();
   };
 
   vendingMachineChargeAmountTemplate = (vendingMachineChargeAmount) => {
