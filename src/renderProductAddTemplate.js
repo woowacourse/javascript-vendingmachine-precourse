@@ -1,13 +1,8 @@
 import { DOM_ID_SELECTOR, PRODUCT_MANAGE_MESSAGE } from './constants.js';
 import makeButton from './makeButton.js';
 import makeInput from './makeInput.js';
-
-const makeTitle = (text) => {
-  const $title = document.createElement('h3');
-  $title.appendChild(document.createTextNode(text));
-
-  return $title;
-};
+import makeTitle from './makeTitle.js';
+import makeTable from './makeTable.js';
 
 const makeProductAddForm = () => {
   const $productAddForm = document.createElement('form');
@@ -24,30 +19,6 @@ const makeProductAddForm = () => {
   return $productAddForm;
 };
 
-const makeTableHeader = (headerElements) => {
-  const $tableHeader = document.createElement('thead');
-
-  const $tableRow = document.createElement('tr');
-  headerElements.forEach((header) => {
-    const $th = document.createElement('th');
-    $th.appendChild(document.createTextNode(header));
-    $tableRow.appendChild($th);
-  });
-
-  $tableHeader.appendChild($tableRow);
-  return $tableHeader;
-};
-
-const makeTable = (headerElements) => {
-  const $table = document.createElement('table');
-  $table.setAttribute('id', DOM_ID_SELECTOR.productManageTable);
-
-  const $tableHeader = makeTableHeader(headerElements);
-  $table.appendChild($tableHeader);
-
-  return $table;
-};
-
 const renderProductAddTemplate = () => {
   const $content = document.getElementById(DOM_ID_SELECTOR.content);
   $content.innerHTML = '';
@@ -55,8 +26,9 @@ const renderProductAddTemplate = () => {
   $content.appendChild(makeTitle(PRODUCT_MANAGE_MESSAGE.productAdd));
   $content.appendChild(makeProductAddForm());
 
+  const headerElements = [PRODUCT_MANAGE_MESSAGE.productName, PRODUCT_MANAGE_MESSAGE.productPrice, PRODUCT_MANAGE_MESSAGE.productQuantity];
   $content.appendChild(makeTitle(PRODUCT_MANAGE_MESSAGE.productStatus));
-  $content.appendChild(makeTable([PRODUCT_MANAGE_MESSAGE.productName, PRODUCT_MANAGE_MESSAGE.productPrice, PRODUCT_MANAGE_MESSAGE.productQuantity]));
+  $content.appendChild(makeTable(headerElements, DOM_ID_SELECTOR.productManageTable));
 };
 
 export default renderProductAddTemplate;
