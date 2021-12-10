@@ -42,6 +42,10 @@ export default class PurchaseTap extends Tap {
         return this.$purchaseContainer;
     }
 
+    getReturnButton() {
+        return this.$returnButton;
+    }
+
     appendToPurchaseContainer($element) {
         this.$purchaseContainer.append($element);
     }
@@ -75,6 +79,13 @@ export default class PurchaseTap extends Tap {
 
     clearProducts() {
         this.$purchaseContainer.replaceChildren();
+    }
+
+    setCoins(distributedCoin) {
+        this.$coin500.innerText = `${distributedCoin[0]}${UNIT.count}`;
+        this.$coin100.innerText = `${distributedCoin[1]}${UNIT.count}`;
+        this.$coin50.innerText = `${distributedCoin[2]}${UNIT.count}`;
+        this.$coin10.innerText = `${distributedCoin[3]}${UNIT.count}`;
     }
 
     refreshProducts(products) {

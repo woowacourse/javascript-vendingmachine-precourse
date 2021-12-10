@@ -3,6 +3,9 @@ import { getInputAmount, setInputAmount } from '../localStorage/inputAmount.js';
 import { getProducts, setProducts } from '../localStorage/inventory.js';
 import ERROR_MSG from '../asset/constants/ERROR_MSG.js';
 import PurchaseTap from '../view/PurchaseTap.js';
+import distributeCoinGreedily from '../asset/util/distributeCoinGreedily.js';
+import calcCoinAmount from '../asset/util/calcCoinAmount.js';
+import { getCoins, setCoins } from '../localStorage/coin.js';
 
 export default class Purchase {
     constructor($skeleton) {
@@ -13,6 +16,7 @@ export default class Purchase {
         this.purchaseTap.init();
         this.triggerPutAmountEvent();
         this.triggerPurchaseProductEvent();
+        this.triggerReturnEvent();
     }
 
     render() {
@@ -24,13 +28,13 @@ export default class Purchase {
             const inputAmount = this.purchaseTap.getInputAmount();
 
             if (checkInputAmount(inputAmount)) {
-                this.putAmount(Number(inputAmount));
+                this.updateAmount(Number(inputAmount));
             }
         });
     }
 
-    putAmount(inputAmount) {
-        setInputAmount(getInputAmount() + inputAmount);
+    updateAmount(amount) {
+        setInputAmount(getInputAmount() + amount);
         this.purchaseTap.setInputAmount(getInputAmount());
     }
 
@@ -51,8 +55,7 @@ export default class Purchase {
     }
 
     updateProductsAndInputAmount(products, id) {
-        setInputAmount(getInputAmount() - products[id].productPrice);
-        this.purchaseTap.setInputAmount(getInputAmount());
+        this.updateAmount(-products[id].productPrice);
 
         if (products[id].productQuantity === 0) {
             products.splice(id, 1);
@@ -60,5 +63,16 @@ export default class Purchase {
 
         setProducts(products);
         this.purchaseTap.refreshProducts(products);
+    }
+
+    triggerReturnEvent() {
+        this.purchaseTap.getReturnButton().addEventListener('click', () => {
+            const coinCnts = getCoins();
+            const distributedCoin = distributeCoinGreedily(getInputAmount(), coinCnts);
+
+            this.updateAmount(-calcCoinAmount(distributedCoin));
+            setCoins(coinCnts.map((coinCnt, idx) => coinCnt - distributedCoin[idx]));
+            this.purchaseTap.setCoins(distributedCoin);
+        });
     }
 }
