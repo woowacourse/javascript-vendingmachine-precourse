@@ -4,7 +4,7 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 ## 구현 목록
 
-- [] 최종 목표 : 반환되는 동전이 최소한이 되는 자판기를 구현한다.
+- [x] 최종 목표 : 반환되는 동전이 최소한이 되는 자판기를 구현한다.
 
 ### 데이터 모델
 
@@ -24,11 +24,11 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
   - `view.renderInApp(position, text)`
     - 탭 전환 `view.switchTab(tab)` `view.showTab(tab)` `view.hideTab()`
     - 이벤트 달기 `controller.addAllEventListener()`
-- [] 상품 관리탭은 자판기가 보유하고 있는 상품을 추가하는 기능을 수행한다.
-- [] 잔돈 충전탭은 자판기가 보유할 금액을 충전하는 기능을 수행한다.
-- [] 상품 구매탭은 사용자가 금액을 투입할 수 있으며, 투입한 금액에 맞춰 상품을 구매하고, 남은 금액에 대해서는 잔돈을 반환하는 기능을 수행한다.
+- [x] 상품 관리탭은 자판기가 보유하고 있는 상품을 추가하는 기능을 수행한다.
+- [x] 잔돈 충전탭은 자판기가 보유할 금액을 충전하는 기능을 수행한다.
+- [x] 상품 구매탭은 사용자가 금액을 투입할 수 있으며, 투입한 금액에 맞춰 상품을 구매하고, 남은 금액에 대해서는 잔돈을 반환하는 기능을 수행한다.
 - [x] 다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다.
-- [] localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다.
+- [x] localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다.
   - `model.setLocalStorage(key, data)` `model.getLocalStorage(key)`
   - `controller.loadData()`
   - [x] 상품 관리탭에서 localStorage 사용

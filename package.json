@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "우아한테크코스 프리코스 자판기 미션",
   "type": "module",
-  "dependencies": {},
+  "dependencies": {
+    "@woowacourse/mission-utils": "^1.0.1"
+  },
   "devDependencies": {
     "cypress": "8.7.0"
   },

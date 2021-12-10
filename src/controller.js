@@ -1,3 +1,4 @@
+// import MissionUtils from '@woowacourse/mission-utils';
 import * as $ from './dom.js';
 import VendingModel from './model.js';
 
@@ -38,7 +39,7 @@ export default class VendingController {
       : this.model.chargedMoney;
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
-      `${this.model.chargedMoney}원`
+      this.model.chargedMoney
     );
     this.model._coinObj = JSON.parse(VendingModel.getLocalStorage('tab2'))
       ? JSON.parse(VendingModel.getLocalStorage('tab2'))
@@ -54,10 +55,7 @@ export default class VendingController {
     this.model._insertedMoney = VendingModel.getLocalStorage('insertedMoney')
       ? parseInt(VendingModel.getLocalStorage('insertedMoney'), 10)
       : this.model._insertedMoney;
-    this.view.renderValueInSpot(
-      $.insertedAmount(),
-      `${this.model.insertedMoney}원`
-    );
+    this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
     console.log(this.model.productObj);
     for (const name in this.model.productObj) {
       if (Object.hasOwnProperty.call(this.model.productObj, name)) {
@@ -128,10 +126,17 @@ export default class VendingController {
     this.view.addTableRow($.tbodyOfTab1(), newRowOfTab1());
   }
 
-  addProduct() {
+  addProduct(e) {
+    e.preventDefault();
     const name = $.productNameInput();
     const price = $.productPriceInput();
     const quantity = $.productQuantityInput();
+    if (!this.checkName(name)) {
+      this.view.alertMessage(
+        '이미 같은 상품명의 음료수가 있습니다. 다른 상품명을 입력해주세요'
+      );
+      return false;
+    }
     if (!this.checkPrice(price)) {
       this.view.alertMessage(
         '상품 가격은 100원부터 시작해야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
@@ -147,6 +152,13 @@ export default class VendingController {
     this.makeTableOfTab1(name, price, quantity);
     this.model.productObj = { name, price, quantity };
     VendingModel.setLocalStorage('tab1', this.model.productObj);
+  }
+
+  checkName(name) {
+    if (Object.keys(this.model.productObj).indexOf(name) !== -1) {
+      return false;
+    }
+    return true;
   }
 
   checkPrice(price) {
@@ -168,7 +180,7 @@ export default class VendingController {
     // this.saveSumCoin(money);
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
-      `${this.model.chargedMoney}원`
+      this.model.chargedMoney
     );
     this.saveRandomCoin(money);
     this.calculateChargedMoney();
@@ -192,15 +204,16 @@ export default class VendingController {
     VendingModel.setLocalStorage('chargedMoney', this.model.chargedMoney);
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
-      `${this.model.chargedMoney}원`
+      this.model.chargedMoney
     );
   }
 
   saveRandomCoin(money) {
     let changes = 0;
     while (changes !== money) {
-      const coin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
-
+      const chargeList = [500, 100, 50, 10];
+      const coin = MissionUtils.Random.pickNumberInList(chargeList);
+      // const coin = 10;
       if (changes + coin <= money) {
         changes += coin;
         this.saveCoins(coin);
@@ -275,10 +288,7 @@ export default class VendingController {
 
   setInsertedMoney() {
     VendingModel.setLocalStorage('insertedMoney', this.model.insertedMoney);
-    this.view.renderValueInSpot(
-      $.insertedAmount(),
-      `${this.model.insertedMoney}원`
-    );
+    this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
   }
 
   checkInsertedMoney(money) {

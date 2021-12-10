@@ -21,10 +21,10 @@ const tab1 = `
     <h2>상품 현황</h2>
     <table>
         <thead>
-            <tr id="product-manage-item">
-                <th id="product-manage-name">상품명</th>
-                <th id="product-manage-price">가격</th>
-                <th id="product-manage-quantity">수량</th>
+            <tr>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
             </tr>
         </thead>
         <tbody id="tbodyOfTab1"></tbody>
@@ -41,8 +41,9 @@ const tab2 = `
         <input type="submit" id="vending-machine-charge-button" value="충전하기"></input>
     </form>
     <br>
-    <span>보유 금액: </span>
-    <span id="vending-machine-charge-amount"></span>
+    <p>보유 금액: 
+    <span id="vending-machine-charge-amount">0</span>원
+    </p>
     <h2>자판기가 보유한 동전</h2>
     <table>
         <thead>
@@ -83,17 +84,17 @@ const tab3 = `
         <input type="submit" id="charge-button" value="투입하기"></input>
     </form>
     <br>
-    <span>투입한 금액: </span>
-    <span id="charge-amount"></span>
-
+    <p>투입한 금액: 
+    <span id="charge-amount">0</span>원
+    </p>
     <h2>구매할 수 있는 상품 현황</h2>
     <table>
         <thead>
-            <tr id="product-purchase-item">
-                <th id="product-purchase-name">상품명</th>
-                <th id="product-purchase-price">가격</th>
-                <th id="product-purchase-quantity">수량</th>
-                <th id="purchase-button">구매</th>
+            <tr>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+                <th>구매</th>
             </tr>
         </thead>
         <tbody id="tbodyOfTab3"></tbody>
@@ -143,10 +144,10 @@ const productQuantityInput = () =>
 const tbodyOfTab1 = () => document.getElementById('tbodyOfTab1');
 
 const createTbodyOfTab1 = (name, price, quantity) => `
-  <tr id='product-manage-item'>
-    <td id='product-manage-name'>${name}</td>
-    <td id='product-manage-price'>${price}</td>
-    <td id='product-manage-quantity'>${quantity}</td>
+  <tr class='product-manage-item'>
+    <td class='product-manage-name'>${name}</td>
+    <td class='product-manage-price'>${price}</td>
+    <td class='product-manage-quantity'>${quantity}</td>
   </tr>
 `;
 
