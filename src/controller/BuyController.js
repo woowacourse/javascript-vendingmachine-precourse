@@ -28,14 +28,15 @@ export class BuyController {
   }
 
   onBuyClick(productName, price, quantity) {
-    const totalInsertedMoney = this.model.totalInsertedMoney;
+    let totalInsertedMoney = this.model.totalInsertedMoney;
     console.log(`productName`, productName);
     console.log(`price`, price);
     console.log(`quantity`, quantity);
     if (totalInsertedMoney < price) {
       return;
     }
-    this.model.addInsertedMoney(Number(`-${price}`));
+    totalInsertedMoney = this.model.addInsertedMoney(Number(`-${price}`));
+    this.coreView.buyView.showTotalInsertedMoney(totalInsertedMoney);
     // 투입금액이 가격보다 크면, 1. 투입금액을 감소시키고, 2. 수량을 감소시킨다.
   }
 }
