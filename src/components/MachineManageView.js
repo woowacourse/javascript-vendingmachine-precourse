@@ -1,4 +1,4 @@
-import { CHANGE, ERROR_MESSAGE, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN, VALUES } from '../utils/constants.js';
+import { CHANGE, ERROR_MESSAGE, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN, VALUES, ZERO } from '../utils/constants.js';
 import { HTML_OF_MACHINE_MANAGE_PART, HTML_OF_MACHINE_MANAGE_TABLE } from '../utils/html.js';
 import MachineManageCheck from './MachineManageCheck.js';
 
@@ -49,21 +49,21 @@ export default class MachineManageView {
 
   static chooseRandomCoin(charge) {
       let remain = charge;
+      let countCoin = [ZERO, ZERO, ZERO, ZERO];
 
       while(remain >= 0){
-        const coin = MissionUtils.Random.pickNumberInList(this.check(remain));
-
-        console.log("남은돈:", remain);
-        console.log("뽑은돈:", coin);
+        const coin = MissionUtils.Random.pickNumberInList(this.checkCoin(remain));
+        
+        this.countCoin(coin, countCoin);
         remain -= coin;
         if(remain === 0) {
             break;
         }
       }
-      console.log(remain);
+      console.log("500원:", countCoin[0], "100원:", countCoin[1], "50원:", countCoin[2], "10원:", countCoin[3]);
   }
 
-  static check(remain) {
+  static checkCoin(remain) {
     if(remain < FIFTY) {
         return [TEN];
     } else if(remain < ONE_HUNDRED) {
@@ -73,6 +73,18 @@ export default class MachineManageView {
     } else {
         return [TEN, FIFTY, ONE_HUNDRED, FIVE_HUNDRED];
     }
+  }
+
+  static countCoin(coin, countCoin) {
+      if(coin === FIVE_HUNDRED) {
+          countCoin[0] += 1;
+      } else if(coin === ONE_HUNDRED) {
+          countCoin[1] += 1;
+      } else if(coin === FIFTY) {
+          countCoin[2] += 1;
+      } else {
+          countCoin[3] += 1;
+      }
   }
 
   static storeRandomCoin() {
