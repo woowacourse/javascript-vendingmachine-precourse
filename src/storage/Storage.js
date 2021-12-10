@@ -1,3 +1,5 @@
+import { isEquals } from '../common/helper.js';
+
 class Storage {
   constructor() {
     this.state = localStorage;
@@ -13,7 +15,7 @@ class Storage {
   subscribe(listener) {
     this.listeners.push(listener);
     return () => {
-      this.listeners = this.listeners.filter(l => l !== listener);
+      this.listeners = this.listeners.filter(l => !isEquals(l, listener));
     };
   }
 
@@ -27,7 +29,7 @@ class Storage {
 
   creation(key, items) {
     Object.keys(items).forEach($key => {
-      const isExcludeKey = this.excludeKeys === $key;
+      const isExcludeKey = isEquals(this.excludeKeys, $key);
       this.state.setItem(
         isExcludeKey ? key : $key,
         isExcludeKey ? JSON.stringify(items) : JSON.stringify(items[$key]),
@@ -43,7 +45,7 @@ class Storage {
 
   read(key) {
     const item = this.state.getItem(key);
-    return item === 'undefined' ? [] : JSON.parse(item);
+    return isEquals(item, 'undefined') ? [] : JSON.parse(item);
   }
 
   update(key, subKey, newItem) {
@@ -53,7 +55,7 @@ class Storage {
 
   setState({ key, value }, afterSet = true) {
     this.state.setItem(key, JSON.stringify(value));
-    if (afterSet && !this.excludeKeys.includes(key)) this.afterSetState(key, value);
+    if (afterSet && !isEquals(this.excludeKeys, key)) this.afterSetState(key, value);
 
     this.notify(key, value);
   }
