@@ -21,6 +21,9 @@ export default class Render {
 
     const $productManageTbody = document.querySelector(DOM.$PRODUCT_MANAGE_TBODY);
     $productManageTbody.appendChild($tr);
+
+    const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
+    localStorage.setItem('productAddMenu', $vendingMachineSection.innerHTML);
   };
 
   productAddMenuTemplate = () => {
