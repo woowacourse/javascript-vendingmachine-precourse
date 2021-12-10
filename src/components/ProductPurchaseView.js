@@ -145,6 +145,13 @@ export default class ProductPurchaseView {
     
   }
 
+  static showTable() {
+    const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
 
+    document.getElementById('coin-500-quantity').innerHTML = `${userCoins[500]}개`;
+    document.getElementById('coin-100-quantity').innerHTML = `${userCoins[100]}개`;
+    document.getElementById('coin-50-quantity').innerHTML = `${userCoins[50]}개`;
+    document.getElementById('coin-10-quantity').innerHTML = `${userCoins[10]}개`;
+}
 
 }
