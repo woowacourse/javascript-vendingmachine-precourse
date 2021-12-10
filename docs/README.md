@@ -180,4 +180,4 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 #### 8) Cypress 테스트
 
-- [x] 테스트 모두 통과 확인
+- [x] 테스트 모두 통과 확인 
