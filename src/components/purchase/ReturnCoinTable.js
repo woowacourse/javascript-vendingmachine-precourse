@@ -1,9 +1,9 @@
 import { $ } from '../../utils/selector.js';
-import { ID, LOCAL_DB } from '../../constants/index.js';
+import { COIN_LIST, ID, LOCAL_DB } from '../../constants/index.js';
 import { returnCoinTableTemplate } from '../../utils/template/purchaseTemplate.js';
 import { addTableStyle } from '../../utils/tableStyles.js';
 import { getReturnCoinArray } from '../../utils/makeCoinArray.js';
-import { getLocalStorage } from '../../utils/localStorage.js';
+import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
 
 class ReturnCoinTable {
   constructor($target, state) {
@@ -38,6 +38,16 @@ class ReturnCoinTable {
     this.returnCoin = getReturnCoinArray(amount);
 
     this.addTemplate();
+    this.updatePurchaseStorage(this.returnCoin);
+  }
+
+  updatePurchaseStorage(returnCoin) {
+    let purchase = getLocalStorage(LOCAL_DB.PURCHASE);
+    COIN_LIST.forEach((coin, i) => {
+      purchase -= coin * returnCoin[i];
+    });
+
+    saveLocalStorage(LOCAL_DB.PURCHASE, purchase);
   }
 }
 
