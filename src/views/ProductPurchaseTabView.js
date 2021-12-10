@@ -9,15 +9,16 @@ export default class ProductPurchaseTabView {
     this.contentContainer.innerHTML = productPurchaseTemplate.main;
     this.chargeAmountElement = document.querySelector('#charge-amount');
     this.productPurchaseTableBody = document.querySelector('#product-purchase-table > tbody');
-    this.renderChargeAmount(charge);
-    this.renderProductPurchaseTableBodyItems(products);
+    this.updateChargeAmount(charge);
+    this.updateTable(products);
   }
 
-  renderChargeAmount(charge) {
+  updateChargeAmount(charge) {
     this.chargeAmountElement.innerText = `${charge}원`;
   }
 
-  renderProductPurchaseTableBodyItems(products) {
+  updateTable(products) {
+    this.productPurchaseTableBody.innerHTML = '';
     products.forEach((product) => {
       this.productPurchaseTableBody.innerHTML += productPurchaseTemplate.tableItem(product);
     });
