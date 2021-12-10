@@ -1,7 +1,9 @@
 import InventoryTap from '../view/InventoryTap.js';
-import checkProductName from '../asset/validation/checkProductName.js';
-import checkProductPrice from '../asset/validation/checkProductPrice.js';
-import checkProductQuantity from '../asset/validation/checkProductQuantity.js';
+import {
+    checkProductName,
+    checkProductPrice,
+    checkProductQuantity,
+} from '../asset/validation/index.js';
 import { addProduct, getProducts } from '../localStorage/inventory.js';
 
 export default class Inventory {

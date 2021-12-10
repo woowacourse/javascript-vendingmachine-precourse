@@ -1,4 +1,4 @@
-import checkProductQuantity from '../src/app/asset/validation/checkProductQuantity.js';
+import { checkProductQuantity } from '../src/app/asset/validation/index.js';
 
 test('checkProductQuantity()', () => {
     expect(checkProductQuantity('')).toBeFalsy();

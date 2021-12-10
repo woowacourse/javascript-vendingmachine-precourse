@@ -1,4 +1,4 @@
-import checkChargeAmount from '../src/app/asset/validation/checkChargeAmount.js';
+import { checkChargeAmount } from '../src/app/asset/validation/index.js';
 
 test('checkChargeAmount()', () => {
     expect(checkChargeAmount('')).toBeFalsy();

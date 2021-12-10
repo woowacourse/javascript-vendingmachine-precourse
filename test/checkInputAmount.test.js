@@ -1,4 +1,4 @@
-import checkInputAmount from '../src/app/asset/validation/checkInputAmount.js';
+import { checkInputAmount } from '../src/app/asset/validation/index.js';
 
 test('checkInputAmount()', () => {
     expect(checkInputAmount('')).toBeFalsy();

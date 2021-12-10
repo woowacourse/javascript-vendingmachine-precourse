@@ -1,4 +1,4 @@
-import checkProductName from '../src/app/asset/validation/checkProductName.js';
+import { checkProductName } from '../src/app/asset/validation/index.js';
 
 test('checkProductName()', () => {
     expect(checkProductName('')).toBeFalsy();

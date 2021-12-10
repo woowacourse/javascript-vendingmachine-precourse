@@ -1,5 +1,5 @@
 import PurchaseTap from '../view/PurchaseTap.js';
-import checkInputAmount from '../asset/validation/checkInputAmount.js';
+import { checkInputAmount } from '../asset/validation/index.js';
 import { getInputAmount, setInputAmount } from '../localStorage/inputAmount.js';
 import { getProducts, setProducts } from '../localStorage/inventory.js';
 import { ERROR_MSG } from '../asset/constants/index.js';
