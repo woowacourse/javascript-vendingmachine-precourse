@@ -3,6 +3,7 @@ import ProductController from "./product/ProductController.js";
 import PurchaseController from "./purchase/purchaseController.js";
 import { INIT_TEMPLATE } from "./template/init-template.js";
 import { ID } from "./util/constant.js";
+import { render } from "./util/render.js";
 
 export default class VendingMachine {
   constructor() {
@@ -23,7 +24,7 @@ export default class VendingMachine {
   };
 
   renderHeader = () => {
-    this.$container.insertAdjacentHTML("beforeend", INIT_TEMPLATE);
+    render(this.$container, INIT_TEMPLATE);
   };
 
   setEvent = () => {
