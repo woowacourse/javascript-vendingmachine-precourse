@@ -26,7 +26,7 @@ export const makeTableForm = (theadText, tableBodyId) => {
   return tableArea;
 };
 
-export const makeTableRow = (container, rowId, elements) => {
+export const makeTableRow = (container, elements, rowId = "") => {
   const tr = makeElement({ tag: "tr", id: rowId });
   elements.forEach(rowData => {
     const element = makeElement({ tag: "td", innerText: rowData.text, id: rowData.id });

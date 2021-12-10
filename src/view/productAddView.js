@@ -20,7 +20,7 @@ const getNewProductData = () => {
 
 const updateTable = () => {
   const tableBodyArea = document.getElementById("product-table-body");
-  makeTableRow(tableBodyArea, PRODUCT_MANAGE.NEW_PRODUCT_ID, getNewProductData());
+  makeTableRow(tableBodyArea, getNewProductData(), PRODUCT_MANAGE.NEW_PRODUCT_ID);
 };
 
 const renderInputForm = container => {

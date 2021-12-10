@@ -23,10 +23,10 @@ export const COIN_MANAGE = {
   CURRENT_COIN_AMOUT: "자판기가 보유한 동전",
   COIN: "동전",
   AMOUT: "개수",
-  "COIN-500": { TEXT: "500원", QUANTITY_ID: "vending-machine-coin-500-quantity" },
-  "COIN-100": { TEXT: "100원", QUANTITY_ID: "vending-machine-coin-100-quantity" },
-  "COIN-50": { TEXT: "50원", QUANTITY_ID: "vending-machine-coin-50-quantity" },
-  "COIN-10": { TEXT: "10원", QUANTITY_ID: "vending-machine-coin-10-quantity" },
+  COIN_500: { TEXT: "500원", ID: "vending-machine-coin-500-quantity" },
+  COIN_100: { TEXT: "100원", ID: "vending-machine-coin-100-quantity" },
+  COIN_50: { TEXT: "50원", ID: "vending-machine-coin-50-quantity" },
+  COIN_10: { TEXT: "10원", ID: "vending-machine-coin-10-quantity" },
 };
 
 export const PRODUCT_PURCHASE_MANAGE = {
