@@ -1,0 +1,53 @@
+export const coinChargeTemplate = `
+  <style>
+  table {
+    width: 10em;
+    border: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th,td {
+    border: 1px solid #444444;
+    text-align: center;
+    padding: 10px 0;
+  }
+  </style>
+
+  <div>
+    <h3>자판기 동전 충전하기</h3>
+    <form>
+      <input type="number" id="vending-machine-charge-input" maxlength="20" placeholder="자판기가 보유할 금액" />
+      <button id="vending-machine-charge-button">충전하기</button>
+    </form>
+    <p id="vending-machine-charge-amount">보유 금액:</p>
+  </div>
+  <br>
+  <div>
+    <h3>자판기가 보유한 동전</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>동전</th>
+          <th>개수</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>500원</td>
+            <td id="vending-machine-coin-500-quantity"></td>
+          </tr>
+          <tr>
+            <td>100원</td>
+            <td id="vending-machine-coin-100-quantity"></td>
+          </tr>
+          <tr>
+            <td>50원</td>
+            <td id="vending-machine-coin-50-quantity"></td>
+          </tr>
+          <tr>
+            <td>10원</td>
+            <td id="vending-machine-coin-10-quantity"></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+`;
