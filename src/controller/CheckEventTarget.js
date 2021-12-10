@@ -1,9 +1,11 @@
+import GetLocalStorage from '../model/GetLocalStorage.js';
 import SetProductAdd from '../model/SetProductAdd.js';
 import { DOM } from '../utils/constant.js';
 
 export default class CheckEventTarget {
   constructor(render) {
     this.render = render;
+    this.getLocalStorage = new GetLocalStorage();
   }
 
   onClickProductAddButton = () => {
@@ -13,10 +15,22 @@ export default class CheckEventTarget {
     });
   };
 
-  isProductAddMenu = (eventTarget, $productAddMenu) => {
-    if (eventTarget === $productAddMenu) {
+  isProductAddMenuTemplate = () => {
+    const productAddMenuTemplate = this.getLocalStorage.productAddMenu();
+    if (!productAddMenuTemplate) {
       this.render.productAddMenuTemplate();
       this.onClickProductAddButton();
+
+      return;
+    }
+
+    this.render.hasProductAddMenuTemplate(productAddMenuTemplate);
+    this.onClickProductAddButton();
+  };
+
+  isProductAddMenu = (eventTarget, $productAddMenu) => {
+    if (eventTarget === $productAddMenu) {
+      this.isProductAddMenuTemplate();
     }
   };
 

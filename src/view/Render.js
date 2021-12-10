@@ -11,6 +11,11 @@ export default class Render {
 
   alertMessage = (message) => alert(message);
 
+  hasProductAddMenuTemplate = (productAddMenuTemplate) => {
+    const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
+    $vendingMachineSection.innerHTML = productAddMenuTemplate;
+  };
+
   vendingMachineManageMenuTemplate = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
     $vendingMachineSection.innerHTML = TEMPLATE.VENDING_MACHINE_MANAGE_MENU;
