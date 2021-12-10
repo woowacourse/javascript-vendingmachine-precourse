@@ -50,7 +50,7 @@ const setChanges = coinsArray => {
 
 export const getRandomCoin = maxCoinNumber => {
   let randomRangeArray = [];
-  for (let i = 0; i < maxCoinNumber; i++) {
+  for (let i = 0; i <= maxCoinNumber; i++) {
     randomRangeArray.push(i);
   }
   return MissionUtils.Random.pickNumberInList(randomRangeArray);

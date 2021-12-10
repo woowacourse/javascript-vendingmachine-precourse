@@ -125,8 +125,8 @@ export const renderCoinsItems = () => {
     const template = () => {
       return `
         <tr class='product-manage-item'>
-          <td class='product-items-header' id='product-manage-name'>${COINS_PRICE[i]}</td>
-          <td class='product-items-header' id='product-manage-price'>${coinNum}개</td>
+          <td class='product-items-header'>${COINS_PRICE[i]}</td>
+          <td class='product-items-header' id='vending-machine-coin-${COINS_PRICE[i]}-quantity'>${coinNum}개</td>
         </tr>
       `;
     };
@@ -186,7 +186,7 @@ export const renderInputedMoneyAmount = () => {
   }
   const template = () => {
     return `
-      <p id='charge-amount'>투입한 금액: ${InputedMoney}원</p>
+      <p>투입한 금액: <span id='charge-amount'>${InputedMoney}</span>원</p>
     `;
   };
   $('#app').innerHTML += template();
@@ -199,8 +199,7 @@ export const renderInputedMoney = () => {
     chargedMoney = parseInt(localStorageValue, 10);
   }
   chargedMoney += parseInt(money);
-  console.log(chargedMoney);
-  $('#charge-amount').innerText = `투입한 금액: ${chargedMoney}원`;
+  $('#charge-amount').innerText = `${chargedMoney}`;
   return chargedMoney;
 };
 export const renderPurchableProductItemsTable = () => {
@@ -229,9 +228,9 @@ export const renderPurchableProductItems = () => {
     const template = menu.map(item => {
       return `
         <tr class='product-manage-item'>
-          <td class='product-items-header' id='product-purchase-name'>${item.name}</td>
-          <td class='product-items-header' id='product-purchase-price'>${item.price}</td>
-          <td class='product-items-header' id='product-purchase-quantity'>${item.quantity}</td>
+          <td class='product-items-header product-purchase-name' data-product-name='${item.name}'>${item.name}</td>
+          <td class='product-items-header product-purchase-price' data-product-price='${item.price}'>${item.price}</td>
+          <td class='product-items-header product-purchase-quantity' data-product-quantity='${item.quantity}'>${item.quantity}</td>
           <td class='product-items-header'><button class='purchase-button'>구매하기</button></td>
         </tr>
       `;
@@ -281,5 +280,5 @@ export const renderReturnChanges = () => {
   if (localStorageValue !== null) {
     chargedMoney = parseInt(localStorageValue, 10);
   }
-  $('#charge-amount').innerText = `투입한 금액: ${chargedMoney}원`;
+  $('#charge-amount').innerText = `${chargedMoney}`;
 };
