@@ -24,3 +24,7 @@ export const ERROR = {
   PRICE_IS_NOT_CORRECT: `금액은 ${NUM.PRICE_MIN_COUNT}원 이상이고, ${NUM.PRICE_MIN_UNIT}원 단위로 입력해주세요.`,
   QUANTITY_IS_NOT_CORRECT: `상품 개수를 ${NUM.QUANTITY_MIN_COUNT}이상의 정수로 입력해주세요.`,
 };
+
+export const LOCAL_DB = {
+  PRODUCT: 'PRODUCT',
+};

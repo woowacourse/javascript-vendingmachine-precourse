@@ -1,5 +1,7 @@
-import { ID } from '../../constants/index.js';
+import Product from '../../classes/Product.js';
+import { ID, LOCAL_DB } from '../../constants/index.js';
 import { clearInput } from '../../utils/clearInput.js';
+import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
 import { isValidProductInput } from '../../utils/valid.js';
 
 class ProductInput {
@@ -43,6 +45,14 @@ class ProductInput {
       return;
     }
     clearInput(this.$nameInput, this.$priceInput, this.$quantityInput);
+
+    this.updateLocalStorage(name, price, quantity);
+  }
+
+  updateLocalStorage(name, price, quantity) {
+    const newProduct = new Product(name, price, quantity);
+    const product = getLocalStorage(LOCAL_DB.PRODUCT);
+    saveLocalStorage(LOCAL_DB.PRODUCT, [...product, newProduct]);
   }
 }
 
