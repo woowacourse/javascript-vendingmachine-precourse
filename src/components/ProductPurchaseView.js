@@ -28,9 +28,19 @@ export default class ProductPurchaseView {
 
     if(localStorage.getItem(USER_CHARGE) === null) {
       localStorage.setItem(USER_CHARGE, JSON.stringify({values: userCharge}));
+      this.showFirstUserCharge(userCharge);
     } else {
       userInput[VALUES] = parseInt(userInput[VALUES]) + parseInt(userCharge);
       localStorage.setItem(USER_CHARGE, JSON.stringify(userInput));
+      this.showUserCharge(userInput);
     }
+  }
+
+  static showFirstUserCharge(userCharge) {
+    document.getElementById('charge-amount').innerHTML = `${userCharge}원`;
+  }
+
+  static showUserCharge(userInput) {
+    document.getElementById('charge-amount').innerHTML = `${userInput[VALUES]}원`;
   }
 }
