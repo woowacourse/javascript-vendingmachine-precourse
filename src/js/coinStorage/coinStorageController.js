@@ -44,6 +44,6 @@ export default class CoinStorageController {
 
   updatePage = () => {
     this.view.renderTotalMoney(this.$chargedAmount, this.model.getTotalMoney());
-    this.view.renderCoinAmount(this.model.coins);
+    this.view.renderCoinAmount(this.model.getCoins());
   };
 }

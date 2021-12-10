@@ -7,6 +7,10 @@ export default class CoinStorageModel {
     this.coins = getLocalStorage(LOCAL_STORAGE_KEY.COIN) ?? { 500: 0, 100: 0, 50: 0, 10: 0 };
   }
 
+  getCoins = () => {
+    return this.coins;
+  };
+
   addMoney = (money) => {
     checkValidChargeMoney(money);
 
