@@ -1,4 +1,9 @@
-import { ID, LOCAL_DB } from '../../constants/index.js';
+import {
+  COIN_LIST,
+  COIN_QUANTITY_ID,
+  ID,
+  LOCAL_DB,
+} from '../../constants/index.js';
 import { getLocalStorage } from '../localStorage.js';
 
 const totalCharge = list => {
@@ -38,13 +43,21 @@ const chargeTableHeader = `
   </tr>
 `;
 
+const coinQuantity = (list, i) => {
+  if (!list.length) {
+    return `<td id=${COIN_QUANTITY_ID[i]}></td>`;
+  }
+  return `<td id=${COIN_QUANTITY_ID[i]}>${list[i].count}개</td>`;
+};
+
 const chargeTableRows = list => {
   let html = '';
-  list.map(({ name, count }) => {
+
+  COIN_LIST.forEach((coin, i) => {
     html += `
       <tr>
-        <td>${name}원</td>
-        <td>${count}개</td> 
+        <td>${coin}원</td>
+        ${coinQuantity(list, i)} 
       </tr>
     `;
   });

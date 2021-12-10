@@ -1,8 +1,8 @@
 import {
+  LOCAL_DB,
+  ID,
   CLASS,
   COIN_LIST,
-  ID,
-  LOCAL_DB,
   RETURN_COIN_QUANTITY_ID,
 } from '../../constants/index.js';
 import { getLocalStorage } from '../localStorage.js';
@@ -26,7 +26,9 @@ const totalCharge = () => {
 
 export const totalPurchaseTemplate = () => {
   return `
-    <p id=${ID.CHARGE_AMOUNT}>투입한 금액: ${totalCharge()}</p>
+    <p> 
+      투입한 금액: <span id=${ID.CHARGE_AMOUNT}>${totalCharge()}</span>
+    </p>
   `;
 };
 
@@ -41,6 +43,7 @@ const purchaseTableHeader = `
 
 const purchaseTableRows = list => {
   let html = '';
+
   list.map(({ name, price, quantity }) => {
     html += `
       <tr class=${CLASS.PRODUCT_PURCHASE_ITEM}>
@@ -72,27 +75,22 @@ const returnCoinTableTableHeader = `
   </tr>   
 `;
 
+const returnCoinQuantity = (list, i) => {
+  if (!list.length) {
+    return `<td id=${RETURN_COIN_QUANTITY_ID[i]}></td>`;
+  }
+
+  return `<td id=${RETURN_COIN_QUANTITY_ID[i]}>${list[i]}개</td>`;
+};
+
 const returnCoinTableRows = list => {
   let html = '';
 
-  if (!list.length) {
-    COIN_LIST.forEach(coin => {
-      html += `
-        <tr>
-          <td>${coin}원</td>
-          <td></td> 
-        </tr>
-      `;
-    });
-
-    return html;
-  }
-
-  list.forEach((coin, i) => {
+  COIN_LIST.forEach((coin, i) => {
     html += `
       <tr>
-        <td>${COIN_LIST[i]}원</td>
-        <td id=${RETURN_COIN_QUANTITY_ID[i]}>${coin}개</td> 
+        <td>${coin}원</td>
+        ${returnCoinQuantity(list, i)}
       </tr>
     `;
   });
