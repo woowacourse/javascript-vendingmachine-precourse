@@ -1,11 +1,13 @@
-import InputNumber from '../asset/components/Input/InputNumber.js';
+import {
+    InputNumber,
+    ButtonById,
+    CellById,
+    SubmitForm,
+    SubTitle,
+    CoinTable,
+    Span,
+} from '../asset/components/index.js';
 import INPUT_ID from '../asset/constants/INPUT_ID.js';
-import ButtonById from '../asset/components/Button/ButtonById.js';
-import CellById from '../asset/components/Cell/CellById.js';
-import SubmitForm from '../asset/components/SubmitForm/index.js';
-import SubTitle from '../asset/components/SubTitle/index.js';
-import CoinTable from '../asset/components/CoinTable/index.js';
-import Span from '../asset/components/Span/index.js';
 import BUTTON from '../asset/constants/BUTTON.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
