@@ -28,6 +28,7 @@ export default class MenuButtonController {
         ProductPurchaseView.render();
         ProductPurchaseView.addEvent();
         ProductPurchaseView.showProductTable();
+        ProductPurchaseView.addReturnEvent();
         // ProductPurchaseView.purchase();
         // ProductPurchaseView.showUserCharge();
         // 이벤트 리스너 추가

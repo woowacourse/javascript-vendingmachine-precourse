@@ -16,7 +16,6 @@ export default class ProductPurchaseView {
 
       if(productPurchaseCheck.checkAll()){
         this.addUserCharge(userCharge);
-        this.addReturnEvent();
       } else {
         alert(ERROR_MESSAGE);
       }
@@ -60,17 +59,20 @@ export default class ProductPurchaseView {
   }
 
   static addReturnEvent() {
-    const coins = JSON.parse(localStorage.getItem(COINS));
+    document.getElementById('coin-return-button').addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const coins = JSON.parse(localStorage.getItem(COINS));
     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
     const change = JSON.parse(localStorage.getItem(CHANGE));
     const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
     
-    console.log(userMoney[VALUES]);
-    console.log(coins[500]);
-    console.log(change[VALUES]);
-
+    console.log("현재 금액",userMoney[VALUES]);
+    console.log("거스름돈", typeof(change[VALUES]));
+    console.log(change[VALUES] <= userMoney[VALUES]);
+    console.log(change[VALUES] !== 0);
     //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
-    if(change[VALUES] <= userMoney[VALUES]) {
+    if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
       //foreach문으로
       userCoins[500] = coins[500];
       coins[500] = 0;
@@ -88,27 +90,41 @@ export default class ProductPurchaseView {
       localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
       localStorage.setItem(CHANGE, JSON.stringify(change));
       localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
+
+      console.log("현재 금액",userMoney[VALUES]);
+      console.log("거스름돈", change[VALUES]);
+
+      this.showUserCharge(userMoney);
     } else {
+      
       let temp = userMoney[VALUES];
-      while(userMoney[VALUES] >= 0) {
+      //실제 거슬러준거
+      let real = 0;
+      while(temp >= 0) {
+        console.log(temp);
         if(temp >= 500 && coins[500] >= 1) {
           userCoins[500] += 1;
           coins[500] -= 1;
           temp -= 500;
+          real += 500;
         } else if(temp >= 100 && coins[100] >= 1) {
           userCoins[100] += 1;
           coins[100] -= 1;
           temp -= 100;
+          real += 100;
         } else if(temp >= 50 && coins[50] >= 1) {
           userCoins[50] += 1;
           coins[50] -= 1;
           temp -= 50;
+          real += 50;
         } else if(temp >= 10 && coins[10] >= 1) {
           userCoins[10] += 1;
           coins[10] -= 1;
           temp -= 10;
+          real += 10;
         } else {
-          change[VALUES] = change[VALUES] - userMoney[VALUES] + temp;
+          change[VALUES] = parseInt(change[VALUES]) - real;
+          userMoney[VALUES] -= real;
           break;
         }
       }
@@ -117,7 +133,18 @@ export default class ProductPurchaseView {
       localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
       localStorage.setItem(CHANGE, JSON.stringify(change));
       localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
+
+      console.log("현재 금액",userMoney[VALUES]);
+      console.log("거스름돈", change[VALUES]);
+
+      this.showUserCharge(userMoney);
     }
+
+    this.showTable();
+    })
+    
   }
+
+
 
 }
