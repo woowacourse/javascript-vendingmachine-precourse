@@ -1,10 +1,9 @@
+import PurchaseTap from '../view/PurchaseTap.js';
 import checkInputAmount from '../asset/validation/checkInputAmount.js';
 import { getInputAmount, setInputAmount } from '../localStorage/inputAmount.js';
 import { getProducts, setProducts } from '../localStorage/inventory.js';
 import { ERROR_MSG } from '../asset/constants/index.js';
-import PurchaseTap from '../view/PurchaseTap.js';
-import distributeCoinGreedily from '../asset/util/distributeCoinGreedily.js';
-import calcCoinAmount from '../asset/util/calcCoinAmount.js';
+import { distributeCoinGreedily, calcCoinAmount } from '../asset/util/index.js';
 import { getCoins, setCoins } from '../localStorage/coin.js';
 
 export default class Purchase {

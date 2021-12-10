@@ -1,6 +1,6 @@
 import { COIN, STORAGE_KEY } from '../asset/constants/index.js';
 import { getJsonItem, setJsonItem } from './index.js';
-import calcCoinAmount from '../asset/util/calcCoinAmount.js';
+import { calcCoinAmount } from '../asset/util/index.js';
 
 const defaultCoinVal = COIN.map(() => 0);
 

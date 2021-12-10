@@ -1,4 +1,4 @@
-import distributeCoinGreedily from '../src/app/asset/util/distributeCoinGreedily.js';
+import { distributeCoinGreedily } from '../src/app/asset/util/index.js';
 
 test('distributeCoinGreedily()', () => {
     expect(distributeCoinGreedily(1000, [2, 0, 0, 0])).toEqual([2, 0, 0, 0]);

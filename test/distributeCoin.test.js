@@ -1,4 +1,4 @@
-import distributeCoin from '../src/app/asset/util/distributeCoin.js';
+import { distributeCoin } from '../src/app/asset/util/index.js';
 import { COIN } from '../src/app/asset/constants/index.js';
 
 test('distributeCoin()', () => {
