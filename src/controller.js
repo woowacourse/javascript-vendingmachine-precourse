@@ -43,7 +43,7 @@ export default class VendingController {
       : this.model._chargedMoney;
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
-      `${this.model.chargedMoney}원`
+      this.model.chargedMoney
     );
     this.model._coinObj = JSON.parse(VendingModel.getLocalStorage('tab2'))
       ? JSON.parse(VendingModel.getLocalStorage('tab2'))
@@ -76,6 +76,9 @@ export default class VendingController {
     document
       .getElementById('vending-machine-charge-button')
       .addEventListener('click', e => this.chargeMoney.call(this, e));
+    document
+      .getElementById('charge-button')
+      .addEventListener('click', e => this.insertMoney.call(this, e));
   }
 
   makeTableOfTab1(name, price, quantity) {
@@ -108,7 +111,7 @@ export default class VendingController {
   // 잔돈 충전 탭 컨트롤러
   chargeMoney(e) {
     e.preventDefault();
-    const money = parseInt($.chargedMoney(), 10);
+    const money = $.chargedMoney();
     if (money < 0) {
       this.view.alertMessage(
         '충전할 잔돈은 0원 이상이어야 합니다. 다시 입력해주세요.'
@@ -118,7 +121,7 @@ export default class VendingController {
     this.saveSumCoin(money);
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
-      `${this.model.chargedMoney}원`
+      this.model.chargedMoney
     );
     this.saveRandomCoin(money);
     this.makeTableOfTab2();
@@ -186,5 +189,12 @@ export default class VendingController {
   saveSumCoin(money) {
     this.model.chargedMoney += money;
     VendingModel.setLocalStorage('chargedMoney', this.model.chargedMoney);
+  }
+
+  // 금액 충전
+  insertMoney(e) {
+    e.preventDefault();
+    this.model.insertedMoney += $.insertedMoney();
+    this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
   }
 }

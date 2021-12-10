@@ -77,6 +77,57 @@ const tab2 = `
 const tab3 = `
 <div class="tab3">
     <h2>금액 투입</h2>
+    <form>
+        <input type="number" id="charge-input" placeholder="투입할 금액"
+        />
+        <input type="submit" id="charge-button" value="투입하기"></input>
+    </form>
+    <br>
+    <span>투입한 금액: </span>
+    <span id="charge-amount"></span>
+
+    <h2>구매할 수 있는 상품 현황</h2>
+    <table>
+        <thead>
+            <tr id="product-purchase-item">
+                <th id="product-purchase-name">상품명</th>
+                <th id="product-purchase-price">가격</th>
+                <th id="product-purchase-quantity">수량</th>
+                <th id="purchase-button">구매</th>
+            </tr>
+        </thead>
+        <tbody class="tbodyOfTab3"></tbody>
+    </table>
+
+    <h2>잔돈</h2>
+    <button id="coin-return-button">반환하기</button>
+    <table>
+        <thead>
+            <tr>
+                <th>동전</th>
+                <th>개수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>500원</th>
+                <td id="coin-500-quantity"></td>
+            </tr>
+            <tr>
+                <th>100원</th>
+                <td id="coin-100-quantity"></td>
+            </tr>
+            <tr>
+                <th>50원</th>
+                <td id="coin-50-quantity"></td>
+            </tr>
+            <tr>
+                <th>10원</th>
+                <td id="coin-10-quantity"></td>
+            </tr>
+        </tbody>
+        <tbody id="tbodyOfTab1"></tbody>
+    </table>
 </div>
 `;
 
@@ -109,22 +160,7 @@ const newRowOfTab1 = () =>
 // 잔돈 충전 탭 DOM
 
 const chargedMoney = () =>
-  document.getElementById('vending-machine-charge-input').value;
-
-const createTbodyOfTab2 = money => `
-  <tr id='product-manage-item'>
-    <td id='product-manage-name'>${name}</td>
-    <td id='product-manage-price'>${price}</td>
-    <td id='product-manage-quantity'>${quantity}</td>
-  </tr>
-`;
-
-const newRowOfTab2 = () =>
-  createTbodyOfTab2(
-    productNameInput().value,
-    productPriceInput().value,
-    productQuantityInput().value
-  );
+  parseInt(document.getElementById('vending-machine-charge-input').value, 10);
 
 const vendingMachineCoin500 = () =>
   document.getElementById('vending-machine-coin-500-quantity');
@@ -141,6 +177,13 @@ const vendingMachineCoin10 = () =>
 const vendingMachineChargeAmount = () =>
   document.getElementById('vending-machine-charge-amount');
 
+// 금액 충전
+
+const insertedMoney = () =>
+  parseInt(document.getElementById('charge-input').value, 10);
+
+const insertedAmount = () => document.getElementById('charge-amount');
+
 export {
   tabMenus,
   tab1,
@@ -153,11 +196,11 @@ export {
   productPriceInput,
   productQuantityInput,
   chargedMoney,
-  newRowOfTab2,
-  createTbodyOfTab2,
   vendingMachineCoin500,
   vendingMachineCoin100,
   vendingMachineCoin50,
   vendingMachineCoin10,
   vendingMachineChargeAmount,
+  insertedMoney,
+  insertedAmount,
 };

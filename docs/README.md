@@ -106,22 +106,22 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
   - [] 자판기가 보유한 금액은 {금액}원 형식으로 나타낸다.
 - [] 금액은 누적으로 투입할 수 있다.
 - DOM 선택자
-  - 투입 금액 입력 요소의 id는 charge-input이다.
-  - 투입하기 버튼 요소의 id는 charge-button이다.
-  - 투입한 금액을 확인하는 요소의 id는 charge-amount이다.
+  - [x] 투입 금액 입력 요소의 id는 charge-input이다.
+  - [x] 투입하기 버튼 요소의 id는 charge-button이다.
+  - [x] 투입한 금액을 확인하는 요소의 id는 charge-amount이다.
 
 #### 4-2) 상품 구매
 
 - [] 구매하기 버튼을 누르면 해당 제품의 수량이 1개씩 감소하고, 투입한 금액에서도 제품 가격만큼 감소한다.
 - DOM 선택자
-  - 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
-    - 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.
-    - 상품명에 해당하는 요소의 class명은 product-purchase-name이다.
-    - 가격에 해당하는 요소의 class명은 product-purchase-price이다.
-    - 수량에 해당하는 요소의 class명은 product-purchase-quantity이다.
-    - 상품명은 dataset 속성을 사용하고 data-product-name 형식으로 저장한다.
-    - 가격은 dataset 속성을 사용하고 data-product-price 형식으로 저장한다.
-    - 수량은 dataset 속성을 사용하고 data-product-quantity 형식으로 저장한다.
+  - [] 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
+    - [] 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.
+    - [] 상품명에 해당하는 요소의 class명은 product-purchase-name이다.
+    - [] 가격에 해당하는 요소의 class명은 product-purchase-price이다.
+    - [] 수량에 해당하는 요소의 class명은 product-purchase-quantity이다.
+    - [] 상품명은 dataset 속성을 사용하고 data-product-name 형식으로 저장한다.
+    - [] 가격은 dataset 속성을 사용하고 data-product-price 형식으로 저장한다.
+    - [] 수량은 dataset 속성을 사용하고 data-product-quantity 형식으로 저장한다.
 
 #### 4-3) 잔돈 반환
 
@@ -132,9 +132,9 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 - [] 잔돈을 반환할 수 없는 경우 잔돈으로 반환할 수 있는 금액만 반환한다.
 - [] 동전의 개수를 나타내는 정보는 {개수}개 형식으로 나타낸다.
 - DOM 선택자
-  - 반환하기 버튼 요소의 id는 coin-return-button이다.
+  - [x] 반환하기 버튼 요소의 id는 coin-return-button이다.
   - 반환된 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-    - 500원: coin-500-quantity
-    - 100원: coin-100-quantity
-    - 50원: coin-50-quantity
-    - 10원: coin-10-quantity
+    - [x] 500원: coin-500-quantity
+    - [x] 100원: coin-100-quantity
+    - [x] 50원: coin-50-quantity
+    - [x] 10원: coin-10-quantity
