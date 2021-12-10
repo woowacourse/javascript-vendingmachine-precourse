@@ -58,6 +58,7 @@ export default class PurchaseTap extends Tap {
     }
 
     render(inputAmount, products) {
+        this.clearProducts();
         this.setInputAmount(inputAmount);
         this.setProducts(products);
         this.show();

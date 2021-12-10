@@ -17,5 +17,27 @@ export default class VendingMachine {
         this.chargeCoin.init();
         this.purchase.init();
         this.purchase.render();
+        this.triggerConvertTapEvent();
+    }
+
+    triggerConvertTapEvent() {
+        this.vendingSkeleton
+            .getInvetoryTap()
+            .addEventListener('click', this.getConvertTapEventListener(this.inventory));
+        this.vendingSkeleton
+            .getCoinTap()
+            .addEventListener('click', this.getConvertTapEventListener(this.chargeCoin));
+        this.vendingSkeleton
+            .getPurchaseTap()
+            .addEventListener('click', this.getConvertTapEventListener(this.purchase));
+    }
+
+    getConvertTapEventListener(showTap) {
+        return () => {
+            this.inventory.hideTap();
+            this.chargeCoin.hideTap();
+            this.purchase.hideTap();
+            showTap.render();
+        };
     }
 }

@@ -23,6 +23,10 @@ export default class Purchase {
         this.purchaseTap.render(getInputAmount(), getProducts());
     }
 
+    hideTap() {
+        this.purchaseTap.hide();
+    }
+
     triggerPutAmountEvent() {
         this.purchaseTap.getInputButton().addEventListener('click', () => {
             const inputAmount = this.purchaseTap.getInputAmount();

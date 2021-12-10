@@ -51,10 +51,15 @@ export default class InventoryTap extends Tap {
     }
 
     render(products) {
+        this.clearProducts();
         products.forEach(({ productName, productPrice, productQuantity }) => {
             this.addProductRow(productName, productPrice, productQuantity);
         });
         this.show();
+    }
+
+    clearProducts() {
+        this.$inventoryContainer.replaceChildren();
     }
 
     createAddProductForm() {
