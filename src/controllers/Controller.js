@@ -1,10 +1,16 @@
 import View from '../views/View.js';
 import { $, default as DOM } from '../views/DOMUtils.js';
+import ProductAddMenu from './ProductAddMenu.js';
 
 export default class Controller {
   constructor() {
     this.view = new View();
+    this.generateComponents();
     this.tabMenuManager();
+  }
+
+  generateComponents() {
+    new ProductAddMenu();
   }
 
   tabMenuManager() {

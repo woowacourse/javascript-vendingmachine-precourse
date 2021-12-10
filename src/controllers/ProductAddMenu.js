@@ -3,8 +3,7 @@ import { default as V } from '../utils/validators.js';
 import { default as DB } from '../model/database.js';
 
 export default class ProductAddMenu {
-  constructor(view) {
-    this.view = view;
+  constructor() {
     this.checkLocalStorage();
     this.render();
     this.productAddManager();
@@ -15,7 +14,6 @@ export default class ProductAddMenu {
   }
 
   render() {
-    this.view.showProductAddComponent();
     DOM.showInventory();
   }
 
