@@ -160,4 +160,6 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 #### 4) 불필요한 변수를 줄이기 위해 노력한다
 
+- [x] 불필요 변수 제거
+
 #### 5) 비즈니스 로직과 UI 로직을 분리해라

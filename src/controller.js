@@ -36,13 +36,12 @@ export default class VendingController {
       ? JSON.parse(VendingModel.getLocalStorage(KEY.productList))
       : this.model.productObj;
     for (const name in this.model.productObj) {
-      if (Object.hasOwnProperty.call(this.model.productObj, name)) {
+      if (Object.hasOwnProperty.call(this.model.productObj, name))
         this.makeTableOfTab1(
           name,
           this.model.productObj[name].price,
           this.model.productObj[name].quantity
         );
-      }
     }
   }
 
@@ -293,7 +292,6 @@ export default class VendingController {
     }
     this.model.insertedMoney -= price;
     this.setInsertedMoney();
-
     target.childNodes[5].dataset.productQuantity--;
     target.childNodes[5].innerText--;
     this.model.productObj[name].quantity--;

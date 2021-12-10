@@ -4,7 +4,6 @@ export default class VendingModel {
     this._coinObj = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
     this._chargedMoney = 0;
     this._insertedMoney = 0;
-    this._changesObj = {};
   }
 
   set productObj(obj) {
@@ -37,14 +36,6 @@ export default class VendingModel {
 
   get insertedMoney() {
     return this._insertedMoney;
-  }
-
-  set changesObj(newChangesObj) {
-    this._changesObj = newChangesObj;
-  }
-
-  get changesObj() {
-    return this._changesObj;
   }
 
   static setLocalStorage(key, data) {
