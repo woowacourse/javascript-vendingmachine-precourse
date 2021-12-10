@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import VendingModel from './model.js';
 import * as $ from './util/dom.js';
 import {
@@ -30,18 +31,12 @@ export default class VendingController {
   }
 
   loadTab1Data() {
-    this.model._productObj = JSON.parse(
-      VendingModel.getLocalStorage(KEY.productList)
-    )
+    this.model._productObj = JSON.parse(VendingModel.getLocalStorage(KEY.productList))
       ? JSON.parse(VendingModel.getLocalStorage(KEY.productList))
       : this.model.productObj;
     for (const name in this.model.productObj) {
       if (Object.hasOwnProperty.call(this.model.productObj, name))
-        this.makeTableOfTab1(
-          name,
-          this.model.productObj[name].price,
-          this.model.productObj[name].quantity
-        );
+        this.makeTableOfTab1(name, this.model.productObj[name].price, this.model.productObj[name].quantity        );
     }
   }
 
@@ -49,19 +44,13 @@ export default class VendingController {
     this.model.chargedMoney = VendingModel.getLocalStorage(KEY.chargedMoney)
       ? parseInt(VendingModel.getLocalStorage(KEY.chargedMoney), 10)
       : this.model.chargedMoney;
-    this.view.renderValueInSpot(
-      $.vendingMachineChargeAmount(),
-      this.model.chargedMoney
-    );
-    this.model._coinObj = JSON.parse(
-      VendingModel.getLocalStorage(KEY.chargedCoins)
-    )
+    this.view.renderValueInSpot($.vendingMachineChargeAmount(), this.model.chargedMoney);
+    this.model._coinObj = JSON.parse(VendingModel.getLocalStorage(KEY.chargedCoins))
       ? JSON.parse(VendingModel.getLocalStorage(KEY.chargedCoins))
       : this.model._coinObj;
     for (const coin in this.model.coinObj) {
-      if (Object.hasOwnProperty.call(this.model.coinObj, coin)) {
+      if (Object.hasOwnProperty.call(this.model.coinObj, coin))
         this.makeTableOfTab2();
-      }
     }
   }
 
@@ -71,13 +60,8 @@ export default class VendingController {
       : this.model._insertedMoney;
     this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
     for (const name in this.model.productObj) {
-      if (Object.hasOwnProperty.call(this.model.productObj, name)) {
-        this.makeBuyingTableOfTab3(
-          name,
-          this.model.productObj[name].price,
-          this.model.productObj[name].quantity
-        );
-      }
+      if (Object.hasOwnProperty.call(this.model.productObj, name))
+        this.makeBuyingTableOfTab3(name, this.model.productObj[name].price, this.model.productObj[name].quantity);
     }
   }
 
@@ -87,27 +71,13 @@ export default class VendingController {
   }
 
   addAllEventListener() {
-    document
-      .getElementById(SELECTOR.productAddMenu)
-      .addEventListener('click', () => this.loadTab1());
-    document
-      .getElementById(SELECTOR.vendingMachineManageMenu)
-      .addEventListener('click', () => this.loadTab2());
-    document
-      .getElementById(SELECTOR.productPurchaseMenu)
-      .addEventListener('click', () => this.loadTab3());
-    document
-      .getElementById(SELECTOR.productAddButton)
-      .addEventListener('click', e => this.addProduct.call(this, e));
-    document
-      .getElementById(SELECTOR.vendingMachineChargeButton)
-      .addEventListener('click', e => this.chargeMoney.call(this, e));
-    document
-      .getElementById(SELECTOR.chargeButton)
-      .addEventListener('click', e => this.insertMoney.call(this, e));
-    document
-      .getElementById(SELECTOR.coinReturnButton)
-      .addEventListener('click', e => this.giveChanges.call(this, e));
+    document.getElementById(SELECTOR.productAddMenu).addEventListener('click', () => this.loadTab1());
+    document.getElementById(SELECTOR.vendingMachineManageMenu).addEventListener('click', () => this.loadTab2());
+    document.getElementById(SELECTOR.productPurchaseMenu).addEventListener('click', () => this.loadTab3());
+    document.getElementById(SELECTOR.productAddButton).addEventListener('click', e => this.addProduct.call(this, e));
+    document.getElementById(SELECTOR.vendingMachineChargeButton).addEventListener('click', e => this.chargeMoney.call(this, e));
+    document.getElementById(SELECTOR.chargeButton).addEventListener('click', e => this.insertMoney.call(this, e));
+    document.getElementById(SELECTOR.coinReturnButton).addEventListener('click', e => this.giveChanges.call(this, e));
   }
 
   loadTab1() {
@@ -124,13 +94,8 @@ export default class VendingController {
   loadTab3() {
     this.view.clearTable($.tbodyOfTab3());
     this.loadTab3Data();
-    document
-      .querySelectorAll(SELECTOR.purchaseButton)
-      .forEach(button =>
-        button.addEventListener('click', e =>
-          this.purchaseProduct.call(this, e)
-        )
-      );
+    document.querySelectorAll(SELECTOR.purchaseButton).
+      forEach(button => button.addEventListener('click', e => this.purchaseProduct.call(this, e)));
     this.switchTab(SELECTOR.tab3);
   }
 
@@ -144,22 +109,28 @@ export default class VendingController {
     const name = $.productNameInput();
     const price = $.productPriceInput();
     const quantity = $.productQuantityInput();
-    if (!this.checkName(name)) {
-      this.view.alertMessage(ERROR_MESSAGE.sameName);
-      return false;
-    }
-    if (!checkPrice(price)) {
-      this.view.alertMessage(ERROR_MESSAGE.basePrice);
-      return false;
-    }
-    if (quantity < ZERO) {
-      this.view.alertMessage(ERROR_MESSAGE.baseQuantity);
-      return false;
-    }
+    if (!this.checkProductAllThings(name, price, quantity)) return false;
     this.makeTableOfTab1(name, price, quantity);
     this.model.productObj = { name, price, quantity };
     VendingModel.setLocalStorage(KEY.productList, this.model.productObj);
   }
+
+  checkProductAllThings(name, price, quantity) {
+      if (!this.checkName(name)) {
+        this.view.alertMessage(ERROR_MESSAGE.sameName);
+        return false;
+      }
+      if (!checkPrice(price)) {
+        this.view.alertMessage(ERROR_MESSAGE.basePrice);
+        return false;
+      }
+      if (quantity < ZERO) {
+        this.view.alertMessage(ERROR_MESSAGE.baseQuantity);
+        return false;
+      }
+      return true;
+    }
+
 
   checkName(name) {
     if (Object.keys(this.model.productObj).indexOf(name) !== -1) {
@@ -175,10 +146,7 @@ export default class VendingController {
       this.view.alertMessage(ERROR_MESSAGE.baseInsertingMoney);
       return false;
     }
-    this.view.renderValueInSpot(
-      $.vendingMachineChargeAmount(),
-      this.model.chargedMoney
-    );
+    this.view.renderValueInSpot($.vendingMachineChargeAmount(), this.model.chargedMoney);
     this.saveRandomCoin(money);
     this.calculateChargedMoney();
     this.makeTableOfTab2();
@@ -193,10 +161,7 @@ export default class VendingController {
       coinObj.coin10 * NUM_10;
     this.model.chargedMoney = chargedMoney;
     VendingModel.setLocalStorage(KEY.chargedMoney, this.model.chargedMoney);
-    this.view.renderValueInSpot(
-      $.vendingMachineChargeAmount(),
-      this.model.chargedMoney
-    );
+    this.view.renderValueInSpot($.vendingMachineChargeAmount(), this.model.chargedMoney);
   }
 
   saveRandomCoin(money) {
@@ -213,48 +178,22 @@ export default class VendingController {
 
   saveCoins(coin) {
     switch (coin) {
-      case NUM_500:
-        this.model.coinObj = {
-          coin500: this.model._coinObj.coin500++,
-        };
+      case NUM_500: this.model.coinObj = {coin500: this.model._coinObj.coin500++};
         break;
-      case NUM_100:
-        this.model.coinObj = {
-          coin100: this.model._coinObj.coin100++,
-        };
+      case NUM_100: this.model.coinObj = {coin100: this.model._coinObj.coin100++};
         break;
-      case NUM_50:
-        this.model.coinObj = {
-          coin50: this.model._coinObj.coin50++,
-        };
+      case NUM_50: this.model.coinObj = {coin50: this.model._coinObj.coin50++};
         break;
-      case NUM_10:
-        this.model.coinObj = {
-          coin10: this.model._coinObj.coin10++,
-        };
-        break;
-      default:
+      case NUM_10: this.model.coinObj = {coin10: this.model._coinObj.coin10++};
         break;
     }
   }
 
   makeTableOfTab2() {
-    this.view.renderValueInSpot(
-      $.vendingMachineCoin500(),
-      `${this.model.coinObj.coin500}개`
-    );
-    this.view.renderValueInSpot(
-      $.vendingMachineCoin100(),
-      `${this.model.coinObj.coin100}개`
-    );
-    this.view.renderValueInSpot(
-      $.vendingMachineCoin50(),
-      `${this.model.coinObj.coin50}개`
-    );
-    this.view.renderValueInSpot(
-      $.vendingMachineCoin10(),
-      `${this.model.coinObj.coin10}개`
-    );
+    this.view.renderValueInSpot($.vendingMachineCoin500(), `${this.model.coinObj.coin500}개`);
+    this.view.renderValueInSpot($.vendingMachineCoin100(), `${this.model.coinObj.coin100}개`);
+    this.view.renderValueInSpot($.vendingMachineCoin50(), `${this.model.coinObj.coin50}개`);
+    this.view.renderValueInSpot($.vendingMachineCoin10(), `${this.model.coinObj.coin10}개`);
   }
 
   insertMoney(e) {
@@ -281,21 +220,26 @@ export default class VendingController {
     const target = e.target.parentElement.parentElement;
     const name = target.childNodes[1].dataset.productName;
     const price = target.childNodes[3].dataset.productPrice;
-    let quantity = target.childNodes[5].dataset.productQuantity;
-    if (this.model.insertedMoney - price < ZERO) {
-      this.view.alertMessage(ERROR_MESSAGE.notEnoughMoney);
-      return false;
-    }
-    if (--quantity < ZERO) {
-      this.view.alertMessage(ERROR_MESSAGE.soldOut);
-      return false;
-    }
+    const quantity = target.childNodes[5].dataset.productQuantity;
+    if (!this.checkPurchaseProduct(price, quantity)) return false;
     this.model.insertedMoney -= price;
     this.setInsertedMoney();
     target.childNodes[5].dataset.productQuantity--;
     target.childNodes[5].innerText--;
     this.model.productObj[name].quantity--;
     VendingModel.setLocalStorage(KEY.productList, this.model.productObj);
+  }
+
+  checkPurchaseProduct(price, quantity) {
+    if (this.model.insertedMoney - price < ZERO) {
+      this.view.alertMessage(ERROR_MESSAGE.notEnoughMoney);
+      return false;
+    }
+    if (quantity - 1 < ZERO) {
+      this.view.alertMessage(ERROR_MESSAGE.soldOut);
+      return false;
+    }
+    return true;
   }
 
   giveChanges(e) {

@@ -163,3 +163,6 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 - [x] 불필요 변수 제거
 
 #### 5) 비즈니스 로직과 UI 로직을 분리해라
+
+#### 6) 함수(메서드) 라인
+- [x] 함수(메서드) 15라인 이하로 리팩토링
