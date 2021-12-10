@@ -128,14 +128,19 @@ export default class VendingController {
     this.view.addTableRow($.tbodyOfTab1(), newRowOfTab1());
   }
 
-  addProduct(e) {
-    e.preventDefault();
+  addProduct() {
     const name = $.productNameInput();
     const price = $.productPriceInput();
     const quantity = $.productQuantityInput();
     if (!this.checkPrice(price)) {
       this.view.alertMessage(
         '상품 가격은 100원부터 시작해야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
+      );
+      return false;
+    }
+    if (quantity < 0) {
+      this.view.alertMessage(
+        '상품 수량은 0개 이상이어야 합니다. 다시 입력해주세요.'
       );
       return false;
     }
@@ -154,9 +159,9 @@ export default class VendingController {
   chargeMoney(e) {
     e.preventDefault();
     const money = $.chargedMoney();
-    if (money < 0) {
+    if (!this.checkInsertedMoney(money)) {
       this.view.alertMessage(
-        '충전할 잔돈은 0원 이상이어야 합니다. 다시 입력해주세요.'
+        '충전 금액은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
       );
       return false;
     }
@@ -167,6 +172,12 @@ export default class VendingController {
     );
     this.saveRandomCoin(money);
     this.makeTableOfTab2();
+  }
+
+  checkChargedMoney(money) {
+    if (money < 0) return false;
+    if (money % 10 !== 0) return false;
+    return true;
   }
 
   saveRandomCoin(money) {
