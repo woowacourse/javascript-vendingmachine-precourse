@@ -30,3 +30,34 @@ export const totalChargeTemplate = () => {
     </p>
   `;
 };
+
+const chargeTableHeader = `
+  <tr>
+    <td>동전</td>
+    <td>개수</td> 
+  </tr>
+`;
+
+const chargeTableRows = list => {
+  let html = '';
+  list.map(({ name, count }) => {
+    html += `
+      <tr>
+        <td>${name}원</td>
+        <td>${count}개</td> 
+      </tr>
+    `;
+  });
+
+  return html;
+};
+
+export const chargeTableTemplate = () => {
+  return `
+    <h3>자판기가 보유한 동전</h3>
+    <table border="1">
+      ${chargeTableHeader} 
+      ${chargeTableRows(getLocalStorage(LOCAL_DB.COIN))}
+    </table>
+  `;
+};
