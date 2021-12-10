@@ -1,8 +1,13 @@
+export const PRODUCT_ADD = 'product-add-menu';
+export const MACHINE_MANAGE = 'vending-machine-manage-menu';
+export const PURCHASE_MENU = 'product-purchase-menu';
+export const CHARGE_AMOUNT = 'charge-amount';
+
 export const APP_TITLE = '🥤자판기🥤';
 export const APP_MENU = Object.freeze([
-  { component: 'product-add-menu', text: '상품 관리' },
-  { component: 'vending-machine-manage-menu', text: '잔돈 충전' },
-  { component: 'product-purchase-menu', text: '상품 구매' },
+  { component: PRODUCT_ADD, text: '상품 관리' },
+  { component: MACHINE_MANAGE, text: '잔돈 충전' },
+  { component: PURCHASE_MENU, text: '상품 구매' },
 ]);
 
 export const EMPTY = '';
@@ -30,5 +35,5 @@ export const ERROR_MESSAGES = Object.freeze({
 
 export const CHARGE_UNIT = [500, 100, 50, 10];
 export const DEFAULT_VALUES = Object.freeze({
-  'vending-machine-manage-menu': CHARGE_UNIT.map(unit => ({ description: unit, count: 0 })),
+  [MACHINE_MANAGE]: CHARGE_UNIT.map(unit => ({ description: unit, count: 0 })),
 });
