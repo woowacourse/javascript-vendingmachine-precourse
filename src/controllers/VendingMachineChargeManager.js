@@ -1,6 +1,6 @@
 import { $, default as DOM } from '../views/DOMUtils.js';
 import { default as V } from '../utils/validators.js';
-import generateCoins from '../utils/generateCoins.js';
+import convertChargeIntoCoin from '../utils/convertChargeIntoCoin.js';
 
 export default class VendingMachineChargeManager {
   constructor() {
@@ -16,7 +16,7 @@ export default class VendingMachineChargeManager {
 
       if (!V.isValidCharge(DOM.getCharge())) return;
 
-      generateCoins(DOM.getCharge());
+      convertChargeIntoCoin(DOM.getCharge());
     });
   }
 }
