@@ -4,7 +4,7 @@ import {
     checkProductPrice,
     checkProductQuantity,
 } from '../asset/validation/index.js';
-import { addProduct, getProducts } from '../localStorage/inventory.js';
+import { addProduct, getProducts } from '../localStorage/index.js';
 
 export default class Inventory {
     constructor($skeleton) {

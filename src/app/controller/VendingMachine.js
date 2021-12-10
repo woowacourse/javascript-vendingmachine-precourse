@@ -3,7 +3,7 @@ import VendingSkeleton from '../view/VendingSkeleton.js';
 import ChargeCoin from './ChargeCoin.js';
 import Purchase from './Purchase.js';
 import { TAP } from '../asset/constants/index.js';
-import { getTap, setTap } from '../localStorage/tap.js';
+import { getTap, setTap } from '../localStorage/index.js';
 
 export default class VendingMachine {
     constructor() {

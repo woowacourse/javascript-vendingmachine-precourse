@@ -1,7 +1,7 @@
 import ChargeCoinTap from '../view/ChargeCoinTap.js';
 import { checkChargeAmount } from '../asset/validation/index.js';
 import { getEnableChargeAmount, distributeCoin } from '../asset/util/index.js';
-import { getChargeAmount, getCoins, setCoins } from '../localStorage/coin.js';
+import { getChargeAmount, getCoins, setCoins } from '../localStorage/index.js';
 
 export default class ChargeCoin {
     constructor($skeleton) {
