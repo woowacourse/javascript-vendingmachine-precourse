@@ -8,9 +8,11 @@ import {
 } from '../../utils/template/purchaseTemplate.js';
 
 class PurchaseInput {
-  constructor($inputContainer, $totalContainer) {
+  constructor($inputContainer, $totalContainer, state) {
     this.$inputContainer = $inputContainer;
     this.$totalContainer = $totalContainer;
+    this.state = state;
+    this.state.event.subscribe(this.showTotalCharge.bind(this));
 
     this.render();
   }

@@ -5,8 +5,9 @@ import { purchaseTableTemplate } from '../../utils/template/purchaseTemplate.js'
 import { isPurchaseAvailable } from '../../utils/valid.js';
 
 class PurchaseTable {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
 
     this.render();
   }
@@ -38,6 +39,11 @@ class PurchaseTable {
       return;
     }
 
+    this.updateLocalStorage(productName, productPrice);
+    this.updateView();
+  }
+
+  updateLocalStorage(productName, productPrice) {
     this.updateProductStorage(productName);
     this.updatePurchaseStorage(productPrice);
   }
@@ -54,6 +60,11 @@ class PurchaseTable {
     const purchase = getLocalStorage(LOCAL_DB.PURCHASE);
 
     saveLocalStorage(LOCAL_DB.PURCHASE, purchase - Number(productPrice));
+  }
+
+  updateView() {
+    this.state.updateState();
+    this.addTemplate();
   }
 }
 

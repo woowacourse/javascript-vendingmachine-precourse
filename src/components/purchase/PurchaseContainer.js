@@ -1,12 +1,13 @@
 import { $ } from '../../utils/selector.js';
 import { ID } from '../../constants/index.js';
+import State from '../../observer/State.js';
 import PurchaseInput from './PurchaseInput.js';
 import PurchaseTable from './PurchaseTable.js';
 
 class PurchaseContainer {
   constructor($target) {
     this.$target = $target;
-
+    this.state = new State();
     this.render();
   }
 
@@ -33,8 +34,8 @@ class PurchaseContainer {
   }
 
   mounted() {
-    new PurchaseInput(this.$inputContainer, this.$totalContainer);
-    new PurchaseTable(this.$tableContainer);
+    new PurchaseInput(this.$inputContainer, this.$totalContainer, this.state);
+    new PurchaseTable(this.$tableContainer, this.state);
   }
 }
 
