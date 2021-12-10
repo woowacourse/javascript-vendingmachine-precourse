@@ -1,8 +1,19 @@
-import { showProducts } from "../../views/productManager/showProducts.js";
-import { showMoneyCustomer } from "../../views/purchaseManager/showMoneyCustomer.js";
-import { showProductsAbleToBuy } from "../../views/purchaseManager/showProductsAbleToBuy.js";
-import { showCoinsInMachine } from "../chargeManager/showCoinsInMachine.js";
+import { showHeader } from "../header/showHeader.js";
+import { addProductManager } from "../productManager/addProductManager.js";
+import { addChargeManager } from "../chargeManager/addChargeManager.js";
+import { addPurchaseManager } from "../purchaseManager/addPurchaseManager.js";
+import { showProducts } from "../productManager/showProducts.js";
+import { showProductsAbleToBuy } from "../purchaseManager/showProductsAbleToBuy.js";
+import { showMoneyCustomer } from "../purchaseManager/showMoneyCustomer.js";
 import { showMoneyInMachine } from "../chargeManager/showMoneyInMachine.js";
+import { showCoinsInMachine } from "../chargeManager/showCoinsInMachine.js";
+
+const showAll = () => {
+  showHeader();
+  addProductManager();
+  addChargeManager();
+  addPurchaseManager();
+};
 
 const showAfterAddOrPurchaseProduct = () => {
   showProducts();
@@ -16,4 +27,4 @@ const showAfterReturnCoins = () => {
   showMoneyCustomer();
 };
 
-export { showAfterAddOrPurchaseProduct, showAfterReturnCoins };
+export { showAll, showAfterAddOrPurchaseProduct, showAfterReturnCoins };
