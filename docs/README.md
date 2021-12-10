@@ -50,7 +50,7 @@
 
 - **초기화**
 - [x] 🖨️  `잔돈 충전` template html 작성
-- [ ] 🔍  localStorage의 `vendingMachineCharge`에 보유 동전이 존재하는지 파악한다
+- [ ] 🔍  localStorage의 `vendingMachineCoins`에 보유 동전이 존재하는지 파악한다
   - [ ] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
     - [ ] 보유 금액은 `{금액}원` 형식으로 나타낸다
   - [ ] 🖨️  자판기가 보유한 동전 table에 출력한다
@@ -65,7 +65,7 @@
   - [x] ⚙️  자판기가 보유할 금액 만큼의 동전이 무작위로 생성된다
   - [ ] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
     - [ ] 보유 금액은 `{금액}원` 형식으로 나타낸다
-  - [x] 💾  localStorage의 `vendingMachineCharge`에 금액 별 동전 개수를 저장한다
+  - [x] 💾  localStorage의 `vendingMachineCoins`에 금액 별 동전 개수를 저장한다
 - **자판기가 보유한 동전 모듈**
 - [ ] 🖨️  자판기가 보유한 동전 금액별 개수 출력
 
@@ -74,7 +74,7 @@
 ### 4️⃣  **상품 구매 메뉴**
 
 - **초기화**
-- [ ] 🔍  localStorage의 `vendingMachineCharge`에 보유 동전이 존재하는지 파악한다
+- [ ] 🔍  localStorage의 `vendingMachineCoins`에 보유 동전이 존재하는지 파악한다
 - [ ] 🔍 localStorage의 `inventory`에 상품이 존재하는지 파악한다
   - [ ] 🖨️  구매할 수 있는 상품 현황 table에 row를 추가해서 표시
 - [ ] 🔍 localStorage의 `inputCharge`에 투입한 금액이 존재하는지 파악한다
@@ -100,7 +100,7 @@
   - [ ] ⚙️  잔돈을 돌려줄 때는 현재 보유한 최소 개수의 동전으로 잔돈을 돌려준다
     - [ ] ⚙️  보유한 동전으로 최대 반환할 수 있을만큼 반환한다
   - [ ] ⚙️  투입한 금액에서 반환한 금액의 총합을 차감한다
-  - [ ] 💾  localStorage의 `vendingMachineCharge`의 금액 별 동전 개수를 차감 후 저장한다
+  - [ ] 💾  localStorage의 `vendingMachineCoins`의 금액 별 동전 개수를 차감 후 저장한다
         💾  localStorage의 `inputCharge`에 투입한 금액을 저장한다
   - [ ] 🖨️  투입한 금액: 옆에 `{금액}원` 형식으로 출력한다
   - [ ] 🖨️  자판기가 반환한 동전 금액별 개수 출력한다

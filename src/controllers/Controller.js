@@ -14,7 +14,7 @@ export default class Controller {
 
   checkLocalStorage() {
     DB.init('inventory');
-    DB.init('vendingMachineCharge', { coin500: 0, coin100: 0, coin50: 0, coin10: 0 });
+    DB.init('vendingMachineCoins', { coin500: 0, coin100: 0, coin50: 0, coin10: 0 });
   }
 
   generateManagers() {
