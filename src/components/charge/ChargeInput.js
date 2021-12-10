@@ -1,22 +1,31 @@
 import { $ } from '../../utils/selector.js';
 import { COIN_LIST, ID, LOCAL_DB } from '../../constants/index.js';
 import { getRandomCoinArray } from '../../utils/makeCoinArray.js';
-import { chargeInputTemplate } from '../../utils/template/chargeTemplate.js';
+import {
+  chargeInputTemplate,
+  totalChargeTemplate,
+} from '../../utils/template/chargeTemplate.js';
 import { isValidChargeInput } from '../../utils/valid.js';
 import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
 import Coin from '../../classes/Coin.js';
 
 class ChargeInput {
-  constructor($target) {
-    this.$target = $target;
+  constructor($inputContainer, $totalContainer) {
+    this.$inputContainer = $inputContainer;
+    this.$totalContainer = $totalContainer;
 
     this.addTemplate();
+    this.showTotalCharge();
     this.selectDom();
     this.addEvent();
   }
 
   addTemplate() {
-    this.$target.innerHTML = chargeInputTemplate();
+    this.$inputContainer.innerHTML = chargeInputTemplate();
+  }
+
+  showTotalCharge() {
+    this.$totalContainer.innerHTML = totalChargeTemplate();
   }
 
   selectDom() {
@@ -35,6 +44,7 @@ class ChargeInput {
     }
 
     this.updateLocalStorage(amount);
+    this.showTotalCharge();
   }
 
   updateLocalStorage(amount) {

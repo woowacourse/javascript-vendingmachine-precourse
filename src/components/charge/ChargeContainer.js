@@ -30,7 +30,7 @@ class ChargeContainer {
   }
 
   mounted() {
-    new ChargeInput(this.$inputContainer);
+    new ChargeInput(this.$inputContainer, this.$totalContainer);
   }
 }
 
