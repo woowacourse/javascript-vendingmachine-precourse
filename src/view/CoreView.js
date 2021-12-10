@@ -14,6 +14,13 @@ export class CoreView {
     this.productView = new ProductView();
     this.chargeView = new ChargeView();
     this.buyView = new BuyView();
+    this.onLoad();
+  }
+
+  onLoad() {
+    const $sectionArray = Array.from($All('#app > section'));
+    $sectionArray[1].style.display = 'none';
+    $sectionArray[2].style.display = 'none';
   }
 
   setOnTabClick(fn) {
