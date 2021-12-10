@@ -30,10 +30,15 @@ export default class Controller {
     this.model.bindCoinChange(this.onCoinChange);
     this.view.bindProductAdd(this.productAddHandler);
     this.view.bindChargeCoin(this.chargeCoinHandler);
+    this.view.bindProductPurchase(this.purchaseHandler);
 
     this.view.displayProductAdd(this.model.product);
     this.view.displayChargeCoin(this.model.coin, this.getCoinSum());
-    this.view.displayProductPurchase(this.model.product);
+    this.view.displayProductPurchase(
+      this.model.product,
+      this.model.coin,
+      this.model.money
+    );
   }
 
   onProductChange = (product) => {
@@ -101,5 +106,18 @@ export default class Controller {
       sum += count * getValue(index);
     });
     return sum;
+  };
+
+  purchaseHandler = (money) => {
+    if (
+      !checkInteger(money) ||
+      !checkUnderZero(money) ||
+      !checkTenTimes(money)
+    ) {
+      alert("🚨 10으로 나누어 떨어지는 10이상의 정수를 입력해 주세요");
+    } else {
+      this.model.addMoney(+money);
+      return this.model.money;
+    }
   };
 }

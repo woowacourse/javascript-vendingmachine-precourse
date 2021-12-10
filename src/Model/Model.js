@@ -2,6 +2,7 @@ export default class Model {
   constructor() {
     this.product = JSON.parse(localStorage.getItem("product")) || [];
     this.coin = JSON.parse(localStorage.getItem("coin")) || [0, 0, 0, 0];
+    this.money = JSON.parse(localStorage.getItem("money")) || 0;
   }
 
   bindProductChange(callback) {
@@ -20,6 +21,10 @@ export default class Model {
   commitCoin(coin) {
     this.onCoinChange(coin);
     localStorage.setItem("coin", JSON.stringify(coin));
+  }
+
+  commitMoney(money) {
+    localStorage.setItem("money", JSON.stringify(money));
   }
 
   addProduct(name, price, quantity) {
@@ -42,5 +47,10 @@ export default class Model {
   addCoin(coins) {
     this.coin = coins;
     this.commitCoin(this.coin);
+  }
+
+  addMoney(money) {
+    this.money += money;
+    this.commitMoney(this.money);
   }
 }

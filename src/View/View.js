@@ -214,7 +214,7 @@ export default class View {
   }
 
   // 상품 구매
-  displayProductPurchase(product, coin) {
+  displayProductPurchase(product, coin, money) {
     this.productPurchaseMenu.addEventListener("click", (event) => {
       event.preventDefault();
       if (!this.productPurchaseForm) {
@@ -223,7 +223,10 @@ export default class View {
         this.chargeInput = createInput("charge-input", "투입할 금액", "number");
         this.chargeButton = createButton("charge-button", "투입하기");
         this.chargeInputSum = createDiv("charge-input-sum", "투입한 금액: ");
-        this.chargeAmount = createSpan("charge-amount");
+        this.chargeAmount = createSpan(
+          "charge-amount",
+          `${+money > 0 ? money : ""}`
+        );
         this.chargeInputSum.append(this.chargeAmount);
 
         const nowProductTitle = createH3("구매할 수 있는 상품 현황");
@@ -271,6 +274,20 @@ export default class View {
       tdQuantity.setAttribute("data-product-quantity", `${value.quantity}`);
       tr.append(tdName, tdPrice, tdQuantity, tdButton);
       this.avaiableProductTable.append(tr);
+    });
+  }
+
+  bindProductPurchase(handler) {
+    this.form.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (event.target.id === "charge-button") {
+        const presentMoney = handler(this.chargeInput.value);
+        if (presentMoney) {
+          this.chargeAmount.innerHTML = presentMoney;
+        }
+
+        this.chargeInput.value = "";
+      }
     });
   }
 }
