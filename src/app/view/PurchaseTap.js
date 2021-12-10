@@ -12,6 +12,7 @@ import CHANGE_COIN_ID from '../asset/constants/CHANGE_COIN_ID.js';
 import GUIDE from '../asset/constants/GUIDE.js';
 import Tap from './Tap.js';
 import PurchaseHeadRow from '../asset/components/Row/PurchaseHeadRow.js';
+import PurchaseBodyRow from '../asset/components/Row/PurchaseBodyRow.js';
 import CoinTableForm from '../asset/components/CoinTableForm/index.js';
 import UNIT from '../asset/constants/UNIT.js';
 
@@ -42,13 +43,30 @@ export default class PurchaseTap extends Tap {
     }
 
     init() {
+        this.hide();
         this.createInputCoinForm();
         this.createPurchaseForm();
         this.createChangeCoinsForm();
     }
 
+    render(inputAmount, products) {
+        this.setInputAmount(inputAmount);
+        this.setProducts(products);
+        this.show();
+    }
+
     setInputAmount(inputAmount) {
         this.$inputAmount.innerText = `${inputAmount}${UNIT.amount}`;
+    }
+
+    setProducts(products) {
+        this.appendToPurchaseContainer(
+            products.reduce((frag, product) => {
+                frag.appendChild(PurchaseBodyRow(product));
+
+                return frag;
+            }, document.createDocumentFragment()),
+        );
     }
 
     createInputCoinForm() {

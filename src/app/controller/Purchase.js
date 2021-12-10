@@ -1,5 +1,6 @@
 import checkInputAmount from '../asset/validation/checkInputAmount.js';
 import { getInputAmount, setInputAmount } from '../localStorage/inputAmount.js';
+import { getProducts } from '../localStorage/inventory.js';
 import PurchaseTap from '../view/PurchaseTap.js';
 
 export default class Purchase {
@@ -10,6 +11,10 @@ export default class Purchase {
     init() {
         this.purchaseTap.init();
         this.triggerPutAmountEvent();
+    }
+
+    render() {
+        this.purchaseTap.render(getInputAmount(), getProducts());
     }
 
     triggerPutAmountEvent() {

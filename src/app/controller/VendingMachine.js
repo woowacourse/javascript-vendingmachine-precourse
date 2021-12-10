@@ -16,6 +16,6 @@ export default class VendingMachine {
         this.inventory.init();
         this.chargeCoin.init();
         this.purchase.init();
-        // this.chargeCoin.render();
+        this.purchase.render();
     }
 }

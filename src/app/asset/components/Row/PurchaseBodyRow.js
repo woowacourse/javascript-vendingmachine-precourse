@@ -14,7 +14,7 @@ const createCell = (text, property) =>
         TABLE_CELL_DATASET[property],
     );
 
-const PurchaseBodyRow = (productName, productPrice, productQuantity) => {
+const PurchaseBodyRow = ({ productName, productPrice, productQuantity }) => {
     const $ret = RowByClassName(TABLE_ROW_CLASS_NAME.purchase);
     const $cell = Cell('');
 
