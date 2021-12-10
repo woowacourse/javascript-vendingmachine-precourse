@@ -32,6 +32,17 @@ const createProductItemTemplate = (name, price, quantity) => `
   </tr>
 `;
 
+const createReturnCoinItemTemplate = (coin, amount) => `
+  <tr class="${SELECTOR.productPurchaseItemClass}">
+    <td style="border: 1px solid black;padding: 10px 50px;">
+      ${coin}원
+    </td>
+    <td id="vending-machine-coin-${coin}-quantity" style="border: 1px solid black;padding: 10px 50px;">
+      ${amount}
+    </td>
+  </tr>
+`;
+
 export const createTitleTemplate = () => `
   <h2>${PRODUCT_PURCHASE_TAB}</h2>
 `;
@@ -62,6 +73,25 @@ export const createProductTableTemplate = () => `
     </thead>
     <tbody>
       ${createProductItemTemplate('1', '2', '3')}
+    </tbody>
+  </table>
+`;
+
+export const createReturnCoinTableTemplate = () => `
+  <h3>잔돈</h3>
+  <button>반환하기</button>
+  <table style="border: 1px solid black;border-collapse: collapse;">
+    <thead>
+      <tr>
+        ${createTheadTableDataTemplate('동전')}
+        ${createTheadTableDataTemplate('개수')}
+      </tr>
+    </thead>
+    <tbody>
+      ${createReturnCoinItemTemplate(500, 0)}
+      ${createReturnCoinItemTemplate(100, 0)}
+      ${createReturnCoinItemTemplate(50, 0)}
+      ${createReturnCoinItemTemplate(10, 0)}
     </tbody>
   </table>
 `;
