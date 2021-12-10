@@ -4,28 +4,28 @@ import { BUY_SECTION_TEMPLATE } from '../utils/template.js';
 export class BuyView {
   constructor() {
     this.$productBuySection = $('#product-buy-section');
-    this.$chargeInput;
-    this.$chargeButton;
-    this.$chargeAmount;
+    this.$insertInput;
+    this.$insertButton;
+    this.$totalInsertedMoney;
     this.addElements();
   }
 
   setOnMoneySubmit(fn) {
-    this.$chargeButton.addEventListener('click', (e) => {
+    this.$insertButton.addEventListener('click', (e) => {
       e.preventDefault();
-      const insertedMoney = Number(this.$chargeInput.value);
+      const insertedMoney = Number(this.$insertInput.value);
       fn(insertedMoney);
     });
   }
 
   showTotalInsertedMoney(totalInsertedMoney) {
-    this.$chargeAmount.innerText = totalInsertedMoney;
+    this.$totalInsertedMoney.innerText = totalInsertedMoney;
   }
 
   addElements() {
     this.$productBuySection.innerHTML = BUY_SECTION_TEMPLATE;
-    this.$chargeInput = $('#charge-input');
-    this.$chargeButton = $('#charge-button');
-    this.$chargeAmount = $('#charge-amount');
+    this.$insertInput = $('#charge-input');
+    this.$insertButton = $('#charge-button');
+    this.$totalInsertedMoney = $('#charge-amount');
   }
 }
