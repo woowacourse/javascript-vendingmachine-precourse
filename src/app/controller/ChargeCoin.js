@@ -36,7 +36,6 @@ export default class ChargeCoin {
         const distributedCoin = distributeCoin(getChargeAmount() + chargeAmount);
 
         setCoins(distributedCoin);
-        this.chargeCoinTap.setChargeAmount(getChargeAmount());
-        this.chargeCoinTap.setCoins(distributedCoin);
+        this.render();
     }
 }

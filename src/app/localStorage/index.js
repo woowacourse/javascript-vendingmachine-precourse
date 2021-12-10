@@ -1,7 +1,7 @@
-export const getJsonItem = (key) => {
+export const getJsonItem = (key, defaultVal = []) => {
     const json = localStorage.getItem(key);
 
-    return json ? JSON.parse(json) : [];
+    return json ? JSON.parse(json) : defaultVal;
 };
 
 export const setJsonItem = (key, json) => {

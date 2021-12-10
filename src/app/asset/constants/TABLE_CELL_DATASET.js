@@ -1,7 +1,7 @@
 const TABLE_CELL_DATASET = {
-    productName: 'dataProductName',
-    productPrice: 'dataProductPrice',
-    productQuantity: 'dataProductQuantity',
+    productName: 'productName',
+    productPrice: 'productPrice',
+    productQuantity: 'productQuantity',
 };
 
 export default TABLE_CELL_DATASET;

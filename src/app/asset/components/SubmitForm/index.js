@@ -1,4 +1,5 @@
 import SubTitle from '../SubTitle/index.js';
+import UNIT from '../../constants/UNIT.js';
 
 const FormInput = ($input, $button) => {
     const $wrap = document.createElement('div');
@@ -12,11 +13,14 @@ const FormInput = ($input, $button) => {
 const GuideWrap = (guideText, $guideValueWrap) => {
     const $wrap = document.createElement('p');
     const $guide = document.createElement('span');
+    const $unit = document.createElement('span');
 
     $wrap.style.marginTop = '10px';
     $guide.append(`${guideText}:`);
+    $unit.append(UNIT.amount);
     $wrap.append($guide);
     $wrap.append($guideValueWrap);
+    $wrap.append($unit);
 
     return $wrap;
 };

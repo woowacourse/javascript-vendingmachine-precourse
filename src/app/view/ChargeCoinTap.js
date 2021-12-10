@@ -5,6 +5,7 @@ import CellById from '../asset/components/Cell/CellById.js';
 import SubmitForm from '../asset/components/SubmitForm/index.js';
 import SubTitle from '../asset/components/SubTitle/index.js';
 import CoinTable from '../asset/components/CoinTable/index.js';
+import Span from '../asset/components/Span/index.js';
 import BUTTON from '../asset/constants/BUTTON.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
@@ -18,7 +19,7 @@ export default class ChargeCoinTap extends Tap {
         super($skeleton);
         this.$chargeCoinInput = InputNumber(INPUT_ID.chargeCoin, INPUT_ITEM.chargeCoin);
         this.$chargeButton = ButtonById(BUTTON.chargeCoin.title, BUTTON.chargeCoin.id);
-        this.$chargeAmount = document.createElement('span');
+        this.$chargeAmount = Span(GUIDE.chargeAmount.id);
         this.$coin500 = CellById('', COIN_ID[0]);
         this.$coin100 = CellById('', COIN_ID[1]);
         this.$coin50 = CellById('', COIN_ID[2]);
@@ -50,7 +51,7 @@ export default class ChargeCoinTap extends Tap {
     }
 
     setChargeAmount(chargeAmount) {
-        this.$chargeAmount.innerText = `${chargeAmount}${UNIT.amount}`;
+        this.$chargeAmount.innerText = chargeAmount;
     }
 
     setCoins(distributedCoin) {
@@ -67,7 +68,7 @@ export default class ChargeCoinTap extends Tap {
                 SUB_TITLE_TEXT.chargeCoin,
                 this.$chargeCoinInput,
                 this.$chargeButton,
-                GUIDE.chargeCoin,
+                GUIDE.chargeAmount.title,
                 this.$chargeAmount,
             ),
         );

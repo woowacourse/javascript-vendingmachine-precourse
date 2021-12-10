@@ -14,14 +14,15 @@ import Tap from './Tap.js';
 import PurchaseHeadRow from '../asset/components/Row/PurchaseHeadRow.js';
 import PurchaseBodyRow from '../asset/components/Row/PurchaseBodyRow.js';
 import CoinTable from '../asset/components/CoinTable/index.js';
+import Span from '../asset/components/Span/index.js';
 import UNIT from '../asset/constants/UNIT.js';
 
 export default class PurchaseTap extends Tap {
     constructor($skeleton) {
         super($skeleton);
         this.$inputAmountInput = InputNumber(INPUT_ID.inputAmount, INPUT_ITEM.inputAmount);
-        this.$inputButton = ButtonById(BUTTON.purchase.title, BUTTON.purchase.id);
-        this.$inputAmount = document.createElement('span');
+        this.$inputButton = ButtonById(BUTTON.inputAmount.title, BUTTON.inputAmount.id);
+        this.$inputAmount = Span(GUIDE.inputAmount.id);
         this.$purchaseContainer = document.createElement('tbody');
         this.$returnButton = ButtonById(BUTTON.returnChangeCoin.title, BUTTON.returnChangeCoin.id);
         this.$coin500 = CellById('', CHANGE_COIN_ID[0]);
@@ -65,7 +66,7 @@ export default class PurchaseTap extends Tap {
     }
 
     setInputAmount(inputAmount) {
-        this.$inputAmount.innerText = `${inputAmount}${UNIT.amount}`;
+        this.$inputAmount.innerText = inputAmount;
     }
 
     setProducts(products) {
@@ -101,7 +102,7 @@ export default class PurchaseTap extends Tap {
                 SUB_TITLE_TEXT.inputAmount,
                 this.$inputAmountInput,
                 this.$inputButton,
-                GUIDE.inputAmount,
+                GUIDE.inputAmount.title,
                 this.$inputAmount,
             ),
         );
