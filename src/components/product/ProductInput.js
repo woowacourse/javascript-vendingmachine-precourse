@@ -1,4 +1,5 @@
 import { ID } from '../../constants/index.js';
+import { clearInput } from '../../utils/clearInput.js';
 import { isValidProductInput } from '../../utils/valid.js';
 
 class ProductInput {
@@ -41,6 +42,7 @@ class ProductInput {
     if (!isValidProductInput(name, price, quantity)) {
       return;
     }
+    clearInput(this.$nameInput, this.$priceInput, this.$quantityInput);
   }
 }
 
