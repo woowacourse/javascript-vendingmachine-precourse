@@ -3,12 +3,12 @@ import InputText from '../asset/components/Input/InputText.js';
 import SubTitle from '../asset/components/SubTitle/index.js';
 import ButtonById from '../asset/components/Button/ButtonById.js';
 import Table from '../asset/components/Table/index.js';
-import InventoryRow from '../asset/components/Row/InventoryRow.js';
+import InventoryHeadRow from '../asset/components/Row/InventoryHeadRow.js';
+import InventoryBodyRow from '../asset/components/Row/InventoryBodyRow.js';
 import INPUT_ID from '../asset/constants/INPUT_ID.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
 import BUTTON from '../asset/constants/BUTTON.js';
-import TABLE_TITLE from '../asset/constants/TABLE_TITLE.js';
 import Tap from './Tap.js';
 
 export default class InventoryTap extends Tap {
@@ -89,13 +89,7 @@ export default class InventoryTap extends Tap {
         const $table = Table();
         const $tHead = document.createElement('thead');
 
-        $tHead.append(
-            InventoryRow(
-                TABLE_TITLE.productName,
-                TABLE_TITLE.productPrice,
-                TABLE_TITLE.productQuantity,
-            ),
-        );
+        $tHead.append(InventoryHeadRow());
         $table.append($tHead);
         $table.append(this.$inventoryContainer);
         $wrap.append(SubTitle(SUB_TITLE_TEXT.productInventory));
@@ -104,7 +98,7 @@ export default class InventoryTap extends Tap {
     }
 
     addRow(text1, text2, text3) {
-        this.appendToInventoryContainer(InventoryRow(text1, text2, text3));
+        this.appendToInventoryContainer(InventoryBodyRow(text1, text2, text3));
     }
 
     addProductRow(productName, productPrice, productQuantity) {
