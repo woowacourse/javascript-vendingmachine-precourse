@@ -12,6 +12,7 @@ import renderNowProductInfo from './views/renderNowProductInfo.js';
 import getUserProductInfoInput from './modules/getUserProductInfoInput.js';
 import initProductAddInputElements from './views/initProductAddInputElements.js';
 import renderVendingMachineManageMenu from './views/renderVendingMachineManageMenu.js';
+import getUserVendingMachineChargeInput from './modules/getUserVendingMachineChargeInput.js';
 
 export default function vendingMachine() {
   this.userTotalMoney;
@@ -24,6 +25,11 @@ export default function vendingMachine() {
     this.drinkMenuObjectList = initStorage(DRINK_STORAGE_NAME);
     this.vendingCoinList = initStorage(VENDINGCOIN_STORGAE_NAME);
     initEventListener();
+  };
+  const addVendingMachineManageEventListener = () => {
+    $('#vending-machine-charge-button').addEventListener('click', () => {
+      const userVendingMachineChargeInput = getUserVendingMachineChargeInput();
+    });
   };
 
   const addUserProductAddEventListener = () => {
@@ -44,6 +50,7 @@ export default function vendingMachine() {
     });
     $('#vending-machine-manage-menu').addEventListener('click', () => {
       renderVendingMachineManageMenu();
+      addVendingMachineManageEventListener();
     });
     // $('#product-purchase-menu').addEventListener('click')
   };
