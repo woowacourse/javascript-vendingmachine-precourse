@@ -34,9 +34,12 @@ class ProductInput {
 
   clickButton() {
     const name = this.$nameInput.value;
-    const price = this.$priceInput.value;
-    const quantity = this.$quantityInput.value;
-    console.log(name, price, quantity);
+    const price = Number(this.$priceInput.value);
+    const quantity = Number(this.$quantityInput.value);
+
+    if (!isValidProductInput(name, price, quantity)) {
+      return;
+    }
   }
 }
 
