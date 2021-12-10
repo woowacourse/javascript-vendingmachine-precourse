@@ -7,7 +7,10 @@ export default class PurchaseView {
         <button id="charge-button">투입하기</button>
       </div>
       <br/>
-      <div id="charge-amount">투입한 금액: </div>
+      <div id="charge-amount-container">
+        투입한 금액:
+        <span id="charge-amount"></span>
+      </div> 
       <br/>
       <h2>구매할 수 있는 상품 현황</h2>
       <table border="1">
@@ -54,7 +57,7 @@ export default class PurchaseView {
   };
 
   renderChargedAmount = (container, amount) => {
-    container.innerText = `투입한 금액: ${amount}`;
+    container.innerText = `${amount}`;
   };
 
   render = (container, template) => {

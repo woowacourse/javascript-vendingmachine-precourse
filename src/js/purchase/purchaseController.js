@@ -20,7 +20,8 @@ export default class PurchaseController {
   initDOMS = () => {
     this.$chargeInput = document.getElementById("charge-input");
     this.$chargeButton = document.getElementById("charge-button");
-    this.$chargeAmountContainer = document.getElementById("charge-amount");
+    this.$chargeAmountContainer = document.getElementById("charge-amount-container");
+    this.$chargeAmount = document.getElementById("charge-amount");
     this.$purchaseTableBody = document.getElementById("purchase-table-body");
   };
 
@@ -79,7 +80,7 @@ export default class PurchaseController {
 
   updatePage = () => {
     const products = this.product.model.getProducts();
-    this.view.renderChargedAmount(this.$chargeAmountContainer, this.model.getChargedMoney());
+    this.view.renderChargedAmount(this.$chargeAmount, this.model.getChargedMoney());
     this.view.renderPurchaseTable(this.$purchaseTableBody, products);
   };
 }
