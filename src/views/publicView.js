@@ -5,8 +5,13 @@ import {
 } from "../utils/constants.js";
 import { renderManageProductMenuView } from "./manageProductView.js";
 import { renderChargeChangeMenuView } from "./chargeChangeView.js";
+import { renderPurchaseProductMenuView } from "./purchaseProductView.js";
 
-const renderArray = [renderManageProductMenuView, renderChargeChangeMenuView];
+const renderArray = [
+  renderManageProductMenuView,
+  renderChargeChangeMenuView,
+  renderPurchaseProductMenuView,
+];
 const menuTapInformations = MENU_TAP_INFORMATION.map((information, index) => [
   ...information,
   renderArray[index],

@@ -125,7 +125,7 @@ const makeCoinRaw = raw => {
   return tr;
 };
 
-const makeCoinTable = (headers, raws) => {
+export const makeCoinTable = (headers, raws) => {
   const table = document.createElement("table");
   table.style.borderCollapse = COIN_TABLE.collapse;
   table.style.textAlign = COIN_TABLE.textAlign;

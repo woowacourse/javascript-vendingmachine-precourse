@@ -79,3 +79,28 @@ export const CHARGE_CHANGE_TAP = {
     ["10원", "vending-machine-coin-10-quantity"],
   ],
 };
+
+export const PURCHASE_PRODUCT_TAP = {
+  insertMoneyTitle: "금액 투입",
+  insertMoneyInputInformation: ["투입할 금액", "charge-input", "number"],
+  insertMoneyButtonInformation: ["submit", "투입하기", "charge-button"],
+  insertMoneyAmountTitle: "투입한 금액: ",
+  insertMoneyAmountId: "charge-amount",
+
+  productStateTitle: "구매할 수 있는 상품 현황",
+  productStateTableHeaders: ["상품명", "가격", "수량", "구매"],
+  productStateName: "product-purchase-name",
+  productStatePrice: "product-purchase-price",
+  productStateQuantity: "product-purchase-quantity",
+  productStateButton: ["button", "구매하기", "purchase-button"],
+
+  changeStateTitle: "잔돈",
+  changeStateButtonInformation: ["button", "반환하기", "coin-return-button"],
+  changeStateTableHeader: ["동전", "개수"],
+  changeStateTableRaws: [
+    ["500원", "coin-500-quantity"],
+    ["100원", "coin-100-quantity"],
+    ["50원", "coin-50-quantity"],
+    ["10원", "coin-10-quantity"],
+  ],
+};
