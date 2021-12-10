@@ -57,4 +57,11 @@ export default class Component {
     this.state = { ...this.state, ...nextState };
     this.updateComponent();
   }
+
+  appendRootEvents(id, type, handler) {
+    this.$container.addEventListener(type, ({ target }) => {
+      if (target.id !== id) return;
+      handler();
+    });
+  }
 }
