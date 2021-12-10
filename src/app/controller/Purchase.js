@@ -1,6 +1,7 @@
 import checkInputAmount from '../asset/validation/checkInputAmount.js';
 import { getInputAmount, setInputAmount } from '../localStorage/inputAmount.js';
-import { getProducts } from '../localStorage/inventory.js';
+import { getProducts, setProducts } from '../localStorage/inventory.js';
+import ERROR_MSG from '../asset/constants/ERROR_MSG.js';
 import PurchaseTap from '../view/PurchaseTap.js';
 
 export default class Purchase {
@@ -11,6 +12,7 @@ export default class Purchase {
     init() {
         this.purchaseTap.init();
         this.triggerPutAmountEvent();
+        this.triggerPurchaseProductEvent();
     }
 
     render() {
@@ -30,5 +32,33 @@ export default class Purchase {
     putAmount(inputAmount) {
         setInputAmount(getInputAmount() + inputAmount);
         this.purchaseTap.setInputAmount(getInputAmount());
+    }
+
+    triggerPurchaseProductEvent() {
+        this.purchaseTap.getPurchaseContainer().addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const products = getProducts();
+                const id = Number(e.target.dataset.id);
+
+                if (Number(products[id].productPrice) > getInputAmount()) {
+                    alert(ERROR_MSG.lockAmount);
+                } else {
+                    products[id].productQuantity = Number(products[id].productQuantity) - 1;
+                    this.updateProductsAndInputAmount(products, id);
+                }
+            }
+        });
+    }
+
+    updateProductsAndInputAmount(products, id) {
+        setInputAmount(getInputAmount() - products[id].productPrice);
+        this.purchaseTap.setInputAmount(getInputAmount());
+
+        if (products[id].productQuantity === 0) {
+            products.splice(id, 1);
+        }
+
+        setProducts(products);
+        this.purchaseTap.refreshProducts(products);
     }
 }

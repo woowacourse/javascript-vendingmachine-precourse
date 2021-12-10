@@ -22,7 +22,7 @@ export default class PurchaseTap extends Tap {
         this.$inputAmountInput = InputNumber(INPUT_ID.inputAmount, INPUT_ITEM.inputAmount);
         this.$inputButton = ButtonById(BUTTON.purchase.title, BUTTON.purchase.id);
         this.$inputAmount = document.createElement('span');
-        this.$purchaseContainer = Table();
+        this.$purchaseContainer = document.createElement('tbody');
         this.$returnButton = ButtonById(BUTTON.returnChangeCoin.title, BUTTON.returnChangeCoin.id);
         this.$coin500 = CellById('', CHANGE_COIN_ID[0]);
         this.$coin100 = CellById('', CHANGE_COIN_ID[1]);
@@ -36,6 +36,10 @@ export default class PurchaseTap extends Tap {
 
     getInputAmount() {
         return this.$inputAmountInput.value;
+    }
+
+    getPurchaseContainer() {
+        return this.$purchaseContainer;
     }
 
     appendToPurchaseContainer($element) {
@@ -69,6 +73,15 @@ export default class PurchaseTap extends Tap {
         );
     }
 
+    clearProducts() {
+        this.$purchaseContainer.replaceChildren();
+    }
+
+    refreshProducts(products) {
+        this.clearProducts();
+        this.setProducts(products);
+    }
+
     createInputCoinForm() {
         this.$inputButton.style.marginLeft = '5px';
         this.appendToApp(
@@ -84,11 +97,15 @@ export default class PurchaseTap extends Tap {
 
     createPurchaseForm() {
         const $wrap = document.createElement('div');
+        const $table = Table();
+        const $tHead = document.createElement('thead');
 
+        $tHead.append(PurchaseHeadRow());
+        $table.append($tHead);
+        $table.append(this.$purchaseContainer);
         $wrap.style.marginTop = '30px';
         $wrap.append(SubTitle(SUB_TITLE_TEXT.purchageList));
-        $wrap.append(this.$purchaseContainer);
-        this.appendToPurchaseContainer(PurchaseHeadRow());
+        $wrap.append($table);
         this.appendToApp($wrap);
     }
 

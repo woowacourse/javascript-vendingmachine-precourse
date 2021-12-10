@@ -11,6 +11,7 @@ const ERROR_MSG = {
     number: '숫자로만 입력해주세요.',
     minPrice: `상품 가격은 ${INPUT_NUMBER_RULE.minPrice}이상만 가능합니다.`,
     mod: `${INPUT_NUMBER_RULE.mod}로 나누어지는 수를 입력해주세요.`,
+    lockAmount: '투입한 돈이 부족합니다.',
 };
 
 export default ERROR_MSG;
