@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../utils/constants.js';
+import { ERROR_MESSAGE, USER_CHARGE, VALUES } from '../utils/constants.js';
 import { HTML_OF_PRODUCT_PURCHASE_PART } from '../utils/html.js';
 import ProductPurchaseCheck from './ProductPurchaseCheck.js';
 
@@ -15,11 +15,22 @@ export default class ProductPurchaseView {
       const productPurchaseCheck = new ProductPurchaseCheck(userCharge);
 
       if(productPurchaseCheck.checkAll()){
-        // localStorage에 저장
+        this.addUserCharge(userCharge);
       } else {
         alert(ERROR_MESSAGE);
       }
 
     })
+  }
+
+  static addUserCharge(userCharge) {
+    const userInput = JSON.parse(localStorage.getItem(USER_CHARGE));
+
+    if(localStorage.getItem(USER_CHARGE) === null) {
+      localStorage.setItem(USER_CHARGE, JSON.stringify({values: userCharge}));
+    } else {
+      userInput[VALUES] = parseInt(userInput[VALUES]) + parseInt(userCharge);
+      localStorage.setItem(USER_CHARGE, JSON.stringify(userInput));
+    }
   }
 }

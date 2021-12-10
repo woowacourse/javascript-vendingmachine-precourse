@@ -15,5 +15,6 @@ export const PRODUCT = 'Product';
 export const VALUES = 'values';
 export const CHANGE = 'Change';
 export const COINS = 'Coins';
+export const USER_CHARGE = 'UserCharge';
 
 export const ERROR_MESSAGE = "유효하지 않은 입력입니다!";
