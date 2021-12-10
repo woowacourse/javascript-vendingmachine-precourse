@@ -58,6 +58,13 @@ export class BuyView {
     this.$productPurchaseTable.innerHTML = productRowHTML;
   }
 
+  showChangeCoin(changeCoin) {
+    this.$coin500Quantity.innerText = changeCoin[500];
+    this.$coin100Quantity.innerText = changeCoin[100];
+    this.$coin50Quantity.innerText = changeCoin[50];
+    this.$coin10Quantity.innerText = changeCoin[10];
+  }
+
   addElements() {
     this.$productBuySection.innerHTML = BUY_SECTION_TEMPLATE;
     this.$productPurchaseTable = $('#product-purchase-table');

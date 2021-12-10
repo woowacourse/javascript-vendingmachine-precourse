@@ -44,5 +44,6 @@ export class BuyController {
 
   onCoinReturnClick() {
     const changeCoin = this.model.returnCoin();
+    this.coreView.buyView.showChangeCoin(changeCoin);
   }
 }
