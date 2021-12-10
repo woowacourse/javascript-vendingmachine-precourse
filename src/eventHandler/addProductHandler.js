@@ -5,6 +5,7 @@ import {
   PRODUCT_PRICE_INPUT_ID,
   PRODUCT_QUANTITY_INPUT_ID,
 } from '../view/initProductAdd.js';
+import clearInput from '../view/clearInput.js';
 
 function onAdd(vendingMachine) {
   const product = {
@@ -14,6 +15,7 @@ function onAdd(vendingMachine) {
   };
 
   vendingMachine.addProduct(product);
+  clearInput();
 }
 
 export default function addProductHandler(vendingMachine) {
