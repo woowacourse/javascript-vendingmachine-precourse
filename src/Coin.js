@@ -29,4 +29,8 @@ export default class Coin {
 
     return amount;
   }
+
+  getCoinQuantity() {
+    return this.items;
+  }
 }

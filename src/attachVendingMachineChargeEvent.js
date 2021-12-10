@@ -24,6 +24,20 @@ const printVendingMachineAmount = (amount) => {
   $vendingMachineChargeAmount.innerText = amount;
 };
 
+const printVendingMachineCoinTable = (coinQuantity) => {
+  const $vendingMachineCoin500Quantity = document.getElementById(DOM_ID_SELECTOR.vendingMachineCoin500Quantity);
+  $vendingMachineCoin500Quantity.innerText = coinQuantity[500];
+
+  const $vendingMachineCoin100Quantity = document.getElementById(DOM_ID_SELECTOR.vendingMachineCoin100Quantity);
+  $vendingMachineCoin100Quantity.innerText = coinQuantity[100];
+
+  const $vendingMachineCoin50Quantity = document.getElementById(DOM_ID_SELECTOR.vendingMachineCoin50Quantity);
+  $vendingMachineCoin50Quantity.innerText = coinQuantity[50];
+
+  const $vendingMachineCoin10Quantity = document.getElementById(DOM_ID_SELECTOR.vendingMachineCoin10Quantity);
+  $vendingMachineCoin10Quantity.innerText = coinQuantity[10];
+};
+
 const attachVendingMachineChargeEvent = (coin) => {
   const $vendingMachineChargeButton = document.getElementById(DOM_ID_SELECTOR.vendingMachineChargeButton);
 
@@ -35,6 +49,7 @@ const attachVendingMachineChargeEvent = (coin) => {
       clearVendingMachineChargeInput();
       coin.charge(Number(price));
       printVendingMachineAmount(coin.getAmount());
+      printVendingMachineCoinTable(coin.getCoinQuantity());
     }
   });
 };
