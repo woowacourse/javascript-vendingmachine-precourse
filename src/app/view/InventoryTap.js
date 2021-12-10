@@ -1,10 +1,12 @@
-import InputNumber from '../asset/components/Input/InputNumber.js';
-import InputText from '../asset/components/Input/InputText.js';
-import SubTitle from '../asset/components/SubTitle/index.js';
-import ButtonById from '../asset/components/Button/ButtonById.js';
-import Table from '../asset/components/Table/index.js';
-import InventoryHeadRow from '../asset/components/Row/InventoryHeadRow.js';
-import InventoryBodyRow from '../asset/components/Row/InventoryBodyRow.js';
+import {
+    InputNumber,
+    InputText,
+    SubTitle,
+    ButtonById,
+    Table,
+    InventoryHeadRow,
+    InventoryBodyRow,
+} from '../asset/components/index.js';
 import INPUT_ID from '../asset/constants/INPUT_ID.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
