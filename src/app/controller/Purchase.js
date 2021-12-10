@@ -67,6 +67,11 @@ export default class Purchase {
 
     triggerReturnEvent() {
         this.purchaseTap.getReturnButton().addEventListener('click', () => {
+            if (getInputAmount() === 0) {
+                alert(ERROR_MSG.noReturnAmount);
+                return;
+            }
+
             const coinCnts = getCoins();
             const distributedCoin = distributeCoinGreedily(getInputAmount(), coinCnts);
 
