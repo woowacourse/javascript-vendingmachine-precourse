@@ -1,6 +1,8 @@
+import { getLocalStorage, setLocalStorage } from "../util/localStorage.js";
+
 export default class PurchaseModel {
   constructor() {
-    this.chargedMoney = 0;
+    this.chargedMoney = getLocalStorage("charge-money") ?? 0;
   }
 
   getChargedMoney = () => {
@@ -15,6 +17,7 @@ export default class PurchaseModel {
       throw new Error("10으로 나누어 떨어지는 금액을 입력해주세요");
     }
     this.chargedMoney += money;
+    setLocalStorage("charge-money", this.chargedMoney);
   };
 
   spendMoney = (price, quantity) => {
@@ -25,6 +28,7 @@ export default class PurchaseModel {
     }
 
     this.chargedMoney -= price;
+    setLocalStorage("charge-money", this.chargedMoney);
   };
 
   isNotPositiveNumber = (money) => {
