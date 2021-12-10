@@ -1,5 +1,5 @@
-// import MissionUtils from '@woowacourse/mission-utils';
 import * as $ from './dom.js';
+import * as constant from './constants.js';
 import VendingModel from './model.js';
 
 export default class VendingController {
@@ -56,7 +56,6 @@ export default class VendingController {
       ? parseInt(VendingModel.getLocalStorage('insertedMoney'), 10)
       : this.model._insertedMoney;
     this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
-    console.log(this.model.productObj);
     for (const name in this.model.productObj) {
       if (Object.hasOwnProperty.call(this.model.productObj, name)) {
         this.makeBuyingTableOfTab3(
@@ -131,22 +130,17 @@ export default class VendingController {
     const name = $.productNameInput();
     const price = $.productPriceInput();
     const quantity = $.productQuantityInput();
+
     if (!this.checkName(name)) {
-      this.view.alertMessage(
-        '이미 같은 상품명의 음료수가 있습니다. 다른 상품명을 입력해주세요'
-      );
+      this.view.alertMessage(constant.errorSameName);
       return false;
     }
     if (!this.checkPrice(price)) {
-      this.view.alertMessage(
-        '상품 가격은 100원부터 시작해야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
-      );
+      this.view.alertMessage(constant.errorPrice);
       return false;
     }
     if (quantity < 0) {
-      this.view.alertMessage(
-        '상품 수량은 0개 이상이어야 합니다. 다시 입력해주세요.'
-      );
+      this.view.alertMessage(constant.errorQuantity);
       return false;
     }
     this.makeTableOfTab1(name, price, quantity);
@@ -162,8 +156,8 @@ export default class VendingController {
   }
 
   checkPrice(price) {
-    if (price < 100) return false;
-    if (price % 10 !== 0) return false;
+    if (price < constant.minimumPrice) return false;
+    if (price % constant.dividingStandard !== 0) return false;
     return true;
   }
 
@@ -172,12 +166,9 @@ export default class VendingController {
     e.preventDefault();
     const money = $.chargedMoney();
     if (!this.checkInsertedMoney(money)) {
-      this.view.alertMessage(
-        '충전 금액은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
-      );
+      this.view.alertMessage(constant.dividingStandard);
       return false;
     }
-    // this.saveSumCoin(money);
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
       this.model.chargedMoney
@@ -196,10 +187,10 @@ export default class VendingController {
   calculateChargedMoney() {
     const { coinObj } = this.model;
     const chargedMoney =
-      coinObj.coin500 * 500 +
-      coinObj.coin100 * 100 +
-      coinObj.coin50 * 50 +
-      coinObj.coin10 * 10;
+      coinObj.coin500 * constant.number500 +
+      coinObj.coin100 * constant.number100 +
+      coinObj.coin50 * constant.number50 +
+      coinObj.coin10 * constant.number10;
     this.model.chargedMoney = chargedMoney;
     VendingModel.setLocalStorage('chargedMoney', this.model.chargedMoney);
     this.view.renderValueInSpot(
@@ -211,9 +202,9 @@ export default class VendingController {
   saveRandomCoin(money) {
     let changes = 0;
     while (changes !== money) {
-      const chargeList = [500, 100, 50, 10];
-      const coin = MissionUtils.Random.pickNumberInList(chargeList);
-      // const coin = 10;
+      const coin = MissionUtils.Random.pickNumberInList(
+        constant.listOfChargingUnit
+      );
       if (changes + coin <= money) {
         changes += coin;
         this.saveCoins(coin);
@@ -224,22 +215,22 @@ export default class VendingController {
 
   saveCoins(coin) {
     switch (coin) {
-      case 500:
+      case constant.number500:
         this.model.coinObj = {
           coin500: this.model._coinObj.coin500++,
         };
         break;
-      case 100:
+      case constant.number100:
         this.model.coinObj = {
           coin100: this.model._coinObj.coin100++,
         };
         break;
-      case 50:
+      case constant.number50:
         this.model.coinObj = {
           coin50: this.model._coinObj.coin50++,
         };
         break;
-      case 10:
+      case constant.number10:
         this.model.coinObj = {
           coin10: this.model._coinObj.coin10++,
         };
@@ -277,9 +268,7 @@ export default class VendingController {
   insertMoney(e) {
     e.preventDefault();
     if (!this.checkInsertedMoney($.insertedMoney())) {
-      this.view.alertMessage(
-        '상품 가격은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
-      );
+      this.view.alertMessage(constant.errorInsertedMoney);
       return false;
     }
     this.model.insertedMoney += $.insertedMoney();
@@ -293,7 +282,7 @@ export default class VendingController {
 
   checkInsertedMoney(money) {
     if (money < 0) return false;
-    if (money % 10 !== 0) return false;
+    if (money % constant.dividingStandard !== 0) return false;
     return true;
   }
 
@@ -309,11 +298,11 @@ export default class VendingController {
     const price = target.childNodes[3].dataset.productPrice;
     const quantity = target.childNodes[5].dataset.productQuantity;
     if (this.model.insertedMoney - price < 0) {
-      this.view.alertMessage('해당 제품을 사기에는 투입한 돈이 부족합니다.');
+      this.view.alertMessage(constant.errorNotEnoughMoney);
       return false;
     }
     if (quantity - 1 < 0) {
-      this.view.alertMessage('해당 제품은 매진되었습니다.');
+      this.view.alertMessage(constant.errorSoldOut);
       return false;
     }
     // 투입 금액
@@ -349,7 +338,7 @@ export default class VendingController {
   }
 
   calculateCoin500(changes) {
-    let coin500 = Math.floor(changes / 500);
+    let coin500 = Math.floor(changes / constant.number500);
     if (this.model.coinObj.coin500 - coin500 >= 0) {
       this.model.coinObj.coin500 -= coin500;
       this.view.renderValueInSpot($.coin500quality(), `${coin500}개`);
@@ -362,7 +351,9 @@ export default class VendingController {
   }
 
   calculateCoin100(changes, coin500) {
-    let coin100 = Math.floor((changes - coin500 * 500) / 100);
+    let coin100 = Math.floor(
+      (changes - coin500 * constant.number500) / constant.number100
+    );
     if (this.model.coinObj.coin100 - coin100 >= 0) {
       this.model.coinObj.coin100 -= coin100;
       this.view.renderValueInSpot($.coin100quality(), `${coin100}개`);
@@ -375,7 +366,10 @@ export default class VendingController {
   }
 
   calculateCoin50(changes, coin500, coin100) {
-    let coin50 = Math.floor((changes - coin500 * 500 - coin100 * 100) / 50);
+    let coin50 = Math.floor(
+      (changes - coin500 * constant.number500 - coin100 * constant.number100) /
+        constant.number50
+    );
     if (this.model.coinObj.coin50 - coin50 >= 0) {
       this.model.coinObj.coin50 -= coin50;
       this.view.renderValueInSpot($.coin50quality(), `${coin50}개`);
@@ -389,7 +383,11 @@ export default class VendingController {
 
   calculateCoin10(changes, coin500, coin100, coin50) {
     let coin10 = Math.floor(
-      (changes - coin500 * 500 - coin100 * 100 - coin50 * 50) / 10
+      (changes -
+        coin500 * constant.number500 -
+        coin100 * constant.number100 -
+        coin50 * constant.number50) /
+        constant.number10
     );
     if (this.model.coinObj.coin10 - coin10 >= 0) {
       this.model.coinObj.coin10 -= coin10;

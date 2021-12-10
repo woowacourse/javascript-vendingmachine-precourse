@@ -2,11 +2,11 @@
 
 https://github.com/woowacourse/javascript-vendingmachine-precourse
 
-## 구현 목록
+## 1. 구현 목록
 
 - [x] 최종 목표 : 반환되는 동전이 최소한이 되는 자판기를 구현한다.
 
-### 데이터 모델
+### 0) 데이터 모델
 
 - 상품 현황 목록: [변수명]productObj, [타입]Object
   - ex) { "콜라": {"가격": 1,500, "수량": 20}, "사이다": {"가격": 1,000, "수량": 10}}
@@ -147,3 +147,16 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
     - [x] 100원: coin-100-quantity
     - [x] 50원: coin-50-quantity
     - [x] 10원: coin-10-quantity
+
+### 2. 리팩토링
+
+#### 1) 값을 하드 코딩하지 마라
+- [] 하드 코딩된 문자열, 숫자 등의 값을 상수로 만들고 역할에 맞는 이름을 부여한다.
+
+#### 2) 발생할 수 있는 예외케이스에 대해 고민한다
+
+#### 3) Boolean을 return 하는 경우 간결하게 한다
+
+#### 4) 불필요한 변수를 줄이기 위해 노력한다
+
+#### 5) 비즈니스 로직과 UI 로직을 분리해라
