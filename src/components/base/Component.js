@@ -22,6 +22,7 @@ class Component {
 
   setState(newStateParams) {
     this.#state = { ...this.#state, ...newStateParams };
+    this.update();
     this.onStateChanged?.(newStateParams);
   }
 

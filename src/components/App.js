@@ -28,7 +28,6 @@ class App extends Component {
 
       const { currentTab } = newStateParams;
       this.$machine.setState({ currentMenu: currentTab });
-      this.update();
     };
   }
 
@@ -37,7 +36,7 @@ class App extends Component {
   }
 
   update() {
-    this.$machine.render();
+    this.$machine.update();
   }
 }
 

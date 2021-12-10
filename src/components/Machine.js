@@ -42,7 +42,9 @@ class Machine extends Component {
   }
 
   update() {
-    this.#currentMenuView.update();
+    this.$element.removeChild(this.$element.lastChild);
+    this.$element.appendChild(this.#currentMenuView.$element);
+    this.#currentMenuView.render();
   }
 }
 
