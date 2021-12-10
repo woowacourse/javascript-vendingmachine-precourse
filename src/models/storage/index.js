@@ -1,6 +1,4 @@
 class Storage {
-  fields;
-
   items;
 
   constructor() {
