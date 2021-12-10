@@ -33,9 +33,9 @@ export default class VendingController {
   }
 
   loadTab2Data() {
-    this.model._chargedMoney = VendingModel.getLocalStorage('chargedMoney')
+    this.model.chargedMoney = VendingModel.getLocalStorage('chargedMoney')
       ? parseInt(VendingModel.getLocalStorage('chargedMoney'), 10)
-      : this.model._chargedMoney;
+      : this.model.chargedMoney;
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
       `${this.model.chargedMoney}원`
@@ -165,12 +165,13 @@ export default class VendingController {
       );
       return false;
     }
-    this.saveSumCoin(money);
+    // this.saveSumCoin(money);
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
       `${this.model.chargedMoney}원`
     );
     this.saveRandomCoin(money);
+    this.calculateChargedMoney();
     this.makeTableOfTab2();
   }
 
@@ -178,6 +179,21 @@ export default class VendingController {
     if (money < 0) return false;
     if (money % 10 !== 0) return false;
     return true;
+  }
+
+  calculateChargedMoney() {
+    const { coinObj } = this.model;
+    const chargedMoney =
+      coinObj.coin500 * 500 +
+      coinObj.coin100 * 100 +
+      coinObj.coin50 * 50 +
+      coinObj.coin10 * 10;
+    this.model.chargedMoney = chargedMoney;
+    VendingModel.setLocalStorage('chargedMoney', this.model.chargedMoney);
+    this.view.renderValueInSpot(
+      $.vendingMachineChargeAmount(),
+      `${this.model.chargedMoney}원`
+    );
   }
 
   saveRandomCoin(money) {
@@ -239,10 +255,10 @@ export default class VendingController {
     );
   }
 
-  saveSumCoin(money) {
-    this.model.chargedMoney += money;
-    VendingModel.setLocalStorage('chargedMoney', this.model.chargedMoney);
-  }
+  // saveSumCoin(money) {
+  //   this.model.chargedMoney += money;
+  //   VendingModel.setLocalStorage('chargedMoney', this.model.chargedMoney);
+  // }
 
   // 금액 충전
   insertMoney(e) {
@@ -308,6 +324,7 @@ export default class VendingController {
     this.makeChangesTableOfTab3(changes);
     this.model.insertedMoney = 0;
     this.setInsertedMoney();
+    this.calculateChargedMoney();
   }
 
   makeChangesTableOfTab3(changes) {
