@@ -61,8 +61,8 @@ export default class PurchaseTap extends Tap {
 
     setProducts(products) {
         this.appendToPurchaseContainer(
-            products.reduce((frag, product) => {
-                frag.appendChild(PurchaseBodyRow(product));
+            products.reduce((frag, product, idx) => {
+                frag.appendChild(PurchaseBodyRow(product, idx));
 
                 return frag;
             }, document.createDocumentFragment()),

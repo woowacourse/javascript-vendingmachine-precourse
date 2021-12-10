@@ -14,11 +14,13 @@ const createCell = (text, property) =>
         TABLE_CELL_DATASET[property],
     );
 
-const PurchaseBodyRow = ({ productName, productPrice, productQuantity }) => {
+const PurchaseBodyRow = ({ productName, productPrice, productQuantity }, id) => {
     const $ret = RowByClassName(TABLE_ROW_CLASS_NAME.purchase);
     const $cell = Cell('');
+    const $button = ButtonByClassName(BUTTON.purchase.title, BUTTON.purchase.className);
 
-    $cell.append(ButtonByClassName(BUTTON.purchase.title, BUTTON.purchase.className));
+    $button.dataset.id = id;
+    $cell.append($button);
     $ret.append(createCell(productName, 'productName'));
     $ret.append(createCell(productPrice, 'productPrice'));
     $ret.append(createCell(productQuantity, 'productQuantity'));
