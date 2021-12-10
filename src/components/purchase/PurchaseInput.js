@@ -1,24 +1,33 @@
 import { $ } from '../../utils/selector.js';
 import { ID, LOCAL_DB } from '../../constants/index.js';
 import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
-import { purchaseInputTemplate } from '../../utils/template/purchaseTemplate.js';
 import { isValidChargeInput } from '../../utils/valid.js';
+import {
+  purchaseInputTemplate,
+  totalPurchaseTemplate,
+} from '../../utils/template/purchaseTemplate.js';
 
 class PurchaseInput {
-  constructor($target) {
-    this.$target = $target;
+  constructor($inputContainer, $totalContainer) {
+    this.$inputContainer = $inputContainer;
+    this.$totalContainer = $totalContainer;
 
     this.render();
   }
 
   render() {
     this.addTemplate();
+    this.showTotalCharge();
     this.selectDom();
     this.addEvent();
   }
 
   addTemplate() {
-    this.$target.innerHTML = purchaseInputTemplate();
+    this.$inputContainer.innerHTML = purchaseInputTemplate();
+  }
+
+  showTotalCharge() {
+    this.$totalContainer.innerHTML = totalPurchaseTemplate();
   }
 
   selectDom() {
@@ -37,6 +46,7 @@ class PurchaseInput {
     }
 
     this.updateLocalStorage(amount);
+    this.showTotalCharge();
   }
 
   updateLocalStorage(amount) {
