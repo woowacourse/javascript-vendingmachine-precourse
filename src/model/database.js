@@ -1,6 +1,6 @@
 const database = {
   init: (key, value = []) => {
-    database.load(key) || localStorage.setItem(key, JSON.stringify([value]));
+    database.load(key) || localStorage.setItem(key, JSON.stringify(value));
   },
 
   save: (key, value) => {
@@ -8,7 +8,7 @@ const database = {
   },
 
   overwrite: (key, value) => {
-    localStorage.setItem(key, JSON.stringify([value]));
+    localStorage.setItem(key, JSON.stringify(value));
   },
 
   load: key => {

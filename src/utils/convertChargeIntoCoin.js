@@ -2,7 +2,7 @@
 import { default as DB } from '../model/database.js';
 
 const convertChargeIntoCoin = charge => {
-  const coinWallet = DB.load('vendingMachineCoins')[0];
+  const coinWallet = DB.load('vendingMachineCoins');
 
   DB.overwrite('vendingMachineCoins', updateCoinWallet(charge, coinWallet));
 };
