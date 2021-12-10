@@ -12,6 +12,11 @@ export const DOM = {
   $VENDING_MACHINE_CHARGE_INPUT: '#vending-machine-charge-input',
   $VENDING_MACHINE_CHARGE_BUTTON: '#vending-machine-charge-button',
   $VENDING_MACHINE_CHARGE_AMOUNT: '#vending-machine-charge-amount',
+  $VENDING_MACHINE_MANAGE_TBODY: '#vending-machine-manage-tbody',
+  $VENDING_MACHINE_COIN_500_QUANTITY: '#vending-machine-coin-500-quantity',
+  $VENDING_MACHINE_COIN_100_QUANTITY: '#vending-machine-coin-100-quantity',
+  $VENDING_MACHINE_COIN_50_QUANTITY: '#vending-machine-coin-50-quantity',
+  $VENDING_MACHINE_COIN_10_QUANTITY: '#vending-machine-coin-10-quantity',
 };
 
 export const TEMPLATE = {
@@ -67,10 +72,10 @@ export const TEMPLATE = {
         <th>개수</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id='vending-machine-manage-tbody'>
       <tr>
         <th>500원</th>
-        <td id='vednig-machine-coin-500-quantity'>0개</td>
+        <td id='vending-machine-coin-500-quantity'>0개</td>
       </tr>
       <tr>
         <th>100원</th>

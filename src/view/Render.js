@@ -16,6 +16,20 @@ export default class Render {
     $vendingMachineSection.innerHTML = productAddMenuTemplate;
   };
 
+  vendingMachineChargeTableTemplate = (coin10, coin50, coin100, coin500) => {
+    const $vendingMachineCoin10Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_10_QUANTITY);
+    $vendingMachineCoin10Quantity.textContent = coin10 + '개';
+
+    const $vendingMachineCoin50Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_50_QUANTITY);
+    $vendingMachineCoin50Quantity.textContent = coin50 + '개';
+
+    const $vendingMachineCoin100Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_100_QUANTITY);
+    $vendingMachineCoin100Quantity.textContent = coin100 + '개';
+
+    const $vendingMachineCoin500Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_500_QUANTITY);
+    $vendingMachineCoin500Quantity.textContent = coin500 + '개';
+  };
+
   vendingMachineChargeAmountTemplate = (vendingMachineChargeAmount) => {
     const $vendingMachineChargeAmount = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_AMOUNT);
     $vendingMachineChargeAmount.textContent = vendingMachineChargeAmount + '원';

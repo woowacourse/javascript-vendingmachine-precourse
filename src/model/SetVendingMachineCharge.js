@@ -6,6 +6,10 @@ export default class SetVendingMachineCharge {
     this.render = render;
     this.vendingMachineCharge = new VendingMachineCharge(this.render);
     this.vendingMachineChargeAmount = 0;
+    this.coin10 = 0;
+    this.coin50 = 0;
+    this.coin100 = 0;
+    this.coin500 = 0;
 
     this.setVendingMachine();
   }
@@ -14,13 +18,17 @@ export default class SetVendingMachineCharge {
     this.render.vendingMachineChargeAmountTemplate(this.vendingMachineChargeAmount);
   };
 
+  renderVendingMachineChargeTable = () => {
+    this.render.vendingMachineChargeTableTemplate(this.coin10, this.coin50, this.coin100, this.coin500);
+  };
+
   getVendingMachineChargeInput = () => {
     this.vendingMachineChargeAmount = this.vendingMachineCharge.getInput();
   };
 
   getRandomCoins = () => {
     const getRandomCoins = new GetRandomCoins(this.vendingMachineChargeAmount);
-    console.log(getRandomCoins.hash());
+    [this.coin10, this.coin50, this.coin100, this.coin500] = Object.values(getRandomCoins.hash());
   };
 
   setVendingMachine = () => {
@@ -30,5 +38,6 @@ export default class SetVendingMachineCharge {
     this.getVendingMachineChargeInput();
     this.renderVendingMachineChargeAmount();
     this.getRandomCoins();
+    this.renderVendingMachineChargeTable();
   };
 }
