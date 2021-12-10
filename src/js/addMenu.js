@@ -54,6 +54,9 @@ export const checkNotNum = inputValue => {
 export const checkMenuPriceRange = menuPrice => {
   return parseInt(menuPrice, 10) < 100;
 };
+export const checkInputMoneyRange = inputMoney => {
+  return parseInt(inputMoney, 10) < 0;
+};
 export const checkMenuPriceDivideTen = menuPrice => {
   return parseInt(menuPrice, 10) % 10 !== 0;
 };
