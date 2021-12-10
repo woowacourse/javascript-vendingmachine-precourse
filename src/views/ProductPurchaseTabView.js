@@ -5,7 +5,15 @@ export default class ProductPurchaseTabView {
     this.contentContainer = document.querySelector('#content-container');
   }
 
-  render() {
+  render(products) {
     this.contentContainer.innerHTML = productPurchaseTemplate.main;
+    this.productPurchaseTableBody = document.querySelector('#product-purchase-table > tbody');
+    this.renderProductPurchaseTableBodyItems(products);
+  }
+
+  renderProductPurchaseTableBodyItems(products) {
+    products.forEach((product) => {
+      this.productPurchaseTableBody.innerHTML += productPurchaseTemplate.tableItem(product);
+    });
   }
 }

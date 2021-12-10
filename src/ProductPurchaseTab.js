@@ -1,4 +1,5 @@
 import ProductPurchaseTabView from './views/ProductPurchaseTabView.js';
+import { getProducts } from './utils/localStorage.js';
 
 export default class ProductPurchaseTab {
   constructor() {
@@ -6,6 +7,7 @@ export default class ProductPurchaseTab {
   }
 
   initialize() {
-    this.view.render();
+    this.products = getProducts();
+    this.view.render(this.products);
   }
 }
