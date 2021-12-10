@@ -1,11 +1,11 @@
 import { CHANGE, ERROR_MESSAGE, VALUES } from '../utils/constants.js';
-import { HTML_OF_MACHINE_MANAGE_PART } from '../utils/html.js';
+import { HTML_OF_MACHINE_MANAGE_PART, HTML_OF_MACHINE_MANAGE_TABLE } from '../utils/html.js';
 import MachineManageCheck from './MachineManageCheck.js';
 
 export default class MachineManageView {
   static render() {
     document.getElementById('bottom-container').innerHTML =
-      HTML_OF_MACHINE_MANAGE_PART;
+      HTML_OF_MACHINE_MANAGE_PART + HTML_OF_MACHINE_MANAGE_TABLE;
   }
 
   static addEvent() {
