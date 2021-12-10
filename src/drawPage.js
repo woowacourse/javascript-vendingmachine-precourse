@@ -11,7 +11,7 @@ $app.innerHTML += `<h1>🥤자판기🥤</h1>
 
 $app.innerHTML += `<div id="product-add-content" class="show">
                     <h3>상품 추가하기</h3>
-                    <input id="product-name-input"><input id="product-price-input"><input id="product-quantity-input"><button id="product-add-button">추가하기</button>
+                    <input id="product-name-input" placeholder="상품명"><input id="product-price-input" placeholder="가격"><input id="product-quantity-input" placeholder="수량"><button id="product-add-button">추가하기</button>
                     <br>
                     <h3>상품 현황</h3>
                     <table id="product-add-table" border="1">
