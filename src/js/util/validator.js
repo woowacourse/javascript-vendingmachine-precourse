@@ -1,38 +1,40 @@
+import { ALERT_MESSAGE, STANDARD_NUMBER } from "./constant.js";
+
 export const checkValidChargeMoney = (money) => {
   if (isNotPositiveNumber(money)) {
-    throw new Error("금액은 0이하이면 안됩니다");
+    throw new Error(ALERT_MESSAGE.PRICE_NOT_UNDER_ZERO);
   }
   if (isNotPriceDividedByTen(money)) {
-    throw new Error("10으로 나누어 떨어지는 금액을 입력해주세요");
+    throw new Error(ALERT_MESSAGE.DIVIDED_BY_TEN);
   }
 };
 
 export const checkValidAddProduct = ({ name, price, quantity }) => {
   if (hasEmpty([name, price, quantity])) {
-    throw new Error("입력에 공백이 들어가서는 안됩니다");
+    throw new Error(ALERT_MESSAGE.NO_EMPTY);
   }
   if (isNotPositiveNumber(quantity)) {
-    throw new Error("수량은 1이상을 입력해주세요");
+    throw new Error(ALERT_MESSAGE.OVER_ZERO_QUANTITY);
   }
   if (isPriceUnderMin(price)) {
-    throw new Error("100원 이상의 금액을 입력해주세요");
+    throw new Error(ALERT_MESSAGE.OVER_MIN_PRICE);
   }
   if (isNotPriceDividedByTen(price)) {
-    throw new Error("10으로 나누어 떨어지는 금액을 입력해주세요");
+    throw new Error(ALERT_MESSAGE.DIVIDED_BY_TEN);
   }
 };
 
 export const checkValidBuyProduct = ({ price, quantity }, chargedMoney) => {
   if (isExpesiveThanChargedMoney(price, chargedMoney)) {
-    throw new Error("충전금액이 모자릅니다");
+    throw new Error(ALERT_MESSAGE.LACK_CHARGED_MONEY);
   }
   if (isZeroQuantity(quantity)) {
-    throw new Error("잔고가 없습니다");
+    throw new Error(ALERT_MESSAGE.NO_PRODUCT_QUANTITY);
   }
 };
 
 const isNotPositiveNumber = (num) => {
-  return num <= 0;
+  return num <= STANDARD_NUMBER.ZERO;
 };
 
 const hasEmpty = (inputArray) => {
@@ -40,15 +42,15 @@ const hasEmpty = (inputArray) => {
 };
 
 const isPriceUnderMin = (price) => {
-  return price < 100;
+  return price < STANDARD_NUMBER.MIN_PRICE;
 };
 
 const isNotPriceDividedByTen = (price) => {
-  return price % 10 !== 0;
+  return price % STANDARD_NUMBER.DIVIDE_NUMBER !== STANDARD_NUMBER.ZERO;
 };
 
 const isZeroQuantity = (quantity) => {
-  return quantity === 0;
+  return quantity === STANDARD_NUMBER.ZERO;
 };
 
 const isExpesiveThanChargedMoney = (price, chargedMoney) => {

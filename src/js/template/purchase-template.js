@@ -1,13 +1,15 @@
+import { ID } from "../util/constant.js";
+
 export const PURCHASE_PAGE_TEMPLATE = `
   <h2>금액 투입</h2>
   <div>
-    <input type="number" id="charge-input"/>
-    <button id="charge-button">투입하기</button>
+    <input type="number" id=${ID.CHARGE_INPUT} />
+    <button id=${ID.CHARGE_BUTTON}>투입하기</button>
   </div>
   <br/>
-  <div id="charge-amount-container">
+  <div id=${ID.CHARGE_AMOUNT_CONTAINER}>
     투입한 금액:
-    <span id="charge-amount"></span>
+    <span id=${ID.CHARGE_AMOUNT}></span>
   </div> 
   <br/>
   <h2>구매할 수 있는 상품 현황</h2>
@@ -26,7 +28,7 @@ export const PURCHASE_PAGE_TEMPLATE = `
         <th>구매</th>
       </tr>
     </thead>
-    <tbody id="purchase-table-body">
+    <tbody id=${ID.PURCHASE_TABLE_BODY}>
     </tbody>
   </table>
   <br/>

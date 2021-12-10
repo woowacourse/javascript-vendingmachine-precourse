@@ -1,11 +1,12 @@
 import CoinStorageModel from "./coinStorageModel.js";
 import CoinStorageView from "./coinStorageView.js";
+import { ID } from "../util/constant.js";
 
 export default class CoinStorageController {
   constructor() {
     this.model = new CoinStorageModel();
     this.view = new CoinStorageView();
-    this.$container = document.getElementById("app");
+    this.$container = document.getElementById(ID.APP);
   }
 
   init = () => {
@@ -16,9 +17,9 @@ export default class CoinStorageController {
   };
 
   initDOMS = () => {
-    this.$coinChargeInput = document.getElementById("vending-machine-charge-input");
-    this.$coinChargeButton = document.getElementById("vending-machine-charge-button");
-    this.$chargedAmount = document.getElementById("vending-machine-charge-amount");
+    this.$coinChargeInput = document.getElementById(ID.VENDING_MACHINE_CHARGE_INPUT);
+    this.$coinChargeButton = document.getElementById(ID.VENDING_MACHINE_CHARGE_BUTTON);
+    this.$chargedAmount = document.getElementById(ID.VENDING_MACHINE_CHARGE_AMOUNT);
   };
 
   setEvent = () => {

@@ -1,8 +1,10 @@
+import { ID } from "../util/constant.js";
+
 export const INIT_TEMPLATE = `
   <div id="head">
     <h1>🥤자판기🥤</h1>
-    <button id="product-add-menu">상품관리</button>
-    <button id="vending-machine-manage-menu">잔돈충전</button>
-    <button id="product-purchase-menu">상품 구매</button>
+    <button id=${ID.PRODUCT_ADD_MENU}>상품관리</button>
+    <button id=${ID.VENDING_MACHINE_MANAGE_MENU}>잔돈충전</button>
+    <button id=${ID.PRODUCT_PURCHASE_MENU}>상품 구매</button>
   </div>
 `;

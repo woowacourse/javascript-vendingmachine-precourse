@@ -1,5 +1,6 @@
 import { PRODUCT_PAGE_TEMPLATE } from "../template/product-template.js";
 import { render } from "../util/render.js";
+import { CLASS } from "../util/constant.js";
 
 export default class ProductView {
   renderPage = (container) => {
@@ -15,10 +16,10 @@ export default class ProductView {
     return products
       .map(({ name, price, quantity }) => {
         return `
-        <tr class="product-manage-item">
-          <td class="product-manage-name">${name}</td>
-          <td class="product-manage-price">${price}</td>
-          <td class="product-manage-quantity">${quantity}</td>
+        <tr class=${CLASS.PRODUCT_MANAGE_ITEM}>
+          <td class=${CLASS.PRODUCT_MANAGE_NAME}>${name}</td>
+          <td class=${CLASS.PRODUCT_MANAGE_PRICE}>${price}</td>
+          <td class=${CLASS.PRODUCT_MANAGE_QUANTITY}>${quantity}</td>
         </tr>
         `;
       })

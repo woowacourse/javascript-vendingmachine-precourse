@@ -1,22 +1,23 @@
 import { getLocalStorage, setLocalStorage } from "../util/localStorage.js";
 import { checkValidChargeMoney } from "../util/validator.js";
+import { COIN_LIST, LOCAL_STORAGE_KEY } from "../util/constant.js";
 
 export default class CoinStorageModel {
   constructor() {
-    this.coins = getLocalStorage("coin") ?? { 500: 0, 100: 0, 50: 0, 10: 0 };
+    this.coins = getLocalStorage(LOCAL_STORAGE_KEY.COIN) ?? { 500: 0, 100: 0, 50: 0, 10: 0 };
   }
 
   addMoney = (money) => {
     checkValidChargeMoney(money);
 
     this.addCoin(money);
-    setLocalStorage("coin", this.coins);
+    setLocalStorage(LOCAL_STORAGE_KEY.COIN, this.coins);
   };
 
   addCoin = (money) => {
     let remainingMoney = money;
     while (remainingMoney > 0) {
-      const coin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+      const coin = MissionUtils.Random.pickNumberInList(COIN_LIST);
       remainingMoney = this.calculateCoin(remainingMoney, coin);
     }
   };
@@ -62,7 +63,7 @@ export default class CoinStorageModel {
     Object.entries(returnedCoins).forEach(([coin, count]) => {
       this.coins[coin] -= count;
     });
-    setLocalStorage("coin", this.coins);
+    setLocalStorage(LOCAL_STORAGE_KEY.COIN, this.coins);
   };
 
   getTotalMoney = () => {

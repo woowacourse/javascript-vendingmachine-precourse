@@ -1,9 +1,10 @@
 import { getLocalStorage, setLocalStorage } from "../util/localStorage.js";
 import { checkValidAddProduct } from "../util/validator.js";
+import { LOCAL_STORAGE_KEY } from "../util/constant.js";
 
 export default class ProductModel {
   constructor() {
-    this.products = getLocalStorage("product") ?? [];
+    this.products = getLocalStorage(LOCAL_STORAGE_KEY.PRODUCT) ?? [];
   }
 
   getProducts = () => {
@@ -19,14 +20,14 @@ export default class ProductModel {
     } else {
       this.products.push({ name, price, quantity });
     }
-    setLocalStorage("product", this.products);
+    setLocalStorage(LOCAL_STORAGE_KEY.PRODUCT, this.products);
   };
 
   buyProduct = (name) => {
     const product = this.findProduct(name);
 
     product.quantity -= 1;
-    setLocalStorage("product", this.products);
+    setLocalStorage(LOCAL_STORAGE_KEY.PRODUCT, this.products);
   };
 
   findProduct = (name) => {

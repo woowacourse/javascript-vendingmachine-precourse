@@ -1,11 +1,12 @@
 import ProductModel from "./ProductModel.js";
 import ProductView from "./ProductView.js";
+import { ID } from "../util/constant.js";
 
 export default class ProductController {
   constructor() {
     this.model = new ProductModel();
     this.view = new ProductView();
-    this.$container = document.getElementById("app");
+    this.$container = document.getElementById(ID.APP);
   }
 
   init = () => {
@@ -16,11 +17,11 @@ export default class ProductController {
   };
 
   initDOMS = () => {
-    this.$productNameInput = document.getElementById("product-name-input");
-    this.$productPriceInput = document.getElementById("product-price-input");
-    this.$productQuantityInput = document.getElementById("product-quantity-input");
-    this.$productAddButton = document.getElementById("product-add-button");
-    this.$productTableBody = document.getElementById("product-table-body");
+    this.$productNameInput = document.getElementById(ID.PRODUCT_NAME_INPUT);
+    this.$productPriceInput = document.getElementById(ID.PRODUCT_PRICE_INPUT);
+    this.$productQuantityInput = document.getElementById(ID.PRODUCT_QUANTITY_INPUT);
+    this.$productAddButton = document.getElementById(ID.PRODUCT_ADD_BUTTON);
+    this.$productTableBody = document.getElementById(ID.PRODUCT_TABLE_BODY);
   };
 
   setEvent = () => {

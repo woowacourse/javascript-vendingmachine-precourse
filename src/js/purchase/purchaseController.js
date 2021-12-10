@@ -1,5 +1,6 @@
 import PurchaseModel from "./purchaseModel.js";
 import PurchaseView from "./purchaseView.js";
+import { CLASS, ID } from "../util/constant.js";
 
 export default class PurchaseController {
   constructor(product, coinStorage) {
@@ -7,7 +8,7 @@ export default class PurchaseController {
     this.view = new PurchaseView();
     this.product = product;
     this.coinStorage = coinStorage;
-    this.$container = document.getElementById("app");
+    this.$container = document.getElementById(ID.APP);
   }
 
   init = () => {
@@ -18,11 +19,11 @@ export default class PurchaseController {
   };
 
   initDOMS = () => {
-    this.$chargeInput = document.getElementById("charge-input");
-    this.$chargeButton = document.getElementById("charge-button");
-    this.$chargeAmountContainer = document.getElementById("charge-amount-container");
-    this.$chargeAmount = document.getElementById("charge-amount");
-    this.$purchaseTableBody = document.getElementById("purchase-table-body");
+    this.$chargeInput = document.getElementById(ID.CHARGE_INPUT);
+    this.$chargeButton = document.getElementById(ID.CHARGE_BUTTON);
+    this.$chargeAmountContainer = document.getElementById(ID.CHARGE_AMOUNT_CONTAINER);
+    this.$chargeAmount = document.getElementById(ID.CHARGE_AMOUNT);
+    this.$purchaseTableBody = document.getElementById(ID.PURCHASE_TABLE_BODY);
   };
 
   initPage = () => {
@@ -48,12 +49,13 @@ export default class PurchaseController {
   };
 
   setClickPurchaseButtonEvent = ({ target }) => {
-    if (target.className !== "purchase-button") return;
+    if (target.className !== CLASS.PURCHASE_BUTTON) return;
 
     const product = target.closest("tr");
-    const name = product.querySelector(".product-purchase-name").dataset.productName;
-    const price = product.querySelector(".product-purchase-price").dataset.productPrice;
-    const quantity = product.querySelector(".product-purchase-quantity").dataset.productQuantity;
+    const name = product.querySelector(`.${CLASS.PRODUCT_PURCHASE_NAME}`).dataset.productName;
+    const price = product.querySelector(`.${CLASS.PRODUCT_PURCHASE_PRICE}`).dataset.productPrice;
+    const quantity = product.querySelector(`.${CLASS.PRODUCT_PURCHASE_QUANTITY}`).dataset
+      .productQuantity;
 
     try {
       this.buy({ name, price, quantity });
@@ -63,7 +65,7 @@ export default class PurchaseController {
   };
 
   setClickReturnButtonEvent = ({ target }) => {
-    if (target.id !== "coin-return-button") return;
+    if (target.id !== ID.COIN_RETURN_BUTTON) return;
 
     const remainingMoney = this.model.getChargedMoney();
 

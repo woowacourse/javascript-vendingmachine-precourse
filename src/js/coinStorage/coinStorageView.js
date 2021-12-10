@@ -1,5 +1,6 @@
 import { CHANGES_TABLE_TEMPLATE, COIN_PAGE_TEMPLATE } from "../template/coinStorage-template.js";
 import { render } from "../util/render.js";
+import { ID } from "../util/constant.js";
 
 export default class CoinStorageView {
   renderPage = (container) => {
@@ -15,10 +16,10 @@ export default class CoinStorageView {
   };
 
   renderCoinAmount = (coins) => {
-    const $coin500 = document.getElementById("vending-machine-coin-500-quantity");
-    const $coin100 = document.getElementById("vending-machine-coin-100-quantity");
-    const $coin50 = document.getElementById("vending-machine-coin-50-quantity");
-    const $coin10 = document.getElementById("vending-machine-coin-10-quantity");
+    const $coin500 = document.getElementById(ID.VENDING_MACHINE_COIN_500_QUANTITY);
+    const $coin100 = document.getElementById(ID.VENDING_MACHINE_COIN_100_QUANTITY);
+    const $coin50 = document.getElementById(ID.VENDING_MACHINE_COIN_50_QUANTITY);
+    const $coin10 = document.getElementById(ID.VENDING_MACHINE_COIN_10_QUANTITY);
 
     $coin500.innerText = this.formatCoinAmount(coins[500]);
     $coin100.innerText = this.formatCoinAmount(coins[100]);
@@ -27,10 +28,10 @@ export default class CoinStorageView {
   };
 
   renderReturnedCoinAmount = (returnedCoins) => {
-    const $returnedCoin500 = document.getElementById("coin-500-quantity");
-    const $returnedCoin100 = document.getElementById("coin-100-quantity");
-    const $returnedCoin50 = document.getElementById("coin-50-quantity");
-    const $returnedCoin10 = document.getElementById("coin-10-quantity");
+    const $returnedCoin500 = document.getElementById(ID.COIN_500_QUANTITY);
+    const $returnedCoin100 = document.getElementById(ID.COIN_100_QUANTITY);
+    const $returnedCoin50 = document.getElementById(ID.COIN_50_QUANTITY);
+    const $returnedCoin10 = document.getElementById(ID.COIN_10_QUANTITY);
 
     $returnedCoin500.innerText = this.formatCoinAmount(returnedCoins[500]);
     $returnedCoin100.innerText = this.formatCoinAmount(returnedCoins[100]);
