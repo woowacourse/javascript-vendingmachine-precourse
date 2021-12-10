@@ -115,6 +115,64 @@
 
 > 이후 추가 및 수정 부분은 동적으로 적용한 뒤 기록합니다.
 
+<br>
+
+<div align=center>
+
+<img src="./images/flow.jpg" width="800">
+
+</div>
+
+<br>
+
+### ✂️ 리팩토링과 트러블 슈팅
+- [x] 현재 Main 컴포넌트가 가지는 비즈니스 로직이 너무 밀집 되어 있습니다. 이를 분리하기 위해 최상위 App 컴포넌트에 초기화를 담당하게 합니다.
+  > [**🗃Refactor: App 초기화 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/be45afe6de2b8a39373a21d0564402365b3cb58b)
+
+<br>
+
+- [x] Main 컴포넌트의 비즈니스 로직을 공통화하고, helper 함수 파일에 분리합니다. validation은 유효성 검사를 담당하므로 이를 적극 활용합니다.
+
+    > [**🗃Refactor: Main 컴포넌트 리팩토링**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/27550f6c9b225a494dc4e06874252c507440d876)
+
+<br>
+
+- [x] 구현한 Storage는 기본적으로 Array 형태의 Item을 저장하기 적합합니다. 그러나 상품 구매 탭의 `투입 금액`으로 인해 하드코딩과 각 로직이 추상화되지 않은 상태입니다. 이를 수정합니다.
+  
+    > [**🗃Refactor: Storage 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/37d1c95654bcd86066b3ec5b2fdc4f1e2d457bb1)
+  
+  - 이벤트 모듈은 성질 상 컴포넌트에 주입되는 형태이므로 common 디렉토리가 아닌 event 디렉토리로 독립시킵니다.
+    
+    > [**✂️Rename: Event 모듈 이동**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/cd6358f463364b29e21d29611855b432dd685335)
+
+<br>
+
+- [x] 구조적인 부분, 중첩되는 함수를 다시 한 번 수정합니다.
+
+    > [**🗃Refactor: 함수 분리 및 개선**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d53434f191586ec69404d67d476dcf9a203fc7de)
+
+<br>
+
+- [ ] 렌더링을 담당하는 부분이 중복되어 나타나고 있습니다.
+  ```js
+  // App.js
+  mount() {
+    new Header('header', this.$props);
+    new Main('main', this.$props);
+
+    this.$storage.subscribe((component, tabData) => {
+      this.$props = {
+        ...this.$props,
+        component,
+        tabData,
+      };
+      new Header('header', this.$props);
+      new Main('main', this.$props);
+    });
+  }
+  ```
+  - 이를 수정하기 위해 설계와 구조를 다시 한 번 생각해야 합니다.
+
 <hr>
 <br>
 
@@ -330,23 +388,30 @@
 ### 🛠 상품 구매 탭
 
 **사전 정의**
-- [ ] 1. 최초 충전 금액은 **0원**, 반환된 각 동전의 개수는 **0개**
-- [ ] 2. 투입 금액(number)을 입력해 `투입하기` 버튼을 클릭하여 투입
-- [ ] 3. 10원으로 나누어 떨어지는 금액만 투입 가능
-- [ ] 4. 보유 금액은 `${금액}원` 형식
-- [ ] 5. 누적하여 투입이 가능하며, `반환하기` 버튼을 통해 잔돈을 반환 받는 기능
-  - [ ] 잔돈을 돌려줄 때는 현재 보유한 최소 개수의 동전으로 잔돈 반환(그리디 알고리즘 적용)
-  - [ ] **지폐를 잔돈으로 반환하는 경우는 없다고 가정**
-  - [ ] 잔돈을 반환할 수 없는 경우, 잔돈으로 반환할 수 있는 금액만 반환(절사)
-- [ ] 6. 동전 개수는 `${개수}개` 형식
+- [x] 1. 최초 충전 금액은 **0원**, 반환된 각 동전의 개수는 **0개**
+- [x] 2. 투입 금액(number)을 입력해 `투입하기` 버튼을 클릭하여 투입
+- [x] 3. 10원으로 나누어 떨어지는 금액만 투입 가능
+- [x] 4. 보유 금액은 `${금액}원` 형식
+- [x] 5. 누적하여 투입이 가능하며, `반환하기` 버튼을 통해 잔돈을 반환 받는 기능
+  - [x] 잔돈을 돌려줄 때는 현재 보유한 최소 개수의 동전으로 잔돈 반환(그리디 알고리즘 적용)
+  - [x] **지폐를 잔돈으로 반환하는 경우는 없다고 가정**
+  - [x] 잔돈을 반환할 수 없는 경우, 잔돈으로 반환할 수 있는 금액만 반환(절사)
+- [x] 6. 동전 개수는 `${개수}개` 형식
 
 **추가 사항**
 - 해당 컴포넌트는 앞 선 `상품 관리`, `잔돈 충전` 탭의 데이터를 공유해야 합니다.
-  - [ ] Storage에 저장된 탭 별 아이템을 다르게 제어합니다.
-  - [ ] 필요한 데이터는 `투입한 금액`으로 단일 값이기에 별도 관리합니다.
+  - [x] Storage에 저장된 탭 별 아이템을 다르게 제어합니다.
+  - [x] 필요한 데이터는 `투입한 금액`으로 단일 값이기에 별도 관리합니다.
 - 유효성 검사는 기 작성된 로직을 활용하여 공통적으로 제어합니다.
 - 이벤트 위임으로 `구매하기`와 `반환하기`를 제어합니다.
-  - [ ] 잔돈 반환 시 가장 큰 금액부터 반환하도록 그리디 알고리즘을 적용합니다.
+  - [x] 잔돈 반환 시 가장 큰 금액부터 반환하도록 그리디 알고리즘을 적용합니다.
+
+<br>
+
+> 커밋 목록
+- [**✒️Feat: 상품 구매 탭 구현 1**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/6eca61a098e9aef164cee0d507639e3753aa54bb)
+- [**✒️Feat: 상품 구매 탭 구현 2**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/18a37bdd4e51dc751ed004f0b8b4308dee98e89d)
+- [**🗃Refactor: 이벤트 모듈 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/f019a335a74147e7165f8db9a78fd5e2d46426a1)
 
 <hr>
 <br>
