@@ -1,4 +1,5 @@
 import { ID } from '../../constants/index.js';
+import { isValidProductInput } from '../../utils/valid.js';
 
 class ProductInput {
   constructor($target) {
