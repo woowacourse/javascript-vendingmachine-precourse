@@ -16,6 +16,10 @@ const DOMUtils = {
     };
   },
 
+  getCharge: () => {
+    return $('#vending-machine-charge-input').value;
+  },
+
   showInventory: () => {
     $('#product-inventory').innerHTML = DB.load('inventory')
       .map(

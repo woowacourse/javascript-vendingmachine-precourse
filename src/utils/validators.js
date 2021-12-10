@@ -26,6 +26,13 @@ const validators = {
 
     return true;
   },
+
+  isValidCharge: string => {
+    if (UT.isBlank(string)) return alert(ERROR.PRODUCT_PRICE_BLANK_SUBMIT);
+    if (UT.hasSpecial(string)) return alert(ERROR.PRODUCT_PRICE_INCLUDE_SPECIAL);
+    if (UT.isUnderTen(string)) return alert(ERROR.PRODUCT_PRICE_UNDER_HUNDRED);
+    if (UT.isNotTenMultiple(string)) return alert(ERROR.PRODUCT_PRICE_NOT_TEN_MULTIPLE);
+  },
 };
 
 export default validators;

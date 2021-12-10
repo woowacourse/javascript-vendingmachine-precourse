@@ -22,6 +22,10 @@ const utils = {
     return Number(string) < 100;
   },
 
+  isUnderTen: string => {
+    return Number(string) < 10;
+  },
+
   isNotTenMultiple: string => {
     return Number(string) % 10 !== 0;
   },
