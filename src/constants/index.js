@@ -46,4 +46,4 @@ export const LOCAL_DB = {
   COIN: 'COIN',
 };
 
-export const COIN_LIST = [10, 50, 100, 500];
+export const COIN_LIST = [500, 100, 50, 10];

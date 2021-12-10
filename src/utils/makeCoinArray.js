@@ -11,5 +11,5 @@ export const getRandomCoinArray = amount => {
     amount -= randomCoin;
   }
 
-  return Object.values(coinObj);
+  return Object.values(coinObj).reverse();
 };
