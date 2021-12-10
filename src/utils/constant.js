@@ -186,9 +186,9 @@ export const TEMPLATE = {
   `,
   PRODUCT_PURCHASE_STATUS(productName, productPrice, productQuantity) {
     return `
-      <td class="product-purchase-name">${productName}</td>
-      <td class="product-purchase-price">${productPrice}</td>
-      <td class="product-purchase-quantity">${productQuantity}</td>
+      <td class="product-purchase-name" data-product-name="${productName}">${productName}</td>
+      <td class="product-purchase-price" data-product-price="${productPrice}">${productPrice}</td>
+      <td class="product-purchase-quantity" data-product-quantity="${productQuantity}">${productQuantity}</td>
       <td>
         <button class="purchase-button">구매하기</button>
       </td>
