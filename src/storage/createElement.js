@@ -14,6 +14,13 @@ export const createInput = (id, text) => {
     return $input;
 };
 
+export const createParagraph = (id, text) => {
+    const $p = document.createElement("p");
+    $p.id = id;
+    $p.innerText = text;
+    return $p;
+};
+
 export const createTab = (id, text) => {
     const $tab = document.createElement("button");
     $tab.id = id;
