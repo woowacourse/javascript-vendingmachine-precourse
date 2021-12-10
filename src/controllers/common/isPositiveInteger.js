@@ -22,10 +22,4 @@ const isPositiveInteger = num => {
   return check;
 };
 
-const isValidMoney = money => {
-  return (
-    money !== "" && isPositiveInteger(money) && parseInt(money, 10) % 10 === 0
-  );
-};
-
-export { isPositiveInteger, isValidMoney };
+export { isPositiveInteger };

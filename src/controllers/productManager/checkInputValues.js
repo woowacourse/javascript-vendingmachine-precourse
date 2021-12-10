@@ -1,5 +1,5 @@
 import { ALERT_MSG } from "../../utils/constants.js";
-import { isPositiveInteger } from "../chargeManager/checkMoneyInput.js";
+import { isPositiveInteger } from "../common/isPositiveInteger.js";
 
 const isValidPrice = priceStr => {
   const price = parseInt(priceStr, 10);

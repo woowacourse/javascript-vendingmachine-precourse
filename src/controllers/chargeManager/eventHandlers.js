@@ -3,7 +3,7 @@ import { showCoinsInMachine } from "../../views/chargeManager/showCoinsInMachine
 import { showMoneyInMachine } from "../../views/chargeManager/showMoneyInMachine.js";
 import { getInputValueById } from "../common/getInputValue.js";
 import { addCoinsInMachine } from "./chargeMachineDataController.js";
-import { isValidMoney } from "./checkMoneyInput.js";
+import { isValidMoney } from "../common/checkMoneyInput.js";
 
 const processing = e => {
   e.preventDefault();

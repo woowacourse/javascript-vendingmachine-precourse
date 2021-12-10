@@ -1,5 +1,5 @@
 import { getInputValueById } from "../common/getInputValue.js";
-import { isValidMoney } from "../chargeManager/checkMoneyInput.js";
+import { isValidMoney } from "../common/checkMoneyInput.js";
 import { addMoneyCustomer } from "./chargeCustomerDataController.js";
 import { ALERT_MSG } from "../../utils/constants.js";
 import { purchaseProduct } from "./purchaseDataController.js";
