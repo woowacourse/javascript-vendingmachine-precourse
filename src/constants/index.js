@@ -11,6 +11,13 @@ export const ID = {
   PRODUCT_PRICE_INPUT: 'product-price-input',
   PRODUCT_QUANTITY_INPUT: 'product-quantity-input',
   PRODUCT_ADD_BUTTON: 'product-add-button',
+  // charge
+  CHARGE_INPUT_CONTAINER: 'charge-input-container',
+  CHARGE_TOTAL_CONTAINER: 'charge-total-container',
+  CHARGE_TABLE_CONTAINER: 'charge-table-container',
+  VENDING_MACHINE_CHARGE_INPUT: 'vending-machine-charge-input',
+  VENDING_MACHINE_CHARGE_BUTTON: 'vending-machine-charge-button',
+  VENDING_MACHINE_CHARGE_AMOUNT: 'vending-machine-charge-amount',
 };
 
 export const CLASS = {
