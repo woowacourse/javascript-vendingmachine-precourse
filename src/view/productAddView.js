@@ -1,13 +1,18 @@
 import { clearArea, clearInputValue } from "../utils.js";
-import { makeElement, makeTableRow } from "./template.js";
+import { makeElement, makeTableForm, makeTableRow } from "./template.js";
 import { PRODUCT_MANAGE } from "../constant/vendingMachine.js";
 
 const getNewProductData = () => {
-  const productNameInput = document.getElementById("product-name-input");
-  const productPriceInput = document.getElementById("product-price-input");
-  const productQuantityInput = document.getElementById("product-quantity-input");
+  const productNameInput = document.getElementById(PRODUCT_MANAGE.PRODUCT_NAME.ID);
+  const productPriceInput = document.getElementById(PRODUCT_MANAGE.PRICE.ID);
+  const productQuantityInput = document.getElementById(PRODUCT_MANAGE.QUANTITY.ID);
+  const newProductId = [
+    PRODUCT_MANAGE.NEW_PRODUCT_NAME_ID,
+    PRODUCT_MANAGE.NEW_PRODUCT_PRICE_ID,
+    PRODUCT_MANAGE.NEW_PRODUCT_QUANTITY_ID,
+  ];
   const newProductData = [productNameInput, productPriceInput, productQuantityInput].map(
-    input => input.value
+    (input, key) => ({ text: input.value, id: newProductId[key] })
   );
   clearInputValue(productNameInput, productPriceInput, productQuantityInput);
   return newProductData;
@@ -15,7 +20,7 @@ const getNewProductData = () => {
 
 const updateTable = () => {
   const tableBodyArea = document.getElementById("product-table-body");
-  makeTableRow(tableBodyArea, getNewProductData(), "td");
+  makeTableRow(tableBodyArea, PRODUCT_MANAGE.NEW_PRODUCT_ID, getNewProductData());
 };
 
 const renderInputForm = container => {
@@ -26,27 +31,27 @@ const renderInputForm = container => {
   });
   const productNameInput = makeElement({
     tag: "input",
-    id: "product-name-input",
     type: "text",
-    placeholder: PRODUCT_MANAGE.PRODUCT_NAME,
+    id: PRODUCT_MANAGE.PRODUCT_NAME.ID,
+    placeholder: PRODUCT_MANAGE.PRODUCT_NAME.TEXT,
   });
   const productPriceInput = makeElement({
     tag: "input",
-    id: "product-price-input",
     type: "number",
-    placeholder: PRODUCT_MANAGE.PRICE,
+    id: PRODUCT_MANAGE.PRICE.ID,
+    placeholder: PRODUCT_MANAGE.PRICE.TEXT,
   });
   const productQuantityInput = makeElement({
     tag: "input",
-    id: "product-quantity-input",
     type: "number",
-    placeholder: PRODUCT_MANAGE.QUANTITY,
+    id: PRODUCT_MANAGE.QUANTITY.ID,
+    placeholder: PRODUCT_MANAGE.QUANTITY.TEXT,
   });
   const productAddButton = makeElement({
     tag: "button",
-    id: "product-add-button",
-    innerText: PRODUCT_MANAGE.ADD_BUTTON,
     type: "button",
+    id: PRODUCT_MANAGE.ADD_BUTTON.ID,
+    innerText: PRODUCT_MANAGE.ADD_BUTTON.TEXT,
   });
   productAddButton.addEventListener("click", () => updateTable());
 
@@ -62,15 +67,13 @@ const renderInputForm = container => {
 
 const renderProductTable = container => {
   const productTableTitle = makeElement({ tag: "h3", innerText: PRODUCT_MANAGE.TABLE_TEXT });
-  const tableArea = makeElement({ tag: "table" });
-  makeTableRow(
-    tableArea,
-    [PRODUCT_MANAGE.PRODUCT_NAME, PRODUCT_MANAGE.PRICE, PRODUCT_MANAGE.QUANTITY],
-    "th"
-  );
-  const tbody = makeElement({ tag: "tbody", id: "product-table-body" });
-
-  tableArea.append(tbody);
+  const tableHeadText = [
+    PRODUCT_MANAGE.PRODUCT_NAME.TEXT,
+    PRODUCT_MANAGE.PRICE.TEXT,
+    PRODUCT_MANAGE.QUANTITY.TEXT,
+  ];
+  const tableBodyId = "product-table-body";
+  const tableArea = makeTableForm(tableHeadText, tableBodyId);
   container.append(productTableTitle, tableArea);
 };
 

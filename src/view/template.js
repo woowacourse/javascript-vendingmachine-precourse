@@ -15,10 +15,21 @@ export const makeElement = ({ tag, id, innerText, type, placeholder }) => {
   return element;
 };
 
-export const makeTableRow = (container, elements, tag) => {
-  const tr = makeElement({ tag: "tr" });
-  elements.forEach(text => {
-    const element = makeElement({ tag, innerText: text });
+export const makeTableForm = (theadText, tableBodyId) => {
+  const tableArea = makeElement({ tag: "table" });
+  theadText.forEach(tableHeadText => {
+    const th = makeElement({ tag: "th", innerText: tableHeadText });
+    tableArea.appendChild(th);
+  });
+  const tableBody = makeElement({ tag: "tbody", id: tableBodyId });
+  tableArea.append(tableBody);
+  return tableArea;
+};
+
+export const makeTableRow = (container, rowId, elements) => {
+  const tr = makeElement({ tag: "tr", id: rowId });
+  elements.forEach(rowData => {
+    const element = makeElement({ tag: "td", innerText: rowData.text, id: rowData.id });
     tr.append(element);
   });
   container.append(tr);
