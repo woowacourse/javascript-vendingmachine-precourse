@@ -269,14 +269,22 @@ export default class VendingController {
       e.target.parentElement.parentElement.childNodes[1].dataset.productName;
     const price =
       e.target.parentElement.parentElement.childNodes[3].dataset.productPrice;
-
+    const quantity =
+      e.target.parentElement.parentElement.childNodes[5].dataset
+        .productQuantity;
     if (this.model.insertedMoney - price < 0) {
       this.view.alertMessage('해당 제품을 사기에는 투입한 돈이 부족합니다.');
       return false;
     }
+    if (quantity - 1 < 0) {
+      this.view.alertMessage('해당 제품은 매진되었습니다.');
+      return false;
+    }
+    // 투입 금액
     this.model.insertedMoney -= price;
     this.setInsertedMoney();
 
+    // 상품 현황
     e.target.parentElement.parentElement.childNodes[5].dataset
       .productQuantity--;
     e.target.parentElement.parentElement.childNodes[5].innerText--;

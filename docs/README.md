@@ -115,17 +115,19 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 #### 4-2) 상품 구매
 
-- [] 구매하기 버튼을 누르면 해당 제품의 수량이 1개씩 감소하고, 투입한 금액에서도 제품 가격만큼 감소한다.
+- [x] 구매하기 버튼을 누르면 해당 제품의 수량이 1개씩 감소하고, 투입한 금액에서도 제품 가격만큼 감소한다.
   - `controller.makeBuyingTableOfTab3()`
+    - `controller.purchaseProduct(e)`
+    - `controller.setInsertedMoney()`
 - DOM 선택자
-  - [] 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
-    - [] 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.
-    - [] 상품명에 해당하는 요소의 class명은 product-purchase-name이다.
-    - [] 가격에 해당하는 요소의 class명은 product-purchase-price이다.
-    - [] 수량에 해당하는 요소의 class명은 product-purchase-quantity이다.
-    - [] 상품명은 dataset 속성을 사용하고 data-product-name 형식으로 저장한다.
-    - [] 가격은 dataset 속성을 사용하고 data-product-price 형식으로 저장한다.
-    - [] 수량은 dataset 속성을 사용하고 data-product-quantity 형식으로 저장한다.
+  - [x] 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
+    - [x] 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.
+    - [x] 상품명에 해당하는 요소의 class명은 product-purchase-name이다.
+    - [x] 가격에 해당하는 요소의 class명은 product-purchase-price이다.
+    - [x] 수량에 해당하는 요소의 class명은 product-purchase-quantity이다.
+    - [x] 상품명은 dataset 속성을 사용하고 data-product-name 형식으로 저장한다.
+    - [x] 가격은 dataset 속성을 사용하고 data-product-price 형식으로 저장한다.
+    - [x] 수량은 dataset 속성을 사용하고 data-product-quantity 형식으로 저장한다.
 
 #### 4-3) 잔돈 반환
 
