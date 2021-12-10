@@ -1,4 +1,4 @@
-import STORAGE_KEY from '../asset/constants/STORAGE_KEY.js';
+import { STORAGE_KEY } from '../asset/constants/index.js';
 import { getJsonItem, setJsonItem, appendToJsonItem } from './index.js';
 
 export const getProducts = () => getJsonItem(STORAGE_KEY.inventory);

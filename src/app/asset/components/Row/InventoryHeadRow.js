@@ -1,6 +1,6 @@
 import Row from './index.js';
 import Cell from '../Cell/index.js';
-import TABLE_TITLE from '../../constants/TABLE_TITLE.js';
+import { TABLE_TITLE } from '../../constants/index.js';
 
 const InventoryHeadRow = () => {
     const ret = Row();

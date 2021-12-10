@@ -1,5 +1,5 @@
 import distributeCoin from '../src/app/asset/util/distributeCoin.js';
-import COIN from '../src/app/asset/constants/COIN.js';
+import { COIN } from '../src/app/asset/constants/index.js';
 
 test('distributeCoin()', () => {
     expect(distributeCoin(10)).toEqual([0, 0, 0, 1]);

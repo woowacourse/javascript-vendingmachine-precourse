@@ -1,6 +1,4 @@
-import COIN from '../../constants/COIN.js';
-import TABLE_TITLE from '../../constants/TABLE_TITLE.js';
-import UNIT from '../../constants/UNIT.js';
+import { COIN, UNIT, TABLE_TITLE } from '../../constants/index.js';
 import Cell from '../Cell/index.js';
 import CoinRow from '../Row/CoinRow.js';
 import Table from '../Table/index.js';

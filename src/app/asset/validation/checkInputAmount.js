@@ -6,7 +6,7 @@ import {
     checkNaturalNumber,
     checkModed,
 } from './index.js';
-import ERROR_MSG from '../constants/ERROR_MSG.js';
+import { ERROR_MSG } from '../constants/index.js';
 
 const checkInputAmount = createCheckEveryFunction([
     createValidFunction(isRequired, ERROR_MSG.requireInputAmount),

@@ -1,7 +1,7 @@
 import checkInputAmount from '../asset/validation/checkInputAmount.js';
 import { getInputAmount, setInputAmount } from '../localStorage/inputAmount.js';
 import { getProducts, setProducts } from '../localStorage/inventory.js';
-import ERROR_MSG from '../asset/constants/ERROR_MSG.js';
+import { ERROR_MSG } from '../asset/constants/index.js';
 import PurchaseTap from '../view/PurchaseTap.js';
 import distributeCoinGreedily from '../asset/util/distributeCoinGreedily.js';
 import calcCoinAmount from '../asset/util/calcCoinAmount.js';

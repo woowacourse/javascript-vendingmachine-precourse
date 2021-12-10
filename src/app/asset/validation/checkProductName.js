@@ -1,5 +1,5 @@
 import { createCheckEveryFunction, createValidFunction, isRequired } from './index.js';
-import ERROR_MSG from '../constants/ERROR_MSG.js';
+import { ERROR_MSG } from '../constants/index.js';
 import { isUniqueProductName } from '../../localStorage/inventory.js';
 
 export default createCheckEveryFunction([

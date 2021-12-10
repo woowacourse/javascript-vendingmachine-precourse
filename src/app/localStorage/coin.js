@@ -1,5 +1,4 @@
-import COIN from '../asset/constants/COIN.js';
-import STORAGE_KEY from '../asset/constants/STORAGE_KEY.js';
+import { COIN, STORAGE_KEY } from '../asset/constants/index.js';
 import { getJsonItem, setJsonItem } from './index.js';
 import calcCoinAmount from '../asset/util/calcCoinAmount.js';
 

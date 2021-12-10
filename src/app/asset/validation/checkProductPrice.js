@@ -6,8 +6,7 @@ import {
     checkNaturalNumber,
     checkModed,
 } from './index.js';
-import ERROR_MSG from '../constants/ERROR_MSG.js';
-import INPUT_NUMBER_RULE from '../constants/INPUT_NUMBER_RULE.js';
+import { ERROR_MSG, INPUT_NUMBER_RULE } from '../constants/index.js';
 
 // 상품 가격 검증 함수
 const checkProductPrice = createCheckEveryFunction([

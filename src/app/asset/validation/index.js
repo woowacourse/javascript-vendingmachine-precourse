@@ -1,5 +1,4 @@
-import ERROR_MSG from '../constants/ERROR_MSG.js';
-import INPUT_NUMBER_RULE from '../constants/INPUT_NUMBER_RULE.js';
+import { ERROR_MSG, INPUT_NUMBER_RULE } from '../constants/index.js';
 
 // 숫자 여부
 const isNumber = (value) => Number(value) || Number(value) === 0;

@@ -1,5 +1,5 @@
 import SubTitle from '../SubTitle/index.js';
-import UNIT from '../../constants/UNIT.js';
+import { UNIT } from '../../constants/index.js';
 
 const FormInput = ($input, $button) => {
     const $wrap = document.createElement('div');

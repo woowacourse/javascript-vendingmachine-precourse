@@ -1,5 +1,4 @@
-import VENDING_MACHINE_TITLE from '../asset/constants/VENDING_MACHINE_TITLE.js';
-import TAP from '../asset/constants/TAP.js';
+import { VENDING_MACHINE_TITLE, TAP } from '../asset/constants/index.js';
 import { MainTitle, ButtonById } from '../asset/components/index.js';
 
 export default class VendingSkeleton {

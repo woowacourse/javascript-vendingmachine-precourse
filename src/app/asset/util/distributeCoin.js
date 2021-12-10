@@ -1,4 +1,4 @@
-import COIN from '../constants/COIN.js';
+import { COIN } from '../constants/index.js';
 
 const coinToIdx = {
     500: 0,

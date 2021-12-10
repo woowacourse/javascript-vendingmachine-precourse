@@ -2,7 +2,7 @@ import Inventory from './Inventory.js';
 import VendingSkeleton from '../view/VendingSkeleton.js';
 import ChargeCoin from './ChargeCoin.js';
 import Purchase from './Purchase.js';
-import TAP from '../asset/constants/TAP.js';
+import { TAP } from '../asset/constants/index.js';
 import { getTap, setTap } from '../localStorage/tap.js';
 
 export default class VendingMachine {

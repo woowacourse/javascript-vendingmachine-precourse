@@ -1,4 +1,4 @@
-import COIN from '../constants/COIN.js';
+import { COIN } from '../constants/index.js';
 
 const distributeCoinGreedily = (amount, coinCnts) => {
     let inputAmount = amount;

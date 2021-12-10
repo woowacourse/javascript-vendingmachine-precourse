@@ -1,3 +1,4 @@
+import Tap from './Tap.js';
 import {
     InputNumber,
     ButtonById,
@@ -7,14 +8,15 @@ import {
     CoinTable,
     Span,
 } from '../asset/components/index.js';
-import INPUT_ID from '../asset/constants/INPUT_ID.js';
-import BUTTON from '../asset/constants/BUTTON.js';
-import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
-import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
-import COIN_ID from '../asset/constants/COIN_ID.js';
-import GUIDE from '../asset/constants/GUIDE.js';
-import UNIT from '../asset/constants/UNIT.js';
-import Tap from './Tap.js';
+import {
+    INPUT_ID,
+    BUTTON,
+    INPUT_ITEM,
+    SUB_TITLE_TEXT,
+    COIN_ID,
+    GUIDE,
+    UNIT,
+} from '../asset/constants/index.js';
 
 export default class ChargeCoinTap extends Tap {
     constructor($skeleton) {

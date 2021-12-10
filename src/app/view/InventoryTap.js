@@ -1,3 +1,4 @@
+import Tap from './Tap.js';
 import {
     InputNumber,
     InputText,
@@ -7,11 +8,7 @@ import {
     InventoryHeadRow,
     InventoryBodyRow,
 } from '../asset/components/index.js';
-import INPUT_ID from '../asset/constants/INPUT_ID.js';
-import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
-import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
-import BUTTON from '../asset/constants/BUTTON.js';
-import Tap from './Tap.js';
+import { INPUT_ID, INPUT_ITEM, SUB_TITLE_TEXT, BUTTON } from '../asset/constants/index.js';
 
 export default class InventoryTap extends Tap {
     constructor($skeleton) {

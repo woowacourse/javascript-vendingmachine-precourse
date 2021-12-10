@@ -1,5 +1,4 @@
-import STORAGE_KEY from '../asset/constants/STORAGE_KEY.js';
-import TAP from '../asset/constants/TAP.js';
+import { STORAGE_KEY, TAP } from '../asset/constants/index.js';
 
 export const getTap = () => localStorage.getItem(STORAGE_KEY.tap) || TAP.inventory.name;
 

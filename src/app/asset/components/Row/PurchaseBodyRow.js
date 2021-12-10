@@ -2,10 +2,12 @@ import RowByClassName from './RowByClassName.js';
 import Cell from '../Cell/index.js';
 import CellByClassNameAndDataset from '../Cell/CellByClassNameAndDataset.js';
 import ButtonByClassName from '../Button/ButtonByClassName.js';
-import TABLE_ROW_CLASS_NAME from '../../constants/TABLE_ROW_CLASS_NAME.js';
-import TABLE_CELL_CLASS_NAME from '../../constants/TABLE_CELL_CLASS_NAME.js';
-import TABLE_CELL_DATASET from '../../constants/TABLE_CELL_DATASET.js';
-import BUTTON from '../../constants/BUTTON.js';
+import {
+    TABLE_ROW_CLASS_NAME,
+    TABLE_CELL_CLASS_NAME,
+    TABLE_CELL_DATASET,
+    BUTTON,
+} from '../../constants/index.js';
 
 const createCell = (text, property) =>
     CellByClassNameAndDataset(
