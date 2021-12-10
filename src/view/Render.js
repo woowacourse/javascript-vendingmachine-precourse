@@ -1,5 +1,5 @@
 import SetLocalStorage from '../model/SetLocalStorage.js';
-import { TEMPLATE, DOM } from '../utils/constant.js';
+import { TEMPLATE, DOM, STRING, SELECTOR } from '../utils/constant.js';
 
 export default class Render {
   constructor(coins, product) {
@@ -20,23 +20,23 @@ export default class Render {
 
   vendingMachineChargeTableTemplate = (coin10, coin50, coin100, coin500) => {
     const $vendingMachineCoin10Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_10_QUANTITY);
-    $vendingMachineCoin10Quantity.textContent = coin10 + '개';
+    $vendingMachineCoin10Quantity.textContent = coin10 + STRING.GAE;
 
     const $vendingMachineCoin50Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_50_QUANTITY);
-    $vendingMachineCoin50Quantity.textContent = coin50 + '개';
+    $vendingMachineCoin50Quantity.textContent = coin50 + STRING.GAE;
 
     const $vendingMachineCoin100Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_100_QUANTITY);
-    $vendingMachineCoin100Quantity.textContent = coin100 + '개';
+    $vendingMachineCoin100Quantity.textContent = coin100 + STRING.GAE;
 
     const $vendingMachineCoin500Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_500_QUANTITY);
-    $vendingMachineCoin500Quantity.textContent = coin500 + '개';
+    $vendingMachineCoin500Quantity.textContent = coin500 + STRING.GAE;
 
     this.setLocalStorage.coinsInformation();
   };
 
   vendingMachineChargeAmountTemplate = (vendingMachineChargeAmount) => {
     const $vendingMachineChargeAmount = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_AMOUNT);
-    $vendingMachineChargeAmount.textContent = vendingMachineChargeAmount + '원';
+    $vendingMachineChargeAmount.textContent = vendingMachineChargeAmount + STRING.WON;
   };
 
   vendingMachineManageMenuTemplate = () => {
@@ -45,8 +45,8 @@ export default class Render {
   };
 
   productAddManageTableTemplate = (productName, productPrice, productQuantity) => {
-    const $tr = document.createElement('tr');
-    $tr.setAttribute('class', 'product-manage-item');
+    const $tr = document.createElement(DOM.$TR);
+    $tr.setAttribute(SELECTOR.CLASS, DOM.$PRODUCT_MANAGE_ITEM);
     $tr.innerHTML = TEMPLATE.PRODUCT_MANAGE_TBODY(productName, productPrice, productQuantity);
 
     const $productManageTbody = document.querySelector(DOM.$PRODUCT_MANAGE_TBODY);

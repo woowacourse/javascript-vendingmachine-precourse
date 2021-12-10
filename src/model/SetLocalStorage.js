@@ -1,4 +1,4 @@
-import { DOM } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE } from '../utils/constant.js';
 
 export default class SetLocalStorage {
   constructor(coins, product) {
@@ -7,7 +7,7 @@ export default class SetLocalStorage {
   }
 
   productInformation = () => {
-    localStorage.setItem('productsInformation', JSON.stringify(this.product.productsInformation));
+    localStorage.setItem(LOCAL_STORAGE.PRODUCTS_INFORMATION, JSON.stringify(this.product.productsInformation));
     this.productAddMenu();
   };
 
@@ -17,18 +17,18 @@ export default class SetLocalStorage {
       coinAmount: this.coins.totalCoinAmount,
     };
 
-    localStorage.setItem('coinsInformation', JSON.stringify(coinsInformationHash));
+    localStorage.setItem(LOCAL_STORAGE.COINS_INFORMATION, JSON.stringify(coinsInformationHash));
 
     this.vendingMachineManageMenu();
   };
 
   vendingMachineManageMenu = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
-    localStorage.setItem('vendingMachineManageMenu', $vendingMachineSection.innerHTML);
+    localStorage.setItem(LOCAL_STORAGE.VENDING_MACHINE_MANAGE_MENU, $vendingMachineSection.innerHTML);
   };
 
   productAddMenu = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
-    localStorage.setItem('productAddMenu', $vendingMachineSection.innerHTML);
+    localStorage.setItem(LOCAL_STORAGE.PRODUCT_ADD_MENU, $vendingMachineSection.innerHTML);
   };
 }

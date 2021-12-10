@@ -1,5 +1,5 @@
 import SetProductAdd from '../model/SetProductAdd.js';
-import { DOM } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE, EVENT } from '../utils/constant.js';
 import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
 
 export default class CheckEventTarget {
@@ -11,13 +11,13 @@ export default class CheckEventTarget {
 
   onClickProductAddButton = () => {
     const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
-    $productAddButton.addEventListener('click', () => {
+    $productAddButton.addEventListener(EVENT.CLICK, () => {
       new SetProductAdd(this.render, this.product);
     });
   };
 
   hasProductAddMenuTemplate = () => {
-    const productAddMenuTemplate = localStorage.getItem('productAddMenu');
+    const productAddMenuTemplate = localStorage.getItem(LOCAL_STORAGE.PRODUCT_ADD_MENU);
     if (!productAddMenuTemplate) {
       this.render.productAddMenuTemplate();
       this.onClickProductAddButton();
@@ -37,13 +37,13 @@ export default class CheckEventTarget {
 
   onClickVendingMachineChargeButton = () => {
     const $vendingMachineChargetButton = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_BUTTON);
-    $vendingMachineChargetButton.addEventListener('click', () => {
+    $vendingMachineChargetButton.addEventListener(EVENT.CLICK, () => {
       new SetVendingMachineCharge(this.render, this.coins);
     });
   };
 
   hasVendingMachineManageMenuTemplate = () => {
-    const vendingMachineManageMenuTemplate = localStorage.getItem('vendingMachineManageMenu');
+    const vendingMachineManageMenuTemplate = localStorage.getItem(LOCAL_STORAGE.VENDING_MACHINE_MANAGE_MENU);
     if (!vendingMachineManageMenuTemplate) {
       this.render.vendingMachineManageMenuTemplate();
       this.onClickVendingMachineChargeButton();

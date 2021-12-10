@@ -1,5 +1,7 @@
 export const DOM = {
+  $TR: 'tr',
   $APP: '#app',
+  $PRODUCT_MANAGE_ITEM: 'product-manage-item',
   $PRODUCT_ADD_MENU: '#product-add-menu',
   $PRODUCT_PURCHASE_MENU: '#product-purchase-menu',
   $PRODUCT_NAME_INPUT: '#product-name-input',
@@ -109,4 +111,24 @@ export const ERROR_MESSAGE = {
   UNIT_OF_TEN(placeholder) {
     return `${placeholder}은 10원 단위로 입력해주세요.`;
   },
+};
+
+export const LOCAL_STORAGE = {
+  PRODUCTS_INFORMATION: 'productsInformation',
+  COINS_INFORMATION: 'coinsInformation',
+  PRODUCT_ADD_MENU: 'productAddMenu',
+  VENDING_MACHINE_MANAGE_MENU: 'vendingMachineManageMenu',
+};
+
+export const STRING = {
+  WON: '원',
+  GAE: '개',
+};
+
+export const EVENT = {
+  CLICK: 'click',
+};
+
+export const SELECTOR = {
+  CLASS: 'class',
 };

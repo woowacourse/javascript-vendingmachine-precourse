@@ -1,13 +1,13 @@
 import Coins from '../model/Coins.js';
 import Product from '../model/Product.js';
-import { DOM } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE, EVENT } from '../utils/constant.js';
 import Render from '../view/Render.js';
 import CheckEventTarget from './CheckEventTarget.js';
 
 export default class Controller {
   constructor() {
-    this.localStorageCoinsInformation = JSON.parse(localStorage.getItem('coinsInformation'));
-    this.localStorageProductsInformation = JSON.parse(localStorage.getItem('productsInformation'));
+    this.localStorageCoinsInformation = JSON.parse(localStorage.getItem(LOCAL_STORAGE.COINS_INFORMATION));
+    this.localStorageProductsInformation = JSON.parse(localStorage.getItem(LOCAL_STORAGE.PRODUCTS_INFORMATION));
     this.coins = new Coins(
       this.localStorageCoinsInformation?.coinAmount || 0,
       this.localStorageCoinsInformation?.coinsHash || { 500: 0, 100: 0, 50: 0, 10: 0 }
@@ -20,7 +20,7 @@ export default class Controller {
   }
 
   onClickMainTemplateButton = () => {
-    this.$app.addEventListener('click', (event) => {
+    this.$app.addEventListener(EVENT.CLICK, (event) => {
       const $productAddMenu = document.querySelector(DOM.$PRODUCT_ADD_MENU);
       this.checkEventTarget.isProductAddMenu(event.target, $productAddMenu);
 
