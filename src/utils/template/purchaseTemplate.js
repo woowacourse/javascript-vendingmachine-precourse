@@ -82,11 +82,11 @@ const returnCoinTableRows = list => {
     return html;
   }
 
-  list.forEach(coin => {
+  list.forEach((coin, i) => {
     html += `
       <tr>
-        <td>${coin[0]}원</td>
-        <td>${coin[1]}개</td> 
+        <td>${COIN_LIST[i]}원</td>
+        <td>${coin}개</td> 
       </tr>
     `;
   });

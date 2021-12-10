@@ -1,7 +1,9 @@
 import { $ } from '../../utils/selector.js';
-import { ID } from '../../constants/index.js';
+import { ID, LOCAL_DB } from '../../constants/index.js';
 import { returnCoinTableTemplate } from '../../utils/template/purchaseTemplate.js';
 import { addTableStyle } from '../../utils/tableStyles.js';
+import { getReturnCoinArray } from '../../utils/makeCoinArray.js';
+import { getLocalStorage } from '../../utils/localStorage.js';
 
 class ReturnCoinTable {
   constructor($target, state) {
@@ -32,7 +34,9 @@ class ReturnCoinTable {
   }
 
   clickButton() {
-    console.log('clicked');
+    let amount = getLocalStorage(LOCAL_DB.PURCHASE);
+    this.returnCoin = getReturnCoinArray(amount);
+    console.log(this.returnCoin);
   }
 }
 

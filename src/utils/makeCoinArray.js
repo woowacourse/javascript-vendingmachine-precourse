@@ -1,4 +1,5 @@
-import { COIN_LIST } from '../constants/index.js';
+import { COIN_LIST, LOCAL_DB } from '../constants/index.js';
+import { getLocalStorage } from './localStorage.js';
 
 export const getRandomCoinArray = amount => {
   const coinObj = { 10: 0, 50: 0, 100: 0, 500: 0 };
@@ -12,4 +13,20 @@ export const getRandomCoinArray = amount => {
   }
 
   return Object.values(coinObj).reverse();
+};
+
+export const getReturnCoinArray = amount => {
+  const machineCoins = getLocalStorage(LOCAL_DB.COIN);
+  let returnCoinArray = [];
+
+  machineCoins.forEach(coin => {
+    let needCoinCount = Math.floor(amount / coin.name);
+    if (needCoinCount > coin.count) {
+      needCoinCount = coin.count;
+    }
+    amount -= coin.name * needCoinCount;
+    returnCoinArray.push(needCoinCount);
+  });
+
+  return returnCoinArray;
 };
