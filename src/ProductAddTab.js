@@ -7,8 +7,8 @@ export default class ProductAddTab {
   }
 
   initialize() {
-    this.view.render();
     this.products = getData('products');
+    this.view.render(this.products);
     this.setButtonClickEvent();
     console.log(this.products);
   }
@@ -29,6 +29,5 @@ export default class ProductAddTab {
       quantity: productQuantityInput.value,
     });
     setData('products', this.products);
-    console.log(getData('products'));
   }
 }

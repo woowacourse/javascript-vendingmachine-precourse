@@ -5,7 +5,15 @@ export default class ProductAddTabView {
     this.contentContainer = document.querySelector('#content-container');
   }
 
-  render() {
+  render(products) {
     this.contentContainer.innerHTML = productAddTemplate.main;
+    this.tableBody = document.querySelector('#product-manage-table > tbody');
+    this.renderProductManageTableItems(products);
+  }
+
+  renderProductManageTableItems(products) {
+    products.forEach((product) => {
+      this.tableBody.innerHTML += productAddTemplate.tableItem(product);
+    });
   }
 }
