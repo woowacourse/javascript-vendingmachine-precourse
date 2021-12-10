@@ -68,15 +68,18 @@ export class VendingMachineModel {
   returnCoin() {
     if (this.totalInsertedMoney > this.machineChargeAmount) {
       this.totalInsertedMoney -= this.machineChargeAmount;
+      this.machineChargeAmount = 0;
       for (let coin of this.changeCoins) {
         this.machineCoins[coin] = 0;
       }
       this.changeCoins = { ...this.machineCoins };
+      localStorage.setItem('totalInsertedMoney', JSON.stringify(this.totalInsertedMoney));
+      localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
       localStorage.setItem('machineCoins', JSON.stringify(this.machineCoins));
       localStorage.setItem('changeCoins', JSON.stringify(this.changeCoins));
       return;
     }
-
+    this.machineChargeAmount -= this.totalInsertedMoney;
     coinList.some((coin) => {
       let count = parseInt(this.totalInsertedMoney / coin);
       if (this.machineCoins[coin] < count) {
@@ -86,12 +89,15 @@ export class VendingMachineModel {
       console.log(`this.totalInsertedMoney`, this.totalInsertedMoney);
       console.log(`count`, count);
       this.totalInsertedMoney -= coin * count;
+
       this.machineCoins[coin] -= count;
       this.changeCoins[coin] += count;
       if (this.totalInsertedMoney === 0) {
         return true;
       }
     });
+    localStorage.setItem('totalInsertedMoney', JSON.stringify(this.totalInsertedMoney));
+    localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
     localStorage.setItem('machineCoins', JSON.stringify(this.machineCoins));
     localStorage.setItem('changeCoins', JSON.stringify(this.changeCoins));
     console.log(`this.changeCoins`, this.changeCoins);
