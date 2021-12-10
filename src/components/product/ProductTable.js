@@ -1,3 +1,4 @@
+import { addTableStyle } from '../../utils/tableStyles.js';
 import { productTableTemplate } from '../../utils/template/productTemplate.js';
 
 class ProductTable {
@@ -15,6 +16,7 @@ class ProductTable {
 
   addTemplate() {
     this.$target.innerHTML = productTableTemplate();
+    addTableStyle();
   }
 }
 
