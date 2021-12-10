@@ -9,6 +9,7 @@ class PurchaseContainer {
   constructor($target) {
     this.$target = $target;
     this.state = new State();
+
     this.render();
   }
 

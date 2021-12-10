@@ -1,6 +1,12 @@
 import { ERROR, LOCAL_DB, NUM } from '../constants/index.js';
 import { getLocalStorage } from './localStorage.js';
 
+const isProductDuplicate = name => {
+  const products = getLocalStorage(LOCAL_DB.PRODUCT);
+
+  return products.some(product => product.name === name);
+};
+
 const isProductNameEmpty = name => {
   return name.trim() === '';
 };
@@ -17,6 +23,10 @@ const isValidCharge = amount => {
 };
 
 export const isValidProductInput = (name, price, quantity) => {
+  if (isProductDuplicate(name)) {
+    alert(ERROR.PRODUCT_IS_DUPLICATED);
+    return false;
+  }
   if (isProductNameEmpty(name)) {
     alert(ERROR.PRODUCT_NAME_IS_BLANK);
     return false;

@@ -30,7 +30,6 @@ class PurchaseTable {
     if (!e.target.classList.contains(CLASS.PURCHASE_BUTTON)) {
       return;
     }
-
     const tr = e.target.closest('tr');
     const { productName } = tr.children[0].dataset;
     const { productPrice } = tr.children[1].dataset;
