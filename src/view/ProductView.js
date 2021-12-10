@@ -27,9 +27,6 @@ export class ProductView {
   }
 
   showProduct(products) {
-    if (products.length === 0) {
-      return;
-    }
     let productRowHTML = PRODUCT_MANAGE_TEMPLATE;
     products.map((product) => (productRowHTML += printProductTemplate(product)));
     this.$productTable.innerHTML = productRowHTML;

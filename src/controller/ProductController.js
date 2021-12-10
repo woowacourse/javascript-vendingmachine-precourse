@@ -21,6 +21,9 @@ export class ProductController {
 
   onProductSubmit(productName, price, quantity) {
     const products = this.model.addProduct(productName, price, quantity);
+    if (products.length === 0) {
+      return;
+    }
     this.coreView.productView.showProduct(products);
   }
 }
