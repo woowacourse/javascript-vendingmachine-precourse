@@ -66,20 +66,43 @@ export const HTML_OF_PRODUCT_PURCHASE_PART = `
   <button id="charge-button">투입하기</button><br><br>
   <span>투입한 금액:</span>
   <span id="charge-amount"></span><br><br>
-  <h4>구매할 수 있는 상품 현황</h4>
-  <table border="1px" cellspacing="0" cellpadding="5">
-    <thead>
-      <th>상품명</th>
-      <th>가격</th>
-      <th>수량</th>
-      <th>구매</th>
-    </thead>
-  </table>
+  <h4>구매할 수 있는 상품 현황</h4>`;
+
+export const HTML_OF_PRODUCT_PURCHASE_PART_MID = `
   <h4>잔돈</h4>
-  <button id="coin-return-button">반환하기</button><br><br>
-  <table border="1px" cellspacing="0" cellpadding="5">
+  <button id="coin-return-button">반환하기</button><br><br>`;
+
+
+  export const HTML_OF_PRODUCT_PURCHASE_TABLE = `
+  <table border="1px" cellspacing="0" cellpadding="5" id="product-purchase-table">
+  <thead>
+    <th>상품명</th>
+    <th>가격</th>
+    <th>수량</th>
+    <th>구매</th>
+  </thead>
+  </table>`;
+
+  export const HTML_OF_USER_CHANGE_TABLE = `
+  <table border="1px" cellspacing="0" cellpadding="5" id="user-change-table">
     <thead>
       <th>동전</th>
       <th>개수</th>
     </thead>
+    <tr>
+     <td>500원</td>
+     <td id="coin-500-quantity"></td>
+    </tr>
+    <tr>
+     <td>100원</td>
+     <td id="coin-100-quantity"></td>
+    </tr>
+    <tr>
+     <td>50원</td>
+     <td id="coin-50-quantity"></td>
+    </tr>
+    <tr>
+     <td>10원</td>
+     <td id="coin-10-quantity"></td>
+    </tr>
   </table>`;
