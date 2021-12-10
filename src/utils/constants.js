@@ -1,5 +1,5 @@
 export const TITLE_TEXT = "🥤자판기🥤";
-export const INPUT_WITDH = "125px";
+export const INPUT_WITDH = "150px";
 export const MARGIN_SIZE = "1px";
 
 export const PRODUCT_TABLE = {
@@ -45,7 +45,7 @@ export const MANAGE_PRODUCT_TAP = {
     ["가격", "product-price-input", "number"],
     ["수량", "product-quantity-input", "number"],
   ],
-  addProductButton: ["추가하기", "product-add-button"],
+  addButtonInformation: ["submit", "추가하기", "product-add-button"],
 
   productStateTitle: "상품 현황",
   productStateTableHeader: ["상품명", "가격", "수량"],
@@ -57,13 +57,18 @@ export const MANAGE_PRODUCT_TAP = {
 
 export const CHARGE_CHANGE_TAP = {
   chargeChangeTitle: "자판기 동전 충전하기",
-  chargeInputType: "number",
-  chargeInputPlaceHolder: "자판기가 보유할 금액",
-  chargeInputId: "vending-machine-charge-input",
-  chargeButtonId: "vending-machine-charge-button",
-  chargeButtonText: "충전하기",
-  changeAmoutHeader: "보유 금액: ",
-  changeAmoutId: "vending-machine-charge-amount",
+  chargeInputInformation: [
+    "자판기가 보유할 금액",
+    "vending-machine-charge-input",
+    "number",
+  ],
+  chargeButtonInformation: [
+    "submit",
+    "충전하기",
+    "vending-machine-charge-button",
+  ],
+  changeAmountHeader: "보유 금액: ",
+  changeAmountId: "vending-machine-charge-amount",
 
   changeStateTitle: "자판기가 보유한 동전",
   changeStateTableHeader: ["동전", "개수"],

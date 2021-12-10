@@ -4,4 +4,8 @@ export default class Product {
     this.price = price;
     this.quantity = quantity;
   }
+
+  getInformation() {
+    return [this.name, this.price, this.quantity];
+  }
 }
