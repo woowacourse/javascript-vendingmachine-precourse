@@ -31,4 +31,20 @@ export const COIN_MANAGE = {
 
 export const PRODUCT_PURCHASE_MANAGE = {
   BUTTON: "상품 구매",
+  COIN_INSERT_TEXT: "금액 투입",
+  INPUT: { PLACE_HOLDER: "투입할 금액", ID: "charge-input" },
+  INSERT_BUTTON: { TEXT: "투입하기", ID: "charge-button" },
+  INSERT_AMOUNT: { TEXT: "투입한 금액: ", ID: "charge-amount" },
+  CURRENT_PRODUCT_TO_BUY: "구매할 수 있는 상품 현황",
+  PURCHASE: "구매",
+  PURCHASE_BUTTON: { TEXT: "구매하기", ID: "purchase-button" },
+  PRODUCT_NAME_ID: "product-purchase-name",
+  PRODUCT_PRICE_ID: "product-purchase-price",
+  PRODUCT_QUANTITY_ID: "product-purchase-quantity",
+  CHARGE: "잔돈",
+  CHARGE_BUTTON: { TEXT: "반환하기", ID: "coin-return-button" },
+  COIN_500: { TEXT: "500원", ID: "coin-500-quantity" },
+  COIN_100: { TEXT: "100원", ID: "coin-100-quantity" },
+  COIN_50: { TEXT: "50원", ID: "coin-50-quantity" },
+  COIN_10: { TEXT: "10원", ID: "coin-10-quantity" },
 };

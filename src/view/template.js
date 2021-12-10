@@ -1,3 +1,5 @@
+import { COIN_MANAGE } from "../constant/vendingMachine.js";
+
 export const makeElement = ({ tag, id, innerText, type, placeholder }) => {
   const element = document.createElement(tag);
   if (id) {
@@ -62,4 +64,14 @@ export const makeInputNumberFormToPrint = ({ textData, inputData, buttonData }) 
   printTextArea.append(printTitle, printText);
   container.append(inputFormTitle, input, button, printTextArea);
   return container;
+};
+
+export const renderCoinTable = (container, tableBodyId, coinToUse) => {
+  const tableHead = makeTableForm([COIN_MANAGE.COIN, COIN_MANAGE.AMOUNT], tableBodyId);
+  container.append(tableHead);
+  const tableBodyArea = document.getElementById(tableBodyId);
+  coinToUse.forEach(coinData => {
+    const coin = [{ text: coinData.TEXT }, { id: coinData.ID }];
+    makeTableRow(tableBodyArea, coin);
+  });
 };
