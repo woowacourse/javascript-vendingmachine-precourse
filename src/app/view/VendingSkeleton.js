@@ -1,7 +1,6 @@
 import VENDING_MACHINE_TITLE from '../asset/constants/VENDING_MACHINE_TITLE.js';
 import TAP from '../asset/constants/TAP.js';
-import mainTitle from '../asset/components/MainTitle/index.js';
-import ButtonById from '../asset/components/Button/ButtonById.js';
+import { MainTitle, ButtonById } from '../asset/components/index.js';
 
 export default class VendingSkeleton {
     constructor() {
@@ -40,7 +39,7 @@ export default class VendingSkeleton {
     }
 
     createMainTitle() {
-        this.appendToApp(mainTitle(VENDING_MACHINE_TITLE));
+        this.appendToApp(MainTitle(VENDING_MACHINE_TITLE));
     }
 
     createTap() {
