@@ -13,14 +13,8 @@ export default class VendingController {
     this.view.showTab('.tab1');
     this.view.renderInApp('beforeend', $.tab2);
     this.view.renderInApp('beforeend', $.tab3);
-    this.addAllEventListener();
-    this.loadData();
-  }
-
-  loadData() {
     this.loadTab1Data();
-    this.loadTab2Data();
-    this.loadTab3Data();
+    this.addAllEventListener();
   }
 
   loadTab1Data() {
@@ -64,6 +58,16 @@ export default class VendingController {
       $.insertedAmount(),
       `${this.model.insertedMoney}원`
     );
+    console.log(this.model.productObj);
+    for (const name in this.model.productObj) {
+      if (Object.hasOwnProperty.call(this.model.productObj, name)) {
+        this.makeBuyingTableOfTab3(
+          name,
+          this.model.productObj[name].price,
+          this.model.productObj[name].quantity
+        );
+      }
+    }
   }
 
   switchTab(tab) {
@@ -74,13 +78,13 @@ export default class VendingController {
   addAllEventListener() {
     document
       .getElementById('product-add-menu')
-      .addEventListener('click', () => this.switchTab('.tab1'));
+      .addEventListener('click', () => this.loadTab1());
     document
       .getElementById('vending-machine-manage-menu')
-      .addEventListener('click', () => this.switchTab('.tab2'));
+      .addEventListener('click', () => this.loadTab2());
     document
       .getElementById('product-purchase-menu')
-      .addEventListener('click', () => this.switchTab('.tab3'));
+      .addEventListener('click', () => this.loadTab3());
     document
       .getElementById('product-add-button')
       .addEventListener('click', e => this.addProduct.call(this, e));
@@ -90,6 +94,30 @@ export default class VendingController {
     document
       .getElementById('charge-button')
       .addEventListener('click', e => this.insertMoney.call(this, e));
+  }
+
+  loadTab1() {
+    this.view.clearTable($.tbodyOfTab1());
+    this.loadTab1Data();
+    this.switchTab('.tab1');
+  }
+
+  loadTab2() {
+    this.loadTab2Data();
+    this.switchTab('.tab2');
+  }
+
+  loadTab3() {
+    this.view.clearTable($.tbodyOfTab3());
+    this.loadTab3Data();
+    document
+      .querySelectorAll('.purchase-button')
+      .forEach(button =>
+        button.addEventListener('click', e =>
+          this.purchaseProduct.call(this, e)
+        )
+      );
+    this.switchTab('.tab3');
   }
 
   makeTableOfTab1(name, price, quantity) {
@@ -212,6 +240,10 @@ export default class VendingController {
       return false;
     }
     this.model.insertedMoney += $.insertedMoney();
+    this.setInsertedMoney();
+  }
+
+  setInsertedMoney() {
     VendingModel.setLocalStorage('insertedMoney', this.model.insertedMoney);
     this.view.renderValueInSpot(
       $.insertedAmount(),
@@ -223,5 +255,32 @@ export default class VendingController {
     if (money < 0) return false;
     if (money % 10 !== 0) return false;
     return true;
+  }
+
+  makeBuyingTableOfTab3(name, price, quantity) {
+    const newRowOfTab3 = () => $.createTbodyOfTab3(name, price, quantity);
+    this.view.addTableRow($.tbodyOfTab3(), newRowOfTab3());
+  }
+
+  // 상품 구매
+
+  purchaseProduct(e) {
+    const name =
+      e.target.parentElement.parentElement.childNodes[1].dataset.productName;
+    const price =
+      e.target.parentElement.parentElement.childNodes[3].dataset.productPrice;
+
+    if (this.model.insertedMoney - price < 0) {
+      this.view.alertMessage('해당 제품을 사기에는 투입한 돈이 부족합니다.');
+      return false;
+    }
+    this.model.insertedMoney -= price;
+    this.setInsertedMoney();
+
+    e.target.parentElement.parentElement.childNodes[5].dataset
+      .productQuantity--;
+    e.target.parentElement.parentElement.childNodes[5].innerText--;
+    this.model.productObj[name].quantity--;
+    VendingModel.setLocalStorage('tab1', this.model.productObj);
   }
 }

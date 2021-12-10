@@ -30,4 +30,8 @@ export default class VendingView {
   renderValueInSpot(spot, value) {
     spot.innerHTML = value;
   }
+
+  clearTable(table) {
+    table.innerHTML = '';
+  }
 }

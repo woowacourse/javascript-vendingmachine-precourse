@@ -35,7 +35,8 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
     - `controller.loadTab1Data()`
   - [x] 잔돈 충전탭에서 localStorage 사용
     - `controller.loadTab2Data()`
-  - [ ] 상품 구매탭에서 localStorage 사용
+  - [x] 상품 구매탭에서 localStorage 사용
+    - `controller.loadTab3Data()`
 - DOM 선택자
   - [x] 상품 관리탭으로 이동하는 메뉴 버튼 id는 product-add-menu이다.
   - [x] 잔돈 충전탭으로 이동하는 메뉴 버튼 id 는 vending-machine-manage-menu이다.
@@ -100,9 +101,11 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 
 #### 4-1) 금액 충전
 
-- [] 상품 구매 페이지에서 최초 충전 금액은 0원이며, 반환된 각 동전의 개수는 0개이다.
+- [x] 상품 구매 페이지에서 최초 충전 금액은 0원이며, 반환된 각 동전의 개수는 0개이다.
 - [x] 사용자는 투입할 금액 입력 요소에 투입 금액을 입력한 후, 투입하기버튼을 이용하여 금액을 투입한다.
+  - `controller.insertMoney(e)`
   - [x] 금액은 10원으로 나누어 떨어지는 금액만 투입할 수 있다.
+    - `controller.checkInsertedMoney(money)`
   - [x] 자판기가 보유한 금액은 {금액}원 형식으로 나타낸다.
 - [x] 금액은 누적으로 투입할 수 있다.
 - DOM 선택자
@@ -113,6 +116,7 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 #### 4-2) 상품 구매
 
 - [] 구매하기 버튼을 누르면 해당 제품의 수량이 1개씩 감소하고, 투입한 금액에서도 제품 가격만큼 감소한다.
+  - `controller.makeBuyingTableOfTab3()`
 - DOM 선택자
   - [] 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
     - [] 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.

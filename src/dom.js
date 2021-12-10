@@ -96,7 +96,7 @@ const tab3 = `
                 <th id="purchase-button">구매</th>
             </tr>
         </thead>
-        <tbody class="tbodyOfTab3"></tbody>
+        <tbody id="tbodyOfTab3"></tbody>
     </table>
 
     <h2>잔돈</h2>
@@ -135,10 +135,10 @@ const productNameInput = () =>
   document.getElementById('product-name-input').value;
 
 const productPriceInput = () =>
-  document.getElementById('product-price-input').value;
+  parseInt(document.getElementById('product-price-input').value, 10);
 
 const productQuantityInput = () =>
-  document.getElementById('product-quantity-input').value;
+  parseInt(document.getElementById('product-quantity-input').value, 10);
 
 const tbodyOfTab1 = () => document.getElementById('tbodyOfTab1');
 
@@ -184,6 +184,17 @@ const insertedMoney = () =>
 
 const insertedAmount = () => document.getElementById('charge-amount');
 
+const tbodyOfTab3 = () => document.getElementById('tbodyOfTab3');
+
+const createTbodyOfTab3 = (name, price, quantity) => `
+  <tr class='product-purchase-item'>
+    <td class='product-purchase-name' data-product-name='${name}'>${name}</td>
+    <td class='product-purchase-price' data-product-price='${price}'>${price}</td>
+    <td class='product-purchase-quantity' data-product-quantity='${quantity}'>${quantity}</td>
+    <td><button class="purchase-button">구매하기</button></td>
+  </tr>
+`;
+
 export {
   tabMenus,
   tab1,
@@ -203,4 +214,6 @@ export {
   vendingMachineChargeAmount,
   insertedMoney,
   insertedAmount,
+  tbodyOfTab3,
+  createTbodyOfTab3,
 };
