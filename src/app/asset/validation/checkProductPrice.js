@@ -5,7 +5,7 @@ import {
     checkNumber,
     checkNaturalNumber,
     checkModed,
-} from './index.js';
+} from './common.js';
 import { ERROR_MSG, INPUT_NUMBER_RULE } from '../constants/index.js';
 
 // 상품 가격 검증 함수
