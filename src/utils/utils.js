@@ -18,12 +18,8 @@ const utils = {
     return string.split('').some(char => REGEX.HAS_SPECIAL.test(char));
   },
 
-  isUnderHundred: string => {
-    return Number(string) < 100;
-  },
-
-  isUnderTen: string => {
-    return Number(string) < 10;
+  isUnder: (string, comparisonNumber) => {
+    return Number(string) < comparisonNumber;
   },
 
   isNotTenMultiple: string => {
