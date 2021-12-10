@@ -94,6 +94,9 @@ export default class VendingController {
     document
       .getElementById('charge-button')
       .addEventListener('click', e => this.insertMoney.call(this, e));
+    document
+      .getElementById('coin-return-button')
+      .addEventListener('click', e => this.giveChanges.call(this, e));
   }
 
   loadTab1() {
@@ -263,7 +266,6 @@ export default class VendingController {
   }
 
   // 상품 구매
-
   purchaseProduct(e) {
     const target = e.target.parentElement.parentElement;
     const name = target.childNodes[1].dataset.productName;
@@ -286,5 +288,64 @@ export default class VendingController {
     target.childNodes[5].innerText--;
     this.model.productObj[name].quantity--;
     VendingModel.setLocalStorage('tab1', this.model.productObj);
+  }
+
+  // 잔돈 반환
+  giveChanges(e) {
+    e.preventDefault();
+    const changes = this.model.insertedMoney;
+    this.makeChangesTableOfTab3(changes);
+    this.model.insertedMoney = 0;
+    this.setInsertedMoney();
+  }
+
+  makeChangesTableOfTab3(changes) {
+    this.model._coinObj = JSON.parse(VendingModel.getLocalStorage('tab2'))
+      ? JSON.parse(VendingModel.getLocalStorage('tab2'))
+      : this.model._coinObj;
+
+    let coin500 = Math.floor(changes / 500);
+    if (this.model.coinObj.coin500 - coin500 >= 0) {
+      this.model.coinObj.coin500 -= coin500;
+      this.view.renderValueInSpot($.coin500quality(), `${coin500}개`);
+    } else {
+      coin500 = this.model.coinObj.coin500;
+      this.view.renderValueInSpot($.coin500quality(), `${coin500}개`);
+      this.model.coinObj.coin500 = 0;
+    }
+
+    let coin100 = Math.floor((changes - coin500 * 500) / 100);
+    if (this.model.coinObj.coin100 - coin100 >= 0) {
+      this.model.coinObj.coin100 -= coin100;
+      this.view.renderValueInSpot($.coin100quality(), `${coin100}개`);
+    } else {
+      coin100 = this.model.coinObj.coin100;
+      this.view.renderValueInSpot($.coin100quality(), `${coin100}개`);
+      this.model.coinObj.coin100 = 0;
+    }
+
+    let coin50 = Math.floor((changes - coin500 * 500 - coin100 * 100) / 50);
+    if (this.model.coinObj.coin50 - coin50 >= 0) {
+      this.model.coinObj.coin50 -= coin50;
+      this.view.renderValueInSpot($.coin50quality(), `${coin50}개`);
+    } else {
+      coin50 = this.model.coinObj.coin50;
+      this.view.renderValueInSpot($.coin50quality(), `${coin50}개`);
+      this.model.coinObj.coin50 = 0;
+    }
+
+    let coin10 = Math.floor(
+      (changes - coin500 * 500 - coin100 * 100 - coin50 * 50) / 10
+    );
+    if (this.model.coinObj.coin10 - coin10 >= 0) {
+      this.model.coinObj.coin10 -= coin10;
+      this.view.renderValueInSpot($.coin10quality(), `${coin10}개`);
+    } else {
+      coin10 = this.model.coinObj.coin10;
+      this.view.renderValueInSpot($.coin10quality(), `${coin10}개`);
+      this.model.coinObj.coin10 = 0;
+    }
+
+    VendingModel.setLocalStorage('tab2', this.model.coinObj);
   }
 }

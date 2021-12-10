@@ -195,6 +195,13 @@ const createTbodyOfTab3 = (name, price, quantity) => `
   </tr>
 `;
 
+// 잔돈 반환
+
+const coin500quality = () => document.getElementById('coin-500-quantity');
+const coin100quality = () => document.getElementById('coin-100-quantity');
+const coin50quality = () => document.getElementById('coin-50-quantity');
+const coin10quality = () => document.getElementById('coin-10-quantity');
+
 export {
   tabMenus,
   tab1,
@@ -216,4 +223,8 @@ export {
   insertedAmount,
   tbodyOfTab3,
   createTbodyOfTab3,
+  coin500quality,
+  coin100quality,
+  coin50quality,
+  coin10quality,
 };
