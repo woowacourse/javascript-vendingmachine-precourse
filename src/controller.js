@@ -194,6 +194,12 @@ export default class VendingController {
   // 금액 충전
   insertMoney(e) {
     e.preventDefault();
+    if ($.insertedMoney() < 0) {
+      this.view.alertMessage(
+        '충전할 잔돈은 0원 이상이어야 합니다. 다시 입력해주세요.'
+      );
+      return false;
+    }
     this.model.insertedMoney += $.insertedMoney();
     this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
   }
