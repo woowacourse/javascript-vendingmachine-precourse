@@ -119,6 +119,7 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
   - `controller.makeBuyingTableOfTab3()`
     - `controller.purchaseProduct(e)`
     - `controller.setInsertedMoney()`
+    - [x] 제품 매진 시 추가 구입할 수 없도록 제한 추가
 - DOM 선택자
   - [x] 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
     - [x] 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.

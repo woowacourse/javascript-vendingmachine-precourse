@@ -265,13 +265,10 @@ export default class VendingController {
   // 상품 구매
 
   purchaseProduct(e) {
-    const name =
-      e.target.parentElement.parentElement.childNodes[1].dataset.productName;
-    const price =
-      e.target.parentElement.parentElement.childNodes[3].dataset.productPrice;
-    const quantity =
-      e.target.parentElement.parentElement.childNodes[5].dataset
-        .productQuantity;
+    const target = e.target.parentElement.parentElement;
+    const name = target.childNodes[1].dataset.productName;
+    const price = target.childNodes[3].dataset.productPrice;
+    const quantity = target.childNodes[5].dataset.productQuantity;
     if (this.model.insertedMoney - price < 0) {
       this.view.alertMessage('해당 제품을 사기에는 투입한 돈이 부족합니다.');
       return false;
@@ -285,9 +282,8 @@ export default class VendingController {
     this.setInsertedMoney();
 
     // 상품 현황
-    e.target.parentElement.parentElement.childNodes[5].dataset
-      .productQuantity--;
-    e.target.parentElement.parentElement.childNodes[5].innerText--;
+    target.childNodes[5].dataset.productQuantity--;
+    target.childNodes[5].innerText--;
     this.model.productObj[name].quantity--;
     VendingModel.setLocalStorage('tab1', this.model.productObj);
   }
