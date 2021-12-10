@@ -303,7 +303,14 @@ export default class VendingController {
     this.model._coinObj = JSON.parse(VendingModel.getLocalStorage('tab2'))
       ? JSON.parse(VendingModel.getLocalStorage('tab2'))
       : this.model._coinObj;
+    const coin500 = this.calculateCoin500(changes);
+    const coin100 = this.calculateCoin100(changes, coin500);
+    const coin50 = this.calculateCoin50(changes, coin500, coin100);
+    this.calculateCoin10(changes, coin500, coin100, coin50);
+    VendingModel.setLocalStorage('tab2', this.model.coinObj);
+  }
 
+  calculateCoin500(changes) {
     let coin500 = Math.floor(changes / 500);
     if (this.model.coinObj.coin500 - coin500 >= 0) {
       this.model.coinObj.coin500 -= coin500;
@@ -313,7 +320,10 @@ export default class VendingController {
       this.view.renderValueInSpot($.coin500quality(), `${coin500}개`);
       this.model.coinObj.coin500 = 0;
     }
+    return coin500;
+  }
 
+  calculateCoin100(changes, coin500) {
     let coin100 = Math.floor((changes - coin500 * 500) / 100);
     if (this.model.coinObj.coin100 - coin100 >= 0) {
       this.model.coinObj.coin100 -= coin100;
@@ -323,7 +333,10 @@ export default class VendingController {
       this.view.renderValueInSpot($.coin100quality(), `${coin100}개`);
       this.model.coinObj.coin100 = 0;
     }
+    return coin100;
+  }
 
+  calculateCoin50(changes, coin500, coin100) {
     let coin50 = Math.floor((changes - coin500 * 500 - coin100 * 100) / 50);
     if (this.model.coinObj.coin50 - coin50 >= 0) {
       this.model.coinObj.coin50 -= coin50;
@@ -333,7 +346,10 @@ export default class VendingController {
       this.view.renderValueInSpot($.coin50quality(), `${coin50}개`);
       this.model.coinObj.coin50 = 0;
     }
+    return coin50;
+  }
 
+  calculateCoin10(changes, coin500, coin100, coin50) {
     let coin10 = Math.floor(
       (changes - coin500 * 500 - coin100 * 100 - coin50 * 50) / 10
     );
@@ -345,7 +361,5 @@ export default class VendingController {
       this.view.renderValueInSpot($.coin10quality(), `${coin10}개`);
       this.model.coinObj.coin10 = 0;
     }
-
-    VendingModel.setLocalStorage('tab2', this.model.coinObj);
   }
 }
