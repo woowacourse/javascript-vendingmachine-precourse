@@ -37,8 +37,13 @@ class ReturnCoinTable {
     let amount = getLocalStorage(LOCAL_DB.PURCHASE);
     this.returnCoin = getReturnCoinArray(amount);
 
-    this.addTemplate();
-    this.updatePurchaseStorage(this.returnCoin);
+    this.updateLocalStorage(this.returnCoin);
+    this.updateView();
+  }
+
+  updateLocalStorage(returnCoin) {
+    this.updateCoinStorage(returnCoin);
+    this.updatePurchaseStorage(returnCoin);
   }
 
   updatePurchaseStorage(returnCoin) {
@@ -48,6 +53,19 @@ class ReturnCoinTable {
     });
 
     saveLocalStorage(LOCAL_DB.PURCHASE, purchase);
+  }
+
+  updateCoinStorage(returnCoin) {
+    const machineCoins = getLocalStorage(LOCAL_DB.COIN);
+    machineCoins.forEach((coin, i) => {
+      coin.count -= returnCoin[i];
+    });
+
+    saveLocalStorage(LOCAL_DB.COIN, machineCoins);
+  }
+
+  updateView() {
+    this.addTemplate();
   }
 }
 
