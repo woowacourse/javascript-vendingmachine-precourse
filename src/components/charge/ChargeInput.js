@@ -10,10 +10,15 @@ import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
 import Coin from '../../classes/Coin.js';
 
 class ChargeInput {
-  constructor($inputContainer, $totalContainer) {
+  constructor($inputContainer, $totalContainer, state) {
     this.$inputContainer = $inputContainer;
     this.$totalContainer = $totalContainer;
+    this.state = state;
 
+    this.render();
+  }
+
+  render() {
     this.addTemplate();
     this.showTotalCharge();
     this.selectDom();
@@ -44,7 +49,7 @@ class ChargeInput {
     }
 
     this.updateLocalStorage(amount);
-    this.showTotalCharge();
+    this.updateView();
   }
 
   updateLocalStorage(amount) {
@@ -58,6 +63,11 @@ class ChargeInput {
     const coinArray = getRandomCoinArray(amount);
     coinArray.forEach((v, i) => (coinStorage[i].count += v));
     saveLocalStorage(LOCAL_DB.COIN, coinStorage);
+  }
+
+  updateView() {
+    this.showTotalCharge();
+    this.state.updateState();
   }
 }
 
