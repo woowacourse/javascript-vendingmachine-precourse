@@ -24,6 +24,14 @@ const utils = {
   isZero: string => {
     return Number(string) === 0;
   },
+
+  changeIdToComponent: string => {
+    const result = string.split('-');
+    result.pop();
+    result.push('component');
+
+    return '#' + result.join('-');
+  },
 };
 
 export default utils;
