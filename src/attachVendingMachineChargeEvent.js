@@ -15,6 +15,11 @@ const getVendingMachineChargeInputValue = () => {
   return document.getElementById(DOM_ID_SELECTOR.vendingMachineChargeInput).value;
 };
 
+const printVendingMachineAmount = (amount) => {
+  const $vendingMachineChargeAmount = document.getElementById(DOM_ID_SELECTOR.vendingMachineChargeAmount);
+  $vendingMachineChargeAmount.innerText = amount;
+};
+
 const attachVendingMachineChargeEvent = (coin) => {
   const $vendingMachineChargeButton = document.getElementById(DOM_ID_SELECTOR.vendingMachineChargeButton);
 
@@ -24,6 +29,7 @@ const attachVendingMachineChargeEvent = (coin) => {
     const price = getVendingMachineChargeInputValue();
     if (isValidPrice(price)) {
       coin.charge(Number(price));
+      printVendingMachineAmount(coin.getAmount());
     }
   });
 };

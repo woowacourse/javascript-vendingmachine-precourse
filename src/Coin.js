@@ -20,4 +20,13 @@ export default class Coin {
       }
     }
   }
+
+  getAmount() {
+    let amount = 0;
+    for (let coinValue in this.items) {
+      amount += Number(coinValue) * this.items[coinValue];
+    }
+
+    return amount;
+  }
 }
