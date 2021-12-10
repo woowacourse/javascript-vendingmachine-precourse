@@ -4,6 +4,7 @@ import { ID, LOCAL_DB } from '../../constants/index.js';
 import { clearInput } from '../../utils/clearInput.js';
 import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
 import { isValidProductInput } from '../../utils/valid.js';
+import { productInputTemplate } from '../../utils/template/productTemplate.js';
 
 class ProductInput {
   constructor($target, state) {
@@ -20,13 +21,7 @@ class ProductInput {
   }
 
   addTemplate() {
-    this.$target.innerHTML = `
-      <h3>상품 추가하기</h3>
-      <input id=${ID.PRODUCT_NAME_INPUT} type="text" placeholder="상품명" />
-      <input id=${ID.PRODUCT_PRICE_INPUT} type="number" placeholder="가격" />
-      <input id=${ID.PRODUCT_QUANTITY_INPUT} type="number" placeholder="수량" />
-      <button id=${ID.PRODUCT_ADD_BUTTON}>추가하기</button>
-    `;
+    this.$target.innerHTML = productInputTemplate();
   }
 
   selectDom() {
