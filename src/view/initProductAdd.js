@@ -54,6 +54,7 @@ function renderProductAddList($productAdd) {
     .join('');
 
   $listContainer.innerHTML = `
+    <br>
     <h3>${PRODUCT_LIST_TITLE}</h3>
     <table id="${PRODUCT_LIST_TABLE_ID}" bgcolor="black" border="1" style="border-collapse:collapse;">
       ${productListHeaderTemplate()}
