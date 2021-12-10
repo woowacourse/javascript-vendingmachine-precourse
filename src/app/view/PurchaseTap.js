@@ -28,6 +28,14 @@ export default class PurchaseTap extends Tap {
         this.$coin10 = CellById('', CHANGE_COIN_ID[3]);
     }
 
+    getInputButton() {
+        return this.$inputButton;
+    }
+
+    getInputAmount() {
+        return this.$inputAmountInput.value;
+    }
+
     appendToPurchaseContainer($element) {
         this.$purchaseContainer.append($element);
     }
