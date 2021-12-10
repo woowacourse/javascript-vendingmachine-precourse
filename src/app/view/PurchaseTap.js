@@ -1,9 +1,15 @@
-import InputNumber from '../asset/components/Input/InputNumber.js';
-import SubTitle from '../asset/components/SubTitle/index.js';
-import ButtonById from '../asset/components/Button/ButtonById.js';
-import Table from '../asset/components/Table/index.js';
-import CellById from '../asset/components/Cell/CellById.js';
-import SubmitForm from '../asset/components/SubmitForm/index.js';
+import {
+    InputNumber,
+    SubTitle,
+    ButtonById,
+    Table,
+    CellById,
+    SubmitForm,
+    PurchaseHeadRow,
+    PurchaseBodyRow,
+    CoinTable,
+    Span,
+} from '../asset/components/index.js';
 import INPUT_ID from '../asset/constants/INPUT_ID.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
@@ -11,10 +17,7 @@ import BUTTON from '../asset/constants/BUTTON.js';
 import CHANGE_COIN_ID from '../asset/constants/CHANGE_COIN_ID.js';
 import GUIDE from '../asset/constants/GUIDE.js';
 import Tap from './Tap.js';
-import PurchaseHeadRow from '../asset/components/Row/PurchaseHeadRow.js';
-import PurchaseBodyRow from '../asset/components/Row/PurchaseBodyRow.js';
-import CoinTable from '../asset/components/CoinTable/index.js';
-import Span from '../asset/components/Span/index.js';
+
 import UNIT from '../asset/constants/UNIT.js';
 
 export default class PurchaseTap extends Tap {
