@@ -13,7 +13,7 @@ import GUIDE from '../asset/constants/GUIDE.js';
 import Tap from './Tap.js';
 import PurchaseHeadRow from '../asset/components/Row/PurchaseHeadRow.js';
 import PurchaseBodyRow from '../asset/components/Row/PurchaseBodyRow.js';
-import CoinTableForm from '../asset/components/CoinTableForm/index.js';
+import CoinTable from '../asset/components/CoinTable/index.js';
 import UNIT from '../asset/constants/UNIT.js';
 
 export default class PurchaseTap extends Tap {
@@ -93,14 +93,13 @@ export default class PurchaseTap extends Tap {
     }
 
     createChangeCoinsForm() {
-        this.appendToApp(
-            CoinTableForm(
-                SUB_TITLE_TEXT.changeCoin,
-                this.$coin500,
-                this.$coin100,
-                this.$coin50,
-                this.$coin10,
-            ),
-        );
+        const $coinForm = document.createElement('div');
+
+        this.$returnButton.style.marginTop = '5px';
+        $coinForm.style.marginTop = '20px';
+        $coinForm.append(SubTitle(SUB_TITLE_TEXT.changeCoin));
+        $coinForm.append(this.$returnButton);
+        $coinForm.append(CoinTable(this.$coin500, this.$coin100, this.$coin50, this.$coin10));
+        this.appendToApp($coinForm);
     }
 }

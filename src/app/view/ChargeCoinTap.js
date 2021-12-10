@@ -3,7 +3,8 @@ import INPUT_ID from '../asset/constants/INPUT_ID.js';
 import ButtonById from '../asset/components/Button/ButtonById.js';
 import CellById from '../asset/components/Cell/CellById.js';
 import SubmitForm from '../asset/components/SubmitForm/index.js';
-import CoinTableForm from '../asset/components/CoinTableForm/index.js';
+import SubTitle from '../asset/components/SubTitle/index.js';
+import CoinTable from '../asset/components/CoinTable/index.js';
 import BUTTON from '../asset/constants/BUTTON.js';
 import INPUT_ITEM from '../asset/constants/INPUT_ITEM.js';
 import SUB_TITLE_TEXT from '../asset/constants/SUB_TITLE_TEXT.js';
@@ -73,14 +74,11 @@ export default class ChargeCoinTap extends Tap {
     }
 
     createCoinsForm() {
-        this.appendToApp(
-            CoinTableForm(
-                SUB_TITLE_TEXT.coins,
-                this.$coin500,
-                this.$coin100,
-                this.$coin50,
-                this.$coin10,
-            ),
-        );
+        const $coinForm = document.createElement('div');
+
+        $coinForm.style.marginTop = '20px';
+        $coinForm.append(SubTitle(SUB_TITLE_TEXT.coins));
+        $coinForm.append(CoinTable(this.$coin500, this.$coin100, this.$coin50, this.$coin10));
+        this.appendToApp($coinForm);
     }
 }

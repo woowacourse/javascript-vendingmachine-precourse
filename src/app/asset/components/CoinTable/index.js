@@ -3,7 +3,6 @@ import TABLE_TITLE from '../../constants/TABLE_TITLE.js';
 import UNIT from '../../constants/UNIT.js';
 import Cell from '../Cell/index.js';
 import CoinRow from '../Row/CoinRow.js';
-import SubTitle from '../SubTitle/index.js';
 import Table from '../Table/index.js';
 
 const CoinTable = ($coin500, $coin100, $coin50, $coin10) => {
@@ -18,14 +17,4 @@ const CoinTable = ($coin500, $coin100, $coin50, $coin10) => {
     return $table;
 };
 
-const CoinTableForm = (subTitleText, $coin500, $coin100, $coin50, $coin10) => {
-    const $wrap = document.createElement('div');
-
-    $wrap.style.marginTop = '30px';
-    $wrap.append(SubTitle(subTitleText));
-    $wrap.append(CoinTable($coin500, $coin100, $coin50, $coin10));
-
-    return $wrap;
-};
-
-export default CoinTableForm;
+export default CoinTable;
