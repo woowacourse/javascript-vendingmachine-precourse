@@ -10,7 +10,7 @@ import {
 } from '../common/helper.js';
 import { isValidateInput, purchaseValidate } from '../common/validations.js';
 import { CHARGE_AMOUNT, MACHINE_MANAGE, PRODUCT_ADD, PURCHASE_MENU } from '../constants/index.js';
-import Content from '../presentational/Content.js';
+import Content from '../presentational/Content/index.js';
 import Component from './root/Component.js';
 
 export default class Main extends Component {
