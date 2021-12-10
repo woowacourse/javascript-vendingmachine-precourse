@@ -5,6 +5,7 @@ import { addPurchaseManager } from './addPurchaseManager.js';
 import {
   addListenerToMenuButton,
   addListenerToProductAddButton,
+  addListenerToVendingMachineChargeButton,
   addListenerToChargeButton,
 } from './addListenerToButton.js';
 
@@ -15,5 +16,6 @@ export const initDom = () => {
   addPurchaseManager();
   addListenerToMenuButton();
   addListenerToProductAddButton();
+  addListenerToVendingMachineChargeButton();
   addListenerToChargeButton();
 };

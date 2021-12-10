@@ -40,3 +40,11 @@ export const getVendingMachineCoinTableData = () => {
     10: document.getElementById('vending-machine-coin-10-quantity'),
   };
 };
+
+export const getChargeButton = () => {
+  return document.getElementById('charge-button');
+};
+
+export const getChargeAmount = () => {
+  return document.getElementById('charge-amount');
+};

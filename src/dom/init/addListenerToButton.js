@@ -3,6 +3,7 @@ import { BLOCK, NONE, CLICK } from '../../constants.js';
 import {
   getProductAddButton,
   getVendingMachineChargeButton,
+  getChargeButton,
 } from '../domElement.js';
 import { vendingMachine } from '../../index.js';
 
@@ -35,10 +36,18 @@ export const addListenerToProductAddButton = () => {
   });
 };
 
-export const addListenerToChargeButton = () => {
+export const addListenerToVendingMachineChargeButton = () => {
   const vendingMachineChargeButton = getVendingMachineChargeButton();
 
   vendingMachineChargeButton.addEventListener('click', () => {
-    vendingMachine.addCharge();
+    vendingMachine.addVendingMachineCharge();
+  });
+};
+
+export const addListenerToChargeButton = () => {
+  const chargeButton = getChargeButton();
+
+  chargeButton.addEventListener('click', () => {
+    vendingMachine.addUserCharge();
   });
 };

@@ -3,7 +3,7 @@ import { updateVendingMachineCharge } from '../dom/control/updateVendingMachineC
 
 export const saveCharges = () => {
   localStorage.setItem(
-    'charges',
+    'vendingMachineCharges',
     JSON.stringify({
       amount: vendingMachine.amount,
       coins: vendingMachine.coins,
@@ -12,7 +12,7 @@ export const saveCharges = () => {
 };
 
 export const loadCharges = () => {
-  return JSON.parse(localStorage.getItem('charges'));
+  return JSON.parse(localStorage.getItem('vendingMachineCharges'));
 };
 
 export const initCharges = () => {

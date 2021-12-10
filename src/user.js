@@ -52,3 +52,17 @@ export const getVendingMachineChargeInput = () => {
 
   return vendingMachineChargeInput;
 };
+
+export const getChargeInput = () => {
+  const chargeInput = Number(document.getElementById('charge-input').value);
+
+  if (
+    outRangeInputException(chargeInput) ||
+    noIntegerException(chargeInput) ||
+    notMultipleOfTenException(chargeInput)
+  ) {
+    return null;
+  }
+
+  return chargeInput;
+};
