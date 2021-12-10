@@ -57,11 +57,13 @@ export default class VendingMachine {
 
     getConvertTapEventListener(showTap, tapName) {
         return () => {
-            this.inventory.hideTap();
-            this.chargeCoin.hideTap();
-            this.purchase.hideTap();
-            showTap.render();
-            setTap(tapName);
+            if (getTap() !== tapName) {
+                this.inventory.hideTap();
+                this.chargeCoin.hideTap();
+                this.purchase.hideTap();
+                showTap.render();
+                setTap(tapName);
+            }
         };
     }
 }
