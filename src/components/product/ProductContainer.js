@@ -1,10 +1,12 @@
 import { ID } from '../../constants/index.js';
+import State from '../../observer/State.js';
 import ProductInput from './ProductInput.js';
 import ProductTable from './ProductTable.js';
 
 class ProductContainer {
   constructor($target) {
     this.$target = $target;
+    this.state = new State();
 
     this.render();
   }
@@ -32,8 +34,8 @@ class ProductContainer {
   }
 
   mounted() {
-    new ProductInput(this.$inputContainer);
-    new ProductTable(this.$tableContainer);
+    new ProductInput(this.$inputContainer, this.state);
+    new ProductTable(this.$tableContainer, this.state);
   }
 }
 

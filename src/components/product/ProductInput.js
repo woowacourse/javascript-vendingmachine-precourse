@@ -5,9 +5,14 @@ import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
 import { isValidProductInput } from '../../utils/valid.js';
 
 class ProductInput {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
 
+    this.render();
+  }
+
+  render() {
     this.addTemplate();
     this.selectDom();
     this.addEvent();
@@ -47,6 +52,7 @@ class ProductInput {
     clearInput(this.$nameInput, this.$priceInput, this.$quantityInput);
 
     this.updateLocalStorage(name, price, quantity);
+    this.state.updateState();
   }
 
   updateLocalStorage(name, price, quantity) {
