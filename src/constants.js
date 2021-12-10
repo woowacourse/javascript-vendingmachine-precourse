@@ -12,6 +12,10 @@ export const DOM_ID_SELECTOR = {
   vendingMachineChargeButton: 'vending-machine-charge-button',
   vendingMachineChargeAmount: 'vending-machine-charge-amount',
   vendingMachineChargeTable: 'vending-machine-charge-table',
+  vendingMachineCoin500Quantity: 'vending-machine-coin-500-quantity',
+  vendingMachineCoin100Quantity: 'vending-machine-coin-100-quantity',
+  vendingMachineCoin50Quantity: 'vending-machine-coin-50-quantity',
+  vendingMachineCoin10Quantity: 'vending-machine-coin-10-quantity',
 };
 
 export const DOM_CLASS_SELECTOR = {
@@ -46,6 +50,10 @@ export const VENDING_MACHINE_CHARGE_MESSAGE = {
   amount: '보유 금액: ',
   coin: '동전',
   quantity: '개수',
+  500: '500원',
+  100: '100원',
+  50: '50원',
+  10: '10원',
 };
 
 export const ERROR_MESSAGE = {

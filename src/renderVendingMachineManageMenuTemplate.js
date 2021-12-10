@@ -29,18 +29,43 @@ const makeVendingMachineChargeAmount = () => {
   return $div;
 };
 
+const makeCoinTableRow = (text, id) => {
+  const $tr = document.createElement('tr');
+
+  const $left = document.createElement('td');
+  $left.appendChild(document.createTextNode(text));
+
+  const $right = document.createElement('td');
+  $right.setAttribute('id', id);
+
+  $tr.appendChild($left);
+  $tr.appendChild($right);
+
+  return $tr;
+};
+
+const makeVendingMachineChargeTable = () => {
+  const headerElements = [VENDING_MACHINE_CHARGE_MESSAGE.coin, VENDING_MACHINE_CHARGE_MESSAGE.quantity];
+  const $vendingMachineChargeTable = makeTable(headerElements, DOM_ID_SELECTOR.vendingMachineChargeTable);
+
+  $vendingMachineChargeTable.appendChild(makeCoinTableRow(VENDING_MACHINE_CHARGE_MESSAGE[500], DOM_ID_SELECTOR.vendingMachineCoin500Quantity));
+  $vendingMachineChargeTable.appendChild(makeCoinTableRow(VENDING_MACHINE_CHARGE_MESSAGE[100], DOM_ID_SELECTOR.vendingMachineCoin100Quantity));
+  $vendingMachineChargeTable.appendChild(makeCoinTableRow(VENDING_MACHINE_CHARGE_MESSAGE[50], DOM_ID_SELECTOR.vendingMachineCoin50Quantity));
+  $vendingMachineChargeTable.appendChild(makeCoinTableRow(VENDING_MACHINE_CHARGE_MESSAGE[10], DOM_ID_SELECTOR.vendingMachineCoin10Quantity));
+
+  return $vendingMachineChargeTable;
+};
+
 const renderVendingMachineManageMenuTemplate = () => {
   const $content = document.getElementById(DOM_ID_SELECTOR.content);
   $content.innerHTML = '';
 
   $content.appendChild(makeTitle(VENDING_MACHINE_CHARGE_MESSAGE.chargeVendingMachine));
   $content.appendChild(makeVendingMachineChargeForm());
-
   $content.appendChild(makeVendingMachineChargeAmount());
 
-  const headerElements = [VENDING_MACHINE_CHARGE_MESSAGE.coin, VENDING_MACHINE_CHARGE_MESSAGE.quantity];
   $content.appendChild(makeTitle(VENDING_MACHINE_CHARGE_MESSAGE.vendingMachineAmount));
-  $content.appendChild(makeTable(headerElements, DOM_ID_SELECTOR.vendingMachineChargeTable));
+  $content.appendChild(makeVendingMachineChargeTable());
 };
 
 export default renderVendingMachineManageMenuTemplate;
