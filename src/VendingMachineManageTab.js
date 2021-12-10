@@ -13,7 +13,6 @@ export default class VendingMachineManageTab {
     this.view.render(this.vendingMachineCharge);
     this.initInputElements();
     this.setButtonClickEvent();
-    console.log(this.vendingMachineCharge);
   }
 
   initInputElements() {
@@ -33,7 +32,7 @@ export default class VendingMachineManageTab {
       .map((quantity, idx) => quantity + this.vendingMachineCharge.coinQuantity[idx]);
     this.vendingMachineCharge = { amount, coinQuantity };
     setVendingMachineCharge(this.vendingMachineCharge);
-    console.log(this.vendingMachineCharge);
+    this.view.rerender(this.vendingMachineCharge);
     this.clearInputValue();
   }
 

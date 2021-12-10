@@ -27,4 +27,8 @@ export default class VendingMachineManageTabView {
     this.coin50Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(50)]}개`;
     this.coin10Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(10)]}개`;
   }
+
+  rerender(vendingMachineCharge) {
+    this.renderVendingMachineChargeValues(vendingMachineCharge);
+  }
 }
