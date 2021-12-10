@@ -1,4 +1,5 @@
 import vendingMachineManageTemplate from '../templates/vending-machine-manage-template.js';
+import { coinIndex } from '../utils/index.js';
 
 export default class VendingMachineManageTabView {
   constructor() {
@@ -21,9 +22,9 @@ export default class VendingMachineManageTabView {
 
   renderVendingMachineChargeValues(vendingMachineCharge) {
     this.amount.innerText = `${vendingMachineCharge.amount}원`;
-    this.coin500Quantity.innerText = `${vendingMachineCharge.coin500Quantity}개`;
-    this.coin100Quantity.innerText = `${vendingMachineCharge.coin100Quantity}개`;
-    this.coin50Quantity.innerText = `${vendingMachineCharge.coin50Quantity}개`;
-    this.coin10Quantity.innerText = `${vendingMachineCharge.coin10Quantity}개`;
+    this.coin500Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(500)]}개`;
+    this.coin100Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(100)]}개`;
+    this.coin50Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(50)]}개`;
+    this.coin10Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(10)]}개`;
   }
 }

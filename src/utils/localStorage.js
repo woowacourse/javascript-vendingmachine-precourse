@@ -10,10 +10,7 @@ export const getProducts = () => {
 
 const initialVendingMachineCharge = {
   amount: 0,
-  coin500Quantity: 0,
-  coin100Quantity: 0,
-  coin50Quantity: 0,
-  coin10Quantity: 0,
+  coinQuantity: [0, 0, 0, 0],
 };
 export const setVendingMachineCharge = (data) => setData('vending-machine-charge', data);
 export const getVendingMachineCharge = () => {
