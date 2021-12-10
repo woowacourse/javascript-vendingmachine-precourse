@@ -23,8 +23,11 @@ export class VendingMachineModel {
   }
 
   minusQuantity(productName) {
-    this.products.some((product) => {
+    this.products.some((product, index) => {
       if (product.productName === productName) {
+        if (Number(product.quantity) === 1) {
+          this.products.splice(index, 1);
+        }
         product.quantity--;
         localStorage.setItem('products', JSON.stringify(this.products));
         return true;
