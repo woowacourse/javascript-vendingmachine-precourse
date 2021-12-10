@@ -8,3 +8,8 @@ global.MissionUtils = {
         },
     },
 };
+global.localStorage = {
+    getItem() {
+        return 0;
+    },
+};
