@@ -21,7 +21,7 @@ export default class InventoryTap extends Tap {
             INPUT_ITEM.productQuantity,
         );
         this.$addButton = ButtonById(BUTTON.addProduct.title, BUTTON.addProduct.id);
-        this.$inventoryContainer = Table();
+        this.$inventoryContainer = document.createElement('tbody');
     }
 
     getAddButton() {
@@ -86,10 +86,20 @@ export default class InventoryTap extends Tap {
 
     createProductInventory() {
         const $wrap = document.createElement('div');
+        const $table = Table();
+        const $tHead = document.createElement('thead');
 
-        this.addRow(TABLE_TITLE.productName, TABLE_TITLE.productPrice, TABLE_TITLE.productQuantity);
+        $tHead.append(
+            InventoryRow(
+                TABLE_TITLE.productName,
+                TABLE_TITLE.productPrice,
+                TABLE_TITLE.productQuantity,
+            ),
+        );
+        $table.append($tHead);
+        $table.append(this.$inventoryContainer);
         $wrap.append(SubTitle(SUB_TITLE_TEXT.productInventory));
-        $wrap.append(this.$inventoryContainer);
+        $wrap.append($table);
         this.appendToApp($wrap);
     }
 
