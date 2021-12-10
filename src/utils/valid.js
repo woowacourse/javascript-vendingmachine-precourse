@@ -1,4 +1,5 @@
-import { ERROR, NUM } from '../constants/index.js';
+import { ERROR, LOCAL_DB, NUM } from '../constants/index.js';
+import { getLocalStorage } from './localStorage.js';
 
 const isProductNameEmpty = name => {
   return name.trim() === '';
@@ -35,6 +36,14 @@ export const isValidProductInput = (name, price, quantity) => {
 export const isValidChargeInput = amount => {
   if (!isValidCharge(amount)) {
     alert(ERROR.CHARGE_AMOUNT_IS_NOT_CORRECT);
+    return false;
+  }
+
+  return true;
+};
+
+export const isPurchaseAvailable = productPrice => {
+  if (getLocalStorage(LOCAL_DB.PURCHASE) < Number(productPrice)) {
     return false;
   }
 
