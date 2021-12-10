@@ -4,13 +4,8 @@ import { default as DB } from '../model/database.js';
 
 export default class ProductAddManager {
   constructor() {
-    this.checkLocalStorage();
     this.render();
     this.manage();
-  }
-
-  checkLocalStorage() {
-    DB.init('inventory');
   }
 
   render() {
