@@ -11,6 +11,11 @@ export const ERROR = {
   PRODUCT_QUANTITY_BLANK_SUBMIT: '상품수량은 빈칸으로 제출하실 수 없습니다.',
   PRODUCT_QUANTITY_INCLUDE_SPECIAL: '상품수량에 특수문자를 입력하실 수 없습니다.',
   PRODUCT_QUANTITY_NOT_POSIVITE_INT: '상품수량은 양의 정수 입력만 가능합니다.',
+
+  MACHINE_CHARGE_BLANK_SUBMIT: '충전할 금액을 빈칸으로 제출하실 수 없습니다.',
+  MACHINE_CHARGE_INCLUDE_SPECIAL: '충전할 금액에 특수문자를 입력하실 수 없습니다.',
+  MACHINE_CHARGE_UNDER_TEN: '충전할 금액은 10원 미만일 수 없습니다.',
+  MACHINE_CHARGE_NOT_TEN_MULTIPLE: '충전할 금액은 10의 배수만 입력 가능합니다.',
 };
 
 export const REGEX = {
