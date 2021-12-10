@@ -1,5 +1,6 @@
-import { ID } from '../../constants/index.js';
 import { $ } from '../../utils/selector.js';
+import { ID, LOCAL_DB } from '../../constants/index.js';
+import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
 import { purchaseInputTemplate } from '../../utils/template/purchaseTemplate.js';
 import { isValidChargeInput } from '../../utils/valid.js';
 
@@ -34,6 +35,15 @@ class PurchaseInput {
     if (!isValidChargeInput(amount)) {
       return;
     }
+
+    this.updateLocalStorage(amount);
+  }
+
+  updateLocalStorage(amount) {
+    const purchase = getLocalStorage(LOCAL_DB.PURCHASE);
+    purchase.push(amount);
+    const totalPurchase = purchase.reduce((a, b) => a + b, 0);
+    saveLocalStorage(LOCAL_DB.PURCHASE, [totalPurchase]);
   }
 }
 
