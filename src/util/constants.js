@@ -9,6 +9,7 @@ const ERROR_MESSAGE = Object.freeze({
     '상품 가격은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.',
   notEnoughMoney: '투입된 돈으로는 해당 제품을 구입하기에 부족합니다.',
   soldOut: '해당 제품은 매진되었습니다.',
+  noName: '상품명을 입력해주세요.'
 });
 
 const MINIMUM_PRICE = 100;

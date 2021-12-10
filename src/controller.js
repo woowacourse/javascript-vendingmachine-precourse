@@ -116,21 +116,24 @@ export default class VendingController {
   }
 
   checkProductAllThings(name, price, quantity) {
-      if (!this.checkName(name)) {
-        this.view.alertMessage(ERROR_MESSAGE.sameName);
-        return false;
-      }
-      if (!checkPrice(price)) {
-        this.view.alertMessage(ERROR_MESSAGE.basePrice);
-        return false;
-      }
-      if (quantity < ZERO) {
-        this.view.alertMessage(ERROR_MESSAGE.baseQuantity);
-        return false;
-      }
-      return true;
+    if (!name) {
+      this.view.alertMessage(ERROR_MESSAGE.noName);
+      return false;
     }
-
+    if (!this.checkName(name)) {
+      this.view.alertMessage(ERROR_MESSAGE.sameName);
+      return false;
+    }
+    if (!checkPrice(price)) {
+      this.view.alertMessage(ERROR_MESSAGE.basePrice);
+      return false;
+    }
+    if (!quantity || quantity < ZERO) {
+      this.view.alertMessage(ERROR_MESSAGE.baseQuantity);
+      return false;
+    }
+    return true;
+  }
 
   checkName(name) {
     return Object.keys(this.model.productObj).indexOf(name);
