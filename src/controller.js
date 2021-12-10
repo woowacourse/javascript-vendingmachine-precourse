@@ -20,6 +20,7 @@ export default class VendingController {
   loadData() {
     this.loadTab1Data();
     this.loadTab2Data();
+    this.loadTab3Data();
   }
 
   loadTab1Data() {
@@ -53,6 +54,16 @@ export default class VendingController {
         this.makeTableOfTab2();
       }
     }
+  }
+
+  loadTab3Data() {
+    this.model._insertedMoney = VendingModel.getLocalStorage('insertedMoney')
+      ? parseInt(VendingModel.getLocalStorage('insertedMoney'), 10)
+      : this.model._insertedMoney;
+    this.view.renderValueInSpot(
+      $.insertedAmount(),
+      `${this.model.insertedMoney}원`
+    );
   }
 
   switchTab(tab) {
@@ -201,6 +212,7 @@ export default class VendingController {
       return false;
     }
     this.model.insertedMoney += $.insertedMoney();
+    VendingModel.setLocalStorage('insertedMoney', this.model.insertedMoney);
     this.view.renderValueInSpot(
       $.insertedAmount(),
       `${this.model.insertedMoney}원`
