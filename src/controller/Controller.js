@@ -1,14 +1,20 @@
 import Coins from '../model/Coins.js';
+import Product from '../model/Product.js';
 import { DOM } from '../utils/constant.js';
 import Render from '../view/Render.js';
 import CheckEventTarget from './CheckEventTarget.js';
 
 export default class Controller {
   constructor() {
-    this.localStorageCoinsInfo = JSON.parse(localStorage.getItem('coinsInfo'));
-    this.coins = new Coins(this.localStorageCoinsInfo.coinAmount, this.localStorageCoinsInfo.coinsHash);
-    this.render = new Render(this.coins);
-    this.checkEventTarget = new CheckEventTarget(this.render, this.coins);
+    this.localStorageCoinsInformation = JSON.parse(localStorage.getItem('coinsInformation'));
+    this.localStorageProductsInformation = JSON.parse(localStorage.getItem('productsInformation'));
+    this.coins = new Coins(
+      this.localStorageCoinsInformation?.coinAmount || 0,
+      this.localStorageCoinsInformation?.coinsHash || { 500: 0, 100: 0, 50: 0, 10: 0 }
+    );
+    this.product = new Product(this.localStorageProductsInformation || []);
+    this.render = new Render(this.coins, this.product);
+    this.checkEventTarget = new CheckEventTarget(this.render, this.coins, this.product);
     this.$app = document.querySelector(DOM.$APP);
     this.main();
   }

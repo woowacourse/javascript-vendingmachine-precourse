@@ -1,19 +1,18 @@
-import GetLocalStorage from '../model/GetLocalStorage.js';
 import SetProductAdd from '../model/SetProductAdd.js';
 import { DOM } from '../utils/constant.js';
 import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
 
 export default class CheckEventTarget {
-  constructor(render, coins) {
+  constructor(render, coins, product) {
     this.render = render;
     this.coins = coins;
-    this.getLocalStorage = new GetLocalStorage();
+    this.product = product;
   }
 
   onClickProductAddButton = () => {
     const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
     $productAddButton.addEventListener('click', () => {
-      new SetProductAdd(this.render);
+      new SetProductAdd(this.render, this.product);
     });
   };
 

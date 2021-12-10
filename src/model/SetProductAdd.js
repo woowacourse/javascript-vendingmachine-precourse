@@ -1,22 +1,22 @@
 import ProductAdd from './ProductAdd.js';
 
 export default class SetProductAdd {
-  constructor(render) {
+  constructor(render, product) {
     this.render = render;
+    this.product = product;
     this.productAdd = new ProductAdd(this.render);
-    this.productName = '';
-    this.productPrice = 0;
-    this.productQuantity = 0;
 
     this.setProduct();
   }
 
   getProductInputs = () => {
-    [this.productName, this.productPrice, this.productQuantity] = this.productAdd.getInputs();
+    this.product.setInformation(this.productAdd.getInputs());
   };
 
-  renderProduct = () =>
-    this.render.productAddManageTableTemplate(this.productName, this.productPrice, this.productQuantity);
+  renderProduct = () => {
+    const [productName, productPrice, productQuantity] = this.product.getInformation();
+    this.render.productAddManageTableTemplate(productName, productPrice, productQuantity);
+  };
 
   setProduct = () => {
     if (!this.productAdd.isValidInputs()) {

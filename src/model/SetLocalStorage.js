@@ -1,17 +1,23 @@
 import { DOM } from '../utils/constant.js';
 
 export default class SetLocalStorage {
-  constructor(coins) {
+  constructor(coins, product) {
     this.coins = coins;
+    this.product = product;
   }
 
-  coinsInfo = () => {
-    const coinsInfoHash = {
+  productInformation = () => {
+    localStorage.setItem('productsInformation', JSON.stringify(this.product.productsInformation));
+    this.productAddMenu();
+  };
+
+  coinsInformation = () => {
+    const coinsInformationHash = {
       coinsHash: this.coins.totalCoinsHash,
       coinAmount: this.coins.totalCoinAmount,
     };
 
-    localStorage.setItem('coinsInfo', JSON.stringify(coinsInfoHash));
+    localStorage.setItem('coinsInformation', JSON.stringify(coinsInformationHash));
 
     this.vendingMachineManageMenu();
   };

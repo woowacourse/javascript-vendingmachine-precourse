@@ -1,7 +1,7 @@
 export default class Coins {
-  constructor(coinAmount = { 500: 0, 100: 0, 50: 0, 10: 0 }, coinsHash = 0) {
-    this.totalCoinsHash = coinsHash;
+  constructor(coinAmount, coinsHash) {
     this.totalCoinAmount = coinAmount;
+    this.totalCoinsHash = coinsHash;
   }
 
   getRandomCoin = () => MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
