@@ -8,7 +8,7 @@ export const addMenu = e => {
   const menuPrice = $('#product-price-input').value;
   const menuQuantity = $('#product-quantity-input').value;
   if (
-    checkBlank(menuName) ||
+    checkMenuName(menuName) ||
     checkMenuPrice(menuPrice) ||
     checkMenuQuantity(menuQuantity)
   ) {
@@ -25,6 +25,9 @@ export const addMenu = e => {
     localStorage.setItem('menu', JSON.stringify(menu));
     renderProductItems();
   }
+};
+export const checkMenuName = menuName => {
+  return checkBlank(menuName) || checkDuplication(menuName);
 };
 
 export const checkMenuPrice = menuPrice => {
@@ -46,6 +49,15 @@ export const checkMenuQuantity = menuQuantity => {
 export const checkBlank = inputValue => {
   return inputValue === '';
 };
+export const checkDuplication = inputValue => {
+  let items = JSON.parse(localStorage.getItem('menu'));
+  for (let item in items) {
+    if (items[item].name === inputValue) {
+      return true;
+    }
+  }
+};
+
 export const checkNotNum = inputValue => {
   const inputValueToArray = inputValue.split('');
   let checkNum = inputValueToArray.filter(x => NUM.includes(parseInt(x, 10)));

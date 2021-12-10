@@ -4,6 +4,7 @@ import { $ } from './util/dom.js';
 import { addMenu } from './addMenu.js';
 import { addChanges } from './changes.js';
 import { addMoney } from './money.js';
+import { purchaseItems } from './items.js';
 
 function App() {
   renderProductAddMenu();
@@ -14,6 +15,8 @@ function App() {
       renderVendingMachineManageMenu();
     } else if (e.target.id === 'product-purchase-menu') {
       renderProductPurchaseMenu();
+    } else if (e.target.classList.contains('purchase-button')) {
+      purchaseItems(e.target);
     }
   };
   const handleSubmit = e => {
