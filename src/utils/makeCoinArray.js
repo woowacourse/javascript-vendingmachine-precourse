@@ -17,13 +17,12 @@ export const getRandomCoinArray = amount => {
 
 export const getReturnCoinArray = amount => {
   const machineCoins = getLocalStorage(LOCAL_DB.COIN);
-  let returnCoinArray = [];
+  const returnCoinArray = [];
 
   machineCoins.forEach(coin => {
     let needCoinCount = Math.floor(amount / coin.name);
-    if (needCoinCount > coin.count) {
-      needCoinCount = coin.count;
-    }
+    needCoinCount = Math.min(needCoinCount, coin.count);
+
     amount -= coin.name * needCoinCount;
     returnCoinArray.push(needCoinCount);
   });
