@@ -11,6 +11,7 @@ import store from './storage/store.js';
 import renderNowProductInfo from './views/renderNowProductInfo.js';
 import getUserProductInfoInput from './modules/getUserProductInfoInput.js';
 import initProductAddInputElements from './views/initProductAddInputElements.js';
+import renderVendingMachineManageMenu from './views/renderVendingMachineManageMenu.js';
 
 export default function vendingMachine() {
   this.userTotalMoney;
@@ -41,7 +42,9 @@ export default function vendingMachine() {
       renderProductAddMenu();
       addUserProductAddEventListener();
     });
-    // $('#vending-machine-manage-menu').addEventListener('click', render)
+    $('#vending-machine-manage-menu').addEventListener('click', () => {
+      renderVendingMachineManageMenu();
+    });
     // $('#product-purchase-menu').addEventListener('click')
   };
 }
