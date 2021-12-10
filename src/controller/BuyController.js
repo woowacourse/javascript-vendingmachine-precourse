@@ -9,7 +9,12 @@ export class BuyController {
 
   loadTotalInsertedMoney() {
     const totalInsertedMoney = this.model.totalInsertedMoney;
+    const products = this.model.products;
     this.coreView.buyView.showTotalInsertedMoney(totalInsertedMoney);
+    if (products.length === 0) {
+      return;
+    }
+    this.coreView.buyView.showProductForBuy(products);
   }
 
   triggerEvent() {

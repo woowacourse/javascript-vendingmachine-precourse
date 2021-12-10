@@ -77,7 +77,7 @@ export const BUY_SECTION_TEMPLATE = `
   </form>
   <div>투입한 금액: <span id="charge-amount"></span></div>
   <h3>구매할 수 있는 상품 현황</h3>
-  <table>
+  <table id="product-purchase-table">
     <tr class="product-purchase-item">
       <td class="product-purchase-name">상품명</td>
       <td class="product-purchase-price">가격</td>
@@ -110,3 +110,23 @@ export const BUY_SECTION_TEMPLATE = `
     </tr>
   </table>
 `;
+
+export const PRODUCT_BUY_TEMPLATE = `
+  <tr class="product-purchase-item">
+    <td class="product-purchase-name">상품명</td>
+    <td class="product-purchase-price">가격</td>
+    <td class="product-purchase-quantity">수량</td>
+    <td class="purchase-button">구매</td>
+  </tr>
+`;
+
+export function printProductForBuyTemplate(product) {
+  return `
+    <tr class="product-purchase-item">
+      <td class="product-purchase-name">${product.productName}</td>
+      <td class="product-purchase-price">${product.price}</td>
+      <td class="product-purchase-quantity">${product.quantity}</td>
+      <td class="purchase-button"><button>구매하기</button></td>
+    </tr>
+`;
+}
