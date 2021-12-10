@@ -41,9 +41,7 @@ class PurchaseInput {
 
   updateLocalStorage(amount) {
     const purchase = getLocalStorage(LOCAL_DB.PURCHASE);
-    purchase.push(amount);
-    const totalPurchase = purchase.reduce((a, b) => a + b, 0);
-    saveLocalStorage(LOCAL_DB.PURCHASE, [totalPurchase]);
+    saveLocalStorage(LOCAL_DB.PURCHASE, Number(purchase + amount));
   }
 }
 
