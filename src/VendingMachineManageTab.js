@@ -39,7 +39,7 @@ export default class VendingMachineManageTab {
   generateCoinsRandomly(amount) {
     let leftMoney = amount;
     const coinQuantity = [0, 0, 0, 0];
-    while (leftMoney) {
+    while (leftMoney > 0) {
       const randomCoin = MissionUtils.Random.pickNumberInList(coinList);
       if (randomCoin <= leftMoney) {
         leftMoney -= randomCoin;
