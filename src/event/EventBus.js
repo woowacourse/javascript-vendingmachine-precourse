@@ -1,4 +1,4 @@
-import { $all, $closest, generateKey } from './helper.js';
+import { $all, $closest, generateKey } from '../common/helper.js';
 
 class EventBus {
   constructor() {

@@ -1,6 +1,6 @@
 import { $ } from '../../common/helper.js';
 import Storage from '../../storage/Storage.js';
-import EventBus from '../../common/EventBus.js';
+import EventBus from '../../event/EventBus.js';
 
 export default class Component {
   constructor(selector, props) {
