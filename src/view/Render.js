@@ -18,6 +18,13 @@ export default class Render {
     $vendingMachineSection.innerHTML = template;
   };
 
+  productPurchaseStatusTemplate = (template) => {
+    const $productPurchaseMenuTbody = document.querySelector(DOM.$PRODUCT_PURCHASE_MENU_TBODY);
+    const $tr = document.createElement(DOM.$TR);
+    $tr.innerHTML = template;
+    $productPurchaseMenuTbody.appendChild($tr);
+  };
+
   productPurchaseMenuTemplate = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
     $vendingMachineSection.innerHTML = TEMPLATE.PRODUCT_PURCHASE_MENU;

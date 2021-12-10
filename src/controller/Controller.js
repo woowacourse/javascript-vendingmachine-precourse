@@ -1,5 +1,6 @@
 import Coins from '../model/Coins.js';
 import Product from '../model/Product.js';
+import VendingMachine from '../model/VendingMachine.js';
 import { DOM, LOCAL_STORAGE, EVENT } from '../utils/constant.js';
 import Render from '../view/Render.js';
 import CheckEventTarget from './CheckEventTarget.js';
@@ -14,7 +15,8 @@ export default class Controller {
     );
     this.product = new Product(this.localStorageProductsInformation || []);
     this.render = new Render(this.coins, this.product);
-    this.checkEventTarget = new CheckEventTarget(this.render, this.coins, this.product);
+    this.vendingMachine = new VendingMachine(this.coins, this.product);
+    this.checkEventTarget = new CheckEventTarget(this.render, this.coins, this.product, this.vendingMachine);
     this.$app = document.querySelector(DOM.$APP);
     this.main();
   }

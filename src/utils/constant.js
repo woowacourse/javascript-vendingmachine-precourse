@@ -4,6 +4,7 @@ export const DOM = {
   $PRODUCT_MANAGE_ITEM: 'product-manage-item',
   $PRODUCT_ADD_MENU: '#product-add-menu',
   $PRODUCT_PURCHASE_MENU: '#product-purchase-menu',
+  $PRODUCT_PURCHASE_MENU_TBODY: '#product-purchase-menu-tbody',
   $PRODUCT_NAME_INPUT: '#product-name-input',
   $PRODUCT_PRICE_INPUT: '#product-price-input',
   $PRODUCT_QUANTITY_INPUT: '#product-quantity-input',
@@ -151,18 +152,9 @@ export const TEMPLATE = {
           <th>구매</th>
         </tr>
       </thead>
-      <tbody id="product-purchase-menu-tbody">
-        <tr>
-          <td>콜라</td>
-          <td>1500</td>
-          <td>19</td>
-          <td>
-            <button>구매하기</button>
-          </td>
-        </tr>
-      </tbody>
+      <tbody id="product-purchase-menu-tbody"></tbody>
     </table>
-    <br /><br />
+    <br /><br /><br />
     <h3>잔돈</h3>
     <button id="coin-return-button">반환하기</button>
     <table id="product-purchase-change-table">
@@ -192,4 +184,14 @@ export const TEMPLATE = {
       </tbody>
     </table>
   `,
+  PRODUCT_PURCHASE_STATUS(productName, productPrice, productQuantity) {
+    return `
+      <td class="product-purchase-name">${productName}</td>
+      <td class="product-purchase-price">${productPrice}</td>
+      <td class="product-purchase-quantity">${productQuantity}</td>
+      <td>
+        <button class="purchase-button">구매하기</button>
+      </td>
+    `;
+  },
 };

@@ -1,12 +1,13 @@
 import SetProductAdd from '../model/SetProductAdd.js';
-import { DOM, LOCAL_STORAGE, EVENT } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE } from '../utils/constant.js';
 import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
 
 export default class CheckEventTarget {
-  constructor(render, coins, product) {
+  constructor(render, coins, product, vendingMachine) {
     this.render = render;
     this.coins = coins;
     this.product = product;
+    this.vendingMachine = vendingMachine;
   }
 
   onClickProductAddButton = () => {
@@ -61,8 +62,19 @@ export default class CheckEventTarget {
     }
   };
 
+  renderProductStatus = () => {
+    const productsStatus = this.vendingMachine.getCurrentProductStatus();
+    productsStatus.forEach((productStatus) => {
+      const [productName, productPrice, productQuantity] = productStatus;
+      this.render.productPurchaseStatusTemplate(
+        TEMPLATE.PRODUCT_PURCHASE_STATUS(productName, productPrice, productQuantity)
+      );
+    });
+  };
+
   hasProductPurchaseMenuTemplate = () => {
     this.render.productPurchaseMenuTemplate();
+    this.renderProductStatus();
   };
 
   isProductPurchaseMenu = (eventTarget, $productPurchaseMenu) => {
