@@ -15,7 +15,7 @@ const Content = ({ component, tabData }) => {
       return purchaseMenu(tabData);
     }
     default:
-      return '';
+      return '<p>404 NOT FOUND!</p>';
   }
 };
 
