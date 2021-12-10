@@ -1,4 +1,4 @@
-import { getCoins } from './money.js';
+import { getCoins } from './changes.js';
 import { $ } from './util/dom.js';
 import { COINS, COINS_PRICE } from './constant/constant.js';
 
@@ -17,7 +17,10 @@ export const renderVendingMachineManageMenu = () => {
 };
 export const renderProductPurchaseMenu = () => {
   renderCommonPart();
+  renderInputMoneyForm();
+  renderInputedMoneyAmount();
 };
+
 export const renderCommonPart = () => {
   $('#app').innerHTML = '';
   renderTitle();
@@ -56,7 +59,7 @@ export const renderAddProductForm = () => {
 export const renderChargeChangesForm = () => {
   const template = () => {
     return `
-      <h2>상품 추가하기</h2>
+      <h2>자판기 동전 충전하기</h2>
       <form id='vending-machine-charge-form'>
         <input placeholder='자판기가 보유할 금액' id='vending-machine-charge-input'></input>
         <button type='submit' id='vending-machine-charge-button'>충전하기</button>
@@ -67,8 +70,8 @@ export const renderChargeChangesForm = () => {
 };
 export const renderChargeChangetAmount = () => {
   let chargedMoney = 0;
-  if (JSON.parse(localStorage.getItem('money')) !== null) {
-    chargedMoney = parseInt(JSON.parse(localStorage.getItem('money')), 10);
+  if (JSON.parse(localStorage.getItem('changes')) !== null) {
+    chargedMoney = parseInt(JSON.parse(localStorage.getItem('changes')), 10);
   }
   const template = () => {
     return `
@@ -96,7 +99,7 @@ export const renderCoinTable = () => {
 };
 export const renderMoney = () => {
   const money = $('#vending-machine-charge-input').value;
-  const localStorageValue = JSON.parse(localStorage.getItem('money'));
+  const localStorageValue = JSON.parse(localStorage.getItem('changes'));
   let chargedMoney = 0;
   if (localStorageValue !== null) {
     chargedMoney = parseInt(localStorageValue, 10);
@@ -159,4 +162,28 @@ export const renderProductItems = () => {
     });
     $('.item-table-body').innerHTML = template.join('');
   }
+};
+export const renderInputMoneyForm = () => {
+  const template = () => {
+    return `
+      <h2>금액 투입</h2>
+      <form id='charge-form'>
+        <input placeholder='투입할 금액' id='charge-input'></input>
+        <button type='submit' id='charge-button'>투입하기</button>
+      </form>
+    `;
+  };
+  $('#app').innerHTML += template();
+};
+export const renderInputedMoneyAmount = () => {
+  let InputedMoney = 0;
+  if (JSON.parse(localStorage.getItem('money')) !== null) {
+    InputedMoney = parseInt(JSON.parse(localStorage.getItem('money')), 10);
+  }
+  const template = () => {
+    return `
+      <p id='charge-amount'>투입한 금액: ${InputedMoney}원</p>
+    `;
+  };
+  $('#app').innerHTML += template();
 };
