@@ -1,4 +1,5 @@
 import ProductAddTabView from './views/ProductAddTabView.js';
+import { getData, setData } from './utils/localStorage.js';
 
 export default class ProductAddTab {
   constructor() {
@@ -7,5 +8,27 @@ export default class ProductAddTab {
 
   initialize() {
     this.view.render();
+    this.products = getData('products');
+    this.setButtonClickEvent();
+    console.log(this.products);
+  }
+
+  setButtonClickEvent() {
+    const productAddButton = document.querySelector('#product-add-button');
+    productAddButton.addEventListener('click', this.onClickProductAddButton.bind(this));
+  }
+
+  onClickProductAddButton(e) {
+    e.preventDefault();
+    const productNameInput = document.querySelector('#product-name-input');
+    const productPriceInput = document.querySelector('#product-price-input');
+    const productQuantityInput = document.querySelector('#product-quantity-input');
+    this.products.push({
+      name: productNameInput.value,
+      price: productPriceInput.value,
+      quantity: productQuantityInput.value,
+    });
+    setData('products', this.products);
+    console.log(getData('products'));
   }
 }
