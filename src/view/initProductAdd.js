@@ -30,7 +30,7 @@ function renderProductAddList($productAdd) {
 
   $listContainer.innerHTML = `
     <h3>${PRODUCT_LIST_TITLE}</h3>
-    <table id="${PRODUCT_LIST_TABLE_ID}" bgcolor="black" width="350" height="40">
+    <table id="${PRODUCT_LIST_TABLE_ID}" bgcolor="black" width="380" height="40">
       <tr align="center" bgcolor="white">
         <td align="center">${PRODUCT_NAME_TITLE}</td>
         <td align="center">${PRODUCT_PRICE_TITLE}</td>
