@@ -43,7 +43,7 @@ export default class VendingController {
       : this.model._chargedMoney;
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
-      this.model.chargedMoney
+      `${this.model.chargedMoney}원`
     );
     this.model._coinObj = JSON.parse(VendingModel.getLocalStorage('tab2'))
       ? JSON.parse(VendingModel.getLocalStorage('tab2'))
@@ -121,7 +121,7 @@ export default class VendingController {
     this.saveSumCoin(money);
     this.view.renderValueInSpot(
       $.vendingMachineChargeAmount(),
-      this.model.chargedMoney
+      `${this.model.chargedMoney}원`
     );
     this.saveRandomCoin(money);
     this.makeTableOfTab2();
@@ -194,13 +194,22 @@ export default class VendingController {
   // 금액 충전
   insertMoney(e) {
     e.preventDefault();
-    if ($.insertedMoney() < 0) {
+    if (!this.checkInsertedMoney($.insertedMoney())) {
       this.view.alertMessage(
-        '충전할 잔돈은 0원 이상이어야 합니다. 다시 입력해주세요.'
+        '상품 가격은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
       );
       return false;
     }
     this.model.insertedMoney += $.insertedMoney();
-    this.view.renderValueInSpot($.insertedAmount(), this.model.insertedMoney);
+    this.view.renderValueInSpot(
+      $.insertedAmount(),
+      `${this.model.insertedMoney}원`
+    );
+  }
+
+  checkInsertedMoney(money) {
+    if (money < 0) return false;
+    if (money % 10 !== 0) return false;
+    return true;
   }
 }
