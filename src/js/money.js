@@ -21,7 +21,7 @@ export const getCoins = () => {
   money -= oneHundredCoins * 100;
   const fiftyCoins = getRandomCoin(parseInt(money / 50, 10));
   money -= fiftyCoins * 50;
-  const tenCoins = getRandomCoin(parseInt(money / 10, 10));
+  const tenCoins = parseInt(money / 10, 10);
   setCoins(fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins);
 };
 

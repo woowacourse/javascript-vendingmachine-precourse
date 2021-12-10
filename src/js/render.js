@@ -126,7 +126,6 @@ export const renderCoinsItems = () => {
     $('.item-table-body').innerHTML += template();
   }
 };
-
 export const renderProductItemsTable = () => {
   const template = () => {
     return `
