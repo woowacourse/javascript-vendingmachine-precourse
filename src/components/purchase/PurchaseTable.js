@@ -39,13 +39,21 @@ class PurchaseTable {
     }
 
     this.updateProductStorage(productName);
+    this.updatePurchaseStorage(productPrice);
   }
 
   updateProductStorage(productName) {
     const products = getLocalStorage(LOCAL_DB.PRODUCT);
     const index = products.findIndex(({ name }) => name === productName);
     products[index].quantity--;
+
     saveLocalStorage(LOCAL_DB.PRODUCT, products);
+  }
+
+  updatePurchaseStorage(productPrice) {
+    const purchase = getLocalStorage(LOCAL_DB.PURCHASE);
+
+    saveLocalStorage(LOCAL_DB.PURCHASE, purchase - Number(productPrice));
   }
 }
 
