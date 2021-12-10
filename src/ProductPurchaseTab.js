@@ -1,5 +1,7 @@
 import ProductPurchaseTabView from './views/ProductPurchaseTabView.js';
-import { getCharge, getProducts, setCharge, setProducts } from './utils/localStorage.js';
+import { getCharge, getProducts, getVendingMachineCharge, setCharge, setProducts, setVendingMachineCharge } from './utils/localStorage.js';
+import { coinIndex } from './utils/index.js';
+import { coinList } from './constants/index.js';
 
 export default class ProductPurchaseTab {
   constructor() {
@@ -9,6 +11,7 @@ export default class ProductPurchaseTab {
   initialize() {
     this.charge = getCharge();
     this.products = getProducts();
+    this.vendingMachineCharge = getVendingMachineCharge();
     this.view.render(this.charge, this.products);
     this.initInputElements();
     this.setButtonClickEvent();
@@ -22,6 +25,7 @@ export default class ProductPurchaseTab {
     const chargeButton = document.querySelector('#charge-button');
     chargeButton.addEventListener('click', this.onClickChargeButton.bind(this));
     this.setPurchaseButtonClickEvent();
+    this.setCoinReturnButtonClickEvent();
   }
 
   setPurchaseButtonClickEvent() {
@@ -29,6 +33,11 @@ export default class ProductPurchaseTab {
     purchaseButtons.forEach((button) => {
       button.addEventListener('click', this.onClickPurchaseButton.bind(this));
     });
+  }
+
+  setCoinReturnButtonClickEvent() {
+    const coinReturnButton = document.querySelector('#coin-return-button');
+    coinReturnButton.addEventListener('click', this.onClickCoinReturnButton.bind(this));
   }
 
   onClickChargeButton(e) {
@@ -45,19 +54,54 @@ export default class ProductPurchaseTab {
     const productIndex = this.products.findIndex((product) => product.name === productName);
     if ( this.charge < productPrice ) return;
     this.charge -= productPrice;
-    this.products[productIndex] = { ...this.products[productIndex], quantity: productQuantity - 1,  };
+    this.products[productIndex] = { ...this.products[productIndex], quantity: productQuantity - 1 };
     setCharge(this.charge);
     setProducts(this.products);
     this.updateViewOnPurchase();
   }
 
+  onClickCoinReturnButton() {
+    const { amount, coinQuantity } = this.getAmountAndCoinQuantityToBeReturned();
+    this.charge -= amount;
+    this.vendingMachineCharge.amount -= amount;
+    this.vendingMachineCharge.coinQuantity = coinQuantity.map((quantity, index) => this.vendingMachineCharge.coinQuantity[index] - quantity);
+    setCharge(this.charge);
+    setVendingMachineCharge(this.vendingMachineCharge);
+    this.updateViewOnReturnCoin(coinQuantity);
+  }
+
   updateViewOnPurchase() {
     this.view.updateChargeAmount(this.charge);
-    this.view.updateTable(this.products);
+    this.view.updatePurchaseTable(this.products);
     this.setPurchaseButtonClickEvent();
+  }
+
+  updateViewOnReturnCoin(coinQuantity) {
+    this.view.updateChargeAmount(this.charge);
+    this.view.updateCoinReturnTable(coinQuantity);
   }
 
   clearInputValue() {
     this.chargeInput.value = '';
   }
+
+  getAmountAndCoinQuantityToBeReturned() {
+    if (this.charge >= this.vendingMachineCharge.amount) 
+      return this.vendingMachineCharge;
+    let leftCharge = this.charge;
+    const coinQuantity = [0, 0, 0, 0];
+    coinList.forEach((coin) => {
+      coinQuantity[coinIndex(coin)] = this.getCoinQuantityToBeReturned(coin, leftCharge);
+      leftCharge -= coin * coinQuantity[coinIndex(coin)];
+    })
+    return { amount: this.charge - leftCharge, coinQuantity };
+  }
+
+  getCoinQuantityToBeReturned(typeOfCoin, leftCharge) {
+    const vendingMachineCoinQuantity = this.vendingMachineCharge.coinQuantity[coinIndex(typeOfCoin)];
+    const maxOfCoinQuantityToBeReturned = Math.floor(leftCharge / typeOfCoin);
+    if (maxOfCoinQuantityToBeReturned > vendingMachineCoinQuantity) return vendingMachineCoinQuantity;
+    return maxOfCoinQuantityToBeReturned;
+  }     
+
 }
