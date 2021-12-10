@@ -14,8 +14,16 @@ function isValidPrice(price) {
   return isAbove100(price) && isMultipleOf10(price);
 }
 
+function isAboveZero(quantity) {
+  return +quantity > 0;
+}
+
 export default class Validator {
   static isValidAddInput({ name, price, quantity }) {
-    return isNotEmptyName(name) && isValidPrice(price);
+    return (
+      isNotEmptyName(name)
+      && isValidPrice(price)
+      && isAboveZero(quantity)
+    );
   }
 }
