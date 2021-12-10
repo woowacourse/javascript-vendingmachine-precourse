@@ -24,5 +24,6 @@ export default class Purchase {
 
     putAmount(inputAmount) {
         setInputAmount(getInputAmount() + inputAmount);
+        this.purchaseTap.setInputAmount(getInputAmount());
     }
 }

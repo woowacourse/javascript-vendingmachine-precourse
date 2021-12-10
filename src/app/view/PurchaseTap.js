@@ -13,6 +13,7 @@ import GUIDE from '../asset/constants/GUIDE.js';
 import Tap from './Tap.js';
 import PurchaseHeadRow from '../asset/components/Row/PurchaseHeadRow.js';
 import CoinTableForm from '../asset/components/CoinTableForm/index.js';
+import UNIT from '../asset/constants/UNIT.js';
 
 export default class PurchaseTap extends Tap {
     constructor($skeleton) {
@@ -44,6 +45,10 @@ export default class PurchaseTap extends Tap {
         this.createInputCoinForm();
         this.createPurchaseForm();
         this.createChangeCoinsForm();
+    }
+
+    setInputAmount(inputAmount) {
+        this.$inputAmount.innerText = `${inputAmount}${UNIT.amount}`;
     }
 
     createInputCoinForm() {
