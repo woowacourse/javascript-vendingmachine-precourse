@@ -1,4 +1,6 @@
-import { TAB, DOM } from '../lib/constants.js';
+import { TAB, DOM, PLAIN_TEXT } from '../lib/constants.js';
+import { $ } from '../lib/utils.js';
+import { PRODUCT_LIST_TABLE_HEADER_TEMPLATE } from '../template/constants.js';
 
 /** View */
 class VendingMachineView {
@@ -45,7 +47,7 @@ class VendingMachineView {
 
   /** h3, input들 만드는거 함수로 분리 */
   generateProductAddSectionTemplate(inputsValue) {
-    return `<h3>상품 추가하기</h3><form id="${DOM.PRODUCT_INFORMATION_INPUT_FORM}">
+    return `<h3>상품 추가하기</h3><form id="${DOM.PRODUCT_ADD_FORM}">
   <input id="${DOM.PRODUCT_NAME_INPUT}" placeholder="상품명" value="${
       inputsValue[DOM.PRODUCT_NAME_INPUT]
     }"></input>
@@ -64,15 +66,13 @@ class VendingMachineView {
   /** tr 만들어 내는 거 함수로 분리해보자 */
   generateProductListSectionTemplate(productList) {
     return `<h3>상품 현황</h3>
-    <table>
-      <tr>
-        <td>상품명</td><td>가격</td><td>수량</td>
-      </tr>
+    <table id="${DOM.PRODUCT_LIST_TABLE}">
+      ${PRODUCT_LIST_TABLE_HEADER_TEMPLATE}
       ${productList
         .map(
           (product) => `
         <tr>
-          <td>${product.name}</td><td>${product.price}</td><td>${product.count}</td>
+          <td>${product.name}</td><td>${product.price}</td><td>${product.quantity}</td>
         </tr>
       `
         )
@@ -190,6 +190,22 @@ class VendingMachineView {
         <td></td>
       </tr>
     </table>`;
+  }
+
+  renderProductAdd(productList) {
+    $(DOM.PRODUCT_NAME_INPUT).value = PLAIN_TEXT;
+    $(DOM.PRODUCT_PRICE_INPUT).value = PLAIN_TEXT;
+    $(DOM.PRODUCT_QUANTITY_INPUT).value = PLAIN_TEXT;
+    $(DOM.PRODUCT_LIST_TABLE).innerHTML = `${PRODUCT_LIST_TABLE_HEADER_TEMPLATE}
+  ${productList
+    .map(
+      (product) => `
+    <tr>
+      <td>${product.name}</td><td>${product.price}</td><td>${product.quantity}</td>
+    </tr>
+  `
+    )
+    .join('')}`;
   }
 }
 export default VendingMachineView;
