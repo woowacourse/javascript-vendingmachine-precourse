@@ -21,6 +21,8 @@ export const renderProductPurchaseMenu = () => {
   renderInputedMoneyAmount();
   renderPurchableProductItemsTable();
   renderPurchableProductItems();
+  renderChangesTable();
+  renderChangesItems();
 };
 
 export const renderCommonPart = () => {
@@ -234,5 +236,41 @@ export const renderPurchableProductItems = () => {
       `;
     });
     $('.item-table-body').innerHTML = template.join('');
+  }
+};
+export const renderChangesTable = () => {
+  const template = () => {
+    return `
+      <h2>잔돈</h2>
+      <button id='coin-return-button'>반환하기</button>
+      <table class='coin-table'>
+        <thead class='coin-table-head'>
+          <tr>
+            <th class='product-items-header'>동전</th>
+            <th class='product-items-header'>개수</th>
+          </tr>
+        </thead>
+        <tbody class='coin-table-body'></tbody>
+      </table>
+    `;
+  };
+  $('#app').innerHTML += template();
+};
+export const renderChangesItems = () => {
+  $('.coin-table-body').innerHTML = '';
+  for (let i = 0; i < COINS.length; i++) {
+    let coinNum = localStorage.getItem(`${COINS[i]}`);
+    if (coinNum === null) {
+      coinNum = 0;
+    }
+    const template = () => {
+      return `
+        <tr class='product-manage-item'>
+          <td class='product-items-header' id='coin-name'>${COINS_PRICE[i]}</td>
+          <td class='product-items-header' id='coin-${COINS_PRICE[i]}-quantity'>${coinNum}개</td>
+        </tr>
+      `;
+    };
+    $('.coin-table-body').innerHTML += template();
   }
 };
