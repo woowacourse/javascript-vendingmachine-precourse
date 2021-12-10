@@ -5,9 +5,10 @@ import CheckEventTarget from './CheckEventTarget.js';
 
 export default class Controller {
   constructor() {
-    this.render = new Render();
-    this.coin = new Coins();
-    this.checkEventTarget = new CheckEventTarget(this.render, this.coin);
+    this.localStorageCoinsInfo = JSON.parse(localStorage.getItem('coinsInfo'));
+    this.coins = new Coins(this.localStorageCoinsInfo.coinAmount, this.localStorageCoinsInfo.coinsHash);
+    this.render = new Render(this.coins);
+    this.checkEventTarget = new CheckEventTarget(this.render, this.coins);
     this.$app = document.querySelector(DOM.$APP);
     this.main();
   }

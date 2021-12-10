@@ -2,9 +2,10 @@ import SetLocalStorage from '../model/SetLocalStorage.js';
 import { TEMPLATE, DOM } from '../utils/constant.js';
 
 export default class Render {
-  constructor() {
+  constructor(coins) {
+    this.coins = coins;
+    this.setLocalStorage = new SetLocalStorage(this.coins);
     this.$app = document.querySelector(DOM.$APP);
-    this.setLocalStorage = new SetLocalStorage();
   }
 
   inputFocus = ($element) => $element.focus();
@@ -29,7 +30,7 @@ export default class Render {
     const $vendingMachineCoin500Quantity = document.querySelector(DOM.$VENDING_MACHINE_COIN_500_QUANTITY);
     $vendingMachineCoin500Quantity.textContent = coin500 + '개';
 
-    this.setLocalStorage.vendingMachineManageMenu();
+    this.setLocalStorage.coinsInfo();
   };
 
   vendingMachineChargeAmountTemplate = (vendingMachineChargeAmount) => {
