@@ -36,7 +36,8 @@ class ReturnCoinTable {
   clickButton() {
     let amount = getLocalStorage(LOCAL_DB.PURCHASE);
     this.returnCoin = getReturnCoinArray(amount);
-    console.log(this.returnCoin);
+
+    this.addTemplate();
   }
 }
 

@@ -43,6 +43,13 @@ export const CLASS = {
   PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
 };
 
+export const RETURN_COIN_QUANTITY_ID = [
+  'coin-500-quantity',
+  'coin-100-quantity',
+  'coin-50-quantity',
+  'coin-10-quantity',
+];
+
 export const NUM = {
   PRICE_MIN_UNIT: 10,
   PRICE_MIN_COUNT: 100,

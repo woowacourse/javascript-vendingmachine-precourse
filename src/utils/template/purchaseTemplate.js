@@ -1,4 +1,10 @@
-import { CLASS, COIN_LIST, ID, LOCAL_DB } from '../../constants/index.js';
+import {
+  CLASS,
+  COIN_LIST,
+  ID,
+  LOCAL_DB,
+  RETURN_COIN_QUANTITY_ID,
+} from '../../constants/index.js';
 import { getLocalStorage } from '../localStorage.js';
 
 export const purchaseInputTemplate = () => {
@@ -86,7 +92,7 @@ const returnCoinTableRows = list => {
     html += `
       <tr>
         <td>${COIN_LIST[i]}원</td>
-        <td>${coin}개</td> 
+        <td id=${RETURN_COIN_QUANTITY_ID[i]}>${coin}개</td> 
       </tr>
     `;
   });
