@@ -4,8 +4,15 @@ import {
   PRODUCT_NAME_INPUT_ID,
   PRODUCT_PRICE_INPUT_ID,
   PRODUCT_QUANTITY_INPUT_ID,
+  PRODUCT_LIST_TABLE_ID,
 } from '../view/initProductAdd.js';
 import clearInput from '../view/clearInput.js';
+
+function renderProduct(product) {
+  const $table = $(`#${PRODUCT_LIST_TABLE_ID}`);
+
+  product.render($table);
+}
 
 function onAdd(vendingMachine) {
   const product = {
@@ -13,9 +20,11 @@ function onAdd(vendingMachine) {
     price: $(`#${PRODUCT_PRICE_INPUT_ID}`).value,
     quantity: $(`#${PRODUCT_QUANTITY_INPUT_ID}`).value,
   };
-
-  vendingMachine.addProduct(product);
-  clearInput();
+  const addedProduct = vendingMachine.addProduct(product);
+  if (addedProduct) {
+    clearInput();
+    renderProduct(addedProduct);
+  }
 }
 
 export default function addProductHandler(vendingMachine) {
