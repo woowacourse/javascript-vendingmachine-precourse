@@ -1,11 +1,11 @@
 import Cell from './index.js';
 
 const CellById = (content, id) => {
-    const ret = Cell(content);
+    const $ret = Cell(content);
 
-    ret.id = id;
+    $ret.id = id;
 
-    return ret;
+    return $ret;
 };
 
 export default CellById;

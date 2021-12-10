@@ -2,12 +2,12 @@ import Row from './index.js';
 import Cell from '../Cell/index.js';
 
 const CoinRow = (coinValue, cell) => {
-    const ret = Row();
+    const $ret = Row();
 
-    ret.append(Cell(coinValue));
-    ret.append(cell);
+    $ret.append(Cell(coinValue));
+    $ret.append(cell);
 
-    return ret;
+    return $ret;
 };
 
 export default CoinRow;

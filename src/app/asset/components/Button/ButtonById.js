@@ -1,11 +1,11 @@
 import Button from './index.js';
 
 const ButtonById = (title, id) => {
-    const ret = Button(title);
+    const $ret = Button(title);
 
-    ret.id = id;
+    $ret.id = id;
 
-    return ret;
+    return $ret;
 };
 
 export default ButtonById;

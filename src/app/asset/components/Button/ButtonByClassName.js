@@ -1,11 +1,11 @@
 import Button from './index.js';
 
 const ButtonByClassName = (title, className) => {
-    const ret = Button(title);
+    const $ret = Button(title);
 
-    ret.className = className;
+    $ret.className = className;
 
-    return ret;
+    return $ret;
 };
 
 export default ButtonByClassName;

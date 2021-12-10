@@ -1,9 +1,9 @@
 const Button = (title) => {
-    const ret = document.createElement('button');
+    const $ret = document.createElement('button');
 
-    ret.innerText = title;
+    $ret.innerText = title;
 
-    return ret;
+    return $ret;
 };
 
 export default Button;

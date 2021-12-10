@@ -1,11 +1,11 @@
 import Style from './Style.js';
 
 const Table = () => {
-    const ret = document.createElement('table');
+    const $ret = document.createElement('table');
 
-    ret.style = Style.index;
+    $ret.style = Style.index;
 
-    return ret;
+    return $ret;
 };
 
 export default Table;

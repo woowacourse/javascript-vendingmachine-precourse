@@ -1,12 +1,12 @@
 import Style from './Style.js';
 
 const Cell = (content) => {
-    const ret = document.createElement('td');
+    const $ret = document.createElement('td');
 
-    ret.innerText = content;
-    ret.style = Style.index;
+    $ret.innerText = content;
+    $ret.style = Style.index;
 
-    return ret;
+    return $ret;
 };
 
 export default Cell;

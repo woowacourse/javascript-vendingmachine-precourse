@@ -1,11 +1,11 @@
 import Row from './index.js';
 
 const RowByClassName = (className) => {
-    const ret = Row();
+    const $ret = Row();
 
-    ret.className = className;
+    $ret.className = className;
 
-    return ret;
+    return $ret;
 };
 
 export default RowByClassName;
