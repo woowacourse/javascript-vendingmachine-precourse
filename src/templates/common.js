@@ -1,4 +1,5 @@
 import SELECTOR from '../constants/selector.js';
+import STYLE from '../constants/style.js';
 import { TAB_BUTTONS } from '../constants/element.js';
 
 const createTabButtonTemplate = (text, id) => `
@@ -20,5 +21,5 @@ export const createTabContentContainerTemplate = () => `
 `;
 
 export const createTheadTableDataTemplate = text => `
-  <td style="border: 1px solid black;padding: 10px 50px;font-weight:bold;text-align: center;">${text}</td>
+  <td style="${STYLE.tableHeadData}">${text}</td>
 `;

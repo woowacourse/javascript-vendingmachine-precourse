@@ -1,4 +1,5 @@
 import SELECTOR from '../constants/selector.js';
+import STYLE from '../constants/style.js';
 import { PRODUCT_ADD_TAB } from '../constants/element.js';
 import { createTheadTableDataTemplate } from './common.js';
 
@@ -7,7 +8,7 @@ export const createTitleTemplate = () => `
 `;
 
 const createTbodyTableDataTemplate = (text, id) => `
-  <td id="${id}" style="border: 1px solid black;padding: 10px 50px;">${text}</td>
+  <td id="${id}" style="${STYLE.tableBodyData}">${text}</td>
 `;
 
 const createProductItemTemplate = (name, price, quantity) => `
@@ -30,7 +31,7 @@ export const createProductAddFormTemplate = () => `
 
 export const createProductTableTemplate = () => `
   <h3>상품 현황</h3>
-  <table style="border: 1px solid black;border-collapse: collapse;">
+  <table style="${STYLE.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('상품명')}
@@ -39,7 +40,7 @@ export const createProductTableTemplate = () => `
       </tr>
     </thead>
     <tbody>
-      ${createProductItemTemplate()}
+      ${createProductItemTemplate(0, 0, 0)}
     </tbody>
   </table>
 `;

@@ -1,13 +1,14 @@
 import SELECTOR from '../constants/selector.js';
+import STYLE from '../constants/style.js';
 import { PRODUCT_PURCHASE_TAB } from '../constants/element.js';
 import { createTheadTableDataTemplate } from './common.js';
 
 const createTbodyTableDataTemplate = (text, className, dataset) => `
-  <td ${dataset}="${text}" class="${className}" style="border: 1px solid black;padding: 10px 50px;">${text}</td>
+  <td ${dataset}="${text}" class="${className}" style="${STYLE.tableBodyData}">${text}</td>
 `;
 
 const createTbodyTableDataWithButtonTemplate = () => `
-  <td style="border: 1px solid black;padding: 10px 50px;">
+  <td style="${STYLE.tableBodyData}">
     <button class="${SELECTOR.purchaseButtonClass}">구매하기</button>
   </td>
 `;
@@ -35,10 +36,10 @@ const createProductItemTemplate = (name, price, quantity) => `
 
 const createReturnCoinItemTemplate = (coin, amount) => `
   <tr class="${SELECTOR.productPurchaseItemClass}">
-    <td style="border: 1px solid black;padding: 10px 50px;">
+    <td style="${STYLE.tableHeadData}">
       ${coin}원
     </td>
-    <td id="vending-machine-coin-${coin}-quantity" style="border: 1px solid black;padding: 10px 50px;">
+    <td id="vending-machine-coin-${coin}-quantity" style="${STYLE.tableBodyData}">
       ${amount}
     </td>
   </tr>
@@ -63,7 +64,7 @@ export const createChargeFormTemplate = amount => `
 
 export const createProductTableTemplate = () => `
   <h3>구매할 수 있는 상품 현황</h3>
-  <table style="border: 1px solid black;border-collapse: collapse;">
+  <table style="${STYLE.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('상품명')}
@@ -81,7 +82,7 @@ export const createProductTableTemplate = () => `
 export const createReturnCoinTableTemplate = () => `
   <h3>잔돈</h3>
   <button>반환하기</button>
-  <table style="border: 1px solid black;border-collapse: collapse;">
+  <table style="${STYLE.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('동전')}

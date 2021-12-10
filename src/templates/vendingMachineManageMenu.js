@@ -1,4 +1,5 @@
 import SELECTOR from '../constants/selector.js';
+import STYLE from '../constants/style.js';
 import { VENDING_MACHINE_MANAGE_TAB } from '../constants/element.js';
 import { createTheadTableDataTemplate } from './common.js';
 
@@ -8,8 +9,8 @@ export const createTitleTemplate = () => `
 
 export const createCoinQuantityTableRowTemplate = (coin, amount, id) => `
   <tr>
-    <td style="border: 1px solid black;padding: 10px 50px; text-align: center;">${coin}</td>
-    <td style="border: 1px solid black;padding: 10px 50px;text-align: center;" id="${id}">${amount}</td>
+    <td style="${STYLE.tableBodyData}">${coin}원</td>
+    <td style="${STYLE.tableBodyData}" id="${id}">${amount}</td>
   </tr>
 `;
 
@@ -30,7 +31,7 @@ export const createChargeAmountTemplate = amount => `
 
 export const createCoinQuantityTableTemplate = () => `
   <h3>자판기가 보유한 동전</h3>
-  <table style="border: 1px solid black;border-collapse: collapse;">
+  <table style="${STYLE.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('동전')}
