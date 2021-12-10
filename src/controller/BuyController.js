@@ -3,11 +3,11 @@ export class BuyController {
     this.model = model;
     this.coreView = coreView;
 
-    this.loadTotalInsertedMoney();
+    this.loadLocalStorage();
     this.triggerEvent();
   }
 
-  loadTotalInsertedMoney() {
+  loadLocalStorage() {
     const totalInsertedMoney = this.model.totalInsertedMoney;
     const products = this.model.products;
     this.coreView.buyView.showTotalInsertedMoney(totalInsertedMoney);

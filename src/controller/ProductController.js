@@ -3,7 +3,7 @@ export class ProductController {
     this.model = model;
     this.coreView = coreView;
 
-    this.loadProduct();
+    this.loadLocalStorage();
     this.triggerEvent();
   }
 
@@ -11,7 +11,7 @@ export class ProductController {
     this.coreView.productView.setOnProductSubmit(this.onProductSubmit.bind(this));
   }
 
-  loadProduct() {
+  loadLocalStorage() {
     const products = this.model.products;
     if (products.length === 0) {
       return;

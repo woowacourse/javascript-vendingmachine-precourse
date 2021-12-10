@@ -3,11 +3,11 @@ export class ChargeController {
     this.model = model;
     this.coreView = coreView;
 
-    this.loadCharge();
+    this.loadLocalStorage();
     this.triggerEvent();
   }
 
-  loadCharge() {
+  loadLocalStorage() {
     const machineChargeAmount = this.model.machineChargeAmount;
     const coins = this.model.coins;
     this.coreView.chargeView.showChargeAmount(machineChargeAmount);
