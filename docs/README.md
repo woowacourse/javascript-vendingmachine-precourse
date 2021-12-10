@@ -27,6 +27,8 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 - [x] 다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다.
 - [] localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다.
   - [x] 상품 관리탭에서 localStorage 사용
+  - [ ] 잔동 충전탭에서 localStorage 사용
+  - [ ] 상품 구매탭에서 localStorage 사용
 - DOM 선택자
   - [x] 상품 관리탭으로 이동하는 메뉴 버튼 id는 product-add-menu이다.
   - [x] 잔돈 충전탭으로 이동하는 메뉴 버튼 id 는 vending-machine-manage-menu이다.
@@ -37,7 +39,8 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
 - 상품 관리탭에서, 다음과 같은 규칙을 바탕으로 상품을 추가한다.
 - [x] 최초 상품 목록은 비워진 상태이다.
 - [x] 상품명, 가격, 수량을 입력해 상품을 추가할 수 있다.
-  - [] 상품 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 한다.
+  - [x] 상품 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 한다.
+    - [x] 조건 미충족시 alert 및 데이터 미 입력
 - [x] 사용자는 추가한 상품을 확인할 수 있다.
 - DOM 선택자
   - [x] 상품 추가 입력 폼의 상품명 입력 요소의 id는 product-name-input이다.

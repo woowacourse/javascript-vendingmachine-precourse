@@ -22,4 +22,8 @@ export default class VendingView {
   addTableRow(table, data) {
     table.insertAdjacentHTML('beforeend', data);
   }
+
+  alertMessage(message) {
+    alert(message);
+  }
 }

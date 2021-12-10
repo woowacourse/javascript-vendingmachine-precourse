@@ -15,6 +15,7 @@ export default class VendingController {
     this.view.renderInApp('beforeend', $.tab3);
     this.addAllEventListener();
     this.loadData();
+    console.log(this.model.productObj);
   }
 
   loadData() {
@@ -59,6 +60,12 @@ export default class VendingController {
     const name = $.productNameInput().value;
     const price = $.productPriceInput().value;
     const quantity = $.productQuantityInput().value;
+    if (!this.checkPrice(price)) {
+      this.view.alertMessage(
+        '상품 가격은 100원부터 시작해야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.'
+      );
+      return false;
+    }
     this.makeTab1Table(name, price, quantity);
     this.model.productObj = { name, price, quantity };
     VendingModel.setLocalStorage('tab1', this.model.productObj);
@@ -67,5 +74,11 @@ export default class VendingController {
   switchTab(tab) {
     this.view.hideTab();
     this.view.showTab(tab);
+  }
+
+  checkPrice(price) {
+    if (price < 100) return false;
+    if (price % 10 !== 0) return false;
+    return true;
   }
 }
