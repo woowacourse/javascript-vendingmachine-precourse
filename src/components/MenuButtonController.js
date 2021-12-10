@@ -24,6 +24,7 @@ export default class MenuButtonController {
       }
       if (targetId === 'product-purchase-menu') {
         ProductPurchaseView.render();
+        ProductPurchaseView.addEvent();
         // 이벤트 리스너 추가
       }
     });

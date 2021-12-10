@@ -6,5 +6,12 @@ export default class ProductPurchaseView {
       HTML_OF_PRODUCT_PURCHASE_PART;
   }
 
-  // 이벤트 리스너 추가
+  static addEvent() {
+    document.getElementById('charge-button').addEventListener('click', (e) => {
+      e.preventDefault();
+      const userCharge = document.getElementById('charge-input').value;
+      console.log(userCharge);
+
+    })
+  }
 }
