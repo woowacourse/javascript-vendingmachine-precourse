@@ -45,3 +45,10 @@ export const INPUT_TYPE = {
   TEXT: 'text',
   NUMBER: 'number',
 };
+
+export const ERROR_MESSAGE = {
+  PRODUCT_ADD_ERROR_HAS_EMPTY_VALUE: '모든 입력 창에 값을 입력해주세요',
+  PRODUCT_ADD_ERROR_PRICE_IS_NEGATIVE_NUMBER: '가격에는 음수 값이 입력될 수 없습니다.',
+  PRODUCT_ADD_ERROR_QUANTITY_IS_NEGATIVE_NUMBER: '수량에는 음수 값이 입력될 수 없습니다.',
+  PRODUCT_ADD_ERROR_PRICE_DIVIDE_BY_10: '가격은 10으로 나누어 떨어져야합니다.',
+};

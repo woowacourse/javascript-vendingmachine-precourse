@@ -53,9 +53,13 @@ class VendingMachineController {
   onSubmitProductAddForm(e) {
     e.preventDefault();
 
-    this.$model.addProduct();
+    try {
+      this.$model.addProduct();
 
-    this.$view.renderProductAdd(this.$model.productList);
+      this.$view.renderProductAdd(this.$model.productList);
+    } catch (e) {
+      alert(e);
+    }
   }
 }
 export default VendingMachineController;

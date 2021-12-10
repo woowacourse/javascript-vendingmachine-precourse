@@ -1,4 +1,5 @@
 import { DOM, PLAIN_TEXT, TAB } from '../lib/constants.js';
+import VendingMachineUtil from './vendingMachineUtil.js';
 
 /** Model */
 class VendingMachineModel {
@@ -50,12 +51,19 @@ class VendingMachineModel {
 
   /** 세개의 인풋 중 하나라도 입력이 안되어 있다면  */
   addProduct() {
-    const newProduct = {
-      name: this.productAddInputsValue[DOM.PRODUCT_NAME_INPUT],
-      price: this.productAddInputsValue[DOM.PRODUCT_PRICE_INPUT],
-      quantity: this.productAddInputsValue[DOM.PRODUCT_QUANTITY_INPUT],
-    };
-    this.productList = [...this.productList, newProduct];
+    if (VendingMachineUtil.isValidProduct(this.productAddInputsValue)) {
+      const newProduct = {
+        name: this.productAddInputsValue[DOM.PRODUCT_NAME_INPUT],
+        price: this.productAddInputsValue[DOM.PRODUCT_PRICE_INPUT],
+        quantity: this.productAddInputsValue[DOM.PRODUCT_QUANTITY_INPUT],
+      };
+      this.productList = [...this.productList, newProduct];
+      this.productAddInputsValue = {
+        [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
+        [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
+        [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
+      };
+    }
   }
 }
 export default VendingMachineModel;
