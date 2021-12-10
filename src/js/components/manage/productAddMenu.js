@@ -24,9 +24,9 @@ function handleProductMenuSubmit(event) {
 
 export default function showProductManage() {
   $('#app-container').innerHTML = productManageTemplate;
-  const storedProductItems = Array(getProductItemStorage());
+  const storedProductItems = getProductItemStorage();
 
-  if (storedProductItems[0].name) {
+  if (storedProductItems) {
     initProductManageScreen(storedProductItems);
   }
 

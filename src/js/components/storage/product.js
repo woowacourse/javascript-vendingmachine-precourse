@@ -8,6 +8,8 @@ export const getProductItemStorage = () => {
   return JSON.parse(storedProductItems);
 };
 
-export const setProductItemStorage = (item) => {
-  localStorage.setItem(STORAGE_NAME, JSON.stringify(item));
+export const setProductItemStorage = (newItem) => {
+  const currentStorage = getProductItemStorage();
+  currentStorage.push(newItem);
+  localStorage.setItem(STORAGE_NAME, JSON.stringify(currentStorage));
 };
