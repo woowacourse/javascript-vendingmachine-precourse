@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "../util/localStorage.js";
+import { checkValidChargeMoney } from "../util/validator.js";
 
 export default class CoinStorageModel {
   constructor() {
@@ -6,12 +7,7 @@ export default class CoinStorageModel {
   }
 
   addMoney = (money) => {
-    if (this.isNotPositiveNumber(money)) {
-      throw new Error("금액은 0이하이면 안됩니다");
-    }
-    if (this.isNotPriceDividedByTen(money)) {
-      throw new Error("10으로 나누어 떨어지는 금액을 입력해주세요");
-    }
+    checkValidChargeMoney(money);
 
     this.addCoin(money);
     setLocalStorage("coin", this.coins);
@@ -71,13 +67,5 @@ export default class CoinStorageModel {
 
   getTotalMoney = () => {
     return Object.entries(this.coins).reduce((sum, [coin, quantity]) => sum + coin * quantity, 0);
-  };
-
-  isNotPositiveNumber = (money) => {
-    return money <= 0;
-  };
-
-  isNotPriceDividedByTen = (money) => {
-    return money % 10 !== 0;
   };
 }

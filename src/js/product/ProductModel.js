@@ -1,4 +1,5 @@
 import { getLocalStorage, getLocalStorageAfterSet } from "../util/localStorage.js";
+import { checkValidAddProduct } from "../util/validator.js";
 
 export default class ProductModel {
   constructor() {
@@ -14,18 +15,7 @@ export default class ProductModel {
   };
 
   addProduct = ({ name, price, quantity }) => {
-    if (this.hasEmpty([name, price, quantity])) {
-      throw new Error("입력에 공백이 들어가서는 안됩니다");
-    }
-    if (this.isNotPositiveQuantity(quantity)) {
-      throw new Error("수량은 1이상을 입력해주세요");
-    }
-    if (this.isNotPriceDividedByTen(price)) {
-      throw new Error("10으로 나누어 떨어지는 금액을 입력해주세요");
-    }
-    if (this.isPriceUnderMin(price)) {
-      throw new Error("100원 이상의 금액을 입력해주세요");
-    }
+    checkValidAddProduct({ name, price, quantity });
 
     if (this.isExsitName(name)) {
       const idx = this.findProductIdx(name);
@@ -38,7 +28,6 @@ export default class ProductModel {
 
   buyProduct = (name) => {
     const product = this.findProduct(name);
-    console.log(product);
     product.quantity -= 1;
     this.updateProducts();
   };
@@ -53,21 +42,5 @@ export default class ProductModel {
 
   isExsitName = (name) => {
     return this.findProductIdx(name) !== -1;
-  };
-
-  hasEmpty = (inputArray) => {
-    return inputArray.some((input) => input === "");
-  };
-
-  isNotPositiveQuantity = (quantity) => {
-    return quantity <= 0;
-  };
-
-  isPriceUnderMin = (price) => {
-    return price < 100;
-  };
-
-  isNotPriceDividedByTen = (price) => {
-    return price % 10 !== 0;
   };
 }
