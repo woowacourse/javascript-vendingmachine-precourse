@@ -199,6 +199,7 @@ export const renderInputedMoney = () => {
     chargedMoney = parseInt(localStorageValue, 10);
   }
   chargedMoney += parseInt(money);
+  console.log(chargedMoney);
   $('#charge-amount').innerText = `투입한 금액: ${chargedMoney}원`;
   return chargedMoney;
 };
@@ -273,4 +274,12 @@ export const renderChangesItems = () => {
     };
     $('.coin-table-body').innerHTML += template();
   }
+};
+export const renderReturnChanges = () => {
+  const localStorageValue = JSON.parse(localStorage.getItem('money'));
+  let chargedMoney = 0;
+  if (localStorageValue !== null) {
+    chargedMoney = parseInt(localStorageValue, 10);
+  }
+  $('#charge-amount').innerText = `투입한 금액: ${chargedMoney}원`;
 };

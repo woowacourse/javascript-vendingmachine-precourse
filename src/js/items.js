@@ -14,7 +14,6 @@ export const purchaseItems = target => {
       money -= menus[menu].price;
     }
   }
-  console.log('work');
   localStorage.setItem('money', money);
   localStorage.setItem('menu', JSON.stringify(menus));
   renderProductPurchaseMenu();

@@ -1,7 +1,12 @@
 import { $ } from './util/dom.js';
 import { checkNotNum, checkMenuPriceDivideTen } from './addMenu.js';
-import { renderMoney, renderCoinsItems } from './render.js';
-import { COINS } from './constant/constant.js';
+import {
+  renderMoney,
+  renderCoinsItems,
+  renderChangesItems,
+  renderReturnChanges,
+} from './render.js';
+import { COINS, COINS_PRICE } from './constant/constant.js';
 
 export const addChanges = e => {
   e.preventDefault();
@@ -23,6 +28,7 @@ export const getCoins = () => {
   money -= fiftyCoins * 50;
   const tenCoins = parseInt(money / 10, 10);
   setCoins(fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins);
+  renderCoinsItems();
 };
 
 const setCoins = (fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins) => {
@@ -34,7 +40,12 @@ const setCoins = (fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins) => {
     }
     localStorage.setItem(`${COINS[i]}`, coinsArray[i]);
   }
-  renderCoinsItems();
+};
+
+const setChanges = coinsArray => {
+  for (let i = 0; i < COINS.length; i++) {
+    localStorage.setItem(`${COINS[i]}`, coinsArray[i]);
+  }
 };
 
 export const getRandomCoin = maxCoinNumber => {
@@ -43,4 +54,32 @@ export const getRandomCoin = maxCoinNumber => {
     randomRangeArray.push(i);
   }
   return MissionUtils.Random.pickNumberInList(randomRangeArray);
+};
+
+export const returnCoin = () => {
+  let coinsArray = [0, 0, 0, 0];
+  let money = localStorage.getItem('money');
+  for (let i = 0; i < COINS.length; i++) {
+    const localStorageCoin = localStorage.getItem(`${COINS[i]}`);
+    if (localStorageCoin !== null) {
+      coinsArray[i] += parseInt(localStorageCoin, 10);
+    }
+  }
+  calculateChanges(coinsArray, money);
+};
+
+export const calculateChanges = (coinsArray, money) => {
+  let changes = localStorage.getItem('changes');
+  for (let i = 0; i < coinsArray.length; i++) {
+    while (money >= parseInt(COINS_PRICE[i], 10) && coinsArray[i] > 0) {
+      money -= parseInt(COINS_PRICE[i], 10);
+      changes -= parseInt(COINS_PRICE[i], 10);
+      coinsArray[i] -= 1;
+    }
+  }
+  setChanges(coinsArray);
+  localStorage.setItem('money', money);
+  localStorage.setItem('changes', changes);
+  renderChangesItems();
+  renderReturnChanges();
 };
