@@ -3,7 +3,7 @@ import { ID } from "../util/constant.js";
 export const COIN_PAGE_TEMPLATE = `
   <h2>자판기 동전 추가하기</h2>
   <div>
-    <input id=${ID.VENDING_MACHINE_CHARGE_INPUT} type="number"/>
+    <input id=${ID.VENDING_MACHINE_CHARGE_INPUT} type="number" placeholder="자판기가 보유한 금액"/>
     <button id=${ID.VENDING_MACHINE_CHARGE_BUTTON}>충전하기</button>
   </div>
   <br/>

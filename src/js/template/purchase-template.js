@@ -3,7 +3,7 @@ import { ID } from "../util/constant.js";
 export const PURCHASE_PAGE_TEMPLATE = `
   <h2>금액 투입</h2>
   <div>
-    <input type="number" id=${ID.CHARGE_INPUT} />
+    <input type="number" id=${ID.CHARGE_INPUT} placeholder="투입할 금액"/>
     <button id=${ID.CHARGE_BUTTON}>투입하기</button>
   </div>
   <br/>
