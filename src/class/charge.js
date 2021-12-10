@@ -1,14 +1,9 @@
-export default class Charge {
-  static amount = 0;
-  static coins = {
-    500: 0,
-    100: 0,
-    50: 0,
-    10: 0,
-  };
+import { COINS } from '../constants.js';
+import { vendingMachine } from '../index.js';
 
+export default class Charge {
   static moneyToCoin(money) {
-    Charge.amount = money;
+    vendingMachine.amount += money;
 
     let currentMoney = money;
     while (currentMoney > 0) {
@@ -16,28 +11,14 @@ export default class Charge {
 
       currentMoney -= coin;
       if (coin != 0) {
-        Charge.coins[coin] += 1;
+        vendingMachine.coins[coin] += 1;
       }
     }
-
-    console.log(Charge.amount, Charge.coins);
   }
 
   static randomCoin(money) {
-    const coins = [500, 100, 50, 10];
-
-    let randomCoin = MissionUtils.Random.pickNumberInList(coins);
+    let randomCoin = MissionUtils.Random.pickNumberInList(COINS);
 
     return randomCoin <= money ? randomCoin : 0;
-  }
-
-  static initCharge() {
-    Charge.amount = 0;
-    Charge.coins = {
-      500: 0,
-      100: 0,
-      50: 0,
-      10: 0,
-    };
   }
 }

@@ -40,6 +40,7 @@ export const COIN_TEXT = '동전';
 export const COUNT_TEXT = '개수';
 export const RETURN_TEXT = '반환하기';
 export const COIN_LIST = ['500원', '100원', '50원', '10원'];
+export const COINS = [500, 100, 50, 10];
 export const COIN_ID_LIST = [
   'coin-500-quantity',
   'coin-100-quantity',

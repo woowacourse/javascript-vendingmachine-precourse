@@ -27,3 +27,16 @@ export const getProductManagerProductTableBody = () => {
 export const getVendingMachineChargeButton = () => {
   return document.getElementById('vending-machine-charge-button');
 };
+
+export const getVendingMachineChargeAmount = () => {
+  return document.getElementById('vending-machine-charge-amount');
+};
+
+export const getVendingMachineCoinTableData = () => {
+  return {
+    500: document.getElementById('vending-machine-coin-500-quantity'),
+    100: document.getElementById('vending-machine-coin-100-quantity'),
+    50: document.getElementById('vending-machine-coin-50-quantity'),
+    10: document.getElementById('vending-machine-coin-10-quantity'),
+  };
+};

@@ -3,6 +3,8 @@ import Product from './product.js';
 import { saveProductList } from '../localStorage/products.js';
 import { updateProductTable } from '../dom/control/updateProductTable.js';
 import Charge from './charge.js';
+import { saveCharges } from '../localStorage/charge.js';
+import { updateVendingMachineCharge } from '../dom/control/updateVendingMachineChargeTable.js';
 
 export default class VendingMachine {
   constructor() {
@@ -38,13 +40,7 @@ export default class VendingMachine {
     }
 
     Charge.moneyToCoin(ChargeInput);
-    this.amount += Charge.amount;
-    this.coins[500] += Charge.coins[500];
-    this.coins[100] += Charge.coins[100];
-    this.coins[50] += Charge.coins[50];
-    this.coins[10] += Charge.coins[10];
-
-    console.log(this.amount, this.coins);
-    Charge.initCharge();
+    saveCharges();
+    updateVendingMachineCharge();
   }
 }
