@@ -1,8 +1,9 @@
 import { PRODUCT_PAGE_TEMPLATE } from "../template/product-template.js";
+import { render } from "../util/render.js";
 
 export default class ProductView {
   renderPage = (container) => {
-    this.render(container, PRODUCT_PAGE_TEMPLATE);
+    render(container, PRODUCT_PAGE_TEMPLATE);
   };
 
   renderProductTable = (tableBody, products) => {
@@ -22,9 +23,5 @@ export default class ProductView {
         `;
       })
       .join("");
-  };
-
-  render = (container, template) => {
-    container.insertAdjacentHTML("beforeend", template);
   };
 }

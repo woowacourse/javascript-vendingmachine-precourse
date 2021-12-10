@@ -1,8 +1,9 @@
 import { PURCHASE_PAGE_TEMPLATE } from "../template/purchase-template.js";
+import { render } from "../util/render.js";
 
 export default class PurchaseView {
   renderPage = (container) => {
-    this.render(container, PURCHASE_PAGE_TEMPLATE);
+    render(container, PURCHASE_PAGE_TEMPLATE);
   };
 
   renderPurchaseTable = (tableBody, products) => {
@@ -27,9 +28,5 @@ export default class PurchaseView {
 
   renderChargedAmount = (container, amount) => {
     container.innerText = `${amount}`;
-  };
-
-  render = (container, template) => {
-    container.insertAdjacentHTML("beforeend", template);
   };
 }

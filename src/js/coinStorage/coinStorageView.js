@@ -1,20 +1,17 @@
 import { CHANGES_TABLE_TEMPLATE, COIN_PAGE_TEMPLATE } from "../template/coinStorage-template.js";
+import { render } from "../util/render.js";
 
 export default class CoinStorageView {
   renderPage = (container) => {
-    this.render(container, COIN_PAGE_TEMPLATE);
+    render(container, COIN_PAGE_TEMPLATE);
   };
 
   renderChangesComponent = (container) => {
-    this.render(container, CHANGES_TABLE_TEMPLATE);
+    render(container, CHANGES_TABLE_TEMPLATE);
   };
 
   renderTotalMoney = (container, amount) => {
     container.innerText = `보유 금액: ${amount}`;
-  };
-
-  render = (container, template) => {
-    container.insertAdjacentHTML("beforeend", template);
   };
 
   renderCoinAmount = (coins) => {
