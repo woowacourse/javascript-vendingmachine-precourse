@@ -1,4 +1,4 @@
-import { DOM_SELECTOR, BUTTON_MESSAGE, TITLE_MESSAGE } from './constants.js';
+import { DOM_ID_SELECTOR, BUTTON_MESSAGE, TITLE_MESSAGE } from './constants.js';
 import makeButton from './makeButton.js';
 
 const makeTitle = () => {
@@ -11,9 +11,9 @@ const makeTitle = () => {
 const makeMenuTab = () => {
   const $menuTab = document.createElement('div');
 
-  const $productAddMenu = makeButton(BUTTON_MESSAGE.productAddMenu, DOM_SELECTOR.productAddMenu);
-  const $vendingMachineManageMenu = makeButton(BUTTON_MESSAGE.vendingMachineManageMenu, DOM_SELECTOR.vendingMachineManageMenu);
-  const $productPurchaseMenu = makeButton(BUTTON_MESSAGE.productPurchaseMenu, DOM_SELECTOR.productPurchaseMenu);
+  const $productAddMenu = makeButton(BUTTON_MESSAGE.productAddMenu, DOM_ID_SELECTOR.productAddMenu);
+  const $vendingMachineManageMenu = makeButton(BUTTON_MESSAGE.vendingMachineManageMenu, DOM_ID_SELECTOR.vendingMachineManageMenu);
+  const $productPurchaseMenu = makeButton(BUTTON_MESSAGE.productPurchaseMenu, DOM_ID_SELECTOR.productPurchaseMenu);
 
   $menuTab.appendChild($productAddMenu);
   $menuTab.appendChild($vendingMachineManageMenu);
@@ -24,7 +24,7 @@ const makeMenuTab = () => {
 
 const makeContent = () => {
   const $content = document.createElement('div');
-  $content.setAttribute('id', DOM_SELECTOR.content);
+  $content.setAttribute('id', DOM_ID_SELECTOR.content);
 
   return $content;
 };

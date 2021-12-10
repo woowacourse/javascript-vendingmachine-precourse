@@ -1,4 +1,4 @@
-import { DOM_SELECTOR, PRODUCT_MANAGE_MESSAGE } from './constants.js';
+import { DOM_ID_SELECTOR, PRODUCT_MANAGE_MESSAGE } from './constants.js';
 import makeButton from './makeButton.js';
 import makeInput from './makeInput.js';
 
@@ -11,10 +11,10 @@ const makeTitle = (text) => {
 
 const makeProductAddForm = () => {
   const $productAddForm = document.createElement('form');
-  const $productNameInput = makeInput(DOM_SELECTOR.productNameInput, 'text', PRODUCT_MANAGE_MESSAGE.productName);
-  const $productPriceInput = makeInput(DOM_SELECTOR.productPriceInput, 'number', PRODUCT_MANAGE_MESSAGE.productPrice);
-  const $productQuantityInput = makeInput(DOM_SELECTOR.productQuantityInput, 'number', PRODUCT_MANAGE_MESSAGE.productQuantity);
-  const $productAddButton = makeButton(PRODUCT_MANAGE_MESSAGE.productAddButton, DOM_SELECTOR.productAddButton, 'submit');
+  const $productNameInput = makeInput(DOM_ID_SELECTOR.productNameInput, 'text', PRODUCT_MANAGE_MESSAGE.productName);
+  const $productPriceInput = makeInput(DOM_ID_SELECTOR.productPriceInput, 'number', PRODUCT_MANAGE_MESSAGE.productPrice);
+  const $productQuantityInput = makeInput(DOM_ID_SELECTOR.productQuantityInput, 'number', PRODUCT_MANAGE_MESSAGE.productQuantity);
+  const $productAddButton = makeButton(PRODUCT_MANAGE_MESSAGE.productAddButton, DOM_ID_SELECTOR.productAddButton, 'submit');
 
   $productAddForm.appendChild($productNameInput);
   $productAddForm.appendChild($productPriceInput);
@@ -40,7 +40,7 @@ const makeTableHeader = (headerElements) => {
 
 const makeTable = (headerElements) => {
   const $table = document.createElement('table');
-  $table.setAttribute('id', DOM_SELECTOR.productManageTable);
+  $table.setAttribute('id', DOM_ID_SELECTOR.productManageTable);
 
   const $tableHeader = makeTableHeader(headerElements);
   $table.appendChild($tableHeader);
@@ -49,7 +49,7 @@ const makeTable = (headerElements) => {
 };
 
 const renderProductAddTemplate = () => {
-  const $content = document.getElementById(DOM_SELECTOR.content);
+  const $content = document.getElementById(DOM_ID_SELECTOR.content);
   $content.innerHTML = '';
 
   $content.appendChild(makeTitle(PRODUCT_MANAGE_MESSAGE.productAdd));

@@ -1,4 +1,4 @@
-import { DOM_SELECTOR, ERROR_MESSAGE } from './constants.js';
+import { DOM_ID_SELECTOR, DOM_CLASS_SELECTOR, ERROR_MESSAGE } from './constants.js';
 
 const isValidProductName = (name) => {
   if (!name) {
@@ -40,9 +40,9 @@ const isValidProduct = (name, price, quantity) => {
 };
 
 const getProductAddInputValue = () => {
-  const name = document.getElementById(DOM_SELECTOR.productNameInput).value;
-  const price = document.getElementById(DOM_SELECTOR.productPriceInput).value;
-  const quantity = document.getElementById(DOM_SELECTOR.productQuantityInput).value;
+  const name = document.getElementById(DOM_ID_SELECTOR.productNameInput).value;
+  const price = document.getElementById(DOM_ID_SELECTOR.productPriceInput).value;
+  const quantity = document.getElementById(DOM_ID_SELECTOR.productQuantityInput).value;
 
   return { name, price, quantity };
 };
@@ -52,9 +52,9 @@ const makeProductItem = (name, price, quantity) => {
 };
 
 const clearProductInput = () => {
-  document.getElementById(DOM_SELECTOR.productNameInput).value = '';
-  document.getElementById(DOM_SELECTOR.productPriceInput).value = '';
-  document.getElementById(DOM_SELECTOR.productQuantityInput).value = '';
+  document.getElementById(DOM_ID_SELECTOR.productNameInput).value = '';
+  document.getElementById(DOM_ID_SELECTOR.productPriceInput).value = '';
+  document.getElementById(DOM_ID_SELECTOR.productQuantityInput).value = '';
 };
 
 const makeProductManageTableTd = (className, text) => {
@@ -67,11 +67,11 @@ const makeProductManageTableTd = (className, text) => {
 
 const makeProductManageItem = (name, price, quantity) => {
   const $productManageItem = document.createElement('tr');
-  $productManageItem.className = DOM_SELECTOR.productManageItem;
+  $productManageItem.className = DOM_CLASS_SELECTOR.productManageItem;
 
-  const $productManageName = makeProductManageTableTd(DOM_SELECTOR.productManageName, name);
-  const $productManagePrice = makeProductManageTableTd(DOM_SELECTOR.productManagePrice, price);
-  const $productManageQuantity = makeProductManageTableTd(DOM_SELECTOR.productManageQuantity, quantity);
+  const $productManageName = makeProductManageTableTd(DOM_CLASS_SELECTOR.productManageName, name);
+  const $productManagePrice = makeProductManageTableTd(DOM_CLASS_SELECTOR.productManagePrice, price);
+  const $productManageQuantity = makeProductManageTableTd(DOM_CLASS_SELECTOR.productManageQuantity, quantity);
 
   $productManageItem.appendChild($productManageName);
   $productManageItem.appendChild($productManagePrice);
@@ -81,7 +81,7 @@ const makeProductManageItem = (name, price, quantity) => {
 };
 
 const removeProductManageItems = () => {
-  const $productManageItems = document.getElementsByClassName(DOM_SELECTOR.productManageItem);
+  const $productManageItems = document.getElementsByClassName(DOM_CLASS_SELECTOR.productManageItem);
 
   while ($productManageItems.length > 0) {
     $productManageItems[0].remove();
@@ -89,7 +89,7 @@ const removeProductManageItems = () => {
 };
 
 const printProductManageTable = (productItems) => {
-  const $productManageTable = document.getElementById(DOM_SELECTOR.productManageTable);
+  const $productManageTable = document.getElementById(DOM_ID_SELECTOR.productManageTable);
   removeProductManageItems();
 
   for (let name in productItems) {
@@ -99,7 +99,7 @@ const printProductManageTable = (productItems) => {
 };
 
 const attachProductAddEvent = (product) => {
-  const $productAddButton = document.getElementById(DOM_SELECTOR.productAddButton);
+  const $productAddButton = document.getElementById(DOM_ID_SELECTOR.productAddButton);
 
   $productAddButton.addEventListener('click', (event) => {
     event.preventDefault();

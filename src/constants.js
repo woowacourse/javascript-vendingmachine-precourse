@@ -1,4 +1,4 @@
-export const DOM_SELECTOR = {
+export const DOM_ID_SELECTOR = {
   productAddMenu: 'product-add-menu',
   productPurchaseMenu: 'product-purchase-menu',
   vendingMachineManageMenu: 'vending-machine-manage-menu',
@@ -8,6 +8,9 @@ export const DOM_SELECTOR = {
   productQuantityInput: 'product-quantity-input',
   productAddButton: 'product-add-button',
   productManageTable: 'product-manage-table',
+};
+
+export const DOM_CLASS_SELECTOR = {
   productManageItem: 'product-manage-item',
   productManageName: 'product-manage-name',
   productManagePrice: 'product-manage-price',
