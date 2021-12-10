@@ -23,7 +23,7 @@ const renderProductPurchase = () => {
               <th>구매</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="product-purchase-list">
           </tbody>
         </table>
       </div>

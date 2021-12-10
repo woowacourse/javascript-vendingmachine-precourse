@@ -9,3 +9,7 @@ export const resetProductAddInput = () => {
 export const resetChargeInput = () => {
   $('#vending-machine-charge-input').value = '';
 };
+
+export const resetPurchaseInput = () => {
+  $('#charge-input').value = '';
+};
