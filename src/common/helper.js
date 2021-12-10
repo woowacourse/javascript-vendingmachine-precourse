@@ -52,6 +52,7 @@ export const isEquals = (value, target) => value === target;
  * @returns {boolean}
  */
 export const isEmpty = value => {
+  if (isNull(value)) return true;
   if (value instanceof Array) return value.length < 1 || value === [];
   if (typeof value === 'number') return value === ZERO;
   return value === EMPTY;
