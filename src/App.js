@@ -3,6 +3,7 @@ import { $ } from './utils/selector.js';
 import { mainTemplate } from './utils/template/mainTemplate.js';
 import ProductContainer from './components/product/ProductContainer.js';
 import ChargeContainer from './components/charge/ChargeContainer.js';
+import PurchaseContainer from './components/purchase/PurchaseContainer.js';
 
 class App {
   constructor($target) {
@@ -41,6 +42,9 @@ class App {
     }
     if (id === ID.VENDING_MACHINE_MANAGE_MENU) {
       new ChargeContainer(this.$resultContainer);
+    }
+    if (id === ID.PRODUCT_PURCHASE_MENU) {
+      new PurchaseContainer(this.$resultContainer);
     }
   }
 }

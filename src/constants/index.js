@@ -18,6 +18,15 @@ export const ID = {
   VENDING_MACHINE_CHARGE_INPUT: 'vending-machine-charge-input',
   VENDING_MACHINE_CHARGE_BUTTON: 'vending-machine-charge-button',
   VENDING_MACHINE_CHARGE_AMOUNT: 'vending-machine-charge-amount',
+  // purchase
+  PURCHASE_INPUT_CONTAINER: 'purchase-input-container',
+  PURCHASE_TOTAL_CONTAINER: 'purchase-total-container',
+  PURCHASE_TABLE_CONTAINER: 'purchase-table-container',
+  RETURN_COIN_TABLE_CONTAINER: 'return-coin-table-container',
+  CHARGE_INPUT: 'charge-input',
+  CHARGE_BUTTON: 'charge-button',
+  CHARGE_AMOUNT: 'charge-amount',
+  COIN_RETURN_BUTTON: 'coin-return-button',
 };
 
 export const CLASS = {
@@ -26,6 +35,12 @@ export const CLASS = {
   PRODUCT_MANAGE_NAME: 'product-manage-name',
   PRODUCT_MANAGE_PRICE: 'product-manage-price',
   PRODUCT_MANAGE_QUANTITY: 'product-manage-quantity',
+  // purchase
+  PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
+  PURCHASE_BUTTON: 'purchase-button',
+  PRODUCT_PURCHASE_NAME: 'product-purchase-name',
+  PRODUCT_PURCHASE_PRICE: 'product-purchase-price',
+  PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
 };
 
 export const NUM = {
