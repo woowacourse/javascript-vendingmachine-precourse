@@ -1,15 +1,11 @@
 import { $ } from './utils/querySelector.js';
 import { initScreenTemplate } from './utils/initScreenTemplate.js';
-import handleProductMenuSubmit from './components/manage/productAddMenu.js';
-import { productManageTemplate } from './components/manage/manageTemplate.js';
+import showProductManage from './components/manage/productAddMenu.js';
 
 const init = () => {
   $('#app').innerHTML = initScreenTemplate;
 
-  $('#product-add-menu').addEventListener('click', () => {
-    $('#app-container').innerHTML = productManageTemplate;
-    $('form').addEventListener('submit', handleProductMenuSubmit);
-  });
+  $('#product-add-menu').addEventListener('click', showProductManage);
 };
 
 export default function vendingMachineApp() {

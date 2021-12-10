@@ -1,3 +1,5 @@
+import { $ } from '../../utils/querySelector.js';
+
 export const productManageTemplate = `
   <h3>상품 추가하기</h3>
   <form>
@@ -27,4 +29,15 @@ export const productItemTemplate = ({ name, price, quantity }) => {
     <td class="product-manage-quantity">${quantity}</td>
   </tr>
   `;
+};
+
+export const addProductItem = (productData) => {
+  const productItem = productItemTemplate(productData);
+  $('.product-manage-list').insertAdjacentHTML('beforeend', productItem);
+};
+
+export const initProductManageScreen = (storedProductItems) => {
+  storedProductItems.forEach((item) => {
+    addProductItem(item);
+  });
 };

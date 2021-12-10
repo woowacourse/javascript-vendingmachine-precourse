@@ -1,13 +1,13 @@
 import { $ } from '../../utils/querySelector.js';
 import { isValidProductValue } from '../../utils/validation.js';
-import { productItemTemplate } from './manageTemplate.js';
+import { setProductItemStorage, getProductItemStorage } from '../storage/product.js';
+import {
+  addProductItem,
+  productManageTemplate,
+  initProductManageScreen,
+} from './manageTemplate.js';
 
-const addProductItem = (productData) => {
-  const productItem = productItemTemplate(productData);
-  $('.product-manage-list').insertAdjacentHTML('beforeend', productItem);
-};
-
-export default function handleProductMenuSubmit(event) {
+function handleProductMenuSubmit(event) {
   event.preventDefault();
   const productData = {
     name: $('#product-name-input').value.trim(),
@@ -19,4 +19,16 @@ export default function handleProductMenuSubmit(event) {
     return;
   }
   addProductItem(productData);
+  setProductItemStorage(productData);
+}
+
+export default function showProductManage() {
+  $('#app-container').innerHTML = productManageTemplate;
+  const storedProductItems = Array(getProductItemStorage());
+
+  if (storedProductItems[0].name) {
+    initProductManageScreen(storedProductItems);
+  }
+
+  $('form').addEventListener('submit', handleProductMenuSubmit);
 }
