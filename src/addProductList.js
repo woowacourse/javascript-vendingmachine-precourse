@@ -1,10 +1,11 @@
 import { PRODUCT } from './product.js'
+import { checkProductValid } from './checkProductValid.js'
 
 //상품관리 테이블에 추가
 function addProductAddTable($productName){
     const $productAddTable = document.querySelector('#product-add-table')
     $productAddTable.innerHTML += `<tr>
-                                        <td>${$productName.name}</td>
+                                        <td class="product-manage-name" data-product-name=${$productName.name}>${$productName.name}</td>
                                         <td>${$productName.price}</td>
                                         <td>${$productName.quantity}</td>                                
                                     </tr>`        
@@ -14,7 +15,7 @@ function addProductAddTable($productName){
 function addProductPurchaseTable($productName){
     const $productPurchaseTable = document.querySelector('#product-purchase-table')
     $productPurchaseTable.innerHTML += `<tr>
-                                            <td>${$productName.name}</td>
+                                            <td data-product-name=${$productName.name}>${$productName.name}</td>
                                             <td>${$productName.price}</td>
                                             <td>${$productName.quantity}</td>
                                             <td><button id="purchase-button">구매하기</button></td>                               
@@ -35,12 +36,18 @@ export function addProductList(){
     const $productQuantityInput = document.querySelector('#product-quantity-input')
     let $productName = document.querySelector('#product-name-input').value
 
-    //객체 생성
-    $productName = new PRODUCT($productNameInput.value, $productPriceInput.value, $productQuantityInput.value)
-    $productName.getName()
 
-    addProductAddTable($productName)
-    addProductPurchaseTable($productName)
-    resetProductAddInputs($productNameInput, $productPriceInput, $productQuantityInput)
+    if(checkProductValid($productNameInput, $productPriceInput, $productQuantityInput)){
+        //객체 생성
+        $productName = new PRODUCT($productNameInput.value, $productPriceInput.value, $productQuantityInput.value)
+        $productName.getName()
+
+        addProductAddTable($productName)
+        addProductPurchaseTable($productName)
+
+    }
+        resetProductAddInputs($productNameInput, $productPriceInput, $productQuantityInput)
+
+
 
 }
