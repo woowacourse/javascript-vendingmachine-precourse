@@ -1,37 +1,33 @@
-const errorSameName =
-  '이미 같은 상품명의 음료수가 있습니다. 다른 상품명을 입력해주세요';
-const errorPrice =
-  '상품 가격은 100원부터 시작해야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.';
-const errorQuantity = '상품 수량은 0개 이상이어야 합니다. 다시 입력해주세요.';
-const errorChargedMoney =
-  '충전 금액은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.';
-const errorInsertedMoney =
-  '상품 가격은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.';
-const errorNotEnoughMoney =
-  '투입된 돈으로는 해당 제품을 구입하기에 부족합니다.';
-const errorSoldOut = '해당 제품은 매진되었습니다.';
+const ERROR_MESSAGE = Object.freeze({
+  sameName: '이미 같은 상품명의 음료수가 있습니다. 다른 상품명을 입력해주세요',
+  basePrice:
+    '상품 가격은 100원부터 시작해야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.',
+  baseQuantity: '상품 수량은 0개 이상이어야 합니다. 다시 입력해주세요.',
+  baseChargingMoney:
+    '충전 금액은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.',
+  baseInsertingMoney:
+    '상품 가격은 0원 이상이어야 하며, 10원으로 나누어 떨어져야 합니다. 다시 입력해주세요.',
+  notEnoughMoney: '투입된 돈으로는 해당 제품을 구입하기에 부족합니다.',
+  soldOut: '해당 제품은 매진되었습니다.',
+});
 
-const minimumPrice = 100;
-const dividingStandard = 10;
-const listOfChargingUnit = [500, 100, 50, 10];
-const number500 = 500;
-const number100 = 100;
-const number50 = 50;
-const number10 = 10;
+const MINIMUM_PRICE = 100;
+const DIVIDING_STANDARD = 10;
+const CHARGING_UNIT_ARRAY = [500, 100, 50, 10];
+const NUM_500 = 500;
+const NUM_100 = 100;
+const NUM_50 = 50;
+const NUM_10 = 10;
+const ZERO = 0;
 
 export {
-  errorSameName,
-  errorPrice,
-  errorQuantity,
-  errorChargedMoney,
-  errorInsertedMoney,
-  errorNotEnoughMoney,
-  errorSoldOut,
-  minimumPrice,
-  dividingStandard,
-  listOfChargingUnit,
-  number500,
-  number100,
-  number50,
-  number10,
+  ERROR_MESSAGE,
+  MINIMUM_PRICE,
+  DIVIDING_STANDARD,
+  CHARGING_UNIT_ARRAY,
+  NUM_500,
+  NUM_100,
+  NUM_50,
+  NUM_10,
+  ZERO,
 };
