@@ -27,7 +27,7 @@ const buttonData = {
 
 const renderCoinTable = container => {
   const TABLE_BODY_ID = "coin-table-body";
-  const tableHead = makeTableForm([COIN_MANAGE.COIN, COIN_MANAGE.AMOUT], TABLE_BODY_ID);
+  const tableHead = makeTableForm([COIN_MANAGE.COIN, COIN_MANAGE.AMOUNT], TABLE_BODY_ID);
   const coinToUse = [
     COIN_MANAGE.COIN_500,
     COIN_MANAGE.COIN_100,
