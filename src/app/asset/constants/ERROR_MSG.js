@@ -13,6 +13,7 @@ const ERROR_MSG = {
     mod: `${INPUT_NUMBER_RULE.mod}로 나누어지는 수를 입력해주세요.`,
     lockAmount: '투입한 돈이 부족합니다.',
     noReturnAmount: '반환할 금액이 없습니다. 금액을 투입해주세요.',
+    overlapProductName: '이미 같은 이름의 상품이 있습니다.',
 };
 
 export default ERROR_MSG;

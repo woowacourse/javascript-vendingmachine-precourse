@@ -12,3 +12,6 @@ export const addProduct = (productName, productPrice, productQuantity) => {
 };
 
 export const setProducts = (products) => setJsonItem(STORAGE_KEY.inventory, products);
+
+export const isUniqueProductName = (candProductName) =>
+    getProducts().findIndex(({ productName }) => productName === candProductName) === -1;

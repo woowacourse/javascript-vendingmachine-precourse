@@ -1,6 +1,8 @@
-import { createValidFunction, isRequired } from './index.js';
+import { createCheckEveryFunction, createValidFunction, isRequired } from './index.js';
 import ERROR_MSG from '../constants/ERROR_MSG.js';
+import { isUniqueProductName } from '../../localStorage/inventory.js';
 
-const checkProductName = createValidFunction(isRequired, ERROR_MSG.requireProductName);
-
-export default checkProductName;
+export default createCheckEveryFunction([
+    createValidFunction(isRequired, ERROR_MSG.requireProductName),
+    createValidFunction(isUniqueProductName, ERROR_MSG.overlapProductName),
+]);
