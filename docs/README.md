@@ -33,7 +33,8 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
   - `controller.loadData()`
   - [x] 상품 관리탭에서 localStorage 사용
     - `controller.loadTab1Data()`
-  - [ ] 잔동 충전탭에서 localStorage 사용
+  - [x] 잔돈 충전탭에서 localStorage 사용
+    - `controller.loadTab2Data()`
   - [ ] 상품 구매탭에서 localStorage 사용
 - DOM 선택자
   - [x] 상품 관리탭으로 이동하는 메뉴 버튼 id는 product-add-menu이다.
@@ -77,9 +78,9 @@ https://github.com/woowacourse/javascript-vendingmachine-precourse
   - [x] 자판기 보유 금액은 {금액}원 형식으로 나타낸다.
   - [x] 0원 미만 금액을 충전할 경우 alert 발생 및 이하 동작 미실행
 - [x] 자판기 보유 금액만큼의 동전이 무작위로 생성된다.
-  - `getRandomCoin(money)`
+  - `saveRandomCoin(money)`
     - `MissionUtils.Random.pickNumberInList`
-    - `controller.saveCoin(coin)`
+    - `controller.saveCoins(coin)`
   - [x] 동전의 개수는 {개수}개 형식으로 나타낸다.
     - `controller.makeTableOfTab2()`
 - [x] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성되어 기존 동전들에 더해진다.

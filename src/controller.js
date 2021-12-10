@@ -15,15 +15,17 @@ export default class VendingController {
     this.view.renderInApp('beforeend', $.tab3);
     this.addAllEventListener();
     this.loadData();
-    console.log(this.model.productObj);
   }
 
   loadData() {
-    this.model._productObj = JSON.parse(VendingModel.getLocalStorage('tab1'));
     this.loadTab1Data();
+    this.loadTab2Data();
   }
 
   loadTab1Data() {
+    this.model._productObj = JSON.parse(VendingModel.getLocalStorage('tab1'))
+      ? JSON.parse(VendingModel.getLocalStorage('tab1'))
+      : this.model.productObj;
     for (const name in this.model.productObj) {
       if (Object.hasOwnProperty.call(this.model.productObj, name)) {
         this.makeTableOfTab1(
@@ -31,6 +33,24 @@ export default class VendingController {
           this.model.productObj[name].price,
           this.model.productObj[name].quantity
         );
+      }
+    }
+  }
+
+  loadTab2Data() {
+    this.model._chargedMoney = VendingModel.getLocalStorage('chargedMoney')
+      ? parseInt(VendingModel.getLocalStorage('chargedMoney'), 10)
+      : this.model._chargedMoney;
+    this.view.renderValueInSpot(
+      $.vendingMachineChargeAmount(),
+      `${this.model.chargedMoney}원`
+    );
+    this.model._coinObj = JSON.parse(VendingModel.getLocalStorage('tab2'))
+      ? JSON.parse(VendingModel.getLocalStorage('tab2'))
+      : this.model._coinObj;
+    for (const coin in this.model.coinObj) {
+      if (Object.hasOwnProperty.call(this.model.coinObj, coin)) {
+        this.makeTableOfTab2();
       }
     }
   }
@@ -95,25 +115,29 @@ export default class VendingController {
       );
       return false;
     }
-    this.model.chargedMoney += money;
-    this.getRandomCoin(money);
+    this.saveSumCoin(money);
+    this.view.renderValueInSpot(
+      $.vendingMachineChargeAmount(),
+      `${this.model.chargedMoney}원`
+    );
+    this.saveRandomCoin(money);
     this.makeTableOfTab2();
-    VendingModel.setLocalStorage('tab2', this.model.coinObj);
   }
 
-  getRandomCoin(money) {
+  saveRandomCoin(money) {
     let changes = 0;
     while (changes !== money) {
       const coin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
 
       if (changes + coin <= money) {
         changes += coin;
-        this.saveCoin(coin);
+        this.saveCoins(coin);
       }
     }
+    VendingModel.setLocalStorage('tab2', this.model.coinObj);
   }
 
-  saveCoin(coin) {
+  saveCoins(coin) {
     switch (coin) {
       case 500:
         this.model.coinObj = {
@@ -142,10 +166,6 @@ export default class VendingController {
 
   makeTableOfTab2() {
     this.view.renderValueInSpot(
-      $.vendingMachineChargeAmount(),
-      `${this.model.chargedMoney}원`
-    );
-    this.view.renderValueInSpot(
       $.vendingMachineCoin500(),
       `${this.model.coinObj.coin500}개`
     );
@@ -161,5 +181,10 @@ export default class VendingController {
       $.vendingMachineCoin10(),
       `${this.model.coinObj.coin10}개`
     );
+  }
+
+  saveSumCoin(money) {
+    this.model.chargedMoney += money;
+    VendingModel.setLocalStorage('chargedMoney', this.model.chargedMoney);
   }
 }
