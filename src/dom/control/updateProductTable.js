@@ -1,4 +1,8 @@
-import { getProductManagerProductTableBody } from '../domElement.js';
+import {
+  getProductManagerProductTableBody,
+  getPurchasedProductManagerItemQuantity,
+  getProductManagerItemCollection,
+} from '../domElement.js';
 
 export const updateProductTable = (products) => {
   products.forEach((product) => {
@@ -18,6 +22,7 @@ const createTableBodyRow = (name, price, quantity) => {
   const row = document.createElement('tr');
 
   row.setAttribute('class', 'product-manage-item');
+  row.dataset.productName = name;
   createTableBodyData(row, name, price, quantity);
 
   return row;
@@ -36,4 +41,20 @@ const createTableBodyData = (row, name, price, quantity) => {
   quantityCell.innerHTML = quantity;
 
   row.append(nameCell, priceCell, quantityCell);
+};
+
+export const updateProductItemAfterPurchase = (name) => {
+  const productItem = getPurchasedProductManagerItemQuantity(name);
+
+  productItem.innerHTML -= 1;
+};
+
+export const deleteProductItem = (name) => {
+  const productItems = getProductManagerItemCollection();
+
+  for (let item of productItems) {
+    if (item.dataset.productName === name) {
+      item.remove();
+    }
+  }
 };

@@ -48,3 +48,39 @@ export const getChargeButton = () => {
 export const getChargeAmount = () => {
   return document.getElementById('charge-amount');
 };
+
+export const getPurchaseManagerPurchaseTableBody = () => {
+  return document.getElementById('purchase-manager-purchase-table-body');
+};
+
+export const getPurchaseButtonCollection = () => {
+  return document.getElementsByClassName('purchase-button');
+};
+
+export const getProductPurchaseItemCollection = () => {
+  return document.getElementsByClassName('product-purchase-item');
+};
+
+export const getPurchasedItemQuantity = (name) => {
+  const purchaseItems = getProductPurchaseItemCollection();
+
+  for (let item of purchaseItems) {
+    if (item.dataset.productName === name) {
+      return item.getElementsByClassName('product-purchase-quantity')[0];
+    }
+  }
+};
+
+export const getProductManagerItemCollection = () => {
+  return document.getElementsByClassName('product-manage-item');
+};
+
+export const getPurchasedProductManagerItemQuantity = (name) => {
+  const productItems = getProductManagerItemCollection();
+
+  for (let item of productItems) {
+    if (item.dataset.productName === name) {
+      return item.getElementsByClassName('product-manage-quantity')[0];
+    }
+  }
+};

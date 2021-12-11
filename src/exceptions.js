@@ -57,3 +57,12 @@ export const duplicatedProductException = (productName) => {
 
   return isDuplicated;
 };
+
+export const lackOfUserChangeException = (price) => {
+  if (vendingMachine.userAmount >= price) {
+    return false;
+  } else {
+    alert('잔돈이 부족합니다.');
+    return true;
+  }
+};

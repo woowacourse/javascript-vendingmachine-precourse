@@ -1,4 +1,8 @@
-import { getMenuButtons, getManagers } from '../domElement.js';
+import {
+  getMenuButtons,
+  getManagers,
+  getPurchaseButtonCollection,
+} from '../domElement.js';
 import { BLOCK, NONE, CLICK } from '../../constants.js';
 import {
   getProductAddButton,
