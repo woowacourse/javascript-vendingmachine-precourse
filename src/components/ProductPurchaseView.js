@@ -15,7 +15,7 @@ export default class ProductPurchaseView {
     }
 
     if(localStorage.getItem(USER_COINS) !== null) {
-      this.showTable();
+      this.showUserCoinTable();
     }
   }
 
@@ -76,7 +76,7 @@ export default class ProductPurchaseView {
 
   static checkChange(coins, change) {
     if(coins === null || parseInt(change[VALUES]) === 0) {
-      this.showTable();
+      this.showUserCoinTable();
       alert("거스름돈이 없습니다!");
       return false;
     }
@@ -123,7 +123,7 @@ export default class ProductPurchaseView {
         this.storeAllResult(coins, userCoins, change, userMoney);
       }
       this.showUserCharge();
-      this.showTable();
+      this.showUserCoinTable();
       })
   }
 
@@ -162,7 +162,7 @@ export default class ProductPurchaseView {
 
   }
 
-  static showTable() {
+  static showUserCoinTable() {
     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
 
     document.getElementById('coin-500-quantity').innerHTML = `${userCoins[500]}개`;
