@@ -4,43 +4,25 @@ import ProductPurchaseCheck from './ProductPurchaseCheck.js';
 
 export default class ProductPurchaseView {
   static render() {
+    this.showPage();
+
+    if(localStorage.getItem(USER_CHARGE) !== null) {
+      this.showUserCharge();
+    }
+
+    if(localStorage.getItem(PRODUCT) !== null) {
+      this.showProductTable();
+    }
+  }
+
+  static showPage() {
     document.getElementById('bottom-container').innerHTML =
       HTML_OF_PRODUCT_PURCHASE_PART + HTML_OF_PRODUCT_PURCHASE_TABLE + HTML_OF_PRODUCT_PURCHASE_PART_MID + HTML_OF_USER_CHANGE_TABLE;
   }
 
-  static addEvent() {
-    document.getElementById('charge-button').addEventListener('click', (e) => {
-      e.preventDefault();
-      const userCharge = document.getElementById('charge-input').value;
-      const productPurchaseCheck = new ProductPurchaseCheck(userCharge);
-
-      if(productPurchaseCheck.checkAll()){
-        this.addUserCharge(userCharge);
-      } else {
-        alert(ERROR_MESSAGE);
-      }
-
-    })
-  }
-
-  static addUserCharge(userCharge) {
+  static showUserCharge() {
     const userInput = JSON.parse(localStorage.getItem(USER_CHARGE));
 
-    if(localStorage.getItem(USER_CHARGE) === null) {
-      localStorage.setItem(USER_CHARGE, JSON.stringify({values: userCharge}));
-      this.showFirstUserCharge(userCharge);
-    } else {
-      userInput[VALUES] = parseInt(userInput[VALUES]) + parseInt(userCharge);
-      localStorage.setItem(USER_CHARGE, JSON.stringify(userInput));
-      this.showUserCharge(userInput);
-    }
-  }
-
-  static showFirstUserCharge(userCharge) {
-    document.getElementById('charge-amount').innerHTML = `${userCharge}`;
-  }
-
-  static showUserCharge(userInput) {
     document.getElementById('charge-amount').innerHTML = `${userInput[VALUES]}`;
   }
 
@@ -56,6 +38,33 @@ export default class ProductPurchaseView {
       <td class="product-purchase-quantity" data-product-quantity=${product[name][VALUES][1]}>${product[name][VALUES][1]}</td>
       <td><button class="purchase-button">구매하기</button></td>
     </tr>`).join('')}`
+  }
+
+  static addEvent() {
+    document.getElementById('charge-button').addEventListener('click', (e) => {
+      e.preventDefault();
+      const userCharge = document.getElementById('charge-input').value;
+      const productPurchaseCheck = new ProductPurchaseCheck(userCharge);
+
+      if(productPurchaseCheck.checkAll()){
+        this.addUserCharge(userCharge);
+        this.showUserCharge();
+      } else {
+        alert(ERROR_MESSAGE);
+      }
+
+    })
+  }
+
+  static addUserCharge(userCharge) {
+    const userInput = JSON.parse(localStorage.getItem(USER_CHARGE));
+
+    if(localStorage.getItem(USER_CHARGE) === null) {
+      localStorage.setItem(USER_CHARGE, JSON.stringify({values: userCharge}));
+    } else {
+      userInput[VALUES] = parseInt(userInput[VALUES]) + parseInt(userCharge);
+      localStorage.setItem(USER_CHARGE, JSON.stringify(userInput));
+    }
   }
 
   static addReturnEvent() {
@@ -141,7 +150,7 @@ export default class ProductPurchaseView {
     }
 
     this.showTable();
-    })
+    }) 
     
   }
 
@@ -193,10 +202,6 @@ static purchase(name, price, quantity) {
   } else {
     alert('구매할 수 없습니다!');
   }
-  
-  // console.log(userMoney[VALUES]);
-
-  // console.log(product[name][VALUES][0]);
 }
 
 }
