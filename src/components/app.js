@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-
 import Component from "../common/component.js";
 
 export default class App extends Component {
