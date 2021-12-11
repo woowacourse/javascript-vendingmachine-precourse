@@ -1,32 +1,34 @@
 import Item from './Item.js';
 
 export default class Items {
-  constructor(store, items) {
-    this.store = store;
+  constructor(items) {
     this.items = items.map(
       ({ id, name, price, quantity }) => new Item(id, name, price, quantity)
     );
   }
 
-  // TODO: 예외 처리
-  insert(name, price, quantity) {
-    const result = this.store.insert({ name, price, quantity });
-    this.items.push(new Item(result.id, name, price, quantity));
+  find(id) {
+    const index = this.items.findIndex((item) => item.id === id);
 
-    return this;
+    if (index === -1) {
+      return null;
+    }
+
+    return this.items[index];
+  }
+
+  insert(id, name, price, quantity) {
+    this.items.push(new Item(id, name, price, quantity));
   }
 
   purchase(id) {
-    const result = this.items.findIndex((item) => item.id === id);
+    const item = this.find(id);
 
-    if (result === -1) {
-      alert('no such item');
-
+    if (!item) {
       throw 'no such item';
     }
 
-    this.items[result].purchase();
-    this.store.update(this.items[result]);
+    item.purchase();
 
     return this;
   }

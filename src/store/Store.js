@@ -1,11 +1,11 @@
+import INIT_DATA from './initData.js';
+
 export default class Store {
   constructor(name) {
     const { localStorage } = window;
 
     this.getLocalStorage = () => {
-      const initialState = `{"items":[], "coins":{"500":0, "100":0, "50":0, "10":0}, "chargedAmount":0}`;
-
-      return JSON.parse(localStorage.getItem(name) || initialState);
+      return JSON.parse(localStorage.getItem(name)) || INIT_DATA;
     };
 
     this.setLocalStorage = (state) => {

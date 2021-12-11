@@ -5,22 +5,21 @@ import ProductAddMenu from './components/ProductAddMenu/ProductAddMenu.js';
 import ProductPurchaseMenu from './components/ProductPurchaseMenu/ProductPurchaseMenu.js';
 import VendingMachineManageMenu from './components/VendingMachineMenu/VendingMachineManageMenu.js';
 
-import Items from './models/Items.js';
-import Coins from './models/Coins.js';
-import ChargedAmount from './models/ChargedAmount.js';
+import VendingMachine from './models/VendingMachine.js';
 import $ from './helpers.js';
 
 export default class App extends Component {
   setup() {
     const { store } = this.props;
     const { items, coins, chargedAmount } = store.getLocalStorage();
+    const currentTab = '/add';
+    const vendingMachine = new VendingMachine(store, {
+      items,
+      coins,
+      chargedAmount,
+    });
 
-    this.state = {
-      currentTab: '/add',
-      items: new Items(store, items),
-      coins: new Coins(store, coins),
-      chargedAmount: new ChargedAmount(store, chargedAmount),
-    };
+    this.state = { currentTab, vendingMachine };
 
     console.log('data loaded', this.state);
   }
@@ -39,22 +38,22 @@ export default class App extends Component {
 
   mounted() {
     const { navigate, addItem, refill, charge, purchase } = this;
-    const { currentTab, items, coins, chargedAmount } = this.state;
+    const { currentTab, vendingMachine } = this.state;
 
     new NavBar($('#nav-bar'), { navigate: navigate.bind(this) });
     new Router($('#router'), currentTab);
     new ProductAddMenu($('#product-add-tab'), {
-      items,
+      items: vendingMachine.items,
       addItem: addItem.bind(this),
     });
     new VendingMachineManageMenu($('#vending-machine-manage-tab'), {
-      coins,
+      coins: vendingMachine.coins,
       refill: refill.bind(this),
     });
     new ProductPurchaseMenu($('#product-purchase-tab'), {
-      items,
-      coins,
-      chargedAmount,
+      items: vendingMachine.items,
+      coins: vendingMachine.coins,
+      chargedAmount: vendingMachine.chargedAmount,
       charge: charge.bind(this),
       purchase: purchase.bind(this),
     });
@@ -65,29 +64,28 @@ export default class App extends Component {
   }
 
   addItem(name, price, quantity) {
-    const { items } = this.state;
+    const { vendingMachine } = this.state;
 
-    this.setState({ items: items.insert(name, price, quantity) });
+    this.setState({
+      vendingMachine: vendingMachine.addItem(name, price, quantity),
+    });
   }
 
   refill(amount) {
-    const { coins } = this.state;
+    const { vendingMachine } = this.state;
 
-    this.setState({ coins: coins.refill(amount) });
+    this.setState({ vendingMachine: vendingMachine.refillCoins(amount) });
   }
 
   charge(amount) {
-    const { chargedAmount } = this.state;
+    const { vendingMachine } = this.state;
 
-    this.setState({ chargedAmount: chargedAmount.charge(amount) });
+    this.setState({ vendingMachine: vendingMachine.charge(amount) });
   }
 
-  purchase(id, price) {
-    const { chargedAmount, items } = this.state;
+  purchase(id) {
+    const { vendingMachine } = this.state;
 
-    this.setState({
-      chargedAmount: chargedAmount.purchase(price),
-      items: items.purchase(id),
-    });
+    this.setState({ vendingMachine: vendingMachine.purchase(id) });
   }
 }

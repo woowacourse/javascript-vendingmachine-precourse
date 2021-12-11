@@ -1,6 +1,7 @@
 import Component from '../../core/Component.js';
 import $ from '../../helpers.js';
 import isValidChargeAmount from '../../utils/isValidChargeAmount.js';
+import divmod from '../../utils/divmod.js';
 
 export default class ProductPurchaseMenu extends Component {
   setup() {
@@ -14,6 +15,7 @@ export default class ProductPurchaseMenu extends Component {
     };
   }
 
+  // TODO: item 목록 직접 접근 안하게 수정
   template() {
     const { chargedAmount, items } = this.state;
 
@@ -37,13 +39,10 @@ export default class ProductPurchaseMenu extends Component {
             <tr
               class='product-purchase-item'
               data-product-id='${item.id}'
-              data-product-name='${item.name}'
-              data-product-price='${item.price}'
-              data-product-quantity='${item.quantity}'
             >
-              <td class='product-purchase-name'>${item.name}</td>
-              <td class='product-purchase-price'>${item.price}</td>
-              <td class='product-purchase-quantity'>${item.quantity}</td>
+              <td class='product-purchase-name' data-product-name='${item.name}'>${item.name}</td>
+              <td class='product-purchase-price' data-product-price='${item.price}'>${item.price}</td>
+              <td class='product-purchase-quantity' data-product-quantity='${item.quantity}'>${item.quantity}</td>
               <td><button class='purchase-button'>구매하기</button></td>
             </tr>
           `;
@@ -93,7 +92,10 @@ export default class ProductPurchaseMenu extends Component {
     this.addEvent('click', '.purchase-button', (e) => {
       e.preventDefault();
 
-      const { productId, productPrice } = e.target.closest('tr').dataset;
+      const { productPrice } = e.target
+        .closest('tr')
+        .querySelector('.product-purchase-price').dataset;
+      const { productId } = e.target.closest('tr').dataset;
       const { chargedAmount } = this.state;
       const id = Number(productId);
       const price = Number(productPrice);
@@ -104,13 +106,33 @@ export default class ProductPurchaseMenu extends Component {
         return;
       }
 
-      this.props.purchase(id, price);
+      this.props.purchase(id);
     });
 
+    // TODO: 동전이 없을 경우 예외 처리, 잔돈 반환 후 동전 상태 저장, 다른 탭에 갔다 왔을 때 잔돈 상태 유지
     this.addEvent('click', '#coin-return-button', (e) => {
       e.preventDefault();
 
-      alert('hi');
+      const { chargedAmount } = this.state;
+      const change = {
+        '500': 0,
+        '100': 0,
+        '50': 0,
+        '10': 0,
+      };
+      const divisor = [10, 50, 100, 500];
+
+      let remain = chargedAmount;
+
+      while (remain > 0 && divisor) {
+        const div = divisor.pop();
+        const { quotient, remainder } = divmod(remain, div);
+        remain = remainder;
+        change[div.toString()] = quotient;
+      }
+
+      this.setState({ change });
+      this.setState({ chargedAmount: 0 });
     });
   }
 }

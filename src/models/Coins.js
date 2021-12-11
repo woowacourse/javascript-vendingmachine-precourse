@@ -1,8 +1,7 @@
 /* global MissionUtils */
 
 export default class Coins {
-  constructor(store, coins) {
-    this.store = store;
+  constructor(coins) {
     this.fivehundred = coins['500'];
     this.hundred = coins['100'];
     this.fifty = coins['50'];
@@ -45,9 +44,6 @@ export default class Coins {
     this.hundred += newCoins['100'];
     this.fifty += newCoins['50'];
     this.ten += newCoins['10'];
-    this.store.updateCoins(this.toMap());
-
-    return this;
   }
 
   toMap() {
