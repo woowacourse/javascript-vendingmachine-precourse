@@ -1,5 +1,6 @@
 import { DOM_ID_SELECTOR, ERROR_MESSAGE } from '../constants.js';
 import printProductManageTable from '../dom/printProductManageTable.js';
+import isValidPrice from '../utils/isValidPrice.js';
 
 const isValidProductName = (name) => {
   if (!name) {
@@ -11,9 +12,7 @@ const isValidProductName = (name) => {
 };
 
 const isValidProductPrice = (price) => {
-  const priceNumber = Number(price);
-
-  if (Number.isNaN(priceNumber) || !Number.isInteger(priceNumber) || priceNumber <= 0 || priceNumber % 10 !== 0) {
+  if (!isValidPrice(price)) {
     alert(ERROR_MESSAGE.productPrice);
     return false;
   }

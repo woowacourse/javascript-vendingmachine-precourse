@@ -1,10 +1,9 @@
 import { DOM_ID_SELECTOR, ERROR_MESSAGE } from '../constants.js';
 import printChargeAmount from '../dom/printChargeAmount.js';
+import isValidPrice from '../utils/isValidPrice.js';
 
-const isValidPrice = (price) => {
-  const priceNumber = Number(price);
-
-  if (Number.isNaN(priceNumber) || !Number.isInteger(priceNumber) || priceNumber <= 0 || priceNumber % 10 !== 0) {
+const isValid = (price) => {
+  if (!isValidPrice(price)) {
     alert(ERROR_MESSAGE.insertPrice);
     return false;
   }
@@ -27,7 +26,7 @@ const attachChargeEvent = (vendingMachine) => {
     event.preventDefault();
 
     const price = getChargeInputValue();
-    if (isValidPrice(price)) {
+    if (isValid(price)) {
       clearChargeInput();
       vendingMachine.insertMoney(Number(price));
       vendingMachine.save();

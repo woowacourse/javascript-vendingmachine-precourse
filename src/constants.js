@@ -106,6 +106,8 @@ export const COIN_LIST = [500, 100, 50, 10];
 
 export const COIN_UNIT = '개';
 
+export const PRICE_DIVIDER = 10;
+
 export const STORAGE_KEY = {
   menu: 'menu',
   product: 'product',
