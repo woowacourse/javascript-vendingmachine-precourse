@@ -8,8 +8,13 @@ import {
     appendDiv,
     createButton,
     createTable,
+    appendTable,
 } from "../storage/createElement.js";
-import { MANAGE_TAB_ID, MANAGE_TAB_CLASS } from "../storage/constant.js";
+import {
+    MANAGE_TAB_ID as ID,
+    MANAGE_TAB_CLASS as CLASS,
+    MANAGE_STRING as STRING,
+} from "../storage/constant.js";
 export default function ManagePresenter() {
     // 최초 실행시, localStorage를 확인해볼 것.
     // localStorage에 값이 없다는게 확인 된다면, 새로 깔면 되고,
@@ -22,12 +27,12 @@ export default function ManagePresenter() {
 
     const setInitialManage = () => {
         const $addTitle = createTitle("상품 추가하기");
-        const $productInput = createInput(MANAGE_TAB_ID.NAME_INPUT, "상품명");
-        const $priceInput = createInput(MANAGE_TAB_ID.PRICE_INPUT, "가격");
-        const $amountInput = createInput(MANAGE_TAB_ID.QUANTITY_INPUT, "수량");
-        const $addButton = createButton(MANAGE_TAB_ID.ADD_BUTTON, "추가하기");
-        const $productState = createTitle("상품 현황");
-        const $table = createTable(["상품명", "가격", "수량"]);
+        const $productInput = createInput(ID.NAME_INPUT, STRING.NAME);
+        const $priceInput = createInput(ID.PRICE_INPUT, STRING.PRICE);
+        const $amountInput = createInput(ID.QUANTITY_INPUT, STRING.AMOUNT);
+        const $addButton = createButton(ID.ADD_BUTTON, STRING.ADD);
+        const $productState = createTitle(STRING.STATE);
+        const $table = createTable([STRING.NAME, STRING.PRICE, STRING.AMOUNT]);
         appendDiv($container, [
             $addTitle,
             $productInput,

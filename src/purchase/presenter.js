@@ -9,6 +9,7 @@ import {
     createButton,
     createTable,
     appendTable,
+    createParagraph,
 } from "../storage/createElement.js";
 import { PURCHASE_TAB_ID, PURCHASE_TAB_CLASS } from "../storage/constant.js";
 
@@ -58,7 +59,10 @@ export default function PurchasePresenter() {
     };
     const setReturnDiv = () => {
         const $returnTitle = createTitle("잔돈");
-        const $returnButton = createButton("반환하기");
+        const $returnButton = createButton(
+            PURCHASE_TAB_ID.RETURN_BUTTON,
+            "반환하기",
+        );
         const $returnTable = createTable(["동전", "개수"]);
         appendDiv($container, [$returnTitle, $returnButton, $returnTable]);
         appendTable("500원", "");

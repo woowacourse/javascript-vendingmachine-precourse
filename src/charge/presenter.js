@@ -11,7 +11,10 @@ import {
     appendTable,
     createParagraph,
 } from "../storage/createElement.js";
-import { CHARGE_TAB_ID } from "../storage/constant.js";
+import {
+    CHARGE_TAB_ID as ID,
+    CHARGE_STRING as STRING,
+} from "../storage/constant.js";
 
 export default function ChargePresenter() {
     // 최초 실행시, localStorage를 확인해볼 것.
@@ -24,22 +27,15 @@ export default function ChargePresenter() {
     };
 
     const setInitialManage = () => {
-        console.log("@");
-        const $addTitle = createTitle("자판기 동전 충전하기");
-        const $amountInput = createInput(
-            CHARGE_TAB_ID.CHARGE_INPUT,
-            "자판기가 보유할 금액",
-        );
-        const $addButton = createButton(
-            CHARGE_TAB_ID.CHARGE_BUTTON,
-            "충전하기",
-        );
+        const $addTitle = createTitle(STRING.TITLE);
+        const $amountInput = createInput(ID.CHARGE_INPUT, STRING.INPUT_PLACE);
+        const $addButton = createButton(ID.CHARGE_BUTTON, STRING.CHARGE);
         const $totalAmount = createParagraph(
-            CHARGE_TAB_ID.CHARGE_AMOUNT,
-            "보유 금액 :",
+            ID.CHARGE_AMOUNT,
+            STRING.CURRENT_AMOUNT,
         );
-        const $coinState = createTitle("자판기가 보유한 동전");
-        const $table = createTable(["동전", "개수"]);
+        const $coinState = createTitle(STRING.COIN_STATE);
+        const $table = createTable([STRING.COIN, STRING.COUNT]);
         appendDiv($container, [
             $addTitle,
             $amountInput,
@@ -48,10 +44,25 @@ export default function ChargePresenter() {
             $coinState,
             $table,
         ]);
-        appendTable("500원", "");
-        appendTable("100원", "");
-        appendTable("50원", "");
-        appendTable("10원", "");
+        setChargeTableRows();
+    };
+
+    const setChargeTableRows = () => {
+        const $table = document.querySelector(".table");
+        [
+            [STRING.COIN_500, ID.COIN_500],
+            [STRING.COIN_100, ID.COIN_100],
+            [STRING.COIN_50, ID.COIN_50],
+            [STRING.COIN_10, ID.COIN_10],
+        ].forEach((element) => {
+            const tr = document.createElement("tr");
+            const name = document.createElement("td");
+            name.innerText = element[0];
+            const count = document.createElement("td");
+            count.id = element[1];
+            tr.append(name, count);
+            $table.append(tr);
+        });
     };
 
     this.init();

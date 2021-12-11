@@ -7,6 +7,7 @@ import {
 } from "./createElement.js";
 import ManagePresenter from "../manage/presenter.js";
 import ChargePresenter from "../charge/presenter.js";
+import PurchasePresenter from "../purchase/presenter.js";
 export const clearContainer = () => {
     while (getPresetContainer().firstChild)
         getPresetContainer().removeChild(getPresetContainer().firstChild);
@@ -14,13 +15,11 @@ export const clearContainer = () => {
 export const clickHandler = (id) => {
     switch (id) {
         case INITIAL_TAB_ID.PRODUCT_MANAGE_TAB:
-            new ManagePresenter();
-            break;
+            return new ManagePresenter();
         case INITIAL_TAB_ID.CHARGE_TAB:
-            new ChargePresenter();
-            break;
+            return new ChargePresenter();
         case INITIAL_TAB_ID.PRODUCT_PURCHASE_TAB:
-            break;
+            return new PurchasePresenter();
     }
 };
 export const getApp = () => {
