@@ -11,7 +11,7 @@ export const createTitleTemplate = () => `
 export const createCoinQuantityTableRowTemplate = (coin, amount, id) => `
   <tr>
     <td Style="${Style.tableBodyData}">${coin}원</td>
-    <td Style="${Style.tableBodyData}" id="${id}">${amount}</td>
+    <td Style="${Style.tableBodyData}"><span id="${id}">${amount}</span><span>개</span></td>
   </tr>
 `;
 
