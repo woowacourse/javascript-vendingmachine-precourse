@@ -5,7 +5,7 @@ export default class Product {
     this.quantity = quantity;
   }
 
-  getProductInformation() {
+  getInformation() {
     const { name, price, quantity } = this;
     return { name, price, quantity };
   }
