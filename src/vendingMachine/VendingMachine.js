@@ -7,6 +7,7 @@ export default class VendingMachine {
   constructor() {
     initView();
     this.products = [];
+    this.money = 0;
   }
 
   addProduct(product) {
@@ -18,5 +19,9 @@ export default class VendingMachine {
       return addedProduct;
     }
     return null;
+  }
+
+  charge(money) {
+    this.money = +money;
   }
 }
