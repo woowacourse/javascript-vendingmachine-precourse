@@ -10,7 +10,7 @@ export default class ProductController {
   }
 
   init = () => {
-    this.view.renderPage(this.$container);
+    this.initPage();
     this.initDOMS();
     this.setEvent();
     this.view.renderProductTable(this.$productTableBody, this.model.getProducts());
@@ -22,6 +22,10 @@ export default class ProductController {
     this.$productQuantityInput = document.getElementById(ID.PRODUCT_QUANTITY_INPUT);
     this.$productAddButton = document.getElementById(ID.PRODUCT_ADD_BUTTON);
     this.$productTableBody = document.getElementById(ID.PRODUCT_TABLE_BODY);
+  };
+
+  initPage = () => {
+    this.view.renderPage(this.$container);
   };
 
   setEvent = () => {
