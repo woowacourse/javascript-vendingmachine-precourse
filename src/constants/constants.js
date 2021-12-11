@@ -26,4 +26,8 @@ export const VALIDATION = {
     NONE: '수량을 입력해 주십시오.',
     NEGATIVE: '수량은 양의 정수로 입력해 주십시오',
   },
+  AMOUNT: {
+    NONE: '충전할 금액을 입력해 주세요.',
+    MULTIPLE_OF_10: '충전할 금액은 10의 배수만 입력이 가능합니다.',
+  },
 };
