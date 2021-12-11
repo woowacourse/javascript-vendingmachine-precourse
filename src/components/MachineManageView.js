@@ -4,8 +4,13 @@ import MachineManageCheck from './MachineManageCheck.js';
 
 export default class MachineManageView {
   static render() {
+    this.showPage();
+  }
+
+
+  static showPage() {
     document.getElementById('bottom-container').innerHTML =
-      HTML_OF_MACHINE_MANAGE_PART + HTML_OF_MACHINE_MANAGE_TABLE;
+    HTML_OF_MACHINE_MANAGE_PART + HTML_OF_MACHINE_MANAGE_TABLE;
   }
 
   static addEvent() {
@@ -29,19 +34,16 @@ export default class MachineManageView {
 
       if(localStorage.getItem(CHANGE) === null) {
           localStorage.setItem(CHANGE, JSON.stringify({values: charge}));
-          this.showFirstChange(charge);
       } else {
           change[VALUES] = parseInt(change[VALUES]) + parseInt(charge);
           localStorage.setItem(CHANGE, JSON.stringify(change));
-          this.showChange(change);
       }
+      this.showChange();
   }
 
-  static showFirstChange(charge) {
-    document.getElementById('vending-machine-charge-amount').innerHTML = `${charge}원`;
-  }
+  static showChange() {
+    const change = JSON.parse(localStorage.getItem(CHANGE));
 
-  static showChange(change) {
     document.getElementById('vending-machine-charge-amount').innerHTML = `${change[VALUES]}원`;
   }
 
