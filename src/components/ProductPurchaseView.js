@@ -51,7 +51,7 @@ export default class ProductPurchaseView {
       const productPurchaseCheck = new ProductPurchaseCheck(userCharge);
 
       if(productPurchaseCheck.checkAll()){
-        this.addUserCharge(userCharge);
+        this.storeUserCharge(userCharge);
         this.showUserCharge();
       } else {
         alert(ERROR_MESSAGE);
@@ -60,7 +60,7 @@ export default class ProductPurchaseView {
     })
   }
 
-  static addUserCharge(userCharge) {
+  static storeUserCharge(userCharge) {
     const userInput = JSON.parse(localStorage.getItem(USER_CHARGE));
 
     if(localStorage.getItem(USER_CHARGE) === null) {
