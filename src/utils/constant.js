@@ -1,6 +1,8 @@
 export const DOM = {
   $TR: 'tr',
   $APP: '#app',
+  $CHARGE_BUTTON: '#charge-button',
+  $CHARGE_INPUT: '#charge-input',
   $PRODUCT_MANAGE_ITEM: 'product-manage-item',
   $PRODUCT_ADD_MENU: '#product-add-menu',
   $PRODUCT_PURCHASE_MENU: '#product-purchase-menu',
@@ -134,9 +136,9 @@ export const TEMPLATE = {
   `,
   PRODUCT_PURCHASE_MENU: `
   <h3>금액 투입</h3>
-    <input type="number" id="charge-input" />
+    <input type="number" id="charge-input" placeholder="투입할 금액"/>
     <button id="charge-button">투입하기</button>
-    <br /><br /><br />
+    <br /><br />
     <span
       >투입한 금액:
       <span id="charge-amount">500원</span>

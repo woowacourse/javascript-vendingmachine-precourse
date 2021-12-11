@@ -1,10 +1,11 @@
+import { DOM } from '../utils/constant.js';
 import VendingMachineCharge from './VendingMachineCharge.js';
 
 export default class SetVendingMachineCharge {
   constructor(render, coins) {
     this.render = render;
     this.coins = coins;
-    this.vendingMachineCharge = new VendingMachineCharge(this.render);
+    this.vendingMachineCharge = new VendingMachineCharge(this.render, DOM.$VENDING_MACHINE_CHARGE_INPUT);
     this.vendingMachineChargeAmount = 0;
     this.coin10 = 0;
     this.coin50 = 0;

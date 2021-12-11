@@ -1,12 +1,12 @@
-import { DOM, NUMBER, ERROR_MESSAGE } from '../utils/constant.js';
+import { NUMBER, ERROR_MESSAGE } from '../utils/constant.js';
 
 export default class VendingMachineCharge {
-  constructor(render) {
+  constructor(render, element) {
     this.render = render;
-    this.$vendingMachineChargeInput = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_INPUT);
+    this.$targetElement = document.querySelector(element);
   }
 
-  getInput = () => Number(this.$vendingMachineChargeInput.value);
+  getInput = () => Number(this.$targetElement.value);
 
   isBlank = ($element) => {
     if ($element.value.length < NUMBER.BLANK_CHECK_LENGTH) {
@@ -32,9 +32,9 @@ export default class VendingMachineCharge {
   };
 
   isUnitOfTen = () => {
-    if (Number(this.$vendingMachineChargeInput.value) % NUMBER.UNIT_CHECK_TEN !== NUMBER.ZERO) {
-      this.render.alertMessage(ERROR_MESSAGE.UNIT_OF_TEN(this.$vendingMachineChargeInput.placeholder));
-      this.render.inputFocus(this.$vendingMachineChargeInput);
+    if (Number(this.$targetElement.value) % NUMBER.UNIT_CHECK_TEN !== NUMBER.ZERO) {
+      this.render.alertMessage(ERROR_MESSAGE.UNIT_OF_TEN(this.$targetElement.placeholder));
+      this.render.inputFocus(this.$targetElement);
 
       return false;
     }
@@ -43,7 +43,5 @@ export default class VendingMachineCharge {
   };
 
   isValidInput = () =>
-    !this.isBlank(this.$vendingMachineChargeInput) &&
-    this.isPositiveInteger(this.$vendingMachineChargeInput) &&
-    this.isUnitOfTen();
+    !this.isBlank(this.$targetElement) && this.isPositiveInteger(this.$targetElement) && this.isUnitOfTen();
 }
