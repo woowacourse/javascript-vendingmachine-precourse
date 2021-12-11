@@ -90,7 +90,7 @@ export default class ProductPurchaseView {
     localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
   }
 
-  static makeEmpty(userCoins, coins, userMoney, change) {
+  static makeEmpty(coins, userCoins, change, userMoney) {
     let list = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
 
     list.forEach((element) => {
@@ -122,15 +122,15 @@ export default class ProductPurchaseView {
 
   static checkChangeCase(coins, userCoins, change, userMoney) {
     if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
-      this.makeEmpty(userCoins, coins, userMoney, change);
+      this.makeEmpty(coins, userCoins, change, userMoney);
       this.storeAllResult(coins, userCoins, change, userMoney);
     } else {
-      this.minimumCoin(userMoney, coins, change, userCoins);
+      this.minimumCoin(coins, userCoins, change, userMoney);
       this.storeAllResult(coins, userCoins, change, userMoney);
     }
   }
 
-  static minimumCoin(userMoney, coins, change, userCoins) {
+  static minimumCoin(coins, userCoins, change, userMoney) {
     let list = this.listInit(userMoney[VALUES], 0);
     while(list[0] >= 0) {
       if(list[0] >= 500 && coins[500] >= 1) {
@@ -211,8 +211,6 @@ export default class ProductPurchaseView {
 
       this.showProductTable();
       this.showUserCharge(userMoney);
-
-
     } else {
       alert('구매할 수 없습니다!');
     }
