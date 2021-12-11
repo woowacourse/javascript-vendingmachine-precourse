@@ -1,4 +1,5 @@
-import elementCreator from './dom/util.js'
+import elementCreator from './dom/util.js';
+import createAddTab from './tabs/add-tab.js';
 
 const addButtonId = 'product-add-menu';
 const manageButtonId = 'vending-machine-manage-menu';
@@ -8,7 +9,7 @@ const app = document.getElementById('app');
 
 app.append(elementCreator('h1','title','🥤 자판기 🥤'));
 
-const buttons = elementCreator('span','buttons','');
+const buttons = elementCreator('span','buttons',null);
 
 const addButton = elementCreator('button', addButtonId, '상품 관리');
 const manageButton = elementCreator('button', manageButtonId,'잔돈 충전');
@@ -22,7 +23,7 @@ const addTabId = 'add-menu';
 const manageTabId = 'manage-menu';
 const purchaseTabId = 'purchase-menu';
 
-const addTab = elementCreator('div', addTabId, 'addTab');
+const addTab = createAddTab();
 const manageTab = elementCreator('div', manageTabId, 'manageTab');
 const purchaseTab = elementCreator('div', purchaseTabId, 'purchaseTab');
 
@@ -41,7 +42,6 @@ tabs[purchaseButtonId] = purchaseTab;
 buttons.addEventListener('click', e =>{
     e.preventDefault();
     const targetButton = e.target;
-    console.log(targetButton);
     for(let buttonId in tabs){
         if(buttonId === targetButton.id){
             tabs[buttonId].hidden = false;
