@@ -12,6 +12,7 @@ import {
 import {
   onClickInsertButton,
   onClickPurchaseButton,
+  onClickReturnButton,
 } from "../menus/purchaseProductMenu.js";
 
 // ----금액 투입하기 폼----
@@ -98,7 +99,10 @@ const makeChangeStateContainer = () => {
   const div = document.createElement("div");
   div.appendChild(makeTitle(PURCHASE_PRODUCT_TAP.changeStateTitle));
   div.appendChild(
-    makeButton(PURCHASE_PRODUCT_TAP.changeStateButtonInformation)
+    makeButton(
+      PURCHASE_PRODUCT_TAP.changeStateButtonInformation,
+      onClickReturnButton
+    )
   );
   div.appendChild(
     makeCoinTable(
@@ -108,6 +112,12 @@ const makeChangeStateContainer = () => {
   );
 
   return div;
+};
+
+export const renderChanges = changes => {
+  PURCHASE_PRODUCT_TAP.changeStateTableRaws.forEach((raw, index) => {
+    document.getElementById(`${raw[1]}`).innerText = `${changes[index]}개`;
+  });
 };
 
 export const renderPurchaseProductMenuView = () => {

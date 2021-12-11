@@ -4,7 +4,7 @@ import {
   checkCanPurchase,
   checkInsertMoneyInput,
 } from "../utils/validation.js";
-import { renderMoney } from "../views/purchaseProductView.js";
+import { renderChanges, renderMoney } from "../views/purchaseProductView.js";
 
 const resetInput = () => {
   const $charge_input = document.getElementById("charge-input");
@@ -54,4 +54,11 @@ export const onClickPurchaseButton = event => {
     renderMoney(vendingMachine.getMoney());
     updateQuantity(getQuantityTag(form));
   }
+};
+
+export const onClickReturnButton = event => {
+  event.preventDefault();
+  const returnChanges = vendingMachine.getChanges();
+  renderMoney(vendingMachine.getMoney());
+  renderChanges(returnChanges);
 };

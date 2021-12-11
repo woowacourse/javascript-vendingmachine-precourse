@@ -4,10 +4,12 @@ import Product from "./product.js";
 class VendingMachine {
   constructor() {
     this.products = [];
-    this.coin500 = 0;
-    this.coin100 = 0;
-    this.coin50 = 0;
-    this.coin10 = 0;
+    this.coins = {
+      500: 0,
+      100: 0,
+      50: 0,
+      10: 0,
+    };
     this.insertedMoney = 0;
   }
 
@@ -28,13 +30,13 @@ class VendingMachine {
 
   addCoin(coin) {
     if (coin === 500) {
-      this.coin500++;
+      this.coins[500]++;
     } else if (coin === 100) {
-      this.coin100++;
+      this.coins[100]++;
     } else if (coin === 50) {
-      this.coin50++;
+      this.coins[50]++;
     } else if (coin === 10) {
-      this.coin10++;
+      this.coins[10]++;
     }
   }
 
@@ -50,16 +52,21 @@ class VendingMachine {
 
   getTotalMoney() {
     let total =
-      this.coin500 * 500 +
-      this.coin100 * 100 +
-      this.coin50 * 50 +
-      this.coin10 * 10;
+      this.coins[500] * 500 +
+      this.coins[100] * 100 +
+      this.coins[50] * 50 +
+      this.coins[10] * 10;
 
     return total;
   }
 
   getCoins() {
-    let coins = [this.coin500, this.coin100, this.coin50, this.coin10];
+    let coins = [
+      this.coins[500],
+      this.coins[100],
+      this.coins[50],
+      this.coins[10],
+    ];
 
     return coins;
   }
@@ -71,6 +78,24 @@ class VendingMachine {
         this.insertedMoney -= product.price;
       }
     });
+  }
+
+  returnCoin(coin) {
+    const minCount = Math.min(
+      this.coins[`${coin}`],
+      Math.floor(this.insertedMoney / coin)
+    );
+
+    this.coins[`${coin}`] -= minCount;
+    this.insertedMoney -= minCount * coin;
+
+    return minCount;
+  }
+
+  getChanges() {
+    let coins = COINS.map(coin => this.returnCoin(coin));
+
+    return coins;
   }
 }
 
