@@ -1,11 +1,11 @@
 import { elementCreator } from "../dom/util.js"
-import { MANAGE_TAB_ID } from "../constants.js";
+import { COIN_TABLE_ID, MANAGE_TAB_ID } from "../constants.js";
 
 const createCoinTable = () => {
-    return `<tbody><tr><td>500원</td><td id=${MANAGE_TAB_ID.COIN_FIVE_HUNDRED}></td></tr>
-            <tr><td>100원</td><td id=${MANAGE_TAB_ID.COIN_HUNDRED}></td></tr>
-            <tr><td>50원</td><td id=${MANAGE_TAB_ID.COIN_FIFTY}></td></tr>
-            <tr><td>10원</td><td id=${MANAGE_TAB_ID.COIN_TEN}></td></tr>
+    return `<tbody><tr><td>500원</td><td id=${COIN_TABLE_ID.FIRST}></td></tr>
+            <tr><td>100원</td><td id=${COIN_TABLE_ID.SECOND}></td></tr>
+            <tr><td>50원</td><td id=${COIN_TABLE_ID.THIRD}></td></tr>
+            <tr><td>10원</td><td id=${COIN_TABLE_ID.LAST}></td></tr>
             </tbody>`
 }
 
@@ -35,7 +35,7 @@ const createCoinViewElement = (manageTab) => {
 
     tableHead.append(tableRow);
     coinTable.append(tableHead);
-    
+
     coinTable.insertAdjacentHTML('beforeend',createCoinTable());
     manageTab.append(coinTable);
 }

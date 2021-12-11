@@ -1,4 +1,4 @@
-import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE } from './constants.js';
+import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID } from './constants.js';
 import Product from './product.js'
 import { elementCreatorWithClass } from './dom/util.js';
 
@@ -41,11 +41,21 @@ export default class VendingMachine {
             money = money - COIN_VALUE[key] * value;
         }
 
-        this.coins['LAST'] = money / COIN_VALUE['LAST'];
+        this.coins['LAST'] += money / COIN_VALUE['LAST'];
+    }
+
+    displayPossessCoins(){
+        let total = 0;
+        for(let key in this.coins){
+            document.getElementById(COIN_TABLE_ID[key]).innerHTML = `${this.coins[key]}개`;
+            total += this.coins[key] * COIN_VALUE[key];
+        }
+        document.getElementById(MANAGE_TAB_ID.AMOUNT_SPAN_VALUE).innerHTML = total;
     }
 
     addCoin(money){
-        this.getRandomCoins(money);    
+        this.getRandomCoins(money);
+        this.displayPossessCoins();
     }
 
 }

@@ -18,11 +18,14 @@ export const MANAGE_TAB_ID = {
     CHARGE_INPUT: 'vending-machine-charge-input',
     CHARGE_BUTTON: 'vending-machine-charge-button',
     AMOUNT_SPAN: 'amount-span',
-    AMOUNT_SPAN_VALUE: 'vending-machine-charge-amount',
-    COIN_FIVE_HUNDRED: 'vending-machine-coin-500-quantity',
-    COIN_HUNDRED: 'vending-machine-coin-100-quantity',
-    COIN_FIFTY: 'vending-machine-coin-50-quantity',
-    COIN_TEN: 'vending-machine-coin-10-quantity',
+    AMOUNT_SPAN_VALUE: 'vending-machine-charge-amount'
+}
+
+export const COIN_TABLE_ID = {
+    FIRST: 'vending-machine-coin-500-quantity',
+    SECOND: 'vending-machine-coin-100-quantity',
+    THIRD: 'vending-machine-coin-50-quantity',
+    LAST: 'vending-machine-coin-10-quantity',
 }
 
 export const COIN_VALUE = {
