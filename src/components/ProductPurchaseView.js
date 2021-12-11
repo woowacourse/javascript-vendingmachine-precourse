@@ -124,10 +124,7 @@ export default class ProductPurchaseView {
 
       this.storeAllResult(coins, userCoins, change, userMoney);
     } else {
-      let temp = userMoney[VALUES];
-      //실제 거슬러준거
-      let real = 0;
-      let list = [temp, real];
+      let list = this.listInit(userMoney[VALUES], 0);
       while(list[0] >= 0) {
         if(list[0] >= 500 && coins[500] >= 1) {
           list = this.makeUserCoins(FIVE_HUNDRED, list, coins, userCoins);
@@ -158,6 +155,14 @@ export default class ProductPurchaseView {
     list[0] -= num;
     list[1] += num;
     return list;
+  }
+
+  static listInit(temp, real) {
+    this.temp = temp;
+    this.real = real;
+    let list = [temp, real];
+    return list;
+
   }
 
   static showTable() {
