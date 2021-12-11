@@ -16,6 +16,11 @@ export default class Component {
     this.$target.innerHTML = this.template();
     this.mounted();
   }
-  setState() {}
-  addEvent(eventType, selector, callback) {}
+  setState(newState) {
+    this.$state = { ...this.$state, ...newState };
+    this.render();
+  }
+  addEvent(eventType, selector, callback) {
+    selector.addEventListener(eventType, callback);
+  }
 }
