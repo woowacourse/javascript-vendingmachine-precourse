@@ -4,7 +4,7 @@ import TextNode from './TextNode.js';
 
 class Button extends Component {
   constructor(text, props) {
-    super($tag('button'), text, props);
+    super($tag('button'), props);
     this.children = [new TextNode(text)];
   }
 
