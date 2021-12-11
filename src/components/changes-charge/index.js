@@ -1,11 +1,25 @@
+import VendingMachineStore from '../../store/vendingMachineStore.js';
 import { $tag } from '../../utils/index.js';
 import Component from '../base/Component.js';
-import TextNode from '../base/TextNode.js';
+import Charge from './Charge.js';
 
 class ChangesCharge extends Component {
+  $charge;
+
   constructor() {
     super($tag('div'));
-    this.children = [new TextNode('TODO: 잔돈 충전')];
+    this.$charge = new Charge();
+
+    this.setEvent();
+    this.children = [this.$charge];
+  }
+
+  setEvent() {
+    this.$charge.onSubmit = ({ amount }) => {
+      VendingMachineStore.instance.chargeChanges(amount);
+      this.$charge.resetInputs();
+      // this.$status.update();
+    };
   }
 }
 
