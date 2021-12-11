@@ -1,8 +1,8 @@
 import Component from "./components/root/Component.js";
 import Menu from "./components/Menu.js";
-import ProductAdd from "./components/product_add/main.js";
-import ChargeManage from "./components/charge_manage/main.js";
-import ProductPurchase from "./components/product_purchase/main.js";
+import ProductAdd from "./components/product_add/ProductAdd.js";
+import ChargeManage from "./components/charge_manage/ChargeManage.js";
+import ProductPurchase from "./components/product_purchase/ProductPurchase.js";
 
 export default class App extends Component {
   setup() {
@@ -47,7 +47,7 @@ export default class App extends Component {
       case "product-purchase-menu":
         return new ProductPurchase(container, props);
       default:
-        break;
+        return;
     }
   }
 }
