@@ -1,4 +1,4 @@
-import TabMenuController from './controller/tabMenuController.js';
+import VendingMachine from "./controller/vendingMachine.js";
 
 class App {
   constructor() {
@@ -6,7 +6,7 @@ class App {
   }
 
   init() {
-    new TabMenuController();
+    new VendingMachine();
   }
 }
 
