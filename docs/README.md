@@ -70,7 +70,9 @@
 
 [x] 보유금액의 경우 처음으로 탭에 진입할 때에 (localStorage에 저장된 값이 없는 상태) 0 원으로 render한다
 
-[ ] 보유금액의 경우 vendingCoin localStorage에서 총액을 구해서 표기한다
+[x] 보유금액의 경우 vendingCoin localStorage에서 총액을 구해서 표기한다
+
+[ ] 유저의 입력값이 유효한 경우 충전된 금액을 확인하는 요소에 {금액}원 형식으로 표기한다
 
 [x] 충전하기 버튼은 vending-machine-charge-button id를 가진다
 
@@ -87,8 +89,6 @@
     [x] 소수점 값을 입력했을 경우 alert로 처리한다
 
     [x] 숫자값이 아닌 값을 입력했을 경우 alert로 처리한다
-
-[ ] 유저의 입력값이 유효한 경우 충전된 금액을 확인하는 요소에 {금액}원 형식으로 표기한다
 
 [x] 충전된 금액을 확인하는 요소는 vending-machine-charge-amount id를 가진다
 
@@ -200,7 +200,7 @@
 
 - 메뉴명, 가격, 수량의 경우 { 'menu' : '메뉴명' , 'price' : '가격', ;'quantity' : '수량' } 형태로 저장
 
-- 자판기가 보유한 잔돈의 경우 { 'coin500' : 0, 'coin100' : 0, 'coin50' : 0, 'coin10' } 형태로 저장
+- 자판기가 보유한 잔돈의 경우 { 'COIN_500' : 0, 'COIN_100' : 0, 'COIN_50' : 0, 'COIN_10' : 0 } 형태로 저장
 
 - 유저가 보유한 금액의 경우 userTotalMoney = 0 형태로 저장
 
@@ -208,7 +208,7 @@
 
     [x] 메뉴명, 가격 , 수량 정보는 drink localStorage에서 관리한다
 
-    [ ] 자판기가 보유한 동전의 종류별 개수의 경우 vendingCoin localStorage에서 관리한다
+    [x] 자판기가 보유한 동전의 종류별 개수의 경우 vendingCoin localStorage에서 관리한다
 
     [ ] 유저가 투입한 금액의 경우 userMoney localstorage에서 관리한다
 
