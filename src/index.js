@@ -11,7 +11,7 @@ import attachChargeEvent from './attachChargeEvent.js';
 import VendingMachine from './VendingMachine.js';
 import printChargeAmount from './printChargeAmount.js';
 import printProductPurchaseItemTable from './printProductPurchaseItemTable.js';
-import attachCoinReturnEvent from './attachCoinReturnEvent.js';
+import attachReturnCoinEvent from './attachReturnCoinEvent.js';
 
 renderAppTemplate();
 const vendingMachine = new VendingMachine();
@@ -36,5 +36,5 @@ $productPurchaseMenu.addEventListener('click', () => {
   printChargeAmount(vendingMachine.getMoney());
   printProductPurchaseItemTable(vendingMachine);
   attachChargeEvent(vendingMachine);
-  attachCoinReturnEvent(vendingMachine);
+  attachReturnCoinEvent(vendingMachine);
 });
