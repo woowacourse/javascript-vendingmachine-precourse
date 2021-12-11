@@ -4,11 +4,7 @@ module.exports = {
         es2021: true,
     },
     plugins: ['prettier'],
-    extends: [
-        'airbnb-base',
-        'eslint:recommended',
-        'plugin:prettier/recommended',
-    ],
+    extends: ['airbnb-base', 'eslint:recommended', 'plugin:prettier/recommended'],
     parserOptions: {
         ecmaVersion: 13,
         sourceType: 'module',
@@ -25,11 +21,15 @@ module.exports = {
                 bracketSpacing: true,
                 arrowParens: 'always',
                 endOfLine: 'auto',
+                printWidth: 120,
             },
         ],
         'no-console': 'off',
         'no-plusplus': 'off',
         'max-depth': ['error', 2],
+        'max-lines-per-function': ['error', 15],
         'no-alert': 'off',
+        'max-len': 'off',
+        'import/extensions': 'off',
     },
 };
