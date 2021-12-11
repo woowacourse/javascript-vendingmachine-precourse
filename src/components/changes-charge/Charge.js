@@ -9,6 +9,7 @@ import Label from '../base/Label.js';
 const inputProp = {
   id: ELEMENT_ID.CHANGES_CHARGE_CHARGE_INPUT,
   placeholder: '자판기가 보유할 금액',
+  type: 'number',
 };
 
 const submitProp = {
