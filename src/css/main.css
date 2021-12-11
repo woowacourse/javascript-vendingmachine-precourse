@@ -8,6 +8,10 @@ h1 {
   margin: 10px 0;
 }
 
+input {
+  padding: 5px;
+}
+
 .beverage_icon {
   width: 50px;
   vertical-align: middle;
