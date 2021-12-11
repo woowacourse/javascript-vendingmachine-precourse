@@ -19,10 +19,8 @@ export const LIST_KEY_INPUT = [
 // =================== [ input 태그 id 상수 ] ===============================
 const ID_PREFIX = 'product';
 
-const getInputIdByKey = (inputKey) => `${ID_PREFIX}-${inputKey}-input`;
-
 export const DICT_ID_INPUT = LIST_KEY_INPUT.reduce(
-  (acc, cur) => ({ ...acc, [cur]: getInputIdByKey(cur) }),
+  (acc, cur) => ({ ...acc, [cur]: `${ID_PREFIX}-${cur}-input` }),
   {}
 );
 

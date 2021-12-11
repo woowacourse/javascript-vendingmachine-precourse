@@ -9,6 +9,7 @@ import {
   KEY_MENUS,
   ACTION_CLICK_MENU,
   KEY_MENU_ADD,
+  KEY_MENU_CHARGE,
 } from './components/menu/const.js';
 import createMenuByKey from './components/menu/createMenuByKey.js';
 
@@ -19,10 +20,13 @@ import {
 } from './components/addContent/index.js';
 
 import { getProducts } from './library/storage/products.js';
+import { createMachineCargeFormContainer } from './components/chargeContent/index.js';
+import { getChargedCoin } from './library/storage/chargedCoin.js';
 
 export default class VendingMachine {
-  constructor(products) {
+  constructor(products, chargedCoin) {
     this.products = products;
+    this.chargedCoin = chargedCoin;
 
     this.app = document.getElementById('app');
     this.menus = createDivision({ id: 'menus' });
@@ -51,11 +55,17 @@ export default class VendingMachine {
 
   appendContentByKey(content, menuKey) {
     if (menuKey === KEY_MENU_ADD) this.appendAddContent(content, this.products);
+    if (menuKey === KEY_MENU_CHARGE)
+      this.appendChargeContent(content, this.chargedCoin);
   }
 
   appendAddContent(content, products) {
     content.appendChild(createAddFormContainer());
     content.appendChild(createCurrentProductTableContainer(products));
+  }
+
+  appendChargeContent(content, chargedCoin) {
+    content.appendChild(createMachineCargeFormContainer(chargedCoin));
   }
 
   [ACTION_CLICK_MENU](e, menuKey) {
@@ -74,4 +84,5 @@ export default class VendingMachine {
 }
 
 const products = getProducts();
-new VendingMachine(products);
+const chargedCoin = getChargedCoin();
+new VendingMachine(products, chargedCoin);
