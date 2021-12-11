@@ -12,3 +12,15 @@ export const productListView = products =>
         })
         .join('')
     : '';
+
+export const coinStatusView = coins =>
+  Object.entries(coins)
+    .map(([unit, quantity]) => {
+      return `
+    <tr>
+      <td>${unit}</td>
+      <td id="vending-machine-coin-500-quantity">${quantity}</td>
+    </tr>
+    `;
+    })
+    .join('');
