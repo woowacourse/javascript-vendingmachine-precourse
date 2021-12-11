@@ -12,11 +12,11 @@ import {
 import { initProductList } from '../../storage/products.js';
 import { initCharges } from '../../storage/vendingMachineCharge.js';
 import { initUserCharge } from '../../storage/userCharge.js';
-import { initPurchasableProductTable } from '../control/updatePurchasableProductTable.js';
+import { initPurchasableProductTable } from '../update/updatePurchaseTable.js';
 import { vendingMachine } from '../../index.js';
-import { createProductTableRow } from '../control/updateProductTable.js';
-import { updateVendingMachineCharge } from '../control/updateVendingMachineChargeTable.js';
-import { updateUserChargeAmount } from '../control/updateUserChargeAmount.js';
+import { createProductTableRow } from '../update/updateProductTable.js';
+import { updateVendingMachineCharge } from '../update/updateVendingMachineCharge.js';
+import { updateUserChargeAmount } from '../update/updateUserCharge.js';
 
 export const initialize = () => {
   createMenu();

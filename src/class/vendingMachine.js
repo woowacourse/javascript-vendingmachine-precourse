@@ -9,17 +9,17 @@ import {
   updateProductItemAfterPurchase,
   createProductTableRow,
   deleteProductItem,
-} from '../dom/control/updateProductTable.js';
+} from '../dom/update/updateProductTable.js';
 import Charge from './charge.js';
 import { saveCharges } from '../storage/vendingMachineCharge.js';
-import { updateVendingMachineCharge } from '../dom/control/updateVendingMachineChargeTable.js';
+import { updateVendingMachineCharge } from '../dom/update/updateVendingMachineCharge.js';
 import { saveUserCharge } from '../storage/userCharge.js';
-import { updateUserChargeAmount } from '../dom/control/updateUserChargeAmount.js';
+import { updateUserChargeAmount } from '../dom/update/updateUserCharge.js';
 import {
   createPurchaseTableRow,
   updatePurchasableProductTableAfterPurchase,
   deletePurchaseProduct,
-} from '../dom/control/updatePurchasableProductTable.js';
+} from '../dom/update/updatePurchaseTable.js';
 import { lackOfUserChangeException } from '../exceptions.js';
 import ReturnCoin from './returnCoin.js';
 

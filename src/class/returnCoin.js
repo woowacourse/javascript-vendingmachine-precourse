@@ -1,9 +1,9 @@
-import { updateReturnCoinTable } from '../dom/control/updateReturnCoinTable.js';
-import { updateUserChargeAmount } from '../dom/control/updateUserChargeAmount.js';
+import { updateReturnCoinTable } from '../dom/update/updateReturnCoinTable.js';
+import { updateUserChargeAmount } from '../dom/update/updateUserCharge.js';
 import {
   updateVendingMachineCharge,
   updateVendingMachineTable,
-} from '../dom/control/updateVendingMachineChargeTable.js';
+} from '../dom/update/updateVendingMachineCharge.js';
 import { vendingMachine } from '../index.js';
 import { saveUserCharge } from '../storage/userCharge.js';
 import { saveCharges } from '../storage/vendingMachineCharge.js';
