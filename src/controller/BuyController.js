@@ -44,6 +44,8 @@ export class BuyController {
 
   onCoinReturnClick() {
     const changeCoin = this.model.returnCoin();
+    const totalInsertedMoney = this.model.totalInsertedMoney;
     this.coreView.buyView.showChangeCoin(changeCoin);
+    this.coreView.buyView.showTotalInsertedMoney(totalInsertedMoney);
   }
 }

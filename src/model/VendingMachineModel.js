@@ -69,10 +69,10 @@ export class VendingMachineModel {
     if (this.totalInsertedMoney > this.machineChargeAmount) {
       this.totalInsertedMoney -= this.machineChargeAmount;
       this.machineChargeAmount = 0;
+      this.changeCoins = { ...this.machineCoins };
       for (let coin in this.changeCoins) {
         this.machineCoins[coin] = 0;
       }
-      this.changeCoins = { ...this.machineCoins };
       this.storageUpdateWhenReturnCoin();
       return this.changeCoins;
     }
@@ -82,6 +82,7 @@ export class VendingMachineModel {
       if (this.machineCoins[coin] < count) {
         count = this.machineCoins[coin];
       }
+      console.log(`count`, count);
       this.totalInsertedMoney -= coin * count;
       this.machineCoins[coin] -= count;
       this.changeCoins[coin] += count;
