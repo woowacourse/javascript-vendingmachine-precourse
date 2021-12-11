@@ -1,5 +1,7 @@
 import Component from '../../core/Component.js';
-import { $ } from '../../utils/dom.js';
+import { $, resetForm } from '../../utils/dom.js';
+import { MESSAGE } from '../../utils/constants.js';
+import { isValidChanges } from '../../utils/validations.js';
 import { chargeChanges } from '../../actions/changes.js';
 import ChangesStore from '../../stores/ChangesStore.js';
 
@@ -13,7 +15,9 @@ export default class Form extends Component {
     const money = Number(
       $('#vending-machine-charge-input', this.$container).value
     );
+    if (!isValidChanges(money)) return alert(MESSAGE.INVALID_CHARGING_CHANGES);
     ChangesStore.dispatch(chargeChanges(money));
+    resetForm(this.$container);
   }
 
   render() {
