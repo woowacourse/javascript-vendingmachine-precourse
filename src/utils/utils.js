@@ -30,6 +30,10 @@ const utils = {
     return Number(string) === 0;
   },
 
+  isAllZero: string => {
+    return Object.values(DB.load(string)).every(number => number === 0);
+  },
+
   changeIdToComponent: string => {
     const result = string.split('-');
     result.pop();
@@ -42,9 +46,22 @@ const utils = {
     return Object.entries(DB.load(string))
       .map(array => {
         const [coinType, quantity] = array;
+
         return coinType.replace(REGEX.HAS_NUMBER, '') * quantity;
       })
       .reduce((previous, current) => previous + current);
+  },
+
+  insertAt: (string, index, target) => {
+    return string.slice(0, index) + target + string.slice(index);
+  },
+
+  convertStringToIncludingHyphen: string => {
+    return Object.entries(DB.load(string)).map(array => {
+      const [coinType, quantity] = array;
+
+      return [utils.insertAt(coinType, 4, '-'), quantity];
+    });
   },
 };
 

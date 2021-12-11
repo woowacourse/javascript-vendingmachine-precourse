@@ -48,6 +48,16 @@ const DOMUtils = {
 
     if (charge > 0) $('#vending-machine-charge-amount').innerHTML = `${charge}원`;
   },
+
+  showVendingMachineCoins: () => {
+    if (UT.isAllZero('vendingMachineCoins')) return;
+
+    UT.convertStringToIncludingHyphen('vendingMachineCoins').forEach(array => {
+      const [coinType, quantity] = array;
+
+      $(`#vending-machine-${coinType}-quantity`).innerHTML = `${quantity}개`;
+    });
+  },
 };
 
 export default DOMUtils;

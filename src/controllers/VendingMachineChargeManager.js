@@ -10,6 +10,7 @@ export default class VendingMachineChargeManager {
 
   render() {
     DOM.showVendingMachineCharge();
+    DOM.showVendingMachineCoins();
   }
 
   manage() {
