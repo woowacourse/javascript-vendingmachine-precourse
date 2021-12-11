@@ -3,6 +3,7 @@ import { $, default as DOM } from '../views/DOMUtils.js';
 import { default as DB } from '../model/database.js';
 import ProductAddManager from './ProductAddManager.js';
 import VendingMachineChargeManager from './VendingMachineChargeManager.js';
+import ProductPurchaseManager from './ProductPurchaseManager.js';
 
 export default class Controller {
   constructor() {
@@ -20,6 +21,7 @@ export default class Controller {
   generateManagers() {
     new ProductAddManager();
     new VendingMachineChargeManager();
+    new ProductPurchaseManager();
   }
 
   tabMenuManager() {
