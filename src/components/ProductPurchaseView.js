@@ -200,8 +200,10 @@ export default class ProductPurchaseView {
     if(parseInt(quantity) <= 0) {
       return alert(OUT_OF_STOCK);
     }
+    this.checkCanBuy(name, price, product, userMoney);
+  }
 
-    //살 수 있으면 사고 금액 저장, 없으면 alert
+  static checkCanBuy(name, price, product, userMoney) {
     if(parseInt(userMoney[VALUES]) - parseInt(price) >= 0){
       userMoney[VALUES] = parseInt(userMoney[VALUES]) - parseInt(price);
       product[name][VALUES][1] -= 1;
