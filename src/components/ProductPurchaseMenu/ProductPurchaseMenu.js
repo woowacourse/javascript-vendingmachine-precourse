@@ -30,7 +30,7 @@ export default class ProductPurchaseMenu extends Component {
         <th>가격</th>
         <th>수량</th>
         <th>구매</th>
-        ${items
+        ${items.items
           .filter((item) => item.quantity > 0)
           .map((item) => {
             return `
@@ -75,11 +75,6 @@ export default class ProductPurchaseMenu extends Component {
     `;
   }
 
-  render() {
-    this.$target.innerHTML = this.template();
-    this.mounted();
-  }
-
   setEvent() {
     this.addEvent('click', '#charge-button', (e) => {
       e.preventDefault();
@@ -93,14 +88,13 @@ export default class ProductPurchaseMenu extends Component {
       }
 
       this.props.charge(chargeAmount);
-      this.setState({ chargeAmount: this.state.chargeAmount + chargeAmount });
     });
 
     this.addEvent('click', '.purchase-button', (e) => {
       e.preventDefault();
 
       const { productId, productPrice } = e.target.closest('tr').dataset;
-      const { chargeAmount, items } = this.state;
+      const { chargeAmount } = this.state;
 
       if (productPrice > chargeAmount) {
         alert('error');
@@ -108,15 +102,13 @@ export default class ProductPurchaseMenu extends Component {
         return;
       }
 
-      items
-        .filter((item) => item.id === Number(productId))
-        .forEach((item) => item.purchase());
-      this.props.purchase(productId);
-      this.setState({ chargeAmount: chargeAmount - productPrice, items });
+      this.props.purchase(Number(productId), productPrice);
     });
 
     this.addEvent('click', '#coin-return-button', (e) => {
       e.preventDefault();
+
+      alert('hi');
     });
   }
 }

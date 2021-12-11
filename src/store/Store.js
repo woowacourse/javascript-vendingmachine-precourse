@@ -19,11 +19,14 @@ export default class Store {
     callback(items.filter((item) => query(item)));
   }
 
-  insert(item) {
+  insert({ name, price, quantity }) {
     const state = this.getLocalStorage();
+    const id = Date.now();
 
-    state.items.push(item);
+    state.items.push({ id, name, price, quantity });
     this.setLocalStorage(state);
+
+    return { success: true, id };
   }
 
   update(updatedItem) {
@@ -41,7 +44,7 @@ export default class Store {
   updateCoins(coins) {
     const state = this.getLocalStorage();
 
-    state.coins = coins;
+    state.coins = coins.toMap();
 
     this.setLocalStorage(state);
   }

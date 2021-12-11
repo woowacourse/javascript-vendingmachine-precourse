@@ -5,19 +5,19 @@ import ProductAddMenu from './components/ProductAddMenu/ProductAddMenu.js';
 import ProductPurchaseMenu from './components/ProductPurchaseMenu/ProductPurchaseMenu.js';
 import VendingMachineManageMenu from './components/VendingMachineMenu/VendingMachineManageMenu.js';
 
-import Item from './components/common/Item.js';
+import Items from './components/common/Items.js';
+import Coins from './components/common/Coins.js';
 import $ from './helpers.js';
 
 export default class App extends Component {
   setup() {
-    const { items, coins, chargeAmount } = this.props.store.getLocalStorage();
+    const { store } = this.props;
+    const { items, coins, chargeAmount } = store.getLocalStorage();
 
     this.state = {
       currentTab: '/add',
-      items: items.map(
-        ({ id, name, price, quantity }) => new Item(name, price, quantity, id)
-      ),
-      coins,
+      items: new Items(store, items),
+      coins: new Coins(store, coins),
       chargeAmount,
     };
 
@@ -37,21 +37,23 @@ export default class App extends Component {
   }
 
   mounted() {
-    const { navigate, addItem, refillCoins, charge, purchase } = this;
+    const { navigate, addItem, refill, charge, purchase } = this;
+    const { currentTab, items, coins, chargeAmount } = this.state;
+
     new NavBar($('#nav-bar'), { navigate: navigate.bind(this) });
-    new Router($('#router'), this.state.currentTab);
+    new Router($('#router'), currentTab);
     new ProductAddMenu($('#product-add-tab'), {
-      items: this.state.items,
+      items,
       addItem: addItem.bind(this),
     });
     new VendingMachineManageMenu($('#vending-machine-manage-tab'), {
-      coins: this.state.coins,
-      refillCoins: refillCoins.bind(this),
+      coins,
+      refill: refill.bind(this),
     });
     new ProductPurchaseMenu($('#product-purchase-tab'), {
-      items: this.state.items,
-      coins: this.state.coins,
-      chargeAmount: this.state.chargeAmount,
+      items,
+      coins,
+      chargeAmount,
       charge: charge.bind(this),
       purchase: purchase.bind(this),
     });
@@ -61,41 +63,31 @@ export default class App extends Component {
     this.setState({ currentTab: to });
   }
 
-  addItem(item) {
-    this.props.store.insert(item);
-    this.setState({ items: [...this.state.items, item] });
-
-    return [...this.state.items, item];
+  addItem(name, price, quantity) {
+    const { items } = this.state;
+    this.setState({ items: items.insert(name, price, quantity) });
   }
 
-  refillCoins(newCoins) {
+  refill(chargeAmount) {
     const { coins } = this.state;
-    const sum = {
-      '500': coins['500'] + newCoins['500'],
-      '100': coins['100'] + newCoins['100'],
-      '50': coins['50'] + newCoins['50'],
-      '10': coins['10'] + newCoins['10'],
-    };
 
-    this.props.store.updateCoins(sum);
-    this.setState({ coins: sum });
-
-    return sum;
+    coins.refill(chargeAmount);
+    this.props.store.updateCoins(coins);
+    this.setState({ coins });
   }
 
   charge(amount) {
     this.props.store.updateCharge(this.state.chargeAmount + amount);
+    this.setState({ chargeAmount: this.state.chargeAmount + amount });
   }
 
-  purchase(id) {
-    const result = this.state.items.findIndex((item) => item.id === Number(id));
+  purchase(id, price) {
+    const newChargeAmount = this.state.chargeAmount - price;
 
-    if (result === -1) {
-      console.log('error');
-
-      return;
-    }
-
-    this.props.store.update(this.state.items[result]);
+    this.props.store.updateCharge(newChargeAmount);
+    this.setState({
+      chargeAmount: newChargeAmount,
+      items: this.state.items.purchase(id),
+    });
   }
 }

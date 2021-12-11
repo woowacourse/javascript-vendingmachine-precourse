@@ -1,5 +1,5 @@
 export default class Item {
-  constructor(name, price, quantity, id = Date.now()) {
+  constructor(id, name, price, quantity) {
     this.id = id;
     this.name = name;
     this.price = price;
@@ -8,16 +8,6 @@ export default class Item {
 
   purchase() {
     this.quantity -= 1;
-  }
-
-  toHTML() {
-    return `
-      <tr class='product-manage-item' data-product-id=${this.id}>
-        <td class='product-manage-name'>${this.name}</td>
-        <td class='product-manage-price'>${this.price}</td>
-        <td class='product-manage-quantity'>${this.quantity}</td>
-      </tr>
-    `;
   }
 
   toString() {

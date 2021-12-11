@@ -1,5 +1,4 @@
 import Component from '../../core/Component.js';
-import Item from '../common/Item.js';
 import $ from '../../helpers.js';
 import isValidItem from '../../utils/isValidItem.js';
 
@@ -24,7 +23,17 @@ export default class ProductAddMenu extends Component {
         <th>상품명</th>
         <th>가격</th>
         <th>수량</th>
-        ${this.state.items.map((item) => item.toHTML()).join('')}
+        ${this.state.items.items
+          .map(
+            (item) => `
+          <tr class='product-manage-item' data-product-id=${item.id}>
+            <td class='product-manage-name'>${item.name}</td>
+            <td class='product-manage-price'>${item.price}</td>
+            <td class='product-manage-quantity'>${item.quantity}</td>
+          </tr>
+      `
+          )
+          .join('')}
       </table>
     `;
   }
@@ -43,9 +52,7 @@ export default class ProductAddMenu extends Component {
         return;
       }
 
-      const item = new Item(name, price, quantity);
-
-      this.setState({ items: this.props.addItem(item) });
+      this.props.addItem(name, price, quantity);
     });
   }
 }
