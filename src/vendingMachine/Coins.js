@@ -15,13 +15,15 @@ import {
   CHARGE_100_QUANTITY_ID,
   CHARGE_50_QUANTITY_ID,
   CHARGE_10_QUANTITY_ID,
+  COIN_SUM_KEY,
+  COINS_STORAGE_KEY,
 } from '../constant/constant.js';
 import $ from '../util/$.js';
 import { coinListHeaderTemplate } from '../view/initCharge.js';
 
 export default class Coins {
   constructor() {
-    this.coins = [0, 0, 0, 0];
+    this.coins = JSON.parse(localStorage.getItem(COINS_STORAGE_KEY)) || [0, 0, 0, 0];
   }
 
   chargeRandomCoins(money) {
@@ -54,6 +56,7 @@ export default class Coins {
     this.coins.forEach((coin, index) => {
       sum += coin * coinValues[index];
     });
+    localStorage.setItem(COIN_SUM_KEY, sum);
     return sum;
   }
 

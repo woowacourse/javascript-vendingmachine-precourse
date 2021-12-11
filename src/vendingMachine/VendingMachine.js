@@ -7,7 +7,7 @@ import Coins from './Coins.js';
 export default class VendingMachine {
   constructor() {
     initView();
-    this.products = [];
+    this.products = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY)) || [];
     this.change = new Coins();
   }
 
@@ -25,7 +25,7 @@ export default class VendingMachine {
   charge(money) {
     if (Validator.isValidChargeInput(money)) {
       this.change.chargeRandomCoins(+money);
-      localStorage.setItem(COINS_STORAGE_KEY, JSON.stringify(this.change));
+      localStorage.setItem(COINS_STORAGE_KEY, JSON.stringify(this.change.coins));
       return this.change;
     }
     return null;
