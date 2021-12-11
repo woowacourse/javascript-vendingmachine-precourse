@@ -52,7 +52,7 @@ export default function ManageContainer() {
     const getProductInfo = () => {
         // 여기서 validation 검사 해야 함.
         const $nameVal = checkProductDuplicate($name.value);
-        const $priceVal = checkNumContainDivideTen($price.value);
+        const $priceVal = checkNumContainDivideTen($price.value, true);
         const $quantityVal = checkNumExceptDivedeTen($quantity.value);
 
         return { $nameVal, $priceVal, $quantityVal };

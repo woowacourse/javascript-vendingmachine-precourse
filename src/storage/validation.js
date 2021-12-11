@@ -14,6 +14,10 @@ const overZero = (value) => {
     return Number(value) > 0 ? true : false;
 };
 
+const overHundred = (value) => {
+    return Number(value) >= 100 ? true : false;
+};
+
 const divideTen = (value) => {
     return Number(value) % 10 === 0 ? true : false;
 };
@@ -46,17 +50,19 @@ export const checkProductDuplicate = (value) => {
     }
 };
 
-export const checkNumContainDivideTen = (value) => {
+export const checkNumContainDivideTen = (value, isPrice) => {
     value = checkNumExceptDivedeTen(value);
-    if (!divideTen(value)) showAlert(ERROR_MESSAGE.DIVIDE_TEN);
+    if (isPrice) {
+        if (!overHundred(value)) showAlert(ERROR_MESSAGE.OVER_HUNDRED);
+    } else if (!divideTen(value)) showAlert(ERROR_MESSAGE.DIVIDE_TEN);
 
     return value;
 };
 
 export const checkNumExceptDivedeTen = (value) => {
     if (checkIsEmpty(value)) showAlert(ERROR_MESSAGE.IS_EMPTY);
-    if (!checkIsNaN(value)) showAlert(ERROR_MESSAGE.NOT_NUMBER);
-    if (!overZero(value)) showAlert(ERROR_MESSAGE.OVER_ZERO);
+    else if (!checkIsNaN(value)) showAlert(ERROR_MESSAGE.NOT_NUMBER);
+    else if (!overZero(value)) showAlert(ERROR_MESSAGE.OVER_ZERO);
 
     return value;
 };
