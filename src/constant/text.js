@@ -18,6 +18,7 @@ export const CHARGE = {
   TITLE: '자판기 동전 충전하기',
   BUTTON: '충전하기',
   HODLING: '보유 금액: ',
+  CHANGE: '자판기가 보유한 동전',
 };
 
 export const ERROR = {

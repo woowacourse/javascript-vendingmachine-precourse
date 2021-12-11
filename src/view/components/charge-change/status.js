@@ -1,6 +1,7 @@
 import { CLASS, ID } from '../../../constant/attributes.js';
 import { CURRENCY, kindsOfCoins } from '../../../constant/constant.js';
 import { TABLE, TD } from '../../../constant/style.js';
+import { CHARGE } from '../../../constant/text.js';
 import { createElement, createTr } from '../../../utils/dom-utils.js';
 
 export default class CoinStatus {
@@ -14,7 +15,7 @@ export default class CoinStatus {
 
   create() {
     this.$container = createElement('div');
-    this.$title = createElement('h2', '자판기가 보유한 동전');
+    this.$title = createElement('h2', CHARGE.CHANGE);
   }
 
   appendChildren() {

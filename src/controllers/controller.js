@@ -5,7 +5,6 @@ export default class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-
     this.view.renderAddProduct(this.model.menu);
     this.addEvents();
   }
@@ -24,6 +23,10 @@ export default class Controller {
         break;
       case ID.MENU.CHANGE:
         this.view.renderChange(this.model.money, this.model.coinsArr);
+        document
+          .getElementById(ID.VENDING_MACHINE.CHARGE.BUTTON)
+          .addEventListener('click', this.chargeChange.bind(this));
+
         break;
       default:
     }
@@ -41,5 +44,13 @@ export default class Controller {
     }
     this.model.addMenu({ name, price, quantity });
     this.view.addItem({ name, price, quantity });
+    return undefined;
+  }
+
+  chargeChange(event) {
+    event.preventDefault();
+    const money = Number(document.getElementById(ID.VENDING_MACHINE.CHARGE.INPUT).value);
+    this.model.insertChange(money);
+    this.view.renderChange(this.model.money, this.model.coinsArr);
   }
 }

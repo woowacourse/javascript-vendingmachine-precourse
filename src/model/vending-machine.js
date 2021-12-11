@@ -14,7 +14,9 @@ export default class VendingMachine {
     this.initMenu();
   }
 
-  initCoin() {}
+  initCoin() {
+    kindsOfCoins.forEach((kind) => this.coins.push(new Coin(kind, 0)));
+  }
 
   initMenu() {}
 
@@ -24,7 +26,17 @@ export default class VendingMachine {
     return item.array;
   }
 
-  insertChange(money) {}
+  insertChange(money) {
+    let change = money;
+    while (change) {
+      const randomCoin = MissionUtils.Random.pickNumberInList(kindsOfCoins);
+      if (randomCoin <= change) {
+        const kind = this.coins.filter((coin) => coin.kinds === randomCoin);
+        kind.map((coin) => coin.charge());
+        change -= randomCoin;
+      }
+    }
+  }
 
   buyItem(item) {}
 
