@@ -25,6 +25,10 @@ class ProductManage extends Component {
       this.$status.update();
     };
   }
+
+  update() {
+    this.$status.update();
+  }
 }
 
 export default ProductManage;

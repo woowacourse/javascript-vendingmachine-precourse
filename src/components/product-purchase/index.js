@@ -32,6 +32,10 @@ class ProductPurchase extends Component {
       this.#updateCurrentAmount();
     };
   }
+
+  update() {
+    // 상품 현황 업데이트
+  }
 }
 
 export default ProductPurchase;

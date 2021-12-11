@@ -25,6 +25,10 @@ class ChangesCharge extends Component {
       this.$status.update();
     };
   }
+
+  update() {
+    this.$status.update();
+  }
 }
 
 export default ChangesCharge;
