@@ -1,10 +1,6 @@
-const createButton = (id, text, action) => {
-  const button = document.createElement('button');
-  button.id = id;
-  button.innerText = text;
-  button.dataset.action = action;
+import createElement from './createElement.js';
 
-  return button;
-};
+const createButton = (id, text) =>
+  createElement('button', { id, innerText: text });
 
 export default createButton;

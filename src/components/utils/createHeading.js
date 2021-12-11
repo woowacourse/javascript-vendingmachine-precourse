@@ -1,8 +1,6 @@
-const createHeading = (level, text) => {
-  const heading = document.createElement(`h${level}`);
-  heading.innerText = text;
+import createElement from './createElement.js';
 
-  return heading;
-};
+const createHeading = (level, text) =>
+  createElement(`h${level}`, { innerText: text });
 
 export default createHeading;

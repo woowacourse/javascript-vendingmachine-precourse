@@ -1,8 +1,5 @@
-const createDivision = (id) => {
-  const div = document.createElement('div');
-  div.id = id;
+import createElement from './createElement.js';
 
-  return div;
-};
+const createDivision = (props) => createElement('div', props);
 
 export default createDivision;

@@ -1,18 +1,19 @@
 import createHeading from './components/utils/createHeading.js';
 import createBlankNode from './components/utils/createBlankNode.js';
+import createDivision from './components/utils/createDivision.js';
 import setVisibility from './components/utils/setVisibility.js';
+import getChildrenToList from './components/utils/getChildrenToList.js';
 import { HEADING_TITLE } from './components/const.js';
 import { KEY_MENUS, ACTION_CLICK_MENU } from './components/menu/const.js';
 import createMenuByKey from './components/menu/createMenuByKey.js';
 import createMenuContentByKey from './components/content/createMenuContentByKey.js';
-import createDivision from './components/utils/createDivision.js';
 
 export default class VendingMachine {
   constructor() {
     this.app = document.getElementById('app');
 
-    this.menus = createDivision('menus');
-    this.panel = createDivision('panel');
+    this.menus = createDivision({ id: 'menus' });
+    this.panel = createDivision({ id: 'panel' });
 
     this.app.appendChild(createHeading(1, HEADING_TITLE));
     this.app.appendChild(this.menus);
@@ -29,14 +30,13 @@ export default class VendingMachine {
       this.menus.appendChild(createBlankNode());
 
       const content = createMenuContentByKey(menuKey);
-      content.innerText = menuKey;
       setVisibility(content, i === 0);
       this.panel.appendChild(content);
     });
   }
 
   [ACTION_CLICK_MENU](e, menuKey) {
-    [...this.panel.children].forEach((content) =>
+    getChildrenToList(this.panel).forEach((content) =>
       setVisibility(content, content.dataset.menuKey === menuKey)
     );
   }
