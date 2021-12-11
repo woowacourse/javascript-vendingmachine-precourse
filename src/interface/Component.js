@@ -1,4 +1,4 @@
-import { getState, setState } from '../store/index.js';
+import { getState, setState, setStates } from '../store/index.js';
 
 export default class Component {
     $target;
@@ -12,6 +12,7 @@ export default class Component {
         this.$props = $props;
         this.$state = null;
         this.setState = setState;
+        this.setStates = setStates;
         this.getState = getState;
         this.setup();
         this.render();
