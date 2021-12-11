@@ -39,16 +39,16 @@ export default class ProductMenu {
           <td>수량</td>
         </tr>
       </thead>
-      <tbody style="text-align: center;">
+      <tbody id="product-menu-table" style="text-align: center;">
       </tbody>
       </table>`;
   }
 
-  productItemTemplate() {
+  productItemTemplate(product) {
     return `<tr id="${PRODUCT_MENU.TABLE_SELECTOR.ITEM}">
-        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_NAME}"></td>
-        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_PRICE}"></td>
-        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_QUANTITY}"></td>
+        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_NAME}">${product.name}</td>
+        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_PRICE}">${product.price}</td>
+        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_QUANTITY}">${product.quantity}</td>
       </tr>`;
   }
 }

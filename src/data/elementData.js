@@ -14,6 +14,7 @@ export const PRODUCT_MENU = {
     PRODUCT_ADD_BUTTON: 'product-add-button',
   },
   TABLE_SELECTOR: {
+    TABLE: 'product-menu-table',
     ITEM: 'product-manage-item',
     PRODUCT_NAME: 'product-manage-name',
     PRODUCT_PRICE: 'product-manage-price',
