@@ -1,4 +1,7 @@
-import { createAddFormContainer } from './addContent/index.js';
+import {
+  createAddFormContainer,
+  createCurrentProductTableContainer,
+} from './addContent/index.js';
 import {
   DICT_ID_MENU,
   KEY_MENU_ADD,
@@ -16,7 +19,10 @@ export const DICT_ID_MENU_CONTENT = Object.keys(DICT_ID_MENU).reduce(
 );
 
 export const DICT_MENU_CONTENT = {
-  [KEY_MENU_ADD]: [createAddFormContainer()],
+  [KEY_MENU_ADD]: [
+    createAddFormContainer(),
+    createCurrentProductTableContainer(),
+  ],
   [KEY_MENU_CHARGE]: [createHeading(2, '잔돈 충전 메뉴')],
   [KEY_MENU_PURCHASE]: [createHeading(2, '상품 구매 메뉴')],
 };

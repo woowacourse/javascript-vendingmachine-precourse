@@ -1,8 +1,16 @@
 import AddForm from './addForm/index.js';
+import CurrentProductTable from './currentProductTable/index.js';
 import createTemplate from '../../utils/createTemplate.js';
-import { HEADING_ADD } from './const.js';
+import { HEADING_ADD, HEADING_CURRENT_PRODUCT } from './const.js';
 
 const createAddFormContainer = () =>
-  createTemplate(HEADING_ADD, new AddForm().getForm());
+  createTemplate('add-form-container', HEADING_ADD, new AddForm().getForm());
 
-export { createAddFormContainer };
+const createCurrentProductTableContainer = () =>
+  createTemplate(
+    'current-product-table-container',
+    HEADING_CURRENT_PRODUCT,
+    new CurrentProductTable().getTable()
+  );
+
+export { createAddFormContainer, createCurrentProductTableContainer };

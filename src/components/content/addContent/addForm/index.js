@@ -5,8 +5,7 @@ import {
   DICT_TYPE_INPUT,
   ID_BUTTON_ADD,
   ID_FORM_ADD,
-  KEY_INPUTS,
-  KEY_INPUT_NAME,
+  LIST_KEY_INPUT,
   TEXT_BUTTON_ADD,
 } from './const.js';
 import createInput from '../../../utils/createInput.js';
@@ -20,7 +19,7 @@ class AddForm extends Form {
   }
 
   initInputs() {
-    KEY_INPUTS.forEach((inputKey) => {
+    LIST_KEY_INPUT.forEach((inputKey) => {
       const input = createInput(
         DICT_ID_INPUT[inputKey],
         DICT_TYPE_INPUT[inputKey],
@@ -38,7 +37,6 @@ class AddForm extends Form {
   }
 
   onButtonClick() {
-    console.log(this.inputs[KEY_INPUT_NAME].value);
     console.log('on button to add product clicked');
   }
 }
