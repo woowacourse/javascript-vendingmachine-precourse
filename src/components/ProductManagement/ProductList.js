@@ -1,6 +1,6 @@
 import Component from '../../core/Component.js';
 import ProductStore from '../../stores/ProductStore.js';
-import { ProductListView } from '../../utils/views.js';
+import { productListView } from '../../utils/views.js';
 
 export default class ProductList extends Component {
   getGlobalState() {
@@ -18,7 +18,7 @@ export default class ProductList extends Component {
                 <th>가격</th>
                 <th>수량</th>
             </tr>
-            ${ProductListView(products)}
+            ${productListView(products)}
         </table>
     `;
   }

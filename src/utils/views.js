@@ -1,4 +1,4 @@
-export const ProductListView = products =>
+export const productListView = products =>
   products
     ? products
         .map(product => {
