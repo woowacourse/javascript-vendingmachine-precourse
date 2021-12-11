@@ -1,5 +1,5 @@
 import SetProductAdd from '../model/SetProductAdd.js';
-import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE } from '../utils/constant.js';
 import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
 import SetVendingMachinePurchase from '../model/SetVendingMachinePurchase.js';
 
@@ -83,16 +83,34 @@ export default class CheckEventTarget {
     });
   };
 
-  reRenderProductAddMenu = ($targetName) => {
-    let localStorageProductAddMenu = localStorage.getItem('productAddMenu');
-    this.product.getProductsInformation().forEach((information) => {
-      const [productName, , productQuantity] = information;
-      if ($targetName.textContent === productName) {
+  reRenderPurchaseChargeAmount = (productPrice) => {
+    if (!this.vendingMachine.decreaseChargeAmount(productPrice)) {
+      this.render(ERROR_MESSAGE.NOT_ENOUGH_AMOUNT);
+
+      return false;
+    }
+
+    this.render.chargeInputTemplate(TEMPLATE.CHARGE_INPUT(this.vendingMachine.getChargeAmount()));
+    return true;
+  };
+
+  isTargetName = (information, $targetName, $targetPrice, $targetQuantity) => {
+    const [productName, productPrice, productQuantity] = information;
+    if ($targetName.textContent === productName) {
+      if (this.reRenderPurchaseChargeAmount(productPrice)) {
+        this.render.purchaseTemplate($targetName, $targetPrice, $targetQuantity);
         localStorageProductAddMenu = localStorageProductAddMenu.replace(
-          TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity + 1),
-          TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity)
+          TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity),
+          TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity - 1)
         );
       }
+    }
+  };
+
+  reRenderProductAddMenu = ($targetName, $targetPrice, $targetQuantity) => {
+    let localStorageProductAddMenu = localStorage.getItem('productAddMenu');
+    this.product.getProductsInformation().forEach((information) => {
+      this.isTargetName(information, $targetName, $targetPrice, $targetQuantity);
     });
     localStorage.setItem('productAddMenu', localStorageProductAddMenu);
   };
@@ -102,8 +120,7 @@ export default class CheckEventTarget {
       const $targetQuantity = event.target.parentElement.previousElementSibling;
       const $targetPrice = $targetQuantity.previousElementSibling;
       const $targetName = $targetPrice.previousElementSibling;
-      this.render.purchaseTemplate($targetName, $targetPrice, $targetQuantity);
-      this.reRenderProductAddMenu($targetName);
+      this.reRenderProductAddMenu($targetName, $targetPrice, $targetQuantity);
     });
   };
 

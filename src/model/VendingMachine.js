@@ -5,6 +5,15 @@ export default class VendingMachine {
     this.totalChargeAmount = totalChargeAmount;
   }
 
+  decreaseChargeAmount = (productPrice) => {
+    if (productPrice > this.totalChargeAmount) {
+      return false;
+    }
+
+    this.totalChargeAmount -= productPrice;
+    return true;
+  };
+
   getChargeAmount = () => this.totalChargeAmount;
 
   setChargeAmount = (chargeInput) => {
