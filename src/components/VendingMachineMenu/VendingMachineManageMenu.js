@@ -19,9 +19,11 @@ export default class VendingMachineManageMenu extends Component {
         <input type='number' placeholder='자판기가 보유할 금액' id='vending-machine-charge-input'></input>
         <button type='submit' id='vending-machine-charge-button'>충전하기</button>
       </form>
-      <p>보유 금액: <span id='vending-machine-charge-amount'>${
-        chargedCoins || ''
-      }</span><p>
+      <p>보유 금액: 
+        <span id='vending-machine-charge-amount'>
+          ${chargedCoins || ''}
+        </span>
+      <p>
       <h3>자판기가 보유한 동전</h3>
       <table>
         <th>동전</th>

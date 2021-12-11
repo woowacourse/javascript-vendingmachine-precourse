@@ -1,6 +1,9 @@
 /* global MissionUtils */
 
+import divmod from '../utils/divmod.js';
+
 export default class Coins {
+  // TODO: map 객체로 수정
   constructor(coins) {
     this.fivehundred = coins['500'];
     this.hundred = coins['100'];
@@ -18,8 +21,8 @@ export default class Coins {
 
         if (remain - randomCoin >= 0) {
           remain -= randomCoin;
-          convertedCoins[randomCoin.toString()] =
-            convertedCoins[randomCoin.toString()] + 1;
+          convertedCoins[String(randomCoin)] =
+            convertedCoins[String(randomCoin)] + 1;
         }
       }
 
@@ -53,5 +56,36 @@ export default class Coins {
       '50': this.fifty,
       '10': this.ten,
     };
+  }
+
+  // TODO: divisor를 map 객체의 keys()로 구할 수 있게 수정
+  returnChange(amount) {
+    const change = {
+      '500': 0,
+      '100': 0,
+      '50': 0,
+      '10': 0,
+    };
+    const coinsJson = this.toMap();
+    const divisor = [10, 50, 100, 500];
+    let remain = amount;
+
+    // TODO: array 비어있는 여부 조사 좀더 좋은 방법 찾기, 타입체크도 리팩터링
+    while (remain > 0 && divisor.length > 0) {
+      const div = divisor.pop();
+      const { quotient } = divmod(remain, div);
+      const coinAmount = Math.min(quotient, coinsJson[String(div)]);
+
+      change[String(div)] = coinAmount;
+      remain -= coinAmount * div;
+    }
+
+    // TODO: 메서드 분리
+    this.fivehundred -= change['500'];
+    this.hundred -= change['100'];
+    this.fifty -= change['50'];
+    this.ten -= change['10'];
+
+    return { change, amount: amount - remain };
   }
 }

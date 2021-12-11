@@ -1,23 +1,22 @@
 import Component from '../../core/Component.js';
 import $ from '../../helpers.js';
 import isValidChargeAmount from '../../utils/isValidChargeAmount.js';
-import divmod from '../../utils/divmod.js';
 
 export default class ProductPurchaseMenu extends Component {
   setup() {
-    const { chargedAmount, items, coins } = this.props;
+    const { chargedAmount, items, coins, returnedCoins } = this.props;
 
     this.state = {
       chargedAmount,
       items,
       coins,
-      change: { '500': 0, '100': 0, '50': 0, '10': 0 },
+      returnedCoins,
     };
   }
 
-  // TODO: item 목록 직접 접근 안하게 수정
+  // TODO: item, returnedCoins 목록 직접 접근 안하게 수정
   template() {
-    const { chargedAmount, items } = this.state;
+    const { chargedAmount, items, returnedCoins } = this.state;
 
     return `
       <h3>금액 투입</h3>
@@ -56,19 +55,19 @@ export default class ProductPurchaseMenu extends Component {
         <th>개수</th>
         <tr>
           <td>500원</td>
-          <td id='coin-500-quantity'>${this.state.change['500']}개</td>
+          <td id='coin-500-quantity'>${returnedCoins['500']}개</td>
         </tr>
         <tr>
           <td>100원</td>
-          <td id='coin-100-quantity'>${this.state.change['100']}개</td>
+          <td id='coin-100-quantity'>${returnedCoins['100']}개</td>
         </tr>
         <tr>
           <td>50원</td>
-          <td id='coin-50-quantity'>${this.state.change['50']}개</td>
+          <td id='coin-50-quantity'>${returnedCoins['50']}개</td>
         </tr>
         <tr>
           <td>10원</td>
-          <td id='coin-10-quantity'>${this.state.change['10']}개</td>
+          <td id='coin-10-quantity'>${returnedCoins['10']}개</td>
         </tr>
       </table>
     `;
@@ -113,26 +112,7 @@ export default class ProductPurchaseMenu extends Component {
     this.addEvent('click', '#coin-return-button', (e) => {
       e.preventDefault();
 
-      const { chargedAmount } = this.state;
-      const change = {
-        '500': 0,
-        '100': 0,
-        '50': 0,
-        '10': 0,
-      };
-      const divisor = [10, 50, 100, 500];
-
-      let remain = chargedAmount;
-
-      while (remain > 0 && divisor) {
-        const div = divisor.pop();
-        const { quotient, remainder } = divmod(remain, div);
-        remain = remainder;
-        change[div.toString()] = quotient;
-      }
-
-      this.setState({ change });
-      this.setState({ chargedAmount: 0 });
+      this.props.returnChange();
     });
   }
 }

@@ -37,7 +37,7 @@ export default class App extends Component {
   }
 
   mounted() {
-    const { navigate, addItem, refill, charge, purchase } = this;
+    const { navigate, addItem, refill, charge, purchase, returnChange } = this;
     const { currentTab, vendingMachine } = this.state;
 
     new NavBar($('#nav-bar'), { navigate: navigate.bind(this) });
@@ -54,8 +54,10 @@ export default class App extends Component {
       items: vendingMachine.items,
       coins: vendingMachine.coins,
       chargedAmount: vendingMachine.chargedAmount,
+      returnedCoins: vendingMachine.returnedCoins,
       charge: charge.bind(this),
       purchase: purchase.bind(this),
+      returnChange: returnChange.bind(this),
     });
   }
 
@@ -87,5 +89,11 @@ export default class App extends Component {
     const { vendingMachine } = this.state;
 
     this.setState({ vendingMachine: vendingMachine.purchase(id) });
+  }
+
+  returnChange() {
+    const { vendingMachine } = this.state;
+
+    this.setState({ vendingMachine: vendingMachine.returnChange() });
   }
 }

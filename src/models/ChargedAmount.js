@@ -15,7 +15,17 @@ export default class ChargedAmount {
     return this.amount;
   }
 
+  returnChange(amount) {
+    this.amount -= amount;
+
+    return this.amount;
+  }
+
   toString() {
     return `${this.amount}`;
+  }
+
+  flush() {
+    this.amount = 0;
   }
 }

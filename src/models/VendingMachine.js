@@ -2,12 +2,14 @@ import Items from './Items.js';
 import Coins from './Coins.js';
 import ChargedAmount from './ChargedAmount.js';
 
+// TODO: Coins 클래스 상속
 export default class VendingMachine {
   constructor(store, { items, coins, chargedAmount }) {
     this.store = store;
     this.items = new Items(items);
     this.coins = new Coins(coins);
     this.chargedAmount = new ChargedAmount(chargedAmount);
+    this.returnedCoins = { '500': 0, '100': 0, '50': 0, '10': 0 };
   }
 
   // TODO: 예외 처리
@@ -40,6 +42,20 @@ export default class VendingMachine {
 
     this.items.purchase(id);
     this.store.update(item);
+
+    return this;
+  }
+
+  // amount 직접 접근 안 하도록 수정
+  returnChange() {
+    const { change, amount } = this.coins.returnChange(
+      this.chargedAmount.amount
+    );
+
+    this.returnedCoins = change;
+
+    this.store.updateCoins(this.coins.toMap());
+    this.store.updateCharge(this.chargedAmount.returnChange(amount));
 
     return this;
   }
