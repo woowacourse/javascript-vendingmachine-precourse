@@ -115,12 +115,18 @@ class VendingMachine {
   }
 
   purchaseProduct(name) {
-    this.products.forEach(product => {
-      if (product.name === name) {
-        product.quantity--;
-        this.insertedMoney -= product.price;
-      }
-    });
+    const productIndex = this.products.findIndex(
+      product => product.name === name
+    );
+    this.products[productIndex].quantity--;
+    this.insertedMoney -= this.products[productIndex].price;
+    if (this.products[productIndex].quantity === 0) {
+      this.removeProduct(productIndex);
+    }
+  }
+
+  removeProduct(index) {
+    this.products.splice(parseInt(index), 1);
   }
 
   returnCoin(coin) {
