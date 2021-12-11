@@ -24,3 +24,10 @@ export const MANAGE_TAB_ID = {
     COIN_FIFTY: 'vending-machine-coin-50-quantity',
     COIN_TEN: 'vending-machine-coin-10-quantity',
 }
+
+export const COIN_VALUE = {
+    FIRST: 500,
+    SECOND: 100,
+    THIRD: 50,
+    LAST: 10
+}
