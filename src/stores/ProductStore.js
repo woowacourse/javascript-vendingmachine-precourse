@@ -1,6 +1,6 @@
 import Store from '../core/Store.js';
 import Product from '../core/Product.js';
-import { ACTION_TYPE } from '../actions/product.js';
+import { PRODUCT_ACTION_TYPE } from '../actions/product.js';
 import { MESSAGE } from '../utils/constants.js';
 
 const initialStates = {
@@ -11,7 +11,7 @@ const initialStates = {
 class ProductStore extends Store {
   setUpReducer() {
     this.reducer = {
-      [ACTION_TYPE.ADD_PRODUCT]: data => {
+      [PRODUCT_ACTION_TYPE.ADD_PRODUCT]: data => {
         const { name } = data;
         const { productsNameList, products } = this.state;
         if (productsNameList.has(name))
