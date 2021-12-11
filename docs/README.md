@@ -28,7 +28,8 @@
 
 ✅ 메인 > 각 탭 버튼 클릭시 디스플레이 조정 기능 구현
 
-⬜ `localStorage` 이용 사용자 입력값 저장 후 유효성 검사 기능 구현
+✅ 유저 입력값 가져온 후 유효성 검사 기능 구현
+⬜ 유효성 검사 통과시 `localStorage` 에 객체로 저장
 
 ### productAddMenu, vendingMachineManageMenu, poductPurchaseMenu 구분 하여 구현예정
 
