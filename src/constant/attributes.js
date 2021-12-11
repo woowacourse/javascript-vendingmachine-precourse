@@ -68,4 +68,5 @@ export const HINT = {
   NAME: '상품명',
   PRICE: '가격',
   QUANTITY: '수량',
+  CHANGE: '자판기가 보유할 금액',
 };

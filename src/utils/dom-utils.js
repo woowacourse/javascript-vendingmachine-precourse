@@ -31,14 +31,28 @@ function styleTd($td) {
   return $cloneTd;
 }
 
-export function createTr(classes, ...items) {
+export function createTr(...items) {
   const $tr = createElement('tr');
-  items.forEach((item, index) => {
+  items.forEach((item) => {
     const $td = createElement('td', item);
-    if (classes) {
-      $td.classList.add(classes[index]);
-    }
+
     $tr.appendChild(styleTd($td));
+  });
+  return $tr;
+}
+
+export function createTrByClass(classes, ...items) {
+  const $tr = createTr(...items);
+  $tr.childNodes.forEach((node, idx) => {
+    node.classList.add(classes[idx]);
+  });
+  return $tr;
+}
+
+export function createTrById(ids, ...items) {
+  const $tr = createTr(...items);
+  $tr.childNodes.forEach((node, idx) => {
+    node.id = ids[idx];
   });
   return $tr;
 }

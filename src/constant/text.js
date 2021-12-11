@@ -13,3 +13,9 @@ export const PRODUCT = {
   PRICE: '가격',
   QUANTITY: '수량',
 };
+
+export const CHARGE = {
+  TITLE: '자판기 동전 충전하기',
+  BUTTON: '충전하기',
+  HODLING: '보유 금액: ',
+};

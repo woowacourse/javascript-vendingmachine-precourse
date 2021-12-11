@@ -1,7 +1,7 @@
 import { CLASS } from '../../../constant/attributes.js';
 import { TABLE, TD } from '../../../constant/style.js';
 import { PRODUCT } from '../../../constant/text.js';
-import { createElement, createTr } from '../../../utils/dom-utils.js';
+import { createElement, createTr, createTrByClass } from '../../../utils/dom-utils.js';
 
 export default class ProductStatus {
   constructor() {
@@ -24,7 +24,7 @@ export default class ProductStatus {
   createTable() {
     this.$table = createElement('table');
     this.$table.classList.add(CLASS.PRODUCT.MANAGE_ITEM);
-    this.$table.appendChild(createTr(null, PRODUCT.NAME, PRODUCT.PRICE, PRODUCT.QUANTITY));
+    this.$table.appendChild(createTr(PRODUCT.NAME, PRODUCT.PRICE, PRODUCT.QUANTITY));
     this.$table.style.border = TD.BORDER;
     this.$table.style.borderCollapse = TABLE.COLLAPSE;
   }
@@ -37,7 +37,7 @@ export default class ProductStatus {
       CLASS.PRODUCT.MANAGE_QUANTITY,
     ];
     menu.forEach((item) => {
-      const $tr = createTr(classList, ...item);
+      const $tr = createTrByClass(classList, ...item);
       this.$table.appendChild($tr);
     });
     this.$container.replaceChild(this.$table, this.$container.lastElementChild);
