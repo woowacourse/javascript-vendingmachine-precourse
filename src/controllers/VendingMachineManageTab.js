@@ -1,17 +1,16 @@
-import { coinList } from './constants/index.js';
-import { coinIndex } from './utils/index.js';
-import { getVendingMachineCharge, setVendingMachineCharge } from './utils/localStorage.js';
-import { isValidChargeAmount } from './utils/validations.js';
-import VendingMachineManageTabView from './views/VendingMachineManageTabView.js';
+import { coinList } from '../constants/index.js';
+import { coinIndex } from '../utils/index.js';
+import { isValidChargeAmount } from '../utils/validations.js';
+import VendingMachineManageTabView from '../views/VendingMachineManageTabView.js';
 
 export default class VendingMachineManageTab {
-  constructor() {
+  constructor(storage) {
     this.view = new VendingMachineManageTabView();
+    this.storage = storage;
   }
 
   initialize() {
-    this.vendingMachineCharge = getVendingMachineCharge();
-    this.view.render(this.vendingMachineCharge);
+    this.view.render(this.storage.vendingMachineCharge);
     this.initInputElements();
     this.setButtonClickEvent();
   }
@@ -30,11 +29,10 @@ export default class VendingMachineManageTab {
     const amountToAdd = Number(this.vendingMachineChargeInput.value);
     if (!isValidChargeAmount(amountToAdd)) return;
     const newCoinQuantity = this.generateCoinsRandomly(amountToAdd)
-      .map((quantity, idx) => quantity + this.vendingMachineCharge.coinQuantity[idx]);
-    const newAmount = this.vendingMachineCharge.amount + amountToAdd;
-    this.vendingMachineCharge = { amount: newAmount, coinQuantity: newCoinQuantity };
-    setVendingMachineCharge(this.vendingMachineCharge);
-    this.view.updateVendingMachineChargeValues(this.vendingMachineCharge);
+      .map((quantity, idx) => quantity + this.storage.vendingMachineCharge.coinQuantity[idx]);
+    const newAmount = this.storage.vendingMachineCharge.amount + amountToAdd;
+    this.storage.setVendingMachineCharge({ amount: newAmount, coinQuantity: newCoinQuantity });
+    this.view.updateVendingMachineChargeValues(this.storage.vendingMachineCharge);
     this.clearInputValue();
   }
 

@@ -1,11 +1,13 @@
-import ProductAddTab from './ProductAddTab.js';
-import ProductPurchaseTab from './ProductPurchaseTab.js';
-import VendingMachineManageTab from './VendingMachineManageTab.js';
+import Storage from './Storage.js';
+import ProductAddTab from './controllers/ProductAddTab.js';
+import ProductPurchaseTab from './controllers/ProductPurchaseTab.js';
+import VendingMachineManageTab from './controllers/VendingMachineManageTab.js';
 import VendingMachineView from './views/VendingMachineView.js';
 
 export default class VendingMachine {
   constructor() {
     this.view = new VendingMachineView();
+    this.storage = new Storage();
   }
 
   initialize() {
@@ -15,9 +17,9 @@ export default class VendingMachine {
   }
 
   initTab() {
-    this.productAddTab = new ProductAddTab();
-    this.vendingMachineManageTab = new VendingMachineManageTab();
-    this.productPurchaseTab = new ProductPurchaseTab();
+    this.productAddTab = new ProductAddTab(this.storage);
+    this.vendingMachineManageTab = new VendingMachineManageTab(this.storage);
+    this.productPurchaseTab = new ProductPurchaseTab(this.storage);
   }
 
   setMenuClickEvent() {

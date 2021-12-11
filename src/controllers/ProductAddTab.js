@@ -1,15 +1,14 @@
-import ProductAddTabView from './views/ProductAddTabView.js';
-import { getProducts, setProducts } from './utils/localStorage.js';
-import { isValidProductAddition } from './utils/validations.js';
+import ProductAddTabView from '../views/ProductAddTabView.js';
+import { isValidProductAddition } from '../utils/validations.js';
 
 export default class ProductAddTab {
-  constructor() {
+  constructor(storage) {
     this.view = new ProductAddTabView();
+    this.storage = storage;
   }
 
   initialize() {
-    this.products = getProducts();
-    this.view.render(this.products);
+    this.view.render(this.storage.products);
     this.initInputElements();
     this.setButtonClickEvent();
   }
@@ -33,13 +32,12 @@ export default class ProductAddTab {
       quantity: Number(this.productQuantityInput.value),
     };
     if (!isValidProductAddition(newProduct)) return;
-    this.products.push(newProduct);
-    setProducts(this.products);
+    this.storage.updateProducts(newProduct);
     this.updateViewOnProductAddition();
   }
 
   updateViewOnProductAddition() {
-    this.view.rerender(this.products);
+    this.view.rerender(this.storage.products);
     this.clearInputValue();
   }
 
