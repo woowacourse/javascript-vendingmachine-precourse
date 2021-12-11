@@ -44,7 +44,7 @@ export default class ProductPurchaseView {
       </tr>`).join('')}`
     }
 
-  static addEvent() {
+  static addUserChargeEvent() {
     document.getElementById('charge-button').addEventListener('click', (e) => {
       e.preventDefault();
       const userCharge = document.getElementById('charge-input').value;

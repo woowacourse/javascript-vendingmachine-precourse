@@ -31,7 +31,7 @@ export default class MenuButtonController {
       }
       if (targetId === 'product-purchase-menu') {
         ProductPurchaseView.render();
-        ProductPurchaseView.addEvent();
+        ProductPurchaseView.addUserChargeEvent();
         // if(localStorage.getItem(USER_CHARGE !== null)){
         //     console.log("asd");
         //   ProductPurchaseView.showUserCharge(userInput);
