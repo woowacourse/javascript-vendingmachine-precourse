@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, USER_CHARGE, VALUES, PRODUCT, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO} from '../utils/constants.js';
+import { ERROR_MESSAGE, USER_CHARGE, VALUES, PRODUCT, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO, OUT_OF_STOCK, NOT_ENOUGH_MONEY} from '../utils/constants.js';
 import { HTML_OF_PRODUCT_PURCHASE_PART, HTML_OF_PRODUCT_PURCHASE_PART_MID, HTML_OF_PRODUCT_PURCHASE_TABLE, HTML_OF_USER_CHANGE_TABLE } from '../utils/html.js';
 import ProductPurchaseCheck from './ProductPurchaseCheck.js';
 
@@ -198,7 +198,7 @@ export default class ProductPurchaseView {
     const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
     if(parseInt(quantity) <= 0) {
-      return alert('재고가 부족합니다!');
+      return alert(OUT_OF_STOCK);
     }
 
     //살 수 있으면 사고 금액 저장, 없으면 alert
@@ -212,8 +212,7 @@ export default class ProductPurchaseView {
       this.showProductTable();
       this.showUserCharge(userMoney);
     } else {
-      alert('구매할 수 없습니다!');
-    }
-    
+      alert(NOT_ENOUGH_MONEY);
+    }  
   }
 }
