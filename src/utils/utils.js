@@ -83,6 +83,7 @@ const utils = {
       if (!V.isValidProductPurchase(data)) return;
 
       utils.updateDeductedCharge(data);
+      utils.updateDeductedProductQuantity(data);
     });
   },
 
@@ -99,7 +100,20 @@ const utils = {
   updateDeductedCharge: object => {
     const charge = DB.load('chargeToPurchaseProduct');
     DB.overwrite('chargeToPurchaseProduct', charge - object.price);
+
     DOM.showChargeToPurchaseProduct();
+  },
+
+  updateDeductedProductQuantity: data => {
+    const newObject = DB.load('inventory').map(object => {
+      if (object.name === data.name) object.quantity -= 1;
+      return object;
+    });
+    DB.overwrite('inventory', newObject);
+
+    DOM.showInventory();
+    DOM.showIntentoryToPurchaseProduct();
+    DOM.getAllPurchaseButton();
   },
 };
 
