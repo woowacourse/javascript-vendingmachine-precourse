@@ -10,11 +10,10 @@ import {
 import createDataCell from '../../../table/createDataCell.js';
 
 class CurrentProductTable extends Table {
-  constructor() {
+  constructor(products) {
     super(ID_TABLE_CURRENT_PRODUCT);
-
     this.setTableHeader(LIST_KEY_PRODUCT.map((key) => DICT_TABLE_HEADERS[key]));
-    this.setTableRows([]);
+    this.setTableRows(products);
   }
 
   setTableRows(products) {
