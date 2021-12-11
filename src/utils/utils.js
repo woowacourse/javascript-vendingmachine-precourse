@@ -1,6 +1,7 @@
 import { REGEX } from './constants.js';
 import { default as DB } from '../model/database.js';
 import { default as V } from './validators.js';
+import { default as DOM } from '../views/DOMUtils.js';
 
 const utils = {
   isBlank: string => {
@@ -80,6 +81,10 @@ const utils = {
       const data = utils.getProductInformation(e.path[2].children);
 
       if (!V.isValidProductPurchase(data)) return;
+
+      const charge = DB.load('chargeToPurchaseProduct');
+      DB.overwrite('chargeToPurchaseProduct', charge - data.price);
+      DOM.showChargeToPurchaseProduct();
     });
   },
 

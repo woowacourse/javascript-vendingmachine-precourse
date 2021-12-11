@@ -84,6 +84,7 @@ const DOMUtils = {
     const charge = DB.load('chargeToPurchaseProduct');
 
     if (charge > 0) $('#charge-amount').innerHTML = `${charge}원`;
+    else DOMUtils.initElement('#charge-amount');
   },
 
   getAllPurchaseButton: () => {
