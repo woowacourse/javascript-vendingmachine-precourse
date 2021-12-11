@@ -1,4 +1,4 @@
-import { DOM_ID_SELECTOR } from '../constants.js';
+import { DOM_ID_SELECTOR, COIN_UNIT } from '../constants.js';
 import makeCoinDomIdMapper from '../utils/makeCoinDomIdMapper.js';
 
 const getCoinDomIdMapper = () => {
@@ -15,7 +15,7 @@ const printReturnCoinTable = (coins) => {
 
   for (let coin in coinDomIdMapper) {
     const $coinQuantity = document.getElementById(coinDomIdMapper[coin]);
-    $coinQuantity.innerText = `${coins[coin]}개`;
+    $coinQuantity.innerText = coins[coin] + COIN_UNIT;
   }
 };
 
