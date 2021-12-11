@@ -42,6 +42,12 @@ const DOMUtils = {
 
     $(UT.changeIdToComponent(id)).style.display = 'block';
   },
+
+  showVendingMachineCharge: () => {
+    const charge = UT.calculateToCharge('vendingMachineCoins');
+
+    if (charge > 0) $('#vending-machine-charge-amount').innerHTML = `${charge}원`;
+  },
 };
 
 export default DOMUtils;

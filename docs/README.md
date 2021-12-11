@@ -61,10 +61,10 @@
   - [x] 🚥 숫자 입력만 허용한다 (특수문자 입력 금지)
   - [x] 🚥 10이상의 숫자만 허용한다
   - [ ] 🚥 10의 배수 숫자만 허용한다
-- [ ] 🖱️ 금액 입력 후`충전하기` 버튼을 클릭할 수 있다
+- [x] 🖱️ 금액 입력 후`충전하기` 버튼을 클릭할 수 있다
   - [x] ⚙️  자판기가 보유할 금액 만큼의 동전이 무작위로 생성된다
-  - [ ] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
-    - [ ] 보유 금액은 `{금액}원` 형식으로 나타낸다
+  - [x] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
+    - [x] 보유 금액은 `{금액}원` 형식으로 나타낸다
   - [x] 💾  localStorage의 `vendingMachineCoins`에 금액 별 동전 개수를 저장한다
 - **자판기가 보유한 동전 모듈**
 - [ ] 🖨️  자판기가 보유한 동전 금액별 개수 출력
@@ -128,7 +128,32 @@
 
 <hr/>
 
-### 2. 독특한 자판기 시스템
+### 2. `vendingMachineCoins`를 가져와서 자판기 보유 금액을 계산하는 방법
+
+> `vendingMachineCoins`는 `{"coin500":0,"coin100":0,"coin50":1,"coin10":5}`처럼 각 동전별 갯수를 저장합니다. 이 객체를 사용해서 `자판기 보유 금액` 을 구하는 함수를 작성해보았습니다.
+
+```javascript
+//utils.js
+  calculateToCharge: string => {
+    // 1. DB.load(string)로 동전별 갯수 객체를 불러옵니다.
+    //   1-1. Object.entries로 객체를 key와 value의 쌍을 이루는 배열로 변화시킵니다.
+    return Object.entries(DB.load(string))
+      // 2. 다음의 과정으로 배열을 변화 시킵니다.
+      .map(array => {
+        // 3. 배열에 담긴 각 배열을 코인의 종류와 갯수로 저장합니다.
+        const [coinType, quantity] = array;
+        // 4. 코인의 종류를 정규식을 사용해서 숫자만 추출합니다. (ex. coin500 -> 500)
+        //   4-1. 추출한 숫자와 갯수를 곱해줍니다.
+        return coinType.replace(REGEX.HAS_NUMBER, '') * quantity;
+      })
+      // 5. 배열에 담긴 모든 숫자를 합산합니다.
+      .reduce((previous, current) => previous + current);
+  },
+```
+
+<hr/>
+
+### 3. 독특한 자판기 시스템
 
 ![image](https://user-images.githubusercontent.com/24728385/145353374-23caf044-59b9-427e-a141-b20bd8b1adb5.png)
 
@@ -148,7 +173,7 @@
 
 <hr/>
 
-### 3. 자판기의 잔돈 반환 알고리즘
+### 4. 자판기의 잔돈 반환 알고리즘
 
 > **그리디 알고리즘**(욕심쟁이 알고리즘, Greedy Algorithm)이란 "매 선택에서 **지금 이 순간 당장 최적인 답**을 선택하여 적합한 결과를 도출하자" 라는 모토를 가지는 [알고리즘](https://namu.wiki/w/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) 설계 기법이다. - 출처 [#](https://namu.wiki/w/%EA%B7%B8%EB%A6%AC%EB%94%94%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 

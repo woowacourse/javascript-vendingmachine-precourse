@@ -21,4 +21,5 @@ export const ERROR = {
 export const REGEX = {
   IS_INCLUDE_SPACE: /\s/g,
   HAS_SPECIAL: /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/g,
+  HAS_NUMBER: /[^0-9]/g,
 };

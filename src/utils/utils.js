@@ -37,6 +37,15 @@ const utils = {
 
     return '#' + result.join('-');
   },
+
+  calculateToCharge: string => {
+    return Object.entries(DB.load(string))
+      .map(array => {
+        const [coinType, quantity] = array;
+        return coinType.replace(REGEX.HAS_NUMBER, '') * quantity;
+      })
+      .reduce((previous, current) => previous + current);
+  },
 };
 
 export default utils;

@@ -8,7 +8,9 @@ export default class VendingMachineChargeManager {
     this.manage();
   }
 
-  render() {}
+  render() {
+    DOM.showVendingMachineCharge();
+  }
 
   manage() {
     $('#vending-machine-charge-button').addEventListener('click', e => {
@@ -17,6 +19,8 @@ export default class VendingMachineChargeManager {
       if (!V.isValidCharge(DOM.getCharge())) return;
 
       convertChargeIntoCoin(DOM.getCharge());
+
+      this.render();
     });
   }
 }
