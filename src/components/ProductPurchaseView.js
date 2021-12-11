@@ -25,9 +25,9 @@ export default class ProductPurchaseView {
   }
 
   static showUserCharge() {
-    const userInput = JSON.parse(localStorage.getItem(USER_CHARGE));
+    const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
-    document.getElementById('charge-amount').innerHTML = `${userInput[VALUES]}`;
+    document.getElementById('charge-amount').innerHTML = `${userMoney[VALUES]}`;
   }
 
     //상품 표 보여주는거
@@ -64,13 +64,13 @@ export default class ProductPurchaseView {
   }
 
   static storeUserCharge(userCharge) {
-    const userInput = JSON.parse(localStorage.getItem(USER_CHARGE));
+    const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
     if(localStorage.getItem(USER_CHARGE) === null) {
       localStorage.setItem(USER_CHARGE, JSON.stringify({values: userCharge}));
     } else {
-      userInput[VALUES] = parseInt(userInput[VALUES]) + parseInt(userCharge);
-      localStorage.setItem(USER_CHARGE, JSON.stringify(userInput));
+      userMoney[VALUES] = parseInt(userMoney[VALUES]) + parseInt(userCharge);
+      localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
     }
   }
 
@@ -117,7 +117,6 @@ export default class ProductPurchaseView {
 
     //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
     if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
-      console.log(3);
       this.makeEmpty(userCoins, coins);
 
       userMoney[VALUES] -= change[VALUES];
@@ -125,32 +124,34 @@ export default class ProductPurchaseView {
 
       this.storeAllResult(coins, userCoins, change, userMoney);
     } else {
-      console.log(4);
       let temp = userMoney[VALUES];
       //실제 거슬러준거
       let real = 0;
       while(temp >= 0) {
-        console.log(temp);
         if(temp >= 500 && coins[500] >= 1) {
           userCoins[500] += 1;
           coins[500] -= 1;
           temp -= 500;
           real += 500;
+          // this.makeUserCoins(500, temp, real, coins, userCoins);
         } else if(temp >= 100 && coins[100] >= 1) {
           userCoins[100] += 1;
           coins[100] -= 1;
           temp -= 100;
           real += 100;
+          // this.makeUserCoins(100, temp, real, coins, userCoins);
         } else if(temp >= 50 && coins[50] >= 1) {
           userCoins[50] += 1;
           coins[50] -= 1;
           temp -= 50;
           real += 50;
+          // this.makeUserCoins(50, temp, real, coins, userCoins);
         } else if(temp >= 10 && coins[10] >= 1) {
           userCoins[10] += 1;
           coins[10] -= 1;
           temp -= 10;
           real += 10;
+          // this.makeUserCoins(10, temp, real, coins, userCoins);
         } else {
           change[VALUES] = parseInt(change[VALUES]) - real;
           userMoney[VALUES] -= real;
@@ -165,6 +166,14 @@ export default class ProductPurchaseView {
     }) 
     
   }
+
+  // static makeUserCoins(num, temp, real, coins, userCoins) {
+  //   userCoins[num] += 1;
+  //   coins[num] -= 1;
+  //   temp -= 500;
+  //   real += 500;
+  //   console.log(temp);
+  // }
 
 
 
