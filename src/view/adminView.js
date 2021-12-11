@@ -44,11 +44,13 @@ export default class AdminView extends TapView {
   }
 
   static productComponent() {
-    const adminObject = new AdminModel();
+    const productStorage = new AdminModel().getProductStorage();
     let productView = '';
-    adminObject.getProductStorage().forEach((product) => {
-      productView += this.productTable(product);
-    });
+    if (productStorage) {
+      productStorage.forEach((product) => {
+        productView += this.productTable(product);
+      });
+    }
 
     return productView;
   }
