@@ -1,15 +1,14 @@
-import renderTotalCoinElement from '../views/renderTotalCoinElement.js';
-import getTotalVendingCoin from './getTotalVendingCoin.js';
 import {
   COIN_500,
   COIN_100,
   COIN_50,
   COIN_10,
   COIN_ZERO,
+  COIN_KEY_LIST,
 } from '../constants/coinConstants.js';
 
-function createRandomCount(item, totalCoin) {
-  const limit = Number(totalCoin) / Number(item);
+function createRandomCount(item, vendingCoin) {
+  const limit = Number(vendingCoin) / Number(item);
   let coinLimitList = [];
   for (let i = 0; i < limit + 1; i++) {
     coinLimitList.push(i);
@@ -17,23 +16,21 @@ function createRandomCount(item, totalCoin) {
   return MissionUtils.Random.pickNumberInList(coinLimitList);
 }
 
-function createRandomCoinList(totalCoin) {
+function createRandomCoinList(vendingCoin) {
   let coinListObject = {};
-  let coinList = [COIN_500, COIN_100, COIN_50];
-  for (let i = 0; i < coinList.length; i++) {
-    if (totalCoin === COIN_ZERO) break;
-    const count = createRandomCount(coinList[i], totalCoin);
-    totalCoin = totalCoin - count * Number(coinList[i]);
-    coinListObject[coinList[i]] = count;
+  const coinList = [COIN_500, COIN_100, COIN_50, COIN_10];
+  const coinKeyList = COIN_KEY_LIST;
+  for (let i = 0; i < coinList.length - 1; i++) {
+    if (vendingCoin === COIN_ZERO) break;
+    const count = createRandomCount(coinList[i], vendingCoin);
+    vendingCoin = vendingCoin - count * Number(coinList[i]);
+    coinListObject[coinKeyList[i]] = count;
   }
-  if (totalCoin !== COIN_ZERO) {
-    coinListObject[COIN_10] = totalCoin / Number(COIN_10);
-  }
+  coinListObject[coinKeyList[coinList.length - 1]] =
+    vendingCoin / Number(COIN_10);
   return coinListObject;
 }
 
 export default function createRandomCoinCount(vendingCoin) {
-  let totalCoin = Number(getTotalVendingCoin()) + Number(vendingCoin);
-  renderTotalCoinElement(totalCoin);
-  console.log(createRandomCoinList(totalCoin));
+  return createRandomCoinList(vendingCoin);
 }
