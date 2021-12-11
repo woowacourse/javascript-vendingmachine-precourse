@@ -34,6 +34,10 @@
   ⬜ `localStorage` 에 누적해서 입력값 저장 후 화면에 프린트
 - 잔돈 충전 탭
   ⬜ 잔돈 충전 탭의 유저 입력값 가져오기
+  ⬜ 유저 입력값에 대한 유효성 검사
+  ⬜ 유효성 검사 통과시 `localStorage` 입력한 충전 값 저장
+  ⬜ 충전된 값 프린트 ( 누적 충전 가능하게 구현)
+  ⬜ 충전된 보유 금액 기준 랜덤하게 코인 갯수 생성해서 프린트
 
 ### productAddMenu, vendingMachineManageMenu, poductPurchaseMenu 구분 하여 구현예정
 
