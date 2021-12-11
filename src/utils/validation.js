@@ -5,11 +5,11 @@ const { CANNOT_BE_BLANK, LESS_THAN_STANDARD, NOT_DIVIDE_BY_TEN, COUNT_TOO_SMALL,
   ERROR_MESSAGE;
 
 const isNegativeNumber = (quantity) => {
-  return quantity <= STANDARD_NUMBER;
+  return quantity < STANDARD_NUMBER;
 };
 
-const isDivideByTen = (price) => {
-  return price % STANDARD_PRICE.DIVIDE_NUMBER === 0;
+export const isDivideByTen = (target) => {
+  return target % STANDARD_PRICE.DIVIDE_NUMBER === 0;
 };
 
 const isMinimumPrice = (price) => {
