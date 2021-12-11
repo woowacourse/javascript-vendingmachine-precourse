@@ -21,10 +21,6 @@ class UserAgent {
   spend(price) {
     this.amount -= price;
   }
-
-  addReturnedCoinCount(price, count = 1) {
-    this.returnedCoinStorage.getCoin(price).count += count;
-  }
 }
 
 export default UserAgent;

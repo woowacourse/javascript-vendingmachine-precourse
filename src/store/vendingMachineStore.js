@@ -95,7 +95,7 @@ class VendingMachineStore {
 
       const useCount = this.#getUseCountByGreedy(remaining, price);
       this.coinStorage.useCoin(price, useCount);
-      this.user.addReturnedCoinCount(price, useCount);
+      this.user.returnedCoinStorage.addCoin(price, useCount);
       remaining -= price * useCount;
     });
 
