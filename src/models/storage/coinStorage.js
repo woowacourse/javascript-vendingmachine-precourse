@@ -13,6 +13,10 @@ class CoinStorage extends Storage {
     });
   }
 
+  getTotalAmount() {
+    return this.items.reduce((acc, item) => acc + item.price * item.count, 0);
+  }
+
   #getPriceIdx(price) {
     return this.#idxRecord[String(price)];
   }
