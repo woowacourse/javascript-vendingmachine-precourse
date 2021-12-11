@@ -30,6 +30,13 @@ export const createChargeAmountTemplate = amount => `
   </div>
 `;
 
+export const createCoinQuantityTableBodyTemplate = (coin500, coin100, coin50, coin10) => `
+  ${createCoinQuantityTableRowTemplate(500, coin500, Selector.vendingMachineCoin500QuantityId)}
+  ${createCoinQuantityTableRowTemplate(100, coin100, Selector.vendingMachineCoin100QuantityId)}
+  ${createCoinQuantityTableRowTemplate(50, coin50, Selector.vendingMachineCoin50QuantityId)}
+  ${createCoinQuantityTableRowTemplate(10, coin10, Selector.vendingMachineCoin10QuantityId)}
+`;
+
 export const createCoinQuantityTableTemplate = () => `
   <h3>자판기가 보유한 동전</h3>
   <table Style="${Style.table}">
@@ -39,11 +46,8 @@ export const createCoinQuantityTableTemplate = () => `
         ${createTheadTableDataTemplate('개수')}
       </tr>
     </thead>
-    <tbody>
-      ${createCoinQuantityTableRowTemplate(500, 0, Selector.vendingMachineCoin500QuantityId)}
-      ${createCoinQuantityTableRowTemplate(100, 0, Selector.vendingMachineCoin100QuantityId)}
-      ${createCoinQuantityTableRowTemplate(50, 0, Selector.vendingMachineCoin50QuantityId)}
-      ${createCoinQuantityTableRowTemplate(10, 0, Selector.vendingMachineCoin10QuantityId)}
+    <tbody id="${Selector.vendingMachineCoinTableBody}">
+      ${createCoinQuantityTableBodyTemplate(0, 0, 0, 0)}
     </tbody>
   </table>
 `;

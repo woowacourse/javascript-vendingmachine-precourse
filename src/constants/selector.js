@@ -28,6 +28,7 @@ export default {
   vendingMachineCoin100QuantityId: 'vending-machine-coin-100-quantity',
   vendingMachineCoin50QuantityId: 'vending-machine-coin-50-quantity',
   vendingMachineCoin10QuantityId: 'vending-machine-coin-10-quantity',
+  vendingMachineCoinTableBody: 'vending-machine-coin-table-body',
 
   // 상품 구매 메뉴
   chargeInputId: 'charge-input',
