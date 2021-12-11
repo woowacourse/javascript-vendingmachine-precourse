@@ -20,6 +20,7 @@
       "consistent-return": "off",
       "no-restricted-syntax": ["off", "ForOfStatement"],
       "no-param-reassign":"off",
+      "no-undef":"off",
       "no-unused-expressions": [
         "error",
         {
