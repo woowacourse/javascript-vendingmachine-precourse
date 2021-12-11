@@ -36,10 +36,16 @@ export default class ProductAdd extends Component {
 
   mounted() {
     console.log("add this", this);
-    const { addProduct } = this;
+    const {
+      addProduct,
+      $state: { products },
+    } = this;
     const $inputForm = document.querySelector("#input-form");
 
-    new InputForm($inputForm, { addProduct: addProduct.bind(this) });
+    new InputForm($inputForm, {
+      addProduct: addProduct.bind(this),
+      products,
+    });
   }
 
   addProduct(newProduct) {

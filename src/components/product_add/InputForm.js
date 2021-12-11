@@ -1,4 +1,5 @@
 import Component from "../root/Component.js";
+import { isValidProduct } from "../../utils/validation.js";
 
 export default class InputForm extends Component {
   setup() {
@@ -25,17 +26,17 @@ export default class InputForm extends Component {
     e.preventDefault();
 
     console.log(e, this);
-    const { addProduct } = this.$props;
+    const { addProduct, products } = this.$props;
     const [name, price, quantity] = e.target;
 
     const product = {
-      name: name.value,
+      name: name.value.trim(),
       price: price.value,
       quantity: quantity.value,
     };
-    console.log(name.value);
-    console.log(price.value);
-    console.log(quantity.value);
-    addProduct({ ...product });
+
+    if (isValidProduct(product, products)) {
+      addProduct({ ...product });
+    }
   }
 }
