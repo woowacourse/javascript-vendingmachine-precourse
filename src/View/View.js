@@ -110,24 +110,29 @@ export default class View {
   }
 
   displayProductAddChange(product) {
-    while (this.productTable.children.length > 1) {
-      this.productTable.removeChild(this.productTable.lastChild);
-    }
+    if (this.productTable) {
+      while (this.productTable.children.length > 1) {
+        this.productTable.removeChild(this.productTable.lastChild);
+      }
 
-    product.forEach((value) => {
-      const tr = createTr(ADD_PRODUCT.PRODUCT_ITEM);
-      const productManageName = createTd(ADD_PRODUCT.PRODUCT_NAME, value.name);
-      const productManagePrice = createTd(
-        ADD_PRODUCT.PRODUCT_PRICE,
-        value.price
-      );
-      const productManageQuantity = createTd(
-        ADD_PRODUCT.PRODUCT_QUANTITY,
-        value.quantity
-      );
-      tr.append(productManageName, productManagePrice, productManageQuantity);
-      this.productTable.append(tr);
-    });
+      product.forEach((value) => {
+        const tr = createTr(ADD_PRODUCT.PRODUCT_ITEM);
+        const productManageName = createTd(
+          ADD_PRODUCT.PRODUCT_NAME,
+          value.name
+        );
+        const productManagePrice = createTd(
+          ADD_PRODUCT.PRODUCT_PRICE,
+          value.price
+        );
+        const productManageQuantity = createTd(
+          ADD_PRODUCT.PRODUCT_QUANTITY,
+          value.quantity
+        );
+        tr.append(productManageName, productManagePrice, productManageQuantity);
+        this.productTable.append(tr);
+      });
+    }
   }
 
   // 잔돈 충전
@@ -269,25 +274,38 @@ export default class View {
       const tdPrice = createTd("product-purchase-price", value.price);
       const tdQuantity = createTd("product-purchase-quantity", value.quantity);
       const tdButton = createButton("purchase-button", "구매하기");
-      tdName.setAttribute("data-product-name", `${value.name}`);
-      tdPrice.setAttribute("data-product-price", `${value.price}`);
-      tdQuantity.setAttribute("data-product-quantity", `${value.quantity}`);
+      tr.setAttribute("data-product-name", value.name);
+      tr.setAttribute("data-product-price", value.price);
+      tr.setAttribute("data-product-quantity", value.quantity);
       tr.append(tdName, tdPrice, tdQuantity, tdButton);
       this.avaiableProductTable.append(tr);
     });
   }
 
-  bindProductPurchase(handler) {
+  bindMoneyAdd(handler) {
     this.form.addEventListener("click", (event) => {
       event.preventDefault();
       if (event.target.id === "charge-button") {
         const presentMoney = handler(this.chargeInput.value);
         if (presentMoney) {
-          this.chargeAmount.innerHTML = presentMoney;
+          this.displayMoneyChange(presentMoney);
         }
 
         this.chargeInput.value = "";
       }
     });
+  }
+
+  bindPurchaseProduct(handler) {
+    this.form.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (event.target.id === "purchase-button") {
+        handler(event.target.parentNode.dataset);
+      }
+    });
+  }
+
+  displayMoneyChange(money) {
+    this.chargeAmount.innerHTML = money;
   }
 }

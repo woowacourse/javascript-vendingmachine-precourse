@@ -13,6 +13,10 @@ export default class Model {
     this.onCoinChange = callback;
   }
 
+  bindMoneyChange(callback) {
+    this.onMoneyChange = callback;
+  }
+
   commitProduct(product) {
     this.onProductChange(product);
     localStorage.setItem("product", JSON.stringify(product));
@@ -24,6 +28,7 @@ export default class Model {
   }
 
   commitMoney(money) {
+    this.onMoneyChange(this.money);
     localStorage.setItem("money", JSON.stringify(money));
   }
 
@@ -44,6 +49,14 @@ export default class Model {
     this.commitProduct(this.product);
   }
 
+  submitProduct(index) {
+    this.product[index].quantity -= 1;
+    if (this.product[index].quantity === 0) {
+      this.product.splice(index, 1);
+    }
+    this.commitProduct(this.product);
+  }
+
   addCoin(coins) {
     this.coin = coins;
     this.commitCoin(this.coin);
@@ -51,6 +64,11 @@ export default class Model {
 
   addMoney(money) {
     this.money += money;
+    this.commitMoney(this.money);
+  }
+
+  submitMoney(money) {
+    this.money -= money;
     this.commitMoney(this.money);
   }
 }

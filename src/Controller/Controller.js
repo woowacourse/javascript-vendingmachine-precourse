@@ -28,9 +28,11 @@ export default class Controller {
     this.view = view;
     this.model.bindProductChange(this.onProductChange);
     this.model.bindCoinChange(this.onCoinChange);
+    this.model.bindMoneyChange(this.onMoneyChange);
     this.view.bindProductAdd(this.productAddHandler);
     this.view.bindChargeCoin(this.chargeCoinHandler);
-    this.view.bindProductPurchase(this.purchaseHandler);
+    this.view.bindMoneyAdd(this.moneyAddHandler);
+    this.view.bindPurchaseProduct(this.purchaseProductHandler);
 
     this.view.displayProductAdd(this.model.product);
     this.view.displayChargeCoin(this.model.coin, this.getCoinSum());
@@ -43,10 +45,15 @@ export default class Controller {
 
   onProductChange = (product) => {
     this.view.displayProductAddChange(product);
+    this.view.displayAvailableProduct(product);
   };
 
   onCoinChange = (coin) => {
     this.view.displayChargeCoinChange(coin);
+  };
+
+  onMoneyChange = (money) => {
+    this.view.displayMoneyChange(money);
   };
 
   productAddHandler = (name, price, quantity) => {
@@ -108,7 +115,7 @@ export default class Controller {
     return sum;
   };
 
-  purchaseHandler = (money) => {
+  moneyAddHandler = (money) => {
     if (
       !checkInteger(money) ||
       !checkUnderZero(money) ||
@@ -119,5 +126,18 @@ export default class Controller {
       this.model.addMoney(+money);
       return this.model.money;
     }
+  };
+
+  purchaseProductHandler = (item) => {
+    this.model.product.forEach((product, index) => {
+      if (product.name === item.productName) {
+        if (this.model.money >= product.price) {
+          this.model.submitProduct(index);
+          this.model.submitMoney(product.price);
+        } else {
+          alert("🚨 상품을 구매하기에 돈이 부족합니다");
+        }
+      }
+    });
   };
 }
