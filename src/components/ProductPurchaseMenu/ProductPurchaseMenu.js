@@ -10,7 +10,7 @@ export default class ProductPurchaseMenu extends Component {
       chargedAmount,
       items,
       coins,
-      returnedCoins,
+      returnedCoins: returnedCoins.toObject(),
     };
   }
 

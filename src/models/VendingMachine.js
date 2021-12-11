@@ -1,5 +1,6 @@
 import Items from './Items.js';
 import Coins from './Coins.js';
+import VendingMachineCoins from './VendingMachineCoins.js';
 import ChargedAmount from './ChargedAmount.js';
 
 // TODO: Coins 클래스 상속
@@ -7,9 +8,9 @@ export default class VendingMachine {
   constructor(store, { items, coins, chargedAmount }) {
     this.store = store;
     this.items = new Items(items);
-    this.coins = new Coins(coins);
+    this.coins = new VendingMachineCoins(coins);
     this.chargedAmount = new ChargedAmount(chargedAmount);
-    this.returnedCoins = { '500': 0, '100': 0, '50': 0, '10': 0 };
+    this.returnedCoins = new Coins();
   }
 
   // TODO: 예외 처리
@@ -22,7 +23,7 @@ export default class VendingMachine {
 
   refillCoins(chargeAmount) {
     this.coins.refill(chargeAmount);
-    this.store.updateCoins(this.coins.toMap());
+    this.store.updateCoins(this.coins.toObject());
 
     return this;
   }
@@ -54,7 +55,7 @@ export default class VendingMachine {
 
     this.returnedCoins = change;
 
-    this.store.updateCoins(this.coins.toMap());
+    this.store.updateCoins(this.coins.toObject());
     this.store.updateCharge(this.chargedAmount.returnChange(amount));
 
     return this;
