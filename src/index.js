@@ -1,58 +1,51 @@
-import Tab from './components/tab/index.js';
-import TabPanel from './components/tabPanel/index.js';
-
-import { KEY_TABS, HEADING_TITLE } from './components/const.js';
-import { ACTION_CLICK_TAB } from './components/tab/const.js';
-
 import createHeading from './components/utils/createHeading.js';
 import createBlankNode from './components/utils/createBlankNode.js';
+import setVisibility from './components/utils/setVisibility.js';
+import { HEADING_TITLE } from './components/const.js';
+import { KEY_MENUS, ACTION_CLICK_MENU } from './components/menu/const.js';
+import createMenuByKey from './components/menu/createMenuByKey.js';
+import createMenuContentByKey from './components/content/createMenuContentByKey.js';
+import createDivision from './components/utils/createDivision.js';
 
 export default class VendingMachine {
   constructor() {
     this.app = document.getElementById('app');
 
-    this.tabContainer = document.createElement('div');
-    this.tabContainer.className = 'tabs';
-    this.tabPanelContainer = document.createElement('div');
-    this.tabPanelContainer.className = 'tabPanels';
+    this.menus = createDivision('menus');
+    this.panel = createDivision('panel');
 
     this.app.appendChild(createHeading(1, HEADING_TITLE));
-    this.app.appendChild(this.tabContainer);
-    this.app.appendChild(this.tabPanelContainer);
-
-    this.tabs = {};
-    this.tabPanels = {};
+    this.app.appendChild(this.menus);
+    this.app.appendChild(this.panel);
 
     this.init();
     this.app.onclick = this.onClick.bind(this);
   }
 
   init() {
-    KEY_TABS.forEach((tabKey, i) => {
-      const tab = Tab.createTabByKey(tabKey);
-      const tabPanel = TabPanel.createTabPanelByKey(tabKey);
-      tabPanel.setVisibility(i === 0);
+    KEY_MENUS.forEach((menuKey, i) => {
+      const menu = createMenuByKey(menuKey);
+      this.menus.appendChild(menu);
+      this.menus.appendChild(createBlankNode());
 
-      this.tabContainer.appendChild(tab.getTab());
-      this.tabContainer.appendChild(createBlankNode());
-      this.tabPanelContainer.appendChild(tabPanel.getTabPanel());
-
-      this.tabs[tabKey] = tab;
-      this.tabPanels[tabKey] = tabPanel;
+      const content = createMenuContentByKey(menuKey);
+      content.innerText = menuKey;
+      setVisibility(content, i === 0);
+      this.panel.appendChild(content);
     });
   }
 
-  [ACTION_CLICK_TAB](e, tabKey) {
-    Object.values(this.tabPanels).forEach((tabPanel) =>
-      tabPanel.setVisibility(tabPanel.getKey() === tabKey)
+  [ACTION_CLICK_MENU](e, menuKey) {
+    [...this.panel.children].forEach((content) =>
+      setVisibility(content, content.dataset.menuKey === menuKey)
     );
   }
 
   onClick(event) {
-    const { action, tabKey } = event.target.dataset;
+    const { action, menuKey } = event.target.dataset;
 
-    if (action && tabKey) {
-      this[action](event, tabKey);
+    if (action && menuKey) {
+      this[action](event, menuKey);
     }
   }
 }
