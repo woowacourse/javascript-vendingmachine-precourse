@@ -53,7 +53,9 @@
 
 관리자는 상품 한 개씩 `상품 정보`를 입력하여 제출할 수 있다.
 
-[상품 정보 입력하기 완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commit/ad8f294fcb798d9acf7141acfff7f44115b335a1)
+~~[상품 정보 입력하기 완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commit/ad8f294fcb798d9acf7141acfff7f44115b335a1)~~
+
+[상품 정보 입력하기 완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commit/94a55126f4d2481d2cfe93eb6d297f3113fdaa96): 리팩토링
 
 - [x] `상품 정보` 입력하기
   - [x] `상품 이름` 입력하기
