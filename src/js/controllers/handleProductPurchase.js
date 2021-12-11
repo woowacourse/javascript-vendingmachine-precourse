@@ -47,15 +47,17 @@ const handleProductPurchase = () => {
   $('#product-purchase-list').addEventListener('click', e => {
     if (e.target.className === 'purchase-button') {
       const price = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
-      const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
-      console.log(purchaseIndex);
-
       if (isValidPurchase(amount, price)) {
         // 보유 금액 업데이트
         amount -= price; // 아래코드까지, amount를 업데이트해주는 함수로 변환하기
         printInputCharge(amount);
 
         // 수량 업데이트
+        const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
+        const products = store.getLocalStorage('products');
+        products[purchaseIndex].quantity -= 1;
+        store.setLocalStorage('products', products);
+        e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').innerText -= 1;
       }
     }
   });

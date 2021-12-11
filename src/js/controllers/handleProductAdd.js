@@ -1,6 +1,5 @@
 import $ from '../utils/dom.js';
 import { resetProductAddInput } from '../views/resetInput.js';
-import Product from '../models/Product.js';
 import printAddedProduct from '../views/printAddedProduct.js';
 import store from '../utils/store.js';
 
@@ -54,11 +53,10 @@ const handleProductAdd = () => {
     const quantityInput = $('#product-quantity-input').value;
 
     if (isValidName(nameInput) && isValidPrice(priceInput) && isValidQuantity(quantityInput)) {
-      const addedProduct = new Product(nameInput, priceInput, quantityInput);
+      const addedProduct = { name: nameInput, price: priceInput, quantity: quantityInput };
 
       products.push(addedProduct);
       store.setLocalStorage('products', products);
-
       printAddedProduct();
     }
     resetProductAddInput();
