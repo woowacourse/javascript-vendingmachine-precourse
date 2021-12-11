@@ -19,3 +19,14 @@ export const CHARGE = {
   BUTTON: '충전하기',
   HODLING: '보유 금액: ',
 };
+
+export const ERROR = {
+  NO_NAME: '이름을 입력해주세요',
+  NO_PRICE: '가격을 입력해주세요',
+  NO_QUANTITY: '수량을 입력해주세요',
+  NOT_PLUS_PRICE: '가격은 0이상의 자연수를 입력해주세요',
+  NOT_PLUS_QUANTITY: '수량은 0이상의 자연수를 입력해주세요',
+  DUPLICATED_NAME: '상품 명은 고유해야합니다.',
+  NOT_OVER_MINIMUM_PRICE: '가격은 100원부터 시작합니다.',
+  NOT_DIVIDED_BY_TEN: '가격은 10원 단위로 입력해주세요.',
+};

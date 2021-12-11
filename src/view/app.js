@@ -46,4 +46,8 @@ export default class App {
   addItem({ name, price, quantity }) {
     this.$addProductComponent.addItem({ name, price, quantity });
   }
+
+  report(message) {
+    alert(message);
+  }
 }

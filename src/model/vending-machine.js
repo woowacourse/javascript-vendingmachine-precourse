@@ -28,6 +28,10 @@ export default class VendingMachine {
 
   buyItem(item) {}
 
+  get names() {
+    return this.items.map((item) => item.name);
+  }
+
   get menu() {
     return this.items.map((item) => item.array);
   }

@@ -1,3 +1,5 @@
+import { CURRENCY } from '../constant/constant.js';
+
 export default class Coin {
   constructor(kinds, amount) {
     this.kinds = kinds;
@@ -5,7 +7,7 @@ export default class Coin {
   }
 
   get obj() {
-    const key = `${String(this.kinds)}원`;
+    const key = `${String(this.kinds)}${CURRENCY}`;
     return { [key]: this.amount };
   }
 }

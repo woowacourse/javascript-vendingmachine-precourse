@@ -1,4 +1,5 @@
 import { ID } from '../constant/attributes.js';
+import { validateProduct } from '../utils/validate.js';
 
 export default class Controller {
   constructor(model, view) {
@@ -31,8 +32,13 @@ export default class Controller {
   addItem(event) {
     event.preventDefault();
     const name = document.getElementById(ID.PRODUCT.NAME_INPUT).value;
-    const price = document.getElementById(ID.PRODUCT.PRICE_INPUT).value;
-    const quantity = document.getElementById(ID.PRODUCT.QUANTITY_INPUT).value;
+    const price = Number(document.getElementById(ID.PRODUCT.PRICE_INPUT).value);
+    const quantity = Number(document.getElementById(ID.PRODUCT.QUANTITY_INPUT).value);
+    const list = this.model.names;
+    const error = validateProduct({ name, price, quantity, list });
+    if (error) {
+      return this.view.report(error);
+    }
     this.model.addMenu({ name, price, quantity });
     this.view.addItem({ name, price, quantity });
   }
