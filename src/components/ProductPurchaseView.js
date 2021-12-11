@@ -168,9 +168,35 @@ static addPurchaseEvent() {
       // console.log(quantity);
 
       //해당 수량 하나 줄이고 가격만큼 투입 금액 줄이고
+      this.purchase(name, price, quantity);
     }
     
   })
+}
+
+static purchase(name, price, quantity) {
+  const product = JSON.parse(localStorage.getItem(PRODUCT));
+  const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
+
+  //살 수 있으면 사고 금액 저장, 없으면 alert
+  if(parseInt(userMoney[VALUES]) - parseInt(price) >= 0){
+    userMoney[VALUES] = parseInt(userMoney[VALUES]) - parseInt(price);
+    product[name][VALUES][1] -= 1;
+
+    localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
+    localStorage.setItem(PRODUCT, JSON.stringify(product));
+
+    this.showProductTable();
+    this.showUserCharge(userMoney);
+
+
+  } else {
+    alert('구매할 수 없습니다!');
+  }
+  
+  // console.log(userMoney[VALUES]);
+
+  // console.log(product[name][VALUES][0]);
 }
 
 }
