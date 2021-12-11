@@ -21,7 +21,7 @@ import {
     EMPTY,
 } from "../storage/constant.js";
 import { getLocalStorage } from "../storage/localStorage.js";
-
+import PurchaseContainer from "./container.js";
 export default function PurchasePresenter() {
     const $container = getPresetContainer();
     this.init = () => {
@@ -33,6 +33,7 @@ export default function PurchasePresenter() {
         setChargeDiv();
         setPurchaseDiv();
         setReturnDiv();
+        new PurchaseContainer();
     };
 
     const setChargeDiv = () => {
@@ -51,7 +52,10 @@ export default function PurchasePresenter() {
     const setPurchaseDiv = () => {
         const $purchaseTitle = createTitle("구매할 수 있는 상품현황");
         const $purchaseTable = createTable(TABLE_CLASS.PRODUCT_TABLE, [
-            ("상품명", "가격", "수량", "구매"),
+            "상품명",
+            "가격",
+            "수량",
+            "구매",
         ]);
         // appendTable() 여기서 localStorage에서 값 얻어 올 것.
         appendDiv($container, [$purchaseTitle, $purchaseTable]);

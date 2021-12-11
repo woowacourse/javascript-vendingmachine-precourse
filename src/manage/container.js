@@ -6,7 +6,7 @@ import {
     TABLE_CLASS,
 } from "../storage/constant.js";
 import { Product } from "./product.js";
-import { appendTable } from "../storage/createElement.js";
+import { appendTable, clearInput } from "../storage/createElement.js";
 import { appendLocalStorage } from "../storage/localStorage.js";
 export default function ManageContainer() {
     const $name = document.getElementById(ID.NAME_INPUT);
@@ -47,10 +47,6 @@ export default function ManageContainer() {
         const $quantityVal = $quantity.value;
 
         return { $nameVal, $priceVal, $quantityVal };
-    };
-
-    const clearInput = (...elements) => {
-        elements.forEach((element) => (element.value = EMPTY));
     };
 
     this.init();

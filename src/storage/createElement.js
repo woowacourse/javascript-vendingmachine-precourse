@@ -1,5 +1,5 @@
 import { clickHandler } from "./initialPresent.js";
-
+import { EMPTY } from "./constant.js";
 export const createTitle = (text) => {
     const $h3 = document.createElement("h3");
     $h3.textContent = text;
@@ -76,30 +76,41 @@ export const appendTable = (table_name, tr, object, ...className) => {
     tableBodyRow.className = tr;
     className.forEach((element, idx) => {
         const td = document.createElement("td");
-        let val;
         if (idx !== 3) {
-            if (idx === 0) {
-                val = object.name;
-                td.dataset.productName = object.name;
-            } else if (idx === 1) {
-                val = object.price;
-                td.dataset.productPrice = object.price;
-            } else if (idx === 2) {
-                val = object.amount;
-                td.dataset.productQuantity = object.amount;
-            }
+            const val = addColms(idx, td, object);
             td.className = element;
             td.innerText = val;
         } else {
-            const button = document.createElement("button");
-            button.className = element;
-            button.innerText = "구매하기";
-            td.append(button);
+            addPurchaseButtons(tableBodyRow, element, td);
         }
         tableBodyRow.append(td);
     });
 
     table.append(tableBodyRow);
+};
+
+const addColms = (idx, td, object) => {
+    if (idx === 0) {
+        td.dataset.productName = object.name;
+        return object.name;
+    } else if (idx === 1) {
+        td.dataset.productPrice = object.price;
+        return object.price;
+    } else if (idx === 2) {
+        td.dataset.productQuantity = object.amount;
+        return object.amount;
+    }
+};
+
+const addPurchaseButtons = (rows, element, td) => {
+    const button = document.createElement("button");
+    button.className = element;
+    button.innerText = "구매하기";
+    button.addEventListener("click", function (e) {
+        e.preventDefault();
+        // 여기서 값 하나를 빼주고, Coin에 있는 값도 하나 빼주면 됨.
+    });
+    td.append(button);
 };
 
 export const setChargeTableRows = (table_class, arr) => {
@@ -113,4 +124,8 @@ export const setChargeTableRows = (table_class, arr) => {
         tr.append(name, count);
         $table.append(tr);
     });
+};
+
+export const clearInput = (...elements) => {
+    elements.forEach((element) => (element.value = EMPTY));
 };
