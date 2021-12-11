@@ -53,6 +53,12 @@ class ProductPurchase extends Component {
       this.#updateCurrentAmount();
     };
 
+    this.$productStatus.$table.onPurchase = (idx) => {
+      VendingMachineStore.instance.buyProduct(idx);
+      this.#updateCurrentAmount();
+      this.#updateProductStatus();
+    };
+
     this.$returnChanges.onReturn = () => {
       VendingMachineStore.instance.returnChanges();
       this.#updateCurrentAmount();
