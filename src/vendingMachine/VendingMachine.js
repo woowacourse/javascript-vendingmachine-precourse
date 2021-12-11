@@ -22,6 +22,8 @@ export default class VendingMachine {
   }
 
   charge(money) {
-    this.money = +money;
+    if (Validator.isValidChargeInput(money)) {
+      this.money = +money;
+    }
   }
 }

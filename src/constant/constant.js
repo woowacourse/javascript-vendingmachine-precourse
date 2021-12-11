@@ -1,4 +1,5 @@
 export const ADD_ERROR_MESSAGE = '상품명, 가격, 수량을 모두 입력해주세요. 상품명은 100이상 10의 배수여야 합니다.';
+export const CHARGE_ERRIR_MESSAGE = '충전 금액은 10원 이상이고 10의 배수여야 합니다.';
 
 export const CHARGE_TITLE = '자판기 동전 충전하기';
 export const CHARGE_BUTTON_TITLE = '충전하기';

@@ -2,6 +2,8 @@ import {
   ADD_ERROR_MESSAGE,
   MINIMUM_PRICE_INPUT,
   MINIMUM_QUANTITY_INPUT,
+  MINIMUM_CHARGE_INPUT,
+  CHARGE_ERRIR_MESSAGE,
 } from '../constant/constant.js';
 
 function isNotEmptyName(name) {
@@ -12,8 +14,8 @@ function isAboveMinimum(value, minimum) {
   return +value >= minimum;
 }
 
-function isMultipleOf10(price) {
-  return +price % 10 === 0;
+function isMultipleOf10(value) {
+  return +value % 10 === 0;
 }
 
 function isValidPrice(price) {
@@ -30,6 +32,14 @@ export default class Validator {
       return true;
     }
     alert(ADD_ERROR_MESSAGE);
+    return false;
+  }
+
+  static isValidChargeInput(money) {
+    if (isAboveMinimum(money, MINIMUM_CHARGE_INPUT) && isMultipleOf10(money)) {
+      return true;
+    }
+    alert(CHARGE_ERRIR_MESSAGE);
     return false;
   }
 }
