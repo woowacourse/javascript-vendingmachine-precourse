@@ -37,11 +37,11 @@ export default class ProductPurchaseView {
   }
 
   static showFirstUserCharge(userCharge) {
-    document.getElementById('charge-amount').innerHTML = `${userCharge}원`;
+    document.getElementById('charge-amount').innerHTML = `${userCharge}`;
   }
 
   static showUserCharge(userInput) {
-    document.getElementById('charge-amount').innerHTML = `${userInput[VALUES]}원`;
+    document.getElementById('charge-amount').innerHTML = `${userInput[VALUES]}`;
   }
 
   //상품 표 보여주는거
@@ -67,10 +67,10 @@ export default class ProductPurchaseView {
     const change = JSON.parse(localStorage.getItem(CHANGE));
     const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
     
-    console.log("현재 금액",userMoney[VALUES]);
-    console.log("거스름돈", typeof(change[VALUES]));
-    console.log(change[VALUES] <= userMoney[VALUES]);
-    console.log(change[VALUES] !== 0);
+    // console.log("현재 금액",userMoney[VALUES]);
+    // console.log("거스름돈", typeof(change[VALUES]));
+    // console.log(change[VALUES] <= userMoney[VALUES]);
+    // console.log(change[VALUES] !== 0);
     //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
     if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
       //foreach문으로
@@ -152,6 +152,25 @@ export default class ProductPurchaseView {
     document.getElementById('coin-100-quantity').innerHTML = `${userCoins[100]}개`;
     document.getElementById('coin-50-quantity').innerHTML = `${userCoins[50]}개`;
     document.getElementById('coin-10-quantity').innerHTML = `${userCoins[10]}개`;
+}
+
+static addPurchaseEvent() {
+  document.addEventListener('click', (e) => {
+    const className = e.target.className;
+    const target = e.target.parentElement.parentElement;
+
+    if(className === 'purchase-button'){
+      const name = target.childNodes[1].dataset.productName;
+      const price = target.childNodes[3].dataset.productPrice;
+      const quantity = target.childNodes[5].dataset.productQuantity;
+      // console.log(name);
+      // console.log(price);
+      // console.log(quantity);
+
+      //해당 수량 하나 줄이고 가격만큼 투입 금액 줄이고
+    }
+    
+  })
 }
 
 }

@@ -1,19 +1,24 @@
 import ProductAddView from './ProductAddView.js';
 import MachineManageView from './MachineManageView.js';
 import ProductPurchaseView from './ProductPurchaseView.js';
-import { CHANGE, VALUES } from '../utils/constants.js';
+import { CHANGE, VALUES, PRODUCT, USER_CHARGE } from '../utils/constants.js';
 
 export default class MenuButtonController {
   static menuButtonEvent() {
     document.addEventListener('click', (e) => {
       const targetId = e.target.id;
 
+    //   const userInput = JSON.parse(localStorage.getItem(USER_CHARGE));
+
+        
       // 나중에 함수로 분리
 
       if (targetId === 'product-add-menu') {
         ProductAddView.render();
         ProductAddView.addEvent();
+        if(localStorage.getItem(PRODUCT) !== null) {
         ProductAddView.showTable();
+        }
       }
       if (targetId === 'vending-machine-manage-menu') {
         MachineManageView.render();
@@ -27,7 +32,13 @@ export default class MenuButtonController {
       if (targetId === 'product-purchase-menu') {
         ProductPurchaseView.render();
         ProductPurchaseView.addEvent();
-        ProductPurchaseView.showProductTable();
+        // if(localStorage.getItem(USER_CHARGE !== null)){
+        //     console.log("asd");
+        //   ProductPurchaseView.showUserCharge(userInput);
+        // }
+        if(localStorage.getItem(PRODUCT) !== null) {
+          ProductPurchaseView.showProductTable();
+        }
         ProductPurchaseView.addReturnEvent();
         // ProductPurchaseView.purchase();
         // ProductPurchaseView.showUserCharge();
