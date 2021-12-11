@@ -7,6 +7,7 @@ import {
 import { vendingMachine } from '../index.js';
 import { saveUserCharge } from '../localStorage/userCharge.js';
 import { saveCharges } from '../localStorage/vendingMachineCharge.js';
+import { COINS } from '../constants.js';
 
 export default class ReturnCoin {
   static returnedCoins = {
@@ -23,23 +24,27 @@ export default class ReturnCoin {
     }
 
     ReturnCoin.pickCoin();
+    ReturnCoin.updateModel();
+    ReturnCoin.updateView();
     ReturnCoin.resetReturnedCoins();
   }
 
   static pickCoin() {
-    const coins = [500, 100, 50, 10];
-
-    coins.forEach((coin) => {
+    COINS.forEach((coin) => {
       while (vendingMachine.coins[coin] > 0 && vendingMachine.userAmount > 0) {
-        vendingMachine.userAmount -= coin;
-        vendingMachine.amount -= coin;
-        vendingMachine.coins[coin] -= 1;
+        vendingMachine.updateUserAmountModel('출금', coin);
+        vendingMachine.updateVendingMachineChargeModel('출금', coin);
         ReturnCoin.returnedCoins[coin] += 1;
       }
     });
+  }
 
+  static updateModel() {
     saveUserCharge();
     saveCharges();
+  }
+
+  static updateView() {
     updateReturnCoinTable();
     updateUserChargeAmount();
     updateVendingMachineCharge();

@@ -3,13 +3,13 @@ import { vendingMachine } from '../index.js';
 
 export default class Charge {
   static chargeVendingMachine(money) {
+    vendingMachine.amount += money;
     Charge.moneyToCoin(money);
   }
 
   static moneyToCoin(money) {
-    vendingMachine.amount += money;
-
     let currentMoney = money;
+
     while (currentMoney > 0) {
       let coin = Charge.randomCoin(currentMoney);
 

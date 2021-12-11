@@ -104,6 +104,10 @@ export default class VendingMachine {
       case '충전':
         Charge.chargeVendingMachine(charge);
         break;
+      case '출금':
+        this.amount -= charge;
+        this.coins[charge] -= 1;
+        break;
       case '저장':
         saveCharges();
         break;
