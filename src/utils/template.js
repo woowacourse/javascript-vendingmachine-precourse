@@ -135,9 +135,9 @@ export const PRODUCT_BUY_TEMPLATE = `
 export function printProductForBuyTemplate(product) {
   return `
     <tr class="product-purchase-item">
-      <td class="product-purchase-name">${product.productName}</td>
-      <td class="product-purchase-price">${product.price}</td>
-      <td class="product-purchase-quantity">${product.quantity}</td>
+      <td class="product-purchase-name" data-product-name=${product.productName} >${product.productName}</td>
+      <td class="product-purchase-price" data-product-price=${product.price} >${product.price}</td>
+      <td class="product-purchase-quantity" data-product-quantity=${product.quantity} >${product.quantity}</td>
       <td class="purchase-button"><button>구매하기</button></td>
     </tr>
 `;
