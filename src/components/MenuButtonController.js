@@ -22,7 +22,7 @@ export default class MenuButtonController {
       }
       if (targetId === 'vending-machine-manage-menu') {
         MachineManageView.render();
-        MachineManageView.addEvent();
+        MachineManageView.addMachineChargeEvent();
         // MachineManageView.showTable();
         // const change = JSON.parse(localStorage.getItem(CHANGE));
         // if(change[VALUES] !== null){
@@ -36,9 +36,9 @@ export default class MenuButtonController {
         //     console.log("asd");
         //   ProductPurchaseView.showUserCharge(userInput);
         // }
-        if(localStorage.getItem(PRODUCT) !== null) {
-          ProductPurchaseView.showProductTable();
-        }
+        // if(localStorage.getItem(PRODUCT) !== null) {
+        //   ProductPurchaseView.showProductTable();
+        // }
         ProductPurchaseView.addReturnEvent();
         // ProductPurchaseView.purchase();
         // ProductPurchaseView.showUserCharge();

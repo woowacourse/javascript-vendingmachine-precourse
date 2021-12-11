@@ -31,7 +31,7 @@ export default class MachineManageView {
     document.getElementById('vending-machine-coin-10-quantity').innerHTML = `${coins[10]}개`;
 }
 
-  static addEvent() {
+  static addMachineChargeEvent() {
     document.getElementById('vending-machine-charge-button').addEventListener('click', (e) => {
         e.preventDefault();
         const charge = document.getElementById('vending-machine-charge-input').value;
