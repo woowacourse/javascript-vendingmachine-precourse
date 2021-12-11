@@ -5,9 +5,7 @@ import Selector from '../constants/selector.js';
 
 class VendingMachineModel {
   constructor() {
-    this.$currentMenu = Store.getLocalStorage(Key.currentMenu)
-      ? Store.getLocalStorage(Key.currentMenu)
-      : Selector.productAddMenuId;
+    this.$currentMenu = Store.getLocalStorage(Key.currentMenu) || Selector.productAddMenuId;
   }
 
   getCurrentMenu() {

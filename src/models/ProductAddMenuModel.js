@@ -4,9 +4,7 @@ import Key from '../constants/key.js';
 
 class ProductAddMenuModel {
   constructor() {
-    this.$productItems = Store.getLocalStorage(Key.productItems)
-      ? Store.getLocalStorage(Key.productItems)
-      : [];
+    this.$productItems = Store.getLocalStorage(Key.productItems) || [];
   }
 
   setProductItems(items) {
