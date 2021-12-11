@@ -59,10 +59,10 @@ export class BuyView {
   }
 
   showChangeCoin(changeCoin) {
-    this.$coin500Quantity.innerText = changeCoin[500];
-    this.$coin100Quantity.innerText = changeCoin[100];
-    this.$coin50Quantity.innerText = changeCoin[50];
-    this.$coin10Quantity.innerText = changeCoin[10];
+    this.$coin500Quantity.innerText = changeCoin[500] + '개';
+    this.$coin100Quantity.innerText = changeCoin[100] + '개';
+    this.$coin50Quantity.innerText = changeCoin[50] + '개';
+    this.$coin10Quantity.innerText = changeCoin[10] + '개';
   }
 
   addElements() {
