@@ -2,6 +2,7 @@ import initProductAdd from './initProductAdd.js';
 import initCharge from './initCharge.js';
 import { renderCurrentTab } from '../eventHandler/addTabHandler.js';
 import $ from '../util/$.js';
+import initPurchase from './initPurchase.js';
 import {
   TAB_PRODUCT_ADD_ID,
   PRODUCT_ADD_TAB_TITLE,
@@ -31,6 +32,7 @@ export default function initView() {
   renderAppHeader($appDiv);
   initProductAdd($appDiv);
   initCharge($appDiv);
+  initPurchase($appDiv);
   if (!localStorage.getItem(CURRENT_TAB_KEY)) {
     renderCurrentTab(PRODUCT_ADD_CONTAINER_ID);
   }

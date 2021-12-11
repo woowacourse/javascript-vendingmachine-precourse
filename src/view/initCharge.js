@@ -63,14 +63,8 @@ function coinTemplate(coins, ids, titles) {
   `).join('');
 }
 
-function coinListTemplate() {
+export function coinListTemplate(ids) {
   const coins = JSON.parse(localStorage.getItem(COINS_STORAGE_KEY));
-  const ids = [
-    CHARGE_500_QUANTITY_ID,
-    CHARGE_100_QUANTITY_ID,
-    CHARGE_50_QUANTITY_ID,
-    CHARGE_10_QUANTITY_ID,
-  ];
   const titles = [TITLE_500, TITLE_100, TITLE_50, TITLE_10];
 
   return coinTemplate(coins, ids, titles);
@@ -78,13 +72,19 @@ function coinListTemplate() {
 
 function renderChargeCoins($charge) {
   const $coinContainer = document.createElement('div');
+  const ids = [
+    CHARGE_500_QUANTITY_ID,
+    CHARGE_100_QUANTITY_ID,
+    CHARGE_50_QUANTITY_ID,
+    CHARGE_10_QUANTITY_ID,
+  ];
 
   $coinContainer.innerHTML = `
     <br><br>
     <h3>${CHARGE_COIN_TITLE}</h3>
     <table id="${CHARGE_COIN_TALBE_ID}" bgcolor="black" border="1" style="border-collapse:collapse;">
     ${coinListHeaderTemplate()}
-    ${coinListTemplate()}
+    ${coinListTemplate(ids)}
     </table>
   `;
   $charge.append($coinContainer);
