@@ -1,3 +1,4 @@
+import { vendingMachine } from "../components/vendingMachine.js";
 import { ERROR_MESSAGE, STANDARD_PRICE } from "./constants.js";
 
 const isEmptyInput = input => {
@@ -5,6 +6,18 @@ const isEmptyInput = input => {
     alert(ERROR_MESSAGE.emptyInput);
     return true;
   }
+};
+
+const isDuplicateName = input => {
+  let isDuplicate = false;
+  vendingMachine.products.forEach(product => {
+    if (product.name === input) {
+      alert(ERROR_MESSAGE.duplicateName);
+      isDuplicate = true;
+    }
+  });
+
+  return isDuplicate;
 };
 
 const isUnderThanMinimumPrice = price => {
@@ -24,6 +37,8 @@ const isNotDivideByTen = price => {
 const checkAddProductsNameInput = name => {
   let isError = false;
   if (isEmptyInput(name)) {
+    isError = true;
+  } else if (isDuplicateName(name)) {
     isError = true;
   }
 

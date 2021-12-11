@@ -38,6 +38,7 @@ export const ERROR_MESSAGE = {
   negativeInput: "음수가 아닌 숫자로 입력해 주세요.",
   soldOut: "제품이 모두 판매되었습니다.",
   lackMoney: "투입한 금액이 부족합니다.",
+  duplicateName: "이미 동일한 이름의 제품이 있습니다.",
 };
 
 export const MANAGE_PRODUCT_TAP = {
