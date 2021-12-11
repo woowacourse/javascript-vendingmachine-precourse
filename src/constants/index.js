@@ -13,9 +13,9 @@ export const ERROR_MESSAGE = {
     QUANTITY_INTEGER: '상품 수량은 정수여야 합니다',
     QUANTITY_GREATER_THAN_ZERO: `상품 수량은 ${ZERO}보다 커야합니다.`,
   },
-  VENDING_MACHINE: {
-    CHARGE_INTEGER: '충전 금액은 정수여야 합니다',
-    CHARGE_GREATER_THAN_ZERO: `충전 금액은 ${ZERO}보다 커야합니다.`,
-    CHARGE_MIN_UNIT_OF_MONEY: `충전 금액의 최소 단위는 ${MIN_UNIT_OF_MONEY}원 입니다`,
+  CHARGE: {
+    INTEGER: '금액은 정수여야 합니다',
+    GREATER_THAN_ZERO: `금액은 ${ZERO}보다 커야합니다.`,
+    MIN_UNIT_OF_MONEY: `금액의 최소 단위는 ${MIN_UNIT_OF_MONEY}원 입니다`,
   },
 };

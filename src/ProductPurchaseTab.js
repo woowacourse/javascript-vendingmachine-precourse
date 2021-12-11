@@ -2,6 +2,7 @@ import ProductPurchaseTabView from './views/ProductPurchaseTabView.js';
 import { getCharge, getProducts, getVendingMachineCharge, setCharge, setProducts, setVendingMachineCharge } from './utils/localStorage.js';
 import { coinIndex } from './utils/index.js';
 import { coinList } from './constants/index.js';
+import { isValidChargeAmount } from './utils/validations.js';
 
 export default class ProductPurchaseTab {
   constructor() {
@@ -31,25 +32,26 @@ export default class ProductPurchaseTab {
   setPurchaseButtonClickEvent() {
     const purchaseButtons = document.querySelectorAll('.purchase-button');
     purchaseButtons.forEach((button) => {
-      button.addEventListener('click', this.onClickPurchaseButton.bind(this));
+      button.addEventListener('click', this.onClickPurchase.bind(this));
     });
   }
 
   setCoinReturnButtonClickEvent() {
     const coinReturnButton = document.querySelector('#coin-return-button');
-    coinReturnButton.addEventListener('click', this.onClickCoinReturnButton.bind(this));
+    coinReturnButton.addEventListener('click', this.onClickCoinReturn.bind(this));
   }
 
   onClickChargeButton(e) {
     e.preventDefault();
-    const amountToBeCharged = Number(this.chargeInput.value);
-    this.charge += amountToBeCharged;
+    const amountToAdd = Number(this.chargeInput.value);
+    if (!isValidChargeAmount(amountToAdd)) return;
+    this.charge += amountToAdd;
     setCharge(this.charge);
     this.view.updateChargeAmount(this.charge);
     this.clearInputValue();
   }
 
-  onClickPurchaseButton(e) {
+  onClickPurchase(e) {
     const { productName, productPrice, productQuantity } = this.getProductDataFromPurchaseButton(e.target);
     const productIndex = this.products.findIndex((product) => product.name === productName);
     if ( this.charge < productPrice ) return;
@@ -68,7 +70,7 @@ export default class ProductPurchaseTab {
     return { productName, productPrice, productQuantity };
   }
 
-  onClickCoinReturnButton() {
+  onClickCoinReturn() {
     const { amount, coinQuantity } = this.getAmountAndCoinQuantityToBeReturned();
     this.charge -= amount;
     this.vendingMachineCharge.amount -= amount;

@@ -1,7 +1,7 @@
 import { coinList } from './constants/index.js';
 import { coinIndex } from './utils/index.js';
 import { getVendingMachineCharge, setVendingMachineCharge } from './utils/localStorage.js';
-import { isValidVendingMachineChargeAmount } from './utils/validations.js';
+import { isValidChargeAmount } from './utils/validations.js';
 import VendingMachineManageTabView from './views/VendingMachineManageTabView.js';
 
 export default class VendingMachineManageTab {
@@ -28,7 +28,7 @@ export default class VendingMachineManageTab {
   onClickVendingMachineCharging(e) {
     e.preventDefault();
     const amountToAdd = Number(this.vendingMachineChargeInput.value);
-    if (!isValidVendingMachineChargeAmount(amountToAdd)) return;
+    if (!isValidChargeAmount(amountToAdd)) return;
     const newCoinQuantity = this.generateCoinsRandomly(amountToAdd)
       .map((quantity, idx) => quantity + this.vendingMachineCharge.coinQuantity[idx]);
     const newAmount = this.vendingMachineCharge.amount + amountToAdd;

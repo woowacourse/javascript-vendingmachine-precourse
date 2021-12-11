@@ -42,18 +42,14 @@ function isValidProductAddition({ name, price, quantity }) {
     && isValidProductQuantity(quantity);
 }
 
-function isValidVendingMachineChargeAmount(amount) {
-  if (!isInteger(amount)) return alert(ERROR_MESSAGE.VENDING_MACHINE.CHARGE_INTEGER);
-  if (!isGreaterThanZero(amount)) {
-    return alert(ERROR_MESSAGE.VENDING_MACHINE.CHARGE_GREATER_THAN_ZERO);
-  }
-  if (!isSatisfyingMinUnitOfMoney(amount)) {
-    return alert(ERROR_MESSAGE.VENDING_MACHINE.CHARGE_MIN_UNIT_OF_MONEY);
-  }
+function isValidChargeAmount(amount) {
+  if (!isInteger(amount)) return alert(ERROR_MESSAGE.CHARGE.INTEGER);
+  if (!isGreaterThanZero(amount)) return alert(ERROR_MESSAGE.CHARGE.GREATER_THAN_ZERO);
+  if (!isSatisfyingMinUnitOfMoney(amount)) return alert(ERROR_MESSAGE.CHARGE.MIN_UNIT_OF_MONEY);
   return true;
 }
 
 export {
   isValidProductAddition,
-  isValidVendingMachineChargeAmount,
+  isValidChargeAmount,
 };
