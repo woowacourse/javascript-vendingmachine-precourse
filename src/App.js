@@ -1,6 +1,7 @@
 import { $, $$ } from './utils/element-utils.js';
 
 import Component from './core/Component.js';
+import ProductManage from './components/ProductManage.js';
 
 export default class App extends Component {
   htmlTemplate() {
@@ -18,7 +19,9 @@ export default class App extends Component {
     `;
   }
 
-  mounted() {}
+  mounted() {
+    this.addMount('product-add-menu', ProductManage);
+  }
 
   bindEvent() {
     this.addEvent('click', 'nav#main-menu > button', (event) => {
