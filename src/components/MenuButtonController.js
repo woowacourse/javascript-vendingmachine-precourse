@@ -16,9 +16,9 @@ export default class MenuButtonController {
       if (targetId === 'product-add-menu') {
         ProductAddView.render();
         ProductAddView.addEvent();
-        if(localStorage.getItem(PRODUCT) !== null) {
-        ProductAddView.showTable();
-        }
+        // if(localStorage.getItem(PRODUCT) !== null) {
+        // ProductAddView.showTable();
+        // }
       }
       if (targetId === 'vending-machine-manage-menu') {
         MachineManageView.render();
