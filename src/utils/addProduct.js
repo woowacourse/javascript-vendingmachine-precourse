@@ -1,7 +1,8 @@
 import $ from './common/selector.js';
 import { store } from './common/store.js';
+import { render } from './common/render.js';
 
-export const addMenu = products => {
+export const addProduct = (products, tab) => {
   const productName = $('#product-name-input').value;
   const price = $('#product-price-input').value;
   const quantity = $('#product-quantity-input').value;
@@ -14,7 +15,7 @@ export const addMenu = products => {
   });
 
   store.setData(products);
-  render(products, category);
+  render(products, tab);
 
   $('#product-name-input').value = '';
   $('#product-price-input').value = '';

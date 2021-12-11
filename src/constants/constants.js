@@ -1,5 +1,5 @@
-// export const tabs = {
-//   addMenuTab: 'addMenuTab',
-//   changeTab: 'changeTab',
-//   purchaseTab: 'purchaseTab',
-// };
+export const tabs = {
+  addMenu: 'addMenu',
+  change: 'change',
+  purchase: 'purchase',
+};
