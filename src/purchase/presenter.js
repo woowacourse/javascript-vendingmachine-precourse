@@ -10,18 +10,19 @@ import {
     createTable,
     setChargeTableRows,
     createParagraph,
+    appendTable,
 } from "../storage/createElement.js";
 import {
     PURCHASE_TAB_ID as ID,
     PURCHASE_TAB_CLASS as CLASS,
     CHARGE_STRING,
     TABLE_CLASS,
+    LOACL_STORAGE,
+    EMPTY,
 } from "../storage/constant.js";
+import { getLocalStorage } from "../storage/localStorage.js";
 
 export default function PurchasePresenter() {
-    // 최초 실행시, localStorage를 확인해볼 것.
-    // localStorage에 값이 없다는게 확인 된다면, 새로 깔면 되고,
-    // product 상품을 만들어서 해당 값으로 저장하는 식으로 가자.
     const $container = getPresetContainer();
     this.init = () => {
         clearContainer();
@@ -54,6 +55,10 @@ export default function PurchasePresenter() {
         ]);
         // appendTable() 여기서 localStorage에서 값 얻어 올 것.
         appendDiv($container, [$purchaseTitle, $purchaseTable]);
+        const loadProduct = getLocalStorage(LOACL_STORAGE.PRODUCT);
+        if (loadProduct !== EMPTY) {
+            const curProduct = JSON.parse(loadProduct);
+        }
     };
     const setReturnDiv = () => {
         const $returnTitle = createTitle("잔돈");
