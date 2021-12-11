@@ -7,7 +7,7 @@ import Product from './product.js';
 import { saveProductList } from '../localStorage/products.js';
 import {
   updateProductItemAfterPurchase,
-  updateProductTable,
+  createProductTableRow,
   deleteProductItem,
 } from '../dom/control/updateProductTable.js';
 import Charge from './charge.js';
@@ -16,7 +16,7 @@ import { updateVendingMachineCharge } from '../dom/control/updateVendingMachineC
 import { saveUserCharge } from '../localStorage/userCharge.js';
 import { updateUserChargeAmount } from '../dom/control/updateUserChargeAmount.js';
 import {
-  addNewPurchaseProductTableRow,
+  createPurchaseTableRow,
   updatePurchasableProductTableAfterPurchase,
   deletePurchaseProduct,
 } from '../dom/control/updatePurchasableProductTable.js';
@@ -27,14 +27,16 @@ export default class VendingMachine {
   constructor() {
     this.products = [];
     this.amount = 0;
+    this.userAmount = 0;
     this.coins = {
       500: 0,
       100: 0,
       50: 0,
       10: 0,
     };
-    this.userAmount = 0;
   }
+
+  // 상품을 자판기에 추가
 
   addProduct() {
     const productInput = getProductInput();
@@ -45,15 +47,43 @@ export default class VendingMachine {
 
     const newProduct = Product.createProduct(productInput);
 
-    this.products.push(newProduct);
-    saveProductList(this.products);
-    updateProductTable([newProduct]);
-    addNewPurchaseProductTableRow(
-      newProduct.name,
-      newProduct.price,
-      newProduct.quantity
-    );
+    this.updateProductsModel('추가', newProduct);
+    this.updateProductsModel('저장', newProduct);
+    this.updateProductsView('추가', newProduct);
   }
+
+  updateProductsModel(action, product) {
+    switch (action) {
+      case '추가':
+        this.products.push(product);
+        break;
+      case '삭제':
+        this.products = this.products.filter(
+          (_product) => _product.name !== product.name
+        );
+        break;
+      case '저장':
+        saveProductList(this.products);
+        break;
+    }
+  }
+
+  updateProductsView(action, product) {
+    switch (action) {
+      case '추가':
+        createProductTableRow([product]);
+        createPurchaseTableRow(product.name, product.price, product.quantity);
+        break;
+      case '판매':
+        updateProductItemAfterPurchase(product.name);
+        break;
+      case '삭제':
+        deleteProductItem(product.name);
+        break;
+    }
+  }
+
+  // 자판기 잔돈을 충전
 
   addVendingMachineCharge() {
     const vendingMachineChargeInput = getVendingMachineChargeInput();
@@ -62,10 +92,27 @@ export default class VendingMachine {
       return;
     }
 
-    Charge.moneyToCoin(vendingMachineChargeInput);
-    saveCharges();
+    this.updateVendingMachineChargeModel('충전', vendingMachineChargeInput);
+    this.updateVendingMachineChargeModel('저장', vendingMachineChargeInput);
+    this.updateVendingMachineChargeView();
+  }
+
+  updateVendingMachineChargeModel(action, charge) {
+    switch (action) {
+      case '충전':
+        Charge.chargeVendingMachine(charge);
+        break;
+      case '저장':
+        saveCharges();
+        break;
+    }
+  }
+
+  updateVendingMachineChargeView() {
     updateVendingMachineCharge();
   }
+
+  // 사용자 보유 금액을 충전
 
   addUserCharge() {
     const userChargeInput = getChargeInput();
@@ -74,45 +121,68 @@ export default class VendingMachine {
       return;
     }
 
-    this.userAmount += userChargeInput;
-    this.updateUserCharge();
+    this.updateUserAmountModel('충전', userChargeInput);
+    this.updateUserAmountModel('저장', userChargeInput);
+    this.updateUserAmountView();
   }
 
+  updateUserAmountModel(action, charge) {
+    switch (action) {
+      case '충전':
+        this.userAmount += charge;
+        break;
+      case '출금':
+        this.userAmount -= charge;
+        break;
+      case '저장':
+        saveUserCharge();
+        break;
+    }
+  }
+
+  updateUserAmountView() {
+    updateUserChargeAmount();
+  }
+
+  // 상품을 구매
+
   purchase(name) {
-    const product = this.searchProduct(name);
+    const product = Product.searchProduct(name);
 
     if (lackOfUserChangeException(product.price)) {
       return;
     }
 
-    this.userAmount -= product.price;
-    this.updateUserCharge();
-
-    product.quantity -= 1;
-    saveProductList(this.products);
-    updatePurchasableProductTableAfterPurchase(name);
-    updateProductItemAfterPurchase(name);
-
-    this.isDeleteProduct(product.quantity, name);
+    this.pay(product);
+    this.provide(product);
   }
 
-  updateUserCharge() {
-    saveUserCharge();
-    updateUserChargeAmount();
+  pay(product) {
+    this.updateUserAmountModel('출금', product.price);
+    this.updateUserAmountModel('저장', product.price);
+    this.updateUserAmountView();
   }
 
-  searchProduct(name) {
-    return this.products.find((product) => product.name === name);
+  provide(product) {
+    Product.sellProduct(product);
+    this.updateProductsModel('저장', product);
+    this.updateProductsView('판매', product);
+    this.updatePurchaseView('판매', product);
+    Product.deleteProduct(product);
   }
 
-  isDeleteProduct(quantity, name) {
-    if (quantity === 0) {
-      this.products = this.products.filter((product) => product.name !== name);
-      saveProductList(this.products);
-      deletePurchaseProduct(name);
-      deleteProductItem(name);
+  updatePurchaseView(action, product) {
+    switch (action) {
+      case '판매':
+        updatePurchasableProductTableAfterPurchase(product.name);
+        break;
+      case '삭제':
+        deletePurchaseProduct(product.name);
+        break;
     }
   }
+
+  // 남은 잔액을 반환
 
   returnCoin() {
     ReturnCoin.returnCoin();

@@ -7,15 +7,11 @@ import {
 
 export const initPurchasableProductTable = () => {
   vendingMachine.products.forEach((product) => {
-    addNewPurchaseProductTableRow(
-      product.name,
-      product.price,
-      product.quantity
-    );
+    createPurchaseTableRow(product.name, product.price, product.quantity);
   });
 };
 
-export const addNewPurchaseProductTableRow = (name, price, quantity) => {
+export const createPurchaseTableRow = (name, price, quantity) => {
   const tableBody = getPurchaseManagerPurchaseTableBody();
 
   tableBody.appendChild(

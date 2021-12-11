@@ -4,7 +4,7 @@ import {
   getProductManagerItemCollection,
 } from '../domElement.js';
 
-export const updateProductTable = (products) => {
+export const createProductTableRow = (products) => {
   products.forEach((product) => {
     addTableBodyRow(product);
   });

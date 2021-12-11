@@ -2,6 +2,10 @@ import { COINS } from '../constants.js';
 import { vendingMachine } from '../index.js';
 
 export default class Charge {
+  static chargeVendingMachine(money) {
+    Charge.moneyToCoin(money);
+  }
+
   static moneyToCoin(money) {
     vendingMachine.amount += money;
 
