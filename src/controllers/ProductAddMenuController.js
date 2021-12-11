@@ -31,10 +31,15 @@ class ProductAddMenuController {
     const productPrice = $(`#${Selector.productPriceInputId}`).value;
     const productQuantity = $(`#${Selector.productQuantityInputId}`).value;
 
-    if (!ProductAddMenuValidator.validateExistProductName(productName)) return;
+    if (!ProductAddMenuValidator.validateProductNameExist(productName)) return;
     if (
       !ProductAddMenuValidator.validateProductPriceIsOver100(productPrice) ||
       !ProductAddMenuValidator.validateProductPriceCanDivide10(productPrice)
+    )
+      return;
+    if (
+      !ProductAddMenuValidator.validateProductQuantityExist(productQuantity) ||
+      !ProductAddMenuValidator.validateProductQuantityPlusInteger(productQuantity)
     )
       return;
 
