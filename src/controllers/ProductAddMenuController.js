@@ -32,7 +32,11 @@ class ProductAddMenuController {
     const productQuantity = $(`#${Selector.productQuantityInputId}`).value;
 
     if (!ProductAddMenuValidator.validateExistProductName(productName)) return;
-    if (!ProductAddMenuValidator.validateProductPriceIsOver100(productPrice)) return;
+    if (
+      !ProductAddMenuValidator.validateProductPriceIsOver100(productPrice) ||
+      !ProductAddMenuValidator.validateProductPriceCanDivide10(productPrice)
+    )
+      return;
 
     const item = {
       productName,
