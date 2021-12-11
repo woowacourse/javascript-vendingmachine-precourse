@@ -6,6 +6,7 @@ import ProductPurchase from './ProductPurchase.js';
 export default class MenuBar {
   constructor() {
     this.init();
+    this.loadRecentMenu();
     $(`#${ID.MENU_BAR}`).addEventListener('click', this.handleMenuBarClick);
   }
 
@@ -21,6 +22,10 @@ export default class MenuBar {
     $menuBar.appendChild($vendingMachineManageMenuBtn);
     $menuBar.appendChild($productPurchaseMenuBtn);
     $('#app').appendChild($menuBar);
+  };
+
+  loadRecentMenu = () => {
+    // TODO: load the menu page which user was recently working on
   };
 
   handleMenuBarClick = (e) => {

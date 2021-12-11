@@ -1,10 +1,14 @@
+import { ID } from './dom.js';
+
 export const productAddMenuTemplate = () => {
   return `
     <h3>상품 추가하기</h3>
-    <input type="text" />
-    <input type="number" />
-    <input type="number" />
-    <button>추가하기</button>
+    <form>
+      <input type="text" id=${ID.PRODUCT_NAME_INPUT} placeholder="상품명" required />
+      <input type="number" id=${ID.PRODUCT_PRICE_INPUT} placeholder="가격" required />
+      <input type="number" id=${ID.PRODUCT_QUANTITY_INPUT} placeholder="수량" required />
+      <button type="submit" id=${ID.PRODUCT_ADD_BTN}>추가하기</button>
+    </form>
 
     <h3>상품 현황</h3>
     <table>
