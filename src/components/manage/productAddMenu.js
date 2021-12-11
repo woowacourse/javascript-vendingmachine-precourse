@@ -7,7 +7,7 @@ import {
   initProductManageScreen,
 } from './manageTemplate.js';
 
-function handleProductMenuSubmit(event) {
+const handleProductMenuSubmit = (event) => {
   event.preventDefault();
   const productData = {
     name: $('#product-name-input').value.trim(),
@@ -20,7 +20,7 @@ function handleProductMenuSubmit(event) {
   }
   addProductItem(productData);
   setProductItemStorage(productData);
-}
+};
 
 export default function showProductManage() {
   $('#app-container').innerHTML = productManageTemplate;

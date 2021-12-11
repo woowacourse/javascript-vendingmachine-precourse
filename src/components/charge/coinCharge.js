@@ -3,15 +3,23 @@ import { ERROR_MESSAGE } from '../../utils/constants.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { coinChargeTemplate } from './coinChargeTemplate.js';
 
+let currentAmount = 0;
+
+const showCurrentAmount = (chargedCoin) => {
+  currentAmount += chargedCoin;
+  $('#vending-machine-charge-amount').innerHTML = `보유금액: ${currentAmount}`;
+};
+
 const handleCoinChargeSubmit = (event) => {
   event.preventDefault();
-  const chargedCoin = $('#vending-machine-charge-input').value;
+  const chargedCoin = Number($('#vending-machine-charge-input').value);
 
   if (!isDivideByTen(chargedCoin)) {
     $('#vending-machine-charge-input').value = '';
     return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
   }
-  console.log('통과');
+
+  showCurrentAmount(chargedCoin);
 };
 
 export default function showCoinCharge() {
