@@ -10,7 +10,7 @@ export default class CoinStorageController {
   }
 
   init = () => {
-    this.view.renderPage(this.$container);
+    this.initPage();
     this.initDOMS();
     this.setEvent();
     this.updatePage();
@@ -20,6 +20,10 @@ export default class CoinStorageController {
     this.$coinChargeInput = document.getElementById(ID.VENDING_MACHINE_CHARGE_INPUT);
     this.$coinChargeButton = document.getElementById(ID.VENDING_MACHINE_CHARGE_BUTTON);
     this.$chargedAmount = document.getElementById(ID.VENDING_MACHINE_CHARGE_AMOUNT);
+  };
+
+  initPage = () => {
+    this.view.renderPage(this.$container);
   };
 
   setEvent = () => {

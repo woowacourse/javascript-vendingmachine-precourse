@@ -11,14 +11,18 @@ export default class CoinStorageModel {
     return this.coins;
   };
 
+  getTotalMoney = () => {
+    return Object.entries(this.coins).reduce((sum, [coin, quantity]) => sum + coin * quantity, 0);
+  };
+
   addMoney = (money) => {
     checkValidChargeMoney(money);
 
-    this.addCoin(money);
+    this.generateCoin(money);
     setLocalStorage(LOCAL_STORAGE_KEY.COIN, this.coins);
   };
 
-  addCoin = (money) => {
+  generateCoin = (money) => {
     let remainingMoney = money;
     while (remainingMoney > 0) {
       const coin = MissionUtils.Random.pickNumberInList(COIN_LIST);
@@ -37,7 +41,7 @@ export default class CoinStorageModel {
 
   returnChanges = (money) => {
     const returnedCoins = this.getChanges(money);
-    this.returnCoins(returnedCoins);
+    this.decreaseChargedCoins(returnedCoins);
 
     return returnedCoins;
   };
@@ -63,14 +67,10 @@ export default class CoinStorageModel {
     return coinAmount;
   };
 
-  returnCoins = (returnedCoins) => {
+  decreaseChargedCoins = (returnedCoins) => {
     Object.entries(returnedCoins).forEach(([coin, count]) => {
       this.coins[coin] -= count;
     });
     setLocalStorage(LOCAL_STORAGE_KEY.COIN, this.coins);
-  };
-
-  getTotalMoney = () => {
-    return Object.entries(this.coins).reduce((sum, [coin, quantity]) => sum + coin * quantity, 0);
   };
 }
