@@ -18,6 +18,7 @@ export const ERROR = {
   CHARGE_NOT_TEN_MULTIPLE: '금액은 10의 배수만 입력 가능합니다.',
 
   CHARGE_UNDER_PRODUCT_PRICE: '투입한 금액이 원하는 상품 가격 이상이어야 합니다.',
+  PRODUCT_OUT_OF_STOCK: '구매를 원하시는 상품은 품절상태 입니다.',
 };
 
 export const REGEX = {

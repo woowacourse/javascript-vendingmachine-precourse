@@ -38,6 +38,7 @@ const validators = {
 
   isValidProductPurchase: object => {
     if (UT.isChargeUnderProductPrice(object.price)) return alert(ERROR.CHARGE_UNDER_PRODUCT_PRICE);
+    if (UT.isZero(object.quantity)) return alert(ERROR.PRODUCT_OUT_OF_STOCK);
 
     return true;
   },
