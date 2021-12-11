@@ -1,4 +1,35 @@
+#app {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 30px;
+  display: inline-block;
+  margin: 10px 0;
+}
+
 .beverage_icon {
   width: 50px;
-  vertical-align: bottom;
+  vertical-align: middle;
+}
+
+button {
+  margin: 0 5px;
+  padding: 5px 10px;
+}
+
+#productAddWrap {
+  margin: 60px 0;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 80px;
 }
