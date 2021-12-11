@@ -2,6 +2,7 @@ import {
   createContainer,
   createElements,
   createGridDiv,
+  createObjForElement,
   customCreateElement,
 } from '../CreateElementUtils.js';
 import {
@@ -98,23 +99,20 @@ export default class AddProducts {
     container.appendChild(grid);
   }
 
-  static createProductItemObject(productObject, key) {
-    const nameItem = {
-      tag: 'div',
-      attributes: { class: CLASS_PRODUCT_NAME },
-      value: key,
-    };
-    const priceItem = {
-      tag: 'div',
-      attributes: { class: CLASS_PRODUCT_PRICE },
-      value: productObject[key].price,
-    };
-    const quantityItem = {
-      tag: 'div',
-      attributes: { class: CLASS_PRODUCT_QUANTITY },
-      value: productObject[key].quantity,
-    };
-    return [nameItem, priceItem, quantityItem];
+  static createProductItemObject(product, key) {
+    return [
+      createObjForElement('div', { class: CLASS_PRODUCT_NAME }, key),
+      createObjForElement(
+        'div',
+        { class: CLASS_PRODUCT_PRICE },
+        product[key].price,
+      ),
+      createObjForElement(
+        'div',
+        { class: CLASS_PRODUCT_QUANTITY },
+        product[key].quantity,
+      ),
+    ];
   }
 
   createCurrentContainer() {
@@ -123,6 +121,17 @@ export default class AddProducts {
       [createGridDiv(VAL_GRID_COLUMN_SIZE, CURRENT_GRID_HEADERS)],
       ID_PRODUCT_ADD_STATUS,
     );
+    this.addAllProductRows(grid);
+
+    const title = customCreateElement({
+      tag: 'h2',
+      value: TITLE_CURRENT_STATUS,
+    });
+
+    return createContainer(document.createElement('section'), [title, grid]);
+  }
+
+  addAllProductRows(grid) {
     const allProducts = getAllProducts();
     if (allProducts) {
       Object.keys(allProducts).forEach((p) => {
@@ -131,12 +140,5 @@ export default class AddProducts {
         this.addStatusGridRow(grid, itemObj);
       });
     }
-
-    const title = customCreateElement({
-      tag: 'h2',
-      value: TITLE_CURRENT_STATUS,
-    });
-
-    return createContainer(document.createElement('section'), [title, grid]);
   }
 }

@@ -35,6 +35,14 @@ export const createElements = function createMultipleElements(array) {
   return elements;
 };
 
+export const createObjForElement = function createObjectForElement(
+  tag,
+  attributes,
+  value,
+) {
+  return { tag, attributes, value };
+};
+
 // ============== CREATE CONTAINER FUNCTION ==============
 export function createContainer(container, elements, id) {
   const containerElement = elements.reduce((c, element) => {
