@@ -2,17 +2,14 @@ import { DOM_ID_SELECTOR, VENDING_MACHINE_CHARGE_MESSAGE } from './constants.js'
 import makeButton from './makeButton.js';
 import makeInput from './makeInput.js';
 import makeTable from './makeTable.js';
+import makeForm from './makeForm.js';
 import makeTitle from './makeTitle.js';
 
 const makeVendingMachineChargeForm = () => {
-  const $vendingMachineChargeForm = document.createElement('form');
   const $vendingMachineChargeInput = makeInput(DOM_ID_SELECTOR.vendingMachineChargeInput, 'text', VENDING_MACHINE_CHARGE_MESSAGE.willChargeAmount);
   const $vendingMachineChargeButton = makeButton(VENDING_MACHINE_CHARGE_MESSAGE.charge, DOM_ID_SELECTOR.vendingMachineChargeButton, 'submit');
 
-  $vendingMachineChargeForm.appendChild($vendingMachineChargeInput);
-  $vendingMachineChargeForm.appendChild($vendingMachineChargeButton);
-
-  return $vendingMachineChargeForm;
+  return makeForm([$vendingMachineChargeInput], $vendingMachineChargeButton);
 };
 
 const makeVendingMachineChargeAmount = () => {

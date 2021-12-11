@@ -1,22 +1,19 @@
 import { DOM_ID_SELECTOR, PRODUCT_MANAGE_MESSAGE } from './constants.js';
 import makeButton from './makeButton.js';
 import makeInput from './makeInput.js';
+import makeForm from './makeForm.js';
 import makeTitle from './makeTitle.js';
 import makeTable from './makeTable.js';
 
 const makeProductAddForm = () => {
-  const $productAddForm = document.createElement('form');
   const $productNameInput = makeInput(DOM_ID_SELECTOR.productNameInput, 'text', PRODUCT_MANAGE_MESSAGE.productName);
   const $productPriceInput = makeInput(DOM_ID_SELECTOR.productPriceInput, 'number', PRODUCT_MANAGE_MESSAGE.productPrice);
   const $productQuantityInput = makeInput(DOM_ID_SELECTOR.productQuantityInput, 'number', PRODUCT_MANAGE_MESSAGE.productQuantity);
   const $productAddButton = makeButton(PRODUCT_MANAGE_MESSAGE.productAddButton, DOM_ID_SELECTOR.productAddButton, 'submit');
 
-  $productAddForm.appendChild($productNameInput);
-  $productAddForm.appendChild($productPriceInput);
-  $productAddForm.appendChild($productQuantityInput);
-  $productAddForm.appendChild($productAddButton);
+  const productInputs = [$productNameInput, $productPriceInput, $productQuantityInput];
 
-  return $productAddForm;
+  return makeForm(productInputs, $productAddButton);
 };
 
 const renderProductAddTemplate = () => {
