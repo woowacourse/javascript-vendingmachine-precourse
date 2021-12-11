@@ -1,10 +1,19 @@
-export default class Store {
-    constructor(component, initialState) {
-        if (localStorage.getItem('state') === undefined) {
+import defaultStatus from './defaultStatus.js';
+
+class Store {
+    constructor(initialState) {
+        if (localStorage.getItem('state') === null) {
             localStorage.setItem('state', JSON.stringify({ ...initialState }));
         }
         this.state = JSON.parse(localStorage.getItem('state'));
-        this.component = component;
+
+        window.onbeforeunload = function () {
+            localStorage.removeItem('state');
+        };
+    }
+
+    setTriggerStateChange(func) {
+        this.afterStateChange = func;
     }
 
     setState(key, value) {
@@ -30,10 +39,24 @@ export default class Store {
 
     applyLocalStorage() {
         localStorage.setItem('state', JSON.stringify(this.state));
-        this.component.render(this.state);
+        this.afterStateChange(this.state);
     }
 
     getState(selector) {
         return selector(this.state);
     }
 }
+
+const store = new Store(defaultStatus);
+
+export function setState(key, value) {
+    store.setState(key, value);
+}
+export function setStates(states) {
+    store.setStates(states);
+}
+export function getState(selector) {
+    return store.getState(selector);
+}
+
+export default store;
