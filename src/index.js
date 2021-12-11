@@ -7,6 +7,7 @@ import { DOM_ID_SELECTOR } from './constants.js';
 import Coin from './Coin.js';
 import attachVendingMachineChargeEvent from './attachVendingMachineChargeEvent.js';
 import printProductManageTable from './printProductManageTable.js';
+import printVendingMachineAmountAndCoinTable from './printVendingMachineAmountAdnCoinTable.js';
 
 renderAppTemplate();
 
@@ -23,5 +24,6 @@ $productAddMenu.addEventListener('click', () => {
 const $vendingMachineManageMenu = document.getElementById(DOM_ID_SELECTOR.vendingMachineManageMenu);
 $vendingMachineManageMenu.addEventListener('click', () => {
   renderVendingMachineManageMenuTemplate();
+  printVendingMachineAmountAndCoinTable(coin);
   attachVendingMachineChargeEvent(coin);
 });
