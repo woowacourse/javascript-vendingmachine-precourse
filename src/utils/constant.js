@@ -1,6 +1,7 @@
 export const DOM = {
   $TR: 'tr',
   $APP: '#app',
+  $$PURCHASE_BUTTONS: '.purchase-button',
   $PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
   $CHARGE_BUTTON: '#charge-button',
   $CHARGE_INPUT: '#charge-input',
@@ -30,6 +31,7 @@ export const NUMBER = {
   BLANK_CHECK_LENGTH: 1,
   UNIT_CHECK_TEN: 10,
   ZERO: 0,
+  ONE: 1,
 };
 
 export const ERROR_MESSAGE = {

@@ -1,5 +1,5 @@
 import SetProductAdd from '../model/SetProductAdd.js';
-import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER } from '../utils/constant.js';
 import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
 import SetVendingMachinePurchase from '../model/SetVendingMachinePurchase.js';
 
@@ -105,7 +105,7 @@ export default class CheckEventTarget {
       this.render.purchaseTemplate($targetName, $targetPrice, $targetQuantity);
       this.localStorageProductAddMenu = this.localStorageProductAddMenu.replace(
         TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity),
-        TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity - 1)
+        TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity - NUMBER.ONE)
       );
     }
   };
@@ -118,12 +118,12 @@ export default class CheckEventTarget {
   };
 
   reRenderProductAddMenu = ($targetName, $targetPrice, $targetQuantity) => {
-    this.localStorageProductAddMenu = localStorage.getItem('productAddMenu');
+    this.localStorageProductAddMenu = localStorage.getItem(LOCAL_STORAGE.PRODUCT_ADD_MENU);
     this.product.getProductsInformation().forEach((information) => {
       this.isTargetName(information, $targetName, $targetPrice, $targetQuantity);
     });
 
-    localStorage.setItem('productAddMenu', this.localStorageProductAddMenu);
+    localStorage.setItem(LOCAL_STORAGE.PRODUCT_ADD_MENU, this.localStorageProductAddMenu);
   };
 
   onClickPurchaseButton = ($purchaseButton) => {
@@ -136,8 +136,8 @@ export default class CheckEventTarget {
   };
 
   getPurchaseButtons = () => {
-    const $purchaseButtons = document.querySelectorAll('.purchase-button');
-    $purchaseButtons.forEach(($purchaseButton) => this.onClickPurchaseButton($purchaseButton));
+    const $$purchaseButtons = document.querySelectorAll(DOM.$$PURCHASE_BUTTONS);
+    $$purchaseButtons.forEach(($purchaseButton) => this.onClickPurchaseButton($purchaseButton));
   };
 
   hasProductPurchaseMenuTemplate = () => {
