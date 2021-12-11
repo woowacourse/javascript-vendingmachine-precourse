@@ -1,4 +1,4 @@
-import { DOM } from '../utils/constant.js';
+import { DOM, TEMPLATE } from '../utils/constant.js';
 import VendingMachineCharge from './VendingMachineCharge.js';
 
 export default class SetVendingMachinePurchase {
@@ -11,14 +11,22 @@ export default class SetVendingMachinePurchase {
     this.setVendingMachineCharge();
   }
 
-  getChargeinput = () => this.vendingMachine.setChargeInput(Number(this.$chargeInput.value));
+  renderChargeInput = () => {
+    this.render.chargeInputTemplate(TEMPLATE.CHARGE_INPUT(this.getTotalChargeAmount()));
+  };
+
+  getTotalChargeAmount = () => this.vendingMachine.getChargeAmount();
+
+  setChargeInput = () => {
+    this.vendingMachine.setChargeAmount(Number(this.$chargeInput.value));
+  };
 
   setVendingMachineCharge = () => {
     if (!this.vendingMachineCharge.isValidInput()) {
       return;
     }
 
-    this.getChargeinput();
-    this.vendingMachine.renderChargeInput();
+    this.setChargeInput();
+    this.renderChargeInput();
   };
 }

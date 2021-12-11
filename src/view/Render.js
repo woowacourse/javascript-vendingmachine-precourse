@@ -2,10 +2,11 @@ import SetLocalStorage from '../model/SetLocalStorage.js';
 import { TEMPLATE, DOM, STRING, SELECTOR } from '../utils/constant.js';
 
 export default class Render {
-  constructor(coins, product) {
+  constructor(coins, product, vendingMachine) {
     this.coins = coins;
     this.product = product;
-    this.setLocalStorage = new SetLocalStorage(this.coins, this.product);
+    this.vendingMachine = vendingMachine;
+    this.setLocalStorage = new SetLocalStorage(this.coins, this.product, this.vendingMachine);
     this.$app = document.querySelector(DOM.$APP);
   }
 
@@ -21,6 +22,7 @@ export default class Render {
   chargeInputTemplate = (template) => {
     const $chargeAmount = document.querySelector(DOM.$CHARGE_AMOUNT);
     $chargeAmount.innerHTML = template;
+    this.setLocalStorage.prdocutPurchaseMenu();
   };
 
   productPurchaseStatusTemplate = (template) => {

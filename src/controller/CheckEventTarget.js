@@ -81,8 +81,16 @@ export default class CheckEventTarget {
   };
 
   hasProductPurchaseMenuTemplate = () => {
-    this.render.productPurchaseMenuTemplate();
-    this.renderProductStatus();
+    const productPurchaseMenuTemplate = localStorage.getItem(LOCAL_STORAGE.PRODUCT_PURCHASE_MENU);
+    if (!productPurchaseMenuTemplate) {
+      this.render.productPurchaseMenuTemplate();
+      this.renderProductStatus();
+      this.onClickChargeButton();
+
+      return;
+    }
+
+    this.render.haveTemplate(productPurchaseMenuTemplate);
     this.onClickChargeButton();
   };
 

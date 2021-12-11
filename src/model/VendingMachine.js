@@ -1,18 +1,13 @@
-import { TEMPLATE } from '../utils/constant.js';
-
 export default class VendingMachine {
-  constructor(render, coins, product) {
-    this.render = render;
+  constructor(coins, product, totalChargeAmount) {
     this.coins = coins;
     this.product = product;
-    this.totalChargeAmount = 0;
+    this.totalChargeAmount = totalChargeAmount;
   }
 
-  renderChargeInput = () => {
-    this.render.chargeInputTemplate(TEMPLATE.CHARGE_INPUT(this.totalChargeAmount));
-  };
+  getChargeAmount = () => this.totalChargeAmount;
 
-  setChargeInput = (chargeInput) => {
+  setChargeAmount = (chargeInput) => {
     this.totalChargeAmount += chargeInput;
   };
 

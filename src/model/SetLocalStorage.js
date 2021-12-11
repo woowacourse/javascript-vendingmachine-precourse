@@ -1,9 +1,10 @@
 import { DOM, LOCAL_STORAGE } from '../utils/constant.js';
 
 export default class SetLocalStorage {
-  constructor(coins, product) {
+  constructor(coins, product, vendingMachine) {
     this.coins = coins;
     this.product = product;
+    this.vendingMachine = vendingMachine;
   }
 
   productInformation = () => {
@@ -20,6 +21,17 @@ export default class SetLocalStorage {
     localStorage.setItem(LOCAL_STORAGE.COINS_INFORMATION, JSON.stringify(coinsInformationHash));
 
     this.vendingMachineManageMenu();
+  };
+
+  purchaseChargeAmount = () => {
+    localStorage.setItem(LOCAL_STORAGE.PURCHASE_CHARGE_AMOUNT, this.vendingMachine.totalChargeAmount);
+  };
+
+  prdocutPurchaseMenu = () => {
+    const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
+    localStorage.setItem(LOCAL_STORAGE.PRODUCT_PURCHASE_MENU, $vendingMachineSection.innerHTML);
+
+    this.purchaseChargeAmount();
   };
 
   vendingMachineManageMenu = () => {

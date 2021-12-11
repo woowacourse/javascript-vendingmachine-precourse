@@ -47,6 +47,8 @@ export const LOCAL_STORAGE = {
   COINS_INFORMATION: 'coinsInformation',
   PRODUCT_ADD_MENU: 'productAddMenu',
   VENDING_MACHINE_MANAGE_MENU: 'vendingMachineManageMenu',
+  PRODUCT_PURCHASE_MENU: 'productPurchaseMenu',
+  PURCHASE_CHARGE_AMOUNT: 'purchaseChargeAmount',
 };
 
 export const STRING = {
