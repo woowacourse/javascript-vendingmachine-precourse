@@ -1,7 +1,7 @@
 import { $ } from './utils/querySelector.js';
 import { initScreenTemplate } from './utils/initScreenTemplate.js';
-import showProductManage from './components/manage/productAddMenu.js';
-import showCoinCharge from './components/charge/coinCharge.js';
+import { showProductManage } from './components/manage/productAddMenu.js';
+import { showCoinCharge } from './components/charge/coinCharge.js';
 
 const init = () => {
   $('#app').innerHTML = initScreenTemplate;

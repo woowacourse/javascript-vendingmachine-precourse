@@ -1,3 +1,5 @@
+const COIN_UNITS = [500, 100, 50, 10];
+
 const STORAGE_NAME = 'product';
 
 const STANDARD = {
@@ -15,4 +17,4 @@ const ERROR_MESSAGE = {
   CAN_NOT_OVERLAP: '상품명은 중복될 수 없습니다.',
 };
 
-export { STORAGE_NAME, STANDARD, ERROR_MESSAGE };
+export { COIN_UNITS, STORAGE_NAME, STANDARD, ERROR_MESSAGE };

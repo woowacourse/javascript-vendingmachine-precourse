@@ -22,7 +22,7 @@ const handleProductMenuSubmit = (event) => {
   setProductItemStorage(productData);
 };
 
-export default function showProductManage() {
+export const showProductManage = () => {
   $('#app-container').innerHTML = productManageTemplate;
   const storedProductItems = getProductItemStorage();
 
@@ -31,4 +31,4 @@ export default function showProductManage() {
   }
 
   $('form').addEventListener('submit', handleProductMenuSubmit);
-}
+};
