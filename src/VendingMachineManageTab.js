@@ -1,6 +1,7 @@
 import { coinList } from './constants/index.js';
 import { coinIndex } from './utils/index.js';
 import { getVendingMachineCharge, setVendingMachineCharge } from './utils/localStorage.js';
+import { isValidVendingMachineChargeAmount } from './utils/validations.js';
 import VendingMachineManageTabView from './views/VendingMachineManageTabView.js';
 
 export default class VendingMachineManageTab {
@@ -21,18 +22,19 @@ export default class VendingMachineManageTab {
 
   setButtonClickEvent() {
     const vendingMachineChargeButton = document.querySelector('#vending-machine-charge-button');
-    vendingMachineChargeButton.addEventListener('click', this.onClickVendingMachineChargeButton.bind(this));
+    vendingMachineChargeButton.addEventListener('click', this.onClickVendingMachineCharging.bind(this));
   }
 
-  onClickVendingMachineChargeButton(e) {
+  onClickVendingMachineCharging(e) {
     e.preventDefault();
     const amountToAdd = Number(this.vendingMachineChargeInput.value);
-    const amount = this.vendingMachineCharge.amount + amountToAdd;
-    const coinQuantity = this.generateCoinsRandomly(amountToAdd)
+    if (!isValidVendingMachineChargeAmount(amountToAdd)) return;
+    const newCoinQuantity = this.generateCoinsRandomly(amountToAdd)
       .map((quantity, idx) => quantity + this.vendingMachineCharge.coinQuantity[idx]);
-    this.vendingMachineCharge = { amount, coinQuantity };
+    const newAmount = this.vendingMachineCharge.amount + amountToAdd;
+    this.vendingMachineCharge = { amount: newAmount, coinQuantity: newCoinQuantity };
     setVendingMachineCharge(this.vendingMachineCharge);
-    this.view.rerender(this.vendingMachineCharge);
+    this.view.updateVendingMachineChargeValues(this.vendingMachineCharge);
     this.clearInputValue();
   }
 

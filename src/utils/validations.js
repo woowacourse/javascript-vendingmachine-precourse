@@ -42,4 +42,18 @@ function isValidProductAddition({ name, price, quantity }) {
     && isValidProductQuantity(quantity);
 }
 
-export { isValidProductAddition };
+function isValidVendingMachineChargeAmount(amount) {
+  if (!isInteger(amount)) return alert(ERROR_MESSAGE.VENDING_MACHINE.CHARGE_INTEGER);
+  if (!isGreaterThanZero(amount)) {
+    return alert(ERROR_MESSAGE.VENDING_MACHINE.CHARGE_GREATER_THAN_ZERO);
+  }
+  if (!isSatisfyingMinUnitOfMoney(amount)) {
+    return alert(ERROR_MESSAGE.VENDING_MACHINE.CHARGE_MIN_UNIT_OF_MONEY);
+  }
+  return true;
+}
+
+export {
+  isValidProductAddition,
+  isValidVendingMachineChargeAmount,
+};

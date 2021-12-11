@@ -9,7 +9,7 @@ export default class VendingMachineManageTabView {
   render(vendingMachineCharge) {
     this.contentContainer.innerHTML = vendingMachineManageTemplate.main;
     this.initElements();
-    this.renderVendingMachineChargeValues(vendingMachineCharge);
+    this.updateVendingMachineChargeValues(vendingMachineCharge);
   }
 
   initElements() {
@@ -20,15 +20,11 @@ export default class VendingMachineManageTabView {
     this.coin10Quantity = document.querySelector('#vending-machine-coin-10-quantity');
   }
 
-  renderVendingMachineChargeValues(vendingMachineCharge) {
+  updateVendingMachineChargeValues(vendingMachineCharge) {
     this.amount.innerText = `${vendingMachineCharge.amount}원`;
     this.coin500Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(500)]}개`;
     this.coin100Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(100)]}개`;
     this.coin50Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(50)]}개`;
     this.coin10Quantity.innerText = `${vendingMachineCharge.coinQuantity[coinIndex(10)]}개`;
-  }
-
-  rerender(vendingMachineCharge) {
-    this.renderVendingMachineChargeValues(vendingMachineCharge);
   }
 }
