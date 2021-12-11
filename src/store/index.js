@@ -7,9 +7,9 @@ class Store {
         }
         this.state = JSON.parse(localStorage.getItem('state'));
 
-        window.onbeforeunload = function () {
-            localStorage.removeItem('state');
-        };
+        // window.onbeforeunload = function () {
+        //     localStorage.removeItem('state');
+        // };
     }
 
     setTriggerStateChange(func) {
@@ -28,11 +28,12 @@ class Store {
     }
 
     setStates(state) {
-        if (state.length === undefined) throw 'setState: parameter type error';
+        if (typeof state !== 'object') throw 'setState: parameter type error';
 
-        Object.keys(state).forEach((key) => {
-            this.state[key] = state[key];
-        });
+        this.state = {
+            ...this.state,
+            ...state,
+        };
 
         this.applyLocalStorage();
     }
