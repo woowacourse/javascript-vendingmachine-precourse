@@ -6,8 +6,7 @@ export default class VendingMachine {
   constructor() {
     this.app = document.getElementById('app');
     this.appHeader = document.createElement('header');
-    this.appContents = document.createElement('div');
-    this.app.append(this.appHeader, this.appContents);
+    this.app.append(this.appHeader);
     this.makeHeaderHTML();
     this.makeContentsHTML();
   }
@@ -41,11 +40,6 @@ export default class VendingMachine {
     this.productAddScreen = productAdd.template();
     this.vendingMachineManageScreen = vendingMachineManage.template();
     this.productPurchaseScreen = productPurchase.template();
-    this.appContents.append(
-      this.productAddScreen,
-      this.vendingMachineManageScreen,
-      this.productPurchaseScreen
-    );
     this.hideAllScreen();
   }
 
