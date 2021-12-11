@@ -31,6 +31,7 @@ export const CHARGE_500_QUANTITY_ID = 'vending-machine-coin-500-quantity';
 export const CHARGE_100_QUANTITY_ID = 'vending-machine-coin-100-quantity';
 export const CHARGE_50_QUANTITY_ID = 'vending-machine-coin-50-quantity';
 export const CHARGE_10_QUANTITY_ID = 'vending-machine-coin-10-quantity';
+export const CHARGE_COIN_TALBE_ID = 'vending-machine-charge-table';
 export const PRODUCT_LIST_TABLE_ID = 'product-list-table';
 export const PRODUCT_NAME_INPUT_ID = 'product-name-input';
 export const PRODUCT_PRICE_INPUT_ID = 'product-price-input';
@@ -47,7 +48,17 @@ export const CHARGE_CONTAINER_ID = 'charge-container';
 
 export const CURRENT_TAB_KEY = 'current-tab';
 export const PRODUCTS_STORAGE_KEY = 'products';
+export const COINS_STORAGE_KEY = 'coins';
 
 export const MINIMUM_PRICE_INPUT = 100;
 export const MINIMUM_CHARGE_INPUT = 10;
 export const MINIMUM_QUANTITY_INPUT = 1;
+
+export const INDEX_500 = 0;
+export const INDEX_100 = 1;
+export const INDEX_50 = 2;
+export const INDEX_10 = 3;
+export const COIN_VALUE_500 = 500;
+export const COIN_VALUE_100 = 100;
+export const COIN_VALUE_50 = 50;
+export const COIN_VALUE_10 = 10;

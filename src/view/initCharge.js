@@ -17,6 +17,7 @@ import {
   CHARGE_10_QUANTITY_ID,
   CHARGE_COIN_TITLE,
   CHARGE_CONTAINER_ID,
+  CHARGE_COIN_TALBE_ID,
 } from '../constant/constant.js';
 
 function renderChargeInput($charge) {
@@ -35,7 +36,7 @@ function renderChargeInput($charge) {
   $charge.append($inputContainer);
 }
 
-function coinListHeaderTemplate() {
+export function coinListHeaderTemplate() {
   return `
     <tr align="center" bgcolor="white" height="40">
       <td align="center" width="60">${COIN_TITLE}</td> 
@@ -71,7 +72,7 @@ function renderChargeCoins($charge) {
   $coinContainer.innerHTML = `
     <br><br>
     <h3>${CHARGE_COIN_TITLE}</h3>
-    <table bgcolor="black" border="1" style="border-collapse:collapse;">
+    <table id="${CHARGE_COIN_TALBE_ID}" bgcolor="black" border="1" style="border-collapse:collapse;">
     ${coinListHeaderTemplate()}
     ${coinListTemplate()}
     </table>
