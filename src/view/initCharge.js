@@ -18,10 +18,13 @@ import {
   CHARGE_COIN_TITLE,
   CHARGE_CONTAINER_ID,
   CHARGE_COIN_TALBE_ID,
+  COINS_STORAGE_KEY,
+  COIN_SUM_KEY,
 } from '../constant/constant.js';
 
 function renderChargeInput($charge) {
   const $inputContainer = document.createElement('div');
+  const change = localStorage.getItem(COIN_SUM_KEY);
 
   $inputContainer.innerHTML = `
     <h3>${CHARGE_TITLE}</h3>
@@ -31,7 +34,7 @@ function renderChargeInput($charge) {
     </form>
     <br>
     <span>${CHARGE_AMOUNT_TITLE}:</span>
-    <span id="${CHARGE_AMOUNT_ID}"></span>
+    <span id="${CHARGE_AMOUNT_ID}">${change || ''}</span>
   `;
   $charge.append($inputContainer);
 }
@@ -45,25 +48,32 @@ export function coinListHeaderTemplate() {
   `;
 }
 
+function getCoinTextContent(coins, index) {
+  return coins ? `${coins[index]}개` : '';
+}
+
+function coinTemplate(coins, ids, titles) {
+  return ids.map((id, index) => `
+    <tr align="center" bgcolor="white" height="40">
+      <td align="center" width="62">${titles[index]}</td> 
+      <td id="${id}" align="center" width="62">
+        ${getCoinTextContent(coins, index)}
+      </td>
+    </tr>
+  `).join('');
+}
+
 function coinListTemplate() {
-  return `
-    <tr align="center" bgcolor="white" height="40">
-      <td align="center" width="62">${TITLE_500}</td> 
-      <td id="${CHARGE_500_QUANTITY_ID}" align="center" width="62"></td>
-    </tr>
-    <tr align="center" bgcolor="white" height="40">
-      <td align="center" width="62">${TITLE_100}</td> 
-      <td id="${CHARGE_100_QUANTITY_ID}" align="center" width="62"></td>
-    </tr>
-    <tr align="center" bgcolor="white" height="40">
-      <td align="center" width="62">${TITLE_50}</td> 
-      <td id="${CHARGE_50_QUANTITY_ID}" align="center" width="62"></td>
-    </tr>
-    <tr align="center" bgcolor="white" height="40">
-      <td align="center" width="62">${TITLE_10}</td> 
-      <td id="${CHARGE_10_QUANTITY_ID}" align="center" width="62"></td>
-    </tr>
-  `;
+  const coins = JSON.parse(localStorage.getItem(COINS_STORAGE_KEY));
+  const ids = [
+    CHARGE_500_QUANTITY_ID,
+    CHARGE_100_QUANTITY_ID,
+    CHARGE_50_QUANTITY_ID,
+    CHARGE_10_QUANTITY_ID,
+  ];
+  const titles = [TITLE_500, TITLE_100, TITLE_50, TITLE_10];
+
+  return coinTemplate(coins, ids, titles);
 }
 
 function renderChargeCoins($charge) {
