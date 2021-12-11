@@ -5,6 +5,13 @@ export default class TapView {
     this.addComponent(this.tapComponent());
   }
 
+  static removeTap() {
+    const tapEl = document.querySelector('#tap');
+    if (tapEl) {
+      tapEl.remove();
+    }
+  }
+
   static addComponent(component) {
     document.querySelector('#app').innerHTML += component;
   }

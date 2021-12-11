@@ -1,3 +1,10 @@
+export const ADMIN_ELEMENT_CLASS = {
+  productManageItem: 'product-manage-item',
+  productManageName: 'product-manage-name',
+  productManagePrice: 'product-manage-price',
+  productManageQuantity: 'product-manage-quantity',
+};
+
 export const ADMIN_ELEMENT_ID = {
   productNameInput: 'product-name-input',
   productPriceInput: 'product-price-input',
