@@ -6,7 +6,7 @@ import attachProductAddEvent from './attachProductAddEvent.js';
 import { DOM_ID_SELECTOR } from './constants.js';
 import attachVendingMachineChargeEvent from './attachVendingMachineChargeEvent.js';
 import printProductManageTable from './printProductManageTable.js';
-import printVendingMachineAmountAndCoinTable from './printVendingMachineAmountAdnCoinTable.js';
+import printVendingMachineAmountAndCoinTable from './printVendingMachineAmountAndCoinTable.js';
 import attachChargeEvent from './attachChargeEvent.js';
 import VendingMachine from './VendingMachine.js';
 import printChargeAmount from './printChargeAmount.js';
