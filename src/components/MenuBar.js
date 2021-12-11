@@ -1,13 +1,12 @@
 import { $, createDiv, createBtn, ID } from '../utils/dom.js';
-import {
-  productAddMenuTemplate,
-  vendingMachineManageMenuTemplate,
-  productPurchaseMenuTemplate,
-} from '../utils/templates.js';
+import ProductAdd from './ProductAdd.js';
+import VendingMachineManage from './VendingMachineManage.js';
+import ProductPurchase from './ProductPurchase.js';
 
-export default class TabMenu {
+export default class MenuBar {
   constructor() {
     this.init();
+    $(`#${ID.MENU_BAR}`).addEventListener('click', this.handleMenuBarClick);
   }
 
   init = () => {
@@ -21,7 +20,6 @@ export default class TabMenu {
     $menuBar.appendChild($productAddMenuBtn);
     $menuBar.appendChild($vendingMachineManageMenuBtn);
     $menuBar.appendChild($productPurchaseMenuBtn);
-    $menuBar.addEventListener('click', this.handleMenuBarClick);
     $('#app').appendChild($menuBar);
   };
 
@@ -29,13 +27,13 @@ export default class TabMenu {
     const clickedBtn = e.target.closest('button');
     if (!clickedBtn) return;
     if (clickedBtn.id === ID.PRODUCT_ADD_MENU) {
-      $(`#${ID.PAGE_CONTENT}`).innerHTML = productAddMenuTemplate();
+      new ProductAdd();
     }
     if (clickedBtn.id === ID.VENDING_MACHINE_MANAGE_MENU) {
-      $(`#${ID.PAGE_CONTENT}`).innerHTML = vendingMachineManageMenuTemplate();
+      new VendingMachineManage();
     }
     if (clickedBtn.id === ID.PRODUCT_PURCHASE_MENU) {
-      $(`#${ID.PAGE_CONTENT}`).innerHTML = productPurchaseMenuTemplate();
+      new ProductPurchase();
     }
   };
 }

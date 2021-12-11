@@ -1,5 +1,5 @@
 import { $, createDiv, ID } from './utils/dom.js';
-import TabMenu from './components/TabMenu.js';
+import MenuBar from './components/MenuBar.js';
 
 export default class VendingMachine {
   constructor() {
@@ -11,7 +11,8 @@ export default class VendingMachine {
     $title.innerHTML = '자판기';
     $('#app').appendChild($title);
 
-    new TabMenu();
+    // createMenuBar
+    new MenuBar();
 
     // createPageContentContainer
     const $pageContentContainer = createDiv(ID.PAGE_CONTENT);
