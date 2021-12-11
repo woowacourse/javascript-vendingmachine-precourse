@@ -1,7 +1,11 @@
 import Component from '../../core/Component.js';
+import { newElement } from '../../utils/dom.js';
+import Form from './Form.js';
 
 export default class Management extends Component {
-  render() {
-    this.$container.innerHTML = `<span>관리</span>`;
+  initChildren() {
+    this.children = [
+      new Form(newElement('<form id="vending-machine-charge-form"/>')),
+    ];
   }
 }

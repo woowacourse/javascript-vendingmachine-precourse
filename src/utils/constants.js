@@ -19,3 +19,5 @@ export const RULE = {
   MINIMUN_PRICE: 100,
   DIVISIBLE_BY: 10,
 };
+
+export const COIN_UNITS = [500, 100, 50, 10];
