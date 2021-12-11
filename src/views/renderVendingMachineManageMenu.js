@@ -1,6 +1,8 @@
 import { $ } from '../dom/dom.js';
+import getTotalVendingCoin from '../modules/getTotalVendingCoin.js';
+import renderTotalCoinElement from './renderTotalCoinElement.js';
 
-function createChargeCoinElement() {
+function createChargeCoinElement(totalCoin) {
   return `
   <h2> 자판기 동전 충전하기 </h2>
   <div>
@@ -8,7 +10,7 @@ function createChargeCoinElement() {
     <button id="vending-machine-charge-button">충전하기</button>
   </div>
   <div>
-    보유금액 <span id="vending-machine-charge-amout"></span>
+    보유금액 <span id="vending-machine-charge-amount">${totalCoin}원</span>
   </div>
   <div class="now-vendingmachine-charge-coin"></div>
   `;
@@ -30,7 +32,9 @@ function createVendingMachineCoinTable() {
 }
 
 export default function renderVendingMachineManageMenu() {
-  $('.tab-content-container').innerHTML = createChargeCoinElement();
+  $('.tab-content-container').innerHTML = createChargeCoinElement(
+    getTotalVendingCoin()
+  );
   $('.now-vendingmachine-charge-coin').innerHTML =
     createVendingMachineCoinTable();
 }

@@ -68,7 +68,9 @@
 
 [x] 자판기가 보유할 금액을 충전할 금액을 입력하는 요소의 placeholder는 "자판기가 보유한 금액"이다
 
-[ ] 보유한 금액의 경우 vendingCoin localStorage에서 총액을 구해서 표기한다
+[x] 보유금액의 경우 처음으로 탭에 진입할 때에 (localStorage에 저장된 값이 없는 상태) 0 원으로 render한다
+
+[ ] 보유금액의 경우 vendingCoin localStorage에서 총액을 구해서 표기한다
 
 [x] 충전하기 버튼은 vending-machine-charge-button id를 가진다
 
@@ -204,7 +206,7 @@
 
 > ### localStorage에 저장되는 값들
 
-    [ ] 메뉴명, 가격 , 수량 정보는 drink localStorage에서 관리한다
+    [x] 메뉴명, 가격 , 수량 정보는 drink localStorage에서 관리한다
 
     [ ] 자판기가 보유한 동전의 종류별 개수의 경우 vendingCoin localStorage에서 관리한다
 
