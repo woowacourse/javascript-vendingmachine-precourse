@@ -27,10 +27,10 @@ export class ChargeView {
   }
 
   showMachineCoins(machineCoins) {
-    this.$coin500Quantity.innerText = machineCoins[500];
-    this.$coin100Quantity.innerText = machineCoins[100];
-    this.$coin50Quantity.innerText = machineCoins[50];
-    this.$coin10Quantity.innerText = machineCoins[10];
+    this.$coin500Quantity.innerText = machineCoins[500] + '개';
+    this.$coin100Quantity.innerText = machineCoins[100] + '개';
+    this.$coin50Quantity.innerText = machineCoins[50] + '개';
+    this.$coin10Quantity.innerText = machineCoins[10] + '개';
   }
 
   addElements() {
