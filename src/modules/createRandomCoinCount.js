@@ -8,6 +8,7 @@ import {
 } from '../constants/coinConstants.js';
 
 function createRandomCount(item, vendingCoin) {
+  if (item > vendingCoin) return 0;
   const limit = Number(vendingCoin) / Number(item);
   let coinLimitList = [];
   for (let i = 0; i < limit + 1; i++) {
