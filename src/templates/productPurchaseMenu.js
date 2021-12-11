@@ -40,8 +40,9 @@ const createReturnCoinItemTemplate = (coin, amount) => `
     <td Style="${Style.tableHeadData}">
       ${coin}원
     </td>
-    <td id="vending-machine-coin-${coin}-quantity" Style="${Style.tableBodyData}">
-      ${amount}
+    <td Style="${Style.tableBodyData}">
+      <span id="vending-machine-coin-${coin}-quantity">${amount}</span>
+      <span>개</span>
     </td>
   </tr>
 `;
@@ -63,6 +64,14 @@ export const createChargeFormTemplate = amount => `
   </div>
 `;
 
+export const createProductTableBodyWithData = productItems => `
+  ${productItems
+    .map(item =>
+      createProductItemTemplate(item.productName, item.productPrice, item.productQuantity),
+    )
+    .join('')}
+`;
+
 export const createProductTableTemplate = () => `
   <h3>구매할 수 있는 상품 현황</h3>
   <table Style="${Style.table}">
@@ -74,8 +83,8 @@ export const createProductTableTemplate = () => `
         ${createTheadTableDataTemplate('구매')}
       </tr>
     </thead>
-    <tbody>
-      ${createProductItemTemplate('1', '2', '3')}
+    <tbody id="${Selector.purchaseProductTableBodyId}">
+      ${createProductTableBodyWithData([])}
     </tbody>
   </table>
 `;

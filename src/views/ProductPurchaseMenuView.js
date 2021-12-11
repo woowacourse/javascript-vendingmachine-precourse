@@ -4,6 +4,7 @@ import {
   createChargeFormTemplate,
   createProductTableTemplate,
   createReturnCoinTableTemplate,
+  createProductTableBodyWithData,
 } from '../templates/productPurchaseMenu.js';
 
 import Selector from '../constants/selector.js';
@@ -15,6 +16,11 @@ class ProductPurchaseMenuView {
       createChargeFormTemplate(0) +
       createProductTableTemplate() +
       createReturnCoinTableTemplate();
+  }
+
+  renderProductTableBodyWithData(productItems) {
+    $(`#${Selector.purchaseProductTableBodyId}`).innerHTML =
+      createProductTableBodyWithData(productItems);
   }
 }
 

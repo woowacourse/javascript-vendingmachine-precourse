@@ -47,4 +47,5 @@ export default {
   dataProductNameDataset: 'data-product-name',
   dataProductPriceDataset: 'data-product-price',
   dataProductQuantityDataset: 'data-product-quantity',
+  purchaseProductTableBodyId: 'purchase-product-table-body',
 };
