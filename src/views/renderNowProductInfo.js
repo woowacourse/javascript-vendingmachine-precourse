@@ -23,7 +23,6 @@ function createProductInfoTable(productinfoelements) {
 function createProductInfoElement(drinkMenuObjectList) {
   const drinkInfoElementTemplate = drinkMenuObjectList
     .map((item) => {
-      console.log(item);
       return `<tr><td>${item['menu']}</td><td>${item['price']}</td><td>${item['quantity']}</td></tr>`;
     })
     .join('');
