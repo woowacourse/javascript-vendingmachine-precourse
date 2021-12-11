@@ -5,9 +5,9 @@ class UserAgent {
 
   returnedCoinStorage;
 
-  constructor() {
-    this.amount = 0;
-    this.returnedCoinStorage = new CoinStorage();
+  constructor(amount = 0, coinCount = {}) {
+    this.amount = amount;
+    this.returnedCoinStorage = new CoinStorage(coinCount);
   }
 
   charge(amount) {

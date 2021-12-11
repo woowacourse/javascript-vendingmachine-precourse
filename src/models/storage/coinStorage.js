@@ -4,33 +4,36 @@ import Storage from './index.js';
 class CoinStorage extends Storage {
   #idxRecord = {};
 
-  constructor() {
+  constructor(countRecord = {}) {
     super();
 
     COINS_PRICE.forEach((price, idx) => {
-      this.appendItem({ price, count: 0 });
-      this.#idxRecord[String(price)] = idx;
+      this.appendItem({ price, count: countRecord[price] || 0 });
+      this.#idxRecord[price] = idx;
     });
+  }
+
+  get countRecord() {
+    return this.items.reduce(
+      (acc, item) => ({ ...acc, [item.price]: item.count }),
+      {}
+    );
   }
 
   getTotalAmount() {
     return this.items.reduce((acc, item) => acc + item.price * item.count, 0);
   }
 
-  #getPriceIdx(price) {
-    return this.#idxRecord[String(price)];
-  }
-
   getCoin(price) {
-    return this.getItem(this.#getPriceIdx(price));
+    return this.getItem(this.#idxRecord[price]);
   }
 
   addCoin(price, count = 1) {
-    this.addItem(this.#getPriceIdx(price), count);
+    this.addItem(this.#idxRecord[price], count);
   }
 
   useCoin(price, count = 1) {
-    this.useItem(this.#getPriceIdx(price), count);
+    this.useItem(this.#idxRecord[price], count);
   }
 }
 
