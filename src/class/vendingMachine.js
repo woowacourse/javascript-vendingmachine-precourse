@@ -4,16 +4,16 @@ import {
   getChargeInput,
 } from '../user.js';
 import Product from './product.js';
-import { saveProductList } from '../localStorage/products.js';
+import { saveProductList } from '../storage/products.js';
 import {
   updateProductItemAfterPurchase,
   createProductTableRow,
   deleteProductItem,
 } from '../dom/control/updateProductTable.js';
 import Charge from './charge.js';
-import { saveCharges } from '../localStorage/vendingMachineCharge.js';
+import { saveCharges } from '../storage/vendingMachineCharge.js';
 import { updateVendingMachineCharge } from '../dom/control/updateVendingMachineChargeTable.js';
-import { saveUserCharge } from '../localStorage/userCharge.js';
+import { saveUserCharge } from '../storage/userCharge.js';
 import { updateUserChargeAmount } from '../dom/control/updateUserChargeAmount.js';
 import {
   createPurchaseTableRow,

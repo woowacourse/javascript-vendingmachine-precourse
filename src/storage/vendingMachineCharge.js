@@ -1,5 +1,4 @@
 import { vendingMachine } from '../index.js';
-import { updateVendingMachineCharge } from '../dom/control/updateVendingMachineChargeTable.js';
 
 export const saveCharges = () => {
   localStorage.setItem(
@@ -24,5 +23,4 @@ export const initCharges = () => {
 
   vendingMachine.amount = charges.amount;
   vendingMachine.coins = charges.coins;
-  updateVendingMachineCharge();
 };

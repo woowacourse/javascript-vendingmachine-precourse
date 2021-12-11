@@ -8,7 +8,7 @@ import {
   PRODUCT_PURCHASE_TEXT,
 } from '../../constants.js';
 
-export const addMenu = () => {
+export const createMenu = () => {
   const menu = document.createElement(DIV);
 
   menu.append(

@@ -35,7 +35,7 @@ import {
   COIN_ID_LIST,
 } from '../../constants.js';
 
-export const addPurchaseManager = () => {
+export const createPurchaseManager = () => {
   const purchaseManager = document.createElement(DIV);
 
   purchaseManager.style.display = NONE;

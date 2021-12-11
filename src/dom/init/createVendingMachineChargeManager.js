@@ -29,7 +29,7 @@ import {
   VENDING_MACHINE_COIN_ID_LIST,
 } from '../../constants.js';
 
-export const addVendingMachineChargeManager = () => {
+export const createVendingMachineChargeManager = () => {
   const vendingMachineChargeManager = document.createElement(DIV);
 
   vendingMachineChargeManager.style.display = NONE;

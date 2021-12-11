@@ -5,8 +5,8 @@ import {
   updateVendingMachineTable,
 } from '../dom/control/updateVendingMachineChargeTable.js';
 import { vendingMachine } from '../index.js';
-import { saveUserCharge } from '../localStorage/userCharge.js';
-import { saveCharges } from '../localStorage/vendingMachineCharge.js';
+import { saveUserCharge } from '../storage/userCharge.js';
+import { saveCharges } from '../storage/vendingMachineCharge.js';
 import { COINS } from '../constants.js';
 
 export default class ReturnCoin {

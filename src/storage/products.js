@@ -1,5 +1,4 @@
 import { vendingMachine } from '../index.js';
-import { createProductTableRow } from '../dom/control/updateProductTable.js';
 
 export const saveProductList = (productList) => {
   localStorage.setItem('products', JSON.stringify(productList));
@@ -13,5 +12,4 @@ export const loadProductList = () => {
 
 export const initProductList = () => {
   vendingMachine.products = loadProductList();
-  createProductTableRow(vendingMachine.products);
 };

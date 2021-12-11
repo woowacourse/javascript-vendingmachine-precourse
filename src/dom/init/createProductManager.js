@@ -24,7 +24,7 @@ import {
   TEXT,
 } from '../../constants.js';
 
-export const addProductManager = () => {
+export const createProductManager = () => {
   const productManager = document.createElement(DIV);
 
   productManager.style.display = NONE;
