@@ -25,10 +25,10 @@ export default class MachineManageView {
   static showTable() {
     const coins = JSON.parse(localStorage.getItem(COINS));
 
-    document.getElementById('vending-machine-coin-500-quantity').innerHTML = `${coins[500]}개`;
-    document.getElementById('vending-machine-coin-100-quantity').innerHTML = `${coins[100]}개`;
-    document.getElementById('vending-machine-coin-50-quantity').innerHTML = `${coins[50]}개`;
-    document.getElementById('vending-machine-coin-10-quantity').innerHTML = `${coins[10]}개`;
+    document.getElementById('vending-machine-coin-500-quantity').innerHTML = `${coins[FIVE_HUNDRED]}개`;
+    document.getElementById('vending-machine-coin-100-quantity').innerHTML = `${coins[ONE_HUNDRED]}개`;
+    document.getElementById('vending-machine-coin-50-quantity').innerHTML = `${coins[FIFTY]}개`;
+    document.getElementById('vending-machine-coin-10-quantity').innerHTML = `${coins[TEN]}개`;
 }
 
   static addMachineChargeEvent() {
@@ -44,7 +44,7 @@ export default class MachineManageView {
   static checkResult(charge, machineManageCheck) {
     if(machineManageCheck.checkAll()) {
         this.storeChange(charge);
-        this.chooseRandomCoin(charge);
+        this.storeRandomCoin(this.chooseRandomCoin(charge));
         this.showTable();
         this.showChange();
     } else {
@@ -68,16 +68,14 @@ export default class MachineManageView {
       let countCoin = [ZERO, ZERO, ZERO, ZERO];
 
       while(remain >= 0){
-        const coin = MissionUtils.Random.pickNumberInList(this.checkCoin(remain));
-        
+        const coin = MissionUtils.Random.pickNumberInList(this.checkCoin(remain));        
         this.countCoin(coin, countCoin);
         remain -= coin;
         if(remain === 0) {
             break;
         }
       }
-    //   console.log("500원:", countCoin[0], "100원:", countCoin[1], "50원:", countCoin[2], "10원:", countCoin[3]);
-      this.storeRandomCoin(countCoin);
+    return countCoin;
   }
 
   static checkCoin(remain) {
@@ -110,10 +108,10 @@ export default class MachineManageView {
       if(localStorage.getItem(COINS) === null) {
         localStorage.setItem(COINS, JSON.stringify({ [FIVE_HUNDRED]: countCoin[0], [ONE_HUNDRED]: countCoin[1], [FIFTY]: countCoin[2], [TEN]: countCoin[3]}));
       } else {
-          coins[500] += countCoin[0];
-          coins[100] += countCoin[1];
-          coins[50] += countCoin[2];
-          coins[10] += countCoin[3];
+          coins[FIVE_HUNDRED] += countCoin[0];
+          coins[ONE_HUNDRED] += countCoin[1];
+          coins[FIFTY] += countCoin[2];
+          coins[TEN] += countCoin[3];
           localStorage.setItem(COINS, JSON.stringify(coins));
       }
   }

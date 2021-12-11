@@ -50,14 +50,17 @@ export default class ProductPurchaseView {
       const userCharge = document.getElementById('charge-input').value;
       const productPurchaseCheck = new ProductPurchaseCheck(userCharge);
 
-      if(productPurchaseCheck.checkAll()){
-        this.storeUserCharge(userCharge);
-        this.showUserCharge();
-      } else {
-        alert(ERROR_MESSAGE);
-      }
-
+      this.checkResult(userCharge, productPurchaseCheck);
     })
+  }
+
+  static checkResult(userCharge, productPurchaseCheck) {
+    if(productPurchaseCheck.checkAll()){
+      this.storeUserCharge(userCharge);
+      this.showUserCharge();
+    } else {
+      alert(ERROR_MESSAGE);
+    }
   }
 
   static storeUserCharge(userCharge) {
