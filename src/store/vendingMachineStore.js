@@ -6,6 +6,7 @@ import {
   BUTTON_PRODUCT_PURCHASE_NOT_ENOUGH_CHARGE,
   handleError,
 } from '../utils/errorHandler.js';
+import LocalStorage, { KEYS } from '../utils/localStorage.js';
 
 class VendingMachineStore {
   static #instance;
@@ -17,9 +18,16 @@ class VendingMachineStore {
   user;
 
   constructor() {
-    this.productStorage = new ProductStorage();
-    this.coinStorage = new CoinStorage();
-    this.user = new UserAgent();
+    const prevProductItems = LocalStorage.load(KEYS.PRODUCT_ITEMS);
+    const prevCountRecord = LocalStorage.load(KEYS.COIN_COUNT_RECORD);
+    const prevUserAmount = LocalStorage.load(KEYS.USER_AMOUNT);
+    const prevUserReturnedRecord = LocalStorage.load(
+      KEYS.USER_RETURNED_COIN_COUNT_RECORD
+    );
+
+    this.productStorage = new ProductStorage(prevProductItems);
+    this.coinStorage = new CoinStorage(prevCountRecord);
+    this.user = new UserAgent(prevUserAmount, prevUserReturnedRecord);
   }
 
   static get instance() {
@@ -27,6 +35,22 @@ class VendingMachineStore {
       VendingMachineStore.#instance = new VendingMachineStore();
     }
     return VendingMachineStore.#instance;
+  }
+
+  #saveProductStorage() {
+    LocalStorage.save(KEYS.PRODUCT_ITEMS, this.productStorage.items);
+  }
+
+  #saveCoinStorage() {
+    LocalStorage.save(KEYS.COIN_COUNT_RECORD, this.coinStorage.countRecord);
+  }
+
+  #saveUser() {
+    LocalStorage.save(KEYS.USER_AMOUNT, this.user.amount);
+    LocalStorage.save(
+      KEYS.USER_RETURNED_COIN_COUNT_RECORD,
+      this.user.returnedCoinStorage.countRecord
+    );
   }
 
   addProduct(product) {
@@ -43,6 +67,8 @@ class VendingMachineStore {
     } else {
       this.productStorage.appendItem({ ...product });
     }
+
+    this.#saveProductStorage();
   }
 
   chargeChanges(amount) {
@@ -55,10 +81,13 @@ class VendingMachineStore {
       this.coinStorage.addCoin(pickedCoinPrice);
       remaining -= pickedCoinPrice;
     }
+
+    this.#saveCoinStorage();
   }
 
   chargeUser(amount) {
     this.user.charge(amount);
+    this.#saveUser();
   }
 
   buyProduct(productIdx) {
@@ -77,6 +106,9 @@ class VendingMachineStore {
 
     this.productStorage.useItem(productIdx);
     this.user.spend(product.price);
+
+    this.#saveProductStorage();
+    this.#saveUser();
   }
 
   #getUseCountByGreedy(remaining, price) {
@@ -101,6 +133,9 @@ class VendingMachineStore {
 
     const returnAmount = this.user.amount - remaining;
     this.user.spend(returnAmount);
+
+    this.#saveCoinStorage();
+    this.#saveUser();
   }
 }
 
