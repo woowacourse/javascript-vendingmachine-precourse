@@ -110,7 +110,9 @@
 
 ### 📋 상품 현황
 
-- [ ] 현재 `상품 목록`을  테이블에 출력한다.
+[완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commit/7c034187f017d914fda61e96cd239a48db7b9ddb)
+
+- [x] 현재 `상품 목록`을  테이블에 출력한다.
 
 
 
