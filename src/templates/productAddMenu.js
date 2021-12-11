@@ -24,8 +24,8 @@ export const createProductAddFormTemplate = () => `
   <h3>상품 추가하기</h3>
   <div>
     <input placeholder="상품명" id="${Selector.productNameInputId}" />
-    <input placeholder="가격" id="${Selector.productPriceInputId}" />
-    <input placeholder="수량" id="${Selector.productQuantityInputId}" />
+    <input type="number" placeholder="가격" id="${Selector.productPriceInputId}" />
+    <input type="number" placeholder="수량" id="${Selector.productQuantityInputId}" />
     <button id="${Selector.productAddButtonId}">추가하기</button>
   </div>
 `;

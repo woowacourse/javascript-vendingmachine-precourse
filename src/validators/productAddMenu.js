@@ -1,5 +1,8 @@
 import Message from '../constants/message.js';
 
 export default {
-  checkExistProductName: name => (name ? true : alert(Message.productNameIsRequired)),
+  validateExistProductName: name => (name ? true : alert(Message.productNameIsRequired)),
+
+  validateProductPriceIsOver100: price =>
+    price > 100 ? true : alert(Message.productPriceMinimumIs100),
 };
