@@ -93,6 +93,8 @@ export const checkInsertMoneyInput = input => {
     isValid = false;
   } else if (isNegative(input)) {
     isValid = false;
+  } else if (isNotDivideByTen(input)) {
+    isValid = false;
   }
 
   return isValid;
