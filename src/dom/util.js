@@ -1,4 +1,4 @@
-const elementCreator = (tagName, id, text) => {
+export const elementCreator = (tagName, id, text) => {
     const element = document.createElement(tagName);
     if(id !== null){
         element.setAttribute("id",id);
@@ -10,4 +10,14 @@ const elementCreator = (tagName, id, text) => {
     return element;
 }
 
-export default elementCreator;
+export const elementCreatorWithClass = (tagName, classAttribute, text) => {
+    const element = document.createElement(tagName);
+    if(classAttribute !== null){
+        element.setAttribute("class",classAttribute);
+    }
+    if(text !== null){
+        element.innerHTML = text;
+    }
+
+    return element;
+}

@@ -1,5 +1,5 @@
 import {ADD_TAB_ID} from '../constants.js'
-import elementCreator from "../dom/util.js"
+import { elementCreator } from "../dom/util.js"
 
 const createAddGoodsElement = (addTab) => {
     addTab.append(elementCreator('h3', null, '상품 추가하기'));
@@ -16,7 +16,7 @@ const createAddGoodsElement = (addTab) => {
 const createGoodsStatusElement = (addTab) => {
     addTab.append(elementCreator('h3', null, '상품 현황'));
     
-    const table = document.createElement('table');
+    const table = elementCreator('table', ADD_TAB_ID.TABLE, null);
     const tableRow = document.createElement('tr');
 
     const nameHeader = elementCreator('th', null, '상품명');

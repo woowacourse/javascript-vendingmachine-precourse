@@ -1,5 +1,5 @@
 import {ADD_TAB_ID} from './constants.js';
-import elementCreator from './dom/util.js';
+import { elementCreator } from './dom/util.js';
 import createAddTab from './tabs/add-tab.js';
 import VendingMachine from './machine.js';
 
