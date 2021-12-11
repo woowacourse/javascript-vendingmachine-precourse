@@ -6,6 +6,10 @@ const utils = {
     return string.length === 0;
   },
 
+  isExist: array => {
+    return array.length > 0;
+  },
+
   isIncludeSpace: string => {
     return REGEX.IS_INCLUDE_SPACE.test(string);
   },

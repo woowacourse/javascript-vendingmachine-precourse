@@ -3,6 +3,8 @@ import { default as UT } from '../utils/utils.js';
 
 export const $ = selector => document.querySelector(selector);
 
+export const $$ = selector => document.querySelectorAll(selector);
+
 const DOMUtils = {
   initElement: selector => {
     $(selector).innerHTML = '';
