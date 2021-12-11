@@ -6,17 +6,25 @@ import { $ } from '../utils/dom.js';
 import Selector from '../constants/selector.js';
 
 class ProductAddMenuController {
-  constructor() {
+  constructor(currentMenu) {
     this.$productAddMenuModel = new ProductAddMenuModel();
     this.$productAddMenuView = new ProductAddMenuView();
 
     this.initAddEventListeners();
+    if (currentMenu === Selector.productAddMenuId) this.changeMenu();
   }
 
   initAddEventListeners() {
     $(`#${Selector.tabContentContainerId}`).addEventListener(
       'click',
       this.onClickTabContent.bind(this),
+    );
+  }
+
+  changeMenu() {
+    this.$productAddMenuView.render();
+    this.$productAddMenuView.renderTableWithProductItems(
+      this.$productAddMenuModel.getProductItems(),
     );
   }
 
@@ -52,7 +60,7 @@ class ProductAddMenuController {
       ...this.$productAddMenuModel.getProductItems(),
       item,
     ]);
-    this.$productAddMenuView.renderProductTableWithItem(
+    this.$productAddMenuView.renderTableWithProductItems(
       this.$productAddMenuModel.getProductItems(),
     );
   }

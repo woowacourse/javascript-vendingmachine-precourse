@@ -14,8 +14,9 @@ class ProductAddMenuView {
       createTitleTemplate() + createProductAddFormTemplate() + createProductTableTemplate();
   }
 
-  renderProductTableWithItem(item) {
-    $(`#${Selector.productTableBodyId}`).innerHTML = createProductTableBodyTemplateWithItem(item);
+  renderTableWithProductItems(productItems) {
+    $(`#${Selector.productTableBodyId}`).innerHTML =
+      createProductTableBodyTemplateWithItem(productItems);
   }
 }
 

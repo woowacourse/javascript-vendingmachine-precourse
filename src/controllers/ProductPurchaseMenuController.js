@@ -10,6 +10,10 @@ class ProductPurchaseMenuController {
   }
 
   initAddEventListeners() {}
+
+  changeMenu() {
+    this.$productPurchaseMenuView.render();
+  }
 }
 
 export default ProductPurchaseMenuController;

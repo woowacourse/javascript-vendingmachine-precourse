@@ -10,6 +10,10 @@ class VendingMachineManageMenuController {
   }
 
   initAddEventListeners() {}
+
+  changeMenu() {
+    this.$vendingMachineManageMenuView.render();
+  }
 }
 
 export default VendingMachineManageMenuController;
