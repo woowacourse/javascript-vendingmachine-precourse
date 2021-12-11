@@ -31,10 +31,11 @@ const removeProductManageItems = () => {
   }
 };
 
-const printProductManageTable = (productItems) => {
+const printProductManageTable = (product) => {
   const $productManageTable = document.getElementById(DOM_ID_SELECTOR.productManageTable);
   removeProductManageItems();
 
+  const productItems = product.getProductItems();
   for (let name in productItems) {
     const $productManageItem = makeProductManageItem(name, productItems[name].price, productItems[name].quantity);
     $productManageTable.appendChild($productManageItem);

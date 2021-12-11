@@ -68,7 +68,7 @@ const attachProductAddEvent = (product) => {
     if (isValidProduct(name, price, quantity)) {
       product.add(makeProductItem(name, price, quantity));
       clearProductInput();
-      printProductManageTable(product.getProductItems());
+      printProductManageTable(product);
     }
   });
 };

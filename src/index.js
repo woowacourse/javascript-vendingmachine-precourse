@@ -17,7 +17,7 @@ const coin = new Coin();
 const $productAddMenu = document.getElementById(DOM_ID_SELECTOR.productAddMenu);
 $productAddMenu.addEventListener('click', () => {
   renderProductAddTemplate();
-  printProductManageTable(product.getProductItems());
+  printProductManageTable(product);
   attachProductAddEvent(product);
 });
 
