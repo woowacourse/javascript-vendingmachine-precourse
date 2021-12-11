@@ -7,7 +7,7 @@ import { clearInput } from "../storage/createElement.js";
 import { getLocalStorage, setLocalStorage } from "../storage/localStorage.js";
 import { setTotalAmount, gridCalc } from "./calc.js";
 import { Coin } from "../charge/Coin.js";
-
+import { checkNumContainDivideTen } from "../storage/validation.js";
 export default function PurchaseContainer() {
     const $chargeInput = document.getElementById(ID.CHARGE_INPUT);
     const $chargeAmount = document.getElementById(ID.CHARGE_AMOUNT);
@@ -23,8 +23,7 @@ export default function PurchaseContainer() {
         const $returnButton = document.getElementById(ID.RETURN_BUTTON);
         $chargeButton.addEventListener("click", function (e) {
             e.preventDefault();
-            // 여기서 유효성 검사 한번 해야 함.
-            const chargeVal = $chargeInput.value;
+            const chargeVal = checkNumContainDivideTen($chargeInput.value);
 
             $chargeAmount.innerHTML += loadAmount + chargeVal;
             setLocalStorage(LOCAL.TOTAL_AMOUNT, loadAmount + chargeVal);

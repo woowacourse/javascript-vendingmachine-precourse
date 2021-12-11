@@ -3,13 +3,11 @@ import {
     CHARGE_STRING as STRING,
     ZERO,
     LOACL_STORAGE as LOCAL,
-    EMPTY,
 } from "../storage/constant.js";
-import {
-    appendLocalStorage,
-    getLocalStorage,
-} from "../storage/localStorage.js";
-import { Coin, appendTable } from "./Coin.js";
+import { appendLocalStorage } from "../storage/localStorage.js";
+import { appendTable } from "./Coin.js";
+import { checkNumContainDivideTen } from "../storage/validation.js";
+
 const { pickNumberInList } = MissionUtils.Random;
 export default function ChargeContainer(coin) {
     const $input = document.getElementById(ID.CHARGE_INPUT);
@@ -30,7 +28,7 @@ export default function ChargeContainer(coin) {
 
     const getChargeInput = () => {
         // 여기서 validation을 해야 함.
-        const $inputVal = $input.value;
+        const $inputVal = checkNumContainDivideTen($input.value);
         $amount.innerHTML += $inputVal;
 
         return $inputVal;

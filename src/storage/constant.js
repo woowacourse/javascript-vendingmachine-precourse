@@ -89,4 +89,5 @@ export const ERROR_MESSAGE = Object.freeze({
     OVER_ZERO: "양의 정수를 입 력해주세요.",
     DIVIDE_TEN: "10의자리로 나누어 떨어지게 입력해주세요.",
     AlREADY_EXIST: "이미 존재하는 상품입니다.",
+    IS_EMPTY: "값을 입력해주세요.",
 });

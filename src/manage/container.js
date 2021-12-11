@@ -4,10 +4,19 @@ import {
     EMPTY,
     LOACL_STORAGE as LOCAL,
     TABLE_CLASS,
+    ERROR_MESSAGE,
 } from "../storage/constant.js";
 import { Product } from "./product.js";
 import { appendTable, clearInput } from "../storage/createElement.js";
-import { appendLocalStorage } from "../storage/localStorage.js";
+import {
+    appendLocalStorage,
+    getLocalStorage,
+} from "../storage/localStorage.js";
+import {
+    checkProductDuplicate,
+    checkNumContainDivideTen,
+    checkNumExceptDivedeTen,
+} from "../storage/validation.js";
 export default function ManageContainer() {
     const $name = document.getElementById(ID.NAME_INPUT);
     const $price = document.getElementById(ID.PRICE_INPUT);
@@ -42,9 +51,9 @@ export default function ManageContainer() {
 
     const getProductInfo = () => {
         // 여기서 validation 검사 해야 함.
-        const $nameVal = $name.value;
-        const $priceVal = $price.value;
-        const $quantityVal = $quantity.value;
+        const $nameVal = checkProductDuplicate($name.value);
+        const $priceVal = checkNumContainDivideTen($price.value);
+        const $quantityVal = checkNumExceptDivedeTen($quantity.value);
 
         return { $nameVal, $priceVal, $quantityVal };
     };
