@@ -4,6 +4,7 @@ import {
     PURCHASE_TAB_ID as ID,
 } from "../storage/constant.js";
 import { getLocalStorage, setLocalStorage } from "../storage/localStorage.js";
+
 export const purchase = function (rows) {
     // 여기서 조건 검색 후 값 수정
     const price = rows.childNodes[1].dataset.productPrice;
@@ -40,5 +41,18 @@ const calcAmount = (loadTotalAmount, price) => {
 export const setTotalAmount = (loadAmount, $chargeAmount) => {
     if (loadAmount !== EMPTY) {
         $chargeAmount.innerHTML = loadAmount;
+    }
+};
+
+export const gridCalc = (totalAmount, coins) => {
+    let temp = {
+        coin_500: coins.coin_500,
+        coin_100: coins.coin_100,
+        coin_50: coins.coin_50,
+        coin_10: coins.coin_10,
+    };
+    if (totalAmount >= coins.total) return temp;
+    else {
+        // 냅섹 알고리즘을 통해 최소금액 거슬러주기
     }
 };
