@@ -10,20 +10,16 @@ export default class ProductPurchaseTab {
   }
 
   initialize() {
-    this.view.render(this.storage.charge, this.storage.products);
-    this.initInputElements();
+    this.view.initialRender(this.storage.charge, this.storage.products);
     this.setButtonClickEvent();
-  }
-
-  initInputElements() {
-    this.chargeInput = document.querySelector('#charge-input');
   }
 
   setButtonClickEvent() {
     const chargeButton = document.querySelector('#charge-button');
-    chargeButton.addEventListener('click', this.onClickChargeButton.bind(this));
+    const coinReturnButton = document.querySelector('#coin-return-button');
+    chargeButton.addEventListener('click', this.onClickCharge.bind(this));
+    coinReturnButton.addEventListener('click', this.onClickCoinReturn.bind(this));
     this.setPurchaseButtonClickEvent();
-    this.setCoinReturnButtonClickEvent();
   }
 
   setPurchaseButtonClickEvent() {
@@ -33,18 +29,13 @@ export default class ProductPurchaseTab {
     });
   }
 
-  setCoinReturnButtonClickEvent() {
-    const coinReturnButton = document.querySelector('#coin-return-button');
-    coinReturnButton.addEventListener('click', this.onClickCoinReturn.bind(this));
-  }
-
-  onClickChargeButton(e) {
+  onClickCharge(e) {
     e.preventDefault();
-    const amountToAdd = Number(this.chargeInput.value);
+    const chargeInput = document.querySelector('#charge-input');
+    const amountToAdd = Number(chargeInput.value);
     if (!isValidChargeAmount(amountToAdd)) return;
     this.storage.setCharge(this.storage.charge + amountToAdd);
-    this.view.updateChargeAmount(this.storage.charge);
-    this.clearInputValue();
+    this.view.updateOnCharge(this.storage.charge);
   }
 
   onClickPurchase(e) {
@@ -52,7 +43,17 @@ export default class ProductPurchaseTab {
     if (!isValidPurchase(product.price, this.storage.charge)) return;
     this.storage.setCharge(this.storage.charge - product.price);
     this.storage.updateProducts({ ...product, quantity: product.quantity - 1 })
-    this.updateViewOnPurchase();
+    this.updateOnPurchase();
+  }
+
+  onClickCoinReturn() {
+    // storage 관련 수정 필요
+    const { amount, coinQuantity } = this.getAmountAndCoinQuantityToBeReturned();
+    this.storage.vendingMachineCharge.amount -= amount;
+    this.storage.vendingMachineCharge.coinQuantity = coinQuantity.map((quantity, index) => this.storage.vendingMachineCharge.coinQuantity[index] - quantity);
+    this.storage.setCharge(this.storage.charge - amount);
+    this.storage.setVendingMachineCharge(this.storage.vendingMachineCharge);
+    this.view.updateOnCoinReturn(this.storage.charge, coinQuantity);
   }
 
   getProductDataFromPurchaseButton(button) {
@@ -63,28 +64,9 @@ export default class ProductPurchaseTab {
     return { name, price, quantity };
   }
 
-  onClickCoinReturn() {
-    const { amount, coinQuantity } = this.getAmountAndCoinQuantityToBeReturned();
-    this.storage.vendingMachineCharge.amount -= amount;
-    this.storage.vendingMachineCharge.coinQuantity = coinQuantity.map((quantity, index) => this.storage.vendingMachineCharge.coinQuantity[index] - quantity);
-    this.storage.setCharge(this.storage.charge - amount);
-    this.storage.setVendingMachineCharge(this.storage.vendingMachineCharge);
-    this.updateViewOnReturnCoin(coinQuantity);
-  }
-
-  updateViewOnPurchase() {
-    this.view.updateChargeAmount(this.storage.charge);
-    this.view.updatePurchaseTable(this.storage.products);
+  updateOnPurchase() {
+    this.view.updateOnPurchase(this.storage.charge, this.storage.products)
     this.setPurchaseButtonClickEvent();
-  }
-
-  updateViewOnReturnCoin(coinQuantity) {
-    this.view.updateChargeAmount(this.storage.charge);
-    this.view.updateCoinReturnTable(coinQuantity);
-  }
-
-  clearInputValue() {
-    this.chargeInput.value = '';
   }
 
   getAmountAndCoinQuantityToBeReturned() {

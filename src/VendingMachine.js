@@ -11,7 +11,7 @@ export default class VendingMachine {
   }
 
   initialize() {
-    this.view.render();
+    this.view.initialRender();
     this.initTab();
     this.setMenuClickEvent();
   }

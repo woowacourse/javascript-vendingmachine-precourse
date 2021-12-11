@@ -3,7 +3,7 @@ export default class VendingMachineView {
     this.app = document.querySelector('#app');
   }
 
-  render() {
+  initialRender() {
     this.renderTitle();
     this.renderContainer();
     this.renderMenu();

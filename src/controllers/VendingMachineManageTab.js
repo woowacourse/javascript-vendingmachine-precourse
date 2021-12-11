@@ -10,7 +10,7 @@ export default class VendingMachineManageTab {
   }
 
   initialize() {
-    this.view.render(this.storage.vendingMachineCharge);
+    this.view.initialRender(this.storage.vendingMachineCharge);
     this.initInputElements();
     this.setButtonClickEvent();
   }
@@ -32,8 +32,7 @@ export default class VendingMachineManageTab {
       .map((quantity, idx) => quantity + this.storage.vendingMachineCharge.coinQuantity[idx]);
     const newAmount = this.storage.vendingMachineCharge.amount + amountToAdd;
     this.storage.setVendingMachineCharge({ amount: newAmount, coinQuantity: newCoinQuantity });
-    this.view.updateVendingMachineChargeValues(this.storage.vendingMachineCharge);
-    this.clearInputValue();
+    this.view.update(this.storage.vendingMachineCharge);
   }
 
   generateCoinsRandomly(amount) {
@@ -47,9 +46,5 @@ export default class VendingMachineManageTab {
       }
     }
     return coinQuantity;
-  }
-
-  clearInputValue() {
-    this.vendingMachineChargeInput.value = '';
   }
 }

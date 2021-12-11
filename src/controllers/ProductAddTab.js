@@ -8,7 +8,7 @@ export default class ProductAddTab {
   }
 
   initialize() {
-    this.view.render(this.storage.products);
+    this.view.initialRender(this.storage.products);
     this.initInputElements();
     this.setButtonClickEvent();
   }
@@ -33,17 +33,6 @@ export default class ProductAddTab {
     };
     if (!isValidProductAddition(newProduct)) return;
     this.storage.updateProducts(newProduct);
-    this.updateViewOnProductAddition();
-  }
-
-  updateViewOnProductAddition() {
-    this.view.rerender(this.storage.products);
-    this.clearInputValue();
-  }
-
-  clearInputValue() {
-    this.productNameInput.value = '';
-    this.productPriceInput.value = '';
-    this.productQuantityInput.value = '';
+    this.view.update(this.storage.products);
   }
 }

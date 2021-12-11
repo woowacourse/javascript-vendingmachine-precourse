@@ -2,7 +2,6 @@ export const coinList = [500, 100, 50, 10];
 
 export const MIN_UNIT_OF_MONEY = Math.min(...coinList);
 export const MIN_PRICE = 100;
-export const ZERO = 0;
 
 export const ERROR_MESSAGE = {
   PRODUCT: {
@@ -11,11 +10,11 @@ export const ERROR_MESSAGE = {
     PRICE_LESS_THAN_MIN: `상품 가격은 최소 ${MIN_PRICE}원 이상입니다.`,
     PRICE_MIN_UNIT_OF_MONEY: `상품 가격의 최소 단위는 ${MIN_UNIT_OF_MONEY}원 입니다`,
     QUANTITY_INTEGER: '상품 수량은 정수여야 합니다',
-    QUANTITY_GREATER_THAN_ZERO: `상품 수량은 ${ZERO}보다 커야합니다.`,
+    QUANTITY_GREATER_THAN_ZERO: '상품 수량은 0보다 커야합니다.',
   },
   CHARGE: {
     INTEGER: '금액은 정수여야 합니다',
-    GREATER_THAN_ZERO: `금액은 ${ZERO}보다 커야합니다.`,
+    GREATER_THAN_ZERO: '금액은 0보다 커야합니다.',
     MIN_UNIT_OF_MONEY: `금액의 최소 단위는 ${MIN_UNIT_OF_MONEY}원 입니다`,
   },
   PURCHASE: '구매 불가: 상품 가격이 투입 금액보다 더 큽니다.',

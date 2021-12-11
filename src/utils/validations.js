@@ -1,12 +1,12 @@
 import {
-  MIN_UNIT_OF_MONEY, MIN_PRICE, ZERO, ERROR_MESSAGE,
+  MIN_UNIT_OF_MONEY, MIN_PRICE, ERROR_MESSAGE,
 } from '../constants/index.js';
 
 const isInteger = (value) => Number.isInteger(value);
 
 const isLessThanMinPrice = (value) => value < MIN_PRICE;
 
-const isGreaterThanZero = (value) => value > ZERO;
+const isGreaterThanZero = (value) => value > 0;
 
 const isSatisfyingMinUnitOfMoney = (value) => value % MIN_UNIT_OF_MONEY === 0;
 
