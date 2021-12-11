@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, USER_CHARGE, VALUES, PRODUCT, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN} from '../utils/constants.js';
+import { ERROR_MESSAGE, USER_CHARGE, VALUES, PRODUCT, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO} from '../utils/constants.js';
 import { HTML_OF_PRODUCT_PURCHASE_PART, HTML_OF_PRODUCT_PURCHASE_PART_MID, HTML_OF_PRODUCT_PURCHASE_TABLE, HTML_OF_USER_CHANGE_TABLE } from '../utils/html.js';
 import ProductPurchaseCheck from './ProductPurchaseCheck.js';
 
@@ -77,8 +77,25 @@ export default class ProductPurchaseView {
   static checkChange(coins, change) {
     if(coins === null || parseInt(change[VALUES]) === 0) {
       this.showTable();
-      return alert("거스름돈이 없습니다!");
+      alert("거스름돈이 없습니다!");
+      return false;
     }
+  }
+
+  static storeAllResult(coins, userCoins, change, userMoney) {
+    localStorage.setItem(COINS, JSON.stringify(coins));
+    localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
+    localStorage.setItem(CHANGE, JSON.stringify(change));
+    localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
+  }
+
+  static makeEmpty(userCoins, coins) {
+    let list = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
+
+    list.forEach((element) => {
+      userCoins[element] = coins[element];
+      coins[element] = ZERO;
+    });
   }
 
   static addReturnEvent() {
@@ -93,19 +110,13 @@ export default class ProductPurchaseView {
     const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
     //거스름돈 없거나 생성 안되었을때
-    this.checkChange(coins, change);
+    if(!this.checkChange(coins, change)) {
+      return;
+    };
 
     //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
     if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
-      //foreach문으로
-      userCoins[500] = coins[500];
-      coins[500] = 0;
-      userCoins[100] = coins[100];
-      coins[100] = 0;
-      userCoins[50] = coins[50];
-      coins[50] = 0;
-      userCoins[10] = coins[10];
-      coins[10] = 0;
+      this.makeEmpty(userCoins, coins);
 
       userMoney[VALUES] -= change[VALUES];
       change[VALUES] = 0;
@@ -153,12 +164,7 @@ export default class ProductPurchaseView {
     
   }
 
-  static storeAllResult(coins, userCoins, change, userMoney) {
-    localStorage.setItem(COINS, JSON.stringify(coins));
-    localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
-    localStorage.setItem(CHANGE, JSON.stringify(change));
-    localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
-  }
+
 
   static showTable() {
     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
