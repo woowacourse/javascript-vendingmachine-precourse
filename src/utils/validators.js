@@ -28,10 +28,10 @@ const validators = {
   },
 
   isValidCharge: string => {
-    if (UT.isBlank(string)) return alert(ERROR.MACHINE_CHARGE_BLANK_SUBMIT);
-    if (UT.hasSpecial(string)) return alert(ERROR.MACHINE_CHARGE_INCLUDE_SPECIAL);
-    if (UT.isUnder(string, 10)) return alert(ERROR.MACHINE_CHARGE_UNDER_TEN);
-    if (UT.isNotTenMultiple(string)) return alert(ERROR.MACHINE_CHARGE_NOT_TEN_MULTIPLE);
+    if (UT.isBlank(string)) return alert(ERROR.CHARGE_BLANK_SUBMIT);
+    if (UT.hasSpecial(string)) return alert(ERROR.CHARGE_INCLUDE_SPECIAL);
+    if (UT.isUnder(string, 10)) return alert(ERROR.CHARGE_UNDER_TEN);
+    if (UT.isNotTenMultiple(string)) return alert(ERROR.CHARGE_NOT_TEN_MULTIPLE);
 
     return true;
   },
