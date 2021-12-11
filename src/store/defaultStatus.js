@@ -1,14 +1,20 @@
 const defaultStatus = {
-    tabID: 0,
+    tabID: 'product-add-menu',
     productStatus: [],
     vendingMachineStatus: {
-        totalAmount: null,
-        coin500: null,
-        coin100: null,
-        coin50: null,
-        coin10: null,
+        totalAmount: 0,
+        500: 0,
+        100: 0,
+        50: 0,
+        10: 0,
     },
-    chargeMoney: null,
+    exchangeCoin: {
+        500: 0,
+        100: 0,
+        50: 0,
+        10: 0,
+    },
+    chargeMoney: 0,
 };
 
 export default defaultStatus;
