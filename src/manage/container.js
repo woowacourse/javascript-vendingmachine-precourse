@@ -1,5 +1,46 @@
+import {
+    MANAGE_TAB_ID as ID,
+    MANAGE_TAB_CLASS as CLASS,
+    EMPTY,
+} from "../storage/constant.js";
+import { Product } from "./product.js";
+import { appendTable } from "../storage/createElement.js";
 export default function ManageContainer() {
-    this.init = () => {};
+    const $name = document.getElementById(ID.NAME_INPUT);
+    const $price = document.getElementById(ID.PRICE_INPUT);
+    const $quantity = document.getElementById(ID.QUANTITY_INPUT);
+
+    this.init = () => {
+        setButtonListener();
+    };
+
+    const setButtonListener = () => {
+        const $addButton = document.getElementById(ID.ADD_BUTTON);
+        $addButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            const productInfo = getProductInfo();
+            const product = new Product(
+                productInfo.$nameVal,
+                productInfo.$priceVal,
+                productInfo.$quantityVal,
+            );
+            appendTable(CLASS.EACH_ITEM, product);
+            clearInput($name, $price, $quantity);
+        });
+    };
+
+    const getProductInfo = () => {
+        // 여기서 validation 검사 해야 함.
+        const $nameVal = $name.value;
+        const $priceVal = $price.value;
+        const $quantityVal = $quantity.value;
+
+        return { $nameVal, $priceVal, $quantityVal };
+    };
+
+    const clearInput = (...elements) => {
+        elements.forEach((element) => (element.value = EMPTY));
+    };
 
     this.init();
 }

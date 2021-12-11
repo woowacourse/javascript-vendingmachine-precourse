@@ -70,20 +70,14 @@ export const createTable = (columns) => {
     return table;
 };
 
-export const appendTable = (tr, ...object) => {
+export const appendTable = (tr, object, ...className) => {
     const table = document.querySelector(".table");
     const tableBodyRow = document.createElement("tr");
     tableBodyRow.className = tr;
 
-    // 여기서 동저으로 추가되는 object 들은 따로 생각을 할 필요가 있을 듯...
-    // 이거 그냥 모듈화 하지 말고 따로 추가해야 할듯. 너무 다름.
-    /**
-     * 1. 그냥 html return 하도록 값 짜기.
-     */
-
-    object.forEach((element) => {
+    className.forEach((element) => {
         const td = document.createElement("td");
-        td.innerText = element;
+        td.innerText = object.$name;
         tableBodyRow.appendChild(td);
     });
     table.appendChild(tableBodyRow);
