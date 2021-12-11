@@ -1,9 +1,9 @@
 import { $ } from '../../utils/querySelector.js';
-import { ERROR_MESSAGE } from '../../utils/constants.js';
+import { ERROR_MESSAGE, STANDARD } from '../../utils/constants.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { coinChargeTemplate } from './coinChargeTemplate.js';
 
-let currentAmount = 0;
+let currentAmount = STANDARD.CURRENT_MONEY;
 
 const showCurrentAmount = (chargedCoin) => {
   currentAmount += chargedCoin;

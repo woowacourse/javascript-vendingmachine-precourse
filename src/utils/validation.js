@@ -1,19 +1,20 @@
 import { getProductItemStorage } from '../components/storage/product.js';
-import { ERROR_MESSAGE, STANDARD_PRICE, STANDARD_NUMBER } from './constants.js';
+import { ERROR_MESSAGE, STANDARD } from './constants.js';
 
 const { CANNOT_BE_BLANK, LESS_THAN_STANDARD, NOT_DIVIDE_BY_TEN, COUNT_TOO_SMALL, CAN_NOT_OVERLAP } =
   ERROR_MESSAGE;
+const { PRICE_MINIMUM, DIVIDE_NUMBER, PRODUCT_QUANTITY } = STANDARD;
 
 const isNegativeNumber = (quantity) => {
-  return quantity < STANDARD_NUMBER;
+  return quantity < PRODUCT_QUANTITY;
 };
 
 export const isDivideByTen = (target) => {
-  return target % STANDARD_PRICE.DIVIDE_NUMBER === 0;
+  return target % DIVIDE_NUMBER === 0;
 };
 
 const isMinimumPrice = (price) => {
-  return STANDARD_PRICE.MINIMUM <= price;
+  return PRICE_MINIMUM <= price;
 };
 
 const isNameOverlap = (newName) => {
