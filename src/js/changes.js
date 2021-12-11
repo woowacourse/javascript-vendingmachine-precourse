@@ -27,12 +27,12 @@ export const getCoins = () => {
   const fiftyCoins = getRandomCoin(parseInt(money / 50, 10));
   money -= fiftyCoins * 50;
   const tenCoins = parseInt(money / 10, 10);
-  setCoins(fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins);
+  const coinsArray = [fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins];
+  setCoins(coinsArray);
   renderCoinsItems();
 };
 
-const setCoins = (fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins) => {
-  let coinsArray = [fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins];
+const setCoins = coinsArray => {
   for (let i = 0; i < COINS.length; i++) {
     const localStorageCoin = localStorage.getItem(`${COINS[i]}`);
     if (localStorageCoin !== null) {

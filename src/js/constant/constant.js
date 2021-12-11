@@ -1,6 +1,7 @@
 export const NUM = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-export const COINS = ['fiveHundred', 'oneHundred', 'fifty', 'ten'];
+export const COINS = ['coin500', 'coin100', 'coin50', 'coin10'];
 export const COINS_PRICE = ['500', '100', '50', '10'];
+export const COIN = [500, 100, 50, 10];
 
 export const HEADER_TITLE = '🥤자판기🥤';
 export const TAB_BUTTONS = ['상품 관리', '잔돈 충전', '상품 구매'];
