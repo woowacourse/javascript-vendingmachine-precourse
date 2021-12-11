@@ -67,6 +67,26 @@ const utils = {
       return [utils.insertAt(coinType, 4, '-'), quantity];
     });
   },
+
+  addPurchaseButtonEvent: element => {
+    element.addEventListener('click', e => {
+      e.preventDefault();
+
+      const data = utils.getProductInformation(e.path[2].children);
+
+      console.log(data);
+    });
+  },
+
+  getProductInformation: element => {
+    const [name, price, quantity] = Array.from(element);
+
+    return {
+      name: name.dataset.productName,
+      price: price.dataset.productPrice,
+      quantity: quantity.dataset.productQuantity,
+    };
+  },
 };
 
 export default utils;
