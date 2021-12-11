@@ -62,7 +62,13 @@ export const PURCHASE_TAB_ID = Object.freeze({
     COIN_10: "coin-10-quantity",
 });
 
-export const PURCHASE_TAB_CLASS = Object.freeze({});
+export const PURCHASE_TAB_CLASS = Object.freeze({
+    EACH_ITEM: "product-purchase-item",
+    PURCHASE_BUTTON: "purchase-button",
+    PURCHASE_NAME: "product-purchase-name",
+    PURCHASE_PRICE: "product-purchase-price",
+    PURCHASE_QUANTITY: "product-purchase-quantity",
+});
 
 export const EMPTY = "";
 export const ZERO = 0;
