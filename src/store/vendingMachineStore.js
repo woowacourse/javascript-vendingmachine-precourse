@@ -35,7 +35,7 @@ class VendingMachineStore {
 
     if (prevIdx !== -1) {
       const prevProduct = this.productStorage.getItem(prevIdx);
-      this.productStorage.setItem({
+      this.productStorage.setItem(prevIdx, {
         ...prevProduct,
         price,
         count: prevProduct.count + count,
