@@ -12,8 +12,8 @@ export default class App {
     ProductPurchaseView.addPurchaseEvent();
 
     // 이러면 새로고침 하면 다 날아감
-    const coins = JSON.parse(localStorage.getItem(COINS));
+    // const coins = JSON.parse(localStorage.getItem(COINS));
     // localStorage.setItem(COINS, JSON.stringify({ [FIVE_HUNDRED]: 0, [ONE_HUNDRED]: 0, [FIFTY]: 0, [TEN]: 0}));
-    localStorage.setItem(USER_COINS, JSON.stringify({ [FIVE_HUNDRED]: 0, [ONE_HUNDRED]: 0, [FIFTY]: 0, [TEN]: 0}));
+    // localStorage.setItem(USER_COINS, JSON.stringify({ [FIVE_HUNDRED]: 0, [ONE_HUNDRED]: 0, [FIFTY]: 0, [TEN]: 0}));
   }
 }

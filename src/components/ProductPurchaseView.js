@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, USER_CHARGE, VALUES, PRODUCT, CHANGE, COINS, USER_COINS } from '../utils/constants.js';
+import { ERROR_MESSAGE, USER_CHARGE, VALUES, PRODUCT, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN} from '../utils/constants.js';
 import { HTML_OF_PRODUCT_PURCHASE_PART, HTML_OF_PRODUCT_PURCHASE_PART_MID, HTML_OF_PRODUCT_PURCHASE_TABLE, HTML_OF_USER_CHANGE_TABLE } from '../utils/html.js';
 import ProductPurchaseCheck from './ProductPurchaseCheck.js';
 
@@ -13,6 +13,10 @@ export default class ProductPurchaseView {
     if(localStorage.getItem(PRODUCT) !== null) {
       this.showProductTable();
     }
+
+    if(localStorage.getItem(USER_COINS) !== null) {
+      this.showTable();
+    }
   }
 
   static showPage() {
@@ -26,19 +30,19 @@ export default class ProductPurchaseView {
     document.getElementById('charge-amount').innerHTML = `${userInput[VALUES]}`;
   }
 
-  //상품 표 보여주는거
-  static showProductTable() {
-    const product = JSON.parse(localStorage.getItem(PRODUCT));
-
-    document.getElementById('product-purchase-table').innerHTML = HTML_OF_PRODUCT_PURCHASE_TABLE + `
-    ${Object.keys(product).map((name) => `
-    <tr class="product-purchase-item">
-      <td class="product-purchase-name" data-product-name=${name}>${name}</td>
-      <td class="product-purchase-price" data-product-price=${product[name][VALUES][0]}>${product[name][VALUES][0]}</td>
-      <td class="product-purchase-quantity" data-product-quantity=${product[name][VALUES][1]}>${product[name][VALUES][1]}</td>
-      <td><button class="purchase-button">구매하기</button></td>
-    </tr>`).join('')}`
-  }
+    //상품 표 보여주는거
+    static showProductTable() {
+      const product = JSON.parse(localStorage.getItem(PRODUCT));
+  
+      document.getElementById('product-purchase-table').innerHTML = HTML_OF_PRODUCT_PURCHASE_TABLE + `
+      ${Object.keys(product).map((name) => `
+      <tr class="product-purchase-item">
+        <td class="product-purchase-name" data-product-name=${name}>${name}</td>
+        <td class="product-purchase-price" data-product-price=${product[name][VALUES][0]}>${product[name][VALUES][0]}</td>
+        <td class="product-purchase-quantity" data-product-quantity=${product[name][VALUES][1]}>${product[name][VALUES][1]}</td>
+        <td><button class="purchase-button">구매하기</button></td>
+      </tr>`).join('')}`
+    }
 
   static addEvent() {
     document.getElementById('charge-button').addEventListener('click', (e) => {
@@ -71,15 +75,19 @@ export default class ProductPurchaseView {
     document.getElementById('coin-return-button').addEventListener('click', (e) => {
       e.preventDefault();
 
+      localStorage.setItem(USER_COINS, JSON.stringify({ [FIVE_HUNDRED]: 0, [ONE_HUNDRED]: 0, [FIFTY]: 0, [TEN]: 0}));
+
       const coins = JSON.parse(localStorage.getItem(COINS));
     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
     const change = JSON.parse(localStorage.getItem(CHANGE));
     const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
-    
-    // console.log("현재 금액",userMoney[VALUES]);
-    // console.log("거스름돈", typeof(change[VALUES]));
-    // console.log(change[VALUES] <= userMoney[VALUES]);
-    // console.log(change[VALUES] !== 0);
+
+    //거스름돈 없거나 생성 안되었을때
+    if(coins === null || parseInt(change[VALUES]) === 0) {
+      this.showTable();
+      return alert("거스름돈이 없습니다!");
+    }
+
     //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
     if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
       //foreach문으로
@@ -103,7 +111,7 @@ export default class ProductPurchaseView {
       console.log("현재 금액",userMoney[VALUES]);
       console.log("거스름돈", change[VALUES]);
 
-      this.showUserCharge(userMoney);
+      // this.showUserCharge(userMoney);
     } else {
       
       let temp = userMoney[VALUES];
@@ -146,9 +154,9 @@ export default class ProductPurchaseView {
       console.log("현재 금액",userMoney[VALUES]);
       console.log("거스름돈", change[VALUES]);
 
-      this.showUserCharge(userMoney);
+      // this.showUserCharge(userMoney);
     }
-
+    this.showUserCharge();
     this.showTable();
     }) 
     
