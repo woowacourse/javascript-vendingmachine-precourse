@@ -114,17 +114,20 @@ export default class ProductPurchaseView {
       if(!(this.checkChange(coins, change))) {
         return;
       }
-
-      if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
-        this.makeEmpty(userCoins, coins, userMoney, change);
-        this.storeAllResult(coins, userCoins, change, userMoney);
-      } else {
-        this.minimumCoin(userMoney, coins, change, userCoins);
-        this.storeAllResult(coins, userCoins, change, userMoney);
-      }
+      this.checkChangeCase(coins, userCoins, change, userMoney);
       this.showUserCharge();
       this.showUserCoinTable();
       })
+  }
+
+  static checkChangeCase(coins, userCoins, change, userMoney) {
+    if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
+      this.makeEmpty(userCoins, coins, userMoney, change);
+      this.storeAllResult(coins, userCoins, change, userMoney);
+    } else {
+      this.minimumCoin(userMoney, coins, change, userCoins);
+      this.storeAllResult(coins, userCoins, change, userMoney);
+    }
   }
 
   static minimumCoin(userMoney, coins, change, userCoins) {
