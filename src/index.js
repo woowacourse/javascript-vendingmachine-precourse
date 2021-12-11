@@ -15,6 +15,7 @@ import getUserVendingMachineChargeInput from './modules/getUserVendingMachineCha
 import setVendingCoinStorage from './storage/setVendingCoinStorage.js';
 import renderTotalCoinElement from './views/renderTotalCoinElement.js';
 import renderVendingMachineOwnCoinTable from './views/renderVendingMachineOwnCoinTable.js';
+import initVendingCoinInputElement from './views/initVendingCoinInputElement.js';
 
 export default function vendingMachine() {
   this.userTotalMoney;
@@ -34,6 +35,7 @@ export default function vendingMachine() {
         setVendingCoinStorage(userChargeInput);
         renderTotalCoinElement();
         renderVendingMachineOwnCoinTable();
+        initVendingCoinInputElement();
       }
     });
   };
