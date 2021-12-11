@@ -25,3 +25,15 @@ export const ERROR = Object.freeze({
 
   RETURN_AMOUNT_NO_BALANCE: Symbol('충전 금액이 0원입니다.'),
 });
+
+export const CONSTANTS = Object.freeze({
+  // 반환 코인 기본 데이터 템플릿
+  COIN_LIST: [
+    { coin: 500, quantity: 0 },
+    { coin: 100, quantity: 0 },
+    { coin: 50, quantity: 0 },
+    { coin: 10, quantity: 0 },
+  ],
+
+  COIN_TYPE: [10, 50, 100, 500], // 동전 종류 설정
+});
