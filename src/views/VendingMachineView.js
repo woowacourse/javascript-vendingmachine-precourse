@@ -1,13 +1,14 @@
 import ProductAddMenuView from './ProductAddMenuView.js';
 import VendingMachineManageMenuView from './VendingMachineManageMenuView.js';
 import ProductPurchaseMenuView from './ProductPurchaseMenuView.js';
-import SELECTOR from '../constants/selector.js';
 import { $ } from '../utils/dom.js';
 import {
   createVendingMachineHeaderTemplate,
   createTabButtonContainerTemplate,
   createTabContentContainerTemplate,
 } from '../templates/common.js';
+
+import Selector from '../constants/selector.js';
 
 class VendingMachineView {
   constructor(menuName) {
@@ -20,7 +21,7 @@ class VendingMachineView {
   }
 
   render() {
-    $(`#${SELECTOR.vendingMachineApp}`).innerHTML =
+    $(`#${Selector.vendingMachineApp}`).innerHTML =
       createVendingMachineHeaderTemplate() +
       createTabButtonContainerTemplate() +
       createTabContentContainerTemplate();
@@ -28,13 +29,13 @@ class VendingMachineView {
 
   renderTab(menuName) {
     switch (menuName) {
-      case SELECTOR.productAddMenuId:
+      case Selector.productAddMenuId:
         this.$productAddMenuView.render();
         break;
-      case SELECTOR.vendingMachineManageMenuId:
+      case Selector.vendingMachineManageMenuId:
         this.$vendingMachineManageMenuView.render();
         break;
-      case SELECTOR.productPurchaseMenuId:
+      case Selector.productPurchaseMenuId:
         this.$productPurchaseMenuView.render();
         break;
       default:

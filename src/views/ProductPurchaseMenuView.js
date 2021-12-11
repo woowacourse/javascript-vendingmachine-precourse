@@ -5,11 +5,12 @@ import {
   createProductTableTemplate,
   createReturnCoinTableTemplate,
 } from '../templates/productPurchaseMenu.js';
-import SELECTOR from '../constants/selector.js';
+
+import Selector from '../constants/selector.js';
 
 class ProductPurchaseMenuView {
   render() {
-    $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
+    $(`#${Selector.tabContentContainerId}`).innerHTML =
       createTitleTemplate() +
       createChargeFormTemplate(0) +
       createProductTableTemplate() +

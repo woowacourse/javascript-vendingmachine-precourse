@@ -1,13 +1,13 @@
-import store from '../utils/store.js';
+import Store from '../utils/store.js';
 
-import STORE_KEY from '../constants/store.js';
-import SELECTOR from '../constants/selector.js';
+import Key from '../constants/key.js';
+import Selector from '../constants/selector.js';
 
 class VendingMachineModel {
   constructor() {
-    this.$currentMenu = store.getLocalStorage(STORE_KEY.currentMenu)
-      ? store.getLocalStorage(STORE_KEY.currentMenu)
-      : SELECTOR.productAddMenuId;
+    this.$currentMenu = Store.getLocalStorage(Key.currentMenu)
+      ? Store.getLocalStorage(Key.currentMenu)
+      : Selector.productAddMenuId;
   }
 
   getCurrentMenu() {
@@ -16,7 +16,7 @@ class VendingMachineModel {
 
   setCurrentMenu(menuName) {
     this.$currentMenu = menuName;
-    store.setLocalStorage(STORE_KEY.currentMenu, menuName);
+    Store.setLocalStorage(Key.currentMenu, menuName);
   }
 }
 

@@ -5,11 +5,12 @@ import {
   createChargeAmountTemplate,
   createCoinQuantityTableTemplate,
 } from '../templates/vendingMachineManageMenu.js';
-import SELECTOR from '../constants/selector.js';
+
+import Selector from '../constants/selector.js';
 
 class VendingMachineManageMenuView {
   render() {
-    $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
+    $(`#${Selector.tabContentContainerId}`).innerHTML =
       createTitleTemplate() +
       createChargeFormTemplate() +
       createChargeAmountTemplate(0) +

@@ -6,16 +6,16 @@ import {
 } from '../templates/productAddMenu.js';
 import { $ } from '../utils/dom.js';
 
-import SELECTOR from '../constants/selector.js';
+import Selector from '../constants/selector.js';
 
 class ProductAddMenuView {
   render() {
-    $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
+    $(`#${Selector.tabContentContainerId}`).innerHTML =
       createTitleTemplate() + createProductAddFormTemplate() + createProductTableTemplate();
   }
 
   renderProductTableWithItem(item) {
-    $(`#${SELECTOR.productTableBodyId}`).innerHTML = createProductTableBodyTemplateWithItem(item);
+    $(`#${Selector.productTableBodyId}`).innerHTML = createProductTableBodyTemplateWithItem(item);
   }
 }
 

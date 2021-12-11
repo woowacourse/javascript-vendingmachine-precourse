@@ -1,45 +1,46 @@
-import SELECTOR from '../constants/selector.js';
-import STYLE from '../constants/style.js';
-import { PRODUCT_PURCHASE_TAB } from '../constants/element.js';
 import { createTheadTableDataTemplate } from './common.js';
 
+import Selector from '../constants/selector.js';
+import Style from '../constants/style.js';
+import { PRODUCT_PURCHASE_TAB } from '../constants/element.js';
+
 const createTbodyTableDataTemplate = (text, className, dataset) => `
-  <td ${dataset}="${text}" class="${className}" style="${STYLE.tableBodyData}">${text}</td>
+  <td ${dataset}="${text}" class="${className}" Style="${Style.tableBodyData}">${text}</td>
 `;
 
 const createTbodyTableDataWithButtonTemplate = () => `
-  <td style="${STYLE.tableBodyData}">
-    <button class="${SELECTOR.purchaseButtonClass}">구매하기</button>
+  <td Style="${Style.tableBodyData}">
+    <button class="${Selector.purchaseButtonClass}">구매하기</button>
   </td>
 `;
 
 const createProductItemTemplate = (name, price, quantity) => `
-  <tr class="${SELECTOR.productPurchaseItemClass}">
+  <tr class="${Selector.productPurchaseItemClass}">
     ${createTbodyTableDataTemplate(
       name,
-      SELECTOR.productPurchaseNameClass,
-      SELECTOR.dataProductNameDataset,
+      Selector.productPurchaseNameClass,
+      Selector.dataProductNameDataset,
     )}
     ${createTbodyTableDataTemplate(
       price,
-      SELECTOR.productPurchasePriceClass,
-      SELECTOR.dataProductPriceDataset,
+      Selector.productPurchasePriceClass,
+      Selector.dataProductPriceDataset,
     )}
     ${createTbodyTableDataTemplate(
       quantity,
-      SELECTOR.productPurchaseQuantityClass,
-      SELECTOR.dataProductQuantityDataset,
+      Selector.productPurchaseQuantityClass,
+      Selector.dataProductQuantityDataset,
     )}
     ${createTbodyTableDataWithButtonTemplate()}
   </tr>
 `;
 
 const createReturnCoinItemTemplate = (coin, amount) => `
-  <tr class="${SELECTOR.productPurchaseItemClass}">
-    <td style="${STYLE.tableHeadData}">
+  <tr class="${Selector.productPurchaseItemClass}">
+    <td Style="${Style.tableHeadData}">
       ${coin}원
     </td>
-    <td id="vending-machine-coin-${coin}-quantity" style="${STYLE.tableBodyData}">
+    <td id="vending-machine-coin-${coin}-quantity" Style="${Style.tableBodyData}">
       ${amount}
     </td>
   </tr>
@@ -52,19 +53,19 @@ export const createTitleTemplate = () => `
 export const createChargeFormTemplate = amount => `
   <h3>금액 투입</h3>
   <div>
-    <input placeholder="투입할 금액" id="${SELECTOR.chargeInputId}" />
-    <button id="${SELECTOR.chargeButtonId}">투입하기</button>
+    <input placeholder="투입할 금액" id="${Selector.chargeInputId}" />
+    <button id="${Selector.chargeButtonId}">투입하기</button>
   </div>
   <br />
   <div>
     <span>투입한 금액:</span>
-    <span id="${SELECTOR.chargeAmountId}">${amount}<span>원</span></span>
+    <span id="${Selector.chargeAmountId}">${amount}<span>원</span></span>
   </div>
 `;
 
 export const createProductTableTemplate = () => `
   <h3>구매할 수 있는 상품 현황</h3>
-  <table style="${STYLE.table}">
+  <table Style="${Style.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('상품명')}
@@ -82,7 +83,7 @@ export const createProductTableTemplate = () => `
 export const createReturnCoinTableTemplate = () => `
   <h3>잔돈</h3>
   <button>반환하기</button>
-  <table style="${STYLE.table}">
+  <table Style="${Style.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('동전')}

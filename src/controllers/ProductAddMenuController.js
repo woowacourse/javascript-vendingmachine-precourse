@@ -1,9 +1,9 @@
 import ProductAddMenuModel from '../models/ProductAddMenuModel.js';
 import ProductAddMenuView from '../views/ProductAddMenuView.js';
-
+import ProductAddMenuValidator from '../validators/productAddMenu.js';
 import { $ } from '../utils/dom.js';
 
-import SELECTOR from '../constants/selector.js';
+import Selector from '../constants/selector.js';
 
 class ProductAddMenuController {
   constructor() {
@@ -14,7 +14,7 @@ class ProductAddMenuController {
   }
 
   initAddEventListeners() {
-    $(`#${SELECTOR.tabContentContainerId}`).addEventListener(
+    $(`#${Selector.tabContentContainerId}`).addEventListener(
       'click',
       this.onClickTabContent.bind(this),
     );
@@ -23,13 +23,14 @@ class ProductAddMenuController {
   onClickTabContent(event) {
     const { id } = event.target;
 
-    if (id === SELECTOR.productAddButtonId) this.onClickProductAddButton();
+    if (id === Selector.productAddButtonId) this.onClickProductAddButton();
   }
 
   onClickProductAddButton() {
-    const productName = $(`#${SELECTOR.productNameInputId}`).value;
-    const productPrice = $(`#${SELECTOR.productPriceInputId}`).value;
-    const productQuantity = $(`#${SELECTOR.productQuantityInputId}`).value;
+    const productName = $(`#${Selector.productNameInputId}`).value;
+    const productPrice = $(`#${Selector.productPriceInputId}`).value;
+    const productQuantity = $(`#${Selector.productQuantityInputId}`).value;
+
     const item = {
       productName,
       productPrice,

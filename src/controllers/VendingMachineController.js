@@ -1,7 +1,7 @@
 import VendingMachineView from '../views/VendingMachineView.js';
 import VendingMachineModel from '../models/VendingMachineModel.js';
 
-import SELECTOR from '../constants/selector.js';
+import Selector from '../constants/selector.js';
 import { $ } from '../utils/dom.js';
 
 class VendingMachineController {
@@ -13,7 +13,7 @@ class VendingMachineController {
   }
 
   initAddEventListeners() {
-    $(`#${SELECTOR.tabButtonContainerId}`).addEventListener(
+    $(`#${Selector.tabButtonContainerId}`).addEventListener(
       'click',
       this.onClickTabButton.bind(this),
     );

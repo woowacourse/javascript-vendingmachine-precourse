@@ -1,5 +1,5 @@
-import SELECTOR from '../constants/selector.js';
-import STYLE from '../constants/style.js';
+import Selector from '../constants/selector.js';
+import Style from '../constants/style.js';
 import { TAB_BUTTONS } from '../constants/element.js';
 
 const createTabButtonTemplate = (text, id) => `
@@ -11,15 +11,15 @@ export const createVendingMachineHeaderTemplate = () => `
 `;
 
 export const createTabButtonContainerTemplate = () => `
-  <div id="${SELECTOR.tabButtonContainerId}">
+  <div id="${Selector.tabButtonContainerId}">
     ${TAB_BUTTONS.map(button => createTabButtonTemplate(button.text, button.id)).join('')}
   </div>
 `;
 
 export const createTabContentContainerTemplate = () => `
-  <div id="${SELECTOR.tabContentContainerId}"></div>
+  <div id="${Selector.tabContentContainerId}"></div>
 `;
 
 export const createTheadTableDataTemplate = text => `
-  <td style="${STYLE.tableHeadData}">${text}</td>
+  <td Style="${Style.tableHeadData}">${text}</td>
 `;
