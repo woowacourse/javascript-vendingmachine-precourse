@@ -28,8 +28,12 @@
 
 ✅ 메인 > 각 탭 버튼 클릭시 디스플레이 조정 기능 구현
 
-✅ 유저 입력값 가져온 후 유효성 검사 기능 구현
-⬜ 유효성 검사 통과시 `localStorage` 에 객체로 저장
+- 상품 관리 탭
+  ✅ 상품 관리 탭 유저 입력값 가져온 후 유효성 검사 기능 구현
+  ✅ 유효성 검사 통과시 `localStorage` 에 객체로 저장
+  ⬜ `localStorage` 에 누적해서 입력값 저장 후 화면에 프린트
+- 잔돈 충전 탭
+  ⬜ 잔돈 충전 탭의 유저 입력값 가져오기
 
 ### productAddMenu, vendingMachineManageMenu, poductPurchaseMenu 구분 하여 구현예정
 
