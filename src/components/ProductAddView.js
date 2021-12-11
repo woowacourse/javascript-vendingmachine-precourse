@@ -29,7 +29,7 @@ export default class ProductAddView {
     </tr>`).join('')}`;
   }
 
-  static addEvent() {
+  static addProductAddEvent() {
     document.getElementById('product-add-button').addEventListener('click', (e) => {
         e.preventDefault();
 
