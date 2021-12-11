@@ -5,8 +5,6 @@ export default class SetProductAdd {
     this.render = render;
     this.product = product;
     this.productAdd = new ProductAdd(this.render);
-
-    this.setProduct();
   }
 
   getProductInputs = () => {

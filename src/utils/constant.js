@@ -1,6 +1,7 @@
 export const DOM = {
   $TR: 'tr',
   $APP: '#app',
+  $PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
   $CHARGE_BUTTON: '#charge-button',
   $CHARGE_INPUT: '#charge-input',
   $CHARGE_AMOUNT: '#charge-amount',
@@ -97,8 +98,11 @@ export const TEMPLATE = {
     return `
     <td class="product-manage-name">${productName}</td>
     <td class="product-manage-price">${productPrice}</td>
-    <td class="product-manage-quantity">${productQuantity}</td>
+    <td class="product-manage-quantity" data-product-name="${productName}">${productQuantity}</td>
     `;
+  },
+  PRODUCT_MANAGE_QUANTITY(productName, productQuantity) {
+    return `<td class="product-manage-quantity" data-product-name="${productName}">${productQuantity}</td>`;
   },
   VENDING_MACHINE_MANAGE_MENU: `
   <h3>자판기 동전 충전하기</h3>
@@ -195,7 +199,7 @@ export const TEMPLATE = {
       <td class="product-purchase-price" data-product-price="${productPrice}">${productPrice}</td>
       <td class="product-purchase-quantity" data-product-quantity="${productQuantity}">${productQuantity}</td>
       <td>
-        <button class="purchase-button">구매하기</button>
+        <button class="purchase-button" data-target-button="${productName}">구매하기</button>
       </td>
     `;
   },

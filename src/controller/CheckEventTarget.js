@@ -14,7 +14,8 @@ export default class CheckEventTarget {
   onClickProductAddButton = () => {
     const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
     $productAddButton.addEventListener(EVENT.CLICK, () => {
-      new SetProductAdd(this.render, this.product);
+      this.setProductAdd = new SetProductAdd(this.render, this.product);
+      this.setProductAdd.setProduct();
     });
   };
 
@@ -66,7 +67,8 @@ export default class CheckEventTarget {
   onClickChargeButton = () => {
     const $chargeButton = document.querySelector(DOM.$CHARGE_BUTTON);
     $chargeButton.addEventListener(EVENT.CLICK, () => {
-      new SetVendingMachinePurchase(this.render, this.vendingMachine);
+      this.setVendingMachinePurchase = new SetVendingMachinePurchase(this.render, this.vendingMachine);
+      this.setVendingMachinePurchase.setVendingMachineCharge();
     });
   };
 
@@ -80,18 +82,48 @@ export default class CheckEventTarget {
     });
   };
 
+  reRenderProductAddMenu = ($targetName) => {
+    let localStorageProductAddMenu = localStorage.getItem('productAddMenu');
+    this.product.getProductsInformation().forEach((information) => {
+      const [productName, , productQuantity] = information;
+      if ($targetName.textContent === productName) {
+        localStorageProductAddMenu = localStorageProductAddMenu.replace(
+          TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity + 1),
+          TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity)
+        );
+      }
+    });
+    localStorage.setItem('productAddMenu', localStorageProductAddMenu);
+  };
+
+  onClickPurchaseButton = ($purchaseButton) => {
+    $purchaseButton.addEventListener(EVENT.CLICK, (event) => {
+      const $targetQuantity = event.target.parentElement.previousElementSibling;
+      const $targetPrice = $targetQuantity.previousElementSibling;
+      const $targetName = $targetPrice.previousElementSibling;
+      this.render.purchaseTemplate($targetName, $targetPrice, $targetQuantity);
+      this.reRenderProductAddMenu($targetName);
+    });
+  };
+
+  getPurchaseButtons = () => {
+    const $purchaseButtons = document.querySelectorAll('.purchase-button');
+    $purchaseButtons.forEach(($purchaseButton) => this.onClickPurchaseButton($purchaseButton));
+  };
+
   hasProductPurchaseMenuTemplate = () => {
     const productPurchaseMenuTemplate = localStorage.getItem(LOCAL_STORAGE.PRODUCT_PURCHASE_MENU);
     if (!productPurchaseMenuTemplate) {
       this.render.productPurchaseMenuTemplate();
       this.renderProductStatus();
-      this.onClickChargeButton();
-
-      return;
     }
 
-    this.render.haveTemplate(productPurchaseMenuTemplate);
+    if (productPurchaseMenuTemplate) {
+      this.render.haveTemplate(productPurchaseMenuTemplate);
+    }
+
     this.onClickChargeButton();
+    this.getPurchaseButtons();
   };
 
   isProductPurchaseMenu = (eventTarget, $productPurchaseMenu) => {

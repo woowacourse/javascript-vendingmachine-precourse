@@ -27,7 +27,7 @@ export default class SetLocalStorage {
     localStorage.setItem(LOCAL_STORAGE.PURCHASE_CHARGE_AMOUNT, this.vendingMachine.totalChargeAmount);
   };
 
-  prdocutPurchaseMenu = () => {
+  productPurchaseMenu = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
     localStorage.setItem(LOCAL_STORAGE.PRODUCT_PURCHASE_MENU, $vendingMachineSection.innerHTML);
 

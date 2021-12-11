@@ -19,15 +19,29 @@ export default class Render {
     $vendingMachineSection.innerHTML = template;
   };
 
+  purchaseTemplate = ($targetName, $targetPrice, $targetQuantity) => {
+    $targetQuantity.dataset.productQuantity -= 1;
+    $targetQuantity.textContent -= 1;
+
+    this.product.replaceInformation(
+      $targetName.textContent,
+      Number($targetPrice.textContent),
+      Number($targetQuantity.textContent)
+    );
+
+    this.setLocalStorage.productPurchaseMenu();
+  };
+
   chargeInputTemplate = (template) => {
     const $chargeAmount = document.querySelector(DOM.$CHARGE_AMOUNT);
     $chargeAmount.innerHTML = template;
-    this.setLocalStorage.prdocutPurchaseMenu();
+    this.setLocalStorage.productPurchaseMenu();
   };
 
   productPurchaseStatusTemplate = (template) => {
     const $productPurchaseMenuTbody = document.querySelector(DOM.$PRODUCT_PURCHASE_MENU_TBODY);
     const $tr = document.createElement(DOM.$TR);
+    $tr.setAttribute(SELECTOR.CLASS, DOM.$PRODUCT_PURCHASE_ITEM);
     $tr.innerHTML = template;
     $productPurchaseMenuTbody.appendChild($tr);
   };

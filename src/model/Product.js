@@ -4,6 +4,12 @@ export default class Product {
     this.currentProductInformation = [];
   }
 
+  getProductsInformation = () => this.productsInformation;
+
+  replaceInformation = (targetName, targetPrice, targetQuantity) => {
+    this.productsInformation.find((product) => product[0] === targetName)[2] = targetQuantity;
+  };
+
   getInformation = () => this.currentProductInformation;
 
   setInformation = (productInformation) => {

@@ -7,8 +7,6 @@ export default class SetVendingMachinePurchase {
     this.vendingMachine = vendingMachine;
     this.vendingMachineCharge = new VendingMachineCharge(this.render, DOM.$CHARGE_INPUT);
     this.$chargeInput = document.querySelector(DOM.$CHARGE_INPUT);
-
-    this.setVendingMachineCharge();
   }
 
   renderChargeInput = () => {
