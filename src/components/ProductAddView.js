@@ -32,21 +32,23 @@ export default class ProductAddView {
   static addProductAddEvent() {
     document.getElementById('product-add-button').addEventListener('click', (e) => {
         e.preventDefault();
-
         const name = document.getElementById('product-name-input').value;
         const price = document.getElementById('product-price-input').value;
         const quantity = document.getElementById('product-quantity-input').value;
-
         const productAddCheck = new ProductAddCheck(name, price, quantity);
-        if(productAddCheck.checkAll()) {
-            this.storeProduct(name, price, quantity);
-            this.showTable();
-        } else {
-            alert(ERROR_MESSAGE);
-        }
+
+        this.checkResult(name, price, quantity, productAddCheck);
     });
   }
 
+  static checkResult(name, price, quantity, productAddCheck) {
+    if(productAddCheck.checkAll()) {
+        this.storeProduct(name, price, quantity);
+        this.showTable();
+    } else {
+        alert(ERROR_MESSAGE);
+    }
+  }
 
     static storeProduct(name, price, quantity) {
         const product = JSON.parse(localStorage.getItem(PRODUCT));
@@ -62,7 +64,7 @@ export default class ProductAddView {
     static checkAlreadyHave(name, price, quantity, product) {
         if(product[name] !== undefined && product[name][VALUES][0] === price) {
             return parseInt(product[name][VALUES][1]) + parseInt(quantity);
-        };
+        }
 
         return quantity;
     }
