@@ -49,7 +49,13 @@ function isValidChargeAmount(amount) {
   return true;
 }
 
+function isValidPurchase(productPrice, charge) {
+  if (productPrice > charge) return alert(ERROR_MESSAGE.PURCHASE);
+  return true;
+}
+
 export {
   isValidProductAddition,
   isValidChargeAmount,
+  isValidPurchase,
 };

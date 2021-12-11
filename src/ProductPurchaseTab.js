@@ -2,7 +2,7 @@ import ProductPurchaseTabView from './views/ProductPurchaseTabView.js';
 import { getCharge, getProducts, getVendingMachineCharge, setCharge, setProducts, setVendingMachineCharge } from './utils/localStorage.js';
 import { coinIndex } from './utils/index.js';
 import { coinList } from './constants/index.js';
-import { isValidChargeAmount } from './utils/validations.js';
+import { isValidChargeAmount, isValidPurchase } from './utils/validations.js';
 
 export default class ProductPurchaseTab {
   constructor() {
@@ -54,7 +54,7 @@ export default class ProductPurchaseTab {
   onClickPurchase(e) {
     const { productName, productPrice, productQuantity } = this.getProductDataFromPurchaseButton(e.target);
     const productIndex = this.products.findIndex((product) => product.name === productName);
-    if ( this.charge < productPrice ) return;
+    if ( !isValidPurchase(productPrice, this.charge) ) return;
     this.charge -= productPrice;
     this.products[productIndex] = { ...this.products[productIndex], quantity: productQuantity - 1 };
     setCharge(this.charge);

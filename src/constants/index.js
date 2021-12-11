@@ -18,4 +18,5 @@ export const ERROR_MESSAGE = {
     GREATER_THAN_ZERO: `금액은 ${ZERO}보다 커야합니다.`,
     MIN_UNIT_OF_MONEY: `금액의 최소 단위는 ${MIN_UNIT_OF_MONEY}원 입니다`,
   },
+  PURCHASE: '구매 불가: 상품 가격이 투입 금액보다 더 큽니다.',
 };
