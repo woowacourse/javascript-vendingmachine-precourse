@@ -2,7 +2,7 @@ import VendingMachineStore from '../../store/vendingMachineStore.js';
 import { $tag } from '../../utils/index.js';
 import Component from '../base/Component.js';
 import Label from '../base/Label.js';
-import ProductTable from './ProductTable.js';
+import ProductPurchaseTable from './ProductPurchaseTable.js';
 
 class ProductStatus extends Component {
   $title;
@@ -13,7 +13,7 @@ class ProductStatus extends Component {
     super($tag('div'));
 
     this.$title = new Label('h3', '상품 현황');
-    this.$table = new ProductTable();
+    this.$table = new ProductPurchaseTable();
     this.children = [this.$title, this.$table];
     this.update();
   }

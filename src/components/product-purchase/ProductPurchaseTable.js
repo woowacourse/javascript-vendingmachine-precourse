@@ -30,7 +30,7 @@ const purchaseButtonProp = {
   className: ELEMENT_CLASS.PRODUCT_PURCHASE_ITEM_PURCHASE_BUTTON,
 };
 
-class ProductTable extends Component {
+class ProductPurchaseTable extends Component {
   $title;
 
   $tableHead;
@@ -75,11 +75,13 @@ class ProductTable extends Component {
   }
 
   update() {
-    this.$tableRows = this.state.dataset.map(ProductTable.#tableRowComponent);
+    this.$tableRows = this.state.dataset.map(
+      ProductPurchaseTable.#tableRowComponent
+    );
     this.children = [...this.$tableHead, ...this.$tableRows];
     this.setEvent();
     this.render();
   }
 }
 
-export default ProductTable;
+export default ProductPurchaseTable;
