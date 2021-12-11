@@ -53,7 +53,7 @@ export default function ChargeContainer(coin) {
                 this.coin.addCoinCount(nums);
             }
         }
-        appendTable(this.coin);
+        appendTable(this.coin, ID);
         this.coin.setTotal();
         appendLocalStorage(LOCAL.COIN_AMOUNT, this.coin);
     };

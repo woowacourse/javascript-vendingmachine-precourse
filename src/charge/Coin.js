@@ -1,9 +1,5 @@
 import { getLocalStorage } from "../storage/localStorage.js";
-import {
-    EMPTY,
-    CHARGE_TAB_ID as ID,
-    LOACL_STORAGE as LOCAL,
-} from "../storage/constant.js";
+import { EMPTY, LOACL_STORAGE as LOCAL } from "../storage/constant.js";
 
 export const Coin = function () {
     this.coin_500 = 0;
@@ -35,7 +31,7 @@ export const Coin = function () {
     };
 };
 
-export const appendTable = (coin) => {
+export const appendTable = (coin, ID) => {
     const $coin_500 = document.getElementById(ID.COIN_500);
     const $coin_100 = document.getElementById(ID.COIN_100);
     const $coin_50 = document.getElementById(ID.COIN_50);

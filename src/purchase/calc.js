@@ -44,15 +44,31 @@ export const setTotalAmount = (loadAmount, $chargeAmount) => {
     }
 };
 
-export const gridCalc = (totalAmount, coins) => {
-    let temp = {
-        coin_500: coins.coin_500,
-        coin_100: coins.coin_100,
-        coin_50: coins.coin_50,
-        coin_10: coins.coin_10,
-    };
-    if (totalAmount >= coins.total) return temp;
+export const gridCalc = (change, coin) => {
+    const count = [coin.coin_500, coin.coin_100, coin.coin_50, coin.coin_10];
+    const coinValue = [500, 100, 50, 10];
+    if (change >= coin.total) return count;
     else {
-        // 냅섹 알고리즘을 통해 최소금액 거슬러주기
+        calcCoin(count, coinValue, change);
+    }
+    return count;
+};
+
+const calcCoin = (count, coinValue, change) => {
+    let sum = 0;
+    let i = 0;
+    let cur_sum = 0;
+    while (i < coinValue.length) {
+        sum += count[i] * coinValue[i];
+        if (sum > change) {
+            count[i] -= 1;
+            sum = cur_sum;
+        } else if (sum === change) {
+            for (let k = i + 1; k < coinValue.length; k++) count[k] = 0;
+            break;
+        } else {
+            cur_sum = sum;
+            i++;
+        }
     }
 };

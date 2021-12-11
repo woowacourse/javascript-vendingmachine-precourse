@@ -62,7 +62,7 @@ export default function ChargePresenter() {
             [STRING.COIN_10 + STRING.WON, ID.COIN_10],
         ];
         setChargeTableRows(TABLE_CLASS.COIN_TABLE, coinRows);
-        appendTable(coin);
+        appendTable(coin, ID);
     };
 
     this.init();
