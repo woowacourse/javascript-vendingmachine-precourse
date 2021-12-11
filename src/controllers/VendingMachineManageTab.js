@@ -1,5 +1,4 @@
-import { coinList } from '../constants/index.js';
-import { coinIndex } from '../utils/index.js';
+import { generateCoinsRandomly } from '../utils/index.js';
 import { isValidChargeAmount } from '../utils/validations.js';
 import VendingMachineManageTabView from '../views/VendingMachineManageTabView.js';
 
@@ -28,23 +27,8 @@ export default class VendingMachineManageTab {
     e.preventDefault();
     const amountToAdd = Number(this.vendingMachineChargeInput.value);
     if (!isValidChargeAmount(amountToAdd)) return;
-    const newCoinQuantity = this.generateCoinsRandomly(amountToAdd)
-      .map((quantity, idx) => quantity + this.storage.vendingMachineCharge.coinQuantity[idx]);
-    const newAmount = this.storage.vendingMachineCharge.amount + amountToAdd;
-    this.storage.setVendingMachineCharge({ amount: newAmount, coinQuantity: newCoinQuantity });
+    const coinQuantityToAdd = generateCoinsRandomly(amountToAdd);
+    this.storage.addVendingMachineCharge({ amount: amountToAdd, coinQuantity: coinQuantityToAdd });
     this.view.update(this.storage.vendingMachineCharge);
-  }
-
-  generateCoinsRandomly(amount) {
-    let leftMoney = amount;
-    const coinQuantity = [0, 0, 0, 0];
-    while (leftMoney > 0) {
-      const randomCoin = MissionUtils.Random.pickNumberInList(coinList);
-      if (randomCoin <= leftMoney) {
-        leftMoney -= randomCoin;
-        coinQuantity[coinIndex(randomCoin)] += 1;
-      }
-    }
-    return coinQuantity;
   }
 }

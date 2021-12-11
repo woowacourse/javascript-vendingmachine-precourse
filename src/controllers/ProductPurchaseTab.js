@@ -1,6 +1,5 @@
 import ProductPurchaseTabView from '../views/ProductPurchaseTabView.js';
-import { coinIndex } from '../utils/index.js';
-import { coinList } from '../constants/index.js';
+import { getAmountAndCoinQuantityToBeReturned } from '../utils/index.js';
 import { isValidChargeAmount, isValidPurchase } from '../utils/validations.js';
 
 export default class ProductPurchaseTab {
@@ -34,26 +33,23 @@ export default class ProductPurchaseTab {
     const chargeInput = document.querySelector('#charge-input');
     const amountToAdd = Number(chargeInput.value);
     if (!isValidChargeAmount(amountToAdd)) return;
-    this.storage.setCharge(this.storage.charge + amountToAdd);
+    this.storage.addCharge(amountToAdd);
     this.view.updateOnCharge(this.storage.charge);
   }
 
   onClickPurchase(e) {
     const product = this.getProductDataFromPurchaseButton(e.target);
     if (!isValidPurchase(product.price, this.storage.charge)) return;
-    this.storage.setCharge(this.storage.charge - product.price);
+    this.storage.subtractCharge(product.price);
     this.storage.updateProducts({ ...product, quantity: product.quantity - 1 })
     this.updateOnPurchase();
   }
 
   onClickCoinReturn() {
-    // storage 관련 수정 필요
-    const { amount, coinQuantity } = this.getAmountAndCoinQuantityToBeReturned();
-    this.storage.vendingMachineCharge.amount -= amount;
-    this.storage.vendingMachineCharge.coinQuantity = coinQuantity.map((quantity, index) => this.storage.vendingMachineCharge.coinQuantity[index] - quantity);
-    this.storage.setCharge(this.storage.charge - amount);
-    this.storage.setVendingMachineCharge(this.storage.vendingMachineCharge);
-    this.view.updateOnCoinReturn(this.storage.charge, coinQuantity);
+    const moneyToBeReturned = getAmountAndCoinQuantityToBeReturned(this.storage.charge, this.storage.vendingMachineCharge);
+    this.storage.subtractCharge(moneyToBeReturned.amount);
+    this.storage.subtractVendingMachineCharge(moneyToBeReturned);
+    this.view.updateOnCoinReturn(this.storage.charge, moneyToBeReturned.coinQuantity);
   }
 
   getProductDataFromPurchaseButton(button) {
@@ -68,24 +64,4 @@ export default class ProductPurchaseTab {
     this.view.updateOnPurchase(this.storage.charge, this.storage.products)
     this.setPurchaseButtonClickEvent();
   }
-
-  getAmountAndCoinQuantityToBeReturned() {
-    if (this.storage.charge >= this.storage.vendingMachineCharge.amount) 
-      return this.storage.vendingMachineCharge;
-    let leftCharge = this.storage.charge;
-    const coinQuantity = [0, 0, 0, 0];
-    coinList.forEach((coin) => {
-      coinQuantity[coinIndex(coin)] = this.getCoinQuantityToBeReturned(coin, leftCharge);
-      leftCharge -= coin * coinQuantity[coinIndex(coin)];
-    })
-    return { amount: this.storage.charge - leftCharge, coinQuantity };
-  }
-
-  getCoinQuantityToBeReturned(typeOfCoin, leftCharge) {
-    const vendingMachineCoinQuantity = this.storage.vendingMachineCharge.coinQuantity[coinIndex(typeOfCoin)];
-    const maxOfCoinQuantityToBeReturned = Math.floor(leftCharge / typeOfCoin);
-    if (maxOfCoinQuantityToBeReturned > vendingMachineCoinQuantity) return vendingMachineCoinQuantity;
-    return maxOfCoinQuantityToBeReturned;
-  }     
-
 }

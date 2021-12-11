@@ -1,7 +1,23 @@
-import { KEY } from './constants/storage.js';
-import {
-  getProducts, getVendingMachineCharge, getCharge, setData,
-} from './utils/storage.js';
+import { INITIAL_DATA, KEY } from './constants/storage.js';
+import { addCoins, subtractCoins } from './utils/index.js';
+
+const setData = (key, data) => localStorage.setItem(key, JSON.stringify(data));
+const getData = (key) => JSON.parse(localStorage.getItem(key));
+
+const getProducts = () => {
+  const products = getData(KEY.PRODUCTS);
+  return products || INITIAL_DATA.PRODUCTS;
+};
+
+const getVendingMachineCharge = () => {
+  const vendingMachineCharge = getData(KEY.VENDING_MACHINE_CHARGE);
+  return vendingMachineCharge || INITIAL_DATA.VENDING_MACHINE_CHARGE;
+};
+
+const getCharge = () => {
+  const charge = getData(KEY.CHARGE);
+  return charge || INITIAL_DATA.CHARGE;
+};
 
 export default class Storage {
   constructor() {
@@ -36,5 +52,27 @@ export default class Storage {
       newProducts[updateIndex] = updateProduct;
     }
     this.setProducts(newProducts);
+  }
+
+  addVendingMachineCharge({ amount, coinQuantity }) {
+    const newAmount = this.vendingMachineCharge.amount + amount;
+    const newCoinQuantity = addCoins(this.vendingMachineCharge.coinQuantity, coinQuantity);
+    const newVendingMachineCharge = { amount: newAmount, coinQuantity: newCoinQuantity };
+    this.setVendingMachineCharge(newVendingMachineCharge);
+  }
+
+  subtractVendingMachineCharge({ amount, coinQuantity }) {
+    const newAmount = this.vendingMachineCharge.amount + amount;
+    const newCoinQuantity = subtractCoins(this.vendingMachineCharge.coinQuantity, coinQuantity);
+    const newVendingMachineCharge = { amount: newAmount, coinQuantity: newCoinQuantity };
+    this.setVendingMachineCharge(newVendingMachineCharge);
+  }
+
+  addCharge(chargeToAdd) {
+    this.setCharge(this.charge + chargeToAdd);
+  }
+
+  subtractCharge(chargeToSubtract) {
+    this.setCharge(this.charge - chargeToSubtract);
   }
 }
