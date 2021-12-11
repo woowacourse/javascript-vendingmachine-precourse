@@ -23,3 +23,4 @@ export const CHARGE_TEXT = '충전하기';
 export const COIN_IN_VENDING_MACHINE_TEXT = '자판기가 보유한 동전';
 export const AMOUNT_TITLE = '보유 금액: ';
 export const DO_PURCHASE_TEXT = '구매하기';
+export const TITLE_TEXT = '🥤자판기🥤';

@@ -7,6 +7,7 @@ export const TYPE = 'type';
 export const TEXT = 'text';
 export const NUMBER = 'number';
 export const DIV = 'div';
+export const H1 = 'h1';
 export const H2 = 'h2';
 export const INPUT = 'input';
 export const BUTTON = 'button';
