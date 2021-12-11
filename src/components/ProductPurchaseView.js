@@ -74,6 +74,13 @@ export default class ProductPurchaseView {
     }
   }
 
+  static checkChange(coins, change) {
+    if(coins === null || parseInt(change[VALUES]) === 0) {
+      this.showTable();
+      return alert("거스름돈이 없습니다!");
+    }
+  }
+
   static addReturnEvent() {
     document.getElementById('coin-return-button').addEventListener('click', (e) => {
       e.preventDefault();
@@ -86,10 +93,7 @@ export default class ProductPurchaseView {
     const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
     //거스름돈 없거나 생성 안되었을때
-    if(coins === null || parseInt(change[VALUES]) === 0) {
-      this.showTable();
-      return alert("거스름돈이 없습니다!");
-    }
+    this.checkChange(coins, change);
 
     //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
     if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
