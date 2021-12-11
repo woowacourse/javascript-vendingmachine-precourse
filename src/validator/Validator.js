@@ -1,11 +1,15 @@
-import { ADD_ERROR_MESSAGE } from '../constant/constant.js';
+import {
+  ADD_ERROR_MESSAGE,
+  MINIMUM_PRICE_INPUT,
+  MINIMUM_QUANTITY_INPUT,
+} from '../constant/constant.js';
 
 function isNotEmptyName(name) {
   return name.trim() !== '';
 }
 
-function isAbove100(price) {
-  return +price >= 100;
+function isAboveMinimum(value, minimum) {
+  return +value >= minimum;
 }
 
 function isMultipleOf10(price) {
@@ -13,11 +17,7 @@ function isMultipleOf10(price) {
 }
 
 function isValidPrice(price) {
-  return isAbove100(price) && isMultipleOf10(price);
-}
-
-function isAboveZero(quantity) {
-  return +quantity > 0;
+  return isAboveMinimum(price, MINIMUM_PRICE_INPUT) && isMultipleOf10(price);
 }
 
 export default class Validator {
@@ -25,7 +25,7 @@ export default class Validator {
     if (
       isNotEmptyName(name)
       && isValidPrice(price)
-      && isAboveZero(quantity)
+      && isAboveMinimum(quantity, MINIMUM_QUANTITY_INPUT)
     ) {
       return true;
     }

@@ -46,3 +46,7 @@ export const CHARGE_CONTAINER_ID = 'charge-container';
 
 export const CURRENT_TAB_KEY = 'current-tab';
 export const PRODUCTS_STORAGE_KEY = 'products';
+
+export const MINIMUM_PRICE_INPUT = 100;
+export const MINIMUM_CHARGE_INPUT = 10;
+export const MINIMUM_QUANTITY_INPUT = 1;
