@@ -1,4 +1,4 @@
-import { $ } from '../view/initView.js';
+import $ from '../util/$.js';
 import {
   TAB_PRODUCT_ADD_ID,
   TAB_CHARGE_ID,

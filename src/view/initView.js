@@ -1,6 +1,7 @@
 import initProductAdd from './initProductAdd.js';
 import initCharge from './initCharge.js';
 import { renderCurrentTab } from '../eventHandler/addTabHandler.js';
+import $ from '../util/$.js';
 import {
   TAB_PRODUCT_ADD_ID,
   PRODUCT_ADD_TAB_TITLE,
@@ -12,10 +13,6 @@ import {
   APP_ID,
   PRODUCT_ADD_CONTAINER_ID,
 } from '../constant/constant.js';
-
-export function $(domId) {
-  return document.querySelector(domId);
-}
 
 function renderAppHeader($appDiv) {
   const $header = document.createElement('div');

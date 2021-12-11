@@ -1,4 +1,4 @@
-import { $ } from '../view/initView.js';
+import $ from '../util/$.js';
 import {
   PRODUCT_ADD_BUTTON_ID,
   PRODUCT_NAME_INPUT_ID,
