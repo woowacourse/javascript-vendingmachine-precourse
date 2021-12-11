@@ -102,3 +102,7 @@ export const ERROR_MESSAGE = {
 };
 
 export const COIN_LIST = [500, 100, 50, 10];
+
+export const STORAGE_KEY = {
+  menu: 'menu',
+};
