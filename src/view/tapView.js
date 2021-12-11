@@ -1,4 +1,4 @@
-import { MENU_COMPONENT } from '../constants/constants.js';
+import { MENU_ELEMENT } from '../constants/constants.js';
 
 export default class TapView {
   static render() {
@@ -22,9 +22,9 @@ export default class TapView {
 
   static menuComponent() {
     return `
-    <button id=${MENU_COMPONENT.adminId}>${MENU_COMPONENT.adminName}</button>
-    <button id=${MENU_COMPONENT.chargeId}>${MENU_COMPONENT.chargeName}</button>
-    <button id=${MENU_COMPONENT.purchaseId}>${MENU_COMPONENT.purchaseName}</button>
+    <button id=${MENU_ELEMENT.adminId}>${MENU_ELEMENT.adminName}</button>
+    <button id=${MENU_ELEMENT.chargeId}>${MENU_ELEMENT.chargeName}</button>
+    <button id=${MENU_ELEMENT.purchaseId}>${MENU_ELEMENT.purchaseName}</button>
     `;
   }
 }
