@@ -74,6 +74,7 @@
 ### 4️⃣  **상품 구매 메뉴**
 
 - **초기화**
+- [x] 🖨️  `상품 구매` template html 작성
 - [ ] 🔍  localStorage의 `vendingMachineCoins`에 보유 동전이 존재하는지 파악한다
 - [ ] 🔍 localStorage의 `inventory`에 상품이 존재하는지 파악한다
   - [ ] 🖨️  구매할 수 있는 상품 현황 table에 row를 추가해서 표시
@@ -219,15 +220,15 @@
 
 **상품 구매 메뉴**
 
-- [ ] 투입 금액 입력 요소의 id는 `charge-input`이다.
-- [ ] 투입하기 버튼 요소의 id는 `charge-button`이다.
-- [ ] 투입한 금액을 확인하는 요소의 id는 `charge-amount`이다.
-- [ ] 반환하기 버튼 요소의 id는 `coin-return-button`이다.
-- [ ] 반환된 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-  - [ ] 500원: `coin-500-quantity`
-  - [ ] 100원: `coin-100-quantity`
-  - [ ] 50원: `coin-50-quantity`
-  - [ ] 10원: `coin-10-quantity`
+- [x] 투입 금액 입력 요소의 id는 `charge-input`이다.
+- [x] 투입하기 버튼 요소의 id는 `charge-button`이다.
+- [x] 투입한 금액을 확인하는 요소의 id는 `charge-amount`이다.
+- [x] 반환하기 버튼 요소의 id는 `coin-return-button`이다.
+- [x] 반환된 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
+  - [x] 500원: `coin-500-quantity`
+  - [x] 100원: `coin-100-quantity`
+  - [x] 50원: `coin-50-quantity`
+  - [x] 10원: `coin-10-quantity`
 - [ ] 각 상품 요소의 class명은 `product-purchase-item`이고, 하위에 아래 요소들을 갖는다.
   - [ ] 구매 버튼에 해당하는 요소의 class명은 `purchase-button`이다.
   - [ ] 상품명에 해당하는 요소의 class명은 `product-purchase-name`이다.
