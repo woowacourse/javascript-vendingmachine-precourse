@@ -1,9 +1,12 @@
 import { storeObserver } from './Store.js';
+import { $ } from '../utils/dom.js';
+import { isObjectEmpty } from '../utils/general.js';
 
 export default class Component {
   constructor(htmlElement, props = {}) {
     this.$container = htmlElement;
     this.props = props;
+    this.propsKeys = Object.keys(props);
     this.children = [];
     this.state = {};
     this.setUp();
@@ -13,6 +16,8 @@ export default class Component {
 
   bindEvents() {}
 
+  initState() {}
+
   initChildren() {}
 
   getGlobalState() {}
@@ -20,6 +25,7 @@ export default class Component {
   render() {}
 
   setUp() {
+    this.initState();
     this.initDom();
     this.initChildren();
     this.mount();
@@ -37,6 +43,10 @@ export default class Component {
     );
   }
 
+  returnId() {
+    return `#${this.$container.id}`;
+  }
+
   returnRoot() {
     return this.$container;
   }
@@ -47,8 +57,9 @@ export default class Component {
 
   renderChildren() {
     this.children.forEach(child => {
-      child.updateComponent();
-      this.$container.appendChild(child.returnRoot());
+      if (child.setProps(this.state)) {
+        $(child.returnId()).replaceWith(child.returnRoot());
+      }
     });
   }
 
@@ -60,6 +71,18 @@ export default class Component {
   setState(nextState) {
     this.state = { ...this.state, ...nextState };
     this.updateComponent();
+  }
+
+  setProps(nextProps) {
+    const newProps = {};
+    this.propsKeys.forEach(key => {
+      if (nextProps[key] && nextProps[key] !== this.props[key])
+        newProps[key] = nextProps[key];
+    });
+    if (isObjectEmpty(newProps)) return false;
+    this.props = { ...this.props, ...newProps };
+    this.updateComponent();
+    return true;
   }
 
   appendRootEvents(type, handler) {
