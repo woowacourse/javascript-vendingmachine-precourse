@@ -1,5 +1,5 @@
 import { domSelector, getRandomCoint, setErrorStatus } from '../common/index.js';
-import { isDivisibleTen } from '../common/validation.js';
+import { isDivisibleTen, isPositiveNumber } from '../common/validation.js';
 import {
     $chargeMachineFormID,
     $vendingMachineChargeAmountID,
@@ -29,7 +29,7 @@ export default class VendingMachineManage extends Component {
     onButtonClick(ev) {
         ev.preventDefault();
         const charge = ev.target[INPUT_NAME['CHARGE-MONEY']].value;
-        if (!isDivisibleTen(charge)) {
+        if (!isPositiveNumber(charge) || !isDivisibleTen(charge)) {
             setErrorStatus('VENDING-MACHINE-CHARGE-INPUT-ERROR');
             return;
         }
