@@ -2,6 +2,7 @@ import {
   ADMIN_ELEMENT_CLASS,
   ADMIN_ELEMENT_ID,
 } from '../constants/constants.js';
+import AdminModel from '../model/adminModel.js';
 import TapView from './tapView.js';
 
 export default class AdminView extends TapView {
@@ -43,12 +44,29 @@ export default class AdminView extends TapView {
   }
 
   static productComponent() {
+    const adminObject = new AdminModel();
+    let productView = '';
+    adminObject.getProductStorage().forEach((product) => {
+      productView += this.productTable(product);
+    });
+
+    return productView;
+  }
+
+  static productTable({ name, price, quantity }) {
     return `
     <tr class=${ADMIN_ELEMENT_CLASS.productManageItem}>
-      <td class=${ADMIN_ELEMENT_CLASS.productManageName}>1</td>
-      <td class=${ADMIN_ELEMENT_CLASS.productManagePrice}>2</td>
-      <td class=${ADMIN_ELEMENT_CLASS.productManageQuantity}>3</td>
+      <td class=${ADMIN_ELEMENT_CLASS.productManageName}>${name}</td>
+      <td class=${ADMIN_ELEMENT_CLASS.productManagePrice}>${price}</td>
+      <td class=${ADMIN_ELEMENT_CLASS.productManageQuantity}>${quantity}</td>
     </tr>
     `;
+  }
+
+  static addNewProduct(adminObject) {
+    const productStorage = adminObject.getProductStorage();
+    const newProduct = productStorage[productStorage.length - 1];
+    document.querySelector('table').innerHTML += this.productTable(newProduct);
+    adminObject.resetProductAddInput();
   }
 }
