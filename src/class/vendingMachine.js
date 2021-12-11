@@ -22,6 +22,14 @@ import {
 } from '../dom/update/updatePurchaseTable.js';
 import { lackOfUserChangeException } from '../exceptions.js';
 import ReturnCoin from './returnCoin.js';
+import {
+  ACTION_CHARGE,
+  ACTION_SAVE,
+  ACTION_ADD,
+  ACTION_DELETE,
+  ACTION_SELL,
+  ACTION_WITHDRAW,
+} from '../constants/action.js';
 
 export default class VendingMachine {
   constructor() {
@@ -47,22 +55,22 @@ export default class VendingMachine {
 
     const newProduct = Product.createProduct(productInput);
 
-    this.updateProductsModel('추가', newProduct);
-    this.updateProductsModel('저장', newProduct);
-    this.updateProductsView('추가', newProduct);
+    this.updateProductsModel(ACTION_ADD, newProduct);
+    this.updateProductsModel(ACTION_SAVE, newProduct);
+    this.updateProductsView(ACTION_ADD, newProduct);
   }
 
   updateProductsModel(action, product) {
     switch (action) {
-      case '추가':
+      case ACTION_ADD:
         this.products.push(product);
         break;
-      case '삭제':
+      case ACTION_DELETE:
         this.products = this.products.filter(
           (_product) => _product.name !== product.name
         );
         break;
-      case '저장':
+      case ACTION_SAVE:
         saveProductList(this.products);
         break;
     }
@@ -70,15 +78,15 @@ export default class VendingMachine {
 
   updateProductsView(action, product) {
     switch (action) {
-      case '추가':
+      case ACTION_ADD:
         createProductTableRow([product]);
         createPurchaseTableRow(product.name, product.price, product.quantity);
         break;
-      case '판매':
+      case ACTION_SELL:
         updateProductItemAfterPurchase(product.name);
         updatePurchasableProductTableAfterPurchase(product.name);
         break;
-      case '삭제':
+      case ACTION_DELETE:
         deleteProductItem(product.name);
         deletePurchaseProduct(product.name);
         break;
@@ -94,21 +102,27 @@ export default class VendingMachine {
       return;
     }
 
-    this.updateVendingMachineChargeModel('충전', vendingMachineChargeInput);
-    this.updateVendingMachineChargeModel('저장', vendingMachineChargeInput);
+    this.updateVendingMachineChargeModel(
+      ACTION_CHARGE,
+      vendingMachineChargeInput
+    );
+    this.updateVendingMachineChargeModel(
+      ACTION_SAVE,
+      vendingMachineChargeInput
+    );
     this.updateVendingMachineChargeView();
   }
 
   updateVendingMachineChargeModel(action, charge) {
     switch (action) {
-      case '충전':
+      case ACTION_CHARGE:
         Charge.chargeVendingMachine(charge);
         break;
-      case '출금':
+      case ACTION_WITHDRAW:
         this.amount -= charge;
         this.coins[charge] -= 1;
         break;
-      case '저장':
+      case ACTION_SAVE:
         saveCharges();
         break;
     }
@@ -127,20 +141,20 @@ export default class VendingMachine {
       return;
     }
 
-    this.updateUserAmountModel('충전', userChargeInput);
-    this.updateUserAmountModel('저장', userChargeInput);
+    this.updateUserAmountModel(ACTION_CHARGE, userChargeInput);
+    this.updateUserAmountModel(ACTION_SAVE, userChargeInput);
     this.updateUserAmountView();
   }
 
   updateUserAmountModel(action, charge) {
     switch (action) {
-      case '충전':
+      case ACTION_CHARGE:
         this.userAmount += charge;
         break;
-      case '출금':
+      case ACTION_WITHDRAW:
         this.userAmount -= charge;
         break;
-      case '저장':
+      case ACTION_SAVE:
         saveUserCharge();
         break;
     }
@@ -164,15 +178,15 @@ export default class VendingMachine {
   }
 
   pay(product) {
-    this.updateUserAmountModel('출금', product.price);
-    this.updateUserAmountModel('저장', product.price);
+    this.updateUserAmountModel(ACTION_WITHDRAW, product.price);
+    this.updateUserAmountModel(ACTION_SAVE, product.price);
     this.updateUserAmountView();
   }
 
   provide(product) {
     Product.sellProduct(product);
-    this.updateProductsModel('저장', product);
-    this.updateProductsView('판매', product);
+    this.updateProductsModel(ACTION_SAVE, product);
+    this.updateProductsView(ACTION_SELL, product);
     Product.deleteProduct(product);
   }
 

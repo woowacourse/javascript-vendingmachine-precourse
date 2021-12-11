@@ -3,6 +3,7 @@ import {
   getPurchasedProductManagerItemQuantity,
   getProductManagerItemCollection,
 } from '../domElement.js';
+import { TABLE_ROW, CLASS, TABLE_DATA } from '../../constants/dom.js';
 
 export const createProductTableRow = (products) => {
   products.forEach((product) => {
@@ -19,9 +20,9 @@ const addTableBodyRow = (product) => {
 };
 
 const createTableBodyRow = (name, price, quantity) => {
-  const row = document.createElement('tr');
+  const row = document.createElement(TABLE_ROW);
 
-  row.setAttribute('class', 'product-manage-item');
+  row.setAttribute(CLASS, 'product-manage-item');
   row.dataset.productItem = name;
   createTableBodyData(row, name, price, quantity);
 
@@ -29,13 +30,13 @@ const createTableBodyRow = (name, price, quantity) => {
 };
 
 const createTableBodyData = (row, name, price, quantity) => {
-  const nameCell = document.createElement('td');
-  const priceCell = document.createElement('td');
-  const quantityCell = document.createElement('td');
+  const nameCell = document.createElement(TABLE_DATA);
+  const priceCell = document.createElement(TABLE_DATA);
+  const quantityCell = document.createElement(TABLE_DATA);
 
-  nameCell.setAttribute('class', 'product-manage-name');
-  priceCell.setAttribute('class', 'product-manage-price');
-  quantityCell.setAttribute('class', 'product-manage-quantity');
+  nameCell.setAttribute(CLASS, 'product-manage-name');
+  priceCell.setAttribute(CLASS, 'product-manage-price');
+  quantityCell.setAttribute(CLASS, 'product-manage-quantity');
   nameCell.innerHTML = name;
   priceCell.innerHTML = price;
   quantityCell.innerHTML = quantity;

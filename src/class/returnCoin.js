@@ -7,7 +7,9 @@ import {
 import { vendingMachine } from '../index.js';
 import { saveUserCharge } from '../storage/userCharge.js';
 import { saveCharges } from '../storage/vendingMachineCharge.js';
-import { COINS } from '../constants.js';
+import { COINS } from '../constants/data.js';
+import { ACTION_WITHDRAW } from '../constants/action.js';
+import { ALERT_NO_USER_AMOUNT } from '../constants/alert.js';
 
 export default class ReturnCoin {
   static returnedCoins = {
@@ -19,7 +21,7 @@ export default class ReturnCoin {
 
   static returnCoin() {
     if (vendingMachine.userAmount <= 0) {
-      alert('반환할 잔액이 없습니다.');
+      alert(ALERT_NO_USER_AMOUNT);
       return;
     }
 
@@ -32,8 +34,8 @@ export default class ReturnCoin {
   static pickCoin() {
     COINS.forEach((coin) => {
       while (vendingMachine.coins[coin] > 0 && vendingMachine.userAmount > 0) {
-        vendingMachine.updateUserAmountModel('출금', coin);
-        vendingMachine.updateVendingMachineChargeModel('출금', coin);
+        vendingMachine.updateUserAmountModel(ACTION_WITHDRAW, coin);
+        vendingMachine.updateVendingMachineChargeModel(ACTION_WITHDRAW, coin);
         ReturnCoin.returnedCoins[coin] += 1;
       }
     });

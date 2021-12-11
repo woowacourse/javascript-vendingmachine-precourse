@@ -4,6 +4,14 @@ import {
   getPurchaseManagerPurchaseTableBody,
   getProductPurchaseItemCollection,
 } from '../domElement.js';
+import {
+  TABLE_ROW,
+  CLASS,
+  TABLE_DATA,
+  BUTTON,
+  CLICK,
+} from '../../constants/dom.js';
+import { DO_PURCHASE_TEXT } from '../../constants/text.js';
 
 export const initPurchasableProductTable = () => {
   vendingMachine.products.forEach((product) => {
@@ -20,9 +28,9 @@ export const createPurchaseTableRow = (name, price, quantity) => {
 };
 
 export const createPurchasableProductTableRow = (name, price, quantity) => {
-  const tableRow = document.createElement('tr');
+  const tableRow = document.createElement(TABLE_ROW);
 
-  tableRow.setAttribute('class', 'product-purchase-item');
+  tableRow.setAttribute(CLASS, 'product-purchase-item');
   tableRow.dataset.productPurchaseItem = name;
   createPurchasableProductTableData(tableRow, name, price, quantity);
 
@@ -44,9 +52,9 @@ export const createPurchasableProductTableData = (
 };
 
 const createProductNameCell = (name) => {
-  const productNameCell = document.createElement('td');
+  const productNameCell = document.createElement(TABLE_DATA);
 
-  productNameCell.setAttribute('class', 'product-purchase-name');
+  productNameCell.setAttribute(CLASS, 'product-purchase-name');
   productNameCell.innerHTML = name;
   productNameCell.dataset.productName = name;
 
@@ -54,9 +62,9 @@ const createProductNameCell = (name) => {
 };
 
 const createProductPriceCell = (price) => {
-  const productPriceCell = document.createElement('td');
+  const productPriceCell = document.createElement(TABLE_DATA);
 
-  productPriceCell.setAttribute('class', 'product-purchase-price');
+  productPriceCell.setAttribute(CLASS, 'product-purchase-price');
   productPriceCell.innerHTML = price;
   productPriceCell.dataset.productPrice = price;
 
@@ -64,9 +72,9 @@ const createProductPriceCell = (price) => {
 };
 
 const createProductQuantity = (quantity) => {
-  const productQuantityCell = document.createElement('td');
+  const productQuantityCell = document.createElement(TABLE_DATA);
 
-  productQuantityCell.setAttribute('class', 'product-purchase-quantity');
+  productQuantityCell.setAttribute(CLASS, 'product-purchase-quantity');
   productQuantityCell.innerHTML = quantity;
   productQuantityCell.dataset.productQuantity = quantity;
 
@@ -74,13 +82,13 @@ const createProductQuantity = (quantity) => {
 };
 
 export const createPurchaseButtonCell = (name) => {
-  const purchaseButtonCell = document.createElement('td');
-  const purchaseButton = document.createElement('button');
+  const purchaseButtonCell = document.createElement(TABLE_DATA);
+  const purchaseButton = document.createElement(BUTTON);
 
-  purchaseButton.innerHTML = '구매하기';
-  purchaseButton.setAttribute('class', 'purchase-button');
+  purchaseButton.innerHTML = DO_PURCHASE_TEXT;
+  purchaseButton.setAttribute(CLASS, 'purchase-button');
   purchaseButton.dataset.productButton = name;
-  purchaseButton.addEventListener('click', () => {
+  purchaseButton.addEventListener(CLICK, () => {
     vendingMachine.purchase(purchaseButton.dataset.productButton);
   });
   purchaseButtonCell.appendChild(purchaseButton);

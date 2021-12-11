@@ -6,8 +6,7 @@ import {
   TABLE_ROW,
   TABLE_HEADER,
   TABLE_BODY,
-  ONE,
-  TWO,
+  TABLE_DATA,
   DIV,
   NONE,
   ID,
@@ -17,17 +16,18 @@ import {
   NUMBER,
   COLLAPSE,
   SPAN,
+  VENDING_MACHINE_COIN_ID_LIST,
+} from '../../constants/dom.js';
+import { ONE, TWO, COIN_LIST } from '../../constants/data.js';
+import {
   COIN_TEXT,
   COUNT_TEXT,
-  TABLE_DATA,
-  COIN_LIST,
   CHARGE_FORM_TITLE,
   CHARGE_FORM_INPUT_TEXT,
   CHARGE_TEXT,
   COIN_IN_VENDING_MACHINE_TEXT,
   AMOUNT_TITLE,
-  VENDING_MACHINE_COIN_ID_LIST,
-} from '../../constants.js';
+} from '../../constants/text.js';
 
 export const createVendingMachineChargeManager = () => {
   const vendingMachineChargeManager = document.createElement(DIV);
@@ -40,7 +40,7 @@ export const createVendingMachineChargeManager = () => {
   app.appendChild(vendingMachineChargeManager);
 };
 
-// charge form
+// 자판기 동전 충전하기
 
 const createChargeForm = () => {
   const chargeForm = document.createElement(DIV);
@@ -94,7 +94,7 @@ const createAmountText = () => {
   return amount;
 };
 
-// coin list
+// 자판기가 보유한 동전
 
 const createCoinList = () => {
   const coinList = document.createElement(DIV);

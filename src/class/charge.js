@@ -1,4 +1,4 @@
-import { COINS } from '../constants.js';
+import { COINS } from '../constants/data.js';
 import { vendingMachine } from '../index.js';
 
 export default class Charge {

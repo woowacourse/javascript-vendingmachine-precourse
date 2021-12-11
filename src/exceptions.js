@@ -1,8 +1,17 @@
 import { vendingMachine } from './index.js';
+import {
+  ALERT_BLANK,
+  ALERT_OUT_RANGE,
+  ALERT_OUT_RANGE_PRICE,
+  ALERT_NOT_INTEGER,
+  ALERT_NOT_MULTIPLE_OF_TEN,
+  ALERT_DUPLICATED,
+  ALERT_LACK_OF_USER_CHANGE,
+} from './constants/alert.js';
 
 export const blankInputException = (input) => {
   if (input.length === 0) {
-    alert('비어있는 항목이 존재합니다.');
+    alert(ALERT_BLANK);
     return true;
   }
 
@@ -11,7 +20,7 @@ export const blankInputException = (input) => {
 
 export const outRangeInputException = (input) => {
   if (input <= 0) {
-    alert('0을 초과하는 수가 입력되어야 합니다.');
+    alert(ALERT_OUT_RANGE);
     return true;
   }
 
@@ -20,7 +29,7 @@ export const outRangeInputException = (input) => {
 
 export const outRangeProductPriceInputException = (input) => {
   if (input < 100) {
-    alert('상품 가격은 100원부터 시작됩니다.');
+    alert(ALERT_OUT_RANGE_PRICE);
     return true;
   }
 
@@ -29,7 +38,7 @@ export const outRangeProductPriceInputException = (input) => {
 
 export const noIntegerException = (input) => {
   if (!Number.isInteger(input)) {
-    alert('정수만 입력될 수 있습니다.');
+    alert(ALERT_NOT_INTEGER);
     return true;
   }
 
@@ -38,7 +47,7 @@ export const noIntegerException = (input) => {
 
 export const notMultipleOfTenException = (input) => {
   if (input % 10 !== 0) {
-    alert('입력되는 금액은 10원으로 나누어 떨어져야 합니다.');
+    alert(ALERT_NOT_MULTIPLE_OF_TEN);
     return true;
   }
 
@@ -50,7 +59,7 @@ export const duplicatedProductException = (productName) => {
 
   vendingMachine.products.forEach((product) => {
     if (product.name === productName) {
-      alert('중복된 상품이 이미 존재합니다.');
+      alert(ALERT_DUPLICATED);
       isDuplicated = true;
     }
   });
@@ -62,7 +71,7 @@ export const lackOfUserChangeException = (price) => {
   if (vendingMachine.userAmount >= price) {
     return false;
   } else {
-    alert('잔돈이 부족합니다.');
+    alert(ALERT_LACK_OF_USER_CHANGE);
     return true;
   }
 };

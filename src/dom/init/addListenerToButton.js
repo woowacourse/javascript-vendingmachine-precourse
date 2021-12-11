@@ -1,16 +1,15 @@
 import {
   getMenuButtons,
   getManagers,
-  getPurchaseButtonCollection,
   getCoinReturnButton,
 } from '../domElement.js';
-import { BLOCK, NONE, CLICK } from '../../constants.js';
 import {
   getProductAddButton,
   getVendingMachineChargeButton,
   getChargeButton,
 } from '../domElement.js';
 import { vendingMachine } from '../../index.js';
+import { BLOCK, NONE, CLICK } from '../../constants/dom.js';
 
 export const addListenerToMenuButton = () => {
   const menuButtons = getMenuButtons();
@@ -36,7 +35,7 @@ const showOrHideManager = (managers, num) => {
 export const addListenerToProductAddButton = () => {
   const productAddButton = getProductAddButton();
 
-  productAddButton.addEventListener('click', () => {
+  productAddButton.addEventListener(CLICK, () => {
     vendingMachine.addProduct();
   });
 };
@@ -44,7 +43,7 @@ export const addListenerToProductAddButton = () => {
 export const addListenerToVendingMachineChargeButton = () => {
   const vendingMachineChargeButton = getVendingMachineChargeButton();
 
-  vendingMachineChargeButton.addEventListener('click', () => {
+  vendingMachineChargeButton.addEventListener(CLICK, () => {
     vendingMachine.addVendingMachineCharge();
   });
 };
@@ -52,7 +51,7 @@ export const addListenerToVendingMachineChargeButton = () => {
 export const addListenerToChargeButton = () => {
   const chargeButton = getChargeButton();
 
-  chargeButton.addEventListener('click', () => {
+  chargeButton.addEventListener(CLICK, () => {
     vendingMachine.addUserCharge();
   });
 };
@@ -60,7 +59,7 @@ export const addListenerToChargeButton = () => {
 export const addListenerToReturnCoinButton = () => {
   const coinReturnButton = getCoinReturnButton();
 
-  coinReturnButton.addEventListener('click', () => {
+  coinReturnButton.addEventListener(CLICK, () => {
     vendingMachine.returnCoin();
   });
 };

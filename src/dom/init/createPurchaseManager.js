@@ -6,11 +6,7 @@ import {
   TABLE_ROW,
   TABLE_HEADER,
   TABLE_BODY,
-  ONE,
-  THREE,
-  PRODUCT_NAME_TEXT,
-  PRICE_TEXT,
-  QUANTITY_TEXT,
+  TABLE_DATA,
   DIV,
   NONE,
   ID,
@@ -19,21 +15,25 @@ import {
   TYPE,
   NUMBER,
   COLLAPSE,
+  SPAN,
+  COIN_ID_LIST,
+} from '../../constants/dom.js';
+import {
+  PRODUCT_NAME_TEXT,
+  PRICE_TEXT,
+  QUANTITY_TEXT,
   INPUT_COIN_TEXT,
   COIN_TO_INPUT_TEXT,
   INPUT_TEXT,
-  SPAN,
   COIN_AFTER_INPUT_TEXT,
   PRODUCT_LIST_CAN_PURCHASE_TEXT,
   CHANGES_TEXT,
   COIN_TEXT,
   COUNT_TEXT,
-  TABLE_DATA,
   RETURN_TEXT,
   PURCHASE_TEXT,
-  COIN_LIST,
-  COIN_ID_LIST,
-} from '../../constants.js';
+} from '../../constants/text.js';
+import { ONE, THREE, COIN_LIST } from '../../constants/data.js';
 
 export const createPurchaseManager = () => {
   const purchaseManager = document.createElement(DIV);
@@ -50,7 +50,7 @@ export const createPurchaseManager = () => {
   app.appendChild(purchaseManager);
 };
 
-// charge form
+// 금액 투입
 
 const createChargeForm = () => {
   const chargeForm = document.createElement(DIV);
@@ -101,7 +101,7 @@ const createAmountText = () => {
   return Amount;
 };
 
-// purchase list
+// 구매할 수 있는 상품 현황
 
 const createPurchaseList = () => {
   const purChaseList = document.createElement(DIV);
@@ -168,7 +168,7 @@ const createPurchaseListTableBody = () => {
   return tableBody;
 };
 
-// coin list
+// 잔돈
 
 const createCoinList = () => {
   const coinList = document.createElement(DIV);

@@ -1,11 +1,12 @@
 import { vendingMachine } from '../index.js';
+import { PRODUCTS } from '../constants/key.js';
 
 export const saveProductList = (productList) => {
-  localStorage.setItem('products', JSON.stringify(productList));
+  localStorage.setItem(PRODUCTS, JSON.stringify(productList));
 };
 
 export const loadProductList = () => {
-  const products = JSON.parse(localStorage.getItem('products'));
+  const products = JSON.parse(localStorage.getItem(PRODUCTS));
 
   return !products ? [] : products;
 };

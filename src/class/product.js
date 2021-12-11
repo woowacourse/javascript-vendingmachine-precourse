@@ -1,4 +1,5 @@
 import { vendingMachine } from '../index.js';
+import { ACTION_DELETE, ACTION_SAVE } from '../constants/action.js';
 
 export default class Product {
   constructor(name, price, quantity) {
@@ -21,9 +22,9 @@ export default class Product {
 
   static deleteProduct(product) {
     if (product.quantity === 0) {
-      vendingMachine.updateProductsModel('삭제', product);
-      vendingMachine.updateProductsModel('저장', product);
-      vendingMachine.updateProductsView('삭제', product);
+      vendingMachine.updateProductsModel(ACTION_DELETE, product);
+      vendingMachine.updateProductsModel(ACTION_SAVE, product);
+      vendingMachine.updateProductsView(ACTION_DELETE, product);
     }
   }
 

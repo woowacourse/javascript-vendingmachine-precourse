@@ -1,11 +1,12 @@
 import { vendingMachine } from '../index.js';
+import { USER_CHARGE } from '../constants/key.js';
 
 export const saveUserCharge = () => {
-  localStorage.setItem('userCharge', vendingMachine.userAmount);
+  localStorage.setItem(USER_CHARGE, vendingMachine.userAmount);
 };
 
 export const loadUserCharge = () => {
-  const userCharge = localStorage.getItem('userCharge');
+  const userCharge = localStorage.getItem(USER_CHARGE);
 
   return userCharge ? Number(userCharge) : null;
 };

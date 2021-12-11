@@ -6,13 +6,6 @@ import {
   TABLE_ROW,
   TABLE_HEADER,
   TABLE_BODY,
-  ONE,
-  ADD_PRODUCT_TEXT,
-  PRODUCT_NAME_TEXT,
-  PRICE_TEXT,
-  QUANTITY_TEXT,
-  ADD_TEXT,
-  PRODUCT_LIST_TITLE,
   DIV,
   NONE,
   ID,
@@ -22,7 +15,16 @@ import {
   NUMBER,
   COLLAPSE,
   TEXT,
-} from '../../constants.js';
+} from '../../constants/dom.js';
+import { ONE } from '../../constants/data.js';
+import {
+  ADD_PRODUCT_TEXT,
+  PRODUCT_NAME_TEXT,
+  PRICE_TEXT,
+  QUANTITY_TEXT,
+  ADD_TEXT,
+  PRODUCT_LIST_TITLE,
+} from '../../constants/text.js';
 
 export const createProductManager = () => {
   const productManager = document.createElement(DIV);
@@ -35,7 +37,7 @@ export const createProductManager = () => {
   app.appendChild(productManager);
 };
 
-// add form
+// 상품 추가하기
 
 const createAddProductForm = () => {
   const productForm = document.createElement(DIV);
@@ -97,7 +99,7 @@ const createProductAddButton = () => {
   return productAddButton;
 };
 
-// product list
+// 상품 현황
 
 const createProductList = () => {
   const productList = document.createElement(DIV);

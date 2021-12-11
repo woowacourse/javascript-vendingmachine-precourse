@@ -3,7 +3,7 @@ import {
   getVendingMachineChargeAmount,
   getVendingMachineCoinTableData,
 } from '../domElement.js';
-import { COINS } from '../../constants.js';
+import { COINS } from '../../constants/data.js';
 
 const updateVendingMachineChargeAmount = () => {
   const vendingMachineChargeAmount = getVendingMachineChargeAmount();

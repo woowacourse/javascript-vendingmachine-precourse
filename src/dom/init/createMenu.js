@@ -1,12 +1,10 @@
 import { app } from '../domElement.js';
+import { ID, DIV, BUTTON } from '../../constants/dom.js';
 import {
-  ID,
-  DIV,
-  BUTTON,
   PRODUCT_MANAGE_TEXT,
   CHANGES_CHARGE_TEXT,
   PRODUCT_PURCHASE_TEXT,
-} from '../../constants.js';
+} from '../../constants/text.js';
 
 export const createMenu = () => {
   const menu = document.createElement(DIV);
