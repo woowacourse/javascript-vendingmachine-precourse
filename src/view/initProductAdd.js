@@ -14,6 +14,8 @@ export const PRODUCT_PRICE_INPUT_ID = 'product-price-input';
 export const PRODUCT_QUANTITY_INPUT_ID = 'product-quantity-input';
 export const PRODUCT_ADD_BUTTON_ID = 'product-add-button';
 
+export const PRODUCT_ADD_CONTAINER_ID = 'product-add-container';
+
 function renderProductAddInput($productAdd) {
   const $inputContainer = document.createElement('div');
 
@@ -66,6 +68,7 @@ function renderProductAddList($productAdd) {
 
 export default function initProductAdd($appDiv) {
   const $productAdd = document.createElement('div');
+  $productAdd.id = PRODUCT_ADD_CONTAINER_ID;
 
   renderProductAddInput($productAdd);
   renderProductAddList($productAdd);

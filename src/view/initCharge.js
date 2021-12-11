@@ -19,6 +19,8 @@ const CHARGE_100_QUANTITY_ID = 'vending-machine-coin-100-quantity';
 const CHARGE_50_QUANTITY_ID = 'vending-machine-coin-50-quantity';
 const CHARGE_10_QUANTITY_ID = 'vending-machine-coin-10-quantity';
 
+export const CHARGE_CONTAINER_ID = 'charge-container';
+
 function renderChargeInput($charge) {
   const $inputContainer = document.createElement('div');
 
@@ -81,6 +83,7 @@ function renderChargeCoins($charge) {
 
 export default function initCharge($appDiv) {
   const $charge = document.createElement('div');
+  $charge.id = CHARGE_CONTAINER_ID;
 
   renderChargeInput($charge);
   renderChargeCoins($charge);
