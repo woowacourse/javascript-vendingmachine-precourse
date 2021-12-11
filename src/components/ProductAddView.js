@@ -45,6 +45,7 @@ export default class ProductAddView {
     if(productAddCheck.checkAll()) {
         this.storeProduct(name, price, quantity);
         this.showTable();
+        this.makeBlank();
     } else {
         alert(ERROR_MESSAGE);
     }
@@ -67,5 +68,11 @@ export default class ProductAddView {
         }
 
         return quantity;
+    }
+
+    static makeBlank() {
+        document.getElementById('product-name-input').value = "";
+        document.getElementById('product-price-input').value = "";
+        document.getElementById('product-quantity-input').value = "";
     }
 }

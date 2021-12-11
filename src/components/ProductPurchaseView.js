@@ -80,6 +80,7 @@ export default class ProductPurchaseView {
       alert("거스름돈이 없습니다!");
       return false;
     }
+    
     return true;
   }
 
@@ -154,6 +155,7 @@ export default class ProductPurchaseView {
     coins[num] -= 1;
     list[0] -= num;
     list[1] += num;
+
     return list;
   }
 
@@ -161,8 +163,8 @@ export default class ProductPurchaseView {
     this.temp = temp;
     this.real = real;
     let list = [temp, real];
-    return list;
 
+    return list;
   }
 
   static showUserCoinTable() {
