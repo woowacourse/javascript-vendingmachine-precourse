@@ -19,6 +19,7 @@ const DOMUtils = {
   getCharge: () => {
     return {
       vendingMachine: $('#vending-machine-charge-input').value,
+      toPurchaseProduct: $('#charge-input').value,
     };
   },
 

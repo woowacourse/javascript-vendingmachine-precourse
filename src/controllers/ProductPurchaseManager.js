@@ -1,11 +1,19 @@
+import { $, default as DOM } from '../views/DOMUtils.js';
+import { default as V } from '../utils/validators.js';
+
 export default class ProductPurchaseManager {
   constructor() {
-    console.log('hi');
     this.render();
     this.manage();
   }
 
   render() {}
 
-  manage() {}
+  manage() {
+    $('#charge-button').addEventListener('click', e => {
+      e.preventDefault();
+
+      if (!V.isValidCharge(DOM.getCharge().toPurchaseProduct)) return;
+    });
+  }
 }
