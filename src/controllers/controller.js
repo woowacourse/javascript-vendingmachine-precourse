@@ -1,19 +1,27 @@
 import { ID } from '../constant/attributes.js';
-import { validateProduct } from '../utils/validate.js';
+import { validateChange, validateProduct } from '../utils/validate.js';
 
 export default class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+    this.view.renderChange(this.model.money, this.model.coinsArr);
+    this.addEventsToChange();
     this.view.renderAddProduct(this.model.menu);
-    this.addEvents();
+    this.addEventsToAddProduct();
   }
 
-  addEvents() {
+  addEventsToAddProduct() {
     document.getElementById(ID.MENU.CONTAINER).addEventListener('click', this.tabChoice.bind(this));
     document
       .getElementById(ID.PRODUCT.ADD_BUTTON)
       .addEventListener('click', this.addItem.bind(this));
+  }
+
+  addEventsToChange() {
+    document
+      .getElementById(ID.VENDING_MACHINE.CHARGE.BUTTON)
+      .addEventListener('click', this.chargeChange.bind(this));
   }
 
   tabChoice(e) {
@@ -23,10 +31,6 @@ export default class Controller {
         break;
       case ID.MENU.CHANGE:
         this.view.renderChange(this.model.money, this.model.coinsArr);
-        document
-          .getElementById(ID.VENDING_MACHINE.CHARGE.BUTTON)
-          .addEventListener('click', this.chargeChange.bind(this));
-
         break;
       default:
     }
@@ -50,7 +54,12 @@ export default class Controller {
   chargeChange(event) {
     event.preventDefault();
     const money = Number(document.getElementById(ID.VENDING_MACHINE.CHARGE.INPUT).value);
+    const error = validateChange(money);
+    if (error) {
+      return this.view.report(error);
+    }
     this.model.insertChange(money);
     this.view.renderChange(this.model.money, this.model.coinsArr);
+    return undefined;
   }
 }

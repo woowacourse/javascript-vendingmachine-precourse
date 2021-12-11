@@ -18,20 +18,6 @@ export default class App {
     this.$chargeChangeComponent = new ChargeChage();
   }
 
-  render(id) {
-    switch (id) {
-      case ID.MENU.ADD:
-        this.$root.replaceChild(this.$addProductComponent.component, this.$root.lastElementChild);
-        break;
-      case ID.MENU.PURCHASE:
-        break;
-      case ID.MENU.CHANGE:
-        this.$root.replaceChild(this.$chargeChangeComponent.component, this.$root.lastElementChild);
-        break;
-      default:
-    }
-  }
-
   renderAddProduct(menu) {
     this.$addProductComponent.$status.render(menu);
     this.$root.replaceChild(this.$addProductComponent.component, this.$root.lastElementChild);

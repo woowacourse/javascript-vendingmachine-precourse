@@ -22,7 +22,6 @@ const validateName = (name, list) => {
 };
 
 const validatePrice = (price) => {
-  console.log(Boolean(price % UNIT));
   if (isEmpty(price)) {
     return ERROR.NO_PRICE;
   }
@@ -58,6 +57,16 @@ export const validateProduct = ({ name, price, quantity, list }) => {
   }
   if (validateQuantity(quantity)) {
     return validateQuantity(quantity);
+  }
+  return undefined;
+};
+
+export const validateChange = (money) => {
+  if (!isNaturalNumber(money)) {
+    return ERROR.NOT_PLUS_CHARGE;
+  }
+  if (!isDividedByNumber(money)) {
+    return ERROR.NOT_DIVIDED_BY_TEN_CHARGE;
   }
   return undefined;
 };

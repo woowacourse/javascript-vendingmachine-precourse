@@ -28,6 +28,7 @@ export default class VendingMachine {
 
   insertChange(money) {
     let change = money;
+    console.log(money);
     while (change) {
       const randomCoin = MissionUtils.Random.pickNumberInList(kindsOfCoins);
       if (randomCoin <= change) {

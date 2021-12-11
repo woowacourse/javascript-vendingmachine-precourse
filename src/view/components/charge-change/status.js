@@ -48,7 +48,7 @@ export default class CoinStatus {
 
   render(coins) {
     coins.forEach((item, idx) => {
-      this.content[idx].textContent = Object.values(item)[0];
+      this.content[idx].textContent = Object.values(item).join('');
     });
   }
 
