@@ -3,13 +3,11 @@ import { createElement, createInput } from '../../../utils/dom-utils.js';
 import { CHARGE } from '../../../constant/text.js';
 
 export default class ChangeInput {
-  constructor(updateChange, holding) {
+  constructor(updateChange) {
     this.$container = createElement('div');
-    this.holdingAmount = holding || 0;
     this.updateChage = updateChange;
     this.create();
     this.appendChildren();
-    this.bindEvents();
   }
 
   create() {
@@ -28,17 +26,10 @@ export default class ChangeInput {
     this.$container.append(this.$title, this.$form, this.$holdingContainer);
   }
 
-  bindEvents() {
-    this.$submitButton.addEventListener('click', this.charge.bind(this));
-  }
-
-  charge(event) {
-    event.preventDefault();
-    this.holdingAmount += Number(this.$changeInput.value);
-    this.$holdingSpan = createElement('span', this.holdingAmount);
+  chargeMoney(money) {
+    this.$holdingSpan = createElement('span', money);
     this.$holdingContainer.replaceChild(this.$holdingSpan, this.$holdingContainer.lastElementChild);
     this.$container.replaceChild(this.$holdingContainer, this.$container.lastElementChild);
-    // this.updateChage();
   }
 
   get component() {

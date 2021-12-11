@@ -19,6 +19,10 @@ export default class AddProduct {
     this.$element.append(this.$inputContainer, this.$status.components);
   }
 
+  addItem(item) {
+    this.$status.addItem(item);
+  }
+
   get component() {
     return this.$element;
   }

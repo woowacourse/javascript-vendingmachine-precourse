@@ -1,5 +1,9 @@
 import App from './view/app.js';
-import { ID } from './constant/attributes.js';
+import VendingMachine from './model/vending-machine.js';
+import Controller from './controllers/controller.js';
 
-const app = document.getElementById(ID.APP);
-new App(app);
+window.addEventListener('DOMContentLoaded', () => {
+  const model = new VendingMachine();
+  const view = new App();
+  const controller = new Controller(model, view);
+});

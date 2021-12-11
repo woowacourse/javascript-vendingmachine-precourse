@@ -1,13 +1,15 @@
 import { CLASS, ID } from '../../../constant/attributes.js';
+import { CURRENCY, kindsOfCoins } from '../../../constant/constant.js';
 import { TABLE, TD } from '../../../constant/style.js';
-import { createElement, createTr, createTrById } from '../../../utils/dom-utils.js';
+import { createElement, createTr } from '../../../utils/dom-utils.js';
 
 export default class CoinStatus {
   constructor() {
-    this.status = [{ '500원': 18 }, { '100원': 24 }, { '50원': 20 }, { '10원': 20 }];
+    this.content = [];
+    this.sort = kindsOfCoins.map((kind) => `${kind}${CURRENCY}`);
     this.create();
+    this.createTable();
     this.appendChildren();
-    this.render(this.status);
   }
 
   create() {
@@ -16,8 +18,7 @@ export default class CoinStatus {
   }
 
   appendChildren() {
-    const $empty = createElement('div');
-    this.$container.append(this.$title, $empty);
+    this.$container.append(this.$title, this.$table);
   }
 
   createTable() {
@@ -26,22 +27,28 @@ export default class CoinStatus {
     this.$table.appendChild(createTr('동전', '개수'));
     this.$table.style.border = TD.BORDER;
     this.$table.style.borderCollapse = TABLE.COLLAPSE;
+    this.buildTable();
   }
 
-  render(coins) {
-    this.createTable();
+  buildTable() {
     const idList = [
       ID.VENDING_MACHINE.COIN_QUANTITY.FIVE_HUNDREDS,
       ID.VENDING_MACHINE.COIN_QUANTITY.ONE_HUNDRED,
       ID.VENDING_MACHINE.COIN_QUANTITY.FIFTY,
       ID.VENDING_MACHINE.COIN_QUANTITY.TEN,
     ];
-    coins.forEach((item, idx) => {
-      const $tr = createTr(...Object.keys(item), ...Object.values(item));
+    this.sort.forEach((item, idx) => {
+      const $tr = createTr(item, 0);
       $tr.lastElementChild.id = idList[idx];
+      this.content.push($tr.lastElementChild);
       this.$table.appendChild($tr);
     });
-    this.$container.replaceChild(this.$table, this.$container.lastElementChild);
+  }
+
+  render(coins) {
+    coins.forEach((item, idx) => {
+      this.content[idx].textContent = Object.values(item)[0];
+    });
   }
 
   get component() {

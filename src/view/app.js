@@ -5,32 +5,21 @@ import AddProduct from './components/add-product/index.js';
 import ChargeChage from './components/charge-change/index.js';
 
 export default class App {
-  constructor($target) {
-    this.$root = $target;
-    this.tab = ID.MENU.ADD;
+  constructor() {
+    this.$root = document.getElementById(ID.APP);
     this.init();
-    this.render();
   }
 
   init() {
-    this.$menu = new TabComponents(this.$root, this.setTab.bind(this));
     const $emptyContainer = createElement('div');
+    this.$menu = new TabComponents(this.$root);
     this.$root.appendChild($emptyContainer);
     this.$addProductComponent = new AddProduct();
-    this.$chargeChangeComponent = new ChargeChage(this.updateCharge.bind(this));
+    this.$chargeChangeComponent = new ChargeChage();
   }
 
-  setTab(tab) {
-    this.tab = tab;
-    this.render();
-  }
-
-  updateCharge() {
-    this.$root.replaceChild(this.$chargeChangeComponent.component, this.$root.lastElementChild);
-  }
-
-  render() {
-    switch (this.tab) {
+  render(id) {
+    switch (id) {
       case ID.MENU.ADD:
         this.$root.replaceChild(this.$addProductComponent.component, this.$root.lastElementChild);
         break;
@@ -41,5 +30,20 @@ export default class App {
         break;
       default:
     }
+  }
+
+  renderAddProduct(menu) {
+    this.$addProductComponent.$status.render(menu);
+    this.$root.replaceChild(this.$addProductComponent.component, this.$root.lastElementChild);
+  }
+
+  renderChange(money, coins) {
+    this.$chargeChangeComponent.renderMoney(money);
+    this.$chargeChangeComponent.renderCoins(coins);
+    this.$root.replaceChild(this.$chargeChangeComponent.component, this.$root.lastElementChild);
+  }
+
+  addItem({ name, price, quantity }) {
+    this.$addProductComponent.addItem({ name, price, quantity });
   }
 }

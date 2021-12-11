@@ -3,15 +3,14 @@ import ChangeInput from './input.js';
 import CoinStatus from './status.js';
 
 export default class ChargeChage {
-  constructor(updateChange) {
+  constructor() {
     this.init();
     this.appendChildren();
-    this.updateChange = updateChange;
   }
 
   init() {
     this.$element = createElement('div');
-    this.$changeInput = new ChangeInput(this.updateChange.bind(this));
+    this.$changeInput = new ChangeInput();
     this.$status = new CoinStatus();
   }
 
@@ -22,6 +21,14 @@ export default class ChargeChage {
   updateChange() {
     this.$element.replaceChild(this.$element.firstElementChild, this.$changeInput.component);
     this.updateChange();
+  }
+
+  renderMoney(money) {
+    this.$changeInput.chargeMoney(money);
+  }
+
+  renderCoins(coins) {
+    this.$status.render(coins);
   }
 
   get component() {

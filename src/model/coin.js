@@ -3,4 +3,9 @@ export default class Coin {
     this.kinds = kinds;
     this.amount = amount;
   }
+
+  get obj() {
+    const key = `${String(this.kinds)}원`;
+    return { [key]: this.amount };
+  }
 }

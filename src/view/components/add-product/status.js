@@ -5,10 +5,8 @@ import { createElement, createTr, createTrByClass } from '../../../utils/dom-uti
 
 export default class ProductStatus {
   constructor() {
-    this.local = [['콜라', 5000, 20]];
     this.create();
     this.appendChildren();
-    this.render(this.local);
   }
 
   create() {
@@ -41,6 +39,16 @@ export default class ProductStatus {
       this.$table.appendChild($tr);
     });
     this.$container.replaceChild(this.$table, this.$container.lastElementChild);
+  }
+
+  addItem(item) {
+    const classList = [
+      CLASS.PRODUCT.MANGAE_NAME,
+      CLASS.PRODUCT.MANAGE_PRICE,
+      CLASS.PRODUCT.MANAGE_QUANTITY,
+    ];
+    const $tr = createTrByClass(classList, ...Object.values(item));
+    this.$table.appendChild($tr);
   }
 
   get components() {

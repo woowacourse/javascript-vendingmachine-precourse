@@ -3,12 +3,10 @@ import { MENU } from '../../../constant/text.js';
 import { createElement } from '../../../utils/dom-utils.js';
 
 export default class MenuComponents {
-  constructor($element, setTab) {
+  constructor($element) {
     this.$root = $element;
     this.create();
     this.addChildren();
-    this.bindEvents();
-    this.setTab = setTab;
   }
 
   create() {
@@ -28,15 +26,5 @@ export default class MenuComponents {
     );
     this.$container.append(this.$title, this.$buttonContainer);
     this.$root.append(this.$container);
-  }
-
-  bindEvents() {
-    this.$buttonContainer.addEventListener('click', this.tabChoice.bind(this));
-  }
-
-  tabChoice(e) {
-    if (e.target.id !== '') {
-      this.setTab(e.target.id);
-    }
   }
 }
