@@ -28,7 +28,7 @@
 
 ⬜ 메인 > 각 탭 버튼 클릭시 디스플레이 조정 기능 구현
 
-# productAddMenu, vendingMachineManageMenu, poductPurchaseMenu 구분 하여 구현
+# productAddMenu, vendingMachineManageMenu, poductPurchaseMenu 구분 하여 구현예정
 
 ### 상품 관리 탭
 
