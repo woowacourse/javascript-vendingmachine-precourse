@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+#main-menu {
+  padding: 10px 0;
+}
+
+#main-menu > button {
+  margin-right: 5px;
+}
+
+#main-menu > button:last-child {
+  margin-right: 0;
+}
+
+section.component {
+  margin-bottom: 50px;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.open {
+  display: block;
+}
+
+table {
+  width: 40%;
+  min-width: 520px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  padding: 10px 0;
+  text-align: center;
+}
