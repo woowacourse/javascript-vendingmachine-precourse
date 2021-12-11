@@ -1,18 +1,14 @@
+import {ADD_TAB_ID} from '../constants.js'
 import elementCreator from "../dom/util.js"
-
-const NAME_INPUT = 'product-name-input';
-const PRICE_INPUT = 'product-price-input';
-const QUANTITY_INPUT = 'product-quantity-input';
-const ADD_BUTTON = 'product-add-button';
 
 const createAddGoodsElement = (addTab) => {
     addTab.append(elementCreator('h3', null, '상품 추가하기'));
 
     const inputs = document.createElement('span');
-    inputs.append(elementCreator('input', NAME_INPUT, null));
-    inputs.append(elementCreator('input', PRICE_INPUT, null));
-    inputs.append(elementCreator('input', QUANTITY_INPUT, null));
-    inputs.append(elementCreator('button', ADD_BUTTON, '추가하기'));
+    inputs.append(elementCreator('input', ADD_TAB_ID.NAME_INPUT, null));
+    inputs.append(elementCreator('input', ADD_TAB_ID.PRICE_INPUT, null));
+    inputs.append(elementCreator('input', ADD_TAB_ID.QUANTITY_INPUT, null));
+    inputs.append(elementCreator('button', ADD_TAB_ID.ADD_BUTTON, '추가하기'));
 
     addTab.append(inputs);
 }

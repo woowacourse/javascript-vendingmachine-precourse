@@ -1,5 +1,7 @@
+import {ADD_TAB_ID} from './constants.js';
 import elementCreator from './dom/util.js';
 import createAddTab from './tabs/add-tab.js';
+import VendingMachine from './machine.js';
 
 const addButtonId = 'product-add-menu';
 const manageButtonId = 'vending-machine-manage-menu';
@@ -50,3 +52,16 @@ buttons.addEventListener('click', e =>{
         }
     };
 });
+
+//자판기 객체 생성
+const vendingMachine = new VendingMachine();
+
+const addTabButton = document.getElementById(ADD_TAB_ID.ADD_BUTTON)
+addTabButton.addEventListener('click', e => {
+    e.preventDefault();
+    const name = document.getElementById(ADD_TAB_ID.NAME_INPUT).value;
+    const price = document.getElementById(ADD_TAB_ID.PRICE_INPUT).value;
+    const quantity = document.getElementById(ADD_TAB_ID.QUANTITY_INPUT).value;
+    
+    vendingMachine.addProduct(name, price, quantity);
+})
