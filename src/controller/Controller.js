@@ -15,7 +15,7 @@ export default class Controller {
     );
     this.product = new Product(this.localStorageProductsInformation || []);
     this.render = new Render(this.coins, this.product);
-    this.vendingMachine = new VendingMachine(this.coins, this.product);
+    this.vendingMachine = new VendingMachine(this.render, this.coins, this.product);
     this.checkEventTarget = new CheckEventTarget(this.render, this.coins, this.product, this.vendingMachine);
     this.$app = document.querySelector(DOM.$APP);
     this.main();

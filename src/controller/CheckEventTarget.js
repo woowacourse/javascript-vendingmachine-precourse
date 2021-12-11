@@ -1,7 +1,7 @@
 import SetProductAdd from '../model/SetProductAdd.js';
 import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE } from '../utils/constant.js';
 import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
-import VendingMachinePurchase from '../model/setVendingMachinePurchase.js';
+import SetVendingMachinePurchase from '../model/SetVendingMachinePurchase.js';
 
 export default class CheckEventTarget {
   constructor(render, coins, product, vendingMachine) {
@@ -66,7 +66,7 @@ export default class CheckEventTarget {
   onClickChargeButton = () => {
     const $chargeButton = document.querySelector(DOM.$CHARGE_BUTTON);
     $chargeButton.addEventListener(EVENT.CLICK, () => {
-      new VendingMachinePurchase(this.render);
+      new SetVendingMachinePurchase(this.render, this.vendingMachine);
     });
   };
 

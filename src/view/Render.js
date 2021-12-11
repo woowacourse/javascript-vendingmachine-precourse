@@ -18,6 +18,11 @@ export default class Render {
     $vendingMachineSection.innerHTML = template;
   };
 
+  chargeInputTemplate = (template) => {
+    const $chargeAmount = document.querySelector(DOM.$CHARGE_AMOUNT);
+    $chargeAmount.innerHTML = template;
+  };
+
   productPurchaseStatusTemplate = (template) => {
     const $productPurchaseMenuTbody = document.querySelector(DOM.$PRODUCT_PURCHASE_MENU_TBODY);
     const $tr = document.createElement(DOM.$TR);
