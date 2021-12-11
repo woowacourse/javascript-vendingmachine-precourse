@@ -61,6 +61,12 @@ const DOMUtils = {
       $(`#vending-machine-${coinType}-quantity`).innerHTML = `${quantity}개`;
     });
   },
+
+  showChargeToPurchaseProduct: () => {
+    const charge = DB.load('chargeToPurchaseProduct');
+
+    if (charge > 0) $('#charge-amount').innerHTML = `${charge}원`;
+  },
 };
 
 export default DOMUtils;

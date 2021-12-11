@@ -8,7 +8,9 @@ export default class ProductPurchaseManager {
     this.manage();
   }
 
-  render() {}
+  render() {
+    DOM.showChargeToPurchaseProduct();
+  }
 
   manage() {
     $('#charge-button').addEventListener('click', e => {
@@ -17,6 +19,8 @@ export default class ProductPurchaseManager {
       if (!V.isValidCharge(DOM.getCharge().toPurchaseProduct)) return;
 
       DB.overwrite('chargeToPurchaseProduct', Number(DOM.getCharge().toPurchaseProduct));
+
+      DOM.showChargeToPurchaseProduct();
     });
   }
 }
