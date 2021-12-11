@@ -3,6 +3,7 @@ import { resetPurchaseInput } from '../views/resetInput.js';
 import printInputCharge from '../views/printInputCharge.js';
 import store from '../utils/store.js';
 import renderProducts from '../views/renderProducts.js';
+import getChange from '../models/calculateChange.js';
 
 const isValidCharge = chargeInput => {
   if (chargeInput === '') {
@@ -54,12 +55,16 @@ const handleProductPurchase = () => {
 
         // 수량 업데이트
         const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
-        const products = store.getLocalStorage('products');
+        const products = store.getLocalStorage('products'); // 따로 파일로 빼주기 (현재 상태 가져옴)
         products[purchaseIndex].quantity -= 1;
         store.setLocalStorage('products', products);
         e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').innerText -= 1;
       }
     }
+  });
+
+  $('#coin-return-button').addEventListener('click', () => {
+    getChange();
   });
 };
 
