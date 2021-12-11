@@ -24,6 +24,7 @@ export default class ProductAddManager {
 
       DOM.showInventory();
       DOM.showIntentoryToPurchaseProduct();
+      DOM.addPurchaseButtonEvent();
     });
   }
 }

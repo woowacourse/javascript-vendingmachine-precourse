@@ -1,4 +1,4 @@
-import { $, $$, default as DOM } from '../views/DOMUtils.js';
+import { $, default as DOM } from '../views/DOMUtils.js';
 import { default as V } from '../utils/validators.js';
 import { default as DB } from '../model/database.js';
 import { default as UT } from '../utils/utils.js';
@@ -25,11 +25,6 @@ export default class ProductPurchaseManager {
       DOM.showChargeToPurchaseProduct();
     });
 
-    UT.isExist(DB.load('inventory')) &&
-      $$('.purchase-button').forEach(button => {
-        button.addEventListener('click', e => {
-          console.log(e);
-        });
-      });
+    UT.isExist(DB.load('inventory')) && DOM.addPurchaseButtonEvent();
   }
 }
