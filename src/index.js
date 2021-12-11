@@ -10,6 +10,7 @@ import printVendingMachineAmountAndCoinTable from './printVendingMachineAmountAd
 import attachChargeEvent from './attachChargeEvent.js';
 import VendingMachine from './VendingMachine.js';
 import printChargeAmount from './printChargeAmount.js';
+import printProductPurchaseItemTable from './printProductPurchaseItemTable.js';
 
 renderAppTemplate();
 const vendingMachine = new VendingMachine();
@@ -32,5 +33,6 @@ const $productPurchaseMenu = document.getElementById(DOM_ID_SELECTOR.productPurc
 $productPurchaseMenu.addEventListener('click', () => {
   renderProductPurchaseTemplate();
   printChargeAmount(vendingMachine.getMoney());
+  printProductPurchaseItemTable(vendingMachine.product);
   attachChargeEvent(vendingMachine);
 });

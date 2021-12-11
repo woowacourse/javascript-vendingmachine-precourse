@@ -32,6 +32,11 @@ export const DOM_CLASS_SELECTOR = {
   productManageName: 'product-manage-name',
   productManagePrice: 'product-manage-price',
   productManageQuantity: 'product-manage-quantity',
+  purchaseItem: 'purchase-item',
+  productPurchaseName: 'product-purchase-name',
+  productPurchasePrice: 'product-purchase-price',
+  productPurchaseQuantity: 'product-purchase-quantity',
+  purchaseButton: 'purchase-button',
 };
 
 export const BUTTON_MESSAGE = {
@@ -74,6 +79,7 @@ export const PRODUCT_PURCHASE_MESSAGE = {
   productPrice: '가격',
   productQuantity: '수량',
   productPurchase: '구매',
+  purchase: '구매하기',
   charge: '투입하기',
   amount: '투입한 금액: ',
   return: '반환하기',
