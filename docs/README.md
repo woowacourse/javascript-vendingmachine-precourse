@@ -69,10 +69,22 @@
 -   파일 구조
     ├── src
     │ └── charge
+    | | └── Coin.js
+    | | └── container.js
+    | | └── presenter.js
     │ └── manage
+    | | └── container.js
+    | | └── presenter.js
+    | | └── product.js
     │ └── purchase
+    | | └── calc.js
+    | | └── container.js
+    | | └── presenter.js
     │ ├── storage
     | | └── constant.js
+    | | └── createElement.js
     | | └── initialPresent.js
+    | | └── localStorage.js
+    | | └── validation.js
     │ └── index.js
     └── index.html
