@@ -1,3 +1,3 @@
 export default {
-  currentTab: 'currentTab',
+  currentMenu: 'currentMenu',
 };

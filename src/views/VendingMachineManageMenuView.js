@@ -7,7 +7,7 @@ import {
 } from '../templates/vendingMachineManageMenu.js';
 import SELECTOR from '../constants/selector.js';
 
-class VendingMachineManageTab {
+class VendingMachineManageMenuView {
   render() {
     $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
       createTitleTemplate() +
@@ -17,4 +17,4 @@ class VendingMachineManageTab {
   }
 }
 
-export default VendingMachineManageTab;
+export default VendingMachineManageMenuView;

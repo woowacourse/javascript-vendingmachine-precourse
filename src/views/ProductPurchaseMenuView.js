@@ -7,7 +7,7 @@ import {
 } from '../templates/productPurchaseMenu.js';
 import SELECTOR from '../constants/selector.js';
 
-class ProductPurchaseTab {
+class ProductPurchaseMenuView {
   render() {
     $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
       createTitleTemplate() +
@@ -17,4 +17,4 @@ class ProductPurchaseTab {
   }
 }
 
-export default ProductPurchaseTab;
+export default ProductPurchaseMenuView;

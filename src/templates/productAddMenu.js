@@ -12,7 +12,7 @@ const createTbodyTableDataTemplate = (text, className) => `
 `;
 
 const createProductItemTemplate = (name, price, quantity) => `
-  <tr id="${SELECTOR.productManageItemClass}">
+  <tr class="${SELECTOR.productManageItemClass}">
     ${createTbodyTableDataTemplate(name, SELECTOR.productManageNameClass)}
     ${createTbodyTableDataTemplate(price, SELECTOR.productManagePriceClass)}
     ${createTbodyTableDataTemplate(quantity, SELECTOR.productManageQuantityClass)}
@@ -29,7 +29,15 @@ export const createProductAddFormTemplate = () => `
   </div>
 `;
 
-export const createProductTableTemplate = productItems => `
+export const createProductTableBodyTemplateWithItem = productItems => `
+  ${productItems
+    .map(item =>
+      createProductItemTemplate(item.productName, item.productPrice, item.productQuantity),
+    )
+    .join('')}
+`;
+
+export const createProductTableTemplate = () => `
   <h3>상품 현황</h3>
   <table style="${STYLE.table}">
     <thead>
@@ -39,12 +47,8 @@ export const createProductTableTemplate = productItems => `
         ${createTheadTableDataTemplate('수량')}
       </tr>
     </thead>
-    <tbody>
-      ${productItems
-        .map(item =>
-          createProductItemTemplate(item.productName, item.productPrice, item.productQuantity),
-        )
-        .join('')}
+    <tbody id="${SELECTOR.productTableBodyId}">
+      ${createProductTableBodyTemplateWithItem([])}
     </tbody>
   </table>
 `;

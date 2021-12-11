@@ -18,6 +18,7 @@ export default {
   productManageNameClass: 'product-manage-name',
   productManagePriceClass: 'product-manage-price',
   productManageQuantityClass: 'product-manage-quantity',
+  productTableBodyId: 'product-table-body',
 
   // 잔돈 충전(자판기 보유 동전) 메뉴
   vendingMachineChargeInputId: 'vending-machine-charge-input',
