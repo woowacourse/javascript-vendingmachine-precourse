@@ -2,7 +2,7 @@ import {
   PRODUCT_NAME_INPUT_ID,
   PRODUCT_PRICE_INPUT_ID,
   PRODUCT_QUANTITY_INPUT_ID,
-} from './initProductAdd.js';
+} from '../constant/constant.js';
 import { $ } from './initView.js';
 
 export default function clearInput() {

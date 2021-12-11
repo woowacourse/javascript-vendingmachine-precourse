@@ -1,8 +1,7 @@
 import Validator from '../validator/Validator.js';
 import initView from '../view/initView.js';
 import Product from './Product.js';
-
-export const PRODUCTS_STORAGE_KEY = 'products';
+import { PRODUCTS_STORAGE_KEY } from '../constant/constant.js';
 
 export default class VendingMachine {
   constructor() {

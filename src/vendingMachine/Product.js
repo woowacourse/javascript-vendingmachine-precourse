@@ -1,7 +1,9 @@
-const ADDED_PRODUCT_ID = 'product-manage-item';
-const PRODUCT_MANAGE_NAME_ID = 'product-manage-name';
-const PRODUCT_MANAGE_PRICE_ID = 'product-manage-price';
-const PRODUCT_MANAGE_QUANTITY_ID = 'product-manage-quantity';
+import {
+  ADDED_PRODUCT_ID,
+  PRODUCT_MANAGE_NAME_ID,
+  PRODUCT_MANAGE_PRICE_ID,
+  PRODUCT_MANAGE_QUANTITY_ID,
+} from '../constant/constant.js';
 
 export default class Product {
   constructor({ name, price, quantity }) {

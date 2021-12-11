@@ -1,13 +1,11 @@
+import { $ } from '../view/initView.js';
 import {
   TAB_PRODUCT_ADD_ID,
   TAB_CHARGE_ID,
-  TAB_PURCHASE_ID,
-  $,
   CURRENT_TAB_KEY,
-  setCurrentTab,
-} from '../view/initView.js';
-import { PRODUCT_ADD_CONTAINER_ID } from '../view/initProductAdd.js';
-import { CHARGE_CONTAINER_ID } from '../view/initCharge.js';
+  PRODUCT_ADD_CONTAINER_ID,
+  CHARGE_CONTAINER_ID,
+} from '../constant/constant.js';
 
 function hideAllContainer() {
   const $addProduct = $(`#${PRODUCT_ADD_CONTAINER_ID}`);
@@ -22,6 +20,10 @@ function removeHidden(id) {
   const $container = $(`#${id}`);
 
   $container.removeAttribute('hidden');
+}
+
+export function setCurrentTab(id) {
+  localStorage.setItem(CURRENT_TAB_KEY, id);
 }
 
 export function renderCurrentTab(id) {

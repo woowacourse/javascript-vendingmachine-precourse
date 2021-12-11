@@ -1,25 +1,23 @@
-const CHARGE_TITLE = '자판기 동전 충전하기';
-const CHARGE_BUTTON_TITLE = '충전하기';
-const CHARGE_AMOUNT_TITLE = '보유 금액';
-const CHARGE_COIN_TITLE = '자판기가 보유한 동전';
-const COIN_TITLE = '동전';
-const COIN_AMOUNT_TITLE = '개수';
-
-const TITLE_500 = '500원';
-const TITLE_100 = '100원';
-const TITLE_50 = '50원';
-const TITLE_10 = '10원';
-
-const CHARGE_INPUT_ID = 'vending-machine-charge-input';
-const CHARGE_BUTTON_ID = 'vending-machine-charge-button';
-const CHARGE_AMOUNT_ID = 'vending-machine-charge-amount';
-
-const CHARGE_500_QUANTITY_ID = 'vending-machine-coin-500-quantity';
-const CHARGE_100_QUANTITY_ID = 'vending-machine-coin-100-quantity';
-const CHARGE_50_QUANTITY_ID = 'vending-machine-coin-50-quantity';
-const CHARGE_10_QUANTITY_ID = 'vending-machine-coin-10-quantity';
-
-export const CHARGE_CONTAINER_ID = 'charge-container';
+import {
+  CHARGE_TITLE,
+  CHARGE_INPUT_ID,
+  CHARGE_BUTTON_ID,
+  CHARGE_BUTTON_TITLE,
+  CHARGE_AMOUNT_TITLE,
+  CHARGE_AMOUNT_ID,
+  COIN_TITLE,
+  COIN_AMOUNT_TITLE,
+  TITLE_500,
+  CHARGE_500_QUANTITY_ID,
+  TITLE_100,
+  CHARGE_100_QUANTITY_ID,
+  TITLE_50,
+  CHARGE_50_QUANTITY_ID,
+  TITLE_10,
+  CHARGE_10_QUANTITY_ID,
+  CHARGE_COIN_TITLE,
+  CHARGE_CONTAINER_ID,
+} from '../constant/constant.js';
 
 function renderChargeInput($charge) {
   const $inputContainer = document.createElement('div');

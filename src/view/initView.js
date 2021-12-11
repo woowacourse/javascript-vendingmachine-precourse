@@ -1,18 +1,17 @@
-import initProductAdd, { PRODUCT_ADD_CONTAINER_ID } from './initProductAdd.js';
+import initProductAdd from './initProductAdd.js';
 import initCharge from './initCharge.js';
 import { renderCurrentTab } from '../eventHandler/addTabHandler.js';
-
-const APP_ID = '#app';
-
-const PRODUCT_ADD_TAB_TITLE = '상품 관리';
-const MANAGE_MENU_TAB_TITLE = '잔돈 충전';
-const PRODUCT_PURCHASE_TAB_TITLE = '상품 구매';
-
-export const TAB_PRODUCT_ADD_ID = 'product-add-menu';
-export const TAB_CHARGE_ID = 'vending-machine-manage-menu';
-export const TAB_PURCHASE_ID = 'product-purchase-menu';
-
-export const CURRENT_TAB_KEY = 'current-tab';
+import {
+  TAB_PRODUCT_ADD_ID,
+  PRODUCT_ADD_TAB_TITLE,
+  TAB_CHARGE_ID,
+  MANAGE_MENU_TAB_TITLE,
+  TAB_PURCHASE_ID,
+  PRODUCT_PURCHASE_TAB_TITLE,
+  CURRENT_TAB_KEY,
+  APP_ID,
+  PRODUCT_ADD_CONTAINER_ID,
+} from '../constant/constant.js';
 
 export function $(domId) {
   return document.querySelector(domId);
@@ -28,10 +27,6 @@ function renderAppHeader($appDiv) {
     <button id="${TAB_PURCHASE_ID}">${PRODUCT_PURCHASE_TAB_TITLE}</button>
   `;
   $appDiv.append($header);
-}
-
-export function setCurrentTab(id) {
-  localStorage.setItem(CURRENT_TAB_KEY, id);
 }
 
 export default function initView() {

@@ -1,20 +1,17 @@
-import { PRODUCTS_STORAGE_KEY } from '../vendingMachine/VendingMachine.js';
-
-const PRODUCT_ADD_TITLE = '상품 추가하기';
-const PRODUCT_LIST_TITLE = '상품 현황';
-
-const PRODUCT_NAME_TITLE = '상품명';
-const PRODUCT_PRICE_TITLE = '가격';
-const PRODUCT_QUANTITY_TITLE = '수량';
-
-export const PRODUCT_LIST_TABLE_ID = 'product-list-table';
-
-export const PRODUCT_NAME_INPUT_ID = 'product-name-input';
-export const PRODUCT_PRICE_INPUT_ID = 'product-price-input';
-export const PRODUCT_QUANTITY_INPUT_ID = 'product-quantity-input';
-export const PRODUCT_ADD_BUTTON_ID = 'product-add-button';
-
-export const PRODUCT_ADD_CONTAINER_ID = 'product-add-container';
+import {
+  PRODUCT_ADD_TITLE,
+  PRODUCT_NAME_INPUT_ID,
+  PRODUCT_PRICE_INPUT_ID,
+  PRODUCT_QUANTITY_INPUT_ID,
+  PRODUCT_ADD_BUTTON_ID,
+  PRODUCT_NAME_TITLE,
+  PRODUCT_PRICE_TITLE,
+  PRODUCT_QUANTITY_TITLE,
+  PRODUCTS_STORAGE_KEY,
+  PRODUCT_LIST_TITLE,
+  PRODUCT_LIST_TABLE_ID,
+  PRODUCT_ADD_CONTAINER_ID,
+} from '../constant/constant.js';
 
 function renderProductAddInput($productAdd) {
   const $inputContainer = document.createElement('div');

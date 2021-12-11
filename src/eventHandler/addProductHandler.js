@@ -5,7 +5,7 @@ import {
   PRODUCT_PRICE_INPUT_ID,
   PRODUCT_QUANTITY_INPUT_ID,
   PRODUCT_LIST_TABLE_ID,
-} from '../view/initProductAdd.js';
+} from '../constant/constant.js';
 import clearInput from '../view/clearInput.js';
 
 function renderProduct(product) {
