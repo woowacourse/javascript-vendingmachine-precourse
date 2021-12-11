@@ -17,9 +17,9 @@ export default class VendingMachineChargeManager {
     $('#vending-machine-charge-button').addEventListener('click', e => {
       e.preventDefault();
 
-      if (!V.isValidCharge(DOM.getCharge())) return;
+      if (!V.isValidCharge(DOM.getCharge().vendingMachine)) return;
 
-      convertChargeIntoCoin(DOM.getCharge());
+      convertChargeIntoCoin(DOM.getCharge().vendingMachine);
 
       this.render();
     });

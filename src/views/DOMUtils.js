@@ -17,7 +17,9 @@ const DOMUtils = {
   },
 
   getCharge: () => {
-    return $('#vending-machine-charge-input').value;
+    return {
+      vendingMachine: $('#vending-machine-charge-input').value,
+    };
   },
 
   showInventory: () => {
