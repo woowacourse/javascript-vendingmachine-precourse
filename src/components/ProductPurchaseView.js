@@ -195,6 +195,10 @@ static purchase(name, price, quantity) {
   const product = JSON.parse(localStorage.getItem(PRODUCT));
   const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
+  if(parseInt(quantity) <= 0) {
+    return alert('재고가 부족합니다!');
+  }
+
   //살 수 있으면 사고 금액 저장, 없으면 alert
   if(parseInt(userMoney[VALUES]) - parseInt(price) >= 0){
     userMoney[VALUES] = parseInt(userMoney[VALUES]) - parseInt(price);
@@ -210,6 +214,7 @@ static purchase(name, price, quantity) {
   } else {
     alert('구매할 수 없습니다!');
   }
+  
 }
 
 }
