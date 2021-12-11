@@ -5,8 +5,9 @@ import {
   renderCoinsItems,
   renderChangesItems,
   renderReturnChanges,
+  testRender,
 } from './render.js';
-import { COINS, COINS_PRICE } from './constant/constant.js';
+import { COIN, COINS, COINS_PRICE } from './constant/constant.js';
 
 export const addChanges = e => {
   e.preventDefault();
@@ -15,30 +16,34 @@ export const addChanges = e => {
     window.alert('잘못된 값을 입력하셨습니다.');
   } else {
     localStorage.setItem('changes', JSON.stringify(renderMoney()));
+    getCoins();
   }
 };
 
 export const getCoins = () => {
   let money = parseInt($('#vending-machine-charge-input').value, 10);
-  const fiveHundredCoins = getRandomCoin(parseInt(money / 500, 10));
-  money -= fiveHundredCoins * 500;
-  const oneHundredCoins = getRandomCoin(parseInt(money / 100, 10));
-  money -= oneHundredCoins * 100;
-  const fiftyCoins = getRandomCoin(parseInt(money / 50, 10));
-  money -= fiftyCoins * 50;
-  const tenCoins = parseInt(money / 10, 10);
-  const coinsArray = [fiveHundredCoins, oneHundredCoins, fiftyCoins, tenCoins];
+  let coinsArray = [];
+  while (money >= COIN[COIN.length - 1]) {
+    const value = MissionUtils.Random.pickNumberInList(COIN);
+    if (value <= money) {
+      coinsArray.push(value);
+      money -= value;
+    }
+  }
+  console.log(coinsArray);
   setCoins(coinsArray);
   renderCoinsItems();
 };
 
 const setCoins = coinsArray => {
-  for (let i = 0; i < COINS.length; i++) {
-    const localStorageCoin = localStorage.getItem(`${COINS[i]}`);
-    if (localStorageCoin !== null) {
-      coinsArray[i] += parseInt(localStorageCoin, 10);
+  for (let i = 0; i < coinsArray.length; i++) {
+    let localStorageCoin = localStorage.getItem(`coin${coinsArray[i]}`);
+    if (localStorageCoin === null) {
+      localStorageCoin = 1;
+    } else {
+      localStorageCoin = parseInt(localStorageCoin, 10) + 1;
     }
-    localStorage.setItem(`${COINS[i]}`, coinsArray[i]);
+    localStorage.setItem(`coin${coinsArray[i]}`, localStorageCoin);
   }
 };
 

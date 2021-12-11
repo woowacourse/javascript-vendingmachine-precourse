@@ -112,9 +112,9 @@ export const renderMoney = () => {
   $(
     '#vending-machine-charge-amount',
   ).innerText = `보유 금액: ${chargedMoney}원`;
-  getCoins();
   return chargedMoney;
 };
+
 export const renderCoinsItems = () => {
   $('.item-table-body').innerHTML = '';
   for (let i = 0; i < COINS.length; i++) {
@@ -133,6 +133,16 @@ export const renderCoinsItems = () => {
     $('.item-table-body').innerHTML += template();
   }
 };
+
+export const testRender = value => {
+  const template = () => {
+    return `
+      <div id='1'>${value}</div>
+    `;
+  };
+  $('#app').innerHTML += template();
+};
+
 export const renderProductItemsTable = () => {
   const template = () => {
     return `
