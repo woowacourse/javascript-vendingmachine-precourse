@@ -96,8 +96,10 @@
 
 입력 값이 유효하다면, 다음을 수행한다.
 
-- [ ] `상품 정보`를 `상품 목록`에 추가한다.
-- [ ] 현재 `상품 목록`을 테이블에 갱신한다.
+[완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commit/a5193a7384e8cdff348b091446b47c08a5d4d92c)
+
+- [x] `상품 정보`를 `상품 목록`에 추가한다.
+- [x] 현재 `상품 목록`을 테이블에 갱신한다.
 
 
 
