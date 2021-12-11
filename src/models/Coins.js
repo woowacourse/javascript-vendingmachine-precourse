@@ -8,9 +8,9 @@ export default class Coins {
     this.fifty = coins['50'];
     this.ten = coins['10'];
 
-    this.generateCoins = (chargeAmount) => {
-      let remain = chargeAmount;
-      const coins = { '500': 0, '100': 0, '50': 0, '10': 0 };
+    this.convertToCoins = (chargingAmount) => {
+      let remain = chargingAmount;
+      const convertedCoins = { '500': 0, '100': 0, '50': 0, '10': 0 };
 
       while (remain > 0) {
         const randomCoin = MissionUtils.Random.pickNumberInList([
@@ -19,11 +19,12 @@ export default class Coins {
 
         if (remain - randomCoin >= 0) {
           remain -= randomCoin;
-          coins[randomCoin.toString()] = coins[randomCoin.toString()] + 1;
+          convertedCoins[randomCoin.toString()] =
+            convertedCoins[randomCoin.toString()] + 1;
         }
       }
 
-      return coins;
+      return convertedCoins;
     };
   }
 
@@ -36,13 +37,17 @@ export default class Coins {
     );
   }
 
+  // TODO: 예외 처리
   refill(chargeAmount) {
-    const newCoins = this.generateCoins(chargeAmount);
+    const newCoins = this.convertToCoins(chargeAmount);
 
     this.fivehundred += newCoins['500'];
     this.hundred += newCoins['100'];
     this.fifty += newCoins['50'];
     this.ten += newCoins['10'];
+    this.store.updateCoins(this.toMap());
+
+    return this;
   }
 
   toMap() {

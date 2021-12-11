@@ -3,7 +3,7 @@ export default class Store {
     const { localStorage } = window;
 
     this.getLocalStorage = () => {
-      const initialState = `{"items":[], "coins":{"500":0, "100":0, "50":0, "10":0}, "chargeAmount":0}`;
+      const initialState = `{"items":[], "coins":{"500":0, "100":0, "50":0, "10":0}, "chargedAmount":0}`;
 
       return JSON.parse(localStorage.getItem(name) || initialState);
     };
@@ -44,16 +44,14 @@ export default class Store {
   updateCoins(coins) {
     const state = this.getLocalStorage();
 
-    state.coins = coins.toMap();
-
+    state.coins = coins;
     this.setLocalStorage(state);
   }
 
   updateCharge(amount) {
     const state = this.getLocalStorage();
 
-    state.chargeAmount = amount;
-
+    state.chargedAmount = amount;
     this.setLocalStorage(state);
   }
 }

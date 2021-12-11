@@ -4,10 +4,10 @@ import isValidChargeAmount from '../../utils/isValidChargeAmount.js';
 
 export default class ProductPurchaseMenu extends Component {
   setup() {
-    const { chargeAmount, items, coins } = this.props;
+    const { chargedAmount, items, coins } = this.props;
 
     this.state = {
-      chargeAmount,
+      chargedAmount,
       items,
       coins,
       change: { '500': 0, '100': 0, '50': 0, '10': 0 },
@@ -15,7 +15,7 @@ export default class ProductPurchaseMenu extends Component {
   }
 
   template() {
-    const { chargeAmount, items } = this.state;
+    const { chargedAmount, items } = this.state;
 
     return `
       <h3>금액 투입</h3>
@@ -23,7 +23,7 @@ export default class ProductPurchaseMenu extends Component {
         <input type='number' placeholder='투입할 금액' id='charge-input'></input>
         <button type='submit' id='charge-button'>투입하기</button
       </form>
-      <p>투입한 금액: <span id='charge-amount'>${chargeAmount}</span></p>
+      <p>투입한 금액: <span id='charge-amount'>${chargedAmount.toString()}</span></p>
       <h3>구매할 수 있는 상품 현황</h3>
       <table>
         <th>상품명</th>
@@ -79,30 +79,32 @@ export default class ProductPurchaseMenu extends Component {
     this.addEvent('click', '#charge-button', (e) => {
       e.preventDefault();
 
-      const chargeAmount = $('#charge-input').valueAsNumber;
+      const chargingAmount = $('#charge-input').valueAsNumber;
 
-      if (!isValidChargeAmount(chargeAmount)) {
+      if (!isValidChargeAmount(chargingAmount)) {
         alert('error');
 
         return;
       }
 
-      this.props.charge(chargeAmount);
+      this.props.charge(chargingAmount);
     });
 
     this.addEvent('click', '.purchase-button', (e) => {
       e.preventDefault();
 
       const { productId, productPrice } = e.target.closest('tr').dataset;
-      const { chargeAmount } = this.state;
+      const { chargedAmount } = this.state;
+      const id = Number(productId);
+      const price = Number(productPrice);
 
-      if (productPrice > chargeAmount) {
-        alert('error');
+      if (price > chargedAmount) {
+        alert(`not enough money`);
 
         return;
       }
 
-      this.props.purchase(Number(productId), productPrice);
+      this.props.purchase(id, price);
     });
 
     this.addEvent('click', '#coin-return-button', (e) => {
