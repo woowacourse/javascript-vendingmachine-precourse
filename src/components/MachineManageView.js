@@ -37,15 +37,19 @@ export default class MachineManageView {
         const charge = document.getElementById('vending-machine-charge-input').value;
         const machineManageCheck = new MachineManageCheck(charge);
 
-        if(machineManageCheck.checkAll()) {
-            this.storeChange(charge);
-            this.chooseRandomCoin(charge);
-            this.showTable();
-            this.showChange();
-        } else {
-            alert(ERROR_MESSAGE);
-        }
+        this.checkResult(charge, machineManageCheck);
     });
+  }
+
+  static checkResult(charge, machineManageCheck) {
+    if(machineManageCheck.checkAll()) {
+        this.storeChange(charge);
+        this.chooseRandomCoin(charge);
+        this.showTable();
+        this.showChange();
+    } else {
+        alert(ERROR_MESSAGE);
+    }
   }
 
   static storeChange(charge) {
