@@ -28,6 +28,8 @@ const machine = new MachineOperations();
 export default class AddProducts {
   constructor() {
     this.section = this.createAddProductTab();
+    this.DOMs = {};
+    window.addEventListener('load', this.addDOMs.bind(this));
   }
 
   createAddProductTab() {
@@ -38,6 +40,14 @@ export default class AddProducts {
       document.createElement('section'),
       [formContainer, currentContainer],
       ID_PRODUCT_ADD_TAB,
+    );
+  }
+
+  addDOMs() {
+    this.DOMs.name = this.section.querySelector(`#${ID_PRODUCT_NAME_INPUT}`);
+    this.DOMs.price = this.section.querySelector(`#${ID_PRODUCT_PRICE_INPUT}`);
+    this.DOMs.quantity = this.section.querySelector(
+      `#${ID_PRODUCT_QUANTITY_INPUT}`,
     );
   }
 
@@ -52,20 +62,24 @@ export default class AddProducts {
   }
 
   handleProductFormInput() {
-    const nameVal = getDOMObj(`#${ID_PRODUCT_NAME_INPUT}`).value;
-    const priceVal = getDOMObj(`#${ID_PRODUCT_PRICE_INPUT}`).value * 1;
-    const quantityVal = getDOMObj(`#${ID_PRODUCT_QUANTITY_INPUT}`).value * 1;
+    const nameVal = this.DOMs.name.value;
+    const priceVal = this.DOMs.price.value * 1;
+    const quantityVal = this.DOMs.quantity.value * 1;
     const itemObj = {};
     itemObj[nameVal] = { price: priceVal, quantity: quantityVal };
 
     const register = machine.registerProduct(nameVal, priceVal, quantityVal);
 
     if (register) {
-      this.addStatusGridRow(
-        document.querySelector(`#${ID_PRODUCT_ADD_STATUS}`),
-        itemObj,
-      );
+      this.addStatusGridRow(getDOMObj(`#${ID_PRODUCT_ADD_STATUS}`), itemObj);
+      this.clearForm();
     }
+  }
+
+  clearForm() {
+    this.DOMs.name.value = '';
+    this.DOMs.price.value = '';
+    this.DOMs.quantity.value = '';
   }
 
   addStatusGridRow(container, products) {
@@ -74,8 +88,13 @@ export default class AddProducts {
       return array.concat(items);
     }, []);
 
-    const grid = createGridDiv(VAL_GRID_COLUMN_SIZE, productItems);
-    grid.class = CLASS_PRODUCT_ITEM;
+    const grid = createGridDiv(
+      VAL_GRID_COLUMN_SIZE,
+      productItems,
+      '',
+      CLASS_PRODUCT_ITEM,
+    );
+
     container.appendChild(grid);
   }
 
@@ -105,7 +124,13 @@ export default class AddProducts {
       ID_PRODUCT_ADD_STATUS,
     );
     const allProducts = getAllProducts();
-    if (allProducts) this.addStatusGridRow(grid, allProducts);
+    if (allProducts) {
+      Object.keys(allProducts).forEach((p) => {
+        const itemObj = {};
+        itemObj[p] = allProducts[p];
+        this.addStatusGridRow(grid, itemObj);
+      });
+    }
 
     const title = customCreateElement({
       tag: 'h2',
