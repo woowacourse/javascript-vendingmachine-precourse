@@ -1,7 +1,7 @@
 import {
   getItemFromLocalStorage,
   setItemFromLocalStorage,
-} from "../../utils/itemFromLocalStorage.js";
+} from "../../../utils/itemFromLocalStorage.js";
 
 const addMoneyCustomer = moneyStr => {
   const moneyBefore = getItemFromLocalStorage("money");

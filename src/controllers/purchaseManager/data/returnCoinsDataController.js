@@ -1,11 +1,11 @@
-import { COIN_TYPES } from "../../utils/constants.js";
-import { calculateMoney } from "../../utils/calculateMoney.js";
-import { insertQuantityOfCoins } from "../../views/purchaseManager/showReturnCoins.js";
+import { COIN_TYPES } from "../../../utils/constants.js";
+import { calculateMoney } from "../../../utils/calculateMoney.js";
+import { insertQuantityOfCoins } from "../../../views/purchaseManager/showReturnCoins.js";
 import {
   getItemFromLocalStorage,
   setItemFromLocalStorage,
   removeItemFromLocalStorage,
-} from "../../utils/itemFromLocalStorage.js";
+} from "../../../utils/itemFromLocalStorage.js";
 
 // 자판기 안에 있는 모든 동전 반환
 const returnAllCoinsInMachine = (coins, moneyInMachine, money) => {

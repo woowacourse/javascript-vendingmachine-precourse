@@ -1,7 +1,7 @@
 import {
   getItemFromLocalStorage,
   setItemFromLocalStorage,
-} from "../../utils/itemFromLocalStorage.js";
+} from "../../../utils/itemFromLocalStorage.js";
 
 const purchaseProduct = (name, price, money) => {
   const products = getItemFromLocalStorage("products").split(",");

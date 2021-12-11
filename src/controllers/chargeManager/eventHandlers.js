@@ -1,6 +1,6 @@
 import { getInputValueById } from "../../utils/inputValue.js";
 import { isValidMoney } from "../common/checkMoneyInput.js";
-import { addCoinsInMachine } from "./chargeMachineDataController.js";
+import { addCoinsInMachine } from "./data/chargeMachineDataController.js";
 import { showMoneyInMachine } from "../../views/chargeManager/showMoneyInMachine.js";
 import { showCoinsInMachine } from "../../views/chargeManager/showCoinsInMachine.js";
 import { ALERT_MSG } from "../../utils/constants.js";

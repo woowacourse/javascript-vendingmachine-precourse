@@ -1,6 +1,6 @@
 import { getInputValueById } from "../../utils/inputValue.js";
 import { isValidInputs } from "./checkInputValues.js";
-import { addProduct } from "./productDataController.js";
+import { addProduct } from "./data/productDataController.js";
 import { showAfterAddOrPurchaseProduct } from "../../views/common/showAll.js";
 import { resetAddProductInput } from "../../views/common/resetInput.js";
 

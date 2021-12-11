@@ -1,9 +1,9 @@
 import { getInputValueById } from "../../utils/inputValue.js";
 import { isValidMoney } from "../common/checkMoneyInput.js";
 import { getItemFromLocalStorage } from "../../utils/itemFromLocalStorage.js";
-import { addMoneyCustomer } from "./chargeCustomerDataController.js";
-import { purchaseProduct } from "./purchaseDataController.js";
-import { returnCoins } from "./returnCoinsDataController.js";
+import { addMoneyCustomer } from "./data/chargeCustomerDataController.js";
+import { purchaseProduct } from "./data/purchaseDataController.js";
+import { returnCoins } from "./data/returnCoinsDataController.js";
 import { ALERT_MSG } from "../../utils/constants.js";
 import { resetChargeCustomerInput } from "../../views/common/resetInput.js";
 import {

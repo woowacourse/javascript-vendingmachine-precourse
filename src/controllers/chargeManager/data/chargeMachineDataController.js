@@ -1,8 +1,8 @@
-import { COIN_TYPES } from "../../utils/constants.js";
+import { COIN_TYPES } from "../../../utils/constants.js";
 import {
   getItemFromLocalStorage,
   setItemFromLocalStorage,
-} from "../../utils/itemFromLocalStorage.js";
+} from "../../../utils/itemFromLocalStorage.js";
 
 const availableRandomCoin = money => {
   let coin = money;
