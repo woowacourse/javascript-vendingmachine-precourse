@@ -26,7 +26,13 @@ export default function ManageContainer() {
                 productInfo.$priceVal,
                 productInfo.$quantityVal,
             );
-            appendTable(CLASS.EACH_ITEM, product);
+            appendTable(
+                CLASS.EACH_ITEM,
+                product,
+                CLASS.MANAGE_NAME,
+                CLASS.MANAGE_PRICE,
+                CLASS.MANAGE_QUANTITY,
+            );
             appendLocalStorage(LOCAL.PRODUCT, product);
             clearInput($name, $price, $quantity);
         });

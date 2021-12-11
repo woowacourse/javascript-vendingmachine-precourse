@@ -74,11 +74,18 @@ export const appendTable = (tr, object, ...className) => {
     const table = document.querySelector(".table");
     const tableBodyRow = document.createElement("tr");
     tableBodyRow.className = tr;
-
-    className.forEach((element) => {
+    className.forEach((element, idx) => {
         const td = document.createElement("td");
-        td.innerText = object.$name;
-        tableBodyRow.appendChild(td);
+        let val;
+        if (idx === 0) val = object.name;
+        else if (idx === 1) val = object.price;
+        else if (idx === 2) val = object.amount;
+        td.className = element;
+        td.innerText = val;
+        tableBodyRow.append(td);
     });
-    table.appendChild(tableBodyRow);
+
+    table.append(tableBodyRow);
+
+    console.log(table);
 };
