@@ -80,6 +80,7 @@ const templates = {
           </form>
           <div style="margin-top:15px;">투입한 금액 : 
               <span id="charge-amount"></span>
+              <span id="monetary-unit"></span>
           </div>
           <h3 style="margin-top:50px;">구매할 수 있는 상품 현황</h3>
           <table border="1" style="width:470px; border-collapse: collapse;">
