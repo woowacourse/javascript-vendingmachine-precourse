@@ -1,4 +1,5 @@
 import { COIN_LIST } from './constants.js';
+import countReturnedCoin from './countReturnedCoin.js';
 import pickNumberInList from './pickNumberInList.js';
 
 export default class Coin {
@@ -32,5 +33,21 @@ export default class Coin {
 
   getCoinQuantity() {
     return this.items;
+  }
+
+  takeOut(price) {
+    let current = price;
+    const coins = {};
+
+    while (current > 0) {
+      COIN_LIST.forEach((coin) => {
+        const takeOutCoinQuantity = countReturnedCoin(current, coin, this.items[coin]);
+        coins[coin] = takeOutCoinQuantity;
+        this.items[coin] -= takeOutCoinQuantity;
+        current -= coin * takeOutCoinQuantity;
+      });
+    }
+
+    return coins;
   }
 }

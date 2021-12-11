@@ -24,4 +24,10 @@ export default class VendingMachine {
     this.amount -= this.product.getProductPrice(productName);
     this.product.out(productName);
   }
+
+  returnCoin() {
+    const coins = this.coin.takeOut(this.amount);
+    this.amount = 0;
+    return coins;
+  }
 }
