@@ -15,7 +15,7 @@ class UserAgent {
   }
 
   canSpend(price) {
-    return this.amount > price;
+    return this.amount >= price;
   }
 
   spend(price) {
