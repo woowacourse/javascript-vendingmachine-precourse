@@ -1,10 +1,13 @@
+import Store from '../utils/store.js';
+import Key from '../constants/key.js';
+
 class VendingMachineManageMenuModel {
   constructor() {
-    this.$chargeAmount = 0;
-    this.$amount500 = 0;
-    this.$amount100 = 0;
-    this.$amount50 = 0;
-    this.$amount10 = 0;
+    this.$chargeAmount = Store.getLocalStorage(Key.chargeAmount) || 0;
+    this.$amount500 = Store.getLocalStorage(Key.charge500Quantity) || 0;
+    this.$amount100 = Store.getLocalStorage(Key.charge100Quantity) || 0;
+    this.$amount50 = Store.getLocalStorage(Key.charge50Quantity) || 0;
+    this.$amount10 = Store.getLocalStorage(Key.charge10Quantity) || 0;
   }
 
   getChargeAmount() {
@@ -13,6 +16,7 @@ class VendingMachineManageMenuModel {
 
   setChargeAmount(amount) {
     this.$chargeAmount = amount;
+    Store.setLocalStorage(Key.chargeAmount, amount);
   }
 
   getAmount500() {
@@ -21,6 +25,7 @@ class VendingMachineManageMenuModel {
 
   setAmount500(amount) {
     this.$amount500 = amount;
+    Store.setLocalStorage(Key.charge500Quantity, amount);
   }
 
   getAmount100() {
@@ -29,6 +34,7 @@ class VendingMachineManageMenuModel {
 
   setAmount100(amount) {
     this.$amount100 = amount;
+    Store.setLocalStorage(Key.charge100Quantity, amount);
   }
 
   getAmount50() {
@@ -37,6 +43,7 @@ class VendingMachineManageMenuModel {
 
   setAmount50(amount) {
     this.$amount50 = amount;
+    Store.setLocalStorage(Key.charge50Quantity, amount);
   }
 
   getAmount10() {
@@ -45,6 +52,7 @@ class VendingMachineManageMenuModel {
 
   setAmount10(amount) {
     this.$amount10 = amount;
+    Store.setLocalStorage(Key.charge10Quantity, amount);
   }
 }
 

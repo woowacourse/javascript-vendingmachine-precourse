@@ -6,11 +6,12 @@ import { $ } from '../utils/dom.js';
 import Selector from '../constants/selector.js';
 
 class VendingMachineManageMenuController {
-  constructor() {
+  constructor(currentMenu) {
     this.$vendingMachineManageMenuView = new VendingMachineManageMenuView();
     this.$vendingMachineManageMenuModel = new VendingMachineManageMenuModel();
 
     this.initAddEventListeners();
+    if (currentMenu === Selector.vendingMachineManageMenuId) this.changeMenu();
   }
 
   initAddEventListeners() {
@@ -22,6 +23,15 @@ class VendingMachineManageMenuController {
 
   changeMenu() {
     this.$vendingMachineManageMenuView.render();
+    this.$vendingMachineManageMenuView.renderCoinQuantityTableBodyWithData(
+      this.$vendingMachineManageMenuModel.getAmount500(),
+      this.$vendingMachineManageMenuModel.getAmount100(),
+      this.$vendingMachineManageMenuModel.getAmount50(),
+      this.$vendingMachineManageMenuModel.getAmount10(),
+    );
+    this.$vendingMachineManageMenuView.renderCoinChargeAmountWithData(
+      this.$vendingMachineManageMenuModel.getChargeAmount(),
+    );
   }
 
   onClickTabContent(event) {
@@ -62,6 +72,7 @@ class VendingMachineManageMenuController {
     this.$vendingMachineManageMenuView.renderCoinChargeAmountWithData(
       this.$vendingMachineManageMenuModel.getChargeAmount(),
     );
+    this.$vendingMachineManageMenuView.resetChargeAmountInput();
   }
 
   addCoinAmount(coin) {

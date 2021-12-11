@@ -30,6 +30,10 @@ class VendingMachineManageMenuView {
   renderCoinChargeAmountWithData(amount) {
     $(`#${Selector.vendingMachineChargeAmountId}`).innerHTML = amount;
   }
+
+  resetChargeAmountInput() {
+    $(`#${Selector.vendingMachineChargeInputId}`).value = null;
+  }
 }
 
 export default VendingMachineManageMenuView;
