@@ -36,6 +36,8 @@ export const ERROR_MESSAGE = {
   lessThanStandard: "금액을 100원 이상으로 입력해 주세요.",
   notDivideByTen: "금액을 10원으로 나누어 떨어지는 값으로 입력해 주세요.",
   negativeInput: "음수가 아닌 숫자로 입력해 주세요.",
+  soldOut: "제품이 모두 판매되었습니다.",
+  lackMoney: "투입한 금액이 부족합니다.",
 };
 
 export const MANAGE_PRODUCT_TAP = {

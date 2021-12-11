@@ -61,6 +61,20 @@ const checkAddProductsQuantityInput = quantity => {
   return isError;
 };
 
+const isSoldOut = quantity => {
+  if (quantity === 0) {
+    alert(ERROR_MESSAGE.soldOut);
+    return true;
+  }
+};
+
+const isLackMoney = (money, price) => {
+  if (money < price) {
+    alert(ERROR_MESSAGE.lackMoney);
+    return true;
+  }
+};
+
 export const checkAddProductsInputs = (name, price, quantity) => {
   let isValid = true;
   if (checkAddProductsNameInput(name)) {
@@ -94,6 +108,17 @@ export const checkInsertMoneyInput = input => {
   } else if (isNegative(input)) {
     isValid = false;
   } else if (isNotDivideByTen(input)) {
+    isValid = false;
+  }
+
+  return isValid;
+};
+
+export const checkCanPurchase = (quantity, money, price) => {
+  let isValid = true;
+  if (isSoldOut(parseInt(quantity))) {
+    isValid = false;
+  } else if (isLackMoney(money, parseInt(price))) {
     isValid = false;
   }
 

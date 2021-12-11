@@ -1,4 +1,4 @@
-import { COINS } from "../utils/constants.js";
+import { COINS, PURCHASE_PRODUCT_TAP } from "../utils/constants.js";
 import Product from "./product.js";
 
 class VendingMachine {
@@ -20,7 +20,9 @@ class VendingMachine {
 
   insertMoney(money) {
     this.insertedMoney += money;
+  }
 
+  getMoney() {
     return this.insertedMoney;
   }
 
@@ -60,6 +62,15 @@ class VendingMachine {
     let coins = [this.coin500, this.coin100, this.coin50, this.coin10];
 
     return coins;
+  }
+
+  purchaseProduct(name) {
+    this.products.forEach(product => {
+      if (product.name === name) {
+        product.quantity--;
+        this.insertedMoney -= product.price;
+      }
+    });
   }
 }
 

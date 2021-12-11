@@ -9,7 +9,10 @@ import {
   makeTdWithClass,
   makeTitle,
 } from "../utils/utils.js";
-import { onClickInsertButton } from "../menus/purchaseProductMenu.js";
+import {
+  onClickInsertButton,
+  onClickPurchaseButton,
+} from "../menus/purchaseProductMenu.js";
 
 // ----금액 투입하기 폼----
 const makeInsertMoneyContainer = () => {
@@ -43,7 +46,9 @@ export const renderMoney = money => {
 const makeproductStateTableButton = () => {
   const td = document.createElement("td");
   td.style.border = PRODUCT_TABLE.border;
-  td.appendChild(makeButton(PURCHASE_PRODUCT_TAP.productStateButton));
+  td.appendChild(
+    makeButton(PURCHASE_PRODUCT_TAP.productStateButton, onClickPurchaseButton)
+  );
 
   return td;
 };
