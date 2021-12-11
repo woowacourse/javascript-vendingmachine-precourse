@@ -25,6 +25,6 @@ export default class ProductPurchaseManager {
       DOM.showChargeToPurchaseProduct();
     });
 
-    UT.isExist(DB.load('inventory')) && DOM.addPurchaseButtonEvent();
+    UT.isExist(DB.load('inventory')) && DOM.getAllPurchaseButton();
   }
 }

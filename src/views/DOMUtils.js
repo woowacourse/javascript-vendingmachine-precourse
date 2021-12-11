@@ -86,8 +86,8 @@ const DOMUtils = {
     if (charge > 0) $('#charge-amount').innerHTML = `${charge}원`;
   },
 
-  addPurchaseButtonEvent: () => {
-    $$('.purchase-button').forEach(button => button.addEventListener('click', e => console.log(e)));
+  getAllPurchaseButton: () => {
+    $$('.purchase-button').forEach(button => UT.addPurchaseButtonEvent(button));
   },
 };
 
