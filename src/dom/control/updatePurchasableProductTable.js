@@ -27,7 +27,7 @@ export const createPurchasableProductTableRow = (name, price, quantity) => {
   const tableRow = document.createElement('tr');
 
   tableRow.setAttribute('class', 'product-purchase-item');
-  tableRow.dataset.productName = name;
+  tableRow.dataset.productPurchaseItem = name;
   createPurchasableProductTableData(tableRow, name, price, quantity);
 
   return tableRow;
@@ -83,9 +83,9 @@ export const createPurchaseButtonCell = (name) => {
 
   purchaseButton.innerHTML = '구매하기';
   purchaseButton.setAttribute('class', 'purchase-button');
-  purchaseButton.dataset.productName = name;
+  purchaseButton.dataset.productButton = name;
   purchaseButton.addEventListener('click', () => {
-    vendingMachine.purchase(purchaseButton.dataset.productName);
+    vendingMachine.purchase(purchaseButton.dataset.productButton);
   });
   purchaseButtonCell.appendChild(purchaseButton);
 
@@ -102,7 +102,7 @@ export const deletePurchaseProduct = (name) => {
   const purchaseItems = getProductPurchaseItemCollection();
 
   for (let item of purchaseItems) {
-    if (item.dataset.productName === name) {
+    if (item.dataset.productPurchaseItem === name) {
       item.remove();
     }
   }

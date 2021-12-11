@@ -11,7 +11,7 @@ const updateVendingMachineChargeAmount = () => {
   vendingMachineChargeAmount.innerHTML = vendingMachine.amount;
 };
 
-const updateVendingMachineTable = () => {
+export const updateVendingMachineTable = () => {
   const vendingMachineCoinTableData = getVendingMachineCoinTableData();
 
   COINS.forEach((coin) => {

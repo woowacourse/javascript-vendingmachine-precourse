@@ -65,7 +65,7 @@ export const getPurchasedItemQuantity = (name) => {
   const purchaseItems = getProductPurchaseItemCollection();
 
   for (let item of purchaseItems) {
-    if (item.dataset.productName === name) {
+    if (item.dataset.productPurchaseItem === name) {
       return item.getElementsByClassName('product-purchase-quantity')[0];
     }
   }
@@ -79,8 +79,21 @@ export const getPurchasedProductManagerItemQuantity = (name) => {
   const productItems = getProductManagerItemCollection();
 
   for (let item of productItems) {
-    if (item.dataset.productName === name) {
+    if (item.dataset.productItem === name) {
       return item.getElementsByClassName('product-manage-quantity')[0];
     }
   }
+};
+
+export const getCoinReturnButton = () => {
+  return document.getElementById('coin-return-button');
+};
+
+export const getReturnCoinTableData = () => {
+  return {
+    500: document.getElementById('coin-500-quantity'),
+    100: document.getElementById('coin-100-quantity'),
+    50: document.getElementById('coin-50-quantity'),
+    10: document.getElementById('coin-10-quantity'),
+  };
 };

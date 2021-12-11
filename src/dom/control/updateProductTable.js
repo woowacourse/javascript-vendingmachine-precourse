@@ -22,7 +22,7 @@ const createTableBodyRow = (name, price, quantity) => {
   const row = document.createElement('tr');
 
   row.setAttribute('class', 'product-manage-item');
-  row.dataset.productName = name;
+  row.dataset.productItem = name;
   createTableBodyData(row, name, price, quantity);
 
   return row;
@@ -53,7 +53,7 @@ export const deleteProductItem = (name) => {
   const productItems = getProductManagerItemCollection();
 
   for (let item of productItems) {
-    if (item.dataset.productName === name) {
+    if (item.dataset.productItem === name) {
       item.remove();
     }
   }

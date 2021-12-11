@@ -21,6 +21,7 @@ import {
   deletePurchaseProduct,
 } from '../dom/control/updatePurchasableProductTable.js';
 import { lackOfUserChangeException } from '../exceptions.js';
+import ReturnCoin from './returnCoin.js';
 
 export default class VendingMachine {
   constructor() {
@@ -111,5 +112,9 @@ export default class VendingMachine {
       deletePurchaseProduct(name);
       deleteProductItem(name);
     }
+  }
+
+  returnCoin() {
+    ReturnCoin.returnCoin();
   }
 }

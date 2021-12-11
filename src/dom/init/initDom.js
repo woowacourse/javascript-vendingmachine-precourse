@@ -7,6 +7,7 @@ import {
   addListenerToProductAddButton,
   addListenerToVendingMachineChargeButton,
   addListenerToChargeButton,
+  addListenerToReturnCoinButton,
 } from './addListenerToButton.js';
 
 export const initDom = () => {
@@ -18,4 +19,5 @@ export const initDom = () => {
   addListenerToProductAddButton();
   addListenerToVendingMachineChargeButton();
   addListenerToChargeButton();
+  addListenerToReturnCoinButton();
 };

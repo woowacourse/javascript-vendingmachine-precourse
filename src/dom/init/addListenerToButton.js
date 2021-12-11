@@ -2,6 +2,7 @@ import {
   getMenuButtons,
   getManagers,
   getPurchaseButtonCollection,
+  getCoinReturnButton,
 } from '../domElement.js';
 import { BLOCK, NONE, CLICK } from '../../constants.js';
 import {
@@ -53,5 +54,13 @@ export const addListenerToChargeButton = () => {
 
   chargeButton.addEventListener('click', () => {
     vendingMachine.addUserCharge();
+  });
+};
+
+export const addListenerToReturnCoinButton = () => {
+  const coinReturnButton = getCoinReturnButton();
+
+  coinReturnButton.addEventListener('click', () => {
+    vendingMachine.returnCoin();
   });
 };
