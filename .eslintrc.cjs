@@ -17,5 +17,6 @@ module.exports = {
     'no-plusplus': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
+    'class-methods-use-this': 'off',
   },
 };
