@@ -18,15 +18,18 @@ import {
     TABLE_CLASS,
 } from "../storage/constant.js";
 import ChargeContainer from "./container.js";
+import { appendTable, Coin } from "./Coin.js";
 export default function ChargePresenter() {
     // 최초 실행시, localStorage를 확인해볼 것.
     // localStorage에 값이 없다는게 확인 된다면, 새로 깔면 되고,
     // product 상품을 만들어서 해당 값으로 저장하는 식으로 가자.
     const $container = getPresetContainer();
+
+    const coin = new Coin();
     this.init = () => {
         clearContainer();
         setInitialManage();
-        new ChargeContainer();
+        new ChargeContainer(coin);
     };
 
     const setInitialManage = () => {
@@ -59,6 +62,7 @@ export default function ChargePresenter() {
             [STRING.COIN_10 + STRING.WON, ID.COIN_10],
         ];
         setChargeTableRows(TABLE_CLASS.COIN_TABLE, coinRows);
+        appendTable(coin);
     };
 
     this.init();

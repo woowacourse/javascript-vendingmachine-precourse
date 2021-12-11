@@ -9,12 +9,12 @@ import {
     appendLocalStorage,
     getLocalStorage,
 } from "../storage/localStorage.js";
-import { Coin } from "./Coin.js";
+import { Coin, appendTable } from "./Coin.js";
 const { pickNumberInList } = MissionUtils.Random;
-export default function ChargeContainer() {
+export default function ChargeContainer(coin) {
     const $input = document.getElementById(ID.CHARGE_INPUT);
     const $amount = document.getElementById(ID.CHARGE_AMOUNT);
-    const coin = new Coin();
+    this.coin = coin;
     this.init = () => {
         setButtonListener();
     };
@@ -50,32 +50,12 @@ export default function ChargeContainer() {
             const restAmount = numAmount - nums;
             if (restAmount >= ZERO) {
                 numAmount = restAmount;
-                coin.addCoinCount(nums);
+                this.coin.addCoinCount(nums);
             }
         }
-        appendTable(coin);
-        coin.setTotal();
-        appendLocalStorage(LOCAL.COIN_AMOUNT, coin);
-    };
-
-    const appendTable = (coin) => {
-        const $coin_500 = document.getElementById(ID.COIN_500);
-        const $coin_100 = document.getElementById(ID.COIN_100);
-        const $coin_50 = document.getElementById(ID.COIN_50);
-        const $coin_10 = document.getElementById(ID.COIN_10);
-
-        const loadCoin = getLocalStorage(LOCAL.COIN_AMOUNT);
-        if (loadCoin !== EMPTY) {
-            const curCoin = JSON.parse(loadCoin);
-            coin.coin_500 += curCoin[0].coin_500;
-            coin.coin_100 += curCoin[0].coin_100;
-            coin.coin_50 += curCoin[0].coin_50;
-            coin.coin_10 += curCoin[0].coin_10;
-        }
-        $coin_500.innerHTML = `${coin.coin_500}개`;
-        $coin_100.innerHTML = `${coin.coin_100}개`;
-        $coin_50.innerHTML = `${coin.coin_50}개`;
-        $coin_10.innerHTML = `${coin.coin_10}개`;
+        appendTable(this.coin);
+        this.coin.setTotal();
+        appendLocalStorage(LOCAL.COIN_AMOUNT, this.coin);
     };
 
     this.init();

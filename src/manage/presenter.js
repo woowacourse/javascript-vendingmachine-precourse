@@ -14,7 +14,10 @@ import {
     MANAGE_TAB_CLASS as CLASS,
     MANAGE_STRING as STRING,
     TABLE_CLASS,
+    LOACL_STORAGE,
+    EMPTY,
 } from "../storage/constant.js";
+import { getLocalStorage } from "../storage/localStorage.js";
 import ManageContainer from "./container.js";
 export default function ManagePresenter() {
     // 최초 실행시, localStorage를 확인해볼 것.
@@ -48,6 +51,24 @@ export default function ManagePresenter() {
             $productState,
             $table,
         ]);
+        checkLocalStorage();
+    };
+
+    const checkLocalStorage = () => {
+        const loadProduct = getLocalStorage(LOACL_STORAGE.PRODUCT);
+        if (loadProduct !== EMPTY) {
+            const curProduct = JSON.parse(loadProduct);
+            curProduct.forEach((element) => {
+                appendTable(
+                    TABLE_CLASS.PRODUCT_TABLE,
+                    CLASS.EACH_ITEM,
+                    element,
+                    CLASS.MANAGE_NAME,
+                    CLASS.MANAGE_PRICE,
+                    CLASS.MANAGE_QUANTITY,
+                );
+            });
+        }
     };
 
     this.init();
