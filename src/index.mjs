@@ -1,29 +1,31 @@
-import { renderHeader, renderProductAddMenu } from './js/view/index.mjs';
+import {
+  renderHeader,
+  renderProductAddTab,
+  renderVendingMachineManageTab
+} from './js/view/index.mjs';
 
-function init() {
-  renderHeader();
-  renderProductAddMenu();
-}
+const $app = document.querySelector('#app');
 
 window.addEventListener('DOMContentLoaded', () => {
-  init();
+  renderHeader();
+  renderProductAddTab();
 });
 
 // 상품 관리 버튼
-window.addEventListener('click', ({ target, preventDefault }) => {
-  // preventDefault();
+window.addEventListener('click', ({ target }) => {
   const $productAddMenu = document.querySelector('#product-add-menu');
-
   if (target !== $productAddMenu) return;
-  if (!document.querySelector('.productAddWrap')) renderProductAddMenu();
+  document.querySelector('main').remove();
+  renderProductAddTab();
 });
 
-window.addEventListener('click', ({ target, preventDefault }) => {
-  // preventDefault();
+// 잔돈 충전 버튼
+window.addEventListener('click', ({ target }) => {
   const $vendingMachineManageMenu = document.querySelector(
     '#vending-machine-manage-menu'
   );
 
   if (target !== $vendingMachineManageMenu) return;
-  document.querySelector('main').innerHTML = '';
+  document.querySelector('main').remove();
+  renderVendingMachineManageTab();
 });
