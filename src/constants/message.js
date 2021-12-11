@@ -11,5 +11,7 @@ export default {
   productQuantityHaveToPlusInteger: '상품 수량은 0보다 커야 합니다',
 
   // 보유 금액 관련 메세지
-  chargeInputIsRequired: '보유 금액을 입력 해주세요',
+  chargeInputIsRequired: '자판기가 보유할 금액을 입력 해주세요',
+  chargeInputHaveToDividedByTen: '자판기가 보유할 금액은 10으로 나누어지는 금액이어야 합니다',
+  chargeInputHaveToPlusInteger: '자판기가 보유할 금액은 0보다 커야 합니다',
 };

@@ -32,7 +32,12 @@ class VendingMachineManageMenuController {
 
   onClickVendingMachineChargeButton() {
     const chargeAmount = $(`#${Selector.vendingMachineChargeInputId}`).value;
-    if (!VendingMachineManageMenuValidator.validateChargeInputExist(chargeAmount)) return;
+    if (
+      !VendingMachineManageMenuValidator.validateChargeInputExist(chargeAmount) ||
+      !VendingMachineManageMenuValidator.validateChargeInputOverZero(chargeAmount) ||
+      !VendingMachineManageMenuValidator.validateChargeInputDivideByTen(chargeAmount)
+    )
+      return;
 
     let remainChargeAmount = chargeAmount;
 
