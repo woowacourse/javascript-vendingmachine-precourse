@@ -110,15 +110,7 @@ export default class ProductPurchaseView {
       userMoney[VALUES] -= change[VALUES];
       change[VALUES] = 0;
 
-      localStorage.setItem(COINS, JSON.stringify(coins));
-      localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
-      localStorage.setItem(CHANGE, JSON.stringify(change));
-      localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
-
-      console.log("현재 금액",userMoney[VALUES]);
-      console.log("거스름돈", change[VALUES]);
-
-      // this.showUserCharge(userMoney);
+      this.storeAllResult(coins, userCoins, change, userMoney);
     } else {
       
       let temp = userMoney[VALUES];
@@ -153,20 +145,19 @@ export default class ProductPurchaseView {
         }
       }
 
-      localStorage.setItem(COINS, JSON.stringify(coins));
-      localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
-      localStorage.setItem(CHANGE, JSON.stringify(change));
-      localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
-
-      console.log("현재 금액",userMoney[VALUES]);
-      console.log("거스름돈", change[VALUES]);
-
-      // this.showUserCharge(userMoney);
+      this.storeAllResult(coins, userCoins, change, userMoney);
     }
     this.showUserCharge();
     this.showTable();
     }) 
     
+  }
+
+  static storeAllResult(coins, userCoins, change, userMoney) {
+    localStorage.setItem(COINS, JSON.stringify(coins));
+    localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
+    localStorage.setItem(CHANGE, JSON.stringify(change));
+    localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
   }
 
   static showTable() {
