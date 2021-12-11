@@ -23,6 +23,7 @@ export default class ProductAddManager {
       DB.save('inventory', DOM.getProduct());
 
       DOM.showInventory();
+      DOM.showIntentoryToPurchaseProduct();
     });
   }
 }
