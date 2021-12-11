@@ -27,7 +27,7 @@ class Tabs extends Component {
 
   setEvent() {
     Object.entries(this.$tabButtons).forEach(([menu, $button]) => {
-      $button.addOnClick(() => {
+      $button.setOnClick(() => {
         this.setState({ currentTab: menu });
       });
     });

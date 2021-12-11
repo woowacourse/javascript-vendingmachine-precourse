@@ -40,7 +40,7 @@ class Charge extends Component {
   }
 
   setEvent() {
-    this.$submit.addOnClick(() => {
+    this.$submit.setOnClick(() => {
       this.onSubmit?.({ amount: parseNumber(this.$input.value) });
     });
   }

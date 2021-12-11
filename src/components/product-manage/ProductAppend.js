@@ -51,7 +51,7 @@ class ProductAppend extends Component {
   }
 
   setEvent() {
-    this.$submit.addOnClick(() => {
+    this.$submit.setOnClick(() => {
       this.onSubmit?.({
         name: parseString(this.$inputs[0].value),
         price: parseNumber(this.$inputs[1].value),

@@ -8,11 +8,11 @@ class Button extends Component {
     this.children = [new TextNode(text)];
   }
 
-  addOnClick(onClick) {
-    this.$element.addEventListener('click', (e) => {
+  setOnClick(onClick) {
+    this.$element.onclick = (e) => {
       e.preventDefault();
       onClick(e);
-    });
+    };
   }
 }
 

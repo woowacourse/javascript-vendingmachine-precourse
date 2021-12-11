@@ -31,7 +31,7 @@ class ReturnChanges extends Component {
   }
 
   setEvent() {
-    this.$button.addOnClick(() => {
+    this.$button.setOnClick(() => {
       this.onReturn?.();
     });
   }
