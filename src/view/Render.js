@@ -29,6 +29,7 @@ export default class Render {
       Number($targetQuantity.textContent)
     );
 
+    this.setLocalStorage.productInformation();
     this.setLocalStorage.productPurchaseMenu();
   };
 
@@ -86,6 +87,7 @@ export default class Render {
     $productManageTbody.appendChild($tr);
 
     this.setLocalStorage.productInformation();
+    this.setLocalStorage.productAddMenu();
   };
 
   productAddMenuTemplate = () => {

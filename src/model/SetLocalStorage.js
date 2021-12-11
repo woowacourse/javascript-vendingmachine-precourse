@@ -9,7 +9,6 @@ export default class SetLocalStorage {
 
   productInformation = () => {
     localStorage.setItem(LOCAL_STORAGE.PRODUCTS_INFORMATION, JSON.stringify(this.product.productsInformation));
-    this.productAddMenu();
   };
 
   coinsInformation = () => {

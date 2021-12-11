@@ -199,7 +199,7 @@ export const TEMPLATE = {
       <td class="product-purchase-price" data-product-price="${productPrice}">${productPrice}</td>
       <td class="product-purchase-quantity" data-product-quantity="${productQuantity}">${productQuantity}</td>
       <td>
-        <button class="purchase-button" data-target-button="${productName}">구매하기</button>
+        <button class="purchase-button">구매하기</button>
       </td>
     `;
   },
