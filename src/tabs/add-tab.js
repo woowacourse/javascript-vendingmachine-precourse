@@ -16,7 +16,7 @@ const createAddGoodsElement = (addTab) => {
 const createGoodsStatusElement = (addTab) => {
     addTab.append(elementCreator('h3', null, '상품 현황'));
     
-    const table = elementCreator('table', ADD_TAB_ID.TABLE, null);
+    const table = elementCreator('table', ADD_TAB_ID.PRODUCT_TABLE, null);
     const tableRow = document.createElement('tr');
 
     const nameHeader = elementCreator('th', null, '상품명');

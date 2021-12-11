@@ -1,6 +1,8 @@
 import {ADD_TAB_ID} from './constants.js';
 import { elementCreator } from './dom/util.js';
 import createAddTab from './tabs/add-tab.js';
+import createManageTab from './tabs/manage-tab.js';
+
 import VendingMachine from './machine.js';
 
 const addButtonId = 'product-add-menu';
@@ -26,7 +28,7 @@ const manageTabId = 'manage-menu';
 const purchaseTabId = 'purchase-menu';
 
 const addTab = createAddTab();
-const manageTab = elementCreator('div', manageTabId, 'manageTab');
+const manageTab = createManageTab();
 const purchaseTab = elementCreator('div', purchaseTabId, 'purchaseTab');
 
 // 처음화면, addTab
