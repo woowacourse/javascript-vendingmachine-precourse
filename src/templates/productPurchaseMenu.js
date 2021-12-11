@@ -60,7 +60,7 @@ export const createChargeFormTemplate = amount => `
   <br />
   <div>
     <span>투입한 금액:</span>
-    <span id="${Selector.chargeAmountId}">${amount}<span>원</span></span>
+    <span id="${Selector.chargeAmountId}">${amount}</span><span>원</span>
   </div>
 `;
 

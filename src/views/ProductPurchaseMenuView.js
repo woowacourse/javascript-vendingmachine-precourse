@@ -22,6 +22,14 @@ class ProductPurchaseMenuView {
     $(`#${Selector.purchaseProductTableBodyId}`).innerHTML =
       createProductTableBodyWithData(productItems);
   }
+
+  renderPurchaseChargeAmount(amount) {
+    $(`#${Selector.chargeAmountId}`).innerHTML = amount;
+  }
+
+  resetPurchaseChargeInput() {
+    $(`#${Selector.chargeInputId}`).value = null;
+  }
 }
 
 export default ProductPurchaseMenuView;
