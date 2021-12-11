@@ -73,6 +73,7 @@ export default class CheckEventTarget {
   };
 
   renderProductStatus = () => {
+    this.render.productPurchaseStatusResetTemplate();
     const productsStatus = this.vendingMachine.getCurrentProductStatus();
     productsStatus.forEach((productStatus) => {
       const [productName, productPrice, productQuantity] = productStatus;
@@ -115,13 +116,13 @@ export default class CheckEventTarget {
     const productPurchaseMenuTemplate = localStorage.getItem(LOCAL_STORAGE.PRODUCT_PURCHASE_MENU);
     if (!productPurchaseMenuTemplate) {
       this.render.productPurchaseMenuTemplate();
-      this.renderProductStatus();
     }
 
     if (productPurchaseMenuTemplate) {
       this.render.haveTemplate(productPurchaseMenuTemplate);
     }
 
+    this.renderProductStatus();
     this.onClickChargeButton();
     this.getPurchaseButtons();
   };

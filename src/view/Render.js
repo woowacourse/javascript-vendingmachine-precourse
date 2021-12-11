@@ -39,6 +39,11 @@ export default class Render {
     this.setLocalStorage.productPurchaseMenu();
   };
 
+  productPurchaseStatusResetTemplate = () => {
+    const $productPurchaseMenuTbody = document.querySelector(DOM.$PRODUCT_PURCHASE_MENU_TBODY);
+    $productPurchaseMenuTbody.innerHTML = '';
+  };
+
   productPurchaseStatusTemplate = (template) => {
     const $productPurchaseMenuTbody = document.querySelector(DOM.$PRODUCT_PURCHASE_MENU_TBODY);
     const $tr = document.createElement(DOM.$TR);
