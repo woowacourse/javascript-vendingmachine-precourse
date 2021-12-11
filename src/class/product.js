@@ -24,7 +24,6 @@ export default class Product {
       vendingMachine.updateProductsModel('삭제', product);
       vendingMachine.updateProductsModel('저장', product);
       vendingMachine.updateProductsView('삭제', product);
-      vendingMachine.updatePurchaseView('삭제', product);
     }
   }
 

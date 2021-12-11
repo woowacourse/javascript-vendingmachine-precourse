@@ -76,9 +76,11 @@ export default class VendingMachine {
         break;
       case '판매':
         updateProductItemAfterPurchase(product.name);
+        updatePurchasableProductTableAfterPurchase(product.name);
         break;
       case '삭제':
         deleteProductItem(product.name);
+        deletePurchaseProduct(product.name);
         break;
     }
   }
@@ -167,19 +169,7 @@ export default class VendingMachine {
     Product.sellProduct(product);
     this.updateProductsModel('저장', product);
     this.updateProductsView('판매', product);
-    this.updatePurchaseView('판매', product);
     Product.deleteProduct(product);
-  }
-
-  updatePurchaseView(action, product) {
-    switch (action) {
-      case '판매':
-        updatePurchasableProductTableAfterPurchase(product.name);
-        break;
-      case '삭제':
-        deletePurchaseProduct(product.name);
-        break;
-    }
   }
 
   // 남은 잔액을 반환
