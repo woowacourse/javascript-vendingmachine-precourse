@@ -12,12 +12,12 @@ export default class VendingMachine {
 
   init = () => {
     this.initPage();
-    this.createComponents();
+    this.initComponents();
     this.setEvent();
     this.renderProductManagePage();
   };
 
-  createComponents = () => {
+  initComponents = () => {
     this.product = new ProductController();
     this.coinStorage = new CoinStorageController();
     this.purchase = new PurchaseController(this.product, this.coinStorage);
