@@ -1,4 +1,5 @@
 import Header from './component/Header.js';
+import TabContainer from './container/TabContainer.js';
 
 export default class App {
   constructor($target) {
@@ -7,5 +8,6 @@ export default class App {
 
   init() {
     this.header = new Header(this.$target);
+    this.tabContainer = new TabContainer(this.$target);
   }
 }

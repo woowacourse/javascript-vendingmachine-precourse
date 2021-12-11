@@ -20,4 +20,7 @@ export const SELECTOR = Object.freeze({
   ID_PURCHASE_MENU: 'product-purchase-menu',
   ID_MACHINE_MANAGE_MENU: 'vending-machine-manage-menu',
   ID_PRODUCT_ADD_MENU: 'product-add-menu',
+  ID_PURCHASE_TAB: 'product-purchase-tab',
+  ID_MACHINE_MANAGE_TAB: 'vending-machine-manage-tab',
+  ID_PRODUCT_ADD_TAB: 'product-add-tab',
 });
