@@ -1,7 +1,8 @@
 import {
   renderHeader,
   renderProductAddTab,
-  renderVendingMachineManageTab
+  renderVendingMachineManageTab,
+  renderProductPurchaseTab
 } from './js/view/index.mjs';
 
 const $app = document.querySelector('#app');
@@ -28,4 +29,11 @@ window.addEventListener('click', ({ target }) => {
   if (target !== $vendingMachineManageMenu) return;
   document.querySelector('main').remove();
   renderVendingMachineManageTab();
+});
+
+// 상품 구매 버튼
+window.addEventListener('click', ({ target }) => {
+  if (target !== document.querySelector('#product-purchase-menu')) return;
+  document.querySelector('main').remove();
+  renderProductPurchaseTab();
 });

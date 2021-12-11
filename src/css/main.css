@@ -2,10 +2,18 @@
   padding: 20px;
 }
 
+header {
+  margin-bottom: 60px;
+}
+
 h1 {
   font-size: 30px;
   display: inline-block;
   margin: 10px 0;
+}
+
+section {
+  margin-bottom: 60px;
 }
 
 input {
@@ -18,13 +26,13 @@ input {
 }
 
 button {
-  margin: 0 5px;
+  /* margin: 0 5px; */
   padding: 5px 10px;
 }
 
-#productAddWrap {
+/* #productAddWrap {
   margin: 60px 0;
-}
+} */
 
 table,
 th,

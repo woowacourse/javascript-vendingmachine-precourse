@@ -30,19 +30,19 @@ function renderAmount() {
       <tbody>
         <tr>
           <td>500원</td>
-          <td></td>
+          <td><span id="vending-machine-coin-500-quantity"></span></td>
         </tr>
         <tr>
           <td>100원</td>
-          <td></td>
+          <td><span id="vending-machine-coin-100-quantity"></span></td>
         </tr>
         <tr>
           <td>50원</td>
-          <td></td>
+          <td><span id="vending-machine-coin-50-quantity"></span></td>
         </tr>
         <tr>
           <td>10원</td>
-          <td></td>
+          <td><span id="vending-machine-coin-10-quantity"></span></td>
         </tr>
       </tbody>
     </table>

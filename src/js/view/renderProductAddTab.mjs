@@ -28,6 +28,13 @@ function renderProductCurrent() {
         <th>가격</th>
         <th>수량</th>
       </thead>
+      <tbody>
+        <tr class="product-manage-item">
+          <td class="product-manage-name"></td>
+          <td class="product-manage-price"></td>
+          <td class="product-manage-quantity"></td>
+        </tr>
+      </tbody>
     </table>
   `;
   $fragment.appendChild($curProductWrap);
@@ -36,7 +43,7 @@ function renderProductCurrent() {
 export function renderProductAddTab() {
   const $app = document.querySelector('#app');
   const $main = document.createElement('main');
-  $main.id = 'productAddMenuWrap';
+  $main.id = 'productAddWrap';
 
   renderProductAdd();
   renderProductCurrent();
