@@ -169,52 +169,50 @@ export default class ProductPurchaseView {
     document.getElementById('coin-100-quantity').innerHTML = `${userCoins[100]}개`;
     document.getElementById('coin-50-quantity').innerHTML = `${userCoins[50]}개`;
     document.getElementById('coin-10-quantity').innerHTML = `${userCoins[10]}개`;
-}
+  }
 
-static addPurchaseEvent() {
-  document.addEventListener('click', (e) => {
-    const className = e.target.className;
-    const target = e.target.parentElement.parentElement;
+  static addPurchaseEvent() {
+    document.addEventListener('click', (e) => {
+      const className = e.target.className;
+      const target = e.target.parentElement.parentElement;
 
+      this.checkClassName(className, target);      
+    })
+  }
+
+  static checkClassName(className, target) {
     if(className === 'purchase-button'){
       const name = target.childNodes[1].dataset.productName;
       const price = target.childNodes[3].dataset.productPrice;
       const quantity = target.childNodes[5].dataset.productQuantity;
-      // console.log(name);
-      // console.log(price);
-      // console.log(quantity);
 
-      //해당 수량 하나 줄이고 가격만큼 투입 금액 줄이고
       this.purchase(name, price, quantity);
     }
+  }
+
+  static purchase(name, price, quantity) {
+    const product = JSON.parse(localStorage.getItem(PRODUCT));
+    const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
+
+    if(parseInt(quantity) <= 0) {
+      return alert('재고가 부족합니다!');
+    }
+
+    //살 수 있으면 사고 금액 저장, 없으면 alert
+    if(parseInt(userMoney[VALUES]) - parseInt(price) >= 0){
+      userMoney[VALUES] = parseInt(userMoney[VALUES]) - parseInt(price);
+      product[name][VALUES][1] -= 1;
+
+      localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
+      localStorage.setItem(PRODUCT, JSON.stringify(product));
+
+      this.showProductTable();
+      this.showUserCharge(userMoney);
+
+
+    } else {
+      alert('구매할 수 없습니다!');
+    }
     
-  })
-}
-
-static purchase(name, price, quantity) {
-  const product = JSON.parse(localStorage.getItem(PRODUCT));
-  const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
-
-  if(parseInt(quantity) <= 0) {
-    return alert('재고가 부족합니다!');
   }
-
-  //살 수 있으면 사고 금액 저장, 없으면 alert
-  if(parseInt(userMoney[VALUES]) - parseInt(price) >= 0){
-    userMoney[VALUES] = parseInt(userMoney[VALUES]) - parseInt(price);
-    product[name][VALUES][1] -= 1;
-
-    localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
-    localStorage.setItem(PRODUCT, JSON.stringify(product));
-
-    this.showProductTable();
-    this.showUserCharge(userMoney);
-
-
-  } else {
-    alert('구매할 수 없습니다!');
-  }
-  
-}
-
 }
