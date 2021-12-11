@@ -1,6 +1,7 @@
-import { COIN_LIST } from './constants.js';
+import { COIN_LIST, STORAGE_KEY } from './constants.js';
 import countReturnedCoin from './countReturnedCoin.js';
 import pickNumberInList from './pickNumberInList.js';
+import * as storage from './storage.js';
 
 export default class Coin {
   constructor() {
@@ -49,5 +50,15 @@ export default class Coin {
     }
 
     return coins;
+  }
+
+  save() {
+    storage.save(STORAGE_KEY.coin, this.items);
+  }
+
+  initialize() {
+    if (storage.find(STORAGE_KEY.coin)) {
+      this.items = storage.find(STORAGE_KEY.coin);
+    }
   }
 }

@@ -1,3 +1,6 @@
+import { STORAGE_KEY } from './constants.js';
+import * as storage from './storage.js';
+
 export default class Product {
   constructor() {
     this.items = {};
@@ -26,5 +29,15 @@ export default class Product {
 
   getProductPrice(name) {
     return this.items[name].price;
+  }
+
+  save() {
+    storage.save(STORAGE_KEY.product, this.items);
+  }
+
+  initialize() {
+    if (storage.find(STORAGE_KEY.product)) {
+      this.items = storage.find(STORAGE_KEY.product);
+    }
   }
 }

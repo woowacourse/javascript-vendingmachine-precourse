@@ -26,6 +26,7 @@ const attachReturnCoinEvent = (vendingMachine) => {
     if (isEnabledReturnCoin(vendingMachine) && !isEmpty(vendingMachine)) {
       printReturnCoinTable(vendingMachine.returnCoin());
       printChargeAmount(vendingMachine.getMoney());
+      vendingMachine.save();
     }
   });
 };

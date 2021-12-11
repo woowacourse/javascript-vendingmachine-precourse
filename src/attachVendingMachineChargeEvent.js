@@ -30,6 +30,7 @@ const attachVendingMachineChargeEvent = (coin) => {
     if (isValidPrice(price)) {
       clearVendingMachineChargeInput();
       coin.charge(Number(price));
+      coin.save();
       printVendingMachineAmountAndCoinTable(coin);
     }
   });

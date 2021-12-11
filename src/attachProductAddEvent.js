@@ -69,6 +69,7 @@ const attachProductAddEvent = (product) => {
       product.add(makeProductItem(name, price, quantity));
       clearProductInput();
       printProductManageTable(product);
+      product.save();
     }
   });
 };

@@ -7,6 +7,7 @@ import * as storage from './storage.js';
 
 renderAppTemplate();
 const vendingMachine = new VendingMachine();
+vendingMachine.initialize();
 attachMenuTabEvent(vendingMachine);
 
 const menu = storage.find(STORAGE_KEY.menu);

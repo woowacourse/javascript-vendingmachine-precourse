@@ -106,4 +106,7 @@ export const COIN_LIST = [500, 100, 50, 10];
 
 export const STORAGE_KEY = {
   menu: 'menu',
+  product: 'product',
+  coin: 'coin',
+  vendingMachine: 'vendingMachine',
 };

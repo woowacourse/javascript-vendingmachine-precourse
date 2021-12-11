@@ -30,6 +30,7 @@ const attachChargeEvent = (vendingMachine) => {
     if (isValidPrice(price)) {
       clearChargeInput();
       vendingMachine.insertMoney(Number(price));
+      vendingMachine.save();
       printChargeAmount(vendingMachine.getMoney());
     }
   });

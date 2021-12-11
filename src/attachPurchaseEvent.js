@@ -18,6 +18,7 @@ const attachPurchaseEvent = ($button, vendingMachine) => {
       vendingMachine.sell(productName);
       printProductPurchaseItemTable(vendingMachine);
       printChargeAmount(vendingMachine.getMoney());
+      vendingMachine.save();
     }
   });
 };
