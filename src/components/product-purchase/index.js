@@ -3,12 +3,15 @@ import { $tag } from '../../utils/index.js';
 import Component from '../base/Component.js';
 import Charge from './Charge.js';
 import CurrentAmount from './CurrentAmount.js';
+import ProductStatus from './ProductStatus.js';
 import ReturnChanges from './ReturnChanges.js';
 
 class ProductPurchase extends Component {
   $charge;
 
   $currentAmount;
+
+  $productStatus;
 
   $returnChanges;
 
@@ -17,9 +20,15 @@ class ProductPurchase extends Component {
 
     this.$charge = new Charge();
     this.$currentAmount = new CurrentAmount();
+    this.$productStatus = new ProductStatus();
     this.$returnChanges = new ReturnChanges();
-    this.children = [this.$charge, this.$currentAmount, this.$returnChanges];
 
+    this.children = [
+      this.$charge,
+      this.$currentAmount,
+      this.$productStatus,
+      this.$returnChanges,
+    ];
     this.setEvent();
   }
 
@@ -27,6 +36,10 @@ class ProductPurchase extends Component {
     this.$currentAmount.setState({
       amount: VendingMachineStore.instance.user.amount,
     });
+  }
+
+  #updateProductStatus() {
+    this.$productStatus.update();
   }
 
   #updateReturnChanges() {
@@ -48,7 +61,9 @@ class ProductPurchase extends Component {
   }
 
   update() {
-    // 상품 현황 업데이트
+    this.#updateCurrentAmount();
+    this.#updateProductStatus();
+    this.#updateReturnChanges();
   }
 }
 
