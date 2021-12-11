@@ -16,8 +16,8 @@ export default class Store {
 
   setUpReducer() {}
 
-  dispatch({ type, data = null, error = null }) {
-    this.reducer[type]({ data, error });
+  dispatch({ type, data = null }) {
+    return this.reducer[type](data);
   }
 
   getState() {
