@@ -8,6 +8,8 @@ import CurrentChanges from './CurrentChanges.js';
 class ChangesStatus extends Component {
   $title;
 
+  $table;
+
   constructor() {
     super($tag('div'));
 

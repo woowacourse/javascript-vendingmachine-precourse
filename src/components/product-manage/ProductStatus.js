@@ -7,6 +7,8 @@ import ProductTable from './ProductTable.js';
 class ProductStatus extends Component {
   $title;
 
+  $table;
+
   constructor() {
     super($tag('div'));
 

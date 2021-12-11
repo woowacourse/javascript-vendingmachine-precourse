@@ -25,6 +25,10 @@ const tableDataRecord = {
 class ProductTable extends Component {
   $title;
 
+  $tableHead;
+
+  $tableRows;
+
   constructor() {
     super($tag('table'));
 

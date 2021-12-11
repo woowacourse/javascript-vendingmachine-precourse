@@ -18,6 +18,10 @@ const priceIdRecord = {
 class ChangesTable extends Component {
   $title;
 
+  $tableHead;
+
+  $tableRows;
+
   constructor() {
     super($tag('table'));
 

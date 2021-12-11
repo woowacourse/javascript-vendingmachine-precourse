@@ -7,6 +7,8 @@ import ChangesStatus from './ChangesStatus.js';
 class ChangesCharge extends Component {
   $charge;
 
+  $status;
+
   constructor() {
     super($tag('div'));
     this.$charge = new Charge();

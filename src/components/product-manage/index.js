@@ -7,7 +7,7 @@ import ProductStatus from './ProductStatus.js';
 class ProductManage extends Component {
   $append;
 
-  $table;
+  $status;
 
   constructor() {
     super($tag('div'));
