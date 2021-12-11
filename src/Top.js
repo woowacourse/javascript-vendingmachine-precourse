@@ -1,5 +1,5 @@
 import { HEADER, MENU } from './common/constants.js';
-import createDiv from './common/CreateElement.js';
+import { createButton, createDiv } from './common/CreateElement.js';
 import $app from './common/elements.js';
 
 function createMainHeader() {
@@ -9,22 +9,17 @@ function createMainHeader() {
   return mainHeader;
 }
 
-function createButton(attr) {
-  const button = document.createElement('button');
-  const [id, innerText] = attr;
-  button.setAttribute('id', id);
-  button.innerText = innerText;
-
-  return button;
-}
-
 function createMenuButtons() {
   const buttonAttrs = [
     ['product-add-menu', MENU.PRODUCT_MANAGE],
     ['vending-machine-manage-menu', MENU.CHANGE_CHARGE],
     ['product-purchase-menu', MENU.PRODUCT_PURCHASE],
   ];
-  const menuButtons = buttonAttrs.map((attr) => createButton(attr));
+  const menuButtons = buttonAttrs.map((attr) => {
+    const [id, innerText] = attr;
+
+    return createButton(id, innerText);
+  });
 
   return menuButtons;
 }
@@ -39,7 +34,7 @@ function createTabMenu() {
 
 export default function createTop() {
   const mainHeader = createMainHeader();
-  $app.appendChild(mainHeader);
+  $app.append(mainHeader);
   const tabMenu = createTabMenu();
-  $app.appendChild(tabMenu);
+  $app.append(tabMenu);
 }
