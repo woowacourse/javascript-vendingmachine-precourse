@@ -8,14 +8,13 @@ import {
     appendDiv,
     createButton,
     createTable,
-    appendTable,
     createParagraph,
 } from "../storage/createElement.js";
 import {
     CHARGE_TAB_ID as ID,
     CHARGE_STRING as STRING,
 } from "../storage/constant.js";
-
+import ChargeContainer from "./container.js";
 export default function ChargePresenter() {
     // 최초 실행시, localStorage를 확인해볼 것.
     // localStorage에 값이 없다는게 확인 된다면, 새로 깔면 되고,
@@ -24,6 +23,7 @@ export default function ChargePresenter() {
     this.init = () => {
         clearContainer();
         setInitialManage();
+        new ChargeContainer();
     };
 
     const setInitialManage = () => {
@@ -50,10 +50,10 @@ export default function ChargePresenter() {
     const setChargeTableRows = () => {
         const $table = document.querySelector(".table");
         [
-            [STRING.COIN_500, ID.COIN_500],
-            [STRING.COIN_100, ID.COIN_100],
-            [STRING.COIN_50, ID.COIN_50],
-            [STRING.COIN_10, ID.COIN_10],
+            [STRING.COIN_500 + STRING.WON, ID.COIN_500],
+            [STRING.COIN_100 + STRING.WON, ID.COIN_100],
+            [STRING.COIN_50 + STRING.WON, ID.COIN_50],
+            [STRING.COIN_10 + STRING.WON, ID.COIN_10],
         ].forEach((element) => {
             const tr = document.createElement("tr");
             const name = document.createElement("td");

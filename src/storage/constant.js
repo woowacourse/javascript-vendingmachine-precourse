@@ -44,10 +44,11 @@ export const CHARGE_STRING = Object.freeze({
     COIN_STATE: "자판기가 보유한 동전",
     COIN: "동전",
     COUNT: "개수",
-    COIN_500: "500원",
-    COIN_100: "100원",
-    COIN_50: "50원",
-    COIN_10: "10원",
+    COIN_500: "500",
+    COIN_100: "100",
+    COIN_50: "50",
+    COIN_10: "10",
+    WON: "원",
 });
 
 export const PURCHASE_TAB_ID = Object.freeze({
@@ -64,7 +65,7 @@ export const PURCHASE_TAB_ID = Object.freeze({
 export const PURCHASE_TAB_CLASS = Object.freeze({});
 
 export const EMPTY = "";
-
+export const ZERO = 0;
 export const LOACL_STORAGE = Object.freeze({
     PRODUCT: "product",
     TOTAL_AMOUNT: "total_amount",

@@ -86,6 +86,4 @@ export const appendTable = (tr, object, ...className) => {
     });
 
     table.append(tableBodyRow);
-
-    console.log(table);
 };

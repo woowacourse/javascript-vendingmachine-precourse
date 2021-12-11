@@ -65,10 +65,10 @@ export default function PurchasePresenter() {
         );
         const $returnTable = createTable(["동전", "개수"]);
         appendDiv($container, [$returnTitle, $returnButton, $returnTable]);
-        appendTable("500원", "");
-        appendTable("100원", "");
-        appendTable("50원", "");
-        appendTable("10원", "");
+        // appendTable("500원", "");
+        // appendTable("100원", "");
+        // appendTable("50원", "");
+        // appendTable("10원", "");
     };
     this.init();
 }
