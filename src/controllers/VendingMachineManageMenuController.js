@@ -1,7 +1,8 @@
 import VendingMachineManageMenuView from '../views/VendingMachineManageMenuView.js';
 import VendingMachineManageMenuModel from '../models/VendingMachineManageMenuModel.js';
-
+import VendingMachineManageMenuValidator from '../validators/vendingMachineManageMenu.js';
 import { $ } from '../utils/dom.js';
+
 import Selector from '../constants/selector.js';
 
 class VendingMachineManageMenuController {
@@ -31,6 +32,8 @@ class VendingMachineManageMenuController {
 
   onClickVendingMachineChargeButton() {
     const chargeAmount = $(`#${Selector.vendingMachineChargeInputId}`).value;
+    if (!VendingMachineManageMenuValidator.validateChargeInputExist(chargeAmount)) return;
+
     let remainChargeAmount = chargeAmount;
 
     while (remainChargeAmount > 0) {

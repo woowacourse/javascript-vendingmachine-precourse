@@ -9,4 +9,7 @@ export default {
   // 상품 수량 관련 메세지
   productQuantityIsRequired: '상품 수량을 입력 해주세요',
   productQuantityHaveToPlusInteger: '상품 수량은 0보다 커야 합니다',
+
+  // 보유 금액 관련 메세지
+  chargeInputIsRequired: '보유 금액을 입력 해주세요',
 };
