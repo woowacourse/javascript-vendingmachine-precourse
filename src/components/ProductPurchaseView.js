@@ -80,6 +80,7 @@ export default class ProductPurchaseView {
       alert("거스름돈이 없습니다!");
       return false;
     }
+    return true;
   }
 
   static storeAllResult(coins, userCoins, change, userMoney) {
@@ -110,12 +111,13 @@ export default class ProductPurchaseView {
     const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
     //거스름돈 없거나 생성 안되었을때
-    if(!this.checkChange(coins, change)) {
+    if(!(this.checkChange(coins, change))) {
       return;
     };
 
     //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
     if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
+      console.log(3);
       this.makeEmpty(userCoins, coins);
 
       userMoney[VALUES] -= change[VALUES];
@@ -123,7 +125,7 @@ export default class ProductPurchaseView {
 
       this.storeAllResult(coins, userCoins, change, userMoney);
     } else {
-      
+      console.log(4);
       let temp = userMoney[VALUES];
       //실제 거슬러준거
       let real = 0;
