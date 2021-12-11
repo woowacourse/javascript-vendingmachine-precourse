@@ -1,6 +1,7 @@
 import renderAppTemplate from './renderAppTemplate.js';
 import renderProductAddTemplate from './renderProductAddTemplate.js';
 import renderVendingMachineManageMenuTemplate from './renderVendingMachineManageMenuTemplate.js';
+import renderProductPurchaseTemplate from './renderProductPurchaseTemplate.js';
 import attachProductAddEvent from './attachProductAddEvent.js';
 import Product from './Product.js';
 import { DOM_ID_SELECTOR } from './constants.js';
@@ -26,4 +27,9 @@ $vendingMachineManageMenu.addEventListener('click', () => {
   renderVendingMachineManageMenuTemplate();
   printVendingMachineAmountAndCoinTable(coin);
   attachVendingMachineChargeEvent(coin);
+});
+
+const $productPurchaseMenu = document.getElementById(DOM_ID_SELECTOR.productPurchaseMenu);
+$productPurchaseMenu.addEventListener('click', () => {
+  renderProductPurchaseTemplate();
 });

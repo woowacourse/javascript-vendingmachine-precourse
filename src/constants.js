@@ -16,6 +16,15 @@ export const DOM_ID_SELECTOR = {
   vendingMachineCoin100Quantity: 'vending-machine-coin-100-quantity',
   vendingMachineCoin50Quantity: 'vending-machine-coin-50-quantity',
   vendingMachineCoin10Quantity: 'vending-machine-coin-10-quantity',
+  chargeInput: 'charge-input',
+  chargeButton: 'charge-button',
+  chargeAmount: 'charge-amount',
+  productPurchaseTable: 'product-purchase-table',
+  coinReturnButton: 'coin-return-button',
+  coin500Quantity: 'coin-500-quantity',
+  coin100Quantity: 'coin-100-quantity',
+  coin50Quantity: 'coin-50-quantity',
+  coin10Quantity: 'coin-10-quantity',
 };
 
 export const DOM_CLASS_SELECTOR = {
@@ -56,11 +65,32 @@ export const VENDING_MACHINE_CHARGE_MESSAGE = {
   10: '10원',
 };
 
+export const PRODUCT_PURCHASE_MESSAGE = {
+  chargeAmount: '금액 투입',
+  productStatus: '구매할 수 있는 상품 현황',
+  change: '잔돈',
+  willChargeAmount: '투입할 금액',
+  productName: '상품명',
+  productPrice: '가격',
+  productQuantity: '수량',
+  productPurchase: '구매',
+  charge: '투입하기',
+  amount: '투입한 금액: ',
+  return: '반환하기',
+  coin: '동전',
+  quantity: '개수',
+  500: '500원',
+  100: '100원',
+  50: '50원',
+  10: '10원',
+};
+
 export const ERROR_MESSAGE = {
   productName: '상품 이름을 확인해주세요.',
   productPrice: '상품 가격을 확인해주세요.',
   productQuantity: '상품 수량을 확인해주세요.',
   vendingCharge: '충전할 금액을 확인해주세요.',
+  chargePrice: '투입 가격을 확인해주세요.',
 };
 
 export const COIN_LIST = [500, 100, 50, 10];
