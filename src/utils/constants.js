@@ -16,6 +16,8 @@ export const ERROR = {
   CHARGE_INCLUDE_SPECIAL: '금액에 특수문자를 입력하실 수 없습니다.',
   CHARGE_UNDER_TEN: '금액은 10원 미만일 수 없습니다.',
   CHARGE_NOT_TEN_MULTIPLE: '금액은 10의 배수만 입력 가능합니다.',
+
+  CHARGE_UNDER_PRODUCT_PRICE: '투입한 금액이 원하는 상품 가격 이상이어야 합니다.',
 };
 
 export const REGEX = {

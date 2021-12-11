@@ -1,5 +1,6 @@
 import { REGEX } from './constants.js';
 import { default as DB } from '../model/database.js';
+import { default as V } from './validators.js';
 
 const utils = {
   isBlank: string => {
@@ -38,6 +39,10 @@ const utils = {
     return Object.values(DB.load(string)).every(number => number === 0);
   },
 
+  isChargeUnderProductPrice: number => {
+    return number > DB.load('chargeToPurchaseProduct');
+  },
+
   changeIdToComponent: string => {
     const result = string.split('-');
     result.pop();
@@ -74,7 +79,7 @@ const utils = {
 
       const data = utils.getProductInformation(e.path[2].children);
 
-      console.log(data);
+      if (!V.isValidProductPurchase(data)) return;
     });
   },
 

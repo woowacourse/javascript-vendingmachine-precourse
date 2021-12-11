@@ -35,6 +35,12 @@ const validators = {
 
     return true;
   },
+
+  isValidProductPurchase: object => {
+    if (UT.isChargeUnderProductPrice(object.price)) return alert(ERROR.CHARGE_UNDER_PRODUCT_PRICE);
+
+    return true;
+  },
 };
 
 export default validators;
