@@ -105,47 +105,45 @@ export default class ProductPurchaseView {
   static addReturnEvent() {
     document.getElementById('coin-return-button').addEventListener('click', (e) => {
       e.preventDefault();
-
       localStorage.setItem(USER_COINS, JSON.stringify({ [FIVE_HUNDRED]: 0, [ONE_HUNDRED]: 0, [FIFTY]: 0, [TEN]: 0}));
-
       const coins = JSON.parse(localStorage.getItem(COINS));
-    const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
-    const change = JSON.parse(localStorage.getItem(CHANGE));
-    const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
+      const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
+      const change = JSON.parse(localStorage.getItem(CHANGE));
+      const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
-    //거스름돈 없거나 생성 안되었을때
-    if(!(this.checkChange(coins, change))) {
-      return;
-    };
-
-    //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
-    if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
-      this.makeEmpty(userCoins, coins, userMoney, change);
-      this.storeAllResult(coins, userCoins, change, userMoney);
-    } else {
-      let list = this.listInit(userMoney[VALUES], 0);
-      while(list[0] >= 0) {
-        if(list[0] >= 500 && coins[500] >= 1) {
-          list = this.makeUserCoins(FIVE_HUNDRED, list, coins, userCoins);
-        } else if(list[0] >= 100 && coins[100] >= 1) {
-          list = this.makeUserCoins(ONE_HUNDRED, list, coins, userCoins);
-        } else if(list[0] >= 50 && coins[50] >= 1) {
-          list = this.makeUserCoins(FIFTY, list, coins, userCoins);
-        } else if(list[0] >= 10 && coins[10] >= 1) {
-          list = this.makeUserCoins(TEN, list, coins, userCoins);
-        } else {
-          change[VALUES] = parseInt(change[VALUES]) - list[1];
-          userMoney[VALUES] -= list[1];
-          break;
-        }
+      if(!(this.checkChange(coins, change))) {
+        return;
       }
 
-      this.storeAllResult(coins, userCoins, change, userMoney);
+      if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
+        this.makeEmpty(userCoins, coins, userMoney, change);
+        this.storeAllResult(coins, userCoins, change, userMoney);
+      } else {
+        this.minimumCoin(userMoney, coins, change, userCoins);
+        this.storeAllResult(coins, userCoins, change, userMoney);
+      }
+      this.showUserCharge();
+      this.showTable();
+      })
+  }
+
+  static minimumCoin(userMoney, coins, change, userCoins) {
+    let list = this.listInit(userMoney[VALUES], 0);
+    while(list[0] >= 0) {
+      if(list[0] >= 500 && coins[500] >= 1) {
+        list = this.makeUserCoins(FIVE_HUNDRED, list, coins, userCoins);
+      } else if(list[0] >= 100 && coins[100] >= 1) {
+        list = this.makeUserCoins(ONE_HUNDRED, list, coins, userCoins);
+      } else if(list[0] >= 50 && coins[50] >= 1) {
+        list = this.makeUserCoins(FIFTY, list, coins, userCoins);
+      } else if(list[0] >= 10 && coins[10] >= 1) {
+        list = this.makeUserCoins(TEN, list, coins, userCoins);
+      } else {
+        change[VALUES] = parseInt(change[VALUES]) - list[1];
+        userMoney[VALUES] -= list[1];
+        break;
+      }
     }
-    this.showUserCharge();
-    this.showTable();
-    }) 
-    
   }
 
   static makeUserCoins(num, list, coins, userCoins) {
