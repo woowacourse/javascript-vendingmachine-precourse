@@ -11,14 +11,17 @@ const tableRowProp = {
 const tableDataRecord = {
   name: {
     head: '상품명',
+    dataset: 'productName',
     className: ELEMENT_CLASS.PRODUCT_PURCHASE_ITEM_NAME,
   },
   price: {
     head: '가격',
+    dataset: 'productPrice',
     className: ELEMENT_CLASS.PRODUCT_PURCHASE_ITEM_PRICE,
   },
   count: {
     head: '수량',
+    dataset: 'productCount',
     className: ELEMENT_CLASS.PRODUCT_PURCHASE_ITEM_QUANTITY,
   },
 };
@@ -61,10 +64,11 @@ class ProductTable extends Component {
     const $tableRow = new Component($tag('tr'), tableRowProp);
 
     $tableRow.children = [
-      ...Object.entries(tableDataRecord).map(
-        ([key, record]) =>
-          new Label('td', data[key], { className: record.className })
-      ),
+      ...Object.entries(tableDataRecord).map(([key, record]) => {
+        const $td = new Label('td', data[key], { className: record.className });
+        $td.$element.dataset[record.dataset] = data[key];
+        return $td;
+      }),
       new Button('구매하기', purchaseButtonProp),
     ];
     return $tableRow;
