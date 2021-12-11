@@ -4,11 +4,12 @@ import isValidChargeAmount from '../../utils/isValidChargeAmount.js';
 
 export default class ProductPurchaseMenu extends Component {
   setup() {
-    const { items } = this.props;
+    const { chargeAmount, items, coins } = this.props;
 
     this.state = {
-      chargeAmount: 0,
+      chargeAmount,
       items,
+      coins,
       change: { '500': 0, '100': 0, '50': 0, '10': 0 },
     };
   }
@@ -91,6 +92,7 @@ export default class ProductPurchaseMenu extends Component {
         return;
       }
 
+      this.props.charge(chargeAmount);
       this.setState({ chargeAmount: this.state.chargeAmount + chargeAmount });
     });
 
@@ -109,8 +111,12 @@ export default class ProductPurchaseMenu extends Component {
       items
         .filter((item) => item.id === Number(productId))
         .forEach((item) => item.purchase());
-      this.setState({ chargeAmount: chargeAmount - productPrice, items });
       this.props.purchase(productId);
+      this.setState({ chargeAmount: chargeAmount - productPrice, items });
+    });
+
+    this.addEvent('click', '#coin-return-button', (e) => {
+      e.preventDefault();
     });
   }
 }

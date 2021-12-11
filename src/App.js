@@ -10,14 +10,15 @@ import $ from './helpers.js';
 
 export default class App extends Component {
   setup() {
-    const { items, change } = this.props.store.getLocalStorage();
+    const { items, coins, chargeAmount } = this.props.store.getLocalStorage();
 
     this.state = {
       currentTab: '/add',
       items: items.map(
         ({ id, name, price, quantity }) => new Item(name, price, quantity, id)
       ),
-      change,
+      coins,
+      chargeAmount,
     };
 
     console.log('data loaded', this.state);
@@ -36,7 +37,7 @@ export default class App extends Component {
   }
 
   mounted() {
-    const { navigate, addItem, addChange, purchase } = this;
+    const { navigate, addItem, refillCoins, charge, purchase } = this;
     new NavBar($('#nav-bar'), { navigate: navigate.bind(this) });
     new Router($('#router'), this.state.currentTab);
     new ProductAddMenu($('#product-add-tab'), {
@@ -44,11 +45,14 @@ export default class App extends Component {
       addItem: addItem.bind(this),
     });
     new VendingMachineManageMenu($('#vending-machine-manage-tab'), {
-      change: this.state.change,
-      addChange: addChange.bind(this),
+      coins: this.state.coins,
+      refillCoins: refillCoins.bind(this),
     });
     new ProductPurchaseMenu($('#product-purchase-tab'), {
       items: this.state.items,
+      coins: this.state.coins,
+      chargeAmount: this.state.chargeAmount,
+      charge: charge.bind(this),
       purchase: purchase.bind(this),
     });
   }
@@ -64,19 +68,23 @@ export default class App extends Component {
     return [...this.state.items, item];
   }
 
-  addChange(additionalChange) {
-    const { change } = this.state;
-    const newChange = {
-      '500': change['500'] + additionalChange['500'],
-      '100': change['100'] + additionalChange['100'],
-      '50': change['50'] + additionalChange['50'],
-      '10': change['10'] + additionalChange['10'],
+  refillCoins(newCoins) {
+    const { coins } = this.state;
+    const sum = {
+      '500': coins['500'] + newCoins['500'],
+      '100': coins['100'] + newCoins['100'],
+      '50': coins['50'] + newCoins['50'],
+      '10': coins['10'] + newCoins['10'],
     };
 
-    this.props.store.updateChange(newChange);
-    this.setState({ change: newChange });
+    this.props.store.updateCoins(sum);
+    this.setState({ coins: sum });
 
-    return newChange;
+    return sum;
+  }
+
+  charge(amount) {
+    this.props.store.updateCharge(this.state.chargeAmount + amount);
   }
 
   purchase(id) {

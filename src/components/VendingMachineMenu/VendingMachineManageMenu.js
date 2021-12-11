@@ -2,17 +2,17 @@ import Component from '../../core/Component.js';
 import CoinTable from '../common/CoinTable.js';
 import $ from '../../helpers.js';
 import isValidChargeAmount from '../../utils/isValidChargeAmount.js';
-import generateCoins from '../../utils/generateChange.js';
+import generateCoins from '../../utils/generateCoins.js';
 
 export default class VendingMachineManageMenu extends Component {
   setup() {
-    const { change } = this.props;
-    const chargeAmount = Object.keys(change).reduce(
-      (acc, value) => acc + change[value] * Number(value),
+    const { coins } = this.props;
+    const chargeAmount = Object.keys(coins).reduce(
+      (acc, value) => acc + coins[value] * Number(value),
       0
     );
 
-    this.state = { chargeAmount, change };
+    this.state = { chargeAmount, coins };
   }
 
   template() {
@@ -26,14 +26,14 @@ export default class VendingMachineManageMenu extends Component {
         this.state.chargeAmount || ''
       }</span><p>
       <h3>자판기가 보유한 동전</h3>
-      <div id='change'></div>
+      <div id='coins'></div>
     `;
   }
 
   mounted() {
-    const { change } = this.state;
+    const { coins } = this.state;
 
-    new CoinTable($('#change'), { change });
+    new CoinTable($('#coins'), { coins });
   }
 
   setEvent() {
@@ -41,7 +41,7 @@ export default class VendingMachineManageMenu extends Component {
       e.preventDefault();
 
       const { chargeAmount } = this.state;
-      const { addChange } = this.props;
+      const { refillCoins } = this.props;
       const newChargeAmount = $('#vending-machine-charge-input').valueAsNumber;
 
       if (!isValidChargeAmount(newChargeAmount)) {
@@ -51,7 +51,7 @@ export default class VendingMachineManageMenu extends Component {
       }
 
       this.setState({ chargeAmount: chargeAmount + newChargeAmount });
-      this.setState({ change: addChange(generateCoins(newChargeAmount)) });
+      this.setState({ coins: refillCoins(generateCoins(newChargeAmount)) });
     });
   }
 }
