@@ -1,13 +1,13 @@
 export const MENU_TYPE = {
   'product-purchase-menu': 'PRODUCT_PURCHASE',
-  'vending-machine-manage-menu': 'MACHINE_MANAGE',
-  'product-add-menu': 'PRODUCT_ADD',
+  'vending-machine-manage-menu': 'MACHINE_MANAGEMENT',
+  'product-add-menu': 'PRODUCT_MANAGEMENT',
 };
 
 export const MENU = {
   PRODUCT_PURCHASE: 'PRODUCT_PURCHASE',
-  MACHINE_MANAGE: 'MACHINE_MANAGE',
-  PRODUCT_ADD: 'PRODUCT_ADD',
+  MACHINE_MANAGEMENT: 'MACHINE_MANAGEMENT',
+  PRODUCT_MANAGEMENT: 'PRODUCT_MANAGEMENT',
 };
 
 export const MESSAGE = {
