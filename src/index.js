@@ -16,7 +16,7 @@ import createMenuContentByKey from './components/content/createMenuContentByKey.
 import {
   createAddFormContainer,
   createCurrentProductTableContainer,
-} from './components/content/addContent/index.js';
+} from './components/addContent/index.js';
 
 import { getProducts } from './library/storage/products.js';
 

@@ -3,7 +3,7 @@ import {
   KEY_PRODUCT_PRICE,
   KEY_PRODUCT_QUANTITY,
   DICT_KEY_PRODUCT,
-} from '../../../const.js';
+} from '../../const.js';
 
 // ================= [ input 태그 관리하는 KEY 상수 ] =========================
 export const KEY_INPUT_NAME = KEY_PRODUCT_NAME;

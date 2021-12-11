@@ -1,4 +1,4 @@
-import { LIST_KEY_PRODUCT, DICT_KEY_PRODUCT } from '../../../const.js';
+import { LIST_KEY_PRODUCT, DICT_KEY_PRODUCT } from '../../const.js';
 
 export const ID_TABLE_CURRENT_PRODUCT = 'current-product-table';
 

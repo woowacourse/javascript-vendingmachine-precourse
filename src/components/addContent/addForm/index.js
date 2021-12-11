@@ -1,4 +1,4 @@
-import Form from '../../../form/index.js';
+import Form from '../../form/index.js';
 import {
   ID_FORM_ADD,
   KEY_INPUT_NAME,
@@ -11,10 +11,10 @@ import {
   ID_BUTTON_ADD,
   TEXT_BUTTON_ADD,
 } from './const.js';
-import createInput from '../../../utils/createInput.js';
+import createInput from '../../utils/createInput.js';
 
-import Product from '../../../../model/Product.js';
-import { addProduct } from '../../../../library/storage/products.js';
+import Product from '../../../model/Product.js';
+import { addProduct } from '../../../library/storage/products.js';
 
 class AddForm extends Form {
   constructor() {

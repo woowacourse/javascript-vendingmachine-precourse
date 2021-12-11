@@ -1,13 +1,13 @@
-import Table from '../../../table/index.js';
-import createElement from '../../../utils/createElement.js';
-import { LIST_KEY_PRODUCT } from '../../../const.js';
+import Table from '../../table/index.js';
+import createElement from '../../utils/createElement.js';
+import { LIST_KEY_PRODUCT } from '../../const.js';
 import {
   CLASS_NAME_PRODUCT_ITEM,
   DICT_CLASS_NAME_PRODUCT,
   DICT_TABLE_HEADERS,
   ID_TABLE_CURRENT_PRODUCT,
 } from './const.js';
-import createDataCell from '../../../table/createDataCell.js';
+import createDataCell from '../../table/createDataCell.js';
 
 class CurrentProductTable extends Table {
   constructor(products) {
