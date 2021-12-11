@@ -6,10 +6,12 @@ const createAttribute = function createCustomAttributes(name, value) {
 };
 
 function createElementWithAttribute(item) {
-  const attributes = Object.keys(item.attributes).map((name) => {
-    const value = item.attributes[name];
-    return createAttribute(name, value);
-  });
+  const attributes = Object.keys(item.attributes)
+    .filter((name) => item.attributes[name])
+    .map((name) => {
+      const value = item.attributes[name];
+      return createAttribute(name, value);
+    });
   const element = attributes.reduce((e, attribute) => {
     e.setAttributeNode(attribute);
     return e;
@@ -56,7 +58,7 @@ export default function addBorders(elements) {
 }
 
 // add single row to grid
-export function addGridRow(grid, items) {
+export function addGridElements(grid, items) {
   const gridRow = createElements(items);
   const borderedGridRows = addBorders(gridRow);
 
@@ -64,16 +66,16 @@ export function addGridRow(grid, items) {
 }
 
 // create grid template with headers
-export function createInitialGrid(id, size, headerItems) {
+export function createGridDiv(size, items, id, className) {
   const grid = customCreateElement({
     tag: 'div',
-    attributes: { id },
+    attributes: { id, class: className },
   });
   grid.style.display = 'grid';
   grid.style.textAlign = 'center';
   grid.style.gridTemplateColumns = size;
 
-  addGridRow(grid, headerItems);
+  addGridElements(grid, items);
 
   return grid;
 }

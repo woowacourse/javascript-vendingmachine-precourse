@@ -2,7 +2,7 @@ import {
   createAmountP,
   createContainer,
   createElements,
-  createInitialGrid,
+  createGridDiv,
   customCreateElement,
 } from '../CreateElementUtils.js';
 
@@ -53,10 +53,10 @@ export default class PurchaseProducts {
   }
 
   static createPurchaseContainer() {
-    const grid = createInitialGrid(
+    const grid = createContainer(
+      document.createElement('div'),
+      [createGridDiv(VAL_PRODUCT_GRID_COLUMN_SIZE, PURCHASE_GRID_HEADERS)],
       ID_PURCHASE_PRODUCT_GRID,
-      VAL_PRODUCT_GRID_COLUMN_SIZE,
-      PURCHASE_GRID_HEADERS,
     );
 
     return createContainer(document.createElement('section'), [
@@ -69,10 +69,10 @@ export default class PurchaseProducts {
   }
 
   static createCoinContainer() {
-    const grid = createInitialGrid(
+    const grid = createContainer(
+      document.createElement('div'),
+      [createGridDiv(VAL_COIN_GRID_COLUMN_SIZE, COIN_RETURN_ITEMS)],
       ID_RETURN_COIN_STATUS,
-      VAL_COIN_GRID_COLUMN_SIZE,
-      COIN_RETURN_ITEMS,
     );
 
     return createContainer(document.createElement('section'), [

@@ -2,7 +2,7 @@ import {
   createAmountP,
   createContainer,
   createElements,
-  createInitialGrid,
+  createGridDiv,
   customCreateElement,
 } from '../CreateElementUtils.js';
 import {
@@ -46,10 +46,10 @@ export default class ChargeMachine {
   }
 
   static createCoinContainer() {
-    const grid = createInitialGrid(
+    const grid = createContainer(
+      document.createElement('div'),
+      [createGridDiv(VAL_GRID_COLUMN_SIZE, COIN_IN_MACHINE_ITEMS)],
       ID_MACHINE_COIN_STATUS,
-      VAL_GRID_COLUMN_SIZE,
-      COIN_IN_MACHINE_ITEMS,
     );
 
     return createContainer(document.createElement('section'), [
