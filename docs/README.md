@@ -1,5 +1,7 @@
 # 🥤 자판기
 ## 리팩터링
+- [ ] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다. (eslint 속성 추가)
+  - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
 - [ ] mvc의 역할(폰 캡처 참고)
 - [ ] handleProductAdd를 클래스로 관리? 
 - [ ] css 연결 html파일에 하드코딩 
@@ -14,8 +16,9 @@
 - [ ] 만약 최초 상품 목록이 있을 때 ? (작년 미션 참고)
 - [ ] 상품 구매 버튼 누르는거 이벤트 위임 제대로 익히기 (클래스 넣었을땐 x)
 - [ ] 0원 투입했을 때 
-- [ ] 수량이 0이 됐을 때 (누르면 -1되는것)
+- [x] 수량이 0이 됐을 때 (누르면 -1되는것)
 - [ ] 삭제 
+
  ## 🎯 기능 구현 목록  
 **화면에 렌더링하는 기능 구현**
 - [x] 탭 메뉴버튼 렌더링 한다.  
@@ -80,38 +83,6 @@
   - 잔돈을 반환할 수 없는 경우, 잔돈으로 반환할 수 있는 금액만 반환한다.
 - [x] 반환한 동전의 개수가 {개수}개 형식으로 나타난다. 
 - [x] 받은 잔돈만큼, 투입한 금액: {투입한 금액-잔돈}을 출력한다. 
-
-
-
-
-
-## ✅ 요구 사항 
-(1) DOM 선택자
-**상품 관리(추가) 메뉴**
-- 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
-  - 상품명에 해당하는 요소의 class명은 product-manage-name이다.
-  - 가격에 해당하는 요소의 class명은 product-manage-price이다.
-  - 수량에 해당하는 요소의 class명은 product-manage-quantity이다.
-
-**상품 구매 메뉴**
-- 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
-  - 구매 버튼에 해당하는 요소의 class명은 purchase-button이다.
-  - 상품명에 해당하는 요소의 class명은 product-purchase-name이다.
-  - 가격에 해당하는 요소의 class명은 product-purchase-price이다.
-  - 수량에 해당하는 요소의 class명은 product-purchase-quantity이다.
-  - 상품명은 dataset 속성을 사용하고 data-product-name 형식으로 저장한다.
-  - 가격은 dataset 속성을 사용하고 data-product-price 형식으로 저장한다.
-  - 수량은 dataset 속성을 사용하고 data-product-quantity 형식으로 저장한다.
-
-(2) 라이브러리 
-- [ ] 잔돈을 무작위로 생성하는 기능은 MissionUtils 라이브러리의 Random.pickNumberInList를 사용해 구한다.MissionUtils 라이브러리 스크립트는 index.html에 이미 포함되어 전역 객체에 추가되어 있으므로, 따로 import 하지 않아도 구현 코드 어디에서든 사용할 수 있다.
-
-(3) 공통 요구사항
-- [ ] 스크립트 추가 외에 주어진 index.html파일은 수정할 수 없다.
-- [ ] 모든 예외 발생 상황은 alert메서드를 이용하여 처리한다.
-- [ ] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다. (eslint 속성 추가)
-  - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
-- [ ] npm run test 
 
 
 

@@ -9,6 +9,7 @@ import renderNavbar from './views/renderNavbar.js';
 
 function VendingMachineApp() {
   this.init = () => {
+    $('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="./src/css/style.css">');
     renderNavbar();
   };
 
