@@ -1,5 +1,6 @@
 import ProductAddTabView from './views/ProductAddTabView.js';
 import { getProducts, setProducts } from './utils/localStorage.js';
+import { isValidProductAddition } from './utils/validations.js';
 
 export default class ProductAddTab {
   constructor() {
@@ -21,17 +22,23 @@ export default class ProductAddTab {
 
   setButtonClickEvent() {
     const productAddButton = document.querySelector('#product-add-button');
-    productAddButton.addEventListener('click', this.onClickProductAddButton.bind(this));
+    productAddButton.addEventListener('click', this.onClickProductAddition.bind(this));
   }
 
-  onClickProductAddButton(e) {
+  onClickProductAddition(e) {
     e.preventDefault();
-    this.products.push({
+    const newProduct = {
       name: this.productNameInput.value,
-      price: this.productPriceInput.value,
-      quantity: this.productQuantityInput.value,
-    });
+      price: Number(this.productPriceInput.value),
+      quantity: Number(this.productQuantityInput.value),
+    };
+    if (!isValidProductAddition(newProduct)) return;
+    this.products.push(newProduct);
     setProducts(this.products);
+    this.updateViewOnProductAddition();
+  }
+
+  updateViewOnProductAddition() {
     this.view.rerender(this.products);
     this.clearInputValue();
   }
