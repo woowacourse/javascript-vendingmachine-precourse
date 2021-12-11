@@ -58,6 +58,17 @@ export default function PurchasePresenter() {
         const loadProduct = getLocalStorage(LOACL_STORAGE.PRODUCT);
         if (loadProduct !== EMPTY) {
             const curProduct = JSON.parse(loadProduct);
+            curProduct.forEach((element) => {
+                appendTable(
+                    TABLE_CLASS.PRODUCT_TABLE,
+                    CLASS.EACH_ITEM,
+                    element,
+                    CLASS.PURCHASE_NAME,
+                    CLASS.PURCHASE_PRICE,
+                    CLASS.PURCHASE_QUANTITY,
+                    CLASS.PURCHASE_BUTTON,
+                );
+            });
         }
     };
     const setReturnDiv = () => {

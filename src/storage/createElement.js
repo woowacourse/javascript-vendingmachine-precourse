@@ -77,11 +77,25 @@ export const appendTable = (table_name, tr, object, ...className) => {
     className.forEach((element, idx) => {
         const td = document.createElement("td");
         let val;
-        if (idx === 0) val = object.name;
-        else if (idx === 1) val = object.price;
-        else if (idx === 2) val = object.amount;
-        td.className = element;
-        td.innerText = val;
+        if (idx !== 3) {
+            if (idx === 0) {
+                val = object.name;
+                td.dataset.productName = object.name;
+            } else if (idx === 1) {
+                val = object.price;
+                td.dataset.productPrice = object.price;
+            } else if (idx === 2) {
+                val = object.amount;
+                td.dataset.productQuantity = object.amount;
+            }
+            td.className = element;
+            td.innerText = val;
+        } else {
+            const button = document.createElement("button");
+            button.className = element;
+            button.innerText = "구매하기";
+            td.append(button);
+        }
         tableBodyRow.append(td);
     });
 
