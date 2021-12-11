@@ -4,16 +4,11 @@ import Key from '../constants/key.js';
 import Selector from '../constants/selector.js';
 
 class VendingMachineModel {
-  constructor() {
-    this.$currentMenu = Store.getLocalStorage(Key.currentMenu) || Selector.productAddMenuId;
-  }
-
   getCurrentMenu() {
-    return this.$currentMenu;
+    return Store.getLocalStorage(Key.currentMenu) || Selector.productAddMenuId;
   }
 
   setCurrentMenu(menuName) {
-    this.$currentMenu = menuName;
     Store.setLocalStorage(Key.currentMenu, menuName);
   }
 }
