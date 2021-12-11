@@ -39,7 +39,7 @@ export default class ProductAddView {
 
         const productAddCheck = new ProductAddCheck(name, price, quantity);
         if(productAddCheck.checkAll()) {
-            this.addProduct(name, price, quantity);
+            this.storeProduct(name, price, quantity);
             this.showTable();
         } else {
             alert(ERROR_MESSAGE);
@@ -48,7 +48,7 @@ export default class ProductAddView {
   }
 
 
-    static addProduct(name, price, quantity) {
+    static storeProduct(name, price, quantity) {
         const product = JSON.parse(localStorage.getItem(PRODUCT));
 
         if(localStorage.getItem(PRODUCT) === null) {
