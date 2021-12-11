@@ -1,5 +1,5 @@
-import { PRODUCT_MANAGE, PRODUCT_PURCHASE_MANAGE } from "../constant/vendingMachine.js";
-import { clearArea } from "../utils.js";
+import { PRODUCT_PURCHASE_MANAGE } from "../constant/vendingMachine.js";
+import { clearArea } from "../Model/utils.js";
 import {
   makeElement,
   makeInputNumberFormToPrint,
@@ -40,13 +40,10 @@ const renderProductTableToBuy = container => {
     tag: "h3",
     innerText: PRODUCT_PURCHASE_MANAGE.CURRENT_PRODUCT_TO_BUY,
   });
-  const tableHead = [
-    PRODUCT_MANAGE.PRODUCT_NAME.TEXT,
-    PRODUCT_MANAGE.PRICE.TEXT,
-    PRODUCT_MANAGE.QUANTITY.TEXT,
-    PRODUCT_PURCHASE_MANAGE.PURCHASE,
-  ];
-  const productTableArea = makeTableForm(tableHead, "product-menu-table-body");
+  const productTableArea = makeTableForm(
+    PRODUCT_PURCHASE_MANAGE.COLUMNS,
+    "product-menu-table-body"
+  );
   container.append(productTableTitle, productTableArea);
 };
 

@@ -1,7 +1,7 @@
-import { makeElement } from "./view/template.js";
-import productAddView from "./view/productAddView.js";
-import productPurchaseView from "./view/productPurchaseView.js";
-import coinManageView from "./view/coinMangeView.js";
+import { makeElement } from "./View/template.js";
+import productAddView from "./View/productAddView.js";
+import productPurchaseView from "./View/productPurchaseView.js";
+import coinManageView from "./View/coinMangeView.js";
 import {
   TITLE,
   PRODUCT_MANAGE,
@@ -20,6 +20,14 @@ class VendingMachine {
     const menuButton = this.makeMenuButton();
     this.app.append(vendingMachineTitle, menuButton);
     menuButton.insertAdjacentElement("afterend", this.contentContainer);
+    this.setData("Product", []);
+    this.setData("Coin", []);
+  }
+
+  setData(key, value) {
+    if (localStorage.getItem(key) == null) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
   }
 
   makeMenuButton() {

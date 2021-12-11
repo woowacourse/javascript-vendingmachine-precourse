@@ -67,7 +67,7 @@ export const makeInputNumberFormToPrint = ({ textData, inputData, buttonData }) 
 };
 
 export const renderCoinTable = (container, tableBodyId, coinToUse) => {
-  const tableHead = makeTableForm([COIN_MANAGE.COIN, COIN_MANAGE.AMOUNT], tableBodyId);
+  const tableHead = makeTableForm(COIN_MANAGE.COLUMNS, tableBodyId);
   container.append(tableHead);
   const tableBodyArea = document.getElementById(tableBodyId);
   coinToUse.forEach(coinData => {

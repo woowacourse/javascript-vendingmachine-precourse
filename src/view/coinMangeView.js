@@ -1,5 +1,5 @@
 import { COIN_MANAGE } from "../constant/vendingMachine.js";
-import { clearArea } from "../utils.js";
+import { clearArea } from "../Model/utils.js";
 import { makeElement, makeInputNumberFormToPrint, renderCoinTable } from "./template.js";
 
 const handleClickEvent = () => {
