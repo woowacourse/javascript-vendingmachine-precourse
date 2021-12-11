@@ -1,0 +1,15 @@
+form>input[type=text], form>input[type=number] { width: 120px; }
+form>input {
+    box-sizing: content-box;
+    height: 17px;
+    padding: 5px;
+}
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th,
+td {
+    border: 1px solid black;
+    padding: 5px 10px;
+}
