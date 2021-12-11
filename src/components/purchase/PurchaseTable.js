@@ -2,7 +2,7 @@ import { CLASS, LOCAL_DB } from '../../constants/index.js';
 import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
 import { addTableStyle } from '../../utils/tableStyles.js';
 import { purchaseTableTemplate } from '../../utils/template/purchaseTemplate.js';
-import { isPurchaseAvailable } from '../../utils/valid.js';
+import { isPurchasePossible } from '../../utils/valid.js';
 
 class PurchaseTable {
   constructor($target, state) {
@@ -34,7 +34,7 @@ class PurchaseTable {
     const { productName } = tr.children[0].dataset;
     const { productPrice } = tr.children[1].dataset;
 
-    if (!isPurchaseAvailable(productPrice)) {
+    if (!isPurchasePossible(productPrice)) {
       return;
     }
 
@@ -54,6 +54,7 @@ class PurchaseTable {
     if (products[index].quantity === 0) {
       products.splice(index, 1);
     }
+
     saveLocalStorage(LOCAL_DB.PRODUCT, products);
   }
 

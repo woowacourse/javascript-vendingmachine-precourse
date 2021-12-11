@@ -4,12 +4,13 @@ import { returnCoinTableTemplate } from '../../utils/template/purchaseTemplate.j
 import { addTableStyle } from '../../utils/tableStyles.js';
 import { getReturnCoinArray } from '../../utils/makeCoinArray.js';
 import { getLocalStorage, saveLocalStorage } from '../../utils/localStorage.js';
+import { isReturnPossible } from '../../utils/valid.js';
 
 class ReturnCoinTable {
   constructor($target, state) {
     this.$target = $target;
     this.state = state;
-    this.returnCoin = [];
+    this.returnCoinArray = [];
 
     this.render();
   }
@@ -21,7 +22,7 @@ class ReturnCoinTable {
   }
 
   addTemplate() {
-    this.$target.innerHTML = returnCoinTableTemplate(this.returnCoin);
+    this.$target.innerHTML = returnCoinTableTemplate(this.returnCoinArray);
     addTableStyle();
   }
 
@@ -35,9 +36,13 @@ class ReturnCoinTable {
 
   clickButton() {
     let amount = getLocalStorage(LOCAL_DB.PURCHASE);
-    this.returnCoin = getReturnCoinArray(amount);
+    this.returnCoinArray = getReturnCoinArray(amount);
 
-    this.updateLocalStorage(this.returnCoin);
+    if (!isReturnPossible(this.returnCoinArray)) {
+      return;
+    }
+
+    this.updateLocalStorage(this.returnCoinArray);
     this.updateView();
   }
 
@@ -65,7 +70,7 @@ class ReturnCoinTable {
   }
 
   updateView() {
-    this.addTemplate();
+    this.render();
     this.state.updateState();
   }
 }

@@ -52,9 +52,20 @@ export const isValidChargeInput = amount => {
   return true;
 };
 
-export const isPurchaseAvailable = productPrice => {
+export const isPurchasePossible = productPrice => {
   if (getLocalStorage(LOCAL_DB.PURCHASE) < Number(productPrice)) {
-    alert(ERROR.CANNNOT_PURCHASE);
+    alert(ERROR.CANNOT_PURCHASE);
+    return false;
+  }
+
+  return true;
+};
+
+export const isReturnPossible = returnCoinArray => {
+  const returnCoinAmount = returnCoinArray.reduce((a, b) => a + b, 0);
+
+  if (returnCoinAmount === 0) {
+    alert(ERROR.CANNOT_RETURN_COINT);
     return false;
   }
 
