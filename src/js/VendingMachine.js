@@ -11,7 +11,7 @@ export default class VendingMachine {
   }
 
   init = () => {
-    this.renderHeader();
+    this.initPage();
     this.createComponents();
     this.setEvent();
     this.renderProductManagePage();
@@ -23,7 +23,7 @@ export default class VendingMachine {
     this.purchase = new PurchaseController(this.product, this.coinStorage);
   };
 
-  renderHeader = () => {
+  initPage = () => {
     render(this.$container, INIT_TEMPLATE);
   };
 
@@ -43,7 +43,7 @@ export default class VendingMachine {
 
   resetpage = () => {
     this.$container.innerHTML = "";
-    this.renderHeader();
+    this.initPage();
   };
 
   renderProductManagePage = () => {

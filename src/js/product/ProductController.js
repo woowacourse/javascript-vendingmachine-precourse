@@ -25,10 +25,10 @@ export default class ProductController {
   };
 
   setEvent = () => {
-    this.$productAddButton.addEventListener("click", this.setAddProductHandler);
+    this.$productAddButton.addEventListener("click", this.setAddProductEvent);
   };
 
-  setAddProductHandler = () => {
+  setAddProductEvent = () => {
     const name = this.$productNameInput.value;
     const price = Number(this.$productPriceInput.value);
     const quantity = Number(this.$productQuantityInput.value);
