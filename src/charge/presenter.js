@@ -8,7 +8,8 @@ import {
     appendDiv,
     createButton,
     createTable,
-    createParagraph,
+    createSpan,
+    createBr,
     setChargeTableRows,
 } from "../storage/createElement.js";
 import {
@@ -32,7 +33,8 @@ export default function ChargePresenter() {
         const $addTitle = createTitle(STRING.TITLE);
         const $amountInput = createInput(ID.CHARGE_INPUT, STRING.INPUT_PLACE);
         const $addButton = createButton(ID.CHARGE_BUTTON, STRING.CHARGE);
-        const $totalAmount = createParagraph(
+        const $br = createBr();
+        const $totalAmount = createSpan(
             ID.CHARGE_AMOUNT,
             STRING.CURRENT_AMOUNT,
         );
@@ -45,6 +47,7 @@ export default function ChargePresenter() {
             $addTitle,
             $amountInput,
             $addButton,
+            $br,
             $totalAmount,
             $coinState,
             $table,

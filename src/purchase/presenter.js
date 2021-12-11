@@ -9,8 +9,9 @@ import {
     createButton,
     createTable,
     setChargeTableRows,
-    createParagraph,
+    createSpan,
     appendTable,
+    createBr,
 } from "../storage/createElement.js";
 import {
     PURCHASE_TAB_ID as ID,
@@ -40,11 +41,15 @@ export default function PurchasePresenter() {
         const $addTitle = createTitle("금액 투입");
         const $amountInput = createInput(ID.CHARGE_INPUT, "투입할 금액");
         const $addButton = createButton(ID.CHARGE_BUTTON, "투입하기");
-        const $totalAmount = createParagraph(ID.CHARGE_AMOUNT, "투입한 금액 :");
+        const $br = createBr();
+        const $span = createSpan(EMPTY, "투입한 금액: ");
+        const $totalAmount = createSpan(ID.CHARGE_AMOUNT, EMPTY);
         appendDiv($container, [
             $addTitle,
             $amountInput,
             $addButton,
+            $br,
+            $span,
             $totalAmount,
         ]);
     };

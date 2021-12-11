@@ -1,5 +1,6 @@
 import { clickHandler } from "./initialPresent.js";
 import { EMPTY } from "./constant.js";
+import { purchase } from "../purchase/calc.js";
 export const createTitle = (text) => {
     const $h3 = document.createElement("h3");
     $h3.textContent = text;
@@ -14,11 +15,17 @@ export const createInput = (id, text) => {
     return $input;
 };
 
-export const createParagraph = (id, text) => {
-    const $p = document.createElement("p");
-    $p.id = id;
-    $p.innerText = text;
-    return $p;
+export const createSpan = (id, text) => {
+    const $span = document.createElement("span");
+    $span.id = id;
+    $span.innerText = text;
+    return $span;
+};
+
+export const createBr = () => {
+    const $br = document.createElement("br");
+
+    return $br;
 };
 
 export const createTab = (id, text) => {
@@ -109,6 +116,8 @@ const addPurchaseButtons = (rows, element, td) => {
     button.addEventListener("click", function (e) {
         e.preventDefault();
         // 여기서 값 하나를 빼주고, Coin에 있는 값도 하나 빼주면 됨.
+        // 사용자 현재 금액, 물건 금액, 물건 수량
+        purchase(rows);
     });
     td.append(button);
 };
