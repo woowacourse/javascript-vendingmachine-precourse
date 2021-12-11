@@ -85,7 +85,7 @@ export default class CheckEventTarget {
 
   reRenderPurchaseChargeAmount = (productPrice) => {
     if (!this.vendingMachine.decreaseChargeAmount(productPrice)) {
-      this.render(ERROR_MESSAGE.NOT_ENOUGH_AMOUNT);
+      this.render.alertMessage(ERROR_MESSAGE.NOT_ENOUGH_AMOUNT);
 
       return false;
     }
@@ -94,25 +94,36 @@ export default class CheckEventTarget {
     return true;
   };
 
+  isOutOfStock = (productName, productPrice, productQuantity, $targetName, $targetPrice, $targetQuantity) => {
+    if (productQuantity <= 0) {
+      this.render.alertMessage(ERROR_MESSAGE.OUT_OF_STOCK);
+
+      return;
+    }
+
+    if (this.reRenderPurchaseChargeAmount(productPrice)) {
+      this.render.purchaseTemplate($targetName, $targetPrice, $targetQuantity);
+      this.localStorageProductAddMenu = this.localStorageProductAddMenu.replace(
+        TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity),
+        TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity - 1)
+      );
+    }
+  };
+
   isTargetName = (information, $targetName, $targetPrice, $targetQuantity) => {
     const [productName, productPrice, productQuantity] = information;
     if ($targetName.textContent === productName) {
-      if (this.reRenderPurchaseChargeAmount(productPrice)) {
-        this.render.purchaseTemplate($targetName, $targetPrice, $targetQuantity);
-        localStorageProductAddMenu = localStorageProductAddMenu.replace(
-          TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity),
-          TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity - 1)
-        );
-      }
+      this.isOutOfStock(productName, productPrice, productQuantity, $targetName, $targetPrice, $targetQuantity);
     }
   };
 
   reRenderProductAddMenu = ($targetName, $targetPrice, $targetQuantity) => {
-    let localStorageProductAddMenu = localStorage.getItem('productAddMenu');
+    this.localStorageProductAddMenu = localStorage.getItem('productAddMenu');
     this.product.getProductsInformation().forEach((information) => {
       this.isTargetName(information, $targetName, $targetPrice, $targetQuantity);
     });
-    localStorage.setItem('productAddMenu', localStorageProductAddMenu);
+
+    localStorage.setItem('productAddMenu', this.localStorageProductAddMenu);
   };
 
   onClickPurchaseButton = ($purchaseButton) => {
