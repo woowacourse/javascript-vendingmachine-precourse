@@ -2,9 +2,11 @@ import {
     MANAGE_TAB_ID as ID,
     MANAGE_TAB_CLASS as CLASS,
     EMPTY,
+    LOACL_STORAGE as LOCAL,
 } from "../storage/constant.js";
 import { Product } from "./product.js";
 import { appendTable } from "../storage/createElement.js";
+import { appendLocalStorage } from "../storage/localStorage.js";
 export default function ManageContainer() {
     const $name = document.getElementById(ID.NAME_INPUT);
     const $price = document.getElementById(ID.PRICE_INPUT);
@@ -25,6 +27,7 @@ export default function ManageContainer() {
                 productInfo.$quantityVal,
             );
             appendTable(CLASS.EACH_ITEM, product);
+            appendLocalStorage(LOCAL.PRODUCT, product);
             clearInput($name, $price, $quantity);
         });
     };
