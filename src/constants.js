@@ -99,6 +99,7 @@ export const ERROR_MESSAGE = {
   insertPrice: '투입 가격을 확인해주세요.',
   lackOfMoney: '금액이 부족합니다.',
   lackOfCoin: '잔돈이 부족합니다. 관리자에게 연락하세요.',
+  noMoney: '반환할 금액이 없습니다.',
 };
 
 export const COIN_LIST = [500, 100, 50, 10];

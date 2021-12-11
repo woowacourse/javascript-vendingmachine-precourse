@@ -11,10 +11,19 @@ const isEnabledReturnCoin = (vendingMachine) => {
   return true;
 };
 
+const isEmpty = (vendingMachine) => {
+  if (vendingMachine.getMoney() === 0) {
+    alert(ERROR_MESSAGE.noMoney);
+    return true;
+  }
+
+  return false;
+};
+
 const attachReturnCoinEvent = (vendingMachine) => {
   const $coinReturnButton = document.getElementById(DOM_ID_SELECTOR.coinReturnButton);
   $coinReturnButton.addEventListener('click', () => {
-    if (isEnabledReturnCoin(vendingMachine)) {
+    if (isEnabledReturnCoin(vendingMachine) && !isEmpty(vendingMachine)) {
       printReturnCoinTable(vendingMachine.returnCoin());
       printChargeAmount(vendingMachine.getMoney());
     }
