@@ -10,14 +10,14 @@ export default class TabMenuController {
   constructor() {
     this.init();
   }
-  
+
   init() {
     this.creatView();
     this.rederInitPage();
     this.appendTabMenuItems();
     this.setEvent();
   }
-  
+
   creatView() {
     this.tabMenu = new TabMenu();
     this.productMenu = new ProductMenu();
@@ -40,18 +40,21 @@ export default class TabMenuController {
     $App.addEventListener('click', this.handleClickTab.bind(this));
   }
 
+  closeAllTab() {
+    this.purchaseMenu.closeMenu();
+    this.coinMenu.closeMenu();
+    this.productMenu.closeMenu();
+  }
+
   handleClickTab(e) {
     if (e.target.id === TABMENU.SELECTOR.PRODUCT_MENU) {
-      this.purchaseMenu.closeMenu();
-      this.coinMenu.closeMenu();
+      this.closeAllTab();
       this.productMenu.showMenu();
     } else if (e.target.id === TABMENU.SELECTOR.COIN_MENU) {
-      this.productMenu.closeMenu();
-      this.purchaseMenu.closeMenu();
+      this.closeAllTab();
       this.coinMenu.showMenu();
     } else if (e.target.id === TABMENU.SELECTOR.PURCHASE_MENU) {
-      this.productMenu.closeMenu();
-      this.coinMenu.closeMenu();
+      this.closeAllTab();
       this.purchaseMenu.showMenu();
     }
   }
