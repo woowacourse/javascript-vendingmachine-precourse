@@ -33,7 +33,7 @@ class VendingMachineManageMenuController {
     const chargeAmount = $(`#${Selector.vendingMachineChargeInputId}`).value;
     let remainChargeAmount = chargeAmount;
 
-    while (remainChargeAmount > 9) {
+    while (remainChargeAmount > 0) {
       const randomCoin = MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
       if (randomCoin <= remainChargeAmount) {
         remainChargeAmount -= randomCoin;
