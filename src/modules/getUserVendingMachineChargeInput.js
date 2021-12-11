@@ -10,5 +10,5 @@ export default function getUserVendingMachineChargeInput() {
   ) {
     vendingCoin = $('#vending-machine-charge-input').value;
   }
-  console.log(vendingCoin);
+  return vendingCoin;
 }

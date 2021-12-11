@@ -72,7 +72,7 @@
 
 [x] 보유금액의 경우 vendingCoin localStorage에서 총액을 구해서 표기한다
 
-[ ] 유저의 입력값이 유효한 경우 충전된 금액을 확인하는 요소에 {금액}원 형식으로 표기한다
+[x] 유저의 입력값이 유효한 경우 충전된 금액을 확인하는 요소에 {금액}원 형식으로 표기한다
 
 [x] 충전하기 버튼은 vending-machine-charge-button id를 가진다
 
@@ -92,15 +92,15 @@
 
 [x] 충전된 금액을 확인하는 요소는 vending-machine-charge-amount id를 가진다
 
-[ ] 충전된 금액은 vendingCoin localStorage 에 저장한다
+[x] 충전된 금액은 vendingCoin localStorage 에 저장한다
 
-[ ] vedingCoin localStorage에 저장된 값을 토대로 유저에게 자판기가 보유한 동전 개수를 render한다
+[x] vedingCoin localStorage에 저장된 값을 토대로 유저에게 자판기가 보유한 동전 개수를 render한다
 
 [x] 유저가 입력한 충전 금액만큼 동전이 Random.pickNumberInList를 활용하여 무작위로 생성된다
 
-[ ] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성 되어 기존 동전에 더해진다
+[x] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성 되어 기존 동전에 더해진다
 
-[ ] 동전의 개수의 경우 {개수}개 형식으로 표기된다
+[x] 동전의 개수의 경우 {개수}개 형식으로 표기된다
 
 > ### 보유한 각 동전의 개수를 표기하는 요소들의 id
 
