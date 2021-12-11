@@ -1,15 +1,12 @@
-import { HEADER, MENU } from './constants.js';
-import $app from './elements.js';
+import { HEADER, MENU } from './common/constants.js';
+import createDiv from './common/CreateElement.js';
+import $app from './common/elements.js';
 
 function createMainHeader() {
   const mainHeader = document.createElement('h1');
   mainHeader.innerText = HEADER.MAIN;
 
   return mainHeader;
-}
-
-function createDiv() {
-  return document.createElement('div');
 }
 
 function createButton(attr) {
