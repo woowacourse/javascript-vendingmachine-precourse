@@ -1,5 +1,5 @@
-import CoinStorageModel from "./coinStorageModel.js";
-import CoinStorageView from "./coinStorageView.js";
+import CoinStorageModel from "./CoinStorageModel.js";
+import CoinStorageView from "./CoinStorageView.js";
 import { ID } from "../util/constant.js";
 
 export default class CoinStorageController {

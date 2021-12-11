@@ -1,5 +1,5 @@
-import PurchaseModel from "./purchaseModel.js";
-import PurchaseView from "./purchaseView.js";
+import PurchaseModel from "./PurchaseModel.js";
+import PurchaseView from "./PurchaseView.js";
 import { CLASS, ID } from "../util/constant.js";
 
 export default class PurchaseController {

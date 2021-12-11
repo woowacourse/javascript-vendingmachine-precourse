@@ -1,6 +1,6 @@
-import CoinStorageController from "./coinStorage/coinStorageController.js";
+import CoinStorageController from "./coinStorage/CoinStorageController.js";
 import ProductController from "./product/ProductController.js";
-import PurchaseController from "./purchase/purchaseController.js";
+import PurchaseController from "./purchase/PurchaseController.js";
 import { INIT_TEMPLATE } from "./template/init-template.js";
 import { ID } from "./util/constant.js";
 import { render } from "./util/render.js";
