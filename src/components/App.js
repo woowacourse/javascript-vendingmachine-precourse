@@ -29,10 +29,7 @@ export default class App extends Component {
     }
 
     setEvent() {
-        domSelector(`#${$tabNavigationID}`).addEventListener(
-            'click',
-            this.tabChange.bind(this)
-        );
+        domSelector(`#${$tabNavigationID}`).addEventListener('click', this.tabChange.bind(this));
     }
 
     tabChange(ev) {
