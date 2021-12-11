@@ -1,0 +1,30 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5;
+  background-color: #f1f5f9;
+}
+
+#app {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+  border: 1px solid #444444;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #444444;
+  padding: 10px;
+}

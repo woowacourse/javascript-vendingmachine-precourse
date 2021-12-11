@@ -1,25 +1,32 @@
-import $ from './utils/selector.js';
+import $ from './utils/common/selector.js';
+import { addMenu } from './utils/addMenu.js';
+import { store } from './utils/common/store.js';
+import { changeTab } from './utils/changeTab.js';
 
 function vendingMachine() {
   this.state = {
-    menu: {
-      addMenuTab: [],
-      changeTab: [],
-      purchaseTab: [],
+    addMenu: {
+      products: [],
+      machineMoney: 0,
+      userMoney: 0,
     },
+    change: {},
+    purchase: {},
   };
 
-  this.render = () => {};
-
-  this.setState = newState => {
-    this.state = { ...this.state, ...newState };
-    this.render();
-  };
+  this.tab = 'addMenu';
 
   this.init = () => {
+    if (store.getData()) this.menu = store.getData();
     this.initEventListeners();
   };
-  this.initEventListeners = () => {};
+  this.initEventListeners = () => {
+    $('#nav').addEventListener('click', e => {
+      if (e.target.classList.contains('nav-tab')) {
+        changeTab(e, this.tab);
+      }
+    });
+  };
 }
 
 const machine = new vendingMachine();
