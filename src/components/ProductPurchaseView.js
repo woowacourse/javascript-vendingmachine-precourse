@@ -90,13 +90,16 @@ export default class ProductPurchaseView {
     localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
   }
 
-  static makeEmpty(userCoins, coins) {
+  static makeEmpty(userCoins, coins, userMoney, change) {
     let list = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
 
     list.forEach((element) => {
       userCoins[element] = coins[element];
       coins[element] = ZERO;
     });
+
+    userMoney[VALUES] -= change[VALUES];
+    change[VALUES] = 0;
   }
 
   static addReturnEvent() {
@@ -117,11 +120,7 @@ export default class ProductPurchaseView {
 
     //만약에 거스름돈이 남은 돈보다 적다면 모두 반환
     if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
-      this.makeEmpty(userCoins, coins);
-
-      userMoney[VALUES] -= change[VALUES];
-      change[VALUES] = 0;
-
+      this.makeEmpty(userCoins, coins, userMoney, change);
       this.storeAllResult(coins, userCoins, change, userMoney);
     } else {
       let list = this.listInit(userMoney[VALUES], 0);
