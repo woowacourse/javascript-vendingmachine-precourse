@@ -67,6 +67,7 @@ const createChargeForm = () => {
 
 const createChargeFormTitle = () => {
   const chargeFormTitle = document.createElement(H2);
+
   chargeFormTitle.innerHTML = INPUT_COIN_TEXT;
 
   return chargeFormTitle;
@@ -74,6 +75,7 @@ const createChargeFormTitle = () => {
 
 const createChargeInput = () => {
   const chargeInput = document.createElement(INPUT);
+
   chargeInput.setAttribute(TYPE, NUMBER);
   chargeInput.placeholder = COIN_TO_INPUT_TEXT;
   chargeInput.setAttribute(ID, 'charge-input');
@@ -83,6 +85,7 @@ const createChargeInput = () => {
 
 const createChargeButton = () => {
   const chargeButton = document.createElement(BUTTON);
+
   chargeButton.setAttribute(ID, 'charge-button');
   chargeButton.innerHTML = INPUT_TEXT;
 
@@ -113,6 +116,7 @@ const createPurchaseList = () => {
 
 const createPurchaseListTitle = () => {
   const title = document.createElement(H2);
+
   title.innerHTML = PRODUCT_LIST_CAN_PURCHASE_TEXT;
 
   return title;
@@ -184,6 +188,7 @@ const createCoinList = () => {
 
 const createCoinListTitle = () => {
   const title = document.createElement(H2);
+
   title.innerHTML = CHANGES_TEXT;
 
   return title;
@@ -223,7 +228,6 @@ const createCoinListTableHeadRow = () => {
 
   coinNameCell.innerHTML = COIN_TEXT;
   countCell.innerHTML = COUNT_TEXT;
-
   tableRow.append(coinNameCell, countCell);
 
   return tableRow;
@@ -231,6 +235,7 @@ const createCoinListTableHeadRow = () => {
 
 const createCoinListTableBody = () => {
   const tableBody = document.createElement(TABLE_BODY);
+
   tableBody.setAttribute(ID, 'coin-return-table-body');
 
   let index = 0;

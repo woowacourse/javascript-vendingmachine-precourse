@@ -20,6 +20,7 @@ export const createMenu = () => {
 
 const createProductAddMenuButton = () => {
   const productAddMenuButton = document.createElement(BUTTON);
+
   productAddMenuButton.setAttribute(ID, 'product-add-menu');
   productAddMenuButton.innerHTML = PRODUCT_MANAGE_TEXT;
 
@@ -28,6 +29,7 @@ const createProductAddMenuButton = () => {
 
 const createVendingMachineManageMenuButton = () => {
   const vendingMachineManageMenuButton = document.createElement(BUTTON);
+
   vendingMachineManageMenuButton.setAttribute(
     ID,
     'vending-machine-manage-menu'
@@ -39,6 +41,7 @@ const createVendingMachineManageMenuButton = () => {
 
 const createProductPurchaseMenu = () => {
   const productPurchaseMenuButton = document.createElement(BUTTON);
+
   productPurchaseMenuButton.setAttribute(ID, 'product-purchase-menu');
   productPurchaseMenuButton.innerHTML = PRODUCT_PURCHASE_TEXT;
 

@@ -32,8 +32,8 @@ export const createProductManager = () => {
   productManager.style.display = NONE;
   productManager.setAttribute(ID, 'product-manager');
   productManager.dataset.num = ONE;
-
   productManager.append(createAddProductForm(), createProductList());
+
   app.appendChild(productManager);
 };
 
@@ -55,6 +55,7 @@ const createAddProductForm = () => {
 
 const createProductTitle = () => {
   const title = document.createElement(H2);
+
   title.innerHTML = ADD_PRODUCT_TEXT;
 
   return title;
@@ -144,7 +145,6 @@ const createProductTableHeadRow = () => {
   productNameCell.innerHTML = PRODUCT_NAME_TEXT;
   productPriceCell.innerHTML = PRICE_TEXT;
   productQuantityCell.innerHTML = QUANTITY_TEXT;
-
   tableHeadRow.append(productNameCell, productPriceCell, productQuantityCell);
 
   return tableHeadRow;

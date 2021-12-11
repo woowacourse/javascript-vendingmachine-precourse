@@ -106,6 +106,7 @@ const createCoinList = () => {
 
 const createCoinListTitle = () => {
   const title = document.createElement(H2);
+
   title.innerHTML = COIN_IN_VENDING_MACHINE_TEXT;
 
   return title;

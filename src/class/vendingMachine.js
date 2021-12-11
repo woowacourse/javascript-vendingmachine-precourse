@@ -96,20 +96,14 @@ export default class VendingMachine {
   // 자판기 잔돈을 충전
 
   addVendingMachineCharge() {
-    const vendingMachineChargeInput = getVendingMachineChargeInput();
+    const chargeInput = getVendingMachineChargeInput();
 
-    if (!vendingMachineChargeInput) {
+    if (!chargeInput) {
       return;
     }
 
-    this.updateVendingMachineChargeModel(
-      ACTION_CHARGE,
-      vendingMachineChargeInput
-    );
-    this.updateVendingMachineChargeModel(
-      ACTION_SAVE,
-      vendingMachineChargeInput
-    );
+    this.updateVendingMachineChargeModel(ACTION_CHARGE, chargeInput);
+    this.updateVendingMachineChargeModel(ACTION_SAVE, chargeInput);
     this.updateVendingMachineChargeView();
   }
 
