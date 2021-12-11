@@ -1,9 +1,9 @@
-import { DOM_ID_SELECTOR, PRODUCT_MANAGE_MESSAGE } from './constants.js';
-import makeButton from './makeButton.js';
-import makeInput from './makeInput.js';
-import makeForm from './makeForm.js';
-import makeTitle from './makeTitle.js';
-import makeTable from './makeTable.js';
+import { DOM_ID_SELECTOR, PRODUCT_MANAGE_MESSAGE } from '../constants.js';
+import makeButton from './common/makeButton.js';
+import makeInput from './common/makeInput.js';
+import makeForm from './common/makeForm.js';
+import makeTitle from './common/makeTitle.js';
+import makeTable from './common/makeTable.js';
 
 const makeProductAddForm = () => {
   const $productNameInput = makeInput(DOM_ID_SELECTOR.productNameInput, 'text', PRODUCT_MANAGE_MESSAGE.productName);

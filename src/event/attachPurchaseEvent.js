@@ -1,6 +1,6 @@
-import { ERROR_MESSAGE } from './constants.js';
-import printChargeAmount from './printChargeAmount.js';
-import printProductPurchaseItemTable from './printProductPurchaseItemTable.js';
+import { ERROR_MESSAGE } from '../constants.js';
+import printChargeAmount from '../dom/printChargeAmount.js';
+import printProductPurchaseItemTable from '../dom/printProductPurchaseItemTable.js';
 
 const isEnabledToPurchase = (price, amount) => {
   if (price > amount) {

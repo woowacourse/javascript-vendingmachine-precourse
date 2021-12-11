@@ -1,5 +1,5 @@
-import { DOM_ID_SELECTOR, ERROR_MESSAGE } from './constants.js';
-import printProductManageTable from './printProductManageTable.js';
+import { DOM_ID_SELECTOR, ERROR_MESSAGE } from '../constants.js';
+import printProductManageTable from '../dom/printProductManageTable.js';
 
 const isValidProductName = (name) => {
   if (!name) {

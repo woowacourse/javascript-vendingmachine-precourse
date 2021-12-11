@@ -1,7 +1,7 @@
 import { COIN_LIST, STORAGE_KEY } from './constants.js';
-import countReturnedCoin from './countReturnedCoin.js';
-import pickNumberInList from './pickNumberInList.js';
-import * as storage from './storage.js';
+import countReturnedCoin from './utils/countReturnedCoin.js';
+import pickNumberInList from './utils/pickNumberInList.js';
+import * as storage from './utils/storage.js';
 
 export default class Coin {
   constructor() {

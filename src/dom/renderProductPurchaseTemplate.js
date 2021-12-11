@@ -1,9 +1,9 @@
-import { DOM_ID_SELECTOR, PRODUCT_PURCHASE_MESSAGE } from './constants.js';
-import makeButton from './makeButton.js';
-import makeForm from './makeForm.js';
-import makeInput from './makeInput.js';
-import makeTitle from './makeTitle.js';
-import makeTable from './makeTable.js';
+import { DOM_ID_SELECTOR, PRODUCT_PURCHASE_MESSAGE } from '../constants.js';
+import makeButton from './common/makeButton.js';
+import makeForm from './common/makeForm.js';
+import makeInput from './common/makeInput.js';
+import makeTitle from './common/makeTitle.js';
+import makeTable from './common/makeTable.js';
 
 const makeChargeForm = () => {
   const $chargeInput = makeInput(DOM_ID_SELECTOR.chargeInput, 'number', PRODUCT_PURCHASE_MESSAGE.willChargeAmount);

@@ -1,9 +1,9 @@
 import { STORAGE_KEY } from './constants.js';
-import renderAppTemplate from './renderAppTemplate.js';
+import * as storage from './utils/storage.js';
+import initializeContentComponent from './utils/initializeContentComponent.js';
+import renderAppTemplate from './dom/renderAppTemplate.js';
+import attachMenuTabEvent from './event/attachMenuTabEvent.js';
 import VendingMachine from './VendingMachine.js';
-import attachMenuTabEvent from './attachMenuTabEvent.js';
-import initializeContentComponent from './initializeContentComponent.js';
-import * as storage from './storage.js';
 
 renderAppTemplate();
 const vendingMachine = new VendingMachine();

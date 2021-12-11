@@ -1,4 +1,4 @@
-import { DOM_ID_SELECTOR } from './constants.js';
+import { DOM_ID_SELECTOR } from '../constants.js';
 
 const printReturnCoinTable = (coins) => {
   const $coin500Quantity = document.getElementById(DOM_ID_SELECTOR.coin500Quantity);

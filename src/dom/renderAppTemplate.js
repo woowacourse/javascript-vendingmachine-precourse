@@ -1,5 +1,5 @@
-import { DOM_ID_SELECTOR, BUTTON_MESSAGE, TITLE_MESSAGE } from './constants.js';
-import makeButton from './makeButton.js';
+import { DOM_ID_SELECTOR, BUTTON_MESSAGE, TITLE_MESSAGE } from '../constants.js';
+import makeButton from './common/makeButton.js';
 
 const makeTitle = () => {
   const $title = document.createElement('h1');

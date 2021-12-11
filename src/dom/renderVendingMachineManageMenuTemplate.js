@@ -1,9 +1,9 @@
-import { DOM_ID_SELECTOR, VENDING_MACHINE_CHARGE_MESSAGE } from './constants.js';
-import makeButton from './makeButton.js';
-import makeInput from './makeInput.js';
-import makeTable from './makeTable.js';
-import makeForm from './makeForm.js';
-import makeTitle from './makeTitle.js';
+import { DOM_ID_SELECTOR, VENDING_MACHINE_CHARGE_MESSAGE } from '../constants.js';
+import makeButton from './common/makeButton.js';
+import makeInput from './common/makeInput.js';
+import makeTable from './common/makeTable.js';
+import makeForm from './common/makeForm.js';
+import makeTitle from './common/makeTitle.js';
 
 const makeVendingMachineChargeForm = () => {
   const $vendingMachineChargeInput = makeInput(DOM_ID_SELECTOR.vendingMachineChargeInput, 'text', VENDING_MACHINE_CHARGE_MESSAGE.willChargeAmount);

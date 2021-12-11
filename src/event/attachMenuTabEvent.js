@@ -1,5 +1,5 @@
-import { DOM_ID_SELECTOR } from './constants.js';
-import initializeContentComponent from './initializeContentComponent.js';
+import { DOM_ID_SELECTOR } from '../constants.js';
+import initializeContentComponent from '../utils/initializeContentComponent.js';
 
 const attachProductAddMenuClickEvent = (vendingMachine) => {
   const $productAddMenu = document.getElementById(DOM_ID_SELECTOR.productAddMenu);

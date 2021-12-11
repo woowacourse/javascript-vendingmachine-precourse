@@ -1,6 +1,6 @@
-import { DOM_ID_SELECTOR, ERROR_MESSAGE } from './constants.js';
-import printChargeAmount from './printChargeAmount.js';
-import printReturnCoinTable from './printReturnCoinTable.js';
+import { DOM_ID_SELECTOR, ERROR_MESSAGE } from '../constants.js';
+import printChargeAmount from '../dom/printChargeAmount.js';
+import printReturnCoinTable from '../dom/printReturnCoinTable.js';
 
 const isEnabledReturnCoin = (vendingMachine) => {
   if (vendingMachine.getMoney() > vendingMachine.coin.getAmount()) {

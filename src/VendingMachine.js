@@ -1,7 +1,7 @@
 import { STORAGE_KEY } from './constants.js';
 import Product from './Product.js';
 import Coin from './Coin.js';
-import * as storage from './storage.js';
+import * as storage from './utils/storage.js';
 
 export default class VendingMachine {
   constructor() {

@@ -1,6 +1,6 @@
-import attachPurchaseEvent from './attachPurchaseEvent.js';
-import { DOM_ID_SELECTOR, DOM_CLASS_SELECTOR, PRODUCT_PURCHASE_MESSAGE } from './constants.js';
-import makeButton from './makeButton.js';
+import { DOM_ID_SELECTOR, DOM_CLASS_SELECTOR, PRODUCT_PURCHASE_MESSAGE } from '../constants.js';
+import attachPurchaseEvent from '../event/attachPurchaseEvent.js';
+import makeButton from './common/makeButton.js';
 
 const makeTd = (className, key, value) => {
   const $td = document.createElement('td');

@@ -1,4 +1,4 @@
-import { DOM_ID_SELECTOR } from './constants.js';
+import { DOM_ID_SELECTOR } from '../constants.js';
 
 const printVendingMachineAmount = (amount) => {
   const $vendingMachineChargeAmount = document.getElementById(DOM_ID_SELECTOR.vendingMachineChargeAmount);

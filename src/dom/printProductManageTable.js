@@ -1,4 +1,4 @@
-import { DOM_ID_SELECTOR, DOM_CLASS_SELECTOR } from './constants.js';
+import { DOM_ID_SELECTOR, DOM_CLASS_SELECTOR } from '../constants.js';
 
 const makeProductManageTableTd = (className, text) => {
   const $td = document.createElement('td');

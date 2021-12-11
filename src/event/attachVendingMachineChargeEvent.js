@@ -1,5 +1,5 @@
-import { DOM_ID_SELECTOR, ERROR_MESSAGE } from './constants.js';
-import printVendingMachineAmountAndCoinTable from './printVendingMachineAmountAndCoinTable.js';
+import { DOM_ID_SELECTOR, ERROR_MESSAGE } from '../constants.js';
+import printVendingMachineAmountAndCoinTable from '../dom/printVendingMachineAmountAndCoinTable.js';
 
 const isValidPrice = (price) => {
   const priceNumber = Number(price);
