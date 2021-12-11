@@ -1,4 +1,6 @@
 import { ELEMENT_ID } from '../../constants/index.js';
+import { productAppendInputValidator } from '../../utils/inputValidator.js';
+import { handleError } from '../../utils/errorHandler.js';
 import { $tag } from '../../utils/index.js';
 import { parseString, parseNumber } from '../../utils/inputParser.js';
 import Button from '../base/Button.js';
@@ -50,12 +52,28 @@ class ProductAppend extends Component {
     });
   }
 
+  #getProductInput() {
+    return {
+      name: this.$inputs[0].value,
+      price: this.$inputs[1].value,
+      count: this.$inputs[2].value,
+    };
+  }
+
   setEvent() {
     this.$submit.setOnClick(() => {
+      const productInput = this.#getProductInput();
+
+      const result = productAppendInputValidator.run(productInput);
+      if (!result.isSuccess) {
+        handleError(result.rejectType);
+        return;
+      }
+
       this.onSubmit?.({
-        name: parseString(this.$inputs[0].value),
-        price: parseNumber(this.$inputs[1].value),
-        count: parseNumber(this.$inputs[2].value),
+        name: parseString(productInput.name),
+        price: parseNumber(productInput.price),
+        count: parseNumber(productInput.count),
       });
     });
   }

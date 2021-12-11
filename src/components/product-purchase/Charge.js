@@ -1,4 +1,6 @@
 import { ELEMENT_ID } from '../../constants/index.js';
+import { chargeAmountValidator } from '../../utils/inputValidator.js';
+import { handleError } from '../../utils/errorHandler.js';
 import { $tag } from '../../utils/index.js';
 import { parseNumber } from '../../utils/inputParser.js';
 import Button from '../base/Button.js';
@@ -41,7 +43,15 @@ class Charge extends Component {
 
   setEvent() {
     this.$submit.setOnClick(() => {
-      this.onSubmit?.({ amount: parseNumber(this.$input.value) });
+      const inputAmount = this.$input.value;
+
+      const result = chargeAmountValidator.run(inputAmount);
+      if (!result.isSuccess) {
+        handleError(result.rejectType);
+        return;
+      }
+
+      this.onSubmit?.({ amount: parseNumber(inputAmount) });
     });
   }
 }
