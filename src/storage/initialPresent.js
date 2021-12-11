@@ -5,6 +5,7 @@ import {
     createTitle,
     appendDiv,
 } from "./createElement.js";
+import { initialStorageSet } from "./localStorage.js";
 import ManagePresenter from "../manage/presenter.js";
 import ChargePresenter from "../charge/presenter.js";
 import PurchasePresenter from "../purchase/presenter.js";
@@ -41,4 +42,5 @@ export const setInitialPresent = () => {
         createTab(INITIAL_TAB_ID.PRODUCT_PURCHASE_TAB, "상품 구매"),
         $container,
     ]);
+    initialStorageSet();
 };
