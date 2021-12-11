@@ -28,14 +28,20 @@
 
 ⬜ 메인 > 각 탭 버튼 클릭시 디스플레이 조정 기능 구현
 
-# productAddMenu, vendingMachineManageMenu, poductPurchaseMenu 구분 하여 구현예정
+### productAddMenu, vendingMachineManageMenu, poductPurchaseMenu 구분 하여 구현예정
 
 ### 상품 관리 탭
 
-1. 상품관리탭 : 자판기에 상품 추가할 수 있는 기능
-   - 최초 상품 목록은 비어있음
-   - 유저가 입력한 상품명, 가격, 수량을 입력해 `추가하기` 버튼 클릭하여 상품 추가
-   - 상품의 최소 가격은 100원 이며, 10원으로 나누어 떨어질 수 있어야 한다.
+1.  상품관리탭 : 자판기에 상품 추가할 수 있는 기능
+
+    - 최초 상품 목록은 비어있음
+    - 유저가 입력한 상품명, 가격, 수량을 입력해 `추가하기` 버튼 클릭하여 상품 추가
+    - 상품의 최소 가격은 100원 이며, 10원으로 나누어 떨어질 수 있어야 한다.
+
+          1. 추가한 각 상품 요소의 class명은 `product-manage-item`이며, 하위에 아래 요소들을 갖는다.
+          2.상품명에 해당하는 요소의 class명은 `product-manage-name`이다.
+          3.가격에 해당하는 요소의 class명은 `product-manage-price`이다.
+          4.수량에 해당하는 요소의 class명은 `product-manage-quantity`이다.
 
 ### 잔돈 관리 탭
 
