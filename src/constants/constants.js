@@ -11,3 +11,19 @@ export const SELECTOR = {
   VENDING_MANAGE: vendingMachineManageMenu,
   PRODUCT_PURCHASE: productPurchaseMenu,
 };
+
+export const VALIDATION = {
+  NAME: {
+    NONE: '상품의 이름을 입력해 주십시오.',
+    DUPLICATED: '상품의 이름은 중복이 될 수 없습니다.',
+  },
+  PRICE: {
+    NONE: '가격을 입력해 주십시오.',
+    NEGATIVE: '가격을 0 이상의 정수로 입력해 주십시오.',
+    MULTIPLE_OF_10: '가격은 10의 배수만 입력이 가능합니다.',
+  },
+  QUANTITIY: {
+    NONE: '수량을 입력해 주십시오.',
+    NEGATIVE: '수량은 양의 정수로 입력해 주십시오',
+  },
+};
