@@ -1,5 +1,7 @@
 import Component from '../../core/Component.js';
 import { $, resetForm } from '../../utils/dom.js';
+import { MESSAGE } from '../../utils/constants.js';
+import { isValidPrice } from '../../utils/validations.js';
 import { addProduct } from '../../actions/product.js';
 import ProductStore from '../../stores/ProductStore.js';
 
@@ -10,17 +12,15 @@ export default class Form extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-
     const name = $('#product-name-input', this.$container).value;
     const price = $('#product-price-input', this.$container).value;
     const quantity = $('#product-quantity-input', this.$container).value;
+    if (!isValidPrice(price)) return alert(MESSAGE.INVALID_PRICE);
 
     const { SUCCESS, error } = ProductStore.dispatch(
       addProduct({ name, price, quantity })
     );
-    if (!SUCCESS) {
-      return alert(error);
-    }
+    if (!SUCCESS) return alert(error);
     resetForm(this.$container);
   }
 
