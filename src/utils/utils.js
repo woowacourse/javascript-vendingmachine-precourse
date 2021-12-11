@@ -82,9 +82,7 @@ const utils = {
 
       if (!V.isValidProductPurchase(data)) return;
 
-      const charge = DB.load('chargeToPurchaseProduct');
-      DB.overwrite('chargeToPurchaseProduct', charge - data.price);
-      DOM.showChargeToPurchaseProduct();
+      utils.updateDeductedCharge(data);
     });
   },
 
@@ -96,6 +94,12 @@ const utils = {
       price: price.dataset.productPrice,
       quantity: quantity.dataset.productQuantity,
     };
+  },
+
+  updateDeductedCharge: object => {
+    const charge = DB.load('chargeToPurchaseProduct');
+    DB.overwrite('chargeToPurchaseProduct', charge - object.price);
+    DOM.showChargeToPurchaseProduct();
   },
 };
 
