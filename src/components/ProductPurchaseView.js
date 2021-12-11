@@ -127,34 +127,19 @@ export default class ProductPurchaseView {
       let temp = userMoney[VALUES];
       //실제 거슬러준거
       let real = 0;
-      while(temp >= 0) {
-        if(temp >= 500 && coins[500] >= 1) {
-          userCoins[500] += 1;
-          coins[500] -= 1;
-          temp -= 500;
-          real += 500;
-          // this.makeUserCoins(500, temp, real, coins, userCoins);
-        } else if(temp >= 100 && coins[100] >= 1) {
-          userCoins[100] += 1;
-          coins[100] -= 1;
-          temp -= 100;
-          real += 100;
-          // this.makeUserCoins(100, temp, real, coins, userCoins);
-        } else if(temp >= 50 && coins[50] >= 1) {
-          userCoins[50] += 1;
-          coins[50] -= 1;
-          temp -= 50;
-          real += 50;
-          // this.makeUserCoins(50, temp, real, coins, userCoins);
-        } else if(temp >= 10 && coins[10] >= 1) {
-          userCoins[10] += 1;
-          coins[10] -= 1;
-          temp -= 10;
-          real += 10;
-          // this.makeUserCoins(10, temp, real, coins, userCoins);
+      let list = [temp, real];
+      while(list[0] >= 0) {
+        if(list[0] >= 500 && coins[500] >= 1) {
+          list = this.makeUserCoins(FIVE_HUNDRED, list, coins, userCoins);
+        } else if(list[0] >= 100 && coins[100] >= 1) {
+          list = this.makeUserCoins(ONE_HUNDRED, list, coins, userCoins);
+        } else if(list[0] >= 50 && coins[50] >= 1) {
+          list = this.makeUserCoins(FIFTY, list, coins, userCoins);
+        } else if(list[0] >= 10 && coins[10] >= 1) {
+          list = this.makeUserCoins(TEN, list, coins, userCoins);
         } else {
-          change[VALUES] = parseInt(change[VALUES]) - real;
-          userMoney[VALUES] -= real;
+          change[VALUES] = parseInt(change[VALUES]) - list[1];
+          userMoney[VALUES] -= list[1];
           break;
         }
       }
@@ -167,15 +152,13 @@ export default class ProductPurchaseView {
     
   }
 
-  // static makeUserCoins(num, temp, real, coins, userCoins) {
-  //   userCoins[num] += 1;
-  //   coins[num] -= 1;
-  //   temp -= 500;
-  //   real += 500;
-  //   console.log(temp);
-  // }
-
-
+  static makeUserCoins(num, list, coins, userCoins) {
+    userCoins[num] += 1;
+    coins[num] -= 1;
+    list[0] -= num;
+    list[1] += num;
+    return list;
+  }
 
   static showTable() {
     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
