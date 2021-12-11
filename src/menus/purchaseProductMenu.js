@@ -1,5 +1,6 @@
 import { vendingMachine } from "../components/vendingMachine.js";
 import { PURCHASE_PRODUCT_TAP } from "../utils/constants.js";
+import { saveToLocalStorage } from "../utils/utils.js";
 import {
   checkCanPurchase,
   checkInsertMoneyInput,
@@ -35,6 +36,7 @@ export const onClickInsertButton = event => {
   if (checkInsertMoneyInput(money)) {
     vendingMachine.insertMoney(parseInt(money));
     renderMoney(vendingMachine.getMoney());
+    saveToLocalStorage(vendingMachine);
     resetInput();
   }
 };
@@ -53,6 +55,7 @@ export const onClickPurchaseButton = event => {
     vendingMachine.purchaseProduct(getNameTag(form).innerText);
     renderMoney(vendingMachine.getMoney());
     updateQuantity(getQuantityTag(form));
+    saveToLocalStorage(vendingMachine);
   }
 };
 

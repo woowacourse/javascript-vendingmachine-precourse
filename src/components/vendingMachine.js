@@ -11,6 +11,43 @@ class VendingMachine {
       10: 0,
     };
     this.insertedMoney = 0;
+    this.loadFromLocalStorage();
+  }
+
+  addProductsToVendingMachine(products) {
+    products = products.slice(1, products.length - 1).split(",");
+    products.forEach(product => {
+      const productInfo = product.slice(1, product.length - 1).split("-");
+      this.products.push(
+        new Product(productInfo[0], productInfo[1], productInfo[2])
+      );
+    });
+  }
+
+  addCoinsToVendingMachine(coins) {
+    coins = coins.split(",");
+    COINS.forEach((coin, index) => {
+      this.coins[`${coin}`] = coins[index];
+    });
+  }
+
+  addInsertedMoneyToVendingMachine(insertedMoney) {
+    this.insertedMoney = parseInt(insertedMoney);
+  }
+
+  loadFromLocalStorage() {
+    const products = localStorage.getItem("products");
+    const coins = localStorage.getItem("coins");
+    const insertedMoney = localStorage.getItem("insertedMoney");
+    if (products) {
+      this.addProductsToVendingMachine(products);
+    }
+    if (coins) {
+      this.addCoinsToVendingMachine(coins);
+    }
+    if (insertedMoney) {
+      this.addInsertedMoneyToVendingMachine(insertedMoney);
+    }
   }
 
   addProduct(name, price, quantity) {
@@ -22,6 +59,12 @@ class VendingMachine {
 
   insertMoney(money) {
     this.insertedMoney += money;
+  }
+
+  getProducts() {
+    return this.products.map(
+      product => `${product.name}-${product.price}-${product.quantity}`
+    );
   }
 
   getMoney() {

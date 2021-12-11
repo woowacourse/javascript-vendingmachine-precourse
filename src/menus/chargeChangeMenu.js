@@ -1,4 +1,5 @@
 import { vendingMachine } from "../components/vendingMachine.js";
+import { saveToLocalStorage } from "../utils/utils.js";
 import { checkChargeChangeInput } from "../utils/validation.js";
 import { renderChangeAmount, renderCoins } from "../views/chargeChangeView.js";
 
@@ -16,6 +17,7 @@ export const onClickChargeButton = event => {
     vendingMachine.chargeCoin(parseInt(chargeInput));
     renderChangeAmount(vendingMachine.getTotalMoney());
     renderCoins(vendingMachine);
+    saveToLocalStorage(vendingMachine);
     resetInput(form);
   }
 };

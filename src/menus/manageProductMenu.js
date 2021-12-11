@@ -1,4 +1,5 @@
 import { vendingMachine } from "../components/vendingMachine.js";
+import { saveToLocalStorage } from "../utils/utils.js";
 import { checkAddProductsInputs } from "../utils/validation.js";
 import { renderProduct } from "../views/manageProductView.js";
 
@@ -22,6 +23,7 @@ export const onClickAddButton = event => {
   if (checkAddProductsInputs(name, price, quantity)) {
     const newProduct = vendingMachine.addProduct(name, price, quantity);
     renderProduct(newProduct);
+    saveToLocalStorage(vendingMachine);
     resetInputs(form);
   }
 };
