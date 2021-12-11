@@ -3,6 +3,7 @@ import {
     MANAGE_TAB_CLASS as CLASS,
     EMPTY,
     LOACL_STORAGE as LOCAL,
+    TABLE_CLASS,
 } from "../storage/constant.js";
 import { Product } from "./product.js";
 import { appendTable } from "../storage/createElement.js";
@@ -27,6 +28,7 @@ export default function ManageContainer() {
                 productInfo.$quantityVal,
             );
             appendTable(
+                TABLE_CLASS.PRODUCT_TABLE,
                 CLASS.EACH_ITEM,
                 product,
                 CLASS.MANAGE_NAME,

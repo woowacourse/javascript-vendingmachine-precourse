@@ -13,6 +13,7 @@ import {
     MANAGE_TAB_ID as ID,
     MANAGE_TAB_CLASS as CLASS,
     MANAGE_STRING as STRING,
+    TABLE_CLASS,
 } from "../storage/constant.js";
 import ManageContainer from "./container.js";
 export default function ManagePresenter() {
@@ -33,7 +34,11 @@ export default function ManagePresenter() {
         const $amountInput = createInput(ID.QUANTITY_INPUT, STRING.AMOUNT);
         const $addButton = createButton(ID.ADD_BUTTON, STRING.ADD);
         const $productState = createTitle(STRING.STATE);
-        const $table = createTable([STRING.NAME, STRING.PRICE, STRING.AMOUNT]);
+        const $table = createTable(TABLE_CLASS.PRODUCT_TABLE, [
+            STRING.NAME,
+            STRING.PRICE,
+            STRING.AMOUNT,
+        ]);
         appendDiv($container, [
             $addTitle,
             $productInput,

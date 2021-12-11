@@ -66,6 +66,12 @@ export const PURCHASE_TAB_CLASS = Object.freeze({});
 
 export const EMPTY = "";
 export const ZERO = 0;
+
+export const TABLE_CLASS = Object.freeze({
+    COIN_TABLE: "coin_table",
+    PRODUCT_TABLE: "product_table",
+});
+
 export const LOACL_STORAGE = Object.freeze({
     PRODUCT: "product",
     TOTAL_AMOUNT: "total_amount",

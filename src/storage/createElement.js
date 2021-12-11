@@ -50,9 +50,9 @@ export const appendDiv = (div, arr) => {
     arr.forEach((element) => div.appendChild(element));
 };
 
-export const createTable = (columns) => {
+export const createTable = (table_name, columns) => {
     const table = document.createElement("table");
-    table.className = "table";
+    table.className = table_name;
     const tableHead = document.createElement("thead");
     tableHead.className = "tableHead";
     const tableHeaderRow = document.createElement("tr");
@@ -70,8 +70,8 @@ export const createTable = (columns) => {
     return table;
 };
 
-export const appendTable = (tr, object, ...className) => {
-    const table = document.querySelector(".table");
+export const appendTable = (table_name, tr, object, ...className) => {
+    const table = document.querySelector(`.${table_name}`);
     const tableBodyRow = document.createElement("tr");
     tableBodyRow.className = tr;
     className.forEach((element, idx) => {
@@ -86,4 +86,17 @@ export const appendTable = (tr, object, ...className) => {
     });
 
     table.append(tableBodyRow);
+};
+
+export const setChargeTableRows = (table_class, arr) => {
+    const $table = document.querySelector(`.${table_class}`);
+    arr.forEach((element) => {
+        const tr = document.createElement("tr");
+        const name = document.createElement("td");
+        name.innerText = element[0];
+        const count = document.createElement("td");
+        count.id = element[1];
+        tr.append(name, count);
+        $table.append(tr);
+    });
 };

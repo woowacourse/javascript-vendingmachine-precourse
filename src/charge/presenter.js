@@ -9,10 +9,12 @@ import {
     createButton,
     createTable,
     createParagraph,
+    setChargeTableRows,
 } from "../storage/createElement.js";
 import {
     CHARGE_TAB_ID as ID,
     CHARGE_STRING as STRING,
+    TABLE_CLASS,
 } from "../storage/constant.js";
 import ChargeContainer from "./container.js";
 export default function ChargePresenter() {
@@ -35,7 +37,10 @@ export default function ChargePresenter() {
             STRING.CURRENT_AMOUNT,
         );
         const $coinState = createTitle(STRING.COIN_STATE);
-        const $table = createTable([STRING.COIN, STRING.COUNT]);
+        const $table = createTable(TABLE_CLASS.COIN_TABLE, [
+            STRING.COIN,
+            STRING.COUNT,
+        ]);
         appendDiv($container, [
             $addTitle,
             $amountInput,
@@ -44,25 +49,13 @@ export default function ChargePresenter() {
             $coinState,
             $table,
         ]);
-        setChargeTableRows();
-    };
-
-    const setChargeTableRows = () => {
-        const $table = document.querySelector(".table");
-        [
+        const coinRows = [
             [STRING.COIN_500 + STRING.WON, ID.COIN_500],
             [STRING.COIN_100 + STRING.WON, ID.COIN_100],
             [STRING.COIN_50 + STRING.WON, ID.COIN_50],
             [STRING.COIN_10 + STRING.WON, ID.COIN_10],
-        ].forEach((element) => {
-            const tr = document.createElement("tr");
-            const name = document.createElement("td");
-            name.innerText = element[0];
-            const count = document.createElement("td");
-            count.id = element[1];
-            tr.append(name, count);
-            $table.append(tr);
-        });
+        ];
+        setChargeTableRows(TABLE_CLASS.COIN_TABLE, coinRows);
     };
 
     this.init();
