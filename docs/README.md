@@ -90,6 +90,7 @@
   - [x] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
   - [x] 🖨️  투입한 금액: 옆에 `{금액}원` 형식으로 출력한다
 - **구매할 수 있는 상품 현황 모듈**
+- [x] 🖨️ 구매할 수 있는 상품 현황을 보여준다
 - [ ] 🖱️ 원하는 상품의 `구매하기` 버튼을 클릭할 수 있다
   - [ ] 🚥  투입한 금액이 원하는 상품 가격 이상이어야 한다
   - [ ] 🚥  수량이 0이하인 상품은 구매할 수 없다
@@ -229,14 +230,14 @@
   - [x] 100원: `coin-100-quantity`
   - [x] 50원: `coin-50-quantity`
   - [x] 10원: `coin-10-quantity`
-- [ ] 각 상품 요소의 class명은 `product-purchase-item`이고, 하위에 아래 요소들을 갖는다.
-  - [ ] 구매 버튼에 해당하는 요소의 class명은 `purchase-button`이다.
-  - [ ] 상품명에 해당하는 요소의 class명은 `product-purchase-name`이다.
-  - [ ] 가격에 해당하는 요소의 class명은 `product-purchase-price`이다.
-  - [ ] 수량에 해당하는 요소의 class명은 `product-purchase-quantity`이다.
-  - [ ] 상품명은 `dataset` 속성을 사용하고 `data-product-name` 형식으로 저장한다.
-  - [ ] 가격은 `dataset` 속성을 사용하고 `data-product-price` 형식으로 저장한다.
-  - [ ] 수량은 `dataset` 속성을 사용하고 `data-product-quantity` 형식으로 저장한다.
+- [x] 각 상품 요소의 class명은 `product-purchase-item`이고, 하위에 아래 요소들을 갖는다.
+  - [x] 구매 버튼에 해당하는 요소의 class명은 `purchase-button`이다.
+  - [x] 상품명에 해당하는 요소의 class명은 `product-purchase-name`이다.
+  - [x] 가격에 해당하는 요소의 class명은 `product-purchase-price`이다.
+  - [x] 수량에 해당하는 요소의 class명은 `product-purchase-quantity`이다.
+  - [x] 상품명은 `dataset` 속성을 사용하고 `data-product-name` 형식으로 저장한다.
+  - [x] 가격은 `dataset` 속성을 사용하고 `data-product-price` 형식으로 저장한다.
+  - [x] 수량은 `dataset` 속성을 사용하고 `data-product-quantity` 형식으로 저장한다.
 
 <hr/>
 

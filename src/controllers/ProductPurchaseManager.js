@@ -10,6 +10,7 @@ export default class ProductPurchaseManager {
 
   render() {
     DOM.showChargeToPurchaseProduct();
+    DOM.showIntentoryToPurchaseProduct();
   }
 
   manage() {

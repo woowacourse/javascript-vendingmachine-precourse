@@ -36,6 +36,22 @@ const DOMUtils = {
       .join('');
   },
 
+  showIntentoryToPurchaseProduct: () => {
+    $('#product-purchase-inventory').innerHTML = DB.load('inventory')
+      .map(
+        product =>
+          `<tr class="product-purchase-item">
+            <td data-product-name="${product.name}" class="product-purchase-name" style="padding:10px; text-align:center;">${product.name}</td>
+            <td data-product-price="${product.price}" class="product-purchase-price" style="padding:10px; text-align:center;">${product.price}</td>
+            <td data-product-quantity="${product.quantity}" class="product-purchase-quantity" style="padding:10px; text-align:center;">${product.quantity}</td>
+            <td style="padding:10px; text-align:center;">
+              <button class="purchase-button">구매하기</button>
+            </td>
+          </tr>`,
+      )
+      .join('');
+  },
+
   hideComponents: () => {
     Array.from($('#component').children).forEach(menu => (menu.style.display = 'none'));
   },
