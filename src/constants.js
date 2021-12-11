@@ -97,6 +97,7 @@ export const ERROR_MESSAGE = {
   productQuantity: '상품 수량을 확인해주세요.',
   vendingCharge: '충전할 금액을 확인해주세요.',
   insertPrice: '투입 가격을 확인해주세요.',
+  lackOfMoney: '금액이 부족합니다.',
 };
 
 export const COIN_LIST = [500, 100, 50, 10];

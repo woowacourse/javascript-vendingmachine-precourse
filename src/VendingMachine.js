@@ -15,4 +15,13 @@ export default class VendingMachine {
   getMoney() {
     return this.amount;
   }
+
+  getProductPrice(productName) {
+    return this.product.getProductPrice(productName);
+  }
+
+  sell(productName) {
+    this.amount -= this.product.getProductPrice(productName);
+    this.product.out(productName);
+  }
 }

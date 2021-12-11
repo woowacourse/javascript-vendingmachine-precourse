@@ -15,4 +15,16 @@ export default class Product {
   getProductItems() {
     return this.items;
   }
+
+  out(name) {
+    this.items[name].quantity--;
+
+    if (this.items[name].quantity === 0) {
+      delete this.items[name];
+    }
+  }
+
+  getProductPrice(name) {
+    return this.items[name].price;
+  }
 }

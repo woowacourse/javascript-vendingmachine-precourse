@@ -33,6 +33,6 @@ const $productPurchaseMenu = document.getElementById(DOM_ID_SELECTOR.productPurc
 $productPurchaseMenu.addEventListener('click', () => {
   renderProductPurchaseTemplate();
   printChargeAmount(vendingMachine.getMoney());
-  printProductPurchaseItemTable(vendingMachine.product);
+  printProductPurchaseItemTable(vendingMachine);
   attachChargeEvent(vendingMachine);
 });
