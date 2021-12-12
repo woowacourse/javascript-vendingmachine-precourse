@@ -1,0 +1,54 @@
+import Product from "./product.js";
+
+export default class ProductList {
+  constructor() {
+    this.products = [];
+  }
+
+  findIndex(product) {
+    let index = -1;
+    let count = 0;
+    this.products.forEach(element => {
+      const compareResult = element.name.localeCompare(product.name);
+      if(compareResult === 0) {
+        index = count;
+      }
+      count += 1;
+    });
+    return index;
+  }
+
+  addProduct(product) {
+    const index = this.findIndex(product);
+    if(index === -1) {
+      this.products.push(product);
+      localStorage.setItem(product.name, `${product.price}-${product.quantity}`);
+    } else {
+      let quantity = Number(this.products[index].quantity);
+      quantity += Number(product.quantity);
+      localStorage.setItem(product.name, `${product.price}-${quantity}`);
+      this.updateProducts();
+    }
+  }
+
+  removeProduct(product) {
+    const index = this.findIndex(product);  
+    if( index === -1) {
+      alert('해당 상품은 없습니다.');//상수화 필요 
+    } else {
+      let quantity = Number(this.products[index].quantity);
+      quantity -= Number(product.quantity);
+      localStorage.setItem(product.name, `${product.price}-${quantity}`);
+      this.updateProducts()
+    }  
+  }
+
+  updateProducts() {
+    this.products = [];
+    for(let i = 0; i < localStorage.length; i += 1) {
+      const name = localStorage.key(i);
+      const [price, quantity] = localStorage.getItem(localStorage.key(i)).split('-'); 
+      this.products.push(new Product(name, price, quantity));
+    }
+  }
+}

@@ -1,8 +1,8 @@
 export default class Validation {
-  checkManageInput(name, price, quantity) {
-    if(this.checkManageInputName(name)
-    && this.checkManageInputPrice(price)
-    && this.checkManageInputQuantity(quantity)) {
+  checkManageInput(product) {
+    if(this.checkManageInputName(product.name)
+    && this.checkManageInputPrice(product.price)
+    && this.checkManageInputQuantity(product.quantity)) {
         return true;
     }
     return false;

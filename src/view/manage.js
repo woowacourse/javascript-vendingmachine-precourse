@@ -1,4 +1,5 @@
 import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS} from '../utils/constant.js';
+import { $ } from '../utils/selector.js';
 
 export default class ManagePage {
   constructor(controller) {
@@ -9,6 +10,8 @@ export default class ManagePage {
     this.inputQuantity = document.createElement('input');
     this.buttonAdd = document.createElement('button');
     this.table = document.createElement('table');
+    this.thead = document.createElement('thead');
+    this.tbody = document.createElement('tbody');
     this.tr = document.createElement('tr');
     this.thName = document.createElement('th');
     this.thPrice = document.createElement('th');
@@ -32,10 +35,9 @@ export default class ManagePage {
     this.thName.innerText = LABEL.PRODUCT_NAME;
     this.thPrice.innerText = LABEL.PRICE;
     this.thQuantity.innerText = LABEL.QUANTITY_PRODUCT;
-    this.tr.appendChild(this.thName);
-    this.tr.appendChild(this.thPrice);
-    this.tr.appendChild(this.thQuantity);
-    this.table.appendChild(this.tr);
+    this.tr.append(this.thName, this.thPrice, this.thQuantity);
+    this.thead.append(this.tr);
+    this.table.appendChild(this.thead);
   }
   
   // index.html에 생성한 tab들 넣기
@@ -43,14 +45,9 @@ export default class ManagePage {
     this.setUIText();
     this.setTable();
     this.inputPrice.style.margin = MARGIN;
-    page.appendChild(this.subtitleAdd);
-    page.appendChild(this.inputName);
-    page.appendChild(this.inputPrice);
-    page.appendChild(this.inputQuantity); 
+    page.append(this.subtitleAdd,this.inputName,this.inputPrice,this.inputQuantity); 
     this.buttonAdd.style.margin = MARGIN;
-    page.appendChild(this.buttonAdd);
-    page.appendChild(this.subtitleCurrent);
-    page.appendChild(this.table);
+    page.append(this.buttonAdd,this.subtitleCurrent,this.table);
   }
 
   buttonHandler() {
@@ -63,15 +60,22 @@ export default class ManagePage {
     })
   }
   
-  showProductListAll() {
-    for(let i = 0; i < localStorage.length; i += 1) {
-      const name = localStorage.key(i);
-      const [price, quantity] = localStorage.getItem(localStorage.key(i)).split('-'); 
-      this.attachNewProduct(name, price, quantity);
+  showProductListAll(products) {
+    if(products.length > 0) {
+      for(let i = 0; i < products.length; i += 1) {
+        this.attachNewProduct(products[i]);
+      }
     }
+    this.tbody.setAttribute('id','tbody');
+    this.table.appendChild(this.tbody);
   }
 
-  attachNewProduct(name, price, quantity) {
+  cleantable() {
+    this.tbody.remove();
+    this.tbody = document.createElement('tbody');
+  }
+
+  attachNewProduct(product) {
     const productTr = document.createElement('tr');
     productTr.setAttribute('class', CLASS.PRODUCT_ITEM);
     const productNameTd = document.createElement('td');
@@ -80,10 +84,10 @@ export default class ManagePage {
     productPriceTd.setAttribute('class', CLASS.PRODUCT_PRICE);
     const prodcutQuantityTd = document.createElement('td');
     prodcutQuantityTd.setAttribute('class', CLASS.PRODUCT_QUANTITY);
-    productNameTd.innerText = name;
-    productPriceTd.innerText = price;
-    prodcutQuantityTd.innerText = quantity;
+    productNameTd.innerText = product.name;
+    productPriceTd.innerText = product.price;
+    prodcutQuantityTd.innerText = product.quantity;
     productTr.append(productNameTd, productPriceTd, prodcutQuantityTd);
-    this.table.appendChild(productTr);
+    this.tbody.appendChild(productTr);
   }
 }

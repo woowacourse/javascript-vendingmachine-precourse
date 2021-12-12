@@ -1,5 +1,5 @@
-import { Inventory } from './controller/inventory.js';
+import { Controller } from "./controller/controller.js";
 
 // localStorage.clear();
-const inventory = new Inventory();
-inventory.view.setBasicUI();
+const controller = new Controller();
+controller.view.setBasicUI(controller.productList.products);

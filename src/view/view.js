@@ -47,11 +47,11 @@ export default class View {
     // this.app.appendChild(this.purchasePageDiv);
   }
 
-  setBasicUI() {
+  setBasicUI(products) {
     this.setText();
     this.app.appendChild(this.title);
     this.setTabs();
-    this.getManagePage();
+    this.getManagePage(products);
     this.getChargePage();
     this.getPurchasePage();
     this.setAllPage();
@@ -67,9 +67,9 @@ export default class View {
     $(`#${id}`).style.display = 'block';
   }
 
-  getManagePage() {
+  getManagePage(products) {
     this.managePage.setUI(this.managePageDiv);
-    this.managePage.showProductListAll();
+    this.managePage.showProductListAll(products);
     this.managePage.buttonHandler();
   }
 

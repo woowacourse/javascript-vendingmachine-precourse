@@ -2,17 +2,22 @@ import Validation from '../utils/validation.js';
 import { ERROR } from '../utils/constant.js';
 
 export class Inventory {
-  constructor() {
+  constructor(productList) {
     this.valid = new Validation();
+    this.productList = productList;
   }
 
-  addProduct(name, price, quantity, view) {
-    const isValid = this.valid.checkManageInput(name, price, quantity)
+  addProduct(product) {
+    const isValid = this.valid.checkManageInput(product)
     if(isValid) {
-      localStorage.setItem(name, `${price}-${quantity}`);
-      view.attachNewProduct(name, price, quantity);
+      this.productList.addProduct(product);
     } else {
       alert(ERROR.MANAGEINPUT);
     }
+  }
+
+  showProductList(view) {
+    view.cleantable();
+    view.showProductListAll(this.productList.products);
   }
 }
