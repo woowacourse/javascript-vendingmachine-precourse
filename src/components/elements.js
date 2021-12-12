@@ -50,6 +50,14 @@ export const Form = () => {
   return form;
 };
 
+export const Span = (text, id) => {
+  const span = document.createElement('span');
+  span.innerHTML = text;
+  span.setAttribute('id', id);
+
+  return span;
+};
+
 export const Table = () => {
   const table = document.createElement('table');
 
