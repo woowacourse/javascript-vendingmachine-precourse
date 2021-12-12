@@ -4,7 +4,7 @@ import renderProductAdd from './views/renderProductAdd.js';
 import renderVendingMachine from './views/renderVendingMachine.js';
 import renderProductPurchase from './views/renderProductPurchase.js';
 import HandleProductAdd from './controllers/HandleProductAdd.js';
-import handleVendingMachine from './controllers/handleVendingMachine.js';
+import HandleVendingMachine from './controllers/HandleVendingMachine.js';
 import handleProductPurchase from './controllers/handleProductPurchase.js';
 
 function VendingMachineApp() {
@@ -21,7 +21,7 @@ function VendingMachineApp() {
 
     if (e.target.id === 'vending-machine-manage-menu') {
       renderVendingMachine();
-      handleVendingMachine();
+      new HandleVendingMachine();
     }
 
     if (e.target.id === 'product-purchase-menu') {
