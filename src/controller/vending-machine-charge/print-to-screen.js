@@ -1,11 +1,15 @@
-import { $ } from '../dom/dom.js';
-import { coinInputValidator } from './input-validator.js';
-import { coinChargeInputValue } from './input-validator.js';
+import { $ } from '../../dom/dom.js';
 
 export const printMoneyToScreen = () => {
-  const $vendingMachinePTag = $('#vending-machine-charge-amount');
+  const chargedAmountList = JSON.parse(localStorage.getItem('chargedAmount'));
+  const $currentMachineMoney = $('#vending-machine-charge-amount');
+  let amountArray = [];
+  let sum = 0;
 
-  if (coinInputValidator(coinChargeInputValue())) {
-    $vendingMachinePTag.innerHTML = `${coinChargeInputValue()}원`;
+  for (let i = 0; i < chargedAmountList.length; i++) {
+    amountArray.push(chargedAmountList[i].value);
   }
+
+  sum = amountArray.reduce((a, b) => a + b);
+  $currentMachineMoney.innerHTML = `보유금액: ${sum}원`;
 };
