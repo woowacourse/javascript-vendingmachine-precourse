@@ -9,6 +9,7 @@ import {
   createAddCoinForm,
   createCoinTable,
 } from '../components/vendingMachineManageMenu.js';
+import { vendingMachine } from '../components/vendingMachine.js';
 
 export default function VendingMachineManageView(container) {
   this.vendingMachineManageMenu = () => {
@@ -35,9 +36,31 @@ export default function VendingMachineManageView(container) {
 
   this.onClickAddCoinButton = (e) => {
     e.preventDefault();
+    const chargeInput = document.querySelector(
+      `#${ID.VENDING_MACHINE_CHARGE_INPUT}`
+    );
+
+    vendingMachine.addCharge(parseInt(chargeInput.value));
+    this.renderCharge();
+  };
+
+  this.renderCharge = () => {
+    const chargeAmountSpan = document.querySelector(
+      `#${ID.VENDING_MACHINE_CHARGE_AMOUNT}`
+    );
+
+    chargeAmountSpan.innerHTML = vendingMachine.charge;
+  };
+
+  this.initCharge = () => {
+    if (JSON.parse(localStorage.getItem('charge'))) {
+      vendingMachine.charge = JSON.parse(localStorage.getItem('charge'));
+    }
+    this.renderCharge();
   };
 
   this.render = () => {
     container.append(this.vendingMachineManageMenu());
+    this.initCharge();
   };
 }
