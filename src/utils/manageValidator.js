@@ -36,12 +36,20 @@ class ManageValidator {
     }
   }
 
+  static isProductQuantityFloat(quantity) {
+    if (!Number.isInteger(quantity)) {
+      alert('상품 수량은 1 이상의 정수만 입력 가능합니다.');
+      return true;
+    }
+  }
+
   static isInvalidAddItemInput({ name, price, quantity }) {
     if (this.isProudctNameDuplicated(name)) return true;
     if (this.isProductNameBlank(name)) return true;
     if (this.isProductPriceLessThan100(price)) return true;
     if (this.isProductPriceDoesNotDivideBy10(price)) return true;
     if (this.isProductQuantityLessThan1(quantity)) return true;
+    if (this.isProductQuantityFloat(quantity)) return true;
     return false;
   }
 }
