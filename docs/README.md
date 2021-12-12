@@ -33,8 +33,8 @@
 
 ### 상품 구매
 
-- [ ] 마운트될 때, localStorage에 저장된 목록 불러오기
-- [ ] 금액 투입 UI template 작성
+- [x] 마운트될 때, localStorage에 저장된 목록 불러오기
+- [x] 금액 투입 UI template 작성
 - [ ] 투입 금액 빈값 검증
 - [ ] 투입 금액 양수인 정수 검증
 - [ ] 투입 금액 localStorage에 저장
