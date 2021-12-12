@@ -64,4 +64,5 @@ export const onClickReturnButton = event => {
   const returnChanges = vendingMachine.getChanges();
   renderMoney(vendingMachine.getMoney());
   renderChanges(returnChanges);
+  saveToLocalStorage(vendingMachine);
 };
