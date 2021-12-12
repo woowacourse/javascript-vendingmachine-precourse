@@ -2,7 +2,7 @@ import { createTheadTableDataTemplate } from './common.js';
 
 import SELECTOR from '../constants/selector.js';
 import STYLE from '../constants/style.js';
-import { PRODUCT_ADD_TAB } from '../constants/element.js';
+import { PRODUCT_ADD_TAB } from '../constants/common.js';
 
 export const createTitleTemplate = () => `
   <h2>${PRODUCT_ADD_TAB}</h2>
