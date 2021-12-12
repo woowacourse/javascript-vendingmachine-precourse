@@ -3,9 +3,9 @@ import VendingMachineManageMenuController from './VendingMachineManageMenuContro
 import ProductPurchaseMenuController from './ProductPurchaseMenuController.js';
 import VendingMachineView from '../views/VendingMachineView.js';
 import VendingMachineModel from '../models/VendingMachineModel.js';
+import { $ } from '../utils/dom.js';
 
 import SELECTOR from '../constants/selector.js';
-import { $ } from '../utils/dom.js';
 
 class VendingMachineController {
   constructor() {
