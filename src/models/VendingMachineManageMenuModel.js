@@ -6,36 +6,36 @@ class VendingMachineManageMenuModel {
     return Store.getLocalStorage(Key.chargeAmount) || 0;
   }
 
-  setChargeAmount(amount) {
-    Store.setLocalStorage(Key.chargeAmount, amount);
-  }
-
   getAmount500() {
     return Store.getLocalStorage(Key.charge500Quantity) || 0;
-  }
-
-  setAmount500(amount) {
-    Store.setLocalStorage(Key.charge500Quantity, amount);
   }
 
   getAmount100() {
     return Store.getLocalStorage(Key.charge100Quantity) || 0;
   }
 
-  setAmount100(amount) {
-    Store.setLocalStorage(Key.charge100Quantity, amount);
-  }
-
   getAmount50() {
     return Store.getLocalStorage(Key.charge50Quantity) || 0;
   }
 
-  setAmount50(amount) {
-    Store.setLocalStorage(Key.charge50Quantity, amount);
-  }
-
   getAmount10() {
     return Store.getLocalStorage(Key.charge10Quantity) || 0;
+  }
+
+  setChargeAmount(amount) {
+    Store.setLocalStorage(Key.chargeAmount, amount);
+  }
+
+  setAmount500(amount) {
+    Store.setLocalStorage(Key.charge500Quantity, amount);
+  }
+
+  setAmount100(amount) {
+    Store.setLocalStorage(Key.charge100Quantity, amount);
+  }
+
+  setAmount50(amount) {
+    Store.setLocalStorage(Key.charge50Quantity, amount);
   }
 
   setAmount10(amount) {
