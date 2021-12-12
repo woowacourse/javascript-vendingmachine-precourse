@@ -1,6 +1,6 @@
 import { $ } from '../utils/dom.js';
 import { pickRandomCoin } from '../utils/pickRandomCoin.js';
-import { change, store } from '../model/store.js';
+import { reservedChange, store } from '../model/store.js';
 import ChangeValidator from '../validator/changeValidator.js';
 
 class ChangeController {
@@ -22,11 +22,11 @@ class ChangeController {
     while (moneyInput >= 10) {
       let pickedCoin = pickRandomCoin();
       if (moneyInput >= pickedCoin) {
-        change[`coin${pickedCoin}`] += 1;
+        reservedChange[`coin${pickedCoin}`] += 1;
         moneyInput -= pickedCoin;
       }
     }
-    store.setLocalStorage('change', change);
+    store.setLocalStorage('reservedChange', reservedChange);
   }
 
   bindEvent() {

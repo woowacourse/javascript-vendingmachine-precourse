@@ -1,4 +1,4 @@
-class Change {
+class ReservedChange {
   constructor() {
     this.coin500 = 0;
     this.coin100 = 0;
@@ -7,4 +7,4 @@ class Change {
   }
 }
 
-export default Change;
+export default ReservedChange;

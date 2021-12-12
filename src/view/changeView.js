@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { change } from '../model/store.js';
+import { reservedChange } from '../model/store.js';
 
 class ChangeView {
   constructor() {}
@@ -9,15 +9,20 @@ class ChangeView {
   }
 
   getChangeAmount() {
-    return change.coin500 * 500 + change.coin100 * 100 + change.coin50 * 50 + change.coin10 * 10;
+    return (
+      reservedChange.coin500 * 500 +
+      reservedChange.coin100 * 100 +
+      reservedChange.coin50 * 50 +
+      reservedChange.coin10 * 10
+    );
   }
 
   render() {
     $('#vending-machine-charge-amount').textContent = `${this.getChangeAmount()}`;
-    $('#vending-machine-coin-500-quantity').textContent = `${change.coin500}개`;
-    $('#vending-machine-coin-100-quantity').textContent = `${change.coin100}개`;
-    $('#vending-machine-coin-50-quantity').textContent = `${change.coin50}개`;
-    $('#vending-machine-coin-10-quantity').textContent = `${change.coin10}개`;
+    $('#vending-machine-coin-500-quantity').textContent = `${reservedChange.coin500}개`;
+    $('#vending-machine-coin-100-quantity').textContent = `${reservedChange.coin100}개`;
+    $('#vending-machine-coin-50-quantity').textContent = `${reservedChange.coin50}개`;
+    $('#vending-machine-coin-10-quantity').textContent = `${reservedChange.coin10}개`;
   }
 
   template() {

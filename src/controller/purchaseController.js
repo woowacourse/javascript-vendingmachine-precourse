@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { store, userInputMoney, items, change, returnedChange } from '../model/store.js';
+import { store, userInputMoney, items, reservedChange, returnedChange } from '../model/store.js';
 import PurchaseValidator from '../validator/purchaseValidator.js';
 
 class PurhcaseController {
@@ -40,14 +40,14 @@ class PurhcaseController {
     this.calculateReturnChange();
     store.setLocalStorage('returnedChange', returnedChange);
     store.setLocalStorage('userInputMoney', userInputMoney);
-    store.setLocalStorage('change', change);
+    store.setLocalStorage('reservedChange', reservedChange);
     this.view.render();
   }
 
   calculateReturnChange() {
     [500, 100, 50, 10].forEach((value) => {
       const quotient = parseInt(userInputMoney.amount / value);
-      const returnableChange = change[`coin${value}`];
+      const returnableChange = reservedChange[`coin${value}`];
       if (quotient >= returnableChange) {
         this.returnReturnableCountsCoin({ returnableChange, value });
         return;
@@ -59,13 +59,13 @@ class PurhcaseController {
   returnReturnableCountsCoin({ returnableChange, value }) {
     userInputMoney.amount -= returnableChange * value;
     returnedChange[`coin${value}`] = returnableChange;
-    change[`coin${value}`] -= returnableChange;
+    reservedChange[`coin${value}`] -= returnableChange;
   }
 
   returnMaximumCountsCoin({ quotient, value }) {
     userInputMoney.amount -= quotient * value;
     returnedChange[`coin${value}`] = quotient;
-    change[`coin${value}`] -= quotient;
+    reservedChange[`coin${value}`] -= quotient;
   }
 
   bindEvent() {
