@@ -62,6 +62,13 @@ export const ZERO = 0;
 
 export const STORAGE_KEY = Object.freeze({
   PRODUCT_MANAGE: 'product_manage',
+  CHARGE_COIN: 'charge_coin',
+  CHARGE_AMOUNT: 'charge_amount',
+  PURCHASE: 'purchase'
+});
+
+export const TABLE_MENU = Object.freeze({
+  PRODUCT_MANAGE: 'product_manage',
   CHARGE: 'charge',
   PURCHASE: 'purchase'
 });
