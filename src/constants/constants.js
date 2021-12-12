@@ -59,6 +59,7 @@ export const ERROR_MASSAGE = {
 }
 
 export const TITLE = {
+  TITLE: "🥤 자판기 🥤", 
   ADD_PRODUCT: "상품 추가하기",
   PRODUCT_LIST: "상품 현황",
   ADD_CHARGE: "자판기 동전 충전하기",

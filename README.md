@@ -174,6 +174,16 @@
   - [ ] 구매할 수 있는 상품 현황 table 추가
   - [ ] 잔돈 button, table 추가
 
+  <b>DOM_load.js</b>
+
+  - [ ] 첫 화면 로드하기
+  - [ ] 버튼과 Title text 보여주기
+
+  </b>
+
+  - [ ] 금액 투입, 구매할 수 있는 상품 현황, 잔돈 text 추가
+  - [ ] 금액 투입 input, button 추가
+
   <br/>
 
   <h3>controller (제어 함수)</h3>
