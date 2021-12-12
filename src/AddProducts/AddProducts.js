@@ -30,7 +30,7 @@ export default class AddProducts {
   constructor() {
     this.section = this.createAddProductTab();
     this.DOMs = {};
-    window.addEventListener('load', this.addDOMs.bind(this));
+    this.section.addEventListener('load', this.addDOMs());
   }
 
   createAddProductTab() {
