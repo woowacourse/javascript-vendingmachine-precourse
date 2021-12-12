@@ -43,10 +43,6 @@ ManageProductView.render = function () {
       </tbody>
     </table>
     `;
-  this.productNameInput = $(ELEMENT_SID.PRODUCT_NAME_INPUT);
-  this.productPriceInput = $(ELEMENT_SID.PRODUCT_PRICE_INPUT);
-  this.productQuantityInput = $(ELEMENT_SID.PRODUCT_QUANTITY_INPUT);
-  this.addProductButton = $(ELEMENT_SID.PRODUCT_ADD_BUTTON);
 };
 ManageProductView.bindCLick = function () {
   this.element.addEventListener('click', (e) => {
@@ -59,9 +55,9 @@ ManageProductView.bindCLick = function () {
 ManageProductView.onClickAddProduct = function () {
   this.emit(EVENT_TYPE.ADD_PRODUCT, {
     product: {
-      [PRODUCT.NAME]: this.productNameInput.value,
-      [PRODUCT.PRICE]: this.productPriceInput.value,
-      [PRODUCT.QUANTITY]: this.productQuantityInput.value,
+      [PRODUCT.NAME]: $(ELEMENT_SID.PRODUCT_NAME_INPUT).value,
+      [PRODUCT.PRICE]: $(ELEMENT_SID.PRODUCT_PRICE_INPUT).value,
+      [PRODUCT.QUANTITY]: $(ELEMENT_SID.PRODUCT_QUANTITY_INPUT).value,
     },
   });
 };
