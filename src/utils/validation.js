@@ -93,8 +93,25 @@ export const isValidChargeInput = (amount) => {
     alert(ERROR_MESSAGE.EMPTY);
     return false;
   }
-  if (!isInputNotInteger || !isInputNotPositive) {
+  if (isInputNotInteger(amount) || isInputNotPositive(amount)) {
     alert(ERROR_MESSAGE.MINIMUN_CHARGING);
+    return false;
+  }
+  if (isNotMultipleOfTen(amount)) {
+    alert(ERROR_MESSAGE.DIVIDEING_NUM);
+    return false;
+  }
+
+  return true;
+};
+
+export const isValidPurchaseInput = (amount) => {
+  if (isInputEmpty(amount)) {
+    alert(ERROR_MESSAGE.EMPTY);
+    return false;
+  }
+  if (isInputNotInteger(amount) || isInputNotPositive(amount)) {
+    alert(ERROR_MESSAGE.MINIMUN_INSERT_MONEY);
     return false;
   }
   if (isNotMultipleOfTen(amount)) {
