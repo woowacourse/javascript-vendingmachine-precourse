@@ -1,5 +1,5 @@
 import Store from '../core/Store.js';
-import Product from '../core/Product.js';
+import Product from '../core/class/Product.js';
 import { PRODUCT_ACTION_TYPE } from '../actions/product.js';
 import { MESSAGE } from '../utils/constants.js';
 import {

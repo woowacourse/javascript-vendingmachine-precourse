@@ -1,4 +1,4 @@
-import Product from '../core/Product.js';
+import Product from '../core/class/Product.js';
 import { COIN_UNITS } from './constants.js';
 import { convertArrayToObjectKeys } from './general.js';
 
