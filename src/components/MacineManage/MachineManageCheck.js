@@ -1,4 +1,4 @@
-import { ZERO, NOT_EXIST, MIN_PRODUCT_PRICE, MIN_PRODUCT_QUANTITY, DIVISOR_NUMBER} from "../utils/constants.js";
+import { ZERO, NOT_EXIST, DIVISOR_NUMBER} from "../../utils/constants.js";
 
 export default class MachineManageCheck {
     constructor(charge) {

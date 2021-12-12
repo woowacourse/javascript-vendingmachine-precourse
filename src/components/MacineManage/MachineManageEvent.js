@@ -1,5 +1,5 @@
 import MachineManageCheck from './MachineManageCheck.js';
-import { CHANGE, ERROR_MESSAGE, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN, VALUES, ZERO, COINS } from '../utils/constants.js';
+import { CHANGE, ERROR_MESSAGE, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN, VALUES, ZERO, COINS } from '../../utils/constants.js';
 import MachineManageView from './MachineManageView.js';
 
 export default class MachineManageEvent {

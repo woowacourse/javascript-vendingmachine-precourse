@@ -1,4 +1,4 @@
-import { ZERO, NOT_EXIST, DIVISOR_NUMBER} from "../utils/constants.js";
+import { ZERO, NOT_EXIST, DIVISOR_NUMBER} from "../../utils/constants.js";
 
 export default class ProductPurchaseCheck {
     constructor(userCharge) {

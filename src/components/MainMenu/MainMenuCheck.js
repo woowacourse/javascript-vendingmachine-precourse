@@ -1,9 +1,9 @@
-import ProductAddView from './ProductAddView.js';
-import MachineManageView from './MachineManageView.js';
-import ProductPurchaseView from './ProductPurchaseView.js';
-import ProductAddEvent from './ProductAddEvent.js';
-import MachineManageEvent from './MachineManageEvent.js';
-import ProductPurchaseEvent from './ProductPurchaseEvent.js';
+import ProductAddView from '../ProductAdd/ProductAddView.js';
+import MachineManageView from '../MacineManage/MachineManageView.js';
+import ProductPurchaseView from '../ProductPurchase/ProductPurchaseView.js';
+import ProductAddEvent from '../ProductAdd/ProductAddEvent.js';
+import MachineManageEvent from '../MacineManage/MachineManageEvent.js';
+import ProductPurchaseEvent from '../ProductPurchase/ProductPurchaseEvent.js';
 
 export default class MainMenuCheck {
     static checkFirstMenu(targetId) {

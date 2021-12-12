@@ -1,5 +1,5 @@
-import { CHANGE, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN, VALUES, COINS } from '../utils/constants.js';
-import { HTML_OF_MACHINE_MANAGE_PART, HTML_OF_MACHINE_MANAGE_TABLE } from '../utils/html.js';
+import { CHANGE, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN, VALUES, COINS } from '../../utils/constants.js';
+import { HTML_OF_MACHINE_MANAGE_PART, HTML_OF_MACHINE_MANAGE_TABLE } from '../../utils/html.js';
 
 export default class MachineManageView {
   static render() {

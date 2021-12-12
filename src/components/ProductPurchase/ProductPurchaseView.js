@@ -1,5 +1,5 @@
-import { USER_CHARGE, VALUES, PRODUCT, USER_COINS} from '../utils/constants.js';
-import { HTML_OF_PRODUCT_PURCHASE_PART, HTML_OF_PRODUCT_PURCHASE_PART_MID, HTML_OF_PRODUCT_PURCHASE_TABLE, HTML_OF_USER_CHANGE_TABLE } from '../utils/html.js';
+import { USER_CHARGE, VALUES, PRODUCT, USER_COINS} from '../../utils/constants.js';
+import { HTML_OF_PRODUCT_PURCHASE_PART, HTML_OF_PRODUCT_PURCHASE_PART_MID, HTML_OF_PRODUCT_PURCHASE_TABLE, HTML_OF_USER_CHANGE_TABLE } from '../../utils/html.js';
 
 export default class ProductPurchaseView {
   static render() {

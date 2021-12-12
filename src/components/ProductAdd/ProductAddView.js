@@ -1,5 +1,5 @@
-import { HTML_OF_PRODUCT_ADD_PART, HTML_OF_PRODUCT_STATUS_TABLE } from '../utils/html.js';
-import { PRODUCT, VALUES } from '../utils/constants.js';
+import { HTML_OF_PRODUCT_ADD_PART, HTML_OF_PRODUCT_STATUS_TABLE } from '../../utils/html.js';
+import { PRODUCT, VALUES } from '../../utils/constants.js';
 
 export default class ProductAddView {
   static render() {

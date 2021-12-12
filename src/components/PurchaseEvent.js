@@ -1,5 +1,5 @@
 import { USER_CHARGE, VALUES, PRODUCT, OUT_OF_STOCK, NOT_ENOUGH_MONEY} from '../utils/constants.js';
-import ProductPurchaseView from './ProductPurchaseView.js';
+import ProductPurchaseView from './ProductPurchase/ProductPurchaseView.js';
 
 export default class PurchaseEvent {
 

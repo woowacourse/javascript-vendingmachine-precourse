@@ -1,5 +1,5 @@
 import ProductAddCheck from "./ProductAddCheck.js";
-import { PRODUCT, VALUES, ERROR_MESSAGE } from "../utils/constants.js";
+import { PRODUCT, VALUES, ERROR_MESSAGE } from "../../utils/constants.js";
 import ProductAddView from "./ProductAddView.js";
 
 export default class ProductAddEvent {

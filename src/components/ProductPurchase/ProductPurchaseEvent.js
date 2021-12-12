@@ -1,6 +1,6 @@
 import ProductPurchaseCheck from "./ProductPurchaseCheck.js";
 import ProductPurchaseView from "./ProductPurchaseView.js";
-import { ERROR_MESSAGE, USER_CHARGE, VALUES, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO} from '../utils/constants.js';
+import { ERROR_MESSAGE, USER_CHARGE, VALUES, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO} from '../../utils/constants.js';
 
 
 export default class ProductPurchaseEvent {
