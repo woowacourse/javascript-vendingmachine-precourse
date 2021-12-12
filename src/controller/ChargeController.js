@@ -1,3 +1,5 @@
+import { isMoneyValid } from '../utils/validator.js';
+
 export class ChargeController {
   constructor(model, coreView) {
     this.model = model;
@@ -19,6 +21,9 @@ export class ChargeController {
   }
 
   onChargeSubmit(chargeMoney) {
+    if (!isMoneyValid(chargeMoney)) {
+      return;
+    }
     const chargeAmount = this.model.addChargeMoney(chargeMoney);
     const machineCoins = this.model.addMachineCoins(chargeMoney);
     this.coreView.chargeView.showChargeAmount(chargeAmount);

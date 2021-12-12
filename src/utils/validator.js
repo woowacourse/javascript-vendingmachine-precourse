@@ -14,7 +14,7 @@ function isProductNameValid(value) {
   return ProductNameCheckMethods.every((ProductNameCheckMethod) => ProductNameCheckMethod(value));
 }
 
-const PriceCheckMethods = [
+const MoneyCheckMethods = [
   (value) => {
     const isOver100 = value >= 100;
     if (!isOver100) {
@@ -31,8 +31,8 @@ const PriceCheckMethods = [
   },
 ];
 
-function isPriceValid(value) {
-  return PriceCheckMethods.every((PriceCheckMethod) => PriceCheckMethod(value));
+export function isMoneyValid(value) {
+  return MoneyCheckMethods.every((MoneyCheckMethod) => MoneyCheckMethod(value));
 }
 
 const QuantityCheckMethods = [
