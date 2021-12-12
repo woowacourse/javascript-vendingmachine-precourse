@@ -5,11 +5,12 @@ import AdminView from '../view/adminView.js';
 export default class AdminController {
   static init() {
     AdminView.render();
-    this.bindEventListener();
+    const adminObject = new AdminModel();
+    AdminView.addProductList(adminObject);
+    this.bindEventListener(adminObject);
   }
 
-  static bindEventListener() {
-    const adminObject = new AdminModel();
+  static bindEventListener(adminObject) {
     document
       .querySelector(`#${ADMIN_ELEMENT_ID.productAddButton}`)
       .addEventListener('click', () => {

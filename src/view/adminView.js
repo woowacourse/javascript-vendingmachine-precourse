@@ -38,21 +38,17 @@ export default class AdminView extends TapView {
       <td>상품명</td>
       <td>가격</td>
       <td>현황</td>
-      ${this.productComponent()}
     </table>
     `;
   }
 
-  static productComponent() {
-    const productStorage = new AdminModel().getProductStorage();
-    let productView = '';
+  static addProductList(adminObject) {
+    const productStorage = adminObject.getProductStorage();
     if (productStorage) {
       productStorage.forEach((product) => {
-        productView += this.productTable(product);
+        document.querySelector('table').innerHTML += this.productTable(product);
       });
     }
-
-    return productView;
   }
 
   static productTable({ name, price, quantity }) {
