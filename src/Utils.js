@@ -5,3 +5,7 @@ export function getDOMObj(query) {
 export function getAllProducts() {
   return JSON.parse(window.localStorage.getItem('products'));
 }
+
+export function getAllCoins() {
+  return JSON.parse(window.localStorage.getItem('coins'));
+}

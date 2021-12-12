@@ -20,10 +20,10 @@ export const STRING_CHARGE_AMOUNT_LABEL = '보유 금액: ';
 export const VAL_GRID_COLUMN_SIZE = '100px 100px';
 const STRING_COIN_NAMES_HEADER = '동전';
 const STRING_COIN_QUANTITY_HEADER = '갯수';
-const STRING_COIN_500 = '500';
-const STRING_COIN_100 = '100';
-const STRING_COIN_50 = '50';
-const STRING_COIN_10 = '10';
+export const STRING_COIN_500 = '500';
+export const STRING_COIN_100 = '100';
+export const STRING_COIN_50 = '50';
+export const STRING_COIN_10 = '10';
 
 // item objects for form container
 export const CHARGE_MACHINE_FORM_CONTAINER_ITEMS = [
