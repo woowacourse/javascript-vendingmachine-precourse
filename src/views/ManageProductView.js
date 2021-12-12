@@ -1,5 +1,5 @@
 import View from './View.js';
-import { ELEMENT_ID, ELEMENT_SID, EVENT_TYPE, PRODUCT } from '../utils/constants.js';
+import { ELEMENT_ID, ELEMENT_SID, ELEMENT_CLASS, EVENT_TYPE, PRODUCT } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
 
 import ManageProductModel from '../models/ManageProductModel.js';
@@ -33,10 +33,10 @@ ManageProductView.render = function () {
         ${ManageProductModel.list()
           .map(
             (product) =>
-              `<tr class="product-manage-item">
-            <td  class="product-manage-name">${product[PRODUCT.NAME]}</td>
-            <td class="product-manage-price">${product[PRODUCT.PRICE]}</td>
-            <td class="product-manage-quantity">${product[PRODUCT.QUANTITY]}</td>
+              `<tr class=${ELEMENT_CLASS.PRODUCT_MANAGE_ITEM}>
+            <td  class=${ELEMENT_CLASS.PRODUCT_MANAGE_NAME}>${product[PRODUCT.NAME]}</td>
+            <td class=${ELEMENT_CLASS.PRODUCT_MANAGE_PRICE}>${product[PRODUCT.PRICE]}</td>
+            <td class=${ELEMENT_CLASS.PRODUCT_MANAGE_QUANTITY}>${product[PRODUCT.QUANTITY]}</td>
           </tr>`,
           )
           .join('')}
