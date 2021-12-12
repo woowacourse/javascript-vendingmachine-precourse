@@ -65,13 +65,13 @@ export const NUM = {
 };
 
 export const ERROR = {
-  PRODUCT_IS_DUPLICATED: '중복된 상품 이름이 존재합니다.',
+  PRODUCT_NAME_IS_DUPLICATED: '중복된 상품 이름이 존재합니다.',
   PRODUCT_NAME_IS_BLANK: '상품 이름이 빈값입니다.',
   PRICE_IS_NOT_CORRECT: `금액은 ${NUM.PRICE_MIN_COUNT}원 이상이고, ${NUM.PRICE_MIN_UNIT}원 단위로 입력해주세요.`,
   QUANTITY_IS_NOT_CORRECT: `상품 개수를 ${NUM.QUANTITY_MIN_COUNT}이상의 정수로 입력해주세요.`,
   CHARGE_AMOUNT_IS_NOT_CORRECT: `투입 금액은 ${NUM.PRICE_MIN_UNIT}원 단위로 입력해주세요.`,
   CANNOT_PURCHASE: '금액이 부족하여 구매할 수 없습니다.',
-  CANNOT_RETURN_COINT: '더이상 반환 가능한 동전이 없습니다.',
+  CANNOT_RETURN_COIN: '더이상 반환 가능한 동전이 없습니다.',
 };
 
 export const LOCAL_DB = {

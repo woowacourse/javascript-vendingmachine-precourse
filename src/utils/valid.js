@@ -24,7 +24,7 @@ const isValidCharge = amount => {
 
 export const isValidProductInput = (name, price, quantity) => {
   if (isProductDuplicate(name)) {
-    alert(ERROR.PRODUCT_IS_DUPLICATED);
+    alert(ERROR.PRODUCT_NAME_IS_DUPLICATED);
     return false;
   }
   if (isProductNameEmpty(name)) {
@@ -62,10 +62,10 @@ export const isPurchasePossible = productPrice => {
 };
 
 export const isReturnPossible = returnCoinArray => {
-  const returnCoinAmount = returnCoinArray.reduce((a, b) => a + b, 0);
+  const returnCoinCounts = returnCoinArray.reduce((a, b) => a + b, 0);
 
-  if (returnCoinAmount === 0) {
-    alert(ERROR.CANNOT_RETURN_COINT);
+  if (returnCoinCounts === 0) {
+    alert(ERROR.CANNOT_RETURN_COIN);
     return false;
   }
 
