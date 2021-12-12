@@ -2,6 +2,7 @@ import {ADD_TAB_ID, MANAGE_TAB_ID} from './constants.js';
 import { elementCreator } from './dom/util.js';
 import createAddTab from './tabs/add-tab.js';
 import createManageTab from './tabs/manage-tab.js';
+import createPurchaseTab from './tabs/purchase-tab.js';
 
 import VendingMachine from './machine.js';
 
@@ -23,13 +24,9 @@ buttons.append(addButton, manageButton, purchaseButton);
 app.append(buttons);
 
 // 탭 구현
-const addTabId = 'add-menu';
-const manageTabId = 'manage-menu';
-const purchaseTabId = 'purchase-menu';
-
 const addTab = createAddTab();
 const manageTab = createManageTab();
-const purchaseTab = elementCreator('div', purchaseTabId, 'purchaseTab');
+const purchaseTab = createPurchaseTab();
 
 // 처음화면, addTab
 manageTab.hidden = true;

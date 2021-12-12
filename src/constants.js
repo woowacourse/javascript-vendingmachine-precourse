@@ -21,6 +21,19 @@ export const MANAGE_TAB_ID = {
     AMOUNT_SPAN_VALUE: 'vending-machine-charge-amount'
 }
 
+export const PURCHASE_TAB_ID = {
+    CHARGE_INPUT: 'charge-input',
+    CHARGE_BUTTON: 'charge-button',
+    CHARGE_AMOUNT: 'charge-amount',
+    RETURN_BUTTON: 'coin-return-button',
+    COIN_TABLE: {
+        FIRST: 'coin-500-quantity',
+        SECOND: 'coin-100-quantity',
+        THIRD: 'coin-50-quantity',
+        LAST: 'coin-10-quantity',
+    }
+}
+
 export const COIN_TABLE_ID = {
     FIRST: 'vending-machine-coin-500-quantity',
     SECOND: 'vending-machine-coin-100-quantity',
