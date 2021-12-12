@@ -1,5 +1,6 @@
 import { $ } from '../utils/dom.js';
 import { reservedChange } from '../model/store.js';
+import { COIN } from '../constants/index.js';
 
 class ChangeView {
   constructor() {}
@@ -10,10 +11,10 @@ class ChangeView {
 
   getChangeAmount() {
     return (
-      reservedChange.coin500 * 500 +
-      reservedChange.coin100 * 100 +
-      reservedChange.coin50 * 50 +
-      reservedChange.coin10 * 10
+      reservedChange.coin500 * COIN.VALUE_500 +
+      reservedChange.coin100 * COIN.VALUE_100 +
+      reservedChange.coin50 * COIN.VALUE_50 +
+      reservedChange.coin10 * COIN.VALUE_10
     );
   }
 
