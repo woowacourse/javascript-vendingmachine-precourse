@@ -10,12 +10,12 @@ import {
 import VendingMachine from '../model/vendingMachine.js';
 
 const makeRandomCoinQuantity = inputValue => {
-  let changes = 0;
+  let price = 0;
   const amountArray = [0, 0, 0, 0];
-  while (inputValue !== changes) {
+  while (inputValue !== price) {
     const coin = MissionUtils.Random.pickNumberInList(COIN_ARRAY);
-    if (changes + coin <= inputValue) {
-      changes += coin;
+    if (price + coin <= inputValue) {
+      price += coin;
       amountArray[COIN_ARRAY.indexOf(coin)] += 1;
     }
   }
