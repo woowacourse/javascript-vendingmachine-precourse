@@ -3,12 +3,11 @@ import {
   isPositiveNumber,
   isMinimumValue,
 } from '../utils/validation-tools.js';
+import { DONE, ERROR } from '../constants/constants.js';
 import {
-  DONE,
-  ERROR,
   MINIMUM_COIN_TYPE,
   MINIMUM_PRODUCT_AMOUNT,
-} from '../constants/constants.js';
+} from '../constants/config.js';
 
 export const checkProductVaild = (product) => {
   const { name, price, quantity } = product;

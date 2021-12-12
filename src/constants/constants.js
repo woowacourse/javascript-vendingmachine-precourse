@@ -1,5 +1,5 @@
-export const MINIMUM_COIN_TYPE = 10; // 최소 동전 단위
-export const MINIMUM_PRODUCT_AMOUNT = 100; // 상품 최소 금액
+import { MINIMUM_COIN_TYPE, MINIMUM_PRODUCT_AMOUNT } from './config.js';
+
 export const EMPTY_STRING = '';
 
 export const DONE = Object.freeze({
