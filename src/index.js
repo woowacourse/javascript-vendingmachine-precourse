@@ -2,29 +2,37 @@ import $ from './utils/common/selector.js';
 import { addProduct } from './utils/addProduct/addProduct.js';
 import { store } from './utils/common/store.js';
 import { changeTab } from './utils/changeTab.js';
-import { tabs } from './constants/constants.js';
-import { render } from './utils/common/render.js';
+import { TABS } from './constants/constants.js';
+import { renderTabs } from './utils/common/renderTabs.js';
+import { renderProducts } from './utils/addProduct/renderProducts.js';
 
 function vendingMachine() {
-  this.products = [];
+  const { ADD_MENU_TAB, CHANGE_TAB, PURCHASE_TAB } = TABS;
+
+  this.state = {
+    products: [],
+    change: [],
+    purchase: [],
+  };
 
   this.init = () => {
-    if (store.getData()) this.products = store.getData();
-    this.tab = tabs.addMenu;
-    $('#tab-title').innerText = `상품관리 탭`;
+    renderTabs();
+    if (store.getData()) this.state = store.getData();
+    this.tab = ADD_MENU_TAB;
+    renderProducts(this.state);
     this.initEventListeners();
-    render(this.products, this.tab);
   };
 
   this.initEventListeners = () => {
     $('#nav').addEventListener('click', e => {
       if (e.target.classList.contains('nav-tab')) {
-        changeTab(e, this.tab);
+        changeTab(e, this.tab, this.state);
       }
     });
+
     $('#product-add-button').addEventListener('click', e => {
       e.preventDefault();
-      addProduct(this.products, this.tab);
+      addProduct(this.state, this.tab);
     });
   };
 }

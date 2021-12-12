@@ -1,7 +1,13 @@
-export const tabs = {
-  addMenu: 'addMenu',
-  change: 'change',
-  purchase: 'purchase',
+export const TABS = {
+  ADD_MENU_TAB: 'addMenu',
+  CHANGE_TAB: 'change',
+  PURCHASE_TAB: 'purchase',
+};
+
+export const TITLES = {
+  ADD_MENU_TAB: '상품 추가하기',
+  CHANGE_TAB: '자판기 동전 추가하기',
+  PURCHASE_TAB: '금액 투입',
 };
 
 export const ERROR_MSG = {

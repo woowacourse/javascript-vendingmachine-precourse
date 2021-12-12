@@ -1,9 +1,9 @@
 export const store = {
-  setData(product) {
-    localStorage.setItem('product', JSON.stringify(product));
+  setData(state) {
+    localStorage.setItem('state', JSON.stringify(state));
   },
 
   getData() {
-    return JSON.parse(localStorage.getItem('product'));
+    return JSON.parse(localStorage.getItem('state'));
   },
 };
