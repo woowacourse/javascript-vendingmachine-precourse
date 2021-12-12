@@ -22,6 +22,10 @@ import {
 import { getProducts } from './library/storage/products.js';
 import { createMachineCargeFormContainer } from './components/chargeContent/index.js';
 import { getChargedCoin } from './library/storage/chargedCoin.js';
+import {
+  getCurrentMenu,
+  setCurrentMenu,
+} from './library/storage/currentMenu.js';
 
 export default class VendingMachine {
   constructor(products, chargedCoin) {
@@ -41,14 +45,14 @@ export default class VendingMachine {
   }
 
   initMenu() {
-    KEY_MENUS.forEach((menuKey, i) => {
+    KEY_MENUS.forEach((menuKey) => {
       const menu = createMenuByKey(menuKey);
       this.menus.appendChild(menu);
       this.menus.appendChild(createBlankNode());
 
       const content = createMenuContentByKey(menuKey);
       this.appendContentByKey(content, menuKey);
-      setVisibility(content, i === 0);
+      setVisibility(content, menuKey === getCurrentMenu());
       this.panel.appendChild(content);
     });
   }
@@ -69,6 +73,7 @@ export default class VendingMachine {
   }
 
   [ACTION_CLICK_MENU](e, menuKey) {
+    setCurrentMenu(menuKey);
     getChildrenToList(this.panel).forEach((content) =>
       setVisibility(content, content.dataset.menuKey === menuKey)
     );
