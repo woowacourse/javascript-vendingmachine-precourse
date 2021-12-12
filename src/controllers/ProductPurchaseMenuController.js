@@ -73,6 +73,22 @@ class ProductPurchaseMenuController {
 
     this.$productPurchaseMenuModel.setPurchaseChargeAmount(subtractPrice);
     this.$productPurchaseMenuView.renderPurchaseChargeAmount(subtractPrice);
+
+    const productItems = this.$productAddMenuModel.getProductItems();
+
+    const selectItemIndex = productItems.findIndex(
+      item =>
+        item.productName === purchaseName &&
+        item.productQuantity === purchaseQuantity &&
+        item.productPrice === purchasePrice,
+    );
+
+    productItems[selectItemIndex].productQuantity = String(
+      productItems[selectItemIndex].productQuantity - 1,
+    );
+    this.$productAddMenuModel.setProductItems(productItems);
+
+    this.$productPurchaseMenuView.renderProductTableBodyWithData(productItems);
   }
 }
 
