@@ -12,21 +12,22 @@ export default class VendingMachine {
         this.input = 0;
     }
 
-    displayProduct(product){
+    displayProductAddTab(product){
         const tr = elementCreatorWithClass('tr', ADD_TAB_CLASS.TABLE_TR, null);
         tr.append(
             elementCreatorWithClass('td', ADD_TAB_CLASS.TABLE_TD_NAME, product.name),
             elementCreatorWithClass('td', ADD_TAB_CLASS.TABLE_TD_PRICE, product.price),
             elementCreatorWithClass('td', ADD_TAB_CLASS.TABLE_TD_QUANTITY, product.quantity),
         );
-        table.append(tr);
+        document.getElementById(ADD_TAB_ID.PRODUCT_TABLE).append(tr);
+
     }
 
     addProduct(name, price, quantity){
         //TODO: verify product
         const product = new Product(name, price, quantity);
         
-        this.displayProduct(product);
+        this.displayProductAddTab(product);
         this.products.push(product);
     }
 
