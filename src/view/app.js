@@ -1,3 +1,6 @@
+import ChangeController from '../controller/changeController.js';
+import ManageController from '../controller/manageController.js';
+import PurhcaseController from '../controller/purchaseController.js';
 import { $, $$, showChangeTab, showManageTab, showPurchaseTab } from '../utils/dom.js';
 import ChangeView from './changeView.js';
 import ManageView from './manageView.js';
@@ -8,12 +11,19 @@ class App {
     this.initViews();
     this.render();
     this.bindEvent();
+    this.initControllers();
   }
 
   initViews() {
     this.manageView = new ManageView();
     this.changeView = new ChangeView();
     this.purchaseView = new PurchaseView();
+  }
+
+  initControllers() {
+    this.manageController = new ManageController(this.manageView);
+    this.changeController = new ChangeController(this.changeView);
+    this.purchaseController = new PurhcaseController(this.purchaseView);
   }
 
   render() {
