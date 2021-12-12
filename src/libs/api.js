@@ -17,6 +17,19 @@ export default class Api {
       ],
     };
 
-    localStorage.setItem(KEY, JSON.stringify(data));
+    if (!this.getVendingMachine()) {
+      console.log("------setting");
+      localStorage.setItem(KEY, JSON.stringify(data));
+    }
+  }
+
+  getVendingMachine() {
+    console.log("----------getVendingMachine");
+    return JSON.parse(localStorage.getItem(KEY));
+  }
+
+  setVendingMachine(payload) {
+    console.log("----------setVendingMachine");
+    localStorage.setItem(KEY, JSON.stringify(payload));
   }
 }

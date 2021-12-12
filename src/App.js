@@ -9,15 +9,14 @@ import Api from "./libs/api.js";
 export default class App extends Component {
   setup() {
     console.log("App");
-    this.$state = {
-      currentTabId: "product-add-menu",
-    };
+    this.$state;
     this.callAPI = new Api();
     this.initCallAPI();
   }
 
   initCallAPI() {
     this.callAPI.setup();
+    this.$state = this.callAPI.getVendingMachine();
   }
 
   template() {
@@ -43,6 +42,7 @@ export default class App extends Component {
   }
 
   changeTab(newTabId) {
+    this.callAPI.setVendingMachine({ ...this.$state, currentTabId: newTabId });
     this.setState({ currentTabId: newTabId });
   }
 
