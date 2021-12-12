@@ -1,5 +1,11 @@
+import { $ } from '../utils/dom.js';
+
 class PurchaseView {
   constructor() {}
+
+  getInput() {
+    return Number($('#charge-input').value);
+  }
 
   render() {}
 
