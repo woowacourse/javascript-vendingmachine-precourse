@@ -21,9 +21,9 @@ export const MESSAGE = {
   NOT_ENOUGH_CHANGES: '자판기에 잔돈이 없습니다! 관리자를 부르세요!',
 };
 
+export const COIN_UNITS = [500, 100, 50, 10];
+
 export const RULE = {
   MINIMUN_PRICE: 100,
   DIVISIBLE_BY: 10,
 };
-
-export const COIN_UNITS = [500, 100, 50, 10];
