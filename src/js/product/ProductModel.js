@@ -1,6 +1,7 @@
 import { getLocalStorage, setLocalStorage } from "../util/localStorage.js";
 import { checkValidAddProduct } from "../util/validator.js";
 import { LOCAL_STORAGE_KEY } from "../util/constant.js";
+import { ALERT_MESSAGE } from "../util/constant.js";
 
 export default class ProductModel {
   constructor() {
@@ -15,8 +16,7 @@ export default class ProductModel {
     checkValidAddProduct({ name, price, quantity });
 
     if (this.isExsitName(name)) {
-      const idx = this.findProductIdx(name);
-      this.products.splice(idx, 1, { name, price, quantity });
+      this.addDuplicatedProduct({ name, price, quantity });
     } else {
       this.products.push({ name, price, quantity });
     }
@@ -28,6 +28,13 @@ export default class ProductModel {
 
     product.quantity -= 1;
     setLocalStorage(LOCAL_STORAGE_KEY.PRODUCT, this.products);
+  };
+
+  addDuplicatedProduct = ({ name, price, quantity }) => {
+    if (confirm(ALERT_MESSAGE.DUPLICATED_PRODUCT_NAME)) {
+      const idx = this.findProductIdx(name);
+      this.products.splice(idx, 1, { name, price, quantity });
+    }
   };
 
   findProduct = (name) => {

@@ -6,6 +6,7 @@ export const ALERT_MESSAGE = Object.freeze({
   OVER_MIN_PRICE: "100원 이상의 금액을 입력해주세요",
   LACK_CHARGED_MONEY: "충전금액이 모자릅니다",
   NO_PRODUCT_QUANTITY: "잔고가 없습니다",
+  DUPLICATED_PRODUCT_NAME: "이미 동일한 상품명이 있습니다. 상품정보를 갱신하시겠습니까?",
 });
 
 export const STANDARD_NUMBER = Object.freeze({
