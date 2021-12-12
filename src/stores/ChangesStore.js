@@ -5,14 +5,11 @@ import {
   mergeCoins,
   getChangesCoin,
 } from '../utils/helpers.js';
-import { convertArrayToObjectKeys } from '../utils/general.js';
-import { COIN_UNITS, MESSAGE } from '../utils/constants.js';
+import { MESSAGE } from '../utils/constants.js';
+import { changeStoreInitialState } from '../utils/initialStates.js';
 import ChangesStorage from '../storages/ChangesStorage.js';
 
-const initialState = ChangesStorage.get() ?? {
-  changes: 0,
-  coins: convertArrayToObjectKeys(COIN_UNITS),
-};
+const initialState = ChangesStorage.get() ?? changeStoreInitialState;
 
 class ChangesStore extends Store {
   setUpReducer() {

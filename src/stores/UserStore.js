@@ -1,14 +1,10 @@
 import Store from '../core/Store.js';
 import { USER_ACTION_TYPE } from '../actions/user.js';
-import { convertArrayToObjectKeys } from '../utils/general.js';
-import { COIN_UNITS } from '../utils/constants.js';
 import { mergeCoins } from '../utils/helpers.js';
+import { userStoreInitialState } from '../utils/initialStates.js';
 import UserStorage from '../storages/UserStorage.js';
 
-const initialState = UserStorage.get() ?? {
-  chargedMoney: 0,
-  coins: convertArrayToObjectKeys(COIN_UNITS),
-};
+const initialState = UserStorage.get() ?? userStoreInitialState;
 
 class UserStore extends Store {
   setUpReducer() {
