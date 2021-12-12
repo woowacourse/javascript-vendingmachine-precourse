@@ -38,8 +38,6 @@ export class BuyController {
 
   onBuyClick(productName, price) {
     let totalInsertedMoney = this.model.totalInsertedMoney;
-    console.log(`productName`, productName);
-    console.log(`price`, price);
     if (totalInsertedMoney < price) {
       alert(EXCEPTION_ALERT.notEnoughMoneyError);
       return;
