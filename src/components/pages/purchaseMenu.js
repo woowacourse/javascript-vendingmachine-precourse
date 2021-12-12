@@ -22,7 +22,7 @@ export default class PurchaseMenu {
   inputTemplate() {
     return `<h3>금액 투입</h3>
       <form>
-        <input type="number" id="${PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_INPUT}" placeholder="투입할 금액">
+        <input type="number" step="10" id="${PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_INPUT}" placeholder="투입할 금액">
         <button id="${PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_BUTTON}">투입하기</button>
         <p id="${PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT}">투입한 금액:</p>
       </form>`;
@@ -39,7 +39,7 @@ export default class PurchaseMenu {
           <td>구매</td>
         </tr>
       </thead>
-      <tbody style="text-align: center;">
+      <tbody id = "product-purchase-table" style="text-align: center;">
       </tbody>
       </table>`;
   }
@@ -75,11 +75,11 @@ export default class PurchaseMenu {
       </table>`;
   }
 
-  purchaseItemTemplate() {
+  purchaseItemTemplate(product) {
     return `<tr id="${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PRODUCT_PURCHASE_ITEM}">
-        <td id="${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PRODUCT_NAME}"></td>
-        <td id="${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PRODUCT_PRICE}"></td>
-        <td id="${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PRODUCT_QUANTITY}"></td>
+        <td id="${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PRODUCT_NAME}">${product.name}</td>
+        <td id="${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PRODUCT_PRICE}">${product.price}</td>
+        <td id="${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PRODUCT_QUANTITY}">${product.quantity}</td>
         <td><button id="${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PURCHASE_BUTTON}">구매하기</button></td>
       </tr>`;
   }

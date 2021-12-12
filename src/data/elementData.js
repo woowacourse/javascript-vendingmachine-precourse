@@ -44,6 +44,7 @@ export const PURCHASE_MENU = {
   },
   PURCHASE_ITEM_BUTTON: 'purchase-button',
   PRODUCT_TABLE_SELECTOR: {
+    TABLE: 'product-purchase-table',
     PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
     PRODUCT_NAME: 'product-purchase-name',
     PRODUCT_PRICE: 'product-purchase-price',
