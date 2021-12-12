@@ -6,23 +6,28 @@ export default class ProductStatus extends Component {
   }
 
   template() {
-    return `<h3>상품 현황</h3>
-      <table>
+    const { products } = this.$props;
+
+    return `
+    <h3>상품 현황</h3>
+    <table>
         <thead>
-          <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>수량</th>
-          </tr>
-        <thdead>
+            <tr>
+                <th>상품명</th><th>가격</th><th>수량</th>
+            </tr>
+        </thead>
         <tbody>
-          <tr>
-            <td>111</td>
-            <td>22</td>
-            <td>333</td>
-          <tr>
+            ${products
+              .map((product) => {
+                const { name, price, quantity } = product;
+                return `
+                <tr>
+                    <td>${name}</td><td>${price}</td><td>${quantity}</td>
+                </tr>`;
+              })
+              .join("")}
         </tbody>
-      </table>`;
+    </table>`;
   }
 
   mounted() {
