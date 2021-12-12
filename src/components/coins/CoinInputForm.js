@@ -1,5 +1,5 @@
 import Component from '../../core/Component.js';
-import { $ } from '../../utils/element-utils.js';
+import { $ } from '../../utils/element-tools.js';
 
 export default class CoinInputForm extends Component {
   htmlTemplate() {

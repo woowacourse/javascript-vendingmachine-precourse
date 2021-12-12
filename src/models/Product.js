@@ -1,4 +1,4 @@
-import { cloneObject } from '../utils/data-utils.js';
+import { cloneObject } from '../utils/data-tools.js';
 
 export default class Product {
   constructor(productData) {

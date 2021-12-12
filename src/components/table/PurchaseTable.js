@@ -1,4 +1,4 @@
-import { createElement } from '../../utils/element-utils.js';
+import { createElement } from '../../utils/element-tools.js';
 import TableCreate from '../../core/Table.js';
 
 export default class PurchaseTable extends TableCreate {

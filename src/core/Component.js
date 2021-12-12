@@ -1,4 +1,4 @@
-import { $ } from '../utils/element-utils.js';
+import { $ } from '../utils/element-tools.js';
 
 export default class Component {
   constructor($target, props) {

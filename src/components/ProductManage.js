@@ -1,7 +1,7 @@
 import Component from '../core/Component.js';
 import Product from '../models/Product.js';
 
-import { removeTags } from '../utils/element-utils.js';
+import { removeTags } from '../utils/element-tools.js';
 import { checkProductVaild } from '../models/UserInputCheck.js';
 import { errorAlert } from '../utils/error-alert.js';
 

@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { $, $$ } from './utils/element-utils.js';
+import { $, $$ } from './utils/element-tools.js';
 import { CONFIG } from './constants/config.js';
 
 import Component from './core/Component.js';

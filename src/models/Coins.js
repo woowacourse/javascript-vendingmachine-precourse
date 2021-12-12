@@ -1,4 +1,4 @@
-import { cloneObject } from '../utils/data-utils.js';
+import { cloneObject } from '../utils/data-tools.js';
 import { CONSTANTS } from '../constants/constants.js';
 
 export default class Coins {

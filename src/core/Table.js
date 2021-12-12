@@ -1,4 +1,4 @@
-import { createElement, combineElement } from '../utils/element-utils.js';
+import { createElement, combineElement } from '../utils/element-tools.js';
 
 export default class TableCreate {
   constructor(title) {

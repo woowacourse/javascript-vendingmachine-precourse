@@ -1,7 +1,7 @@
 import { ERROR, CONSTANTS } from '../constants/constants.js';
 import { checkAmountVaild } from '../models/UserInputCheck.js';
 import { errorAlert } from '../utils/error-alert.js';
-import { cloneObject } from '../utils/data-utils.js';
+import { cloneObject } from '../utils/data-tools.js';
 
 import Product from '../models/Product.js';
 import Coins from '../models/Coins.js';
