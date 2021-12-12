@@ -16,14 +16,14 @@ export default class Validation {
   }
 
   checkManageInputPrice(price) {
-    if(price%10 !== 0 || price < 100 || Number.isNaN(Number(price))) {
+    if(price%10 !== 0 || price < 100 || Number.isNaN(Number(price)) || !price.trim()) {
         return false;
     }
     return true;
   }
 
   checkManageInputQuantity(quantity) {
-    if(Number.isNaN(Number(quantity))) {
+    if(Number.isNaN(Number(quantity)) || !quantity.trim()) {
         return false;
     }
     return true;
