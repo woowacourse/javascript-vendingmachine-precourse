@@ -18,21 +18,21 @@ export default class CoinInputForm extends Component {
     this.addEvent(
       'click',
       '#vending-machine-charge-button',
-      this.handleCoinInput.bind(this)
+      this.bindInputSubmit.bind(this)
     );
 
     this.addEvent(
       'keyup',
       '#vending-machine-charge-input',
-      this.handleCoinInput.bind(this)
+      this.bindInputSubmit.bind(this)
     );
   }
 
-  handleCoinInput(event) {
+  bindInputSubmit(event) {
     if (event.type === 'keyup' && event.key !== 'Enter') return false;
 
-    const { addCoins } = this._props;
-    const isResult = addCoins($('#vending-machine-charge-input').value);
+    const { handleAddCoins } = this._props;
+    const isResult = handleAddCoins($('#vending-machine-charge-input').value);
 
     if (isResult === false) $('#vending-machine-charge-input').focus();
   }
