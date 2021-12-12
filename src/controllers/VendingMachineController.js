@@ -45,7 +45,7 @@ class VendingMachineController {
         this.$productAddMenuController.changeMenu();
         break;
       case SELECTOR.vendingMachineManageMenuId:
-        this.$vendingMachineManageMenuController.changeMenu();
+        this.$vendingMachineManageMenuController.renderMenuWithData();
         break;
       case SELECTOR.productPurchaseMenuId:
         this.$productPurchaseMenuController.changeMenu();

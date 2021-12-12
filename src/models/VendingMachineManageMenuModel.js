@@ -1,45 +1,30 @@
 import Store from '../utils/store.js';
 import STORAGE_KEY from '../constants/key.js';
+import { getChargeCoinQuantityStroageKey } from '../utils/index.js';
 
 class VendingMachineManageMenuModel {
   getChargeAmount() {
     return Store.getLocalStorage(STORAGE_KEY.chargeAmount) || 0;
   }
 
-  getAmount500() {
-    return Store.getLocalStorage(STORAGE_KEY.charge500Quantity) || 0;
-  }
-
-  getAmount100() {
-    return Store.getLocalStorage(STORAGE_KEY.charge100Quantity) || 0;
-  }
-
-  getAmount50() {
-    return Store.getLocalStorage(STORAGE_KEY.charge50Quantity) || 0;
-  }
-
-  getAmount10() {
-    return Store.getLocalStorage(STORAGE_KEY.charge10Quantity) || 0;
+  getCoinQuantity(coin) {
+    return Store.getLocalStorage(getChargeCoinQuantityStroageKey(coin)) || 0;
   }
 
   setChargeAmount(amount) {
     Store.setLocalStorage(STORAGE_KEY.chargeAmount, amount);
   }
 
-  setAmount500(amount) {
-    Store.setLocalStorage(STORAGE_KEY.charge500Quantity, amount);
+  setCoinQuantity(coin, quantity) {
+    Store.setLocalStorage(getChargeCoinQuantityStroageKey(coin), quantity);
   }
 
-  setAmount100(amount) {
-    Store.setLocalStorage(STORAGE_KEY.charge100Quantity, amount);
+  setMinusOneCoinQuantity(coin) {
+    Store.setLocalStorage(getChargeCoinQuantityStroageKey(coin), this.getCoinQuantity(coin) - 1);
   }
 
-  setAmount50(amount) {
-    Store.setLocalStorage(STORAGE_KEY.charge50Quantity, amount);
-  }
-
-  setAmount10(amount) {
-    Store.setLocalStorage(STORAGE_KEY.charge10Quantity, amount);
+  setPlusOneCoinQuantity(coin) {
+    Store.setLocalStorage(getChargeCoinQuantityStroageKey(coin), this.getCoinQuantity(coin) + 1);
   }
 }
 

@@ -2,8 +2,10 @@ import VendingMachineManageMenuView from '../views/VendingMachineManageMenuView.
 import VendingMachineManageMenuModel from '../models/VendingMachineManageMenuModel.js';
 import VendingMachineManageMenuValidator from '../validators/vendingMachineManageMenu.js';
 import { $ } from '../utils/dom.js';
+import { pickRandomCoin } from '../utils/index.js';
 
 import SELECTOR from '../constants/selector.js';
+import { COIN_500, COIN_100, COIN_50, COIN_10 } from '../constants/common.js';
 
 class VendingMachineManageMenuController {
   constructor(currentMenu) {
@@ -11,7 +13,7 @@ class VendingMachineManageMenuController {
     this.$vendingMachineManageMenuModel = new VendingMachineManageMenuModel();
 
     this.initAddEventListeners();
-    if (currentMenu === SELECTOR.vendingMachineManageMenuId) this.changeMenu();
+    if (currentMenu === SELECTOR.vendingMachineManageMenuId) this.renderMenuWithData();
   }
 
   initAddEventListeners() {
@@ -21,13 +23,13 @@ class VendingMachineManageMenuController {
     );
   }
 
-  changeMenu() {
+  renderMenuWithData() {
     this.$vendingMachineManageMenuView.render();
     this.$vendingMachineManageMenuView.renderCoinQuantityTableBodyWithData(
-      this.$vendingMachineManageMenuModel.getAmount500(),
-      this.$vendingMachineManageMenuModel.getAmount100(),
-      this.$vendingMachineManageMenuModel.getAmount50(),
-      this.$vendingMachineManageMenuModel.getAmount10(),
+      this.$vendingMachineManageMenuModel.getCoinQuantity(COIN_500),
+      this.$vendingMachineManageMenuModel.getCoinQuantity(COIN_100),
+      this.$vendingMachineManageMenuModel.getCoinQuantity(COIN_50),
+      this.$vendingMachineManageMenuModel.getCoinQuantity(COIN_10),
     );
     this.$vendingMachineManageMenuView.renderCoinChargeAmountWithData(
       this.$vendingMachineManageMenuModel.getChargeAmount(),
@@ -42,64 +44,39 @@ class VendingMachineManageMenuController {
 
   onClickVendingMachineChargeButton() {
     const chargeAmount = $(`#${SELECTOR.vendingMachineChargeInputId}`).value;
-    if (
-      !VendingMachineManageMenuValidator.validateChargeInputExist(chargeAmount) ||
-      !VendingMachineManageMenuValidator.validateChargeInputOverZero(chargeAmount) ||
-      !VendingMachineManageMenuValidator.validateChargeInputDivideByTen(chargeAmount)
-    )
-      return;
+    if (!this.validateChargeAmount(chargeAmount)) return;
 
+    this.calculateRandomCoinQuantity(chargeAmount);
+    this.changeVendingMachineChargeAmount(chargeAmount);
+    this.$vendingMachineManageMenuView.resetChargeAmountInput();
+    this.renderMenuWithData();
+  }
+
+  validateChargeAmount(chargeAmount) {
+    if (!VendingMachineManageMenuValidator.validateChargeInputExist(chargeAmount)) return false;
+    if (!VendingMachineManageMenuValidator.validateChargeInputOverZero(chargeAmount)) return false;
+    if (!VendingMachineManageMenuValidator.validateChargeInputDivideByTen(chargeAmount))
+      return false;
+
+    return true;
+  }
+
+  calculateRandomCoinQuantity(chargeAmount) {
     let remainChargeAmount = chargeAmount;
 
     while (remainChargeAmount > 0) {
-      const randomCoin = MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+      const randomCoin = pickRandomCoin();
       if (randomCoin <= remainChargeAmount) {
         remainChargeAmount -= randomCoin;
-        this.addCoinAmount(randomCoin);
+        this.$vendingMachineManageMenuModel.setPlusOneCoinQuantity(randomCoin);
       }
     }
+  }
 
-    this.$vendingMachineManageMenuView.renderCoinQuantityTableBodyWithData(
-      this.$vendingMachineManageMenuModel.getAmount500(),
-      this.$vendingMachineManageMenuModel.getAmount100(),
-      this.$vendingMachineManageMenuModel.getAmount50(),
-      this.$vendingMachineManageMenuModel.getAmount10(),
-    );
-
+  changeVendingMachineChargeAmount(chargeAmount) {
     this.$vendingMachineManageMenuModel.setChargeAmount(
       this.$vendingMachineManageMenuModel.getChargeAmount() + Number(chargeAmount),
     );
-    this.$vendingMachineManageMenuView.renderCoinChargeAmountWithData(
-      this.$vendingMachineManageMenuModel.getChargeAmount(),
-    );
-    this.$vendingMachineManageMenuView.resetChargeAmountInput();
-  }
-
-  addCoinAmount(coin) {
-    if (coin === 500) this.add500CoinAmount();
-    else if (coin === 100) this.add100CoinAmount();
-    else if (coin === 50) this.add50CoinAmount();
-    else if (coin === 10) this.add10CoinAmount();
-  }
-
-  add500CoinAmount() {
-    const current500Amount = this.$vendingMachineManageMenuModel.getAmount500();
-    this.$vendingMachineManageMenuModel.setAmount500(current500Amount + 1);
-  }
-
-  add100CoinAmount() {
-    const current100Amount = this.$vendingMachineManageMenuModel.getAmount100();
-    this.$vendingMachineManageMenuModel.setAmount100(current100Amount + 1);
-  }
-
-  add50CoinAmount() {
-    const current50Amount = this.$vendingMachineManageMenuModel.getAmount50();
-    this.$vendingMachineManageMenuModel.setAmount50(current50Amount + 1);
-  }
-
-  add10CoinAmount() {
-    const current10Amount = this.$vendingMachineManageMenuModel.getAmount10();
-    this.$vendingMachineManageMenuModel.setAmount10(current10Amount + 1);
   }
 }
 

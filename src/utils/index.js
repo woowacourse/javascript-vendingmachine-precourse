@@ -1,5 +1,7 @@
-import { COIN_500, COIN_100, COIN_50, COIN_10 } from '../constants/common.js';
+import { COIN_500, COIN_100, COIN_50, COIN_10, COIN_LIST } from '../constants/common.js';
 import STORAGE_KEY from '../constants/key.js';
+
+export const pickRandomCoin = () => MissionUtils.Random.pickNumberInList(COIN_LIST);
 
 export const getReturnCoinQuantityStorageKey = coin => {
   if (coin === COIN_500) return STORAGE_KEY.return500CoinQuantity;
