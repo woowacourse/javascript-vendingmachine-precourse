@@ -1,4 +1,8 @@
-import { $, productListTable } from '../common/dom/dom.js';
+import {
+  $,
+  productListTable,
+  productPurchaseTable,
+} from '../common/dom/dom.js';
 import { SELECTOR } from '../common/constants/constants.js';
 
 const insertToHTML = () => {
@@ -12,10 +16,16 @@ const insertToHTML = () => {
 
 export const createProductListTable = () => {
   const productListArray = JSON.parse(localStorage.getItem('productList'));
-  const $procuctListTable = $('.product-add-menu table tbody');
+  const $procuctAddListTable = $('.product-add-menu table tbody');
+  const $procuctPurchaseListTable = $('.product-purchase-menu table tbody');
 
   for (let i = 0; i < productListArray.length; i++) {
-    $procuctListTable.insertAdjacentHTML('afterbegin', productListTable);
+    $procuctAddListTable.insertAdjacentHTML('afterbegin', productListTable);
+    $procuctPurchaseListTable.insertAdjacentHTML(
+      'afterbegin',
+      productPurchaseTable
+    );
+
     break;
   }
 };
