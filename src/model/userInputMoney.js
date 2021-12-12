@@ -1,6 +1,6 @@
 class UserInputMoney {
   constructor() {
-    this.totalAmount = 0;
+    this.amount = 0;
   }
 }
 

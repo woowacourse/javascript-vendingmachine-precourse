@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { userInputMoney } from '../model/store.js';
+import { userInputMoney, returnedChange } from '../model/store.js';
 import { items } from '../model/store.js';
 
 class PurchaseView {
@@ -24,8 +24,12 @@ class PurchaseView {
   }
 
   render() {
-    $('#charge-amount').textContent = `${userInputMoney.totalAmount}`;
     $('#purchase-list').innerHTML = this.getItems();
+    $('#charge-amount').textContent = `${userInputMoney.amount}`;
+    $('#coin-500-quantity').textContent = `${returnedChange.coin500}개`;
+    $('#coin-100-quantity').textContent = `${returnedChange.coin100}개`;
+    $('#coin-50-quantity').textContent = `${returnedChange.coin50}개`;
+    $('#coin-10-quantity').textContent = `${returnedChange.coin10}개`;
   }
 
   template() {
