@@ -1,5 +1,9 @@
 import { PRODUCT, ALERT } from '../utils/constants.js';
-
+const initProducts = () => {
+  return JSON.parse(localStorage.getItem('products'))
+    ? JSON.parse(localStorage.getItem('products'))
+    : [];
+};
 export default {
   products: initProducts(),
   add(product) {
@@ -14,11 +18,6 @@ export default {
   },
 };
 
-const initProducts = () => {
-  return JSON.parse(localStorage.getItem('products'))
-    ? JSON.parse(localStorage.getItem('products'))
-    : [];
-};
 const isValidProductInput = (product) => {
   if (product[PRODUCT.NAME] === '') {
     alert(ALERT.EMPTY_PRODUCT_NAME);

@@ -1,9 +1,11 @@
 import View from './View.js';
-import { ELEMENT_ID, COINS, CHARGE } from '../utils/constants.js';
+import { ELEMENT_ID, COINS, CHARGE, EVENT_TYPE, ELEMENT_SID } from '../utils/constants.js';
+import { $ } from '../utils/dom.js';
 const ChargeCoinView = { ...View };
 
 ChargeCoinView.setup = function (element) {
   this.init(element);
+  this.bindClick();
   return this;
 };
 
@@ -34,6 +36,19 @@ ChargeCoinView.render = function () {
       </tbody>
     </table>
     `;
+};
+
+ChargeCoinView.bindClick = function () {
+  this.element.addEventListener('click', (e) => {
+    if (e.target.id === ELEMENT_ID.CHARGE_BUTTON) {
+      e.preventDefault();
+      this.onClickChargeCoins();
+    }
+  });
+};
+
+ChargeCoinView.onClickChargeCoins = function () {
+  this.emit(EVENT_TYPE.CHARGE_COIN, { money: $(ELEMENT_SID.CHARGE_INPUT).value });
 };
 
 export default ChargeCoinView;

@@ -6,6 +6,7 @@ export const ELEMENT_SID = {
   PRODUCT_PRICE_INPUT: '#product-price-input',
   PRODUCT_QUANTITY_INPUT: '#product-quantity-input',
   PRODUCT_ADD_BUTTON: '#product-add-button',
+  CHARGE_INPUT: '#vending-machine-charge-input',
 };
 export const ELEMENT_ID = {
   TAB_VIEW: 'tab-view',
@@ -33,6 +34,7 @@ export const ELEMENT_CLASS = {
 export const EVENT_TYPE = {
   CHANGE_TAB: 'changeTab',
   ADD_PRODUCT: 'addProduct',
+  CHARGE_COIN: 'chargeCoin',
 };
 export const TAB = {
   MANAGE_PRODUCT: '상품 관리',
