@@ -67,16 +67,33 @@ const DOMUtils = {
   showVendingMachineCharge: () => {
     const charge = UT.calculateToCharge('vendingMachineCoins');
 
-    if (charge > 0) $('#vending-machine-charge-amount').innerHTML = `${charge}원`;
+    if (charge > 0) {
+      return ($('#vending-machine-charge-amount').innerHTML = `${charge}원`);
+    }
+    DOMUtils.initElement('#vending-machine-charge-amount');
   },
 
   showVendingMachineCoins: () => {
-    if (UT.isAllZero('vendingMachineCoins')) return;
+    if (UT.isAllZero('vendingMachineCoins')) {
+      return UT.convertStringToIncludingHyphen('vendingMachineCoins').forEach(array => {
+        const [coinType] = array;
+
+        $(`#vending-machine-${coinType}-quantity`).innerHTML = '';
+      });
+    }
 
     UT.convertStringToIncludingHyphen('vendingMachineCoins').forEach(array => {
       const [coinType, quantity] = array;
 
       $(`#vending-machine-${coinType}-quantity`).innerHTML = `${quantity}개`;
+    });
+  },
+
+  showReturnCoins: () => {
+    UT.convertStringToIncludingHyphen('vendingMachineCoins').forEach(array => {
+      const [coinType, quantity] = array;
+
+      $(`#${coinType}-quantity`).innerHTML = `${quantity}개`;
     });
   },
 

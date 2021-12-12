@@ -33,6 +33,13 @@ export default class ProductPurchaseManager {
       if (!V.isValidCoinReturn()) return;
 
       calculateReturnCoins();
+
+      this.renderVendingMachineChargeManager();
     });
+  }
+
+  renderVendingMachineChargeManager() {
+    DOM.showVendingMachineCharge(); //잔돈충전 - 보유 금액 갱신
+    DOM.showVendingMachineCoins(); //잔돈충전 - 자판기가 보유한 동전 갱신
   }
 }
