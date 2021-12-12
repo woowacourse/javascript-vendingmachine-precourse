@@ -61,10 +61,36 @@ export default class VendingMachineManage {
 
   handleVendingMachineChargeSubmit = (e) => {
     e.preventDefault();
-    const charge = $(`#${ID.VENDING_MACHINE_CHARGE_INPUT}`).value;
+    const chargeInput = parseInt($(`#${ID.VENDING_MACHINE_CHARGE_INPUT}`).value);
 
-    console.log(charge);
+    this.saveCharge(chargeInput);
+
     this.clearInputs();
+  };
+
+  saveCharge = (chargeInput) => {
+    // do the logic
+    const coinTypes = [500, 100, 50, 10];
+    const randomCoinType = MissionUtils.Random.pickNumberInList(coinTypes);
+    console.log('randomCoinType is ' + randomCoinType);
+    for (let i = coinTypes.indexOf(randomCoinType); i < coinTypes.length; i++) {
+      if (chargeInput <= 0) {
+        break;
+      }
+      let currentCount = 0;
+      currentCount += parseInt(chargeInput / coinTypes[i]);
+      chargeInput %= coinTypes[i];
+      this.updateCharges(coinTypes[i], currentCount);
+    }
+  };
+
+  updateCharges = (coinType, quantity) => {
+    this.charges.map((obj) => {
+      if (obj.coinType === coinType) {
+        obj.quantity += quantity;
+      }
+    });
+    localStorage.setItem(LS_KEY_CHARGES, JSON.stringify(this.charges));
   };
 
   clearInputs = () => {
