@@ -8,16 +8,15 @@ import TapView from './tapView.js';
 export default class AdminView extends TapView {
   static render() {
     super.removeTap();
-    super.addComponent(this.adminComponent());
+    super.appendComponentToApp(this.adminComponent());
   }
 
   static adminComponent() {
-    return `
-    <div id=tap>
-      ${this.productInputComponent()}
-      ${this.productListComponent()}
-    </div>
-    `;
+    const divEl = document.createElement('div');
+    divEl.id = 'tap';
+    super.addHtmlToElement(divEl, this.productInputComponent());
+    super.addHtmlToElement(divEl, this.productListComponent());
+    return divEl;
   }
 
   static productInputComponent() {
@@ -46,7 +45,10 @@ export default class AdminView extends TapView {
     const productStorage = adminObject.getProductStorage();
     if (productStorage) {
       productStorage.forEach((product) => {
-        document.querySelector('table').innerHTML += this.productTable(product);
+        super.addHtmlToElement(
+          document.querySelector('table'),
+          this.productTable(product),
+        );
       });
     }
   }
@@ -64,7 +66,10 @@ export default class AdminView extends TapView {
   static addNewProduct(adminObject) {
     const productStorage = adminObject.getProductStorage();
     const newProduct = productStorage[productStorage.length - 1];
-    document.querySelector('table').innerHTML += this.productTable(newProduct);
+    super.addHtmlToElement(
+      document.querySelector('table'),
+      this.productTable(newProduct),
+    );
     adminObject.resetProductAddInput();
   }
 }
