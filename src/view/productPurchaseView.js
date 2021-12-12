@@ -53,6 +53,7 @@ const renderProductList = tableBodyId => {
       tag: "button",
       id: PRODUCT_PURCHASE_MANAGE.PURCHASE_BUTTON.ID,
       innerText: PRODUCT_PURCHASE_MANAGE.PURCHASE_BUTTON.TEXT,
+      type: "button",
     });
     const rowData = Product.changeTableRowFormat(productId, {
       name: product.name,
@@ -83,6 +84,7 @@ const renderCoinReturnTable = container => {
     tag: "button",
     innerText: PRODUCT_PURCHASE_MANAGE.CHARGE_BUTTON.TEXT,
     id: PRODUCT_PURCHASE_MANAGE.CHARGE_BUTTON.ID,
+    type: "button",
   });
   container.append(coinReturnTableTitle, returnButton);
   const coinToUse = [
