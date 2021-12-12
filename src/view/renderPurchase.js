@@ -42,7 +42,7 @@ function renderPurchaseInput($purchase) {
   $inputContainer.innerHTML = `
     <h3>${PURCHASE_INPUT_TITLE}</h3>
     <form>
-      <input id="${PURCHASE_INPUT_ID} "type="number" placeholder="${PURCHASE_INPUT_PLACEHOLDER_TITLE}"></input>
+      <input id="${PURCHASE_INPUT_ID}" type="number" placeholder="${PURCHASE_INPUT_PLACEHOLDER_TITLE}"></input>
       <button id="${PURCHASE_BUTTON_ID}">${PURCHASE_INPUT_BUTTON_TITLE}</button>
     </form>
     <br>
