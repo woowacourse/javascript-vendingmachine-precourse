@@ -62,9 +62,9 @@ export const ZERO = 0;
 
 export const STORAGE_KEY = Object.freeze({
   PRODUCT_MANAGE: 'product_manage',
-  CHARGE_COIN: 'charge_coin',
-  CHARGE_AMOUNT: 'charge_amount',
-  PURCHASE: 'purchase'
+  VENDING_MACHINE_CHARGE_COIN: 'vending_machine_charge_coin',
+  VENDING_MACHINE_CHARGE_AMOUNT: 'vending_machine_charge_amount',
+  PURCHASE_CHARGE_AMOUNT: 'purchase_charge_amount'
 });
 
 export const TABLE_MENU = Object.freeze({
