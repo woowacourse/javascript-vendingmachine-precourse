@@ -66,31 +66,51 @@ export class VendingMachineModel {
   }
 
   returnCoin() {
-    if (this.totalInsertedMoney > this.machineChargeAmount) {
-      this.totalInsertedMoney -= this.machineChargeAmount;
-      this.machineChargeAmount = 0;
-      for (let coin in this.changeCoins) {
-        this.changeCoins[coin] += this.machineCoins[coin];
-        this.machineCoins[coin] = 0;
-      }
-      this.storageUpdateWhenReturnCoin();
-      return this.changeCoins;
+    if (!this.isEnoughCoins()) {
+      this.returnAllMachineCoin();
+    } else {
+      this.returnTotalInsertedMoney();
     }
+    this.storageUpdateWhenReturnCoin();
+    return this.changeCoins;
+  }
+
+  isEnoughCoins() {
+    return this.totalInsertedMoney <= this.machineChargeAmount;
+  }
+
+  returnAllMachineCoin() {
+    this.totalInsertedMoney -= this.machineChargeAmount;
+    this.machineChargeAmount = 0;
+    for (let coin in this.changeCoins) {
+      this.changeCoins[coin] += this.machineCoins[coin];
+      this.machineCoins[coin] = 0;
+    }
+  }
+
+  returnTotalInsertedMoney() {
     this.machineChargeAmount -= this.totalInsertedMoney;
     coinList.some((coin) => {
-      let count = parseInt(this.totalInsertedMoney / coin);
-      if (this.machineCoins[coin] < count) {
-        count = this.machineCoins[coin];
-      }
-      this.totalInsertedMoney -= coin * count;
-      this.machineCoins[coin] -= count;
-      this.changeCoins[coin] += count;
+      const coinCount = this.calculateCoinCount(coin);
+      this.returnSomeCoin(coin, coinCount);
       if (this.totalInsertedMoney === 0) {
         return true;
       }
     });
-    this.storageUpdateWhenReturnCoin();
-    return this.changeCoins;
+  }
+
+  calculateCoinCount(coin) {
+    let coinCount = parseInt(this.totalInsertedMoney / coin);
+    if (this.machineCoins[coin] < coinCount) {
+      coinCount = this.machineCoins[coin];
+    }
+    return coinCount;
+  }
+
+  returnSomeCoin(coin, count) {
+    this.totalInsertedMoney -= coin * count;
+    this.machineCoins[coin] -= count;
+    this.changeCoins[coin] += count;
   }
 
   storageUpdateWhenReturnCoin() {
