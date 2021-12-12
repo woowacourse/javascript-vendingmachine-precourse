@@ -1,25 +1,33 @@
 import { createElement, combineElement } from '../utils/element-tools.js';
 
 export default class TableCreate {
-  constructor(title) {
+  constructor(title, columnHead) {
     this.$title = createElement('H3', title);
-    this.$table = createElement('TABLE');
-    this.$tableBody = createElement('TBODY');
-    this.$tableBody.append(this.columnHead());
-    this.$table.append(this.$tableBody);
+    this.columnHead = [...columnHead];
 
     this.init();
   }
 
-  init() {}
+  init() {
+    this.$table = createElement('TABLE');
+    this.$tableBody = createElement('TBODY');
+    this.$table.append(this.$tableBody);
+    this.$tableBody.append(this.renderColumnHead());
+  }
 
-  columnHead() {}
+  renderColumnHead() {
+    const $column = createElement('TR');
+    $column.innerHTML = this.columnHead
+      .map((head) => `<th>${head}</th>`)
+      .join('');
+    return $column;
+  }
 
-  columnBody() {}
+  renderColumnBody() {}
 
   setContents(contents) {
     contents.forEach((value, index) =>
-      this.$tableBody.append(this.columnBody(value, index))
+      this.$tableBody.append(this.renderColumnBody(value, index))
     );
     return this;
   }

@@ -3,17 +3,7 @@ import TableCreate from '../../core/Table.js';
 import { EMPTY_STRING } from '../../constants/constants.js';
 
 export default class ProductTable extends TableCreate {
-  columnHead() {
-    const $column = createElement('TR');
-    $column.innerHTML = `
-    <th>상품명</th>
-    <th>가격</th>
-    <th>수량</th>
-    `;
-    return $column;
-  }
-
-  columnBody({ name, price, quantity }) {
+  renderColumnBody({ name, price, quantity }) {
     const $column = createElement('TR', EMPTY_STRING, {
       className: 'product-manage-item',
     });

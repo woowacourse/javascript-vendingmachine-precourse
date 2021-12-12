@@ -2,18 +2,7 @@ import { createElement } from '../../utils/element-tools.js';
 import TableCreate from '../../core/Table.js';
 
 export default class PurchaseTable extends TableCreate {
-  columnHead() {
-    const $column = createElement('TR');
-    $column.innerHTML = `
-    <th>상품명</th>
-    <th>가격</th>
-    <th>수량</th>
-    <th>구매</th>
-    `;
-    return $column;
-  }
-
-  columnBody(value, index) {
+  renderColumnBody(value, index) {
     const $column = createElement('TR');
     const { name, price, quantity } = value;
     $column.dataset.primary = index;

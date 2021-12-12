@@ -9,7 +9,11 @@ export default class ProductList extends Component {
   domTemplate() {
     const { state } = this._props;
 
-    const createTable = new ProductTable('상품 현황');
+    const createTable = new ProductTable('상품 현황', [
+      '상품명',
+      '가격',
+      '수량',
+    ]);
     const $productTable = createTable.setContents(state.value).result;
 
     return $productTable;

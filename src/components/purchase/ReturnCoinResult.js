@@ -15,7 +15,7 @@ export default class ReturnCoinResult extends Component {
   domTemplate() {
     const { returnCoin } = this._state;
 
-    const createTable = new ReturnTable('잔돈');
+    const createTable = new ReturnTable('잔돈', ['동전', '개수']);
     const $purchaseTable = createTable.setContents(returnCoin).result;
 
     return $purchaseTable;

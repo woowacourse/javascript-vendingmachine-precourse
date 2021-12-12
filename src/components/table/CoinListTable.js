@@ -2,16 +2,7 @@ import { createElement } from '../../utils/element-tools.js';
 import TableCreate from '../../core/Table.js';
 
 export default class CoinListTable extends TableCreate {
-  columnHead() {
-    const $column = createElement('TR');
-    $column.innerHTML = `
-    <th>동전</th>
-    <th>개수</th>
-    `;
-    return $column;
-  }
-
-  columnBody(value) {
+  renderColumnBody(value) {
     const $column = createElement('TR');
     const { coin, quantity } = value;
     $column.innerHTML = `
