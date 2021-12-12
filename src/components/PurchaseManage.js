@@ -14,12 +14,6 @@ import ReturnBalanceList from './purchase/ReturnBalanceList.js';
 import { $productState, $coinState, $chargeState } from './StateList.js';
 
 export default class PurchaseManage extends Component {
-  init() {
-    this._state = {
-      returnCoins: cloneObject(CONSTANTS.COIN_LIST),
-    };
-  }
-
   htmlTemplate() {
     return `
     <section class="component" data-component="amount-charge-form"></section>
@@ -78,16 +72,9 @@ export default class PurchaseManage extends Component {
     const coinManager = new Coins($coinState.value);
     const { output, failed } = coinManager.return($chargeState.value);
 
-    this.returnCoinUpdate(output);
     $chargeState.value = failed;
     $coinState.value = coinManager.result;
-  }
 
-  returnCoinUpdate(coinResult) {
-    const { returnCoins } = this._state;
-
-    returnCoins.forEach((value, index) => {
-      returnCoins[index] = coinResult[index];
-    });
+    return output;
   }
 }
