@@ -115,27 +115,27 @@ export default class VendingMachine {
     }
 
     getRandomReturn(money){
-        let coins = {};
+        let returnCoin = {};
         for(let key in COIN_VALUE){
-            if(key === 'LAST'){
+            if(money <= 0){
                 break;
             }
 
-            const max = money / COIN_VALUE[key];
-            let spreadMax = [];
-            for(let i=0; i<=max; i++){
-                spreadMax.push(i);
+            let required = money / COIN_VALUE[key];
+
+            if(this.coins[key] > required){
+                this.coins[key] -= required;
+                money -= required * COIN_VALUE[key];
+                returnCoin[key] = required;
+            } else {
+                returnCoin[key] = this.coins[key];
+                money -= this.coins[key] * COIN_VALUE[key];
+                this.coins[key] = 0;
             }
-
-            const value = MissionUtils.Random.pickNumberInList(spreadMax);
-            coins[key] = value;
-            money = money - COIN_VALUE[key] * value;
         }
-
-        coins['LAST'] = money / COIN_VALUE['LAST'];
-        this.input = 0;
-
-        return coins;
+        
+        console.log(returnCoin);
+        return returnCoin;
     }
 
     displayReturnedCoins(coins){
