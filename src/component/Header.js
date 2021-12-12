@@ -1,10 +1,14 @@
-import { TAG, DOM_TITLE, DOM_ATTRIBUTE, SELECTOR } from '../constant/dom.js';
+import { TAG, DOM_TITLE, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
 
 export default class Header {
-  constructor($target) {
+  constructor($target, props) {
     this.$target = $target;
+    this.props = props;
+    this.$headerText = null;
+    this.$menus = null;
 
     this.render();
+    this.setEvent();
   }
 
   render() {
@@ -35,5 +39,13 @@ export default class Header {
     $menuButton.innerText = targetText;
 
     this.$menus.appendChild($menuButton);
+  }
+
+  setEvent() {
+    const { changeFocusedTab } = this.props;
+
+    this.$menus.addEventListener(EVENT.CLICK, (e) => {
+      changeFocusedTab(e.target.id);
+    });
   }
 }

@@ -13,6 +13,8 @@ export const DOM_TITLE = Object.freeze({
 
 export const DOM_ATTRIBUTE = Object.freeze({
   ID: 'id',
+  DATA_TAB_ID: 'data-tab-id',
+  HIDDEN: 'hidden',
 });
 
 export const SELECTOR = Object.freeze({
@@ -23,4 +25,8 @@ export const SELECTOR = Object.freeze({
   ID_PURCHASE_TAB: 'product-purchase-tab',
   ID_MACHINE_MANAGE_TAB: 'vending-machine-manage-tab',
   ID_PRODUCT_ADD_TAB: 'product-add-tab',
+});
+
+export const EVENT = Object.freeze({
+  CLICK: 'click',
 });

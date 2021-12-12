@@ -17,4 +17,10 @@ export default class TabContainer {
     this.tabMachineManage = new TabMachineManage(this.$target);
     this.tabPurchase = new TabPurchase(this.$target);
   }
+
+  showFocusedTab() {
+    this.tabProductAdd.determineDisplaying();
+    this.tabMachineManage.determineDisplaying();
+    this.tabPurchase.determineDisplaying();
+  }
 }
