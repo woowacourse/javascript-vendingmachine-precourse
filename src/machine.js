@@ -23,13 +23,17 @@ export default class VendingMachine {
         document.getElementById(ADD_TAB_ID.PRODUCT_TABLE).append(tr);
     }
 
+
+    changeDisplayProduct(product){
+        document.querySelector(`#${product.id} .${PURCHASE_TAB_CLASS.PRODUCT_QUANTITY}`).innerHTML = product.quantity;
+    }
+
     buyProduct(product){
         if(this.input >= product.price){
             this.input -= product.price;
             product.quantity--;
-            for(let i=0; i<this.products.length; i++){
-                console.log(this.products[i]);
-            }
+
+            this.changeDisplayProduct(product);
         }
     }
 
