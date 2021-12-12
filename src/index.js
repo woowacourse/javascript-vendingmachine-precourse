@@ -1,13 +1,9 @@
-
+import { loadButton } from "./view/DOM_load.js";
 
 class VandingMachine {
   constructor() {
-    this.initDOM();
+    loadButton();
     this.initEventListener();
-  }
-
-  initDOM() {
-
   }
 
   initEventListener() {

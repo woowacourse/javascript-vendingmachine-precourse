@@ -1,9 +1,11 @@
+export const setDOM = (node) => document.body.appendChild(node);
+
 export const createButton = (id, innerText) => {
   const button = document.createElement("button");
   button.innerHTML = innerText;
   button.setAttribute("id", id);
 
-  return button;
+  setDOM(button);
 };
 
 export const createTable = (className, headValue) => {
@@ -18,11 +20,11 @@ export const createTable = (className, headValue) => {
   });
 
   table.appendChild(th);
-
-  return table;
+  setDOM(table);
 };
 
-export const createTd = (valueArr) => {
+export const createTd = (className, valueArr) => {
+  const table = document.querySelector(`.${className}`);
   const tr = document.createElement("tr");
   
   const td = valueArr.map((val) => {
@@ -33,8 +35,7 @@ export const createTd = (valueArr) => {
   });
 
   tr.appendChild(td);
-
-  return tr;
+  table.appendChild(tr);
 };
 
 export const createInput = (id, type, innerText) => {
@@ -43,12 +44,12 @@ export const createInput = (id, type, innerText) => {
   input.setAttribute("id", id);
   input.setAttribute("type", type);
 
-  return input;
+  setDOM(input);
 };
 
-export const titleText = (textValue) => {
+export const crateText = (textValue) => {
   const text = document.createElement("h3");
   text.innerHTML = textValue;
 
-  return text;
+  setDOM(text);
 };
