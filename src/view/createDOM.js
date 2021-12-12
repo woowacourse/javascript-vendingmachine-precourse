@@ -12,14 +12,13 @@ export const createTable = (className, headValue) => {
   const table = document.createElement("table");
   table.setAttribute("class", className);
   
-  const th = headValue.map((val) => {
+  const th = headValue.forEach((val) => {
     const items = document.createElement("th");
     items.innerHTML = val;
 
-    return items;
+    table.appendChild(th);
   });
 
-  table.appendChild(th);
   setDOM(table);
 };
 
@@ -47,7 +46,7 @@ export const createInput = (id, type, innerText) => {
   setDOM(input);
 };
 
-export const crateText = (textValue) => {
+export const createText = (textValue) => {
   const text = document.createElement("h3");
   text.innerHTML = textValue;
 

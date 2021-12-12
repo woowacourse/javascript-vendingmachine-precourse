@@ -125,8 +125,8 @@
 
   <b>index.js</b> 
 
-  - [ ] EventListener Setting 후 초기화 - `initEventListener`
-  - [ ] 각각의 3가지 버튼 생성 (상품관리, 잔돈 충전, 상품 구매)
+  - [x] EventListener Setting 후 초기화 - `initEventListener`
+  - [x] 각각의 3가지 버튼 생성 (상품관리, 잔돈 충전, 상품 구매)
 
   <br/>
 
@@ -147,11 +147,11 @@
 
   >  DOM에 요소 추가하고 만드는 함수 집합
 
-  - [ ] 버튼 만드는 함수 
-  - [ ] table 만드는 함수
-  - [ ] table data  `<td>` 만드는 함수
-  - [ ] input 만드는 함수
-  - [ ] text 만드는 함수
+  - [x] 버튼 만드는 함수 
+  - [x] table 만드는 함수
+  - [x] table data  `<td>` 만드는 함수
+  - [x] input 만드는 함수
+  - [x] text 만드는 함수
 
   <b>DOM_chargeManage.js</b>
 
@@ -176,13 +176,8 @@
 
   <b>DOM_load.js</b>
 
-  - [ ] 첫 화면 로드하기
-  - [ ] 버튼과 Title text 보여주기
-
-  </b>
-
-  - [ ] 금액 투입, 구매할 수 있는 상품 현황, 잔돈 text 추가
-  - [ ] 금액 투입 input, button 추가
+  - [x] 첫 화면 로드하기
+  - [x] 버튼과 Title text 보여주기
 
   <br/>
 
