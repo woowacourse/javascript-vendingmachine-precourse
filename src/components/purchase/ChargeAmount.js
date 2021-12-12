@@ -15,7 +15,7 @@ export default class ChargeAmount extends Component {
       <input type="number" id="charge-input" placeholder="투입할 금액"/>
       <button id="charge-button">투입하기</button>
     </div>
-    <p>투입한 금액: <span id="charge-amount">${state.value}</span></p>
+    <p>투입한 금액: <span id="charge-amount">${state.value}원</span></p>
     `;
   }
 
