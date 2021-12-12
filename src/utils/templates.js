@@ -4,9 +4,24 @@ export const productAddMenuTemplate = () => {
   return `
     <h3>상품 추가하기</h3>
     <form>
-      <input type="text" id=${ID.PRODUCT_NAME_INPUT} placeholder="상품명" required />
-      <input type="number" id=${ID.PRODUCT_PRICE_INPUT} placeholder="가격" required />
-      <input type="number" id=${ID.PRODUCT_QUANTITY_INPUT} placeholder="수량" required />
+      <input
+        type="text"
+        id=${ID.PRODUCT_NAME_INPUT}
+        placeholder="상품명"
+        required
+      />
+      <input
+        type="number"
+        id=${ID.PRODUCT_PRICE_INPUT}
+        placeholder="가격"
+        required
+      />
+      <input
+        type="number"
+        id=${ID.PRODUCT_QUANTITY_INPUT}
+        placeholder="수량"
+        required
+      />
       <button type="submit" id=${ID.PRODUCT_ADD_BTN}>추가하기</button>
     </form>
 
@@ -24,10 +39,16 @@ export const productAddMenuTemplate = () => {
 export const vendingMachineManageMenuTemplate = () => {
   return `
     <h3>자판기 동전 충전하기</h3>
-
-    <input type="number" />
-    <button>충전하기</button>
-    <div>보유 금액: <span></span></div>
+    <form>
+      <input
+        type="number"
+        id=${ID.VENDING_MACHINE_CHARGE_INPUT}
+        placeholder="자판기가 보유할 금액"
+        required
+      />
+      <button type="submit" id=${ID.VENDING_MACHINE_CHARGE_BTN}>충전하기</button>
+    </form>
+    <div>보유 금액: <span id=${ID.VENDING_MACHINE_CHARGE_AMOUNT}></span></div>
 
     <h3>자판기가 보유한 동전</h3>
     <table>
@@ -37,19 +58,19 @@ export const vendingMachineManageMenuTemplate = () => {
       </tr>
       <tr>
         <td>500원</td>
-        <td></td>
+        <td id=${ID.VENDING_MACHINE_COIN_500_QUANTITY}></td>
       </tr>
       <tr>
         <td>100원</td>
-        <td></td>
+        <td id=${ID.VENDING_MACHINE_COIN_100_QUANTITY}></td>
       </tr>
       <tr>
         <td>50원</td>
-        <td></td>
+        <td id=${ID.VENDING_MACHINE_COIN_50_QUANTITY}></td>
       </tr>
       <tr>
         <td>10원</td>
-        <td></td>
+        <td id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}></td>
       </tr>
     </table>
   `;
