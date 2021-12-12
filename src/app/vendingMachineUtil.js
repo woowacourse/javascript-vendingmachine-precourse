@@ -26,11 +26,11 @@ class VendingMachineUtil {
     return true;
   }
 
-  static isValidCharge(inputsValue) {
-    if (isNumberStringIsNegative(inputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT])) {
+  static isValidCharge(inputsValue, id) {
+    if (isNumberStringIsNegative(inputsValue[id])) {
       throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_IS_NEGATIVE_NUMBER);
     }
-    if (isNumberStringNotDivideBy10(inputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT])) {
+    if (isNumberStringNotDivideBy10(inputsValue[id])) {
       throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_DEVIDE_BY_10);
     }
 

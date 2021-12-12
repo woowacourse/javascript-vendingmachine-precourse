@@ -1,4 +1,4 @@
-import { TAB, DOM, PLAIN_TEXT, COINS_KEY } from '../lib/constants.js';
+import { TAB, DOM, PLAIN_TEXT, COINS_KEY, CHARGE_AMOUNT_TEXT } from '../lib/constants.js';
 import { $ } from '../lib/utils.js';
 import { PRODUCT_LIST_TABLE_HEADER_TEMPLATE } from '../template/constants.js';
 
@@ -131,7 +131,9 @@ class VendingMachineView {
   /** Product Purchase */
   generateProductPurchaseMenuTemplate(model) {
     const inputsSectionTemplate = this.generateChargeInputSectionTemplate(model.chargeInputValue);
-    const chargeAmountSectionTemplate = this.generateChargeAmountSectionTemplate();
+    const chargeAmountSectionTemplate = this.generateChargeAmountSectionTemplate(
+      model.chargeAmount
+    );
     const productPurchaseListSectionTemplate = this.generateProductPurchaseListSectionTemplate(
       model.productList
     );
@@ -141,14 +143,19 @@ class VendingMachineView {
   }
 
   generateChargeInputSectionTemplate(inputValue) {
-    return `<h3>금액 투입</h3><form>
+    return `<h3>금액 투입</h3>
+    <form id="${DOM.CHARGE_FORM}">
     <input id="${DOM.CHARGE_INPUT}" type="number" value="${inputValue[DOM.CHARGE_INPUT]}"></input>
     <button id="${DOM.CHARGE_BUTTON}">투입하기</button>
     </form>`;
   }
 
-  generateChargeAmountSectionTemplate() {
-    return `<section id="${DOM.CHARGE_AMOUNT}"></section>`;
+  generateChargeAmountSectionTemplate(chargeAmount) {
+    if (chargeAmount === 0) {
+      return `<section id="${DOM.CHARGE_AMOUNT}">투입한 금액 : </section>`;
+    }
+
+    return `<section id="${DOM.CHARGE_AMOUNT}">${CHARGE_AMOUNT_TEXT}${chargeAmount}</section>`;
   }
 
   generateProductPurchaseListSectionTemplate(productList) {
@@ -224,6 +231,7 @@ class VendingMachineView {
   }
 
   renderProductPurchaseList(productList) {
+    console.log(productList);
     $(DOM.PRODUCT_PURCHASE_LIST_TABLE).innerHTML = `<tr>
     <td>상품명</td>
     <td>개수</td>
@@ -241,6 +249,10 @@ class VendingMachineView {
         <tr>`
     )
     .join('')}`;
+  }
+
+  renderCharge(chargeAmount) {
+    $(DOM.CHARGE_AMOUNT).textContent = `${CHARGE_AMOUNT_TEXT}${chargeAmount}`;
   }
 }
 export default VendingMachineView;

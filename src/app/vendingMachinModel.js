@@ -37,6 +37,8 @@ class VendingMachineModel {
     this.chargeInputValue = {
       [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
     };
+
+    this.chargeAmount = 0;
   }
 
   setTab(newTab) {
@@ -74,7 +76,12 @@ class VendingMachineModel {
   }
 
   addCoins() {
-    if (VendingMachineUtil.isValidCharge(this.vendingMachineChargeInputsValue)) {
+    if (
+      VendingMachineUtil.isValidCharge(
+        this.vendingMachineChargeInputsValue,
+        DOM.VENDING_MACHINE_CHARGE_INPUT
+      )
+    ) {
       const newCoins = VendingMachineUtil.getNewCoins(
         Number(this.vendingMachineChargeInputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT])
       );
@@ -91,14 +98,25 @@ class VendingMachineModel {
     if (targetProduct.quantity === 0) {
       throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_ZERO);
     }
+    if (targetProduct.price > this.chargeAmount) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_TOO_EXPENSIVE);
+    }
     this.sellProduct(targetProduct);
   }
 
   findProduct(productId) {
     return this.productList.find((product) => product.id === productId);
   }
+
   sellProduct(targetProduct) {
-    targetProduct = { ...targetProduct, quantity: targetProduct.quantity - 1 };
+    targetProduct.quantity = targetProduct.quantity - 1;
+    this.chargeAmount = this.chargeAmount - targetProduct.price;
+  }
+
+  addCharge() {
+    if (VendingMachineUtil.isValidCharge(this.chargeInputValue, DOM.CHARGE_INPUT)) {
+      this.chargeAmount = this.chargeAmount + Number(this.chargeInputValue[DOM.CHARGE_INPUT]);
+    }
   }
 }
 export default VendingMachineModel;

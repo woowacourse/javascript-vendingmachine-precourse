@@ -27,6 +27,7 @@ export const DOM = Object.freeze({
   VENDING_MACHINE_COIN_10_QUANTITY: 'vending-machine-coin-10-quantity',
 
   /** PRODUCT CHARGE MENU */
+  CHARGE_FORM: 'charge-form',
   CHARGE_INPUT: 'charge-input',
   CHARGE_BUTTON: 'charge-button',
   CHARGE_AMOUNT: 'charge-amount',
@@ -69,6 +70,7 @@ export const ERROR_MESSAGE = Object.freeze({
   VENDING_MACHINE_ERROR_CHARGE_DEVIDE_BY_10: '금액은 10으로 나누어 떨어져야합니다.',
   PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_UNDEFINED: '그런 상품은 존재하지 않습니다.',
   PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_ZERO: '상품이 품절 되었습니다.',
+  PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_TOO_EXPENSIVE: '투입 금액으로는 구매할 수 없습니다.',
 });
 export const COINS_KEY = Object.freeze({
   500: 'coin-500',
@@ -78,3 +80,4 @@ export const COINS_KEY = Object.freeze({
 });
 
 export const FIND_FAILURE = -1;
+export const CHARGE_AMOUNT_TEXT = '투입한 금액 : ';

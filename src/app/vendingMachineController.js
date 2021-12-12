@@ -39,8 +39,8 @@ class VendingMachineController {
       'click',
       this.onClickProductPurchaseListTable.bind(this)
     );
-    // $(DOM.PRODUCT_ADD_FORM).addEventListener('input', this.onInputProductAddForm.bind(this));
-    // $(DOM.PRODUCT_ADD_FORM).addEventListener('submit', this.onSubmitProductAddForm.bind(this));
+    $(DOM.CHARGE_FORM).addEventListener('input', this.onInputChargeForm.bind(this));
+    $(DOM.CHARGE_FORM).addEventListener('submit', this.onSubmitChargeForm.bind(this));
   }
   onClickTabMenuSection(e) {
     const {
@@ -111,9 +111,27 @@ class VendingMachineController {
       try {
         this.$model.purchaseProduct(productId);
         this.$view.renderProductPurchaseList(this.$model.productList);
+        this.$view.renderCharge(this.$model.chargeAmount);
       } catch (e) {
         alert(e);
       }
+    }
+  }
+  onInputChargeForm(e) {
+    const {
+      target: { value, id },
+    } = e;
+
+    this.$model.setChargeInputValue((prev) => ({ ...prev, [`${id}`]: value }));
+  }
+  onSubmitChargeForm(e) {
+    e.preventDefault();
+
+    try {
+      this.$model.addCharge();
+      this.$view.renderCharge(this.$model.chargeAmount);
+    } catch (e) {
+      alert(e);
     }
   }
 }
