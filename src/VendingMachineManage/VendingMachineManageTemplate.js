@@ -56,6 +56,29 @@ export default class VendingMachineManageTemplate {
     this.coinTableHead.innerHTML = '<tr><th>동전</th><th>개수</th></tr>';
     this.coinTableBody = document.createElement('tbody');
     this.coinTable.append(this.coinTableHead, this.coinTableBody);
+    this.makeCoinTableBody();
+  }
+
+  makeCoinTableBody() {
+    this.coinTableBody.innerHTML = '';
+    const coin500Class = document.createElement('tr');
+    coin500Class.innerHTML =
+      '<td>500원</td><td id="vending-machine-coin-500-quantity"></td>';
+    const coin100Class = document.createElement('tr');
+    coin100Class.innerHTML =
+      '<td>100원</td><td id="vending-machine-coin-100-quantity"></td>';
+    const coin50Class = document.createElement('tr');
+    coin50Class.innerHTML =
+      '<td>50원</td><td id="vending-machine-coin-50-quantity"></td>';
+    const coin10Class = document.createElement('tr');
+    coin10Class.innerHTML =
+      '<td>10원</td><td id="vending-machine-coin-10-quantity"></td>';
+    this.coinTableBody.append(
+      coin500Class,
+      coin100Class,
+      coin50Class,
+      coin10Class
+    );
   }
 
   submitCoinInput(e) {
@@ -65,12 +88,29 @@ export default class VendingMachineManageTemplate {
     ).value;
     if (CoinInputCheck(inputCoin)) {
       this.coinInsert(Number(inputCoin));
+      this.insertCoinTableData();
     }
   }
 
   coinInsert(inputCoin) {
     const totalCost = this.coin.additionalInputCoin(inputCoin);
     this.amountParagraph.textContent = `보유금액: ${totalCost}`;
+  }
+
+  insertCoinTableData() {
+    const currentCoin = this.coin.getCoin();
+    document.getElementById(
+      'vending-machine-coin-500-quantity'
+    ).innerHTML = `${currentCoin[500]}개`;
+    document.getElementById(
+      'vending-machine-coin-100-quantity'
+    ).innerHTML = `${currentCoin[100]}개`;
+    document.getElementById(
+      'vending-machine-coin-50-quantity'
+    ).innerHTML = `${currentCoin[50]}개`;
+    document.getElementById(
+      'vending-machine-coin-10-quantity'
+    ).innerHTML = `${currentCoin[10]}개`;
   }
 
   template() {

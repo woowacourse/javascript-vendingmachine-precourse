@@ -14,6 +14,25 @@ export default class Coin {
 
   additionalInputCoin(inputCoin) {
     this.amountCost += inputCoin;
+    this.addCoin(inputCoin);
     return this.amountCost;
+  }
+
+  addCoin(inputCoin) {
+    let changeToCoinCost = inputCoin;
+    while (true) {
+      let coin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+      if (changeToCoinCost < coin) continue;
+      changeToCoinCost -= coin;
+      if (coin == 500) this.currentCoin[500] += 1;
+      if (coin == 100) this.currentCoin[100] += 1;
+      if (coin == 50) this.currentCoin[50] += 1;
+      if (coin == 10) this.currentCoin[10] += 1;
+      if (changeToCoinCost == 0) break;
+    }
+  }
+
+  getCoin() {
+    return this.currentCoin;
   }
 }
