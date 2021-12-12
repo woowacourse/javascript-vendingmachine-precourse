@@ -1,13 +1,15 @@
 // prettier-ignore
-import { renderProductAddMenu, renderVendingMachineManageMenu, renderProductPurchaseMenu } from './render.js';
+import { initRender, renderProductAddMenu, renderVendingMachineManageMenu, renderProductPurchaseMenu } from './render/render.js';
 import { $ } from './util/dom.js';
-import { addMenu } from './addMenu.js';
-import { addChanges, returnCoin } from './changes.js';
-import { addMoney } from './money.js';
-import { purchaseItems } from './items.js';
+import { makeMenuTemplte, purchaseMenu } from './core/manageMenu.js';
+import { checkChangesInput } from './core/manageChanges.js';
+import { getnumberOfCoinsList } from './core/manageCoins.js';
+import { addInputAmount } from './core/manageInputAmount.js';
 
 function App() {
+  initRender();
   renderProductAddMenu();
+
   const handleClick = e => {
     if (e.target.id === 'product-add-menu') {
       renderProductAddMenu();
@@ -16,18 +18,18 @@ function App() {
     } else if (e.target.id === 'product-purchase-menu') {
       renderProductPurchaseMenu();
     } else if (e.target.classList.contains('purchase-button')) {
-      purchaseItems(e.target);
+      purchaseMenu(e.target);
     } else if (e.target.id === 'coin-return-button') {
-      returnCoin();
+      getnumberOfCoinsList();
     }
   };
   const handleSubmit = e => {
     if (e.target.id === 'product-add-form') {
-      addMenu(e);
+      makeMenuTemplte(e);
     } else if (e.target.id === 'vending-machine-charge-form') {
-      addChanges(e);
+      checkChangesInput(e);
     } else if (e.target.id === 'charge-form') {
-      addMoney(e);
+      addInputAmount(e);
     }
   };
 
@@ -35,4 +37,4 @@ function App() {
   $('#app').addEventListener('submit', handleSubmit);
 }
 
-const app = new App();
+new App();
