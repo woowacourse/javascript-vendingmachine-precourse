@@ -59,3 +59,9 @@ export const NUM_100 = 100;
 export const NUM_50 = 50;
 export const NUM_10 = 10;
 export const ZERO = 0;
+
+export const STORAGE_KEY = Object.freeze({
+  PRODUCT_MANAGE: 'product_manage',
+  CHARGE: 'charge',
+  PURCHASE: 'purchase'
+});
