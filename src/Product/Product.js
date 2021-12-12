@@ -14,4 +14,8 @@ export default class Product {
     };
     this.currentProducts.push(product);
   }
+
+  getProduct() {
+    return this.currentProducts;
+  }
 }

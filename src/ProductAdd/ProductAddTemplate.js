@@ -15,6 +15,7 @@ export default class ProductAddTemplate {
     this.productStatusDiv = document.createElement('div');
     this.productAddScreen.append(this.productAddDiv, this.productStatusDiv);
     this.makeProductAdd();
+    this.makeProductStatus();
   }
 
   makeProductAdd() {
@@ -31,6 +32,35 @@ export default class ProductAddTemplate {
   makeProductStatus() {
     this.productStatusTitle = document.createElement('h2');
     this.productStatusTitle.innerText = '상품 현황';
+    this.productStatusTable = document.createElement('table');
+    this.makeTableElement();
+    this.productStatusDiv.append(
+      this.productStatusTitle,
+      this.productStatusTable
+    );
+    this.makeProductStatusTable();
+  }
+
+  makeTableElement() {
+    this.productStatusTableHead = document.createElement('thead');
+    this.productStatusTableHead.innerHTML =
+      '<tr><th>상품명</th><th>가격</th><th>수량</th></tr>';
+    this.productStatusTableBody = document.createElement('tbody');
+    this.productStatusTable.append(
+      this.productStatusTableHead,
+      this.productStatusTableBody
+    );
+  }
+
+  makeProductStatusTable() {
+    this.productStatusTableBody.innerHTML = '';
+    const productStatus = this.product.getProduct();
+    productStatus.forEach((product) => {
+      const productClass = document.createElement('tr');
+      productClass.className = 'product-manage-item';
+      productClass.innerHTML = `<td class="product-manage-name">${product.name}</td><td class="product-manage-price">${product.price}</td><td class="product-manage-quantity">${product.quantity}</td>`;
+      this.productStatusTableBody.append(productClass);
+    });
   }
 
   submitProductInput(e) {
@@ -45,13 +75,18 @@ export default class ProductAddTemplate {
       productPrice,
       productQuantity
     );
-    if (!productAddInputCheckResult) return;
+    if (productAddInputCheckResult) {
+      this.addNewProduct(productName, productPrice, productQuantity);
+    }
+  }
+
+  addNewProduct(productName, productPrice, productQuantity) {
     this.product.addProduct(
       productName,
       Number(productPrice),
       Number(productQuantity)
     );
-    this.product.printProduct();
+    this.makeProductStatusTable();
   }
 
   template() {
