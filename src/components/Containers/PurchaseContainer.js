@@ -16,6 +16,10 @@ export default class PurchaseContainer extends Component {
 
   mounted() {
     this.$target.querySelector(`#product-table-container`).innerHTML = this.printProductTable();
+    this.$target.querySelector(`#purchase-charge-table-container`).innerHTML = this.printChargeTable();
+    if (this.$state.amount) {
+      this.printCoinQuantity(this.$state.coins);
+    }
   }
 
   template() {
@@ -32,7 +36,7 @@ export default class PurchaseContainer extends Component {
     </div>
     <div>
       <h2>잔돈</h2>
-      <div id="vending-machine-charge-container"></div>
+      <div id="purchase-charge-table-container"></div>
     </div>
     `;
   }
@@ -55,6 +59,19 @@ export default class PurchaseContainer extends Component {
     const ths = ['상품명', '가격', '수량', '구매'];
 
     return createTable(TABLE_MENU.PURCHASE, ths, this.$state.products);
+  }
+
+  printChargeTable() {
+    const ths = ['동전', '개수'];
+
+    return createTable(TABLE_MENU.PURCHASE_CHARGE, ths);
+  }
+
+  printCoinQuantity(coins) {
+    this.$target.querySelector(`#${ID.COIN_500_QUANTITY}`).innerText = `${coins['500'] ? coins['500'] : '0'}개`;
+    this.$target.querySelector(`#${ID.COIN_100_QUANTITY}`).innerText = `${coins['100'] ? coins['100'] : '0'}개`;
+    this.$target.querySelector(`#${ID.COIN_50_QUANTITY}`).innerText = `${coins['50'] ? coins['50'] : '0'}개`;
+    this.$target.querySelector(`#${ID.COIN_10_QUANTITY}`).innerText = `${coins['10'] ? coins['10'] : '0'}개`;
   }
 
   purchaseChargeFormClickHandler() {
