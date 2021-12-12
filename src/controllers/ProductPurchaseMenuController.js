@@ -88,6 +88,11 @@ class ProductPurchaseMenuController {
     productItems[selectItemIndex].productQuantity = String(
       productItems[selectItemIndex].productQuantity - 1,
     );
+
+    if (Number(productItems[selectItemIndex].productQuantity) <= 0) {
+      productItems.splice(selectItemIndex, 1);
+    }
+
     this.$productAddMenuModel.setProductItems(productItems);
 
     this.$productPurchaseMenuView.renderProductTableBodyWithData(productItems);
