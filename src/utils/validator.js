@@ -34,3 +34,17 @@ export const PriceCheckMethods = [
 export function isPriceValid(value) {
   return PriceCheckMethods.every((PriceCheckMethod) => PriceCheckMethod(value));
 }
+
+export const QuantityCheckMethods = [
+  (value) => {
+    const isNaturalNumber = Number(value) >= 1 || parseInt(value) === Number(value);
+    if (!isNaturalNumber) {
+      alert(USER_INPUT_ALERT.notNaturalNumberError);
+    }
+    return isNaturalNumber;
+  },
+];
+
+export function isQuantityValid(value) {
+  return QuantityCheckMethods.every((QuantityCheckMethod) => QuantityCheckMethod(value));
+}
