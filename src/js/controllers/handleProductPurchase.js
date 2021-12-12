@@ -1,8 +1,8 @@
 import $ from '../utils/dom.js';
-import renderProducts from '../views/renderProducts.js';
 import store from '../utils/store.js';
+import renderProducts from '../views/renderProducts.js';
 import { resetPurchaseInput, printInputCharge } from '../views/productPurchaseView.js';
-import { isValidCharge, isValidPurchase, getChange } from '../models/productPurchaseModel.js';
+import { isValidCharge, isValidPurchase, getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
 
 function HandleProductPurchase() {
   this.amount = Number($('#charge-amount').innerText) || 0;
@@ -10,24 +10,6 @@ function HandleProductPurchase() {
   if (store.getLocalStorage('products')) {
     renderProducts();
   }
-
-  const updateAmount = price => {
-    this.amount -= price; // 아래코드까지, amount를 업데이트해주는 함수로 변환하기
-    printInputCharge(this.amount);
-  };
-
-  const updateProductQuantity = e => {
-    const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
-    const products = store.getLocalStorage('products'); // 따로 파일로 빼주기 (현재 상태 가져옴)
-
-    if (products[purchaseIndex].quantity) {
-      products[purchaseIndex].quantity -= 1;
-      store.setLocalStorage('products', products);
-      e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').innerText -= 1;
-      return;
-    }
-    alert('상품이 없습니다.');
-  };
 
   // (1) 금액 투입 기능
   $('#charge-button').addEventListener('click', e => {
@@ -48,7 +30,8 @@ function HandleProductPurchase() {
       const price = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
 
       if (isValidPurchase(this.amount, price)) {
-        updateAmount(price);
+        this.amount = updateAmount(this.amount, price);
+        printInputCharge(this.amount);
         updateProductQuantity(e);
       }
     }

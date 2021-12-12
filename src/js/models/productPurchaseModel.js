@@ -112,3 +112,21 @@ export const getChange = () => {
   $('#charge-amount').innerText = change;
   return change;
 };
+
+export const updateAmount = (amount, price) => {
+  amount -= price;
+  return amount;
+};
+
+export const updateProductQuantity = e => {
+  const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
+  const products = store.getLocalStorage('products'); // 따로 파일로 빼주기 (현재 상태 가져옴)
+
+  if (products[purchaseIndex].quantity) {
+    products[purchaseIndex].quantity -= 1;
+    store.setLocalStorage('products', products);
+    e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').innerText -= 1;
+    return;
+  }
+  alert('상품이 없습니다.');
+};
