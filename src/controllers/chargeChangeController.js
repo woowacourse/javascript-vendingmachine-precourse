@@ -2,7 +2,7 @@ import { chargeChange } from "../components/chargeChange.js";
 import { ID, IS_RENDERED_CHARGE_TAP } from "../assets/constants/public.js";
 import { CHARGE_TAP } from "../assets/constants/chargeTap.js";
 import { saveCoinsToLocalStorage } from "../assets/utils/utils.js";
-import { checkChargeChangeInput } from "../assets/validations/validation.js";
+import { checkChargeChangeInput } from "../assets/validations/chargeTapValidation.js";
 import {
   renderChangeAmount,
   renderChargeChangeMenuView,

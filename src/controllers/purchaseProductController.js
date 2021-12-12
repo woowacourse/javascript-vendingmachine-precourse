@@ -11,7 +11,7 @@ import { saveAllToLocalStorage } from "../assets/utils/utils.js";
 import {
   checkCanPurchase,
   checkInsertMoneyInput,
-} from "../assets/validations/validation.js";
+} from "../assets/validations/purchaseTapValidation.js";
 import {
   renderChanges,
   renderMoney,

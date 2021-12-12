@@ -2,7 +2,7 @@ import { manageProduct } from "../components/manageProduct.js";
 import { ID } from "../assets/constants/public.js";
 import { MANAGE_TAP } from "../assets/constants/manageTap.js";
 import { saveProductsToLocalStorage } from "../assets/utils/utils.js";
-import { checkAddProductsInputs } from "../assets/validations/validation.js";
+import { checkAddProductsInputs } from "../assets/validations/manageTapValidation.js";
 import {
   renderManageProductMenuView,
   renderProduct,
