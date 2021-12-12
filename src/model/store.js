@@ -6,3 +6,5 @@ export const store = {
     return JSON.parse(localStorage.getItem(key));
   },
 };
+
+export const items = [];
