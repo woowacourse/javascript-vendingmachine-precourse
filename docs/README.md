@@ -42,7 +42,8 @@
 - [ ] localStorage에서 불러온 상품 현황 띄우기
 - [ ] 구매 버튼 클릭 시, 투입 금액 처리하기
 - [ ] 구매 버튼 클릭 시, 상품 수량 처리하기
-- [ ] 투입 금액보다 상품이 비싸면 에러메세지 반환
+- [ ] 투입 금액보다 상품이 비싼지 검증
+- [ ] 상품 개수가 0인지 검증
 - [ ] 잔돈 반환하기
 
 # 프로그래밍 요구 사항
@@ -59,12 +60,12 @@
 - [ ] 상품 추가 입력 폼의 상품 가격 입력 요소의 **id**는 product-price-input이다.
 - [ ] 상품 추가 입력 폼의 수량 입력 요소의 **id**는 product-quantity-input이다.
 - [ ] 상품 추가하기 버튼 요소의 **id**는 product-add-button이다.
-- [ ] 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
-- [ ] 상품명에 해당하는 요소의 class명은 product-manage-name이다.
-- [ ] 가격에 해당하는 요소의 class명은 product-manage-price이다.
-- [ ] 수량에 해당하는 요소의 class명은 product-manage-quantity이다.
 
-<br />
+### 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
+
+- [ ] 상품명에 해당하는 요소의 **class**명은 product-manage-name이다.
+- [ ] 가격에 해당하는 요소의 **class**명은 product-manage-price이다.
+- [ ] 수량에 해당하는 요소의 **class**명은 product-manage-quantity이다.
 
 ## 잔돈 충전 (자판기 보유 동전) 메뉴
 
