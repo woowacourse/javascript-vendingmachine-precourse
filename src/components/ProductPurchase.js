@@ -1,6 +1,6 @@
 import { $, ID, CLASS } from '../utils/dom.js';
 import { productPurchaseMenuTemplate } from '../utils/templates.js';
-import { LS_KEY } from '../utils/constants.js';
+import { RULES, ERROR_MSG, LS_KEY } from '../utils/constants.js';
 
 const LS_KEY_CHARGE_AMOUNT = LS_KEY.PRODUCT_PURCHASE_CHARGE_AMOUNT;
 
@@ -70,9 +70,24 @@ export default class ProductPurchase {
   handleProductPurchaseSubmit = (e) => {
     e.preventDefault();
     const chargeAmountInput = parseInt($(`#${ID.CHARGE_INPUT}`).value);
-    this.saveChargeAmount(chargeAmountInput);
-    this.clearInputs();
-    return;
+    const isValid = this.validateChargeAmount(chargeAmountInput);
+    if (!isValid) {
+      alert(ERROR_MSG.PRODUCT_PURCHASE);
+    }
+    if (isValid) {
+      this.saveChargeAmount(chargeAmountInput);
+      this.clearInputs();
+    }
+  };
+
+  validateChargeAmount = (chargeAmountInput) => {
+    if (chargeAmountInput < RULES.MIN_PRICE_UNIT) {
+      return false;
+    }
+    if (chargeAmountInput % RULES.MIN_PRICE_UNIT) {
+      return false;
+    }
+    return true;
   };
 
   saveChargeAmount = (chargeAmountInput) => {
