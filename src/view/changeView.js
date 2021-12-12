@@ -9,7 +9,7 @@ class ChangeView {
   }
 
   render() {
-    $('#vending-machine-charge-amount').textContent = `${change.totalAmount}원`;
+    $('#vending-machine-charge-amount').textContent = `${change.totalAmount}`;
     $('#vending-machine-coin-500-quantity').textContent = `${change.coin500}개`;
     $('#vending-machine-coin-100-quantity').textContent = `${change.coin100}개`;
     $('#vending-machine-coin-50-quantity').textContent = `${change.coin50}개`;
@@ -23,7 +23,7 @@ class ChangeView {
         <h3>자판기 동전 충전하기</h3>
         <input id="vending-machine-charge-input" type="number" placeholder="자판기가 보유할 금액" />
         <button id="vending-machine-charge-button">충전하기</button>
-        <div>보유 금액: <span id="vending-machine-charge-amount">0원</span></div>
+        <div>보유 금액: <span id="vending-machine-charge-amount">0</span>원</div>
       </form>
       <h3>자판기가 보유한 동전</h3>
       <table>
