@@ -30,5 +30,10 @@ export default class TabContainer {
 
   addProduct(name, price, quantity) {
     this.vendingMachine.addProduct(name, Number.parseInt(price, 10), Number.parseInt(quantity, 10));
+    this.updateProductTable();
+  }
+
+  updateProductTable() {
+    this.tabProductAdd.updateProductTable();
   }
 }

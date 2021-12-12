@@ -1,8 +1,9 @@
 import Navigator from '../store/Navigator.js';
+import VendingMachine from '../store/VendingMachine.js';
 import Title from '../core/Title.js';
 import Input from '../core/Input.js';
 import Button from '../core/Button.js';
-import Table from '../core/Table.js';
+import ProductStatusTable from '../core/ProductStatusTable.js';
 import { isValidProductAdd } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
 import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
@@ -13,6 +14,7 @@ export default class TabProductAdd {
     this.props = props;
     this.$root = null;
     this.navigator = new Navigator();
+    this.vendingMachine = new VendingMachine();
 
     this.createRootElement();
     this.determineDisplaying();
@@ -50,13 +52,14 @@ export default class TabProductAdd {
 
   renderTable() {
     this.listTitle = new Title('상품 현황');
-    this.listTable = new Table({
+    this.listTable = new ProductStatusTable({
       columns: ['상품명', '가격', '수량'],
-      class: [
+      classes: [
         SELECTOR.CLASS_PRODUCT_MANAGE_NAME,
         SELECTOR.CLASS_PRODUCT_MANAGE_PRICE,
         SELECTOR.CLASS_PRODUCT_MANAGE_QUANTITY,
       ],
+      initialData: [],
     });
     this.$root.appendChild(this.listTitle.getTarget());
     this.$root.appendChild(this.listTable.getTarget());
@@ -90,5 +93,9 @@ export default class TabProductAdd {
         addProduct(nameValue, priceValue, quantityValue);
       }
     });
+  }
+
+  updateProductTable() {
+    this.listTable.render(this.vendingMachine.getProductList());
   }
 }

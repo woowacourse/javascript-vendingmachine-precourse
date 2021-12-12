@@ -1,17 +1,19 @@
+/* eslint-disable class-methods-use-this */
 import { TAG } from '../constant/dom.js';
 
 export default class Table {
   constructor(props) {
     this.$target = document.createElement(TAG.TAG_TABLE);
     this.props = props;
-
-    this.render();
+    this.render(props.initialData);
   }
 
-  render() {
+  render(renderingData) {
     this.$target.setAttribute('border', 1);
     this.$target.setAttribute('style', 'border-collaspe collapse');
+    this.$target.innerHTML = '';
     this.renderHeader();
+    this.renderBody(renderingData);
   }
 
   renderHeader() {
@@ -26,6 +28,10 @@ export default class Table {
 
     this.$target.appendChild($tr);
   }
+
+  renderBody() {}
+
+  templateBody() {}
 
   getTarget() {
     return this.$target;
