@@ -1,28 +1,25 @@
-import { SELECTOR, LIMIT, ERROR } from '../constants/constant.js';
-import { $ } from '../utils/selector.js';
+import { LIMIT, ERROR } from '../constants/constant.js';
 
-export const isValidProductAdd = () => {
+export const isValidProductAdd = (product) => {
   let validation = { valid: true, errorMessage: '' };
-  if (!isValidProductName()) {
+  if (!isValidName(product.name)) {
     validation.valid = false;
     validation.errorMessage = ERROR.PRODUCT_NAME_ADD;
-  } else if (!isValidProductPrice()) {
+  } else if (!isValidPrice(product.price)) {
     validation.valid = false;
     validation.errorMessage = ERROR.PRODUCT_PRICE_ADD;
-  } else if (!isValidProductQuantity()) {
+  } else if (!isValidQuantity(product.quantity)) {
     validation.valid = false;
     validation.errorMessage = ERROR.PRODUCT_QUANTITY_ADD;
   }
   return validation;
 };
 
-const isValidProductName = () => {
-  const name = $(`#${SELECTOR.ID.PRODUCT_NAME_INPUT}`).value;
+const isValidName = (name) => {
   return isNotNull(name);
 };
 
-const isValidProductPrice = () => {
-  const price = $(`#${SELECTOR.ID.PRODUCT_PRICE_INPUT}`).value;
+const isValidPrice = (price) => {
   return (
     isNotNull(price) &&
     isNumber(price) &&
@@ -31,15 +28,14 @@ const isValidProductPrice = () => {
   );
 };
 
-const isValidProductQuantity = () => {
-  const quantity = $(`#${SELECTOR.ID.PRODUCT_QUANTITY_INPUT}`).value;
+const isValidQuantity = (quantity) => {
   return (
     isNotNull(quantity) && isNumber(quantity) && isPositiveInteger(quantity)
   );
 };
 
 const isPositiveInteger = (input) => {
-  return Math.sign(Number(input)) == 1 && Number.isInteger(Number(input));
+  return Math.sign(input) == 1 && Number.isInteger(input);
 };
 
 const isMoreThanMinAmount = (input) => {

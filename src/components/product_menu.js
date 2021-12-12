@@ -1,26 +1,65 @@
 import { SELECTOR, COMMENT } from '../constants/constant.js';
+import { setLocalStorage } from '../utils/localStorage.js';
 import { $ } from '../utils/selector.js';
 import { isValidProductAdd } from '../utils/valid.js';
 
 export default class Product_Menu {
-  constructor() {
+  constructor(products) {
+    this.products = products;
     this.render();
     this.bindClickEvents();
   }
 
-  bindClickEvents() {
-    $(`#${SELECTOR.ID.PRODUCT_ADD_BUTTON}`).addEventListener(
-      'click',
-      this.addProductItem
-    );
+  getProductItemInputObject() {
+    const name = $(`#${SELECTOR.ID.PRODUCT_NAME_INPUT}`).value;
+    const price = $(`#${SELECTOR.ID.PRODUCT_PRICE_INPUT}`).value;
+    const quantity = $(`#${SELECTOR.ID.PRODUCT_QUANTITY_INPUT}`).value;
+    const product = {
+      name,
+      price: Number(price),
+      quantity: Number(quantity),
+    };
+    return product;
+  }
+
+  clearProductItemInput() {
+    $(`#${SELECTOR.ID.PRODUCT_NAME_INPUT}`).value = '';
+    $(`#${SELECTOR.ID.PRODUCT_PRICE_INPUT}`).value = '';
+    $(`#${SELECTOR.ID.PRODUCT_QUANTITY_INPUT}`).value = '';
+  }
+
+  addProductItemToLocalStorage() {
+    setLocalStorage('products', JSON.stringify(this.products));
+  }
+
+  addProductItemToTable(product) {
+    const table = $(`#${SELECTOR.ID.PRODUCT_MANAGE_TABLE}`);
+    table.innerHTML += `
+        <tr class="${SELECTOR.CLASS.PRODUCT_MANAGE_ITEM}">
+          <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_NAME}">${product.name}</td>
+          <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_PRICE}">${product.price}</td>
+          <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_QUANTITY}">${product.quantity}</td>
+        </tr>
+    `;
   }
 
   addProductItem() {
-    const validation = isValidProductAdd();
+    const product = this.getProductItemInputObject();
+    const validation = isValidProductAdd(product);
     if (!validation.valid) {
       alert(validation.errorMessage);
       return;
     }
+    this.products.push(product);
+    this.clearProductItemInput();
+    this.addProductItemToLocalStorage();
+    this.addProductItemToTable(product);
+  }
+
+  bindClickEvents() {
+    $(`#${SELECTOR.ID.PRODUCT_ADD_BUTTON}`).addEventListener('click', () => {
+      this.addProductItem();
+    });
   }
 
   render() {
@@ -52,11 +91,28 @@ export default class Product_Menu {
         <br/>
         <h2>${COMMENT.PRODUCT_MENU_MANAGE}</h2>
         <table id="${SELECTOR.ID.PRODUCT_MANAGE_TABLE}" border="1">
-          <th>${COMMENT.PRODUCT_MANAGE_NAME}</th>
-          <th>${COMMENT.PRODUCT_MANAGE_PRICE}</th>
-          <th>${COMMENT.PRODUCT_MANAGE_QUANTITY}</th>
+          <tr>
+            <th>${COMMENT.PRODUCT_MANAGE_NAME}</th>
+            <th>${COMMENT.PRODUCT_MANAGE_PRICE}</th>
+            <th>${COMMENT.PRODUCT_MANAGE_QUANTITY}</th>
+          </tr>
         </table>
       </div>
     `;
+
+    if (this.products) {
+      const table = $(`#${SELECTOR.ID.PRODUCT_MANAGE_TABLE}`);
+      table.innerHTML += this.products
+        .map(
+          ({ name, price, quantity }) => `
+            <tr class="${SELECTOR.CLASS.PRODUCT_MANAGE_ITEM}">
+              <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_NAME}">${name}</td>
+              <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_PRICE}">${price}</td>
+              <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_QUANTITY}">${quantity}</td>
+            </tr>
+        `
+        )
+        .join('');
+    }
   }
 }

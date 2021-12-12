@@ -1,6 +1,6 @@
 import { $ } from '../utils/selector.js';
 import { SELECTOR, COMMENT } from '../constants/constant.js';
-import { setLocalStorage } from '../utils/localStorage.js';
+import { setLocalStorage, getLocalStorage } from '../utils/localStorage.js';
 import Product_Menu from './product_menu.js';
 import Coin_Menu from './coin_menu.js';
 import Purchase_Menu from './purchase_menu.js';
@@ -8,27 +8,34 @@ import Purchase_Menu from './purchase_menu.js';
 export default class Menu {
   constructor($target) {
     this.$target = $target;
+    this.products = [];
+    window.onload = this.onload();
     this.render();
     this.bindClickEvents();
+  }
+
+  onload() {
+    const products = JSON.parse(getLocalStorage('products'));
+    this.products = products || [];
   }
 
   bindClickEvents() {
     $(`#${SELECTOR.ID.PRODUCT_MENU}`).addEventListener('click', () => {
       setLocalStorage('menu', SELECTOR.ID.PRODUCT_MENU);
-      console.log(`product`);
-      this.$product_menu = new Product_Menu();
+      this.products = new Product_Menu(this.products).products;
+      console.log(this.products);
     });
 
     $(`#${SELECTOR.ID.COIN_MENU}`).addEventListener('click', () => {
       setLocalStorage('menu', SELECTOR.ID.COIN_MENU);
-      console.log(`coin`);
       new Coin_Menu();
+      console.log(this.products);
     });
 
     $(`#${SELECTOR.ID.PURCHASE_MENU}`).addEventListener('click', () => {
       setLocalStorage('menu', SELECTOR.ID.PURCHASE_MENU);
-      console.log(`purchase`);
       new Purchase_Menu();
+      console.log(this.products);
     });
   }
 
