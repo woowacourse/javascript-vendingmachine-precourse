@@ -3,9 +3,14 @@
 ### 1️⃣ 공통
 
 - [x] ⚙️  localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다
+  - [x] 상품을 정보를 관리하는 `inventory`를 생성한다
+  - [x] 자판기가 보유한 동전을 관리하는 `vendingMachineCoins`를 생성한다
+    - [x] `{ coin500: 0, coin100: 0, coin50: 0, coin10: 0 }`으로 초기화 한다
+  - [x] 자판기에 투입한 금액을 관리하는 `chargeToPurchaseProduct`를 생성한다
+    - [x] `0`으로 초기화 한다
+  
 - [x] ⚙️  다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다
   - [x] 탭(컴포넌트) 간 전환을 `display` 속성으로 관리 (`none`, `block`)
-
 - [x] 🖨️  `상품 관리`, `잔돈 충전`, `상품 구매` 탭 메뉴를 보여준다
 
 <hr/>
@@ -16,30 +21,28 @@
 
 - [x] 🖨️  `상품 관리` template html 작성
 
-- [x] 🔍 localStorage의 `inventory`에 상품이 존재하는지 파악한다
-  - [x] 🖨️  상품 현황에 table에 row를 추가해서 표시한다
-  
+- [x] 🖨️  상품 현황에 table에 row를 추가해서 표시한다
 - **상품 추가하기 모듈**
 
 - [x] ⌨️ 상품의 `상품명` 을 입력 할 수 있다
   - [x] 🚥  빈칸 제출을 검사한다
   - [x] 🚥  공백 입력을 검사한다
   - [x] 🚥  중복 입력 검사
-  
+
 - [x] ⌨️  상품의 `가격` 을 입력 할 수 있다
   - [x] 🚥  빈칸으로 제출 했는지 검사한다
   - [x] 🚥 숫자 입력만 허용한다 (특수문자 입력 금지)
   - [x] 🚥 100이상의 숫자만 허용한다
   - [x] 🚥 10의 배수 숫자만 허용한다
-  
+
 - [x] ⌨️  상품의 `수량`을 입력 할 수 있다
   - [x] 🚥  빈칸으로 제출 했는지 검사한다
   - [x] 🚥 숫자 입력만 허용한다 (특수문자 입력 금지)
   - [x] 🚥 양의 정수 입력만 허용한다 (0 입력 금지)
-  
+
 - [x] 🖱️ 상품 정보 입력 후 `추가하기` 버튼을 클릭할 수 있다
   - [x] 💾  localStorage의 `inventory`에 상품을 저장한다
-  
+
 - **상품 현황 모듈**
 
 - [x] 🖨️  상품 현황 table에 row를 추가해서 `inventory`를 표시한다
@@ -50,11 +53,10 @@
 
 - **초기화**
 - [x] 🖨️  `잔돈 충전` template html 작성
-- [x] 🔍  localStorage의 `vendingMachineCoins`에 보유 동전이 존재하는지 파악한다
-  - [x] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
-    - [x] 보유 금액은 `{금액}원` 형식으로 나타낸다
-  - [x] 🖨️  자판기가 보유한 동전 table에 출력한다
-    - [x] 동전의 개수는 `{개수}개` 형식으로 나타낸다
+- [x] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
+  - [x] 보유 금액은 `{금액}원` 형식으로 나타낸다
+- [x] 🖨️  자판기가 보유한 동전 table에 출력한다
+  - [x] 동전의 개수는 `{개수}개` 형식으로 나타낸다
 - **자판기 동전 충전 모듈**
 - [x] ⌨️  잔돈 충전 입력 요소에 충전할 금액을 입력한다
   - [x] 🚥  빈칸으로 제출 했는지 검사한다
@@ -77,14 +79,10 @@
 
 - [x] 🖨️  `상품 구매` template html 작성
 
-- [ ] 🔍  localStorage의 `vendingMachineCoins`에 보유 동전이 존재하는지 파악한다
+  - [x] 🖨️  구매할 수 있는 상품 현황 table에 row를 추가해서 표시
 
-- [ ] 🔍 localStorage의 `inventory`에 상품이 존재하는지 파악한다
-  - [ ] 🖨️  구매할 수 있는 상품 현황 table에 row를 추가해서 표시
-  
-- [x] 🔍 localStorage의 `chargeToPurchaseProduct`에 투입한 금액이 존재하는지 파악한다
   - [x] 🖨️  투입한 금액: 옆에 `{금액}원` 형식으로 출력한다
-  
+
 - **금액 투입 모듈**
 
 - [x] ⌨️  투입할 금액 입력 요소에 충전할 금액을 입력한다
@@ -106,32 +104,22 @@
   - [x] 🚥  투입한 금액이 원하는 상품 가격 이상이어야 한다
   - [x] 🚥  수량이 0이하인 상품은 구매할 수 없다
   - [x] ⚙️  투입한 금액은 기존 투입한 금액에서 원하는 상품 가격을 차감한다
+    - [x] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
     - [x] 🖨️ 투입한 금액을 업데이트해서 보여준다
   - [x] ⚙️  원하는 상품의 수량을 -1 한다
     - [x] 🖨️ 업데이트된 수량을 보여준다
   
 - **잔돈 계산 모듈**
 
-- [ ] 🖱️ 잔돈을 받기위해 `반환하기` 버튼을 클릭할 수 있다
+- [x] 🖱️ 잔돈을 받기위해 `반환하기` 버튼을 클릭할 수 있다
   - [x] 🚥  투입한 금액이 0 이상이어야 한다
-  
   - [x] 🚥  반환할 수 있는 잔돈이 더이상 없는 경우
-  
-  - [x] 1. 투입 금액이 잔돈보다 많을 경우
-    - [x] ⚙️  투입한 금액에서 반환한 금액의 총합을 차감한다
-    - [x] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
-        - [x] 🖨️  자판기가 반환한 동전 금액별 개수 출력한다
-    - [x] 💾  localStorage의 `vendingMachineCoins`의 금액 별 동전 개수를 차감 후 저장한다
-    - [x] 🖨️  차감된 투입한 금액을 출력한다
-    - [x] 🖨️ 갱신된 값으로 `잔돈 충전` 탭의 보유 금액과, 자판기가 보유한 동전 테이블을  출력한다
-    
-  - [ ] 2. 투입 금액이 잔돈보다 적을 경우
-    - [x] ⚙️  잔돈을 돌려줄 때는 현재 보유한 최소 개수의 동전으로 잔돈을 돌려준다
-    - [x] ⚙️  투입한 금액에서 반환한 금액의 총합을 차감한다
-    - [x] 💾  localStorage의 `vendingMachineCoins`의 금액 별 동전 개수를 차감 후 저장한다
+  - [x] ⚙️  투입한 금액에서 반환한 금액의 총합을 차감한다
     - [x] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
-    - [x] 🖨️  투입한 금액: 옆에 `{금액}원` 형식으로 출력한다
-    - [ ] 🖨️  자판기가 반환한 동전 금액별 개수 출력한다
+    - [x] 🖨️  투입한 금액: 옆에 `{금액}원` 형식으로 출력한다
+  - [x] ⚙️  잔돈을 돌려줄 때는 현재 보유한 최소 개수의 동전으로 잔돈을 돌려준다
+    - [x] 💾  localStorage의 `vendingMachineCoins`의 금액 별 동전 개수를 차감 후 저장한다
+    - [x] 🖨️  자판기가 반환한 동전 금액별 개수 출력한다
 
 <br/>
 
@@ -156,27 +144,27 @@
 
 <hr/>
 
-### 2. `vendingMachineCoins`를 가져와서 자판기 보유 금액을 계산하는 방법
+### 2. 자판기 보유 금액을 계산하는 방법
 
-> `vendingMachineCoins`는 `{"coin500":0,"coin100":0,"coin50":1,"coin10":5}`처럼 각 동전별 갯수를 저장합니다. 이 객체를 사용해서 `자판기 보유 금액` 을 구하는 함수를 작성해보았습니다.
+`vendingMachineCoins`는 `{"coin500":0,"coin100":0,"coin50":1,"coin10":5}`처럼 각 동전별 갯수를 저장합니다. 이 객체를 사용해서 `자판기 보유 금액` 을 구하는 함수를 작성해보았습니다.
 
 ```javascript
 //utils.js
-  calculateToCharge: string => {
-    // 1. DB.load(string)로 동전별 갯수 객체를 불러옵니다.
-    //   1-1. Object.entries로 객체를 key와 value의 쌍을 이루는 배열로 변화시킵니다.
-    return Object.entries(DB.load(string))
-      // 2. 다음의 과정으로 배열을 변화 시킵니다.
-      .map(array => {
-        // 3. 배열에 담긴 각 배열을 코인의 종류와 갯수로 저장합니다.
-        const [coinType, quantity] = array;
-        // 4. 코인의 종류를 정규식을 사용해서 숫자만 추출합니다. (ex. coin500 -> 500)
-        //   4-1. 추출한 숫자와 갯수를 곱해줍니다.
-        return coinType.replace(REGEX.HAS_NUMBER, '') * quantity;
-      })
-      // 5. 배열에 담긴 모든 숫자를 합산합니다.
-      .reduce((previous, current) => previous + current);
-  },
+calculateToCharge: object => {
+  // 1. DB.load(string)로 동전별 갯수 object를 불러옵니다.
+  //   1-1. Object.entries로 객체를 key와 value의 쌍을 이루는 배열로 변화시킵니다.
+  return Object.entries(object)
+  // 2. 다음의 과정으로 배열을 변화 시킵니다.
+    .map(array => {
+    // 3. 배열에 담긴 각 배열을 코인의 종류와 갯수로 저장합니다.
+    const [coinType, quantity] = array;
+    // 4. 코인의 종류를 정규식을 사용해서 숫자만 추출합니다. (ex. coin500 -> 500)
+    //   4-1. 추출한 숫자와 갯수를 곱해줍니다.
+    return coinType.replace(REGEX.HAS_NUMBER, '') * quantity;
+  })
+  // 5. 배열에 담긴 모든 숫자를 합산합니다.
+    .reduce((previous, current) => previous + current);
+},
 ```
 
 <hr/>
@@ -205,8 +193,74 @@
 
 > **그리디 알고리즘**(욕심쟁이 알고리즘, Greedy Algorithm)이란 "매 선택에서 **지금 이 순간 당장 최적인 답**을 선택하여 적합한 결과를 도출하자" 라는 모토를 가지는 [알고리즘](https://namu.wiki/w/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) 설계 기법이다. - 출처 [#](https://namu.wiki/w/%EA%B7%B8%EB%A6%AC%EB%94%94%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 
-> 그리디 알고리즘으로 문제의 해법을 찾았을 때는 **그 해법의 정당성**을 검토해야 한다. 이 문제에서 그리디로 해결할 수 있는 이유는, **가지고 있는 동전 중에서 큰 단위가 항상 작은 단위의 배수이므로 작은 단위를 종합해 다른 해가 나올 수 없기 때문이다**
-> ex. 800원을 거슬러줘야하는데 동전이 500,400,10이원이면 문제가 생긴다. (500 + 100 + 100 + 100) << (400 + 400) - 출처 [#](https://velog.io/@jihyun2054/파이썬-이코테-그리디-알고리즘-거스름돈-예제)
+기능요구 사항에 명시되어 있는 '잔돈을 돌려줄 때는 현재 보유한 최소 개수의 동전으로 잔돈을 돌려준다.'를 그리디 알고리즘을 사용해서 구현해보았습니다. 
+
+```javascript
+// calculateReturnCoins.js
+
+// 제품 구매를 위해 투입한 금액을 불러옵니다.
+const charge = DB.load('chargeToPurchaseProduct');  
+// 자판기가 보유한 동전을 불러옵니다.
+const wallet = DB.load('vendingMachineCoins'); 
+// 반환될 동전을 저장해주는 객체를 생성합니다.
+const emptyWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 }; 
+
+const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
+  const tryCaseByCoinType = coinType => {
+    // 2. 투입한 금액이 선택한 동전보다 크고 선택한 동전을 자판기가 보유하고 있으면
+    while (charge >= coinType && wallet['coin' + coinType] > 0) {
+      // 3. 자판기가 보유한 선택한 동전의 개수를 -1 합니다.
+      wallet['coin' + coinType] -= 1;
+      // 4. 반환될 동전을 저장해주는 객체의 선택한 동전 개수를 +1 합니다.
+      emptyWallet['coin' + coinType] += 1;
+      // 5. 투입한 금액에서 선택한 동전 금액만큼 차감합니다.
+      charge -= coinType;
+    }
+  };
+
+  // 1. 500, 100, 50, 10의 순서로 tryCaseByCoinType를 시도합니다.
+  [500, 100, 50, 10].forEach(coinType => tryCaseByCoinType(coinType));
+
+  // 6. 2번의 조건을 모두 통과하면 차감이 완료된 자판기가 보유한 동전 객체와 
+  //    반환될 동전을 저장해주는 객체를 반환합니다.
+  return [wallet, emptyWallet];
+};
+```
+
+<hr/>
+
+### 5. `dataset` 속성을 활용하는 법
+
+제품을 구매하기 위해서 `구매하기` 버튼을 누르면 제품의 정보를 얻어올 수 있어야 합니다. 
+프로그래밍 요구 사항에 명시된 `dataset`속성을 사용해서 다음과 같이 구현하였습니다.
+
+```javascript
+//utils.js 
+addPurchaseButtonEvent: element => {
+  // 1. 제품의 구매하기 버튼을 누릅니다.
+  element.addEventListener('click', e => {
+    e.preventDefault();
+		
+    // 2. 클릭된 버튼을 감싸고있는 <td> 태그의 형제들을 찾아 
+    //    getProductInformation함수로 호출합니다.
+    const data = utils.getProductInformation(e.path[2].children);
+
+    // ... 중략 ...
+  });
+},
+
+getProductInformation: element => {
+  // 3. <td> 태그들이 담겨 있는 배열을 구조 분해하여 변수에 할당합니다.
+  const [name, price, quantity] = Array.from(element);
+
+  return {
+    // 4. dataset을 활용하여 각각의 정보를 가져오고 객체로 만들어 반환합니다.
+    name: name.dataset.productName,
+    price: price.dataset.productPrice,
+    quantity: quantity.dataset.productQuantity,
+  };
+},
+```
 
 <br/>
 
