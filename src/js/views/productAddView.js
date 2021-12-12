@@ -1,8 +1,7 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 
-// products 불러오기
-const printAddedProduct = () => {
+export const printAddedProduct = () => {
   const template = store
     .getLocalStorage('products')
     .map(v => {
@@ -19,4 +18,8 @@ const printAddedProduct = () => {
   $('tbody').innerHTML = template;
 };
 
-export default printAddedProduct;
+export const resetProductAddInput = () => {
+  $('#product-name-input').value = '';
+  $('#product-price-input').value = '';
+  $('#product-quantity-input').value = '';
+};
