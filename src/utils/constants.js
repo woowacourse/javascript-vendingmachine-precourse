@@ -1,6 +1,10 @@
 export const TITLE_TEXT = "🥤자판기🥤";
 export const INPUT_WITDH = "150px";
 export const MARGIN_SIZE = "1px";
+export const IS_RENDERED_INSERTED_MONEY = "isRenderInsertedMoney";
+export const IS_RENDERED_RETURN_CHANGES = "returnChanges";
+export const IS_RENDERED_CHARGE_TAP = "isRenderChargeTap";
+export const VIEW_CONTAINER = "view-container";
 
 export const PRODUCT_TABLE = {
   collapse: "collapse",
@@ -18,7 +22,7 @@ export const COIN_TABLE = {
   textAlign: "center",
 };
 
-export const MENU_TAP_INFORMATION = [
+export const MENU_TAP = [
   ["상품 관리", "product-add-menu"],
   ["잔돈 충전", "vending-machine-manage-menu"],
   ["상품 구매", "product-purchase-menu"],
@@ -41,40 +45,38 @@ export const ERROR_MESSAGE = {
   duplicateName: "이미 동일한 이름의 제품이 있습니다.",
 };
 
-export const MANAGE_PRODUCT_TAP = {
+export const MANAGE_TAP = {
   addProductTitle: "상품 추가하기",
   addProductInputs: [
     ["상품명", "product-name-input", "text"],
     ["가격", "product-price-input", "number"],
     ["수량", "product-quantity-input", "number"],
   ],
-  addButtonInformation: ["submit", "추가하기", "product-add-button"],
+  addButton: ["submit", "추가하기", "product-add-button"],
 
   productStateTitle: "상품 현황",
-  productStateTableHeader: ["상품명", "가격", "수량"],
+  productStateTableHeaders: ["상품명", "가격", "수량"],
   productTableRawClass: "product-manage-item",
-  productNameClass: "product-manage-name",
-  productPriceClass: "product-manage-price",
-  productQuantityClass: "product-manage-quantity",
+  productTableClasses: [
+    "product-manage-name",
+    "product-manage-price",
+    "product-manage-quantity",
+  ],
 };
 
-export const CHARGE_CHANGE_TAP = {
+export const CHARGE_TAP = {
   chargeChangeTitle: "자판기 동전 충전하기",
-  chargeInputInformation: [
+  chargeInput: [
     "자판기가 보유할 금액",
     "vending-machine-charge-input",
     "number",
   ],
-  chargeButtonInformation: [
-    "submit",
-    "충전하기",
-    "vending-machine-charge-button",
-  ],
+  chargeButton: ["submit", "충전하기", "vending-machine-charge-button"],
   changeAmountHeader: "보유 금액: ",
   changeAmountId: "vending-machine-charge-amount",
 
   changeStateTitle: "자판기가 보유한 동전",
-  changeStateTableHeader: ["동전", "개수"],
+  changeStateTableHeaders: ["동전", "개수"],
   changeStateTableRaws: [
     ["500원", "vending-machine-coin-500-quantity"],
     ["100원", "vending-machine-coin-100-quantity"],
@@ -83,23 +85,25 @@ export const CHARGE_CHANGE_TAP = {
   ],
 };
 
-export const PURCHASE_PRODUCT_TAP = {
+export const PURCHASE_TAP = {
   insertMoneyTitle: "금액 투입",
-  insertMoneyInputInformation: ["투입할 금액", "charge-input", "number"],
-  insertMoneyButtonInformation: ["submit", "투입하기", "charge-button"],
+  insertMoneyInput: ["투입할 금액", "charge-input", "number"],
+  insertMoneyButton: ["submit", "투입하기", "charge-button"],
   insertMoneyAmountTitle: "투입한 금액: ",
   insertMoneyAmountId: "charge-amount",
 
   productStateTitle: "구매할 수 있는 상품 현황",
   productStateTableHeaders: ["상품명", "가격", "수량", "구매"],
-  productStateName: "product-purchase-name",
-  productStatePrice: "product-purchase-price",
-  productStateQuantity: "product-purchase-quantity",
+  productStateIds: [
+    "product-purchase-name",
+    "product-purchase-price",
+    "product-purchase-quantity",
+  ],
   productStateButton: ["button", "구매하기", "purchase-button"],
 
   changeStateTitle: "잔돈",
-  changeStateButtonInformation: ["button", "반환하기", "coin-return-button"],
-  changeStateTableHeader: ["동전", "개수"],
+  changeStateButton: ["button", "반환하기", "coin-return-button"],
+  changeStateTableHeaders: ["동전", "개수"],
   changeStateTableRaws: [
     ["500원", "coin-500-quantity"],
     ["100원", "coin-100-quantity"],

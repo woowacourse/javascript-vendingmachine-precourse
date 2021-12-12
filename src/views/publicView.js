@@ -1,7 +1,8 @@
 import {
   TITLE_TEXT,
   MARGIN_SIZE,
-  MENU_TAP_INFORMATION,
+  MENU_TAP,
+  VIEW_CONTAINER,
 } from "../utils/constants.js";
 import { renderManageProductMenuView } from "./manageProductView.js";
 import { renderChargeChangeMenuView } from "./chargeChangeView.js";
@@ -12,7 +13,7 @@ const renderArray = [
   renderChargeChangeMenuView,
   renderPurchaseProductMenuView,
 ];
-const menuTapInformations = MENU_TAP_INFORMATION.map((information, index) => [
+const menuTapInformations = MENU_TAP.map((information, index) => [
   ...information,
   renderArray[index],
 ]);
@@ -25,7 +26,7 @@ const makeTitle = () => {
 };
 
 const resetViewContainer = () => {
-  const $view_container = document.getElementById("view-container");
+  const $view_container = document.getElementById(VIEW_CONTAINER);
   $view_container.innerHTML = "";
 };
 
@@ -67,7 +68,7 @@ export const makeHeader = () => {
 
 export const makeView = () => {
   const view = document.createElement("div");
-  view.id = "view-container";
+  view.id = VIEW_CONTAINER;
 
   return view;
 };

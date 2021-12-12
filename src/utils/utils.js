@@ -2,6 +2,7 @@ import { makeHeader, makeView } from "../views/publicView.js";
 import {
   COIN_TABLE,
   INPUT_WITDH,
+  IS_RENDERED_INSERTED_MONEY,
   MARGIN_SIZE,
   PRODUCT_TABLE,
 } from "./constants.js";
@@ -147,5 +148,5 @@ export const saveToLocalStorage = vendingMachine => {
   const products = JSON.stringify(vendingMachine.getProducts());
   localStorage["products"] = products;
   localStorage["coins"] = vendingMachine.getCoins();
-  localStorage["insertedMoney"] = vendingMachine.getMoney();
+  localStorage[IS_RENDERED_INSERTED_MONEY] = vendingMachine.getMoney();
 };

@@ -1,4 +1,8 @@
-import { MANAGE_PRODUCT_TAP, PRODUCT_TABLE } from "../utils/constants.js";
+import {
+  MANAGE_TAP,
+  PRODUCT_TABLE,
+  VIEW_CONTAINER,
+} from "../utils/constants.js";
 import { onClickAddButton } from "../menus/manageProductMenu.js";
 import { vendingMachine } from "../components/vendingMachine.js";
 import {
@@ -12,19 +16,17 @@ import {
 // 상품 추가하기 폼
 const makeInputForm = () => {
   const form = document.createElement("form");
-  MANAGE_PRODUCT_TAP.addProductInputs.forEach(input => {
+  MANAGE_TAP.addProductInputs.forEach(input => {
     form.appendChild(makeInput(input));
   });
-  form.appendChild(
-    makeButton(MANAGE_PRODUCT_TAP.addButtonInformation, onClickAddButton)
-  );
+  form.appendChild(makeButton(MANAGE_TAP.addButton, onClickAddButton));
 
   return form;
 };
 
 const makeAddProductContainer = () => {
   const div = document.createElement("div");
-  div.appendChild(makeTitle(MANAGE_PRODUCT_TAP.addProductTitle));
+  div.appendChild(makeTitle(MANAGE_TAP.addProductTitle));
   div.appendChild(makeInputForm());
 
   return div;
@@ -32,18 +34,14 @@ const makeAddProductContainer = () => {
 
 // 상품 현황 테이블
 const makeProductRaw = product => {
-  const [name, price, quantity] = product.getInformation();
+  const information = product.getInformation();
   const tableRaw = document.createElement("tr");
-  tableRaw.className = MANAGE_PRODUCT_TAP.productTableRawClass;
-  tableRaw.appendChild(
-    makeTdWithClass(name, MANAGE_PRODUCT_TAP.productNameClass)
-  );
-  tableRaw.appendChild(
-    makeTdWithClass(price, MANAGE_PRODUCT_TAP.productPriceClass)
-  );
-  tableRaw.appendChild(
-    makeTdWithClass(quantity, MANAGE_PRODUCT_TAP.productQuantityClass)
-  );
+  tableRaw.className = MANAGE_TAP.productTableRawClass;
+  information.forEach((tag, index) => {
+    tableRaw.appendChild(
+      makeTdWithClass(tag, MANAGE_TAP.productTableClasses[index])
+    );
+  });
 
   return tableRaw;
 };
@@ -51,7 +49,7 @@ const makeProductRaw = product => {
 const makeProductStateGraph = () => {
   const table = document.createElement("table");
   table.appendChild(
-    makeTableHeaders(MANAGE_PRODUCT_TAP.productStateTableHeader, PRODUCT_TABLE)
+    makeTableHeaders(MANAGE_TAP.productStateTableHeaders, PRODUCT_TABLE)
   );
   vendingMachine.products.forEach(product =>
     table.appendChild(makeProductRaw(product))
@@ -64,7 +62,7 @@ const makeProductStateGraph = () => {
 
 const makeProductStateContainer = () => {
   const div = document.createElement("div");
-  div.appendChild(makeTitle(MANAGE_PRODUCT_TAP.productStateTitle));
+  div.appendChild(makeTitle(MANAGE_TAP.productStateTitle));
   div.appendChild(makeProductStateGraph());
 
   return div;
@@ -76,7 +74,7 @@ export const renderProduct = product => {
 };
 
 export const renderManageProductMenuView = () => {
-  const $view_container = document.getElementById("view-container");
+  const $view_container = document.getElementById(VIEW_CONTAINER);
   $view_container.appendChild(makeAddProductContainer());
   $view_container.appendChild(makeProductStateContainer());
 };

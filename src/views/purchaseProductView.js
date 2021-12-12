@@ -1,4 +1,10 @@
-import { PRODUCT_TABLE, PURCHASE_PRODUCT_TAP } from "../utils/constants.js";
+import {
+  IS_RENDERED_INSERTED_MONEY,
+  IS_RENDERED_RETURN_CHANGES,
+  PRODUCT_TABLE,
+  PURCHASE_TAP,
+  VIEW_CONTAINER,
+} from "../utils/constants.js";
 import { vendingMachine } from "../components/vendingMachine.js";
 import {
   makeButton,
@@ -18,18 +24,18 @@ import {
 // ----금액 투입하기 폼----
 const makeInsertMoneyContainer = () => {
   const div = document.createElement("div");
-  div.appendChild(makeTitle(PURCHASE_PRODUCT_TAP.insertMoneyTitle));
+  div.appendChild(makeTitle(PURCHASE_TAP.insertMoneyTitle));
   div.appendChild(
     makeInputForm(
-      PURCHASE_PRODUCT_TAP.insertMoneyInputInformation,
-      PURCHASE_PRODUCT_TAP.insertMoneyButtonInformation,
+      PURCHASE_TAP.insertMoneyInput,
+      PURCHASE_TAP.insertMoneyButton,
       onClickInsertButton
     )
   );
   div.appendChild(
     makeResultContainer(
-      PURCHASE_PRODUCT_TAP.insertMoneyAmountTitle,
-      PURCHASE_PRODUCT_TAP.insertMoneyAmountId
+      PURCHASE_TAP.insertMoneyAmountTitle,
+      PURCHASE_TAP.insertMoneyAmountId
     )
   );
 
@@ -38,7 +44,7 @@ const makeInsertMoneyContainer = () => {
 
 export const renderMoney = money => {
   const $charge_amount = document.getElementById(
-    PURCHASE_PRODUCT_TAP.insertMoneyAmountId
+    PURCHASE_TAP.insertMoneyAmountId
   );
   $charge_amount.innerText = money;
 };
@@ -48,21 +54,17 @@ const makeproductStateTableButton = () => {
   const td = document.createElement("td");
   td.style.border = PRODUCT_TABLE.border;
   td.appendChild(
-    makeButton(PURCHASE_PRODUCT_TAP.productStateButton, onClickPurchaseButton)
+    makeButton(PURCHASE_TAP.productStateButton, onClickPurchaseButton)
   );
 
   return td;
 };
 
 const makeproductStateTableRaw = product => {
-  const [name, price, quantity] = product.getInformation();
+  const information = product.getInformation();
   const tr = document.createElement("tr");
-  tr.appendChild(makeTdWithClass(name, PURCHASE_PRODUCT_TAP.productStateName));
-  tr.appendChild(
-    makeTdWithClass(price, PURCHASE_PRODUCT_TAP.productStatePrice)
-  );
-  tr.appendChild(
-    makeTdWithClass(quantity, PURCHASE_PRODUCT_TAP.productStateQuantity)
+  information.forEach((tag, index) =>
+    tr.appendChild(makeTdWithClass(tag, PURCHASE_TAP.productStateIds[index]))
   );
   tr.appendChild(makeproductStateTableButton());
 
@@ -74,10 +76,7 @@ const makeproductStateTable = () => {
   table.style.borderCollapse = PRODUCT_TABLE.collapse;
   table.style.textAlign = PRODUCT_TABLE.textAlign;
   table.appendChild(
-    makeTableHeaders(
-      PURCHASE_PRODUCT_TAP.productStateTableHeaders,
-      PRODUCT_TABLE
-    )
+    makeTableHeaders(PURCHASE_TAP.productStateTableHeaders, PRODUCT_TABLE)
   );
   vendingMachine.products.forEach(product =>
     table.appendChild(makeproductStateTableRaw(product))
@@ -88,7 +87,7 @@ const makeproductStateTable = () => {
 
 const makeproductStateContainer = () => {
   const div = document.createElement("div");
-  div.appendChild(makeTitle(PURCHASE_PRODUCT_TAP.productStateTitle));
+  div.appendChild(makeTitle(PURCHASE_TAP.productStateTitle));
   div.appendChild(makeproductStateTable());
 
   return div;
@@ -97,17 +96,14 @@ const makeproductStateContainer = () => {
 // ----잔돈 현황----
 const makeChangeStateContainer = () => {
   const div = document.createElement("div");
-  div.appendChild(makeTitle(PURCHASE_PRODUCT_TAP.changeStateTitle));
+  div.appendChild(makeTitle(PURCHASE_TAP.changeStateTitle));
   div.appendChild(
-    makeButton(
-      PURCHASE_PRODUCT_TAP.changeStateButtonInformation,
-      onClickReturnButton
-    )
+    makeButton(PURCHASE_TAP.changeStateButton, onClickReturnButton)
   );
   div.appendChild(
     makeCoinTable(
-      PURCHASE_PRODUCT_TAP.changeStateTableHeader,
-      PURCHASE_PRODUCT_TAP.changeStateTableRaws
+      PURCHASE_TAP.changeStateTableHeaders,
+      PURCHASE_TAP.changeStateTableRaws
     )
   );
 
@@ -124,21 +120,21 @@ const stringToIntegerArray = string => {
 };
 
 export const renderChanges = changes => {
-  PURCHASE_PRODUCT_TAP.changeStateTableRaws.forEach((raw, index) => {
+  PURCHASE_TAP.changeStateTableRaws.forEach((raw, index) => {
     document.getElementById(`${raw[1]}`).innerText = `${changes[index]}개`;
   });
 };
 
 export const renderPurchaseProductMenuView = () => {
-  const $view_container = document.getElementById("view-container");
+  const $view_container = document.getElementById(VIEW_CONTAINER);
   $view_container.appendChild(makeInsertMoneyContainer());
   $view_container.appendChild(makeproductStateContainer());
   $view_container.appendChild(makeChangeStateContainer());
 
-  if (localStorage.getItem("isRenderInsertedMoney") === "TRUE") {
+  if (localStorage.getItem(IS_RENDERED_INSERTED_MONEY) === "TRUE") {
     renderMoney(vendingMachine.getMoney());
   }
-  const returnChanges = localStorage.getItem("returnChanges");
+  const returnChanges = localStorage.getItem(IS_RENDERED_RETURN_CHANGES);
   if (returnChanges) {
     renderChanges(stringToIntegerArray(returnChanges));
   }
