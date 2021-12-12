@@ -19,7 +19,7 @@ import {
   createCurrentProductTableContainer,
 } from './components/addContent/index.js';
 import {
-  createMachineChargeFormContainer,
+  createVendingMachineChargeFormContainer,
   createVendingMachineCoinTableContainer,
 } from './components/chargeContent/index.js';
 
@@ -72,7 +72,7 @@ export default class VendingMachine {
   }
 
   appendChargeContent(content, chargedCoins) {
-    content.appendChild(createMachineChargeFormContainer(chargedCoins));
+    content.appendChild(createVendingMachineChargeFormContainer(chargedCoins));
     content.appendChild(createVendingMachineCoinTableContainer(chargedCoins));
   }
 

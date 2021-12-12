@@ -1,4 +1,4 @@
-import MachineChargeForm from './machineChargeForm/index.js';
+import MachineChargeForm from './vendingMachineChargeForm/index.js';
 import VendingMachineCoinTable from './vendingMachineCoinTable/index.js';
 
 import createContainer from '../utils/createContainer.js';
@@ -6,7 +6,7 @@ import createDivision from '../utils/createDivision.js';
 import { HEADING_CHARGE_MACHINE, ID_AMOUNT, LABEL_AMOUNT } from './const.js';
 import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
 
-const createMachineChargeFormContainer = (chargedCoins) => {
+const createVendingMachineChargeFormContainer = (chargedCoins) => {
   const container = createContainer(
     'machine-charge-form-container',
     HEADING_CHARGE_MACHINE
@@ -32,6 +32,6 @@ const createVendingMachineCoinTableContainer = (chargedCoins) => {
   return container;
 };
 export {
-  createMachineChargeFormContainer,
+  createVendingMachineChargeFormContainer,
   createVendingMachineCoinTableContainer,
 };
