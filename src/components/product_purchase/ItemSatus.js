@@ -40,20 +40,28 @@ export default class ItemSatus extends Component {
   }
 
   onClickBtn(e) {
-    const { purchaseChargeAmount, products } = this.$props;
+    const { purchaseChargeAmount, products, purchaseItem } = this.$props;
     const parentTr = e.target.closest("tr");
     const productKey = parentTr.getAttribute("data-key");
     const { name, price, quantity } = products[productKey];
+    const $price = Number(price);
+    const $quantity = Number(quantity);
 
-    if (
-      this.isPurchase(purchaseChargeAmount, Number(price), Number(quantity))
-    ) {
-      console.log("correct");
+    if (this.isPurchase(purchaseChargeAmount, $price, $quantity)) {
+      products[productKey] = {
+        name,
+        price,
+        quantity: String($quantity - 1),
+      };
+
+      purchaseItem({
+        purchaseChargeAmount: purchaseChargeAmount - $price,
+        products,
+      });
     }
   }
 
   isPurchase(purchaseChargeAmount, price, quantity) {
-    console.log(purchaseChargeAmount, price, quantity);
     if (quantity === 0) {
       window.alert(`품절 되었습니다.`);
       return false;
