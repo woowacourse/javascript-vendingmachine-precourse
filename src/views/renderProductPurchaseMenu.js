@@ -1,6 +1,7 @@
 import { DRINK_STORAGE_NAME } from '../constants/constants.js';
 import { $ } from '../dom/dom.js';
 import store from '../storage/store.js';
+import renderInsertCoinShowElement from './renderInsertCoinShowElement.js';
 import renderNowSellingProductTable from './renderNowSellingProductTable.js';
 
 function renderCoinInputForm() {
@@ -44,6 +45,7 @@ function renderChangeTable() {
 }
 export default function renderProductPurchaseMenu() {
   $('.tab-content-container').innerHTML = renderCoinInputForm();
+  renderInsertCoinShowElement();
   const drinkStorage = store.getLocalStorage(DRINK_STORAGE_NAME);
   $('.now-selling-product-table-cotainer').innerHTML =
     renderNowSellingProductTemplate(drinkStorage);
