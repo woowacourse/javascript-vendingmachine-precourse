@@ -1,4 +1,4 @@
-import {ID, STORAGE_KEY} from '../../utils/constants.js';
+import {ID, STORAGE_KEY, TABLE_MENU} from '../../utils/constants.js';
 import {createInputElement, createTable} from '../../utils/domUtil.js';
 import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
 import {isValidProductInput} from '../../utils/validation.js';
@@ -57,6 +57,6 @@ export default class ProductManageContainer extends Component {
   printProductTable() {
     const ths = ['상품명', '가격', '수량'];
 
-    return createTable('', ths, this.$state.products);
+    return createTable(TABLE_MENU.PRODUCT_MANAGE, ths, this.$state.products);
   }
 }
