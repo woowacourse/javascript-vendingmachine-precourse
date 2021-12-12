@@ -43,6 +43,6 @@ export default class Product {
   }
 
   get result() {
-    return this._items;
+    return [...this._items];
   }
 }

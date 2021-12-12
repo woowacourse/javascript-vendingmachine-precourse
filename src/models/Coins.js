@@ -12,6 +12,7 @@ export default class Coins {
 
   _pickRandomCoinType(maximum) {
     const coinRange = CONSTANTS.COIN_TYPE.filter((value) => value <= maximum);
+    // eslint-disable-next-line no-undef
     return MissionUtils.Random.pickNumberInList(coinRange);
   }
 
