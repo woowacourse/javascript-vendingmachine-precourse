@@ -1,15 +1,14 @@
 const ID_PREFIX = 'vending-machine-charge';
 
-const LIST_ID_SUFFIX = ['form', 'input', 'button'];
+export const ID_FORM = `${ID_PREFIX}-form`;
 
-export const DICT_ID_CHARGE_FORM = LIST_ID_SUFFIX.reduce(
-  (acc, cur) => ({
-    ...acc,
-    [`${cur}Id`]: `${ID_PREFIX}-${cur}`,
-  }),
-  {}
-);
+export const DICT_PROS_INPUT = {
+  id: `${ID_PREFIX}-input`,
+  type: 'number',
+  placeholder: '자판기가 보유할 금액',
+};
 
-export const TYPE_INPUT = 'number';
-export const PLACEHOLDER_INPUT = '자판기가 보유할 금액';
-export const TEXT_BUTTON_CHARGE = '충전하기';
+export const DICT_PROS_BUTOTN = {
+  id: `${ID_PREFIX}-button`,
+  innerText: '충전하기',
+};
