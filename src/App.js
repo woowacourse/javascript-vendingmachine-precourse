@@ -47,14 +47,14 @@ export default class App extends Component {
     this.setState(payload);
   }
 
-  selectedTabContent(currentTabId, container, props = {}) {
+  selectedTabContent(currentTabId, container) {
     switch (currentTabId) {
       case "product-add-menu":
-        return new ProductAdd(container, props);
+        return new ProductAdd(container);
       case "vending-machine-manage-menu":
-        return new ChargeManage(container, props);
+        return new ChargeManage(container);
       case "product-purchase-menu":
-        return new ProductPurchase(container, props);
+        return new ProductPurchase(container);
       default:
         return;
     }
