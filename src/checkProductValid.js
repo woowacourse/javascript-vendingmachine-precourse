@@ -5,6 +5,9 @@ import { ERROR_MESSAGE } from './product.js'
         if($productNameInput.value === ''){
             return false
         }
+        if($productNameInput.value.trim() === ''){
+            return false
+        }
         if($productPriceInput.value === ''){
             return false
         }
