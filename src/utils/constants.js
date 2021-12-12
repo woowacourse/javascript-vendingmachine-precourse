@@ -53,6 +53,8 @@ export const ALERT = {
   WRONG_PRODUCT_PRICE: '잘못된 상품 가격입니다.',
   WRONG_PRODUCT_QUANTITY: '잘못된 상품 개수입니다.',
   NOT_10_UNIT_PRICE: '상품 가격이 10원 단위로 떨어져야 합니다.',
+  EMPTY_MONEY_INPUT: '자판기가 보유할 금액을 입력해주세요.',
+  WRONG_CHARGE_INPUT: '잘못된 충전 금액입니다.',
 };
 
 export const COINS = [500, 100, 50, 10];
