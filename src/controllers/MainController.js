@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { ELEMENT_SID, EVENT_TYPE, TAB } from '../utils/constants.js';
+import { ELEMENT_SID, EVENT_TYPE, PRODUCT, TAB } from '../utils/constants.js';
 
 import ManageProductView from '../views/ManageProductView.js';
 import LayoutView from '../views/LayoutView.js';
@@ -78,8 +78,13 @@ export default {
     PurchaseProductView.render();
   },
   onPurchaseProduct(product) {
-    PurchaseProductModel.purchase(product);
-    ManageProductModel.sell(product);
-    PurchaseProductView.render();
+    if (
+      ManageProductModel.sellable(product[PRODUCT.NAME]) &&
+      PurchaseProductModel.payable(product[PRODUCT.PRICE])
+    ) {
+      PurchaseProductModel.purchase(product);
+      ManageProductModel.sell(product[PRODUCT.NAME]);
+      PurchaseProductView.render();
+    }
   },
 };

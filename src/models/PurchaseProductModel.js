@@ -15,9 +15,16 @@ export default {
   total() {
     return this.inputMoney;
   },
-  purchase(item) {
-    this.inputMoney -= parseInt(item[PRODUCT.PRICE]);
+  purchase(product) {
+    this.inputMoney -= parseInt(product[PRODUCT.PRICE]);
     localStorage.setItem('inputMoney', this.inputMoney);
+  },
+  payable(price) {
+    if (this.inputMoney - parseInt(price) < 0) {
+      alert('돈이 부족합니다.');
+      return false;
+    }
+    return true;
   },
 };
 

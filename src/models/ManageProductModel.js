@@ -18,13 +18,21 @@ export default {
   list() {
     return this.products;
   },
-  sell(product) {
-    this.products.find((item) => isPickedProduct(item, product))[PRODUCT.QUANTITY] -= 1;
+  sell(name) {
+    this.products.find((item) => item[PRODUCT.NAME] === name)[PRODUCT.QUANTITY] -= 1;
     localStorage.setItem('products', JSON.stringify(this.products));
+  },
+  sellable(name) {
+    const pickedItem = this.products.find((item) => item[PRODUCT.NAME] === name);
+    if (pickedItem[PRODUCT.QUANTITY] <= 0) {
+      alert('수량이 부족합니다.');
+      return false;
+    }
+    return true;
   },
 };
 
-const isPickedProduct = (item, product) => item[PRODUCT.NAME] === product[PRODUCT.NAME];
+const isPickedProduct = (item, name) => item[PRODUCT.NAME] === name;
 const isValidProductInput = (product) => {
   if (product[PRODUCT.NAME] === '') {
     alert(ALERT.EMPTY_PRODUCT_NAME);
