@@ -1,11 +1,9 @@
+import setProperties from './setProperties.js';
+
 const createElement = (tagName, props) => {
   const element = document.createElement(tagName);
 
-  if (props !== undefined) {
-    Object.keys(props).forEach((prop) => {
-      element[prop] = props[prop];
-    });
-  }
+  if (props !== undefined) setProperties(element, props);
 
   return element;
 };
