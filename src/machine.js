@@ -83,12 +83,18 @@ export default class VendingMachine {
 
         coins['LAST'] = money / COIN_VALUE['LAST'];
         this.input = 0;
-        
+
         return coins;
+    }
+
+    displayReturnedCoins(coins){
+        for(let key in this.coins){
+            document.getElementById(PURCHASE_TAB_ID.COIN_TABLE[key]).innerHTML = `${coins[key]}개`;
+        }
     }
 
     returnMoney(){
         const coins = this.getRandomReturn(this.input);
-        console.log(coins);
+        this.displayReturnedCoins(coins);
     }
 }
