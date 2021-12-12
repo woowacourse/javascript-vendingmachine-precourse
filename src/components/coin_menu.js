@@ -5,8 +5,8 @@ import { isValidCoinCharge } from '../utils/valid.js';
 
 export default class Coin_Menu {
   constructor(coins) {
-    this.render();
     this.coins = coins;
+    this.render();
     this.bindClickEvents();
   }
 
@@ -46,13 +46,25 @@ export default class Coin_Menu {
     $(`#${SELECTOR.ID.COIN_CHARGE_INPUT}`).value = '';
   }
 
-  setCoinChargeAmount() {
+  getCoinChargeAmount() {
     let amount = 0;
     const coinList = [500, 100, 50, 10];
     this.coins.forEach((key, idx) => {
       amount += coinList[idx] * key;
     });
+    return amount;
+  }
+
+  setCoinChargeAmount() {
+    const amount = this.getCoinChargeAmount();
     $(`#${SELECTOR.ID.COIN_CHARGE_AMOUNT}`).innerHTML = `${amount}원`;
+  }
+
+  addCoinToTable() {
+    $(`#${SELECTOR.ID.COIN_500}`).innerHTML = this.coins[0];
+    $(`#${SELECTOR.ID.COIN_100}`).innerHTML = this.coins[1];
+    $(`#${SELECTOR.ID.COIN_50}`).innerHTML = this.coins[2];
+    $(`#${SELECTOR.ID.COIN_10}`).innerHTML = this.coins[3];
   }
 
   chargeCoins() {
@@ -67,7 +79,7 @@ export default class Coin_Menu {
     this.clearAmountInput();
     this.setCoinChargeAmount();
     console.log(this.coins);
-    // this.addProductItemToTable(product);
+    this.addCoinToTable();
   }
 
   bindClickEvents() {
@@ -116,5 +128,13 @@ export default class Coin_Menu {
         </tr>
       </table>
     `;
+
+    const amount = this.getCoinChargeAmount();
+    if (amount != 0) {
+      this.setCoinChargeAmount();
+    }
+    if (this.coins.length != 0) {
+      this.addCoinToTable();
+    }
   }
 }

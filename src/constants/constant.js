@@ -70,7 +70,7 @@ export const COMMENT = {
   COIN_MENU_TABLE_AMOUNT: '개수',
   COIN_500: '500원',
   COIN_100: '100원',
-  COIN_50: '10원',
+  COIN_50: '50원',
   COIN_10: '10원',
 
   PURCHASE_MENU: '상품 구매',
