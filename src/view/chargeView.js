@@ -4,16 +4,15 @@ import TapView from './tapView.js';
 export default class ChargeView extends TapView {
   static render() {
     super.removeTap();
-    super.addComponent(this.chargeComponent());
+    super.appendComponentToApp(this.chargeComponent());
   }
 
   static chargeComponent() {
-    return `
-    <div id=tap>
-      ${this.chargeInputComponent()}
-      ${this.coinListComponent()}
-    </div>
-    `;
+    const divEl = document.createElement('div');
+    divEl.id = 'tap';
+    super.addHtmlToElement(divEl, this.chargeInputComponent());
+    super.addHtmlToElement(divEl, this.coinListComponent());
+    return divEl;
   }
 
   static chargeInputComponent() {
@@ -22,8 +21,15 @@ export default class ChargeView extends TapView {
     <input id=${CHARGE_ELEMENT_ID.chargeInput} type='number' placeholder='자판기가 보유할 금액'></input>
     <button id=${CHARGE_ELEMENT_ID.chargeButton}>충전하기</button>
     </br></br>
-    <span id=${CHARGE_ELEMENT_ID.chargeAmount}>보유 금액:<span>
+    <span id=${CHARGE_ELEMENT_ID.chargeAmount}>보유 금액: <span>
     `;
+  }
+
+  static updateTotalCharge(chargeObject) {
+    super.setHtmlToElement(
+      document.querySelector(`#${CHARGE_ELEMENT_ID.chargeAmount}`),
+      `보유 금액: ${chargeObject.getTotalMoney()}원`,
+    );
   }
 
   static coinListComponent() {
@@ -48,5 +54,25 @@ export default class ChargeView extends TapView {
       <td id=${id}></td>
     </tr>
 		`;
+  }
+
+  static updateCoinList(chargeObject) {
+    const coinStorage = chargeObject.getCoinStorage();
+    super.setHtmlToElement(
+      document.querySelector(`#${CHARGE_ELEMENT_ID.coin500}`),
+      `${coinStorage?.coin500 || 0}개`,
+    );
+    super.setHtmlToElement(
+      document.querySelector(`#${CHARGE_ELEMENT_ID.coin100}`),
+      `${coinStorage?.coin100 || 0}개`,
+    );
+    super.setHtmlToElement(
+      document.querySelector(`#${CHARGE_ELEMENT_ID.coin50}`),
+      `${coinStorage?.coin50 || 0}개`,
+    );
+    super.setHtmlToElement(
+      document.querySelector(`#${CHARGE_ELEMENT_ID.coin10}`),
+      `${coinStorage?.coin10 || 0}개`,
+    );
   }
 }
