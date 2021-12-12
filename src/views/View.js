@@ -1,6 +1,7 @@
 import { default as UI } from './templates.js';
 import { $, default as DOM } from './DOMUtils.js';
 import CoinTable from './components/CoinTable.js';
+import ProductTable from './components/ProductTable.js';
 
 export default class View {
   constructor() {
@@ -11,6 +12,7 @@ export default class View {
   }
   loadWebComponents() {
     new CoinTable();
+    new ProductTable();
   }
 
   makeComponents() {
