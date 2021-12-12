@@ -55,13 +55,13 @@ export const createPurchaseTable = (tableDataList) => {
   return `
   ${tableDataList
     .map(
-      ({name, price, quantity}) => `
+      ({name, price, quantity}, index) => `
     <tr class=${CLASS.PRODUCT_PURCHASE_ITEM}>
       <td class=${CLASS.PRODUCT_PURCHASE_NAME} data-product-name=${name}>${name}</td>
       <td class=${CLASS.PRODUCT_PURCHASE_PRICE} data-product-price=${price}>${price}</td>
       <td class=${CLASS.PRODUCT_PURCHASE_QUANTITY} data-product-quantity=${quantity}>${quantity}</td>
       <td>
-        <button class=${CLASS.PRODUCT_PURCHASE_BUTTON}>구매하기</button>
+        <button class=${CLASS.PRODUCT_PURCHASE_BUTTON} data-index=${index}>구매하기</button>
       </td>
     </tr>
     `

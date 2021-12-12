@@ -1,7 +1,7 @@
-import {ID, STORAGE_KEY, TABLE_MENU} from '../../utils/constants.js';
+import {CLASS, ID, STORAGE_KEY, TABLE_MENU} from '../../utils/constants.js';
 import {createInputElement, createTable} from '../../utils/domUtil.js';
 import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
-import {isValidPurchaseInput} from '../../utils/validation.js';
+import {isValidPurchaseInput, isValidPurchaseProduct} from '../../utils/validation.js';
 import Component from '../core/Component.js';
 
 export default class PurchaseContainer extends Component {
@@ -38,17 +38,8 @@ export default class PurchaseContainer extends Component {
   }
 
   setEvent() {
-    this.addEvent('submit', `#purchase-charge-form`, (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      const purchaseAmountValue = Number.parseInt(this.$target.querySelector(`#${ID.CHARGE_INPUT}`).value, 10);
-      if (isValidPurchaseInput(purchaseAmountValue)) {
-        this.setState({purchaseAmount: this.$state.purchaseAmount + purchaseAmountValue});
-        setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
-        this.setEvent();
-      }
-    });
+    this.purchaseChargeFormClickHandler();
+    this.productPurchaseButtonClickHandler();
   }
 
   printChargeForm() {
@@ -64,5 +55,34 @@ export default class PurchaseContainer extends Component {
     const ths = ['상품명', '가격', '수량', '구매'];
 
     return createTable(TABLE_MENU.PURCHASE, ths, this.$state.products);
+  }
+
+  purchaseChargeFormClickHandler() {
+    this.addEvent('submit', `#purchase-charge-form`, (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const purchaseAmountValue = Number.parseInt(this.$target.querySelector(`#${ID.CHARGE_INPUT}`).value, 10);
+      if (isValidPurchaseInput(purchaseAmountValue)) {
+        this.setState({purchaseAmount: this.$state.purchaseAmount + purchaseAmountValue});
+        setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
+        this.setEvent();
+      }
+    });
+  }
+
+  productPurchaseButtonClickHandler() {
+    this.addEvent('click', `.${CLASS.PURCHASE_BUTTON}`, (event) => {
+      const {index} = event.target.dataset;
+      const {price, quantity} = this.$state.products[index];
+
+      if (isValidPurchaseProduct(this.$state.purchaseAmount, price, quantity)) {
+        this.$state.products[index].quantity = this.$state.products[index].quantity - 1;
+        this.setState({purchaseAmount: this.$state.purchaseAmount - price});
+        setLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, this.$state.products);
+        setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
+        this.setEvent();
+      }
+    });
   }
 }
