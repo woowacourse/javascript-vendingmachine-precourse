@@ -18,7 +18,9 @@ export default class TabContainer {
     this.tabProductAdd = new TabProductAdd(this.$target, {
       addProduct: this.addProduct.bind(this),
     });
-    this.tabMachineManage = new TabMachineManage(this.$target);
+    this.tabMachineManage = new TabMachineManage(this.$target, {
+      rechargeCoin: this.rechargeCoin.bind(this),
+    });
     this.tabPurchase = new TabPurchase(this.$target);
   }
 
@@ -35,5 +37,9 @@ export default class TabContainer {
 
   updateProductTable() {
     this.tabProductAdd.updateProductTable();
+  }
+
+  rechargeCoin(amount) {
+    this.vendingMachine.rechargeCoin(Number.parseInt(amount, 10));
   }
 }

@@ -13,6 +13,10 @@ const isUpperMinQunatity = (value) => {
   return value >= RULE.MIN_QUANTITY;
 };
 
+const isUpperMinMoney = (value) => {
+  return value >= RULE.MIN_MONEY;
+};
+
 const isDivided = (value) => {
   return value % RULE.MIN_DIVISOR === 0;
 };
@@ -58,6 +62,19 @@ const isValidQuantity = (quantity) => {
   return true;
 };
 
+const isValidMoney = (money) => {
+  if (!isNotEmpty(money)) {
+    alert(ERROR.MIN_LENGTH);
+    return false;
+  }
+
+  if (!isUpperMinMoney(money) || !isDivided(money)) {
+    alert(ERROR.MONEY);
+    return false;
+  }
+  return true;
+};
+
 export const isValidProductAdd = (values) => {
   const [name, price, quantity] = values;
 
@@ -72,5 +89,13 @@ export const isValidProductAdd = (values) => {
   if (!isValidQuantity(quantity)) {
     return false;
   }
+  return true;
+};
+
+export const isValidCoinRecharge = (value) => {
+  if (!isValidMoney(value)) {
+    return false;
+  }
+
   return true;
 };

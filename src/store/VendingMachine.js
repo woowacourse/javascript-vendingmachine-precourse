@@ -1,5 +1,8 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-constructor-return */
 import Product from '../model/Product.js';
+import Coin from '../model/Coin.js';
+import { COIN } from '../constant/coin.js';
 
 let instance = null;
 
@@ -9,7 +12,13 @@ export default class VendingMachine {
       return instance;
     }
     this.productList = [];
-
+    this.rechargedCoin = [
+      new Coin(COIN.COIN_500, null),
+      new Coin(COIN.COIN_100, null),
+      new Coin(COIN.COIN_50, null),
+      new Coin(COIN.COIN_10, null),
+    ];
+    this.rechargedCoinAmount = null;
     instance = this;
   }
 
@@ -38,7 +47,33 @@ export default class VendingMachine {
     product.setQuantity(product.getQuantity() + quantity);
   }
 
+  rechargeCoin(totalAmount) {
+    this.rechargedCoinAmount += totalAmount;
+    let amount = totalAmount;
+
+    this.rechargedCoin.forEach((coin) => {
+      if (coin.type === COIN.COIN_10) {
+        const amountCoin10 = parseInt(amount / coin.type, 10);
+        coin.increaseAmount(amountCoin10);
+      } else {
+        const maxRange = parseInt(amount / coin.type, 10) + 1;
+        const randomNum = this.pickRandomCount(maxRange);
+        coin.increaseAmount(randomNum);
+        amount -= coin.type * randomNum;
+      }
+    });
+  }
+
+  pickRandomCount(maxRange) {
+    // eslint-disable-next-line no-undef
+    return MissionUtils.Random.pickNumberInList([...Array(maxRange)].map((v, i) => i));
+  }
+
   getProductList() {
     return this.productList;
+  }
+
+  getRechargedCoin() {
+    return this.rechargedCoin;
   }
 }
