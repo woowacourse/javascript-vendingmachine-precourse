@@ -22,6 +22,7 @@ export class ProductController {
   onProductSubmit(productName, price, quantity) {
     const products = this.model.addProduct(productName, price, quantity);
     if (products === undefined || products.length === 0) {
+      // length를 왜 확인해주더라?
       return;
     }
     this.coreView.productView.showProduct(products);
