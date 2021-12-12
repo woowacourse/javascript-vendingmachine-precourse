@@ -1,6 +1,8 @@
+import { ID } from '../constants/selectors.js';
+
 export default class TabView {
   constructor() {
-    this.contentContainer = document.querySelector('#content-container');
+    this.contentContainer = document.getElementById(ID.CONTENT.CONTAINER);
   }
 
   initElements() {

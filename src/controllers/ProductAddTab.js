@@ -1,5 +1,6 @@
 import ProductAddTabView from '../views/ProductAddTabView.js';
 import { isValidProductAddition } from '../utils/validations.js';
+import { ID } from '../constants/selectors.js';
 
 export default class ProductAddTab {
   constructor(storage) {
@@ -14,13 +15,13 @@ export default class ProductAddTab {
   }
 
   initInputElements() {
-    this.productNameInput = document.querySelector('#product-name-input');
-    this.productPriceInput = document.querySelector('#product-price-input');
-    this.productQuantityInput = document.querySelector('#product-quantity-input');
+    this.productNameInput = document.getElementById(ID.PRODUCT_ADD.NAME_INPUT);
+    this.productPriceInput = document.getElementById(ID.PRODUCT_ADD.PRICE_INPUT);
+    this.productQuantityInput = document.getElementById(ID.PRODUCT_ADD.QUANTITY_INPUT);
   }
 
   setButtonClickEvent() {
-    const productAddButton = document.querySelector('#product-add-button');
+    const productAddButton = document.getElementById(ID.PRODUCT_ADD.BUTTON);
     productAddButton.addEventListener('click', this.onClickProductAddition.bind(this));
   }
 

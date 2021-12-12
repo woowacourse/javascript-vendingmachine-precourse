@@ -1,3 +1,4 @@
+import { ID } from '../constants/selectors.js';
 import { generateCoinsRandomly } from '../utils/index.js';
 import { isValidChargeAmount } from '../utils/validations.js';
 import VendingMachineManageTabView from '../views/VendingMachineManageTabView.js';
@@ -15,17 +16,17 @@ export default class VendingMachineManageTab {
   }
 
   initInputElements() {
-    this.vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input');
+    this.chargeInput = document.getElementById(ID.VENDING_MACHINE_MANAGE.CHARGE_INPUT);
   }
 
   setButtonClickEvent() {
-    const vendingMachineChargeButton = document.querySelector('#vending-machine-charge-button');
-    vendingMachineChargeButton.addEventListener('click', this.onClickVendingMachineCharging.bind(this));
+    const chargeButton = document.getElementById(ID.VENDING_MACHINE_MANAGE.CHARGE_BUTTON);
+    chargeButton.addEventListener('click', this.onClickVendingMachineCharging.bind(this));
   }
 
   onClickVendingMachineCharging(e) {
     e.preventDefault();
-    const amountToAdd = Number(this.vendingMachineChargeInput.value);
+    const amountToAdd = Number(this.chargeInput.value);
     if (!isValidChargeAmount(amountToAdd)) return;
     const coinQuantityToAdd = generateCoinsRandomly(amountToAdd);
     this.storage.addVendingMachineCharge({ amount: amountToAdd, coinQuantity: coinQuantityToAdd });

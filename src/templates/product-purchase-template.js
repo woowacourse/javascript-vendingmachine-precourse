@@ -1,16 +1,18 @@
+import { ID, CLASS } from '../constants/selectors.js';
+
 const productPurchaseTemplate = {
   main: `
   <section>
     <h3>금액 투입</h3>
     <form>
-      <input id="charge-input" placeholder="투입할 금액" type="number"/>
-      <button id="charge-button">투입하기</button>
+      <input id="${ID.PRODUCT_PURCHASE.CHARGE_INPUT}" placeholder="투입할 금액" type="number"/>
+      <button id="${ID.PRODUCT_PURCHASE.CHARGE_BUTTON}">투입하기</button>
     </form><br />
-    투입한 금액: <span id="charge-amount"></span>
+    투입한 금액: <span id="${ID.PRODUCT_PURCHASE.CHARGE_AMOUNT}"></span>
   </section><br />
   <section>
     <h3>구매할 수 있는 상품 현황</h3>
-    <table id="product-purchase-table">
+    <table id="${ID.PRODUCT_PURCHASE.TABLE}">
       <thead>
         <tr>
           <th>상품명</th><th>가격</th><th>수량</th><th>구매</th>
@@ -21,8 +23,8 @@ const productPurchaseTemplate = {
   </section><br />
   <section>
     <h3>잔돈</h3>
-    <button id="coin-return-button">반환하기</button>
-    <table id="coin-return-table">
+    <button id="${ID.COIN_RETURN.BUTTON}">반환하기</button>
+    <table id="${ID.COIN_RETURN.TABLE}">
       <thead>
         <tr>
           <th>동전</th><th>개수</th>
@@ -30,28 +32,28 @@ const productPurchaseTemplate = {
       </thead>
       <tbody>
         <tr>
-          <td>500원</td><td id="coin-500-quantity"></td>
+          <td>500원</td><td id="${ID.COIN_RETURN.COIN_500_QUANTITY}"></td>
         </tr>
         <tr>
-          <td>100원</td><td id="coin-100-quantity"></td>
+          <td>100원</td><td id="${ID.COIN_RETURN.COIN_100_QUANTITY}"></td>
         </tr>
         <tr>
-          <td>50원</td><td id="coin-50-quantity"></td>
+          <td>50원</td><td id="${ID.COIN_RETURN.COIN_50_QUANTITY}"></td>
         </tr>
         <tr>
-          <td>10원</td><td id="coin-10-quantity"></td>
+          <td>10원</td><td id="${ID.COIN_RETURN.COIN_10_QUANTITY}"></td>
         </tr>
       </tbody>
     </table>
   </section>
   `,
-  tableItem: (product) => `
-  <tr class="product-purchase-item">
-    <td class="product-purchase-name" data-product-name=${product.name} >${product.name}</td>
-    <td class="product-purchase-price" data-product-price=${product.price}>${product.price}</td>
-    <td class="product-purchase-quantity" data-product-quantity=${product.quantity}>${product.quantity}</td>
+  tableItem: ({ name, price, quantity }) => `
+  <tr class="${CLASS.PRODUCT_PURCHASE.ITEM}">
+    <td class="${CLASS.PRODUCT_PURCHASE.NAME}" data-product-name=${name} >${name}</td>
+    <td class="${CLASS.PRODUCT_PURCHASE.PRICE}" data-product-price=${price} >${price}</td>
+    <td class="${CLASS.PRODUCT_PURCHASE.QUANTITY}" data-product-quantity=${quantity} >${quantity}</td>
     <td>
-      <button class="purchase-button">
+      <button class="${CLASS.PRODUCT_PURCHASE.BUTTON}">
         구매하기
       </button>
     </td>

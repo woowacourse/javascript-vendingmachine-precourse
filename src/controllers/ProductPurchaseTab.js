@@ -1,6 +1,7 @@
 import ProductPurchaseTabView from '../views/ProductPurchaseTabView.js';
 import { getAmountAndCoinQuantityToBeReturned } from '../utils/index.js';
 import { isValidChargeAmount, isValidPurchase } from '../utils/validations.js';
+import { CLASS, ID } from '../constants/selectors.js';
 
 export default class ProductPurchaseTab {
   constructor(storage) {
@@ -14,15 +15,15 @@ export default class ProductPurchaseTab {
   }
 
   setButtonClickEvent() {
-    const chargeButton = document.querySelector('#charge-button');
-    const coinReturnButton = document.querySelector('#coin-return-button');
+    const chargeButton = document.getElementById(ID.PRODUCT_PURCHASE.CHARGE_BUTTON);
+    const coinReturnButton = document.getElementById(ID.COIN_RETURN.BUTTON);
     chargeButton.addEventListener('click', this.onClickCharge.bind(this));
     coinReturnButton.addEventListener('click', this.onClickCoinReturn.bind(this));
     this.setPurchaseButtonClickEvent();
   }
 
   setPurchaseButtonClickEvent() {
-    const purchaseButtons = document.querySelectorAll('.purchase-button');
+    const purchaseButtons = document.querySelectorAll(`.${CLASS.PRODUCT_PURCHASE.BUTTON}`);
     purchaseButtons.forEach((button) => {
       button.addEventListener('click', this.onClickPurchase.bind(this));
     });
@@ -30,7 +31,7 @@ export default class ProductPurchaseTab {
 
   onClickCharge(e) {
     e.preventDefault();
-    const chargeInput = document.querySelector('#charge-input');
+    const chargeInput = document.getElementById(ID.PRODUCT_PURCHASE.CHARGE_INPUT);
     const amountToAdd = Number(chargeInput.value);
     if (!isValidChargeAmount(amountToAdd)) return;
     this.storage.addCharge(amountToAdd);
@@ -54,9 +55,9 @@ export default class ProductPurchaseTab {
 
   getProductDataFromPurchaseButton(button) {
     const tableItem = button.parentNode.parentNode;
-    const { productName: name } = tableItem.querySelector('.product-purchase-name').dataset;
-    const { productPrice: price } = tableItem.querySelector('.product-purchase-price').dataset;
-    const { productQuantity: quantity } = tableItem.querySelector('.product-purchase-quantity').dataset;
+    const { productName: name } = tableItem.querySelector(`.${CLASS.PRODUCT_PURCHASE.NAME}`).dataset;
+    const { productPrice: price } = tableItem.querySelector(`.${CLASS.PRODUCT_PURCHASE.PRICE}`).dataset;
+    const { productQuantity: quantity } = tableItem.querySelector(`.${CLASS.PRODUCT_PURCHASE.QUANTITY}`).dataset;
     return { name, price, quantity };
   }
 

@@ -1,6 +1,7 @@
 import TabView from './TabView.js';
 import productPurchaseTemplate from '../templates/product-purchase-template.js';
 import { coinIndex } from '../utils/index.js';
+import { ID } from '../constants/selectors.js';
 
 export default class ProductPurchaseTabView extends TabView {
   initialRender(charge, products) {
@@ -12,12 +13,12 @@ export default class ProductPurchaseTabView extends TabView {
 
   initElements() {
     super.initElements();
-    this.chargeAmountElement = document.querySelector('#charge-amount');
-    this.productPurchaseTableBody = document.querySelector('#product-purchase-table > tbody');
-    this.coin500Quantity = document.querySelector('#coin-500-quantity');
-    this.coin100Quantity = document.querySelector('#coin-100-quantity');
-    this.coin50Quantity = document.querySelector('#coin-50-quantity');
-    this.coin10Quantity = document.querySelector('#coin-10-quantity');
+    this.chargeAmountElement = document.getElementById(ID.PRODUCT_PURCHASE.CHARGE_AMOUNT);
+    this.productPurchaseTableBody = document.getElementById(ID.PRODUCT_PURCHASE.TABLE).querySelector('tbody');
+    this.coin500Quantity = document.getElementById(ID.COIN_RETURN.COIN_500_QUANTITY);
+    this.coin100Quantity = document.getElementById(ID.COIN_RETURN.COIN_100_QUANTITY);
+    this.coin50Quantity = document.getElementById(ID.COIN_RETURN.COIN_50_QUANTITY);
+    this.coin10Quantity = document.getElementById(ID.COIN_RETURN.COIN_10_QUANTITY);
   }
 
   updateOnCharge(charge) {
