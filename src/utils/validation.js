@@ -30,14 +30,14 @@ const isValidName = (name) => {
   return true;
 };
 
-const isValidMoney = (money) => {
-  if (!isNotEmpty(money)) {
+const isValidPrice = (price) => {
+  if (!isNotEmpty(price)) {
     alert(ERROR.MIN_LENGTH);
     return false;
   }
 
-  if (!isUpperMinPrice(money) || !isDivided(money)) {
-    alert(ERROR.MONEY);
+  if (!isUpperMinPrice(price) || !isDivided(price)) {
+    alert(ERROR.PRICE);
     return false;
   }
 
@@ -65,7 +65,7 @@ export const isValidProductAdd = (values) => {
     return false;
   }
 
-  if (!isValidMoney(price)) {
+  if (!isValidPrice(price)) {
     return false;
   }
 
