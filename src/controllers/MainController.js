@@ -1,5 +1,7 @@
+import LayoutView from '../views/LayoutView.js';
+
 export default {
   init() {
-    console.log('DOMContentLoaded');
+    LayoutView.setup(document.querySelector('#app'));
   },
 };
