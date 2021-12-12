@@ -99,7 +99,7 @@
   * 자판기에 충전된 동전 목록
   * 사용자가 충전한 금액
 
-#### 테이블 작성 기능 ⚙
+#### 테이블 템플릿 작성 기능 ⚙
 
 * 테이블의 템플릿을 설정할 시 테이블 엘리먼트를 생성하여 반환한다.
 
@@ -126,19 +126,22 @@
 │   │   ├── purchase
 │   │   │   ├── ChargeInputForm.js # 구매 시 금액 충전 입력란
 │   │   │   ├── PurchaseList.js # 구매 가능한 상품 현황 및 구매 목록
-│   │   │   └── ReturnBalanceList.js # 반환된 잔돈 현황
+│   │   │   └── ReturnCoinResult.js # 반환된 잔돈 현황
 │   │   │
 │   │   ├── table
-│   │   │   ├── ProductTable.js # 자판기 보유 상품 현황 테이블
-│   │   │   ├── CoinListTable.js # 자판기 보유 동전 현황 테이블
-│   │   │   ├── PurchaseTable.js # 구매 가능 상품 현황 및 구매 테이블
-│   │   │   └── ReturnTable.js # 반환 동전 현황 테이블
+│   │   │   ├── ProductTable.js # 자판기 보유 상품 현황 테이블 템플릿
+│   │   │   ├── CoinListTable.js # 자판기 보유 동전 현황 테이블 템플릿
+│   │   │   ├── PurchaseTable.js # 구매 가능 상품 현황 및 구매 테이블 템플릿
+│   │   │   └── ReturnTable.js # 반환 동전 현황 테이블 템플릿
 │   │   │
 │   │   ├── ProductManage.js # 상품 관리 페이지
 │   │   ├── CoinsManage.js # 자판기 보유 동전 페이지
 │   │   ├── PurchaseManage.js # 잔액 충전 & 상품 구매 페이지
 │   │   │
 │   │   └── StateList.js # 컴포넌트 공유 상태 목록
+│   │
+│   ├── controller
+│   │   └── VendingMachine.js # 메인 컨트롤러
 │   │
 │   ├── core # 클래스 상속 요소 모음
 │   │   ├── Component.js # 컴포넌트 기능
