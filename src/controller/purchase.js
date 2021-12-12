@@ -9,12 +9,7 @@ import {
 } from './utils.js';
 import { KEY, SELECTOR, ALERT_MESSAGE } from '../model/constants.js';
 import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/dom.js';
-
-const initReturnTable = returnCoin => {
-  returnCoin.forEach(x => {
-    $(`coin-${x.coin}-quantity`).innerHTML = `${x.quantity}개`;
-  });
-};
+import { addTableRow, initReturnTable } from '../view/index.js';
 
 const initAllPurchaseButtonEvent = () => {
   const allButtons = document.querySelectorAll(`.${SELECTOR.purchaseButton}`);
@@ -23,15 +18,12 @@ const initAllPurchaseButtonEvent = () => {
   );
 };
 
-const addTableRow = (table, product) =>
-  table.insertAdjacentHTML('beforeend', productPurchaseTableRow(product));
-
 const initProductStatusTable = () => {
   const table = document.querySelector('tbody');
-  table.innerHTML = '';
   const allProducts = getItemOrArray(KEY.product);
+  table.innerHTML = '';
   table.insertAdjacentHTML('beforeend', productPurchaseTableHeader());
-  allProducts.forEach(product => addTableRow(table, product));
+  allProducts.forEach(product => addTableRow(table, productPurchaseTableRow(product)));
   initAllPurchaseButtonEvent();
 };
 
@@ -81,8 +73,8 @@ const isChargeInputValid = chargeInput =>
   isMultipleOf10(chargeInput.placeholder, chargeInput.value);
 
 const chargeMoney = () => {
-  let charge = getItemOrNull(KEY.charge);
   const chargeInput = $(SELECTOR.chargeInput);
+  let charge = getItemOrNull(KEY.charge);
   if (isChargeInputValid(chargeInput)) {
     if (charge || charge === 0) {
       charge += parseInt(chargeInput.value);
@@ -95,11 +87,8 @@ const chargeMoney = () => {
 };
 
 const getCount = x => {
+  const count = { coin: x.coin, quantity: 0 };
   let chargeInput = getItemOrNull(KEY.charge);
-  const count = {
-    coin: x.coin,
-    quantity: 0,
-  };
   const div = Math.trunc(chargeInput / x.coin);
   if (div <= x.quantity && chargeInput >= x.coin) {
     chargeInput -= x.coin * div;

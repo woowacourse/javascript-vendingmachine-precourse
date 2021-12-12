@@ -1,4 +1,3 @@
-import { SELECTOR, KEY, ALERT_MESSAGE } from '../model/constants.js';
 import {
   $,
   getItemOrArray,
@@ -8,11 +7,10 @@ import {
   isMultipleOf10,
   onKeyUpNumericEvent,
 } from './utils.js';
+import { SELECTOR, KEY, ALERT_MESSAGE } from '../model/constants.js';
 import { productAddTableRow } from '../model/dom.js';
 import Product from '../model/product.js';
-
-const addTableRow = (table, product) =>
-  table.insertAdjacentHTML('beforeend', productAddTableRow(product));
+import { addTableRow } from '../view/index.js';
 
 const isAlreadyExistProduct = input => {
   const allProducts = getItemOrArray('products');
@@ -23,6 +21,7 @@ const isAlreadyExistProduct = input => {
 
   return isExist;
 };
+
 const isProductNameValid = (placeholder, input) =>
   !isBlankExist(placeholder, input) && !isAlreadyExistProduct(input);
 
@@ -46,23 +45,19 @@ const addProduct = () => {
   const productQuantity = $(SELECTOR.productQuantityInput);
   if (isProductInputsValid(productName, productPrice, productQuantity)) {
     const allProducts = getItemOrArray(KEY.product);
-    const product = new Product(
-      productName.value,
-      parseInt(productPrice.value),
-      parseInt(productQuantity.value),
-    );
+    const product = new Product(productName.value, productPrice.value, productQuantity.value);
     const table = document.querySelector('tbody');
-    addTableRow(table, product);
     allProducts.push(product);
+    addTableRow(table, productAddTableRow(product));
     setItem(KEY.product, allProducts);
     initInput(productName, productPrice, productQuantity);
   }
 };
 
 const initTable = () => {
-  const table = document.querySelector('tbody');
   const allProducts = getItemOrArray(KEY.product);
-  allProducts.forEach(product => addTableRow(table, product));
+  const table = document.querySelector('tbody');
+  allProducts.forEach(product => addTableRow(table, productAddTableRow(product)));
 };
 
 export const initAllProductAdd = () => {
