@@ -6,40 +6,49 @@ const LS_KEY_PRODUCTS = 'products';
 
 export default class ProductAdd {
   constructor() {
+    this.products = [];
     this.init();
-    this.products = this.loadProducts();
-    $('form').addEventListener('submit', this.handleProductAddSubmit);
   }
 
   init = () => {
+    this.paintTemplate();
+    this.loadProducts();
+    this.paintLoadedProducts();
+    $('form').addEventListener('submit', this.handleProductAddSubmit);
+  };
+
+  paintTemplate = () => {
     $(`#${ID.PAGE_CONTENT}`).innerHTML = productAddMenuTemplate();
   };
 
   loadProducts = () => {
     const loadedProducts = localStorage.getItem(LS_KEY_PRODUCTS);
-    if (loadedProducts) {
-      const parsedProducts = JSON.parse(loadedProducts);
-      return parsedProducts;
-    }
     if (!loadedProducts) {
-      return [];
+      return;
     }
+    const parsedProducts = JSON.parse(loadedProducts);
+    this.products = parsedProducts;
+    return;
+  };
+
+  paintLoadedProducts = () => {
+    this.products.map((product) => this.paintProduct(product));
   };
 
   handleProductAddSubmit = (e) => {
     e.preventDefault();
     const name = $(`#${ID.PRODUCT_NAME_INPUT}`).value,
-      price = $(`#${ID.PRODUCT_PRICE_INPUT}`).value,
-      quantity = $(`#${ID.PRODUCT_QUANTITY_INPUT}`).value;
-    const isValid = this.validateInputs(name, price, quantity);
+      price = parseInt($(`#${ID.PRODUCT_PRICE_INPUT}`).value),
+      quantity = parseInt($(`#${ID.PRODUCT_QUANTITY_INPUT}`).value);
 
+    const isValid = this.validateInputs(name, price, quantity);
     if (!isValid) {
       alert(ERROR_MSG.PRODUCT_ADD);
     }
     if (isValid) {
       const newProduct = this.createProduct(name, price, quantity);
-      this.products.push(newProduct);
-      this.saveProducts(this.products);
+      this.paintProduct(newProduct);
+      this.saveProduct(newProduct);
       this.clearInputs();
     }
   };
@@ -68,8 +77,24 @@ export default class ProductAdd {
     return productObj;
   };
 
-  saveProducts = (products) => {
-    localStorage.setItem(LS_KEY_PRODUCTS, JSON.stringify(products));
+  saveProduct = (product) => {
+    this.products.push(product);
+    localStorage.setItem(LS_KEY_PRODUCTS, JSON.stringify(this.products));
+  };
+
+  paintProduct = (product) => {
+    const $table = $(`table`);
+    const $newTableRow = document.createElement('tr');
+    const $newTableData__name = document.createElement('td');
+    const $newTableData__price = document.createElement('td');
+    const $newTableData__quantity = document.createElement('td');
+    $newTableData__name.innerHTML = product.name;
+    $newTableData__price.innerHTML = product.price;
+    $newTableData__quantity.innerHTML = product.quantity;
+    $newTableRow.appendChild($newTableData__name);
+    $newTableRow.appendChild($newTableData__price);
+    $newTableRow.appendChild($newTableData__quantity);
+    $table.appendChild($newTableRow);
   };
 
   clearInputs = () => {
