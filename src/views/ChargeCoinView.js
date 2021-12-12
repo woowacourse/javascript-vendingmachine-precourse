@@ -15,7 +15,8 @@ ChargeCoinView.render = function () {
 };
 
 ChargeCoinView.template = function () {
-  return `
+  return (
+    `
     <h4>자판기 동전 충전하기</h4>
     <div>
       <input id=${ELEMENT_ID.CHARGE_INPUT} placeholder="자판기가 보유할 금액" type='number'/>
@@ -23,7 +24,12 @@ ChargeCoinView.template = function () {
     </div>
     <span id=${ELEMENT_ID.CHARGE_AMOUNT}>보유 금액:${ChargeCoinModel.total()}</span>
     <h4>자판기가 보유한 동전</h4>
-    <table>
+  ` + this.tableTemplate()
+  );
+};
+
+ChargeCoinView.tableTemplate = function () {
+  return `<table>
     <thead> 
       <tr>
         <th>${CHARGE.COIN}</th>
@@ -39,8 +45,7 @@ ChargeCoinView.template = function () {
         </tr>`,
       ).join('')}
     </tbody>
-  </table>
-  `;
+  </table>`;
 };
 
 ChargeCoinView.bindClick = function () {
