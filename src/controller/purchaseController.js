@@ -1,5 +1,6 @@
 import { $ } from '../utils/dom.js';
 import { store, userInputMoney } from '../model/store.js';
+import PurchaseValidator from '../utils/purchaseValidator.js';
 
 class PurhcaseController {
   constructor(view) {
@@ -9,6 +10,9 @@ class PurhcaseController {
 
   addUserInputMoney() {
     const moneyInput = this.view.getInput();
+    if (PurchaseValidator.isInvalidMoneyInput(moneyInput)) {
+      return;
+    }
     userInputMoney.totalAmount += moneyInput;
     store.setLocalStorage('userInputMoney', userInputMoney);
     this.view.render();
