@@ -37,7 +37,7 @@ export const renderChangeAmount = money => {
   const $vending_machine_charge_amount = document.getElementById(
     CHARGE_TAP.changeAmountId
   );
-  $vending_machine_charge_amount.innerText = money;
+  $vending_machine_charge_amount.innerText = `${money}원`;
 };
 
 export const renderCoins = vendingMachine => {

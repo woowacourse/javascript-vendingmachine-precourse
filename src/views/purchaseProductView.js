@@ -46,7 +46,7 @@ export const renderMoney = money => {
   const $charge_amount = document.getElementById(
     PURCHASE_TAP.insertMoneyAmountId
   );
-  $charge_amount.innerText = money;
+  $charge_amount.innerText = `${money}원`;
 };
 
 // ----상품 현황----
