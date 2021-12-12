@@ -2,6 +2,7 @@ export const PRODUCT_ADD = 'product-add-menu';
 export const MACHINE_MANAGE = 'vending-machine-manage-menu';
 export const PURCHASE_MENU = 'product-purchase-menu';
 export const CHARGE_AMOUNT = 'charge-amount';
+export const CURRENT_TAB = 'current_tab';
 
 export const APP_TITLE = '🥤자판기🥤';
 export const APP_MENU = Object.freeze([
@@ -37,5 +38,14 @@ export const ERROR_MESSAGES = Object.freeze({
 
 export const CHARGE_UNIT = [500, 100, 50, 10];
 export const DEFAULT_VALUES = Object.freeze({
+  [CURRENT_TAB]: PRODUCT_ADD,
+  [PRODUCT_ADD]: [],
   [MACHINE_MANAGE]: CHARGE_UNIT.map(unit => ({ description: unit, count: 0 })),
+  [PURCHASE_MENU]: {
+    [PRODUCT_ADD]: [],
+    [MACHINE_MANAGE]: CHARGE_UNIT.map(unit => ({ description: unit, count: 0 })),
+    [CHARGE_AMOUNT]: 0,
+  },
 });
+
+export const EVENT_TYPE_CLICK = 'click';
