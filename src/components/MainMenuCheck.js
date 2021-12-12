@@ -1,12 +1,14 @@
 import ProductAddView from './ProductAddView.js';
 import MachineManageView from './MachineManageView.js';
 import ProductPurchaseView from './ProductPurchaseView.js';
+import ProductAddEvent from './ProductAddEvent.js';
 
 export default class MainMenuCheck {
     static checkFirstMenu(targetId) {
         if (targetId === 'product-add-menu') {
             ProductAddView.render();
-            ProductAddView.addProductAddEvent();
+            // ProductAddView.addProductAddEvent();
+            ProductAddEvent.addEvent();
         }
     }
     
