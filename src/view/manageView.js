@@ -24,7 +24,7 @@ class ManageView {
           <button id="product-add-button">추가하기</button>
         </form>
         <h3>상품 현황</h3>
-        <table>
+        <table id="product-table">
           <tr>
             <th>상품명</th>
             <th>가격</th>
