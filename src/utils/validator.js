@@ -32,6 +32,8 @@ export const PriceCheckMethods = [
 ];
 
 export function isPriceValid(value) {
+  console.log(`value`, value);
+  console.log(`typeof value`, typeof value);
   return PriceCheckMethods.every((PriceCheckMethod) => PriceCheckMethod(value));
 }
 
