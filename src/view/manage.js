@@ -1,9 +1,9 @@
-import { SUBTITLE, LABEL, MARGIN, TEXT } from '../utils/constant.js';
+import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER } from '../utils/constant.js';
 
 export default class ManagePage {
   constructor(page) {
-    this.subtitleAdd = document.createElement('h2');
-    this.subtitleCurrent = document.createElement('h2');
+    this.subtitleAdd = document.createElement('h3');
+    this.subtitleCurrent = document.createElement('h3');
     this.inputName = document.createElement('input');
     this.inputPrice = document.createElement('input');
     this.inputQuantity = document.createElement('input');
@@ -20,9 +20,9 @@ export default class ManagePage {
   setUIText() {
     this.subtitleAdd.innerText = SUBTITLE.ADD_PRODUCT;
     this.subtitleCurrent.innerText = SUBTITLE.CURRENT_PRODUCT;
-    this.inputName.setAttribute('placeholder', LABEL.PRODUCT_NAME);
-    this.inputPrice.setAttribute('placeholder', LABEL.PRICE);
-    this.inputQuantity.setAttribute('placeholder', LABEL.QUANTITY_PRODUCT);
+    this.inputName.setAttribute('placeholder', PLACEHOLDER.PRODUCT_NAME);
+    this.inputPrice.setAttribute('placeholder', PLACEHOLDER.PRICE);
+    this.inputQuantity.setAttribute('placeholder', PLACEHOLDER.QUANTITY_PRODUCT);
     this.buttonAdd.innerText = TEXT.ADD;
   }
 
@@ -35,7 +35,6 @@ export default class ManagePage {
     this.tr.appendChild(this.thQuantity);
     this.table.appendChild(this.tr);
   }
-
   
   // index.html에 생성한 tab들 넣기
   setUI() {

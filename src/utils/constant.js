@@ -17,7 +17,7 @@ export const SUBTITLE = {
   CHARGE: '자판기 동전 충전하기',
   CURRENT_COIN: '자판기가 보유한 동전',
   INSERT_COIN: '금액 투입',
-  CAN_BUY_PRODUCT: '구매할 수 있는 상품 현황',
+  ITEMLIST: '구매할 수 있는 상품 현황',
   LEFT_COIN: '잔돈',
 };
 
@@ -26,7 +26,7 @@ export const PLACEHOLDER = {
   PRICE: '가격',
   PRODUCT_QUANTITY: '수량',
   CHARGE_COIN: '자판기가 보유할 금액',
-
+  INSERT_COIN: '투입할 금액'
 }
 
 export const ID = {
@@ -69,8 +69,9 @@ export const CLASS = {
 export const TEXT = {
   ADD: '추가하기',
   CHARGE: '충전하기',
-  HAVE: '보유 금액',
+  HAVE: '보유 금액: ',
   INSERT: '투입 하기',
+  INSERTED: '투입한 금액: ',
   RETURN: '반환하기',
 };
 
