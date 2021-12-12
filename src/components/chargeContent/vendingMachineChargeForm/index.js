@@ -1,5 +1,5 @@
 import ChargeForm from '../../chargeForm/index.js';
-import { addChargedCoins } from '../../../library/storage/chargedCoins.js';
+import { addChargedCoinsOfVendingMachine } from '../../../library/storage/vendingMachineCoins.js';
 import { ID_FORM, DICT_PROPS_BUTTON, DICT_PROPS_INPUT } from './const.js';
 
 class VendingMachineChargeForm extends ChargeForm {
@@ -13,7 +13,7 @@ class VendingMachineChargeForm extends ChargeForm {
   onButtonClick() {
     const input = this.input.value;
 
-    addChargedCoins(Number(input));
+    addChargedCoinsOfVendingMachine(Number(input));
   }
 }
 
