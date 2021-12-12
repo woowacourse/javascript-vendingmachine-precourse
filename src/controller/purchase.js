@@ -7,7 +7,7 @@ import {
   isInputNumberValid,
   onKeyUpNumericEvent,
 } from './utils.js';
-import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
+import { KEY, SELECTOR, ALERT_MESSAGE } from '../model/constants.js';
 import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/dom.js';
 
 const initReturnTable = returnCoin => {
@@ -41,15 +41,29 @@ const initPurchaseDomProperty = () => {
   initProductStatusTable();
 };
 
+const isEnoughCoin = (chargeInput, price) => {
+  const isEnough = chargeInput >= price;
+  if (!isEnough) {
+    alert(ALERT_MESSAGE.isNotEnoughCoin);
+  }
+
+  return isEnough;
+};
+
 const purchaseProduct = button => {
   let charge = getItemOrNull(KEY.charge);
-  const products = getItemOrArray(KEY.product);
+  let products = getItemOrArray(KEY.product);
   const selectProduct = products.find(e => e.name === button.dataset.target);
-  selectProduct.quantity -= 1;
-  charge -= selectProduct.price;
-  setItem(KEY.charge, charge);
-  setItem(KEY.product, products);
-  initPurchaseDomProperty();
+  if (isEnoughCoin(charge, selectProduct.price)) {
+    selectProduct.quantity -= 1;
+    charge -= selectProduct.price;
+    if (selectProduct.quantity === 0) {
+      products = products.filter(product => product.name !== selectProduct.name);
+    }
+    setItem(KEY.charge, charge);
+    setItem(KEY.product, products);
+    initPurchaseDomProperty();
+  }
 };
 
 const initChargeDomProperty = () => {
@@ -60,16 +74,22 @@ const initChargeDomProperty = () => {
   }
 };
 
+const isChargeInputValid = chargeInput =>
+  isInputNumberValid(chargeInput.placeholder, chargeInput.value) &&
+  isMultipleOf10(chargeInput.placeholder, chargeInput.value);
+
 const chargeMoney = () => {
   let charge = getItemOrNull(KEY.charge);
   const chargeInput = $(SELECTOR.chargeInput);
-  if (charge || charge === 0) {
-    charge += parseInt(chargeInput.value);
-  } else if (charge === null) {
-    charge = parseInt(chargeInput.value);
+  if (isChargeInputValid(chargeInput)) {
+    if (charge || charge === 0) {
+      charge += parseInt(chargeInput.value);
+    } else if (charge === null) {
+      charge = parseInt(chargeInput.value);
+    }
+    setItem(KEY.charge, charge);
+    initChargeDomProperty();
   }
-  setItem(KEY.charge, charge);
-  initChargeDomProperty();
 };
 
 const getCount = x => {
@@ -113,4 +133,7 @@ export const initAllPurchase = () => {
   initChargeDomProperty();
   $(SELECTOR.chargeButton).addEventListener('click', () => chargeMoney());
   $(SELECTOR.returnButton).addEventListener('click', () => returnMoney());
+  $(SELECTOR.chargeInput).addEventListener('keyup', () =>
+    onKeyUpNumericEvent($(SELECTOR.chargeInput)),
+  );
 };
