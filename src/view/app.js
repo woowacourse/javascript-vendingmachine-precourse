@@ -48,7 +48,10 @@ class App {
   }
 
   bindEvent() {
-    $('#product-add-menu').addEventListener('click', showManageTab);
+    $('#product-add-menu').addEventListener('click', () => {
+      showManageTab();
+      this.manageView.render();
+    });
     $('#vending-machine-manage-menu').addEventListener('click', () => {
       showChangeTab();
       this.changeView.render();
