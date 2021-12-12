@@ -1,5 +1,6 @@
 import Component from "../root/Component.js";
 import InputForm from "./InputForm.js";
+import ProductStatus from "./ProductStatus.js";
 
 export default class ProductAdd extends Component {
   setup() {
@@ -12,25 +13,7 @@ export default class ProductAdd extends Component {
   template() {
     return `
       <div id="input-form"></div>
-      <div id="product-status">
-        <h3>상품 현황</h3>
-        <table border="1px solid">
-          <thead>
-            <tr>
-              <th>상품명</th>
-              <th>가격</th>
-              <th>수량</th>
-            </tr>
-          <thdead>
-          <tbody>
-            <tr>
-              <td>111</td>
-              <td>22</td>
-              <td>333</td>
-            <tr>
-          </tbody>
-        </table>
-      </div>
+      <div id="product-status"></div>
     `;
   }
 
@@ -41,11 +24,14 @@ export default class ProductAdd extends Component {
       $state: { products },
     } = this;
     const $inputForm = document.querySelector("#input-form");
+    const $productStatus = document.querySelector("#product-status");
 
     new InputForm($inputForm, {
       addProduct: addProduct.bind(this),
       products,
     });
+
+    new ProductStatus($productStatus, { products });
   }
 
   addProduct(newProduct) {
