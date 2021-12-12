@@ -1,4 +1,4 @@
-import ProductAdd from './ProductAdd.js';
+import ProductAdd from '../model/ProductAdd.js';
 
 export default class SetProductAdd {
   constructor(render, product) {

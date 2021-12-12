@@ -1,7 +1,7 @@
-import SetProductAdd from '../model/SetProductAdd.js';
+import SetProductAdd from './SetProductAdd.js';
 import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER, STRING } from '../utils/constant.js';
-import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
-import SetVendingMachinePurchase from '../model/SetVendingMachinePurchase.js';
+import SetVendingMachineCharge from './SetVendingMachineCharge.js';
+import SetVendingMachinePurchase from './SetVendingMachinePurchase.js';
 
 export default class CheckEventTarget {
   constructor(render, coins, product, vendingMachine) {

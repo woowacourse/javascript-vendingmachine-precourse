@@ -1,4 +1,4 @@
-import SetLocalStorage from '../model/SetLocalStorage.js';
+import SetLocalStorage from '../controller/SetLocalStorage.js';
 import { TEMPLATE, DOM, STRING, SELECTOR } from '../utils/constant.js';
 
 export default class Render {

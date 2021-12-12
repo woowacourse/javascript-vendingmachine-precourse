@@ -1,5 +1,5 @@
 import { DOM, TEMPLATE } from '../utils/constant.js';
-import VendingMachineCharge from './VendingMachineCharge.js';
+import VendingMachineCharge from '../model/VendingMachineCharge.js';
 
 export default class SetVendingMachinePurchase {
   constructor(render, vendingMachine) {
