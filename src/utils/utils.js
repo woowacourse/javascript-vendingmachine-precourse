@@ -66,7 +66,7 @@ const utils = {
     return string.slice(0, index) + target + string.slice(index);
   },
 
-  convertStringToIncludingHyphen: string => {
+  insertHypen: string => {
     return Object.entries(DB.load(string)).map(array => {
       const [coinType, quantity] = array;
 
