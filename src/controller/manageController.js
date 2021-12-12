@@ -1,4 +1,5 @@
 import Item from '../model/item.js';
+import { items } from '../model/store.js';
 import { $ } from '../utils/dom.js';
 
 class ManageController {
@@ -10,7 +11,8 @@ class ManageController {
   addItem() {
     const { name, price, quantity } = this.view.getInput();
     const newItem = new Item(name, price, quantity);
-    console.log(newItem);
+    items.push(newItem);
+    console.log(items);
   }
 
   bindEvent() {
