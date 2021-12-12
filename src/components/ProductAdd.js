@@ -54,15 +54,13 @@ export default class ProductAdd {
   };
 
   validateInputs = (name, price, quantity) => {
-    const parsedPrice = parseInt(price);
-    const parsedQuantity = parseInt(quantity);
-    if (parsedPrice < RULES.MIN_PRICE) {
+    if (price < RULES.MIN_PRICE) {
       return false;
     }
-    if (parsedPrice % RULES.MIN_PRICE_UNIT) {
+    if (price % RULES.MIN_PRICE_UNIT) {
       return false;
     }
-    if (parsedQuantity < RULES.MIN_QUANTITY) {
+    if (quantity < RULES.MIN_QUANTITY) {
       return false;
     }
     return true;
