@@ -18,6 +18,7 @@ export default class Table extends Component {
   }
 
   getTableContents() {
+    if (this.$props.tableContents === undefined) return "";
     return this.$props.tableContents.map((c) => this.getTableRow(c)).join("");
   }
 
