@@ -14,7 +14,6 @@ import {
   onClickPurchaseButton,
   onClickReturnButton,
 } from "../menus/purchaseProductMenu.js";
-import { renderChangeAmount } from "./chargeChangeView.js";
 
 // ----금액 투입하기 폼----
 const makeInsertMoneyContainer = () => {

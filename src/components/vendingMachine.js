@@ -1,4 +1,4 @@
-import { COINS, PURCHASE_PRODUCT_TAP } from "../utils/constants.js";
+import { COINS } from "../utils/constants.js";
 import Product from "./product.js";
 
 class VendingMachine {
