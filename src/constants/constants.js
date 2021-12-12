@@ -34,6 +34,14 @@ export const CHARGE_ELEMENT_ID = {
   coin10: 'vending-machine-coin-10-quantity',
 };
 
+export const CHARGE_ERR =
+  '최소 10원 이상의 10원으로 나누어떨어지는 충전 금액을 입력하세요.';
+
+export const CHARGE_RULES = {
+  measures: 10,
+  minCharge: 10,
+};
+
 export const MENU_ELEMENT = {
   adminName: '상품 관리',
   adminId: 'product-add-menu',
