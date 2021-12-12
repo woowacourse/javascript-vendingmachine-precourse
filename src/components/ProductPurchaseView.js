@@ -9,11 +9,9 @@ export default class ProductPurchaseView {
     if(localStorage.getItem(USER_CHARGE) !== null) {
       this.showUserCharge();
     }
-
     if(localStorage.getItem(PRODUCT) !== null) {
       this.showProductTable();
     }
-
     if(localStorage.getItem(USER_COINS) !== null) {
       this.showUserCoinTable();
     }
@@ -80,7 +78,16 @@ export default class ProductPurchaseView {
       alert("거스름돈이 없습니다!");
       return false;
     }
-    
+
+    return true;
+  }
+
+  static checkUserCharge(userMoney) {
+    if(userMoney[VALUES] === 0) {
+      alert("투입한 금액이 없습니다!")
+      return false;
+    }
+
     return true;
   }
 
@@ -112,7 +119,7 @@ export default class ProductPurchaseView {
       const change = JSON.parse(localStorage.getItem(CHANGE));
       const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
-      if(!(this.checkChange(coins, change))) {
+      if(!(this.checkUserCharge(userMoney)) || !(this.checkChange(coins, change))) {
         return;
       }
       this.checkChangeCase(coins, userCoins, change, userMoney);

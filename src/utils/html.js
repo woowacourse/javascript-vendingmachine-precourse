@@ -1,3 +1,4 @@
+// 처음 화면 부분
 export const HTML_OF_TITLE = `<h1>🥤자판기🥤</h1>`;
 
 export const HTML_OF_MENU_BUTTONS = `
