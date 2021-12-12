@@ -41,7 +41,9 @@ ChargeCoinView.tableTemplate = function () {
         (coin) =>
           `<tr>
           <td>${coin}${CHARGE.WON}</td>
-          <td id=${ELEMENT_ID.COIN_QUANTITY(coin)}>${ChargeCoinModel.list()[coin]}</td>
+          <td id=${ELEMENT_ID.COIN_QUANTITY(coin)}>${ChargeCoinModel.list()[coin]}${
+            CHARGE.UNIT
+          }</td>
         </tr>`,
       ).join('')}
     </tbody>

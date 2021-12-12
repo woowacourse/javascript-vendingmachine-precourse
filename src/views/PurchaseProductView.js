@@ -56,21 +56,15 @@ PurchaseProductView.productsTemplate = function () {
           <td 
            data-product-name=${product[PRODUCT.NAME]} 
            class=${ELEMENT_CLASS.PRODUCT_PURCHASE_NAME}
-          >
-            ${product[PRODUCT.NAME]}
-          </td>
+          >${product[PRODUCT.NAME]}</td>
           <td 
            data-product-price=${product[PRODUCT.PRICE]} 
            class=${ELEMENT_CLASS.PRODUCT_PURCHASE_PRICE}
-          >
-            ${product[PRODUCT.PRICE]}
-          </td>
+          >${product[PRODUCT.PRICE]}</td>
           <td 
            data-product-quantity=${product[PRODUCT.QUANTITY]} 
            class=${ELEMENT_CLASS.PRODUCT_PURCHASE_QUANTITY}
-          >
-            ${product[PRODUCT.QUANTITY]}
-          </td>
+          >${product[PRODUCT.QUANTITY]}</td>
           <td>
             <button data-purchase-index=${index} 
              class=${ELEMENT_CLASS.PURCHASE_BUTTON}
@@ -102,6 +96,9 @@ PurchaseProductView.bindClick = function () {
     } else if (e.target.className === ELEMENT_CLASS.PURCHASE_BUTTON) {
       this.onClickPurchaseButton(e.target.dataset.purchaseIndex);
       return;
+    } else if (e.target.id === ELEMENT_ID.COIN_RETURN_BUTTON) {
+      this.onClickReturnCoinButton();
+      return;
     }
   });
 };
@@ -119,6 +116,10 @@ PurchaseProductView.onClickPurchaseButton = function (purchaseIndex) {
   this.emit(EVENT_TYPE.PURCHASE_ITEM, {
     product: { [PRODUCT.NAME]: name, [PRODUCT.PRICE]: price },
   });
+};
+
+PurchaseProductView.onClickReturnCoinButton = function () {
+  this.emit(EVENT_TYPE.RETURN_COINS, {});
 };
 
 export default PurchaseProductView;

@@ -10,14 +10,14 @@ export default {
       return;
     }
     this.inputMoney += parseInt(money);
-    localStorage.setItem('inputMoney', this.inputMoney);
+    this.setInputMoney();
   },
   total() {
     return this.inputMoney;
   },
   purchase(product) {
     this.inputMoney -= parseInt(product[PRODUCT.PRICE]);
-    localStorage.setItem('inputMoney', this.inputMoney);
+    this.setInputMoney();
   },
   payable(price) {
     if (this.inputMoney - parseInt(price) < 0) {
@@ -25,6 +25,13 @@ export default {
       return false;
     }
     return true;
+  },
+  reset() {
+    this.inputMoney = 0;
+    this.setInputMoney();
+  },
+  setInputMoney() {
+    localStorage.setItem('inputMoney', this.inputMoney);
   },
 };
 

@@ -54,6 +54,7 @@ export const EVENT_TYPE = {
   CHARGE_COIN: 'chargeCoin',
   CHARGE_MONEY: 'chargeMoney',
   PURCHASE_ITEM: 'purchaseItem',
+  RETURN_COINS: 'returnCoins',
 };
 export const TAB = {
   MANAGE_PRODUCT: '상품 관리',
@@ -90,8 +91,8 @@ export const CHARGE = {
   COIN_50: '50',
   COIN_10: '10',
   WON: '원',
+  UNIT: '개',
 };
-
 export const COINS_INIT_OBJECT = {
   500: 0,
   100: 0,

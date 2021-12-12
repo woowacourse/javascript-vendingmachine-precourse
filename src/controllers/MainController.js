@@ -24,7 +24,8 @@ export default {
     );
     PurchaseProductView.setup($(ELEMENT_SID.RESULT_VIEW))
       .on(EVENT_TYPE.CHARGE_MONEY, (e) => this.onChargeMoney(e.detail.userInputMoney))
-      .on(EVENT_TYPE.PURCHASE_ITEM, (e) => this.onPurchaseProduct(e.detail.product));
+      .on(EVENT_TYPE.PURCHASE_ITEM, (e) => this.onPurchaseProduct(e.detail.product))
+      .on(EVENT_TYPE.RETURN_COINS, () => this.onReturnCoins());
 
     this.selectedTab = TAB.MANAGE_PRODUCT;
     this.renderView();
@@ -86,5 +87,11 @@ export default {
       ManageProductModel.sell(product[PRODUCT.NAME]);
       PurchaseProductView.render();
     }
+  },
+  onReturnCoins() {
+    const leftUserMoney = PurchaseProductModel.total();
+    ChargeCoinModel.return(leftUserMoney);
+    PurchaseProductModel.reset();
+    PurchaseProductView.render();
   },
 };

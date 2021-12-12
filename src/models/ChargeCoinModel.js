@@ -18,7 +18,7 @@ export default {
       this.coins[randomCoin] += 1;
       money -= randomCoin;
     }
-    localStorage.setItem('coins', JSON.stringify(this.coins));
+    this.setCoins();
   },
   total() {
     return COINS.reduce((sum, coin) => {
@@ -27,6 +27,22 @@ export default {
   },
   list() {
     return this.coins;
+  },
+  return(money) {
+    COINS.forEach((coin) => {
+      if (parseInt(money / coin) !== 0 && this.coins[coin] > 0) {
+        if (coin * this.coins[coin] <= money) {
+          this.coins[coin] = 0;
+          money = 0;
+        }
+        this.coins[coin] -= parseInt(money / coin);
+        money -= parseInt(money / coin) * coin;
+      }
+    });
+    this.setCoins();
+  },
+  setCoins() {
+    localStorage.setItem('coins', JSON.stringify(this.coins));
   },
 };
 

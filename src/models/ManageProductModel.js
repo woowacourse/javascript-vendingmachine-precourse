@@ -13,14 +13,14 @@ export default {
       return;
     }
     this.products.push(product);
-    localStorage.setItem('products', JSON.stringify(this.products));
+    this.setProducts();
   },
   list() {
     return this.products;
   },
   sell(name) {
     this.products.find((item) => item[PRODUCT.NAME] === name)[PRODUCT.QUANTITY] -= 1;
-    localStorage.setItem('products', JSON.stringify(this.products));
+    this.setProducts();
   },
   sellable(name) {
     const pickedItem = this.products.find((item) => item[PRODUCT.NAME] === name);
@@ -29,6 +29,9 @@ export default {
       return false;
     }
     return true;
+  },
+  setProducts() {
+    localStorage.setItem('products', JSON.stringify(this.products));
   },
 };
 
