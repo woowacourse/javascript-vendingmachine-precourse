@@ -1,4 +1,4 @@
-import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PURCHASE_TAB_ID } from './constants.js';
+import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PURCHASE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_DATASET } from './constants.js';
 import Product from './product.js'
 import { elementCreatorWithClass } from './dom/util.js';
 
@@ -10,6 +10,7 @@ export default class VendingMachine {
             this.coins[key] = 0;
         }
         this.input = 0;
+        this.productId = 0;
     }
 
     displayProductAddTab(product){
@@ -20,14 +21,30 @@ export default class VendingMachine {
             elementCreatorWithClass('td', ADD_TAB_CLASS.TABLE_TD_QUANTITY, product.quantity),
         );
         document.getElementById(ADD_TAB_ID.PRODUCT_TABLE).append(tr);
+    }
 
+    displayProductPurchaseTab(product){
+        const tr = `<tr id= ${product.id} class= ${PURCHASE_TAB_CLASS.PURCHASE_ITEM}>
+                        <td class=${PURCHASE_TAB_CLASS.PRODUCT_NAME} 
+                            dataset=${PURCHASE_TAB_DATASET.PRODUCT_NAME}>${product.name}</td>
+                        <td class=${PURCHASE_TAB_CLASS.PRODUCT_PRICE} 
+                            dataset=${PURCHASE_TAB_DATASET.PRODUCT_PRICE}>${product.price}</td>
+                        <td class=${PURCHASE_TAB_CLASS.PRODUCT_QUANTITY} 
+                            dataset=${PURCHASE_TAB_DATASET.PRODUCT_QUANTITY}>${product.quantity}</td>
+                        <td>
+                            <button class=${PURCHASE_TAB_CLASS.PURCHASE_BUTTON}>구매하기</button>
+                        </td>
+                    </tr>
+                    `
+        document.getElementById(PURCHASE_TAB_ID.PRODUCT_TABLE).insertAdjacentHTML('beforeend',tr);
     }
 
     addProduct(name, price, quantity){
         //TODO: verify product
-        const product = new Product(name, price, quantity);
+        const product = new Product(name, price, quantity, this.productId++);
         
         this.displayProductAddTab(product);
+        this.displayProductPurchaseTab(product);
         this.products.push(product);
     }
 

@@ -35,7 +35,7 @@ const change = () => {
 
 const purchase = () => {
     return `<h3>구매할 수 있는 상품 현황</h3>
-            <table>
+            <table id=${PURCHASE_TAB_ID.PRODUCT_TABLE}>
                 <tr>
                     <td>상품명</td>
                     <td>가격</td>

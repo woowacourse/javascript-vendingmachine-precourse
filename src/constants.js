@@ -21,11 +21,19 @@ export const MANAGE_TAB_ID = {
     AMOUNT_SPAN_VALUE: 'vending-machine-charge-amount'
 }
 
+export const COIN_TABLE_ID = {
+    FIRST: 'vending-machine-coin-500-quantity',
+    SECOND: 'vending-machine-coin-100-quantity',
+    THIRD: 'vending-machine-coin-50-quantity',
+    LAST: 'vending-machine-coin-10-quantity',
+}
+
 export const PURCHASE_TAB_ID = {
     CHARGE_INPUT: 'charge-input',
     CHARGE_BUTTON: 'charge-button',
     CHARGE_AMOUNT: 'charge-amount',
     RETURN_BUTTON: 'coin-return-button',
+    PRODUCT_TABLE: 'purchase-product-table',
     COIN_TABLE: {
         FIRST: 'coin-500-quantity',
         SECOND: 'coin-100-quantity',
@@ -34,11 +42,18 @@ export const PURCHASE_TAB_ID = {
     }
 }
 
-export const COIN_TABLE_ID = {
-    FIRST: 'vending-machine-coin-500-quantity',
-    SECOND: 'vending-machine-coin-100-quantity',
-    THIRD: 'vending-machine-coin-50-quantity',
-    LAST: 'vending-machine-coin-10-quantity',
+export const PURCHASE_TAB_CLASS = {
+    PURCHASE_ITEM: 'product-purchase-item',
+    PURCHASE_BUTTON: 'purchase-button',
+    PRODUCT_NAME: 'product-purchase-name',
+    PRODUCT_PRICE: 'product-purchase-price',
+    PRODUCT_QUANTITY: 'product-purchase-quantity',
+}
+
+export const PURCHASE_TAB_DATASET = {
+    PRODUCT_NAME: 'data-product-name',
+    PRODUCT_PRICE: 'data-product-price',
+    PRODUCT_QUANTITY: 'data-product-quantity',
 }
 
 export const COIN_VALUE = {
