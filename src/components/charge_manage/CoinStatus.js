@@ -1,4 +1,5 @@
 import Component from "../root/Component.js";
+import setTableStyled from "../../style/setTableStyled.js";
 
 export default class CoinStatus extends Component {
   setup() {
@@ -44,6 +45,10 @@ export default class CoinStatus extends Component {
           </tbody>
         </table>
     `;
+  }
+
+  mounted() {
+    setTableStyled(this.$target);
   }
 
   getCoinQuantityText(coin) {

@@ -1,4 +1,5 @@
 import Component from "../root/Component.js";
+import setTableStyled from "../../style/setTableStyled.js";
 
 export default class ProductStatus extends Component {
   setup() {
@@ -31,18 +32,6 @@ export default class ProductStatus extends Component {
   }
 
   mounted() {
-    this.setStyled();
-  }
-
-  setStyled() {
-    this.$target.querySelectorAll("table, td, th").forEach((element) =>
-      element.setAttribute(
-        "style",
-        `border: 1px solid #000; 
-          border-collapse: collapse;
-          padding: 20px 40px;
-          text-align: center`
-      )
-    );
+    setTableStyled(this.$target);
   }
 }
