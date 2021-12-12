@@ -23,7 +23,10 @@ import {
   createVendingMachineChargeFormContainer,
   createVendingMachineCoinTableContainer,
 } from './components/chargeContent/index.js';
-import { createConsumerChargeFormContainer } from './components/purchaseContent/index.js';
+import {
+  createConsumerChargeFormContainer,
+  createPurchasableProductTableContainer,
+} from './components/purchaseContent/index.js';
 
 import {
   getCurrentMenu,
@@ -69,7 +72,11 @@ export default class VendingMachine {
     if (menuKey === KEY_MENU_CHARGE)
       this.appendChargeContent(content, this.vendingMachineChargedCoins);
     if (menuKey === KEY_MENU_PURCHASE)
-      this.appendPurchaseContent(content, this.consumerChargedCoin);
+      this.appendPurchaseContent(
+        content,
+        this.consumerChargedCoin,
+        this.products
+      );
   }
 
   appendAddContent(content, products) {
@@ -86,8 +93,9 @@ export default class VendingMachine {
     );
   }
 
-  appendPurchaseContent(content, consumerChargedCoin) {
+  appendPurchaseContent(content, consumerChargedCoin, products) {
     content.appendChild(createConsumerChargeFormContainer(consumerChargedCoin));
+    content.appendChild(createPurchasableProductTableContainer(products));
   }
 
   [ACTION_CLICK_MENU](e, menuKey) {

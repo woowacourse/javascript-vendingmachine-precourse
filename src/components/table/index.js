@@ -1,4 +1,5 @@
 import createElement from '../utils/createElement.js';
+import getChildrentoList from '../utils/getChildrenToList.js';
 import createTable from './createTable.js';
 import createTableHeadCell from './createTableHeadCell.js';
 
@@ -10,6 +11,14 @@ class Table {
 
     this.table.appendChild(this.thead);
     this.table.appendChild(this.tbody);
+  }
+
+  getTable() {
+    return this.table;
+  }
+
+  getTableRows() {
+    return getChildrentoList(this.tbody);
   }
 
   setTableHeader(headers) {
@@ -24,10 +33,6 @@ class Table {
 
   appendTableRow(tr) {
     this.tbody.appendChild(tr);
-  }
-
-  getTable() {
-    return this.table;
   }
 }
 

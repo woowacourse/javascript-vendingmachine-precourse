@@ -20,3 +20,13 @@ export function addProduct(product) {
 export function clearProducts() {
   localStorage.removeItem(KEY_PRODUCTS);
 }
+
+export function findIndexOfProduct(productName) {
+  return getProducts().findIndex((product) => product.name === productName);
+}
+
+export function sellProduct(productName) {
+  const products = getProducts();
+  products[findIndexOfProduct(productName)].quantity -= 1;
+  setProducts(products);
+}
