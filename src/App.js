@@ -42,8 +42,9 @@ export default class App extends Component {
   }
 
   changeTab(newTabId) {
-    this.callAPI.setCurrentTabId({ currentTabId: newTabId });
-    this.setState({ currentTabId: newTabId });
+    const payload = { currentTabId: newTabId };
+    this.callAPI.setCurrentTabId(payload);
+    this.setState(payload);
   }
 
   selectedTabContent(currentTabId, container, props = {}) {
