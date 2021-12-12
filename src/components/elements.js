@@ -26,10 +26,11 @@ export const Nav = (id) => {
   return nav;
 };
 
-export const Button = (title, id) => {
+export const Button = (title, id, callBack) => {
   const button = document.createElement('button');
   button.innerHTML = title;
   button.setAttribute('id', id);
+  button.addEventListener('click', callBack);
 
   return button;
 };
