@@ -25,5 +25,13 @@ export default class ProductPurchaseManager {
     });
 
     UT.isExist(DB.load('inventory')) && DOM.getAllPurchaseButton();
+
+    $('#coin-return-button').addEventListener('click', e => {
+      e.preventDefault();
+
+      if (!V.isValidCoinReturn()) return;
+
+      //UT.updateAddedCharge(charge);
+    });
   }
 }

@@ -19,6 +19,8 @@ export const ERROR = {
 
   CHARGE_UNDER_PRODUCT_PRICE: '투입한 금액이 원하는 상품 가격 이상이어야 합니다.',
   PRODUCT_OUT_OF_STOCK: '구매를 원하시는 상품은 품절상태 입니다.',
+
+  CHARGE_IS_ZERO: '투입한 금액이 0원이라 잔돈을 반환할 수 없습니다.',
 };
 
 export const REGEX = {
