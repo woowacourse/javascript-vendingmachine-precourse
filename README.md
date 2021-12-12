@@ -71,6 +71,7 @@
   > * 숫자 이외에 문자가 들어가 있을 경우
   > * 입력되는 숫자가 양의 정수가 아닐 경우
   > * 입력되는 숫자가 10으로 나누어 떨어지지 않을 경우
+  > * 상품은 100원 이상이어야 함
 
   <br/>
 
@@ -152,14 +153,14 @@
   - [ ] input 만드는 함수
   - [ ] text 만드는 함수
 
-  <b>DOM_changeManagement.js</b>
+  <b>DOM_chargeManage.js</b>
 
   - [ ] 자판기 동전 충전하기, 자판기가 보유한 동전 text 추가
   - [ ] 자판기 동전 충전 input, button 요소 추가
   - [ ] 보유 금액 text 추가
   - [ ] 자판기가 보유한 동전 table 추가 
 
-  <b>DOM_productManagement .js</b>
+  <b>DOM_productManage .js</b>
 
   - [ ] 상품 추가하기, 상품 현황 text 추가
   - [ ] 상품 추가하기 input, button 추가
@@ -177,13 +178,13 @@
 
   <h3>controller (제어 함수)</h3>
 
-  <b>changeManagement.js (잔돈관리)</b>
+  <b>chargeManage.js (잔돈관리)</b>
 
   - [ ] localStroage에서 등록된 잔돈 불러오기
   - [ ] DOM 초기화 하기 
   - [ ] 충전하기 버튼 이벤트 함수
 
-  <b>productManagement.js (상품관리)</b>
+  <b>productManage.js (상품관리)</b>
 
   - [ ] localStroage에서 등록된 상품 현황 불러오기
   - [ ] DOM 초기화 하기
@@ -196,7 +197,7 @@
   - [ ] table 내에 구매하기 버튼 함수 (투입 금액 처리, 수량 처리)
   - [ ] 구매 가능 여부 alert 처리
 
-  <b>returnChange.js (잔돈반환)</b>
+  <b>returnCharge.js (잔돈반환)</b>
 
   - [ ] 잔돈 table 초기화
   - [ ] 반환하기 버튼 이벤트 함수 (최소 반환 조건으로 동전 반환)
@@ -205,7 +206,7 @@
 
   <h3>Validation (조건 예외처리)</h3>
 
-  <b>validateChange.js</b>
+  <b>validateCharge.js</b>
 
   - [ ] 입력 되지 않은 값 alert
   - [ ] 상품명: 특수문자 허용X, 숫자만X
