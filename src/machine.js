@@ -26,6 +26,7 @@ export default class VendingMachine {
 
     changeDisplayProduct(product){
         document.querySelector(`#${product.id} .${PURCHASE_TAB_CLASS.PRODUCT_QUANTITY}`).innerHTML = product.quantity;
+        document.getElementById(PURCHASE_TAB_ID.CHARGE_AMOUNT).innerHTML = this.input;
     }
 
     buyProduct(product){
