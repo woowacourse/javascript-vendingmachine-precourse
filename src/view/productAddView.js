@@ -3,6 +3,12 @@ import { makeElement, makeTableForm, makeTableRow } from "./template.js";
 import { PRODUCT_MANAGE } from "../constant/vendingMachine.js";
 import Product from "../Model/Product.js";
 
+const productId = [
+  PRODUCT_MANAGE.NEW_PRODUCT_NAME_ID,
+  PRODUCT_MANAGE.NEW_PRODUCT_PRICE_ID,
+  PRODUCT_MANAGE.NEW_PRODUCT_QUANTITY_ID,
+];
+
 const updateProductList = () => {
   const tableBodyArea = document.querySelector("tbody");
   tableBodyArea.innerText = "";
@@ -11,7 +17,7 @@ const updateProductList = () => {
   products.forEach(product => {
     makeTableRow(
       tableBodyArea,
-      Product.changeTableRowFormat({
+      Product.changeTableRowFormat(productId, {
         name: product.name,
         price: product.price,
         quantity: product.quantity,

@@ -24,17 +24,18 @@ export const makeTableForm = (theadText, tableBodyId) => {
     tableArea.appendChild(th);
   });
   const tableBody = makeElement({ tag: "tbody", id: tableBodyId });
-  tableArea.append(tableBody);
+  tableArea.appendChild(tableBody);
   return tableArea;
 };
 
-export const makeTableRow = (container, elements, rowId = "") => {
+export const makeTableRow = (container, elements, rowId, button = "") => {
   const tr = makeElement({ tag: "tr", id: rowId });
   elements.forEach(rowData => {
     const element = makeElement({ tag: "td", innerText: rowData.text, id: rowData.id });
-    tr.append(element);
+    tr.appendChild(element);
   });
-  container.append(tr);
+  if (button) tr.appendChild(button);
+  container.appendChild(tr);
 };
 
 export const makeInputNumberFormToPrint = ({ textData, inputData, buttonData }) => {
@@ -68,7 +69,7 @@ export const makeInputNumberFormToPrint = ({ textData, inputData, buttonData }) 
 
 export const renderCoinTable = (container, tableBodyId, coinToUse) => {
   const tableHead = makeTableForm(COIN_MANAGE.COLUMNS, tableBodyId);
-  container.append(tableHead);
+  container.appendChild(tableHead);
   const tableBodyArea = document.getElementById(tableBodyId);
   coinToUse.forEach(coinData => {
     const coin = [{ text: coinData.TEXT }, { id: coinData.ID }];

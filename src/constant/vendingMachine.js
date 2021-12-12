@@ -39,6 +39,7 @@ export const PRODUCT_PURCHASE_MANAGE = {
   CURRENT_PRODUCT_TO_BUY: "구매할 수 있는 상품 현황",
   COLUMNS: ["제품명", "가격", "수량", "구매"],
   PURCHASE_BUTTON: { TEXT: "구매하기", ID: "purchase-button" },
+  PRODUCT_ITEM_ID: "product-purchase-item",
   PRODUCT_NAME_ID: "product-purchase-name",
   PRODUCT_PRICE_ID: "product-purchase-price",
   PRODUCT_QUANTITY_ID: "product-purchase-quantity",

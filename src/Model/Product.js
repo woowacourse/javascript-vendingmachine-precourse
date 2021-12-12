@@ -68,16 +68,10 @@ export default class Product {
     return true;
   }
 
-  static changeTableRowFormat({ name, price, quantity }) {
-    const productID = [
-      PRODUCT_MANAGE.NEW_PRODUCT_NAME_ID,
-      PRODUCT_MANAGE.NEW_PRODUCT_PRICE_ID,
-      PRODUCT_MANAGE.NEW_PRODUCT_QUANTITY_ID,
-    ];
-    const newProductData = [name, price, quantity].map((value, key) => ({
-      text: value,
-      id: productID[key],
-    }));
+  static changeTableRowFormat(productId, { name, price, quantity }) {
+    const newProductData = [name, price, quantity]
+      .filter(data => data)
+      .map((value, key) => ({ text: value, id: productId[key] }));
     return newProductData;
   }
 
