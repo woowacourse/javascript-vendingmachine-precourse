@@ -37,6 +37,11 @@ export default class Component {
   // 이벤트를 등록한다.
   bindEvent() {}
 
+  setState(newState) {
+    this._state = { ...this._state, ...newState };
+    this.render();
+  }
+
   // 이벤트 위임을 간소화한다.
   addEvent(eventType, selector, callback) {
     const children = [...this.$target.querySelectorAll(selector)];
