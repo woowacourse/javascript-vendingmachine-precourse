@@ -20,7 +20,7 @@ export default class PurchaseList extends Component {
     return $purchaseTable;
   }
 
-  bindEvent() {
+  bindEvents() {
     this.addEvent(
       'click',
       SELECTOR.PURCHASE_BUTTON,

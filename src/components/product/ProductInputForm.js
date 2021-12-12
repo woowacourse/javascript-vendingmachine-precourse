@@ -15,7 +15,7 @@ export default class ProductInputForm extends Component {
     `;
   }
 
-  bindEvent() {
+  bindEvents() {
     this.addEvent(
       'keyup',
       `${SELECTOR.PRODUCT_NAME_INPUT}, ${SELECTOR.PRODUCT_PRICE_INPUT}, ${SELECTOR.PRODUCT_QUANTITY_INPUT}`,

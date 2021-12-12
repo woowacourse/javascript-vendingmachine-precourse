@@ -21,7 +21,7 @@ export default class ReturnCoinResult extends Component {
     return $purchaseTable;
   }
 
-  bindEvent() {
+  bindEvents() {
     this.addEvent(
       'click',
       SELECTOR.COIN_RETURN_BUTTON,

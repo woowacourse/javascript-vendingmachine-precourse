@@ -14,7 +14,7 @@ export default class CoinInputForm extends Component {
     `;
   }
 
-  bindEvent() {
+  bindEvents() {
     this.addEvent(
       'click',
       '#vending-machine-charge-button',

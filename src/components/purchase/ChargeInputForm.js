@@ -19,7 +19,7 @@ export default class ChargeInputForm extends Component {
     `;
   }
 
-  bindEvent() {
+  bindEvents() {
     this.addEvent(
       'keyup',
       SELECTOR.CHARGE_AMOUNT_INPUT,

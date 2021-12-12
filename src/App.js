@@ -29,7 +29,7 @@ export default class App extends Component {
     this.addMount('product-purchase-menu', PurchaseManage);
   }
 
-  bindEvent() {
+  bindEvents() {
     this.addEvent('click', 'nav#main-menu > button', (event) => {
       $$('.tab').forEach(($element) => $element.classList.remove('open'));
       $(`.tab[data-component="${event.target.id}"]`).classList.add('open');

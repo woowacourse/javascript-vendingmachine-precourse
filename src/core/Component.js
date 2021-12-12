@@ -7,7 +7,7 @@ export default class Component {
     this._props = props;
 
     this.init();
-    this.bindEvent();
+    this.bindEvents();
     this.render();
   }
 
@@ -35,7 +35,7 @@ export default class Component {
   }
 
   // 이벤트를 등록한다.
-  bindEvent() {}
+  bindEvents() {}
 
   setState(newState) {
     this._state = { ...this._state, ...newState };
