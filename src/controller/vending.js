@@ -16,6 +16,24 @@ const makeRandomCoinQuantity = inputValue => {
 
   return amountArray;
 };
+
+const initTable = () => {
+  const vending = getItemOrNull(KEY.vending);
+  if (vending) {
+    vending.coins.forEach(x => {
+      $(`vending-machine-coin-${x.coin}-quantity`).innerHTML = `${x.quantity}개`;
+    });
+  }
+};
+
+const initChargeDomProperty = () => {
+  const vendingMachine = getItemOrNull(KEY.vending);
+  $(SELECTOR.vendingChargeInput).value = '';
+  if (vendingMachine) {
+    $(SELECTOR.vendingChargeAmount).innerHTML = vendingMachine.changes;
+  }
+};
+
 const chargeVending = () => {
   const chargeInput = parseInt($(SELECTOR.vendingChargeInput).value);
   let vendingMachine = getItemOrNull(KEY.vending);
@@ -27,18 +45,12 @@ const chargeVending = () => {
   }
   randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
   setItem(KEY.vending, vendingMachine);
-};
-
-const initTable = () => {
-  const vending = getItemOrNull(KEY.vending);
-  if (vending) {
-    vending.coins.forEach(x => {
-      $(`vending-machine-coin-${x.coin}-quantity`).innerHTML = `${x.quantity}개`;
-    });
-  }
+  initChargeDomProperty();
+  initTable();
 };
 
 export const initAllVending = () => {
   initTable();
+  initChargeDomProperty();
   $(SELECTOR.vendingChargeButton).addEventListener('click', () => chargeVending());
 };
