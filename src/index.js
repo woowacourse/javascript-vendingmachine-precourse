@@ -1,9 +1,3 @@
-import productAddInit from './init/productAddInit.js';
-import productPurchaseInit from './init/productPurchaseInit.js';
-import tapBtnInit from './init/tapBtnInit.js';
-import vendingMachineInit from './init/vendingMachineInit.js';
+import init from './init/init.js';
 
-tapBtnInit();
-productAddInit();
-vendingMachineInit();
-productPurchaseInit();
+init();
