@@ -2,7 +2,7 @@ import { createElement } from '../../utils/element-tools.js';
 import TableCreate from '../../core/Table.js';
 
 export default class PurchaseTable extends TableCreate {
-  renderColumnBody(value, index) {
+  _renderColumnBody(value, index) {
     const $column = createElement('TR');
     const { name, price, quantity } = value;
     $column.dataset.primary = index;

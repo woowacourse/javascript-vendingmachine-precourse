@@ -2,7 +2,7 @@ import { createElement, combineElement } from '../../utils/element-tools.js';
 import TableCreate from '../../core/Table.js';
 
 export default class ReturnTable extends TableCreate {
-  renderColumnBody(value) {
+  _renderColumnBody(value) {
     const $column = createElement('TR');
     const { coin, quantity } = value;
     $column.innerHTML = `
