@@ -13,22 +13,22 @@
 - [x] 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 `product-price-input`이다.
 - [x] 상품 추가 입력 폼의 수량 입력 요소의 id는 `product-quantity-input`이다.
 - [x] 상품 `추가하기` 버튼 요소의 id는 `product-add-button`이다.
-- [ ] 추가한 각 상품 요소의 class명은 `product-manage-item`이며, 하위에 아래 요소들을 갖는다
-  - [ ] 상품명에 해당하는 요소의 class명은 `product-manage-name`이다.
-  - [ ] 가격에 해당하는 요소의 class명은 `product-manage-price`이다.
-  - [ ] 수량에 해당하는 요소의 class명은 `product-manage-quantity`이다.
+- [x] 추가한 각 상품 요소의 class명은 `product-manage-item`이며, 하위에 아래 요소들을 갖는다
+  - [x] 상품명에 해당하는 요소의 class명은 `product-manage-name`이다.
+  - [x] 가격에 해당하는 요소의 class명은 `product-manage-price`이다.
+  - [x] 수량에 해당하는 요소의 class명은 `product-manage-quantity`이다.
 
 ### **잔돈 충전 (자판기 보유 동전) 메뉴**
 
-- [ ] 잔돈 충전 메뉴 기본 마크업을 작성한다.
-- [ ] 자판기가 보유할 금액을 충전할 요소의 id는 `vending-machine-charge-input`이다.
-- [ ] `충전하기` 버튼에 해당하는 요소의 id는 `vending-machine-charge-button`이다.
-- [ ] 충전된 금액을 확인하는 요소의 id는 `vending-machine-charge-amount` 이다.
-- [ ] 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-  - [ ] 500원: `vending-machine-coin-500-quantity`
-  - [ ] 100원: `vending-machine-coin-100-quantity`
-  - [ ] 50원: `vending-machine-coin-50-quantity`
-  - [ ] 10원: `vending-machine-coin-10-quantity`
+- [x] 잔돈 충전 메뉴 기본 마크업을 작성한다.
+- [x] 자판기가 보유할 금액을 충전할 요소의 id는 `vending-machine-charge-input`이다.
+- [x] `충전하기` 버튼에 해당하는 요소의 id는 `vending-machine-charge-button`이다.
+- [x] 충전된 금액을 확인하는 요소의 id는 `vending-machine-charge-amount` 이다.
+- [x] 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
+  - [x] 500원: `vending-machine-coin-500-quantity`
+  - [x] 100원: `vending-machine-coin-100-quantity`
+  - [x] 50원: `vending-machine-coin-50-quantity`
+  - [x] 10원: `vending-machine-coin-10-quantity`
 
 ### **상품 구매 메뉴**
 
