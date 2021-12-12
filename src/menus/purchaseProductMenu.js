@@ -12,7 +12,11 @@ import {
   checkCanPurchase,
   checkInsertMoneyInput,
 } from "../utils/validation.js";
-import { renderChanges, renderMoney } from "../views/purchaseProductView.js";
+import {
+  renderChanges,
+  renderMoney,
+  renderPurchase,
+} from "../views/purchaseProductView.js";
 
 const resetInput = () => {
   const $charge_input = document.getElementById(
@@ -29,12 +33,8 @@ const getPriceTag = form => {
   return form.querySelector(`.${PURCHASE_TAP.productStateIds[ID]}`);
 };
 
-const getQuantityTag = form => {
+export const getQuantityTag = form => {
   return form.querySelector(`.${PURCHASE_TAP.productStateIds[QUANTITY]}`);
-};
-
-const updateQuantity = quantity => {
-  quantity.innerText = parseInt(quantity.innerText) - ID;
 };
 
 const setIsRenderInsertedMoney = () => {
@@ -73,10 +73,9 @@ export const onClickPurchaseButton = event => {
     )
   ) {
     vendingMachine.purchaseProduct(getNameTag(form).innerText);
-    renderMoney(vendingMachine.getMoney());
-    updateQuantity(getQuantityTag(form));
-    setIsRenderInsertedMoney();
+    renderPurchase(form);
     saveToLocalStorage(vendingMachine);
+    setIsRenderInsertedMoney();
   }
 };
 
@@ -86,6 +85,6 @@ export const onClickReturnButton = event => {
   renderMoney(vendingMachine.getMoney());
   renderChanges(returnChanges);
   saveToLocalStorage(vendingMachine);
-  setIsRenderInsertedMoney();
   setReturnChanges(returnChanges);
+  setIsRenderInsertedMoney();
 };

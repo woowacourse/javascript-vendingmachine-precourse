@@ -19,6 +19,7 @@ import {
   makeTitle,
 } from "../utils/utils.js";
 import {
+  getQuantityTag,
   onClickInsertButton,
   onClickPurchaseButton,
   onClickReturnButton,
@@ -94,6 +95,15 @@ const makeproductStateContainer = () => {
   div.appendChild(makeproductStateTable());
 
   return div;
+};
+
+const updateQuantity = quantity => {
+  quantity.innerText = parseInt(quantity.innerText) - 1;
+};
+
+export const renderPurchase = form => {
+  renderMoney(vendingMachine.getMoney());
+  updateQuantity(getQuantityTag(form));
 };
 
 // ----잔돈 현황----

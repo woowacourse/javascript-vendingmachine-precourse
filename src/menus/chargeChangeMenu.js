@@ -25,7 +25,7 @@ export const onClickChargeButton = event => {
     renderChangeAmount(vendingMachine.getTotalMoney());
     renderCoins(vendingMachine);
     saveToLocalStorage(vendingMachine);
-    resetInput(form);
     setIsRender();
+    resetInput(form);
   }
 };

@@ -7,6 +7,7 @@ import {
 import { renderManageProductMenuView } from "./manageProductView.js";
 import { renderChargeChangeMenuView } from "./chargeChangeView.js";
 import { renderPurchaseProductMenuView } from "./purchaseProductView.js";
+import { onClickMenuButton } from "../utils/utils.js";
 
 const renderArray = [
   renderManageProductMenuView,
@@ -23,17 +24,6 @@ const makeTitle = () => {
   title.innerText = TITLE_TEXT;
 
   return title;
-};
-
-const resetViewContainer = () => {
-  const $view_container = document.getElementById(VIEW_CONTAINER);
-  $view_container.innerHTML = "";
-};
-
-const onClickMenuButton = buttonEvent => {
-  event.preventDefault();
-  resetViewContainer();
-  buttonEvent();
 };
 
 const makeMenuButton = buttonInformation => {

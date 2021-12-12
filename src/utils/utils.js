@@ -4,12 +4,24 @@ import {
   INPUT_WITDH,
   MARGIN_SIZE,
   PRODUCT_TABLE,
+  VIEW_CONTAINER,
 } from "./constants.js";
 
 export const initializeHeader = () => {
   const $app = document.getElementById("app");
   $app.appendChild(makeHeader());
   $app.appendChild(makeView());
+};
+
+const resetViewContainer = () => {
+  const $view_container = document.getElementById(VIEW_CONTAINER);
+  $view_container.innerHTML = "";
+};
+
+export const onClickMenuButton = buttonEvent => {
+  event.preventDefault();
+  resetViewContainer();
+  buttonEvent();
 };
 
 export const getMoneyText = money => {
