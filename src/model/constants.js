@@ -11,6 +11,14 @@ export const SELECTOR = {
   productName: 'product-manage-name',
   productPrice: 'product-manage-price',
   productQuantity: 'product-manage-quantity',
+
+  vendingChargeInput: 'vending-machine-charge-input',
+  vendingChargeButton: 'vending-machine-charge-button',
+  vendingChargeAmount: 'vending-machine-charge-amount',
+  vendingCoin500: 'vending-machine-coin-500-quantity',
+  vendingCoin100: 'vending-machine-coin-100-quantity',
+  vendingCoin50: 'vending-machine-coin-500-quantity',
+  vendingCoin10: 'vending-machine-coin-10-quantity',
 };
 
 export const KEY = {
