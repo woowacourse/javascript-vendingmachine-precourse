@@ -1,4 +1,4 @@
-import { DOM } from '../utils/constant.js';
+import { DOM, NUMBER } from '../utils/constant.js';
 import VendingMachineCharge from '../model/VendingMachineCharge.js';
 
 export default class SetVendingMachineCharge {
@@ -6,11 +6,11 @@ export default class SetVendingMachineCharge {
     this.render = render;
     this.coins = coins;
     this.vendingMachineCharge = new VendingMachineCharge(this.render, DOM.$VENDING_MACHINE_CHARGE_INPUT);
-    this.vendingMachineChargeAmount = 0;
-    this.coin10 = 0;
-    this.coin50 = 0;
-    this.coin100 = 0;
-    this.coin500 = 0;
+    this.vendingMachineChargeAmount = NUMBER.ZERO;
+    this.coin10 = NUMBER.ZERO;
+    this.coin50 = NUMBER.ZERO;
+    this.coin100 = NUMBER.ZERO;
+    this.coin500 = NUMBER.ZERO;
 
     this.setVendingMachine();
   }

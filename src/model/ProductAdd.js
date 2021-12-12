@@ -49,7 +49,7 @@ export default class ProductAdd {
   };
 
   isMoreThanOneHundred = () => {
-    if (Number(this.$productPriceInput.value) < 100) {
+    if (Number(this.$productPriceInput.value) < NUMBER.COIN_100) {
       this.render.alertMessage(ERROR_MESSAGE.PRODUCT_MORE_THAN_ONE_HUNDRED);
       this.render.inputFocus(this.$productPriceInput);
 

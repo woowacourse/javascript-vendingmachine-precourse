@@ -1,6 +1,10 @@
 export const DOM = {
   $TR: 'tr',
   $APP: '#app',
+  $COIN_500_QUANTITY: '#coin-500-quantity',
+  $COIN_100_QUANTITY: '#coin-100-quantity',
+  $COIN_50_QUANTITY: '#coin-50-quantity',
+  $COIN_10_QUANTITY: '#coin-10-quantity',
   $$PURCHASE_BUTTONS: '.purchase-button',
   $COIN_RETURN_BUTTON: '#coin-return-button',
   $PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
@@ -33,6 +37,20 @@ export const NUMBER = {
   UNIT_CHECK_TEN: 10,
   ZERO: 0,
   ONE: 1,
+  COIN_10: 10,
+  COIN_100: 100,
+  COIN_50: 50,
+  COIN_500: 500,
+};
+
+export const PRODUCT = {
+  NAME: 0,
+  QUANTITY: 2,
+};
+
+export const COIN = {
+  LIST: [500, 100, 50, 10],
+  HASH: { 500: 0, 100: 0, 50: 0, 10: 0 },
 };
 
 export const ERROR_MESSAGE = {

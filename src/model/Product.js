@@ -1,3 +1,5 @@
+import { PRODUCT } from '../utils/constant.js';
+
 export default class Product {
   constructor(productsInformation) {
     this.productsInformation = productsInformation;
@@ -7,7 +9,7 @@ export default class Product {
   getProductsInformation = () => this.productsInformation;
 
   replaceInformation = (targetName, targetPrice, targetQuantity) => {
-    this.productsInformation.find((product) => product[0] === targetName)[2] = targetQuantity;
+    this.productsInformation.find((product) => product[PRODUCT.NAME] === targetName)[PRODUCT.QUANTITY] = targetQuantity;
   };
 
   getInformation = () => this.currentProductInformation;

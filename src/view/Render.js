@@ -1,5 +1,5 @@
 import SetLocalStorage from '../controller/SetLocalStorage.js';
-import { TEMPLATE, DOM, STRING, SELECTOR } from '../utils/constant.js';
+import { TEMPLATE, DOM, STRING, SELECTOR, NUMBER } from '../utils/constant.js';
 
 export default class Render {
   constructor(coins, product, vendingMachine) {
@@ -32,10 +32,10 @@ export default class Render {
   };
 
   returnCoinTemplate = (coinQuantityHash) => {
-    const $coin500 = document.querySelector('#coin-500-quantity');
-    const $coin100 = document.querySelector('#coin-100-quantity');
-    const $coin50 = document.querySelector('#coin-50-quantity');
-    const $coin10 = document.querySelector('#coin-10-quantity');
+    const $coin500 = document.querySelector(DOM.$COIN_500_QUANTITY);
+    const $coin100 = document.querySelector(DOM.$COIN_100_QUANTITY);
+    const $coin50 = document.querySelector(DOM.$COIN_50_QUANTITY);
+    const $coin10 = document.querySelector(DOM.$COIN_10_QUANTITY);
     const [coin10, coin50, coin100, coin500] = Object.values(coinQuantityHash);
     $coin500.textContent = coin500 + STRING.GAE;
     $coin100.textContent = coin100 + STRING.GAE;
@@ -46,8 +46,8 @@ export default class Render {
   };
 
   purchaseTemplate = ($targetName, $targetPrice, $targetQuantity) => {
-    $targetQuantity.dataset.productQuantity -= 1;
-    $targetQuantity.textContent -= 1;
+    $targetQuantity.dataset.productQuantity -= NUMBER.ONE;
+    $targetQuantity.textContent -= NUMBER.ONE;
 
     this.product.replaceInformation(
       $targetName.textContent,

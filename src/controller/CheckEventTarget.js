@@ -1,5 +1,5 @@
 import SetProductAdd from './SetProductAdd.js';
-import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER, STRING } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER, STRING, COIN } from '../utils/constant.js';
 import SetVendingMachineCharge from './SetVendingMachineCharge.js';
 import SetVendingMachinePurchase from './SetVendingMachinePurchase.js';
 
@@ -95,7 +95,7 @@ export default class CheckEventTarget {
   };
 
   isOutOfStock = (productName, productPrice, productQuantity, $targetName, $targetPrice, $targetQuantity) => {
-    if (productQuantity <= 0) {
+    if (productQuantity <= NUMBER.ZERO) {
       this.render.alertMessage(ERROR_MESSAGE.OUT_OF_STOCK);
 
       return;
@@ -141,17 +141,17 @@ export default class CheckEventTarget {
   };
 
   spendCoin = (vendingMachineCoinQuantity, currentCoin, vendingMachineCoinAmount, userCoinAmount) => {
-    while (vendingMachineCoinQuantity > 0 && userCoinAmount - currentCoin >= 0) {
+    while (vendingMachineCoinQuantity > NUMBER.ZERO && userCoinAmount - currentCoin >= NUMBER.ZERO) {
       userCoinAmount -= currentCoin;
       vendingMachineCoinAmount -= currentCoin;
-      vendingMachineCoinQuantity -= 1;
+      vendingMachineCoinQuantity -= NUMBER.ONE;
     }
 
     return [vendingMachineCoinQuantity, vendingMachineCoinAmount, userCoinAmount];
   };
 
   compareVendingMachineCoinAndUserCoin = (vendingMachineCoinQuantityHash, vendingMachineCoinAmount, userCoinAmount) => {
-    [500, 100, 50, 10].forEach((currentCoin) => {
+    COIN.LIST.forEach((currentCoin) => {
       const [spendVendingMachineCoinQuantity, spendVendingMachineCoinAmount, spendUserCoinAmount] = this.spendCoin(
         vendingMachineCoinQuantityHash[currentCoin],
         currentCoin,
