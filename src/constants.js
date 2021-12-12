@@ -20,6 +20,12 @@ export const MACHINE_MANAGE = {
   COIN: '동전',
   NUMBER_OF_COIN: '개수',
   ADD_BTN: '충전하기',
+  INPUT: '자판기가 보유할 금액',
+  COIN_STORAGE: '보유 금액:',
+  COIN_500: '500원',
+  COIN_100: '100원',
+  COIN_50: '50원',
+  COIN_10: '10원',
 };
 
 export const PRODUCT_PURCHASE = {
@@ -35,6 +41,7 @@ export const PRODUCT_PURCHASE = {
   ADD_BTN: '투입하기',
   PURCHASE_BTN: '구매하기',
   RETURN_BTN: '반환하기',
+  INPUT: '투입할 금액',
 };
 
 export const ALERT = {
