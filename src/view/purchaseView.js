@@ -24,7 +24,7 @@ class PurchaseView {
   }
 
   render() {
-    $('#charge-amount').textContent = `${userInputMoney.totalAmount}원`;
+    $('#charge-amount').textContent = `${userInputMoney.totalAmount}`;
     $('#purchase-list').innerHTML = this.getItems();
   }
 
@@ -35,7 +35,7 @@ class PurchaseView {
         <h3>금액 투입</h3>
         <input id="charge-input" type="number" placeholder="투입할 금액" />
         <button id="charge-button">투입하기</button>
-        <div>투입한 금액: <span id="charge-amount">0원</span></div>
+        <div>투입한 금액: <span id="charge-amount">0</span>원</div>
       </form>
       <h3>구매할 수 있는 상품 현황</h3>
       <table>
