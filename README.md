@@ -3,11 +3,249 @@
 </p>
 <h1 align="middle">자판기</h1>
 
-## 🔍 진행방식
+- ## ✔️ 프로젝트를 들어가기 전에 
 
-- 미션은 **기능 요구사항, 프로그래밍 요구사항, 과제 진행 요구사항** 세 가지로 구성되어 있다.
-- 세 개의 요구사항을 만족하기 위해 노력한다. 특히 기능을 구현하기 전에 기능 목록을 만들고, 기능 단위로 커밋 하는 방식으로 진행한다.
-- 기능 요구사항에 기재되지 않은 내용은 스스로 판단하여 구현한다.
+  이번 마지막 3주차 미션은 자동차 경주 게임을 아래의 요구사항에 맞춰 만드는 미션이다. 코딩컨벤션은 저번 미션과 마찬가지로 <NHN FE 개발랩>의 코딩컨벤션을 선택하여 따랐다. (ESLint 사용 예정) 또한 moudle 사용 건 때문에 별도로 https server를 설치하였다. 실행 시에는 `npm start` 를 하여 실행하면 된다. <br/>
+
+  <br/>
+
+  필요한 기능은 아래와 같다. 저번 주차의 피드백을 수용하여, 부족한 점은 보완하려고 노력하였다.
+
+  <br/>
+
+  > Feedback 
+  >
+  > 1. 기능 목록 구현을 재검토한다.
+  > 2. 값을 하드 코딩하지 마라.
+  > 3. 축양하지 마라.
+  > 4. 함수 라인 기준에 맞게 구현한다.
+  > 5. commit 메세지에 "#번호"를 추가하지 않는다.
+  > 6. 발생할 수 있는 예외 케이스에 대해 고민한다.
+  > 7. 주석은 꼭 필요한 경우에만 남긴다.
+  > 8. git을 통해 관리할 자원에 대해서 고려한다.
+  > 9. JavaScript에서 제공하는 api를 적극 활용한다.
+  > 10. Boolean을 return하는 경우 간결하게 한다.
+  > 11. 불필요한 변수를 줄이기 위해 노력한다.
+  > 12. 비즈니스 로직과 UI 로직을 분리하자.
+
+  <br/>
+
+  ## ✔️ 기능 이해 
+
+  요구사항에 맞는 기능들을 생각해 보기 위해서 우선 필요한 기능들이 세부적으로 어떤 것이 있을지 고민해 보았다.
+
+  각각 첫 실행 시, 상품 관리, 잔돈 충전, 상품 구매 및 잔돈 반환의 시나리오에 맞도록 필요 기능을 생각한 결과 아래와 같이 결론이 나왔다. <br/>
+
+  ###최종 목표: 반환되는 동전이 최소환이 되는 자판기를 구현한다.
+
+  <br/>
+
+  ###첫 실행 시
+
+  - `상품관리 / 잔돈충전 / 상품구매` 버튼이 보여야 한다.
+  - 각 탭을 클릭 시에 탭에 맞는 화면이 보여야 한다.
+
+  <br/>
+
+  ###상품 관리
+
+  * `상품 추가하기, 상품 현황`에 대해서 보여주어야 한다.
+  * 상품 추가하기 항목에서는 `상품이름 / 상품가격 / 상품수량` 그리고 `추가하기` 버튼이 있어야 한다.
+
+  * 상품 현황 항목에서는 테이블 형태의 `상품명 / 가격 / 수량`에 관한 정보가 보여야 한다.
+  * 추가하기 버튼을 눌렀을 때, 상품 현황에 input에 입력한 정보에 따라 테이블에 데이터를 생성해서 보여주어야 한다.
+  * localStorage에 정보가 있을 경우 이를 불러와 보여준다.
+
+  > 예외처리
+  >
+  > * 전체 입력 란 중, 하나라도 입력되지 않은 값이 있다면 alert로 모두 입력할 것으로 알려주기
+  >
+  > [1] 상품명
+  >
+  > - 상품명에 문자 이외에 특수문자가 들어가 있을 경우
+  > - 상품명에 숫자만 기재되어 있을 경우
+  >
+  > [2] 가격 & 수량
+  >
+  > * 숫자 이외에 문자가 들어가 있을 경우
+  > * 입력되는 숫자가 양의 정수가 아닐 경우
+  > * 입력되는 숫자가 10으로 나누어 떨어지지 않을 경우
+
+  <br/>
+
+  ###잔돈 충전
+
+  * `자판기 동전 충전하기, 자판기가 보유한 동전`에 대하여 보여주어야 한다.
+  * 자판기 동전 충전하기 항목에서는 `충전할 금액 입력` input 창과`충전하기` 버튼이 있어야 한다. 
+  * 충전하기 버튼을 누르면 하단의 보유 금액에 충전한 금액을 보여준다.
+  * 충전하기 버튼을 누르면 자판기가 보유한 동전 테이블에 금액에 맞는 동전이 무작위로 생성되도록 한다.
+  * 보유한 동전 개수를 테이블에 표시해 주어야 한다.
+  * 생성된 동전 개수롤 localStorage에 저장한다.
+  * 누적하여 충전할 경우, 기존 동전 개수와 금액에 더하여 계산한다.
+
+  > 예외처리
+  >
+  > * 충전 항목에서 input이 숫자 이외인 경우 
+  > * 충전 항목에서 input이 공백인 경우
+  > * 충전 항목이 10단위로 나누어 떨어지지 않을 경우
+  > * 충전 항목이 양의 정수가 아닐 경우
+
+  <br/>
+
+  ###상품 구매
+
+  * `금액 투입 / 구매할 수 있는 상품 현황 / 잔돈`에 대하여 보여주어야 한다.
+  * 금액 투입 항목에서는`투입 금액` input 창과 `투입하기` 버튼이 있어야 한다.
+  * 투입하기를 누르면 투입한 금액을 표시한다.
+  * 구매할 수 있는 상품 현황 항목에서는 등록했던 상품의 `상품명 / 가격 / 수량 / 구매 버튼`이 테이블 내에 표시된다.
+  * 구매하기 버튼을 누르면 `투입된 금액 - 상품의 금액`을 실행한다.
+  * 구매하기 버튼을 누르면 `본래 수량 - 1` 을 해준다.
+  * (추가) 투입한 금액보다 상품 금액이 클 경우 상품을 구매할 수 없다는 alert를 해준다.
+
+  <br/>
+
+  ###잔돈 반환
+
+  * 최소 개수의 동전으로 잔돈으로 반환한다.
+  * 잔돈을 모두 반환할 수 없는 경우, 잔돈으로 반환할 수 있는 금액만 반환한다.
+
+  <br/>
+
+  
+
+  ## ✔️ 클래스 및 함수 분리 (설계)
+
+  위의 기능 이해를 바탕으로 클래스를 어떻게 분해하여 설계해야 할지 많이 고민했다. 목표는 기능 별로 관련 있는 것들끼리 묶어 하나의 클래스를 만들고, 그 클래스 단위도 비대해지지 않도록 설계하는 것을 목표로 하였다.
+
+  <br/>
+
+  ###root (최상위 디렉토리)
+
+  <b>index.js</b> 
+
+  - [ ] EventListener Setting 후 초기화 - `initEventListener`
+  - [ ] 각각의 3가지 버튼 생성 (상품관리, 잔돈 충전, 상품 구매)
+
+  <br/>
+
+  ###constants (상수관리)
+
+  <b>constants.js</b>
+
+  - [ ] 각 요구사항에 맞는 DOM ID Setting
+  - [ ] 각 탭에 맞는 안내 사항 (상품명,가격,수량 등) 문구 Setting
+
+  <br/>
+
+  ###view (dom 조작)
+
+  > localStorage를 고려하여 결정할 것
+
+  <b>createDOM.js</b> 
+
+  >  DOM에 요소 추가하고 만드는 함수 집합
+
+  - [ ] 버튼 만드는 함수 
+  - [ ] table 만드는 함수
+  - [ ] table data  `<td>` 만드는 함수
+  - [ ] input 만드는 함수
+  - [ ] text 만드는 함수
+
+  <b>DOM_changeManagement.js</b>
+
+  - [ ] 자판기 동전 충전하기, 자판기가 보유한 동전 text 추가
+  - [ ] 자판기 동전 충전 input, button 요소 추가
+  - [ ] 보유 금액 text 추가
+  - [ ] 자판기가 보유한 동전 table 추가 
+
+  <b>DOM_productManagement .js</b>
+
+  - [ ] 상품 추가하기, 상품 현황 text 추가
+  - [ ] 상품 추가하기 input, button 추가
+  - [ ] 상품 현황 table 추가
+
+  <b>DOM_buyProducts .js</b>
+
+  - [ ] 금액 투입, 구매할 수 있는 상품 현황, 잔돈 text 추가
+  - [ ] 금액 투입 input, button 추가
+  - [ ] 투입한 금액 text 추가
+  - [ ] 구매할 수 있는 상품 현황 table 추가
+  - [ ] 잔돈 button, table 추가
+
+  <br/>
+
+  ###controller (제어 함수)
+
+  <b>changeManagement (잔돈관리)</b>
+
+  - [ ] localStroage에서 등록된 잔돈 불러오기
+  - [ ] DOM 초기화 하기 
+  - [ ] 충전하기 버튼 이벤트 함수
+
+  <b>productManagement (상품관리)</b>
+
+  - [ ] localStroage에서 등록된 상품 현황 불러오기
+  - [ ] DOM 초기화 하기
+  - [ ] 추가하기 버튼 이벤트 함수
+
+  <b>buyProducts (상품구매)</b>
+
+  - [ ] localStorage에서 등록된 상품 현황 불러오기
+  - [ ] 불러온 정보로 table 만들기
+  - [ ] table 내에 구매하기 버튼 함수 (투입 금액 처리, 수량 처리)
+  - [ ] 구매 가능 여부 alert 처리
+
+  <b>returnChange (잔돈반환)</b>
+
+  - [ ] 잔돈 table 초기화
+  - [ ] 반환하기 버튼 이벤트 함수 (최소 반환 조건으로 동전 반환)
+
+  <br/>
+
+  ###Validation (조건 예외처리)
+
+  <b>validateChange.js</b>
+
+  - [ ] 입력 되지 않은 값 alert
+  - [ ] 상품명: 특수문자 허용X, 숫자만X
+  - [ ] 상품가격: 숫자 이외 문자X, 양의 정수만, 10으로 나누어 떨어지도록
+
+  <b>validateProduct.js</b>
+
+  - [ ] 충전 input: 숫자만 입력, 공백X, 10 단위로 나누어 떨어지도록, 양의 정수만
+
+  <b>validateBuy.js</b>
+
+  - [ ] 투입 금액 < 상품금액이면, 구매할 수 없다는 alert 
+
+  <br/>
+
+  <br/>
+
+  위의 분리된 기능을 가지고 다음의 프로세스로 프로그래밍을 하는 것을 계획으로 세웠다. <br/>
+
+  >1. 분리한 클래스 및 함수 스켈레톤 코드 작성
+  >2. 필요한 Constant 생성 및 관리
+  >3. 각 탭에 필요한 DOM 요소 요구사항에 맞도록 생성
+  >4. 각 요소에 필요한 EventListener 함수 작성
+  >5. 기능 별로 필요한 함수 단위 파악 후 작성
+
+  <br/>
+
+  +) 스스로 어느정도의 역량을 갖추고 있을지 궁금하여 시간을 따로 측정해 보았다.
+
+  * 설계하는 데 소요 시간 (1.5h)
+  * 개발하는 데 소요 시간 
+
+  <br/>
+
+  ## ✔️ Test 결과
+
+  
+
+  
+
+  <br/>
 
 
 ## 🎯 기능 요구 사항
@@ -75,129 +313,3 @@
 #### 상품 구매 및 잔돈 반환
 <img src="./images/vendingmachine_purchase.gif" width="400" />
 
----
-
-## ✅ 프로그래밍 요구 사항
-
-### DOM 선택자 
-각 요소에 아래와 같은 선택자를 반드시 지정한다.
-
-**탭 메뉴 버튼**
-
-- `상품 구매` 탭으로 이동하는 메뉴 버튼 id는 `product-purchase-menu`이다.
-- `잔돈 충전`탭으로 이동하는 메뉴 버튼 id는 `vending-machine-manage-menu`이다.
-- `상품 관리`탭으로 이동하는 메뉴 버튼 id는 `product-add-menu`이다.
-
-**상품 관리(추가) 메뉴**
-
-- 상품 추가 입력 폼의 상품명 입력 요소의 id는 `product-name-input`이다.
-- 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 `product-price-input`이다.
-- 상품 추가 입력 폼의 수량 입력 요소의 id는 `product-quantity-input`이다.
-- 상품 `추가하기` 버튼 요소의 id는 `product-add-button`이다.
-- 추가한 각 상품 요소의 class명은 `product-manage-item`이며, 하위에 아래 요소들을 갖는다.
-  - 상품명에 해당하는 요소의 class명은 `product-manage-name`이다.
-  - 가격에 해당하는 요소의 class명은 `product-manage-price`이다.
-  - 수량에 해당하는 요소의 class명은 `product-manage-quantity`이다.
-
-**잔돈 충전 (자판기 보유 동전) 메뉴**
-
-- 자판기가 보유할 금액을 충전할 요소의 id는 `vending-machine-charge-input`이다.
-- `충전하기` 버튼에 해당하는 요소의 id는 `vending-machine-charge-button`이다.
-- 충전된 금액을 확인하는 요소의 id는 `vending-machine-charge-amount` 이다.
-- 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-    - 500원: `vending-machine-coin-500-quantity`
-    - 100원: `vending-machine-coin-100-quantity`
-    - 50원: `vending-machine-coin-50-quantity`
-    - 10원: `vending-machine-coin-10-quantity`
-
-**상품 구매 메뉴**
-
-- 투입 금액 입력 요소의 id는 `charge-input`이다.
-- 투입하기 버튼 요소의 id는 `charge-button`이다.
-- 투입한 금액을 확인하는 요소의 id는 `charge-amount`이다.
-- 반환하기 버튼 요소의 id는 `coin-return-button`이다.
-- 반환된 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-  - 500원: `coin-500-quantity`
-  - 100원: `coin-100-quantity`
-  - 50원: `coin-50-quantity`
-  - 10원: `coin-10-quantity`
-- 각 상품 요소의 class명은 `product-purchase-item`이고, 하위에 아래 요소들을 갖는다.
-  - 구매 버튼에 해당하는 요소의 class명은 `purchase-button`이다.
-  - 상품명에 해당하는 요소의 class명은 `product-purchase-name`이다.
-  - 가격에 해당하는 요소의 class명은 `product-purchase-price`이다.
-  - 수량에 해당하는 요소의 class명은 `product-purchase-quantity`이다.
-  - 상품명은 `dataset` 속성을 사용하고 `data-product-name` 형식으로 저장한다.
-  - 가격은 `dataset` 속성을 사용하고 `data-product-price` 형식으로 저장한다.
-  - 수량은 `dataset` 속성을 사용하고 `data-product-quantity` 형식으로 저장한다.
-
-
----
-
-### 라이브러리
-- 잔돈을 무작위로 생성하는 기능은 [`MissionUtils` 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)의 `Random.pickNumberInList`를 사용해 구한다.
-  - `MissionUtils` 라이브러리 스크립트는 `index.html`에 이미 포함되어 전역 객체에 추가되어 있으므로, 따로 `import` 하지 않아도 구현 코드 어디에서든 사용할 수 있다.
-
----
-
-### 공통 요구사항
-
-- 스크립트 추가 외에 주어진 `index.html`파일은 수정할 수 없다.
-  - 스타일(css)은 채점 요소가 아니다.
-- 모든 예외 발생 상황은 `alert`메서드를 이용하여 처리한다.
-- 외부 라이브러리(jQuery, Lodash 등)를 사용하지 않고, 순수 Vanilla JS로만 구현한다.
-- **자바스크립트 코드 컨벤션을 지키면서 프로그래밍** 한다. 정답이 없으므로, 다양한 컨벤션을 비교해보며 스스로 더 적절해보이는 컨벤션을 자율적으로 선택한다.
-  - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
-  - [Airbnb JavaScript Style Guide()](https://github.com/airbnb/javascript)
-  - [JavaScript Standard Style](https://standardjs.com)
-  - [NHN FE개발랩](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
-- **indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용**한다.
-  - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-  - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
-- **함수(또는 메소드)가 한 가지 일만 하도록 최대한 작게** 만들어라.
-- 변수 선언시 `var` 를 사용하지 않는다. `const` 와 `let` 을 사용한다.
-  - [const](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/const)
-  - [let](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/let)
-- `import` 문을 이용해 스크립트를 모듈화하고 불러올 수 있게 만든다.
-  - [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/import](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/import)
-- **함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.**
-  - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
-
----
-
-## 📝 과제 진행 요구사항
-- 미션은 [javascript-vendingmachine-precourse](https://github.com/woowacourse/javascript-vendingmachine-precourse/) 저장소를 Fork/Clone해 시작한다.
-- **기능을 구현하기 전에 javascript-vendingmachine-precourse/docs/README.md 파일에 구현할 기능 목록을 정리**해 추가한다.
-- **Git의 커밋 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위**로 추가한다.
-   - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
-- 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.
-
-## ✉️ 미션 제출 방법
-
-- 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-   - GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해 제출한다.
-- GitHub에 미션을 제출한 후 [우아한테크코스 지원 플랫폼](https://apply.techcourse.co.kr) 에 접속하여 프리코스 과제를 제출한다.
-   - 자세한 방법은 [링크](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 를 참고한다.
-   - **Pull Request만 보내고, 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
-
-
-### 🚨 과제 제출 전 체크리스트 - 0점 방지를 위한 주의사항
-- 요구사항에 명시된 출력값 형식을 지키지 않을 경우 기능 구현을 모두 정상적으로 했더라도 0점으로 처리된다.
-- 기능 구현을 완료한 뒤 아래 가이드에 따라 테스트를 실행했을 때 모든 테스트가 성공하는 지 확인한다. **테스트가 실패할 경우 0점으로 처리되므로, 반드시 확인 후 제출한다.**
-
-### ✔️ 테스트 실행 가이드
-- 테스트 실행에 필요한 패키지 설치를 위해 `Node.js` 버전 `14` 이상이 필요하다. 
-- 다음 명령어를 입력해 패키지를 설치한다.     
-```bash
-// {폴더 경로}/javascript-vendingmachine-precourse/ 에서
-npm install
-```     
-
-- 설치가 완료되었다면, 다음 명령어를 입력해 테스트를 실행한다.
-```bash
-// {폴더 경로}/javascript-vendingmachine-precourse/ 에서
-npm run test
-```
-
-- 아래와 같은 화면이 나오며 모든 테스트가 pass한다면 성공! 
-
-![테스트 결과](./images/test_result.png)
