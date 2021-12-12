@@ -4,13 +4,22 @@ import { isDivideByTen } from '../../utils/validation.js';
 import { getProductItemStorage } from '../storage/product.js';
 import { initProductPurchaseList, productPurchaseTemplate } from './productPurchaseTemplate.js';
 
+let chargeAmount = 0;
+
+const showChargeAmount = (chargeInput) => {
+  chargeAmount += chargeInput;
+  $('#charge-amount').innerHTML = `투입한 금액: ${chargeAmount}`;
+};
+
 const handleChargeInput = (event) => {
   event.preventDefault();
-  const chargeInput = $('#charge-input').value;
+  const chargeInput = Number($('#charge-input').value);
 
   if (isDivideByTen(chargeInput)) {
     return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
   }
+
+  showChargeAmount(chargeInput);
 };
 
 export const showProductPurchase = () => {
