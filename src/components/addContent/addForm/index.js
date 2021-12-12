@@ -51,8 +51,7 @@ class AddForm extends Form {
     const price = this.getInputValueByKey(KEY_INPUT_PRICE);
     const quantity = this.getInputValueByKey(KEY_INPUT_QUANTITY);
 
-    const product = new Product(name, price, quantity);
-    addProduct(product);
+    addProduct(new Product(name, price, quantity));
   }
 }
 

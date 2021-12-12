@@ -1,5 +1,5 @@
-import { addChargedCoins } from '../../../library/storage/chargedCoins.js';
 import ChargeForm from '../../chargeForm/index.js';
+import { addChargedCoins } from '../../../library/storage/chargedCoins.js';
 import { ID_FORM, DICT_PROS_BUTOTN, DICT_PROS_INPUT } from './const.js';
 
 class MachineChargeForm extends ChargeForm {

@@ -1,11 +1,12 @@
 import MachineChargeForm from './machineChargeForm/index.js';
-import createContainer from '../utils/createContainer.js';
-import { HEADING_CHARGE_MACHINE, ID_AMOUNT, LABEL_AMOUNT } from './const.js';
-import createDivision from '../utils/createDivision.js';
-import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
-import MachineChargedCoinsTable from './machineChargedCoinsTable/index.js';
+import VendingMachineCoinTable from './vendingMachineCoinTable/index.js';
 
-const createMachineCargeFormContainer = (chargedCoins) => {
+import createContainer from '../utils/createContainer.js';
+import createDivision from '../utils/createDivision.js';
+import { HEADING_CHARGE_MACHINE, ID_AMOUNT, LABEL_AMOUNT } from './const.js';
+import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
+
+const createMachineChargeFormContainer = (chargedCoins) => {
   const container = createContainer(
     'machine-charge-form-container',
     HEADING_CHARGE_MACHINE
@@ -21,16 +22,16 @@ const createMachineCargeFormContainer = (chargedCoins) => {
   return container;
 };
 
-const createMachineChargedCoinsTableContainer = (chargedCoins) => {
+const createVendingMachineCoinTableContainer = (chargedCoins) => {
   const container = createContainer(
     'machine-charged-coins-table-container',
     HEADING_CHARGE_MACHINE
   );
-  container.appendChild(new MachineChargedCoinsTable(chargedCoins).getTable());
+  container.appendChild(new VendingMachineCoinTable(chargedCoins).getTable());
 
   return container;
 };
 export {
-  createMachineCargeFormContainer,
-  createMachineChargedCoinsTableContainer,
+  createMachineChargeFormContainer,
+  createVendingMachineCoinTableContainer,
 };

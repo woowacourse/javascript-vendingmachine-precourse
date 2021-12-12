@@ -18,17 +18,17 @@ import {
   createAddFormContainer,
   createCurrentProductTableContainer,
 } from './components/addContent/index.js';
-
-import { getProducts } from './library/storage/products.js';
 import {
-  createMachineCargeFormContainer,
-  createMachineChargedCoinsTableContainer,
+  createMachineChargeFormContainer,
+  createVendingMachineCoinTableContainer,
 } from './components/chargeContent/index.js';
-import { getChargedCoins } from './library/storage/chargedCoins.js';
+
 import {
   getCurrentMenu,
   setCurrentMenu,
 } from './library/storage/currentMenu.js';
+import { getProducts } from './library/storage/products.js';
+import { getChargedCoins } from './library/storage/chargedCoins.js';
 
 export default class VendingMachine {
   constructor(products, chargedCoins) {
@@ -72,8 +72,8 @@ export default class VendingMachine {
   }
 
   appendChargeContent(content, chargedCoins) {
-    content.appendChild(createMachineCargeFormContainer(chargedCoins));
-    content.appendChild(createMachineChargedCoinsTableContainer(chargedCoins));
+    content.appendChild(createMachineChargeFormContainer(chargedCoins));
+    content.appendChild(createVendingMachineCoinTableContainer(chargedCoins));
   }
 
   [ACTION_CLICK_MENU](e, menuKey) {
