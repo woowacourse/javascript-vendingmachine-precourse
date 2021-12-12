@@ -33,9 +33,9 @@ export default class Controller {
     this.view.bindChargeCoin(this.chargeCoinHandler);
     this.view.bindMoneyAdd(this.moneyAddHandler);
     this.view.bindPurchaseProduct(this.purchaseProductHandler);
-
+    this.view.bindReturnCoin(this.returnCoinHandler);
     this.view.displayProductAdd(this.model.product);
-    this.view.displayChargeCoin(this.model.coin, this.getCoinSum());
+    this.view.displayChargeCoin(this.model.coin);
     this.view.displayProductPurchase(
       this.model.product,
       this.model.coin,
@@ -49,7 +49,7 @@ export default class Controller {
   };
 
   onCoinChange = (coin) => {
-    this.view.displayChargeCoinChange(coin);
+    this.view.displayChargeCoinChange(coin, this.getCoinSum());
   };
 
   onMoneyChange = (money) => {
@@ -88,7 +88,6 @@ export default class Controller {
       alert("🚨 10으로 나누어 떨어지는 10이상의 정수를 입력해 주세요");
     } else {
       this.makeMoneyCoin(+chargeMoney);
-      return this.getCoinSum();
     }
   };
 
@@ -139,5 +138,23 @@ export default class Controller {
         }
       }
     });
+  };
+
+  returnCoinHandler = () => {
+    let sum = 0;
+    const returnCoin = [0, 0, 0, 0];
+    this.model.coin.forEach((coinCount, index) => {
+      while (
+        sum + getValue(index) <= this.model.money &&
+        coinCount > returnCoin[index]
+      ) {
+        sum += getValue(index);
+        returnCoin[index] += 1;
+      }
+    });
+
+    this.model.submitMoney(sum);
+    this.model.submitCoin(returnCoin);
+    this.view.displayReturnCoin(returnCoin);
   };
 }

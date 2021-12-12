@@ -62,6 +62,13 @@ export default class Model {
     this.commitCoin(this.coin);
   }
 
+  submitCoin(coins) {
+    this.coin.forEach((coin, index) => {
+      this.coin[index] -= coins[index];
+    });
+    this.commitCoin(this.coin);
+  }
+
   addMoney(money) {
     this.money += money;
     this.commitMoney(this.money);

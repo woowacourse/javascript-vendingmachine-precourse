@@ -136,9 +136,14 @@ export default class View {
   }
 
   // 잔돈 충전
-  displayChargeCoin(coin, sum) {
+  displayChargeCoin(coin) {
     this.vendingMachineManageMenu.addEventListener("click", (event) => {
       event.preventDefault();
+      let sum = 0;
+      const coins = [500, 100, 50, 10];
+      coin.forEach((c, i) => {
+        sum += c * coins[i];
+      });
       if (!this.chargeCoinForm) {
         this.chargeCoinForm = createDiv();
         const title = createH3(TITLE.CHARGE_COIN);
@@ -184,7 +189,7 @@ export default class View {
           (previousValue, currentValue) => previousValue + currentValue
         ) > 0
       )
-        this.displayChargeCoinChange(coin);
+        this.displayChargeCoinChange(coin, sum);
     });
   }
 
@@ -192,19 +197,19 @@ export default class View {
     this.form.addEventListener("click", (event) => {
       event.preventDefault();
       if (event.target.id === CHARGE_COIN.BUTTON) {
-        const presentMoney = handler(this.vendingMachineChargeInput.value);
+        handler(this.vendingMachineChargeInput.value);
         this.vendingMachineChargeInput.value = "";
-        if (presentMoney) {
-          this.vendingMachinechargeAmount.innerHTML = presentMoney;
-        }
       }
     });
   }
 
-  displayChargeCoinChange(coins) {
-    coins.forEach((value, index) => {
-      getElement(COIN_QUANTITY[index]).innerHTML = `${value}개`;
-    });
+  displayChargeCoinChange(coins, sum) {
+    if (getElement(COIN_QUANTITY[0])) {
+      coins.forEach((value, index) => {
+        getElement(COIN_QUANTITY[index]).innerHTML = `${value}개`;
+      });
+      this.vendingMachinechargeAmount.innerHTML = sum;
+    }
   }
 
   createCoinTable(className) {
@@ -226,7 +231,11 @@ export default class View {
         this.productPurchaseForm = createDiv();
         const title = createH3("금액 투입");
         this.chargeInput = createInput("charge-input", "투입할 금액", "number");
-        this.chargeButton = createButton("charge-button", "투입하기");
+        this.chargeButton = createButton(
+          "charge-button",
+          "투입하기",
+          "charge-button"
+        );
         this.chargeInputSum = createDiv("charge-input-sum", "투입한 금액: ");
         this.chargeAmount = createSpan(
           "charge-amount",
@@ -263,23 +272,32 @@ export default class View {
   }
 
   displayAvailableProduct(product) {
-    while (this.avaiableProductTable.children.length > 1) {
-      this.avaiableProductTable.removeChild(
-        this.avaiableProductTable.lastChild
-      );
+    if (this.avaiableProductTable) {
+      while (this.avaiableProductTable.children.length > 1) {
+        this.avaiableProductTable.removeChild(
+          this.avaiableProductTable.lastChild
+        );
+      }
+      product.forEach((value) => {
+        const tr = createTr("product-purchase-item");
+        const tdName = createTd("product-purchase-name", value.name);
+        const tdPrice = createTd("product-purchase-price", value.price);
+        const tdQuantity = createTd(
+          "product-purchase-quantity",
+          value.quantity
+        );
+        const tdButton = createButton(
+          "purchase-button",
+          "구매하기",
+          "purchase-button"
+        );
+        tdName.setAttribute("data-product-name", value.name);
+        tdPrice.setAttribute("data-product-price", value.price);
+        tdQuantity.setAttribute("data-product-quantity", value.quantity);
+        tr.append(tdName, tdPrice, tdQuantity, tdButton);
+        this.avaiableProductTable.append(tr);
+      });
     }
-    product.forEach((value) => {
-      const tr = createTr("product-purchase-item");
-      const tdName = createTd("product-purchase-name", value.name);
-      const tdPrice = createTd("product-purchase-price", value.price);
-      const tdQuantity = createTd("product-purchase-quantity", value.quantity);
-      const tdButton = createButton("purchase-button", "구매하기");
-      tr.setAttribute("data-product-name", value.name);
-      tr.setAttribute("data-product-price", value.price);
-      tr.setAttribute("data-product-quantity", value.quantity);
-      tr.append(tdName, tdPrice, tdQuantity, tdButton);
-      this.avaiableProductTable.append(tr);
-    });
   }
 
   bindMoneyAdd(handler) {
@@ -300,12 +318,27 @@ export default class View {
     this.form.addEventListener("click", (event) => {
       event.preventDefault();
       if (event.target.id === "purchase-button") {
-        handler(event.target.parentNode.dataset);
+        handler(event.target.parentElement.firstChild.dataset);
       }
     });
   }
 
   displayMoneyChange(money) {
     this.chargeAmount.innerHTML = money;
+  }
+
+  bindReturnCoin(handler) {
+    this.form.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (event.target.id === "coin-return-button") {
+        handler();
+      }
+    });
+  }
+
+  displayReturnCoin(coins) {
+    coins.forEach((value, index) => {
+      getElement(LEFT_COIN[index]).innerHTML = `${value}개`;
+    });
   }
 }
