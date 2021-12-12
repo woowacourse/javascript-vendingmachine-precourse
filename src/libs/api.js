@@ -29,7 +29,16 @@ export default class Api {
   }
 
   setVendingMachine(payload) {
-    console.log("----------setVendingMachine");
+    console.log("------**----setVendingMachine", payload);
     localStorage.setItem(KEY, JSON.stringify(payload));
+  }
+
+  setCurrentTabId(payload) {
+    console.log("------**----setCurrentTabId", payload);
+    const newData = {
+      ...this.getVendingMachine(),
+      ...payload,
+    };
+    localStorage.setItem(KEY, JSON.stringify(newData));
   }
 }
