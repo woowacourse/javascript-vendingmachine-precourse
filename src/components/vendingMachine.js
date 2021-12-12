@@ -1,15 +1,11 @@
 import { COINS } from "../utils/constants.js";
 import Product from "./product.js";
+import { Coins } from "./coins.js";
 
 class VendingMachine {
   constructor() {
     this.products = [];
-    this.coins = {
-      500: 0,
-      100: 0,
-      50: 0,
-      10: 0,
-    };
+    this.coins = Coins();
     this.insertedMoney = 0;
     this.loadFromLocalStorage();
   }
