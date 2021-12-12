@@ -1,4 +1,4 @@
-import { $, ID } from '../utils/dom.js';
+import { $, ID, CLASS } from '../utils/dom.js';
 import { productAddMenuTemplate } from '../utils/templates.js';
 import { RULES, ERROR_MSG } from '../utils/constants.js';
 
@@ -85,12 +85,18 @@ export default class ProductAdd {
   paintProduct = (product) => {
     const $table = $(`table`);
     const $newTableRow = document.createElement('tr');
+    $newTableRow.classList.add(CLASS.PRODUCT_MANAGE_ITEM);
+
     const $newTableData__name = document.createElement('td');
     const $newTableData__price = document.createElement('td');
     const $newTableData__quantity = document.createElement('td');
     $newTableData__name.innerHTML = product.name;
     $newTableData__price.innerHTML = product.price;
     $newTableData__quantity.innerHTML = product.quantity;
+    $newTableData__name.classList.add(CLASS.PRODUCT_MANAGE_NAME);
+    $newTableData__price.classList.add(CLASS.PRODUCT_MANAGE_PRICE);
+    $newTableData__quantity.classList.add(CLASS.PRODUCT_MANAGE_QUANTITY);
+
     $newTableRow.appendChild($newTableData__name);
     $newTableRow.appendChild($newTableData__price);
     $newTableRow.appendChild($newTableData__quantity);
