@@ -4,9 +4,9 @@
 
 [x] 처음 브라우저를 시작할 때에 제목과 tab만 브라우저에 표기한다
 
-[ ] 유저가 탭을 누르면 해당 내용들이 렌더링이 된다
+[x] 유저가 탭을 누르면 해당 내용들이 렌더링이 된다
 
-[ ] 다른 탭으로 이동했다가 돌아와도 기존의 탭 상태가 유지되어 있어야 한다
+[x] 다른 탭으로 이동했다가 돌아와도 기존의 탭 상태가 유지되어 있어야 한다
 
 [ ] localStorage를 이용하여 새로고침하더라도 가장 최근에 작업한 정보를 불러올 수 있도록 한다
 
@@ -120,13 +120,13 @@
 
 [x] 상품 구매 탭으로 이동하는 버튼은 product-purchase-menu id를 가진다
 
-[ ] product-add-menu 버튼을 클릭하면 상품 관리 탭이 tab-content-container div 내에 랜더링 된다
+[x] product-add-menu 버튼을 클릭하면 상품 관리 탭이 tab-content-container div 내에 랜더링 된다
 
-[ ] 투입 금액 입력 요소는 charge-input id를 가진다
+[x] 투입 금액 입력 요소는 charge-input id를 가진다
 
-[ ] 투입 금액 입력 요소의 placeholder는 "투입할 금액" 이다
+[x] 투입 금액 입력 요소의 placeholder는 "투입할 금액" 이다
 
-[ ] 투입하기 버튼 요소는 charge-button id를 가진다
+[x] 투입하기 버튼 요소는 charge-button id를 가진다
 
 [ ] 투입하기 버튼을 클릭시 유저가 입력한 금액 값의 유효성 검사를 한다
 
@@ -140,35 +140,35 @@
 
     [ ] 10으로 나누어 떨어지는 금액이 아닌 경우 alert로 처리한다
 
-[ ] 투입한 금액을 확인하는 요소는 charge-amout id를 가진다
+[x] 투입한 금액을 확인하는 요소는 charge-amount id를 가진다
 
 [ ] 투입한 금액이 유효한 경우 투입한 금액에 {금액}원 형식으로 나타낸다
 
 > ### 구매할 수 있는 상품 현황 관련
 
-    [ ] localStorage에 저장된 값을 화면에 표기한다
+    [x] localStorage에 저장된 값을 화면에 표기한다
 
-    [ ] 각 상품 요소의 class 명은 product-purchase-item이다
+    [x] 각 상품 요소의 class 명은 product-purchase-item이다
 
-    [ ] 구매버튼에 해당하는 요소는 purchase-button class 값을 가진다
+    [x] 구매버튼에 해당하는 요소는 purchase-button class 값을 가진다
 
-    [ ] 상품명에 해당하는 요소는 product-purchase-price class 값을 가진다
+    [x] 상품명에 해당하는 요소는 product-purchase-name class 값을 가진다
 
-    [ ] 가격에 해당하는 요소는 product-purchase-price class 값을 가진다
+    [x] 가격에 해당하는 요소는 product-purchase-price class 값을 가진다
 
-    [ ] 수량에 해당하는 요소는 product-purchase-quantity class 값을 가진다
+    [x] 수량에 해당하는 요소는 product-purchase-quantity class 값을 가진다
 
-    [ ] 상품명은 dataset 속성을 사용하여 data-product-name 형식으로 저장한다
+    [x] 상품명은 dataset 속성을 사용하여 data-product-name 형식으로 저장한다
 
-    [ ] 가격은 dataset 속성을 사용하여 data-product-price 형식으로 저장한다
+    [x] 가격은 dataset 속성을 사용하여 data-product-price 형식으로 저장한다
 
-    [ ] 수량은 dataset 속성을 사용하여 data-product-quantity 형식으로 저장한다
+    [x] 수량은 dataset 속성을 사용하여 data-product-quantity 형식으로 저장한다
 
 > ### 구매하기 로직 관련
 
-    [ ] purchase-button 클릭시 수량을 늘린다
+    [ ] purchase-button 클릭시  구매 수량을 늘린다
 
-[ ] 반환하기 버튼 요소는 coin-return-button id를 가진다
+[x] 반환하기 버튼 요소는 coin-return-button id를 가진다
 
 [ ] 반환하기 버튼을 눌렀을 때 잔돈을 계산한다
 
@@ -188,13 +188,13 @@
 
 > ### 반환될 각 동전의 개수에 해당하는 요소 id들
 
-    [ ] 500원 동전의 개수에 해당하는 요소의 id는 coin-500-quantity이다
+    [x] 500원 동전의 개수에 해당하는 요소의 id는 coin-500-quantity이다
 
-    [ ] 100원 동전의 개수에 해당하는 요소의 id는 coin-100-quantity 이다
+    [x] 100원 동전의 개수에 해당하는 요소의 id는 coin-100-quantity 이다
 
-    [ ] 50원 동전의 개수에 해당하는 요소의 id는 coin-50-quantity 이다
+    [x] 50원 동전의 개수에 해당하는 요소의 id는 coin-50-quantity 이다
 
-    [ ] 10원 동전의 개수에 해당하는 요소의 id는 coin-10-quantity 이다
+    [x] 10원 동전의 개수에 해당하는 요소의 id는 coin-10-quantity 이다
 
 <hr>
 
