@@ -34,7 +34,7 @@ export default class Coins {
     return compar;
   }
 
-  return(amount) {
+  returnBalance(amount) {
     const returnCoins = cloneObject(CONSTANTS.COIN_LIST);
 
     let balance = amount;

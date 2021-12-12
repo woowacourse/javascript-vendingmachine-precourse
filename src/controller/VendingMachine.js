@@ -68,7 +68,7 @@ export const handleReturnAmount = () => {
   }
 
   const coinManager = new Coins($coinState.value);
-  const { output, failed } = coinManager.return($chargeState.value);
+  const { output, failed } = coinManager.returnBalance($chargeState.value);
 
   $chargeState.value = failed;
   $coinState.value = coinManager.result;
