@@ -1,25 +1,27 @@
-class Product {
-  constructor(name, price, quantity) {
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
-  }
-}
-
 export const saveProductToStorage = function (
   productNameValue,
   productPriceValue,
   productQuantityValue
 ) {
-  let productList = [];
+  let newProduct = {}; // 추가할 값
 
-  productList.push(
-    new Product(productNameValue, productPriceValue, productQuantityValue)
-  );
-  localStorage.setItem('productList', JSON.stringify(productList));
-  //   const product = JSON.parse(localStorage.getItem('productDetail'));
+  newProduct.name = productNameValue;
+  newProduct.price = productPriceValue;
+  newProduct.quantity = productQuantityValue;
 
-  for (let i = 0; i < localStorage.length; i++) {
-    console.log(localStorage.getItem('productList'));
+  // localStorage 저장된 값을 분해해서
+  let prevProductList = JSON.parse(localStorage.getItem('productList'));
+  if (prevProductList === null) {
+    prevProductList = [];
   }
+
+  let finalProductList = prevProductList.concat(newProduct);
+
+  localStorage.setItem('productList', JSON.stringify(finalProductList));
+
+  // const productListArray = JSON.parse(localStorage.getItem('productList'));
+
+  // for (let i = 0; i < productListArray.length; i++) {
+  //   console.log(productListArray[i].name);
+  // }
 };
