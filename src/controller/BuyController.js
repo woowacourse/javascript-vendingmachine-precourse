@@ -1,3 +1,4 @@
+import { EXCEPTION_ALERT } from '../utils/constant.js';
 import { isMoneyValid } from '../utils/validator.js';
 
 export class BuyController {
@@ -40,6 +41,7 @@ export class BuyController {
     console.log(`productName`, productName);
     console.log(`price`, price);
     if (totalInsertedMoney < price) {
+      alert(EXCEPTION_ALERT.notEnoughMoneyError);
       return;
     }
     this.model.buyProduct(productName, price);
