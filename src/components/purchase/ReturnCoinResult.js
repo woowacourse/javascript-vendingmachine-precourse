@@ -25,13 +25,13 @@ export default class ReturnCoinResult extends Component {
     this.addEvent(
       'click',
       SELECTOR.COIN_RETURN_BUTTON,
-      this.handleCoinReturn.bind(this)
+      this.bindCoinReturnClick.bind(this)
     );
   }
 
-  handleCoinReturn() {
-    const { returnAmount } = this._props;
-    const updateCoin = returnAmount();
+  bindCoinReturnClick() {
+    const { handleReturnAmount } = this._props;
+    const updateCoin = handleReturnAmount();
 
     this.setState({ returnCoin: updateCoin });
   }

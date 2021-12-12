@@ -19,14 +19,14 @@ export default class PurchaseList extends Component {
     this.addEvent(
       'click',
       SELECTOR.PURCHASE_BUTTON,
-      this.handlePurchase.bind(this)
+      this.bindPurchaseClick.bind(this)
     );
   }
 
-  handlePurchase(event) {
-    const { purchase } = this._props;
-    const primaryKey = event.target.closest('tr').dataset.primary;
+  bindPurchaseClick({ target }) {
+    const { handlePurchase } = this._props;
+    const primaryKey = target.closest('tr').dataset.primary;
 
-    purchase(primaryKey);
+    handlePurchase(primaryKey);
   }
 }

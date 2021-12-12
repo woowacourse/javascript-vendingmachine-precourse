@@ -23,19 +23,19 @@ export default class ChargeInputForm extends Component {
     this.addEvent(
       'keyup',
       SELECTOR.CHARGE_AMOUNT_INPUT,
-      this.handleCharge.bind(this)
+      this.bindChargeSubmit.bind(this)
     );
     this.addEvent(
       'click',
       SELECTOR.CHARGE_AMOUNT_BUTTON,
-      this.handleCharge.bind(this)
+      this.bindChargeSubmit.bind(this)
     );
   }
 
-  handleCharge(event) {
+  bindChargeSubmit(event) {
     if (event.type === 'keyup' && event.key !== 'Enter') return false;
 
-    const { putAmount } = this._props;
-    putAmount($(SELECTOR.CHARGE_AMOUNT_INPUT).value);
+    const { handlePutAmount } = this._props;
+    handlePutAmount($(SELECTOR.CHARGE_AMOUNT_INPUT).value);
   }
 }
