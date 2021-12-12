@@ -6,6 +6,6 @@ export const printMoneyToScreen = () => {
   const $vendingMachinePTag = $('#vending-machine-charge-amount');
 
   if (coinInputValidator(coinChargeInputValue())) {
-    $vendingMachinePTag.innerHTML = `보유금액: ${coinChargeInputValue()}원`;
+    $vendingMachinePTag.innerHTML = `${coinChargeInputValue()}원`;
   }
 };

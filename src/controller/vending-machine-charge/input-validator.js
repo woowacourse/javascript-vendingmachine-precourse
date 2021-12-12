@@ -1,9 +1,9 @@
-import { $ } from '../dom/dom.js';
-import { VALIDATION } from '../constants/constants.js';
+import { VALIDATION } from '../../constants/constants.js';
+import { $ } from '../../dom/dom.js';
 
 export const coinChargeInputValue = () => {
   const $coinChargeInputValue = $('#vending-machine-charge-input').value;
-  console.log($coinChargeInputValue);
+
   return parseInt($coinChargeInputValue, 10);
 };
 

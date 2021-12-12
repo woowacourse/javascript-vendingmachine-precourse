@@ -18,10 +18,4 @@ export const saveProductToStorage = function (
   let finalProductList = prevProductList.concat(newProduct);
 
   localStorage.setItem('productList', JSON.stringify(finalProductList));
-
-  // const productListArray = JSON.parse(localStorage.getItem('productList'));
-
-  // for (let i = 0; i < productListArray.length; i++) {
-  //   console.log(productListArray[i].name);
-  // }
 };
