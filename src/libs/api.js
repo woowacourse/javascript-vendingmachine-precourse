@@ -41,4 +41,13 @@ export default class Api {
     };
     localStorage.setItem(KEY, JSON.stringify(newData));
   }
+
+  setProducts(payload) {
+    console.log("------**----setProducts", payload);
+    const newData = {
+      ...this.getVendingMachine(),
+      ...payload,
+    };
+    localStorage.setItem(KEY, JSON.stringify(newData));
+  }
 }

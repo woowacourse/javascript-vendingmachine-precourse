@@ -2,12 +2,18 @@ import Component from "../root/Component.js";
 import InputForm from "./InputForm.js";
 import ProductStatus from "./ProductStatus.js";
 
+import API from "../../libs/api.js";
+
 export default class ProductAdd extends Component {
   setup() {
-    this.$state = {
-      products: [],
-    };
+    this.$state;
+    this.callAPI = new API();
+    this.initCallAPI();
     console.log("ProductAdd", this);
+  }
+
+  initCallAPI() {
+    this.$state = this.callAPI.getVendingMachine();
   }
 
   template() {
@@ -35,6 +41,10 @@ export default class ProductAdd extends Component {
   }
 
   addProduct(newProduct) {
+    console.log("???????addProduct");
+    this.callAPI.setProducts({
+      products: [...this.$state.products, newProduct],
+    });
     this.setState({ products: [...this.$state.products, newProduct] });
   }
 }
