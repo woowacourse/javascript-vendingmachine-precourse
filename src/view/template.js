@@ -72,7 +72,7 @@ export const renderCoinTable = (container, tableBodyId, coinToUse) => {
   container.appendChild(tableHead);
   const tableBodyArea = document.getElementById(tableBodyId);
   coinToUse.forEach(coinData => {
-    const coin = [{ text: coinData.TEXT }, { id: coinData.ID }];
+    const coin = [{ text: coinData.TEXT }, { id: coinData.QUANTITY_ID }];
     makeTableRow(tableBodyArea, coin);
   });
 };
