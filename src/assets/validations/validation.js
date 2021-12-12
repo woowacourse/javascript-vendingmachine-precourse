@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, STANDARD_PRICE } from "./constants.js";
+import { ERROR_MESSAGE, STANDARD_PRICE } from "../constants/public.js";
 
 const isEmptyInput = input => {
   if (input === "") {

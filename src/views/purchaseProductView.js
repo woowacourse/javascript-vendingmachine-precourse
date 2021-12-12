@@ -3,9 +3,8 @@ import {
   IS_RENDERED_INSERTED_MONEY,
   IS_RENDERED_RETURN_CHANGES,
   PRODUCT_TABLE,
-  PURCHASE_TAP,
   VIEW_CONTAINER,
-} from "../utils/constants.js";
+} from "../assets/constants/public.js";
 import {
   getMoneyText,
   getQuantityText,
@@ -16,7 +15,8 @@ import {
   makeTableHeaders,
   makeTdWithClass,
   makeTitle,
-} from "../utils/utils.js";
+} from "../assets/utils/utils.js";
+import { PURCHASE_TAP } from "../assets/constants/purchaseTap.js";
 import {
   getQuantityTag,
   onClickInsertButton,
@@ -27,18 +27,18 @@ import {
 // ----금액 투입하기 폼----
 const makeInsertMoneyContainer = () => {
   const div = document.createElement("div");
-  div.appendChild(makeTitle(PURCHASE_TAP.insertMoneyTitle));
+  div.appendChild(makeTitle(PURCHASE_TAP.INSERT_MONEY_TITLE));
   div.appendChild(
     makeInputForm(
-      PURCHASE_TAP.insertMoneyInput,
-      PURCHASE_TAP.insertMoneyButton,
+      PURCHASE_TAP.INSERT_MONEY_INPUT,
+      PURCHASE_TAP.INSERT_MONEY_BUTTON,
       onClickInsertButton
     )
   );
   div.appendChild(
     makeResultContainer(
-      PURCHASE_TAP.insertMoneyAmountTitle,
-      PURCHASE_TAP.insertMoneyAmountId
+      PURCHASE_TAP.INSERT_MONEY_AMOUNT_TITLE,
+      PURCHASE_TAP.INSERT_MONEY_AMOUNT_ID
     )
   );
 
@@ -47,7 +47,7 @@ const makeInsertMoneyContainer = () => {
 
 export const renderMoney = money => {
   const $charge_amount = document.getElementById(
-    PURCHASE_TAP.insertMoneyAmountId
+    PURCHASE_TAP.INSERT_MONEY_AMOUNT_ID
   );
   $charge_amount.innerText = getMoneyText(money);
 };
@@ -57,7 +57,7 @@ const makeproductStateTableButton = () => {
   const td = document.createElement("td");
   td.style.border = PRODUCT_TABLE.border;
   td.appendChild(
-    makeButton(PURCHASE_TAP.productStateButton, onClickPurchaseButton)
+    makeButton(PURCHASE_TAP.PRODUCT_STATE_BUTTON, onClickPurchaseButton)
   );
 
   return td;
@@ -67,7 +67,7 @@ const makeproductStateTableRaw = product => {
   const information = product.getInformation();
   const tr = document.createElement("tr");
   information.forEach((tag, index) =>
-    tr.appendChild(makeTdWithClass(tag, PURCHASE_TAP.productStateIds[index]))
+    tr.appendChild(makeTdWithClass(tag, PURCHASE_TAP.PRODUCT_STATE_IDS[index]))
   );
   tr.appendChild(makeproductStateTableButton());
 
@@ -79,7 +79,7 @@ const makeproductStateTable = purchaseProduct => {
   table.style.borderCollapse = PRODUCT_TABLE.collapse;
   table.style.textAlign = PRODUCT_TABLE.textAlign;
   table.appendChild(
-    makeTableHeaders(PURCHASE_TAP.productStateTableHeaders, PRODUCT_TABLE)
+    makeTableHeaders(PURCHASE_TAP.PRODUCT_STATE_TABLE_HEADERS, PRODUCT_TABLE)
   );
   purchaseProduct.products.forEach(product =>
     table.appendChild(makeproductStateTableRaw(product))
@@ -90,7 +90,7 @@ const makeproductStateTable = purchaseProduct => {
 
 const makeproductStateContainer = purchaseProduct => {
   const div = document.createElement("div");
-  div.appendChild(makeTitle(PURCHASE_TAP.productStateTitle));
+  div.appendChild(makeTitle(PURCHASE_TAP.PRODUCT_STATE_TITLE));
   div.appendChild(makeproductStateTable(purchaseProduct));
 
   return div;
@@ -109,14 +109,14 @@ export const renderPurchase = form => {
 // ----잔돈 현황----
 const makeChangeStateContainer = () => {
   const div = document.createElement("div");
-  div.appendChild(makeTitle(PURCHASE_TAP.changeStateTitle));
+  div.appendChild(makeTitle(PURCHASE_TAP.CHANGE_STATE_TITLE));
   div.appendChild(
-    makeButton(PURCHASE_TAP.changeStateButton, onClickReturnButton)
+    makeButton(PURCHASE_TAP.CHANGE_STATE_BUTTON, onClickReturnButton)
   );
   div.appendChild(
     makeCoinTable(
-      PURCHASE_TAP.changeStateTableHeaders,
-      PURCHASE_TAP.changeStateTableRaws
+      PURCHASE_TAP.CHANGE_STATE_TABLE_HEADERS,
+      PURCHASE_TAP.CHANGE_STATE_TABLE_RAWS
     )
   );
 
@@ -133,7 +133,7 @@ const stringToIntegerArray = string => {
 };
 
 export const renderChanges = changes => {
-  PURCHASE_TAP.changeStateTableRaws.forEach((raw, index) => {
+  PURCHASE_TAP.CHANGE_STATE_TABLE_RAWS.forEach((raw, index) => {
     document.getElementById(`${raw[ID]}`).innerText = getQuantityText(
       changes[index]
     );

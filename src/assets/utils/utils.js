@@ -1,11 +1,11 @@
-import { makeHeader, makeView } from "../views/publicView.js";
+import { makeHeader, makeView } from "../../views/publicView.js";
 import {
   COIN_TABLE,
   INPUT_WITDH,
   MARGIN_SIZE,
   PRODUCT_TABLE,
   VIEW_CONTAINER,
-} from "./constants.js";
+} from "../constants/public.js";
 
 export const initializeHeader = () => {
   const $app = document.getElementById("app");

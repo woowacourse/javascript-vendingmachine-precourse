@@ -3,11 +3,11 @@ import {
   MARGIN_SIZE,
   MENU_TAP,
   VIEW_CONTAINER,
-} from "../utils/constants.js";
+} from "../assets/constants/public.js";
 import { onClickManageProductTab } from "../controllers/manageProductController.js";
 import { onClickChargeChangeTab } from "../controllers/chargeChangeController.js";
 import { onClickPurchaseProductTab } from "../controllers/purchaseProductController.js";
-import { onClickMenuButton } from "../utils/utils.js";
+import { onClickMenuButton } from "../assets/utils/utils.js";
 
 const renderArray = [
   onClickManageProductTab,

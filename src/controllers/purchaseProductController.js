@@ -4,14 +4,14 @@ import {
   IS_RENDERED_INSERTED_MONEY,
   IS_RENDERED_RETURN_CHANGES,
   NAME,
-  PURCHASE_TAP,
   QUANTITY,
-} from "../utils/constants.js";
-import { saveAllToLocalStorage } from "../utils/utils.js";
+} from "../assets/constants/public.js";
+import { PURCHASE_TAP } from "../assets/constants/purchaseTap.js";
+import { saveAllToLocalStorage } from "../assets/utils/utils.js";
 import {
   checkCanPurchase,
   checkInsertMoneyInput,
-} from "../utils/validation.js";
+} from "../assets/validations/validation.js";
 import {
   renderChanges,
   renderMoney,
@@ -21,21 +21,21 @@ import {
 
 const resetInput = () => {
   const $charge_input = document.getElementById(
-    PURCHASE_TAP.insertMoneyInput[ID]
+    PURCHASE_TAP.INSERT_MONEY_INPUT[ID]
   );
   $charge_input.value = "";
 };
 
 const getNameTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.productStateIds[NAME]}`);
+  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_IDS[NAME]}`);
 };
 
 const getPriceTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.productStateIds[ID]}`);
+  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_IDS[ID]}`);
 };
 
 export const getQuantityTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.productStateIds[QUANTITY]}`);
+  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_IDS[QUANTITY]}`);
 };
 
 const setIsRenderInsertedMoney = () => {
@@ -56,7 +56,7 @@ export const onClickInsertButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
   const money = form.querySelector(
-    `#${PURCHASE_TAP.insertMoneyInput[ID]}`
+    `#${PURCHASE_TAP.INSERT_MONEY_INPUT[ID]}`
   ).value;
 
   if (checkInsertMoneyInput(money)) {

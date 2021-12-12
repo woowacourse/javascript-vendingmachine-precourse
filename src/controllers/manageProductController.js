@@ -1,14 +1,15 @@
 import { manageProduct } from "../components/manageProduct.js";
-import { ID, MANAGE_TAP } from "../utils/constants.js";
-import { saveProductsToLocalStorage } from "../utils/utils.js";
-import { checkAddProductsInputs } from "../utils/validation.js";
+import { ID } from "../assets/constants/public.js";
+import { MANAGE_TAP } from "../assets/constants/manageTap.js";
+import { saveProductsToLocalStorage } from "../assets/utils/utils.js";
+import { checkAddProductsInputs } from "../assets/validations/validation.js";
 import {
   renderManageProductMenuView,
   renderProduct,
 } from "../views/manageProductView.js";
 
 const resetInputs = form => {
-  MANAGE_TAP.addProductInputs.forEach(
+  MANAGE_TAP.ADD_PRODUCT_INPUTS.forEach(
     input => (form.querySelector(`#${input[ID]}`).value = "")
   );
 };
@@ -21,7 +22,7 @@ export const onClickManageProductTab = e => {
 export const onClickAddButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
-  const [name, price, quantity] = MANAGE_TAP.addProductInputs.map(
+  const [name, price, quantity] = MANAGE_TAP.ADD_PRODUCT_INPUTS.map(
     input => form.querySelector(`#${input[ID]}`).value
   );
 

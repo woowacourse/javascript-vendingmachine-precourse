@@ -1,4 +1,4 @@
-import { COINS } from "../utils/constants.js";
+import { COINS } from "../assets/constants/public.js";
 import VendingMachine from "./vendingMachine.js";
 
 class ChargeChange extends VendingMachine {

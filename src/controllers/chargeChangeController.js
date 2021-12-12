@@ -1,7 +1,8 @@
 import { chargeChange } from "../components/chargeChange.js";
-import { ID, IS_RENDERED_CHARGE_TAP, CHARGE_TAP } from "../utils/constants.js";
-import { saveCoinsToLocalStorage } from "../utils/utils.js";
-import { checkChargeChangeInput } from "../utils/validation.js";
+import { ID, IS_RENDERED_CHARGE_TAP } from "../assets/constants/public.js";
+import { CHARGE_TAP } from "../assets/constants/chargeTap.js";
+import { saveCoinsToLocalStorage } from "../assets/utils/utils.js";
+import { checkChargeChangeInput } from "../assets/validations/validation.js";
 import {
   renderChangeAmount,
   renderChargeChangeMenuView,
@@ -9,7 +10,7 @@ import {
 } from "../views/chargeChangeView.js";
 
 const resetInput = form => {
-  const input = form.querySelector(`#${CHARGE_TAP.chargeInput[ID]}`);
+  const input = form.querySelector(`#${CHARGE_TAP.CHARGE_INPUT[ID]}`);
   input.value = "";
 };
 
@@ -27,7 +28,7 @@ export const onClickChargeButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
   const chargeInput = form.querySelector(
-    `#${CHARGE_TAP.chargeInput[ID]}`
+    `#${CHARGE_TAP.CHARGE_INPUT[ID]}`
   ).value;
 
   if (checkChargeChangeInput(chargeInput)) {

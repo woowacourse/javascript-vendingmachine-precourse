@@ -1,3 +1,3 @@
-import { initializeHeader } from "./utils/utils.js";
+import { initializeHeader } from "./assets/utils/utils.js";
 
 initializeHeader();
