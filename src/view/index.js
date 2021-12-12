@@ -6,6 +6,7 @@ import {
   productPurchaseMenu,
 } from '../model/dom.js';
 import { initAllProductAdd } from '../controller/productAdd.js';
+import { initAllVending } from '../controller/vending.js';
 
 export default class View {
   constructor() {
@@ -27,6 +28,7 @@ export default class View {
   drawVendingMenu() {
     this.clearContainer();
     $('container').insertAdjacentHTML('afterbegin', vendingMachineManageMenu);
+    initAllVending();
   }
 
   drawPurchaseMenu() {
