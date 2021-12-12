@@ -2,6 +2,7 @@ import { $ } from '../../utils/querySelector.js';
 import { COIN_UNITS, ERROR_MESSAGE, STANDARD } from '../../utils/constants.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { showConvertedCoins, coinChargeTemplate } from './coinChargeTemplate.js';
+import { setChargeStorage } from '../storage/coin.js';
 
 let currentAmount = STANDARD.CURRENT_MONEY;
 
@@ -40,8 +41,9 @@ const handleCoinChargeSubmit = (event) => {
   }
 
   showCurrentAmount(chargedCoin);
-  convertAmountIntoCoins(currentAmount);
+  convertAmountIntoCoins(chargedCoin);
   showConvertedCoins(convertedCoins);
+  setChargeStorage(convertedCoins);
 };
 
 export const showCoinCharge = () => {
