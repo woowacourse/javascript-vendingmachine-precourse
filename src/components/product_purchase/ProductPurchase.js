@@ -1,21 +1,24 @@
 import Component from "../root/Component.js";
+import InputForm from "./InputForm.js";
+
+import API from "../../libs/api.js";
 import setTableStyled from "../../style/setTableStyled.js";
 
 export default class ProductPurchase extends Component {
   setup() {
+    this.$state;
+    this.callAPI = new API();
+    this.initCallAPI();
     console.log("ProductPurchase", this);
+  }
+
+  initCallAPI() {
+    this.$state = this.callAPI.getVendingMachine();
   }
 
   template() {
     return `
-      <div>
-        <h3>금액 투입</h3>
-        <form>
-          <input id="charge-input" type="number" placeholder="투입할 금액"/>
-          <button id="charge-button">투입하기</button>
-        </form>
-        <p>투입한 금액: <span id="charge-amount">000</span></p>
-      </div>
+      <div id="charge-input-form"></div>
       <div>
         <h3>구매할 수 있는 상품 현황</h3>
         <table>
@@ -82,6 +85,10 @@ export default class ProductPurchase extends Component {
   }
 
   mounted() {
+    const $chargeInputForm = document.querySelector("#charge-input-form");
+
+    new InputForm($chargeInputForm);
+
     setTableStyled(this.$target);
   }
 }
