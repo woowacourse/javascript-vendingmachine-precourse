@@ -64,7 +64,8 @@ export default class VendingMachineManage {
     const chargeInput = parseInt($(`#${ID.VENDING_MACHINE_CHARGE_INPUT}`).value);
 
     this.saveCharge(chargeInput);
-
+    this.paintHoldingAmount();
+    this.paintLoadedCharges();
     this.clearInputs();
   };
 
