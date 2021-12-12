@@ -2,7 +2,7 @@ import {
   KEY_PRODUCT_NAME,
   KEY_PRODUCT_PRICE,
   KEY_PRODUCT_QUANTITY,
-  DICT_KEY_PRODUCT,
+  DICT_KEY_PRODUCT_KOR,
 } from '../../const.js';
 
 // ================= [ input 태그 관리하는 KEY 상수 ] =========================
@@ -33,7 +33,7 @@ export const DICT_TYPE_INPUT = {
 };
 
 // =================== [ input 태그 placeholder 상수 ] ===============================
-export const DICT_PLACEHOLDER_INPUT = { ...DICT_KEY_PRODUCT };
+export const DICT_PLACEHOLDER_INPUT = { ...DICT_KEY_PRODUCT_KOR };
 
 // =================== 기타 상수 ======================================================
 export const ID_FORM_ADD = `${ID_PREFIX}-add-form`;

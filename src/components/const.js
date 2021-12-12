@@ -4,7 +4,7 @@ export const KEY_PRODUCT_NAME = 'name';
 export const KEY_PRODUCT_PRICE = 'price';
 export const KEY_PRODUCT_QUANTITY = 'quantity';
 
-export const DICT_KEY_PRODUCT = {
+export const DICT_KEY_PRODUCT_KOR = {
   [KEY_PRODUCT_NAME]: '상품명',
   [KEY_PRODUCT_PRICE]: '가격',
   [KEY_PRODUCT_QUANTITY]: '수량',
