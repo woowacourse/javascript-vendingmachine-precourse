@@ -4,12 +4,20 @@ import ProductAdd from "./components/product_add/ProductAdd.js";
 import ChargeManage from "./components/charge_manage/ChargeManage.js";
 import ProductPurchase from "./components/product_purchase/ProductPurchase.js";
 
+import Api from "./libs/api.js";
+
 export default class App extends Component {
   setup() {
     console.log("App");
     this.$state = {
       currentTabId: "product-add-menu",
     };
+    this.callAPI = new Api();
+    this.initCallAPI();
+  }
+
+  initCallAPI() {
+    this.callAPI.setup();
   }
 
   template() {
