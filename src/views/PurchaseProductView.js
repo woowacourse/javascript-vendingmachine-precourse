@@ -1,5 +1,14 @@
 import ManageProductModel from '../models/ManageProductModel.js';
-import { ELEMENT_CLASS, ELEMENT_ID, PLACEHOLDER, PRODUCT } from '../utils/constants.js';
+import PurchaseProductModel from '../models/PurchaseProductModel.js';
+import {
+  ELEMENT_CLASS,
+  ELEMENT_ID,
+  ELEMENT_SID,
+  EVENT_TYPE,
+  PLACEHOLDER,
+  PRODUCT,
+} from '../utils/constants.js';
+import { $ } from '../utils/dom.js';
 import ChargeCoinView from './ChargeCoinView.js';
 import View from './View.js';
 
@@ -7,6 +16,7 @@ const PurchaseProductView = { ...View };
 
 PurchaseProductView.setup = function (element) {
   this.init(element);
+  this.bindClick();
   return this;
 };
 
@@ -19,10 +29,10 @@ PurchaseProductView.template = function () {
   <h3>금액 투입</h3>
   <div>
     <input placeholder="${PLACEHOLDER.CHARGE_AMOUNT}" type="number" 
-    id=${ELEMENT_ID.PURCHAGE_CHARGE_INPUT}/>
+    id=${ELEMENT_ID.PURCHASE_CHARGE_INPUT}>
     <button id=${ELEMENT_ID.PURCHASE_CHARGE_BUTTON}>투입하기</button>
   </div>
-  투입한 금액:<span id=${ELEMENT_ID.PURCHAGE_CHARGE_AMOUNT}></span>
+  투입한 금액:<span id=${ELEMENT_ID.PURCHASE_CHARGE_AMOUNT}>${PurchaseProductModel.total()}</span>
   <h3>구매할 수 있는 상품 현황</h3>
   <table>
     <thead>
@@ -68,6 +78,20 @@ PurchaseProductView.template = function () {
     </tbody>
   </table>
   `;
+};
+
+PurchaseProductView.bindClick = function () {
+  this.element.addEventListener('click', (e) => {
+    if (e.target.id === ELEMENT_ID.PURCHASE_CHARGE_BUTTON) {
+      this.onClickChargeButton();
+    }
+  });
+};
+
+PurchaseProductView.onClickChargeButton = function () {
+  this.emit(EVENT_TYPE.CHARGE_MONEY, {
+    userInputMoney: $(ELEMENT_SID.PURCHASE_CHARGE_INPUT).value,
+  });
 };
 
 export default PurchaseProductView;

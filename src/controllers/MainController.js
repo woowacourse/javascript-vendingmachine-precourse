@@ -8,6 +8,7 @@ import ManageProductModel from '../models/ManageProductModel.js';
 import ChargeCoinView from '../views/ChargeCoinView.js';
 import ChargeCoinModel from '../models/ChargeCoinModel.js';
 import PurchaseProductView from '../views/PurchaseProductView.js';
+import PurchaseProductModel from '../models/PurchaseProductModel.js';
 
 export default {
   init() {
@@ -21,7 +22,9 @@ export default {
     ChargeCoinView.setup($(ELEMENT_SID.RESULT_VIEW)).on(EVENT_TYPE.CHARGE_COIN, (e) =>
       this.onChargeCoin(e.detail.money),
     );
-    PurchaseProductView.setup($(ELEMENT_SID.RESULT_VIEW));
+    PurchaseProductView.setup($(ELEMENT_SID.RESULT_VIEW)).on(EVENT_TYPE.CHARGE_MONEY, (e) =>
+      this.onChargeMoney(e.detail.userInputMoney),
+    );
 
     this.selectedTab = TAB.MANAGE_PRODUCT;
     this.renderView();
@@ -68,5 +71,10 @@ export default {
   onChargeCoin(money) {
     ChargeCoinModel.charge(money);
     ChargeCoinView.render();
+  },
+
+  onChargeMoney(userInputMoney) {
+    PurchaseProductModel.add(userInputMoney);
+    PurchaseProductView.render();
   },
 };
