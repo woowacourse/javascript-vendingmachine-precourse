@@ -3,7 +3,7 @@ import {
   MINIMUM_PRICE_INPUT,
   MINIMUM_QUANTITY_INPUT,
   MINIMUM_CHARGE_INPUT,
-  CHARGE_ERRIR_MESSAGE,
+  CHARGE_ERROR_MESSAGE,
 } from '../constant/constant.js';
 
 function isNotEmptyName(name) {
@@ -39,7 +39,7 @@ export default class Validator {
     if (isAboveMinimum(money, MINIMUM_CHARGE_INPUT) && isMultipleOf10(money)) {
       return true;
     }
-    alert(CHARGE_ERRIR_MESSAGE);
+    alert(CHARGE_ERROR_MESSAGE);
     return false;
   }
 }
