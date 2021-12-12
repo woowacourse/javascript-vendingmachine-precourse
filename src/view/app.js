@@ -49,7 +49,10 @@ class App {
 
   bindEvent() {
     $('#product-add-menu').addEventListener('click', showManageTab);
-    $('#vending-machine-manage-menu').addEventListener('click', showChangeTab);
+    $('#vending-machine-manage-menu').addEventListener('click', () => {
+      showChangeTab();
+      this.changeView.render();
+    });
     $('#product-purchase-menu').addEventListener('click', showPurchaseTab);
     this.preventFormSubmit();
   }

@@ -1,6 +1,6 @@
 import { $ } from '../utils/dom.js';
 import { pickRandomCoin } from '../utils/pickRandomCoin.js';
-import { change } from '../model/store.js';
+import { change, store } from '../model/store.js';
 
 class ChangeController {
   constructor(view) {
@@ -23,6 +23,7 @@ class ChangeController {
       }
     }
     change.totalAmount = this.sumCoins();
+    store.setLocalStorage('change', change);
   }
 
   sumCoins() {
