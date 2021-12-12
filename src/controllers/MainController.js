@@ -7,6 +7,7 @@ import TabView from '../views/TabView.js';
 import ManageProductModel from '../models/ManageProductModel.js';
 import ChargeCoinView from '../views/ChargeCoinView.js';
 import ChargeCoinModel from '../models/ChargeCoinModel.js';
+import PurchaseProductView from '../views/PurchaseProductView.js';
 
 export default {
   init() {
@@ -20,6 +21,7 @@ export default {
     ChargeCoinView.setup($(ELEMENT_SID.RESULT_VIEW)).on(EVENT_TYPE.CHARGE_COIN, (e) =>
       this.onChargeCoin(e.detail.money),
     );
+    PurchaseProductView.setup($(ELEMENT_SID.RESULT_VIEW));
 
     this.selectedTab = TAB.MANAGE_PRODUCT;
     this.renderView();
