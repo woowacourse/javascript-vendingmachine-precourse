@@ -1,9 +1,5 @@
 import checkUserInputEmpty from './checkUserInputEmpty.js';
-import {
-  ALERT_MSG,
-  DUPLICATE_ERROR,
-  EMPTY_ERROR,
-} from '../constants/errorConstants.js';
+import { ALERT_MSG, DUPLICATE_ERROR } from '../constants/errorConstants.js';
 import showAlertMsg from './showAlertMsg.js';
 import store from '../storage/store.js';
 import { DRINK_STORAGE_NAME } from '../constants/constants.js';
@@ -32,8 +28,6 @@ export default function checkValidProductName(productNameInput) {
   let isTrue = checkUserInputEmpty(productNameInput);
   if (isTrue) {
     isTrue = checkDrinkStorage(productNameInput);
-  } else {
-    showAlertMsg(ALERT_MSG[EMPTY_ERROR]);
   }
   return isTrue;
 }

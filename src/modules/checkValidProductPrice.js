@@ -1,9 +1,5 @@
-import {
-  ALERT_MSG,
-  DIVIDE_ERROR,
-  PRICE_ERROR,
-  EMPTY_ERROR,
-} from '../constants/errorConstants.js';
+import { ALERT_MSG, PRICE_ERROR } from '../constants/errorConstants.js';
+import checkDividTenError from './checkDivideTenError.js';
 import checkUserInputEmpty from './checkUserInputEmpty.js';
 import checkValidNumberInput from './checkValidNumberInput.js';
 import showAlertMsg from './showAlertMsg.js';
@@ -13,10 +9,8 @@ function checkNumberCondition(userinputnumber) {
   if (Number(userinputnumber) < 100) {
     showAlertMsg(ALERT_MSG[PRICE_ERROR]);
     isTrue = false;
-  } else if (Number(userinputnumber) % 10 !== 0) {
-    showAlertMsg(ALERT_MSG[DIVIDE_ERROR]);
-    isTrue = false;
   }
+  isTrue = checkDividTenError(userinputnumber);
   return isTrue;
 }
 
@@ -25,11 +19,9 @@ export default function checkValidProductPrice(userinputnumber) {
   isTrue = checkUserInputEmpty(userinputnumber);
   if (isTrue) {
     isTrue = checkValidNumberInput(userinputnumber);
-    if (isTrue) {
-      isTrue = checkNumberCondition(userinputnumber);
-    }
-  } else {
-    showAlertMsg(ALERT_MSG[EMPTY_ERROR]);
+  }
+  if (isTrue) {
+    isTrue = checkNumberCondition(userinputnumber);
   }
   return isTrue;
 }
