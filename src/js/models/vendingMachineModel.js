@@ -1,7 +1,7 @@
 import { CHARGE, ERROR, PRICE } from '../utils/constants.js';
 
 const getRandomCoin = () => {
-  return MissionUtils.Random.pickNumberInList([PRICE_FIVE_HUNDRED_WON, PRICE.ONE_HUNDRED_WON, PRICE.FIFTY_WON, PRICE.TEN_WON]);
+  return MissionUtils.Random.pickNumberInList([PRICE.FIVE_HUNDRED_WON, PRICE.ONE_HUNDRED_WON, PRICE.FIFTY_WON, PRICE.TEN_WON]);
 };
 
 const countCoin = (coin, coins) => {
