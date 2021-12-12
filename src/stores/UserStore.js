@@ -1,6 +1,6 @@
 import Store from '../core/Store.js';
 import { USER_ACTION_TYPE } from '../actions/user.js';
-import { mergeCoins } from '../utils/helpers.js';
+import { mergeCoins } from '../utils/helpers/coin.js';
 import { userStoreInitialState } from '../utils/initialStates.js';
 import { UserStorage } from '../storages/index.js';
 

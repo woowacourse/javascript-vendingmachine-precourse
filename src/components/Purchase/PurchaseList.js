@@ -5,7 +5,7 @@ import { spendMoney } from '../../actions/user.js';
 import { sellProduct } from '../../actions/product.js';
 
 import { getProductInformations } from '../../utils/dom.js';
-import { filterPurchaseableProduct } from '../../utils/helpers.js';
+import { filterPurchaseableProduct } from '../../utils/helpers/products.js';
 import { purchaseProductsView } from '../../utils/views.js';
 
 export default class PurchaseList extends Component {

@@ -1,5 +1,4 @@
-import Product from '../core/class/Product.js';
-import { COIN_UNITS, DEFAULT_VALUES } from './constants.js';
+import { COIN_UNITS, DEFAULT_VALUES } from '../constants.js';
 
 export const generateRandomChanges = money => {
   const coins = DEFAULT_VALUES.COINS;
@@ -39,26 +38,3 @@ export const getChangesCoin = (change, coins) => {
   }
   return { changeCoins, machineCoins };
 };
-
-const deserializeToProductInstance = products =>
-  products.map(data => new Product(data));
-
-export const deserializeProductsData = data => {
-  return data
-    ? {
-        products: deserializeToProductInstance(data.products),
-      }
-    : null;
-};
-
-export const filterPurchaseableProduct = (money, products) =>
-  products.filter(item => {
-    const { price, quantity } = item.getInformation();
-    return price <= money && quantity > 0;
-  });
-
-export const hasDuplicatedProductName = (productName, products) =>
-  products.find(product => {
-    const { name } = product.getInformation();
-    return name === productName;
-  });

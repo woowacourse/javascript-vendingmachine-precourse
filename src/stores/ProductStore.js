@@ -5,7 +5,7 @@ import { MESSAGE } from '../utils/constants.js';
 import {
   deserializeProductsData,
   hasDuplicatedProductName,
-} from '../utils/helpers.js';
+} from '../utils/helpers/products.js';
 import { productStoreInitialState } from '../utils/initialStates.js';
 import { ProductsStorage } from '../storages/index.js';
 

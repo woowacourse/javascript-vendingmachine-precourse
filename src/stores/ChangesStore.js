@@ -4,7 +4,7 @@ import {
   generateRandomChanges,
   mergeCoins,
   getChangesCoin,
-} from '../utils/helpers.js';
+} from '../utils/helpers/coin.js';
 import { MESSAGE } from '../utils/constants.js';
 import { changeStoreInitialState } from '../utils/initialStates.js';
 import { ChangesStorage } from '../storages/index.js';
