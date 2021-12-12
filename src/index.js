@@ -1,5 +1,5 @@
 import $ from './utils/common/selector.js';
-import { addProduct } from './utils/addProduct.js';
+import { addProduct } from './utils/addProduct/addProduct.js';
 import { store } from './utils/common/store.js';
 import { changeTab } from './utils/changeTab.js';
 import { tabs } from './constants/constants.js';
