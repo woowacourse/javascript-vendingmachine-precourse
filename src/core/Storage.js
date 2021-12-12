@@ -5,7 +5,8 @@ export default class Storage {
   }
 
   get() {
-    const items = this.storage.getItem(this.key) ?? '[]';
+    const items = this.storage.getItem(this.key);
+    if (!items) return null;
     return JSON.parse(items);
   }
 

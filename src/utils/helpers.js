@@ -1,3 +1,4 @@
+import Product from '../core/Product.js';
 import { COIN_UNITS } from './constants.js';
 import { convertArrayToObjectKeys } from './general.js';
 
@@ -44,4 +45,21 @@ export const getChangesCoin = (change, coins) => {
     }
   }
   return { changeCoins, machineCoins };
+};
+
+export const hasDuplicatedProductName = (productName, products) =>
+  products.find(product => {
+    const { name } = product.getInformation();
+    return name === productName;
+  });
+
+const serializeToProductInstance = products =>
+  products.map(data => new Product(data));
+
+export const serializeProductsData = data => {
+  return data
+    ? {
+        products: serializeToProductInstance(data.products),
+      }
+    : null;
 };

@@ -7,8 +7,9 @@ import {
 } from '../utils/helpers.js';
 import { convertArrayToObjectKeys } from '../utils/general.js';
 import { COIN_UNITS, MESSAGE } from '../utils/constants.js';
+import ChangesStorage from '../storages/ChangesStorage.js';
 
-const initialState = {
+const initialState = ChangesStorage.get() ?? {
   changes: 0,
   coins: convertArrayToObjectKeys(COIN_UNITS),
 };
@@ -42,4 +43,6 @@ class ChangesStore extends Store {
   }
 }
 
-export default new ChangesStore(initialState);
+export default new ChangesStore(initialState, ChangesStorage);
+
+// ....허허...

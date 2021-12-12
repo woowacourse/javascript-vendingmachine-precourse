@@ -7,7 +7,8 @@ export const storeObserver = (selector, cb) => {
 };
 
 export default class Store {
-  constructor(state) {
+  constructor(state, storage) {
+    this.storage = storage;
     this.state = state;
     this.reducer = {};
     this.observers = new Set();
@@ -29,6 +30,7 @@ export default class Store {
 
   setState(nextState) {
     this.state = { ...this.state, ...nextState };
+    this.storage.set(this.state);
     this.observers.forEach(observer => observer());
   }
 }
