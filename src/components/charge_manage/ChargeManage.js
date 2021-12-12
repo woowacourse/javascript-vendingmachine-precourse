@@ -1,6 +1,6 @@
 import Component from "../root/Component.js";
 import InputForm from "./InputForm.js";
-import { getRandomChargeCoins } from "../../utils/coin.js";
+import { getRandomChargeCoins, getSumCoins } from "../../utils/coin.js";
 
 import API from "../../libs/api.js";
 export default class ChargeManage extends Component {
@@ -61,8 +61,11 @@ export default class ChargeManage extends Component {
   }
 
   addChargeAmount(charge) {
-    getRandomChargeCoins(charge);
-    const payload = { chargeAmount: this.$state.chargeAmount + charge };
+    const coins = getSumCoins({
+      prevCoins: this.$state.coins,
+      newCoins: getRandomChargeCoins(charge),
+    });
+    const payload = { chargeAmount: this.$state.chargeAmount + charge, coins };
     this.callAPI.setVendingMachine(payload);
     this.setState(payload);
   }

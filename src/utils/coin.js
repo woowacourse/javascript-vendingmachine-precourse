@@ -8,8 +8,6 @@ const getRandomChargeCoins = (charge) => {
   let money = Number(charge);
   let coinBox = [500, 100, 50, 10];
 
-  console.log("coinBox", coinBox);
-
   while (money) {
     coinBox = getNewCoinBox(coinBox, money);
     const pickCoin = getPickRandomCoin(coinBox);
@@ -33,7 +31,6 @@ const getRandomChargeCoins = (charge) => {
     }
   }
 
-  console.log("result coins", chargeCoins);
   return chargeCoins;
 };
 
@@ -44,4 +41,15 @@ const getNewCoinBox = (coinBox, money) => {
 const getPickRandomCoin = (coinBox) =>
   MissionUtils.Random.pickNumberInList(coinBox);
 
-export { getRandomChargeCoins };
+const getSumCoins = ({ prevCoins, newCoins }) => {
+  const coins = {};
+  console.log("prevCoins:", prevCoins);
+  console.log("newCoins:", newCoins);
+  for (let coin in prevCoins) {
+    coins[coin] = prevCoins[coin] + newCoins[coin];
+  }
+
+  return coins;
+};
+
+export { getRandomChargeCoins, getSumCoins };
