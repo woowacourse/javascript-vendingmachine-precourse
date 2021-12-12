@@ -1,6 +1,7 @@
 import {ID, STORAGE_KEY} from '../../utils/constants.js';
 import {createInputElement} from '../../utils/domUtil.js';
-import {getLocalStorage} from '../../utils/localStorage.js';
+import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
+import {isValidPurchaseInput} from '../../utils/validation.js';
 import Component from '../core/Component.js';
 
 export default class PurchaseContainer extends Component {
@@ -39,8 +40,12 @@ export default class PurchaseContainer extends Component {
       event.preventDefault();
       event.stopPropagation();
 
-      this.setState({});
-      this.setEvent();
+      const purchaseAmountValue = Number.parseInt(this.$target.querySelector(`#${ID.CHARGE_INPUT}`).value, 10);
+      if (isValidPurchaseInput(purchaseAmountValue)) {
+        this.setState({purchaseAmount: this.$state.purchaseAmount + purchaseAmountValue});
+        setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
+        this.setEvent();
+      }
     });
   }
 
