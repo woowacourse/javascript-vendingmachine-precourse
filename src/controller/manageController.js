@@ -9,8 +9,15 @@ class ManageController {
     this.bindEvent();
   }
 
+  initInput() {
+    $('#product-name-input').value = '';
+    $('#product-price-input').value = '';
+    $('#product-quantity-input').value = '';
+  }
+
   addItem() {
     const { name, price, quantity } = this.view.getInput();
+    this.initInput();
     if (ManageValidator.isInvalidAddItemInput({ name, price, quantity })) {
       return;
     }
