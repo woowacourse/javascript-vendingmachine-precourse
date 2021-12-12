@@ -1,4 +1,5 @@
 import {
+  APP_ID,
   PRODUCT_ADD_TITLE,
   PRODUCT_NAME_INPUT_ID,
   PRODUCT_PRICE_INPUT_ID,
@@ -12,6 +13,8 @@ import {
   PRODUCT_LIST_TABLE_ID,
   PRODUCT_ADD_CONTAINER_ID,
 } from '../constant/constant.js';
+import $ from '../util/$.js';
+import removePreviousView from './removePreviousView.js';
 
 function renderProductAddInput($productAdd) {
   const $inputContainer = document.createElement('div');
@@ -46,28 +49,28 @@ function productListHeaderTemplate() {
   `;
 }
 
-function renderProductAddList($productAdd) {
+function renderProductAddList($productAdd, products) {
   const $listContainer = document.createElement('div');
-  const products = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY))
-    ?.map((product) => productListTemplate(product))
-    .join('');
 
   $listContainer.innerHTML = `
     <br>
     <h3>${PRODUCT_LIST_TITLE}</h3>
     <table id="${PRODUCT_LIST_TABLE_ID}" bgcolor="black" border="1" style="border-collapse:collapse;">
       ${productListHeaderTemplate()}
-      ${products || ''}
+      ${products.map((product) => productListTemplate(product)).join('')}
     </table>
   `;
   $productAdd.append($listContainer);
 }
 
-export default function initProductAdd($appDiv) {
+export default function renderProductAdd(vendingMachine) {
+  const $app = $(`#${APP_ID}`);
+  removePreviousView($app);
+
   const $productAdd = document.createElement('div');
   $productAdd.id = PRODUCT_ADD_CONTAINER_ID;
 
   renderProductAddInput($productAdd);
-  renderProductAddList($productAdd);
-  $appDiv.append($productAdd);
+  renderProductAddList($productAdd, vendingMachine.products);
+  $app.append($productAdd);
 }

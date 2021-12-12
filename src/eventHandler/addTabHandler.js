@@ -2,46 +2,36 @@ import $ from '../util/$.js';
 import {
   TAB_PRODUCT_ADD_ID,
   TAB_CHARGE_ID,
-  CURRENT_TAB_KEY,
-  PRODUCT_ADD_CONTAINER_ID,
-  CHARGE_CONTAINER_ID,
-  PURCHASE_CONTAINER_ID,
   TAB_PURCHASE_ID,
+  CURRENT_TAB_KEY,
 } from '../constant/constant.js';
+import renderProductAdd from '../view/renderProductAdd.js';
+import renderCharge from '../view/renderCharge.js';
+import renderPurchase from '../view/renderPurchase.js';
+import addProductHandler from './addProductHandler.js';
+import chargeHandler from './chargeHandler.js';
 
-function hideAllContainer() {
-  const $addProduct = $(`#${PRODUCT_ADD_CONTAINER_ID}`);
-  const $charge = $(`#${CHARGE_CONTAINER_ID}`);
-  const $purchase = $(`#${PURCHASE_CONTAINER_ID}`);
-
-  $addProduct.setAttribute('hidden', true);
-  $charge.setAttribute('hidden', true);
-  $purchase.setAttribute('hidden', true);
-}
-
-function removeHidden(id) {
-  const $container = $(`#${id}`);
-
-  $container.removeAttribute('hidden');
-}
-
-export function setCurrentTab(id) {
+function setCurrentTab(id) {
   localStorage.setItem(CURRENT_TAB_KEY, id);
 }
 
-export function renderCurrentTab(id) {
-  hideAllContainer();
-  removeHidden(id);
-  setCurrentTab(id);
-}
-
-export default function addTabHandler() {
+export default function addTabHandler(vendingMachine) {
   const $tabProductAdd = $(`#${TAB_PRODUCT_ADD_ID}`);
   const $tabCharge = $(`#${TAB_CHARGE_ID}`);
   const $tabPurchase = $(`#${TAB_PURCHASE_ID}`);
 
-  renderCurrentTab(localStorage.getItem(CURRENT_TAB_KEY));
-  $tabProductAdd.addEventListener('click', () => renderCurrentTab(PRODUCT_ADD_CONTAINER_ID));
-  $tabCharge.addEventListener('click', () => renderCurrentTab(CHARGE_CONTAINER_ID));
-  $tabPurchase.addEventListener('click', () => renderCurrentTab(PURCHASE_CONTAINER_ID));
+  $tabProductAdd.addEventListener('click', () => {
+    renderProductAdd(vendingMachine);
+    addProductHandler(vendingMachine);
+    setCurrentTab(TAB_PRODUCT_ADD_ID);
+  });
+  $tabCharge.addEventListener('click', () => {
+    renderCharge(vendingMachine);
+    chargeHandler(vendingMachine);
+    setCurrentTab(TAB_CHARGE_ID);
+  });
+  $tabPurchase.addEventListener('click', () => {
+    renderPurchase(vendingMachine);
+    setCurrentTab(TAB_PURCHASE_ID);
+  });
 }

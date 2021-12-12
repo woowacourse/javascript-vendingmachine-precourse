@@ -44,6 +44,7 @@ export const CHARGE_10_QUANTITY_ID = 'vending-machine-coin-10-quantity';
 export const CHARGE_COIN_TALBE_ID = 'vending-machine-charge-table';
 export const PRODUCT_LIST_TABLE_ID = 'product-list-table';
 export const PURCHASE_COIN_TABLE_ID = 'purchase-coin-table';
+export const PURCHASE_PRODUCTS_TABLE_ID = 'purchase-products-table';
 export const PRODUCT_NAME_INPUT_ID = 'product-name-input';
 export const PRODUCT_PRICE_INPUT_ID = 'product-price-input';
 export const PRODUCT_QUANTITY_INPUT_ID = 'product-quantity-input';
@@ -64,7 +65,7 @@ export const TAB_PRODUCT_ADD_ID = 'product-add-menu';
 export const TAB_CHARGE_ID = 'vending-machine-manage-menu';
 export const TAB_PURCHASE_ID = 'product-purchase-menu';
 
-export const APP_ID = '#app';
+export const APP_ID = 'app';
 
 export const PRODUCT_ADD_CONTAINER_ID = 'product-add-container';
 export const CHARGE_CONTAINER_ID = 'charge-container';

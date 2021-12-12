@@ -19,7 +19,7 @@ import {
   COINS_STORAGE_KEY,
 } from '../constant/constant.js';
 import $ from '../util/$.js';
-import { coinListHeaderTemplate } from '../view/initCharge.js';
+import { coinListHeaderTemplate } from '../view/renderCharge.js';
 
 export default class Coins {
   constructor() {

@@ -1,12 +1,10 @@
 import Validator from '../validator/Validator.js';
-import initView from '../view/initView.js';
 import Product from './Product.js';
 import { PRODUCTS_STORAGE_KEY, COINS_STORAGE_KEY } from '../constant/constant.js';
 import Coins from './Coins.js';
 
 export default class VendingMachine {
   constructor() {
-    initView();
     this.products = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY)) || [];
     this.change = new Coins();
   }

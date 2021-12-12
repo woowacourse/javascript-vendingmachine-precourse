@@ -1,4 +1,5 @@
 import {
+  APP_ID,
   CHARGE_TITLE,
   CHARGE_INPUT_ID,
   CHARGE_BUTTON_ID,
@@ -21,6 +22,8 @@ import {
   COINS_STORAGE_KEY,
   COIN_SUM_KEY,
 } from '../constant/constant.js';
+import $ from '../util/$.js';
+import removePreviousView from './removePreviousView.js';
 
 function renderChargeInput($charge) {
   const $inputContainer = document.createElement('div');
@@ -48,53 +51,49 @@ export function coinListHeaderTemplate() {
   `;
 }
 
-function getCoinTextContent(coins, index) {
-  return coins ? `${coins[index]}개` : '';
-}
-
-function coinTemplate(coins, ids, titles) {
-  return ids.map((id, index) => `
-    <tr align="center" bgcolor="white" height="40">
-      <td align="center" width="62">${titles[index]}</td> 
-      <td id="${id}" align="center" width="62">
-        ${getCoinTextContent(coins, index)}
-      </td>
-    </tr>
-  `).join('');
-}
-
-export function coinListTemplate(ids) {
+export function coinListTemplate(change) {
   const coins = JSON.parse(localStorage.getItem(COINS_STORAGE_KEY));
   const titles = [TITLE_500, TITLE_100, TITLE_50, TITLE_10];
-
-  return coinTemplate(coins, ids, titles);
-}
-
-function renderChargeCoins($charge) {
-  const $coinContainer = document.createElement('div');
   const ids = [
     CHARGE_500_QUANTITY_ID,
     CHARGE_100_QUANTITY_ID,
     CHARGE_50_QUANTITY_ID,
     CHARGE_10_QUANTITY_ID,
   ];
+  const template = ids.map((id, index) => `
+    <tr align="center" bgcolor="white" height="40">
+      <td align="center" width="62">${titles[index]}</td> 
+      <td id="${id}" align="center" width="62">
+        ${coins ? `${change.coins[index]}개` : ''}
+      </td>
+    </tr>
+  `).join('');
+
+  return template;
+}
+
+function renderChargeCoins($charge, change) {
+  const $coinContainer = document.createElement('div');
 
   $coinContainer.innerHTML = `
     <br><br>
     <h3>${CHARGE_COIN_TITLE}</h3>
     <table id="${CHARGE_COIN_TALBE_ID}" bgcolor="black" border="1" style="border-collapse:collapse;">
     ${coinListHeaderTemplate()}
-    ${coinListTemplate(ids)}
+    ${coinListTemplate(change)}
     </table>
   `;
   $charge.append($coinContainer);
 }
 
-export default function initCharge($appDiv) {
+export default function renderCharge(vendingMachine) {
+  const $app = $(`#${APP_ID}`);
+  removePreviousView($app);
+
   const $charge = document.createElement('div');
   $charge.id = CHARGE_CONTAINER_ID;
 
   renderChargeInput($charge);
-  renderChargeCoins($charge);
-  $appDiv.append($charge);
+  renderChargeCoins($charge, vendingMachine.change);
+  $app.append($charge);
 }
