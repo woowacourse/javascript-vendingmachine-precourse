@@ -7,9 +7,11 @@ import { isValidCharge, isValidPurchase, getChange, updateProductQuantity, updat
 function HandleProductPurchase() {
   this.amount = Number($('#charge-amount').innerText) || 0;
 
-  if (store.getLocalStorage('products')) {
-    renderProducts();
-  }
+  this.init = () => {
+    if (store.getLocalStorage('products')) {
+      renderProducts();
+    }
+  };
 
   // (1) 금액 투입 기능
   $('#charge-button').addEventListener('click', e => {
@@ -41,6 +43,8 @@ function HandleProductPurchase() {
   $('#coin-return-button').addEventListener('click', () => {
     this.amount = getChange();
   });
+
+  this.init();
 }
 
 export default HandleProductPurchase;
