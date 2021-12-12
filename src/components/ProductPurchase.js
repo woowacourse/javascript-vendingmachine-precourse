@@ -3,6 +3,7 @@ import { productPurchaseMenuTemplate } from '../utils/templates.js';
 import { LS_KEY } from '../utils/constants.js';
 
 const LS_KEY_CHARGE_AMOUNT = LS_KEY.PRODUCT_PURCHASE_CHARGE_AMOUNT;
+
 export default class ProductPurchase {
   constructor() {
     this.chargeAmount = 0;
@@ -24,6 +25,8 @@ export default class ProductPurchase {
     this.paintChargeAmount();
     this.paintAvailableProducts();
     this.paintCoinToBeReturned();
+
+    $('form').addEventListener('submit', this.handleProductPurchaseSubmit);
   };
 
   loadChargeAmount = () => {
@@ -64,6 +67,20 @@ export default class ProductPurchase {
     });
   };
 
+  handleProductPurchaseSubmit = (e) => {
+    e.preventDefault();
+    const chargeAmountInput = parseInt($(`#${ID.CHARGE_INPUT}`).value);
+    this.saveChargeAmount(chargeAmountInput);
+    this.clearInputs();
+    return;
+  };
+
+  saveChargeAmount = (chargeAmountInput) => {
+    this.chargeAmount += chargeAmountInput;
+    localStorage.setItem(LS_KEY_CHARGE_AMOUNT, JSON.stringify(this.chargeAmount));
+    return;
+  };
+
   paintProduct = (product) => {
     const $table = $(`table`);
     const $newTableRow = document.createElement('tr');
@@ -91,5 +108,9 @@ export default class ProductPurchase {
 
   paintTemplate = () => {
     $(`#${ID.PAGE_CONTENT}`).innerHTML = productPurchaseMenuTemplate();
+  };
+
+  clearInputs = () => {
+    $(`#${ID.CHARGE_INPUT}`).value = '';
   };
 }
