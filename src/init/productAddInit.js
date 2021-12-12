@@ -22,7 +22,7 @@ function setTable(productAddDiv) {
   let table = document.createElement('table');
   let thead = document.createElement('thead');
   let tbody = document.createElement('tbody');
-  tbody.setAttribute('class', 'product-manage-item');
+  tbody.setAttribute('id', 'product-add-table');
 
   table.appendChild(thead);
   table.appendChild(tbody);

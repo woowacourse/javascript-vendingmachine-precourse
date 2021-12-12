@@ -44,6 +44,18 @@ export function createTh(tableRow, text) {
   tableRow.appendChild(head);
 }
 
+export function createThClass(tableRow, text, className) {
+  let head = document.createElement('th');
+  head.innerHTML = text;
+  appendClass(head, className);
+
+  tableRow.appendChild(head);
+}
+
+export function appendClass(element, className) {
+  element.setAttribute('class', className);
+}
+
 export function appendTableStyle(table) {
   table.style.borderCollapse = 'collapse';
   table.style.borderSpacing = 0;

@@ -1,6 +1,10 @@
 import { ALERT } from '../constants.js';
 import ProductAdd from '../elements/ProductAdd.js';
-import { appendTheadStyle, createTh } from '../init/elementfunc.js';
+import {
+  appendClass,
+  appendTheadStyle,
+  createThClass,
+} from '../init/elementfunc.js';
 import {
   checkProductName,
   checkProductPrice,
@@ -61,9 +65,10 @@ export default class ProductAddUtil {
 
   addProductTable(name, price, quantity) {
     const tableRow = document.createElement('tr');
-    createTh(tableRow, name);
-    createTh(tableRow, price);
-    createTh(tableRow, quantity);
+    appendClass(tableRow, 'product-manage-item');
+    createThClass(tableRow, name, 'product-manage-name');
+    createThClass(tableRow, price, 'product-manage-price');
+    createThClass(tableRow, quantity, 'product-manage-quantity');
     console.log(tableRow);
     this.productAdd.tableBody.appendChild(tableRow);
     appendTheadStyle(this.productAdd.tableBody);
