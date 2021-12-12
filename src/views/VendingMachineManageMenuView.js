@@ -7,11 +7,11 @@ import {
   createCoinQuantityTableBodyTemplate,
 } from '../templates/vendingMachineManageMenu.js';
 
-import Selector from '../constants/selector.js';
+import SELECTOR from '../constants/selector.js';
 
 class VendingMachineManageMenuView {
   render() {
-    $(`#${Selector.tabContentContainerId}`).innerHTML =
+    $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
       createTitleTemplate() +
       createChargeFormTemplate() +
       createChargeAmountTemplate(0) +
@@ -19,7 +19,7 @@ class VendingMachineManageMenuView {
   }
 
   renderCoinQuantityTableBodyWithData(coin500, coin100, coin50, coin10) {
-    $(`#${Selector.vendingMachineCoinTableBody}`).innerHTML = createCoinQuantityTableBodyTemplate(
+    $(`#${SELECTOR.vendingMachineCoinTableBody}`).innerHTML = createCoinQuantityTableBodyTemplate(
       coin500,
       coin100,
       coin50,
@@ -28,11 +28,11 @@ class VendingMachineManageMenuView {
   }
 
   renderCoinChargeAmountWithData(amount) {
-    $(`#${Selector.vendingMachineChargeAmountId}`).innerHTML = amount;
+    $(`#${SELECTOR.vendingMachineChargeAmountId}`).innerHTML = amount;
   }
 
   resetChargeAmountInput() {
-    $(`#${Selector.vendingMachineChargeInputId}`).value = null;
+    $(`#${SELECTOR.vendingMachineChargeInputId}`).value = null;
   }
 }
 

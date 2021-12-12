@@ -4,7 +4,7 @@ import ProductPurchaseMenuController from './ProductPurchaseMenuController.js';
 import VendingMachineView from '../views/VendingMachineView.js';
 import VendingMachineModel from '../models/VendingMachineModel.js';
 
-import Selector from '../constants/selector.js';
+import SELECTOR from '../constants/selector.js';
 import { $ } from '../utils/dom.js';
 
 class VendingMachineController {
@@ -27,7 +27,7 @@ class VendingMachineController {
   }
 
   initAddEventListeners() {
-    $(`#${Selector.tabButtonContainerId}`).addEventListener(
+    $(`#${SELECTOR.tabButtonContainerId}`).addEventListener(
       'click',
       this.onClickMenuButton.bind(this),
     );
@@ -41,13 +41,13 @@ class VendingMachineController {
 
   changeMenu(menuName) {
     switch (menuName) {
-      case Selector.productAddMenuId:
+      case SELECTOR.productAddMenuId:
         this.$productAddMenuController.changeMenu();
         break;
-      case Selector.vendingMachineManageMenuId:
+      case SELECTOR.vendingMachineManageMenuId:
         this.$vendingMachineManageMenuController.changeMenu();
         break;
-      case Selector.productPurchaseMenuId:
+      case SELECTOR.productPurchaseMenuId:
         this.$productPurchaseMenuController.changeMenu();
         break;
       default:

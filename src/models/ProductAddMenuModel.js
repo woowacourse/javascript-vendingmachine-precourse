@@ -1,14 +1,14 @@
 import Store from '../utils/store.js';
 
-import Key from '../constants/key.js';
+import STORAGE_KEY from '../constants/key.js';
 
 class ProductAddMenuModel {
   getProductItems() {
-    return Store.getLocalStorage(Key.productItems) || [];
+    return Store.getLocalStorage(STORAGE_KEY.productItems) || [];
   }
 
   setProductItems(items) {
-    Store.setLocalStorage(Key.productItems, items);
+    Store.setLocalStorage(STORAGE_KEY.productItems, items);
   }
 }
 

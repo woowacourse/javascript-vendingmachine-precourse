@@ -1,46 +1,46 @@
 import { createTheadTableDataTemplate } from './common.js';
 
-import Selector from '../constants/selector.js';
-import Style from '../constants/style.js';
+import SELECTOR from '../constants/selector.js';
+import STYLE from '../constants/style.js';
 import { PRODUCT_PURCHASE_TAB } from '../constants/element.js';
 
 const createTbodyTableDataTemplate = (text, className, dataset) => `
-  <td ${dataset}="${text}" class="${className}" Style="${Style.tableBodyData}">${text}</td>
+  <td ${dataset}="${text}" class="${className}" style="${STYLE.tableBodyData}">${text}</td>
 `;
 
 const createTbodyTableDataWithButtonTemplate = () => `
-  <td Style="${Style.tableBodyData}">
-    <button class="${Selector.purchaseButtonClass}">구매하기</button>
+  <td style="${STYLE.tableBodyData}">
+    <button class="${SELECTOR.purchaseButtonClass}">구매하기</button>
   </td>
 `;
 
 const createProductItemTemplate = (name, price, quantity) => `
-  <tr class="${Selector.productPurchaseItemClass}">
+  <tr class="${SELECTOR.productPurchaseItemClass}">
     ${createTbodyTableDataTemplate(
       name,
-      Selector.productPurchaseNameClass,
-      Selector.dataProductNameDataset,
+      SELECTOR.productPurchaseNameClass,
+      SELECTOR.dataProductNameDataset,
     )}
     ${createTbodyTableDataTemplate(
       price,
-      Selector.productPurchasePriceClass,
-      Selector.dataProductPriceDataset,
+      SELECTOR.productPurchasePriceClass,
+      SELECTOR.dataProductPriceDataset,
     )}
     ${createTbodyTableDataTemplate(
       quantity,
-      Selector.productPurchaseQuantityClass,
-      Selector.dataProductQuantityDataset,
+      SELECTOR.productPurchaseQuantityClass,
+      SELECTOR.dataProductQuantityDataset,
     )}
     ${createTbodyTableDataWithButtonTemplate()}
   </tr>
 `;
 
 const createReturnCoinItemTemplate = (coin, amount) => `
-  <tr class="${Selector.productPurchaseItemClass}">
-    <td Style="${Style.tableHeadData}">
+  <tr class="${SELECTOR.productPurchaseItemClass}">
+    <td style="${STYLE.tableHeadData}">
       ${coin}원
     </td>
-    <td Style="${Style.tableBodyData}">
+    <td style="${STYLE.tableBodyData}">
       <span id="vending-machine-coin-${coin}-quantity">${amount}개</span>
     </td>
   </tr>
@@ -53,13 +53,13 @@ export const createTitleTemplate = () => `
 export const createChargeFormTemplate = amount => `
   <h3>금액 투입</h3>
   <div>
-    <input placeholder="투입할 금액" id="${Selector.chargeInputId}" />
-    <button id="${Selector.chargeButtonId}">투입하기</button>
+    <input placeholder="투입할 금액" id="${SELECTOR.chargeInputId}" />
+    <button id="${SELECTOR.chargeButtonId}">투입하기</button>
   </div>
   <br />
   <div>
     <span>투입한 금액:</span>
-    <span id="${Selector.chargeAmountId}">${amount}</span>
+    <span id="${SELECTOR.chargeAmountId}">${amount}</span>
 		<span>원</span>
   </div>
 `;
@@ -74,7 +74,7 @@ export const createProductTableBodyWithData = productItems => `
 
 export const createProductTableTemplate = () => `
   <h3>구매할 수 있는 상품 현황</h3>
-  <table Style="${Style.table}">
+  <table style="${STYLE.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('상품명')}
@@ -83,7 +83,7 @@ export const createProductTableTemplate = () => `
         ${createTheadTableDataTemplate('구매')}
       </tr>
     </thead>
-    <tbody id="${Selector.purchaseProductTableBodyId}">
+    <tbody id="${SELECTOR.purchaseProductTableBodyId}">
       ${createProductTableBodyWithData([])}
     </tbody>
   </table>
@@ -103,15 +103,15 @@ export const createReturnCoinTableBodyTemplate = (
 
 export const createReturnCoinTableTemplate = () => `
   <h3>잔돈</h3>
-  <button id="${Selector.coinReturnButtonId}">반환하기</button>
-  <table Style="${Style.table}">
+  <button id="${SELECTOR.coinReturnButtonId}">반환하기</button>
+  <table style="${STYLE.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('동전')}
         ${createTheadTableDataTemplate('개수')}
       </tr>
     </thead>
-    <tbody id="${Selector.returnCoinTableBodyId}">
+    <tbody id="${SELECTOR.returnCoinTableBodyId}">
       ${createReturnCoinTableBodyTemplate(0, 0, 0, 0)}
     </tbody>
   </table>

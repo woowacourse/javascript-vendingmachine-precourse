@@ -5,7 +5,7 @@ import {
   createTabContentContainerTemplate,
 } from '../templates/common.js';
 
-import Selector from '../constants/selector.js';
+import SELECTOR from '../constants/selector.js';
 
 class VendingMachineView {
   constructor() {
@@ -13,7 +13,7 @@ class VendingMachineView {
   }
 
   render() {
-    $(`#${Selector.vendingMachineApp}`).innerHTML =
+    $(`#${SELECTOR.vendingMachineApp}`).innerHTML =
       createVendingMachineHeaderTemplate() +
       createTabButtonContainerTemplate() +
       createTabContentContainerTemplate();

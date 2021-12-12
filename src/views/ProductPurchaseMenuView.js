@@ -8,11 +8,11 @@ import {
   createReturnCoinTableBodyTemplate,
 } from '../templates/productPurchaseMenu.js';
 
-import Selector from '../constants/selector.js';
+import SELECTOR from '../constants/selector.js';
 
 class ProductPurchaseMenuView {
   render() {
-    $(`#${Selector.tabContentContainerId}`).innerHTML =
+    $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
       createTitleTemplate() +
       createChargeFormTemplate(0) +
       createProductTableTemplate() +
@@ -20,16 +20,16 @@ class ProductPurchaseMenuView {
   }
 
   renderProductTableBodyWithData(productItems) {
-    $(`#${Selector.purchaseProductTableBodyId}`).innerHTML =
+    $(`#${SELECTOR.purchaseProductTableBodyId}`).innerHTML =
       createProductTableBodyWithData(productItems);
   }
 
   renderPurchaseChargeAmount(amount) {
-    $(`#${Selector.chargeAmountId}`).innerHTML = amount;
+    $(`#${SELECTOR.chargeAmountId}`).innerHTML = amount;
   }
 
   renderReturnCoinTableWithData(quantity500, quantity100, quantity50, quantity10) {
-    $(`#${Selector.returnCoinTableBodyId}`).innerHTML = createReturnCoinTableBodyTemplate(
+    $(`#${SELECTOR.returnCoinTableBodyId}`).innerHTML = createReturnCoinTableBodyTemplate(
       quantity500,
       quantity100,
       quantity50,
@@ -38,7 +38,7 @@ class ProductPurchaseMenuView {
   }
 
   resetPurchaseChargeInput() {
-    $(`#${Selector.chargeInputId}`).value = null;
+    $(`#${SELECTOR.chargeInputId}`).value = null;
   }
 }
 

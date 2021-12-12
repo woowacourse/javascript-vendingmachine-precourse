@@ -1,15 +1,15 @@
 import Store from '../utils/store.js';
 
-import Key from '../constants/key.js';
-import Selector from '../constants/selector.js';
+import STORAGE_KEY from '../constants/key.js';
+import SELECTOR from '../constants/selector.js';
 
 class VendingMachineModel {
   getCurrentMenu() {
-    return Store.getLocalStorage(Key.currentMenu) || Selector.productAddMenuId;
+    return Store.getLocalStorage(STORAGE_KEY.currentMenu) || SELECTOR.productAddMenuId;
   }
 
   setCurrentMenu(menuName) {
-    Store.setLocalStorage(Key.currentMenu, menuName);
+    Store.setLocalStorage(STORAGE_KEY.currentMenu, menuName);
   }
 }
 

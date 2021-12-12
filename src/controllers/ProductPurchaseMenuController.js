@@ -6,7 +6,7 @@ import ProductPurchaseMenuValidator from '../validators/productPurchaseMenu.js';
 import VendingMachineManageMenuValidator from '../validators/vendingMachineManageMenu.js';
 import { $ } from '../utils/dom.js';
 
-import Selector from '../constants/selector.js';
+import SELECTOR from '../constants/selector.js';
 
 class ProductPurchaseMenuController {
   constructor(currentMenu) {
@@ -16,11 +16,11 @@ class ProductPurchaseMenuController {
     this.$vendingMachineManageMenuModel = new VendingMachineManageMenuModel();
 
     this.initAddEventListeners();
-    if (currentMenu === Selector.productPurchaseMenuId) this.changeMenu();
+    if (currentMenu === SELECTOR.productPurchaseMenuId) this.changeMenu();
   }
 
   initAddEventListeners() {
-    $(`#${Selector.tabContentContainerId}`).addEventListener(
+    $(`#${SELECTOR.tabContentContainerId}`).addEventListener(
       'click',
       this.onClickTabContent.bind(this),
     );
@@ -45,23 +45,23 @@ class ProductPurchaseMenuController {
   onClickTabContent(event) {
     const { id, className } = event.target;
 
-    if (id === Selector.chargeButtonId) {
+    if (id === SELECTOR.chargeButtonId) {
       this.onClickChargeButton();
       return;
     }
 
-    if (id === Selector.coinReturnButtonId) {
+    if (id === SELECTOR.coinReturnButtonId) {
       this.onClickReturnCoinButton();
       return;
     }
 
-    if (className === Selector.purchaseButtonClass) {
+    if (className === SELECTOR.purchaseButtonClass) {
       this.onClickPurchaseButton(event);
     }
   }
 
   onClickChargeButton() {
-    const charge = $(`#${Selector.chargeInputId}`).value;
+    const charge = $(`#${SELECTOR.chargeInputId}`).value;
     if (
       !ProductPurchaseMenuValidator.validateChargeExist(charge) ||
       !ProductPurchaseMenuValidator.validateChargePlusInteger(charge) ||

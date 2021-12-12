@@ -1,7 +1,7 @@
 import { createTheadTableDataTemplate } from './common.js';
 
-import Selector from '../constants/selector.js';
-import Style from '../constants/style.js';
+import SELECTOR from '../constants/selector.js';
+import STYLE from '../constants/style.js';
 import { PRODUCT_ADD_TAB } from '../constants/element.js';
 
 export const createTitleTemplate = () => `
@@ -9,24 +9,24 @@ export const createTitleTemplate = () => `
 `;
 
 const createTbodyTableDataTemplate = (text, className) => `
-  <td class="${className}" Style="${Style.tableBodyData}">${text}</td>
+  <td class="${className}" style="${STYLE.tableBodyData}">${text}</td>
 `;
 
 const createProductItemTemplate = (name, price, quantity) => `
-  <tr class="${Selector.productManageItemClass}">
-    ${createTbodyTableDataTemplate(name, Selector.productManageNameClass)}
-    ${createTbodyTableDataTemplate(price, Selector.productManagePriceClass)}
-    ${createTbodyTableDataTemplate(quantity, Selector.productManageQuantityClass)}
+  <tr class="${SELECTOR.productManageItemClass}">
+    ${createTbodyTableDataTemplate(name, SELECTOR.productManageNameClass)}
+    ${createTbodyTableDataTemplate(price, SELECTOR.productManagePriceClass)}
+    ${createTbodyTableDataTemplate(quantity, SELECTOR.productManageQuantityClass)}
   </tr>
 `;
 
 export const createProductAddFormTemplate = () => `
   <h3>상품 추가하기</h3>
   <div>
-    <input placeholder="상품명" id="${Selector.productNameInputId}" />
-    <input type="number" placeholder="가격" id="${Selector.productPriceInputId}" />
-    <input type="number" placeholder="수량" id="${Selector.productQuantityInputId}" />
-    <button id="${Selector.productAddButtonId}">추가하기</button>
+    <input placeholder="상품명" id="${SELECTOR.productNameInputId}" />
+    <input type="number" placeholder="가격" id="${SELECTOR.productPriceInputId}" />
+    <input type="number" placeholder="수량" id="${SELECTOR.productQuantityInputId}" />
+    <button id="${SELECTOR.productAddButtonId}">추가하기</button>
   </div>
 `;
 
@@ -40,7 +40,7 @@ export const createProductTableBodyTemplateWithItem = productItems => `
 
 export const createProductTableTemplate = () => `
   <h3>상품 현황</h3>
-  <table Style="${Style.table}">
+  <table style="${STYLE.table}">
     <thead>
       <tr>
         ${createTheadTableDataTemplate('상품명')}
@@ -48,7 +48,7 @@ export const createProductTableTemplate = () => `
         ${createTheadTableDataTemplate('수량')}
       </tr>
     </thead>
-    <tbody id="${Selector.productTableBodyId}">
+    <tbody id="${SELECTOR.productTableBodyId}">
       ${createProductTableBodyTemplateWithItem([])}
     </tbody>
   </table>

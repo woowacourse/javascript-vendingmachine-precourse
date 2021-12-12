@@ -3,7 +3,7 @@ import ProductAddMenuView from '../views/ProductAddMenuView.js';
 import ProductAddMenuValidator from '../validators/productAddMenu.js';
 import { $ } from '../utils/dom.js';
 
-import Selector from '../constants/selector.js';
+import SELECTOR from '../constants/selector.js';
 
 class ProductAddMenuController {
   constructor(currentMenu) {
@@ -11,11 +11,11 @@ class ProductAddMenuController {
     this.$productAddMenuView = new ProductAddMenuView();
 
     this.initAddEventListeners();
-    if (currentMenu === Selector.productAddMenuId) this.changeMenu();
+    if (currentMenu === SELECTOR.productAddMenuId) this.changeMenu();
   }
 
   initAddEventListeners() {
-    $(`#${Selector.tabContentContainerId}`).addEventListener(
+    $(`#${SELECTOR.tabContentContainerId}`).addEventListener(
       'click',
       this.onClickTabContent.bind(this),
     );
@@ -31,13 +31,13 @@ class ProductAddMenuController {
   onClickTabContent(event) {
     const { id } = event.target;
 
-    if (id === Selector.productAddButtonId) this.onClickProductAddButton();
+    if (id === SELECTOR.productAddButtonId) this.onClickProductAddButton();
   }
 
   onClickProductAddButton() {
-    const productName = $(`#${Selector.productNameInputId}`).value;
-    const productPrice = $(`#${Selector.productPriceInputId}`).value;
-    const productQuantity = $(`#${Selector.productQuantityInputId}`).value;
+    const productName = $(`#${SELECTOR.productNameInputId}`).value;
+    const productPrice = $(`#${SELECTOR.productPriceInputId}`).value;
+    const productQuantity = $(`#${SELECTOR.productQuantityInputId}`).value;
 
     if (!ProductAddMenuValidator.validateProductNameExist(productName)) return;
     if (

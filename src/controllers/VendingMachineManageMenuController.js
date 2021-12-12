@@ -3,7 +3,7 @@ import VendingMachineManageMenuModel from '../models/VendingMachineManageMenuMod
 import VendingMachineManageMenuValidator from '../validators/vendingMachineManageMenu.js';
 import { $ } from '../utils/dom.js';
 
-import Selector from '../constants/selector.js';
+import SELECTOR from '../constants/selector.js';
 
 class VendingMachineManageMenuController {
   constructor(currentMenu) {
@@ -11,11 +11,11 @@ class VendingMachineManageMenuController {
     this.$vendingMachineManageMenuModel = new VendingMachineManageMenuModel();
 
     this.initAddEventListeners();
-    if (currentMenu === Selector.vendingMachineManageMenuId) this.changeMenu();
+    if (currentMenu === SELECTOR.vendingMachineManageMenuId) this.changeMenu();
   }
 
   initAddEventListeners() {
-    $(`#${Selector.tabContentContainerId}`).addEventListener(
+    $(`#${SELECTOR.tabContentContainerId}`).addEventListener(
       'click',
       this.onClickTabContent.bind(this),
     );
@@ -37,11 +37,11 @@ class VendingMachineManageMenuController {
   onClickTabContent(event) {
     const { id } = event.target;
 
-    if (id === Selector.vendingMachineChargeButtonId) this.onClickVendingMachineChargeButton();
+    if (id === SELECTOR.vendingMachineChargeButtonId) this.onClickVendingMachineChargeButton();
   }
 
   onClickVendingMachineChargeButton() {
-    const chargeAmount = $(`#${Selector.vendingMachineChargeInputId}`).value;
+    const chargeAmount = $(`#${SELECTOR.vendingMachineChargeInputId}`).value;
     if (
       !VendingMachineManageMenuValidator.validateChargeInputExist(chargeAmount) ||
       !VendingMachineManageMenuValidator.validateChargeInputOverZero(chargeAmount) ||
