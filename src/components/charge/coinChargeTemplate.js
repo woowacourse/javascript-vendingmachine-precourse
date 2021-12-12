@@ -20,7 +20,7 @@ export const coinChargeTemplate = `
       <input type="number" id="vending-machine-charge-input" maxlength="20" placeholder="자판기가 보유할 금액" />
       <button id="vending-machine-charge-button">충전하기</button>
     </form>
-    <p id="vending-machine-charge-amount">보유 금액: </p>
+    <p id="vending-machine-charge-amount">보유 금액: <span></span></p>
   </div>
   <br>
   <div>

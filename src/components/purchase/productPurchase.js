@@ -1,25 +1,24 @@
-import { ERROR_MESSAGE } from '../../utils/constants.js';
+import { ERROR_MESSAGE, STANDARD } from '../../utils/constants.js';
 import { $ } from '../../utils/querySelector.js';
 import { isDivideByTen } from '../../utils/validation.js';
+import { showCurrentAmount } from '../../view/view.js';
 import { getProductItemStorage } from '../storage/product.js';
 import { initProductPurchaseList, productPurchaseTemplate } from './productPurchaseTemplate.js';
 
-let chargeAmount = 0;
+let currentAmount = STANDARD.CURRENT_MONEY;
 
-const showChargeAmount = (chargeInput) => {
-  chargeAmount += chargeInput;
-  $('#charge-amount').innerHTML = `투입한 금액: ${chargeAmount}`;
-};
-
+// eslint-disable-next-line consistent-return
 const handleChargeInput = (event) => {
   event.preventDefault();
   const chargeInput = Number($('#charge-input').value);
+  const chargeAmountId = '#charge-amount';
 
   if (isDivideByTen(chargeInput)) {
     return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
   }
 
-  showChargeAmount(chargeInput);
+  currentAmount += chargeInput;
+  showCurrentAmount(chargeAmountId, currentAmount);
 };
 
 export const showProductPurchase = () => {

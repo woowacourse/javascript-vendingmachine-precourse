@@ -19,7 +19,7 @@ export const productPurchaseTemplate = `
       <input type="number" id="charge-input" placeholder="투입할 금액"/>
       <button id="charge-button">투입하기</button>
     </form>
-    <p id="charge-amount">투입한 금액: </p>
+    <p id="charge-amount">투입한 금액: <span></span></p>
   </div>
   <br/>
   <div>
