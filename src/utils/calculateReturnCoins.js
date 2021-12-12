@@ -22,6 +22,7 @@ const calculateReturnCoins = () => {
 
   const sumCoins = UT.calculateToCharge(returnCoinWallet);
   DB.overwrite('chargeToPurchaseProduct', charge - sumCoins);
+  DOM.showChargeToPurchaseProduct();
 };
 
 const useGreedyArgorithm = (charge, wallet, newWallet) => {
