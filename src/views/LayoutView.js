@@ -10,15 +10,19 @@ LayoutView.setup = function (element) {
 };
 
 LayoutView.render = function () {
-  this.element.innerHTML = `
-        <h2>🥤자판기🥤</h2>
-        <div id=${ELEMENT_ID.TAB_VIEW}>
-        <button id=${ELEMENT_ID.PRODUCT_ADD_MENU}>${TAB.MANAGE_PRODUCT}</button>
-        <button id=${ELEMENT_ID.VENDING_MACHINE_MANAGE_MENU}>${TAB.CHARGE_CHANGE}</button>
-        <button id=${ELEMENT_ID.PRODUCT_PURCHASE_MENU}>${TAB.PURCHASE_PRODUCT}</button>
-        </div>
-        <div id=${ELEMENT_ID.RESULT_VIEW}></div>
-    `;
+  this.element.innerHTML = this.template();
+};
+
+LayoutView.template = function () {
+  return `
+    <h2>🥤자판기🥤</h2>
+    <div id=${ELEMENT_ID.TAB_VIEW}>
+    <button id=${ELEMENT_ID.PRODUCT_ADD_MENU}>${TAB.MANAGE_PRODUCT}</button>
+    <button id=${ELEMENT_ID.VENDING_MACHINE_MANAGE_MENU}>${TAB.CHARGE_CHANGE}</button>
+    <button id=${ELEMENT_ID.PRODUCT_PURCHASE_MENU}>${TAB.PURCHASE_PRODUCT}</button>
+    </div>
+    <div id=${ELEMENT_ID.RESULT_VIEW}></div>
+`;
 };
 
 export default LayoutView;

@@ -12,37 +12,40 @@ ManageProductView.setup = function (element) {
   return this;
 };
 ManageProductView.render = function () {
-  this.element.innerHTML = `
-    <h4>상품 추가하기</h4>
-    <div>
-      <input placeholder=${PRODUCT.NAME} id=${ELEMENT_ID.PRODUCT_NAME_INPUT} type="text"/>
-      <input placeholder=${PRODUCT.PRICE} id=${ELEMENT_ID.PRODUCT_PRICE_INPUT} type="number"/>
-      <input placeholder=${PRODUCT.QUANTITY} id=${ELEMENT_ID.PRODUCT_QUANTITY_INPUT} type="number"/>
-      <button id=${ELEMENT_ID.PRODUCT_ADD_BUTTON}>추가하기</button>
-    </div>
-    <h4>상품 현황</h4>
-    <table>
-      <thead> 
-        <tr>
-          <th>${PRODUCT.NAME}</th>
-          <th>${PRODUCT.PRICE}</th>
-          <th>${PRODUCT.QUANTITY}</th>
-        <tr/>
-      </thead>
-      <tbody>
-        ${ManageProductModel.list()
-          .map(
-            (product) =>
-              `<tr class=${ELEMENT_CLASS.PRODUCT_MANAGE_ITEM}>
-            <td  class=${ELEMENT_CLASS.PRODUCT_MANAGE_NAME}>${product[PRODUCT.NAME]}</td>
-            <td class=${ELEMENT_CLASS.PRODUCT_MANAGE_PRICE}>${product[PRODUCT.PRICE]}</td>
-            <td class=${ELEMENT_CLASS.PRODUCT_MANAGE_QUANTITY}>${product[PRODUCT.QUANTITY]}</td>
-          </tr>`,
-          )
-          .join('')}
-      </tbody>
-    </table>
-    `;
+  this.element.innerHTML = this.template();
+};
+ManageProductView.template = function () {
+  return `
+  <h4>상품 추가하기</h4>
+  <div>
+    <input placeholder=${PRODUCT.NAME} id=${ELEMENT_ID.PRODUCT_NAME_INPUT} type="text"/>
+    <input placeholder=${PRODUCT.PRICE} id=${ELEMENT_ID.PRODUCT_PRICE_INPUT} type="number"/>
+    <input placeholder=${PRODUCT.QUANTITY} id=${ELEMENT_ID.PRODUCT_QUANTITY_INPUT} type="number"/>
+    <button id=${ELEMENT_ID.PRODUCT_ADD_BUTTON}>추가하기</button>
+  </div>
+  <h4>상품 현황</h4>
+  <table>
+    <thead> 
+      <tr>
+        <th>${PRODUCT.NAME}</th>
+        <th>${PRODUCT.PRICE}</th>
+        <th>${PRODUCT.QUANTITY}</th>
+      <tr/>
+    </thead>
+    <tbody>
+      ${ManageProductModel.list()
+        .map(
+          (product) =>
+            `<tr class=${ELEMENT_CLASS.PRODUCT_MANAGE_ITEM}>
+          <td  class=${ELEMENT_CLASS.PRODUCT_MANAGE_NAME}>${product[PRODUCT.NAME]}</td>
+          <td class=${ELEMENT_CLASS.PRODUCT_MANAGE_PRICE}>${product[PRODUCT.PRICE]}</td>
+          <td class=${ELEMENT_CLASS.PRODUCT_MANAGE_QUANTITY}>${product[PRODUCT.QUANTITY]}</td>
+        </tr>`,
+        )
+        .join('')}
+    </tbody>
+  </table>
+  `;
 };
 ManageProductView.bindCLick = function () {
   this.element.addEventListener('click', (e) => {
