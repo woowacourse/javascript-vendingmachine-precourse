@@ -57,5 +57,6 @@ export default {
 
   onChargeCoin(money) {
     ChargeCoinModel.charge(money);
+    ChargeCoinView.render();
   },
 };

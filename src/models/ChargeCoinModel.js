@@ -18,9 +18,17 @@ export default {
       this.coins[randomCoin] += 1;
       money -= randomCoin;
     }
-    console.log(this.coins);
+  },
+  total() {
+    return COINS.reduce((sum, coin) => {
+      return sum + this.coins[coin] * coin;
+    }, 0);
+  },
+  list() {
+    return this.coins;
   },
 };
+
 const isValidMoneyInput = (money) => {
   if (money === '') {
     alert(ALERT.EMPTY_MONEY_INPUT);
