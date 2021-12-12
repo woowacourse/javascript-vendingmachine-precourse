@@ -1,21 +1,23 @@
+import { ALERT_MESSAGE, PURCHASE } from '../constants/index.js';
+
 class PurchaseValidator {
   static isMoneyInputDoesNotDivideBy10(moneyInput) {
-    if (moneyInput % 10) {
-      alert('10원으로 나누어 떨어지는 금액만 투입 가능합니다.');
+    if (moneyInput % PURCHASE.DIVISIBLE_NUMBER !== PURCHASE.REMAINDER_IS_0) {
+      alert(ALERT_MESSAGE.PURCHASE_INPUT_DOES_NOT_DIVIDED_BY_10);
       return true;
     }
   }
 
   static isMoneyInputLessThan0(moneyInput) {
-    if (moneyInput < 0) {
-      alert('마이너스 금액은 투입할 수 없습니다.');
+    if (moneyInput < PURCHASE.INPUT_IS_0) {
+      alert(ALERT_MESSAGE.PURCHASE_MONEY_INPUT_LESS_THAN_0);
       return true;
     }
   }
 
   static isMoneyInputBlank(moneyInput) {
-    if (moneyInput === 0) {
-      alert('투입할 금액을 입력해주세요.');
+    if (moneyInput === PURCHASE.INPUT_IS_0) {
+      alert(ALERT_MESSAGE.PURCHASE_MONEY_INPUT_BLANK);
       return true;
     }
   }
@@ -28,15 +30,15 @@ class PurchaseValidator {
   }
 
   static isQuantityZero(quantity) {
-    if (quantity === 0) {
-      alert('해당 상품은 품절입니다.');
+    if (quantity === PURCHASE.QUANTITY_IS_0) {
+      alert(ALERT_MESSAGE.PURCHASE_IS_SOLD_OUT);
       return true;
     }
   }
 
   static isLackOfMoney(price, userInputMoney) {
     if (price > userInputMoney.amount) {
-      alert('돈이 부족합니다.');
+      alert(ALERT_MESSAGE.PURCHASE_LACK_OF_MONEY);
       return true;
     }
   }

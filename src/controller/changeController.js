@@ -1,6 +1,7 @@
 import { $ } from '../utils/dom.js';
 import { pickRandomCoin } from '../utils/pickRandomCoin.js';
 import { reservedChange, store } from '../model/store.js';
+import { COIN } from '../constants/index.js';
 import ChangeValidator from '../validator/changeValidator.js';
 
 class ChangeController {
@@ -10,20 +11,20 @@ class ChangeController {
   }
 
   chargeCoin() {
-    let moneyInput = this.view.getInput();
-    if (ChangeValidator.isInvalidMoneyInput(moneyInput)) {
+    let changeInput = this.view.getInput();
+    if (ChangeValidator.isInvalidChangeInput(changeInput)) {
       return;
     }
-    this.randomCharge(moneyInput);
+    this.randomCharge(changeInput);
     this.view.render();
   }
 
-  randomCharge(moneyInput) {
-    while (moneyInput >= 10) {
+  randomCharge(changeInput) {
+    while (changeInput >= COIN.MIN_VALUE) {
       let pickedCoin = pickRandomCoin();
-      if (moneyInput >= pickedCoin) {
-        reservedChange[`coin${pickedCoin}`] += 1;
-        moneyInput -= pickedCoin;
+      if (changeInput >= pickedCoin) {
+        reservedChange[`coin${pickedCoin}`] += COIN.ADD_1;
+        changeInput -= pickedCoin;
       }
     }
     store.setLocalStorage('reservedChange', reservedChange);

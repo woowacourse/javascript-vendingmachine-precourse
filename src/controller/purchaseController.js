@@ -1,6 +1,7 @@
 import { $ } from '../utils/dom.js';
 import { store, userInputMoney, items, reservedChange, returnedChange } from '../model/store.js';
 import PurchaseValidator from '../validator/purchaseValidator.js';
+import { COIN, PURCHASE } from '../constants/index.js';
 
 class PurhcaseController {
   constructor(view) {
@@ -31,7 +32,7 @@ class PurhcaseController {
 
   updateItemState(purchasedItem) {
     userInputMoney.amount -= purchasedItem.price;
-    purchasedItem.quantity -= 1;
+    purchasedItem.quantity -= PURCHASE.ONE_OF_ITEM;
     store.setLocalStorage('userInputMoney', userInputMoney);
     store.setLocalStorage('items', items);
   }
@@ -45,7 +46,7 @@ class PurhcaseController {
   }
 
   calculateReturnChange() {
-    [500, 100, 50, 10].forEach((value) => {
+    [COIN.VALUE_500, COIN.VALUE_100, COIN.VALUE_50, COIN.VALUE_10].forEach((value) => {
       const quotient = parseInt(userInputMoney.amount / value);
       const returnableChange = reservedChange[`coin${value}`];
       if (quotient >= returnableChange) {

@@ -1,21 +1,23 @@
+import { ALERT_MESSAGE, CHANGE } from '../constants/index.js';
+
 class ChangeValidator {
-  static isMoneyInputLessThan10(moneyInput) {
-    if (moneyInput < 10) {
-      alert('10원 이상의 금액만 충전 가능합니다.');
+  static isChangeInputLessThan10(changeInput) {
+    if (changeInput < CHANGE.MINIMUM_INPUT) {
+      alert(ALERT_MESSAGE.CHANGE_INPUT_LESS_THAN_10);
       return true;
     }
   }
 
-  static isMoneyInputDoesNotDivideBy10(moneyInput) {
-    if (moneyInput % 10) {
-      alert('10원으로 나누어 떨어지는 금액만 충전 가능합니다.');
+  static isChangeInputDoesNotDivideBy10(changeInput) {
+    if (changeInput % CHANGE.DIVISIBLE_NUMBER !== CHANGE.REMAINDER_IS_0) {
+      alert(ALERT_MESSAGE.CHANGE_INPUT_DOES_NOT_DIVIDED_BY_10);
       return true;
     }
   }
 
-  static isInvalidMoneyInput(moneyInput) {
-    if (this.isMoneyInputLessThan10(moneyInput)) return true;
-    if (this.isMoneyInputDoesNotDivideBy10(moneyInput)) return true;
+  static isInvalidChangeInput(changeInput) {
+    if (this.isChangeInputLessThan10(changeInput)) return true;
+    if (this.isChangeInputDoesNotDivideBy10(changeInput)) return true;
     return false;
   }
 }
