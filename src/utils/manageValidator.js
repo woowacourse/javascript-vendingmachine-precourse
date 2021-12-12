@@ -29,11 +29,19 @@ class ManageValidator {
     }
   }
 
+  static isProductQuantityUnder1(quantity) {
+    if (quantity < 1) {
+      alert('상품 수량은 최소 1개 입력해주세요.');
+      return true;
+    }
+  }
+
   static isInvalidAddItemInput({ name, price, quantity }) {
     if (this.isProudctNameDuplicated(name)) return true;
     if (this.isProductNameBlank(name)) return true;
     if (this.isProductPriceUnder100(price)) return true;
     if (this.isProductPriceDoesNotDivideBy10(price)) return true;
+    if (this.isProductQuantityUnder1(quantity)) return true;
     return false;
   }
 }
