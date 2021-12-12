@@ -32,3 +32,11 @@ export const getErrorMessage = (productList, name, price) => {
 
   return null;
 };
+
+export const getNotValidMoneyErrorMessage = input => {
+  if (!Validator.isdivided(input, DIVISION)) {
+    return ERR_MESSAGE.DIVISIBLE_BY;
+  }
+
+  return null;
+};
