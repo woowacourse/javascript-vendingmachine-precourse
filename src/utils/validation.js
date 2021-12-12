@@ -125,3 +125,24 @@ export const isValidPurchaseInput = (amount) => {
 
   return true;
 };
+
+export const isNotEnoughMoney = (amount, price) => {
+  return amount < price;
+};
+
+export const isSoldOut = (quantity) => {
+  return quantity < 1;
+};
+
+export const isValidPurchaseProduct = (amount, price, quantity) => {
+  if (isNotEnoughMoney(amount, price)) {
+    alert(ERROR_MESSAGE.NOT_ENOUGH_MONEY);
+    return false;
+  }
+  if (isSoldOut(quantity)) {
+    alert(ERROR_MESSAGE.SOLD_OUT);
+    return false;
+  }
+
+  return true;
+};
