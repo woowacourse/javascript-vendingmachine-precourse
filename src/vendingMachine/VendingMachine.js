@@ -7,9 +7,15 @@ import {
 } from '../constant/constant.js';
 import Coins from './Coins.js';
 
+function getProductsFromStorage() {
+  const copy = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY));
+
+  return copy?.map((product) => new Product(product));
+}
+
 export default class VendingMachine {
   constructor() {
-    this.products = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY)) || [];
+    this.products = getProductsFromStorage() || [];
     this.change = new Coins();
     this.money = +localStorage.getItem(CURRENT_MONEY_KEY) || 0;
   }
