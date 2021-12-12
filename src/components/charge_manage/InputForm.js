@@ -1,5 +1,6 @@
 import Component from "../root/Component.js";
 import { isValidCharge } from "../../utils/validation.js";
+
 export default class InputForm extends Component {
   setup() {
     console.log("charge input form", this);
@@ -15,7 +16,7 @@ export default class InputForm extends Component {
                 <button id="vending-machine-charge-button">투입하기</button>
             </form>
         <p>투입한 금액: <span id="vending-machine-charge-amount">
-        ${this.getChargeAmountText(chargeAmount)}
+            ${this.getChargeAmountText(chargeAmount)}
         </span></p>
       `;
   }
@@ -27,7 +28,6 @@ export default class InputForm extends Component {
   onSubmitHandler(e) {
     e.preventDefault();
     const { addChargeAmount } = this.$props;
-
     const [money] = e.target;
     const charge = Number(money.value);
 

@@ -16,6 +16,12 @@ export default class Api {
         "product-purchase-menu",
       ],
       chargeAmount: 0,
+      coins: {
+        coin500: 0,
+        coin100: 0,
+        coin50: 0,
+        coin10: 0,
+      },
     };
 
     if (!this.getVendingMachine()) {
