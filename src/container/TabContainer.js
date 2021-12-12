@@ -1,3 +1,4 @@
+import VendingMachine from '../store/VendingMachine.js';
 import TabProductAdd from '../component/TabProductAdd.js';
 import TabMachineManage from '../component/TabMachineManage.js';
 import TabPurchase from '../component/TabPurchase.js';
@@ -8,12 +9,15 @@ export default class TabContainer {
     this.tabProductAdd = null;
     this.tabMachineManage = null;
     this.tabPurchase = null;
+    this.vendingMachine = new VendingMachine();
 
     this.init();
   }
 
   init() {
-    this.tabProductAdd = new TabProductAdd(this.$target);
+    this.tabProductAdd = new TabProductAdd(this.$target, {
+      addProduct: this.addProduct.bind(this),
+    });
     this.tabMachineManage = new TabMachineManage(this.$target);
     this.tabPurchase = new TabPurchase(this.$target);
   }
@@ -22,5 +26,9 @@ export default class TabContainer {
     this.tabProductAdd.determineDisplaying();
     this.tabMachineManage.determineDisplaying();
     this.tabPurchase.determineDisplaying();
+  }
+
+  addProduct(name, price, quantity) {
+    this.vendingMachine.addProduct(name, Number.parseInt(price, 10), Number.parseInt(quantity, 10));
   }
 }

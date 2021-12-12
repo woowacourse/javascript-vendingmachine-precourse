@@ -3,18 +3,21 @@ import Title from '../core/Title.js';
 import Input from '../core/Input.js';
 import Button from '../core/Button.js';
 import Table from '../core/Table.js';
+import { isValidProductAdd } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, SELECTOR } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
 
 export default class TabProductAdd {
-  constructor($parent) {
+  constructor($parent, props) {
     this.$parent = $parent;
+    this.props = props;
     this.$root = null;
     this.navigator = new Navigator();
 
     this.createRootElement();
     this.determineDisplaying();
     this.render();
+    this.setEvent();
   }
 
   createRootElement() {
@@ -73,5 +76,19 @@ export default class TabProductAdd {
 
   hide() {
     this.$root.setAttribute(DOM_ATTRIBUTE.HIDDEN, true);
+  }
+
+  setEvent() {
+    const { addProduct } = this.props;
+
+    this.addButton.getTarget().addEventListener(EVENT.CLICK, () => {
+      const nameValue = this.name.getTarget().value;
+      const priceValue = this.price.getTarget().value;
+      const quantityValue = this.quantity.getTarget().value;
+
+      if (isValidProductAdd([nameValue, priceValue, quantityValue])) {
+        addProduct(nameValue, priceValue, quantityValue);
+      }
+    });
   }
 }
