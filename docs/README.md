@@ -127,9 +127,9 @@
     
   - [ ] 2. 투입 금액이 잔돈보다 적을 경우
     - [x] ⚙️  잔돈을 돌려줄 때는 현재 보유한 최소 개수의 동전으로 잔돈을 돌려준다
-    - [ ] ⚙️  투입한 금액에서 반환한 금액의 총합을 차감한다 (0으로 만든다)
+    - [x] ⚙️  투입한 금액에서 반환한 금액의 총합을 차감한다
     - [ ] 💾  localStorage의 `vendingMachineCoins`의 금액 별 동전 개수를 차감 후 저장한다
-    - [ ] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
+    - [x] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
     - [ ] 🖨️  투입한 금액: 옆에 `{금액}원` 형식으로 출력한다
     - [ ] 🖨️  자판기가 반환한 동전 금액별 개수 출력한다
 

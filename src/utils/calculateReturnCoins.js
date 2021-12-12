@@ -5,7 +5,6 @@ import { default as DOM } from '../views/DOMUtils.js';
 const calculateReturnCoins = () => {
   const charge = DB.load('chargeToPurchaseProduct');
   const wallet = DB.load('vendingMachineCoins');
-  const sumCoins = UT.calculateToCharge('vendingMachineCoins');
   const newWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
 
   //   if (charge >= sumCoins) {
@@ -16,7 +15,13 @@ const calculateReturnCoins = () => {
 
   //     return DB.overwrite('vendingMachineCoins', newWallet);
   //   }
-  useGreedyArgorithm(charge, wallet, newWallet);
+  const [DeductedWallet, returnCoinWallet] = useGreedyArgorithm(charge, wallet, newWallet);
+
+  console.log(DeductedWallet);
+  console.log(returnCoinWallet);
+
+  const sumCoins = UT.calculateToCharge(returnCoinWallet);
+  DB.overwrite('chargeToPurchaseProduct', charge - sumCoins);
 };
 
 const useGreedyArgorithm = (charge, wallet, newWallet) => {
@@ -30,8 +35,7 @@ const useGreedyArgorithm = (charge, wallet, newWallet) => {
 
   [500, 100, 50, 10].forEach(coinType => tryCaseByCoinType(coinType));
 
-  console.log(wallet);
-  console.log(newWallet);
+  return [wallet, newWallet];
 };
 
 export default calculateReturnCoins;
