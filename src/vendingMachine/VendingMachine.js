@@ -36,7 +36,7 @@ export default class VendingMachine {
 
   setCurrentMoney(money) {
     if (Validator.isValidChargeInput(money)) {
-      this.money = +money;
+      this.money += +money;
       localStorage.setItem(CURRENT_MONEY_KEY, this.money);
       return true;
     }
