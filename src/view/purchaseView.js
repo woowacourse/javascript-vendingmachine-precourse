@@ -1,4 +1,5 @@
 import { $ } from '../utils/dom.js';
+import { userInputMoney } from '../model/store.js';
 
 class PurchaseView {
   constructor() {}
@@ -7,7 +8,9 @@ class PurchaseView {
     return Number($('#charge-input').value);
   }
 
-  render() {}
+  render() {
+    $('#charge-amount').textContent = `${userInputMoney.totalAmount}원`;
+  }
 
   template() {
     return `

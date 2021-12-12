@@ -10,6 +10,7 @@ class PurhcaseController {
   addUserInputMoney() {
     const moneyInput = this.view.getInput();
     userInputMoney.totalAmount += moneyInput;
+    this.view.render();
   }
 
   bindEvent() {
