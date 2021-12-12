@@ -41,6 +41,7 @@ export const isValidProductName = (inputValue) => {
 };
 
 export const isValidProductPrice = (inputValue) => {
+  inputValue = Number.parseInt(inputValue, 10);
   if (isInputEmpty(inputValue)) {
     alert(ERROR_MESSAGE.EMPTY);
     return false;
@@ -58,12 +59,29 @@ export const isValidProductPrice = (inputValue) => {
 };
 
 export const isValidProductQuantity = (inputValue) => {
+  inputValue = Number.parseInt(inputValue, 10);
   if (isInputEmpty(inputValue)) {
     alert(ERROR_MESSAGE.EMPTY);
     return false;
   }
   if (isInputNotInteger(inputValue) || isInputNotPositive(inputValue)) {
     alert(ERROR_MESSAGE.MINIMUN_QUANTITY);
+    return false;
+  }
+
+  return true;
+};
+
+export const isValidProductInput = (name, price, quantity) => {
+  if (!isValidProductName(name)) {
+    return false;
+  }
+
+  if (!isValidProductPrice(price)) {
+    return false;
+  }
+
+  if (!isValidProductQuantity(quantity)) {
     return false;
   }
 

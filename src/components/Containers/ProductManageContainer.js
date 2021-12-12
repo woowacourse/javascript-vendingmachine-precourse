@@ -1,6 +1,7 @@
 import {ID, STORAGE_KEY} from '../../utils/constants.js';
 import {createInputElement, createTable} from '../../utils/domUtil.js';
 import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
+import {isValidProductInput} from '../../utils/validation.js';
 import Component from '../core/Component.js';
 
 export default class ProductManageContainer extends Component {
@@ -34,9 +35,11 @@ export default class ProductManageContainer extends Component {
       const name = this.$target.querySelector(`#${ID.PRODUCT_NAME_INPUT}`).value;
       const price = this.$target.querySelector(`#${ID.PRODUCT_PRICE_INPUT}`).value;
       const quantity = this.$target.querySelector(`#${ID.PRODUCT_QUANTITY_INPUT}`).value;
-      setLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [...this.$state.products, {name, price, quantity}]);
-      this.setState({products: [...this.$state.products, {name, price, quantity}]});
-      this.setEvent();
+      if (isValidProductInput(name, price, quantity)) {
+        setLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [...this.$state.products, {name, price, quantity}]);
+        this.setState({products: [...this.$state.products, {name, price, quantity}]});
+        this.setEvent();
+      }
     });
   }
 
