@@ -17,13 +17,39 @@ export default class ProductInputForm extends Component {
 
   bindEvent() {
     this.addEvent(
+      'keyup',
+      `${SELECTOR.PRODUCT_NAME_INPUT}, ${SELECTOR.PRODUCT_PRICE_INPUT}, ${SELECTOR.PRODUCT_QUANTITY_INPUT}`,
+      this.handleInputFocus.bind(this)
+    );
+
+    this.addEvent(
       'click',
       SELECTOR.PRODUCT_ADD_BUTTON,
-      this.handelAddProduct.bind(this)
+      this.handleAddProduct.bind(this)
     );
   }
 
-  handelAddProduct() {
+  handleInputFocus({ key, target }) {
+    if (key !== 'Enter') return false;
+    const focusSelector = `#${target.id}`;
+    switch (focusSelector) {
+      case SELECTOR.PRODUCT_NAME_INPUT:
+        $(SELECTOR.PRODUCT_PRICE_INPUT).focus();
+        break;
+
+      case SELECTOR.PRODUCT_PRICE_INPUT:
+        $(SELECTOR.PRODUCT_QUANTITY_INPUT).focus();
+        break;
+
+      case SELECTOR.PRODUCT_QUANTITY_INPUT:
+        this.handleAddProduct();
+        break;
+
+      // no default
+    }
+  }
+
+  handleAddProduct() {
     const { addProduct } = this._props;
     const isResult = addProduct(
       $(SELECTOR.PRODUCT_NAME_INPUT).value,
