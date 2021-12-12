@@ -1,5 +1,5 @@
-import {ID, STORAGE_KEY} from '../../utils/constants.js';
-import {createInputElement} from '../../utils/domUtil.js';
+import {ID, STORAGE_KEY, TABLE_MENU} from '../../utils/constants.js';
+import {createInputElement, createTable} from '../../utils/domUtil.js';
 import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
 import {isValidPurchaseInput} from '../../utils/validation.js';
 import Component from '../core/Component.js';
@@ -14,7 +14,9 @@ export default class PurchaseContainer extends Component {
     };
   }
 
-  mounted() {}
+  mounted() {
+    this.$target.querySelector(`#product-table-container`).innerHTML = this.printProductTable();
+  }
 
   template() {
     return `
@@ -56,5 +58,11 @@ export default class PurchaseContainer extends Component {
           <button id=${ID.CHARGE_BUTTON}>투입하기</button>
         </form>
     `;
+  }
+
+  printProductTable() {
+    const ths = ['상품명', '가격', '수량', '구매'];
+
+    return createTable(TABLE_MENU.PURCHASE, ths, this.$state.products);
   }
 }
