@@ -21,6 +21,9 @@ export const ELEMENT_ID = {
   CHARGE_INPUT: 'vending-machine-charge-input',
   CHARGE_BUTTON: 'vending-machine-charge-button',
   CHARGE_AMOUNT: 'vending-machine-charge-amount',
+  PURCHAGE_CHARGE_INPUT: 'charge-input',
+  PURCHASE_CHARGE_BUTTON: 'charge-button',
+  PURCHAGE_CHARGE_AMOUNT: 'charge-amount',
   COIN_QUANTITY(coin) {
     return `vending-machine-coin-${coin}-quantity`;
   },
@@ -30,6 +33,11 @@ export const ELEMENT_CLASS = {
   PRODUCT_MANAGE_NAME: 'product-manage-name',
   PRODUCT_MANAGE_PRICE: 'product-manage-price',
   PRODUCT_MANAGE_QUANTITY: 'product-manage-quantity',
+  PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
+  PRODUCT_PURCHASE_NAME: 'product-purchase-name',
+  PRODUCT_PURCHASE_PRICE: 'product-purchase-price',
+  PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
+  PURCHASE_BUTTON: 'purchase-button',
 };
 export const EVENT_TYPE = {
   CHANGE_TAB: 'changeTab',
@@ -45,6 +53,10 @@ export const PRODUCT = {
   NAME: '상품명',
   PRICE: '가격',
   QUANTITY: '수량',
+  BUY: '구매',
+};
+export const PLACEHOLDER = {
+  CHARGE_AMOUNT: '투입할 금액',
 };
 export const ALERT = {
   EMPTY_PRODUCT_NAME: '상품 이름을 입력해주세요.',
