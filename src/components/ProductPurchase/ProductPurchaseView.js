@@ -1,24 +1,41 @@
-import { USER_CHARGE, VALUES, PRODUCT, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN} from '../../utils/constants.js';
-import { HTML_OF_PRODUCT_PURCHASE_PART, HTML_OF_PRODUCT_PURCHASE_PART_MID, HTML_OF_PRODUCT_PURCHASE_TABLE, HTML_OF_USER_CHANGE_TABLE } from '../../utils/html.js';
+import {
+  USER_CHARGE,
+  VALUES,
+  PRODUCT,
+  USER_COINS,
+  FIVE_HUNDRED,
+  ONE_HUNDRED,
+  FIFTY,
+  TEN,
+} from '../../utils/constants.js';
+import {
+  HTML_OF_PRODUCT_PURCHASE_PART,
+  HTML_OF_PRODUCT_PURCHASE_PART_MID,
+  HTML_OF_PRODUCT_PURCHASE_TABLE,
+  HTML_OF_USER_CHANGE_TABLE,
+} from '../../utils/html.js';
 
 export default class ProductPurchaseView {
   static render() {
     this.showPage();
 
-    if(localStorage.getItem(USER_CHARGE) !== null) {
+    if (localStorage.getItem(USER_CHARGE) !== null) {
       this.showUserCharge();
     }
-    if(localStorage.getItem(PRODUCT) !== null) {
+    if (localStorage.getItem(PRODUCT) !== null) {
       this.showProductTable();
     }
-    if(localStorage.getItem(USER_COINS) !== null) {
+    if (localStorage.getItem(USER_COINS) !== null) {
       this.showUserCoinTable();
     }
   }
 
   static showPage() {
     document.getElementById('bottom-container').innerHTML =
-      HTML_OF_PRODUCT_PURCHASE_PART + HTML_OF_PRODUCT_PURCHASE_TABLE + HTML_OF_PRODUCT_PURCHASE_PART_MID + HTML_OF_USER_CHANGE_TABLE;
+      HTML_OF_PRODUCT_PURCHASE_PART +
+      HTML_OF_PRODUCT_PURCHASE_TABLE +
+      HTML_OF_PRODUCT_PURCHASE_PART_MID +
+      HTML_OF_USER_CHANGE_TABLE;
   }
 
   static showUserCharge() {
@@ -27,18 +44,22 @@ export default class ProductPurchaseView {
     document.getElementById('charge-amount').innerHTML = `${userMoney[VALUES]}`;
   }
 
-    static showProductTable() {
-      const product = JSON.parse(localStorage.getItem(PRODUCT));
-  
-      document.getElementById('product-purchase-table').innerHTML = HTML_OF_PRODUCT_PURCHASE_TABLE + `
-      ${Object.keys(product).map((name) => `
+  static showProductTable() {
+    const product = JSON.parse(localStorage.getItem(PRODUCT));
+
+    document.getElementById('product-purchase-table').innerHTML = `${HTML_OF_PRODUCT_PURCHASE_TABLE}
+      ${Object.keys(product)
+        .map(
+          (name) => `
       <tr class="product-purchase-item">
         <td class="product-purchase-name" data-product-name=${name}>${name}</td>
         <td class="product-purchase-price" data-product-price=${product[name][VALUES][0]}>${product[name][VALUES][0]}</td>
         <td class="product-purchase-quantity" data-product-quantity=${product[name][VALUES][1]}>${product[name][VALUES][1]}</td>
         <td><button class="purchase-button">구매하기</button></td>
-      </tr>`).join('')}`
-    }
+      </tr>`
+        )
+        .join('')}`;
+  }
 
   static showUserCoinTable() {
     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));

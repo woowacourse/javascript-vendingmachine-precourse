@@ -1,4 +1,4 @@
-import MainMenuCheck from "./MainMenuCheck.js";
+import MainMenuCheck from './MainMenuCheck.js';
 
 export default class MenuButtonController {
   static menuButtonEvent() {
