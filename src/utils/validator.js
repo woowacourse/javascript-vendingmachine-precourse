@@ -48,3 +48,7 @@ export const QuantityCheckMethods = [
 export function isQuantityValid(value) {
   return QuantityCheckMethods.every((QuantityCheckMethod) => QuantityCheckMethod(value));
 }
+
+export function isProductInputsValid(productName, price, quantity) {
+  return isProductNameValid(productName) && isPriceValid(price) && isQuantityValid(quantity);
+}
