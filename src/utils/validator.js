@@ -2,7 +2,7 @@ import { USER_INPUT_ALERT } from './constant.js';
 
 export const ProductNameCheckMethods = [
   (value) => {
-    const isFilled = value.trim().length !== 0;
+    const isFilled = value.trim() !== '';
     if (!isFilled) {
       alert(USER_INPUT_ALERT.blankNameError);
     }
