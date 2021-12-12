@@ -44,5 +44,3 @@ class ChangesStore extends Store {
 }
 
 export default new ChangesStore(initialState, ChangesStorage);
-
-// ....허허...
