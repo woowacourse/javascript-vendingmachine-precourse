@@ -35,3 +35,5 @@ export const ALERT_MESSAGE = {
   isNotEnoughCoin: '금액이 부족합니다.',
   isNotEnoughQuantity: '수량이 부족합니다.',
 };
+
+export const COIN_ARRAY = [500, 100, 50, 10];
