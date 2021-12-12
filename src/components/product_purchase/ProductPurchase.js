@@ -1,5 +1,6 @@
 import Component from "../root/Component.js";
 import InputForm from "./InputForm.js";
+import ItemSatus from "./ItemSatus.js";
 
 import API from "../../libs/api.js";
 import setTableStyled from "../../style/setTableStyled.js";
@@ -19,33 +20,7 @@ export default class ProductPurchase extends Component {
   template() {
     return `
       <div id="charge-input-form"></div>
-      <div>
-        <h3>구매할 수 있는 상품 현황</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>상품명</th>
-              <th>가격</th>
-              <th>수량</th>
-              <th>구매</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="product-purchase-item">
-              <td class="product-purchase-name" data-product-name="에시">예시</td>
-              <td class="product-purchase-price" data-product-price="1000">1000</td>
-              <td class="product-purchase-quantity" data-product-quantity="10">10</td>
-              <td><button class="purchase-button">구매하기</button></td>
-            </tr>
-            <tr class="product-purchase-item">
-              <td class="product-purchase-name" data-product-name="테스트">테스트</td>
-              <td class="product-purchase-price" data-product-price="1000">1000</td>
-              <td class="product-purchase-quantity" data-product-quantity="10">10</td>
-              <td><button class="purchase-button">구매하기</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div id="product-purchase-item-satus"></div>
       <div>
         <h3>잔돈</h3>
         <button id="coin-return-button">반환하기</button>
@@ -87,12 +62,20 @@ export default class ProductPurchase extends Component {
   mounted() {
     const {
       addPurchaseChargeAmount,
-      $state: { purchaseChargeAmount },
+      $state: { purchaseChargeAmount, products },
     } = this;
     const $chargeInputForm = document.querySelector("#charge-input-form");
+    const $productPurchaseItemSatus = document.querySelector(
+      "#product-purchase-item-satus"
+    );
 
     new InputForm($chargeInputForm, {
       addPurchaseChargeAmount: addPurchaseChargeAmount.bind(this),
+      purchaseChargeAmount,
+    });
+
+    new ItemSatus($productPurchaseItemSatus, {
+      products,
       purchaseChargeAmount,
     });
 
