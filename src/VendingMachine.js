@@ -30,8 +30,16 @@ export default class VendingMachine {
   }
 
   returnCoin() {
-    const coins = this.coin.takeOut(this.amount);
-    this.amount = 0;
+    const coinAmount = this.coin.getAmount();
+    let coins = {};
+    if (this.amount > coinAmount) {
+      coins = this.coin.takeOut(coinAmount);
+      this.amount -= coinAmount;
+    } else {
+      coins = this.coin.takeOut(this.amount);
+      this.amount = 0;
+    }
+
     this.save();
 
     return coins;
