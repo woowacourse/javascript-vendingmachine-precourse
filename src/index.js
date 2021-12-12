@@ -1,4 +1,4 @@
-import {ADD_TAB_ID, MANAGE_TAB_ID, PURCHASE_TAB_ID} from './constants.js';
+import {ADD_TAB_ID, MANAGE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_ID} from './constants.js';
 import { elementCreator } from './dom/util.js';
 import createAddTab from './tabs/add-tab.js';
 import createManageTab from './tabs/manage-tab.js';

@@ -23,6 +23,16 @@ export default class VendingMachine {
         document.getElementById(ADD_TAB_ID.PRODUCT_TABLE).append(tr);
     }
 
+    buyProduct(product){
+        if(this.input >= product.price){
+            this.input -= product.price;
+            product.quantity--;
+            for(let i=0; i<this.products.length; i++){
+                console.log(this.products[i]);
+            }
+        }
+    }
+
     displayProductPurchaseTab(product){
         const tr = `<tr id= ${product.id} class= ${PURCHASE_TAB_CLASS.PURCHASE_ITEM}>
                         <td class=${PURCHASE_TAB_CLASS.PRODUCT_NAME} 
@@ -37,6 +47,13 @@ export default class VendingMachine {
                     </tr>
                     `
         document.getElementById(PURCHASE_TAB_ID.PRODUCT_TABLE).insertAdjacentHTML('beforeend',tr);
+        const trId = document.getElementById(product.id);
+        trId.addEventListener('click', e=> {
+            e.preventDefault();
+            if(e.target.className == PURCHASE_TAB_CLASS.PURCHASE_BUTTON){
+                this.buyProduct(product);
+            }
+        })
     }
 
     addProduct(name, price, quantity){
