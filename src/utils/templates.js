@@ -79,9 +79,16 @@ export const vendingMachineManageMenuTemplate = () => {
 export const productPurchaseMenuTemplate = () => {
   return `
     <h3>금액 투입</h3>
-    <input type="number" />
-    <button>투입하기</button>
-    <div>투입한 금액: <span></span></div>
+    <form>
+      <input
+        type="number"
+        id=${ID.CHARGE_INPUT}
+        placeholder="투입할 금액"
+        required
+      />
+      <button type="submit" id=${ID.CHARGE_BTN}>투입하기</button>
+    </form>
+    <div>투입한 금액: <span id=${ID.CHARGE_AMOUNT}></span></div>
 
     <h3>구매할 수 있는 상품 현황</h3>
     <table>
@@ -91,22 +98,10 @@ export const productPurchaseMenuTemplate = () => {
         <th>수량</th>
         <th>구매</th>
       </tr>
-      <tr>
-        <td>상품명1</td>
-        <td>1</td>
-        <td>1</td>
-        <td><button>구매하기</button></td>
-      </tr>
-      <tr>
-        <td>상품명2...</td>
-        <td>2</td>
-        <td>2</td>
-        <td><button>구매하기</button></td>
-      </tr>
     </table>
 
     <h3>잔돈</h3>
-    <button>반환하기</button>
+    <button id=${ID.COIN_RETURN_BTN}>반환하기</button>
     <table>
       <tr>
         <th>동전</th>
@@ -114,19 +109,19 @@ export const productPurchaseMenuTemplate = () => {
       </tr>
       <tr>
         <td>500원</td>
-        <td></td>
+        <td id=${ID.COIN_500_QUANTITY}></td>
       </tr>
       <tr>
         <td>100원</td>
-        <td></td>
+        <td id=${ID.COIN_100_QUANTITY}></td>
       </tr>
       <tr>
         <td>50원</td>
-        <td></td>
+        <td id=${ID.COIN_50_QUANTITY}></td>
       </tr>
       <tr>
         <td>10원</td>
-        <td></td>
+        <td id=${ID.COIN_10_QUANTITY}></td>
       </tr>
     </table>
   `;

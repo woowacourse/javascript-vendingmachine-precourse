@@ -35,6 +35,16 @@ export const ID = {
   VENDING_MACHINE_COIN_100_QUANTITY: 'vending-machine-coin-100-quantity',
   VENDING_MACHINE_COIN_50_QUANTITY: 'vending-machine-coin-50-quantity',
   VENDING_MACHINE_COIN_10_QUANTITY: 'vending-machine-coin-10-quantity',
+
+  // product purchase
+  CHARGE_INPUT: 'charge-input',
+  CHARGE_BTN: 'charge-button',
+  CHARGE_AMOUNT: 'charge-amount',
+  COIN_RETURN_BTN: 'coin-return-button',
+  COIN_500_QUANTITY: 'coin-500-quantity',
+  COIN_100_QUANTITY: 'coin-100-quantity',
+  COIN_50_QUANTITY: 'coin-50-quantity',
+  COIN_10_QUANTITY: 'coin-10-quantity',
 };
 
 export const CLASS = {
@@ -43,4 +53,18 @@ export const CLASS = {
   PRODUCT_MANAGE_NAME: 'product-manage-name',
   PRODUCT_MANAGE_PRICE: 'product-manage-price',
   PRODUCT_MANAGE_QUANTITY: 'product-manage-quantity',
+
+  // product purchase
+  PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
+  PURCHASE_BTN: 'purchase-button',
+  PRODUCT_PURCHASE_NAME: 'product-purchase-name',
+  PRODUCT_PURCHASE_PRICE: 'product-purchase-price',
+  PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
+};
+
+export const DATASET = {
+  // product purchase
+  DATA_PRODUCT_NAME: 'data-product-name',
+  DATA_PRODUCT_PRICE: 'data-product-price',
+  DATA_PRODUCT_QUANTITY: 'data-product-quantity',
 };

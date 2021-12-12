@@ -1,8 +1,8 @@
 import { $, ID } from '../utils/dom.js';
 import { vendingMachineManageMenuTemplate } from '../utils/templates.js';
-import { RULES, ERROR_MSG } from '../utils/constants.js';
+import { RULES, ERROR_MSG, LS_KEY } from '../utils/constants.js';
 
-const LS_KEY_CHARGES = 'charges';
+const LS_KEY_CHARGES = LS_KEY.VENDING_MACHINE_MANAGE_CHARGES;
 
 export default class VendingMachineManage {
   constructor() {

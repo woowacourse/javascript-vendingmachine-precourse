@@ -1,8 +1,8 @@
 import { $, ID, CLASS } from '../utils/dom.js';
 import { productAddMenuTemplate } from '../utils/templates.js';
-import { RULES, ERROR_MSG } from '../utils/constants.js';
+import { RULES, ERROR_MSG, LS_KEY } from '../utils/constants.js';
 
-const LS_KEY_PRODUCTS = 'products';
+const LS_KEY_PRODUCTS = LS_KEY.PRODUCT_ADD_PRODUCTS;
 
 export default class ProductAdd {
   constructor() {
