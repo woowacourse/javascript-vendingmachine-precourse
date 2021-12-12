@@ -7,6 +7,10 @@ import {
 } from '../components/productAddMenu.js';
 import Product from '../components/product.js';
 import { vendingMachine } from '../components/vendingMachine.js';
+import {
+  alertProductErrorMessage,
+  isValidProduct,
+} from '../components/validator.js';
 
 export default function ProductAddMenuView(container) {
   this.productAddMenu = () => {
@@ -38,6 +42,22 @@ export default function ProductAddMenuView(container) {
     const productQuantityInput = document.querySelector(
       `#${ID.PRODUCT_QUANTITY_INPUT}`
     );
+
+    if (
+      !isValidProduct(
+        productNameInput.value,
+        productPriceInput.value,
+        productQuantityInput.value
+      )
+    ) {
+      alertProductErrorMessage(
+        productNameInput.value,
+        productPriceInput.value,
+        productQuantityInput.value
+      );
+      return;
+    }
+
     const product = new Product(
       productNameInput.value,
       productPriceInput.value,
