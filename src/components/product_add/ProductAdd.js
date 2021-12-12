@@ -41,7 +41,7 @@ export default class ProductAdd extends Component {
 
   addProduct(newProduct) {
     const payload = { products: [...this.$state.products, newProduct] };
-    this.callAPI.setProducts(payload);
+    this.callAPI.setVendingMachine(payload);
     this.setState(payload);
   }
 }

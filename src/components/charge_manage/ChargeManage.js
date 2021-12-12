@@ -4,11 +4,10 @@ import InputForm from "./InputForm.js";
 import API from "../../libs/api.js";
 export default class ChargeManage extends Component {
   setup() {
-    console.log("ChargeManage", this);
     this.$state;
     this.callAPI = new API();
     this.initCallAPI();
-    console.log("ProductAdd", this);
+    console.log("ChargeManage", this);
   }
 
   initCallAPI() {
@@ -52,4 +51,6 @@ export default class ChargeManage extends Component {
 
     new InputForm($chargeInputForm);
   }
+
+  addChargeAmount(charge) {}
 }

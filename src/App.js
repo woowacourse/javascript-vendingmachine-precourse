@@ -43,7 +43,7 @@ export default class App extends Component {
 
   changeTab(newTabId) {
     const payload = { currentTabId: newTabId };
-    this.callAPI.setCurrentTabId(payload);
+    this.callAPI.setVendingMachine(payload);
     this.setState(payload);
   }
 
