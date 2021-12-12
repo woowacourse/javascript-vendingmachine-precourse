@@ -1,13 +1,5 @@
-import { HEADER, MENU } from './common/constants.js';
-import { createButton, createDiv } from './common/CreateElement.js';
-import $app from './common/elements.js';
-
-function createMainHeader() {
-  const mainHeader = document.createElement('h1');
-  mainHeader.innerText = HEADER.MAIN;
-
-  return mainHeader;
-}
+import { MENU } from '../common/constants.js';
+import { createButton, createDiv } from '../common/CreateElement.js';
 
 function createMenuButtons() {
   const buttonAttrs = [
@@ -24,17 +16,10 @@ function createMenuButtons() {
   return menuButtons;
 }
 
-function createTabMenu() {
+export default function createTabMenu() {
   const menuDiv = createDiv();
   const menuButtons = createMenuButtons();
   menuButtons.forEach((button) => menuDiv.append(button));
 
   return menuDiv;
-}
-
-export default function createTop() {
-  const mainHeader = createMainHeader();
-  $app.append(mainHeader);
-  const tabMenu = createTabMenu();
-  $app.append(tabMenu);
 }
