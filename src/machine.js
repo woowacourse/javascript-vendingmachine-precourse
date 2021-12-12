@@ -40,11 +40,11 @@ export default class VendingMachine {
     displayProductPurchaseTab(product){
         const tr = `<tr id= ${product.id} class= ${PURCHASE_TAB_CLASS.PURCHASE_ITEM}>
                         <td class=${PURCHASE_TAB_CLASS.PRODUCT_NAME} 
-                            dataset=${PURCHASE_TAB_DATASET.PRODUCT_NAME}>${product.name}</td>
+                            ${PURCHASE_TAB_DATASET.PRODUCT_NAME}=${product.name}>${product.name}</td>
                         <td class=${PURCHASE_TAB_CLASS.PRODUCT_PRICE} 
-                            dataset=${PURCHASE_TAB_DATASET.PRODUCT_PRICE}>${product.price}</td>
+                            ${PURCHASE_TAB_DATASET.PRODUCT_PRICE}=${product.price}>${product.price}</td>
                         <td class=${PURCHASE_TAB_CLASS.PRODUCT_QUANTITY} 
-                            dataset=${PURCHASE_TAB_DATASET.PRODUCT_QUANTITY}>${product.quantity}</td>
+                            ${PURCHASE_TAB_DATASET.PRODUCT_QUANTITY}=${product.quantity}>${product.quantity}</td>
                         <td>
                             <button class=${PURCHASE_TAB_CLASS.PURCHASE_BUTTON}>구매하기</button>
                         </td>
