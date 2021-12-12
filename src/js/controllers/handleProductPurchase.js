@@ -29,15 +29,15 @@ const handleProductPurchase = () => {
   if (store.getLocalStorage('products')) {
     renderProducts();
   }
-  let amount = 0;
+  let amount;
 
   // (1) 금액 투입 기능
   $('#charge-button').addEventListener('click', e => {
     e.preventDefault();
-
+    amount = Number($('#charge-amount').innerText) || 0;
     const purchaseInput = $('#charge-input').value;
     if (isValidCharge(purchaseInput)) {
-      amount = Number(purchaseInput);
+      amount += Number(purchaseInput);
       printInputCharge(amount);
       return;
     }

@@ -54,8 +54,8 @@ const handleProductAdd = () => {
 
     if (isValidName(nameInput) && isValidPrice(priceInput) && isValidQuantity(quantityInput)) {
       const addedProduct = { name: nameInput, price: priceInput, quantity: quantityInput };
-
       products.push(addedProduct);
+
       store.setLocalStorage('products', products);
       printAddedProduct();
     }

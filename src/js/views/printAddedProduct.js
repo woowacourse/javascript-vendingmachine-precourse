@@ -1,6 +1,7 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 
+// products 불러오기
 const printAddedProduct = () => {
   const template = store
     .getLocalStorage('products')
