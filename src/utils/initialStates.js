@@ -1,4 +1,5 @@
 import { convertArrayToObjectKeys } from './general.js';
+import { COIN_UNITS } from './constants.js';
 
 const DEFAULT = {
   CHANGES: 0,
