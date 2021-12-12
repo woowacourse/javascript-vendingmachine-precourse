@@ -52,7 +52,7 @@ const createCoinTable = () => {
 };
 
 const ProductPurchaseMenu = () => {
-  const container = Container('product-purchase');
+  const container = Container('product-purchase-view');
   const addMoneySubTitle = SubTitle('금액 투입');
   const productSubTitle = SubTitle('구매할 수 있는 상품 현황');
   const changeSubTitle = SubTitle('잔돈');
@@ -76,6 +76,7 @@ const ProductPurchaseMenu = () => {
     returnButton,
     coinTable
   );
+  container.setAttribute('class', 'invisible');
 
   return container;
 };

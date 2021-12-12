@@ -17,8 +17,8 @@ export default function VendingMachine(app) {
 
   this.render = () => {
     app.append(this.header, this.menuViewContainer);
-    // this.productAddMenu.render();
-    // this.vendingMachineManage.render();
+    this.productAddMenu.render();
+    this.vendingMachineManage.render();
     this.productPurchaseMenu.render();
   };
 }

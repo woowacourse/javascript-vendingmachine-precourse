@@ -45,7 +45,7 @@ const createProductTable = () => {
 };
 
 const ProductAddMenu = () => {
-  const container = Container('product-purchase');
+  const container = Container('product-add-view');
   const addProductSubTitle = SubTitle('상품 추가하기');
   const productStatusSubTitle = SubTitle('상품 현황');
   const productForm = createProductForm();
@@ -57,6 +57,7 @@ const ProductAddMenu = () => {
     productStatusSubTitle,
     productTable
   );
+  container.setAttribute('class', 'invisible');
 
   return container;
 };

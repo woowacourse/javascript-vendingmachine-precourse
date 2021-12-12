@@ -43,7 +43,7 @@ const createCoinTable = () => {
 };
 
 const VendingMachineManageMenu = () => {
-  const container = Container('vending-machine-manage');
+  const container = Container('vending-machine-manage-view');
   const addCoinSubTitle = SubTitle('자판기 동전 충전하기');
   const addCoinForm = createAddCoinForm();
   const coinSpan = Span('보유 금액: ');
@@ -57,6 +57,7 @@ const VendingMachineManageMenu = () => {
     haveCoinSubTitle,
     coinTable
   );
+  container.setAttribute('class', 'invisible');
 
   return container;
 };
