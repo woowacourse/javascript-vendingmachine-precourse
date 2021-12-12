@@ -8,6 +8,6 @@ export default class ChargedAmount extends Component {
 
   render() {
     const { chargedMoney } = this.getGlobalState();
-    this.$container.innerHTML = `투입한 금액: ${chargedMoney}원`;
+    this.$container.innerHTML = `투입한 금액: <span id="charge-amount">${chargedMoney}</span>원`;
   }
 }

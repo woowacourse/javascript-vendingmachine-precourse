@@ -9,7 +9,7 @@ export default class Purchase extends Component {
   initChildren() {
     this.children = [
       new Form(newElement('<form id="charge-money"/>')),
-      new ChargedAmount(newElement('<span id="charge-amount"/>')),
+      new ChargedAmount(newElement('<div id="charge-status">')),
       new PurchaseList(newElement('<div id="purchase-list"/>')),
       new ChangesStatus(newElement('<div id="change-status"/>')),
     ];
