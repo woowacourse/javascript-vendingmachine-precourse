@@ -4,16 +4,17 @@ import { $ } from '../common/dom/dom.js';
 export const moneyChargeInputValue = () => {
   const $chargeInputValue = $('#charge-input').value;
 
-  return $chargeInputValue;
+  return parseInt($chargeInputValue, 10);
 };
 
-export const moneyChargeInputValidator = (chargeInputValue) => {
+export const moneyChargeInputValidator = (moneyChargeInputValue) => {
+  console.log(moneyChargeInputValue);
   let isValid = false;
 
-  if (chargeInputValue < 1) {
+  if (moneyChargeInputValue < 1) {
     alert(VALIDATION.CHARGE.NONE);
     isValid;
-  } else if (chargeInputValue % 10 !== 0) {
+  } else if (moneyChargeInputValue % 10 !== 0) {
     alert(VALIDATION.CHARGE.MULTIPLE_OF_10);
     isValid;
   } else {

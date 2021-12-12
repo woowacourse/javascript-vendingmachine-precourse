@@ -101,10 +101,8 @@ export const productPurchaseMenu = `<div class="product-purchase-menu">
       placeholder="투입할 금액"
     />
     <button id="charge-button">투입하기</button>
-    <p>
-      투입한 금액:
-      <span id="charge-amount">0</span>
-      원
+    <p id="charge-amount">
+      투입한 금액: 0원
     </p>
   </form>
 </div>
