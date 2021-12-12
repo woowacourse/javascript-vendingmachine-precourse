@@ -77,7 +77,15 @@ export default class ProductAddTemplate {
     );
     if (productAddInputCheckResult) {
       this.addNewProduct(productName, productPrice, productQuantity);
+      this.resetInput();
     }
+  }
+
+  resetInput() {
+    const inputChild = this.inputProductAdd.childNodes;
+    inputChild.forEach((input) => {
+      input.value = '';
+    });
   }
 
   addNewProduct(productName, productPrice, productQuantity) {
