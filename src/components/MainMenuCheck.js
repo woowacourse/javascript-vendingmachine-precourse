@@ -2,6 +2,7 @@ import ProductAddView from './ProductAddView.js';
 import MachineManageView from './MachineManageView.js';
 import ProductPurchaseView from './ProductPurchaseView.js';
 import ProductAddEvent from './ProductAddEvent.js';
+import MachineManageEvent from './MachineManageEvent.js';
 
 export default class MainMenuCheck {
     static checkFirstMenu(targetId) {
@@ -15,7 +16,8 @@ export default class MainMenuCheck {
     static checkSecondMenu(targetId) {
         if (targetId === 'vending-machine-manage-menu') {
             MachineManageView.render();
-            MachineManageView.addMachineChargeEvent();
+            // MachineManageView.addMachineChargeEvent();
+            MachineManageEvent.addEvent();
         }
     }
 
