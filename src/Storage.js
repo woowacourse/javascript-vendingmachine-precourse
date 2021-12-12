@@ -62,7 +62,7 @@ export default class Storage {
   }
 
   subtractVendingMachineCharge({ amount, coinQuantity }) {
-    const newAmount = this.vendingMachineCharge.amount + amount;
+    const newAmount = this.vendingMachineCharge.amount - amount;
     const newCoinQuantity = subtractCoins(this.vendingMachineCharge.coinQuantity, coinQuantity);
     const newVendingMachineCharge = { amount: newAmount, coinQuantity: newCoinQuantity };
     this.setVendingMachineCharge(newVendingMachineCharge);

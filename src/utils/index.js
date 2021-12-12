@@ -27,8 +27,9 @@ export function getAmountAndCoinQuantityToBeReturned(charge, vendingMachineCharg
   let leftCharge = charge;
   const coinQuantity = [0, 0, 0, 0];
   coinList.forEach((coin) => {
-    coinQuantity[coinIndex(coin)] = getCoinQuantityToBeReturned(coin, leftCharge);
-    leftCharge -= coin * coinQuantity[coinIndex(coin)];
+    const returnCoinQuantity = getCoinQuantityToBeReturned(vendingMachineCharge, coin, leftCharge);
+    coinQuantity[coinIndex(coin)] = returnCoinQuantity;
+    leftCharge -= coin * returnCoinQuantity;
   });
   return { amount: charge - leftCharge, coinQuantity };
 }
