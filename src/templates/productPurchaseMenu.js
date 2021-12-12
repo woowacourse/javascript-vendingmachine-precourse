@@ -89,9 +89,21 @@ export const createProductTableTemplate = () => `
   </table>
 `;
 
+export const createReturnCoinTableBodyTemplate = (
+  quantity500,
+  quantity100,
+  quantity50,
+  quantity10,
+) => `
+	${createReturnCoinItemTemplate(500, quantity500)}
+	${createReturnCoinItemTemplate(100, quantity100)}
+	${createReturnCoinItemTemplate(50, quantity50)}
+	${createReturnCoinItemTemplate(10, quantity10)}
+`;
+
 export const createReturnCoinTableTemplate = () => `
   <h3>잔돈</h3>
-  <button>반환하기</button>
+  <button id="${Selector.coinReturnButtonId}">반환하기</button>
   <table Style="${Style.table}">
     <thead>
       <tr>
@@ -99,11 +111,8 @@ export const createReturnCoinTableTemplate = () => `
         ${createTheadTableDataTemplate('개수')}
       </tr>
     </thead>
-    <tbody>
-      ${createReturnCoinItemTemplate(500, 0)}
-      ${createReturnCoinItemTemplate(100, 0)}
-      ${createReturnCoinItemTemplate(50, 0)}
-      ${createReturnCoinItemTemplate(10, 0)}
+    <tbody id="${Selector.returnCoinTableBodyId}">
+      ${createReturnCoinTableBodyTemplate(0, 0, 0, 0)}
     </tbody>
   </table>
 `;

@@ -14,4 +14,10 @@ export default {
 
   // 투입된 금액 관련 Key
   purchaseChargeAmount: 'purchase-charge-amount',
+
+  // 사용자의 잔돈 관련 Key
+  return500CoinQuantity: 'return-500-coin-quantity',
+  return100CoinQuantity: 'return-100-coin-quantity',
+  return50CoinQuantity: 'return-50-coin-quantity',
+  return10CoinQuantity: 'return-10-coin-quantity',
 };

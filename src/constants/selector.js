@@ -48,4 +48,5 @@ export default {
   dataProductPriceDataset: 'data-product-price',
   dataProductQuantityDataset: 'data-product-quantity',
   purchaseProductTableBodyId: 'purchase-product-table-body',
+  returnCoinTableBodyId: 'return-coin-table-body',
 };
