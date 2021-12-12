@@ -22,7 +22,7 @@ class PurhcaseController {
     const purchasedItemName = e.target.closest('tr').querySelector('td').dataset.productName;
     const purchasedItem = items.find((item) => item.name === purchasedItemName);
     const { price, quantity } = purchasedItem;
-    if (PurchaseValidator.isNotPurchasable({ price, quantity })) {
+    if (PurchaseValidator.isNotPurchasable({ price, quantity, userInputMoney })) {
       return;
     }
     this.updateItemState(purchasedItem);

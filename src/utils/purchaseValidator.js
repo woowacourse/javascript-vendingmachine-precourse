@@ -34,8 +34,16 @@ class PurchaseValidator {
     }
   }
 
-  static isNotPurchasable({ price, quantity }) {
+  static isLackOfMoney(price, userInputMoney) {
+    if (price > userInputMoney.totalAmount) {
+      alert('돈이 부족합니다.');
+      return true;
+    }
+  }
+
+  static isNotPurchasable({ price, quantity, userInputMoney }) {
     if (this.isQuantityZero(quantity)) return true;
+    if (this.isLackOfMoney(price, userInputMoney)) return true;
     return false;
   }
 }
