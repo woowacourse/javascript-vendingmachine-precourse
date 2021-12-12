@@ -26,8 +26,12 @@ export default class EntrySection extends Component {
 
   getInputTextbox() {
     return this.$props.inputInfo
-      .map((textbox) => `<input type="${textbox.type}" id="${textbox.id}"/>`)
+      .map((inputInfo) => this.getInputElementString(inputInfo))
       .join("");
+  }
+
+  getInputElementString(inputInfo) {
+    return `<input type=${inputInfo.type} id=${inputInfo.id} placeholder=${inputInfo.placeholder} />`;
   }
 
   getSubmitButton() {
@@ -35,6 +39,15 @@ export default class EntrySection extends Component {
   }
 
   getAdditionalElements() {
+    if (this.$props.moneyInfo !== undefined) {
+      return this.getCurrentMoneyAmountSpan(this.$props.moneyInfo);
+    }
     return "";
+  }
+
+  getCurrentMoneyAmountSpan(moneyInfo) {
+    return `<span id=${moneyInfo.id}>${moneyInfo.type}한 금액: ${
+      moneyInfo.value ? moneyInfo.value : ""
+    }</span>`;
   }
 }
