@@ -2,9 +2,9 @@ import MachineChargeForm from './vendingMachineChargeForm/index.js';
 import VendingMachineCoinTable from './vendingMachineCoinTable/index.js';
 
 import createContainer from '../utils/createContainer.js';
-import createDivision from '../utils/createDivision.js';
 import { HEADING_CHARGE_MACHINE, ID_AMOUNT, LABEL_AMOUNT } from './const.js';
 import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
+import createElement from '../utils/createElement.js';
 
 const createVendingMachineChargeFormContainer = (chargedCoins) => {
   const container = createContainer(
@@ -12,10 +12,11 @@ const createVendingMachineChargeFormContainer = (chargedCoins) => {
     HEADING_CHARGE_MACHINE
   );
   container.appendChild(new MachineChargeForm().getForm());
+  container.appendChild(document.createTextNode(`${LABEL_AMOUNT}: `));
   container.appendChild(
-    createDivision({
+    createElement('span', {
       id: ID_AMOUNT,
-      innerText: `${LABEL_AMOUNT}: ${calculateSumOfCoins(chargedCoins)}원`,
+      innerText: `${calculateSumOfCoins(chargedCoins)}원`,
     })
   );
 
