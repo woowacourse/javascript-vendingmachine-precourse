@@ -4,16 +4,16 @@ import { default as DOM } from '../views/DOMUtils.js';
 
 const calculateReturnCoins = () => {
   const charge = DB.load('chargeToPurchaseProduct');
-  const coins = DB.load('vendingMachineCoins');
+  const wallet = DB.load('vendingMachineCoins');
   const sumCoins = UT.calculateToCharge('vendingMachineCoins');
 
-  if (charge > sumCoins) {
+  if (charge >= sumCoins) {
     DB.overwrite('chargeToPurchaseProduct', charge - sumCoins);
 
     DOM.showChargeToPurchaseProduct();
     DOM.showReturnCoins();
 
-    DB.overwrite('vendingMachineCoins', { coin500: 0, coin100: 0, coin50: 0, coin10: 0 });
+    return DB.overwrite('vendingMachineCoins', { coin500: 0, coin100: 0, coin50: 0, coin10: 0 });
   }
 };
 
