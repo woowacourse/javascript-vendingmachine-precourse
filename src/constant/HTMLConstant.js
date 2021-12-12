@@ -5,9 +5,9 @@ const VANDING_MACHINE_MENU = {
 };
 
 const ADD_PRODUCT = {
-  NAME_INPUT: "product-name-input",
-  PRICE_INPUT: "product-price-input",
-  QUANTITY_INPUT: "product-quantity-input",
+  NAME: "product-name-input",
+  PRICE: "product-price-input",
+  QUANTITY: "product-quantity-input",
   BUTTON: "product-add-button",
   PRODUCT_ITEM: "product-manage-item",
   PRODUCT_NAME: "product-manage-name",
@@ -20,26 +20,34 @@ const CHARGE_COIN = {
   BUTTON: "vending-machine-charge-button",
   DIV: "vending-machine-present-amount",
   AMOUNT: "vending-machine-charge-amount",
+  QUANTITY: [
+    "vending-machine-coin-500-quantity",
+    "vending-machine-coin-100-quantity",
+    "vending-machine-coin-50-quantity",
+    "vending-machine-coin-10-quantity",
+  ],
 };
 
-const COIN_QUANTITY = [
-  "vending-machine-coin-500-quantity",
-  "vending-machine-coin-100-quantity",
-  "vending-machine-coin-50-quantity",
-  "vending-machine-coin-10-quantity",
-];
-
-const LEFT_COIN = [
-  "coin-500-quantity",
-  "coin-100-quantity",
-  "coin-50-quantity",
-  "coin-10-quantity",
-];
-
-export {
-  VANDING_MACHINE_MENU,
-  ADD_PRODUCT,
-  CHARGE_COIN,
-  COIN_QUANTITY,
-  LEFT_COIN,
+const PURCHASE = {
+  INPUT: "charge-input",
+  ADD: "charge-button",
+  DIV: "charge-input-sum",
+  AMOUNT: "charge-amount",
+  RETURN: "coin-return-button",
+  ITEM: "product-purchase-item",
+  NAME: "product-purchase-name",
+  PRICE: "product-purchase-price",
+  QUANTITY: "product-purchase-quantity",
+  PURCHASE: "purchase-button",
+  DATASET_NAME: "data-product-name",
+  DATASET_PRICE: "data-product-price",
+  DATASET_QUANTITY: "data-product-quantity",
+  LEFT_COIN: [
+    "coin-500-quantity",
+    "coin-100-quantity",
+    "coin-50-quantity",
+    "coin-10-quantity",
+  ],
 };
+
+export { VANDING_MACHINE_MENU, ADD_PRODUCT, CHARGE_COIN, PURCHASE };

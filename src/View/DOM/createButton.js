@@ -1,9 +1,8 @@
 import createElement from "./createElement.js";
 
-export default function createButton(id, text, className) {
+export default function createButton(id, text) {
   const button = createElement("button", id, text);
-  if (className) {
-    button.className = className;
-  }
+  button.className = id;
+
   return button;
 }

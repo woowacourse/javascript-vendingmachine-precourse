@@ -1,4 +1,5 @@
 import createElement from "./createElement.js";
+import { TEXT } from "../../constant/textConstant.js";
 
 function createTable(tableTitle) {
   const table = createElement("table");
@@ -23,4 +24,15 @@ function createTd(className, text) {
   return td;
 }
 
-export { createTable, createTr, createTd };
+function createCoinTable(className) {
+  const coinTable = createTable([TEXT.COIN, TEXT.COUNT]);
+  const coins = [500, 100, 50, 10];
+  className.forEach((value, index) => {
+    const tr = createTr();
+    tr.append(createTd(coins[index], `${coins[index]}원`), createTd(value));
+    coinTable.append(tr);
+  });
+  return coinTable;
+}
+
+export { createTable, createTr, createTd, createCoinTable };

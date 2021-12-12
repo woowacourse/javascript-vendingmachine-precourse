@@ -1,3 +1,5 @@
+import { ERROR } from "../constant/textConstant.js";
+
 export default class Model {
   constructor() {
     this.product = JSON.parse(localStorage.getItem("product")) || [];
@@ -34,12 +36,12 @@ export default class Model {
 
   addProduct(name, price, quantity) {
     let flag = true;
-    for (let i = 0; i < this.product.length; i++) {
+    for (let i = 0; i < this.product.length; i += 1) {
       if (this.product[i].name === name && this.product[i].price === price) {
         this.product[i].quantity += +quantity;
         flag = false;
       } else if (this.product[i].name === name) {
-        alert("🚨 기존의 상품과 동일한 가격을 입력해 주세요");
+        alert(ERROR.NOT_SAME_PRICE);
         flag = false;
       }
     }

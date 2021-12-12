@@ -1,26 +1,15 @@
-const checkEmpty = (value) => value.trim().length > 0;
-const checkInteger = (value) => Number.isInteger(+value);
-const checkOverHundred = (value) => +value >= 100;
-const checkTenTimes = (value) => +value % 10 === 0;
-const checkOverZero = (value) => +value > 0;
-const checkUnderZero = (value) => +value > 10;
-const getIndex = (value) => {
-  let index = 0;
-  if (value === 500) index = 0;
-  if (value === 100) index = 1;
-  if (value === 50) index = 2;
-  if (value === 10) index = 3;
-  return index;
-};
-
-const getValue = (index) => {
-  let money = 0;
-  if (index === 0) money = 500;
-  if (index === 1) money = 100;
-  if (index === 2) money = 50;
-  if (index === 3) money = 10;
-  return money;
-};
+import {
+  getMoneySum,
+  checkEmpty,
+  checkInteger,
+  checkOverHundred,
+  checkTenTimes,
+  checkOverZero,
+  checkUnderZero,
+  getIndex,
+  getValue,
+} from "./common.js";
+import { ERROR } from "../constant/textConstant.js";
 
 export default class Controller {
   constructor(model, view) {
@@ -36,11 +25,7 @@ export default class Controller {
     this.view.bindReturnCoin(this.returnCoinHandler);
     this.view.displayProductAdd(this.model.product);
     this.view.displayChargeCoin(this.model.coin);
-    this.view.displayProductPurchase(
-      this.model.product,
-      this.model.coin,
-      this.model.money
-    );
+    this.view.displayProductPurchase(this.model.product, this.model.money);
   }
 
   onProductChange = (product) => {
@@ -49,7 +34,7 @@ export default class Controller {
   };
 
   onCoinChange = (coin) => {
-    this.view.displayChargeCoinChange(coin, this.getCoinSum());
+    this.view.displayChargeCoinChange(coin, getMoneySum(coin));
   };
 
   onMoneyChange = (money) => {
@@ -59,7 +44,7 @@ export default class Controller {
   productAddHandler = (name, price, quantity) => {
     let flag = true;
     if (!checkEmpty(name)) {
-      alert("🚨 1자 이상의 상품명을 입력해주세요");
+      alert(ERROR.LENGTH_OVER_ONE);
       flag = false;
     }
     if (
@@ -67,12 +52,12 @@ export default class Controller {
       !checkOverHundred(price) ||
       !checkTenTimes(price)
     ) {
-      alert("🚨 10으로 나누어 떨어지는 100이상의 정수를 입력해 주세요");
+      alert(ERROR.OVER100_DIV10);
       flag = false;
     }
 
     if (!checkInteger(quantity) || !checkOverZero(quantity)) {
-      alert("🚨 1이상의 정수값을 입력해주세요");
+      alert(ERROR.OVER_ONE);
       flag = false;
     }
 
@@ -85,7 +70,7 @@ export default class Controller {
       !checkUnderZero(chargeMoney) ||
       !checkTenTimes(chargeMoney)
     ) {
-      alert("🚨 10으로 나누어 떨어지는 10이상의 정수를 입력해 주세요");
+      alert(ERROR.OVER10_DIV10);
     } else {
       this.makeMoneyCoin(+chargeMoney);
     }
@@ -106,21 +91,13 @@ export default class Controller {
     this.model.addCoin(coins);
   };
 
-  getCoinSum = () => {
-    let sum = 0;
-    this.model.coin.forEach((count, index) => {
-      sum += count * getValue(index);
-    });
-    return sum;
-  };
-
   moneyAddHandler = (money) => {
     if (
       !checkInteger(money) ||
       !checkUnderZero(money) ||
       !checkTenTimes(money)
     ) {
-      alert("🚨 10으로 나누어 떨어지는 10이상의 정수를 입력해 주세요");
+      alert(ERROR.OVER10_DIV10);
     } else {
       this.model.addMoney(+money);
       return this.model.money;
@@ -134,7 +111,7 @@ export default class Controller {
           this.model.submitProduct(index);
           this.model.submitMoney(product.price);
         } else {
-          alert("🚨 상품을 구매하기에 돈이 부족합니다");
+          alert(ERROR.NOT_ENOUGH_MONEY);
         }
       }
     });
