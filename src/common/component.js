@@ -11,8 +11,8 @@ export default class Component {
     this.$target = $target;
     this.$props = $props;
     this.initialize();
-    this.setEvent();
     this.render();
+    this.setEvent();
   }
 
   initialize() {}
