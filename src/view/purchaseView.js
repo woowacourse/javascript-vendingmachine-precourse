@@ -14,10 +14,10 @@ class PurchaseView {
       .map(
         (item) => `
         <tr class="product-purchase-item">
-            <td class="product-purchase-name" data-product-name="${item.name}">${item.name}</td>
-            <td class="product-purchase-price" data-product-price="${item.price}">${item.price}</td>
-            <td class="product-purchase-quantity" data-product-quantity="${item.quantity}">${item.quantity}</td>
-            <td><button class="purchase-button">구매하기</button></td>
+            <td class="product-purchase-name" data-product-name="${item.name}" style="border: 1px solid black; text-align:center; padding: 10px;">${item.name}</td>
+            <td class="product-purchase-price" data-product-price="${item.price}" style="border: 1px solid black; text-align:center; padding: 10px;">${item.price}</td>
+            <td class="product-purchase-quantity" data-product-quantity="${item.quantity}" style="border: 1px solid black; text-align:center; padding: 10px;">${item.quantity}</td>
+            <td style="border: 1px solid black; text-align:center; padding: 10px;"><button class="purchase-button" >구매하기</button></td>
         </tr>`
       )
       .join('');
@@ -39,16 +39,16 @@ class PurchaseView {
         <h3>금액 투입</h3>
         <input id="charge-input" type="number" placeholder="투입할 금액" />
         <button id="charge-button">투입하기</button>
-        <div>투입한 금액: <span id="charge-amount">0</span>원</div>
+        <div style="margin-top:15px">투입한 금액: <span id="charge-amount">0</span>원</div>
       </form>
       <h3>구매할 수 있는 상품 현황</h3>
-      <table>
+      <table style="border-collapse: collapse; width: 500px">
         <thead>
           <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>수량</th>
-            <th>구매</th>
+            <th style="border: 1px solid black; padding: 10px;">상품명</th>
+            <th style="border: 1px solid black; padding: 10px;">가격</th>
+            <th style="border: 1px solid black; padding: 10px;">수량</th>
+            <th style="border: 1px solid black; padding: 10px;">구매</th>
           </tr>
         </thead>
         <tbody id="purchase-list">
@@ -56,29 +56,29 @@ class PurchaseView {
       </table>
       <h3>잔돈</h3>
       <button id="coin-return-button">반환하기</button>
-      <table>
+      <table style="border: 1px solid black; border-collapse: collapse; width: 200px">
         <thead>
           <tr>
-            <th>동전</th>
-            <th>개수</th>
+            <th style="border: 1px solid black; padding: 10px;">동전</th>
+            <th style="border: 1px solid black; padding: 10px;">개수</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>500원</td>
-            <td id="coin-500-quantity">0개</td>
+            <td style="border: 1px solid black; text-align:center; padding: 10px;">500원</td>
+            <td id="coin-500-quantity" style="border: 1px solid black; text-align:center; padding: 10px;">0개</td>
           </tr>
           <tr>
-            <td>100원</td>
-            <td id="coin-100-quantity">0개</td>
+            <td style="border: 1px solid black; text-align:center; padding: 10px;">100원</td>
+            <td id="coin-100-quantity" style="border: 1px solid black; text-align:center; padding: 10px;">0개</td>
           </tr>
           <tr>
-            <td>50원</td>
-            <td id="coin-50-quantity">0개</td>
+            <td style="border: 1px solid black; text-align:center; padding: 10px;">50원</td>
+            <td id="coin-50-quantity" style="border: 1px solid black; text-align:center; padding: 10px;">0개</td>
           </tr>
           <tr>
-            <td>10원</td>
-            <td id="coin-10-quantity">0개</td>
+            <td style="border: 1px solid black; text-align:center; padding: 10px;">10원</td>
+            <td id="coin-10-quantity" style="border: 1px solid black; text-align:center; padding: 10px;">0개</td>
           </tr>
         </tbody>
       </table>
