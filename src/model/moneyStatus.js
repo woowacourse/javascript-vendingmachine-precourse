@@ -19,13 +19,12 @@ export default class MoneyStatus {
     }
   }
 
-  getMoney() {
+  getAmount() {
     let sumCoin = 0;
 
     for (let coin in this.money) {
       sumCoin += coin * this.money[coin];
     }
-
     return sumCoin;
   }
 }
