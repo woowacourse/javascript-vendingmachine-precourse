@@ -3,7 +3,11 @@ import {
   ERROR_DUPLICATE_NAME,
   ERROR_EMPTY_NAME,
   ERROR_INVALID_CHARGE,
+  ERROR_INVALID_INSERT,
   ERROR_INVALID_PRICE,
+  ERROR_INVALID_PURCHASE_PRICE,
+  ERROR_INVALID_PURCHASE_PRODUCT,
+  ERROR_INVALID_PURCHASE_QUANTITY,
   ERROR_INVALID_QUANTITY,
   VAL_PRICE_ROUND_STANDARD,
 } from './MachineOperation.constants.js';
@@ -36,6 +40,60 @@ export default class MachineOperations {
 
     alert(this.errorMessage);
     return false;
+  }
+
+  static registerInsert(value) {
+    if (this.validateInsertInput(value)) {
+      const current = window.localStorage.getItem('insert');
+      window.localStorage.setItem('insert', current * 1 + value);
+      return true;
+    }
+
+    alert(this.errorMessage);
+    return false;
+  }
+
+  static purchaseProduct(dataset) {
+    const products = getAllProducts();
+    const insert = window.localStorage.getItem('insert') * 1;
+    if (this.isValidPurchase(products, insert, dataset)) {
+      this.proceedPurchase(products, insert, dataset);
+      return true;
+    }
+
+    alert(this.errorMessage);
+    return false;
+  }
+
+  static proceedPurchase(products, insert, dataset) {
+    window.localStorage.setItem(
+      'insert',
+      insert - products[dataset.productName].price,
+    );
+    const newProducts = { ...products };
+    if (newProducts[dataset.productName].quantity === 1) {
+      delete newProducts[dataset.productName];
+    } else {
+      newProducts[dataset.productName].quantity -= 1;
+    }
+    window.localStorage.setItem('products', JSON.stringify(newProducts));
+  }
+
+  static isValidPurchase(products, insert, dataset) {
+    if (!(dataset.productName in products)) {
+      this.errorMessage = ERROR_INVALID_PURCHASE_PRODUCT;
+      return false;
+    }
+    if (dataset.productQuantity <= 0) {
+      this.errorMessage = ERROR_INVALID_PURCHASE_QUANTITY;
+      return false;
+    }
+    if (insert < dataset.productPrice) {
+      this.errorMessage = ERROR_INVALID_PURCHASE_PRICE;
+      return false;
+    }
+
+    return true;
   }
 
   validateProductInput(name, price, quantity) {
@@ -78,6 +136,14 @@ export default class MachineOperations {
   static validateChargeInput(charge) {
     if (charge % VAL_PRICE_ROUND_STANDARD !== 0 || charge <= 0) {
       this.errorMessage = ERROR_INVALID_CHARGE;
+      return false;
+    }
+    return true;
+  }
+
+  static validateInsertInput(insert) {
+    if (insert % VAL_PRICE_ROUND_STANDARD !== 0 || insert <= 0) {
+      this.errorMessage = ERROR_INVALID_INSERT;
       return false;
     }
     return true;

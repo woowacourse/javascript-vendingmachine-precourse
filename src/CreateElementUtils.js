@@ -25,7 +25,10 @@ export const customCreateElement = function createSingleElement(item) {
     ? createElementWithAttribute(item)
     : document.createElement(item.tag);
 
-  if ('value' in item) element.innerText = item.value;
+  if ('value' in item && item.value !== undefined) {
+    element.innerText = item.value;
+  }
+
   return element;
 };
 

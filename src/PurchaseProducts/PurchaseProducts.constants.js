@@ -30,14 +30,15 @@ const VAL_CHARGE_SUBMIT = '투입하기';
 export const STRING_CHARGE_AMOUNT_LABEL = '투입한 금액: ';
 const STRING_COIN_NAMES_HEADER = '동전';
 const STRING_COIN_QUANTITY_HEADER = '갯수';
-const STRING_COIN_500 = '500';
-const STRING_COIN_100 = '100';
-const STRING_COIN_50 = '50';
-const STRING_COIN_10 = '10';
+export const STRING_COIN_500 = '500';
+export const STRING_COIN_100 = '100';
+export const STRING_COIN_50 = '50';
+export const STRING_COIN_10 = '10';
 const STRING_PRODUCT_NAME = '상품명';
 const STRING_PRODUCT_PRICE = '가격';
 const STRING_PRODUCT_QUANTITY = '수량';
-const STRING_PURCHASE_BUTTON = '구매';
+const STRING_PURCHASE_BUTTON_HEADER = '구매';
+export const STRING_PURCHASE_BUTTON = '구매하기';
 export const VAL_PRODUCT_GRID_COLUMN_SIZE = '200px 100px 100px 100px';
 export const VAL_COIN_GRID_COLUMN_SIZE = '100px 100px';
 
@@ -80,7 +81,7 @@ export const PURCHASE_GRID_HEADERS = [
   },
   {
     tag: 'div',
-    value: STRING_PURCHASE_BUTTON,
+    value: STRING_PURCHASE_BUTTON_HEADER,
   },
 ];
 
