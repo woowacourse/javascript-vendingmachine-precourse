@@ -65,7 +65,7 @@ const DOMUtils = {
   },
 
   showVendingMachineCharge: () => {
-    const charge = UT.calculateToCharge('vendingMachineCoins');
+    const charge = UT.calculateToCharge(DB.load('vendingMachineCoins'));
 
     if (charge > 0) {
       return ($('#vending-machine-charge-amount').innerHTML = `${charge}원`);

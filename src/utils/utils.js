@@ -52,8 +52,8 @@ const utils = {
     return '#' + result.join('-');
   },
 
-  calculateToCharge: string => {
-    return Object.entries(DB.load(string))
+  calculateToCharge: object => {
+    return Object.entries(object)
       .map(array => {
         const [coinType, quantity] = array;
 
