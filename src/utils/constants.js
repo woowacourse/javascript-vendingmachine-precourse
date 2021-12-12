@@ -32,3 +32,11 @@ export const PRODUCT = {
   PRICE: '가격',
   QUANTITY: '수량',
 };
+export const ALERT = {
+  EMPTY_PRODUCT_NAME: '상품 이름을 입력해주세요.',
+  EMPTY_PRODUCT_PRICE: '상품 가격을 입력해주세요.',
+  EMPTY_PRODUCT_QUANTITY: '상품 개수를 입력해주세요.',
+  WRONG_PRODUCT_PRICE: '잘못된 상품 가격입니다.',
+  WRONG_PRODUCT_QUANTITY: '잘못된 상품 개수입니다.',
+  NOT_10_UNIT_PRICE: '상품 가격이 10원 단위로 떨어져야 합니다.',
+};
