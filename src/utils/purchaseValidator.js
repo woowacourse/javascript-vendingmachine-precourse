@@ -13,9 +13,17 @@ class PurchaseValidator {
     }
   }
 
+  static isMoneyInputBlank(moneyInput) {
+    if (moneyInput === 0) {
+      alert('투입할 금액을 입력해주세요.');
+      return true;
+    }
+  }
+
   static isInvalidMoneyInput(moneyInput) {
     if (this.isMoneyInputDoesNotDivideBy10(moneyInput)) return true;
     if (this.isMoneyInputLessThan0(moneyInput)) return true;
+    if (this.isMoneyInputBlank(moneyInput)) return true;
     return false;
   }
 }
