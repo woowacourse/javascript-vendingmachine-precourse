@@ -1,8 +1,9 @@
-import SELECTOR from '../constants/selector.js';
-import ProductAddMenuModel from '../models/ProductAddMenuModel.js';
-import { $ } from '../utils/dom.js';
 import ProductAddMenuValidator from '../validators/productAddMenu.js';
+import ProductAddMenuModel from '../models/ProductAddMenuModel.js';
 import ProductAddMenuView from '../views/ProductAddMenuView.js';
+import { $ } from '../utils/dom.js';
+
+import SELECTOR from '../constants/selector.js';
 
 class ProductAddMenuController {
   constructor(currentMenu) {
