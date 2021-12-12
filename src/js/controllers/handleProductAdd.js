@@ -25,7 +25,6 @@ function HandleProductAdd() {
       store.setLocalStorage('products', this.products);
       printAddedProduct();
     }
-    resetProductAddInput();
   });
 
   this.init();
