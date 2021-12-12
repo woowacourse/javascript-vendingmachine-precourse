@@ -1,8 +1,9 @@
 import ProductPurchaseMenuView from '../views/ProductPurchaseMenuView.js';
 import ProductPurchaseMenuModel from '../models/ProductPurchaseMenuModel.js';
+import ProductPurchaseMenuValidator from '../validators/productPurchaseMenu.js';
+import { $ } from '../utils/dom.js';
 
 import Selector from '../constants/selector.js';
-import { $ } from '../utils/dom.js';
 
 class ProductPurchaseMenuController {
   constructor(currentMenu) {
@@ -25,9 +26,6 @@ class ProductPurchaseMenuController {
     this.$productPurchaseMenuView.renderProductTableBodyWithData(
       this.$productPurchaseMenuModel.getProductItems(),
     );
-    // this.$productPurchaseMenuView.renderPurchaseChargeAmount(
-    // 	this.$productPurchaseMenuModel
-    // )
   }
 
   onClickTabContent(event) {
@@ -38,6 +36,13 @@ class ProductPurchaseMenuController {
 
   onClickChargeButton() {
     const charge = $(`#${Selector.chargeInputId}`).value;
+    if (
+      !ProductPurchaseMenuValidator.validateChargeExist(charge) ||
+      !ProductPurchaseMenuValidator.validateChargePlusInteger(charge) ||
+      !ProductPurchaseMenuValidator.validateChargeCanDivide10(charge)
+    )
+      return;
+
     this.$productPurchaseMenuView.renderPurchaseChargeAmount(charge);
     this.$productPurchaseMenuView.resetPurchaseChargeInput();
   }
