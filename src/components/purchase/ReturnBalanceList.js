@@ -2,7 +2,7 @@ import Component from '../../core/Component.js';
 import ReturnTable from '../table/ReturnTable.js';
 import { SELECTOR } from '../../constants/selector.js';
 
-export default class ReturnBalance extends Component {
+export default class ReturnBalanceList extends Component {
   init() {
     this._props.state.add(this);
   }

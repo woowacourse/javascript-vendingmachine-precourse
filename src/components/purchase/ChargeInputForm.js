@@ -2,7 +2,7 @@ import Component from '../../core/Component.js';
 import { $ } from '../../utils/element-utils.js';
 import { SELECTOR } from '../../constants/selector.js';
 
-export default class ChargeAmount extends Component {
+export default class ChargeInputForm extends Component {
   init() {
     this._props.state.add(this);
   }

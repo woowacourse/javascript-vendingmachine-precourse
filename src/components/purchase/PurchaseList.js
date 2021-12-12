@@ -2,7 +2,7 @@ import Component from '../../core/Component.js';
 import PurchaseTable from '../table/PurchaseTable.js';
 import { SELECTOR } from '../../constants/selector.js';
 
-export default class ProductPurchase extends Component {
+export default class PurchaseList extends Component {
   init() {
     this._props.state.add(this);
   }
