@@ -1,7 +1,8 @@
 export default class Controller {
-  constructor({ tabView, productManagementView }, store) {
+  constructor({ tabView, productManagementView, chargingChangeView }, store) {
     this.tabView = tabView;
     this.productManagementView = productManagementView;
+    this.chargingChangeView = chargingChangeView;
 
     this.store = store;
 
@@ -14,14 +15,24 @@ export default class Controller {
     this.productManagementView.on('@addProduct', (event) => {
       this.store.addProduct(event.detail.product);
       const foo = this.store.getProductList();
-      console.log(foo);
       this.productManagementView.show(foo);
     });
+    this.chargingChangeView.on('@chargeChanges', (event) => {
+      this.store.chargeChanges(event.detail.changes);
+      const foo = this.store.getCurrentChanges();
+      console.log(foo);
+      this.chargingChangeView.show(foo);
+    })
   }
 
   render() {
-    this.productManagementView.show(
+    this.productManagementView.hide(
       JSON.parse(this.store.storage.getItem('productList')),
     );
+
+    this.chargingChangeView.show(
+      JSON.parse(this.store.storage.getItem('changeList')),
+    );
+
   }
 }
