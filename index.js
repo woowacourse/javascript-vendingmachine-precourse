@@ -1,3 +1,9 @@
 import App from './src/App.js';
+import { APP_TITLE, APP_MENU } from './src/constants/index.js';
 
-new App('#app');
+const initProps = {
+  APP_TITLE,
+  APP_MENU,
+};
+
+const app = new App('#app', initProps);

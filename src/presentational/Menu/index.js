@@ -1,4 +1,4 @@
-import { BLANK } from '../constants/index.js';
+import { BLANK } from '../../constants/index.js';
 
 const Menu = ({ APP_TITLE, APP_MENU }) => `
   <h1>${APP_TITLE}</h1>

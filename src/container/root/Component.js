@@ -1,25 +1,16 @@
-import { $ } from '../../common/helper.js';
-import Storage from '../../storage/Storage.js';
-import EventBus from '../../event/EventBus.js';
+import { $, addEvent } from '../../common/helper.js';
+import Storage from './Storage.js';
 
 export default class Component {
   constructor(selector, props) {
     this.$element = $(selector);
     this.$props = props;
     this.$storage = Storage;
-    this.$eventBus = EventBus;
+    this.$storage.subscribe(this.render.bind(this));
 
     this.initialized();
     this.render();
-  }
-
-  set initProps({ APP_TITLE, APP_MENU, component }) {
-    this.$props = {
-      APP_TITLE,
-      APP_MENU,
-      component,
-      tabData: this.itemGetter(component),
-    };
+    this.setEvents();
   }
 
   initialized() {}
@@ -35,7 +26,14 @@ export default class Component {
 
   mount() {}
 
-  itemGetter(key) {
-    return this.$storage.read(key);
+  eventSetter() {
+    return [];
+  }
+
+  setEvents() {
+    const registed = this.eventSetter();
+    registed.forEach(({ type, callback }) => {
+      addEvent(this.$element, type, callback);
+    });
   }
 }
