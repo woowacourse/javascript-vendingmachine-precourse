@@ -6,10 +6,6 @@ class Store {
             localStorage.setItem('state', JSON.stringify({ ...initialState }));
         }
         this.state = JSON.parse(localStorage.getItem('state'));
-
-        // window.onbeforeunload = function () {
-        //     localStorage.removeItem('state');
-        // };
     }
 
     setTriggerStateChange(func) {
