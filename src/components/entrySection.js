@@ -31,7 +31,7 @@ export default class EntrySection extends Component {
   }
 
   getInputElementString(inputInfo) {
-    return `<input type=${inputInfo.type} id=${inputInfo.id} placeholder=${inputInfo.placeholder} />`;
+    return `<input type=${inputInfo.type} id=${inputInfo.id} placeholder="${inputInfo.placeholder}" />`;
   }
 
   getSubmitButton() {
