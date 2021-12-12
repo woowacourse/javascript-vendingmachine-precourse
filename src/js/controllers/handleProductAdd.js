@@ -4,12 +4,14 @@ import { printAddedProduct, resetProductAddInput } from '../views/productAddView
 import { isValidName, isValidPrice, isValidQuantity } from '../models/productAddModel.js';
 
 function HandleProductAdd() {
-  // products는 상태값이 변하니까 this로 관리
-  this.products = store.getLocalStorage('products') ? store.getLocalStorage('products') : [];
+  this.products = [];
 
-  if (this.products.length > 1) {
-    printAddedProduct();
-  }
+  this.init = () => {
+    if (store.getLocalStorage('products')) {
+      this.products = store.getLocalStorage('products');
+      printAddedProduct();
+    }
+  };
 
   $('#product-add-button').addEventListener('click', e => {
     e.preventDefault();
@@ -25,6 +27,8 @@ function HandleProductAdd() {
     }
     resetProductAddInput();
   });
+
+  this.init();
 }
 
 export default HandleProductAdd;
