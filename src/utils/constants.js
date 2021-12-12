@@ -15,6 +15,8 @@ export const MESSAGE = {
   INVALID_PRICE: '최소가격은 100원이며, 10원 단위로 나누어떨어져야 합니다.',
   INVALID_CHARGING_CHANGES:
     '충전가능한 금액은 최소 10원이며, 10원 단위로 나누어 떨어져야 합니다.',
+  INVALID_CHARGING_MONEY:
+    '투입 가능한 금액은 최소 10원이며, 10원 단위로 나누어 떨어져야 합니다.',
 };
 
 export const RULE = {
