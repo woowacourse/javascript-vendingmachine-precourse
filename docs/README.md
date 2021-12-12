@@ -60,6 +60,7 @@
 - [x] src/index.js 파일 index.html에 연결
 - [x] DOM 선택자 유틸 함수 만들기
 - [x] 각 탭을 제어할 컨트롤러 클래스를 만든다.
+- [ ] LocalStorage 데이터를 주고받을 객체를 만든다.
 
 <br>
 
