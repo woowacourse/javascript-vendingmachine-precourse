@@ -66,6 +66,7 @@ function renderChange($purchase) {
   ];
 
   $change.innerHTML = `
+    <br>
     <h3>${PURCHASE_CHANGE_TITLE}</h3>
     <form>
       <button>${PURCHASE_RETURN_TITLE}</button>
