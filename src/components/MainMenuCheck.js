@@ -3,6 +3,7 @@ import MachineManageView from './MachineManageView.js';
 import ProductPurchaseView from './ProductPurchaseView.js';
 import ProductAddEvent from './ProductAddEvent.js';
 import MachineManageEvent from './MachineManageEvent.js';
+import ProductPurchaseEvent from './ProductPurchaseEvent.js';
 
 export default class MainMenuCheck {
     static checkFirstMenu(targetId) {
@@ -24,8 +25,10 @@ export default class MainMenuCheck {
     static checkThirdMenu(targetId) {
         if (targetId === 'product-purchase-menu') {
             ProductPurchaseView.render();
-            ProductPurchaseView.addUserChargeEvent();
-            ProductPurchaseView.addReturnEvent();
+            // ProductPurchaseView.addUserChargeEvent();
+            ProductPurchaseEvent.addEvent();
+            // ProductPurchaseView.addReturnEvent();
+            
         }
     }
 }

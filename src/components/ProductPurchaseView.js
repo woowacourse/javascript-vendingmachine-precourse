@@ -42,137 +42,137 @@ export default class ProductPurchaseView {
       </tr>`).join('')}`
     }
 
-  static addUserChargeEvent() {
-    document.getElementById('charge-button').addEventListener('click', (e) => {
-      e.preventDefault();
-      const userCharge = document.getElementById('charge-input').value;
-      const productPurchaseCheck = new ProductPurchaseCheck(userCharge);
+  // static addUserChargeEvent() {
+  //   document.getElementById('charge-button').addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     const userCharge = document.getElementById('charge-input').value;
+  //     const productPurchaseCheck = new ProductPurchaseCheck(userCharge);
 
-      this.checkResult(userCharge, productPurchaseCheck);
-    })
-  }
+  //     this.checkResult(userCharge, productPurchaseCheck);
+  //   })
+  // }
 
-  static checkResult(userCharge, productPurchaseCheck) {
-    if(productPurchaseCheck.checkAll()){
-      this.storeUserCharge(userCharge);
-      this.showUserCharge();
-    } else {
-      alert(ERROR_MESSAGE);
-    }
-  }
+  // static checkResult(userCharge, productPurchaseCheck) {
+  //   if(productPurchaseCheck.checkAll()){
+  //     this.storeUserCharge(userCharge);
+  //     this.showUserCharge();
+  //   } else {
+  //     alert(ERROR_MESSAGE);
+  //   }
+  // }
 
-  static storeUserCharge(userCharge) {
-    const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
+  // static storeUserCharge(userCharge) {
+  //   const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
-    if(localStorage.getItem(USER_CHARGE) === null) {
-      localStorage.setItem(USER_CHARGE, JSON.stringify({values: userCharge}));
-    } else {
-      userMoney[VALUES] = parseInt(userMoney[VALUES]) + parseInt(userCharge);
-      localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
-    }
-  }
+  //   if(localStorage.getItem(USER_CHARGE) === null) {
+  //     localStorage.setItem(USER_CHARGE, JSON.stringify({values: userCharge}));
+  //   } else {
+  //     userMoney[VALUES] = parseInt(userMoney[VALUES]) + parseInt(userCharge);
+  //     localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
+  //   }
+  // }
 
-  static checkChange(coins, change) {
-    if(coins === null || parseInt(change[VALUES]) === 0) {
-      this.showUserCoinTable();
-      alert("거스름돈이 없습니다!");
-      return false;
-    }
+  // static checkChange(coins, change) {
+  //   if(coins === null || parseInt(change[VALUES]) === 0) {
+  //     this.showUserCoinTable();
+  //     alert("거스름돈이 없습니다!");
+  //     return false;
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 
-  static checkUserCharge(userMoney) {
-    if(userMoney[VALUES] === 0) {
-      alert("투입한 금액이 없습니다!")
-      return false;
-    }
+  // static checkUserCharge(userMoney) {
+  //   if(userMoney[VALUES] === 0) {
+  //     alert("투입한 금액이 없습니다!")
+  //     return false;
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 
-  static storeAllResult(coins, userCoins, change, userMoney) {
-    localStorage.setItem(COINS, JSON.stringify(coins));
-    localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
-    localStorage.setItem(CHANGE, JSON.stringify(change));
-    localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
-  }
+  // static storeAllResult(coins, userCoins, change, userMoney) {
+  //   localStorage.setItem(COINS, JSON.stringify(coins));
+  //   localStorage.setItem(USER_COINS, JSON.stringify(userCoins));
+  //   localStorage.setItem(CHANGE, JSON.stringify(change));
+  //   localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
+  // }
 
-  static makeEmpty(coins, userCoins, change, userMoney) {
-    let list = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
+  // static makeEmpty(coins, userCoins, change, userMoney) {
+  //   let list = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
 
-    list.forEach((element) => {
-      userCoins[element] = coins[element];
-      coins[element] = ZERO;
-    });
+  //   list.forEach((element) => {
+  //     userCoins[element] = coins[element];
+  //     coins[element] = ZERO;
+  //   });
 
-    userMoney[VALUES] -= change[VALUES];
-    change[VALUES] = 0;
-  }
+  //   userMoney[VALUES] -= change[VALUES];
+  //   change[VALUES] = 0;
+  // }
 
-  static addReturnEvent() {
-    document.getElementById('coin-return-button').addEventListener('click', (e) => {
-      e.preventDefault();
-      localStorage.setItem(USER_COINS, JSON.stringify({ [FIVE_HUNDRED]: 0, [ONE_HUNDRED]: 0, [FIFTY]: 0, [TEN]: 0}));
-      const coins = JSON.parse(localStorage.getItem(COINS));
-      const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
-      const change = JSON.parse(localStorage.getItem(CHANGE));
-      const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
+  // static addReturnEvent() {
+  //   document.getElementById('coin-return-button').addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     localStorage.setItem(USER_COINS, JSON.stringify({ [FIVE_HUNDRED]: 0, [ONE_HUNDRED]: 0, [FIFTY]: 0, [TEN]: 0}));
+  //     const coins = JSON.parse(localStorage.getItem(COINS));
+  //     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
+  //     const change = JSON.parse(localStorage.getItem(CHANGE));
+  //     const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
-      if(!(this.checkUserCharge(userMoney)) || !(this.checkChange(coins, change))) {
-        return;
-      }
-      this.checkChangeCase(coins, userCoins, change, userMoney);
-      this.showUserCharge();
-      this.showUserCoinTable();
-      })
-  }
+  //     if(!(this.checkUserCharge(userMoney)) || !(this.checkChange(coins, change))) {
+  //       return;
+  //     }
+  //     this.checkChangeCase(coins, userCoins, change, userMoney);
+  //     this.showUserCharge();
+  //     this.showUserCoinTable();
+  //     })
+  // }
 
-  static checkChangeCase(coins, userCoins, change, userMoney) {
-    if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
-      this.makeEmpty(coins, userCoins, change, userMoney);
-      this.storeAllResult(coins, userCoins, change, userMoney);
-    } else {
-      this.minimumCoin(coins, userCoins, change, userMoney);
-      this.storeAllResult(coins, userCoins, change, userMoney);
-    }
-  }
+  // static checkChangeCase(coins, userCoins, change, userMoney) {
+  //   if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
+  //     this.makeEmpty(coins, userCoins, change, userMoney);
+  //     this.storeAllResult(coins, userCoins, change, userMoney);
+  //   } else {
+  //     this.minimumCoin(coins, userCoins, change, userMoney);
+  //     this.storeAllResult(coins, userCoins, change, userMoney);
+  //   }
+  // }
 
-  static minimumCoin(coins, userCoins, change, userMoney) {
-    let list = this.listInit(userMoney[VALUES], 0);
-    while(list[0] >= 0) {
-      if(list[0] >= 500 && coins[500] >= 1) {
-        list = this.makeUserCoins(FIVE_HUNDRED, list, coins, userCoins);
-      } else if(list[0] >= 100 && coins[100] >= 1) {
-        list = this.makeUserCoins(ONE_HUNDRED, list, coins, userCoins);
-      } else if(list[0] >= 50 && coins[50] >= 1) {
-        list = this.makeUserCoins(FIFTY, list, coins, userCoins);
-      } else if(list[0] >= 10 && coins[10] >= 1) {
-        list = this.makeUserCoins(TEN, list, coins, userCoins);
-      } else {
-        change[VALUES] = parseInt(change[VALUES]) - list[1];
-        userMoney[VALUES] -= list[1];
-        break;
-      }
-    }
-  }
+  // static minimumCoin(coins, userCoins, change, userMoney) {
+  //   let list = this.listInit(userMoney[VALUES], 0);
+  //   while(list[0] >= 0) {
+  //     if(list[0] >= 500 && coins[500] >= 1) {
+  //       list = this.makeUserCoins(FIVE_HUNDRED, list, coins, userCoins);
+  //     } else if(list[0] >= 100 && coins[100] >= 1) {
+  //       list = this.makeUserCoins(ONE_HUNDRED, list, coins, userCoins);
+  //     } else if(list[0] >= 50 && coins[50] >= 1) {
+  //       list = this.makeUserCoins(FIFTY, list, coins, userCoins);
+  //     } else if(list[0] >= 10 && coins[10] >= 1) {
+  //       list = this.makeUserCoins(TEN, list, coins, userCoins);
+  //     } else {
+  //       change[VALUES] = parseInt(change[VALUES]) - list[1];
+  //       userMoney[VALUES] -= list[1];
+  //       break;
+  //     }
+  //   }
+  // }
 
-  static makeUserCoins(num, list, coins, userCoins) {
-    userCoins[num] += 1;
-    coins[num] -= 1;
-    list[0] -= num;
-    list[1] += num;
+  // static makeUserCoins(num, list, coins, userCoins) {
+  //   userCoins[num] += 1;
+  //   coins[num] -= 1;
+  //   list[0] -= num;
+  //   list[1] += num;
 
-    return list;
-  }
+  //   return list;
+  // }
 
-  static listInit(temp, real) {
-    this.temp = temp;
-    this.real = real;
-    let list = [temp, real];
+  // static listInit(temp, real) {
+  //   this.temp = temp;
+  //   this.real = real;
+  //   let list = [temp, real];
 
-    return list;
-  }
+  //   return list;
+  // }
 
   static showUserCoinTable() {
     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
