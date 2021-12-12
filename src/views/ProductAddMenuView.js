@@ -18,6 +18,12 @@ class ProductAddMenuView {
     $(`#${SELECTOR.productTableBodyId}`).innerHTML =
       createProductTableBodyTemplateWithItem(productItems);
   }
+
+  resetProductItemInputs() {
+    $(`#${SELECTOR.productNameInputId}`).value = null;
+    $(`#${SELECTOR.productPriceInputId}`).value = null;
+    $(`#${SELECTOR.productQuantityInputId}`).value = null;
+  }
 }
 
 export default ProductAddMenuView;

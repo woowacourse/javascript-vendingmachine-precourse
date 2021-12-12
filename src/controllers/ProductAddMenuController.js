@@ -42,6 +42,7 @@ class ProductAddMenuController {
     if (!this.validateProductItem(productName, productPrice, productQuantity)) return;
     this.addProductItemInPresentList(productName, productPrice, productQuantity);
     this.renderWithProductItems();
+    this.$productAddMenuView.resetProductItemInputs();
   }
 
   renderWithProductItems() {
