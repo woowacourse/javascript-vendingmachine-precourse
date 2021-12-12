@@ -15,7 +15,7 @@ class ManageValidator {
     }
   }
 
-  static isProductPriceUnder100(price) {
+  static isProductPriceLessThan100(price) {
     if (price < 100) {
       alert('상품 가격은 100원 이상으로 입력해주세요.');
       return true;
@@ -29,7 +29,7 @@ class ManageValidator {
     }
   }
 
-  static isProductQuantityUnder1(quantity) {
+  static isProductQuantityLessThan1(quantity) {
     if (quantity < 1) {
       alert('상품 수량은 최소 1개 입력해주세요.');
       return true;
@@ -39,9 +39,9 @@ class ManageValidator {
   static isInvalidAddItemInput({ name, price, quantity }) {
     if (this.isProudctNameDuplicated(name)) return true;
     if (this.isProductNameBlank(name)) return true;
-    if (this.isProductPriceUnder100(price)) return true;
+    if (this.isProductPriceLessThan100(price)) return true;
     if (this.isProductPriceDoesNotDivideBy10(price)) return true;
-    if (this.isProductQuantityUnder1(quantity)) return true;
+    if (this.isProductQuantityLessThan1(quantity)) return true;
     return false;
   }
 }
