@@ -46,6 +46,7 @@ const validators = {
 
   isValidCoinReturn: () => {
     if (UT.isZero(DB.load('chargeToPurchaseProduct'))) return alert(ERROR.CHARGE_IS_ZERO);
+    if (UT.isZero(UT.calculateToCharge('vendingMachineCoins'))) return alert(ERROR.COINS_ARE_ZERO);
 
     return true;
   },

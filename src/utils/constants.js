@@ -21,6 +21,7 @@ export const ERROR = {
   PRODUCT_OUT_OF_STOCK: '구매를 원하시는 상품은 품절상태 입니다.',
 
   CHARGE_IS_ZERO: '투입한 금액이 0원이라 잔돈을 반환할 수 없습니다.',
+  COINS_ARE_ZERO: '자판기가 보유한 잔돈이 없습니다.',
 };
 
 export const REGEX = {
