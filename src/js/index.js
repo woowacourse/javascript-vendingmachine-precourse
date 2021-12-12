@@ -1,11 +1,8 @@
 import $ from './utils/dom.js';
-import renderNavbar from './views/renderNavbar.js';
-import renderProductAdd from './views/renderProductAdd.js';
-import renderVendingMachine from './views/renderVendingMachine.js';
-import renderProductPurchase from './views/renderProductPurchase.js';
 import HandleProductAdd from './controllers/HandleProductAdd.js';
 import HandleVendingMachine from './controllers/HandleVendingMachine.js';
 import HandleProductPurchase from './controllers/HandleProductPurchase.js';
+import { renderNavbar, renderProductAdd, renderVendingMachine, renderProductPurchase } from './views/renderHTML.js';
 
 function VendingMachineApp() {
   this.init = () => {
