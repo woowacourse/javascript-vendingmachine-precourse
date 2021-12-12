@@ -8,7 +8,7 @@ import Coins from '../models/Coins.js';
 import Component from '../core/Component.js';
 import ChargeInputForm from './purchase/ChargeInputForm.js';
 import PurchaseList from './purchase/PurchaseList.js';
-import ReturnBalanceList from './purchase/ReturnBalanceList.js';
+import ReturnCoinResult from './purchase/ReturnCoinResult.js';
 
 import { $productState, $coinState, $chargeState } from './StateList.js';
 
@@ -33,7 +33,7 @@ export default class PurchaseManage extends Component {
     });
 
     const { returnCoins } = this._state;
-    this.addMount('return-balance', ReturnBalanceList, {
+    this.addMount('return-balance', ReturnCoinResult, {
       state: $chargeState,
       returnCoins,
       returnAmount: this.returnAmount.bind(this),

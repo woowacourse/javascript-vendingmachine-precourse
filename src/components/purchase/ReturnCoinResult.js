@@ -5,7 +5,7 @@ import { cloneObject } from '../../utils/data-tools.js';
 import Component from '../../core/Component.js';
 import ReturnTable from '../table/ReturnTable.js';
 
-export default class ReturnBalanceList extends Component {
+export default class ReturnCoinResult extends Component {
   init() {
     this._state = {
       returnCoin: cloneObject(CONSTANTS.COIN_LIST),
