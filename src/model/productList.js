@@ -26,7 +26,8 @@ export default class ProductList {
     } else {
       let quantity = Number(this.products[index].quantity);
       quantity += Number(product.quantity);
-      localStorage.setItem(product.name, `${product.price}-${quantity}`);
+      this.changePrice(index, product);
+      localStorage.setItem(product.name, `${this.products[index].price}-${quantity}`);
       this.updateProducts();
     }
   }
@@ -41,6 +42,13 @@ export default class ProductList {
       localStorage.setItem(product.name, `${product.price}-${quantity}`);
       this.updateProducts()
     }  
+  }
+
+  changePrice(index, product) {
+    const compareResult = this.products[index].price.localeCompare(product.price);
+    if(compareResult !== 0) {
+      this.products[index].price = product.price;
+    }
   }
 
   updateProducts() {
