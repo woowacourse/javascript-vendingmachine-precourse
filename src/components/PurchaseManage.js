@@ -11,7 +11,7 @@ import ChargeAmount from './purchase/ChargeAmount.js';
 import ProductPurchase from './purchase/ProductPurchase.js';
 import ReturnBalance from './purchase/ReturnBalance.js';
 
-import { ProductState, CoinState, ChargeState } from '../core/Store.js';
+import { $productState, $coinState, $chargeState } from './StateList.js';
 
 export default class PurchaseManage extends Component {
   init() {
@@ -30,18 +30,18 @@ export default class PurchaseManage extends Component {
 
   mounted() {
     this.addMount('amount-charge-form', ChargeAmount, {
-      state: ChargeState,
+      state: $chargeState,
       putAmount: this.putAmount.bind(this),
     });
 
     this.addMount('product-purchase', ProductPurchase, {
-      state: ProductState,
+      state: $productState,
       purchase: this.purchase.bind(this),
     });
 
     const { returnCoins } = this._state;
     this.addMount('return-balance', ReturnBalance, {
-      state: ChargeState,
+      state: $chargeState,
       returnCoins,
       returnAmount: this.returnAmount.bind(this),
     });
@@ -53,34 +53,34 @@ export default class PurchaseManage extends Component {
     const resultCode = checkAmountVaild(inputAmount);
     if (errorAlert(resultCode) === true) return false;
 
-    ChargeState.value += inputAmount;
+    $chargeState.value += inputAmount;
   }
 
   purchase(primaryKey) {
-    const productManager = new Product(ProductState.value);
+    const productManager = new Product($productState.value);
     const { price } = productManager.itemInfo(primaryKey);
 
-    if (ChargeState.value < price) {
+    if ($chargeState.value < price) {
       errorAlert(ERROR.PURCHASE_NEED_BALANCE);
       return false;
     }
 
-    ChargeState.value -= price;
-    ProductState.value = productManager.purchase(primaryKey).result;
+    $chargeState.value -= price;
+    $productState.value = productManager.purchase(primaryKey).result;
   }
 
   returnAmount() {
-    if (ChargeState.value === 0) {
+    if ($chargeState.value === 0) {
       errorAlert(ERROR.RETURN_AMOUNT_NO_BALANCE);
       return false;
     }
 
-    const coinManager = new Coins(CoinState.value);
-    const { output, failed } = coinManager.return(ChargeState.value);
+    const coinManager = new Coins($coinState.value);
+    const { output, failed } = coinManager.return($chargeState.value);
 
     this.returnCoinUpdate(output);
-    ChargeState.value = failed;
-    CoinState.value = coinManager.result;
+    $chargeState.value = failed;
+    $coinState.value = coinManager.result;
   }
 
   returnCoinUpdate(coinResult) {

@@ -7,11 +7,11 @@ import { errorAlert } from '../utils/error-alert.js';
 import CoinInputForm from './coins/CoinInputForm.js';
 import CoinList from './coins/CoinList.js';
 
-import { CoinState } from '../core/Store.js';
+import { $coinState } from './StateList.js';
 
 export default class CoinsManage extends Component {
   init() {
-    CoinState.add(this);
+    $coinState.add(this);
   }
 
   htmlTemplate() {
@@ -28,7 +28,7 @@ export default class CoinsManage extends Component {
     });
 
     this.addMount('coin-list', CoinList, {
-      state: CoinState,
+      state: $coinState,
     });
   }
 
@@ -38,10 +38,10 @@ export default class CoinsManage extends Component {
     const resultCode = checkAmountVaild(inputAmount);
     if (errorAlert(resultCode) === true) return false;
 
-    CoinState.value = new Coins(CoinState.value).add(inputAmount).result;
+    $coinState.value = new Coins($coinState.value).add(inputAmount).result;
   }
 
   get chargeAmount() {
-    return new Coins(CoinState.value).total;
+    return new Coins($coinState.value).total;
   }
 }

@@ -8,7 +8,7 @@ import { errorAlert } from '../utils/error-alert.js';
 import ProductList from './product/ProductState.js';
 import ProductInputForm from './product/ProductInputForm.js';
 
-import { ProductState } from '../core/Store.js';
+import { $productState } from './StateList.js';
 
 export default class ProductManage extends Component {
   htmlTemplate() {
@@ -24,7 +24,7 @@ export default class ProductManage extends Component {
     });
 
     this.addMount('product-list', ProductList, {
-      state: ProductState,
+      state: $productState,
     });
   }
 
@@ -38,7 +38,7 @@ export default class ProductManage extends Component {
     const resultCode = checkProductVaild(product);
     if (errorAlert(resultCode) === true) return false;
 
-    ProductState.value = new Product(ProductState.value).add(product).result;
+    $productState.value = new Product($productState.value).add(product).result;
     return true;
   }
 }
