@@ -80,7 +80,7 @@ export const onClickPurchaseButton = event => {
     )
   ) {
     purchaseProduct.purchaseProduct(getNameTag(form).innerText);
-    renderPurchase(form);
+    renderPurchase(purchaseProduct, form);
     saveAllToLocalStorage(purchaseProduct);
     setIsRenderInsertedMoney();
   }

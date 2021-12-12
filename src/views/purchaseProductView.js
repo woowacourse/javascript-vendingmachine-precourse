@@ -100,9 +100,8 @@ const updateQuantity = quantity => {
   quantity.innerText = parseInt(quantity.innerText) - 1;
 };
 
-// 수정해야함
-export const renderPurchase = form => {
-  renderMoney(purChaseProduct.getMoney());
+export const renderPurchase = (pruchaseProduct, form) => {
+  renderMoney(pruchaseProduct.getMoney());
   updateQuantity(getQuantityTag(form));
 };
 
