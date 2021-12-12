@@ -10,6 +10,7 @@ export default class View {
     this.makeComponents();
     DOM.hideComponents();
   }
+
   loadWebComponents() {
     new CoinTable();
     new ProductTable();

@@ -10,6 +10,7 @@ export default class CoinTable extends HTMLElement {
         }
         th, td {
           padding:10px;
+          text-align:center;
         }
       </style>
       <table border="1">

@@ -81,6 +81,27 @@ const templates = {
         ></coin-table>
 
     </div>`,
+
+  inventoryTableRowHTML: object => {
+    return `
+        <tr class="product-manage-item">
+            <td class="product-manage-name">${object.name}</td>
+            <td class="product-manage-price">${object.price}</td>
+            <td class="product-manage-quantity">${object.quantity}</td>
+        </tr>`;
+  },
+
+  purchaseInventoryTableRowHTML: object => {
+    return `
+        <tr class="product-purchase-item">
+            <td data-product-name="${object.name}" class="product-purchase-name">${object.name}</td>
+            <td data-product-price="${object.price}" class="product-purchase-price">${object.price}</td>
+            <td data-product-quantity="${object.quantity}" class="product-purchase-quantity">${object.quantity}</td>
+            <td>
+                <button class="purchase-button">구매하기</button>
+            </td>
+        </tr>`;
+  },
 };
 
 export default templates;
