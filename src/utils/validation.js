@@ -42,7 +42,7 @@ const isCorrectQuantity = (quantity) => quantity > 0;
 
 export const isValidCharge = (charge) => {
   console.log(charge);
-  if (!charge || charge < 10) {
+  if (!charge || charge < 10 || charge % 10 !== 0) {
     window.alert(
       `"${charge}"은 잘못된 입력입니다. 10단위로 나누어 떨어지는 10이상의 정수를 입력해주세요`
     );
