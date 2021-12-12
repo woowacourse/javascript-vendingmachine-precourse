@@ -5,7 +5,7 @@ import { default as DOM } from '../views/DOMUtils.js';
 const calculateReturnCoins = () => {
   const charge = DB.load('chargeToPurchaseProduct');
   const wallet = DB.load('vendingMachineCoins');
-  const newWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
+  const emptyWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
 
   //   if (charge >= sumCoins) {
   //     DB.overwrite('chargeToPurchaseProduct', charge - sumCoins);
@@ -13,9 +13,9 @@ const calculateReturnCoins = () => {
   //     DOM.showChargeToPurchaseProduct();
   //     DOM.showReturnCoins();
 
-  //     return DB.overwrite('vendingMachineCoins', newWallet);
+  //     return DB.overwrite('vendingMachineCoins', emptyWallet);
   //   }
-  const [DeductedWallet, returnCoinWallet] = useGreedyArgorithm(charge, wallet, newWallet);
+  const [DeductedWallet, returnCoinWallet] = useGreedyArgorithm(charge, wallet, emptyWallet);
 
   console.log(DeductedWallet);
   console.log(returnCoinWallet);
@@ -25,18 +25,18 @@ const calculateReturnCoins = () => {
   DOM.showChargeToPurchaseProduct();
 };
 
-const useGreedyArgorithm = (charge, wallet, newWallet) => {
+const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
   const tryCaseByCoinType = coinType => {
     while (charge >= coinType && wallet['coin' + coinType] > 0) {
       wallet['coin' + coinType] -= 1;
-      newWallet['coin' + coinType] += 1;
+      emptyWallet['coin' + coinType] += 1;
       charge -= coinType;
     }
   };
 
   [500, 100, 50, 10].forEach(coinType => tryCaseByCoinType(coinType));
 
-  return [wallet, newWallet];
+  return [wallet, emptyWallet];
 };
 
 export default calculateReturnCoins;
