@@ -115,7 +115,7 @@
 │   │   └── UserInputCheck.js # 유저 입력 데이터를 검증한다.
 │   │
 │   ├── components # 컴포넌트 페이지 모음
-│   │   ├── product # 상품 관리 페이지 하위 컴포넌트
+│   │   ├── product
 │   │   │   ├── ProductInputForm.js # 상품 추가 입력란
 │   │   │   └── ProductList.js # 상품 현황
 │   │   │
@@ -266,4 +266,23 @@
   - [x] 상품명은 `dataset` 속성을 사용하고 `data-product-name` 형식으로 저장한다.
   - [x] 가격은 `dataset` 속성을 사용하고 `data-product-price` 형식으로 저장한다.
   - [x] 수량은 `dataset` 속성을 사용하고 `data-product-quantity` 형식으로 저장한다.
+
+
+
+### 추가 요구사항
+
+- [x] 스크립트 추가 외에 주어진 `index.html`파일은 수정할 수 없다.
+  - [x] 스타일(css)은 채점 요소가 아니다.
+
+
+
+## 📚 테스트 결과
+
+![my_test_result](../images/my_test_result.png)
+
+
+
+## ✍️ 작성자
+
+* 우아한테크코스 프론트엔드 과정 지원자, **류현승**
 
