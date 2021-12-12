@@ -1,84 +1,109 @@
-import { clearArea } from "../Model/utils.js";
+import { clearArea, clearInputValue } from "../Model/utils.js";
 import { makeElement, makeTableForm, makeTableRow } from "./template.js";
 import { PRODUCT_MANAGE } from "../constant/vendingMachine.js";
 import Product from "../Model/Product.js";
 
-const updateProductList = () => {
-  const tableBodyArea = document.querySelector("tbody");
-  tableBodyArea.innerText = "";
-  const products = Product.getProductData();
-  if (products === null) return;
-  products.forEach(product => {
-    const rowData = Product.changeTableRowFormat(PRODUCT_MANAGE.NEW_PRODUCT_COLUMNS_ID, {
-      name: product.name,
-      price: product.price,
-      quantity: product.quantity,
-    });
-    makeTableRow(tableBodyArea, rowData, PRODUCT_MANAGE.NEW_PRODUCT_ID);
-  });
-};
-
-const addProduct = () => {
-  const newProduct = Product.getNewProductData();
-  if (Product.checkValidNewProductData(newProduct)) {
-    Product.addNewProduct(newProduct);
-    updateProductList();
+export default class ProductAddView {
+  constructor(container) {
+    this.container = container;
+    this.product = new Product();
   }
-};
 
-const renderInputForm = container => {
-  const inputFormArea = makeElement({ tag: "form" });
-  const inputFormTitle = makeElement({
-    tag: "h3",
-    innerText: PRODUCT_MANAGE.ADD_PRODUCT_TEXT,
-  });
-  const productNameInput = makeElement({
-    tag: "input",
-    type: "text",
-    id: PRODUCT_MANAGE.PRODUCT_NAME.ID,
-    placeholder: PRODUCT_MANAGE.PRODUCT_NAME.TEXT,
-  });
-  const productPriceInput = makeElement({
-    tag: "input",
-    type: "number",
-    id: PRODUCT_MANAGE.PRICE.ID,
-    placeholder: PRODUCT_MANAGE.PRICE.TEXT,
-  });
-  const productQuantityInput = makeElement({
-    tag: "input",
-    type: "number",
-    id: PRODUCT_MANAGE.QUANTITY.ID,
-    placeholder: PRODUCT_MANAGE.QUANTITY.TEXT,
-  });
-  const productAddButton = makeElement({
-    tag: "button",
-    type: "button",
-    id: PRODUCT_MANAGE.ADD_BUTTON.ID,
-    innerText: PRODUCT_MANAGE.ADD_BUTTON.TEXT,
-  });
-  productAddButton.addEventListener("click", () => addProduct());
+  render() {
+    clearArea(this.container);
+    this.renderInputForm(this.container);
+    this.renderProductTable(this.container);
+    this.bindInputs();
+    this.bindAddProductEvent();
+  }
 
-  inputFormArea.append(
-    inputFormTitle,
-    productNameInput,
-    productPriceInput,
-    productQuantityInput,
-    productAddButton
-  );
-  container.append(inputFormArea);
-};
+  bindInputs() {
+    this.productNameInput = document.getElementById(PRODUCT_MANAGE.PRODUCT_NAME.ID);
+    this.productPriceInput = document.getElementById(PRODUCT_MANAGE.PRICE.ID);
+    this.productQuantityInput = document.getElementById(PRODUCT_MANAGE.QUANTITY.ID);
+  }
 
-const renderProductTable = container => {
-  const productTableTitle = makeElement({ tag: "h3", innerText: PRODUCT_MANAGE.TABLE_TEXT });
-  const tableArea = makeTableForm(PRODUCT_MANAGE.COLUMNS);
-  container.append(productTableTitle, tableArea);
-  updateProductList();
-};
+  bindAddProductEvent() {
+    const addButton = document.getElementById(PRODUCT_MANAGE.ADD_BUTTON.ID);
+    addButton.addEventListener("click", () => this.addProduct());
+  }
 
-const productAddView = container => {
-  clearArea(container);
-  renderInputForm(container);
-  renderProductTable(container);
-};
+  renderInputForm() {
+    const inputFormArea = makeElement({ tag: "form" });
+    const inputFormTitle = makeElement({
+      tag: "h3",
+      innerText: PRODUCT_MANAGE.ADD_PRODUCT_TEXT,
+    });
+    const productNameInput = makeElement({
+      tag: "input",
+      type: "text",
+      id: PRODUCT_MANAGE.PRODUCT_NAME.ID,
+      placeholder: PRODUCT_MANAGE.PRODUCT_NAME.TEXT,
+    });
+    const productPriceInput = makeElement({
+      tag: "input",
+      type: "number",
+      id: PRODUCT_MANAGE.PRICE.ID,
+      placeholder: PRODUCT_MANAGE.PRICE.TEXT,
+    });
+    const productQuantityInput = makeElement({
+      tag: "input",
+      type: "number",
+      id: PRODUCT_MANAGE.QUANTITY.ID,
+      placeholder: PRODUCT_MANAGE.QUANTITY.TEXT,
+    });
+    const productAddButton = makeElement({
+      tag: "button",
+      type: "button",
+      id: PRODUCT_MANAGE.ADD_BUTTON.ID,
+      innerText: PRODUCT_MANAGE.ADD_BUTTON.TEXT,
+    });
 
-export default productAddView;
+    inputFormArea.append(
+      inputFormTitle,
+      productNameInput,
+      productPriceInput,
+      productQuantityInput,
+      productAddButton
+    );
+    this.container.append(inputFormArea);
+  }
+
+  renderProductTable() {
+    const productTableTitle = makeElement({ tag: "h3", innerText: PRODUCT_MANAGE.TABLE_TEXT });
+    const tableArea = makeTableForm(PRODUCT_MANAGE.COLUMNS);
+    this.container.append(productTableTitle, tableArea);
+    this.updateProductList();
+  }
+
+  getNewProductData() {
+    const inputs = [this.productNameInput, this.productPriceInput, this.productQuantityInput];
+    const newProduct = inputs.map(input => input.value);
+    clearInputValue(inputs);
+    return newProduct;
+  }
+
+  addProduct() {
+    const newProduct = this.getNewProductData();
+    if (this.product.checkValidNewProductData(newProduct)) {
+      this.product.addNewProduct(newProduct);
+      this.updateProductList();
+    }
+  }
+
+  updateProductList() {
+    const tableBodyArea = document.querySelector("tbody");
+    clearArea(tableBodyArea);
+    const products = this.product.getProductData();
+    if (products === null) return;
+
+    products.forEach(product => {
+      const rowData = this.product.changeTableRowFormat(PRODUCT_MANAGE.NEW_PRODUCT_COLUMNS_ID, {
+        name: product.name,
+        price: product.price,
+        quantity: product.quantity,
+      });
+      makeTableRow(tableBodyArea, rowData, PRODUCT_MANAGE.NEW_PRODUCT_ID);
+    });
+  }
+}
