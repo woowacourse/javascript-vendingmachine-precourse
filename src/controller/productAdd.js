@@ -6,6 +6,7 @@ import {
   isBlankExist,
   isInputNumberValid,
   isMultipleOf10,
+  onKeyUpNumericEvent,
 } from './utils.js';
 import { productAddTableRow } from '../model/dom.js';
 import Product from '../model/product.js';
@@ -67,4 +68,10 @@ const initTable = () => {
 export const initAllProductAdd = () => {
   initTable();
   $(SELECTOR.productAddButton).addEventListener('click', () => addProduct());
+  $(SELECTOR.productPriceInput).addEventListener('keyup', () =>
+    onKeyUpNumericEvent($(SELECTOR.productPriceInput)),
+  );
+  $(SELECTOR.productQuantityInput).addEventListener('keyup', () =>
+    onKeyUpNumericEvent($(SELECTOR.productQuantityInput)),
+  );
 };
