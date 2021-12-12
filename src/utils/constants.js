@@ -45,7 +45,7 @@ export const CLASS = Object.freeze({
   PURCHASE_BUTTON: 'purchase-button',
   PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
   PRODUCT_PURCHASE_NAME: 'product-purchase-name',
-  PRODUCT_PURCHASE_BUTTON: 'product-purchase-name',
+  PRODUCT_PURCHASE_BUTTON: 'purchase-button',
   PRODUCT_PURCHASE_PRICE: 'product-purchase-price',
   PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
   PRODUCT_ADD_QUANTITY: 'product-purchase-quantity',
