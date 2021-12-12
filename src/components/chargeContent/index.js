@@ -2,8 +2,9 @@ import MachineChargeForm from './machineChargeForm/index.js';
 import createTemplate from '../utils/createTemplate.js';
 import { HEADING_CHARGE_MACHINE, ID_AMOUNT, LABEL_AMOUNT } from './const.js';
 import createDivision from '../utils/createDivision.js';
+import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
 
-const createMachineCargeFormContainer = (chargedCoin) => {
+const createMachineCargeFormContainer = (chargedCoins) => {
   const container = createTemplate(
     'machine-charge-form-container',
     HEADING_CHARGE_MACHINE
@@ -12,7 +13,7 @@ const createMachineCargeFormContainer = (chargedCoin) => {
   container.appendChild(
     createDivision({
       id: ID_AMOUNT,
-      innerText: `${LABEL_AMOUNT}: ${chargedCoin}원`,
+      innerText: `${LABEL_AMOUNT}: ${calculateSumOfCoins(chargedCoins)}원`,
     })
   );
 

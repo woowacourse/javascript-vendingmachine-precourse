@@ -21,16 +21,16 @@ import {
 
 import { getProducts } from './library/storage/products.js';
 import { createMachineCargeFormContainer } from './components/chargeContent/index.js';
-import { getChargedCoin } from './library/storage/chargedCoin.js';
+import { getChargedCoins } from './library/storage/chargedCoins.js';
 import {
   getCurrentMenu,
   setCurrentMenu,
 } from './library/storage/currentMenu.js';
 
 export default class VendingMachine {
-  constructor(products, chargedCoin) {
+  constructor(products, chargedCoins) {
     this.products = products;
-    this.chargedCoin = chargedCoin;
+    this.chargedCoins = chargedCoins;
 
     this.app = document.getElementById('app');
     this.menus = createDivision({ id: 'menus' });
@@ -51,8 +51,8 @@ export default class VendingMachine {
       this.menus.appendChild(createBlankNode());
 
       const content = createMenuContentByKey(menuKey);
-      this.appendContentByKey(content, menuKey);
       setVisibility(content, menuKey === getCurrentMenu());
+      this.appendContentByKey(content, menuKey);
       this.panel.appendChild(content);
     });
   }
@@ -60,7 +60,7 @@ export default class VendingMachine {
   appendContentByKey(content, menuKey) {
     if (menuKey === KEY_MENU_ADD) this.appendAddContent(content, this.products);
     if (menuKey === KEY_MENU_CHARGE)
-      this.appendChargeContent(content, this.chargedCoin);
+      this.appendChargeContent(content, this.chargedCoins);
   }
 
   appendAddContent(content, products) {
@@ -68,8 +68,8 @@ export default class VendingMachine {
     content.appendChild(createCurrentProductTableContainer(products));
   }
 
-  appendChargeContent(content, chargedCoin) {
-    content.appendChild(createMachineCargeFormContainer(chargedCoin));
+  appendChargeContent(content, chargedCoins) {
+    content.appendChild(createMachineCargeFormContainer(chargedCoins));
   }
 
   [ACTION_CLICK_MENU](e, menuKey) {
@@ -89,5 +89,6 @@ export default class VendingMachine {
 }
 
 const products = getProducts();
-const chargedCoin = getChargedCoin();
+const chargedCoin = getChargedCoins();
+
 new VendingMachine(products, chargedCoin);

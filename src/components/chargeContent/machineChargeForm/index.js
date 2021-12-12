@@ -1,4 +1,4 @@
-import { addChargedCoin } from '../../../library/storage/chargedCoin.js';
+import { addChargedCoins } from '../../../library/storage/chargedCoins.js';
 import Form from '../../form/index.js';
 import createInput from '../../utils/createInput.js';
 import {
@@ -32,7 +32,7 @@ class MachineChargeForm extends Form {
   onButtonClick() {
     const input = this.input.value;
 
-    addChargedCoin(Number(input));
+    addChargedCoins(Number(input));
   }
 }
 
