@@ -35,7 +35,7 @@ const handleCoinChargeSubmit = (event) => {
   event.preventDefault();
   const chargedCoin = Number($('#vending-machine-charge-input').value);
 
-  if (!isDivideByTen(chargedCoin)) {
+  if (isDivideByTen(chargedCoin)) {
     $('#vending-machine-charge-input').value = '';
     return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
   }

@@ -3,14 +3,13 @@ import { $ } from '../../utils/querySelector.js';
 export const productPurchaseTemplate = `
   <style>
     table {
-      width: 25em;
       border: 1px solid #444444;
       border-collapse: collapse;
     }
     th,td {
       border: 1px solid #444444;
       text-align: center;
-      padding: 10px 0;
+      padding: 10px 15px;
     }
   </style>
 

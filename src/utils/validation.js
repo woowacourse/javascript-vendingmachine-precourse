@@ -10,7 +10,7 @@ const isNegativeNumber = (quantity) => {
 };
 
 export const isDivideByTen = (target) => {
-  return target % DIVIDE_NUMBER === 0;
+  return target % DIVIDE_NUMBER !== 0;
 };
 
 const isMinimumPrice = (price) => {
@@ -30,7 +30,7 @@ const isValidProductPrice = (price) => {
   if (!isMinimumPrice(price)) {
     return alert(LESS_THAN_STANDARD);
   }
-  if (!isDivideByTen(price)) {
+  if (isDivideByTen(price)) {
     return alert(NOT_DIVIDE_BY_TEN);
   }
   return true;
