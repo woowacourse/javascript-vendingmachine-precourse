@@ -1,9 +1,9 @@
 export const ERROR_MESSAGE = Object.freeze({
-  SAME_NAME: '이미 같은 상품이 있습니다.',
+  DUPLICATED_NAME: '이미 같은 상품이 있습니다.',
   MINIMUM_PRICE: '상품 가격은 100원이상 입력해야합니다',
-  MINIMUN_QUANTITY: '상품 수량은 0개 이상이어야 합니다.',
-  MINIMUN_CHARGING: '충전 금액은 0원 이상이어야 합니다.',
-  MINIMUN_INSERT_MONEY: '상품 가격은 0원 이상이어야 합니다.',
+  MINIMUN_QUANTITY: '상품 수량은 1개 이상이어야 합니다.',
+  MINIMUN_CHARGING: '충전 금액은 0원보다 커야 합니다.',
+  MINIMUN_INSERT_MONEY: '투입 금액은 0원보다 커야 합니다.',
   DIVIDEING_NUM: '10원으로 나누어 떨어져야 합니다.',
   NOT_ENOUGH_MONEY: '금액이 부족합니다.',
   SOLD_OUT: '해당 제품은 매진되었습니다.',
