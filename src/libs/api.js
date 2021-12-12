@@ -15,6 +15,7 @@ export default class Api {
         "vending-machine-manage-menu",
         "product-purchase-menu",
       ],
+      chargeAmount: 0,
     };
 
     if (!this.getVendingMachine()) {

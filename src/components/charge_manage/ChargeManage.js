@@ -47,10 +47,21 @@ export default class ChargeManage extends Component {
   }
 
   mounted() {
+    const {
+      addChargeAmount,
+      $state: { chargeAmount },
+    } = this;
     const $chargeInputForm = document.querySelector("#charge-input-form");
 
-    new InputForm($chargeInputForm);
+    new InputForm($chargeInputForm, {
+      addChargeAmount: addChargeAmount.bind(this),
+      chargeAmount,
+    });
   }
 
-  addChargeAmount(charge) {}
+  addChargeAmount(charge) {
+    const payload = { chargeAmount: this.$state.chargeAmount + charge };
+    this.callAPI.setVendingMachine(payload);
+    this.setState(payload);
+  }
 }
