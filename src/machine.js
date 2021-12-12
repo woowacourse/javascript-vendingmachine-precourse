@@ -134,13 +134,13 @@ export default class VendingMachine {
             }
         }
         
-        console.log(returnCoin);
         return returnCoin;
     }
 
     displayReturnedCoins(coins){
         for(let key in this.coins){
             document.getElementById(PURCHASE_TAB_ID.COIN_TABLE[key]).innerHTML = `${coins[key]}개`;
+            document.getElementById(COIN_TABLE_ID[key]).innerHTML = `${this.coins[key]}개`;
         }
     }
 
