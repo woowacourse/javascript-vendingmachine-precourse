@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, USER_CHARGE, VALUES, PRODUCT, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO, OUT_OF_STOCK, NOT_ENOUGH_MONEY} from '../utils/constants.js';
+import { USER_CHARGE, VALUES, PRODUCT, OUT_OF_STOCK, NOT_ENOUGH_MONEY} from '../utils/constants.js';
 import ProductPurchaseView from './ProductPurchaseView.js';
 
 export default class PurchaseEvent {
@@ -17,7 +17,6 @@ export default class PurchaseEvent {
           alert(NOT_ENOUGH_MONEY);
         }  
       }
-
 
   static purchase(name, price, quantity) {
     const product = JSON.parse(localStorage.getItem(PRODUCT));

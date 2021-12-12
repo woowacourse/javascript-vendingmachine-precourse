@@ -1,6 +1,6 @@
 import ProductPurchaseCheck from "./ProductPurchaseCheck.js";
 import ProductPurchaseView from "./ProductPurchaseView.js";
-import { ERROR_MESSAGE, USER_CHARGE, VALUES, PRODUCT, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO, OUT_OF_STOCK, NOT_ENOUGH_MONEY} from '../utils/constants.js';
+import { ERROR_MESSAGE, USER_CHARGE, VALUES, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO} from '../utils/constants.js';
 
 
 export default class ProductPurchaseEvent {
@@ -116,10 +116,8 @@ export default class ProductPurchaseEvent {
     static checkChangeCase(coins, userCoins, change, userMoney) {
         if(parseInt(change[VALUES]) <= parseInt(userMoney[VALUES]) && parseInt(change[VALUES]) !== 0) {
           this.makeEmpty(coins, userCoins, change, userMoney);
-        //   this.storeAllResult(coins, userCoins, change, userMoney);
         } else {
           this.minimumCoin(coins, userCoins, change, userMoney);
-        //   this.storeAllResult(coins, userCoins, change, userMoney);
         }
         this.storeAllResult(coins, userCoins, change, userMoney);
     }

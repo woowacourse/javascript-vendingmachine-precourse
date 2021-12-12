@@ -9,7 +9,6 @@ export default class MainMenuCheck {
     static checkFirstMenu(targetId) {
         if (targetId === 'product-add-menu') {
             ProductAddView.render();
-            // ProductAddView.addProductAddEvent();
             ProductAddEvent.addEvent();
         }
     }
@@ -17,7 +16,6 @@ export default class MainMenuCheck {
     static checkSecondMenu(targetId) {
         if (targetId === 'vending-machine-manage-menu') {
             MachineManageView.render();
-            // MachineManageView.addMachineChargeEvent();
             MachineManageEvent.addEvent();
         }
     }
@@ -25,10 +23,7 @@ export default class MainMenuCheck {
     static checkThirdMenu(targetId) {
         if (targetId === 'product-purchase-menu') {
             ProductPurchaseView.render();
-            // ProductPurchaseView.addUserChargeEvent();
             ProductPurchaseEvent.addEvent();
-            // ProductPurchaseView.addReturnEvent();
-            
         }
     }
 }

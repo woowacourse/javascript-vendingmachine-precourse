@@ -26,7 +26,6 @@ export const HTML_OF_PRODUCT_STATUS_TABLE = `
     </thead>
   </table>`;
 
-
 // 잔돈 충전 부분
 export const HTML_OF_MACHINE_MANAGE_PART = `
   <h4>자판기 동전 충전하기</h4>
@@ -73,8 +72,7 @@ export const HTML_OF_PRODUCT_PURCHASE_PART_MID = `
   <h4>잔돈</h4>
   <button id="coin-return-button">반환하기</button><br><br>`;
 
-
-  export const HTML_OF_PRODUCT_PURCHASE_TABLE = `
+export const HTML_OF_PRODUCT_PURCHASE_TABLE = `
   <table border="1px" cellspacing="0" cellpadding="5" id="product-purchase-table">
   <thead>
     <th>상품명</th>
@@ -84,7 +82,7 @@ export const HTML_OF_PRODUCT_PURCHASE_PART_MID = `
   </thead>
   </table>`;
 
-  export const HTML_OF_USER_CHANGE_TABLE = `
+export const HTML_OF_USER_CHANGE_TABLE = `
   <table border="1px" cellspacing="0" cellpadding="5" id="user-change-table">
     <thead>
       <th>동전</th>
