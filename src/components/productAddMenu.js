@@ -9,9 +9,21 @@ import {
   Table,
   TableHead,
 } from './elements.js';
+import Product from './product.js';
+import { vendingMachine } from './vendingMachine.js';
 
 const onClickAddButton = (e) => {
   e.preventDefault();
+  const productName = document.querySelector(`#${ID.PRODUCT_NAME_INPUT}`).value;
+  const productPrice = document.querySelector(
+    `#${ID.PRODUCT_PRICE_INPUT}`
+  ).value;
+  const productQuantity = document.querySelector(
+    `#${ID.PRODUCT_QUANTITY_INPUT}`
+  ).value;
+
+  const product = new Product(productName, productPrice, productQuantity);
+  vendingMachine.addProduct(product);
 };
 
 const createProductForm = () => {
@@ -36,7 +48,7 @@ const createProductForm = () => {
 };
 
 const createProductTable = () => {
-  const productTable = Table();
+  const productTable = Table('product-table');
   TableHead(productTable, PRODUCT_TABLE.HEADS);
 
   return productTable;
