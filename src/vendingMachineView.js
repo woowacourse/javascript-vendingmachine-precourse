@@ -1,3 +1,4 @@
+import { PURCHASE_MENU } from './data/elementData.js';
 import { $ } from './utils/domElementTool.js';
 
 export default class VendingMachineView {
@@ -16,7 +17,13 @@ export default class VendingMachineView {
   }
 
   renderChargeAmount(selector, chargeAmount) {
-    $(`#${selector}`).innerText = `보유 금액: ${chargeAmount}`;
+    let text = `보유 금액: ${chargeAmount}`;
+
+    if (selector === PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT) {
+      text = `투입한 금액: ${chargeAmount}`;
+    }
+
+    $(`#${selector}`).innerText = text;
   }
 
   renderCoinStatus(selectors, money) {

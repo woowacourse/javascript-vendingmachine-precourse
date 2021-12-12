@@ -1,5 +1,5 @@
 import { $, $$ } from '../utils/domElementTool.js';
-import { COIN_MENU, PRODUCT_MENU } from '../data/elementData.js';
+import { COIN_MENU, PRODUCT_MENU, PURCHASE_MENU } from '../data/elementData.js';
 import { getErrorMessage, getNotValidMoneyErrorMessage } from './getErrorMessage.js';
 import { showAlert } from '../utils/showAlert.js';
 import TabMenuController from './tabMenuController.js';
@@ -15,6 +15,7 @@ export default class VendingMachine {
   createModels() {
     this.productModel = new ProductManager();
     this.coinModel = new MoneyStatus();
+    this.purchaseCoinModel = new MoneyStatus();
   }
 
   init() {
@@ -53,7 +54,7 @@ export default class VendingMachine {
     this.productModel.addProduct(name, price, quantity);
   }
 
-  submitChargeInput(inputSelector) {
+  submitChargeInput(inputSelector, model) {
     const money = $(`#${inputSelector}`).value;
     const errorMessage = getNotValidMoneyErrorMessage(money);
 
@@ -62,7 +63,7 @@ export default class VendingMachine {
       return;
     }
 
-    this.coinModel.putMoney(money);
+    model.putMoney(money);
   }
 
   handleAddMenu() {
@@ -72,12 +73,13 @@ export default class VendingMachine {
   }
 
   handleChargeCoin() {
-    this.submitChargeInput(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_INPUT);
+    this.submitChargeInput(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_INPUT, this.coinModel);
     this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coinModel.getAmount());
     this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coinModel.money);
   }
 
   handlePurchaseProduct() {
-    this.submitChargeInput(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_INPUT);
+    this.submitChargeInput(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_INPUT, this.purchaseCoinModel);
+    this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.purchaseCoinModel.getAmount());
   }
 }
