@@ -1,7 +1,7 @@
 import Store from '../core/Store.js';
 import { CHANGES_ACTION_TYPE } from '../actions/changes.js';
 import {
-  createRandomChanges,
+  generateRandomChanges,
   mergeCoins,
   getChangesCoin,
 } from '../utils/helpers.js';
@@ -18,7 +18,7 @@ class ChangesStore extends Store {
         const { changes, coins } = this.state;
         this.setState({
           changes: changes + money,
-          coins: mergeCoins(coins, createRandomChanges(money)),
+          coins: mergeCoins(coins, generateRandomChanges(money)),
         });
       },
       [CHANGES_ACTION_TYPE.SPEND_CHANGES]: money => {

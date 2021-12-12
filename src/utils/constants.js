@@ -1,3 +1,5 @@
+import { convertArrayToObjectKeys } from './general.js';
+
 export const MENU_TYPE = {
   'product-purchase-menu': 'PRODUCT_PURCHASE',
   'vending-machine-manage-menu': 'MACHINE_MANAGEMENT',
@@ -26,4 +28,11 @@ export const COIN_UNITS = [500, 100, 50, 10];
 export const RULE = {
   MINIMUN_PRICE: 100,
   DIVISIBLE_BY: 10,
+};
+
+export const DEFAULT_VALUES = {
+  CHANGES: 0,
+  CHARGED_MONEY: 0,
+  PRODUCTS: [],
+  COINS: convertArrayToObjectKeys(COIN_UNITS),
 };

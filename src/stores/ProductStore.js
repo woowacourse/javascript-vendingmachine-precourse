@@ -3,14 +3,14 @@ import Product from '../core/class/Product.js';
 import { PRODUCT_ACTION_TYPE } from '../actions/product.js';
 import { MESSAGE } from '../utils/constants.js';
 import {
-  serializeProductsData,
+  deserializeProductsData,
   hasDuplicatedProductName,
 } from '../utils/helpers.js';
 import { productStoreInitialState } from '../utils/initialStates.js';
 import { ProductsStorage } from '../storages/index.js';
 
 const initialStates =
-  serializeProductsData(ProductsStorage.get()) ?? productStoreInitialState;
+  deserializeProductsData(ProductsStorage.get()) ?? productStoreInitialState;
 
 class ProductStore extends Store {
   setUpReducer() {

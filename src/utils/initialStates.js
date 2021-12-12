@@ -1,23 +1,15 @@
-import { convertArrayToObjectKeys } from './general.js';
-import { COIN_UNITS } from './constants.js';
-
-const DEFAULT = {
-  CHANGES: 0,
-  CHARGED_MONEY: 0,
-  PRODUCTS: [],
-  COINS: convertArrayToObjectKeys(COIN_UNITS),
-};
+import { DEFAULT_VALUES } from './constants.js';
 
 export const changeStoreInitialState = {
-  changes: DEFAULT.CHANGES,
-  coins: DEFAULT.COINS,
+  changes: DEFAULT_VALUES.CHANGES,
+  coins: DEFAULT_VALUES.COINS,
 };
 
 export const productStoreInitialState = {
-  products: DEFAULT.PRODUCTS,
+  products: DEFAULT_VALUES.PRODUCTS,
 };
 
 export const userStoreInitialState = {
-  chargedMoney: DEFAULT.CHARGED_MONEY,
-  coins: DEFAULT.COINS,
+  chargedMoney: DEFAULT_VALUES.CHARGED_MONEY,
+  coins: DEFAULT_VALUES.COINS,
 };

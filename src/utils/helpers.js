@@ -1,9 +1,8 @@
 import Product from '../core/class/Product.js';
-import { COIN_UNITS } from './constants.js';
-import { convertArrayToObjectKeys } from './general.js';
+import { COIN_UNITS, DEFAULT_VALUES } from './constants.js';
 
-export const createRandomChanges = money => {
-  const coins = convertArrayToObjectKeys(COIN_UNITS);
+export const generateRandomChanges = money => {
+  const coins = DEFAULT_VALUES.COINS;
   let restMoney = money;
   while (restMoney > 0) {
     const unit = MissionUtils.Random.pickNumberInList(COIN_UNITS);
@@ -23,14 +22,8 @@ export const mergeCoins = (originCoins, newCoins) => {
   return mergedCoins;
 };
 
-export const filterPurchaseableProduct = (money, products) =>
-  products.filter(item => {
-    const { price, quantity } = item.getInformation();
-    return price <= money && quantity > 0;
-  });
-
 export const getChangesCoin = (change, coins) => {
-  const changeCoins = convertArrayToObjectKeys(COIN_UNITS);
+  const changeCoins = DEFAULT_VALUES.COINS;
   const machineCoins = { ...coins };
   let restChange = change;
   let index = 0;
@@ -47,19 +40,25 @@ export const getChangesCoin = (change, coins) => {
   return { changeCoins, machineCoins };
 };
 
+const deserializeToProductInstance = products =>
+  products.map(data => new Product(data));
+
+export const deserializeProductsData = data => {
+  return data
+    ? {
+        products: deserializeToProductInstance(data.products),
+      }
+    : null;
+};
+
+export const filterPurchaseableProduct = (money, products) =>
+  products.filter(item => {
+    const { price, quantity } = item.getInformation();
+    return price <= money && quantity > 0;
+  });
+
 export const hasDuplicatedProductName = (productName, products) =>
   products.find(product => {
     const { name } = product.getInformation();
     return name === productName;
   });
-
-const serializeToProductInstance = products =>
-  products.map(data => new Product(data));
-
-export const serializeProductsData = data => {
-  return data
-    ? {
-        products: serializeToProductInstance(data.products),
-      }
-    : null;
-};
