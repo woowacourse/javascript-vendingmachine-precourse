@@ -85,10 +85,25 @@ export default class ProductPurchase extends Component {
   }
 
   mounted() {
+    const {
+      addPurchaseChargeAmount,
+      $state: { purchaseChargeAmount },
+    } = this;
     const $chargeInputForm = document.querySelector("#charge-input-form");
 
-    new InputForm($chargeInputForm);
+    new InputForm($chargeInputForm, {
+      addPurchaseChargeAmount: addPurchaseChargeAmount.bind(this),
+      purchaseChargeAmount,
+    });
 
     setTableStyled(this.$target);
+  }
+
+  addPurchaseChargeAmount(charge) {
+    const payload = {
+      purchaseChargeAmount: this.$state.purchaseChargeAmount + charge,
+    };
+    this.callAPI.setVendingMachine(payload);
+    this.setState(payload);
   }
 }

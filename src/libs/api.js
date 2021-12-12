@@ -22,6 +22,7 @@ export default class Api {
         coin50: 0,
         coin10: 0,
       },
+      purchaseChargeAmount: 0,
     };
 
     if (!this.getVendingMachine()) {

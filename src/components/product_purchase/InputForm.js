@@ -7,13 +7,15 @@ export default class InputForm extends Component {
   }
 
   template() {
+    const { purchaseChargeAmount } = this.$props;
+
     return `
         <h3>금액 투입</h3>
             <form>
                 <input id="charge-input" type="number" placeholder="투입할 금액"/>
                 <button id="charge-button">투입하기</button>
             </form>
-        <p>투입한 금액: <span id="charge-amount">000</span></p>
+        <p>투입한 금액: <span id="charge-amount">${purchaseChargeAmount}</span></p>
     `;
   }
 
@@ -23,12 +25,13 @@ export default class InputForm extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
+    const { addPurchaseChargeAmount } = this.$props;
 
     const [money] = e.target;
     const charge = Number(money.value);
 
     if (isValidCharge(charge)) {
-      console.log("correct");
+      addPurchaseChargeAmount(charge);
     }
   }
 }
