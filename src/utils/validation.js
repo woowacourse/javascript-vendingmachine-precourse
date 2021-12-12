@@ -23,7 +23,11 @@ export const isLessThanMinimumPrice = (inputValue) => {
 
 export const isDuplicatedName = (inputValue) => {
   const products = getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE);
-  return products.map(({name}) => name).includes(inputValue);
+  if (products) {
+    return products.map(({name}) => name).includes(inputValue);
+  }
+
+  return false;
 };
 
 export const isValidProductName = (inputValue) => {
