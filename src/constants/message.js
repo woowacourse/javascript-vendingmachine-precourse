@@ -19,4 +19,7 @@ export default {
   purchaseChargeInputIsRequired: '투입할 금액을 입력 해주세요',
   purchaseChargeHaveToDivide10: '투입할 금액은 10으로 나누어 떨어져야 합니다',
   purchaseChargeHaveToPlusInteger: '투입할 금액은 음수여선 안됩니다',
+
+  // 구매 관련 메세지
+  purchaseChargePriceHaveToUnderCharge: '투입한 금액이 부족합니다',
 };

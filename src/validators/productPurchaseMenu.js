@@ -6,4 +6,7 @@ export default {
     price % 10 === 0 ? true : alert(Message.purchaseChargeHaveToDivide10),
   validateChargePlusInteger: price =>
     price > 0 ? true : alert(Message.purchaseChargeHaveToPlusInteger),
+
+  validateSubtractPricePlus: subtractPrice =>
+    subtractPrice > 0 ? true : alert(Message.purchaseChargePriceHaveToUnderCharge),
 };

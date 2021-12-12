@@ -71,6 +71,8 @@ class ProductPurchaseMenuController {
     const subtractPrice =
       this.$productPurchaseMenuModel.getPurchaseChargeAmount() - Number(purchasePrice);
 
+    if (!ProductPurchaseMenuValidator.validateSubtractPricePlus(subtractPrice)) return;
+
     this.$productPurchaseMenuModel.setPurchaseChargeAmount(subtractPrice);
     this.$productPurchaseMenuView.renderPurchaseChargeAmount(subtractPrice);
 
