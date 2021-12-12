@@ -153,3 +153,9 @@ export const productPurchaseMenu = `<div class="product-purchase-menu">
   </table>
 </div>
 </div>`;
+
+export const productListTable = `<tr class="product-manage-item">
+<td class="product-manage-name"></td>
+<td class="product-manage-price"></td>
+<td class="product-manage-quantity"></td>
+</tr>`;
