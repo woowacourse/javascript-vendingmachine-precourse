@@ -1,5 +1,5 @@
 import Change from './change.js';
-import ReturnChange from './returnChange.js';
+import ReturnedChange from './returnedChange.js';
 import UserInputMoney from './userInputMoney.js';
 
 export const store = {
@@ -14,4 +14,4 @@ export const store = {
 export const items = store.getLocalStorage('items') ?? [];
 export const change = store.getLocalStorage('change') ?? new Change();
 export const userInputMoney = store.getLocalStorage('userInputMoney') ?? new UserInputMoney();
-export const returnChange = store.getLocalStorage('returnChange') ?? new ReturnChange();
+export const returnedChange = store.getLocalStorage('returnedChange') ?? new ReturnedChange();
