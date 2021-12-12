@@ -35,9 +35,7 @@ const createAddCoinForm = () => {
 
 const createCoinTable = () => {
   const coinTable = Table();
-  const tableHeaders = TableHead(COIN_TABLE.HEADS);
-
-  coinTable.innerHTML += tableHeaders;
+  TableHead(coinTable, COIN_TABLE.HEADS);
 
   return coinTable;
 };

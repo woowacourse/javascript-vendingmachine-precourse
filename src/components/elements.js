@@ -64,10 +64,12 @@ export const Table = () => {
   return table;
 };
 
-export const TableHead = (titles) => {
-  const heads = titles.map((title) => `<th>${title}</th>`).join('');
-
-  return heads;
+export const TableHead = (table, titles) => {
+  titles.forEach((title) => {
+    const th = document.createElement('th');
+    th.innerHTML = title;
+    table.append(th);
+  });
 };
 
 export const TableRow = (className) => {

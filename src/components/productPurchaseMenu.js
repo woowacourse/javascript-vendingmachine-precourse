@@ -35,18 +35,14 @@ const createAddMoneyForm = () => {
 
 const createProductPurchaseTable = () => {
   const productPurchaseTable = Table();
-  const tableHeaders = TableHead(PRODUCT_PURCHASE_TABLE.HEADS);
-
-  productPurchaseTable.innerHTML += tableHeaders;
+  TableHead(productPurchaseTable, PRODUCT_PURCHASE_TABLE.HEADS);
 
   return productPurchaseTable;
 };
 
 const createCoinTable = () => {
   const coinTable = Table();
-  const tableHeaders = TableHead(COIN_TABLE.HEADS);
-
-  coinTable.innerHTML += tableHeaders;
+  TableHead(coinTable, COIN_TABLE.HEADS);
 
   return coinTable;
 };

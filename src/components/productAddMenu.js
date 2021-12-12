@@ -37,9 +37,7 @@ const createProductForm = () => {
 
 const createProductTable = () => {
   const productTable = Table();
-  const tableHeaders = TableHead(PRODUCT_TABLE.HEADS);
-
-  productTable.innerHTML += tableHeaders;
+  TableHead(productTable, PRODUCT_TABLE.HEADS);
 
   return productTable;
 };
