@@ -73,7 +73,7 @@ function setCoinTable(productPurchaseDiv) {
   let table = document.createElement('table');
   let thead = document.createElement('thead');
   let tbody = document.createElement('tbody');
-  tbody.setAttribute('class', 'product-purchase-item');
+  tbody.setAttribute('id', 'product-purchase-table');
   table.appendChild(thead);
   table.appendChild(tbody);
 
