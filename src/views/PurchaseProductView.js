@@ -10,6 +10,7 @@ import {
   PRODUCT,
 } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
+import ChargeCoinView from './ChargeCoinView.js';
 import View from './View.js';
 
 const PurchaseProductView = { ...View };
@@ -25,6 +26,10 @@ PurchaseProductView.render = function () {
 };
 
 PurchaseProductView.template = function () {
+  return this.productsTemplate() + this.coinsTemplate();
+};
+
+PurchaseProductView.productsTemplate = function () {
   return `
   <h3>금액 투입</h3>
   <div>
@@ -78,6 +83,15 @@ PurchaseProductView.template = function () {
     </tbody>
   </table>
   `;
+};
+
+PurchaseProductView.coinsTemplate = function () {
+  return (
+    `
+      <h3>잔돈</h3>
+      <button id="coin-return-button">반환하기</button>
+      ` + ChargeCoinView.tableTemplate()
+  );
 };
 
 PurchaseProductView.bindClick = function () {
