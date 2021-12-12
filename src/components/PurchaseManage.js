@@ -1,12 +1,13 @@
-import Component from '../core/Component.js';
-import ChargeInputForm from './purchase/ChargeInputForm.js';
-import PurchaseList from './purchase/PurchaseList.js';
-import ReturnCoinResult from './purchase/ReturnCoinResult.js';
 import {
   handlePutAmount,
   handlePurchase,
   handleReturnAmount,
 } from '../controller/VendingMachine.js';
+
+import Component from '../core/Component.js';
+import ChargeInputForm from './purchase/ChargeInputForm.js';
+import PurchaseList from './purchase/PurchaseList.js';
+import ReturnCoinResult from './purchase/ReturnCoinResult.js';
 
 import { $productState, $chargeState } from './StateList.js';
 

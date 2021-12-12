@@ -1,13 +1,12 @@
-import Component from '../core/Component.js';
-
-import CoinInputForm from './coins/CoinInputForm.js';
-import CoinList from './coins/CoinList.js';
-
 import { $coinState } from './StateList.js';
 import {
   handleAddCoins,
   handleTotalAmountCoins,
 } from '../controller/VendingMachine.js';
+
+import Component from '../core/Component.js';
+import CoinInputForm from './coins/CoinInputForm.js';
+import CoinList from './coins/CoinList.js';
 
 export default class CoinsManage extends Component {
   init() {

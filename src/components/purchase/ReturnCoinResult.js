@@ -1,9 +1,9 @@
+import Component from '../../core/Component.js';
+import ReturnTable from '../table/ReturnTable.js';
+
 import { SELECTOR } from '../../constants/selector.js';
 import { CONSTANTS } from '../../constants/constants.js';
 import { cloneObject } from '../../utils/data-tools.js';
-
-import Component from '../../core/Component.js';
-import ReturnTable from '../table/ReturnTable.js';
 
 export default class ReturnCoinResult extends Component {
   init() {

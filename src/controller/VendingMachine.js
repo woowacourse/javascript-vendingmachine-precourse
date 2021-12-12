@@ -1,20 +1,20 @@
 import { ERROR, CONSTANTS } from '../constants/constants.js';
+import { errorAlert } from '../utils/error-alert.js';
+import { removeTags } from '../utils/element-tools.js';
+import { cloneObject } from '../utils/data-tools.js';
+
+import Coins from '../models/Coins.js';
+import Product from '../models/Product.js';
 import {
   checkAmountVaild,
   checkProductVaild,
 } from '../models/UserInputCheck.js';
-import { errorAlert } from '../utils/error-alert.js';
-import { removeTags } from '../utils/element-tools.js';
-
-import Coins from '../models/Coins.js';
-import Product from '../models/Product.js';
 
 import {
   $productState,
   $coinState,
   $chargeState,
 } from '../components/StateList.js';
-import { cloneObject } from '../utils/data-tools.js';
 
 export const handleAddCoins = (amount) => {
   const inputAmount = Number(amount);
@@ -38,8 +38,6 @@ export const handleAddProduct = (inputName, inputPrice, inputQuantity) => {
   $productState.value = new Product($productState.value).add(product).result;
   return true;
 };
-
-export const handleTotalAmountCoins = () => new Coins($coinState.value).total;
 
 export const handlePutAmount = (amount) => {
   const inputAmount = Number(amount);
@@ -77,3 +75,5 @@ export const handleReturnAmount = () => {
 
   return output;
 };
+
+export const handleTotalAmountCoins = () => new Coins($coinState.value).total;
