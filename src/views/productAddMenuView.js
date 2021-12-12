@@ -29,19 +29,24 @@ export default function ProductAddMenuView(container) {
 
   this.onClickAddButton = (e) => {
     e.preventDefault();
-    const productName = document.querySelector(
+    const productNameInput = document.querySelector(
       `#${ID.PRODUCT_NAME_INPUT}`
-    ).value;
-    const productPrice = document.querySelector(
+    );
+    const productPriceInput = document.querySelector(
       `#${ID.PRODUCT_PRICE_INPUT}`
-    ).value;
-    const productQuantity = document.querySelector(
+    );
+    const productQuantityInput = document.querySelector(
       `#${ID.PRODUCT_QUANTITY_INPUT}`
-    ).value;
-    const product = new Product(productName, productPrice, productQuantity);
+    );
+    const product = new Product(
+      productNameInput.value,
+      productPriceInput.value,
+      productQuantityInput.value
+    );
 
     vendingMachine.addProduct(product);
     this.renderProduct(product.getProduct());
+    this.initInput(productNameInput, productPriceInput, productQuantityInput);
   };
 
   this.renderProduct = (product) => {
@@ -63,6 +68,12 @@ export default function ProductAddMenuView(container) {
     ]);
     productArray.forEach((product) => {
       this.renderProduct(product);
+    });
+  };
+
+  this.initInput = (...input) => {
+    [...input].forEach((input) => {
+      input.value = '';
     });
   };
 
