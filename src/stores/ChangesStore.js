@@ -1,6 +1,10 @@
 import Store from '../core/Store.js';
 import { CHANGES_ACTION_TYPE } from '../actions/changes.js';
-import { createRandomChanges, mergeCoins } from '../utils/helpers.js';
+import {
+  createRandomChanges,
+  mergeCoins,
+  getChangesCoin,
+} from '../utils/helpers.js';
 import { convertArrayToObjectKeys } from '../utils/general.js';
 import { COIN_UNITS } from '../utils/constants.js';
 
@@ -18,6 +22,19 @@ class ChangesStore extends Store {
           changes: changes + money,
           coins: mergeCoins(coins, createRandomChanges(money)),
         });
+      },
+      [CHANGES_ACTION_TYPE.SPEND_CHANGES]: money => {
+        const { changes, coins } = this.state;
+        const userChangeMoney = money > changes ? changes : money;
+        const { changeCoins, machineCoins, restChange } = getChangesCoin(
+          userChangeMoney,
+          coins
+        );
+        this.setState({
+          changes: changes - userChangeMoney,
+          coins: machineCoins,
+        });
+        return { changeCoins, restChange };
       },
     };
   }

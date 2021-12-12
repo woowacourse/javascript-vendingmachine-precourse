@@ -27,3 +27,21 @@ export const filterPurchaseableProduct = (money, products) =>
     const { price, quantity } = item.getInformation();
     return price <= money && quantity > 0;
   });
+
+export const getChangesCoin = (change, coins) => {
+  const changeCoins = convertArrayToObjectKeys(COIN_UNITS);
+  const machineCoins = { ...coins };
+  let restChange = change;
+  let index = 0;
+
+  while (restChange > 0 && index < COIN_UNITS.length) {
+    const currentCoin = COIN_UNITS[index];
+    if (machineCoins[currentCoin] === 0) index += 1;
+    else if (restChange >= currentCoin) {
+      changeCoins[currentCoin] += 1;
+      machineCoins[currentCoin] -= 1;
+      restChange -= currentCoin;
+    }
+  }
+  return { changeCoins, machineCoins, restChange };
+};

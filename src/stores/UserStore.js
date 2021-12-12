@@ -5,7 +5,6 @@ import { COIN_UNITS } from '../utils/constants.js';
 
 const initialState = {
   chargedMoney: 0,
-  changes: 0,
   coins: convertArrayToObjectKeys(COIN_UNITS),
 };
 
@@ -16,8 +15,13 @@ class UserStore extends Store {
         this.setState({ chargedMoney: this.state.chargedMoney + money });
       },
       [USER_ACTION_TYPE.SPEND_MONEY]: money => {
-        console.log('머지', this.state.chargedMoney - money, money);
         this.setState({ chargedMoney: this.state.chargedMoney - money });
+      },
+      [USER_ACTION_TYPE.RETURN_CHANGES]: ({ changes, coins }) => {
+        this.setState({
+          coins,
+          chargedMoney: this.state.chargedMoney - changes,
+        });
       },
     };
   }

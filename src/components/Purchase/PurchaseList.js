@@ -31,12 +31,12 @@ export default class PurchaseList extends Component {
     this.$container.innerHTML = `
         <h3>구매할 수 있는 상품 현황</h3>
         <table>
-        <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>수량</th>
-            <th>구매</th>
-        </tr>
+          <tr>
+              <th>상품명</th>
+              <th>가격</th>
+              <th>수량</th>
+              <th>구매</th>
+          </tr>
         ${purchaseProductsView(
           filterPurchaseableProduct(chargedMoney, products)
         )}

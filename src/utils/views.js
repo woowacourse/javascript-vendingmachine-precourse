@@ -19,7 +19,7 @@ export const coinStatusView = coins =>
       return `
     <tr>
       <td>${unit}</td>
-      <td id="vending-machine-coin-500-quantity">${quantity}</td>
+      <td id="vending-machine-coin-${unit}-quantity">${quantity}</td>
     </tr>
     `;
     })
@@ -41,3 +41,15 @@ export const purchaseProductsView = items =>
         })
         .join('')
     : '';
+
+export const changeStatusView = coins =>
+  Object.entries(coins)
+    .map(([unit, quantity]) => {
+      return `
+<tr>
+  <td>${unit}원</td>
+  <td id="coin-${unit}-quantity">${quantity}</td>
+</tr>
+`;
+    })
+    .join('');
