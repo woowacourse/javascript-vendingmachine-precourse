@@ -6,6 +6,7 @@ import {
     $tabNavigationID,
     $vendingMachineManageMenuID,
 } from '../constants/domSelectors.js';
+import { HEADER_TITLE, TAB_NAMES } from '../constants/resources.js';
 import Component from '../interface/Component.js';
 import AddProduct from './AddProduct.js';
 import PurchaseProduct from './PurchaseProduct.js';
@@ -40,14 +41,14 @@ export default class App extends Component {
     template() {
         return `
             <header>
-                <h1>🥤자판기🥤</h1>
+                <h1>${HEADER_TITLE}</h1>
             </header>
             <nav id="${$tabNavigationID}">
-                <button id="${$productAddMenuID}">상품 관리</button>
-                <button id="${$vendingMachineManageMenuID}">잔돈 충전</button>
-                <button id="${$productPurchaseMenuID}">상품 구매</button>
+                <button id="${$productAddMenuID}">${TAB_NAMES[0]}</button>
+                <button id="${$vendingMachineManageMenuID}">${TAB_NAMES[1]}</button>
+                <button id="${$productPurchaseMenuID}">${TAB_NAMES[2]}</button>
             </nav>
-            <section id="main-section"></section>
+            <section id="${$mainSectionID}"></section>
         `;
     }
 }

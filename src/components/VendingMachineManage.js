@@ -10,7 +10,7 @@ import {
     $vendingMachineCoin500ID,
     $vendingMachineCoin50ID,
 } from '../constants/domSelectors.js';
-import { INPUT_NAME } from '../constants/resources.js';
+import { INPUT_NAME, MACHINE_MANAGE } from '../constants/resources.js';
 import Component from '../interface/Component.js';
 
 export default class VendingMachineManage extends Component {
@@ -44,30 +44,34 @@ export default class VendingMachineManage extends Component {
 
     template() {
         return `
-        <h3>자판기 동전 충전하기</h3>
+        <h3>${MACHINE_MANAGE.HEAD}</h3>
         <form id="${$chargeMachineFormID}">
-            <input id="${$vendingMachineChargeInputID}" type="text" name="${INPUT_NAME['CHARGE-MONEY']}" placeholder="자판기가 보유할 금액" />
-            <input id="${$vendingMachineChargeButtonID}" type="submit" value="충전하기" />
+            <input id="${$vendingMachineChargeInputID}" type="text" name="${INPUT_NAME['CHARGE-MONEY']}" placeholder="${
+            MACHINE_MANAGE.PLACEHOLDER
+        }" />
+            <input id="${$vendingMachineChargeButtonID}" type="submit" value="${MACHINE_MANAGE.BUTTON}" />
         </form>
-        <p>보유 금액 : <span id="${$vendingMachineChargeAmountID}">${this.machineStatus.totalAmount}</span></p>
-        <h3>자판기가 보유한 동전</h3>
+        <p>${MACHINE_MANAGE.STATUS.TOTAL} : <span id="${$vendingMachineChargeAmountID}">${
+            this.machineStatus.totalAmount
+        }</span></p>
+        <h3>${MACHINE_MANAGE.STATUS.COIN}</h3>
         <table>
-            <thead><tr><th>동전</th><th>개수</th></tr></thead>
+            <thead><tr>${MACHINE_MANAGE.COLUMNS.map((column) => `<th>${column}</th>`).join('')}</tr></thead>
             <tbody>
             <tr>
-                <td>500원</td>
+                <td>${MACHINE_MANAGE.ROWHEAD[0]}</td>
                 <td id="${$vendingMachineCoin500ID}">${this.machineStatus[500]}개</td>
             </tr>
             <tr>
-                <td>100원</td>
+                <td>${MACHINE_MANAGE.ROWHEAD[1]}</td>
                 <td id="${$vendingMachineCoin100ID}">${this.machineStatus[100]}개</td>
             </tr>
             <tr>
-                <td>50원</td>
+                <td>${MACHINE_MANAGE.ROWHEAD[2]}</td>
                 <td id="${$vendingMachineCoin50ID}">${this.machineStatus[50]}개</td>
             </tr>
             <tr>
-                <td>10원</td>
+                <td>${MACHINE_MANAGE.ROWHEAD[3]}</td>
                 <td id="${$vendingMachineCoin10ID}">${this.machineStatus[10]}개</td>
             </tr>
             </tbody>

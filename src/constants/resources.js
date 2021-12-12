@@ -1,15 +1,49 @@
 export const HEADER_TITLE = '🥤자판기🥤';
-export const PRODUCT_ADD_HEAD = '상품 추가하기';
-export const PRODUCT_STATUS = '상품 현황';
+export const TAB_NAMES = ['상품 관리', '잔돈 충전', '상품 관리'];
 
-export const VENDING_MACHINE_MANAGE_HEAD = '자판기 동전 충전하기';
-export const VENDING_MACHINE_MANAGE_NOW = '보유 금액: ';
-export const VENDING_MACHINE_MANAGE_STATUS = '자판기가 보유한 동전';
+export const ADD_PRODUCT = {
+    HEAD: '상품 추가하기',
+    STATUS: '상품 현황',
+    PLACEHOLDERS: {
+        NAME: '상품명',
+        PRICE: '가격',
+        QUANTITY: '수량',
+    },
+    BUTTON: '추가하기',
+    COLUMNS: ['상품명', '가격', '수량'],
+};
 
-export const PURCHASE_PRODUCT_HEAD = '금액 투입';
-export const PURCHASE_PRODUCT_NOW = '투입한 금액: ';
-export const PURCHASE_PRODUCT_STATUS = '구매할 수 있는 상품 현황';
-export const PURCHASE_PRODUCT_CHANGE_STATUS = '잔돈';
+export const MACHINE_MANAGE = {
+    HEAD: '자판기 동전 충전하기',
+    STATUS: {
+        TOTAL: '보유 금액',
+        COIN: '자판기가 보유한 동전',
+    },
+    PLACEHOLDER: '자판기가 보유할 금액',
+    BUTTON: '충전하기',
+    COLUMNS: ['동전', '개수'],
+    ROWHEAD: ['500원', '100원', '50원', '10원'],
+};
+
+export const PURCHASE_PRODUCT = {
+    HEAD: '금액 투입',
+    STATUS: {
+        CHARGE: '투입한 금액',
+        PRODUCT: '구매할 수 있는 상품 현황',
+        EXCHANGE: '잔돈',
+    },
+    PLACEHOLDER: '자판기가 보유할 금액',
+    BUTTON: {
+        CHARGE: '투입하기',
+        PURCHASE: '구매하기',
+        EXCHANGE: '반환하기',
+    },
+    COLUMNS: {
+        PRODUCT: ['상품명', '가격', '수량', '구매'],
+        EXCHANGE: ['동전', '개수'],
+    },
+    ROWHEAD: ['500원', '100원', '50원', '10원'],
+};
 
 export const ERROR_MESSAGE = {
     'PRODUCT-NAME-INPUT-ERROR': '상품이름은 1~255 길이의 이름을 입력해야 합니다.',

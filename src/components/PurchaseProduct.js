@@ -18,6 +18,7 @@ import {
     $productPurchaseQuantityClass,
     $purchaseButtonClass,
 } from '../constants/domSelectors.js';
+import { PURCHASE_PRODUCT } from '../constants/resources.js';
 import Component from '../interface/Component.js';
 
 export default class PurchaseProduct extends Component {
@@ -117,7 +118,7 @@ export default class PurchaseProduct extends Component {
                         >${item.quantity}</td>
                         <td>
                             <button class="${$purchaseButtonClass}" data-idx-number="${idx}">
-                                구매하기
+                                ${PURCHASE_PRODUCT.BUTTON.PURCHASE}
                             </button>
                         </td>
                     </tr>`
@@ -127,27 +128,35 @@ export default class PurchaseProduct extends Component {
 
     template() {
         return `
-        <h3>금액 투입</h3>
-        <input id="${$chargeInputID}" type="number" placeholder="투입할 금액" />
-        <input id="${$chargeButtonID}" type="submit" value="투입하기" />
-        <p>투입한 금액 : <span id="${$chargeAmountID}">${this.chargeMoney}</span></p>
-        <h3>구매할 수 있는 상품 현황</h3>
+        <h3>${PURCHASE_PRODUCT.HEAD}</h3>
+        <input id="${$chargeInputID}" type="number" placeholder="${PURCHASE_PRODUCT.PLACEHOLDER}" />
+        <input id="${$chargeButtonID}" type="submit" value="${PURCHASE_PRODUCT.BUTTON.CHARGE}" />
+        <p>${PURCHASE_PRODUCT.STATUS.CHARGE} : <span id="${$chargeAmountID}">${this.chargeMoney}</span></p>
+        <h3>${PURCHASE_PRODUCT.STATUS.PRODUCT}</h3>
         <table>
             <thead>
-                <tr><th>상품명</th><th>가격</th><th>수량</th><th>구매</th></tr>
+                <tr>${PURCHASE_PRODUCT.COLUMNS.PRODUCT.map((column) => `<th>${column}</th>`).join('')}</tr>
             </thead>
             <tbody id="">${this.getProductListHTML()}</tbody>
         </table>
-        <h3>잔돈</h3>
-        <button id="${$coinReturnButtonID}">반환하기</button>
+        <h3>${PURCHASE_PRODUCT.STATUS.EXCHANGE}</h3>
+        <button id="${$coinReturnButtonID}">${PURCHASE_PRODUCT.BUTTON.EXCHANGE}</button>
 
         <table>
-            <thead><tr><th>동전</th><th>개수</th></tr></thead>
+            <thead><tr>${PURCHASE_PRODUCT.COLUMNS.EXCHANGE.map((column) => `<th>${column}</th>`).join('')}</tr></thead>
             <tbody>
-                <tr><td>500원</td><td><span id="${$coin500ID}">${this.exchangeCoin[500]}</span>개</td></tr>
-                <tr><td>100원</td><td><span id="${$coin100ID}">${this.exchangeCoin[100]}</span>개</td></tr>
-                <tr><td>50원</td><td><span id="${$coin50ID}">${this.exchangeCoin[50]}</span>개</td></tr>
-                <tr><td>10원</td><td><span id="${$coin10ID}">${this.exchangeCoin[10]}</span>개</td></tr>
+                <tr><td>${PURCHASE_PRODUCT.ROWHEAD[0]}</td><td><span id="${$coin500ID}">${
+            this.exchangeCoin[500]
+        }</span>개</td></tr>
+                <tr><td>${PURCHASE_PRODUCT.ROWHEAD[1]}</td><td><span id="${$coin100ID}">${
+            this.exchangeCoin[100]
+        }</span>개</td></tr>
+                <tr><td>${PURCHASE_PRODUCT.ROWHEAD[2]}</td><td><span id="${$coin50ID}">${
+            this.exchangeCoin[50]
+        }</span>개</td></tr>
+                <tr><td>${PURCHASE_PRODUCT.ROWHEAD[3]}</td><td><span id="${$coin10ID}">${
+            this.exchangeCoin[10]
+        }</span>개</td></tr>
             </tbody>
         </table>
         `;

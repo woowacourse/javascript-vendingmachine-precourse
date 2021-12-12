@@ -7,7 +7,7 @@ import {
     $productPriceInputID,
     $productQuantityInputID,
 } from '../constants/domSelectors.js';
-import { INPUT_NAME } from '../constants/resources.js';
+import { ADD_PRODUCT, INPUT_NAME } from '../constants/resources.js';
 import Component from '../interface/Component.js';
 
 export default class AddProduct extends Component {
@@ -70,20 +70,26 @@ export default class AddProduct extends Component {
 
     template() {
         return `
-        <h3>상품 추가하기</h3>
+        <h3>${ADD_PRODUCT.HEAD}</h3>
         <form id="${$addProductFormID}">
-        <input id="${$productNameInputID}" name="${INPUT_NAME['PRODUCT-NAME']}" type="text" placeholder="상품명" />
-        <input id="${$productPriceInputID}" name="${INPUT_NAME['PRODUCT-PRICE']}" type="number" placeholder="가격" />
-        <input id="${$productQuantityInputID}" name="${
-            INPUT_NAME['PRODUCT-QUANTITY']
-        }" type="number" placeholder="수량" />
-        <input id="${$productAddButtonID}" type="submit" value="추가하기" />
+        <input id="${$productNameInputID}" name="${INPUT_NAME['PRODUCT-NAME']}" type="text" placeholder="${
+            ADD_PRODUCT.PLACEHOLDERS.NAME
+        }" />
+        <input id="${$productPriceInputID}" name="${INPUT_NAME['PRODUCT-PRICE']}" type="number" placeholder="${
+            ADD_PRODUCT.PLACEHOLDERS.PRICE
+        }" />
+        <input id="${$productQuantityInputID}" name="${INPUT_NAME['PRODUCT-QUANTITY']}" type="number" placeholder="${
+            ADD_PRODUCT.PLACEHOLDERS.QUANTITY
+        }" />
+        <input id="${$productAddButtonID}" type="submit" value="${ADD_PRODUCT.BUTTON}" />
         </form>
 
-        <h3>상품 현황</h3>
+        <h3>${ADD_PRODUCT.STATUS}</h3>
         <table>
             <thead>
-                <tr><th>상품명</th><th>가격</th><th>수량</th></tr>
+                <tr>
+                ${ADD_PRODUCT.COLUMNS.map((column) => `<th>${column}</th>`).join('')}
+                </tr>
             </thead>
             <tbody>${this.getProductListHTML()}</tbody>
         </table>
