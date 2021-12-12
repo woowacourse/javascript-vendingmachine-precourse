@@ -1,12 +1,12 @@
 import MachineChargeForm from './machineChargeForm/index.js';
-import createTemplate from '../utils/createTemplate.js';
+import createContainer from '../utils/createContainer.js';
 import { HEADING_CHARGE_MACHINE, ID_AMOUNT, LABEL_AMOUNT } from './const.js';
 import createDivision from '../utils/createDivision.js';
 import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
 import MachineChargedCoinsTable from './machineChargedCoinsTable/index.js';
 
 const createMachineCargeFormContainer = (chargedCoins) => {
-  const container = createTemplate(
+  const container = createContainer(
     'machine-charge-form-container',
     HEADING_CHARGE_MACHINE
   );
@@ -22,7 +22,7 @@ const createMachineCargeFormContainer = (chargedCoins) => {
 };
 
 const createMachineChargedCoinsTableContainer = (chargedCoins) => {
-  const container = createTemplate(
+  const container = createContainer(
     'machine-charged-coins-table-container',
     HEADING_CHARGE_MACHINE
   );
