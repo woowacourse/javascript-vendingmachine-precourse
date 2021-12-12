@@ -87,3 +87,20 @@ export const isValidProductInput = (name, price, quantity) => {
 
   return true;
 };
+
+export const isValidChargeInput = (amount) => {
+  if (isInputEmpty(amount)) {
+    alert(ERROR_MESSAGE.EMPTY);
+    return false;
+  }
+  if (!isInputNotInteger || !isInputNotPositive) {
+    alert(ERROR_MESSAGE.MINIMUN_CHARGING);
+    return false;
+  }
+  if (isNotMultipleOfTen(amount)) {
+    alert(ERROR_MESSAGE.DIVIDEING_NUM);
+    return false;
+  }
+
+  return true;
+};
