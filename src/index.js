@@ -1,4 +1,5 @@
-import View from './view/view.js';
+import { Inventory } from './controller/inventory.js';
 
-const view = new View();
-view.setBasicUI();
+// localStorage.clear();
+const inventory = new Inventory();
+inventory.view.setBasicUI();

@@ -1,17 +1,23 @@
 import { $ } from '../utils/selector.js';
 import { TAB, TITLE, MARGIN } from '../utils/constant.js';
 import ManagePage from './manage.js';
+import ChargePage from './charge.js';
+import PurchasePage from './purchase.js';
 
 export default class View {
-  constructor() {
+  constructor(inventory) {
     this.app = $('#app');
     this.manageTab = document.createElement('button');
     this.chargeTab = document.createElement('button');
     this.purchaseTab = document.createElement('button');
-    this.managePage = document.createElement('div');
-    this.chargePage = document.createElement('div');
-    this.purchasePage = document.createElement('div');
+    this.managePageDiv = document.createElement('div');
+    this.chargePageDiv = document.createElement('div');
+    this.purchasePageDiv = document.createElement('div');
     this.title = document.createElement('h1');
+    this.inventory = inventory;
+    this.managePage = new ManagePage(this.inventory);
+    this.chargePage = new ChargePage();
+    this.purchasePage = new PurchasePage();
   }
 
   setText() {
@@ -37,9 +43,9 @@ export default class View {
   }
 
   setAllPage() {
-    this.app.appendChild(this.managePage);
-    this.app.appendChild(this.chargePage);
-    this.app.appendChild(this.purchasePage);
+    this.app.appendChild(this.managePageDiv);
+    this.app.appendChild(this.chargePageDiv);
+    this.app.appendChild(this.purchasePageDiv);
   }
 
   setBasicUI() {
@@ -47,10 +53,11 @@ export default class View {
     this.app.appendChild(this.title);
     this.setTabs();
     this.getManagePage();
+    // this.getChargePage();
+    // this.getPurchasePage();
     this.setAllPage();
+    
   }
-
-  ///
 
   hideAllPage() {
     this.managePage.style.display = 'none';
@@ -63,7 +70,16 @@ export default class View {
   }
 
   getManagePage() {
-    const mp = new ManagePage(this.managePage);
-    mp.setUI();
+    this.managePage.setUI(this.managePageDiv);
+    this.managePage.showProductListAll();
+    this.managePage.buttonHandler(this.inventory);
+  }
+
+  getChargePage() {
+    this.chargePage.setUI(this.chargePageDiv);
+  }
+
+  getPurchasePage() {
+    this.purchasePage.setUI(this.purchasePage);
   }
 }

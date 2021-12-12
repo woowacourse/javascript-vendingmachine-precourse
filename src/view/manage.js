@@ -1,7 +1,7 @@
-import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS, ID } from '../utils/constant.js';
+import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS} from '../utils/constant.js';
 
 export default class ManagePage {
-  constructor(page, inventory) {
+  constructor(inventory) {
     this.subtitleAdd = document.createElement('h3');
     this.subtitleCurrent = document.createElement('h3');
     this.inputName = document.createElement('input');
@@ -14,7 +14,6 @@ export default class ManagePage {
     this.thPrice = document.createElement('th');
     this.thQuantity = document.createElement('th');
     this.td = document.createElement('td');
-    this.page = page;
     this.inventory = inventory;
   }
 
@@ -23,6 +22,9 @@ export default class ManagePage {
     this.subtitleCurrent.innerText = SUBTITLE.CURRENT_PRODUCT;
     this.inputName.setAttribute('placeholder', PLACEHOLDER.PRODUCT_NAME);
     this.inputPrice.setAttribute('placeholder', PLACEHOLDER.PRICE);
+    this.inputPrice.setAttribute('type', 'number');
+    this.inputPrice.setAttribute('min',100);
+    this.inputPrice.setAttribute('step',10);
     this.inputQuantity.setAttribute('placeholder', PLACEHOLDER.PRODUCT_QUANTITY);
     this.buttonAdd.innerText = TEXT.ADD;
   }
@@ -38,30 +40,27 @@ export default class ManagePage {
   }
   
   // index.html에 생성한 tab들 넣기
-  setUI() {
+  setUI(page) {
     this.setUIText();
     this.setTable();
     this.inputPrice.style.margin = MARGIN;
-    this.page.appendChild(this.subtitleAdd);
-    this.page.appendChild(this.inputName);
-    this.page.appendChild(this.inputPrice);
-    this.page.appendChild(this.inputQuantity); 
+    page.appendChild(this.subtitleAdd);
+    page.appendChild(this.inputName);
+    page.appendChild(this.inputPrice);
+    page.appendChild(this.inputQuantity); 
     this.buttonAdd.style.margin = MARGIN;
-    this.page.appendChild(this.buttonAdd);
-    this.page.appendChild(this.subtitleCurrent);
-    this.page.appendChild(this.table);
+    page.appendChild(this.buttonAdd);
+    page.appendChild(this.subtitleCurrent);
+    page.appendChild(this.table);
   }
 
-  buttonHandler() {
+  buttonHandler(inventory) {
     this.buttonAdd.addEventListener('click', (e) => {
       e.preventDefault();
       const name = this.inputName.value;
       const price = this.inputPrice.value;
       const quantity = this.inputQuantity.value;
-      this.inventory.saveItem(name, price, quantity);
-      this.attachNewProduct(name, price, quantity);
-      // localStorage.clear();
-      console.log(localStorage);
+      inventory.saveItem(name, price, quantity);
     })
   }
   
