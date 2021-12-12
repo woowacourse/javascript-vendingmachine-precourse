@@ -22,6 +22,13 @@ export const PriceCheckMethods = [
     }
     return !isOver100;
   },
+  (value) => {
+    const is10Multiple = value % 10 !== 0;
+    if (is10Multiple) {
+      alert(USER_INPUT_ALERT.multiple10Error);
+    }
+    return !is10Multiple;
+  },
 ];
 
 export function isPriceValid(value) {
