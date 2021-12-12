@@ -1,17 +1,18 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
+import { ERROR, PRICE, CHARGE } from '../utils/constants.js';
 
 export const isValidCharge = chargeInput => {
   if (chargeInput === '') {
-    alert('공백입니다.');
+    alert(ERROR.CHARGE_BLANK);
     return false;
   }
-  if (Number(chargeInput) <= 0) {
-    alert('0원 이상을 투입하세요.');
+  if (Number(chargeInput) < CHARGE.LEAST_PRICE) {
+    alert(ERROR.CHARGE_TOO_LOW);
     return false;
   }
-  if (Number(chargeInput % 10 !== 0)) {
-    alert('10원으로 나누어지지 않습니다.');
+  if (Number(chargeInput % PRICE.TEN_WON !== 0)) {
+    alert(ERROR.CHARGE_SHOULD_DIVIDED_INTO_TEN);
     return false;
   }
   return true;
@@ -19,7 +20,7 @@ export const isValidCharge = chargeInput => {
 
 export const isValidPurchase = (amount, price) => {
   if (price > amount) {
-    alert('현재 넣은 금액보다 상품의 가격이 더 높습니다. 돈을 더 넣으세요.');
+    alert(ERROR.PRODUCT_IS_EXPENSIVE);
     return false;
   }
   return true;
@@ -120,7 +121,7 @@ export const updateAmount = (amount, price) => {
 
 export const updateProductQuantity = e => {
   const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
-  const products = store.getLocalStorage('products'); // 따로 파일로 빼주기 (현재 상태 가져옴)
+  const products = store.getLocalStorage('products');
 
   if (products[purchaseIndex].quantity) {
     products[purchaseIndex].quantity -= 1;
@@ -128,5 +129,5 @@ export const updateProductQuantity = e => {
     e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').innerText -= 1;
     return;
   }
-  alert('상품이 없습니다.');
+  alert(ERROR.PRODUCT_EMPTY);
 };

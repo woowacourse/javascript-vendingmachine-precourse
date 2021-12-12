@@ -1,6 +1,8 @@
+import { ERROR, PRODUCT, PRICE } from '../utils/constants.js';
+
 export const isValidName = nameInput => {
   if (nameInput === '') {
-    alert('상품명이 공백입니다. 다시 입력하세요.');
+    alert(ERROR.NAME_BLANK);
     return false;
   }
   return true;
@@ -8,15 +10,15 @@ export const isValidName = nameInput => {
 
 export const isValidPrice = priceInput => {
   if (priceInput === '') {
-    alert('가격을 입력하지 않았습니다. 다시 입력하세요.');
+    alert(ERROR.PRICE_BLANK);
     return false;
   }
-  if (Number(priceInput) < 100) {
-    alert('상품 가격은 100원 이상만 입력 가능합니다. 다시 입력하세요.');
+  if (Number(priceInput) < PRODUCT.LEAST_PRICE) {
+    alert(ERROR.PRICE_TOO_LOW);
     return false;
   }
-  if (Number(priceInput) % 10 !== 0) {
-    alert('상품 가격은 10원으로 나눠져야합니다. 다시 입력하세요.');
+  if (Number(priceInput) % PRICE.TEN_WON !== 0) {
+    alert(ERROR.PRICE_SHOULD_DIVIDED_INTO_TEN);
     return false;
   }
   return true;
@@ -24,11 +26,11 @@ export const isValidPrice = priceInput => {
 
 export const isValidQuantity = quantityInput => {
   if (quantityInput === '') {
-    alert('수량이 입력되지 않았습니다. 다시 입력하세요.');
+    alert(ERROR.QUANTITY_BLANK);
     return false;
   }
-  if (Number(quantityInput) < 1) {
-    alert('수량은 1개 이상 입력되어야합니다. 다시 입력하세요.');
+  if (Number(quantityInput) < PRODUCT.LEAST_QUANTITY) {
+    alert(ERROR.QUANTITY_TOO_LOW);
     return false;
   }
   return true;

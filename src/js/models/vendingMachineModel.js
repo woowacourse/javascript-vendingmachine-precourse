@@ -1,30 +1,32 @@
+import { CHARGE, ERROR, PRICE } from '../utils/constants.js';
+
 const getRandomCoin = () => {
-  return MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+  return MissionUtils.Random.pickNumberInList([PRICE_FIVE_HUNDRED_WON, PRICE.ONE_HUNDRED_WON, PRICE.FIFTY_WON, PRICE.TEN_WON]);
 };
 
 const countCoin = (coin, coins) => {
-  if (coin === 500) {
+  if (coin === PRICE.FIVE_HUNDRED_WON) {
     coins.fiveHundred += 1;
-  } else if (coin === 100) {
+  } else if (coin === PRICE.ONE_HUNDRED_WON) {
     coins.oneHundred += 1;
-  } else if (coin === 50) {
+  } else if (coin === PRICE.FIFTY_WON) {
     coins.fifty += 1;
-  } else if (coin === 10) {
+  } else if (coin === PRICE.TEN_WON) {
     coins.ten += 1;
   }
 };
 
 export const isValidCharge = chargeInput => {
   if (chargeInput === '') {
-    alert('공백입니다.');
+    alert(ERROR.CHARGE_BLANK);
     return false;
   }
-  if (Number(chargeInput) < 10) {
-    alert('상품 가격은 10원 이상을 입력해야합니다.');
+  if (Number(chargeInput) < CHARGE.LEAST_INPUT_PRICE) {
+    alert(ERROR.CHARGE_LEAST_TEN);
     return false;
   }
-  if (Number(chargeInput % 10 !== 0)) {
-    alert('상품 가격이 10원으로 나눠지지 않습니다.');
+  if (Number(chargeInput % PRICE.TEN_WON !== 0)) {
+    alert(ERROR.CHARGE_SHOULD_DIVIDED_INTO_TEN);
     return false;
   }
   return true;
