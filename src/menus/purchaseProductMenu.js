@@ -1,8 +1,11 @@
 import { vendingMachine } from "../components/vendingMachine.js";
 import {
+  ID,
   IS_RENDERED_INSERTED_MONEY,
   IS_RENDERED_RETURN_CHANGES,
+  NAME,
   PURCHASE_TAP,
+  QUANTITY,
 } from "../utils/constants.js";
 import { saveToLocalStorage } from "../utils/utils.js";
 import {
@@ -13,25 +16,25 @@ import { renderChanges, renderMoney } from "../views/purchaseProductView.js";
 
 const resetInput = () => {
   const $charge_input = document.getElementById(
-    PURCHASE_TAP.insertMoneyInput[1]
+    PURCHASE_TAP.insertMoneyInput[ID]
   );
   $charge_input.value = "";
 };
 
 const getNameTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.productStateIds[0]}`);
+  return form.querySelector(`.${PURCHASE_TAP.productStateIds[NAME]}`);
 };
 
 const getPriceTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.productStateIds[1]}`);
+  return form.querySelector(`.${PURCHASE_TAP.productStateIds[ID]}`);
 };
 
 const getQuantityTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.productStateIds[2]}`);
+  return form.querySelector(`.${PURCHASE_TAP.productStateIds[QUANTITY]}`);
 };
 
 const updateQuantity = quantity => {
-  quantity.innerText = parseInt(quantity.innerText) - 1;
+  quantity.innerText = parseInt(quantity.innerText) - ID;
 };
 
 const setIsRenderInsertedMoney = () => {
@@ -46,7 +49,7 @@ export const onClickInsertButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
   const money = form.querySelector(
-    `#${PURCHASE_TAP.insertMoneyInput[1]}`
+    `#${PURCHASE_TAP.insertMoneyInput[ID]}`
   ).value;
 
   if (checkInsertMoneyInput(money)) {

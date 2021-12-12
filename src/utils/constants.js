@@ -1,4 +1,7 @@
 export const TITLE_TEXT = "🥤자판기🥤";
+export const NAME = 0;
+export const ID = 1;
+export const QUANTITY = 2;
 export const INPUT_WITDH = "150px";
 export const MARGIN_SIZE = "1px";
 export const IS_RENDERED_INSERTED_MONEY = "isRenderInsertedMoney";

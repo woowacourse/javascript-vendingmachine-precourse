@@ -1,4 +1,5 @@
 import {
+  ID,
   IS_RENDERED_INSERTED_MONEY,
   IS_RENDERED_RETURN_CHANGES,
   PRODUCT_TABLE,
@@ -7,6 +8,8 @@ import {
 } from "../utils/constants.js";
 import { vendingMachine } from "../components/vendingMachine.js";
 import {
+  getMoneyText,
+  getQuantityText,
   makeButton,
   makeCoinTable,
   makeInputForm,
@@ -46,7 +49,7 @@ export const renderMoney = money => {
   const $charge_amount = document.getElementById(
     PURCHASE_TAP.insertMoneyAmountId
   );
-  $charge_amount.innerText = `${money}원`;
+  $charge_amount.innerText = getMoneyText(money);
 };
 
 // ----상품 현황----
@@ -121,7 +124,9 @@ const stringToIntegerArray = string => {
 
 export const renderChanges = changes => {
   PURCHASE_TAP.changeStateTableRaws.forEach((raw, index) => {
-    document.getElementById(`${raw[1]}`).innerText = `${changes[index]}개`;
+    document.getElementById(`${raw[ID]}`).innerText = getQuantityText(
+      changes[index]
+    );
   });
 };
 

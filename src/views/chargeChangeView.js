@@ -2,6 +2,7 @@ import { vendingMachine } from "../components/vendingMachine.js";
 import { onClickChargeButton } from "../menus/chargeChangeMenu.js";
 import {
   CHARGE_TAP,
+  ID,
   IS_RENDERED_CHARGE_TAP,
   VIEW_CONTAINER,
 } from "../utils/constants.js";
@@ -10,6 +11,8 @@ import {
   makeChangeStateContainer,
   makeResultContainer,
   makeInputForm,
+  getMoneyText,
+  getQuantityText,
 } from "../utils/utils.js";
 
 // ----자판기 동전 충전하기 폼 렌더링 함수----
@@ -37,15 +40,14 @@ export const renderChangeAmount = money => {
   const $vending_machine_charge_amount = document.getElementById(
     CHARGE_TAP.changeAmountId
   );
-  $vending_machine_charge_amount.innerText = `${money}원`;
+  $vending_machine_charge_amount.innerText = getMoneyText(money);
 };
 
 export const renderCoins = vendingMachine => {
   const coins = vendingMachine.getCoins();
   CHARGE_TAP.changeStateTableRaws.forEach((rawInformation, index) => {
-    document.getElementById(
-      `${rawInformation[1]}`
-    ).innerText = `${coins[index]}개`;
+    document.getElementById(`${rawInformation[ID]}`).innerText =
+      getQuantityText(coins[index]);
   });
 };
 

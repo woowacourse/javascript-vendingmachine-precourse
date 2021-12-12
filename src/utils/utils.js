@@ -12,6 +12,14 @@ export const initializeHeader = () => {
   $app.appendChild(makeView());
 };
 
+export const getMoneyText = money => {
+  return `${money}원`;
+};
+
+export const getQuantityText = quantity => {
+  return `${quantity}개`;
+};
+
 export const makeTitle = title => {
   const h3 = document.createElement("h3");
   h3.innerText = title;
