@@ -7,7 +7,7 @@ export default class State {
     this._storageKey = storageKey;
   }
 
-  // 등록된 컴포넌트에 알린다.
+  // 등록된 컴포넌트에 렌더링을 요청한다.
   _notify() {
     this._components.forEach((component) => component.render());
   }
@@ -17,7 +17,7 @@ export default class State {
     storageManager.set(this._storageKey, this._value);
   }
 
-  // 해당 상태를 사용할 컴포넌트 렌더링을 연결한다.
+  // 해당 상태를 사용할 컴포넌트를 연결한다.
   add(component) {
     this._components.add(component);
   }
