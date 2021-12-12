@@ -1,4 +1,4 @@
-import { $, showChangeTab, showManageTab, showPurchaseTab } from '../utils/dom.js';
+import { $, $$, showChangeTab, showManageTab, showPurchaseTab } from '../utils/dom.js';
 import ChangeView from './changeView.js';
 import ManageView from './manageView.js';
 import PurchaseView from './purchaseView.js';
@@ -40,6 +40,15 @@ class App {
     $('#product-add-menu').addEventListener('click', showManageTab);
     $('#vending-machine-manage-menu').addEventListener('click', showChangeTab);
     $('#product-purchase-menu').addEventListener('click', showPurchaseTab);
+    this.preventFormSubmit();
+  }
+
+  preventFormSubmit() {
+    $$('form').forEach((form) =>
+      addEventListener('submit', (e) => {
+        e.preventDefault();
+      })
+    );
   }
 }
 
