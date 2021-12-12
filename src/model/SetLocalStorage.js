@@ -18,8 +18,6 @@ export default class SetLocalStorage {
     };
 
     localStorage.setItem(LOCAL_STORAGE.COINS_INFORMATION, JSON.stringify(coinsInformationHash));
-
-    this.vendingMachineManageMenu();
   };
 
   purchaseChargeAmount = () => {
@@ -29,8 +27,6 @@ export default class SetLocalStorage {
   productPurchaseMenu = () => {
     const $vendingMachineSection = document.querySelector(DOM.$VENDING_MACHINE_SECTION);
     localStorage.setItem(LOCAL_STORAGE.PRODUCT_PURCHASE_MENU, $vendingMachineSection.innerHTML);
-
-    this.purchaseChargeAmount();
   };
 
   vendingMachineManageMenu = () => {

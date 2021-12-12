@@ -140,6 +140,73 @@ export default class CheckEventTarget {
     $$purchaseButtons.forEach(($purchaseButton) => this.onClickPurchaseButton($purchaseButton));
   };
 
+  spendCoin = (vendingMachineCoinQuantity, currentCoin, vendingMachineCoinAmount, userCoinAmount) => {
+    while (vendingMachineCoinQuantity > 0 && userCoinAmount - currentCoin >= 0) {
+      userCoinAmount -= currentCoin;
+      vendingMachineCoinAmount -= currentCoin;
+      vendingMachineCoinQuantity -= 1;
+    }
+
+    return [vendingMachineCoinQuantity, vendingMachineCoinAmount, userCoinAmount];
+  };
+
+  compareVendingMachineCoinAndUserCoin = (vendingMachineCoinQuantityHash, vendingMachineCoinAmount, userCoinAmount) => {
+    [500, 100, 50, 10].forEach((currentCoin) => {
+      const [spendVendingMachineCoinQuantity, spendVendingMachineCoinAmount, spendUserCoinAmount] = this.spendCoin(
+        vendingMachineCoinQuantityHash[currentCoin],
+        currentCoin,
+        vendingMachineCoinAmount,
+        userCoinAmount
+      );
+      vendingMachineCoinQuantityHash[currentCoin] -= spendVendingMachineCoinQuantity;
+      vendingMachineCoinAmount = spendVendingMachineCoinAmount;
+      userCoinAmount = spendUserCoinAmount;
+    });
+
+    return [vendingMachineCoinQuantityHash, vendingMachineCoinAmount, userCoinAmount];
+  };
+
+  hasReturnCoin = () => {
+    const [vendingMachineCoinQuantityHash, vendingMachineCoinAmount, userCoinAmount] =
+      this.compareVendingMachineCoinAndUserCoin(
+        { ...this.coins.getCoinsHash() },
+        this.coins.getCoinAmount(),
+        this.vendingMachine.getChargeAmount()
+      );
+
+    this.coins.replaceCoinsHash(vendingMachineCoinQuantityHash);
+    this.coins.replaceCoinAmount(vendingMachineCoinAmount);
+    this.vendingMachine.replaceChargeAmount(userCoinAmount);
+    this.renderReturnCoin(vendingMachineCoinQuantityHash);
+  };
+
+  renderReturnCoin = (vendingMachineCoinQuantityHash) => {
+    this.render.returnCoinTemplate(vendingMachineCoinQuantityHash);
+  };
+
+  renderPurchaseChargeAmount = () => {
+    this.render.purchaseChargeAmountTemplate();
+  };
+
+  reRenderMachineManageMenu = () => {
+    const localStorageVendingMachineManageMenuTemplate = localStorage.getItem(
+      LOCAL_STORAGE.VENDING_MACHINE_MANAGE_MENU
+    );
+    const coinList = this.coins.getCoins();
+    const coinAmount = this.coins.getCoinAmount();
+    console.log(coinList, coinAmount);
+    console.log(localStorageVendingMachineManageMenuTemplate);
+  };
+
+  onClickCoinReturnButton = () => {
+    const $coinReturnButton = document.querySelector(DOM.$COIN_RETURN_BUTTON);
+    $coinReturnButton.addEventListener(EVENT.CLICK, () => {
+      this.hasReturnCoin();
+      this.renderPurchaseChargeAmount();
+      this.reRenderMachineManageMenu();
+    });
+  };
+
   hasProductPurchaseMenuTemplate = () => {
     const productPurchaseMenuTemplate = localStorage.getItem(LOCAL_STORAGE.PRODUCT_PURCHASE_MENU);
     if (!productPurchaseMenuTemplate) {
@@ -153,6 +220,7 @@ export default class CheckEventTarget {
     this.renderProductStatus();
     this.onClickChargeButton();
     this.getPurchaseButtons();
+    this.onClickCoinReturnButton();
   };
 
   isProductPurchaseMenu = (eventTarget, $productPurchaseMenu) => {

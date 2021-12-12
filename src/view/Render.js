@@ -19,6 +19,28 @@ export default class Render {
     $vendingMachineSection.innerHTML = template;
   };
 
+  purchaseChargeAmountTemplate = () => {
+    const $chargeAmount = document.querySelector(DOM.$CHARGE_AMOUNT);
+    $chargeAmount.textContent = this.vendingMachine.getChargeAmount();
+
+    this.setLocalStorage.purchaseChargeAmount();
+    this.setLocalStorage.productPurchaseMenu();
+  };
+
+  returnCoinTemplate = (coinQuantityHash) => {
+    const $coin500 = document.querySelector('#coin-500-quantity');
+    const $coin100 = document.querySelector('#coin-100-quantity');
+    const $coin50 = document.querySelector('#coin-50-quantity');
+    const $coin10 = document.querySelector('#coin-10-quantity');
+    const [coin10, coin50, coin100, coin500] = Object.values(coinQuantityHash);
+    $coin500.textContent = coin500 + STRING.GAE;
+    $coin100.textContent = coin100 + STRING.GAE;
+    $coin50.textContent = coin50 + STRING.GAE;
+    $coin10.textContent = coin10 + STRING.GAE;
+
+    this.setLocalStorage.coinsInformation();
+  };
+
   purchaseTemplate = ($targetName, $targetPrice, $targetQuantity) => {
     $targetQuantity.dataset.productQuantity -= 1;
     $targetQuantity.textContent -= 1;
@@ -31,12 +53,14 @@ export default class Render {
 
     this.setLocalStorage.productInformation();
     this.setLocalStorage.productPurchaseMenu();
+    this.setLocalStorage.purchaseChargeAmount();
   };
 
   chargeInputTemplate = (template) => {
     const $chargeAmount = document.querySelector(DOM.$CHARGE_AMOUNT);
-    $chargeAmount.innerHTML = template;
+    $chargeAmount.textContent = template;
     this.setLocalStorage.productPurchaseMenu();
+    this.setLocalStorage.purchaseChargeAmount();
   };
 
   productPurchaseStatusResetTemplate = () => {
@@ -71,6 +95,7 @@ export default class Render {
     $vendingMachineCoin500Quantity.textContent = coin500 + STRING.GAE;
 
     this.setLocalStorage.coinsInformation();
+    this.setLocalStorage.vendingMachineManageMenu();
   };
 
   vendingMachineChargeAmountTemplate = (vendingMachineChargeAmount) => {

@@ -14,6 +14,10 @@ export default class VendingMachine {
     return true;
   };
 
+  replaceChargeAmount = (chargeAmount) => {
+    this.totalChargeAmount = chargeAmount;
+  };
+
   getChargeAmount = () => this.totalChargeAmount;
 
   setChargeAmount = (chargeInput) => {

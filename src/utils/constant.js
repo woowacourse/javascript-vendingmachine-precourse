@@ -2,6 +2,7 @@ export const DOM = {
   $TR: 'tr',
   $APP: '#app',
   $$PURCHASE_BUTTONS: '.purchase-button',
+  $COIN_RETURN_BUTTON: '#coin-return-button',
   $PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
   $CHARGE_BUTTON: '#charge-button',
   $CHARGE_INPUT: '#charge-input',
@@ -208,6 +209,6 @@ export const TEMPLATE = {
     `;
   },
   CHARGE_INPUT(amount) {
-    return `${amount}원`;
+    return `${amount}`;
   },
 };
