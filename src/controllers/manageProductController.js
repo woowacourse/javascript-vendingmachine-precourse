@@ -1,13 +1,21 @@
-import { vendingMachine } from "../components/vendingMachine.js";
+import { manageProduct } from "../components/manageProduct.js";
 import { ID, MANAGE_TAP } from "../utils/constants.js";
-import { saveToLocalStorage } from "../utils/utils.js";
+import { saveProductsToLocalStorage } from "../utils/utils.js";
 import { checkAddProductsInputs } from "../utils/validation.js";
-import { renderProduct } from "../views/manageProductView.js";
+import {
+  renderManageProductMenuView,
+  renderProduct,
+} from "../views/manageProductView.js";
 
 const resetInputs = form => {
   MANAGE_TAP.addProductInputs.forEach(
     input => (form.querySelector(`#${input[ID]}`).value = "")
   );
+};
+
+export const onClickManageProductTab = e => {
+  event.preventDefault();
+  renderManageProductMenuView(manageProduct);
 };
 
 export const onClickAddButton = event => {
@@ -17,10 +25,10 @@ export const onClickAddButton = event => {
     input => form.querySelector(`#${input[ID]}`).value
   );
 
-  if (checkAddProductsInputs(name, price, quantity)) {
-    const newProduct = vendingMachine.addProduct(name, price, quantity);
+  if (checkAddProductsInputs(manageProduct, name, price, quantity)) {
+    const newProduct = manageProduct.addProduct(name, price, quantity);
     renderProduct(newProduct);
-    saveToLocalStorage(vendingMachine);
+    saveProductsToLocalStorage(manageProduct);
     resetInputs(form);
   }
 };

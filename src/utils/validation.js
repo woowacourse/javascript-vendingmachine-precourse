@@ -1,4 +1,3 @@
-import { vendingMachine } from "../components/vendingMachine.js";
 import { ERROR_MESSAGE, STANDARD_PRICE } from "./constants.js";
 
 const isEmptyInput = input => {
@@ -8,9 +7,9 @@ const isEmptyInput = input => {
   }
 };
 
-const isDuplicateName = input => {
+const isDuplicateName = (machine, input) => {
   let isDuplicate = false;
-  vendingMachine.products.forEach(product => {
+  machine.products.forEach(product => {
     if (product.name === input) {
       alert(ERROR_MESSAGE.duplicateName);
       isDuplicate = true;
@@ -34,11 +33,11 @@ const isNotDivideByTen = price => {
   }
 };
 
-const checkAddProductsNameInput = name => {
+const checkAddProductsNameInput = (machine, name) => {
   let isError = false;
   if (isEmptyInput(name)) {
     isError = true;
-  } else if (isDuplicateName(name)) {
+  } else if (isDuplicateName(machine, name)) {
     isError = true;
   }
 
@@ -90,9 +89,9 @@ const isLackMoney = (money, price) => {
   }
 };
 
-export const checkAddProductsInputs = (name, price, quantity) => {
+export const checkAddProductsInputs = (machine, name, price, quantity) => {
   let isValid = true;
-  if (checkAddProductsNameInput(name)) {
+  if (checkAddProductsNameInput(machine, name)) {
     isValid = false;
   } else if (checkAddProductsPriceInput(price)) {
     isValid = false;

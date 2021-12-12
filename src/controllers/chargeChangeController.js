@@ -1,8 +1,12 @@
-import { vendingMachine } from "../components/vendingMachine.js";
+import { chargeChange } from "../components/chargeChange.js";
 import { ID, IS_RENDERED_CHARGE_TAP, CHARGE_TAP } from "../utils/constants.js";
-import { saveToLocalStorage } from "../utils/utils.js";
+import { saveCoinsToLocalStorage } from "../utils/utils.js";
 import { checkChargeChangeInput } from "../utils/validation.js";
-import { renderChangeAmount, renderCoins } from "../views/chargeChangeView.js";
+import {
+  renderChangeAmount,
+  renderChargeChangeMenuView,
+  renderCoins,
+} from "../views/chargeChangeView.js";
 
 const resetInput = form => {
   const input = form.querySelector(`#${CHARGE_TAP.chargeInput[ID]}`);
@@ -13,6 +17,12 @@ const setIsRender = () => {
   localStorage[IS_RENDERED_CHARGE_TAP] = "TRUE";
 };
 
+export const onClickChargeChangeTab = e => {
+  event.preventDefault();
+  chargeChange.loadFromLocalStorage();
+  renderChargeChangeMenuView(chargeChange);
+};
+
 export const onClickChargeButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
@@ -21,10 +31,10 @@ export const onClickChargeButton = event => {
   ).value;
 
   if (checkChargeChangeInput(chargeInput)) {
-    vendingMachine.chargeCoin(parseInt(chargeInput));
-    renderChangeAmount(vendingMachine.getTotalMoney());
-    renderCoins(vendingMachine);
-    saveToLocalStorage(vendingMachine);
+    chargeChange.chargeCoin(parseInt(chargeInput));
+    renderChangeAmount(chargeChange.getTotalMoney());
+    renderCoins(chargeChange);
+    saveCoinsToLocalStorage(chargeChange);
     setIsRender();
     resetInput(form);
   }

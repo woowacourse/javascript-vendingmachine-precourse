@@ -163,9 +163,18 @@ export const makeChangeStateContainer = (title, headers, raws) => {
   return div;
 };
 
-export const saveToLocalStorage = vendingMachine => {
+export const saveAllToLocalStorage = vendingMachine => {
   const products = JSON.stringify(vendingMachine.getProducts());
   localStorage["products"] = products;
   localStorage["coins"] = vendingMachine.getCoins();
   localStorage["insertedMoney"] = vendingMachine.getMoney();
+};
+
+export const saveProductsToLocalStorage = vendingMachine => {
+  const products = JSON.stringify(vendingMachine.getProducts());
+  localStorage["products"] = products;
+};
+
+export const saveCoinsToLocalStorage = vendingMachine => {
+  localStorage["coins"] = vendingMachine.getCoins();
 };

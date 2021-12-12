@@ -4,15 +4,15 @@ import {
   MENU_TAP,
   VIEW_CONTAINER,
 } from "../utils/constants.js";
-import { renderManageProductMenuView } from "./manageProductView.js";
-import { renderChargeChangeMenuView } from "./chargeChangeView.js";
-import { renderPurchaseProductMenuView } from "./purchaseProductView.js";
+import { onClickManageProductTab } from "../controllers/manageProductController.js";
+import { onClickChargeChangeTab } from "../controllers/chargeChangeController.js";
+import { onClickPurchaseProductTab } from "../controllers/purchaseProductController.js";
 import { onClickMenuButton } from "../utils/utils.js";
 
 const renderArray = [
-  renderManageProductMenuView,
-  renderChargeChangeMenuView,
-  renderPurchaseProductMenuView,
+  onClickManageProductTab,
+  onClickChargeChangeTab,
+  onClickPurchaseProductTab,
 ];
 const menuTapInformations = MENU_TAP.map((information, index) => [
   ...information,

@@ -4,7 +4,6 @@ import {
   VIEW_CONTAINER,
 } from "../utils/constants.js";
 import { onClickAddButton } from "../controllers/manageProductController.js";
-import { vendingMachine } from "../components/vendingMachine.js";
 import {
   makeButton,
   makeTitle,
@@ -46,12 +45,12 @@ const makeProductRaw = product => {
   return tableRaw;
 };
 
-const makeProductStateGraph = () => {
+const makeProductStateGraph = manageProduct => {
   const table = document.createElement("table");
   table.appendChild(
     makeTableHeaders(MANAGE_TAP.productStateTableHeaders, PRODUCT_TABLE)
   );
-  vendingMachine.products.forEach(product =>
+  manageProduct.products.forEach(product =>
     table.appendChild(makeProductRaw(product))
   );
   table.style.borderCollapse = PRODUCT_TABLE.collapse;
@@ -60,10 +59,10 @@ const makeProductStateGraph = () => {
   return table;
 };
 
-const makeProductStateContainer = () => {
+const makeProductStateContainer = manageProduct => {
   const div = document.createElement("div");
   div.appendChild(makeTitle(MANAGE_TAP.productStateTitle));
-  div.appendChild(makeProductStateGraph());
+  div.appendChild(makeProductStateGraph(manageProduct));
 
   return div;
 };
@@ -73,8 +72,8 @@ export const renderProduct = product => {
   $table.appendChild(makeProductRaw(product));
 };
 
-export const renderManageProductMenuView = () => {
+export const renderManageProductMenuView = manageProduct => {
   const $view_container = document.getElementById(VIEW_CONTAINER);
   $view_container.appendChild(makeAddProductContainer());
-  $view_container.appendChild(makeProductStateContainer());
+  $view_container.appendChild(makeProductStateContainer(manageProduct));
 };

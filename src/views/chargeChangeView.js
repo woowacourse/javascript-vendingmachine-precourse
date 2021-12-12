@@ -1,4 +1,3 @@
-import { vendingMachine } from "../components/vendingMachine.js";
 import { onClickChargeButton } from "../controllers/chargeChangeController.js";
 import {
   CHARGE_TAP,
@@ -43,15 +42,15 @@ export const renderChangeAmount = money => {
   $vending_machine_charge_amount.innerText = getMoneyText(money);
 };
 
-export const renderCoins = vendingMachine => {
-  const coins = vendingMachine.getCoins();
+export const renderCoins = chargeChange => {
+  const coins = chargeChange.getCoins();
   CHARGE_TAP.changeStateTableRaws.forEach((rawInformation, index) => {
     document.getElementById(`${rawInformation[ID]}`).innerText =
       getQuantityText(coins[index]);
   });
 };
 
-export const renderChargeChangeMenuView = () => {
+export const renderChargeChangeMenuView = chargeChange => {
   const $view_container = document.getElementById(VIEW_CONTAINER);
   $view_container.appendChild(makeChargeChangeContainer());
   $view_container.appendChild(
@@ -63,7 +62,7 @@ export const renderChargeChangeMenuView = () => {
   );
 
   if (localStorage.getItem(IS_RENDERED_CHARGE_TAP) === "TRUE") {
-    renderChangeAmount(vendingMachine.getTotalMoney());
-    renderCoins(vendingMachine);
+    renderChangeAmount(chargeChange.getTotalMoney());
+    renderCoins(chargeChange);
   }
 };

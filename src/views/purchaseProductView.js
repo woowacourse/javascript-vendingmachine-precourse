@@ -6,7 +6,6 @@ import {
   PURCHASE_TAP,
   VIEW_CONTAINER,
 } from "../utils/constants.js";
-import { vendingMachine } from "../components/vendingMachine.js";
 import {
   getMoneyText,
   getQuantityText,
@@ -75,24 +74,24 @@ const makeproductStateTableRaw = product => {
   return tr;
 };
 
-const makeproductStateTable = () => {
+const makeproductStateTable = purchaseProduct => {
   const table = document.createElement("table");
   table.style.borderCollapse = PRODUCT_TABLE.collapse;
   table.style.textAlign = PRODUCT_TABLE.textAlign;
   table.appendChild(
     makeTableHeaders(PURCHASE_TAP.productStateTableHeaders, PRODUCT_TABLE)
   );
-  vendingMachine.products.forEach(product =>
+  purchaseProduct.products.forEach(product =>
     table.appendChild(makeproductStateTableRaw(product))
   );
 
   return table;
 };
 
-const makeproductStateContainer = () => {
+const makeproductStateContainer = purchaseProduct => {
   const div = document.createElement("div");
   div.appendChild(makeTitle(PURCHASE_TAP.productStateTitle));
-  div.appendChild(makeproductStateTable());
+  div.appendChild(makeproductStateTable(purchaseProduct));
 
   return div;
 };
@@ -101,8 +100,9 @@ const updateQuantity = quantity => {
   quantity.innerText = parseInt(quantity.innerText) - 1;
 };
 
+// 수정해야함
 export const renderPurchase = form => {
-  renderMoney(vendingMachine.getMoney());
+  renderMoney(purChaseProduct.getMoney());
   updateQuantity(getQuantityTag(form));
 };
 
@@ -140,14 +140,14 @@ export const renderChanges = changes => {
   });
 };
 
-export const renderPurchaseProductMenuView = () => {
+export const renderPurchaseProductMenuView = purchaseProduct => {
   const $view_container = document.getElementById(VIEW_CONTAINER);
   $view_container.appendChild(makeInsertMoneyContainer());
-  $view_container.appendChild(makeproductStateContainer());
+  $view_container.appendChild(makeproductStateContainer(purchaseProduct));
   $view_container.appendChild(makeChangeStateContainer());
 
   if (localStorage.getItem(IS_RENDERED_INSERTED_MONEY) === "TRUE") {
-    renderMoney(vendingMachine.getMoney());
+    renderMoney(purchaseProduct.getMoney());
   }
   const returnChanges = localStorage.getItem(IS_RENDERED_RETURN_CHANGES);
   if (returnChanges) {

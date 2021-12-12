@@ -1,4 +1,4 @@
-import { vendingMachine } from "../components/vendingMachine.js";
+import { purchaseProduct } from "../components/purchaseProduct.js";
 import {
   ID,
   IS_RENDERED_INSERTED_MONEY,
@@ -7,7 +7,7 @@ import {
   PURCHASE_TAP,
   QUANTITY,
 } from "../utils/constants.js";
-import { saveToLocalStorage } from "../utils/utils.js";
+import { saveAllToLocalStorage } from "../utils/utils.js";
 import {
   checkCanPurchase,
   checkInsertMoneyInput,
@@ -16,6 +16,7 @@ import {
   renderChanges,
   renderMoney,
   renderPurchase,
+  renderPurchaseProductMenuView,
 } from "../views/purchaseProductView.js";
 
 const resetInput = () => {
@@ -45,6 +46,12 @@ const setReturnChanges = returnChanges => {
   localStorage[IS_RENDERED_RETURN_CHANGES] = returnChanges;
 };
 
+export const onClickPurchaseProductTab = e => {
+  event.preventDefault();
+  purchaseProduct.loadFromLocalStorage();
+  renderPurchaseProductMenuView(purchaseProduct);
+};
+
 export const onClickInsertButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
@@ -53,9 +60,9 @@ export const onClickInsertButton = event => {
   ).value;
 
   if (checkInsertMoneyInput(money)) {
-    vendingMachine.insertMoney(parseInt(money));
-    renderMoney(vendingMachine.getMoney());
-    saveToLocalStorage(vendingMachine);
+    purchaseProduct.insertMoney(parseInt(money));
+    renderMoney(purchaseProduct.getMoney());
+    saveAllToLocalStorage(purchaseProduct);
     setIsRenderInsertedMoney();
     resetInput();
   }
@@ -68,23 +75,23 @@ export const onClickPurchaseButton = event => {
   if (
     checkCanPurchase(
       getQuantityTag(form).innerText,
-      vendingMachine.getMoney(),
+      purchaseProduct.getMoney(),
       getPriceTag(form).innerText
     )
   ) {
-    vendingMachine.purchaseProduct(getNameTag(form).innerText);
+    purchaseProduct.purchaseProduct(getNameTag(form).innerText);
     renderPurchase(form);
-    saveToLocalStorage(vendingMachine);
+    saveAllToLocalStorage(purchaseProduct);
     setIsRenderInsertedMoney();
   }
 };
 
 export const onClickReturnButton = event => {
   event.preventDefault();
-  const returnChanges = vendingMachine.getChanges();
-  renderMoney(vendingMachine.getMoney());
+  const returnChanges = purchaseProduct.getChanges();
+  renderMoney(purchaseProduct.getMoney());
   renderChanges(returnChanges);
-  saveToLocalStorage(vendingMachine);
+  saveAllToLocalStorage(purchaseProduct);
   setReturnChanges(returnChanges);
   setIsRenderInsertedMoney();
 };

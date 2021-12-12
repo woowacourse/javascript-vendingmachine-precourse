@@ -2,48 +2,11 @@ import { COINS } from "../utils/constants.js";
 import Product from "./product.js";
 import { Coins } from "./coins.js";
 
-class VendingMachine {
+export default class VendingMachine {
   constructor() {
     this.products = [];
     this.coins = Coins();
     this.insertedMoney = 0;
-    this.loadFromLocalStorage();
-  }
-
-  loadProducts(products) {
-    products = products.slice(1, products.length - 1).split(",");
-    products.forEach(product => {
-      const productInfo = product.slice(1, product.length - 1).split("-");
-      this.products.push(
-        new Product(productInfo[0], productInfo[1], productInfo[2])
-      );
-    });
-  }
-
-  loadCoins(coins) {
-    coins = coins.split(",");
-    COINS.forEach((coin, index) => {
-      this.coins[`${coin}`] = coins[index];
-    });
-  }
-
-  loadInsertedMoney(insertedMoney) {
-    this.insertedMoney = parseInt(insertedMoney);
-  }
-
-  loadFromLocalStorage() {
-    const products = localStorage.getItem("products");
-    const coins = localStorage.getItem("coins");
-    const insertedMoney = localStorage.getItem("insertedMoney");
-    if (products) {
-      this.loadProducts(products);
-    }
-    if (coins) {
-      this.loadCoins(coins);
-    }
-    if (insertedMoney) {
-      this.loadInsertedMoney(insertedMoney);
-    }
   }
 
   addProduct(name, price, quantity) {
@@ -143,5 +106,3 @@ class VendingMachine {
     return coins;
   }
 }
-
-export const vendingMachine = new VendingMachine();
