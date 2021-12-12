@@ -1,4 +1,4 @@
-import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID } from './constants.js';
+import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PURCHASE_TAB_ID } from './constants.js';
 import Product from './product.js'
 import { elementCreatorWithClass } from './dom/util.js';
 
@@ -9,6 +9,7 @@ export default class VendingMachine {
         for(let key in COIN_VALUE){
             this.coins[key] = 0;
         }
+        this.input = 0;
     }
 
     displayProduct(product){
@@ -58,4 +59,12 @@ export default class VendingMachine {
         this.displayPossessCoins();
     }
 
+    displayInputCoin(input){
+        document.getElementById(PURCHASE_TAB_ID.CHARGE_AMOUNT).innerHTML = input;
+    }
+
+    userBuy(money){
+        this.input = money;
+        this.displayInputCoin(this.input);
+    }
 }

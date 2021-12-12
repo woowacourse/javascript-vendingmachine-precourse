@@ -1,4 +1,4 @@
-import {ADD_TAB_ID, MANAGE_TAB_ID} from './constants.js';
+import {ADD_TAB_ID, MANAGE_TAB_ID, PURCHASE_TAB_ID} from './constants.js';
 import { elementCreator } from './dom/util.js';
 import createAddTab from './tabs/add-tab.js';
 import createManageTab from './tabs/manage-tab.js';
@@ -71,4 +71,12 @@ manageTabButton.addEventListener('click', e=> {
     const money = document.getElementById(MANAGE_TAB_ID.CHARGE_INPUT).value;
 
     vendingMachine.addCoin(money);
+})
+
+const purchaseTabButton = document.getElementById(PURCHASE_TAB_ID.CHARGE_BUTTON)
+purchaseTabButton.addEventListener('click', e=> {
+    e.preventDefault();
+    const money = document.getElementById(PURCHASE_TAB_ID.CHARGE_INPUT).value;
+
+    vendingMachine.userBuy(money);
 })
