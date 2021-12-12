@@ -136,3 +136,35 @@
 - [x] [예외] 투입 금액이 음수값인 경우
 - [x] [예외] 투입 금액이 공백인 경우(0인 경우)
 
+<br>
+
+## 디렉토리 구조
+
+```
+📦src
+ ┣ 📂constants
+ ┃ ┗ 📜index.js
+ ┣ 📂controller
+ ┃ ┣ 📜changeController.js
+ ┃ ┣ 📜manageController.js
+ ┃ ┗ 📜purchaseController.js
+ ┣ 📂model
+ ┃ ┣ 📜item.js
+ ┃ ┣ 📜reservedChange.js
+ ┃ ┣ 📜returnedChange.js
+ ┃ ┣ 📜store.js
+ ┃ ┗ 📜userInputMoney.js
+ ┣ 📂utils
+ ┃ ┣ 📜dom.js
+ ┃ ┗ 📜pickRandomCoin.js
+ ┣ 📂validator
+ ┃ ┣ 📜changeValidator.js
+ ┃ ┣ 📜manageValidator.js
+ ┃ ┗ 📜purchaseValidator.js
+ ┣ 📂view
+ ┃ ┣ 📜app.js
+ ┃ ┣ 📜changeView.js
+ ┃ ┣ 📜manageView.js
+ ┃ ┗ 📜purchaseView.js
+ ┗ 📜index.js
+```
