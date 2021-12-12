@@ -1,4 +1,6 @@
-import {CLASS} from './constants.js';
+/* eslint-disable no-nested-ternary */
+/* eslint-disable indent */
+import {CLASS, ID, TABLE_MENU} from './constants.js';
 
 export const createInputElement = (type, id, placeholder) => {
   return `
@@ -28,6 +30,27 @@ export const createProductManageTable = (tableDataList) => {
   `;
 };
 
+export const createChargeTable = () => {
+  return `
+      <tr>
+        <td>500원</td>
+        <td id=${ID.VENDING_MACHINE_COIN_500_QUANTITY}></td>
+      </tr>
+      <tr>
+        <td>100원</td>
+        <td id=${ID.VENDING_MACHINE_COIN_100_QUANTITY}></td>
+      </tr>
+      <tr>
+        <td>50원</td>
+        <td id=${ID.VENDING_MACHINE_COIN_50_QUANTITY}></td>
+      </tr>
+      <tr>
+        <td>10원</td>
+        <td id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}></td>
+      </tr>
+  `;
+};
+
 export const createTable = (menu, ths, tableData) => {
   return `
   <table>
@@ -35,7 +58,13 @@ export const createTable = (menu, ths, tableData) => {
       ${createTableHead(ths)}
     </thead>
     <tbody>
-      ${createProductManageTable(tableData)}
+      ${
+        menu === TABLE_MENU.PRODUCT_MANAGE
+          ? createProductManageTable(tableData)
+          : menu === TABLE_MENU.CHARGE
+          ? createChargeTable()
+          : ''
+      }
     </tbody>
   </table>
   `;
