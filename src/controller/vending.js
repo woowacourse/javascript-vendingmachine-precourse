@@ -1,5 +1,12 @@
 import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
-import { $, getItemOrNull, setItem } from './utils.js';
+import {
+  $,
+  getItemOrNull,
+  setItem,
+  isMultipleOf10,
+  isInputNumberValid,
+  onKeyUpNumericEvent,
+} from './utils.js';
 import VendingMachine from '../model/vendingMachine.js';
 
 const makeRandomCoinQuantity = inputValue => {
@@ -34,23 +41,33 @@ const initChargeDomProperty = () => {
   }
 };
 
+const isChargeInputValid = chargeInput =>
+  isInputNumberValid(chargeInput.placeholder, chargeInput.value) &&
+  isMultipleOf10(chargeInput.placeholder, chargeInput.value);
+
 const chargeVending = () => {
-  const chargeInput = parseInt($(SELECTOR.vendingChargeInput).value);
-  let vendingMachine = getItemOrNull(KEY.vending);
-  const randomCoinQuantity = makeRandomCoinQuantity(chargeInput);
-  if (vendingMachine) {
-    vendingMachine.changes += chargeInput;
-  } else if (vendingMachine === null) {
-    vendingMachine = new VendingMachine(chargeInput);
+  const chargeInput = $(SELECTOR.vendingChargeInput);
+  if (isChargeInputValid(chargeInput)) {
+    const chargeInputValue = parseInt(chargeInput.value);
+    let vendingMachine = getItemOrNull(KEY.vending);
+    const randomCoinQuantity = makeRandomCoinQuantity(chargeInputValue);
+    if (vendingMachine) {
+      vendingMachine.changes += chargeInputValue;
+    } else if (vendingMachine === null) {
+      vendingMachine = new VendingMachine(chargeInputValue);
+    }
+    randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
+    setItem(KEY.vending, vendingMachine);
+    initChargeDomProperty();
+    initTable();
   }
-  randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
-  setItem(KEY.vending, vendingMachine);
-  initChargeDomProperty();
-  initTable();
 };
 
 export const initAllVending = () => {
   initTable();
   initChargeDomProperty();
   $(SELECTOR.vendingChargeButton).addEventListener('click', () => chargeVending());
+  $(SELECTOR.vendingChargeInput).addEventListener('keyup', () =>
+    onKeyUpNumericEvent($(SELECTOR.vendingChargeInput)),
+  );
 };
