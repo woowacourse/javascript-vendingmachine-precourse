@@ -1,12 +1,17 @@
 import Validator from '../validator/Validator.js';
 import Product from './Product.js';
-import { PRODUCTS_STORAGE_KEY, COINS_STORAGE_KEY } from '../constant/constant.js';
+import {
+  PRODUCTS_STORAGE_KEY,
+  COINS_STORAGE_KEY,
+  CURRENT_MONEY_KEY,
+} from '../constant/constant.js';
 import Coins from './Coins.js';
 
 export default class VendingMachine {
   constructor() {
     this.products = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY)) || [];
     this.change = new Coins();
+    this.money = +localStorage.getItem(CURRENT_MONEY_KEY) || 0;
   }
 
   addProduct(product) {
@@ -27,5 +32,10 @@ export default class VendingMachine {
       return this.change;
     }
     return null;
+  }
+
+  setCurrentMoney(money) {
+    this.money = +money;
+    localStorage.setItem(CURRENT_MONEY_KEY, this.money);
   }
 }

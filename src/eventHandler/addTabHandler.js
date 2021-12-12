@@ -10,6 +10,7 @@ import renderCharge from '../view/renderCharge.js';
 import renderPurchase from '../view/renderPurchase.js';
 import addProductHandler from './addProductHandler.js';
 import chargeHandler from './chargeHandler.js';
+import purchaseHandler from './purchaseHandler.js';
 
 function setCurrentTab(id) {
   localStorage.setItem(CURRENT_TAB_KEY, id);
@@ -32,6 +33,7 @@ export default function addTabHandler(vendingMachine) {
   });
   $tabPurchase.addEventListener('click', () => {
     renderPurchase(vendingMachine);
+    purchaseHandler(vendingMachine);
     setCurrentTab(TAB_PURCHASE_ID);
   });
 }

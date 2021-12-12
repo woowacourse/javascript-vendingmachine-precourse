@@ -75,6 +75,7 @@ export const CURRENT_TAB_KEY = 'current-tab';
 export const PRODUCTS_STORAGE_KEY = 'products';
 export const COINS_STORAGE_KEY = 'coins';
 export const COIN_SUM_KEY = 'sum';
+export const CURRENT_MONEY_KEY = 'money';
 
 export const MINIMUM_PRICE_INPUT = 100;
 export const MINIMUM_CHARGE_INPUT = 10;
