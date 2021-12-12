@@ -1,6 +1,6 @@
 import {ID, STORAGE_KEY} from '../../utils/constants.js';
-import {createInputElement} from '../../utils/domUtil.js';
-import {getLocalStorage} from '../../utils/localStorage.js';
+import {createInputElement, createTable} from '../../utils/domUtil.js';
+import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
 import Component from '../core/Component.js';
 
 export default class ProductManageContainer extends Component {
@@ -26,6 +26,20 @@ export default class ProductManageContainer extends Component {
     `;
   }
 
+  setEvent() {
+    this.addEvent('submit', `#product-manage-form`, (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const name = this.$target.querySelector(`#${ID.PRODUCT_NAME_INPUT}`).value;
+      const price = this.$target.querySelector(`#${ID.PRODUCT_PRICE_INPUT}`).value;
+      const quantity = this.$target.querySelector(`#${ID.PRODUCT_QUANTITY_INPUT}`).value;
+      setLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [...this.$state.products, {name, price, quantity}]);
+      this.setState({products: [...this.$state.products, {name, price, quantity}]});
+      this.setEvent();
+    });
+  }
+
   printProductForm() {
     return `
         <form id="product-manage-form">
@@ -35,5 +49,11 @@ export default class ProductManageContainer extends Component {
           <button id=${ID.PRODUCT_ADD_BUTTON}>추가하기</button>
         </form>
     `;
+  }
+
+  printProductTable() {
+    const ths = ['상품명', '가격', '수량'];
+
+    return createTable('', ths, this.$state.products);
   }
 }
