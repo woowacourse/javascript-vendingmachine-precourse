@@ -1,4 +1,5 @@
 import { EMPTY } from '../../constants/index.js';
+import { tableCellStyle, tableStyle } from './style/index.js';
 
 const productAdd = tabData => `
   <div>
@@ -12,12 +13,12 @@ const productAdd = tabData => `
   </div>
   <div>
     <h2>상품 현황</h2>
-    <table>
+    <table style="${tableStyle}">
       <thead>
         <tr>
-          <th>상품명</th>
-          <th>가격</th>
-          <th>수량</th>
+          <th style="${tableCellStyle}">상품명</th>
+          <th style="${tableCellStyle}">가격</th>
+          <th style="${tableCellStyle}">수량</th>
         </tr>
       </thead>
       <tbody>
@@ -25,9 +26,9 @@ const productAdd = tabData => `
           .map(
             ({ name, price, quantity }) => `
           <tr class="product-manage-item">
-            <td class="product-manage-name">${name}</td>
-            <td class="product-manage-price">${price}</td>
-            <td class="product-manage-quantity">${quantity}</td>
+            <td style="${tableCellStyle}" class="product-manage-name">${name}</td>
+            <td style="${tableCellStyle}" class="product-manage-price">${price}</td>
+            <td style="${tableCellStyle}" class="product-manage-quantity">${quantity}</td>
           </tr>
           `,
           )
