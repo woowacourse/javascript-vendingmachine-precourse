@@ -32,6 +32,7 @@ class App {
     $('main').insertAdjacentHTML('beforeend', this.changeView.template());
     $('main').insertAdjacentHTML('beforeend', this.purchaseView.template());
     showManageTab();
+    this.manageView.render();
   }
 
   template() {

@@ -7,4 +7,4 @@ export const store = {
   },
 };
 
-export const items = [];
+export const items = store.getLocalStorage('items') ?? [];
