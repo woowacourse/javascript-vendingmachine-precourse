@@ -9,6 +9,7 @@ export default class Menu {
   constructor($target) {
     this.$target = $target;
     this.products = [];
+    this.coins = {};
     window.onload = this.onload();
     this.render();
     this.bindClickEvents();
@@ -16,20 +17,22 @@ export default class Menu {
 
   onload() {
     const products = JSON.parse(getLocalStorage('products'));
+    const coins = JSON.parse(getLocalStorage('coins'));
     this.products = products || [];
+    this.coins = coins || {};
+    console.log(this.products, this.coins);
   }
 
   bindClickEvents() {
     $(`#${SELECTOR.ID.PRODUCT_MENU}`).addEventListener('click', () => {
       setLocalStorage('menu', SELECTOR.ID.PRODUCT_MENU);
       this.products = new Product_Menu(this.products).products;
-      console.log(this.products);
     });
 
     $(`#${SELECTOR.ID.COIN_MENU}`).addEventListener('click', () => {
       setLocalStorage('menu', SELECTOR.ID.COIN_MENU);
-      new Coin_Menu();
-      console.log(this.products);
+      new Coin_Menu(this.coins);
+      console.log(this.coins);
     });
 
     $(`#${SELECTOR.ID.PURCHASE_MENU}`).addEventListener('click', () => {

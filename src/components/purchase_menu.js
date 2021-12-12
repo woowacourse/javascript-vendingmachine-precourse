@@ -8,7 +8,6 @@ export default class Purchase_Menu {
 
   render() {
     $(`#${SELECTOR.ID.BODY}`).innerHTML = `
-    <div id="${SELECTOR.ID.PURCHASE_MENU_CONTAINER}">
       <br />
       <h2>${COMMENT.PURCHASE_MENU_CHARGE}</h2>
       <form>
@@ -58,7 +57,6 @@ export default class Purchase_Menu {
           <td id="${SELECTOR.ID.PURCHASE_COIN_10}"></td>
         </tr>
       </table>
-    </div>
     `;
   }
 }

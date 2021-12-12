@@ -15,6 +15,24 @@ export const isValidProductAdd = (product) => {
   return validation;
 };
 
+export const isValidCoinCharge = (amount) => {
+  let validation = { valid: true, errorMessage: '' };
+  if (!isValidAmount(amount)) {
+    validation.valid = false;
+    validation.errorMessage = ERROR.COIN_AMOUNT;
+  }
+  return validation;
+};
+
+const isValidAmount = (amount) => {
+  return (
+    isNotNull(amount) &&
+    isNumber(amount) &&
+    isUnitOf10Won(amount) &&
+    isPositiveInteger(amount)
+  );
+};
+
 const isValidName = (name) => {
   return isNotNull(name);
 };

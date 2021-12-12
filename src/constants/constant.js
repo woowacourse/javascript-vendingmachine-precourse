@@ -3,7 +3,6 @@ export const SELECTOR = {
     HEADER: 'header',
     BODY: 'body',
     PRODUCT_MENU: 'product-add-menu',
-    PRODUCT_MENU_CONTAINER: 'product-menu-container',
     PRODUCT_NAME_INPUT: 'product-name-input',
     PRODUCT_PRICE_INPUT: 'product-price-input',
     PRODUCT_QUANTITY_INPUT: 'product-quantity-input',
@@ -11,7 +10,6 @@ export const SELECTOR = {
     PRODUCT_MANAGE_TABLE: 'product-manage-table',
 
     COIN_MENU: 'vending-machine-manage-menu',
-    COIN_MENU_CONTAINER: 'coin-menu-container',
     COIN_CHARGE_INPUT: 'vending-machine-charge-input',
     COIN_CHARGE_BUTTON: 'vending-machine-charge-button',
     COIN_CHARGE_AMOUNT: 'vending-machine-charge-amount',
@@ -21,7 +19,6 @@ export const SELECTOR = {
     COIN_10: 'vending-machine-coin-10-quantity',
 
     PURCHASE_MENU: 'product-purchase-menu',
-    PURCHASE_MENU_CONTAINER: 'product-purchase-menu-container',
     PURCHASE_CHARGE_INPUT: 'charge-input',
     PURCHASE_CHARGE_BUTTON: 'charge-button',
     PURCHASE_CHARGE_AMOUNT: 'charge-amount',
@@ -48,6 +45,7 @@ export const ERROR = {
   PRODUCT_NAME_ADD: '상품명을 기입해주세요.',
   PRODUCT_PRICE_ADD: '가격을 10원 단위로 100원 이상으로 기입해주세요.',
   PRODUCT_QUANTITY_ADD: '수량을 양의 정수로 기입해주세요.',
+  COIN_AMOUNT: '금액을 10원 단위로 기입해주세요.',
 };
 
 export const COMMENT = {
