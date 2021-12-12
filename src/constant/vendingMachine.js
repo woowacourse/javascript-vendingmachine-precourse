@@ -11,42 +11,68 @@ export const PRODUCT_MANAGE = {
   TABLE_TEXT: "상품 현황",
   COLUMNS: ["제품명", "가격", "수량"],
   NEW_PRODUCT_ID: "product-manage-item",
-  NEW_PRODUCT_NAME_ID: "product-manage-name",
-  NEW_PRODUCT_PRICE_ID: "product-manage-price",
-  NEW_PRODUCT_QUANTITY_ID: "product-manage-quantity",
+  NEW_PRODUCT_COLUMNS_ID: [
+    "product-manage-name",
+    "product-manage-price",
+    "product-manage-quantity",
+  ],
 };
 
 export const COIN_MANAGE = {
   BUTTON: "잔돈 충전",
-  COIN_CHARGE_TEXT: "자판기 동전 충전하기",
-  INPUT: { PLACE_HOLDER: "자판기가 보유할 금액", ID: "vending-machine-charge-input" },
-  CHARGE_BUTTON: { TEXT: "충전하기", ID: "vending-machine-charge-button" },
-  HOLDING_AMOUNT: { TEXT: "보유 금액: ", ID: "vending-machine-charge-amount" },
   CURRENT_COIN_AMOUNT: "자판기가 보유한 동전",
   COLUMNS: ["동전", "개수"],
-  COIN_500: { TEXT: "500원", QUANTITY_ID: "vending-machine-coin-500-quantity" },
-  COIN_100: { TEXT: "100원", QUANTITY_ID: "vending-machine-coin-100-quantity" },
-  COIN_50: { TEXT: "50원", QUANTITY_ID: "vending-machine-coin-50-quantity" },
-  COIN_10: { TEXT: "10원", QUANTITY_ID: "vending-machine-coin-10-quantity" },
+  COIN_TO_USE: [
+    { TEXT: "500원", QUANTITY_ID: "vending-machine-coin-500-quantity" },
+    { TEXT: "100원", QUANTITY_ID: "vending-machine-coin-100-quantity" },
+    { TEXT: "50원", QUANTITY_ID: "vending-machine-coin-50-quantity" },
+    { TEXT: "10원", QUANTITY_ID: "vending-machine-coin-10-quantity" },
+  ],
+  TEXT: {
+    INPUT_FORM_TITLE: "자판기 동전 충전하기",
+    PRINT_LABEL: "보유 금액: ",
+    PRINT_AMOUNT_ID: "vending-machine-charge-amount",
+  },
+  INPUT: {
+    PLACE_HOLDER: "자판기가 보유할 금액",
+    ID: "vending-machine-charge-input",
+  },
+  CHARGE_BUTTON: {
+    INNER_TEXT: "충전하기",
+    ID: "vending-machine-charge-button",
+  },
 };
 
 export const PRODUCT_PURCHASE_MANAGE = {
   BUTTON: "상품 구매",
-  COIN_INSERT_TEXT: "금액 투입",
-  INPUT: { PLACE_HOLDER: "투입할 금액", ID: "charge-input" },
-  INSERT_BUTTON: { TEXT: "투입하기", ID: "charge-button" },
-  INSERT_AMOUNT: { TEXT: "투입한 금액: ", ID: "charge-amount" },
   CURRENT_PRODUCT_TO_BUY: "구매할 수 있는 상품 현황",
   COLUMNS: ["제품명", "가격", "수량", "구매"],
   PURCHASE_BUTTON: { TEXT: "구매하기", ID: "purchase-button" },
   PRODUCT_ITEM_ID: "product-purchase-item",
-  PRODUCT_NAME_ID: "product-purchase-name",
-  PRODUCT_PRICE_ID: "product-purchase-price",
-  PRODUCT_QUANTITY_ID: "product-purchase-quantity",
+  PRODUCT_COLUMNS_ID: [
+    "product-purchase-name",
+    "product-purchase-price",
+    "product-purchase-quantity",
+  ],
   CHARGE: "잔돈",
   CHARGE_BUTTON: { TEXT: "반환하기", ID: "coin-return-button" },
-  COIN_500: { TEXT: "500원", QUANTITY_ID: "coin-500-quantity" },
-  COIN_100: { TEXT: "100원", QUANTITY_ID: "coin-100-quantity" },
-  COIN_50: { TEXT: "50원", QUANTITY_ID: "coin-50-quantity" },
-  COIN_10: { TEXT: "10원", QUANTITY_ID: "coin-10-quantity" },
+  COIN_TO_USE: [
+    { TEXT: "500원", QUANTITY_ID: "coin-500-quantity" },
+    { TEXT: "100원", QUANTITY_ID: "coin-100-quantity" },
+    { TEXT: "50원", QUANTITY_ID: "coin-50-quantity" },
+    { TEXT: "10원", QUANTITY_ID: "coin-10-quantity" },
+  ],
+  TEXT: {
+    INPUT_FORM_TITLE: "금액 투입",
+    PRINT_LABEL: "투입한 금액: ",
+    PRINT_AMOUNT_ID: "charge-amount",
+  },
+  INPUT: {
+    PLACE_HOLDER: "투입할 금액",
+    ID: "charge-input",
+  },
+  INSERT_BUTTON: {
+    INNER_TEXT: "투입하기",
+    ID: "charge-button",
+  },
 };

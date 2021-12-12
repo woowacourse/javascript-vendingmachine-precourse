@@ -11,43 +11,24 @@ import {
 
 const handleClickEvent = () => {
   const insertInputValue = document.getElementById(PRODUCT_PURCHASE_MANAGE.INPUT.ID).value;
-  const InsertArea = document.getElementById("print-text");
+  const InsertArea = document.getElementById(PRODUCT_PURCHASE_MANAGE.TEXT.PRINT_AMOUNT_ID);
   InsertArea.innerText = insertInputValue;
 };
 
-const textData = {
-  title: PRODUCT_PURCHASE_MANAGE.COIN_INSERT_TEXT,
-  printTitle: PRODUCT_PURCHASE_MANAGE.INSERT_AMOUNT.TEXT,
-  printTitleId: PRODUCT_PURCHASE_MANAGE.INSERT_AMOUNT.ID,
-};
-
-const inputData = {
-  placeholder: PRODUCT_PURCHASE_MANAGE.INPUT.PLACE_HOLDER,
-  id: PRODUCT_PURCHASE_MANAGE.INPUT.ID,
-};
-
-const buttonData = {
-  innerText: PRODUCT_PURCHASE_MANAGE.INSERT_BUTTON.TEXT,
-  id: PRODUCT_PURCHASE_MANAGE.INSERT_BUTTON.ID,
-  handleClickEvent,
-};
-
 const renderInsertCoinInput = container => {
-  const inputFormArea = makeInputNumberFormToPrint({ textData, inputData, buttonData });
+  PRODUCT_PURCHASE_MANAGE.INSERT_BUTTON.handleClickEvent = handleClickEvent;
+  const inputFormArea = makeInputNumberFormToPrint({
+    TEXT: PRODUCT_PURCHASE_MANAGE.TEXT,
+    INPUT: PRODUCT_PURCHASE_MANAGE.INPUT,
+    BUTTON: PRODUCT_PURCHASE_MANAGE.INSERT_BUTTON,
+  });
   container.append(inputFormArea);
 };
-
-const productId = [
-  PRODUCT_PURCHASE_MANAGE.PRODUCT_NAME_ID,
-  PRODUCT_PURCHASE_MANAGE.PRODUCT_PRICE_ID,
-  PRODUCT_PURCHASE_MANAGE.PRODUCT_QUANTITY_ID,
-];
 
 const renderProductList = tableBodyId => {
   const tableBody = document.getElementById(tableBodyId);
   const products = Product.getProductData();
   if (products === null) return;
-
   products.forEach(product => {
     const purchaseButton = makeElement({
       tag: "button",
@@ -55,7 +36,7 @@ const renderProductList = tableBodyId => {
       innerText: PRODUCT_PURCHASE_MANAGE.PURCHASE_BUTTON.TEXT,
       type: "button",
     });
-    const rowData = Product.changeTableRowFormat(productId, {
+    const rowData = Product.changeTableRowFormat(PRODUCT_PURCHASE_MANAGE.PRODUCT_COLUMNS_ID, {
       name: product.name,
       price: product.price,
       quantity: product.quantity,
@@ -87,13 +68,7 @@ const renderCoinReturnTable = container => {
     type: "button",
   });
   container.append(coinReturnTableTitle, returnButton);
-  const coinToUse = [
-    PRODUCT_PURCHASE_MANAGE.COIN_500,
-    PRODUCT_PURCHASE_MANAGE.COIN_100,
-    PRODUCT_PURCHASE_MANAGE.COIN_50,
-    PRODUCT_PURCHASE_MANAGE.COIN_10,
-  ];
-  renderCoinTable(container, "coin-return-table-body", coinToUse);
+  renderCoinTable(container, "coin-return-table-body", PRODUCT_PURCHASE_MANAGE.COIN_TO_USE);
 };
 
 const producuctPurchaseView = container => {

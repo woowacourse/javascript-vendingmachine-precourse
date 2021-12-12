@@ -38,31 +38,30 @@ export const makeTableRow = (container, elements, rowId, button = "") => {
   container.appendChild(tr);
 };
 
-export const makeInputNumberFormToPrint = ({ textData, inputData, buttonData }) => {
-  const container = makeElement({ tag: "form" });
-  const inputFormTitle = makeElement({ tag: "h3", innerText: textData.title });
+export const makeInputNumberFormToPrint = ({ TEXT, INPUT, BUTTON }) => {
+  const container = makeElement({ tag: "div" });
+  const inputFormTitle = makeElement({ tag: "h3", innerText: TEXT.INPUT_FORM_TITLE });
   const input = makeElement({
     tag: "input",
     type: "number",
-    placeholder: inputData.placeholder,
-    id: inputData.id,
+    placeholder: INPUT.PLACE_HOLDER,
+    id: INPUT.ID,
   });
   const button = makeElement({
     tag: "button",
     type: "button",
-    innerText: buttonData.innerText,
-    id: buttonData.id,
+    innerText: BUTTON.INNER_TEXT,
+    id: BUTTON.ID,
   });
   const printTextArea = makeElement({ tag: "p" });
-  const printTitle = makeElement({
+  const printLabel = makeElement({
     tag: "span",
-    innerText: textData.printTitle,
-    id: textData.printTitleId,
+    innerText: TEXT.PRINT_LABEL,
   });
-  const printText = makeElement({ tag: "span", id: "print-text" });
+  const printText = makeElement({ tag: "span", id: TEXT.PRINT_AMOUNT_ID });
 
-  button.addEventListener("click", () => buttonData.handleClickEvent());
-  printTextArea.append(printTitle, printText);
+  button.addEventListener("click", () => BUTTON.handleClickEvent());
+  printTextArea.append(printLabel, printText);
   container.append(inputFormTitle, input, button, printTextArea);
   return container;
 };
