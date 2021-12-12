@@ -24,6 +24,13 @@ class Storage {
   }
 
   /**
+   * 발행
+   */
+  notify() {
+    this.listeners.forEach(listener => listener());
+  }
+
+  /**
    * 생성
    *
    * @param {*} key
@@ -31,6 +38,18 @@ class Storage {
    */
   create(key, value, isNotify = true) {
     this.setState({ key, value }, isNotify);
+  }
+
+  /**
+   * 순차 생성 후 일괄 반영
+   *
+   * @param {*} items
+   */
+  produce(...items) {
+    items.forEach(item =>
+      Object.entries(item).forEach(([key, value]) => this.setState({ key, value }, false)),
+    );
+    this.notify();
   }
 
   /**
@@ -51,7 +70,7 @@ class Storage {
    */
   setState({ key, value }, isNotify) {
     this.state.setItem(key, JSON.stringify(value));
-    if (isNotify) this.listeners.forEach(listener => listener());
+    if (isNotify) this.notify();
   }
 }
 

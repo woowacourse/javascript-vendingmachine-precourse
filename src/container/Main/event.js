@@ -42,26 +42,35 @@ export function tableButtonEvent({ target }) {
 
   if (!purchaseValidate({ quantity, changes }, name)) return;
 
-  this.$storage.create(PRODUCT_ADD, product, false);
-  this.$storage.create(PURCHASE_MENU, {
-    ...purchaseMenu,
-    [PRODUCT_ADD]: product,
-    [CHARGE_AMOUNT]: changes,
-  });
+  this.$storage.produce(
+    { [PRODUCT_ADD]: product },
+    {
+      [PURCHASE_MENU]: {
+        ...purchaseMenu,
+        [PRODUCT_ADD]: product,
+        [CHARGE_AMOUNT]: changes,
+      },
+    },
+  );
 }
 
 export function divButtonEvent({ target }) {
   if (!target.matches('#coin-return-button')) return;
+
   const purchaseMenu = getPurchaseMenu(this.$storage);
   const [machineChanges, changes, leftChanges] = coinExchange(
     purchaseMenu[CHARGE_AMOUNT],
     getMachineManage(this.$storage),
   );
 
-  this.$storage.create(MACHINE_MANAGE, machineChanges, false);
-  this.$storage.create(PURCHASE_MENU, {
-    ...purchaseMenu,
-    [MACHINE_MANAGE]: changes,
-    [CHARGE_AMOUNT]: leftChanges,
-  });
+  this.$storage.produce(
+    { [MACHINE_MANAGE]: machineChanges },
+    {
+      [PURCHASE_MENU]: {
+        ...purchaseMenu,
+        [MACHINE_MANAGE]: changes,
+        [CHARGE_AMOUNT]: leftChanges,
+      },
+    },
+  );
 }

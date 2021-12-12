@@ -41,7 +41,5 @@ const charging = (storageItem, element) => {
   return items;
 };
 
-export const createMachineManage = (storage, elements, item) => {
-  const newItems = charging(item, elements);
-  storage.create(MACHINE_MANAGE, newItems);
-};
+export const createMachineManage = (storage, elements, item) =>
+  storage.create(MACHINE_MANAGE, charging(item, elements));
