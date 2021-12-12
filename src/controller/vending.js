@@ -1,4 +1,3 @@
-import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
 import {
   $,
   getItemOrNull,
@@ -8,10 +7,13 @@ import {
   onKeyUpNumericEvent,
 } from './utils.js';
 import VendingMachine from '../model/vendingMachine.js';
+import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
+import { initVendingTable } from '../view/index.js';
 
 const makeRandomCoinQuantity = inputValue => {
-  let price = 0;
   const amountArray = [0, 0, 0, 0];
+  let price = 0;
+
   while (inputValue !== price) {
     const coin = MissionUtils.Random.pickNumberInList(COIN_ARRAY);
     if (price + coin <= inputValue) {
@@ -21,15 +23,6 @@ const makeRandomCoinQuantity = inputValue => {
   }
 
   return amountArray;
-};
-
-const initTable = () => {
-  const vending = getItemOrNull(KEY.vending);
-  if (vending) {
-    vending.coins.forEach(x => {
-      $(`vending-machine-coin-${x.coin}-quantity`).innerHTML = `${x.quantity}개`;
-    });
-  }
 };
 
 const initChargeDomProperty = () => {
@@ -48,22 +41,21 @@ const chargeVending = () => {
   const chargeInput = $(SELECTOR.vendingChargeInput);
   if (isChargeInputValid(chargeInput)) {
     const chargeInputValue = parseInt(chargeInput.value);
-    let vendingMachine = getItemOrNull(KEY.vending);
     const randomCoinQuantity = makeRandomCoinQuantity(chargeInputValue);
-    if (vendingMachine) {
-      vendingMachine.change += chargeInputValue;
-    } else if (vendingMachine === null) {
-      vendingMachine = new VendingMachine(chargeInputValue);
-    }
+    let vendingMachine = getItemOrNull(KEY.vending);
+
+    if (vendingMachine) vendingMachine.change += chargeInputValue;
+    else if (vendingMachine === null) vendingMachine = new VendingMachine(chargeInputValue);
+
     randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
     setItem(KEY.vending, vendingMachine);
     initChargeDomProperty();
-    initTable();
+    initVendingTable();
   }
 };
 
 export const initAllVending = () => {
-  initTable();
+  initVendingTable();
   initChargeDomProperty();
   $(SELECTOR.vendingChargeButton).addEventListener('click', () => chargeVending());
   $(SELECTOR.vendingChargeInput).addEventListener('keyup', () =>
