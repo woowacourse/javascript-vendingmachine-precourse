@@ -30,14 +30,14 @@ export default class MachineManageEvent {
 
   static storeRandomCoin(countCoin) {
     const coins = JSON.parse(localStorage.getItem(COINS));
+    const list = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
 
     if (localStorage.getItem(COINS) === null) {
       localStorage.setItem(COINS, JSON.stringify({ [FIVE_HUNDRED]: countCoin[0], [ONE_HUNDRED]: countCoin[1], [FIFTY]: countCoin[2], [TEN]: countCoin[3] }));
     } else {
-      coins[FIVE_HUNDRED] += countCoin[0];
-      coins[ONE_HUNDRED] += countCoin[1];
-      coins[FIFTY] += countCoin[2];
-      coins[TEN] += countCoin[3];
+      list.forEach((element, index) => {
+        coins[element] += countCoin[index];
+      });
       localStorage.setItem(COINS, JSON.stringify(coins));
     }
   }
