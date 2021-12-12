@@ -16,6 +16,7 @@ const resetInputs = form => {
 
 export const onClickManageProductTab = e => {
   event.preventDefault();
+  manageProduct.loadFromLocalStorage();
   renderManageProductMenuView(manageProduct);
 };
 
