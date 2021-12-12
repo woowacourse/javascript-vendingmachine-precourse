@@ -80,3 +80,9 @@ purchaseTabButton.addEventListener('click', e=> {
 
     vendingMachine.userBuy(money);
 })
+
+const returnButton = document.getElementById(PURCHASE_TAB_ID.RETURN_BUTTON)
+returnButton.addEventListener('click', e => {
+    e.preventDefault();
+    vendingMachine.returnMoney();
+})

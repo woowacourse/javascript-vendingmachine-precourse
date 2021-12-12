@@ -67,4 +67,28 @@ export default class VendingMachine {
         this.input = money;
         this.displayInputCoin(this.input);
     }
+
+    getRandomReturn(money){
+        let coins = {};
+        for(let key in COIN_VALUE){
+            if(key === 'LAST'){
+                break;
+            }
+
+            const max = money / COIN_VALUE[key];
+            const value = MissionUtils.Random.pickNumberInList([...Array(max).keys()]);
+            coins[key] = value;
+            money = money - COIN_VALUE[key] * value;
+        }
+
+        coins['LAST'] = money / COIN_VALUE['LAST'];
+        this.input = 0;
+        
+        return coins;
+    }
+
+    returnMoney(){
+        const coins = this.getRandomReturn(this.input);
+        console.log(coins);
+    }
 }

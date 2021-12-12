@@ -48,6 +48,7 @@ const purchase = () => {
 export default () => {
     const purchaseTab = document.createElement('div');
     purchaseTab.insertAdjacentHTML('beforeend', charge());
+    purchaseTab.insertAdjacentHTML('beforeend', purchase());
     purchaseTab.insertAdjacentHTML('beforeend', change());
     return purchaseTab
 }
