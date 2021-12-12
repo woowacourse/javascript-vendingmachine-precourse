@@ -15,9 +15,17 @@ class ManageValidator {
     }
   }
 
+  static isProductPriceUnder100(price) {
+    if (price < 100) {
+      alert('상품 가격은 100원 이상으로 입력해주세요.');
+      return true;
+    }
+  }
+
   static isInvalidAddItemInput({ name, price, quantity }) {
     if (this.isProudctNameDuplicated(name)) return true;
     if (this.isProductNameBlank(name)) return true;
+    if (this.isProductPriceUnder100(price)) return true;
     return false;
   }
 }
