@@ -10,6 +10,12 @@ import {
 import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
 import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/dom.js';
 
+const initReturnTable = returnCoin => {
+  returnCoin.forEach(x => {
+    $(`coin-${x.coin}-quantity`).innerHTML = `${x.quantity}개`;
+  });
+};
+
 const initAllPurchaseButtonEvent = () => {
   const allButtons = document.querySelectorAll(`.${SELECTOR.purchaseButton}`);
   allButtons.forEach(button => button.addEventListener('click', () => purchaseProduct(button)));
@@ -49,7 +55,7 @@ const purchaseProduct = button => {
 const initChargeDomProperty = () => {
   const charge = getItemOrNull(KEY.charge);
   $(SELECTOR.chargeInput).value = '';
-  if (charge) {
+  if (charge || charge === 0) {
     $(SELECTOR.chargeAmount).innerHTML = charge;
   }
 };
@@ -66,8 +72,45 @@ const chargeMoney = () => {
   initChargeDomProperty();
 };
 
+const getCount = x => {
+  let chargeInput = getItemOrNull(KEY.charge);
+  const count = {
+    coin: x.coin,
+    quantity: 0,
+  };
+  const div = Math.trunc(chargeInput / x.coin);
+  if (div <= x.quantity && chargeInput >= x.coin) {
+    chargeInput -= x.coin * div;
+    x.quantity -= div;
+    count.quantity = div;
+  } else if (div > x.quantity && chargeInput >= x.coin) {
+    chargeInput -= x.coin * x.quantity;
+    count.quantity = x.quantity;
+    x.quantity = 0;
+  }
+  setItem(KEY.charge, chargeInput);
+
+  return count;
+};
+
+const makeMinimumCoin = () => {
+  const vendingMachine = getItemOrNull(KEY.vending);
+  const minimumCoin = vendingMachine.coins.map(x => getCount(x));
+  minimumCoin.forEach(minimum => (vendingMachine.change -= minimum.coin * minimum.quantity));
+  setItem(KEY.vending, vendingMachine);
+
+  return minimumCoin;
+};
+
+const returnMoney = () => {
+  const minimumCoinArray = makeMinimumCoin();
+  initReturnTable(minimumCoinArray);
+  initChargeDomProperty();
+};
+
 export const initAllPurchase = () => {
   initProductStatusTable();
   initChargeDomProperty();
   $(SELECTOR.chargeButton).addEventListener('click', () => chargeMoney());
+  $(SELECTOR.returnButton).addEventListener('click', () => returnMoney());
 };

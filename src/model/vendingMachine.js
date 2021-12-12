@@ -1,6 +1,6 @@
 export default class VendingMachine {
-  constructor(changes) {
-    this.changes = changes;
+  constructor(change) {
+    this.change = change;
     this.coins = [
       { coin: 500, quantity: 0 },
       { coin: 100, quantity: 0 },
