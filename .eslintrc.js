@@ -11,6 +11,7 @@ module.exports = {
     indent: [2, 2, {SwitchCase: 1, ignoreComments: false, ImportDeclaration: 1}],
     semi: 2,
     'padding-line-between-statements': 0,
-    'newline-before-return': 0
+    'newline-before-return': 0,
+    'no-new': 0
   }
 };
