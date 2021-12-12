@@ -9,7 +9,6 @@ import {
   PRODUCT,
 } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
-import ChargeCoinView from './ChargeCoinView.js';
 import View from './View.js';
 
 const PurchaseProductView = { ...View };
