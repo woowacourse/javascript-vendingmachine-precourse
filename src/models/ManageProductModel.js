@@ -1,9 +1,11 @@
 import { PRODUCT, ALERT } from '../utils/constants.js';
+
 const initProducts = () => {
   return JSON.parse(localStorage.getItem('products'))
     ? JSON.parse(localStorage.getItem('products'))
     : [];
 };
+
 export default {
   products: initProducts(),
   add(product) {
