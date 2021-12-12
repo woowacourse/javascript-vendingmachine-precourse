@@ -1,5 +1,15 @@
+import { $ } from '../utils/dom.js';
+
 class ManageView {
   constructor() {}
+
+  getInput() {
+    return {
+      name: $('#product-name-input').value,
+      price: Number($('#product-price-input').value),
+      quantity: Number($('#product-quantity-input').value),
+    };
+  }
 
   render() {}
 
