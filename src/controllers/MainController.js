@@ -5,6 +5,7 @@ import ManageProductView from '../views/ManageProductView.js';
 import LayoutView from '../views/LayoutView.js';
 import TabView from '../views/TabView.js';
 import ManageProductModel from '../models/ManageProductModel.js';
+import ChargeCoinView from '../views/ChargeCoinView.js';
 
 export default {
   init() {
@@ -15,6 +16,7 @@ export default {
     ManageProductView.setup($(ELEMENT_SID.RESULT_VIEW)).on(EVENT_TYPE.ADD_PRODUCT, (e) =>
       this.onAddProduct(e.detail.product),
     );
+    ChargeCoinView.setup($(ELEMENT_SID.RESULT_VIEW));
 
     this.selectedTab = TAB.MANAGE_PRODUCT;
     this.renderView();
