@@ -1,7 +1,7 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 
-export const printAddedProduct = () => {
+const printAddedProduct = () => {
   const template = store
     .getLocalStorage('products')
     .map(v => {
@@ -18,8 +18,4 @@ export const printAddedProduct = () => {
   $('tbody').innerHTML = template;
 };
 
-export const resetProductAddInput = () => {
-  $('#product-name-input').value = '';
-  $('#product-price-input').value = '';
-  $('#product-quantity-input').value = '';
-};
+export default printAddedProduct;

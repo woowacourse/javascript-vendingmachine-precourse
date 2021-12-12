@@ -1,6 +1,6 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
-import { printAddedProduct, resetProductAddInput } from '../views/productAddView.js';
+import printAddedProduct from '../views/productAddView.js';
 import { isValidName, isValidPrice, isValidQuantity } from '../models/productAddModel.js';
 
 function HandleProductAdd() {
