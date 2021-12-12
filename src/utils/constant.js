@@ -21,6 +21,14 @@ export const SUBTITLE = {
   LEFT_COIN: '잔돈',
 };
 
+export const PLACEHOLDER = {
+  PRODUCT_NAME: '상품명',
+  PRICE: '가격',
+  PRODUCT_QUANTITY: '수량',
+  CHARGE_COIN: '자판기가 보유할 금액',
+
+}
+
 export const ID = {
   INPUT_PRODUCT_NAME: 'product-name-input',
   INPUT_PRODUCT_PRICE: 'product-price-input',
