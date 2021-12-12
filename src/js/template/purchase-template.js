@@ -10,6 +10,7 @@ export const PURCHASE_PAGE_TEMPLATE = `
   <div id=${ID.CHARGE_AMOUNT_CONTAINER}>
     투입한 금액:
     <span id=${ID.CHARGE_AMOUNT}></span>
+    원
   </div> 
   <br/>
   <h2>구매할 수 있는 상품 현황</h2>

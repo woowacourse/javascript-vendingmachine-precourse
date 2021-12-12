@@ -7,7 +7,11 @@ export const COIN_PAGE_TEMPLATE = `
     <button id=${ID.VENDING_MACHINE_CHARGE_BUTTON}>충전하기</button>
   </div>
   <br/>
-  <div id=${ID.VENDING_MACHINE_CHARGE_AMOUNT}>보유 금액:</div>
+  <div id=${ID.VENDIN_MACHINE_AMOUNT_CONTAINER}>
+    보유 금액:
+    <span id=${ID.VENDING_MACHINE_CHARGE_AMOUNT}></span>
+    원
+  </div>
   <br/>
   <h2>자판기가 보유한 동전</h2>
   <table border="1">

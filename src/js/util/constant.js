@@ -22,6 +22,7 @@ export const ID = Object.freeze({
   VENDING_MACHINE_CHARGE_INPUT: "vending-machine-charge-input",
   VENDING_MACHINE_CHARGE_BUTTON: "vending-machine-charge-button",
   VENDING_MACHINE_CHARGE_AMOUNT: "vending-machine-charge-amount",
+  VENDIN_MACHINE_AMOUNT_CONTAINER: "vending-machine-amount-container",
   VENDING_MACHINE_COIN_500_QUANTITY: "vending-machine-coin-500-quantity",
   VENDING_MACHINE_COIN_100_QUANTITY: "vending-machine-coin-100-quantity",
   VENDING_MACHINE_COIN_50_QUANTITY: "vending-machine-coin-50-quantity",

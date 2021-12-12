@@ -12,7 +12,7 @@ export default class CoinStorageView {
   };
 
   renderTotalMoney = (container, amount) => {
-    container.innerText = `보유 금액: ${amount}`;
+    container.innerText = `${amount}`;
   };
 
   renderCoinAmount = (coins) => {
