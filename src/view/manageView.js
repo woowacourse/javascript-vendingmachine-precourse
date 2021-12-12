@@ -5,7 +5,7 @@ class ManageView {
 
   template() {
     return `
-      <section>
+      <section id="manage-tab">
         <form>
           <h3>상품 추가하기</h3>
           <input id="product-name-input" type="text" placeholder="상품명" />
@@ -13,8 +13,6 @@ class ManageView {
           <input id="product-quantity-input" type="number" placeholder="수량" />
           <button id="product-add-button">추가하기</button>
         </form>
-      </section>
-      <section>
         <h3>상품 현황</h3>
         <table>
           <tr>

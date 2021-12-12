@@ -5,15 +5,13 @@ class PurchaseView {
 
   template() {
     return `
-      <section>
+      <section id="purchase-tab">
         <form>
           <h3>금액 투입</h3>
           <input id="charge-input" type="number" placeholder="투입할 금액" />
           <button id="charge-button">투입하기</button>
           <div>투입한 금액: <span id="charge-amount">0원</span></div>
         </form>
-      </section>
-      <section>
         <h3>구매할 수 있는 상품 현황</h3>
         <table>
           <tr>
@@ -29,8 +27,6 @@ class PurchaseView {
             <td><button class="purchase-button">구매하기</button></td>
           </tr>
         </table>
-      </section>
-      <section>
         <h3>잔돈</h3>
         <button id="coin-return-button">반환하기</button>
         <table>
