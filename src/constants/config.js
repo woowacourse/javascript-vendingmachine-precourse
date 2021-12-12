@@ -3,6 +3,22 @@ export const CONFIG = Object.freeze({
   STORAGE_KEY_PRODUCT: 'VENDING_MACHINE_PRODUCT',
   STORAGE_KEY_COINS: 'VENDING_MACHINE_COINS',
   STORAGE_KEY_CHARGE_AMOUNT: 'VENDING_MACHINE_CHARGE_AMOUNT',
+
+  // 메뉴 설정
+  APP_MAIN_MENU: [
+    {
+      id: 'product-add-menu',
+      name: '상품 관리',
+    },
+    {
+      id: 'vending-machine-manage-menu',
+      name: '잔돈 충전',
+    },
+    {
+      id: 'product-purchase-menu',
+      name: '상품 구매',
+    },
+  ],
 });
 
 export const DEFAULT_VALUE = Object.freeze({

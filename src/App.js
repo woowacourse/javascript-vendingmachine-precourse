@@ -1,4 +1,6 @@
+/* eslint-disable indent */
 import { $, $$ } from './utils/element-utils.js';
+import { CONFIG } from './constants/config.js';
 
 import Component from './core/Component.js';
 import ProductManage from './components/ProductManage.js';
@@ -10,14 +12,14 @@ export default class App extends Component {
     return `
       <h1>🥤자판기🥤</h1>
       <nav id="main-menu">
-        <button id="product-add-menu">상품 관리</button>
-        <button id="vending-machine-manage-menu">잔돈 충전</button>
-        <button id="product-purchase-menu">상품 구매</button>
+        ${CONFIG.APP_MAIN_MENU.map(
+          ({ id, name }) => `<button id=${id}>${name}</button>`
+        ).join('')}
       </nav>
 
-      <div class="tab component" data-component="product-add-menu"></div>
-      <div class="tab component" data-component="vending-machine-manage-menu"></div>
-      <div class="tab component" data-component="product-purchase-menu"></div>
+      ${CONFIG.APP_MAIN_MENU.map(
+        ({ id }) => `<div class="tab component" data-component="${id}"></div>`
+      ).join('')}
     `;
   }
 
