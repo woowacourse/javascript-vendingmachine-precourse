@@ -1,6 +1,6 @@
 import { USER_INPUT_ALERT } from './constant.js';
 
-export const ProductNameCheckMethods = [
+const ProductNameCheckMethods = [
   (value) => {
     const isFilled = value.trim() !== '';
     if (!isFilled) {
@@ -10,11 +10,11 @@ export const ProductNameCheckMethods = [
   },
 ];
 
-export function isProductNameValid(value) {
+function isProductNameValid(value) {
   return ProductNameCheckMethods.every((ProductNameCheckMethod) => ProductNameCheckMethod(value));
 }
 
-export const PriceCheckMethods = [
+const PriceCheckMethods = [
   (value) => {
     const isOver100 = value >= 100;
     if (!isOver100) {
@@ -31,11 +31,11 @@ export const PriceCheckMethods = [
   },
 ];
 
-export function isPriceValid(value) {
+function isPriceValid(value) {
   return PriceCheckMethods.every((PriceCheckMethod) => PriceCheckMethod(value));
 }
 
-export const QuantityCheckMethods = [
+const QuantityCheckMethods = [
   (value) => {
     const isNaturalNumber = Number(value) >= 1 && parseInt(value) === Number(value);
     if (!isNaturalNumber) {
@@ -45,7 +45,7 @@ export const QuantityCheckMethods = [
   },
 ];
 
-export function isQuantityValid(value) {
+function isQuantityValid(value) {
   return QuantityCheckMethods.every((QuantityCheckMethod) => QuantityCheckMethod(value));
 }
 
