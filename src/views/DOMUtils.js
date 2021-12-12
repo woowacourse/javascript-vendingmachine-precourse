@@ -52,9 +52,12 @@ const DOMUtils = {
     const charge = UT.calculateToCharge(DB.load('vendingMachineCoins'));
 
     if (charge > 0) {
-      return ($('#vending-machine-charge-amount').innerHTML = `${charge}원`);
+      $('#vending-machine-charge-amount').innerHTML = `${charge}`;
+      $('#vending-machine-monetary-unit').innerHTML = '원';
+      return;
     }
     DOMUtils.initElement('#vending-machine-charge-amount');
+    DOMUtils.initElement('#vending-machine-monetary-unit');
   },
 
   showVendingMachineCoins: () => {

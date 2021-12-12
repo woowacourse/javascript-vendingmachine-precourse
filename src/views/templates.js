@@ -33,13 +33,15 @@ const templates = {
     <div id="vending-machine-manage-component">
 
         <h3>자판기 동전 충전하기</h3>
-        <form>
-            <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액" />
-            <button id="vending-machine-charge-button">충전하기</button>
-        </form>
-        <div style="margin-top:15px;">보유 금액 : 
-            <span id="vending-machine-charge-amount"></span>
-        </div>
+        <charge-form
+            inputid="vending-machine-charge-input"
+            placeholder="자판기가 보유할 금액"
+            buttonid="vending-machine-charge-button"
+            buttontext="충전하기"
+            labeltext="보유 금액 : "
+            chargeid="vending-machine-charge-amount"
+            monetaryid="vending-machine-monetary-unit"
+        ></charge-form>
 
         <h3 style="margin-top:50px;">자판기가 보유한 동전</h3>
         <coin-table 
@@ -55,14 +57,15 @@ const templates = {
     <div id="product-purchase-component">
 
         <h3>금액 투입</h3>
-        <form>
-            <input type="number" id="charge-input" placeholder="투입할 금액" />
-            <button id="charge-button">투입하기</button>
-        </form>
-        <div style="margin-top:15px;">투입한 금액 : 
-            <span id="charge-amount"></span>
-            <span id="monetary-unit"></span>
-        </div>
+        <charge-form
+            inputid="charge-input"
+            placeholder="투입할 금액"
+            buttonid="charge-button"
+            buttontext="투입하기"
+            labeltext="투입한 금액 : "
+            chargeid="charge-amount"
+            monetaryid="monetary-unit"
+        ></charge-form>
 
         <h3 style="margin-top:50px;">구매할 수 있는 상품 현황</h3>
         <product-table 

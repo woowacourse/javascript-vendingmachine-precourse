@@ -2,6 +2,7 @@ import { default as UI } from './templates.js';
 import { $, default as DOM } from './DOMUtils.js';
 import CoinTable from './components/CoinTable.js';
 import ProductTable from './components/ProductTable.js';
+import ChargeForm from './components/ChargeForm.js';
 
 export default class View {
   constructor() {
@@ -14,6 +15,7 @@ export default class View {
   loadWebComponents() {
     new CoinTable();
     new ProductTable();
+    new ChargeForm();
   }
 
   makeComponents() {
