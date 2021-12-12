@@ -7,8 +7,9 @@ export const TAB = {
   ID_PRODUCT_MANAGE: 'product-add-menu',
   ID_CHARGE: 'vending-machine-manage-menu',
   ID_PURCHASE: 'product-purchase-menu',
-  MARGIN: '4px',
 };
+
+export const MARGIN = '4px';
 
 export const SUBTITLE = {
   ADD_PRODUCT: '상품 추가하기',
