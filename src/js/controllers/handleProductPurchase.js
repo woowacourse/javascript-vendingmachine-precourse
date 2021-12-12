@@ -10,6 +10,10 @@ const isValidCharge = chargeInput => {
     alert('공백입니다.');
     return false;
   }
+  if (Number(chargeInput) <= 0) {
+    alert('0원 이상을 투입하세요.');
+    return false;
+  }
   if (Number(chargeInput % 10 !== 0)) {
     alert('10원으로 나누어지지 않습니다.');
     return false;
