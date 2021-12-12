@@ -77,6 +77,7 @@ export default class ProductPurchase {
     }
     if (isValid) {
       this.saveChargeAmount(chargeAmountInput);
+      this.paintChargeAmount();
       this.clearInputs();
     }
   };
@@ -98,7 +99,7 @@ export default class ProductPurchase {
   };
 
   paintProduct = (product) => {
-    const $table = $(`table`);
+    const $table = $(`tbody`);
     const $newTableRow = document.createElement('tr');
     $newTableRow.classList.add(CLASS.PRODUCT_PURCHASE_ITEM);
 
@@ -141,6 +142,9 @@ export default class ProductPurchase {
   purchase = (targetName, targetPrice) => {
     this.updateAvailableProducts(targetName);
     this.updateChargeAmount(targetPrice);
+    this.paintChargeAmount();
+    $(`tbody`).innerHTML = '';
+    this.paintAvailableProducts();
   };
 
   updateAvailableProducts = (targetName) => {
