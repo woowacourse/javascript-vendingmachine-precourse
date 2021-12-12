@@ -37,7 +37,7 @@ const initChargeDomProperty = () => {
   const vendingMachine = getItemOrNull(KEY.vending);
   $(SELECTOR.vendingChargeInput).value = '';
   if (vendingMachine) {
-    $(SELECTOR.vendingChargeAmount).innerHTML = vendingMachine.changes;
+    $(SELECTOR.vendingChargeAmount).innerHTML = vendingMachine.change;
   }
 };
 
@@ -52,7 +52,7 @@ const chargeVending = () => {
     let vendingMachine = getItemOrNull(KEY.vending);
     const randomCoinQuantity = makeRandomCoinQuantity(chargeInputValue);
     if (vendingMachine) {
-      vendingMachine.changes += chargeInputValue;
+      vendingMachine.change += chargeInputValue;
     } else if (vendingMachine === null) {
       vendingMachine = new VendingMachine(chargeInputValue);
     }
