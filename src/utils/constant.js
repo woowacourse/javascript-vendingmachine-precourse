@@ -153,7 +153,8 @@ export const TEMPLATE = {
     <br /><br />
     <span
       >투입한 금액:
-      <span id="charge-amount"></span>
+      <span id="charge-amount">0</span>
+      원
     </span>
     <br /><br /><br />
     <h3>구매할 수 있는 상품 현황</h3>
@@ -210,5 +211,11 @@ export const TEMPLATE = {
   },
   CHARGE_INPUT(amount) {
     return `${amount}`;
+  },
+  VENDING_MACHINE_CHARGE_AMOUNT(amount) {
+    return `<span id="vending-machine-charge-amount">${amount}</span>`;
+  },
+  VENDING_MACHINE_COIN(coin, coinQuantity) {
+    return `<td id="vending-machine-coin-${coin}-quantity">${coinQuantity}개</td>`;
   },
 };

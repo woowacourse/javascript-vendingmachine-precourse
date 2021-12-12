@@ -19,6 +19,10 @@ export default class Render {
     $vendingMachineSection.innerHTML = template;
   };
 
+  reRenderVendingMachineManageMenuTemplate = (vendingMachineManageMenuTemplate) => {
+    this.setLocalStorage.reVendingMachineManageMenu(vendingMachineManageMenuTemplate);
+  };
+
   purchaseChargeAmountTemplate = () => {
     const $chargeAmount = document.querySelector(DOM.$CHARGE_AMOUNT);
     $chargeAmount.textContent = this.vendingMachine.getChargeAmount();

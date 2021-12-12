@@ -7,6 +7,10 @@ export default class SetLocalStorage {
     this.vendingMachine = vendingMachine;
   }
 
+  reVendingMachineManageMenu = (vendingMachineManageMenuTemplate) => {
+    localStorage.setItem(LOCAL_STORAGE.VENDING_MACHINE_MANAGE_MENU, vendingMachineManageMenuTemplate);
+  };
+
   productInformation = () => {
     localStorage.setItem(LOCAL_STORAGE.PRODUCTS_INFORMATION, JSON.stringify(this.product.productsInformation));
   };

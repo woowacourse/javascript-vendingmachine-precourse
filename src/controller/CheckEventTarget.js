@@ -1,5 +1,5 @@
 import SetProductAdd from '../model/SetProductAdd.js';
-import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER, STRING } from '../utils/constant.js';
 import SetVendingMachineCharge from '../model/SetVendingMachineCharge.js';
 import SetVendingMachinePurchase from '../model/SetVendingMachinePurchase.js';
 
@@ -166,6 +166,10 @@ export default class CheckEventTarget {
     return [vendingMachineCoinQuantityHash, vendingMachineCoinAmount, userCoinAmount];
   };
 
+  renderReturnCoin = (vendingMachineCoinQuantityHash) => {
+    this.render.returnCoinTemplate(vendingMachineCoinQuantityHash);
+  };
+
   hasReturnCoin = () => {
     const [vendingMachineCoinQuantityHash, vendingMachineCoinAmount, userCoinAmount] =
       this.compareVendingMachineCoinAndUserCoin(
@@ -180,30 +184,47 @@ export default class CheckEventTarget {
     this.renderReturnCoin(vendingMachineCoinQuantityHash);
   };
 
-  renderReturnCoin = (vendingMachineCoinQuantityHash) => {
-    this.render.returnCoinTemplate(vendingMachineCoinQuantityHash);
-  };
-
   renderPurchaseChargeAmount = () => {
     this.render.purchaseChargeAmountTemplate();
   };
 
-  reRenderMachineManageMenu = () => {
-    const localStorageVendingMachineManageMenuTemplate = localStorage.getItem(
-      LOCAL_STORAGE.VENDING_MACHINE_MANAGE_MENU
+  replaceManageChargeAmount = (previousCoinAmount, currentCoinAmount) => {
+    this.vendingMachineManageMenuTemplate = this.vendingMachineManageMenuTemplate.replace(
+      TEMPLATE.VENDING_MACHINE_CHARGE_AMOUNT(previousCoinAmount + STRING.WON),
+      TEMPLATE.VENDING_MACHINE_CHARGE_AMOUNT(currentCoinAmount + STRING.WON)
     );
-    const coinList = this.coins.getCoins();
-    const coinAmount = this.coins.getCoinAmount();
-    console.log(coinList, coinAmount);
-    console.log(localStorageVendingMachineManageMenuTemplate);
+  };
+
+  replaceManageCoin = (previousCoinEntries, currentCoinEnries) => {
+    previousCoinEntries.forEach((previousCoinEntry, index) => {
+      const [previousCoin, previousCoinQuantity] = previousCoinEntry;
+      const [currentCoin, currentCoinQuantity] = currentCoinEnries[index];
+
+      this.vendingMachineManageMenuTemplate = this.vendingMachineManageMenuTemplate.replace(
+        TEMPLATE.VENDING_MACHINE_COIN(previousCoin, previousCoinQuantity),
+        TEMPLATE.VENDING_MACHINE_COIN(currentCoin, currentCoinQuantity)
+      );
+    });
+  };
+
+  reRenderMachineManageMenu = (previousCoinEntries, previousCoinAmount) => {
+    this.vendingMachineManageMenuTemplate = localStorage.getItem(LOCAL_STORAGE.VENDING_MACHINE_MANAGE_MENU);
+    const currentCoinEnries = Object.entries(this.coins.getCoinsHash());
+    const currentCoinAmount = this.coins.getCoinAmount();
+
+    this.replaceManageChargeAmount(previousCoinAmount, currentCoinAmount);
+    this.replaceManageCoin(previousCoinEntries, currentCoinEnries);
+    this.render.reRenderVendingMachineManageMenuTemplate(this.vendingMachineManageMenuTemplate);
   };
 
   onClickCoinReturnButton = () => {
     const $coinReturnButton = document.querySelector(DOM.$COIN_RETURN_BUTTON);
     $coinReturnButton.addEventListener(EVENT.CLICK, () => {
+      const previousCoinsHash = { ...this.coins.getCoinsHash() };
+      const previousCoinAmount = this.coins.getCoinAmount();
       this.hasReturnCoin();
       this.renderPurchaseChargeAmount();
-      this.reRenderMachineManageMenu();
+      this.reRenderMachineManageMenu(Object.entries(previousCoinsHash), previousCoinAmount);
     });
   };
 
