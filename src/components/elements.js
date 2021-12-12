@@ -64,8 +64,9 @@ export const SpanWithId = (text, id) => {
   return span;
 };
 
-export const Table = () => {
+export const Table = (id) => {
   const table = document.createElement('table');
+  table.setAttribute('id', id);
 
   return table;
 };
