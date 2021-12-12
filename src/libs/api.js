@@ -1,3 +1,5 @@
+import { KEY } from "./key.js";
+
 export default class Api {
   constructor() {
     console.log("------------------API");
@@ -15,6 +17,6 @@ export default class Api {
       ],
     };
 
-    localStorage.setItem("VENDING_MACHINE", JSON.stringify(data));
+    localStorage.setItem(KEY, JSON.stringify(data));
   }
 }
