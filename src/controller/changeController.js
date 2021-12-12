@@ -10,6 +10,11 @@ class ChangeController {
 
   chargeCoin() {
     let inputMoney = this.view.getInput();
+    this.randomCharge(inputMoney);
+    this.view.render();
+  }
+
+  randomCharge(inputMoney) {
     while (inputMoney > 0) {
       let pickedCoin = pickRandomCoin();
       if (inputMoney >= pickedCoin) {
@@ -18,7 +23,6 @@ class ChangeController {
       }
     }
     change.totalAmount = this.sumCoins();
-    this.view.render();
   }
 
   sumCoins() {
