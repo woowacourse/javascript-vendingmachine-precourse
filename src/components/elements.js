@@ -53,6 +53,12 @@ export const Form = () => {
 export const Span = (text, id) => {
   const span = document.createElement('span');
   span.innerHTML = text;
+
+  return span;
+};
+
+export const SpanWithId = (text, id) => {
+  const span = Span(text);
   span.setAttribute('id', id);
 
   return span;
@@ -72,17 +78,36 @@ export const TableHead = (table, titles) => {
   });
 };
 
-export const TableRow = (className) => {
+export const TableRow = () => {
   const tr = document.createElement('tr');
-  tr.setAttribute('class', className);
 
   return tr;
 };
 
-export const TableData = (data, className) => {
+export const TableRowWithClassName = (className) => {
+  const tableRow = TableRow();
+  tableRow.setAttribute('class', className);
+
+  return tableRow;
+};
+
+export const TableData = (data) => {
   const td = document.createElement('td');
   td.innerHTML = data;
-  td.setAttribute('class', className);
 
   return td;
+};
+
+export const TableDataWithClassName = (data, className) => {
+  const tableData = TableData(data);
+  tableData.setAttribute('class', className);
+
+  return tableData;
+};
+
+export const TableDataWithId = (data, id) => {
+  const tableData = TableData(data);
+  tableData.setAttribute('id', id);
+
+  return tableData;
 };
