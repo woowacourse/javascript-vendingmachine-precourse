@@ -35,7 +35,11 @@ export default class VendingMachine {
   }
 
   setCurrentMoney(money) {
-    this.money = +money;
-    localStorage.setItem(CURRENT_MONEY_KEY, this.money);
+    if (Validator.isValidChargeInput(money)) {
+      this.money = +money;
+      localStorage.setItem(CURRENT_MONEY_KEY, this.money);
+      return true;
+    }
+    return false;
   }
 }
