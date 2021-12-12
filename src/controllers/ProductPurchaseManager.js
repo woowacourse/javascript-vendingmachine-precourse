@@ -18,11 +18,10 @@ export default class ProductPurchaseManager {
     $('#charge-button').addEventListener('click', e => {
       e.preventDefault();
 
-      if (!V.isValidCharge(DOM.getCharge().toPurchaseProduct)) return;
+      const charge = DOM.getCharge().toPurchaseProduct;
+      if (!V.isValidCharge(charge)) return;
 
-      DB.overwrite('chargeToPurchaseProduct', Number(DOM.getCharge().toPurchaseProduct));
-
-      DOM.showChargeToPurchaseProduct();
+      UT.updateAddedCharge(charge);
     });
 
     UT.isExist(DB.load('inventory')) && DOM.getAllPurchaseButton();

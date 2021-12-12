@@ -97,6 +97,13 @@ const utils = {
     };
   },
 
+  updateAddedCharge: string => {
+    const charge = DB.load('chargeToPurchaseProduct');
+    DB.overwrite('chargeToPurchaseProduct', charge + Number(string));
+
+    DOM.showChargeToPurchaseProduct();
+  },
+
   updateDeductedCharge: object => {
     const charge = DB.load('chargeToPurchaseProduct');
     DB.overwrite('chargeToPurchaseProduct', charge - object.price);
