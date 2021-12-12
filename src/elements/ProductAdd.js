@@ -4,6 +4,6 @@ export default class ProductAdd {
     this.priceInput = document.querySelector('#product-price-input');
     this.quantityInput = document.querySelector('#product-quantity-input');
     this.submit = document.querySelector('#product-add-button');
-    this.tableBody = document.querySelector('#product-manage-item');
+    this.tableBody = document.querySelector('.product-manage-item');
   }
 }
