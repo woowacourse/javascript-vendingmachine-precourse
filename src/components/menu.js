@@ -9,7 +9,7 @@ export default class Menu {
   constructor($target) {
     this.$target = $target;
     this.products = [];
-    this.coins = {};
+    this.coins = [];
     window.onload = this.onload();
     this.render();
     this.bindClickEvents();
@@ -19,7 +19,7 @@ export default class Menu {
     const products = JSON.parse(getLocalStorage('products'));
     const coins = JSON.parse(getLocalStorage('coins'));
     this.products = products || [];
-    this.coins = coins || {};
+    this.coins = coins || [];
     console.log(this.products, this.coins);
   }
 

@@ -1,4 +1,5 @@
 import { SELECTOR, COMMENT } from '../constants/constant.js';
+import { getLocalStorage, setLocalStorage } from '../utils/localStorage.js';
 import { $ } from '../utils/selector.js';
 import { isValidCoinCharge } from '../utils/valid.js';
 
@@ -10,7 +11,48 @@ export default class Coin_Menu {
   }
 
   getAmountInput() {
-    return $(`#${SELECTOR.ID.COIN_CHARGE_INPUT}`).value;
+    return Number($(`#${SELECTOR.ID.COIN_CHARGE_INPUT}`).value);
+  }
+
+  calculateRandomCoins(amount) {
+    const coinList = [500, 100, 50, 10];
+    let randomCoinQuantity = [0, 0, 0, 0];
+    let idx = 0;
+    let randomCoin;
+
+    while (amount > 0) {
+      if (coinList[idx] > amount) {
+        idx++;
+        continue;
+      }
+      randomCoin = MissionUtils.Random.pickNumberInList(coinList.slice(idx));
+      randomCoinQuantity[coinList.indexOf(randomCoin)]++;
+      amount -= randomCoin;
+    }
+    return randomCoinQuantity;
+  }
+
+  addRandomCoinsToLocal(randomCoinQuantity) {
+    if (this.coins.length === 0) {
+      this.coins = [0, 0, 0, 0];
+    }
+    this.coins.forEach((key, idx) => {
+      this.coins[idx] += randomCoinQuantity[idx];
+    });
+    setLocalStorage('coins', JSON.stringify(this.coins));
+  }
+
+  clearAmountInput() {
+    $(`#${SELECTOR.ID.COIN_CHARGE_INPUT}`).value = '';
+  }
+
+  setCoinChargeAmount() {
+    let amount = 0;
+    const coinList = [500, 100, 50, 10];
+    this.coins.forEach((key, idx) => {
+      amount += coinList[idx] * key;
+    });
+    $(`#${SELECTOR.ID.COIN_CHARGE_AMOUNT}`).innerHTML = `${amount}원`;
   }
 
   chargeCoins() {
@@ -20,6 +62,12 @@ export default class Coin_Menu {
       alert(validation.errorMessage);
       return;
     }
+    const randomCoinQuantity = this.calculateRandomCoins(amount);
+    this.addRandomCoinsToLocal(randomCoinQuantity);
+    this.clearAmountInput();
+    this.setCoinChargeAmount();
+    console.log(this.coins);
+    // this.addProductItemToTable(product);
   }
 
   bindClickEvents() {
