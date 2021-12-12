@@ -31,12 +31,11 @@ export default class VendingMachine {
   handleFormEvent(e) {
     e.preventDefault();
     if (e.target.id === PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_ADD_BUTTON) {
-      this.submitProduct();
-      this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
+      this.handleAddMenu();
     } else if (e.target.id === COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_BUTTON) {
-      this.submitChargeInput(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_INPUT);
-      this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coinModel.getAmount());
-      this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coinModel.money);
+      this.handleChargeCoin();
+    } else if (e.target.id === PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_BUTTON) {
+      this.handlePurchaseProduct();
     }
   }
 
@@ -64,5 +63,21 @@ export default class VendingMachine {
     }
 
     this.coinModel.putMoney(money);
+  }
+
+  handleAddMenu() {
+    this.submitProduct();
+    this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
+    this.view.renderProducts(PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE, this.tabMenu.purchaseMenu.purchaseItemTemplate);
+  }
+
+  handleChargeCoin() {
+    this.submitChargeInput(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_INPUT);
+    this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coinModel.getAmount());
+    this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coinModel.money);
+  }
+
+  handlePurchaseProduct() {
+    this.submitChargeInput(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_INPUT);
   }
 }
