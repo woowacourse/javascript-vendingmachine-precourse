@@ -72,6 +72,7 @@ export const STORAGE_KEY = Object.freeze({
 
 export const TABLE_MENU = Object.freeze({
   PRODUCT_MANAGE: 'product_manage',
-  CHARGE: 'charge',
-  PURCHASE: 'purchase'
+  VENDING_MACHINE_CHARGE: 'vending_machine_charge',
+  PURCHASE: 'purchase',
+  PURCHASE_CHARGE: 'purchase_charge'
 });
