@@ -1,6 +1,6 @@
 import { $ } from '../utils/dom.js';
 import { store, userInputMoney, items, change, returnedChange } from '../model/store.js';
-import PurchaseValidator from '../utils/purchaseValidator.js';
+import PurchaseValidator from '../validator/purchaseValidator.js';
 
 class PurhcaseController {
   constructor(view) {

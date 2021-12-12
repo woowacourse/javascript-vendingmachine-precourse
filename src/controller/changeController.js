@@ -1,7 +1,7 @@
 import { $ } from '../utils/dom.js';
 import { pickRandomCoin } from '../utils/pickRandomCoin.js';
 import { change, store } from '../model/store.js';
-import ChangeValidator from '../utils/changeValidator.js';
+import ChangeValidator from '../validator/changeValidator.js';
 
 class ChangeController {
   constructor(view) {

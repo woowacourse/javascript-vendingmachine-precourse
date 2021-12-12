@@ -1,6 +1,6 @@
 import Item from '../model/item.js';
 import { items, store } from '../model/store.js';
-import ManageValidator from '../utils/manageValidator.js';
+import ManageValidator from '../validator/manageValidator.js';
 import { $ } from '../utils/dom.js';
 
 class ManageController {
