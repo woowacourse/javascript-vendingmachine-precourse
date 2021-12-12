@@ -30,4 +30,8 @@ export const VALIDATION = {
     NONE: '충전할 금액을 입력해 주세요.',
     MULTIPLE_OF_10: '충전할 금액은 10의 배수만 입력이 가능합니다.',
   },
+  CHARGE: {
+    NONE: '투입할 금액을 입력해 주세요.',
+    MULTIPLE_OF_10: '투입할 금액은 10의 배수만 입력이 가능합니다.',
+  },
 };
