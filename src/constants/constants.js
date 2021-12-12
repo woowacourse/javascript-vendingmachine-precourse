@@ -24,6 +24,16 @@ export const ADMIN_RULES = {
   minQuantity: 1,
 };
 
+export const CHARGE_ELEMENT_ID = {
+  chargeInput: 'vending-machine-charge-input',
+  chargeButton: 'vending-machine-charge-button',
+  chargeAmount: 'vending-machine-charge-amount',
+  coin500: 'vending-machine-coin-500-quantity',
+  coin100: 'vending-machine-coin-100-quantity',
+  coin50: 'vending-machine-coin-50-quantity',
+  coin10: 'vending-machine-coin-10-quantity',
+};
+
 export const MENU_ELEMENT = {
   adminName: '상품 관리',
   adminId: 'product-add-menu',
