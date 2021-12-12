@@ -2,6 +2,10 @@ export const ELEMENT_SID = {
   APP: '#app',
   TAB_VIEW: '#tab-view',
   RESULT_VIEW: '#result-view',
+  PRODUCT_NAME_INPUT: '#product-name-input',
+  PRODUCT_PRICE_INPUT: '#product-price-input',
+  PRODUCT_QUANTITY_INPUT: '#product-quantity-input',
+  PRODUCT_ADD_BUTTON: '#product-add-button',
 };
 export const ELEMENT_ID = {
   TAB_VIEW: 'tab-view',
@@ -16,6 +20,7 @@ export const ELEMENT_ID = {
 };
 export const EVENT_TYPE = {
   CHANGE_TAB: 'changeTab',
+  ADD_PRODUCT: 'addProduct',
 };
 export const TAB = {
   MANAGE_PRODUCT: '상품 관리',
@@ -26,6 +31,4 @@ export const PRODUCT = {
   NAME: '상품명',
   PRICE: '가격',
   QUANTITY: '수량',
-  ADD: '추가하기',
-  STATUS: '상품 현황',
 };
