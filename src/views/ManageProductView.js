@@ -29,6 +29,18 @@ ManageProductView.render = function () {
           <th>${PRODUCT.QUANTITY}</th>
         <tr/>
       </thead>
+      <tbody>
+        ${ManageProductModel.list()
+          .map(
+            (product) =>
+              `<tr class="product-manage-item">
+            <td  class="product-manage-name">${product[PRODUCT.NAME]}</td>
+            <td class="product-manage-price">${product[PRODUCT.PRICE]}</td>
+            <td class="product-manage-quantity">${product[PRODUCT.QUANTITY]}</td>
+          </tr>`,
+          )
+          .join('')}
+      </tbody>
     </table>
     `;
   this.productNameInput = $(ELEMENT_SID.PRODUCT_NAME_INPUT);

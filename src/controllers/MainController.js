@@ -41,5 +41,6 @@ export default {
 
   onAddProduct(product) {
     ManageProductModel.add(product);
+    ManageProductView.render();
   },
 };
