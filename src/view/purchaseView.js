@@ -1,5 +1,6 @@
 import { $ } from '../utils/dom.js';
 import { userInputMoney } from '../model/store.js';
+import { items } from '../model/store.js';
 
 class PurchaseView {
   constructor() {}
@@ -8,8 +9,23 @@ class PurchaseView {
     return Number($('#charge-input').value);
   }
 
+  getItems() {
+    return items
+      .map(
+        (item) => `
+        <tr class="product-purchase-item">
+            <td class="product-purchase-name" data-product-name="${item.name}">${item.name}</td>
+            <td class="product-purchase-price" data-product-price="${item.price}">${item.price}</td>
+            <td class="product-purchase-quantity" data-product-quantity="${item.quantity}">${item.quantity}</td>
+            <td><button class="purchase-button">구매하기</button></td>
+        </tr>`
+      )
+      .join('');
+  }
+
   render() {
     $('#charge-amount').textContent = `${userInputMoney.totalAmount}원`;
+    $('#purchase-list').innerHTML = this.getItems();
   }
 
   template() {
@@ -32,13 +48,6 @@ class PurchaseView {
           </tr>
         </thead>
         <tbody id="purchase-list">
-          <!-- 렌더링 될 부분 -->
-          <tr class="product-purchase-item">
-            <td class="product-purchase-name" data-product-name="임시상품">임시상품</td>
-            <td class="product-purchase-price" data-product-price="1000">1000</td>
-            <td class="product-purchase-quantity" data-product-quantity="20">20</td>
-            <td><button class="purchase-button">구매하기</button></td>
-          </tr>
         </tbody>
       </table>
       <h3>잔돈</h3>
