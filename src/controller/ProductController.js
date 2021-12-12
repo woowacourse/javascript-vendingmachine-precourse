@@ -1,3 +1,5 @@
+import { isProductInputsValid } from '../utils/validator.js';
+
 export class ProductController {
   constructor(model, coreView) {
     this.model = model;
@@ -20,11 +22,10 @@ export class ProductController {
   }
 
   onProductSubmit(productName, price, quantity) {
-    const products = this.model.addProduct(productName, price, quantity);
-    if (products === undefined || products.length === 0) {
-      // length를 왜 확인해주더라?
+    if (!isProductInputsValid(productName, price, quantity)) {
       return;
     }
+    const products = this.model.addProduct(productName, price, quantity);
     this.coreView.productView.showProduct(products);
   }
 }

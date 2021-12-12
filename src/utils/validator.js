@@ -50,5 +50,5 @@ function isQuantityValid(value) {
 }
 
 export function isProductInputsValid(productName, price, quantity) {
-  return isProductNameValid(productName) && isPriceValid(price) && isQuantityValid(quantity);
+  return isProductNameValid(productName) && isMoneyValid(price) && isQuantityValid(quantity);
 }

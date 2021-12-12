@@ -1,5 +1,4 @@
 import { coinList } from '../utils/constant.js';
-import { isProductInputsValid } from '../utils/validator.js';
 
 export class VendingMachineModel {
   products = JSON.parse(localStorage.getItem('products')) || [];
@@ -19,9 +18,6 @@ export class VendingMachineModel {
   };
 
   addProduct(productName, price, quantity) {
-    if (!isProductInputsValid(productName, price, quantity)) {
-      return;
-    }
     this.products = [...this.products, { productName, price, quantity }];
     localStorage.setItem('products', JSON.stringify(this.products));
     return this.products;
