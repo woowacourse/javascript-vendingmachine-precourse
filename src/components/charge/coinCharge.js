@@ -1,9 +1,16 @@
 import { $ } from '../../utils/querySelector.js';
 import { COIN_UNITS, ERROR_MESSAGE, STANDARD } from '../../utils/constants.js';
 import { isDivideByTen } from '../../utils/validation.js';
-import { coinChargeTemplate } from './coinChargeTemplate.js';
+import { showConvertedCoins, coinChargeTemplate } from './coinChargeTemplate.js';
 
 let currentAmount = STANDARD.CURRENT_MONEY;
+
+const convertedCoins = {
+  500: 0,
+  100: 0,
+  50: 0,
+  10: 0,
+};
 
 const convertAmountIntoCoins = (amount) => {
   let remainAmount = amount;
@@ -12,8 +19,8 @@ const convertAmountIntoCoins = (amount) => {
     const coinUnit = COIN_UNITS.filter((coin) => coin <= remainAmount);
     // eslint-disable-next-line no-undef
     const pickedCoin = MissionUtils.Random.pickNumberInList(coinUnit);
+    convertedCoins[pickedCoin] += 1;
     remainAmount -= pickedCoin;
-    console.log(coinUnit, pickedCoin, remainAmount);
   }
 };
 
@@ -34,6 +41,7 @@ const handleCoinChargeSubmit = (event) => {
 
   showCurrentAmount(chargedCoin);
   convertAmountIntoCoins(currentAmount);
+  showConvertedCoins(convertedCoins);
 };
 
 export const showCoinCharge = () => {

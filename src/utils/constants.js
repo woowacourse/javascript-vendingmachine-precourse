@@ -1,6 +1,9 @@
 const COIN_UNITS = [500, 100, 50, 10];
 
-const STORAGE_NAME = 'product';
+const STORAGE_NAME = {
+  PRODUCT: 'product',
+  COIN: 'coin',
+};
 
 const STANDARD = {
   PRICE_MINIMUM: 100,
