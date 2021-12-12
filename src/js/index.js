@@ -1,28 +1,43 @@
 // prettier-ignore
-import { initRender, renderProductAddMenu, renderVendingMachineManageMenu, renderProductPurchaseMenu } from './render/render.js';
+import { renderProductAddMenu, renderVendingMachineManageMenu, renderProductPurchaseMenu } from './render/render.js';
+import { initRender, renderAmountSpan } from './render/common.js';
 import { $ } from './util/dom.js';
 import { makeMenuTemplte, purchaseMenu } from './core/manageMenu.js';
 import { checkChangesInput } from './core/manageChanges.js';
 import { getnumberOfCoinsList } from './core/manageCoins.js';
 import { addInputAmount } from './core/manageInputAmount.js';
+import { localStorageConstants } from './constant/localstorage.js';
+import { inputtedAmountSpanConstants } from './constant/string.js';
 
 function App() {
+  $('head').innerHTML = `<link rel="stylesheet" href="src/css/style.css"/>`;
   initRender();
   renderProductAddMenu();
 
   const handleClick = e => {
+    renderTabs(e);
+    if (e.target.classList.contains('purchase-button')) {
+      purchaseMenu(e.target);
+    } else if (e.target.id === 'coin-return-button') {
+      getnumberOfCoinsList();
+      renderAmountSpan(
+        inputtedAmountSpanConstants,
+        localStorageConstants.INPUT_AMOUNT,
+        e,
+      );
+    }
+  };
+
+  const renderTabs = e => {
     if (e.target.id === 'product-add-menu') {
       renderProductAddMenu();
     } else if (e.target.id === 'vending-machine-manage-menu') {
       renderVendingMachineManageMenu();
     } else if (e.target.id === 'product-purchase-menu') {
       renderProductPurchaseMenu();
-    } else if (e.target.classList.contains('purchase-button')) {
-      purchaseMenu(e.target);
-    } else if (e.target.id === 'coin-return-button') {
-      getnumberOfCoinsList();
     }
   };
+
   const handleSubmit = e => {
     if (e.target.id === 'product-add-form') {
       makeMenuTemplte(e);
@@ -30,6 +45,10 @@ function App() {
       checkChangesInput(e);
     } else if (e.target.id === 'charge-form') {
       addInputAmount(e);
+      renderAmountSpan(
+        inputtedAmountSpanConstants,
+        localStorageConstants.INPUT_AMOUNT,
+      );
     }
   };
 

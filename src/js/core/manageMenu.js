@@ -1,10 +1,10 @@
+// prettier-ignore
+import { renderProductItems, renderProductPurchaseMenu } from '../render/render.js';
 import { $ } from '../util/dom.js';
 import { store } from '../store/store.js';
 import { check } from '../util/checkValue.js';
 import { localStorageConstants } from '../constant/localstorage.js';
 import { stringConstants } from '../constant/string.js';
-// prettier-ignore
-import { renderProductItems, renderProductPurchaseMenu } from '../render/render.js';
 
 export const makeMenuTemplte = e => {
   e.preventDefault();
@@ -34,18 +34,15 @@ export const addMenuToMenuTable = menuTemplate => {
 };
 
 export const purchaseMenu = target => {
-  const menuToPurchaseName =
-    target.closest('tr').firstChild.nextSibling.innerText;
+  const targetName = target.closest('tr').firstChild.nextSibling.innerText;
   const menus = store.getItem(localStorageConstants.MENU);
   let inputtedAmount = store.getItem(localStorageConstants.INPUT_AMOUNT);
-
-  const menusToPurchase = menus
-    .filter(menu => menu.name === menuToPurchaseName)
+  const targetMenu = menus
+    .filter(menu => menu.name === targetName)
     .filter(menu => menu.quantity >= 1);
-  console.log(menusToPurchase[0].price, inputtedAmount);
-  if (menusToPurchase[0].price <= inputtedAmount) {
-    menusToPurchase[0].quantity -= 1;
-    inputtedAmount -= menusToPurchase[0].price;
+  if (targetMenu[0] !== undefined && targetMenu[0].price <= inputtedAmount) {
+    targetMenu[0].quantity -= 1;
+    inputtedAmount -= targetMenu[0].price;
   }
   store.setItem(localStorageConstants.INPUT_AMOUNT, inputtedAmount);
   store.setItem(localStorageConstants.MENU, menus);

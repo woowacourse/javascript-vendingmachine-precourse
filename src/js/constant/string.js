@@ -69,3 +69,13 @@ export const purchasableProductItemsTableConstants = {
   THEAD_ID: 'purchasable-product-table-head',
   TBODY_ID: 'purchasable-product-table-body',
 };
+
+export const chargeChangesSpanConstants = {
+  P_VALUE: '보유 금액',
+  SPAN_ID: 'vending-machine-charge-amount',
+};
+
+export const inputtedAmountSpanConstants = {
+  P_VALUE: '투입한 금액',
+  SPAN_ID: 'charge-amount',
+};

@@ -1,13 +1,14 @@
+// prettier-ignore
+import { getRandomCoinsList, reflectCoinsToLocalStorage } from './manageCoins.js';
+// prettier-ignore
+import {stringConstants, chargeChangesSpanConstants } from '../constant/string.js';
 import { $ } from '../util/dom.js';
 import { check } from '../util/checkValue.js';
 import { store } from '../store/store.js';
-import { stringConstants } from '../constant/string.js';
 import { COINS_PRICE, DECIMAL } from '../constant/constant.js';
 import { localStorageConstants } from '../constant/localstorage.js';
-// prettier-ignore
-import { renderMoney, renderReturnChanges, renderChangesCoinsItems } from '../render/render.js';
-// prettier-ignore
-import { getRandomCoinsList, reflectCoinsToLocalStorage } from './manageCoins.js';
+import { renderChangesCoinsItems } from '../render/render.js';
+import { renderAmountSpan } from '../render/common.js';
 
 export const checkChangesInput = e => {
   e.preventDefault();
@@ -19,19 +20,23 @@ export const checkChangesInput = e => {
     window.alert(stringConstants.ALERT);
     return;
   }
-  addChangesToExistingChanges(inputtedChanges);
+  addChangesToExistingChanges(inputtedChanges, e);
   getRandomCoinsList();
 };
 
-export const addChangesToExistingChanges = inputtedChanges => {
+export const addChangesToExistingChanges = (inputtedChanges, e) => {
   const existingChanges = store.getItem(localStorageConstants.CHANGES);
   let totalChanges = 0;
   if (existingChanges !== null) {
     totalChanges = existingChanges;
   }
   totalChanges += parseInt(inputtedChanges, DECIMAL);
+  renderAmountSpan(
+    chargeChangesSpanConstants,
+    localStorageConstants.CHANGES,
+    e,
+  );
   store.setItem(localStorageConstants.CHANGES, totalChanges);
-  renderMoney();
 };
 
 export const calculateChanges = (numberOfCoinsList, inputAmount) => {
@@ -47,5 +52,4 @@ export const calculateChanges = (numberOfCoinsList, inputAmount) => {
   store.setItem(localStorageConstants.INPUT_AMOUNT, inputAmount);
   store.setItem(localStorageConstants.CHANGES, changes);
   renderChangesCoinsItems();
-  renderReturnChanges();
 };
