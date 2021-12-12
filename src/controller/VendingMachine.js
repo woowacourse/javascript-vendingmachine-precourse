@@ -1,4 +1,4 @@
-import { ERROR } from '../constants/constants.js';
+import { ERROR, CONSTANTS } from '../constants/constants.js';
 import {
   checkAmountVaild,
   checkProductVaild,
@@ -14,6 +14,7 @@ import {
   $coinState,
   $chargeState,
 } from '../components/StateList.js';
+import { cloneObject } from '../utils/data-tools.js';
 
 export const handleAddCoins = (amount) => {
   const inputAmount = Number(amount);
@@ -65,7 +66,7 @@ export const handlePurchase = (primaryKey) => {
 export const handleReturnAmount = () => {
   if ($chargeState.value === 0) {
     errorAlert(ERROR.RETURN_AMOUNT_NO_BALANCE);
-    return false;
+    return cloneObject(CONSTANTS.COIN_LIST);
   }
 
   const coinManager = new Coins($coinState.value);
