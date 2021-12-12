@@ -78,16 +78,12 @@ const getChange = () => {
   const hasCoin = store.getLocalStorage('coins');
 
   change = calculatefiveHundred(change, hasCoin);
-  console.log(change);
 
   change = calculateOneHundred(change, hasCoin);
-  console.log(change);
 
   change = calculateFifty(change, hasCoin);
-  console.log(change);
 
   change = calculateTen(change, hasCoin);
-  console.log(change);
 
   $('#charge-amount').innerText = change;
 };

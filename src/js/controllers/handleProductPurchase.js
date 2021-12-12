@@ -37,7 +37,7 @@ const handleProductPurchase = () => {
 
     const purchaseInput = $('#charge-input').value;
     if (isValidCharge(purchaseInput)) {
-      amount += Number(purchaseInput);
+      amount = Number(purchaseInput);
       printInputCharge(amount);
       return;
     }
