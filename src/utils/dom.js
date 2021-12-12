@@ -26,3 +26,10 @@ export const resetForm = formElement => {
     if (index === 0) input.focus();
   });
 };
+
+export const getProductInformations = target => {
+  const parentNode = target.closest('.product-purchase-item');
+  const { productName } = $('.product-purchase-name', parentNode).dataset;
+  const { productPrice } = $('.product-purchase-price', parentNode).dataset;
+  return { productName, productPrice: Number(productPrice) };
+};

@@ -16,6 +16,7 @@ class UserStore extends Store {
         this.setState({ chargedMoney: this.state.chargedMoney + money });
       },
       [USER_ACTION_TYPE.SPEND_MONEY]: money => {
+        console.log('머지', this.state.chargedMoney - money, money);
         this.setState({ chargedMoney: this.state.chargedMoney - money });
       },
     };

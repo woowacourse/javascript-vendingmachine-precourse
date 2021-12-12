@@ -1,7 +1,10 @@
 import Component from '../../core/Component.js';
 import UserStore from '../../stores/UserStore.js';
 import ProductStore from '../../stores/ProductStore.js';
+import { spendMoney } from '../../actions/user.js';
+import { sellProduct } from '../../actions/product.js';
 
+import { getProductInformations } from '../../utils/dom.js';
 import { filterPurchaseableProduct } from '../../utils/helpers.js';
 import { purchaseProductsView } from '../../utils/views.js';
 
@@ -10,6 +13,17 @@ export default class PurchaseList extends Component {
     const { chargedMoney } = UserStore.getState();
     const { products } = ProductStore.getState();
     return { chargedMoney, products };
+  }
+
+  bindEvents() {
+    this.appendRootEvents('click', event => this.onClickPurchase(event));
+  }
+
+  onClickPurchase({ target }) {
+    if (target.className !== 'purchase-button') return;
+    const { productName, productPrice } = getProductInformations(target);
+    ProductStore.dispatch(sellProduct(productName));
+    UserStore.dispatch(spendMoney(productPrice));
   }
 
   render() {

@@ -23,6 +23,15 @@ class ProductStore extends Store {
         });
         return { SUCCESS: true, error: null };
       },
+      [PRODUCT_ACTION_TYPE.SELL_PRODUCT]: productName => {
+        const { products } = this.state;
+        const newProducts = products.map(item => {
+          const { name } = item.getInformation();
+          if (name === productName) item.sellProduct();
+          return item;
+        });
+        this.setState({ products: newProducts });
+      },
     };
   }
 }
