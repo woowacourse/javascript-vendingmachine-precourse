@@ -46,18 +46,26 @@ class PurhcaseController {
 
   calculateReturnChange() {
     [500, 100, 50, 10].forEach((value) => {
-      const maxReturnChange = parseInt(userInputMoney.amount / value);
-      const availableReturnChange = change[`coin${value}`];
-      if (maxReturnChange >= availableReturnChange) {
-        userInputMoney.amount -= change[`coin${value}`] * value;
-        returnedChange[`coin${value}`] = change[`coin${value}`];
-        change[`coin${value}`] -= change[`coin${value}`];
-      } else {
-        userInputMoney.amount -= maxReturnChange * value;
-        returnedChange[`coin${value}`] = maxReturnChange;
-        change[`coin${value}`] -= maxReturnChange;
+      const quotient = parseInt(userInputMoney.amount / value);
+      const returnableChange = change[`coin${value}`];
+      if (quotient >= returnableChange) {
+        this.returnReturnableCountsCoin({ returnableChange, value });
+        return;
       }
+      this.returnMaximumCountsCoin({ quotient, value });
     });
+  }
+
+  returnReturnableCountsCoin({ returnableChange, value }) {
+    userInputMoney.amount -= returnableChange * value;
+    returnedChange[`coin${value}`] = returnableChange;
+    change[`coin${value}`] -= returnableChange;
+  }
+
+  returnMaximumCountsCoin({ quotient, value }) {
+    userInputMoney.amount -= quotient * value;
+    returnedChange[`coin${value}`] = quotient;
+    change[`coin${value}`] -= quotient;
   }
 
   bindEvent() {
