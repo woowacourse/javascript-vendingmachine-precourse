@@ -1,3 +1,4 @@
+import { vendingMachine } from "../components/vendingMachine.js";
 import { onClickChargeButton } from "../menus/chargeChangeMenu.js";
 import { CHARGE_CHANGE_TAP } from "../utils/constants.js";
 import {
@@ -54,4 +55,9 @@ export const renderChargeChangeMenuView = () => {
       CHARGE_CHANGE_TAP.changeStateTableRaws
     )
   );
+
+  if (localStorage.getItem("isRenderChargeTap") === "TRUE") {
+    renderChangeAmount(vendingMachine.getTotalMoney());
+    renderCoins(vendingMachine);
+  }
 };

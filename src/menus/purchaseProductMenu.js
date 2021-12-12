@@ -28,6 +28,14 @@ const updateQuantity = quantity => {
   quantity.innerText = parseInt(quantity.innerText) - 1;
 };
 
+const setIsRenderInsertedMoney = () => {
+  localStorage["isRenderInsertedMoney"] = "TRUE";
+};
+
+const setReturnChanges = returnChanges => {
+  localStorage["returnChanges"] = returnChanges;
+};
+
 export const onClickInsertButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
@@ -37,6 +45,7 @@ export const onClickInsertButton = event => {
     vendingMachine.insertMoney(parseInt(money));
     renderMoney(vendingMachine.getMoney());
     saveToLocalStorage(vendingMachine);
+    setIsRenderInsertedMoney();
     resetInput();
   }
 };
@@ -65,4 +74,6 @@ export const onClickReturnButton = event => {
   renderMoney(vendingMachine.getMoney());
   renderChanges(returnChanges);
   saveToLocalStorage(vendingMachine);
+  setIsRenderInsertedMoney();
+  setReturnChanges(returnChanges);
 };

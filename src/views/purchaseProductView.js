@@ -14,6 +14,7 @@ import {
   onClickPurchaseButton,
   onClickReturnButton,
 } from "../menus/purchaseProductMenu.js";
+import { renderChangeAmount } from "./chargeChangeView.js";
 
 // ----금액 투입하기 폼----
 const makeInsertMoneyContainer = () => {
@@ -114,6 +115,15 @@ const makeChangeStateContainer = () => {
   return div;
 };
 
+const stringToIntegerArray = string => {
+  const result = string
+    .slice(0, string.length)
+    .split(",")
+    .map(num => parseInt(num));
+
+  return result;
+};
+
 export const renderChanges = changes => {
   PURCHASE_PRODUCT_TAP.changeStateTableRaws.forEach((raw, index) => {
     document.getElementById(`${raw[1]}`).innerText = `${changes[index]}개`;
@@ -125,4 +135,12 @@ export const renderPurchaseProductMenuView = () => {
   $view_container.appendChild(makeInsertMoneyContainer());
   $view_container.appendChild(makeproductStateContainer());
   $view_container.appendChild(makeChangeStateContainer());
+
+  if (localStorage.getItem("isRenderInsertedMoney") === "TRUE") {
+    renderMoney(vendingMachine.getMoney());
+  }
+  const returnChanges = localStorage.getItem("returnChanges");
+  if (returnChanges) {
+    renderChanges(stringToIntegerArray(returnChanges));
+  }
 };

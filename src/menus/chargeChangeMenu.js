@@ -8,6 +8,10 @@ const resetInput = form => {
   input.value = "";
 };
 
+const setIsRender = () => {
+  localStorage["isRenderChargeTap"] = "TRUE";
+};
+
 export const onClickChargeButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
@@ -19,5 +23,6 @@ export const onClickChargeButton = event => {
     renderCoins(vendingMachine);
     saveToLocalStorage(vendingMachine);
     resetInput(form);
+    setIsRender();
   }
 };
