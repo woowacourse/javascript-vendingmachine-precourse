@@ -7,47 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@woowacourse/mission-utils@1.0.1/dist/mission-utils.min.js"></script>
   </head>
   <body>
-    <div id="app">
-      <h2>🥤자판기🥤</h2>
-      <nav id="nav">
-        <button
-          id="product-purchase-menu"
-          class="nav-tab"
-          data-tab-name="addMenu"
-        >
-          상품 관리
-        </button>
-        <button
-          id="vending-machine-manage-menu"
-          class="nav-tab"
-          data-tab-name="change"
-        >
-          잔돈 충전
-        </button>
-        <button id="product-add-menu" class="nav-tab" data-tab-name="purchase">
-          상품 구매
-        </button>
-      </nav>
-      <h3 id="tab-title"></h3>
-      <h3>상품 추가하기</h3>
-      <form>
-        <input id="product-name-input" type="text" placeholder="상품명" />
-        <input id="product-price-input" type="number" placeholder="가격" />
-        <input id="product-quantity-input" type="number" placeholder="수량" />
-        <button id="product-add-button">추가하기</button>
-      </form>
-      <h3>상품 현황</h3>
-      <table class="menu_table">
-        <thead>
-          <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>수량</th>
-          </tr>
-        </thead>
-        <tbody id="product-list"></tbody>
-      </table>
-    </div>
+    <div id="app" />
     <script type="module" src="src/index.js"></script>
   </body>
 </html>
