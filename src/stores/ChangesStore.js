@@ -23,8 +23,10 @@ class ChangesStore extends Store {
       },
       [CHANGES_ACTION_TYPE.SPEND_CHANGES]: money => {
         const { changes, coins } = this.state;
+
         if (changes === 0)
           return { SUCCESS: false, error: MESSAGE.NOT_ENOUGH_CHANGES };
+
         const userChangeMoney = money > changes ? changes : money;
         const { changeCoins, machineCoins } = generateChangesCoin(
           userChangeMoney,

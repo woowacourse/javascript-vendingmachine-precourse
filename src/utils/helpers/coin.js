@@ -13,14 +13,6 @@ export const generateRandomChanges = money => {
   return coins;
 };
 
-export const mergeCoins = (originCoins, newCoins) => {
-  const mergedCoins = {};
-  for (const [unit, quantity] of Object.entries(originCoins)) {
-    mergedCoins[unit] = quantity + newCoins[unit];
-  }
-  return mergedCoins;
-};
-
 export const generateChangesCoin = (change, coins) => {
   const changeCoins = DEFAULT_VALUES.COINS;
   const machineCoins = { ...coins };
@@ -37,4 +29,12 @@ export const generateChangesCoin = (change, coins) => {
     }
   }
   return { changeCoins, machineCoins };
+};
+
+export const mergeCoins = (originCoins, newCoins) => {
+  const mergedCoins = {};
+  for (const [unit, quantity] of Object.entries(originCoins)) {
+    mergedCoins[unit] = quantity + newCoins[unit];
+  }
+  return mergedCoins;
 };
