@@ -1,5 +1,6 @@
 import { $, ID } from '../utils/dom.js';
 import { vendingMachineManageMenuTemplate } from '../utils/templates.js';
+import { RULES, ERROR_MSG } from '../utils/constants.js';
 
 const LS_KEY_CHARGES = 'charges';
 
@@ -63,10 +64,26 @@ export default class VendingMachineManage {
     e.preventDefault();
     const chargeInput = parseInt($(`#${ID.VENDING_MACHINE_CHARGE_INPUT}`).value);
 
-    this.saveCharge(chargeInput);
-    this.paintHoldingAmount();
-    this.paintLoadedCharges();
-    this.clearInputs();
+    const isValid = this.validateCharge(chargeInput);
+    if (!isValid) {
+      alert(ERROR_MSG.VENDING_MACHINE_MANAGE);
+    }
+    if (isValid) {
+      this.saveCharge(chargeInput);
+      this.paintHoldingAmount();
+      this.paintLoadedCharges();
+      this.clearInputs();
+    }
+  };
+
+  validateCharge = (chargeInput) => {
+    if (chargeInput < RULES.MIN_PRICE_UNIT) {
+      return false;
+    }
+    if (chargeInput % RULES.MIN_PRICE_UNIT) {
+      return false;
+    }
+    return true;
   };
 
   saveCharge = (chargeInput) => {
