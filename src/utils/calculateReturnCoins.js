@@ -25,6 +25,7 @@ const calculateReturnCoins = () => {
   DOM.showChargeToPurchaseProduct();
 
   DB.overwrite('vendingMachineCoins', DeductedWallet);
+  DOM.showReturnCoins(returnCoinWallet);
 };
 
 const useGreedyArgorithm = (charge, wallet, emptyWallet) => {

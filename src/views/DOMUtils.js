@@ -89,8 +89,8 @@ const DOMUtils = {
     });
   },
 
-  showReturnCoins: () => {
-    UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
+  showReturnCoins: object => {
+    UT.insertHypen(object).forEach(array => {
       const [coinType, quantity] = array;
 
       $(`#${coinType}-quantity`).innerHTML = `${quantity}개`;
