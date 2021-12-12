@@ -34,6 +34,10 @@ export default {
         break;
       case TAB.CHARGE_CHANGE:
         this.renderChargetCoinView();
+        break;
+      case TAB.PURCHASE_PRODUCT:
+        this.renderPurcahseProductView();
+        break;
       default:
         break;
     }
@@ -45,6 +49,10 @@ export default {
 
   renderChargetCoinView() {
     ChargeCoinView.render();
+  },
+
+  renderPurcahseProductView() {
+    PurchaseProductView.render();
   },
 
   onChangeTab(tabName) {
