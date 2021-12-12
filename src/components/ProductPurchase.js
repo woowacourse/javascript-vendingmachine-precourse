@@ -27,6 +27,7 @@ export default class ProductPurchase {
     this.paintCoinToBeReturned();
 
     $('form').addEventListener('submit', this.handleProductPurchaseSubmit);
+    $('table').addEventListener('click', this.handleTableClick);
   };
 
   loadChargeAmount = () => {
@@ -104,21 +105,59 @@ export default class ProductPurchase {
     const $newTableData__name = document.createElement('td');
     const $newTableData__price = document.createElement('td');
     const $newTableData__quantity = document.createElement('td');
+
+    const $newTableData__purchase = document.createElement('td');
     const $newTableData__purchaseBtn = document.createElement('button');
+    $newTableData__purchaseBtn.innerHTML = '구매하기';
+    $newTableData__purchase.appendChild($newTableData__purchaseBtn);
+
     $newTableData__name.innerHTML = product.name;
     $newTableData__price.innerHTML = product.price;
     $newTableData__quantity.innerHTML = product.quantity;
-    $newTableData__purchaseBtn.innerHTML = '구매하기';
     $newTableData__name.classList.add(CLASS.PRODUCT_PURCHASE_NAME);
     $newTableData__price.classList.add(CLASS.PRODUCT_PURCHASE_PRICE);
     $newTableData__quantity.classList.add(CLASS.PRODUCT_PURCHASE_QUANTITY);
     $newTableData__purchaseBtn.classList.add(CLASS.PURCHASE_BTN);
 
+    $newTableData__name.dataset.productName = product.name;
+    $newTableData__price.dataset.productPrice = product.price;
+    $newTableData__quantity.dataset.productQuantity = product.quantity;
+
     $newTableRow.appendChild($newTableData__name);
     $newTableRow.appendChild($newTableData__price);
     $newTableRow.appendChild($newTableData__quantity);
-    $newTableRow.appendChild($newTableData__purchaseBtn);
+    $newTableRow.appendChild($newTableData__purchase);
     $table.appendChild($newTableRow);
+  };
+
+  handleTableClick = (e) => {
+    const clickedRow = e.target.closest('.product-purchase-item');
+    const targetName = clickedRow.children[0].dataset.productName;
+    const targetPrice = clickedRow.children[1].dataset.productPrice;
+
+    this.purchase(targetName, targetPrice);
+  };
+
+  purchase = (targetName, targetPrice) => {
+    this.updateAvailableProducts(targetName);
+    this.updateChargeAmount(targetPrice);
+  };
+
+  updateAvailableProducts = (targetName) => {
+    this.availableProducts.map((obj) => {
+      if (obj.name === targetName) {
+        obj.quantity -= 1;
+      }
+    });
+    localStorage.setItem(
+      LS_KEY.PRODUCT_ADD_PRODUCTS,
+      JSON.stringify(this.availableProducts)
+    );
+  };
+
+  updateChargeAmount = (targetPrice) => {
+    this.chargeAmount -= targetPrice;
+    localStorage.setItem(LS_KEY_CHARGE_AMOUNT, JSON.stringify(this.chargeAmount));
   };
 
   paintTemplate = () => {
