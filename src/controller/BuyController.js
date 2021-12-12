@@ -1,3 +1,5 @@
+import { isMoneyValid } from '../utils/validator.js';
+
 export class BuyController {
   constructor(model, coreView) {
     this.model = model;
@@ -26,6 +28,9 @@ export class BuyController {
   }
 
   onMoneySubmit(insertedMoney) {
+    if (!isMoneyValid(insertedMoney)) {
+      return;
+    }
     const totalInsertedMoney = this.model.addInsertedMoney(insertedMoney);
     this.coreView.buyView.showTotalInsertedMoney(totalInsertedMoney);
   }
