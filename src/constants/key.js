@@ -11,4 +11,7 @@ export default {
   charge100Quantity: 'charge-100-quantity',
   charge50Quantity: 'charge-50-quantity',
   charge10Quantity: 'charge-10-quantity',
+
+  // 투입된 금액 관련 Key
+  purchaseChargeAmount: 'purchase-charge-amount',
 };

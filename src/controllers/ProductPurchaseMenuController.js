@@ -1,5 +1,6 @@
 import ProductPurchaseMenuView from '../views/ProductPurchaseMenuView.js';
 import ProductPurchaseMenuModel from '../models/ProductPurchaseMenuModel.js';
+import ProductAddMenuModel from '../models/ProductAddMenuModel.js';
 import ProductPurchaseMenuValidator from '../validators/productPurchaseMenu.js';
 import { $ } from '../utils/dom.js';
 
@@ -9,6 +10,7 @@ class ProductPurchaseMenuController {
   constructor(currentMenu) {
     this.$productPurchaseMenuModel = new ProductPurchaseMenuModel();
     this.$productPurchaseMenuView = new ProductPurchaseMenuView();
+    this.$productAddMenuModel = new ProductAddMenuModel();
 
     this.initAddEventListeners();
     if (currentMenu === Selector.productPurchaseMenuId) this.changeMenu();
@@ -24,7 +26,10 @@ class ProductPurchaseMenuController {
   changeMenu() {
     this.$productPurchaseMenuView.render();
     this.$productPurchaseMenuView.renderProductTableBodyWithData(
-      this.$productPurchaseMenuModel.getProductItems(),
+      this.$productAddMenuModel.getProductItems(),
+    );
+    this.$productPurchaseMenuView.renderPurchaseChargeAmount(
+      this.$productPurchaseMenuModel.getPurchaseChargeAmount(),
     );
   }
 
@@ -43,7 +48,9 @@ class ProductPurchaseMenuController {
     )
       return;
 
-    this.$productPurchaseMenuView.renderPurchaseChargeAmount(charge);
+    const sumCharge = this.$productPurchaseMenuModel.getPurchaseChargeAmount() + Number(charge);
+    this.$productPurchaseMenuModel.setPurchaseChargeAmount(sumCharge);
+    this.$productPurchaseMenuView.renderPurchaseChargeAmount(sumCharge);
     this.$productPurchaseMenuView.resetPurchaseChargeInput();
   }
 }

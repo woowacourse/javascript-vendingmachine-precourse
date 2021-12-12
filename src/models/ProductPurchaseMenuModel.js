@@ -3,8 +3,12 @@ import Store from '../utils/store.js';
 import Key from '../constants/key.js';
 
 class ProductPurchaseMenuModel {
-  getProductItems() {
-    return Store.getLocalStorage(Key.productItems) || [];
+  getPurchaseChargeAmount() {
+    return Store.getLocalStorage(Key.purchaseChargeAmount) || 0;
+  }
+
+  setPurchaseChargeAmount(amount) {
+    Store.setLocalStorage(Key.purchaseChargeAmount, amount);
   }
 }
 
