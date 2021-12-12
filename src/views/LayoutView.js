@@ -1,4 +1,5 @@
 import View from './View.js';
+import { TAB, ELEMENT_ID } from '../utils/constants.js';
 
 const LayoutView = { ...View };
 
@@ -11,12 +12,12 @@ LayoutView.setup = function (element) {
 LayoutView.render = function () {
   this.element.innerHTML = `
         <h2>🥤자판기🥤</h2>
-        <div id="tab-view">
-        <button id="product-add-menu">상품 관리</button>
-        <button id="vending-machine-manage-menu">잔돈 충전</button>
-        <button id="product-purchase-menu">상품 구매</button>
+        <div id=${ELEMENT_ID.TAB_VIEW}>
+        <button id=${ELEMENT_ID.PRODUCT_ADD_MENU}>${TAB.MANAGE_PRODUCT}</button>
+        <button id=${ELEMENT_ID.VENDING_MACHINE_MANAGE_MENU}>${TAB.CHARGE_CHANGE}</button>
+        <button id=${ELEMENT_ID.PRODUCT_PURCHASE_MENU}>${TAB.PURCHASE_PRODUCT}</button>
         </div>
-        <div id="result-view"></div>
+        <div id=${ELEMENT_ID.RESULT_VIEW}></div>
     `;
 };
 

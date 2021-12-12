@@ -1,4 +1,5 @@
 import View from './View.js';
+import { EVENT_TYPE } from '../utils/constants.js';
 
 const TabView = { ...View };
 
@@ -17,7 +18,7 @@ TabView.bindClick = function () {
 };
 
 TabView.onClick = function (tabName) {
-  this.emit('changeTab', { tabName });
+  this.emit(EVENT_TYPE.CHANGE_TAB, { tabName });
 };
 
 export default TabView;

@@ -1,4 +1,5 @@
 import View from './View.js';
+import { ELEMENT_ID, PRODUCT } from '../utils/constants.js';
 
 const ManageProductView = { ...View };
 
@@ -11,18 +12,18 @@ ManageProductView.render = function () {
   this.element.innerHTML = `
     <h4>상품 추가하기</h4>
     <div>
-      <input placeholder="상품명" id="product-name-input" type="text"/>
-      <input placeholder="상품 가격" id="product-price-input" type="number"/>
-      <input placeholder="수량" id="product-quantity-input" type="number"/>
-      <button id="product-add-button">추가하기</button>
+      <input placeholder=${PRODUCT.NAME} id=${ELEMENT_ID.PRODUCT_NAME_INPUT} type="text"/>
+      <input placeholder=${PRODUCT.PRICE} id=${ELEMENT_ID.PRODUCT_PRICE_INPUT} type="number"/>
+      <input placeholder=${PRODUCT.QUANTITY} id=${ELEMENT_ID.PRODUCT_QUANTITY_INPUT} type="number"/>
+      <button id=${ELEMENT_ID.PRODUCT_ADD_BUTTON}>추가하기</button>
     </div>
     <h4>상품 현황</h4>
     <table>
       <thead> 
         <tr>
-          <th>상품명</th>
-          <th>상품 가격</th>
-          <th>수량</th>
+          <th>${PRODUCT.NAME}</th>
+          <th>${PRODUCT.PRICE}</th>
+          <th>${PRODUCT.QUANTITY}</th>
         <tr/>
       </thead>
     `;
