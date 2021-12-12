@@ -87,3 +87,7 @@ export const LABEL = {
   50: '50원',
   10: '10원',
 };
+
+export const ERROR = {
+  MANAGEINPUT: '입력한 값이 올바르지 않습니다'
+}

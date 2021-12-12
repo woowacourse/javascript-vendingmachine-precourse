@@ -1,4 +1,5 @@
 import Validation from '../utils/validation.js';
+import { ERROR } from '../utils/constant.js';
 import View from '../view/view.js';
 
 export class Inventory {
@@ -13,7 +14,7 @@ export class Inventory {
       localStorage.setItem(name, `${price}-${quantity}`);
       this.view.managePage.attachNewProduct(name, price, quantity);
     } else {
-      alert('입력 값이 올바르지 않습니다.');
+      alert(ERROR.MANAGEINPUT);
     }
   }
 }
