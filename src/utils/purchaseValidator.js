@@ -35,7 +35,7 @@ class PurchaseValidator {
   }
 
   static isLackOfMoney(price, userInputMoney) {
-    if (price > userInputMoney.totalAmount) {
+    if (price > userInputMoney.amount) {
       alert('돈이 부족합니다.');
       return true;
     }
