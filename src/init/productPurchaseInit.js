@@ -73,7 +73,7 @@ function setCoinTable(productPurchaseDiv) {
   let table = document.createElement('table');
   let thead = document.createElement('thead');
   let tbody = document.createElement('tbody');
-  tbody.setAttribute('id', 'product-purchase-table');
+
   table.appendChild(thead);
   table.appendChild(tbody);
 
@@ -85,11 +85,7 @@ function setCoinTable(productPurchaseDiv) {
 }
 
 function setCoinBtn(productPurchaseDiv) {
-  func.createBtn(
-    productPurchaseDiv,
-    PRODUCT_PURCHASE.RETURN_BTN,
-    'coin-return-button',
-  );
+  func.createBtn(productPurchaseDiv, PRODUCT_PURCHASE.RETURN_BTN, 'coin-return-button');
 }
 
 // 상품 표 첫번째 행
@@ -107,7 +103,7 @@ function setProductTable(productPurchaseDiv) {
   let table = document.createElement('table');
   let thead = document.createElement('thead');
   let tbody = document.createElement('tbody');
-
+  tbody.setAttribute('id', 'product-purchase-table');
   table.appendChild(thead);
   table.appendChild(tbody);
   setProductManageTable(thead);
@@ -119,11 +115,7 @@ function setProductTable(productPurchaseDiv) {
 }
 
 function setChargeAmount(productPurchaseDiv) {
-  func.appendP(
-    productPurchaseDiv,
-    PRODUCT_PURCHASE.COIN_STORAGE,
-    'charge-amount',
-  );
+  func.appendP(productPurchaseDiv, PRODUCT_PURCHASE.COIN_STORAGE, 'charge-amount');
 }
 
 function setReturnBtn(productPurchaseDiv) {
@@ -131,12 +123,7 @@ function setReturnBtn(productPurchaseDiv) {
 }
 
 function setChargeInput(productPurchaseDiv) {
-  func.createInput(
-    productPurchaseDiv,
-    PRODUCT_PURCHASE.INPUT,
-    'number',
-    'charge-input',
-  );
+  func.createInput(productPurchaseDiv, PRODUCT_PURCHASE.INPUT, 'number', 'charge-input');
 }
 
 // 전체 감싸주는 Div 생성

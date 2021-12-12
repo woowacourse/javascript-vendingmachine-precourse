@@ -31,7 +31,14 @@ export function createInput(element, text, type, id) {
 export function createBtn(element, text, id) {
   const btn = document.createElement('button');
   btn.setAttribute('id', id);
+  appendText(btn, text);
 
+  element.appendChild(btn);
+}
+
+export function createBtnClass(element, text, className) {
+  const btn = document.createElement('button');
+  btn.setAttribute('class', className);
   appendText(btn, text);
 
   element.appendChild(btn);
