@@ -183,47 +183,47 @@ export default class ProductPurchaseView {
     document.getElementById('coin-10-quantity').innerHTML = `${userCoins[10]}개`;
   }
 
-  static addPurchaseEvent() {
-    document.addEventListener('click', (e) => {
-      const className = e.target.className;
-      const target = e.target.parentElement.parentElement;
+  // static addPurchaseEvent() {
+  //   document.addEventListener('click', (e) => {
+  //     const className = e.target.className;
+  //     const target = e.target.parentElement.parentElement;
 
-      this.checkClassName(className, target);      
-    })
-  }
+  //     this.checkClassName(className, target);      
+  //   })
+  // }
 
-  static checkClassName(className, target) {
-    if(className === 'purchase-button'){
-      const name = target.childNodes[1].dataset.productName;
-      const price = target.childNodes[3].dataset.productPrice;
-      const quantity = target.childNodes[5].dataset.productQuantity;
+  // static checkClassName(className, target) {
+  //   if(className === 'purchase-button'){
+  //     const name = target.childNodes[1].dataset.productName;
+  //     const price = target.childNodes[3].dataset.productPrice;
+  //     const quantity = target.childNodes[5].dataset.productQuantity;
 
-      this.purchase(name, price, quantity);
-    }
-  }
+  //     this.purchase(name, price, quantity);
+  //   }
+  // }
 
-  static purchase(name, price, quantity) {
-    const product = JSON.parse(localStorage.getItem(PRODUCT));
-    const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
+  // static purchase(name, price, quantity) {
+  //   const product = JSON.parse(localStorage.getItem(PRODUCT));
+  //   const userMoney = JSON.parse(localStorage.getItem(USER_CHARGE));
 
-    if(parseInt(quantity) <= 0) {
-      return alert(OUT_OF_STOCK);
-    }
-    this.checkCanBuy(name, price, product, userMoney);
-  }
+  //   if(parseInt(quantity) <= 0) {
+  //     return alert(OUT_OF_STOCK);
+  //   }
+  //   this.checkCanBuy(name, price, product, userMoney);
+  // }
 
-  static checkCanBuy(name, price, product, userMoney) {
-    if(parseInt(userMoney[VALUES]) - parseInt(price) >= 0){
-      userMoney[VALUES] = parseInt(userMoney[VALUES]) - parseInt(price);
-      product[name][VALUES][1] -= 1;
+  // static checkCanBuy(name, price, product, userMoney) {
+  //   if(parseInt(userMoney[VALUES]) - parseInt(price) >= 0){
+  //     userMoney[VALUES] = parseInt(userMoney[VALUES]) - parseInt(price);
+  //     product[name][VALUES][1] -= 1;
 
-      localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
-      localStorage.setItem(PRODUCT, JSON.stringify(product));
+  //     localStorage.setItem(USER_CHARGE, JSON.stringify(userMoney));
+  //     localStorage.setItem(PRODUCT, JSON.stringify(product));
 
-      this.showProductTable();
-      this.showUserCharge(userMoney);
-    } else {
-      alert(NOT_ENOUGH_MONEY);
-    }  
-  }
+  //     this.showProductTable();
+  //     this.showUserCharge(userMoney);
+  //   } else {
+  //     alert(NOT_ENOUGH_MONEY);
+  //   }  
+  // }
 }
