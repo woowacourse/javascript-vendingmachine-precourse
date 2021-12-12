@@ -1,7 +1,7 @@
 import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER } from '../utils/constant.js';
 
 export default class ChargePage {
-  constructor(page) {
+  constructor(controller) {
     this.subtitleCharge = document.createElement('h3');
     this.subtitleCurrent = document.createElement('h3');
     this.inputCoin = document.createElement('input');
@@ -12,8 +12,7 @@ export default class ChargePage {
     this.tr = document.createElement('tr');
     this.thCoin = document.createElement('th');
     this.thQuantity = document.createElement('th');
-    this.td = document.createElement('td');
-    this.page = page;
+    this.controller = controller;
   }
 
   setUIText() {
@@ -33,16 +32,26 @@ export default class ChargePage {
   }
   
   // index.html에 생성한 tab들 넣기
-  setUI() {
+  setUI(page) {
     this.setUIText();
     this.setTable();
     this.buttonCharge.style.margin = MARGIN;
-    this.page.appendChild(this.subtitleCharge);
-    this.page.appendChild(this.inputCoin);
-    this.page.appendChild(this.buttonCharge);
-    this.page.appendChild(this.textCurrent);
-    this.page.appendChild(this.showCurrent);
-    this.page.appendChild(this.subtitleCurrent);
-    this.page.appendChild(this.table);
+    page.appendChild(this.subtitleCharge);
+    page.appendChild(this.inputCoin);
+    page.appendChild(this.buttonCharge);
+    page.appendChild(this.textCurrent);
+    page.appendChild(this.showCurrent);
+    page.appendChild(this.subtitleCurrent);
+    page.appendChild(this.table);
+  }
+
+  buttonHandler(inventory) {
+    this.buttonAdd.addEventListener('click', (e) => {
+      e.preventDefault();
+      const name = this.inputName.value;
+      const price = this.inputPrice.value;
+      const quantity = this.inputQuantity.value;
+      inventory.saveItem(name, price, quantity);
+    })
   }
 }

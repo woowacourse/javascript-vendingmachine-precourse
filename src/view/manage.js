@@ -1,7 +1,7 @@
 import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS} from '../utils/constant.js';
 
 export default class ManagePage {
-  constructor(inventory) {
+  constructor(controller) {
     this.subtitleAdd = document.createElement('h3');
     this.subtitleCurrent = document.createElement('h3');
     this.inputName = document.createElement('input');
@@ -13,8 +13,7 @@ export default class ManagePage {
     this.thName = document.createElement('th');
     this.thPrice = document.createElement('th');
     this.thQuantity = document.createElement('th');
-    this.td = document.createElement('td');
-    this.inventory = inventory;
+    this.controller = controller;
   }
 
   setUIText() {
@@ -54,13 +53,13 @@ export default class ManagePage {
     page.appendChild(this.table);
   }
 
-  buttonHandler(inventory) {
+  buttonHandler() {
     this.buttonAdd.addEventListener('click', (e) => {
       e.preventDefault();
       const name = this.inputName.value;
       const price = this.inputPrice.value;
       const quantity = this.inputQuantity.value;
-      inventory.saveItem(name, price, quantity);
+      this.controller.addProduct(name, price, quantity);
     })
   }
   

@@ -1,7 +1,7 @@
 import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER } from '../utils/constant.js';
 
 export default class PurchasePage {
-  constructor(page) {
+  constructor(controller) {
     this.subtitleInsert = document.createElement('h3');
     this.subtitleItemList = document.createElement('h3');
     this.subtitleLeft = document.createElement('h3');
@@ -21,7 +21,7 @@ export default class PurchasePage {
     this.thCoin = document.createElement('th');
     this.thPurchase = document.createElement('th');
     this.td = document.createElement('td');
-    this.page = page;
+    this.controller = controller;
   }
 
   setUIText() {
@@ -55,19 +55,19 @@ export default class PurchasePage {
   }
   
   // index.html에 생성한 tab들 넣기
-  setUI() {
+  setUI(page) {
     this.setUIText();
     this.setTableCurrent();
     this.setTableReturn();
     this.buttonInsert.style.margin = MARGIN;
-    this.page.appendChild(this.subtitleInsert);
-    this.page.appendChild(this.inputCoin);
-    this.page.appendChild(this.buttonInsert);
-    this.page.appendChild(this.textCurrent);
-    this.page.appendChild(this.showCurrent);
-    this.page.appendChild(this.subtitleItemList);
-    this.page.appendChild(this.tableCurrent);
-    this.page.appendChild(this.subtitleLeft);
-    this.page.appendChild(this.tableReturn);
+    page.appendChild(this.subtitleInsert);
+    page.appendChild(this.inputCoin);
+    page.appendChild(this.buttonInsert);
+    page.appendChild(this.textCurrent);
+    page.appendChild(this.showCurrent);
+    page.appendChild(this.subtitleItemList);
+    page.appendChild(this.tableCurrent);
+    page.appendChild(this.subtitleLeft);
+    page.appendChild(this.tableReturn);
   }
 }

@@ -5,7 +5,7 @@ import ChargePage from './charge.js';
 import PurchasePage from './purchase.js';
 
 export default class View {
-  constructor(inventory) {
+  constructor(controller) {
     this.app = $('#app');
     this.manageTab = document.createElement('button');
     this.chargeTab = document.createElement('button');
@@ -14,10 +14,9 @@ export default class View {
     this.chargePageDiv = document.createElement('div');
     this.purchasePageDiv = document.createElement('div');
     this.title = document.createElement('h1');
-    this.inventory = inventory;
-    this.managePage = new ManagePage(this.inventory);
-    this.chargePage = new ChargePage();
-    this.purchasePage = new PurchasePage();
+    this.managePage = new ManagePage(controller);
+    this.chargePage = new ChargePage(controller);
+    this.purchasePage = new PurchasePage(controller);
   }
 
   setText() {
@@ -44,8 +43,8 @@ export default class View {
 
   setAllPage() {
     this.app.appendChild(this.managePageDiv);
-    this.app.appendChild(this.chargePageDiv);
-    this.app.appendChild(this.purchasePageDiv);
+    // this.app.appendChild(this.chargePageDiv);
+    // this.app.appendChild(this.purchasePageDiv);
   }
 
   setBasicUI() {
@@ -53,10 +52,9 @@ export default class View {
     this.app.appendChild(this.title);
     this.setTabs();
     this.getManagePage();
-    // this.getChargePage();
-    // this.getPurchasePage();
+    this.getChargePage();
+    this.getPurchasePage();
     this.setAllPage();
-    
   }
 
   hideAllPage() {
@@ -72,7 +70,7 @@ export default class View {
   getManagePage() {
     this.managePage.setUI(this.managePageDiv);
     this.managePage.showProductListAll();
-    this.managePage.buttonHandler(this.inventory);
+    this.managePage.buttonHandler();
   }
 
   getChargePage() {
@@ -80,6 +78,6 @@ export default class View {
   }
 
   getPurchasePage() {
-    this.purchasePage.setUI(this.purchasePage);
+    this.purchasePage.setUI(this.purchasePageDiv);
   }
 }
