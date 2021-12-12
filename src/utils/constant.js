@@ -46,6 +46,7 @@ export const ERROR_MESSAGE = {
   UNIT_OF_TEN(placeholder) {
     return `${placeholder}은 10원 단위로 입력해주세요.`;
   },
+  CHARGE_COIN_FIRST: '자판기에 잔돈 충전을 먼저 해주세요.',
 };
 
 export const LOCAL_STORAGE = {

@@ -222,6 +222,11 @@ export default class CheckEventTarget {
     $coinReturnButton.addEventListener(EVENT.CLICK, () => {
       const previousCoinsHash = { ...this.coins.getCoinsHash() };
       const previousCoinAmount = this.coins.getCoinAmount();
+      if (previousCoinAmount === NUMBER.ZERO) {
+        this.render.alertMessage(ERROR_MESSAGE.CHARGE_COIN_FIRST);
+        return;
+      }
+
       this.hasReturnCoin();
       this.renderPurchaseChargeAmount();
       this.reRenderMachineManageMenu(Object.entries(previousCoinsHash), previousCoinAmount);
