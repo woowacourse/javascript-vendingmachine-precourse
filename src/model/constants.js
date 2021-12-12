@@ -19,6 +19,20 @@ export const SELECTOR = {
   vendingCoin100: 'vending-machine-coin-100-quantity',
   vendingCoin50: 'vending-machine-coin-500-quantity',
   vendingCoin10: 'vending-machine-coin-10-quantity',
+
+  chargeInput: 'charge-input',
+  chargeButton: 'charge-button',
+  chargeAmount: 'charge-amount',
+  purchaseItem: 'product-purchase-item',
+  purchaseButton: 'purchase-button',
+  purchaseName: 'product-purchase-name',
+  purchasePrice: 'product-purchase-price',
+  purchaseQuantity: 'product-purchase-quantity',
+  returnButton: 'coin-return-button',
+  coin500: 'coin-500-quantity',
+  coin100: 'coin-100-quantity',
+  coin50: 'coin-50-quantity',
+  coin10: 'coin-10-quantity',
 };
 
 export const KEY = {

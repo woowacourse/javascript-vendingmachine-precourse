@@ -7,6 +7,7 @@ import {
 } from '../model/dom.js';
 import { initAllProductAdd } from '../controller/productAdd.js';
 import { initAllVending } from '../controller/vending.js';
+import { initAllPurchase } from '../controller/purchase.js';
 
 export default class View {
   constructor() {
@@ -34,5 +35,6 @@ export default class View {
   drawPurchaseMenu() {
     this.clearContainer();
     $('container').insertAdjacentHTML('afterbegin', productPurchaseMenu);
+    initAllPurchase();
   }
 }
