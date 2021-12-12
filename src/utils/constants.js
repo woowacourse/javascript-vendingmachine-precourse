@@ -2,6 +2,7 @@ const COIN_UNITS = [500, 100, 50, 10];
 
 const STORAGE_NAME = {
   PRODUCT: 'product',
+  AMOUNT: 'amount',
   COIN: 'coin',
 };
 

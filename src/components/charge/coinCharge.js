@@ -1,12 +1,12 @@
 import { $ } from '../../utils/querySelector.js';
-import { COIN_UNITS, ERROR_MESSAGE, STANDARD } from '../../utils/constants.js';
+import { COIN_UNITS, ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { showConvertedCoins, coinChargeTemplate } from './coinChargeTemplate.js';
-import { setChargeStorage } from '../storage/coin.js';
+import { getChargeStorage, setChargeStorage } from '../storage/coin.js';
 
 let currentAmount = STANDARD.CURRENT_MONEY;
 
-const convertedCoins = {
+let convertedCoins = {
   500: 0,
   100: 0,
   50: 0,
@@ -41,12 +41,22 @@ const handleCoinChargeSubmit = (event) => {
   }
 
   showCurrentAmount(chargedCoin);
+  setChargeStorage(STORAGE_NAME.AMOUNT, currentAmount);
   convertAmountIntoCoins(chargedCoin);
   showConvertedCoins(convertedCoins);
-  setChargeStorage(convertedCoins);
+  setChargeStorage(STORAGE_NAME.COIN, convertedCoins);
 };
 
 export const showCoinCharge = () => {
   $('#app-container').innerHTML = coinChargeTemplate;
+  const storedCharge = getChargeStorage(STORAGE_NAME.COIN);
+  const storedAmount = getChargeStorage(STORAGE_NAME.AMOUNT);
+
+  if (storedCharge) {
+    convertedCoins = storedCharge;
+    showConvertedCoins(storedCharge);
+    showCurrentAmount(storedAmount);
+  }
+
   $('form').addEventListener('submit', handleCoinChargeSubmit);
 };

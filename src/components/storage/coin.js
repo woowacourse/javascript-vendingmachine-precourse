@@ -1,10 +1,8 @@
-import { STORAGE_NAME } from '../../utils/constants.js';
-
-export const getChargeStorage = () => {
-  const chargedCoin = localStorage.getItem(STORAGE_NAME.COIN);
+export const getChargeStorage = (name) => {
+  const chargedCoin = localStorage.getItem(name);
   return JSON.parse(chargedCoin);
 };
 
-export const setChargeStorage = (convertedCoins) => {
-  localStorage.setItem(STORAGE_NAME.COIN, JSON.stringify(convertedCoins));
+export const setChargeStorage = (name, convertedCoins) => {
+  localStorage.setItem(name, JSON.stringify(convertedCoins));
 };
