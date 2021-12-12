@@ -22,10 +22,18 @@ class ManageValidator {
     }
   }
 
+  static isProductPriceDoesNotDivideBy10(price) {
+    if (price % 10) {
+      alert('상품 가격은 10원으로 나누어 떨어지는 수로 입력해주세요.');
+      return true;
+    }
+  }
+
   static isInvalidAddItemInput({ name, price, quantity }) {
     if (this.isProudctNameDuplicated(name)) return true;
     if (this.isProductNameBlank(name)) return true;
     if (this.isProductPriceUnder100(price)) return true;
+    if (this.isProductPriceDoesNotDivideBy10(price)) return true;
     return false;
   }
 }
