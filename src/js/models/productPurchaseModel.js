@@ -1,6 +1,30 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 
+export const isValidCharge = chargeInput => {
+  if (chargeInput === '') {
+    alert('공백입니다.');
+    return false;
+  }
+  if (Number(chargeInput) <= 0) {
+    alert('0원 이상을 투입하세요.');
+    return false;
+  }
+  if (Number(chargeInput % 10 !== 0)) {
+    alert('10원으로 나누어지지 않습니다.');
+    return false;
+  }
+  return true;
+};
+
+export const isValidPurchase = (amount, price) => {
+  if (price > amount) {
+    alert('현재 넣은 금액보다 상품의 가격이 더 높습니다. 돈을 더 넣으세요.');
+    return false;
+  }
+  return true;
+};
+
 const calculatefiveHundred = (change, hasCoin) => {
   const needCount = Math.floor(change / 500);
   if (needCount > hasCoin.fiveHundred) {
@@ -73,7 +97,7 @@ const calculateTen = (change, hasCoin) => {
   return change;
 };
 
-const getChange = () => {
+export const getChange = () => {
   let change = Number($('#charge-amount').innerText);
   const hasCoin = store.getLocalStorage('coins');
 
@@ -86,6 +110,5 @@ const getChange = () => {
   change = calculateTen(change, hasCoin);
 
   $('#charge-amount').innerText = change;
+  return change;
 };
-
-export default getChange;

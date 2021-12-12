@@ -1,48 +1,24 @@
 import $ from '../utils/dom.js';
-import { resetPurchaseInput } from '../views/resetInput.js';
-import printInputCharge from '../views/printInputCharge.js';
-import store from '../utils/store.js';
 import renderProducts from '../views/renderProducts.js';
-import getChange from '../models/calculateChange.js';
+import store from '../utils/store.js';
+import { resetPurchaseInput, printInputCharge } from '../views/productPurchaseView.js';
+import { isValidCharge, isValidPurchase, getChange } from '../models/productPurchaseModel.js';
 
-const isValidCharge = chargeInput => {
-  if (chargeInput === '') {
-    alert('공백입니다.');
-    return false;
-  }
-  if (Number(chargeInput) <= 0) {
-    alert('0원 이상을 투입하세요.');
-    return false;
-  }
-  if (Number(chargeInput % 10 !== 0)) {
-    alert('10원으로 나누어지지 않습니다.');
-    return false;
-  }
-  return true;
-};
+function HandleProductPurchase() {
+  this.amount = Number($('#charge-amount').innerText) || 0;
 
-const isValidPurchase = (amount, price) => {
-  if (price > amount) {
-    alert('현재 넣은 금액보다 상품의 가격이 더 높습니다. 돈을 더 넣으세요.');
-    return false;
-  }
-  return true;
-};
-
-const handleProductPurchase = () => {
   if (store.getLocalStorage('products')) {
     renderProducts();
   }
-  let amount;
 
   // (1) 금액 투입 기능
   $('#charge-button').addEventListener('click', e => {
     e.preventDefault();
-    amount = Number($('#charge-amount').innerText) || 0;
     const purchaseInput = $('#charge-input').value;
+
     if (isValidCharge(purchaseInput)) {
-      amount += Number(purchaseInput);
-      printInputCharge(amount);
+      this.amount += Number(purchaseInput);
+      printInputCharge(this.amount);
       return;
     }
     resetPurchaseInput();
@@ -52,10 +28,10 @@ const handleProductPurchase = () => {
   $('#product-purchase-list').addEventListener('click', e => {
     if (e.target.className === 'purchase-button') {
       const price = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
-      if (isValidPurchase(amount, price)) {
+      if (isValidPurchase(this.amount, price)) {
         // 보유 금액 업데이트
-        amount -= price; // 아래코드까지, amount를 업데이트해주는 함수로 변환하기
-        printInputCharge(amount);
+        this.amount -= price; // 아래코드까지, amount를 업데이트해주는 함수로 변환하기
+        printInputCharge(this.amount);
 
         // 수량 업데이트
         const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
@@ -71,9 +47,10 @@ const handleProductPurchase = () => {
     }
   });
 
+  // (3) 잔돈을 반환하는 기능
   $('#coin-return-button').addEventListener('click', () => {
-    getChange();
+    this.amount = getChange();
   });
-};
+}
 
-export default handleProductPurchase;
+export default HandleProductPurchase;

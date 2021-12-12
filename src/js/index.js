@@ -5,7 +5,7 @@ import renderVendingMachine from './views/renderVendingMachine.js';
 import renderProductPurchase from './views/renderProductPurchase.js';
 import HandleProductAdd from './controllers/HandleProductAdd.js';
 import HandleVendingMachine from './controllers/HandleVendingMachine.js';
-import handleProductPurchase from './controllers/handleProductPurchase.js';
+import HandleProductPurchase from './controllers/HandleProductPurchase.js';
 
 function VendingMachineApp() {
   this.init = () => {
@@ -26,7 +26,7 @@ function VendingMachineApp() {
 
     if (e.target.id === 'product-purchase-menu') {
       renderProductPurchase();
-      handleProductPurchase();
+      new HandleProductPurchase();
     }
   });
 }
