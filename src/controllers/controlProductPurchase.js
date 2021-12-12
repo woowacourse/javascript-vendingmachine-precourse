@@ -1,16 +1,14 @@
 import { $ } from '../dom/dom.js';
-import getUserChargeInput from '../modules/getUserChargeInput.js';
-import setUserMoneyStorage from '../storage/setUserMoneyStorage.js';
-import initInsertCoinInputElement from '../views/initInsertCoinInputElement.js';
-import renderInsertCoinShowElement from '../views/renderInsertCoinShowElement.js';
+import handleChargeButtonEvent from '../modules/handleChargeButtonEvent.js';
+
+import handlePurchaseButtonEvent from '../modules/handlePurchaseButtonEvent.js';
 
 export default function controlProductPurchase() {
   $('#charge-button').addEventListener('click', () => {
-    const userChargeInput = getUserChargeInput();
-    setUserMoneyStorage(userChargeInput);
-    renderInsertCoinShowElement();
-    initInsertCoinInputElement();
+    handleChargeButtonEvent();
   });
-  $('#purchase-button').addEventListener('click', () => {});
+  $('.purchase-button').addEventListener('click', (e) => {
+    handlePurchaseButtonEvent(e);
+  });
   $('#coin-return-button').addEventListener('click', () => {});
 }
