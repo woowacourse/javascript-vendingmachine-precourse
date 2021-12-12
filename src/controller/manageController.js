@@ -13,6 +13,7 @@ class ManageController {
     const newItem = new Item(name, price, quantity);
     items.push(newItem);
     console.log(items);
+    this.view.render();
   }
 
   bindEvent() {

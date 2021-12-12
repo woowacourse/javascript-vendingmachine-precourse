@@ -12,7 +12,22 @@ class ManageView {
     };
   }
 
-  render() {}
+  getItems() {
+    return items
+      .map(
+        (item) => `
+      <tr class="product-manage-item">
+        <td class="product-manage-name">${item.name}</td>
+        <td class="product-manage-price">${item.price}</td>
+        <td class="product-manage-quantity">${item.quantity}</td>
+      </tr>`
+      )
+      .join('');
+  }
+
+  render() {
+    $('#product-list').innerHTML = this.getItems();
+  }
 
   template() {
     return `
