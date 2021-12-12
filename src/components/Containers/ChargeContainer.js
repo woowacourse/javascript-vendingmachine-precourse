@@ -50,7 +50,7 @@ export default class ChargeContainer extends Component {
         setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, this.$state.coins);
         setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, amountValue);
 
-        this.setState({coins: this.$state.coins, amount: this.$state.amount + amountValue});
+        this.setState({amount: this.$state.amount + amountValue});
         this.setEvent();
       }
     });
