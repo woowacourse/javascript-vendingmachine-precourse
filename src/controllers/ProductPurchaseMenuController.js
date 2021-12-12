@@ -34,9 +34,16 @@ class ProductPurchaseMenuController {
   }
 
   onClickTabContent(event) {
-    const { id } = event.target;
+    const { id, className } = event.target;
 
-    if (id === Selector.chargeButtonId) this.onClickChargeButton();
+    if (id === Selector.chargeButtonId) {
+      this.onClickChargeButton();
+      return;
+    }
+
+    if (className === Selector.purchaseButtonClass) {
+      this.onClickPurchaseButton(event);
+    }
   }
 
   onClickChargeButton() {
@@ -52,6 +59,20 @@ class ProductPurchaseMenuController {
     this.$productPurchaseMenuModel.setPurchaseChargeAmount(sumCharge);
     this.$productPurchaseMenuView.renderPurchaseChargeAmount(sumCharge);
     this.$productPurchaseMenuView.resetPurchaseChargeInput();
+  }
+
+  onClickPurchaseButton(event) {
+    const tableDatas = event.target.closest('tr').getElementsByTagName('td');
+
+    const purchaseName = tableDatas[0].dataset.productName;
+    const purchasePrice = tableDatas[1].dataset.productPrice;
+    const purchaseQuantity = tableDatas[2].dataset.productQuantity;
+
+    const subtractPrice =
+      this.$productPurchaseMenuModel.getPurchaseChargeAmount() - Number(purchasePrice);
+
+    this.$productPurchaseMenuModel.setPurchaseChargeAmount(subtractPrice);
+    this.$productPurchaseMenuView.renderPurchaseChargeAmount(subtractPrice);
   }
 }
 
