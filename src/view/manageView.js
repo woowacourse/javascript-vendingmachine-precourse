@@ -2,8 +2,6 @@ import { $ } from '../utils/dom.js';
 import { items } from '../model/store.js';
 
 class ManageView {
-  constructor() {}
-
   getInput() {
     return {
       name: $('#product-name-input').value,

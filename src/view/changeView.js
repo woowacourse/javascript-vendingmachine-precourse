@@ -3,8 +3,6 @@ import { reservedChange } from '../model/store.js';
 import { COIN } from '../constants/index.js';
 
 class ChangeView {
-  constructor() {}
-
   getInput() {
     return Number($('#vending-machine-charge-input').value);
   }

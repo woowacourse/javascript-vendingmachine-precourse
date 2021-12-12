@@ -3,8 +3,6 @@ import { userInputMoney, returnedChange } from '../model/store.js';
 import { items } from '../model/store.js';
 
 class PurchaseView {
-  constructor() {}
-
   getInput() {
     return Number($('#charge-input').value);
   }
