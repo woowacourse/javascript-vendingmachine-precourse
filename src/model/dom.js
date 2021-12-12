@@ -5,8 +5,8 @@ export const fixMenus = `
     <button id="vending-machine-manage-menu">잔돈 충전</button>
     <button id="product-purchase-menu">상품 구매</button>
 </div>
-<div id="container></div>
-`
+<div id="container"></div>
+`;
 
 export const productAddMenu = `
 <h2>상품 추가하기</h2>
@@ -20,13 +20,8 @@ export const productAddMenu = `
     <th>상품명</th>
     <th>가격</th>
     <th>수량</th>
-    <tr class="product-manage-item">
-        <td class="product-manage-name"></td>
-        <td class="product-manage-price"></td>
-        <td class="product-manage-quantity"></td>
-    </tr>
 </table>
-`
+`;
 
 export const vendingMachineManageMenu = `
 <h2>자판기 동전 충전하기</h2>
@@ -55,7 +50,7 @@ export const vendingMachineManageMenu = `
         <td id="vending-machine-coin-10-quantity"></td>
     </tr>
 </table>
-`
+`;
 
 export const productPurchaseMenu = `
 <h2>금액 투입</h2>
@@ -99,4 +94,12 @@ export const productPurchaseMenu = `
         <td id="coin-10-quantity"></td>
     </tr>
 </table>
-`
+`;
+
+export const productAddTableRow = product => `
+<tr class="product-manage-item">
+    <td class="product-manage-name">${product.name}</td>
+    <td class="product-manage-price">${product.price}</td>
+    <td class="product-manage-quantity">${product.quantity}</td>
+</tr>
+`;
