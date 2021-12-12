@@ -2,33 +2,11 @@ import MachineManageCheck from './MachineManageCheck.js';
 import { CHANGE, ERROR_MESSAGE, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN, VALUES, ZERO, COINS } from '../utils/constants.js';
 import MachineManageView from './MachineManageView.js';
 
-
 export default class MachineManageEvent {
     static addEvent() {
         this.addMachineChargeEvent();
     }
 
-    static addMachineChargeEvent() {
-        document.getElementById('vending-machine-charge-button').addEventListener('click', (e) => {
-            e.preventDefault();
-            const charge = document.getElementById('vending-machine-charge-input').value;
-            const machineManageCheck = new MachineManageCheck(charge);
-    
-            this.checkResult(charge, machineManageCheck);
-        });
-    }
-    
-    static checkResult(charge, machineManageCheck) {
-        if(machineManageCheck.checkAll()) {
-            this.storeChange(charge);
-            this.storeRandomCoin(this.chooseRandomCoin(charge));
-            MachineManageView.showTable();
-            MachineManageView.showChange();
-        } else {
-            alert(ERROR_MESSAGE);
-        }
-    }
-    
     static storeChange(charge) {
         const change = JSON.parse(localStorage.getItem(CHANGE));
 
@@ -39,7 +17,45 @@ export default class MachineManageEvent {
             localStorage.setItem(CHANGE, JSON.stringify(change));
         }
     }
-    
+
+    static storeRandomCoin(countCoin) {
+        const coins = JSON.parse(localStorage.getItem(COINS));
+
+        if(localStorage.getItem(COINS) === null) {
+            localStorage.setItem(COINS, JSON.stringify({ [FIVE_HUNDRED]: countCoin[0], [ONE_HUNDRED]: countCoin[1], [FIFTY]: countCoin[2], [TEN]: countCoin[3]}));
+        } else {
+            coins[FIVE_HUNDRED] += countCoin[0];
+            coins[ONE_HUNDRED] += countCoin[1];
+            coins[FIFTY] += countCoin[2];
+            coins[TEN] += countCoin[3];
+            localStorage.setItem(COINS, JSON.stringify(coins));
+        }
+    }
+
+    static checkCoin(remain) {
+        if(remain < FIFTY) {
+            return [TEN];
+        } else if(remain < ONE_HUNDRED) {
+            return [TEN, FIFTY];
+        } else if(remain < FIVE_HUNDRED) {
+            return [TEN, FIFTY, ONE_HUNDRED];
+        } else {
+            return [TEN, FIFTY, ONE_HUNDRED, FIVE_HUNDRED];
+        }
+    }
+
+    static countCoin(coin, countCoin) {
+        if(coin === FIVE_HUNDRED) {
+            countCoin[0] += 1;
+        } else if(coin === ONE_HUNDRED) {
+            countCoin[1] += 1;
+        } else if(coin === FIFTY) {
+            countCoin[2] += 1;
+        } else {
+            countCoin[3] += 1;
+        }
+    }
+
     static chooseRandomCoin(charge) {
         let remain = charge;
         let countCoin = [ZERO, ZERO, ZERO, ZERO];
@@ -54,42 +70,25 @@ export default class MachineManageEvent {
         }
         return countCoin;
     }
-    
-    static checkCoin(remain) {
-    if(remain < FIFTY) {
-        return [TEN];
-    } else if(remain < ONE_HUNDRED) {
-        return [TEN, FIFTY];
-    } else if(remain < FIVE_HUNDRED) {
-        return [TEN, FIFTY, ONE_HUNDRED];
-    } else {
-        return [TEN, FIFTY, ONE_HUNDRED, FIVE_HUNDRED];
-    }
-    }
-    
-    static countCoin(coin, countCoin) {
-        if(coin === FIVE_HUNDRED) {
-            countCoin[0] += 1;
-        } else if(coin === ONE_HUNDRED) {
-            countCoin[1] += 1;
-        } else if(coin === FIFTY) {
-            countCoin[2] += 1;
-        } else {
-            countCoin[3] += 1;
-        }
-    }
-    
-    static storeRandomCoin(countCoin) {
-        const coins = JSON.parse(localStorage.getItem(COINS));
 
-        if(localStorage.getItem(COINS) === null) {
-            localStorage.setItem(COINS, JSON.stringify({ [FIVE_HUNDRED]: countCoin[0], [ONE_HUNDRED]: countCoin[1], [FIFTY]: countCoin[2], [TEN]: countCoin[3]}));
+    static checkResult(charge, machineManageCheck) {
+        if(machineManageCheck.checkAll()) {
+            this.storeChange(charge);
+            this.storeRandomCoin(this.chooseRandomCoin(charge));
+            MachineManageView.showTable();
+            MachineManageView.showChange();
         } else {
-            coins[FIVE_HUNDRED] += countCoin[0];
-            coins[ONE_HUNDRED] += countCoin[1];
-            coins[FIFTY] += countCoin[2];
-            coins[TEN] += countCoin[3];
-            localStorage.setItem(COINS, JSON.stringify(coins));
+            alert(ERROR_MESSAGE);
         }
+    }
+
+    static addMachineChargeEvent() {
+        document.getElementById('vending-machine-charge-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            const charge = document.getElementById('vending-machine-charge-input').value;
+            const machineManageCheck = new MachineManageCheck(charge);
+    
+            this.checkResult(charge, machineManageCheck);
+        });
     }
 }
