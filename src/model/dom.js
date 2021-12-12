@@ -108,6 +108,6 @@ export const productPurchaseTableRow = product => `
     <td class="product-purchase-name" data-product-name=${product.name}>${product.name}</td>
     <td class="product-purchase-price" data-product-price=${product.price}>${product.price}</td>
     <td class="product-purchase-quantity" data-product-quantity=${product.quantity}>${product.quantity}</td>
-    <td><button class="purchase-button" data-target=${product.name}>구매하기</button></td>
+    <td><button class="purchase-button">구매하기</button></td>
 </tr>
 `;

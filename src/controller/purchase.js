@@ -18,7 +18,9 @@ const initReturnTable = returnCoin => {
 
 const initAllPurchaseButtonEvent = () => {
   const allButtons = document.querySelectorAll(`.${SELECTOR.purchaseButton}`);
-  allButtons.forEach(button => button.addEventListener('click', () => purchaseProduct(button)));
+  allButtons.forEach(button =>
+    button.addEventListener('click', () => purchaseProduct(button.parentElement.parentElement)),
+  );
 };
 
 const addTableRow = (table, product) =>
@@ -50,10 +52,10 @@ const isEnoughCoin = (chargeInput, price) => {
   return isEnough;
 };
 
-const purchaseProduct = button => {
+const purchaseProduct = item => {
   let charge = getItemOrNull(KEY.charge);
   let products = getItemOrArray(KEY.product);
-  const selectProduct = products.find(e => e.name === button.dataset.target);
+  const selectProduct = products.find(e => e.name === item.childNodes[1].dataset.productName);
   if (isEnoughCoin(charge, selectProduct.price)) {
     selectProduct.quantity -= 1;
     charge -= selectProduct.price;

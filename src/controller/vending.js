@@ -10,15 +10,14 @@ import {
 import VendingMachine from '../model/vendingMachine.js';
 
 const makeRandomCoinQuantity = inputValue => {
-  const amountArray = COIN_ARRAY.map(coin => {
-    let randomNumber = 0;
-    const range = Array.from({ length: inputValue / coin + 1 }, (v, i) => i);
-    randomNumber = MissionUtils.Random.pickNumberInList(range);
-    inputValue -= coin * randomNumber;
-    return randomNumber;
-  });
-  if (inputValue !== 0) {
-    amountArray[3] += inputValue / 10;
+  let changes = 0;
+  const amountArray = [0, 0, 0, 0];
+  while (inputValue !== changes) {
+    const coin = MissionUtils.Random.pickNumberInList(COIN_ARRAY);
+    if (changes + coin <= inputValue) {
+      changes += coin;
+      amountArray[COIN_ARRAY.indexOf(coin)] += 1;
+    }
   }
 
   return amountArray;
