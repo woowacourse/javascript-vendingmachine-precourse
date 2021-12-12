@@ -25,7 +25,7 @@ export default class ChangesStatus extends Component {
       spendChanges(chargedMoney)
     );
     UserStore.dispatch(
-      returnChanges({ changes: userChangeMoney, coins: changeCoins })
+      returnChanges({ changes: userChangeMoney, changeCoins })
     );
   }
 
