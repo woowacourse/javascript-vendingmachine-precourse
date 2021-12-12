@@ -12,6 +12,10 @@ export default class Product {
     this.quantity = +quantity;
   }
 
+  decreaseQuantity() {
+    this.quantity -= 1;
+  }
+
   addedTemplate() {
     return `
       <tr class="${ADDED_PRODUCT_ID}"align="center" bgcolor="white" height="40">

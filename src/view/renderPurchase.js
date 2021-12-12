@@ -36,7 +36,7 @@ import { coinListHeaderTemplate } from './renderCharge.js';
 import $ from '../util/$.js';
 import removePreviousView from './removePreviousView.js';
 
-function renderPurchaseInput($purchase) {
+function renderPurchaseInput($purchase, money) {
   const $inputContainer = document.createElement('div');
 
   $inputContainer.innerHTML = `
@@ -47,7 +47,7 @@ function renderPurchaseInput($purchase) {
     </form>
     <br>
     <span>${PURCHASE_INPUT_SPAN_TITLE}:</span>
-    <span id="${PURCHASE_AMOUNT_ID}"></span>
+    <span id="${PURCHASE_AMOUNT_ID}">${money || ''}</span>
   `;
   $purchase.append($inputContainer);
 }
@@ -138,7 +138,7 @@ export default function renderPurchase(vendingMachine) {
   const $purchase = document.createElement('div');
   $purchase.id = PURCHASE_CONTAINER_ID;
 
-  renderPurchaseInput($purchase);
+  renderPurchaseInput($purchase, vendingMachine.money);
   renderPurchaseProducts($purchase, vendingMachine.products);
   renderChange($purchase);
   $app.append($purchase);

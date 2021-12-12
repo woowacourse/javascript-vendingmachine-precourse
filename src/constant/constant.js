@@ -89,3 +89,7 @@ export const COIN_VALUE_500 = 500;
 export const COIN_VALUE_100 = 100;
 export const COIN_VALUE_50 = 50;
 export const COIN_VALUE_10 = 10;
+
+export const PRODUCT_NODE_NAME_INDEX = 0;
+export const PRODUCT_NODE_PRICE_INDEX = 1;
+export const PRODUCT_NODE_QUANTITY_INDEX = 2;
