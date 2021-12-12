@@ -1,9 +1,10 @@
-import { DOM, ERROR_MESSAGE } from '../lib/constants.js';
+import { COINS_KEY, DOM, ERROR_MESSAGE } from '../lib/constants.js';
 import {
   hasSomeEmptyString,
   isNumberStringIsNegative,
   isNumberStringNotDivideBy10,
 } from '../lib/utils.js';
+import Coin from '../modules/coin.js';
 
 /** Util */
 class VendingMachineUtil {
@@ -22,6 +23,30 @@ class VendingMachineUtil {
     }
 
     return true;
+  }
+
+  static isValidCharge(inputsValue) {
+    if (isNumberStringIsNegative(inputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT])) {
+      throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_IS_NEGATIVE_NUMBER);
+    }
+    if (isNumberStringNotDivideBy10(inputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT])) {
+      throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_DEVIDE_BY_10);
+    }
+
+    return true;
+  }
+
+  static getNewCoins(charge) {
+    return Coin.getRandomCoins(charge);
+  }
+
+  static combineCurrentCoinsAndNewCoins(currentCoins, newCoins) {
+    const combinedCoins = {};
+    Object.values(COINS_KEY).forEach((key) => {
+      combinedCoins[key] = currentCoins[key] + newCoins[key];
+    });
+
+    return combinedCoins;
   }
 }
 export default VendingMachineUtil;

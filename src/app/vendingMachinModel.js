@@ -1,4 +1,4 @@
-import { DOM, PLAIN_TEXT, TAB } from '../lib/constants.js';
+import { COINS_KEY, DOM, PLAIN_TEXT, TAB } from '../lib/constants.js';
 import VendingMachineUtil from './vendingMachineUtil.js';
 
 /** Model */
@@ -25,6 +25,12 @@ class VendingMachineModel {
       [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
     };
     this.vendingMachineCharge = 0;
+    this.coins = {
+      [`${COINS_KEY[500]}`]: 0,
+      [`${COINS_KEY[100]}`]: 0,
+      [`${COINS_KEY[50]}`]: 0,
+      [`${COINS_KEY[10]}`]: 0,
+    };
   }
 
   initProductPurchaseModel() {
@@ -53,9 +59,10 @@ class VendingMachineModel {
   addProduct() {
     if (VendingMachineUtil.isValidProduct(this.productAddInputsValue)) {
       const newProduct = {
+        // id: VendingMachineUtil.generateProductId(this.productList),
         name: this.productAddInputsValue[DOM.PRODUCT_NAME_INPUT],
-        price: this.productAddInputsValue[DOM.PRODUCT_PRICE_INPUT],
-        quantity: this.productAddInputsValue[DOM.PRODUCT_QUANTITY_INPUT],
+        price: Number(this.productAddInputsValue[DOM.PRODUCT_PRICE_INPUT]),
+        quantity: Number(this.productAddInputsValue[DOM.PRODUCT_QUANTITY_INPUT]),
       };
       this.productList = [...this.productList, newProduct];
       this.productAddInputsValue = {
@@ -63,6 +70,15 @@ class VendingMachineModel {
         [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
         [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
       };
+    }
+  }
+
+  addCoins() {
+    if (VendingMachineUtil.isValidCharge(this.vendingMachineChargeInputsValue)) {
+      const newCoins = VendingMachineUtil.getNewCoins(
+        Number(this.vendingMachineChargeInputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT])
+      );
+      this.coins = VendingMachineUtil.combineCurrentCoinsAndNewCoins(this.coins, newCoins);
     }
   }
 }
