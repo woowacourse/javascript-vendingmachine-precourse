@@ -18,6 +18,7 @@ export const MESSAGE = {
   INVALID_CHARGING_MONEY:
     '투입 가능한 금액은 최소 10원이며, 10원 단위로 나누어 떨어져야 합니다.',
   INVALID_RETURN_REQUEST: '반환할 금액이 없습니다.',
+  NOT_ENOUGH_CHANGES: '자판기에 잔돈이 없습니다! 관리자를 부르세요!',
 };
 
 export const RULE = {

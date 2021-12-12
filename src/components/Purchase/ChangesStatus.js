@@ -1,14 +1,14 @@
 import Component from '../../core/Component.js';
 import UserStore from '../../stores/UserStore.js';
 import ChangeStore from '../../stores/ChangesStore.js';
-import { MESSAGE } from '../../utils/constants.js';
 import { returnChanges } from '../../actions/user.js';
 import { spendChanges } from '../../actions/changes.js';
 import { changeStatusView } from '../../utils/views.js';
+import { MESSAGE } from '../../utils/constants.js';
 
 export default class ChangesStatus extends Component {
   getGlobalState() {
-    return UserStore.getState();
+    return { ...UserStore.getState(), ...ChangeStore.getState() };
   }
 
   bindEvents() {
@@ -17,8 +17,8 @@ export default class ChangesStatus extends Component {
 
   onClickReturnButton({ target }) {
     if (target.id !== 'coin-return-button') return;
-    const { chargedMoney } = this.getGlobalState();
-    if (chargedMoney === 0) return alert(MESSAGE.INVALID_RETURN_REQUEST);
+    const { chargedMoney, changes } = this.getGlobalState();
+    if (changes === 0) return alert(MESSAGE.NOT_ENOUGH_CHANGES);
     const { changeCoins, restChange } = ChangeStore.dispatch(
       spendChanges(chargedMoney)
     );

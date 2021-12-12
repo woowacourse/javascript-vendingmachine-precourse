@@ -6,7 +6,7 @@ import {
   getChangesCoin,
 } from '../utils/helpers.js';
 import { convertArrayToObjectKeys } from '../utils/general.js';
-import { COIN_UNITS } from '../utils/constants.js';
+import { COIN_UNITS, MESSAGE } from '../utils/constants.js';
 
 const initialState = {
   changes: 0,
@@ -25,6 +25,8 @@ class ChangesStore extends Store {
       },
       [CHANGES_ACTION_TYPE.SPEND_CHANGES]: money => {
         const { changes, coins } = this.state;
+        if (changes === 0)
+          return { SUCCESS: false, error: MESSAGE.NOT_ENOUGH_CHANGES };
         const userChangeMoney = money > changes ? changes : money;
         const { changeCoins, machineCoins, restChange } = getChangesCoin(
           userChangeMoney,
@@ -34,7 +36,7 @@ class ChangesStore extends Store {
           changes: changes - userChangeMoney,
           coins: machineCoins,
         });
-        return { changeCoins, restChange };
+        return { SUCCESS: true, changeCoins, restChange };
       },
     };
   }
