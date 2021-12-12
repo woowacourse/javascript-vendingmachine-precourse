@@ -30,7 +30,7 @@ export const createProductManageTable = (tableDataList) => {
   `;
 };
 
-export const createChargeTable = () => {
+export const createVendingMachineChargeTable = () => {
   return `
       <tr>
         <td>500원</td>
@@ -47,6 +47,27 @@ export const createChargeTable = () => {
       <tr>
         <td>10원</td>
         <td id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}></td>
+      </tr>
+  `;
+};
+
+export const createPurchaseChargeTable = () => {
+  return `
+      <tr>
+        <td>500원</td>
+        <td id=${ID.COIN_500_QUANTITY}></td>
+      </tr>
+      <tr>
+        <td>100원</td>
+        <td id=${ID.COIN_100_QUANTITY}></td>
+      </tr>
+      <tr>
+        <td>50원</td>
+        <td id=${ID.COIN_50_QUANTITY}></td>
+      </tr>
+      <tr>
+        <td>10원</td>
+        <td id=${ID.COIN_10_QUANTITY}></td>
       </tr>
   `;
 };
@@ -80,9 +101,11 @@ export const createTable = (menu, ths, tableData) => {
       ${
         menu === TABLE_MENU.PRODUCT_MANAGE
           ? createProductManageTable(tableData)
-          : menu === TABLE_MENU.CHARGE
-          ? createChargeTable()
-          : createPurchaseTable(tableData)
+          : menu === TABLE_MENU.VENDING_MACHINE_CHARGE
+          ? createVendingMachineChargeTable()
+          : menu === TABLE_MENU.PURCHASE
+          ? createPurchaseTable(tableData)
+          : createPurchaseChargeTable()
       }
     </tbody>
   </table>
