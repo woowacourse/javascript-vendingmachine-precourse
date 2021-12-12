@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { store, userInputMoney, items } from '../model/store.js';
+import { store, userInputMoney, items, change, returnedChange } from '../model/store.js';
 import PurchaseValidator from '../utils/purchaseValidator.js';
 
 class PurhcaseController {
@@ -13,7 +13,7 @@ class PurhcaseController {
     if (PurchaseValidator.isInvalidMoneyInput(moneyInput)) {
       return;
     }
-    userInputMoney.totalAmount += moneyInput;
+    userInputMoney.amount += moneyInput;
     store.setLocalStorage('userInputMoney', userInputMoney);
     this.view.render();
   }
@@ -30,14 +30,39 @@ class PurhcaseController {
   }
 
   updateItemState(purchasedItem) {
-    userInputMoney.totalAmount -= purchasedItem.price;
+    userInputMoney.amount -= purchasedItem.price;
     purchasedItem.quantity -= 1;
     store.setLocalStorage('userInputMoney', userInputMoney);
     store.setLocalStorage('items', items);
   }
 
+  returnChange() {
+    this.calculateReturnChange();
+    store.setLocalStorage('returnedChange', returnedChange);
+    store.setLocalStorage('userInputMoney', userInputMoney);
+    store.setLocalStorage('change', change);
+    this.view.render();
+  }
+
+  calculateReturnChange() {
+    [500, 100, 50, 10].forEach((value) => {
+      const maxReturnChange = parseInt(userInputMoney.amount / value);
+      const availableReturnChange = change[`coin${value}`];
+      if (maxReturnChange >= availableReturnChange) {
+        userInputMoney.amount -= change[`coin${value}`] * value;
+        returnedChange[`coin${value}`] = change[`coin${value}`];
+        change[`coin${value}`] -= change[`coin${value}`];
+      } else {
+        userInputMoney.amount -= maxReturnChange * value;
+        returnedChange[`coin${value}`] = maxReturnChange;
+        change[`coin${value}`] -= maxReturnChange;
+      }
+    });
+  }
+
   bindEvent() {
     $('#charge-button').addEventListener('click', this.addUserInputMoney.bind(this));
+    $('#coin-return-button').addEventListener('click', this.returnChange.bind(this));
     $('#purchase-list').addEventListener('click', (e) => {
       if (!e.target.classList.contains('purchase-button')) {
         return;
