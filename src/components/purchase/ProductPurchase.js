@@ -1,5 +1,6 @@
 import Component from '../../core/Component.js';
 import PurchaseTable from '../table/PurchaseTable.js';
+import { SELECTOR } from '../../constants/selector.js';
 
 export default class ProductPurchase extends Component {
   init() {
@@ -15,7 +16,11 @@ export default class ProductPurchase extends Component {
   }
 
   bindEvent() {
-    this.addEvent('click', '.purchase-button', this.handlePurchase.bind(this));
+    this.addEvent(
+      'click',
+      SELECTOR.PURCHASE_BUTTON,
+      this.handlePurchase.bind(this)
+    );
   }
 
   handlePurchase(event) {

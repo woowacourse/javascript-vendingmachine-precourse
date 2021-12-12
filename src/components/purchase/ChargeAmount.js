@@ -1,5 +1,6 @@
 import Component from '../../core/Component.js';
 import { $ } from '../../utils/element-utils.js';
+import { SELECTOR } from '../../constants/selector.js';
 
 export default class ChargeAmount extends Component {
   init() {
@@ -19,14 +20,22 @@ export default class ChargeAmount extends Component {
   }
 
   bindEvent() {
-    this.addEvent('click', '#charge-button', this.handleCharge.bind(this));
-    this.addEvent('keyup', '#charge-input', this.handleCharge.bind(this));
+    this.addEvent(
+      'keyup',
+      SELECTOR.CHARGE_AMOUNT_INPUT,
+      this.handleCharge.bind(this)
+    );
+    this.addEvent(
+      'click',
+      SELECTOR.CHARGE_AMOUNT_BUTTON,
+      this.handleCharge.bind(this)
+    );
   }
 
   handleCharge(event) {
     if (event.type === 'keyup' && event.key !== 'Enter') return false;
 
     const { putAmount } = this._props;
-    putAmount($('#charge-input').value);
+    putAmount($(SELECTOR.CHARGE_AMOUNT_INPUT).value);
   }
 }

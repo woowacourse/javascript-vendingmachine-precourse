@@ -1,5 +1,6 @@
 import Component from '../../core/Component.js';
 import ReturnTable from '../table/ReturnTable.js';
+import { SELECTOR } from '../../constants/selector.js';
 
 export default class ReturnBalance extends Component {
   init() {
@@ -18,7 +19,7 @@ export default class ReturnBalance extends Component {
   bindEvent() {
     this.addEvent(
       'click',
-      '#coin-return-button',
+      SELECTOR.COIN_RETURN_BUTTON,
       this.handleCoinReturn.bind(this)
     );
   }

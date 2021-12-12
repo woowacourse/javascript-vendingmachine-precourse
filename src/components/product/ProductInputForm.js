@@ -1,5 +1,6 @@
 import Component from '../../core/Component.js';
 import { $ } from '../../utils/element-utils.js';
+import { SELECTOR } from '../../constants/selector.js';
 
 export default class ProductInputForm extends Component {
   htmlTemplate() {
@@ -17,7 +18,7 @@ export default class ProductInputForm extends Component {
   bindEvent() {
     this.addEvent(
       'click',
-      '#product-add-button',
+      SELECTOR.PRODUCT_ADD_BUTTON,
       this.handelAddProduct.bind(this)
     );
   }
@@ -25,15 +26,15 @@ export default class ProductInputForm extends Component {
   handelAddProduct() {
     const { addProduct } = this._props;
     const isResult = addProduct(
-      $('#product-name-input').value,
-      $('#product-price-input').value,
-      $('#product-quantity-input').value
+      $(SELECTOR.PRODUCT_NAME_INPUT).value,
+      $(SELECTOR.PRODUCT_PRICE_INPUT).value,
+      $(SELECTOR.PRODUCT_QUANTITY_INPUT).value
     );
 
     if (isResult === true) {
-      $('#product-name-input').value = '';
-      $('#product-price-input').value = '';
-      $('#product-quantity-input').value = '';
+      $(SELECTOR.PRODUCT_NAME_INPUT).value = '';
+      $(SELECTOR.PRODUCT_PRICE_INPUT).value = '';
+      $(SELECTOR.PRODUCT_QUANTITY_INPUT).value = '';
     }
   }
 }
