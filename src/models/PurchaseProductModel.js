@@ -1,14 +1,23 @@
+import { PRODUCT } from '../utils/constants.js';
+
 const initInputMOney = () => {
   return localStorage.getItem('inputMoney') ? localStorage.getItem('inputMoney') : parseInt(0);
 };
 export default {
   inputMoney: initInputMOney(),
   add(money) {
+    if (!isValidInputMoney(money)) {
+      return;
+    }
     this.inputMoney += parseInt(money);
     localStorage.setItem('inputMoney', this.inputMoney);
   },
   total() {
     return this.inputMoney;
+  },
+  purchase(item) {
+    this.inputMoney -= parseInt(item[PRODUCT.PRICE]);
+    localStorage.setItem('inputMoney', this.inputMoney);
   },
 };
 

@@ -3,6 +3,7 @@ import PurchaseProductModel from '../models/PurchaseProductModel.js';
 import {
   ELEMENT_CLASS,
   ELEMENT_ID,
+  ELEMENT_SCLASS,
   ELEMENT_SID,
   EVENT_TYPE,
   PLACEHOLDER,
@@ -42,7 +43,7 @@ PurchaseProductView.template = function () {
         <th>${PRODUCT.BUY}</th>
       <tr/>
     </thead>
-    <tbody>
+    <tbody id="${ELEMENT_ID.PRODUCT_PURCHASE_TBODY}">
       ${ManageProductModel.list()
         .map(
           (product, index) =>
@@ -83,6 +84,10 @@ PurchaseProductView.bindClick = function () {
   this.element.addEventListener('click', (e) => {
     if (e.target.id === ELEMENT_ID.PURCHASE_CHARGE_BUTTON) {
       this.onClickChargeButton();
+      return;
+    } else if (e.target.className === ELEMENT_CLASS.PURCHASE_BUTTON) {
+      this.onClickPurchaseButton(e.target.dataset.purchaseIndex);
+      return;
     }
   });
 };
@@ -90,6 +95,15 @@ PurchaseProductView.bindClick = function () {
 PurchaseProductView.onClickChargeButton = function () {
   this.emit(EVENT_TYPE.CHARGE_MONEY, {
     userInputMoney: $(ELEMENT_SID.PURCHASE_CHARGE_INPUT).value,
+  });
+};
+
+PurchaseProductView.onClickPurchaseButton = function (purchaseIndex) {
+  const $purchaseItemElement = $(ELEMENT_SID.PRODUCT_PURCHASE_TBODY).children[purchaseIndex];
+  const name = $purchaseItemElement.querySelector(ELEMENT_SCLASS.PRODUCT_PURCHASE_NAME).innerText;
+  const price = $purchaseItemElement.querySelector(ELEMENT_SCLASS.PRODUCT_PURCHASE_PRICE).innerText;
+  this.emit(EVENT_TYPE.PURCHASE_ITEM, {
+    product: { [PRODUCT.NAME]: name, [PRODUCT.PRICE]: price },
   });
 };
 

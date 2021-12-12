@@ -22,9 +22,9 @@ export default {
     ChargeCoinView.setup($(ELEMENT_SID.RESULT_VIEW)).on(EVENT_TYPE.CHARGE_COIN, (e) =>
       this.onChargeCoin(e.detail.money),
     );
-    PurchaseProductView.setup($(ELEMENT_SID.RESULT_VIEW)).on(EVENT_TYPE.CHARGE_MONEY, (e) =>
-      this.onChargeMoney(e.detail.userInputMoney),
-    );
+    PurchaseProductView.setup($(ELEMENT_SID.RESULT_VIEW))
+      .on(EVENT_TYPE.CHARGE_MONEY, (e) => this.onChargeMoney(e.detail.userInputMoney))
+      .on(EVENT_TYPE.PURCHASE_ITEM, (e) => this.onPurchaseProduct(e.detail.product));
 
     this.selectedTab = TAB.MANAGE_PRODUCT;
     this.renderView();
@@ -75,6 +75,11 @@ export default {
 
   onChargeMoney(userInputMoney) {
     PurchaseProductModel.add(userInputMoney);
+    PurchaseProductView.render();
+  },
+  onPurchaseProduct(product) {
+    PurchaseProductModel.purchase(product);
+    ManageProductModel.sell(product);
     PurchaseProductView.render();
   },
 };

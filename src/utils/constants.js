@@ -8,6 +8,7 @@ export const ELEMENT_SID = {
   PRODUCT_ADD_BUTTON: '#product-add-button',
   CHARGE_INPUT: '#vending-machine-charge-input',
   PURCHASE_CHARGE_INPUT: '#charge-input',
+  PRODUCT_PURCHASE_TBODY: '#product-purchase-tbody',
 };
 export const ELEMENT_ID = {
   TAB_VIEW: 'tab-view',
@@ -25,6 +26,9 @@ export const ELEMENT_ID = {
   PURCHASE_CHARGE_INPUT: 'charge-input',
   PURCHASE_CHARGE_BUTTON: 'charge-button',
   PURCHASE_CHARGE_AMOUNT: 'charge-amount',
+  COIN_RETURN_BUTTON: 'coin-return-button',
+  PURCHASE_BUTTON: 'purchase-button',
+  PRODUCT_PURCHASE_TBODY: 'product-purchase-tbody',
   COIN_QUANTITY(coin) {
     return `vending-machine-coin-${coin}-quantity`;
   },
@@ -40,11 +44,16 @@ export const ELEMENT_CLASS = {
   PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
   PURCHASE_BUTTON: 'purchase-button',
 };
+export const ELEMENT_SCLASS = {
+  PRODUCT_PURCHASE_NAME: '.product-purchase-name',
+  PRODUCT_PURCHASE_PRICE: '.product-purchase-price',
+};
 export const EVENT_TYPE = {
   CHANGE_TAB: 'changeTab',
   ADD_PRODUCT: 'addProduct',
   CHARGE_COIN: 'chargeCoin',
   CHARGE_MONEY: 'chargeMoney',
+  PURCHASE_ITEM: 'purchaseItem',
 };
 export const TAB = {
   MANAGE_PRODUCT: '상품 관리',

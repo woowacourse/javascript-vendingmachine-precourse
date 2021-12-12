@@ -18,8 +18,13 @@ export default {
   list() {
     return this.products;
   },
+  sell(product) {
+    this.products.find((item) => isPickedProduct(item, product))[PRODUCT.QUANTITY] -= 1;
+    localStorage.setItem('products', JSON.stringify(this.products));
+  },
 };
 
+const isPickedProduct = (item, product) => item[PRODUCT.NAME] === product[PRODUCT.NAME];
 const isValidProductInput = (product) => {
   if (product[PRODUCT.NAME] === '') {
     alert(ALERT.EMPTY_PRODUCT_NAME);
