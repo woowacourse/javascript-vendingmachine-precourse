@@ -1,4 +1,5 @@
 import Component from "../root/Component.js";
+import InputForm from "./InputForm.js";
 
 import API from "../../libs/api.js";
 export default class ChargeManage extends Component {
@@ -16,14 +17,7 @@ export default class ChargeManage extends Component {
 
   template() {
     return `
-      <div id="charge-input-form">
-        <h3>자판기 동전 충전하기</h3>
-        <form>
-          <input id="vending-machine-charge-input" type="number" placeholder="자판기가 보유할 금액"/>
-          <button id="vending-machine-charge-button">투입하기</button>
-        </form>
-        <p>투입한 금액: <span id="vending-machine-charge-amount">999</span></p>
-      </div>
+      <div id="charge-input-form"></div>
       <div id="coin-status">
         <h3>자판기가 보유한 동전</h3>
         <table>
@@ -55,5 +49,7 @@ export default class ChargeManage extends Component {
 
   mounted() {
     const $chargeInputForm = document.querySelector("#charge-input-form");
+
+    new InputForm($chargeInputForm);
   }
 }
