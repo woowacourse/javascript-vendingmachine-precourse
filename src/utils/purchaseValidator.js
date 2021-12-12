@@ -6,8 +6,16 @@ class PurchaseValidator {
     }
   }
 
+  static isMoneyInputLessThan0(moneyInput) {
+    if (moneyInput < 0) {
+      alert('마이너스 금액은 투입할 수 없습니다.');
+      return true;
+    }
+  }
+
   static isInvalidMoneyInput(moneyInput) {
     if (this.isMoneyInputDoesNotDivideBy10(moneyInput)) return true;
+    if (this.isMoneyInputLessThan0(moneyInput)) return true;
     return false;
   }
 }
