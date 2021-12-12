@@ -1,4 +1,4 @@
-import { USER_CHARGE, VALUES, PRODUCT, USER_COINS} from '../../utils/constants.js';
+import { USER_CHARGE, VALUES, PRODUCT, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN} from '../../utils/constants.js';
 import { HTML_OF_PRODUCT_PURCHASE_PART, HTML_OF_PRODUCT_PURCHASE_PART_MID, HTML_OF_PRODUCT_PURCHASE_TABLE, HTML_OF_USER_CHANGE_TABLE } from '../../utils/html.js';
 
 export default class ProductPurchaseView {
@@ -43,9 +43,9 @@ export default class ProductPurchaseView {
   static showUserCoinTable() {
     const userCoins = JSON.parse(localStorage.getItem(USER_COINS));
 
-    document.getElementById('coin-500-quantity').innerHTML = `${userCoins[500]}개`;
-    document.getElementById('coin-100-quantity').innerHTML = `${userCoins[100]}개`;
-    document.getElementById('coin-50-quantity').innerHTML = `${userCoins[50]}개`;
-    document.getElementById('coin-10-quantity').innerHTML = `${userCoins[10]}개`;
+    document.getElementById('coin-500-quantity').innerHTML = `${userCoins[FIVE_HUNDRED]}개`;
+    document.getElementById('coin-100-quantity').innerHTML = `${userCoins[ONE_HUNDRED]}개`;
+    document.getElementById('coin-50-quantity').innerHTML = `${userCoins[FIFTY]}개`;
+    document.getElementById('coin-10-quantity').innerHTML = `${userCoins[TEN]}개`;
   }
 }

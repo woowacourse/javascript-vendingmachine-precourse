@@ -1,6 +1,6 @@
 import ProductPurchaseCheck from "./ProductPurchaseCheck.js";
 import ProductPurchaseView from "./ProductPurchaseView.js";
-import { ERROR_MESSAGE, USER_CHARGE, VALUES, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO} from '../../utils/constants.js';
+import { ERROR_MESSAGE, USER_CHARGE, VALUES, CHANGE, COINS, USER_COINS, FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN, ZERO, NO_USER_MONEY, NOT_ENOUGH_CHANGE} from '../../utils/constants.js';
 
 
 export default class ProductPurchaseEvent {
@@ -41,7 +41,7 @@ export default class ProductPurchaseEvent {
 
     static checkUserCharge(userMoney) {
         if(userMoney[VALUES] === 0) {
-          alert("투입한 금액이 없습니다!")
+          alert(NO_USER_MONEY)
           return false;
         }
     
@@ -51,7 +51,7 @@ export default class ProductPurchaseEvent {
     static checkChange(coins, change) {
         if(coins === null || parseInt(change[VALUES]) === 0) {
             ProductPurchaseView.showUserCoinTable();
-          alert("거스름돈이 없습니다!");
+          alert(NOT_ENOUGH_CHANGE);
           return false;
         }
     
