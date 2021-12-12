@@ -11,3 +11,19 @@ export default {
     return this.inputMoney;
   },
 };
+
+const isValidInputMoney = (money) => {
+  if (money === '') {
+    alert(ALERT.EMPTY_MONEY_INPUT);
+    return false;
+  }
+  if (parseInt(money) < 0) {
+    alert(ALERT.WRONG_CHARGE_INPUT);
+    return false;
+  }
+  if (parseInt(money) % 10 !== 0) {
+    alert(ALERT.NOT_10_UNIT_PRICE);
+    return false;
+  }
+  return true;
+};
