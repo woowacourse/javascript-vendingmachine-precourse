@@ -6,31 +6,46 @@ export default class Coins {
     this._items = cloneObject(coinsData); // 사이드 이펙트를 방지한다.
   }
 
+  _getCoinTypeToIndex(coinType) {
+    return this._items.findIndex((value) => value.coin === coinType);
+  }
+
+  _pickRandomCoinType(maximum) {
+    const coinRange = CONSTANTS.COIN_TYPE.filter((value) => value <= maximum);
+    return MissionUtils.Random.pickNumberInList(coinRange);
+  }
+
   add(amount) {
     let balance = Number(amount);
     while (balance > 0) {
-      const coinRange = CONSTANTS.COIN_TYPE.filter((value) => value <= balance);
-      const coinType = MissionUtils.Random.pickNumberInList(coinRange);
-
+      const coinType = this._pickRandomCoinType(balance);
       balance -= coinType;
-      const index = this._items.findIndex((value) => value.coin === coinType);
+
+      const index = this._getCoinTypeToIndex(coinType);
       this._items[index].quantity += 1;
     }
     return this;
+  }
+
+  _getCoinLimitQuantity(balance, { coin, quantity }) {
+    let compar = parseInt(balance / coin, 10);
+    compar = compar <= quantity ? compar : quantity;
+
+    return compar;
   }
 
   return(amount) {
     const returnCoins = cloneObject(CONSTANTS.COIN_LIST);
 
     let balance = amount;
-    this._items.forEach((value, index) => {
-      if (balance < value.coin) return false;
+    this._items.forEach((coinInfo, index) => {
+      if (balance < coinInfo.coin) return false;
 
-      let compar = parseInt(balance / value.coin, 10);
-      compar = compar <= value.quantity ? compar : value.quantity;
-      balance -= value.coin * compar;
-      this._items[index].quantity -= compar;
-      returnCoins[index].quantity += compar;
+      const limit = this._getCoinLimitQuantity(balance, coinInfo);
+
+      balance -= coinInfo.coin * limit;
+      this._items[index].quantity -= limit;
+      returnCoins[index].quantity += limit;
     });
 
     return { output: returnCoins, failed: balance };
