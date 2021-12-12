@@ -1,5 +1,11 @@
+import { $ } from '../utils/dom.js';
+
 class ChangeView {
   constructor() {}
+
+  getInput() {
+    return Number($('#vending-machine-charge-input').value);
+  }
 
   render() {}
 
