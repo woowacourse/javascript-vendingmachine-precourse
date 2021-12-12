@@ -111,9 +111,9 @@
 
 ## 📍 리팩토링
 
+- [x] Controller들 메소드들 15자 이하로 분리
+- [x] Controller의 changeMenu 메소드 깔끔하게 어떻게 할 지 생각
 - [ ] 템플릿 함수 정리
-- [ ] Controller들 메소드안의 로직 함수로 분리
-- [ ] Controller의 changeMenu 메소드 깔끔하게 어떻게 할 지 생각
 
 ## 📍 마지막으로 체크하기
 
