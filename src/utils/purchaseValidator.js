@@ -26,6 +26,18 @@ class PurchaseValidator {
     if (this.isMoneyInputBlank(moneyInput)) return true;
     return false;
   }
+
+  static isQuantityZero(quantity) {
+    if (quantity === 0) {
+      alert('해당 상품은 품절입니다.');
+      return true;
+    }
+  }
+
+  static isNotPurchasable({ price, quantity }) {
+    if (this.isQuantityZero(quantity)) return true;
+    return false;
+  }
 }
 
 export default PurchaseValidator;

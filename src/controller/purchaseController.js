@@ -21,6 +21,10 @@ class PurhcaseController {
   purchaseItem(e) {
     const purchasedItemName = e.target.closest('tr').querySelector('td').dataset.productName;
     const purchasedItem = items.find((item) => item.name === purchasedItemName);
+    const { price, quantity } = purchasedItem;
+    if (PurchaseValidator.isNotPurchasable({ price, quantity })) {
+      return;
+    }
     this.updateItemState(purchasedItem);
     this.view.render();
   }
