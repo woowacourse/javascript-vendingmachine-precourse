@@ -1,6 +1,7 @@
 import { $ } from '../utils/dom.js';
 import { pickRandomCoin } from '../utils/pickRandomCoin.js';
 import { change, store } from '../model/store.js';
+import ChangeValidator from '../utils/changeValidator.js';
 
 class ChangeController {
   constructor(view) {
@@ -10,6 +11,9 @@ class ChangeController {
 
   chargeCoin() {
     let moneyInput = this.view.getInput();
+    if (ChangeValidator.isInvalidMoneyInput(moneyInput)) {
+      return;
+    }
     this.randomCharge(moneyInput);
     this.view.render();
   }
