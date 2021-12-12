@@ -58,7 +58,7 @@ export default class PurchaseManage extends Component {
 
   purchase(primaryKey) {
     const productManager = new Product(ProductState.value);
-    const { price } = productManager.getItem(primaryKey);
+    const { price } = productManager.itemInfo(primaryKey);
 
     if (ChargeState.value < price) {
       errorAlert(ERROR.PURCHASE_NEED_BALANCE);

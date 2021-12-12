@@ -9,16 +9,21 @@ export default class Product {
     return this._items.findIndex((value) => value.name === name);
   }
 
-  add(product) {
-    const { name, price, quantity } = product;
+  _newItem({ name, price, quantity }) {
+    this._items.push({ name, price, quantity });
+  }
+
+  _updateItem(index, { price, quantity }) {
+    this._items[index].price = price;
+    this._items[index].quantity += quantity;
+  }
+
+  add({ name, price, quantity }) {
     const index = this._getNameToIndex(name);
 
-    if (index > -1) {
-      this._items[index].price = price;
-      this._items[index].quantity += quantity;
-    } else if (index === -1) {
-      this._items.push(product);
-    }
+    if (index === -1) this._newItem({ name, price, quantity });
+    else if (index > -1) this._updateItem(index, { price, quantity });
+
     return this;
   }
 
@@ -32,7 +37,7 @@ export default class Product {
     return this;
   }
 
-  getItem(index) {
+  itemInfo(index) {
     if (!this._items[index]) return false;
     return this._items[index];
   }
