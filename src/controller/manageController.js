@@ -12,7 +12,6 @@ class ManageController {
     const { name, price, quantity } = this.view.getInput();
     const newItem = new Item(name, price, quantity);
     items.push(newItem);
-    console.log(items);
     this.view.render();
   }
 
