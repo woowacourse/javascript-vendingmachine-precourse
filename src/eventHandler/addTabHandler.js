@@ -5,15 +5,18 @@ import {
   CURRENT_TAB_KEY,
   PRODUCT_ADD_CONTAINER_ID,
   CHARGE_CONTAINER_ID,
+  PURCHASE_CONTAINER_ID,
+  TAB_PURCHASE_ID,
 } from '../constant/constant.js';
 
 function hideAllContainer() {
   const $addProduct = $(`#${PRODUCT_ADD_CONTAINER_ID}`);
   const $charge = $(`#${CHARGE_CONTAINER_ID}`);
-  // const $purchase = $(`#${}`);
+  const $purchase = $(`#${PURCHASE_CONTAINER_ID}`);
 
   $addProduct.setAttribute('hidden', true);
   $charge.setAttribute('hidden', true);
+  $purchase.setAttribute('hidden', true);
 }
 
 function removeHidden(id) {
@@ -35,10 +38,10 @@ export function renderCurrentTab(id) {
 export default function addTabHandler() {
   const $tabProductAdd = $(`#${TAB_PRODUCT_ADD_ID}`);
   const $tabCharge = $(`#${TAB_CHARGE_ID}`);
-  // const $tabPurchase = $(`#${TAB_PURCHASE_ID}`);
+  const $tabPurchase = $(`#${TAB_PURCHASE_ID}`);
 
   renderCurrentTab(localStorage.getItem(CURRENT_TAB_KEY));
   $tabProductAdd.addEventListener('click', () => renderCurrentTab(PRODUCT_ADD_CONTAINER_ID));
   $tabCharge.addEventListener('click', () => renderCurrentTab(CHARGE_CONTAINER_ID));
-  // $tabPurchase.addEventListener('click', () => renderCurrentTab(TAB_PURCHASE_ID));
+  $tabPurchase.addEventListener('click', () => renderCurrentTab(PURCHASE_CONTAINER_ID));
 }
