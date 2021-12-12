@@ -3,6 +3,7 @@ import { clearInput } from '../common/clearInput.js';
 import { store } from '../common/store.js';
 import { inputChangeValiation } from './inputChangeValidation.js';
 import { renderChange } from './renderChange.js';
+import { COINS } from '../../constants/constants.js';
 
 export const inputChange = state => {
   const money = $('#vending-machine-charge-input').value;
@@ -14,6 +15,7 @@ export const inputChange = state => {
     return;
   }
 
+  // 상수화 필요함!
   if (!state.change.amount) {
     state.change = {
       amount: money,
@@ -24,6 +26,16 @@ export const inputChange = state => {
     };
   } else {
     state.change.amount = Number(state.change.amount) + Number(money);
+  }
+
+  let insertedMoney = Number(money);
+
+  while (insertedMoney) {
+    const coin = MissionUtils.Random.pickNumberInList(COINS);
+    if (coin <= insertedMoney) {
+      state.change[coin]++;
+      insertedMoney -= coin;
+    }
   }
 
   store.setData(state);
