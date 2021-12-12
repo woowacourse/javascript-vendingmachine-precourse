@@ -1,6 +1,7 @@
-import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PURCHASE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_DATASET } from './constants.js';
+import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PURCHASE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_DATASET, ERROR_MESSAGE } from './constants.js';
 import Product from './product.js'
 import { elementCreatorWithClass } from './dom/util.js';
+import * as validator from './validatior.js';
 
 export default class VendingMachine {
     constructor(){
@@ -95,9 +96,28 @@ export default class VendingMachine {
         document.getElementById(MANAGE_TAB_ID.AMOUNT_SPAN_VALUE).innerHTML = total;
     }
 
+    validateAddcoin(money){
+        if(!validator.isNumber(money)){
+            return false;
+        }
+        if(validator.isNegative(money)){
+            return false;
+        }
+        if(!validator.isBelowTen(money)){
+            return false;
+        }
+        if(!validator.isTenUnit(money)){
+            return false;
+        }
+        return true;
+    }
+
     addCoin(money){
-        this.getRandomCoins(money);
-        this.displayPossessCoins();
+        money = parseInt(money);
+        if(this.validateAddcoin(money)){
+            this.getRandomCoins(money);
+            this.displayPossessCoins();
+        }
     }
 
     displayInputCoin(input){

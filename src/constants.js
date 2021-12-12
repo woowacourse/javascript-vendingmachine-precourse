@@ -62,3 +62,11 @@ export const COIN_VALUE = {
     THIRD: 50,
     LAST: 10
 }
+
+export const ERROR_MESSAGE = {
+    NAN: "숫자를 입력해 주세요.",
+    NEGATIVE: "음수가 아닌 숫자를 입력해 주세요.",
+    DUPLICATE: "상품 이름이 중복됩니다. 다른 이름을 입력해 주세요.",
+    BELOW_TEN: "10원 이상으로 입력해 주세요.",
+    TEN_UNIT: "10원 단위로 입력해 주세요."
+}
