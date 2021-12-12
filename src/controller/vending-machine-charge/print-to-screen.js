@@ -1,5 +1,5 @@
-import { $ } from '../../dom/dom.js';
-import { getRandomCoinsAmongList } from '../../utils.js';
+import { $ } from '../../common/dom/dom.js';
+import { getRandomCoinsAmongList } from '../../common/utils.js';
 
 export const printMoneyToScreen = () => {
   const chargedAmountList = JSON.parse(localStorage.getItem('chargedAmount'));

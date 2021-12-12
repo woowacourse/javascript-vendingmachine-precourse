@@ -1,4 +1,4 @@
-import { $ } from '../dom/dom.js';
+import { $ } from '../common/dom/dom.js';
 
 const productManageButtonEvent = () => {
   const $productAddMenuButton = $('#product-add-menu');

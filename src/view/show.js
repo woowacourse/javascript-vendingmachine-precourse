@@ -1,5 +1,5 @@
-import { $, productListTable } from '../dom/dom.js';
-import { SELECTOR } from '../constants/constants.js';
+import { $, productListTable } from '../common/dom/dom.js';
+import { SELECTOR } from '../common/constants/constants.js';
 
 const insertToHTML = () => {
   const $app = $('#app');

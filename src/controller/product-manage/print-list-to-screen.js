@@ -1,4 +1,4 @@
-import { $ } from '../../dom/dom.js';
+import { $ } from '../../common/dom/dom.js';
 
 export const printItemsToScreen = () => {
   const productListArray = JSON.parse(localStorage.getItem('productList'));
