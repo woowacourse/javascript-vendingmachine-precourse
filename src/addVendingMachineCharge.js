@@ -1,8 +1,8 @@
-import { CHARGE, ERROR_MESSAGE } from './product.js'
+import { VENDING_MACHINE_CHARGE, ERROR_MESSAGE } from './product.js'
 
-let vendingMachineCharge = new CHARGE()
+let vendingMachineCharge = new VENDING_MACHINE_CHARGE()
 
-function addCHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, randomNumber, i){
+function addVENDING_MACHINE_CHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, randomNumber, i){
     vendingMachineChargeTotal += chargeArray[i]*randomNumber
     vendingMachineCharge.setChargeArray(i, randomNumber)
     console.log(chargeArray[i] + ' ' + randomNumber) 
@@ -26,11 +26,11 @@ function makeRandomCharge(){
     while(true){
         const randomNumber = MissionUtils.Random.pickNumberInRange(0, Number($vendingMachineChargeInput.value));
         if(vendingMachineChargeTotal+(chargeArray[i]*randomNumber) < $vendingMachineChargeInput.value){
-            vendingMachineChargeTotal = addCHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, randomNumber, i)
+            vendingMachineChargeTotal = addVENDING_MACHINE_CHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, randomNumber, i)
             i++
         }
         if(i===3){
-            vendingMachineChargeTotal = addCHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, ($vendingMachineChargeInput.value-vendingMachineChargeTotal)/10, i)
+            vendingMachineChargeTotal = addVENDING_MACHINE_CHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, ($vendingMachineChargeInput.value-vendingMachineChargeTotal)/10, i)
             i++
         }
         if(i>3){
@@ -49,7 +49,7 @@ function checkVendingMachineChargeInputValid(){
         return false
     }        
     else if($vendingMachineChargeInput.value<=0 || $vendingMachineChargeInput.value%10!==0){
-        alert(ERROR_MESSAGE.CHARGE_INPUT_NUMBER_ERROR)
+        alert(ERROR_MESSAGE.VENDING_MACHINE_CHARGE_INPUT_NUMBER_ERROR)
         return false
     }
     console.log($vendingMachineChargeInput.value)

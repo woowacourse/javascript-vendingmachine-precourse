@@ -14,12 +14,13 @@ $app.innerHTML += `<div id="product-add-content" class="show">
                     <input id="product-name-input" type="text" placeholder="상품명"><input id="product-price-input" type="number" placeholder="가격"><input id="product-quantity-input" type="number" placeholder="수량"><button id="product-add-button">추가하기</button>
                     <br>
                     <h3>상품 현황</h3>
-                    <table id="product-add-table" border="1">
+                    <table border="1">
                         <tr>
                             <th>상품명</th>
                             <th>가격</th>
                             <th>수량</th>
                         </tr>
+                        <tbody id="product-add-table"></tbody>
                     </table>
                     </div>`
 
@@ -59,13 +60,14 @@ $app.innerHTML += `<div id="product-purchase-content" class="hide">
                     <p id="charge-amount">투입한 금액: </p>
                     <br>
                     <h3>구매할 수 있는 상품 현황</h3>
-                    <table id="product-purchase-table" border="1">
+                    <table border="1">
                         <tr>
                             <th>상품명</th>
                             <th>가격</th>
                             <th>수량</th>
                             <th>구매</th>
                         </tr>
+                        <tbody id="product-purchase-table"></tbody>
                     </table>
                     <br>
                     <h3>잔돈</h3>
@@ -77,19 +79,19 @@ $app.innerHTML += `<div id="product-purchase-content" class="hide">
                         </tr>
                         <tr>
                             <td>500원</td>
-                            <td>coin-500-quantity</td>
+                            <td class="coin-500-quantity"></td>
                         </tr>
                         <tr>
                             <td>100원</td>
-                            <td>coin-100-quantity</td>
+                            <td class="coin-100-quantity"></td>
                         </tr>
                         <tr>
                             <td>50원</td>
-                            <td>coin-50-quantity</td>
+                            <td class="coin-50-quantity"></td>
                         </tr>
                         <tr>
                             <td>10원</td>
-                            <td>coin-10-quantity</td>
+                            <td class="coin-10-quantity"></td>
                         </tr>
                     </table>
                     </div>`    
