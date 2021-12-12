@@ -21,3 +21,9 @@ export const mergeCoins = (originCoins, newCoins) => {
   }
   return mergedCoins;
 };
+
+export const filterPurchaseableProduct = (money, products) =>
+  products.filter(item => {
+    const { price, quantity } = item.getInformation();
+    return price <= money && quantity > 0;
+  });

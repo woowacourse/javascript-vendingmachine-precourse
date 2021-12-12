@@ -13,8 +13,10 @@ export default class Form extends Component {
   onSubmit(event) {
     event.preventDefault();
     const name = $('#product-name-input', this.$container).value;
-    const price = $('#product-price-input', this.$container).value;
-    const quantity = $('#product-quantity-input', this.$container).value;
+    const price = Number($('#product-price-input', this.$container).value);
+    const quantity = Number(
+      $('#product-quantity-input', this.$container).value
+    );
     if (!isValidPrice(price)) return alert(MESSAGE.INVALID_PRICE);
 
     const { SUCCESS, error } = ProductStore.dispatch(

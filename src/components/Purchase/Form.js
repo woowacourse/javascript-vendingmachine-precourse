@@ -13,7 +13,6 @@ export default class Form extends Component {
   onSubmit(event) {
     event.preventDefault();
     const money = Number($('#charge-input').value);
-    console.log(money);
     if (!isValidChargingMoney(money))
       return alert(MESSAGE.INVALID_CHARGING_MONEY);
     UserStore.dispatch(chargeMoney(money));
