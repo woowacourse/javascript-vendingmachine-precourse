@@ -42,6 +42,25 @@ export const CHARGE_RULES = {
   minCharge: 10,
 };
 
+export const PURCHASE_ELEMENT_ID = {
+  chargeInput: 'charge-input',
+  chargeButton: 'charge-button',
+  chargeAmount: 'charge-amount',
+  coinReturnButton: 'coin-return-button',
+  coin500: 'coin-500-quantity',
+  coin100: 'coin-100-quantity',
+  coin50: 'coin-50-quantity',
+  coin10: 'coin-10-quantity',
+};
+
+export const PURCHASE_ELEMENT_CLASS = {
+  productPurchaseItem: 'product-purchase-item',
+  purchaseButton: 'purchase-button',
+  productPurchaseName: 'product-purchase-name',
+  productPurchasePrice: 'product-purchase-price',
+  productPurchaseQuantity: 'product-purchase-quantity',
+};
+
 export const MENU_ELEMENT = {
   adminName: '상품 관리',
   adminId: 'product-add-menu',

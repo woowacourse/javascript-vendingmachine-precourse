@@ -39,10 +39,10 @@ export default class ChargeView extends TapView {
     <table border="1">
       <td>동전</td>
       <td>개수</td>
-			${this.coinTable(CHARGE_ELEMENT_ID.coin500, 500)}
-			${this.coinTable(CHARGE_ELEMENT_ID.coin100, 100)}
-			${this.coinTable(CHARGE_ELEMENT_ID.coin50, 50)}
-			${this.coinTable(CHARGE_ELEMENT_ID.coin10, 10)}
+      ${this.coinTable(CHARGE_ELEMENT_ID.coin500, 500)}
+      ${this.coinTable(CHARGE_ELEMENT_ID.coin100, 100)}
+      ${this.coinTable(CHARGE_ELEMENT_ID.coin50, 50)}
+      ${this.coinTable(CHARGE_ELEMENT_ID.coin10, 10)}
     </table>
     `;
   }
