@@ -1,4 +1,5 @@
 import { $ } from '../utils/dom.js';
+import { change } from '../model/store.js';
 
 class ChangeView {
   constructor() {}
@@ -7,7 +8,13 @@ class ChangeView {
     return Number($('#vending-machine-charge-input').value);
   }
 
-  render() {}
+  render() {
+    $('#vending-machine-charge-amount').textContent = `${change.totalAmount}원`;
+    $('#vending-machine-coin-500-quantity').textContent = `${change.coin500}개`;
+    $('#vending-machine-coin-100-quantity').textContent = `${change.coin100}개`;
+    $('#vending-machine-coin-50-quantity').textContent = `${change.coin50}개`;
+    $('#vending-machine-coin-10-quantity').textContent = `${change.coin10}개`;
+  }
 
   template() {
     return `

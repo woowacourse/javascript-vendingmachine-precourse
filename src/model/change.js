@@ -7,3 +7,5 @@ class Change {
     this.totalAmount = 0;
   }
 }
+
+export default Change;
