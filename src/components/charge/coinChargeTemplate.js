@@ -63,14 +63,16 @@ const haveCoinTemplate = (unit, quantity) => {
   `;
 };
 
-const addConvertedCoins = (convertedCoins) => {
-  for (let unit in convertedCoins) {
-    const haveCoin = haveCoinTemplate(unit, convertedCoins[unit]);
-    $('#vending-machine-coin-list').insertAdjacentHTML('afterbegin', haveCoin);
-  }
+const addConvertedCoins = (unit, quantity) => {
+  const haveCoin = haveCoinTemplate(unit, quantity);
+  $('#vending-machine-coin-list').insertAdjacentHTML('afterbegin', haveCoin);
 };
 
 export const showConvertedCoins = (convertedCoins) => {
   $('#vending-machine-coin-list').innerHTML = '';
-  addConvertedCoins(convertedCoins);
+
+  // eslint-disable-next-line guard-for-in
+  for (const unit in convertedCoins) {
+    addConvertedCoins(unit, convertedCoins[unit]);
+  }
 };

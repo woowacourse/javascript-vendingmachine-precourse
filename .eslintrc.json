@@ -11,6 +11,12 @@
     "import/prefer-default-export": "off",
     "max-depth": ["error", 2],
     "max-lines-per-function": ["error", 15],
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "no-restricted-syntax": [
+      "error",
+      "FunctionExpression",
+      "WithStatement",
+      "BinaryExpression[operator='in']"
+    ]
   }
 }
