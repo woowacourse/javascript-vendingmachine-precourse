@@ -6,12 +6,12 @@ import Component from '../core/Component.js';
 
 export default class ProductManageContainer extends Component {
   init() {
-    this.$state = {products: getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE)};
+    this.$state = {products: getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [])};
   }
 
   mounted() {
-    this.$state = {products: getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE)};
-    this.$target.querySelector(`.product-manage-table-container`).innerHTML = this.printProductTable();
+    this.$state = {products: getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [])};
+    this.$target.querySelector(`#product-manage-table-container`).innerHTML = this.printProductTable();
   }
 
   template() {
@@ -22,7 +22,7 @@ export default class ProductManageContainer extends Component {
     </div>
     <div>
       <h2>상품 현황</h2>
-      <div class="product-manage-table-container"></div>
+      <div id="product-manage-table-container"></div>
     </div>
     `;
   }
