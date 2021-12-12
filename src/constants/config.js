@@ -34,5 +34,5 @@ export const DEFAULT_VALUE = Object.freeze({
   ],
 
   // 사용자가 초기 보유한 금액 값
-  CHARGE: 0,
+  CHARGE_AMOUNT: 0,
 });
