@@ -1,3 +1,5 @@
+import { $ } from '../../utils/querySelector.js';
+
 export const productPurchaseTemplate = `
   <style>
     table {
@@ -32,7 +34,7 @@ export const productPurchaseTemplate = `
           <th>구매</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody id="product-purchase-list"></tbody>
     </table>
   </div>
   <br/>
@@ -67,3 +69,23 @@ export const productPurchaseTemplate = `
     </table>
   </div>
 `;
+
+const purchaseAbleListTemplate = ({ name, price, quantity }) => `
+  <tr class='product-purchase-item'>
+    <td class='product-purchase-name' data-product-name='${name}'>${name}</td>
+    <td class='product-purchase-price' data-product-price='${price}'>${price}</td>
+    <td class='product-purchase-quantity' data-product-quantity='${quantity}'>${quantity}</td>
+    <td><button class="purchase-button">구매하기</button></td>
+  </tr>
+`;
+
+const addProductItem = (productData) => {
+  const productItem = purchaseAbleListTemplate(productData);
+  $('#product-purchase-list').insertAdjacentHTML('beforeend', productItem);
+};
+
+export const initProductPurchaseList = (storedProductItems) => {
+  storedProductItems.forEach((item) => {
+    addProductItem(item);
+  });
+};

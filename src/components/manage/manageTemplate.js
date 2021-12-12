@@ -39,15 +39,13 @@ const productManageTemplate = `
   </div>
 `;
 
-const productItemTemplate = ({ name, price, quantity }) => {
-  return `
+const productItemTemplate = ({ name, price, quantity }) => `
   <tr class="product-manage-item">
     <td class="product-manage-name">${name}</td>
     <td class="product-manage-price">${price}</td>
     <td class="product-manage-quantity">${quantity}</td>
   </tr>
-  `;
-};
+`;
 
 const addProductItem = (productData) => {
   const productItem = productItemTemplate(productData);

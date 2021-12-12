@@ -54,14 +54,12 @@ export const coinChargeTemplate = `
   </div>
 `;
 
-const haveCoinTemplate = (unit, quantity) => {
-  return `
-    <tr>
-      <td>${unit}원</td>
-      <td id="vending-machine-coin-${unit}-quantity">${quantity}개</td>
-    </tr>
-  `;
-};
+const haveCoinTemplate = (unit, quantity) => `
+  <tr>
+    <td>${unit}원</td>
+    <td id="vending-machine-coin-${unit}-quantity">${quantity}개</td>
+  </tr>
+`;
 
 const addConvertedCoins = (unit, quantity) => {
   const haveCoin = haveCoinTemplate(unit, quantity);
