@@ -13,6 +13,7 @@ export default {
     return this.products;
   },
 };
+
 const initProducts = () => {
   return JSON.parse(localStorage.getItem('products'))
     ? JSON.parse(localStorage.getItem('products'))

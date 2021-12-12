@@ -64,3 +64,10 @@ export const CHARGE = {
   COIN_10: '10',
   WON: '원',
 };
+
+export const COINS_INIT_OBJECT = {
+  500: 0,
+  100: 0,
+  50: 0,
+  10: 0,
+};
