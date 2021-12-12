@@ -39,3 +39,15 @@ const isCorrectPrice = (price) => {
 };
 
 const isCorrectQuantity = (quantity) => quantity > 0;
+
+export const isValidCharge = (charge) => {
+  console.log(charge);
+  if (!charge || charge < 10) {
+    window.alert(
+      `"${charge}"은 잘못된 입력입니다. 10단위로 나누어 떨어지는 10이상의 정수를 입력해주세요`
+    );
+    return false;
+  }
+
+  return true;
+};
