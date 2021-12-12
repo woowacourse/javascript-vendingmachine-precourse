@@ -10,7 +10,7 @@ class VendingMachine {
     this.loadFromLocalStorage();
   }
 
-  addProductsToVendingMachine(products) {
+  loadProducts(products) {
     products = products.slice(1, products.length - 1).split(",");
     products.forEach(product => {
       const productInfo = product.slice(1, product.length - 1).split("-");
@@ -20,14 +20,14 @@ class VendingMachine {
     });
   }
 
-  addCoinsToVendingMachine(coins) {
+  loadCoins(coins) {
     coins = coins.split(",");
     COINS.forEach((coin, index) => {
       this.coins[`${coin}`] = coins[index];
     });
   }
 
-  addInsertedMoneyToVendingMachine(insertedMoney) {
+  loadInsertedMoney(insertedMoney) {
     this.insertedMoney = parseInt(insertedMoney);
   }
 
@@ -36,13 +36,13 @@ class VendingMachine {
     const coins = localStorage.getItem("coins");
     const insertedMoney = localStorage.getItem("insertedMoney");
     if (products) {
-      this.addProductsToVendingMachine(products);
+      this.loadProducts(products);
     }
     if (coins) {
-      this.addCoinsToVendingMachine(coins);
+      this.loadCoins(coins);
     }
     if (insertedMoney) {
-      this.addInsertedMoneyToVendingMachine(insertedMoney);
+      this.loadInsertedMoney(insertedMoney);
     }
   }
 
