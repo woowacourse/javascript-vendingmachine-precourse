@@ -36,3 +36,12 @@ export const DEFAULT_VALUES = {
   PRODUCTS: [],
   COINS: convertArrayToObjectKeys(COIN_UNITS),
 };
+
+export const REDUCER_RESULT = {
+  SUCCESS: (data = null) => {
+    return { SUCCESS: true, data };
+  },
+  FAIL: error => {
+    return { SUCCESS: false, error };
+  },
+};

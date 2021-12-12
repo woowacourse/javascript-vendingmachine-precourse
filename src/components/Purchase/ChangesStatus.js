@@ -21,9 +21,11 @@ export default class ChangesStatus extends Component {
     if (target.id !== 'coin-return-button') return;
     const { chargedMoney, changes } = this.getGlobalState();
     if (changes === 0) return alert(MESSAGE.NOT_ENOUGH_CHANGES);
+
     const { changeCoins, userChangeMoney } = ChangeStore.dispatch(
       spendChanges(chargedMoney)
-    );
+    ).data;
+
     UserStore.dispatch(
       returnChanges({ changes: userChangeMoney, changeCoins })
     );

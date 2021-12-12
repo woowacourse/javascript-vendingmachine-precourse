@@ -5,7 +5,7 @@ import {
   generateChangesCoin,
   mergeCoins,
 } from '../utils/helpers/coin.js';
-import { MESSAGE } from '../utils/constants.js';
+import { MESSAGE, REDUCER_RESULT } from '../utils/constants.js';
 import { changeStoreInitialState } from '../utils/initialStates.js';
 import { ChangesStorage } from '../storages/index.js';
 
@@ -20,12 +20,13 @@ class ChangesStore extends Store {
           changes: changes + money,
           coins: mergeCoins(coins, generateRandomChanges(money)),
         });
+        return REDUCER_RESULT.SUCCESS();
       },
       [CHANGES_ACTION_TYPE.SPEND_CHANGES]: money => {
         const { changes, coins } = this.state;
 
         if (changes === 0)
-          return { SUCCESS: false, error: MESSAGE.NOT_ENOUGH_CHANGES };
+          return REDUCER_RESULT.FAIL(MESSAGE.NOT_ENOUGH_CHANGES);
 
         const userChangeMoney = money > changes ? changes : money;
         const { changeCoins, machineCoins } = generateChangesCoin(
@@ -36,7 +37,7 @@ class ChangesStore extends Store {
           changes: changes - userChangeMoney,
           coins: machineCoins,
         });
-        return { SUCCESS: true, changeCoins, userChangeMoney };
+        return REDUCER_RESULT.SUCCESS({ changeCoins, userChangeMoney });
       },
     };
   }
