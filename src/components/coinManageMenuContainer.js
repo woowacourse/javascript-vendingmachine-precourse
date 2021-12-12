@@ -5,17 +5,17 @@ import Table from "./table.js";
 export default class CoinManageMenuContainer extends Component {
   template() {
     return `
-      <div id="product-add-menu-entry"></div>
-      <div id="product-add-menu-table"></div>
+      <div id="coin-manage-menu-entry"></div>
+      <div id="coin-manage-menu-table"></div>
     `;
   }
 
   componentDidMount() {
     const $entrySelector = this.$target.querySelector(
-      "#product-add-menu-entry"
+      "#coin-manage-menu-entry"
     );
     const $tableSelector = this.$target.querySelector(
-      "#product-add-menu-table"
+      "#coin-manage-menu-table"
     );
 
     new EntrySection($entrySelector, {
