@@ -13,6 +13,13 @@ export function appendTitle(element, text) {
   element.appendChild(title);
 }
 
+export function appendP(element, innerText, id) {
+  const text = document.createElement('p');
+  text.innerHTML = innerText;
+  appendId(text, id);
+  element.appendChild(text);
+}
+
 export function createInput(element, text, type, id) {
   const input = document.createElement('input');
   input.value = text;
@@ -37,10 +44,12 @@ export function createTh(tableRow, text) {
   tableRow.appendChild(head);
 }
 
-export function appendTableStyle(table, thead) {
+export function appendTableStyle(table) {
   table.style.borderCollapse = 'collapse';
   table.style.borderSpacing = 0;
+}
 
+export function appendTheadStyle(thead) {
   const tr = thead.querySelectorAll('tr');
   for (let t of tr) {
     t.style.padding = '10px';

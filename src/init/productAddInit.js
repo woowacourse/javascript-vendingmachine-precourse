@@ -11,6 +11,12 @@ function setProductManageTable(thead) {
   thead.appendChild(tableRow);
 }
 
+function setTableStyle(table, thead, tbody) {
+  func.appendTableStyle(table);
+  func.appendTheadStyle(thead);
+  func.appendTheadStyle(tbody);
+}
+
 // 표 요소 추가
 function setTable(productAddDiv) {
   let table = document.createElement('table');
@@ -21,7 +27,7 @@ function setTable(productAddDiv) {
   table.appendChild(thead);
   table.appendChild(tbody);
   setProductManageTable(thead);
-  func.appendTableStyle(table, thead);
+  setTableStyle(table, thead, tbody);
 
   productAddDiv.appendChild(table);
 }

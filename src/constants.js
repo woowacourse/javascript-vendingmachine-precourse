@@ -63,3 +63,4 @@ export const NULL = '';
 export const ZERO = 0;
 export const DIVIDE_CHARGE = 10;
 export const MINIMUN_CHARGE = 100;
+export const COIN_ARR = [500, 100, 50, 10];
