@@ -17,6 +17,7 @@ export const MESSAGE = {
     '충전가능한 금액은 최소 10원이며, 10원 단위로 나누어 떨어져야 합니다.',
   INVALID_CHARGING_MONEY:
     '투입 가능한 금액은 최소 10원이며, 10원 단위로 나누어 떨어져야 합니다.',
+  INVALID_RETURN_REQUEST: '반환할 금액이 없습니다.',
 };
 
 export const RULE = {

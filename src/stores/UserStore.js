@@ -17,10 +17,10 @@ class UserStore extends Store {
       [USER_ACTION_TYPE.SPEND_MONEY]: money => {
         this.setState({ chargedMoney: this.state.chargedMoney - money });
       },
-      [USER_ACTION_TYPE.RETURN_CHANGES]: ({ changes, coins }) => {
+      [USER_ACTION_TYPE.RETURN_CHANGES]: ({ change, coins }) => {
         this.setState({
           coins,
-          chargedMoney: this.state.chargedMoney - changes,
+          chargedMoney: change,
         });
       },
     };
