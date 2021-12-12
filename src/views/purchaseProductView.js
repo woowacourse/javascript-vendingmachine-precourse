@@ -23,7 +23,7 @@ import {
   onClickInsertButton,
   onClickPurchaseButton,
   onClickReturnButton,
-} from "../menus/purchaseProductMenu.js";
+} from "../controllers/purchaseProductController.js";
 
 // ----금액 투입하기 폼----
 const makeInsertMoneyContainer = () => {

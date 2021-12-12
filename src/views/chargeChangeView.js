@@ -1,5 +1,5 @@
 import { vendingMachine } from "../components/vendingMachine.js";
-import { onClickChargeButton } from "../menus/chargeChangeMenu.js";
+import { onClickChargeButton } from "../controllers/chargeChangeController.js";
 import {
   CHARGE_TAP,
   ID,

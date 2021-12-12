@@ -3,7 +3,7 @@ import {
   PRODUCT_TABLE,
   VIEW_CONTAINER,
 } from "../utils/constants.js";
-import { onClickAddButton } from "../menus/manageProductMenu.js";
+import { onClickAddButton } from "../controllers/manageProductController.js";
 import { vendingMachine } from "../components/vendingMachine.js";
 import {
   makeButton,
