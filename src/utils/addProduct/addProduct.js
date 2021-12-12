@@ -4,7 +4,7 @@ import { checkProductValidation } from './checkProductValidation.js';
 import { clearInput } from '../common/clearInput.js';
 import { renderProducts } from './renderProducts.js';
 
-export const addProduct = (state, tab) => {
+export const addProduct = state => {
   const productName = $('#product-name-input').value.trim();
   const price = $('#product-price-input').value;
   const quantity = $('#product-quantity-input').value;
