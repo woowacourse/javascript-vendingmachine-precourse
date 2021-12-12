@@ -10,7 +10,7 @@ export default class CoinInputForm extends Component {
       <input type="number" id="vending-machine-charge-input"/>
       <button id="vending-machine-charge-button">충전하기</button>
     </div>
-    <p>보유 금액: <span id="vending-machine-charge-amount">${chargeAmount}원</span></p>
+    <p>보유 금액: <span id="vending-machine-charge-amount">${chargeAmount}</span>원</p>
     `;
   }
 
