@@ -39,6 +39,17 @@ export const SELECTOR = {
   },
 };
 
+export const LIMIT = {
+  MIN_PRICE: 100,
+  UNIT_PRICE: 10,
+};
+
+export const ERROR = {
+  PRODUCT_NAME_ADD: '상품명을 기입해주세요.',
+  PRODUCT_PRICE_ADD: '가격을 10원 단위로 100원 이상으로 기입해주세요.',
+  PRODUCT_QUANTITY_ADD: '수량을 양의 정수로 기입해주세요.',
+};
+
 export const COMMENT = {
   VENDING_MACHINE: '🥤자판기🥤',
   PRODUCT_MENU: '상품 관리',

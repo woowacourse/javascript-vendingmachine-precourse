@@ -9,10 +9,10 @@ export default class Menu {
   constructor($target) {
     this.$target = $target;
     this.render();
-    this.bindEvents();
+    this.bindClickEvents();
   }
 
-  bindEvents() {
+  bindClickEvents() {
     $(`#${SELECTOR.ID.PRODUCT_MENU}`).addEventListener('click', () => {
       setLocalStorage('menu', SELECTOR.ID.PRODUCT_MENU);
       console.log(`product`);
