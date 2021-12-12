@@ -1,4 +1,4 @@
-import { COINS_KEY, DOM, PLAIN_TEXT, TAB } from '../lib/constants.js';
+import { COINS_KEY, DOM, ERROR_MESSAGE, FIND_FAILURE, PLAIN_TEXT, TAB } from '../lib/constants.js';
 import VendingMachineUtil from './vendingMachineUtil.js';
 
 /** Model */
@@ -59,7 +59,7 @@ class VendingMachineModel {
   addProduct() {
     if (VendingMachineUtil.isValidProduct(this.productAddInputsValue)) {
       const newProduct = {
-        // id: VendingMachineUtil.generateProductId(this.productList),
+        id: VendingMachineUtil.generateProductId(this.productList),
         name: this.productAddInputsValue[DOM.PRODUCT_NAME_INPUT],
         price: Number(this.productAddInputsValue[DOM.PRODUCT_PRICE_INPUT]),
         quantity: Number(this.productAddInputsValue[DOM.PRODUCT_QUANTITY_INPUT]),
@@ -80,6 +80,25 @@ class VendingMachineModel {
       );
       this.coins = VendingMachineUtil.combineCurrentCoinsAndNewCoins(this.coins, newCoins);
     }
+  }
+
+  purchaseProduct(productId) {
+    const targetProduct = this.findProduct(productId);
+
+    if (targetProduct === FIND_FAILURE) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_UNDEFINED);
+    }
+    if (targetProduct.quantity === 0) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_ZERO);
+    }
+    this.sellProduct(targetProduct);
+  }
+
+  findProduct(productId) {
+    return this.productList.find((product) => product.id === productId);
+  }
+  sellProduct(targetProduct) {
+    targetProduct = { ...targetProduct, quantity: targetProduct.quantity - 1 };
   }
 }
 export default VendingMachineModel;

@@ -163,7 +163,12 @@ class VendingMachineView {
       ${productList
         .map(
           (product) =>
-            `<tr><td>${product.name}</td><td>${product.price}</td><td>${product.quantity}</td><td></td><tr>`
+            `<tr class="${DOM.PRODUCT_PURCHASE_ITEM_CLASSNAME}">
+            <td class="${DOM.PRODUCT_PURCHASE_NAME_CLASSNAME}" ${DOM.DATASET_PRODUCT_NAME}="${product.name}">${product.name}</td>
+            <td class="${DOM.PRODUCT_PURCHASE_PRICE_CLASSNAME}" ${DOM.DATASET_PRODUCT_PRICE}="${product.price}">${product.price}</td>
+            <td class="${DOM.PRODUCT_PURCHASE_QUANTITY_CLASSNAME}" ${DOM.DATASET_PRODUCT_QUNATITY}="${product.quantity}">${product.quantity}</td>
+            <td><button class="${DOM.PURCHASE_BUTTON_CLASSNAME}" data-id="${product.id}">상품구매</button></td>
+            <tr>`
         )
         .join('')}
     </table>`;
@@ -216,6 +221,26 @@ class VendingMachineView {
     $(DOM.VENDING_MACHINE_COIN_100_QUANTITY).textContent = coins[COINS_KEY[100]];
     $(DOM.VENDING_MACHINE_COIN_50_QUANTITY).textContent = coins[COINS_KEY[50]];
     $(DOM.VENDING_MACHINE_COIN_10_QUANTITY).textContent = coins[COINS_KEY[10]];
+  }
+
+  renderProductPurchaseList(productList) {
+    $(DOM.PRODUCT_PURCHASE_LIST_TABLE).innerHTML = `<tr>
+    <td>상품명</td>
+    <td>개수</td>
+    <td>수량</td>
+    <td>구매</td>
+  </tr>
+  ${productList
+    .map(
+      (product) =>
+        `<tr class="${DOM.PRODUCT_PURCHASE_ITEM_CLASSNAME}">
+        <td class="${DOM.PRODUCT_PURCHASE_NAME_CLASSNAME}" ${DOM.DATASET_PRODUCT_NAME}="${product.name}">${product.name}</td>
+        <td class="${DOM.PRODUCT_PURCHASE_PRICE_CLASSNAME}" ${DOM.DATASET_PRODUCT_PRICE}="${product.price}">${product.price}</td>
+        <td class="${DOM.PRODUCT_PURCHASE_QUANTITY_CLASSNAME}" ${DOM.DATASET_PRODUCT_QUNATITY}="${product.quantity}">${product.quantity}</td>
+        <td><button class="${DOM.PURCHASE_BUTTON_CLASSNAME}" data-id="${product.id}">상품구매</button></td>
+        <tr>`
+    )
+    .join('')}`;
   }
 }
 export default VendingMachineView;

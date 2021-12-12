@@ -9,3 +9,6 @@ export const isNumberStringIsNegative = (str) => {
 export const isNumberStringNotDivideBy10 = (str) => {
   return Number(str) % 10 !== 0;
 };
+export const getRandomNumber = (length) => {
+  return window.MissionUtils.Random.pickNumberInRange(0, length * 2);
+};

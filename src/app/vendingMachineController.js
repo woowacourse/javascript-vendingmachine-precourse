@@ -1,5 +1,6 @@
 import { DOM, INPUT_TYPE, TAB } from '../lib/constants.js';
 import { $ } from '../lib/utils.js';
+import VendingMachineUtil from './vendingMachineUtil.js';
 
 /** Controller */
 class VendingMachineController {
@@ -34,10 +35,10 @@ class VendingMachineController {
     );
   }
   registerProductPurchaseMenuEventHandler() {
-    // $(DOM.PRODUCT_PURCHASE_LIST_TABLE).addEventListener(
-    //   'click',
-    //   this.onClickProductPurchaseListTable.bind(this)
-    // );
+    $(DOM.PRODUCT_PURCHASE_LIST_TABLE).addEventListener(
+      'click',
+      this.onClickProductPurchaseListTable.bind(this)
+    );
     // $(DOM.PRODUCT_ADD_FORM).addEventListener('input', this.onInputProductAddForm.bind(this));
     // $(DOM.PRODUCT_ADD_FORM).addEventListener('submit', this.onSubmitProductAddForm.bind(this));
   }
@@ -98,6 +99,21 @@ class VendingMachineController {
       this.$view.renderCoins(this.$model.coins);
     } catch (e) {
       alert(e);
+    }
+  }
+  onClickProductPurchaseListTable(e) {
+    if (VendingMachineUtil.isPurchaseButton(e.target)) {
+      const {
+        target: {
+          dataset: { id: productId },
+        },
+      } = e;
+      try {
+        this.$model.purchaseProduct(productId);
+        this.$view.renderProductPurchaseList(this.$model.productList);
+      } catch (e) {
+        alert(e);
+      }
     }
   }
 }

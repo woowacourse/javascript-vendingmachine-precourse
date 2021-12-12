@@ -1,5 +1,6 @@
-import { COINS_KEY, DOM, ERROR_MESSAGE } from '../lib/constants.js';
+import { COINS_KEY, DOM, ERROR_MESSAGE, FIND_FAILURE } from '../lib/constants.js';
 import {
+  getRandomNumber,
   hasSomeEmptyString,
   isNumberStringIsNegative,
   isNumberStringNotDivideBy10,
@@ -47,6 +48,23 @@ class VendingMachineUtil {
     });
 
     return combinedCoins;
+  }
+
+  static generateProductId(productList) {
+    let randomNumber = getRandomNumber(productList.length);
+    while (VendingMachineUtil.isPossibleId(productList, randomNumber)) {
+      randomNumber = getRandomNumber(productList.length);
+    }
+
+    return `${randomNumber}`;
+  }
+
+  static isPossibleId(productList, randomNumber) {
+    return productList.find((product) => product.id === randomNumber) === FIND_FAILURE;
+  }
+
+  static isPurchaseButton(el) {
+    return el.className === DOM.PURCHASE_BUTTON_CLASSNAME;
   }
 }
 export default VendingMachineUtil;

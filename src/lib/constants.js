@@ -36,6 +36,17 @@ export const DOM = Object.freeze({
   COIN_100_QUANTITY: 'coin-100-quantity',
   COIN_50_QUANTITY: 'coin-50-quantity',
   COIN_10_QUANTITY: 'coin-10-quantity',
+
+  /** PRODUCT LIST CLASS */
+  PRODUCT_PURCHASE_ITEM_CLASSNAME: 'product-purchase-item',
+  PURCHASE_BUTTON_CLASSNAME: 'purchase-button',
+  PRODUCT_PURCHASE_NAME_CLASSNAME: 'product-purchase-name',
+  PRODUCT_PURCHASE_PRICE_CLASSNAME: 'product-purchase-price',
+  PRODUCT_PURCHASE_QUANTITY_CLASSNAME: 'product-purchase-quantity',
+
+  DATASET_PRODUCT_NAME: 'data-product-name',
+  DATASET_PRODUCT_PRICE: 'data-product-price',
+  DATASET_PRODUCT_QUNATITY: 'data-product-quantity',
 });
 export const TAB = Object.freeze({
   PRODUCT_ADD_MENU: '상품 관리',
@@ -56,6 +67,8 @@ export const ERROR_MESSAGE = Object.freeze({
   PRODUCT_ADD_ERROR_PRICE_DIVIDE_BY_10: '가격은 10으로 나누어 떨어져야합니다.',
   VENDING_MACHINE_ERROR_CHARGE_IS_NEGATIVE_NUMBER: '금액은 음수일 수 없습니다.',
   VENDING_MACHINE_ERROR_CHARGE_DEVIDE_BY_10: '금액은 10으로 나누어 떨어져야합니다.',
+  PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_UNDEFINED: '그런 상품은 존재하지 않습니다.',
+  PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_ZERO: '상품이 품절 되었습니다.',
 });
 export const COINS_KEY = Object.freeze({
   500: 'coin-500',
@@ -63,3 +76,5 @@ export const COINS_KEY = Object.freeze({
   50: 'coin-50',
   10: 'coin-10',
 });
+
+export const FIND_FAILURE = -1;
