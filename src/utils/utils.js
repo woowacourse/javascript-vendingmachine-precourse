@@ -66,8 +66,8 @@ const utils = {
     return string.slice(0, index) + target + string.slice(index);
   },
 
-  insertHypen: string => {
-    return Object.entries(DB.load(string)).map(array => {
+  insertHypen: object => {
+    return Object.entries(object).map(array => {
       const [coinType, quantity] = array;
 
       return [utils.insertAt(coinType, 4, '-'), quantity];

@@ -75,14 +75,14 @@ const DOMUtils = {
 
   showVendingMachineCoins: () => {
     if (UT.isAllZero('vendingMachineCoins')) {
-      return UT.insertHypen('vendingMachineCoins').forEach(array => {
+      return UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
         const [coinType] = array;
 
         $(`#vending-machine-${coinType}-quantity`).innerHTML = '';
       });
     }
 
-    UT.insertHypen('vendingMachineCoins').forEach(array => {
+    UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
       const [coinType, quantity] = array;
 
       $(`#vending-machine-${coinType}-quantity`).innerHTML = `${quantity}개`;
@@ -90,7 +90,7 @@ const DOMUtils = {
   },
 
   showReturnCoins: () => {
-    UT.insertHypen('vendingMachineCoins').forEach(array => {
+    UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
       const [coinType, quantity] = array;
 
       $(`#${coinType}-quantity`).innerHTML = `${quantity}개`;
