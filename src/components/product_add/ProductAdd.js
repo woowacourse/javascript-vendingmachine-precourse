@@ -24,7 +24,6 @@ export default class ProductAdd extends Component {
   }
 
   mounted() {
-    console.log("add this", this);
     const {
       addProduct,
       $state: { products },

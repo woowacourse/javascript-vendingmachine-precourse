@@ -25,7 +25,6 @@ export default class InputForm extends Component {
   onSubmitHandler(e) {
     e.preventDefault();
 
-    console.log(e, this);
     const { addProduct, products } = this.$props;
     const [name, price, quantity] = e.target;
 
