@@ -8,7 +8,9 @@ import { MESSAGE } from '../../utils/constants.js';
 
 export default class ChangesStatus extends Component {
   getGlobalState() {
-    return { ...UserStore.getState(), ...ChangeStore.getState() };
+    const { chargedMoney, coins } = UserStore.getState();
+    const { changes } = ChangeStore.getState();
+    return { chargedMoney, coins, changes };
   }
 
   bindEvents() {
@@ -19,11 +21,11 @@ export default class ChangesStatus extends Component {
     if (target.id !== 'coin-return-button') return;
     const { chargedMoney, changes } = this.getGlobalState();
     if (changes === 0) return alert(MESSAGE.NOT_ENOUGH_CHANGES);
-    const { changeCoins, restChange } = ChangeStore.dispatch(
+    const { changeCoins, userChangeMoney } = ChangeStore.dispatch(
       spendChanges(chargedMoney)
     );
     UserStore.dispatch(
-      returnChanges({ change: restChange, coins: changeCoins })
+      returnChanges({ changes: userChangeMoney, coins: changeCoins })
     );
   }
 

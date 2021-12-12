@@ -28,7 +28,7 @@ class ChangesStore extends Store {
         if (changes === 0)
           return { SUCCESS: false, error: MESSAGE.NOT_ENOUGH_CHANGES };
         const userChangeMoney = money > changes ? changes : money;
-        const { changeCoins, machineCoins, restChange } = getChangesCoin(
+        const { changeCoins, machineCoins } = getChangesCoin(
           userChangeMoney,
           coins
         );
@@ -36,7 +36,7 @@ class ChangesStore extends Store {
           changes: changes - userChangeMoney,
           coins: machineCoins,
         });
-        return { SUCCESS: true, changeCoins, restChange };
+        return { SUCCESS: true, changeCoins, userChangeMoney };
       },
     };
   }

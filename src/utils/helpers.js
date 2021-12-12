@@ -43,5 +43,5 @@ export const getChangesCoin = (change, coins) => {
       restChange -= currentCoin;
     }
   }
-  return { changeCoins, machineCoins, restChange };
+  return { changeCoins, machineCoins };
 };
