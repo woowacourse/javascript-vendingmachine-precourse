@@ -76,7 +76,13 @@ export default class VendingMachine {
             }
 
             const max = money / COIN_VALUE[key];
-            const value = MissionUtils.Random.pickNumberInList([...Array(max).keys()]);
+            
+            let spreadMax = [];
+            for(let i=0; i<=max; i++){
+                spreadMax.push(i);
+            }
+
+            const value = MissionUtils.Random.pickNumberInList(spreadMax);
             this.coins[key] += value;
             money = money - COIN_VALUE[key] * value;
         }
@@ -115,7 +121,12 @@ export default class VendingMachine {
             }
 
             const max = money / COIN_VALUE[key];
-            const value = MissionUtils.Random.pickNumberInList([...Array(max).keys()]);
+            let spreadMax = [];
+            for(let i=0; i<=max; i++){
+                spreadMax.push(i);
+            }
+
+            const value = MissionUtils.Random.pickNumberInList(spreadMax);
             coins[key] = value;
             money = money - COIN_VALUE[key] * value;
         }
