@@ -16,7 +16,7 @@ export default class App extends Component {
     return `
         <div id="header">
             <h1>🥤 자판기 🥤</h1>
-            <div id="menu" />
+            <div id="menu"></div>
         </div>
         <div id="contents"></div>
     `;
