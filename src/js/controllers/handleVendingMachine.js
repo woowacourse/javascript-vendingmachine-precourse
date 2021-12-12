@@ -6,10 +6,12 @@ import { resetChargeInput, printChargeMoney } from '../views/vendingMachineView.
 function HandleVendingMachine() {
   this.coins = { amount: 0, fiveHundred: 0, oneHundred: 0, fifty: 0, ten: 0 };
 
-  if (store.getLocalStorage('coins')) {
-    this.coins = store.getLocalStorage('coins');
-    printChargeMoney();
-  }
+  this.init = () => {
+    if (store.getLocalStorage('coins')) {
+      this.coins = store.getLocalStorage('coins');
+      printChargeMoney();
+    }
+  };
 
   $('#vending-machine-charge-button').addEventListener('click', e => {
     e.preventDefault();
@@ -22,6 +24,8 @@ function HandleVendingMachine() {
     }
     resetChargeInput();
   });
+
+  this.init();
 }
 
 export default HandleVendingMachine;
