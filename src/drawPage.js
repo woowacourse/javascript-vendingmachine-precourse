@@ -36,19 +36,19 @@ $app.innerHTML += `<div id="vending-machine-manage-content" class="hide">
                         </tr>
                         <tr>
                             <td>500원</td>
-                            <td>vending-machine-coin-500-quantity</td>
+                            <td id="vending-machine-coin-500-quantity"></td>
                         </tr>
                         <tr>
                             <td>100원</td>
-                            <td>vending-machine-coin-100-quantity</td>
+                            <td id="vending-machine-coin-100-quantity"></td>
                         </tr>
                         <tr>
                             <td>50원</td>
-                            <td>vending-machine-coin-50-quantity</td>
+                            <td id="vending-machine-coin-50-quantity"></td>
                         </tr>
                         <tr>
                             <td>10원</td>
-                            <td>vending-machine-coin-10-quantity</td>
+                            <td id="vending-machine-coin-10-quantity"></td>
                         </tr>
                     </table>
                     </div>`
