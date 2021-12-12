@@ -34,13 +34,17 @@ export const ID = {
 
 export const CLASS = {
   PRODUCT_MANAGE_ITEM: 'product-manage-item',
-  PRODUCT_MANAGE_NAME: 'product-manage-name',
-  PRODUCT_MANAGE_PRICE: 'product-manage-price',
-  PRODUCT_MANAGE_QUANTITY: 'product-manage-quantity',
+  PRODUCT_MANAGE: [
+    'product-manage-name',
+    'product-manage-price',
+    'product-manage-quantity',
+  ],
 
   PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
-  PURCHASE_BUTTON: 'purchase-button',
-  PRODUCT_PURCHASE_NAME: 'product-purchase-name',
-  PRODUCT_PURCHASE_PRICE: 'product-purchase-price',
-  PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
+  PRODUCT_PURCHASE: [
+    'product-purchase-name',
+    'product-purchase-price',
+    'product-purchase-quantity',
+    'purchase-button',
+  ],
 };
