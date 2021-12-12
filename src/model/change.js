@@ -4,7 +4,6 @@ class Change {
     this.coin100 = 0;
     this.coin50 = 0;
     this.coin10 = 0;
-    this.totalAmount = 0;
   }
 }
 

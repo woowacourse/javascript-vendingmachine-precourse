@@ -8,8 +8,12 @@ class ChangeView {
     return Number($('#vending-machine-charge-input').value);
   }
 
+  getChangeAmount() {
+    return change.coin500 * 500 + change.coin100 * 100 + change.coin50 * 50 + change.coin10 * 10;
+  }
+
   render() {
-    $('#vending-machine-charge-amount').textContent = `${change.totalAmount}`;
+    $('#vending-machine-charge-amount').textContent = `${this.getChangeAmount()}`;
     $('#vending-machine-coin-500-quantity').textContent = `${change.coin500}개`;
     $('#vending-machine-coin-100-quantity').textContent = `${change.coin100}개`;
     $('#vending-machine-coin-50-quantity').textContent = `${change.coin50}개`;

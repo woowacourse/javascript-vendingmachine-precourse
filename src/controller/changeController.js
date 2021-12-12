@@ -19,19 +19,14 @@ class ChangeController {
   }
 
   randomCharge(moneyInput) {
-    while (moneyInput > 0) {
+    while (moneyInput >= 10) {
       let pickedCoin = pickRandomCoin();
       if (moneyInput >= pickedCoin) {
         change[`coin${pickedCoin}`] += 1;
         moneyInput -= pickedCoin;
       }
     }
-    change.totalAmount = this.sumCoins();
     store.setLocalStorage('change', change);
-  }
-
-  sumCoins() {
-    return change.coin500 * 500 + change.coin100 * 100 + change.coin50 * 50 + change.coin10 * 10;
   }
 
   bindEvent() {
