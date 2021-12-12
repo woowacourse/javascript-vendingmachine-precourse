@@ -2,8 +2,8 @@ import Store from '../core/Store.js';
 import { CHANGES_ACTION_TYPE } from '../actions/changes.js';
 import {
   generateRandomChanges,
+  generateChangesCoin,
   mergeCoins,
-  getChangesCoin,
 } from '../utils/helpers/coin.js';
 import { MESSAGE } from '../utils/constants.js';
 import { changeStoreInitialState } from '../utils/initialStates.js';
@@ -26,7 +26,7 @@ class ChangesStore extends Store {
         if (changes === 0)
           return { SUCCESS: false, error: MESSAGE.NOT_ENOUGH_CHANGES };
         const userChangeMoney = money > changes ? changes : money;
-        const { changeCoins, machineCoins } = getChangesCoin(
+        const { changeCoins, machineCoins } = generateChangesCoin(
           userChangeMoney,
           coins
         );

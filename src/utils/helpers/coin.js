@@ -21,7 +21,7 @@ export const mergeCoins = (originCoins, newCoins) => {
   return mergedCoins;
 };
 
-export const getChangesCoin = (change, coins) => {
+export const generateChangesCoin = (change, coins) => {
   const changeCoins = DEFAULT_VALUES.COINS;
   const machineCoins = { ...coins };
   let restChange = change;
