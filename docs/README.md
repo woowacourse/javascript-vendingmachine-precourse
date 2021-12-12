@@ -177,8 +177,10 @@
 
 ### 자판기가 보유한 동전
 
-- [ ] 자판기의 현재 `보유 금액`을 테이블로 보여준다.
-  - [ ] `{개수}개` 형식이다.
+[완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commit/a1f9856a78301f2e1b764a62418517a7e0b0acb4)
+
+- [x] 자판기의 현재 `보유 금액`을 테이블로 보여준다.
+  - [x] `{개수}개` 형식이다.
 
 
 
