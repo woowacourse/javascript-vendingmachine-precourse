@@ -17,6 +17,18 @@ export const ELEMENT_ID = {
   PRODUCT_PRICE_INPUT: 'product-price-input',
   PRODUCT_QUANTITY_INPUT: 'product-quantity-input',
   PRODUCT_ADD_BUTTON: 'product-add-button',
+  CHARGE_INPUT: 'vending-machine-charge-input',
+  CHARGE_BUTTON: 'vending-machine-charge-button',
+  CHARGE_AMOUNT: 'vending-machine-charge-amount',
+  COIN_QUANTITY(coin) {
+    return `vending-machine-coin-${coin}-quantity`;
+  },
+};
+export const ELEMENT_CLASS = {
+  PRODUCT_MANAGE_ITEM: 'product-manage-item',
+  PRODUCT_MANAGE_NAME: 'product-manage-name',
+  PRODUCT_MANAGE_PRICE: 'product-manage-price',
+  PRODUCT_MANAGE_QUANTITY: 'product-manage-quantity',
 };
 export const EVENT_TYPE = {
   CHANGE_TAB: 'changeTab',
@@ -39,4 +51,16 @@ export const ALERT = {
   WRONG_PRODUCT_PRICE: '잘못된 상품 가격입니다.',
   WRONG_PRODUCT_QUANTITY: '잘못된 상품 개수입니다.',
   NOT_10_UNIT_PRICE: '상품 가격이 10원 단위로 떨어져야 합니다.',
+};
+
+export const COINS = [500, 100, 50, 10];
+
+export const CHARGE = {
+  COIN: '동전',
+  COUNT: '개수',
+  COIN_500: '500',
+  COIN_100: '100',
+  COIN_50: '50',
+  COIN_10: '10',
+  WON: '원',
 };

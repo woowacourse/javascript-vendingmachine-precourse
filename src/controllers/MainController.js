@@ -27,6 +27,8 @@ export default {
       case TAB.MANAGE_PRODUCT:
         this.renderManageProductView();
         break;
+      case TAB.CHARGE_CHANGE:
+        this.renderChargetCoinView();
       default:
         break;
     }
@@ -34,6 +36,10 @@ export default {
 
   renderManageProductView() {
     ManageProductView.render();
+  },
+
+  renderChargetCoinView() {
+    ChargeCoinView.render();
   },
 
   onChangeTab(tabName) {
