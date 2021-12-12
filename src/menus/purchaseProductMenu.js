@@ -72,6 +72,7 @@ export const onClickPurchaseButton = event => {
     vendingMachine.purchaseProduct(getNameTag(form).innerText);
     renderMoney(vendingMachine.getMoney());
     updateQuantity(getQuantityTag(form));
+    setIsRenderInsertedMoney();
     saveToLocalStorage(vendingMachine);
   }
 };
