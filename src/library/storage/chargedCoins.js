@@ -19,6 +19,5 @@ export function getChargedAmount() {
 }
 
 export function addChargedCoins(coin) {
-  const chargedCoins = generateRandomCoins(coin);
-  setChargedCoins(addCoins(getChargedCoins(), chargedCoins));
+  setChargedCoins(addCoins(getChargedCoins(), generateRandomCoins(coin)));
 }

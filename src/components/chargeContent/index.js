@@ -24,7 +24,7 @@ const createVendingMachineChargeFormContainer = (chargedCoins) => {
 
 const createVendingMachineCoinTableContainer = (chargedCoins) => {
   const container = createContainer(
-    'machine-charged-coins-table-container',
+    'machine-charged-coin-table-container',
     HEADING_CHARGE_MACHINE
   );
   container.appendChild(new VendingMachineCoinTable(chargedCoins).getTable());

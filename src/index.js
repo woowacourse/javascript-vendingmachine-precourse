@@ -10,6 +10,7 @@ import {
   ACTION_CLICK_MENU,
   KEY_MENU_ADD,
   KEY_MENU_CHARGE,
+  KEY_MENU_PURCHASE,
 } from './components/menu/const.js';
 import createMenuByKey from './components/menu/createMenuByKey.js';
 
@@ -22,6 +23,7 @@ import {
   createVendingMachineChargeFormContainer,
   createVendingMachineCoinTableContainer,
 } from './components/chargeContent/index.js';
+import { createConsumerChargeFormContainer } from './components/purchaseContent/index.js';
 
 import {
   getCurrentMenu,
@@ -29,11 +31,13 @@ import {
 } from './library/storage/currentMenu.js';
 import { getProducts } from './library/storage/products.js';
 import { getChargedCoins } from './library/storage/chargedCoins.js';
+import { getChargedCoinOfConsumer } from './library/storage/consumerCoin.js';
 
 export default class VendingMachine {
-  constructor(products, chargedCoins) {
+  constructor(products, chargedCoins, consumerChargedCoin) {
     this.products = products;
     this.chargedCoins = chargedCoins;
+    this.consumerChargedCoin = consumerChargedCoin;
 
     this.app = document.getElementById('app');
     this.menus = createDivision({ id: 'menus' });
@@ -64,6 +68,8 @@ export default class VendingMachine {
     if (menuKey === KEY_MENU_ADD) this.appendAddContent(content, this.products);
     if (menuKey === KEY_MENU_CHARGE)
       this.appendChargeContent(content, this.chargedCoins);
+    if (menuKey === KEY_MENU_PURCHASE)
+      this.appendPurchaseContent(content, this.consumerChargedCoin);
   }
 
   appendAddContent(content, products) {
@@ -74,6 +80,10 @@ export default class VendingMachine {
   appendChargeContent(content, chargedCoins) {
     content.appendChild(createVendingMachineChargeFormContainer(chargedCoins));
     content.appendChild(createVendingMachineCoinTableContainer(chargedCoins));
+  }
+
+  appendPurchaseContent(content, consumerChargedCoin) {
+    content.appendChild(createConsumerChargeFormContainer(consumerChargedCoin));
   }
 
   [ACTION_CLICK_MENU](e, menuKey) {
@@ -94,5 +104,6 @@ export default class VendingMachine {
 
 const products = getProducts();
 const chargedCoin = getChargedCoins();
+const consumerChargedCoin = getChargedCoinOfConsumer();
 
-new VendingMachine(products, chargedCoin);
+new VendingMachine(products, chargedCoin, consumerChargedCoin);
