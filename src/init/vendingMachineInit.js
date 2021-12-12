@@ -100,19 +100,11 @@ function setTable(vendingMachineDiv) {
 }
 
 function setVendingChargeAmount(vendingMachineDiv) {
-  func.appendP(
-    vendingMachineDiv,
-    MACHINE_MANAGE.COIN_STORAGE,
-    'vending-machine-charge-amount',
-  );
+  func.appendP(vendingMachineDiv, MACHINE_MANAGE.COIN_STORAGE, 'vending-machine-charge-amount');
 }
 
 function setVendingChargeBtn(vendingMachineDiv) {
-  func.createBtn(
-    vendingMachineDiv,
-    MACHINE_MANAGE.ADD_BTN,
-    'vending-machine-charge-button',
-  );
+  func.createBtn(vendingMachineDiv, MACHINE_MANAGE.ADD_BTN, 'vending-machine-charge-button');
 }
 
 function setVendingChargeInput(vendingMachineDiv) {
