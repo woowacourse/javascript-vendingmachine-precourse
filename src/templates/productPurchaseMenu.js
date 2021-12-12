@@ -41,8 +41,7 @@ const createReturnCoinItemTemplate = (coin, amount) => `
       ${coin}원
     </td>
     <td Style="${Style.tableBodyData}">
-      <span id="vending-machine-coin-${coin}-quantity">${amount}</span>
-      <span>개</span>
+      <span id="vending-machine-coin-${coin}-quantity">${amount}개</span>
     </td>
   </tr>
 `;
@@ -60,7 +59,8 @@ export const createChargeFormTemplate = amount => `
   <br />
   <div>
     <span>투입한 금액:</span>
-    <span id="${Selector.chargeAmountId}">${amount}</span><span>원</span>
+    <span id="${Selector.chargeAmountId}">${amount}</span>
+		<span>원</span>
   </div>
 `;
 

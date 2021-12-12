@@ -11,7 +11,7 @@ export const createTitleTemplate = () => `
 export const createCoinQuantityTableRowTemplate = (coin, amount, id) => `
   <tr>
     <td Style="${Style.tableBodyData}">${coin}원</td>
-    <td Style="${Style.tableBodyData}"><span id="${id}">${amount}</span><span>개</span></td>
+    <td Style="${Style.tableBodyData}" id="${id}">${amount}개</td>
   </tr>
 `;
 
@@ -26,7 +26,8 @@ export const createChargeFormTemplate = () => `
 export const createChargeAmountTemplate = amount => `
   <div Style="margin: 20px 0px">
     <span>보유 금액:</span>
-    <span><span id="${Selector.vendingMachineChargeAmountId}">${amount}</span>원</span>
+    <span id="${Selector.vendingMachineChargeAmountId}">${amount}</span>
+    <span>원</span>
   </div>
 `;
 
