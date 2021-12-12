@@ -22,7 +22,7 @@ export function appendP(element, innerText, id) {
 
 export function createInput(element, text, type, id) {
   const input = document.createElement('input');
-  input.value = text;
+  input.placeholder = text;
   input.type = type;
   appendId(input, id);
   element.appendChild(input);
