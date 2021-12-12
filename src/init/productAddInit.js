@@ -43,13 +43,13 @@ function setProductAddinput(productAddDiv) {
   func.createInput(
     productAddDiv,
     PRODUCT_ADD.PRICE,
-    'text',
+    'number',
     'product-price-input',
   );
   func.createInput(
     productAddDiv,
     PRODUCT_ADD.QUANTITY,
-    'text',
+    'number',
     'product-quantity-input',
   );
 }
