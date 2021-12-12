@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { userInputMoney } from '../model/store.js';
+import { store, userInputMoney } from '../model/store.js';
 
 class PurhcaseController {
   constructor(view) {
@@ -10,6 +10,7 @@ class PurhcaseController {
   addUserInputMoney() {
     const moneyInput = this.view.getInput();
     userInputMoney.totalAmount += moneyInput;
+    store.setLocalStorage('userInputMoney', userInputMoney);
     this.view.render();
   }
 

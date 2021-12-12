@@ -53,7 +53,10 @@ class App {
       showChangeTab();
       this.changeView.render();
     });
-    $('#product-purchase-menu').addEventListener('click', showPurchaseTab);
+    $('#product-purchase-menu').addEventListener('click', () => {
+      showPurchaseTab();
+      this.purchaseView.render();
+    });
     this.preventFormSubmit();
   }
 
