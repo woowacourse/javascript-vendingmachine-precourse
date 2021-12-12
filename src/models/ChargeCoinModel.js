@@ -18,6 +18,7 @@ export default {
       this.coins[randomCoin] += 1;
       money -= randomCoin;
     }
+    localStorage.setItem('coins', JSON.stringify(this.coins));
   },
   total() {
     return COINS.reduce((sum, coin) => {
