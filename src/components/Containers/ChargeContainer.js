@@ -7,15 +7,15 @@ import Component from '../core/Component.js';
 export default class ChargeContainer extends Component {
   init() {
     this.$state = {
-      coins: getLocalStorage(STORAGE_KEY.CHARGE_COIN, {}),
-      amount: getLocalStorage(STORAGE_KEY.CHARGE_AMOUNT, 0)
+      coins: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, {}),
+      amount: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, 0)
     };
   }
 
   mounted() {
     this.$state = {
-      coins: getLocalStorage(STORAGE_KEY.CHARGE_COIN, {}),
-      amount: getLocalStorage(STORAGE_KEY.CHARGE_AMOUNT, 0)
+      coins: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, {}),
+      amount: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, 0)
     };
     this.$target.querySelector(`#vending-machine-table-container`).innerHTML = this.printChargeTable();
     if (this.$state.amount) {
@@ -47,8 +47,8 @@ export default class ChargeContainer extends Component {
 
       if (isValidChargeInput(amountValue)) {
         this.charge(amountValue);
-        setLocalStorage(STORAGE_KEY.CHARGE_COIN, this.$state.coins);
-        setLocalStorage(STORAGE_KEY.CHARGE_AMOUNT, amountValue);
+        setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, this.$state.coins);
+        setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, amountValue);
 
         this.setState({coins: this.$state.coins, amount: this.$state.amount + amountValue});
         this.setEvent();
