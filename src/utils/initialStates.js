@@ -1,5 +1,5 @@
-import { COIN_UNITS } from './constants';
-import { convertArrayToObjectKeys } from './general';
+import { COIN_UNITS } from './constants.js';
+import { convertArrayToObjectKeys } from './general.js';
 
 export const changeStoreInitialState = {
   changes: 0,

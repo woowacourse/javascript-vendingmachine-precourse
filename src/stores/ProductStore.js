@@ -7,10 +7,10 @@ import {
   hasDuplicatedProductName,
 } from '../utils/helpers.js';
 import { productStoreInitialState } from '../utils/initialStates.js';
-import ProductStorage from '../storages/ProductStorage.js';
+import { ProductsStorage } from '../storages/index.js';
 
 const initialStates =
-  serializeProductsData(ProductStorage.get()) ?? productStoreInitialState;
+  serializeProductsData(ProductsStorage.get()) ?? productStoreInitialState;
 
 class ProductStore extends Store {
   setUpReducer() {
@@ -39,4 +39,4 @@ class ProductStore extends Store {
   }
 }
 
-export default new ProductStore(initialStates, ProductStorage);
+export default new ProductStore(initialStates, ProductsStorage);

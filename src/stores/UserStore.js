@@ -2,7 +2,7 @@ import Store from '../core/Store.js';
 import { USER_ACTION_TYPE } from '../actions/user.js';
 import { mergeCoins } from '../utils/helpers.js';
 import { userStoreInitialState } from '../utils/initialStates.js';
-import UserStorage from '../storages/UserStorage.js';
+import { UserStorage } from '../storages/index.js';
 
 const initialState = UserStorage.get() ?? userStoreInitialState;
 

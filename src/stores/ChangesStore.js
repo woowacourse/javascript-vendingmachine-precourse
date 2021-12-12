@@ -7,7 +7,7 @@ import {
 } from '../utils/helpers.js';
 import { MESSAGE } from '../utils/constants.js';
 import { changeStoreInitialState } from '../utils/initialStates.js';
-import ChangesStorage from '../storages/ChangesStorage.js';
+import { ChangesStorage } from '../storages/index.js';
 
 const initialState = ChangesStorage.get() ?? changeStoreInitialState;
 
