@@ -5,7 +5,7 @@ import { removeTags } from '../utils/element-utils.js';
 import { checkProductVaild } from '../models/UserInputCheck.js';
 import { errorAlert } from '../utils/error-alert.js';
 
-import ProductList from './product/ProductState.js';
+import ProductList from './product/ProductList.js';
 import ProductInputForm from './product/ProductInputForm.js';
 
 import { $productState } from './StateList.js';
