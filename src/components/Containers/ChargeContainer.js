@@ -68,7 +68,7 @@ export default class ChargeContainer extends Component {
   printChargeTable() {
     const ths = ['동전', '개수'];
 
-    return createTable(TABLE_MENU.CHARGE, ths);
+    return createTable(TABLE_MENU.VENDING_MACHINE_CHARGE, ths);
   }
 
   printCoinQuantity(coins) {
