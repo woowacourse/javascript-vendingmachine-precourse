@@ -3,6 +3,7 @@ import ProductPurchaseMenuModel from '../models/ProductPurchaseMenuModel.js';
 import ProductAddMenuModel from '../models/ProductAddMenuModel.js';
 import VendingMachineManageMenuModel from '../models/VendingMachineManageMenuModel.js';
 import ProductPurchaseMenuValidator from '../validators/productPurchaseMenu.js';
+import VendingMachineManageMenuValidator from '../validators/vendingMachineManageMenu.js';
 import { $ } from '../utils/dom.js';
 
 import Selector from '../constants/selector.js';
@@ -77,6 +78,14 @@ class ProductPurchaseMenuController {
   onClickReturnCoinButton() {
     let purchaseCharge = this.$productPurchaseMenuModel.getPurchaseChargeAmount();
     let returnAmount = 0;
+
+    if (
+      !ProductPurchaseMenuValidator.validatePossibleReturn(purchaseCharge) ||
+      !VendingMachineManageMenuValidator.validateChargeOverZero(
+        this.$vendingMachineManageMenuModel.getChargeAmount(),
+      )
+    )
+      return;
 
     while (purchaseCharge >= 500 && this.$vendingMachineManageMenuModel.getAmount500() > 0) {
       purchaseCharge -= 500;
