@@ -19,6 +19,13 @@ import {
   PURCHASE_100_QUANTITY_ID,
   PURCHASE_50_QUANTITY_ID,
   PURCHASE_10_QUANTITY_ID,
+  PRODUCTS_STORAGE_KEY,
+  PURCHASE_PRODUCT_BUTTON_TITLE,
+  PURCHASE_ITEM_CLASS,
+  PURCHASE_BUY_BUTTON_CLASS,
+  PURCHASE_ITEM_NAME_CLASS,
+  PURCHASE_ITEM_PRICE_CLASS,
+  PURCHASE_ITEM_QUANTITY_CLASS,
 } from '../constant/constant.js';
 import { coinListHeaderTemplate, coinListTemplate } from './initCharge.js';
 
@@ -38,22 +45,55 @@ function renderPurchaseInput($purchase) {
   $purchase.append($inputContainer);
 }
 
+function purchaseProductTemplate({ name, price, quantity }) {
+  return `
+    <tr class="${PURCHASE_ITEM_CLASS}" align="center" bgcolor="white" height="40">
+      <td class="${PURCHASE_ITEM_NAME_CLASS}" data-product-name="${name}" align="center" width="160">${name}</td>
+      <td class="${PURCHASE_ITEM_PRICE_CLASS}" data-product-price="${price}" align="center" width="100">${price}</td>
+      <td class="${PURCHASE_ITEM_QUANTITY_CLASS}" data-product-quantity="${quantity}" align="center" width="100">${quantity}</td>
+      <td align="center" width="100">
+        <button class="${PURCHASE_BUY_BUTTON_CLASS}">${PURCHASE_PRODUCT_BUTTON_TITLE}</button>
+      </td>
+    </tr>
+  `;
+}
+
+function purchaseProductHeaderTemplate() {
+  return `
+    <tr align="center" bgcolor="white" height="40">
+      <td align="center" width="160">${PRODUCT_NAME_TITLE}</td>
+      <td align="center" width="100">${PRODUCT_PRICE_TITLE}</td>
+      <td align="center" width="100">${PRODUCT_QUANTITY_TITLE}</td>
+      <td align="center" width="100">${PURCHASE_PRODUCT_BUY_TITLE}</td>
+    </tr>
+  `;
+}
+
 function renderPurchaseProducts($purchase) {
   const $products = document.createElement('div');
+  const products = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY))
+    ?.map((product) => purchaseProductTemplate(product))
+    .join('');
 
   $products.innerHTML = `
     <br>
     <h3>${PURCHASE_PRODUCTS_LIST_TITLE}</h3>
     <table bgcolor="black" border="1" style="border-collapse:collapse;">
-      <tr align="center" bgcolor="white" height="40">
-        <td align="center" width="160">${PRODUCT_NAME_TITLE}</td>
-        <td align="center" width="100">${PRODUCT_PRICE_TITLE}</td>
-        <td align="center" width="100">${PRODUCT_QUANTITY_TITLE}</td>
-        <td align="center" width="100">${PURCHASE_PRODUCT_BUY_TITLE}</td>
-      </tr>
+      ${purchaseProductHeaderTemplate()}
+      ${products || ''}
     </table>
   `;
   $purchase.append($products);
+}
+
+function changeHeaderTemplate() {
+  return `
+    <br>
+    <h3>${PURCHASE_CHANGE_TITLE}</h3>
+    <form>
+      <button>${PURCHASE_RETURN_TITLE}</button>
+    </form>
+  `;
 }
 
 function renderChange($purchase) {
@@ -64,16 +104,11 @@ function renderChange($purchase) {
     PURCHASE_50_QUANTITY_ID,
     PURCHASE_10_QUANTITY_ID,
   ];
-
   $change.innerHTML = `
-    <br>
-    <h3>${PURCHASE_CHANGE_TITLE}</h3>
-    <form>
-      <button>${PURCHASE_RETURN_TITLE}</button>
-    </form>
+    ${changeHeaderTemplate()}
     <table id="${PURCHASE_COIN_TABLE_ID}" bgcolor="black" border="1" style="border-collapse:collapse;">
-    ${coinListHeaderTemplate()}
-    ${coinListTemplate(ids)}
+      ${coinListHeaderTemplate()}
+      ${coinListTemplate(ids)}
     </table>
   `;
   $purchase.append($change);
