@@ -11,7 +11,7 @@ class ProductAddMenuController {
     this.$productAddMenuView = new ProductAddMenuView();
 
     this.initAddEventListeners();
-    if (currentMenu === SELECTOR.productAddMenuId) this.changeMenu();
+    if (currentMenu === SELECTOR.productAddMenuId) this.renderMenuWithData();
   }
 
   initAddEventListeners() {
@@ -21,7 +21,7 @@ class ProductAddMenuController {
     );
   }
 
-  changeMenu() {
+  renderMenuWithData() {
     this.$productAddMenuView.render();
     this.$productAddMenuView.renderTableWithProductItems(
       this.$productAddMenuModel.getProductItems(),

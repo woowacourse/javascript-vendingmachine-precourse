@@ -42,13 +42,13 @@ class VendingMachineController {
   changeMenu(menuName) {
     switch (menuName) {
       case SELECTOR.productAddMenuId:
-        this.$productAddMenuController.changeMenu();
+        this.$productAddMenuController.renderMenuWithData();
         break;
       case SELECTOR.vendingMachineManageMenuId:
         this.$vendingMachineManageMenuController.renderMenuWithData();
         break;
       case SELECTOR.productPurchaseMenuId:
-        this.$productPurchaseMenuController.changeMenu();
+        this.$productPurchaseMenuController.renderMenuWithData();
         break;
       default:
         break;

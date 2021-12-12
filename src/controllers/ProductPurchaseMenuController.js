@@ -17,7 +17,7 @@ class ProductPurchaseMenuController {
     this.$vendingMachineManageMenuModel = new VendingMachineManageMenuModel();
 
     this.initAddEventListeners();
-    if (currentMenu === SELECTOR.productPurchaseMenuId) this.changeMenu();
+    if (currentMenu === SELECTOR.productPurchaseMenuId) this.renderMenuWithData();
   }
 
   initAddEventListeners() {
@@ -27,7 +27,7 @@ class ProductPurchaseMenuController {
     );
   }
 
-  changeMenu() {
+  renderMenuWithData() {
     this.$productPurchaseMenuView.render();
     this.$productPurchaseMenuView.renderProductTableBodyWithData(
       this.$productAddMenuModel.getProductItems(),
