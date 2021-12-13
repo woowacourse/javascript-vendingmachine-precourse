@@ -1,17 +1,17 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import { ERROR, CHARGE, PRICE } from '../utils/constants.js';
-import { resetPurchaseInput, printInputCharge, renderProducts, renderHoldAmount } from '../views/productPurchaseView.js';
+import { resetPurchaseInput, printInputCharge, renderProducts, renderInputMoney } from '../views/productPurchaseView.js';
 import { getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
 import alertMessage from '../views/alertMessage.js';
 
 function HandleProductPurchase() {
-  this.holdAmount = Number($('#charge-amount').innerText) || 0;
+  this.inputMoney = Number($('#charge-amount').innerText) || 0;
 
   this.init = () => {
-    if (store.getLocalStorage('holdAmount')) {
-      renderHoldAmount();
-      this.holdAmount = store.getLocalStorage('holdAmount');
+    if (store.getLocalStorage('inputMoney')) {
+      renderInputMoney();
+      this.inputMoney = store.getLocalStorage('inputMoney');
     }
     if (store.getLocalStorage('products')) {
       renderProducts();
@@ -34,8 +34,8 @@ function HandleProductPurchase() {
     return true;
   };
 
-  const isValidPurchase = (holdAmount, price) => {
-    if (price > holdAmount) {
+  const isValidPurchase = (inputMoney, price) => {
+    if (price > inputMoney) {
       alertMessage(ERROR.PRODUCT_IS_EXPENSIVE);
       return false;
     }
@@ -59,9 +59,9 @@ function HandleProductPurchase() {
     const purchaseInput = $('#charge-input').value;
 
     if (isValidCharge(purchaseInput)) {
-      this.holdAmount += Number(purchaseInput);
-      store.setLocalStorage('holdAmount', this.holdAmount);
-      printInputCharge(this.holdAmount);
+      this.inputMoney += Number(purchaseInput);
+      store.setLocalStorage('inputMoney', this.inputMoney);
+      printInputCharge(this.inputMoney);
     }
     resetPurchaseInput();
   });
@@ -71,9 +71,9 @@ function HandleProductPurchase() {
     if (e.target.className === 'purchase-button') {
       const price = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
 
-      if (isValidPurchase(this.holdAmount, price) && isValidQuantity(e)) {
-        this.holdAmount = updateAmount(this.holdAmount, price);
-        printInputCharge(this.holdAmount);
+      if (isValidPurchase(this.inputMoney, price) && isValidQuantity(e)) {
+        this.inputMoney = updateAmount(this.inputMoney, price);
+        printInputCharge(this.inputMoney);
         updateProductQuantity(e);
       }
     }
@@ -81,7 +81,7 @@ function HandleProductPurchase() {
 
   // (3) 잔돈을 반환하는 기능
   $('#coin-return-button').addEventListener('click', () => {
-    this.holdAmount = getChange();
+    this.inputMoney = getChange();
   });
 
   this.init();

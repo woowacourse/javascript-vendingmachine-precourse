@@ -25,6 +25,6 @@ export const renderProducts = () => {
     .join('');
 };
 
-export const renderHoldAmount = () => {
-  $('#charge-amount').innerHTML = store.getLocalStorage('holdAmount');
+export const renderInputMoney = () => {
+  $('#charge-amount').innerHTML = store.getLocalStorage('inputMoney');
 };
