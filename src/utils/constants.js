@@ -6,3 +6,87 @@ export const TAB_MENUS_TEXT = `
     <button id="product-purchase-menu" style=>상품 구매</button>
   </header>
 `;
+
+export const PRODUCE_ADD_TEXT = `
+  <main>
+    <h4>상품 추가하기</h4>
+    <input id="product-name-input" placeholder="상품명"/>
+    <input type="number" id="product-price-input" placeholder="가격"/>
+    <input type="number" id="product-quantity-input" placeholder="수량"/>
+    <button id="product-add-button">추가하기</button>
+    <h4>상품 현황</h4>
+    <table>
+      <tr>
+        <th>상품명</th>
+        <th>가격</th>
+        <th>수량</th>
+      </tr>
+    </table>
+  </main>
+`;
+
+export const VENDING_MACHINE_MANAGE_TEXT = `
+  <main>
+    <h4>자판기 동전 충전하기</h4>
+    <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액"/>
+    <button id="vending-machine-charge-button">충전하기</button>
+    <p>보유 금액: <div id="vending-machine-charge-amount"></div></p>
+    <h4>자판기가 보유한 동전</h4>
+    <table>
+      <tr>
+        <th>동전</th>
+        <th>개수</th>
+      </tr>
+      <tr>
+        <th id="vending-machine-coin-500-quantity">500원</th>
+      </tr>
+      <tr>
+        <th id="vending-machine-coin-100-quantity">100원</th>
+      </tr>
+      <tr>
+        <th id="vending-machine-coin-50-quantity">50원</th>
+      </tr>
+      <tr>
+        <th id="vending-machine-coin-10-quantity">10원</th>
+      </tr>
+    </table>
+  </main>
+`;
+
+export const PRODUCT_PURCHASE_TEXT = `
+  <main>
+    <h4>금액 투입</h4>
+    <input type="number" id="charge-input" placeholder="투입할 금액"/>
+    <button id="charge-button">충전하기</button>
+    <p>투입한 금액: <div id="charge-amount"></div></p>
+    <h4>구매할 수 있는 상품 현황</h4>
+    <table>
+      <tr>
+        <th>상품명</th>
+        <th>가격</th>
+        <th>수량</th>
+        <th>구매</th>
+      </tr>
+    </table>
+    <h4>잔돈</h4>
+    <button id="coin-return-button">반환하기</button>
+    <table>
+      <tr>
+        <th>동전</th>
+        <th>개수</th>
+      </tr>
+      <tr>
+        <th id="coin-500-quantity">500원</th>
+      </tr>
+      <tr>
+        <th id="coin-100-quantity">100원</th>
+      </tr>
+      <tr>
+        <th id="coin-50-quantity">50원</th>
+      </tr>
+      <tr>
+        <th id="coin-10-quantity">10원</th>
+      </tr>
+    </table>
+  </main>
+`;
