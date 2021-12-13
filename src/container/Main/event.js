@@ -19,6 +19,12 @@ const setStorage = {
   [PURCHASE_MENU]: (storage, elements, item) => createPurchaseMenu(storage, elements, item),
 };
 
+/**
+ * 상품 등록, 잔돈 충전, 금액 투입 이벤트를 설정합니다.
+ *
+ * @param {MouseEvent: Click} event
+ * @returns
+ */
 export function formButtonEvent(event) {
   event.preventDefault();
   if (!event.target.matches('form button')) return;
@@ -34,6 +40,12 @@ export function formButtonEvent(event) {
   clearInput(targetInputs);
 }
 
+/**
+ * 상품 구매하기 이벤트를 설정합니다.
+ *
+ * @param {MouseEvent: HTMLButtonElement} event
+ * @returns
+ */
 export function tableButtonEvent({ target }) {
   if (!target.matches('.purchase-button')) return;
 
@@ -54,6 +66,12 @@ export function tableButtonEvent({ target }) {
   );
 }
 
+/**
+ * 잔돈 반환하기 이벤트
+ *
+ * @param {MouseEvent: HTMLButtonElement} event
+ * @returns
+ */
 export function divButtonEvent({ target }) {
   if (!target.matches('#coin-return-button')) return;
 

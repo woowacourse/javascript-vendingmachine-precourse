@@ -8,6 +8,12 @@ import {
   ZERO,
 } from '../../constants/index.js';
 
+/**
+ * 상품 구매 탭 데이터를 반환합니다.
+ *
+ * @param {Storage} storage
+ * @returns
+ */
 export const getPurchaseMenu = storage => storage.read(PURCHASE_MENU);
 
 /**
@@ -23,6 +29,13 @@ export const purchase = (storageItem, elements) => {
   return +charge + +currentAmount;
 };
 
+/**
+ * 상품 구매 탭의 아이템을 생성합니다.
+ *
+ * @param {Storage} storage
+ * @param {HTMLElement} elements
+ * @param {object} item
+ */
 export const createPurchaseMenu = (storage, elements, item) => {
   storage.create(PURCHASE_MENU, {
     ...getPurchaseMenu(storage),
@@ -60,6 +73,13 @@ const getChangesCount = (remainCount, changes, coin) => {
   return remainCount - count < ZERO ? remainCount : count;
 };
 
+/**
+ * dataset으로 엘리먼트를 조회한 데이터를 배열로 반환합니다.
+ *
+ * @param {*} element
+ * @param {*} targets
+ * @returns
+ */
 const getDataProduct = (element, targets) =>
   targets.reduce(
     (result, target) => [...result, $(`[data-product-${target}]`, $closest(element, 'tr'))],

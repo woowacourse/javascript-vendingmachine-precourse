@@ -4,6 +4,12 @@ import { CHARGE_UNIT, MACHINE_MANAGE, ZERO } from '../../constants/index.js';
 /* eslint-disable no-undef */
 const { pickNumberInList } = MissionUtils.Random;
 
+/**
+ * 잔돈 충전 탭 데이터를 반환합니다.
+ *
+ * @param {Storage} storage
+ * @returns
+ */
 export const getMachineManage = storage => storage.read(MACHINE_MANAGE);
 
 /**
@@ -41,5 +47,8 @@ const charging = (storageItem, element) => {
   return items;
 };
 
+/**
+ * 잔돈 충전 탭의 아이템을 생성합니다.
+ */
 export const createMachineManage = (storage, elements, item) =>
   storage.create(MACHINE_MANAGE, charging(item, elements));
