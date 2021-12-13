@@ -13,7 +13,7 @@ import {
 } from './const.js';
 import createElement from '../../utils/createElement.js';
 import { sellProduct } from '../../../library/storage/products.js';
-import { abstractChargedCoinOfConsumer } from '../../../library/storage/consumerCoin.js';
+import { subtractChargedCoinOfConsumer } from '../../../library/storage/consumerCoin.js';
 
 class PurchasableProductTable extends ProductTable {
   constructor(products) {
@@ -49,7 +49,7 @@ class PurchasableProductTable extends ProductTable {
     const { productName, productPrice } = product;
 
     sellProduct(productName);
-    abstractChargedCoinOfConsumer(productPrice);
+    subtractChargedCoinOfConsumer(productPrice);
   }
 
   onClick(event) {

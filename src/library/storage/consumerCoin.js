@@ -14,6 +14,6 @@ export function addChargedCoinOfConsumer(coin) {
   setChargedCoinOfConsumer(getChargedCoinOfConsumer() + coin);
 }
 
-export function abstractChargedCoinOfConsumer(coin) {
+export function subtractChargedCoinOfConsumer(coin) {
   setChargedCoinOfConsumer(getChargedCoinOfConsumer() - coin);
 }

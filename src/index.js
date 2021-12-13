@@ -26,6 +26,7 @@ import {
 import {
   createConsumerChargeFormContainer,
   createPurchasableProductTableContainer,
+  createReturnedCoinTableContainer,
 } from './components/purchaseContent/index.js';
 
 import {
@@ -35,12 +36,19 @@ import {
 import { getProducts } from './library/storage/products.js';
 import { getChargedCoinsOfVendingMachine } from './library/storage/vendingMachineCoins.js';
 import { getChargedCoinOfConsumer } from './library/storage/consumerCoin.js';
+import { getReturnedCoins } from './library/storage/returnedCoins.js';
 
 export default class VendingMachine {
-  constructor(products, vendingMachineChargedCoins, consumerChargedCoin) {
+  constructor(
+    products,
+    vendingMachineChargedCoins,
+    consumerChargedCoin,
+    returnedCoins
+  ) {
     this.products = products;
     this.vendingMachineChargedCoins = vendingMachineChargedCoins;
     this.consumerChargedCoin = consumerChargedCoin;
+    this.returnedCoins = returnedCoins;
 
     this.app = document.getElementById('app');
     this.menus = createDivision({ id: 'menus' });
@@ -75,7 +83,8 @@ export default class VendingMachine {
       this.appendPurchaseContent(
         content,
         this.consumerChargedCoin,
-        this.products
+        this.products,
+        this.returnedCoins
       );
   }
 
@@ -93,9 +102,10 @@ export default class VendingMachine {
     );
   }
 
-  appendPurchaseContent(content, consumerChargedCoin, products) {
+  appendPurchaseContent(content, consumerChargedCoin, products, returnedCoins) {
     content.appendChild(createConsumerChargeFormContainer(consumerChargedCoin));
     content.appendChild(createPurchasableProductTableContainer(products));
+    content.appendChild(createReturnedCoinTableContainer(returnedCoins));
   }
 
   [ACTION_CLICK_MENU](e, menuKey) {
@@ -117,5 +127,11 @@ export default class VendingMachine {
 const products = getProducts();
 const vendingMachineChargedCoins = getChargedCoinsOfVendingMachine();
 const consumerChargedCoin = getChargedCoinOfConsumer();
+const returnedCoins = getReturnedCoins();
 
-new VendingMachine(products, vendingMachineChargedCoins, consumerChargedCoin);
+new VendingMachine(
+  products,
+  vendingMachineChargedCoins,
+  consumerChargedCoin,
+  returnedCoins
+);
