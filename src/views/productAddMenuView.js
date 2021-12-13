@@ -12,7 +12,7 @@ import {
   isValidProduct,
 } from '../components/validator.js';
 
-export default function ProductAddMenuView(container) {
+export default function ProductAddMenuView() {
   this.productAddMenu = () => {
     const container = Container('product-add-view');
     const addProductSubTitle = SubTitle('상품 추가하기');
@@ -105,6 +105,8 @@ export default function ProductAddMenuView(container) {
   };
 
   this.render = () => {
+    const container = document.querySelector('#menu-view');
+
     container.append(this.productAddMenu());
     this.initTable();
   };

@@ -15,7 +15,7 @@ import {
   isValidCharge,
 } from '../components/validator.js';
 
-export default function VendingMachineManageView(container) {
+export default function VendingMachineManageView() {
   this.vendingMachineManageMenu = () => {
     const container = Container('vending-machine-manage-view');
     const addCoinSubTitle = SubTitle('자판기 동전 충전하기');
@@ -94,6 +94,8 @@ export default function VendingMachineManageView(container) {
   };
 
   this.render = () => {
+    const container = document.querySelector('#menu-view');
+
     container.append(this.vendingMachineManageMenu());
     this.initCharge();
     this.initCoin();
