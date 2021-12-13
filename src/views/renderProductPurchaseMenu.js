@@ -1,6 +1,4 @@
-import { DRINK_STORAGE_NAME } from '../constants/constants.js';
 import { $ } from '../dom/dom.js';
-import store from '../storage/store.js';
 import renderInsertCoinShowElement from './renderInsertCoinShowElement.js';
 import renderNowSellingProductTable from './renderNowSellingProductTable.js';
 
@@ -19,17 +17,6 @@ function renderCoinInputForm() {
   `;
 }
 
-function renderNowSellingProductTemplate(drinkStorage) {
-  const nowSellingProductTemplate = `
-  <h2>구매할 수 있는 상품 현황</h2>
-  <table>
-    <tr><th>상품명</th><th>가격</th><th>수량</th><th>구매</th></tr>
-    ${renderNowSellingProductTable(drinkStorage)}
-  </table>
-  `;
-  return nowSellingProductTemplate;
-}
-
 function renderChangeTable() {
   return `
   <h2>잔돈</h2>
@@ -46,8 +33,6 @@ function renderChangeTable() {
 export default function renderProductPurchaseMenu() {
   $('.tab-content-container').innerHTML = renderCoinInputForm();
   renderInsertCoinShowElement();
-  const drinkStorage = store.getLocalStorage(DRINK_STORAGE_NAME);
-  $('.now-selling-product-table-cotainer').innerHTML =
-    renderNowSellingProductTemplate(drinkStorage);
+  renderNowSellingProductTable();
   $('.charge-table-container').innerHTML = renderChangeTable();
 }
