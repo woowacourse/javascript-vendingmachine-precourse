@@ -12,10 +12,9 @@ const MANAGE_VIEW = `
   <input placeholder="수량" id="product-quantity-input"/>
   <button id="product-add-button">추가하기</button>
   <h2>상품 현황</h2>
-  <table>
+
+  <table id="product-manage-item-first">
     <th>상품명</th><th>가격</th><th>수량</th>
-    <tr className = "product-manage-item">
-    </tr>
   </table>
   `;
 

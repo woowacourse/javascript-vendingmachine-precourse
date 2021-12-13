@@ -8,34 +8,31 @@ import {
 
 export default class Controller {
   constructor() {
-    this.vendingMachine = "";
-    this.view = "";
+    this.vendingMachine = new VendingMachine();
+    this.view = new View();
   }
 
   init() {
-    if (this.view === "") {
-      this.view = new View();
-    }
-    if (this.vendingMachine === "") {
-      this.vendingMachine = new VendingMachine();
-    }
     this.onClickTabBtn();
-
-    this.onClickAddProduct(); // 상품 관리 탭 - 추가하기 버튼 클릭 시
+    this.onClickAddProduct();
+    // 상품 관리 탭 - 추가하기 버튼 클릭 시
   }
 
   onClickTabBtn() {
     const { $manageTabBtn, $chargeTabBtn, $purchaseTabBtn } = this.view.buttons;
 
-    $manageTabBtn.addEventListener("click", () => {
+    $manageTabBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       this.view.showSelectedID("manage-tab");
     });
 
-    $chargeTabBtn.addEventListener("click", () => {
+    $chargeTabBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       this.view.showSelectedID("charge-tab");
     });
 
-    $purchaseTabBtn.addEventListener("click", () => {
+    $purchaseTabBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       this.view.showSelectedID("purchase-tab");
     });
   }
@@ -44,19 +41,22 @@ export default class Controller {
     const { $addProductBtn } = this.view.buttons;
     const { $addName, $addPrice, $addQuantity } = this.view.inputs;
 
-    $addProductBtn.addEventListener("click", () => {
+    $addProductBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       if (
         !isValidName($addName.value) ||
         !isVaildPrice($addPrice.value) ||
         !isValidQuantity($addQuantity.value)
       ) {
         alert("다시 입력하세요.");
+        return;
       }
       this.vendingMachine.addProduct(
         $addName.value,
         parseInt($addPrice.value, 10),
         parseInt($addQuantity.value, 10)
       );
+      this.view.renderProductTable(this.vendingMachine.productList);
     });
   }
 }

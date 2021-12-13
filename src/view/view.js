@@ -4,10 +4,15 @@ import {
   CHARGE_VIEW,
   PURCHASE_VIEW,
 } from "./utils/viewDOM.js";
-import { hideWithID, showWithID } from "./utils/handleDOM.js";
+import { createElement, hideWithID, showWithID } from "./utils/handleDOM.js";
+import { EMPTY } from "../utils/constants.js";
 
 export default class View {
   constructor() {
+    this.init();
+  }
+
+  init() {
     this.commonRender();
     this.manageTabRender();
     this.chargeTabRender();
@@ -83,5 +88,24 @@ export default class View {
       $chargeCoin: document.getElementById("vending-machine-charge-input"),
       $buyMoney: document.getElementById("charge-input"),
     };
+  }
+
+  renderProductTable(productList) {
+    const $tablePosition = document.getElementById("product-manage-item-first");
+    $tablePosition.innerHTML = "<th>상품명</th><th>가격</th><th>수량</th>";
+
+    productList.map((product) => {
+      const $proudct = createElement(
+        "tr",
+        `
+      <td class="product-manage-name">${product.name}</td>
+        <td class="product-manage-price">${product.price}</td>
+        <td class="product-manage-quantity">${product.quantity}</td>
+      `,
+        EMPTY,
+        "product-manage-item"
+      );
+      $tablePosition.appendChild($proudct);
+    });
   }
 }
