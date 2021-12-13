@@ -4,8 +4,6 @@ import { userStoreInitialState } from '../utils/initialStates.js';
 import { UserStorage } from '../storages/index.js';
 import { REDUCER_RESULT } from '../utils/constants.js';
 
-const initialState = UserStorage.get() ?? userStoreInitialState;
-
 class UserStore extends Store {
   setUpReducer() {
     this.reducer = {
@@ -28,4 +26,4 @@ class UserStore extends Store {
   }
 }
 
-export default new UserStore(initialState, UserStorage);
+export default new UserStore(userStoreInitialState, UserStorage);

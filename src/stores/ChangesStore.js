@@ -9,8 +9,6 @@ import { MESSAGE, REDUCER_RESULT } from '../utils/constants.js';
 import { changeStoreInitialState } from '../utils/initialStates.js';
 import { ChangesStorage } from '../storages/index.js';
 
-const initialState = ChangesStorage.get() ?? changeStoreInitialState;
-
 class ChangesStore extends Store {
   setUpReducer() {
     this.reducer = {
@@ -43,4 +41,4 @@ class ChangesStore extends Store {
   }
 }
 
-export default new ChangesStore(initialState, ChangesStorage);
+export default new ChangesStore(changeStoreInitialState, ChangesStorage);

@@ -2,7 +2,6 @@ import Store from '../core/Store.js';
 import { PRODUCT_ACTION_TYPE } from '../actions/product.js';
 import { MESSAGE, REDUCER_RESULT } from '../utils/constants.js';
 import {
-  deserializeProductsData,
   findDuplicatedProduct,
   isChangeableProduct,
   generateUpdatedProducts,
@@ -10,9 +9,6 @@ import {
 } from '../utils/helpers/product.js';
 import { productStoreInitialState } from '../utils/initialStates.js';
 import { ProductsStorage } from '../storages/index.js';
-
-const initialStates =
-  deserializeProductsData(ProductsStorage.get()) ?? productStoreInitialState;
 
 class ProductStore extends Store {
   setUpReducer() {
@@ -44,4 +40,4 @@ class ProductStore extends Store {
   }
 }
 
-export default new ProductStore(initialStates, ProductsStorage);
+export default new ProductStore(productStoreInitialState, ProductsStorage);
