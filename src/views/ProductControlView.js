@@ -20,7 +20,10 @@ export default class ProductControlView extends ProductControlController {
 
   renderProduct() {
     const $productListWrap = document.querySelector('#product-control-wrap');
-    this.product.length > 0 && $productListWrap.append(renderProductList(this.product));
+    this.localProductList && this.product.length === 0 ? this.localProductList.map(v => $productListWrap.append(renderProductList(v))) : "";
+    this.localProductList && this.product.length > 0 ? $productListWrap.append(renderProductList(this.product)) : "";
+    !this.localProductList && this.product.length > 0 ? $productListWrap.append(renderProductList(this.product)) : "";
+    this.getProductList(this.product);
   }
 
 }

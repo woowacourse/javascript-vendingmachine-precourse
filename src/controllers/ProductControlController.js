@@ -5,9 +5,11 @@ export default class ProductControlController {
     this.controlModel = new ProductControlModel();
     this.$app = $app;
     this.product = [];
+    this.localProductList = [];
     this.proudctControlField = document.createElement('div');
     this.render();
     this.setEvent();
+    this.setProductList();
     this.renderProduct();
   }
 
@@ -16,4 +18,13 @@ export default class ProductControlController {
   setEvent() {}
 
   renderProduct() {}
+
+  getProductList(product) {
+    product.length > 0 && this.controlModel.setLoacalProductList([product]);
+  }
+
+  setProductList() {
+    this.localProductList = this.controlModel.getLoacalProductList();
+  }
+
 }
