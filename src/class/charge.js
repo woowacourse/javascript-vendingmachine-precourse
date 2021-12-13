@@ -14,7 +14,7 @@ export default class Charge {
       let coin = Charge.randomCoin(currentMoney);
 
       currentMoney -= coin;
-      if (coin !== 0) {
+      if (coin) {
         vendingMachine.coins[coin] += 1;
       }
     }

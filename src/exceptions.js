@@ -42,11 +42,11 @@ export const noIntegerException = input => {
 };
 
 export const notMultipleOfTenException = input => {
-  if (input % 10 !== 0) {
+  if (input % 10) {
     alert(ALERT_NOT_MULTIPLE_OF_TEN);
   }
 
-  return input % 10 !== 0;
+  return input % 10;
 };
 
 export const duplicatedProductException = productName => {
