@@ -1,4 +1,5 @@
 import VendingMachine from '../model/VendingMachine.js';
+import { $id } from '../utils/dom.js';
 import View from '../view/View.js';
 
 class Controller {
@@ -14,6 +15,7 @@ class Controller {
     this.initDOM();
     this.initScreen();
     this.triggerTabMenuClickEvent();
+    this.triggerProductAddSubmitEvent();
   }
 
   initDOM() {
@@ -49,6 +51,30 @@ class Controller {
         this.view.showProductPurchaseScreen();
         break;
     }
+  }
+
+  isEmpty(inputValue) {
+    return inputValue === '';
+  }
+
+  isValidateProductAdd() {
+    const productNameInput = $id('product-name-input').value;
+    const productPriceInput = $id('product-price-input').value;
+    const productQuantityInput = $id('product-quantity-input').value;
+
+    if (this.isEmpty(productNameInput)) {
+      alert('상품명을 입력해주세요. ex) 사이다');
+      return false;
+    }
+  }
+
+  triggerProductAddSubmitEvent() {
+    $id('product-add-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (this.isValidateProductAdd()) {
+      }
+    });
   }
 
   triggerTabMenuClickEvent() {
