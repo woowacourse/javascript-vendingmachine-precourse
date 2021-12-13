@@ -62,13 +62,33 @@ export default class VendingMachine {
         })
     }
 
+    validateAddProduct(name, price, quantity){
+        if(validator.isNegative(price)){
+            return false;
+        }
+        if(validator.isNegative(quantity)){
+            return false;
+        }
+        for(let i=0; i<this.products.length; i++){
+            if(this.products[i].name === name){
+                alert(ERROR_MESSAGE.DUPLICATE);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     addProduct(name, price, quantity){
-        //TODO: verify product
-        const product = new Product(name, price, quantity, this.productId++);
+        price = parseInt(price);
+        quantity = parseInt(quantity);
         
-        this.displayProductAddTab(product);
-        this.displayProductPurchaseTab(product);
-        this.products.push(product);
+        if(this.validateAddProduct(name, price, quantity)){
+            const product = new Product(name, price, quantity, this.productId++);
+            this.displayProductAddTab(product);
+            this.displayProductPurchaseTab(product);
+            this.products.push(product);
+        }
     }
 
     getRandomCoins(money){
