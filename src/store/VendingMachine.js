@@ -74,6 +74,16 @@ export default class VendingMachine {
     this.rechargedMoneyAmount += amount;
   }
 
+  sellProduct(selledProduct) {
+    this.productList.forEach((product) => {
+      if (product.getName() === selledProduct.name) {
+        product.sell();
+      }
+    });
+
+    this.rechargedMoneyAmount -= selledProduct.price;
+  }
+
   getProductList() {
     return this.productList;
   }

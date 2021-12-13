@@ -6,7 +6,7 @@ import Button from '../core/Button.js';
 import ProductPurchaseTable from '../core/ProductPurchaseTable.js';
 import CoinTable from '../core/CoinTable.js';
 import AmountView from '../core/AmountView.js';
-import { isValidRecharge } from '../utils/validation.js';
+import { isValidRecharge, canBePurchase } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
 import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
 import { COIN } from '../constant/coin.js';
@@ -102,6 +102,11 @@ export default class TabPurchase {
   }
 
   setEvent() {
+    this.setRechargeEvent();
+    this.setPurchaseEvent();
+  }
+
+  setRechargeEvent() {
     const { rechargeMoney } = this.props;
     this.chargingSubmit.getTarget().addEventListener(EVENT.CLICK, () => {
       const chargingValue = this.chargingInput.getTarget().value;
@@ -110,6 +115,43 @@ export default class TabPurchase {
         rechargeMoney(chargingValue);
       }
     });
+  }
+
+  setPurchaseEvent() {
+    const { purchaseProduct } = this.props;
+
+    this.productListTable.getTarget().addEventListener(EVENT.CLICK, (e) => {
+      if (e.target.className === SELECTOR.CLASS_PRODUCT_PURCHASE_BUTTON) {
+        const $clickedProduct = e.target.closest(`.${SELECTOR.CLASS_PRODUCT_PURCHASE_ITEM}`);
+        const name = this.getProductName($clickedProduct);
+        const price = this.getProductPrice($clickedProduct);
+        const quantity = this.getProductQuantity($clickedProduct);
+
+        if (canBePurchase(this.vendingMachine.getRechargedMoneyAmount(), price)) {
+          purchaseProduct({ name, price, quantity });
+        }
+      }
+    });
+  }
+
+  getProductName($clickedProduct) {
+    const $productName = $clickedProduct.querySelector(`.${SELECTOR.CLASS_PRODUCT_PURCHASE_NAME}`);
+
+    return $productName.dataset.productName;
+  }
+
+  getProductPrice($clickedProduct) {
+    const $productPrice = $clickedProduct.querySelector(`
+      .${SELECTOR.CLASS_PRODUCT_PURCHASE_PRICE}`);
+
+    return $productPrice.dataset.productPrice;
+  }
+
+  getProductQuantity($clickedProduct) {
+    const $productQuantity = $clickedProduct.querySelector(`
+      .${SELECTOR.CLASS_PRODUCT_PURCHASE_QUANTITY}`);
+
+    return $productQuantity.dataset.productQuantity;
   }
 
   updateRechargeMoneyState() {

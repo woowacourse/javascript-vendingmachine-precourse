@@ -24,4 +24,8 @@ export default class Product {
   setQuantity(quantity) {
     this.quantity = quantity;
   }
+
+  sell() {
+    this.quantity -= 1;
+  }
 }

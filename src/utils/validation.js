@@ -99,3 +99,12 @@ export const isValidRecharge = (value) => {
 
   return true;
 };
+
+export const canBePurchase = (money, price) => {
+  if (money < price) {
+    alert(ERROR.PURCHASE);
+    return false;
+  }
+
+  return true;
+};
