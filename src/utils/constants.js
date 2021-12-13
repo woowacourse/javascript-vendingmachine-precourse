@@ -11,7 +11,7 @@ export const PRODUCE_ADD_TEXT = `
   <main>
     <section>
       <h4>상품 추가하기</h4>
-      <form>
+      <form id="product-add-form">
         <input id="product-name-input" placeholder="상품명"/>
         <input type="number" id="product-price-input" placeholder="가격"/>
         <input type="number" id="product-quantity-input" placeholder="수량"/>
@@ -35,7 +35,7 @@ export const VENDING_MACHINE_MANAGE_TEXT = `
   <main>
     <section>
       <h4>자판기 동전 충전하기</h4>
-      <form>
+      <form id="vending-machine-charge-form">
         <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액"/>
         <button id="vending-machine-charge-button">충전하기</button>
       </form>
@@ -72,8 +72,8 @@ export const VENDING_MACHINE_MANAGE_TEXT = `
 export const PRODUCT_PURCHASE_TEXT = `
   <main>
     <section>
-      <h4>금액 투입</h4>
-      <form>
+      <h4>금액 "투입</h4>
+      <form id="charge-form">
         <input type="number" id="charge-input" placeholder="투입할 금액"/>
         <button id="charge-button">충전하기</button>
       </form>
