@@ -6,9 +6,10 @@ import {
   isInputNumberValid,
   isMultipleOf10,
   isOver100,
+  isAlreadyExistProduct,
   onKeyUpNumericEvent,
 } from './utils.js';
-import { SELECTOR, KEY, ALERT_MESSAGE } from '../model/constants.js';
+import { SELECTOR, KEY } from '../model/constants.js';
 import { productAddTableRow } from '../model/dom.js';
 import Product from '../model/product.js';
 import { addTableRow, clearInput } from '../view/index.js';
@@ -19,28 +20,16 @@ const initInput = (productName, productPrice, productQuantity) => {
   clearInput(productQuantity);
 };
 
-const isAlreadyExistProduct = input => {
-  const allProducts = getItemOrArray('products');
-  const isExist = allProducts.find(e => e.name === input);
-  if (isExist) {
-    alert(ALERT_MESSAGE.isAlreadyExistProduct);
-  }
+const isProductNameValid = productName =>
+  !isBlankExist(productName) && !isAlreadyExistProduct(productName);
 
-  return isExist;
-};
-
-const isProductNameValid = (placeholder, input) =>
-  !isBlankExist(placeholder, input) && !isAlreadyExistProduct(input);
-
-const isProductPriceValid = (placeholder, input) =>
-  isInputNumberValid(placeholder, input) &&
-  isMultipleOf10(placeholder, input) &&
-  isOver100(placeholder, input);
+const isProductPriceValid = productPrice =>
+  isInputNumberValid(productPrice) && isMultipleOf10(productPrice) && isOver100(productPrice);
 
 const isProductInputsValid = (productName, productPrice, productQuantity) =>
-  isProductNameValid(productName.placeholder, productName.value) &&
-  isProductPriceValid(productPrice.placeholder, productPrice.value) &&
-  isInputNumberValid(productQuantity.placeholder, productQuantity.value);
+  isProductNameValid(productName) &&
+  isProductPriceValid(productPrice) &&
+  isInputNumberValid(productQuantity);
 
 const addProduct = () => {
   const productName = $(SELECTOR.productNameInput);
@@ -50,6 +39,7 @@ const addProduct = () => {
     const allProducts = getItemOrArray(KEY.product);
     const product = new Product(productName.value, productPrice.value, productQuantity.value);
     const table = document.querySelector('tbody');
+
     allProducts.push(product);
     addTableRow(table, productAddTableRow(product));
     setItem(KEY.product, allProducts);

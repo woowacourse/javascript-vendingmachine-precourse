@@ -5,23 +5,23 @@ import {
   vendingMachineManageMenu,
   productPurchaseMenu,
 } from '../model/dom.js';
-import { KEY } from '../model/constants.js';
+import { KEY, COIN_X_QUANTITY, VENDING_MACHINE_COIN_X_QUANTITY } from '../model/constants.js';
 
 export const clearContainer = () => {
   $('container').innerHTML = '';
 };
 
-export const drawAddMenu = () => {
+export const showAddMenu = () => {
   clearContainer();
   $('container').insertAdjacentHTML('afterbegin', productAddMenu);
 };
 
-export const drawVendingMenu = () => {
+export const showVendingMenu = () => {
   clearContainer();
   $('container').insertAdjacentHTML('afterbegin', vendingMachineManageMenu);
 };
 
-export const drawPurchaseMenu = () => {
+export const showPurchaseMenu = () => {
   clearContainer();
   $('container').insertAdjacentHTML('afterbegin', productPurchaseMenu);
 };
@@ -29,8 +29,11 @@ export const drawPurchaseMenu = () => {
 export const initView = () => {
   const $app = $('app');
   $app.insertAdjacentHTML('afterbegin', fixMenus);
-  drawAddMenu();
+  showAddMenu();
 };
+
+export const addTableHeader = (table, headerForm) =>
+  table.insertAdjacentHTML('beforeend', headerForm);
 
 export const addTableRow = (table, rowForm) => table.insertAdjacentHTML('beforeend', rowForm);
 
@@ -42,14 +45,14 @@ export const clearTable = table => (table.innerHTML = '');
 
 export const initReturnTable = returnCoin =>
   returnCoin.forEach(x => {
-    $(`coin-${x.coin}-quantity`).innerHTML = `${x.quantity}개`;
+    $(COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`;
   });
 
 export const initVendingTable = () => {
   const vending = getItemOrNull(KEY.vending);
   if (vending) {
     vending.coins.forEach(
-      x => ($(`vending-machine-coin-${x.coin}-quantity`).innerHTML = `${x.quantity}개`),
+      x => ($(VENDING_MACHINE_COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`),
     );
   }
 };

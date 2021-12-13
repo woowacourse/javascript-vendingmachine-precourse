@@ -34,8 +34,7 @@ const initChargeDomProperty = () => {
 };
 
 const isChargeInputValid = chargeInput =>
-  isInputNumberValid(chargeInput.placeholder, chargeInput.value) &&
-  isMultipleOf10(chargeInput.placeholder, chargeInput.value);
+  isInputNumberValid(chargeInput) && isMultipleOf10(chargeInput);
 
 const chargeVending = () => {
   const chargeInput = $(SELECTOR.vendingChargeInput);
