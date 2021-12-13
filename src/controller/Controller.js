@@ -1,6 +1,6 @@
 import VendingMachine from '../model/VendingMachine.js';
 import { $id } from '../utils/dom.js';
-import { isValidProductAdd } from '../utils/validation.js';
+import { isValidProductAddData } from '../utils/validation.js';
 import View from '../view/View.js';
 
 class Controller {
@@ -58,7 +58,7 @@ class Controller {
     $id('product-add-form').addEventListener('submit', (e) => {
       e.preventDefault();
 
-      if (isValidProductAdd()) {
+      if (isValidProductAddData()) {
         // 타입이 유효한 경우
       }
     });

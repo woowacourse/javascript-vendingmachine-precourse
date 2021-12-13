@@ -95,7 +95,7 @@ const isInValidQuantityInput = () => {
   return false;
 };
 
-export const isValidProductAdd = () => {
+export const isValidProductAddData = () => {
   if (isInValidProductName()) {
     return false;
   }
