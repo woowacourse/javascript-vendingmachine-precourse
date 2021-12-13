@@ -1,12 +1,12 @@
-import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS} from '../utils/constant.js';
-import { Subtitle, Input, Button, Table, Th, Tr, TdByClassName, TrByClassName, Theadbody } from '../components/compoenents.js';
+import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS, ID} from '../utils/constant.js';
+import { Subtitle, InputById, ButtonById, Table, Th, Tr, TdByClassName, TrByClassName, Theadbody } from '../components/compoenents.js';
 
 export default class ManagePage {
   constructor(controller) {
-    this.inputName = Input(PLACEHOLDER.PRODUCT_NAME);
-    this.inputPrice = Input(PLACEHOLDER.PRICE);
-    this.inputQuantity = Input(PLACEHOLDER.PRODUCT_QUANTITY);
-    this.buttonAdd = Button(TEXT.ADD);
+    this.inputName = InputById(PLACEHOLDER.PRODUCT_NAME, ID.INPUT_PRODUCT_NAME);
+    this.inputPrice = InputById(PLACEHOLDER.PRICE, ID.INPUT_PRODUCT_PRICE);
+    this.inputQuantity = InputById(PLACEHOLDER.PRODUCT_QUANTITY, ID.INPUT_PRODUCT_QUANTITY);
+    this.buttonAdd = ButtonById(TEXT.ADD, ID.BUTTON_ADD_PRODUCT);
     this.table = Table();
     this.tbody = Theadbody([]);
     this.controller = controller;

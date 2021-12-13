@@ -1,14 +1,15 @@
-import { SUBTITLE, LABEL, TEXT, PLACEHOLDER } from '../utils/constant.js';
-import { Subtitle, Input, Button, P, Table, Th, Tr } from '../components/compoenents.js';
+import { SUBTITLE, LABEL, TEXT, PLACEHOLDER, ID } from '../utils/constant.js';
+import { Subtitle, InputById, PById, Table, Th, Tr, Theadbody, ButtonById } from '../components/compoenents.js';
 
 export default class PurchasePage {
   constructor(controller) {
-    this.inputCoin = Input(PLACEHOLDER.INSERT_COIN);
-    this.buttonInsert = Button(TEXT.INSERT);
-    this.buttonReturn = Button(TEXT.RETURN);
-    this.textCurrent = P(`${TEXT.INSERTED} ${localStorage.getItem('insertedMoney')}`);
+    this.inputCoin = InputById(PLACEHOLDER.INSERT_COIN,ID.INPUT_PURCHASE_COIN);
+    this.buttonInsert = ButtonById(TEXT.INSERT, ID.BUTTON_PURCHASE_CHARGE);
+    this.buttonReturn = ButtonById(TEXT.RETURN, ID.BUTTON_RETURN);
+    this.textCurrent = PById(`${TEXT.INSERTED} ${localStorage.getItem('insertedMoney')}`,ID.TEXT_PURCHASE_COIN);
     this.tableCurrent = Table();
     this.tableReturn = Table();
+    this.tbody = Theadbody([]);
     this.controller = controller;
   }
 
@@ -52,5 +53,28 @@ export default class PurchasePage {
 
   showInsertedMoney(money) {
     this.textCurrent.innerText = `${TEXT.INSERTED} ${money}`;
+  }
+
+  showProductListAll(products) {
+    if(products.length > 0) {
+      for(let i = 0; i < products.length; i += 1) {
+        this.attachProduct(products[i]);
+      }
+    }
+    this.tableCurrent.appendChild(this.tbody);
+  }
+
+  cleantable() {
+    this.tbody.remove();
+    this.tbody = Theadbody([]);
+  }
+
+  attachProduct(product) {
+    const productTr = TrByClassName([
+      TdByClassName(product.name,CLASS.PRODUCT_NAME),
+      TdByClassName(product.price,CLASS.PRODUCT_PRICE),
+      TdByClassName(product.quantity,CLASS.PRODUCT_QUANTITY)
+    ],CLASS.PRODUCT_ITEM);
+    this.tableCurrent.appendChild(productTr);
   }
 }

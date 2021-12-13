@@ -21,9 +21,9 @@ export default class View {
   }
 
   setAllPage() {
-    this.app.appendChild(this.managePageDiv);
+    // this.app.appendChild(this.managePageDiv);
     // this.app.appendChild(this.chargePageDiv);
-    // this.app.appendChild(this.purchasePageDiv);
+    this.app.appendChild(this.purchasePageDiv);
   }
 
   setBasicUI(products) {
@@ -56,6 +56,7 @@ export default class View {
 
   getPurchasePage() {
     this.purchasePage.setUI(this.purchasePageDiv);
+    this.purchasePage.buttonHandler();
   }
 
   hideAllPage() {

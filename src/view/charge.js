@@ -1,16 +1,16 @@
-import { SUBTITLE, LABEL, TEXT, PLACEHOLDER } from '../utils/constant.js';
-import { Subtitle, Input, Button, P, Table, Th, Tr, Td } from '../components/compoenents.js';
+import { SUBTITLE, LABEL, TEXT, PLACEHOLDER, ID } from '../utils/constant.js';
+import { Subtitle, InputById, ButtonById, PById, Table, Th, Tr, Td, TdById } from '../components/compoenents.js';
 
 export default class ChargePage {
   constructor(controller) {
-    this.inputCoin = Input(PLACEHOLDER.CHARGE_COIN);
-    this.buttonCharge = Button(TEXT.CHARGE);
-    this.textCurrent = P(`${TEXT.HAVE} ${localStorage.getItem('money')}`);
+    this.inputCoin = InputById(PLACEHOLDER.CHARGE_COIN, ID.INPUT_CHARGE_COIN);
+    this.buttonCharge = ButtonById(TEXT.CHARGE, ID.BUTTON_CHARGE);
+    this.textCurrent = PById(`${TEXT.HAVE} ${localStorage.getItem('money')}`,ID.TEXT_CHARGED_COIN);
     this.table = Table();
-    this.tdFirstQuantity = Td(localStorage.getItem('10'));
-    this.tdSecondQuantity = Td(localStorage.getItem('50'));
-    this.tdThirdQuantity = Td(localStorage.getItem('100'));
-    this.tdForthQuantity = Td(localStorage.getItem('500'));
+    this.tdFirstQuantity = TdById(localStorage.getItem('10'),ID.TABLE_CURRENT_10);
+    this.tdSecondQuantity = TdById(localStorage.getItem('50'),ID.TABLE_CURRENT_50);
+    this.tdThirdQuantity = TdById(localStorage.getItem('100'),ID.TABLE_CURRENT_100);
+    this.tdForthQuantity = TdById(localStorage.getItem('500'),ID.TABLE_CURRENT_500);
     this.controller = controller;
   }
 
