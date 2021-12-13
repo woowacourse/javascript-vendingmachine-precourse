@@ -23,6 +23,7 @@ import {
   printValue,
   printCount,
 } from "../Controller/common.js";
+import { style, tableStyle } from "./style.js";
 
 export default class View {
   constructor() {
@@ -48,6 +49,7 @@ export default class View {
     document
       .getElementById("app")
       .append(createH1(TITLE.VENDING_MACHINE), this.menu, this.form);
+    style();
   }
 
   resetForm(nowForm) {
@@ -55,6 +57,7 @@ export default class View {
       this.form.removeChild(this.form.lastChild);
     }
     this.form.append(nowForm);
+    style();
   }
 
   // 상품 추가
@@ -73,6 +76,22 @@ export default class View {
       this.resetForm(this.addProductForm);
       if (product) this.displayProductAddChange(product);
     });
+  }
+
+  displayProductAddChange(product) {
+    if (this.productTable) {
+      resetTable(this.productTable);
+      product.forEach((value) => {
+        const tr = createTr(ADD_PRODUCT.PRODUCT_ITEM);
+        tr.append(
+          createTd(ADD_PRODUCT.PRODUCT_NAME, value.name),
+          createTd(ADD_PRODUCT.PRODUCT_PRICE, value.price),
+          createTd(ADD_PRODUCT.PRODUCT_QUANTITY, value.quantity)
+        );
+        this.productTable.append(tr);
+      });
+    }
+    tableStyle();
   }
 
   createAddProductForm() {
@@ -107,21 +126,6 @@ export default class View {
     });
   }
 
-  displayProductAddChange(product) {
-    if (this.productTable) {
-      resetTable(this.productTable);
-      product.forEach((value) => {
-        const tr = createTr(ADD_PRODUCT.PRODUCT_ITEM);
-        tr.append(
-          createTd(ADD_PRODUCT.PRODUCT_NAME, value.name),
-          createTd(ADD_PRODUCT.PRODUCT_PRICE, value.price),
-          createTd(ADD_PRODUCT.PRODUCT_QUANTITY, value.quantity)
-        );
-        this.productTable.append(tr);
-      });
-    }
-  }
-
   // 잔돈 충전
   displayChargeCoin(coin) {
     this.vendingMachineManageMenu.addEventListener("click", () => {
@@ -131,6 +135,16 @@ export default class View {
       this.resetForm(this.chargeCoinForm);
       this.displayChargeCoinChange(coin, getMoneySum(coin));
     });
+  }
+
+  displayChargeCoinChange(coins, sum) {
+    if (getElement(CHARGE_COIN.QUANTITY[0])) {
+      coins.forEach((value, index) => {
+        getElement(CHARGE_COIN.QUANTITY[index]).textContent = printCount(value);
+      });
+      this.chargeAmount.textContent = printValue(sum);
+    }
+    tableStyle();
   }
 
   createChargeCoinForm(sum) {
@@ -168,15 +182,6 @@ export default class View {
     });
   }
 
-  displayChargeCoinChange(coins, sum) {
-    if (getElement(CHARGE_COIN.QUANTITY[0])) {
-      coins.forEach((value, index) => {
-        getElement(CHARGE_COIN.QUANTITY[index]).textContent = printCount(value);
-      });
-      this.chargeAmount.textContent = printValue(sum);
-    }
-  }
-
   // 상품 구매
   displayProductPurchase(product, money) {
     this.productPurchaseMenu.addEventListener("click", () => {
@@ -195,17 +200,44 @@ export default class View {
     });
   }
 
+  displayAvailableProduct(product) {
+    if (this.avaiableProductTable) {
+      resetTable(this.avaiableProductTable);
+      product.forEach((value) => {
+        const tr = createTr(PURCHASE.ITEM);
+        tr.append(
+          this.createNameDataset(value),
+          this.createPriceDataset(value),
+          this.createQuantityDataset(value),
+          this.createPurchaseButton()
+        );
+        this.avaiableProductTable.append(tr);
+      });
+    }
+    tableStyle();
+  }
+
+  displayMoneyChange(money) {
+    this.billChargeAmount.textContent = printValue(money);
+  }
+
+  displayReturnCoin(coins) {
+    coins.forEach((value, index) => {
+      getElement(PURCHASE.LEFT_COIN[index]).textContent = printCount(value);
+    });
+  }
+
   createBillForm(money) {
     const div = createDiv();
-    this.chargeInput = createInput(PURCHASE.INPUT, TEXT.PURCHASE_WILL);
-    this.chargeDiv = createDiv(TEXT.PURCHASE_DONE, TEXT.PURCHASE_DONE);
-    this.chargeAmount = createSpan(PURCHASE.AMOUNT, printValue(money));
-    this.chargeDiv.append(this.chargeAmount);
+    this.billChargeInput = createInput(PURCHASE.INPUT, TEXT.PURCHASE_WILL);
+    this.billChargeDiv = createDiv(TEXT.PURCHASE_DONE, TEXT.PURCHASE_DONE);
+    this.billChargeAmount = createSpan(PURCHASE.AMOUNT, printValue(money));
+    this.billChargeDiv.append(this.billChargeAmount);
     div.append(
       createH3(TITLE.ADD_MONEY),
-      this.chargeInput,
+      this.billChargeInput,
       createButton(PURCHASE.ADD, BUTTON.BILL),
-      this.chargeDiv
+      this.billChargeDiv
     );
     return div;
   }
@@ -218,22 +250,6 @@ export default class View {
       createCoinTable(PURCHASE.LEFT_COIN)
     );
     return div;
-  }
-
-  displayAvailableProduct(product) {
-    if (this.avaiableProductTable) {
-      resetTable(this.avaiableProductTable);
-      product.forEach((value) => {
-        const tr = createTr(PURCHASE.ITEM);
-        tr.append(
-          this.createNameDataset(value),
-          this.createPriceDataset(value),
-          this.createQuantityDataset(value),
-          createButton(PURCHASE.PURCHASE, BUTTON.PURCHASE)
-        );
-        this.avaiableProductTable.append(tr);
-      });
-    }
   }
 
   createNameDataset(value) {
@@ -254,15 +270,20 @@ export default class View {
     return tdQuantity;
   }
 
+  createPurchaseButton() {
+    const td = createTd();
+    td.append(createButton(PURCHASE.PURCHASE, BUTTON.PURCHASE));
+    return td;
+  }
+
   bindMoneyAdd(handler) {
     this.form.addEventListener("click", (event) => {
-      event.preventDefault();
       if (event.target.id === PURCHASE.ADD) {
-        const presentMoney = handler(this.chargeInput.value);
+        const presentMoney = handler(this.billChargeInput.value);
         if (presentMoney) {
           this.displayMoneyChange(presentMoney);
         }
-        this.chargeInput.value = "";
+        this.billChargeInput.value = "";
       }
     });
   }
@@ -271,13 +292,9 @@ export default class View {
     this.form.addEventListener("click", (event) => {
       event.preventDefault();
       if (event.target.id === PURCHASE.PURCHASE) {
-        handler(event.target.parentElement.firstChild.dataset);
+        handler(event.target.parentElement.parentElement.firstChild.dataset);
       }
     });
-  }
-
-  displayMoneyChange(money) {
-    this.chargeAmount.textContent = printValue(money);
   }
 
   bindReturnCoin(handler) {
@@ -286,12 +303,6 @@ export default class View {
       if (event.target.id === PURCHASE.RETURN) {
         handler();
       }
-    });
-  }
-
-  displayReturnCoin(coins) {
-    coins.forEach((value, index) => {
-      getElement(PURCHASE.LEFT_COIN[index]).textContent = printCount(value);
     });
   }
 }
