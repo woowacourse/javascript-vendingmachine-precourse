@@ -14,11 +14,3 @@ export const isNumberStringNotDivideBy10 = (str) => {
 export const getRandomNumber = () => {
   return window.MissionUtils.Random.pickNumberInRange(ID_RANGE.MIN, ID_RANGE.MAX);
 };
-export const setLocalStorage = (KEY, VALUE) => {
-  localStorage.setItem(KEY, VALUE);
-};
-export const getLocalStorageByKey = (KEY) => {
-  // 객체는 객체화 하여
-  // 문자열은 문자열 그대로
-  return JSON.parse(localStorage.getItem(KEY));
-};

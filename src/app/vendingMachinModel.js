@@ -1,7 +1,6 @@
 import {
   DATA_MODEL_KEYS,
   DOM,
-  ERROR_MESSAGE,
   FIFTY,
   FIVE_HUNDRED,
   LOCALSTORAGE_DATA_MODEL_KEY,
@@ -10,12 +9,12 @@ import {
   TAB,
   TEN,
 } from '../lib/constants.js';
-import { getLocalStorageByKey, setLocalStorage } from '../lib/utils.js';
+import store from '../modules/store.js';
 
 /** Model */
 class VendingMachineModel {
   constructor() {
-    const prevValue = getLocalStorageByKey(LOCALSTORAGE_DATA_MODEL_KEY);
+    const prevValue = store.getLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY);
     if (prevValue) {
       this.setDataModel(prevValue);
     } else {
@@ -68,7 +67,7 @@ class VendingMachineModel {
 
   setDataModelPropertyValue(KEY, VALUE) {
     this.dataModel[KEY] = VALUE;
-    setLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY, JSON.stringify(this.dataModel));
+    store.setLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY, JSON.stringify(this.dataModel));
   }
 
   setTab(newTab) {
@@ -107,6 +106,7 @@ class VendingMachineModel {
   setProductList(newProductList) {
     this.setDataModelPropertyValue(DATA_MODEL_KEYS.PRODUCT_LIST, newProductList);
   }
+
   setProductInProductList({ newProduct, position }) {
     this.dataModel[DATA_MODEL_KEYS.PRODUCT_LIST][position] = newProduct;
   }
@@ -115,39 +115,50 @@ class VendingMachineModel {
   getDataModel() {
     return this.dataModel;
   }
+
   getTab() {
     return this.dataModel[DATA_MODEL_KEYS.TAB];
   }
+
   getProductAddInputsValue() {
     return this.dataModel[DATA_MODEL_KEYS.PRODUCT_ADD_INPUTS_VALUE];
   }
+
   getProductAddInputValueById(id) {
     const inputsValue = this.getProductAddInputsValue();
     return inputsValue[id];
   }
+
   getChargeInputsValue() {
     return this.dataModel[DATA_MODEL_KEYS.CHARGE_INPUTS_VALUE];
   }
+
   getChargeInputValueById(id) {
     const inputsValue = this.getChargeInputsValue();
     return inputsValue[id];
   }
+
   getVendingMachineChargeInputsValue() {
     return this.dataModel[DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE_INPUTS_VALUE];
   }
+
   getVendingMachineChargeInputValueByInputId(id) {
     const inputsValue = this.getVendingMachineChargeInputsValue();
     return inputsValue[id];
   }
+
   getCoins() {
     return this.dataModel[DATA_MODEL_KEYS.COINS];
   }
+
   getChargeAmount() {
     return this.dataModel[DATA_MODEL_KEYS.CHARGE_AMOUNT];
   }
+
   getProductList() {
     return this.dataModel[DATA_MODEL_KEYS.PRODUCT_LIST];
   }
+
   /** 세개의 인풋 중 하나라도 입력이 안되어 있다면  */
   findProduct(productId) {
     const position = this.getProductList().findIndex((product) => product.id === productId);
