@@ -1,6 +1,5 @@
 import { makeElement } from "./View/template.js";
-import productPurchaseView from "./View/productPurchaseView.js";
-import coinManageView from "./View/coinMangeView.js";
+// import productPurchaseView from "./View/productPurchaseView.js";
 import {
   TITLE,
   PRODUCT_MANAGE,
@@ -8,6 +7,7 @@ import {
   PRODUCT_PURCHASE_MANAGE,
 } from "./constant/vendingMachine.js";
 import ProductAddView from "./View/productAddView.js";
+import CoinManageView from "./View/coinMangeView.js";
 
 class VendingMachine {
   constructor() {
@@ -51,10 +51,12 @@ class VendingMachine {
     productAddMenuButton.addEventListener("click", () =>
       new ProductAddView(this.contentContainer).render()
     );
-    coinManageMenuButton.addEventListener("click", () => coinManageView(this.contentContainer));
-    productPurchaseMenuButton.addEventListener("click", () =>
-      productPurchaseView(this.contentContainer)
+    coinManageMenuButton.addEventListener("click", () =>
+      new CoinManageView(this.contentContainer).render()
     );
+    // productPurchaseMenuButton.addEventListener("click", () =>
+    //   productPurchaseView(this.contentContainer)
+    // );
 
     buttonArea.append(productAddMenuButton, coinManageMenuButton, productPurchaseMenuButton);
     return buttonArea;

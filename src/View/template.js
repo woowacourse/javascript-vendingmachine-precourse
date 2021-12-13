@@ -28,14 +28,14 @@ export const makeTableForm = (theadText, tableBodyId) => {
   return tableArea;
 };
 
-export const makeTableRow = (container, elements, rowId, button = "") => {
+export const makeTableRow = (elements, rowId, button = "") => {
   const tr = makeElement({ tag: "tr", id: rowId });
   elements.forEach(rowData => {
     const element = makeElement({ tag: "td", innerText: rowData.text, id: rowData.id });
     tr.appendChild(element);
   });
   if (button) tr.appendChild(button);
-  container.appendChild(tr);
+  return tr;
 };
 
 export const makeInputNumberFormToPrint = ({ TEXT, INPUT, BUTTON }) => {
@@ -60,7 +60,6 @@ export const makeInputNumberFormToPrint = ({ TEXT, INPUT, BUTTON }) => {
   });
   const printText = makeElement({ tag: "span", id: TEXT.PRINT_AMOUNT_ID });
 
-  button.addEventListener("click", () => BUTTON.handleClickEvent());
   printTextArea.append(printLabel, printText);
   container.append(inputFormTitle, input, button, printTextArea);
   return container;
@@ -69,9 +68,12 @@ export const makeInputNumberFormToPrint = ({ TEXT, INPUT, BUTTON }) => {
 export const renderCoinTable = (container, tableBodyId, coinToUse) => {
   const tableHead = makeTableForm(COIN_MANAGE.COLUMNS, tableBodyId);
   container.appendChild(tableHead);
+
   const tableBodyArea = document.getElementById(tableBodyId);
   coinToUse.forEach(coinData => {
     const coin = [{ text: coinData.TEXT }, { id: coinData.QUANTITY_ID }];
-    makeTableRow(tableBodyArea, coin);
+    const tableRow = makeTableRow(coin);
+    tableBodyArea.appendChild(tableRow);
   });
+  container.append(tableBodyArea);
 };

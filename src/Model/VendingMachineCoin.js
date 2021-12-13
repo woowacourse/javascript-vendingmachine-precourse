@@ -1,26 +1,13 @@
 import Coin from "./Coin.js";
-import { clearInputValue } from "./utils.js";
-import { COIN_MANAGE, VENDING_MACHINE_COIN } from "../constant/vendingMachine.js";
+import { VENDING_MACHINE_COIN } from "../constant/vendingMachine.js";
 
 export default class VendingMachineCoin extends Coin {
   constructor() {
     super();
-    this.bindInput();
     this.key = VENDING_MACHINE_COIN;
   }
 
-  bindInput() {
-    this.input = document.getElementById(COIN_MANAGE.INPUT.ID);
-  }
-
-  getCoinToInput() {
-    const coinToInput = this.input.value;
-    clearInputValue([this.input]);
-    return coinToInput;
-  }
-
-  charge() {
-    const coinToInput = this.getCoinToInput();
+  charge(coinToInput) {
     if (super.checkValid(coinToInput)) {
       this.save(this.makeRandomCoin(coinToInput));
     }

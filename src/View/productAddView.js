@@ -103,7 +103,8 @@ export default class ProductAddView {
         price: product.price,
         quantity: product.quantity,
       });
-      makeTableRow(tableBodyArea, rowData, PRODUCT_MANAGE.NEW_PRODUCT_ID);
+      const tableRow = makeTableRow(rowData, PRODUCT_MANAGE.NEW_PRODUCT_ID);
+      tableBodyArea.appendChild(tableRow);
     });
   }
 }
