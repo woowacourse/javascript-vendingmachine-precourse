@@ -1,4 +1,4 @@
-import { TAB_BUTTON_ELEMENTS } from '../constants.js';
+import { ID, ID_WITH_TEXT_LIST, SELECTOR } from '../constants.js';
 import { qs } from '../utils/index.js';
 
 export default class InitialElementsView {
@@ -9,7 +9,7 @@ export default class InitialElementsView {
   }
 
   initializeElements() {
-    const app = qs('#app');
+    const app = qs(SELECTOR.APP);
     app.innerHTML = this.template.getTabButtons();
   }
 }
@@ -17,14 +17,14 @@ export default class InitialElementsView {
 class Template {
   getTabButtons() {
     return `<h1>🥤자판기🥤</h1>
-    <div id="tab-buttons">
-    ${Object.values(TAB_BUTTON_ELEMENTS)
+    <div id="${ID.TAB_BUTTONS}">
+    ${Object.values(ID_WITH_TEXT_LIST)
       .map((obj) => this.getTabButton(obj))
       .join('')}
     </div>
-    <div id="product-purchase-view"></div>
-    <div id="vending-machine-manage-view"></div>
-    <div id="product-add-view"></div>
+    <div id="${ID.PRODUCT_PURCHASE_VIEW}"></div>
+    <div id="${ID.VENDING_MACHINE_MANAGE_VIEW}"></div>
+    <div id="${ID.PRODUCT_ADD_VIEW}"></div>
     `;
   }
 

@@ -1,8 +1,9 @@
+import { CLASS, COIN_LIST, ID, SELECTOR } from '../constants.js';
 import { on, qs, qsAll } from '../utils/index.js';
 import View from './View.js';
 
 export default class PurchasingProductView extends View {
-  constructor(element = qs('#product-purchase-view')) {
+  constructor(element = qs(SELECTOR.PRODUCT_PURCHASE_VIEW)) {
     super(element);
     this.template = new Template();
 
@@ -18,11 +19,11 @@ export default class PurchasingProductView extends View {
     this.element.innerHTML += this.template.getCanBuyProductList(productList);
     this.element.innerHTML += this.template.getReturnExchangeList(puttedMoney);
 
-    this.vendingMachineChargeInput = qs('#charge-input');
-    this.vendingMachineChargeButton = qs('#charge-button');
-    this.currentPuttedMoney = qs('#charge-amount');
+    this.vendingMachineChargeInput = qs(SELECTOR.PURCHASE_CHARGE_INPUT);
+    this.vendingMachineChargeButton = qs(SELECTOR.PURCHASE_CHARGE_BUTTON);
+    this.currentPuttedMoney = qs(SELECTOR.PURCHASE_CHARGE_AMOUNT);
     this.currentPuttedMoney.innerText += puttedMoney.inputMoney;
-    this.coinReturnButton = qs('#coin-return-button');
+    this.coinReturnButton = qs(SELECTOR.COIN_RETURN_BUTTON);
 
     this.bindEvents();
     super.show();
@@ -48,10 +49,10 @@ export default class PurchasingProductView extends View {
   }
 
   handlePurchse() {
-    const buttons = qsAll('.product-purchase-item');
-    const names = qsAll('.product-purchase-name');
-    const prices = qsAll('.product-purchase-price');
-    const quantities = qsAll('.product-purchase-quantity');
+    const buttons = qsAll(SELECTOR.PRODUCT_PURCHASE_ITEM);
+    const names = qsAll(SELECTOR.PRODUCT_PURCHASE_NAME);
+    const prices = qsAll(SELECTOR.PRODUCT_PURCHASE_PRICE);
+    const quantities = qsAll(SELECTOR.PRODUCT_PURCHASE_QUANTITY);
 
     buttons.forEach((button, index) => {
       on(button, 'click', () => {
@@ -68,11 +69,11 @@ export default class PurchasingProductView extends View {
 class Template {
   getInitialElements() {
     return `<h3>금액 투입</h3>
-      <input id="charge-input" type="number" placeholder="투입할 금액" />
-      <button id="charge-button">투입하기</button>
+      <input id="${ID.PURCHASE_CHARGE_INPUT}" type="number" placeholder="투입할 금액" />
+      <button id="${ID.PURCHASE_CHARGE_BUTTON}">투입하기</button>
       <br /><br />
       <span>투입한 금액: </span>
-      <span id="charge-amount"></span>
+      <span id="${ID.PURCHASE_CHARGE_AMOUNT}"></span>
     `;
   }
 
@@ -97,12 +98,12 @@ class Template {
 
   getProduct({ name, price, quantity }) {
     return `
-      <tr class="product-purchase-item">
-        <td class="product-purchase-name" data-product-name=${name}>${name}</td>
-        <td class="product-purchase-price" data-product-price=${price}>${price}</td>
-        <td class="product-purchase-quantity" data-product-quantity=${quantity}>${quantity}</td>
-        <td class="product-manage-quantity">
-          <button class="purchase-button">구매하기</button>
+      <tr class="${CLASS.PRODUCT_PURCHASE_ITEM}">
+        <td class="${CLASS.PRODUCT_PURCHASE_NAME}" data-product-name=${name}>${name}</td>
+        <td class="${CLASS.PRODUCT_PURCHASE_PRICE}" data-product-price=${price}>${price}</td>
+        <td class="${CLASS.PRODUCT_PURCHASE_QUANTITY}" data-product-quantity=${quantity}>${quantity}</td>
+        <td class="${CLASS.PRODUCT_MANAGE_QUANTITY}">
+          <button class="${CLASS.PURCHASE_BUTTON}">구매하기</button>
         </td>
       </tr>
     `;
@@ -111,7 +112,7 @@ class Template {
   getReturnExchangeList(changeList) {
     return `
       <h3>잔돈</h3>
-      <button id="coin-return-button">반환하기</button>
+      <button id="${ID.COIN_RETURN_BUTTON}">반환하기</button>
       <table>
         <thead>
           <tr>
@@ -122,19 +123,19 @@ class Template {
         <tbody>
           <tr>
             <td>500</td>
-            <td id="coin-500-quantity">${changeList.returnedCoins['500']}개</td>
+            <td id="${ID.COIN_500_QUANTITY}">${changeList.returnedCoins[COIN_LIST.FIVE_HUNDRED]}개</td>
           </tr>
           <tr>
             <td>100</td>
-            <td id="coin-100-quantity">${changeList.returnedCoins['100']}개</td>
+            <td id="${ID.COIN_100_QUANTITY}">${changeList.returnedCoins[COIN_LIST.ONE_HUNDRED]}개</td>
           </tr>
           <tr>
             <td>50</td>
-            <td id="coin-50-quantity">${changeList.returnedCoins['50']}개</td>
+            <td id="${ID.COIN_50_QUANTITY}">${changeList.returnedCoins[COIN_LIST.FIFTY]}개</td>
           </tr>
           <tr>
             <td>10</td>
-            <td id="coin-10-quantity">${changeList.returnedCoins['10']}개</td>
+            <td id="${ID.COIN_10_QUANTITY}">${changeList.returnedCoins[COIN_LIST.TEN]}개</td>
           </tr>
         </tbody>
       </table>

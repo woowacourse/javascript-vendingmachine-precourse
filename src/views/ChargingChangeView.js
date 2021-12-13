@@ -1,9 +1,9 @@
-import { COIN_LIST } from '../constants.js';
+import { COIN_LIST, ID, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
 import View from './View.js';
 
 export default class ChargingChangeView extends View {
-  constructor(element = qs('#vending-machine-manage-view')) {
+  constructor(element = qs(SELECTOR.VENDING_MACHINE_MANAGE_VIEW)) {
     super(element);
     this.template = new Template();
 
@@ -18,9 +18,9 @@ export default class ChargingChangeView extends View {
     this.initializeElements();
     this.element.innerHTML += this.template.getCoinList(data);
 
-    this.vendingMachineChargeInput = qs('#vending-machine-charge-input');
-    this.vendingMachineChargeButton = qs('#vending-machine-charge-button');
-    
+    this.vendingMachineChargeInput = qs(SELECTOR.COIN_CHARGE_INPUT);
+    this.vendingMachineChargeButton = qs(SELECTOR.COIN_CHARGE_BUTTON);
+
     this.bindEvents();
     super.show();
   }
@@ -28,6 +28,11 @@ export default class ChargingChangeView extends View {
   bindEvents() {
     on(this.vendingMachineChargeButton, 'click', () => {
       let inputChanges = this.vendingMachineChargeInput.value;
+      if (inputChanges < 0) {
+        alert('올바른 액수를 입력해주세요.');
+        return;
+      }
+
       let changes = {
         500: 0,
         100: 0,
@@ -52,8 +57,8 @@ class Template {
   getInitialElements() {
     return `<h3>자판기 동전 충전하기</h3>
       <div>
-        <input id="vending-machine-charge-input" type="number" placeholder="자판기가 보유할 금액" />
-        <button id="vending-machine-charge-button">충전하기</button>
+        <input id="${ID.COIN_CHARGE_INPUT}" type="number" placeholder="자판기가 보유할 금액" />
+        <button id="${ID.COIN_CHARGE_BUTTON}">충전하기</button>
       </div>
       <br />
     `;
@@ -65,7 +70,7 @@ class Template {
     }</span>
       <h3>자판기가 보유한 동전</h3>
       <table>
-        <thead id="vending-machine-charge-amount">
+        <thead id="${ID.VENDING_MACHINE_CHARGE_AMOUNT}">
           <tr>
             <th>동전</th>
             <th>개수</th>
@@ -74,19 +79,19 @@ class Template {
         <tbody>
           <tr>
             <td>500</td>
-            <td id="vending-machine-coin-500-quantity">${data['500']}개</td>
+            <td id="${ID.COIN_500}">${data[COIN_LIST.FIVE_HUNDRED]}개</td>
           </tr>
           <tr>
             <td>100</td>
-            <td id="vending-machine-coin-100-quantity">${data['100']}개</td>
+            <td id="${ID.COIN_100}">${data[COIN_LIST.ONE_HUNDRED]}개</td>
           </tr>
           <tr>
             <td>50</td>
-            <td id="vending-machine-coin-50-quantity">${data['50']}개</td>
+            <td id="${ID.COIN_50}">${data[COIN_LIST.FIFTY]}개</td>
           </tr>
           <tr>
             <td>10</td>
-            <td id="vending-machine-coin-10-quantity">${data['10']}개</td>
+            <td id="${ID.COIN_10}">${data[COIN_LIST.TEN]}개</td>
           </tr>
         </tbody>
       </table>

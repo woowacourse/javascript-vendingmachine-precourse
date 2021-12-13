@@ -1,14 +1,15 @@
+import { SELECTOR } from "../constants.js";
 import { on, qs } from "../utils/index.js";
 import View from "./View.js";
 
 
 export default class TabView extends View {
-  constructor(element = qs('#tab-buttons')) {
+  constructor(element = qs(SELECTOR.TAB_BUTTONS)) {
     super(element);
 
-    this.productPurchaseMenu = qs('#product-purchase-menu');
-    this.vendingMachineManageMenu = qs('#vending-machine-manage-menu');
-    this.productAddMenu = qs('#product-add-menu');
+    this.productPurchaseMenu = qs(SELECTOR.PURCHASE_MENU);
+    this.vendingMachineManageMenu = qs(SELECTOR.COIN_MENU);
+    this.productAddMenu = qs(SELECTOR.PRODUCT_MENU);
 
     this.bindEvents();
   }

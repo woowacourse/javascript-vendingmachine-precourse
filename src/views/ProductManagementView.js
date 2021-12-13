@@ -1,8 +1,9 @@
+import { CLASS, ID, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
 import View from './View.js';
 
 export default class ProductManagementView extends View {
-  constructor(element = qs('#product-add-view')) {
+  constructor(element = qs(SELECTOR.PRODUCT_ADD_VIEW)) {
     super(element);
     this.template = new Template();
 
@@ -17,10 +18,10 @@ export default class ProductManagementView extends View {
     this.initializeElements();
     this.element.innerHTML += this.template.getProductList(data);
 
-    this.productNameInput = qs('#product-name-input');
-    this.productPriceInput = qs('#product-price-input');
-    this.productQuantityInput = qs('#product-quantity-input');
-    this.productAddButton = qs('#product-add-button');
+    this.productNameInput = qs(SELECTOR.PRODUCT_NAME_INPUT);
+    this.productPriceInput = qs(SELECTOR.PRODUCT_PRICE_INPUT);
+    this.productQuantityInput = qs(SELECTOR.PRODUCT_QUANTITY_INPUT);
+    this.productAddButton = qs(SELECTOR.PRODUCT_ADD_BUTTON);
 
     this.bindEvents();
     super.show();
@@ -50,10 +51,10 @@ class Template {
   getInitialElements() {
     return `<h3>상품 추가하기</h3>
       <div>
-        <input id="product-name-input" type="text" placeholder="상품명"/>
-        <input id="product-price-input" type="number" placeholder="가격"/>
-        <input id="product-quantity-input" type="number" placeholder="수량"/>
-        <button id="product-add-button">추가하기</button>
+        <input id="${ID.PRODUCT_NAME_INPUT}" type="text" placeholder="상품명"/>
+        <input id="${ID.PRODUCT_PRICE_INPUT}" type="number" placeholder="가격"/>
+        <input id="${ID.PRODUCT_QUANTITY_INPUT}" type="number" placeholder="수량"/>
+        <button id="${ID.PRODUCT_ADD_BUTTON}">추가하기</button>
       </div>
     `;
   }
@@ -78,10 +79,10 @@ class Template {
 
   getProduct({ name, price, quantity }) {
     return `
-      <tr class="product-manage-item">
-        <td class="product-manage-name">${name}</td>
-        <td class="product-manage-price">${price}</td>
-        <td class="product-manage-quantity">${quantity}</td>
+      <tr class="${CLASS.PRODUCT_MANAGE_ITEM}">
+        <td class="${CLASS.PRODUCT_MANAGE_NAME}">${name}</td>
+        <td class="${CLASS.PRODUCT_MANAGE_PRICE}">${price}</td>
+        <td class="${CLASS.PRODUCT_MANAGE_QUANTITY}">${quantity}</td>
       </tr>
     `;
   }
