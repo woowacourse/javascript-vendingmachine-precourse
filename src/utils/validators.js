@@ -1,4 +1,4 @@
-import { ERROR } from './constants.js';
+import { ERROR } from '../controllers/constants/constants.js';
 import { default as UT } from './utils.js';
 import { default as DB } from '../model/database.js';
 

@@ -1,4 +1,4 @@
-import { REGEX } from './constants.js';
+import { REGEX } from '../controllers/constants/constants.js';
 import { default as DB } from '../model/database.js';
 
 const utils = {
