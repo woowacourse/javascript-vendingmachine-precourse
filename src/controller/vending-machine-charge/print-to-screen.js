@@ -22,17 +22,16 @@ export const printMoneyToScreen = () => {
 };
 
 export const printAmountOfCoinToScreen = () => {
-  const sum = printMoneyToScreen();
-  const randomCoinAmount = getRandomCoinsAmongList(sum);
   const $vendingMachine500Coin = $('#vending-machine-coin-500-quantity');
   const $vendingMachine100Coin = $('#vending-machine-coin-100-quantity');
   const $vendingMachine50Coin = $('#vending-machine-coin-50-quantity');
   const $vendingMachine10Coin = $('#vending-machine-coin-10-quantity');
+  const coinList = JSON.parse(localStorage.getItem('coinList'));
 
-  $vendingMachine500Coin.innerHTML = `${randomCoinAmount[COIN_LIST[0]]}개`;
-  $vendingMachine100Coin.innerHTML = `${randomCoinAmount[COIN_LIST[1]]}개`;
-  $vendingMachine50Coin.innerHTML = `${randomCoinAmount[COIN_LIST[2]]}개`;
-  $vendingMachine10Coin.innerHTML = `${randomCoinAmount[COIN_LIST[3]]}개`;
+  $vendingMachine500Coin.innerHTML = `${coinList[COIN_LIST[0]]}개`;
+  $vendingMachine100Coin.innerHTML = `${coinList[COIN_LIST[1]]}개`;
+  $vendingMachine50Coin.innerHTML = `${coinList[COIN_LIST[2]]}개`;
+  $vendingMachine10Coin.innerHTML = `${coinList[COIN_LIST[3]]}개`;
 };
 
 // 전역으로 설정시 새로고침해도 보이고, 버튼이벤트 안 설정시 이벤트가 작동해야지 보인다.
