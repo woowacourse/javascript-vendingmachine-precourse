@@ -184,9 +184,9 @@
 
     [x] 투입한 금액이 구매금액보다 클 경우 구매한 제품의 수량의 개수를 drinkStorage에서 하나를 뺀다
 
-    [ ] update된 drinkStorage에 따라서 구매할 수 있는 상품 table을 update한다
+    [x] update된 drinkStorage에 따라서 구매할 수 있는 상품 table을 렌더링한다
 
-    [ ] 업데이트된 투입한 금액을 투입한 금액에 렌더링한다
+    [x] 업데이트된 투입한 금액을 투입한 금액에 렌더링한다
 
 [x] 반환하기 버튼 요소는 coin-return-button id를 가진다
 
