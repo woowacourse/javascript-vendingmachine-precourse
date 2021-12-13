@@ -3,8 +3,9 @@ import { KEY, SELECTOR } from '../model/constants.js';
 import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/template.js';
 
 export default class Purchase {
-  constructor(view) {
+  constructor(view, model) {
     this.view = view;
+    this.model = model;
   }
 
   init() {

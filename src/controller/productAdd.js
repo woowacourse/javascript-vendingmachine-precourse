@@ -1,11 +1,11 @@
-import { $, handleStorage, validation, onKeyUpNumericEvent } from './utils.js';
-import { SELECTOR, KEY } from '../model/constants.js';
+import { $, validation, onKeyUpNumericEvent } from './utils.js';
+import { SELECTOR } from '../model/constants.js';
 import { productAddTableRow } from '../model/template.js';
-import Product from '../model/product.js';
 
 export default class ProductAdd {
-  constructor(view) {
+  constructor(view, model) {
     this.view = view;
+    this.model = model;
     this.init();
   }
 
@@ -25,9 +25,10 @@ export default class ProductAdd {
   }
 
   initTable() {
-    const allProducts = handleStorage.getItemOrArray(KEY.product);
     const table = document.querySelector('tbody');
-    allProducts.forEach(product => this.view.addTableRow(table, productAddTableRow(product)));
+    this.model
+      .getProducts()
+      .forEach(product => this.view.addTableRow(table, productAddTableRow(product)));
   }
 
   initInput(productName, productPrice, productQuantity) {
@@ -57,9 +58,9 @@ export default class ProductAdd {
   }
 
   updateProductLocalStorage(product) {
-    const allProducts = handleStorage.getItemOrArray(KEY.product);
+    const allProducts = this.model.getProducts();
     allProducts.push(product);
-    handleStorage.setItem(KEY.product, allProducts);
+    this.model.setProducts(allProducts);
   }
 
   addProduct() {
@@ -67,7 +68,7 @@ export default class ProductAdd {
     const productPrice = $(SELECTOR.productPriceInput);
     const productQuantity = $(SELECTOR.productQuantityInput);
     if (this.isProductInputsValid(productName, productPrice, productQuantity)) {
-      const product = new Product(productName.value, productPrice.value, productQuantity.value);
+      const product = this.model.makeProduct(productName, productPrice, productQuantity);
       const table = document.querySelector('tbody');
 
       this.updateProductLocalStorage(product);

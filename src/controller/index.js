@@ -1,4 +1,5 @@
 import { SELECTOR } from '../model/constants.js';
+import Model from '../model/index.js';
 import Vending from './vending.js';
 import ProductAdd from './productAdd.js';
 import Purchase from './purchase.js';
@@ -7,9 +8,10 @@ import { $ } from './utils.js';
 export default class Controller {
   constructor(view) {
     this.view = view;
-    this.productAdd = new ProductAdd(this.view);
-    this.vending = new Vending(this.view);
-    this.purchase = new Purchase(this.view);
+    this.model = new Model();
+    this.productAdd = new ProductAdd(this.view, this.model);
+    this.vending = new Vending(this.view, this.model);
+    this.purchase = new Purchase(this.view, this.model);
   }
 
   addEventListeners() {

@@ -3,8 +3,9 @@ import VendingMachine from '../model/vendingMachine.js';
 import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
 
 export default class Vending {
-  constructor(view) {
+  constructor(view, model) {
     this.view = view;
+    this.model = model;
   }
 
   init() {

@@ -3,9 +3,9 @@ import { KEY } from './constants.js';
 export default class Model {
   makeProduct(name, price, quantity) {
     return {
-      name,
-      price: parseInt(price),
-      quantity: parseInt(quantity),
+      name: name.value,
+      price: parseInt(price.value),
+      quantity: parseInt(quantity.value),
     };
   }
 
