@@ -1,7 +1,7 @@
 import VendingMachine from '../model/VendingMachine.js';
 import { $id } from '../utils/dom.js';
 import { productManageItemTemplate } from '../utils/template.js';
-import { isValidProductAddData } from '../utils/validation.js';
+import { isValidProductAddData, isValidVendingMachineCharge } from '../utils/validation.js';
 import View from '../view/View.js';
 
 class Controller {
@@ -50,6 +50,7 @@ class Controller {
         break;
       case 'vending-machine-manage-menu':
         this.view.showVendingMachineManageScreen();
+        this.triggerVendingMachineChargeSubmitEvent();
         break;
       case 'product-purchase-menu':
         this.view.showProductPurchaseScreen();
@@ -85,8 +86,6 @@ class Controller {
       const productQuantityInput = $id('product-quantity-input').value;
 
       if (isValidProductAddData(productNameInput, productPriceInput, productQuantityInput)) {
-        this.initProductAddInputValue();
-
         const tabMenu = this.vendingMachine.getLocalStorage();
 
         tabMenu['product_add_menu'] = [
@@ -94,8 +93,20 @@ class Controller {
           { name: productNameInput, price: productPriceInput, quantity: productQuantityInput },
         ];
 
+        this.initProductAddInputValue();
         this.renderProductManageList();
-        this.vendingMachine.setLocalStorage(tabMenu);
+      }
+    });
+  }
+
+  triggerVendingMachineChargeSubmitEvent() {
+    $id('vending-machine-charge-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const vendingMachineChargeInput = $id('vending-machine-charge-input').value;
+
+      if (isValidVendingMachineCharge(vendingMachineChargeInput)) {
+        console.log('pass');
       }
     });
   }

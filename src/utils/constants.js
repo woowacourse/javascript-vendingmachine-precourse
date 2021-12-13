@@ -1,6 +1,3 @@
-import { $id } from './dom.js';
-import { productManageItemTemplate } from './template.js';
-
 export const TAB_MENUS_TEXT = `
   <header>
     <h1>🥤자판기🥤</h1>

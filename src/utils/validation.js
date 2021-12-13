@@ -25,6 +25,13 @@ const isSameOrLessZero = (inputValue) => {
   return inputValue <= 0;
 };
 
+export const isValidVendingMachineCharge = (vendingMachineChargeInput) => {
+  if (isEmpty(vendingMachineChargeInput)) {
+    alert('자판기가 보유할 금액을 입력해주세요.  ex) 450');
+    return false;
+  }
+};
+
 const isInValidProductName = (productNameInput) => {
   if (isEmpty(productNameInput)) {
     alert('상품명을 입력해주세요.  ex) 사이다');
