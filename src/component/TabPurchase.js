@@ -6,7 +6,7 @@ import Button from '../core/Button.js';
 import ProductPurchaseTable from '../core/ProductPurchaseTable.js';
 import CoinTable from '../core/CoinTable.js';
 import AmountView from '../core/AmountView.js';
-import { isValidRecharge, canBePurchase } from '../utils/validation.js';
+import { isValidRecharge, canBePurchase, canBeReturn } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
 import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
 import { COIN } from '../constant/coin.js';
@@ -112,6 +112,7 @@ export default class TabPurchase {
   setEvent() {
     this.setRechargeEvent();
     this.setPurchaseEvent();
+    this.setReturnEvent();
   }
 
   setRechargeEvent() {
@@ -142,6 +143,16 @@ export default class TabPurchase {
     });
   }
 
+  setReturnEvent() {
+    const { requestReturnCoin } = this.props;
+
+    this.coinReturnButton.getTarget().addEventListener(EVENT.CLICK, () => {
+      if (canBeReturn(this.vendingMachine.getRechargedCoinAmount())) {
+        requestReturnCoin();
+      }
+    });
+  }
+
   getProductName($clickedProduct) {
     const $productName = $clickedProduct.querySelector(`.${SELECTOR.CLASS_PRODUCT_PURCHASE_NAME}`);
 
@@ -168,5 +179,9 @@ export default class TabPurchase {
 
   updateProductTable() {
     this.productListTable.render(this.vendingMachine.getProductList());
+  }
+
+  updateCoinTable() {
+    this.coinReturnTable.render(this.vendingMachine.getRetrunedCoin());
   }
 }

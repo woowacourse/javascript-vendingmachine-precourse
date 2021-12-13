@@ -24,6 +24,7 @@ export default class TabContainer {
     this.tabPurchase = new TabPurchase(this.$target, {
       rechargeMoney: this.rechargeMoney.bind(this),
       purchaseProduct: this.purchaseProduct.bind(this),
+      requestReturnCoin: this.requestReturnCoin.bind(this),
     });
   }
 
@@ -61,10 +62,22 @@ export default class TabContainer {
     this.tabPurchase.updateRechargeMoneyState();
   }
 
+  updateReturnedCoinTable() {
+    this.tabPurchase.updateCoinTable();
+  }
+
   purchaseProduct(product) {
     this.vendingMachine.sellProduct(product);
 
     this.updateProductTable();
     this.updateRechargeMoneyState();
+  }
+
+  requestReturnCoin() {
+    this.vendingMachine.returnCoin();
+
+    this.updateRechargeState();
+    this.updateRechargeMoneyState();
+    this.updateReturnedCoinTable();
   }
 }

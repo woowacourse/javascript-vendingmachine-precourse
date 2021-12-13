@@ -108,3 +108,12 @@ export const canBePurchase = (money, price) => {
 
   return true;
 };
+
+export const canBeReturn = (amount) => {
+  if (amount <= RULE.MIN_COIN_AMOUNT) {
+    alert(ERROR.RETURN);
+    return false;
+  }
+
+  return true;
+};

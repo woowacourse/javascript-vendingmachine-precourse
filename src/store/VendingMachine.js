@@ -20,6 +20,12 @@ export default class VendingMachine {
     ];
     this.rechargedCoinAmount = null;
     this.rechargedMoneyAmount = null;
+    this.returnedCoin = [
+      new Coin(COIN.COIN_500, null),
+      new Coin(COIN.COIN_100, null),
+      new Coin(COIN.COIN_50, null),
+      new Coin(COIN.COIN_10, null),
+    ];
     instance = this;
   }
 
@@ -57,7 +63,7 @@ export default class VendingMachine {
 
       if (amount + pickedCoin <= totalAmount) {
         const index = this.findCoinIndex(pickedCoin);
-        this.rechargedCoin[index].increaseAmount();
+        this.rechargedCoin[index].increaseAmount(1);
         amount += pickedCoin;
       }
     }
@@ -96,6 +102,35 @@ export default class VendingMachine {
     this.rechargedMoneyAmount -= selledProduct.price;
   }
 
+  returnCoin() {
+    let returnedAmount = 0;
+    this.convertedRetrunedCoinCountToZero();
+
+    this.rechargedCoin.forEach((coin, index) => {
+      const returnedCount = this.calculateReturnedCoinCount(returnedAmount, coin);
+
+      this.returnedCoin[index].increaseAmount(returnedCount);
+      coin.decreaseAmount(returnedCount);
+      returnedAmount += coin.type * returnedCount;
+    });
+
+    this.rechargedMoneyAmount -= returnedAmount;
+    this.rechargedCoinAmount -= returnedAmount;
+  }
+
+  convertedRetrunedCoinCountToZero() {
+    this.returnedCoin.forEach((coin) => coin.resetAmountToZero());
+  }
+
+  calculateReturnedCoinCount(returnedAmount, coin) {
+    const returnedCount = Math.min(
+      parseInt((this.rechargedMoneyAmount - returnedAmount) / coin.type, 10),
+      coin.amount
+    );
+
+    return returnedCount;
+  }
+
   getProductList() {
     return this.productList;
   }
@@ -110,5 +145,9 @@ export default class VendingMachine {
 
   getRechargedMoneyAmount() {
     return this.rechargedMoneyAmount;
+  }
+
+  getRetrunedCoin() {
+    return this.returnedCoin.map((coin) => [coin.type, coin.amount]);
   }
 }
