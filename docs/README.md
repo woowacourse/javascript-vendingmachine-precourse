@@ -53,8 +53,58 @@ c. 잔돈 반환
 - 각 view의 load 함수 실행하여 데이터 최신화
 - load 시, 탭1만 떠있도록
 
+<br>
+
 ## 리팩터링 목록
 
 - 함수 분리
 - 로컬스토리지 관리
 - controller와 model 역할 분리
+
+<br>
+
+## 🎬 프로젝트 시연
+
+![화면 기록 2021-12-14 오전 12 46 36](https://user-images.githubusercontent.com/24906022/145843856-041fc29c-510a-4506-bdfa-3f42e9a7a5df.gif)
+
+![화면 기록 2021-12-14 오전 12 49 32](https://user-images.githubusercontent.com/24906022/145844129-355a18d9-e819-4b9e-9f2b-006de53a08b4.gif)
+
+![화면 기록 2021-12-14 오전 12 50 57](https://user-images.githubusercontent.com/24906022/145844775-65521ef8-1ab0-4cd0-abbe-bfccf1db12f1.gif)
+
+<br>
+
+## 📂 디렉토리 구조
+
+```sh
+┣ src
+┃   ┣ controller
+┃   ┃ ┣ BuyController.js
+┃   ┃ ┣ ChargeController.js
+┃   ┃ ┗ ProductController.js
+┃   ┣ model
+┃   ┃ ┗ VendingMachineModel.js
+┃   ┣ utils
+┃   ┃ ┣ constant.js
+┃   ┃ ┣ DOM.js
+┃   ┃ ┣ template.js
+┃   ┃ ┗ validator.js
+┃   ┣ view
+┃   ┃ ┣ BuyView.js
+┃   ┃ ┣ ChargeView.js
+┃   ┃ ┣ CoreView.js
+┃   ┃ ┗ ProductView.js
+┃   ┗ index.js
+┣ docs
+┃   ┗ README.md
+┣ .eslintrc.json
+┣ .prettierrc.json
+┗ index.html
+```
+
+<br>
+
+## ⚒️ About skills
+
+- eslint + prettier
+- MVC 패턴으로 클래스 분리
+- JavaScript NHN 코딩 컨벤션 준수
