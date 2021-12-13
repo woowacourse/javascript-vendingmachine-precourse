@@ -2,10 +2,12 @@ import VendingMachineManageMenuView from '../views/VendingMachineManageMenuView.
 import VendingMachineManageMenuModel from '../models/VendingMachineManageMenuModel.js';
 import VendingMachineManageMenuValidator from '../validators/vendingMachineManageMenu.js';
 import { $ } from '../utils/dom.js';
+import Store from '../utils/store.js';
 import { pickRandomCoin } from '../utils/index.js';
 
 import SELECTOR from '../constants/selector.js';
 import { COIN_500, COIN_100, COIN_50, COIN_10 } from '../constants/common.js';
+import STORAGE_KEY from '../constants/key.js';
 
 class VendingMachineManageMenuController {
   constructor(currentMenu) {
@@ -21,6 +23,18 @@ class VendingMachineManageMenuController {
       'click',
       this.onClickTabContent.bind(this),
     );
+    $(`#${SELECTOR.tabContentContainerId}`).addEventListener(
+      'change',
+      this.onChangeTabContent.bind(this),
+    );
+  }
+
+  onChangeTabContent(event) {
+    const { id, value } = event.target;
+
+    if (id === SELECTOR.vendingMachineChargeInputId) {
+      Store.setLocalStorage(STORAGE_KEY.vendingMachineChargeInput, value);
+    }
   }
 
   renderMenuWithData() {
@@ -33,6 +47,9 @@ class VendingMachineManageMenuController {
     );
     this.$vendingMachineManageMenuView.renderCoinChargeAmountWithData(
       this.$vendingMachineManageMenuModel.getChargeAmount(),
+    );
+    this.$vendingMachineManageMenuView.renderInputWithStorageData(
+      Store.getLocalStorage(STORAGE_KEY.vendingMachineChargeInput),
     );
   }
 

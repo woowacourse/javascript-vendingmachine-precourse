@@ -2,8 +2,10 @@ import ProductAddMenuValidator from '../validators/productAddMenu.js';
 import ProductAddMenuModel from '../models/ProductAddMenuModel.js';
 import ProductAddMenuView from '../views/ProductAddMenuView.js';
 import { $ } from '../utils/dom.js';
+import Store from '../utils/store.js';
 
 import SELECTOR from '../constants/selector.js';
+import STORAGE_KEY from '../constants/key.js';
 
 class ProductAddMenuController {
   constructor(currentMenu) {
@@ -19,6 +21,10 @@ class ProductAddMenuController {
       'click',
       this.onClickTabContent.bind(this),
     );
+    $(`#${SELECTOR.tabContentContainerId}`).addEventListener(
+      'change',
+      this.onChangeTabContent.bind(this),
+    );
   }
 
   renderMenuWithData() {
@@ -26,12 +32,42 @@ class ProductAddMenuController {
     this.$productAddMenuView.renderTableWithProductItems(
       this.$productAddMenuModel.getProductItems(),
     );
+    this.$productAddMenuView.renderInputWithStorageData(
+      Store.getLocalStorage(STORAGE_KEY.productNameInput),
+      Store.getLocalStorage(STORAGE_KEY.productPriceInput),
+      Store.getLocalStorage(STORAGE_KEY.productQuantityInput),
+    );
   }
 
   onClickTabContent(event) {
     const { id } = event.target;
 
     if (id === SELECTOR.productAddButtonId) this.onClickProductAddButton();
+  }
+
+  onChangeTabContent(event) {
+    const { id, value } = event.target;
+
+    if (id === SELECTOR.productNameInputId) {
+      Store.setLocalStorage(STORAGE_KEY.productNameInput, value);
+      return;
+    }
+    if (id === SELECTOR.productPriceInputId) {
+      Store.setLocalStorage(STORAGE_KEY.productPriceInput, value);
+      return;
+    }
+    if (id === SELECTOR.productQuantityInputId)
+      Store.setLocalStorage(STORAGE_KEY.productQuantityInput, value);
+  }
+
+  resetUserInputInLocalStorage() {
+    Store.setLocalStorage(STORAGE_KEY.productNameInput, null);
+    Store.setLocalStorage(STORAGE_KEY.productPriceInput, null);
+    Store.setLocalStorage(STORAGE_KEY.productQuantityInput, null);
+  }
+
+  changeLocalStorageInputValue(key, value) {
+    this.$productAddMenuModel.setUserInput(key, value);
   }
 
   onClickProductAddButton() {
@@ -43,6 +79,7 @@ class ProductAddMenuController {
     this.addProductItemInPresentList(productName, productPrice, productQuantity);
     this.renderWithProductItems();
     this.$productAddMenuView.resetProductItemInputs();
+    this.resetUserInputInLocalStorage();
   }
 
   renderWithProductItems() {

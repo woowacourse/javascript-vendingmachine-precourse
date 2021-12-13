@@ -38,6 +38,10 @@ class ProductPurchaseMenuView {
     );
   }
 
+  renderInputWithStorageData(charge) {
+    $(`#${SELECTOR.chargeInputId}`).value = charge;
+  }
+
   resetPurchaseChargeInput() {
     $(`#${SELECTOR.chargeInputId}`).value = null;
   }

@@ -20,4 +20,11 @@ export default {
   return100CoinQuantity: 'return-100-coin-quantity',
   return50CoinQuantity: 'return-50-coin-quantity',
   return10CoinQuantity: 'return-10-coin-quantity',
+
+  // 사용자 인풋 관련 STORAGE_KEY
+  productNameInput: 'product-name-input',
+  productPriceInput: 'product-price-input',
+  productQuantityInput: 'product-quantity-input',
+  vendingMachineChargeInput: 'vending-machine-charge-input',
+  chargeInput: 'charge-input',
 };

@@ -32,6 +32,10 @@ class VendingMachineManageMenuView {
     $(`#${SELECTOR.vendingMachineChargeAmountId}`).innerHTML = amount;
   }
 
+  renderInputWithStorageData(charge) {
+    $(`#${SELECTOR.vendingMachineChargeInputId}`).value = charge;
+  }
+
   resetChargeAmountInput() {
     $(`#${SELECTOR.vendingMachineChargeInputId}`).value = null;
   }

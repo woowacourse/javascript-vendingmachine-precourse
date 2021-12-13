@@ -22,6 +22,12 @@ class ProductAddMenuView {
       createProductTableBodyTemplateWithItem(productItems);
   }
 
+  renderInputWithStorageData(name, price, quantity) {
+    $(`#${SELECTOR.productNameInputId}`).value = name;
+    $(`#${SELECTOR.productPriceInputId}`).value = price;
+    $(`#${SELECTOR.productQuantityInputId}`).value = quantity;
+  }
+
   resetProductItemInputs() {
     $(`#${SELECTOR.productNameInputId}`).value = null;
     $(`#${SELECTOR.productPriceInputId}`).value = null;

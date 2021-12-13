@@ -5,9 +5,11 @@ import VendingMachineManageMenuModel from '../models/VendingMachineManageMenuMod
 import VendingMachineManageMenuValidator from '../validators/vendingMachineManageMenu.js';
 import ProductPurchaseMenuValidator from '../validators/productPurchaseMenu.js';
 import { $ } from '../utils/dom.js';
+import Store from '../utils/store.js';
 
 import SELECTOR from '../constants/selector.js';
 import { COIN_500, COIN_100, COIN_50, COIN_10, COIN_LIST } from '../constants/common.js';
+import STORAGE_KEY from '../constants/key.js';
 
 class ProductPurchaseMenuController {
   constructor(currentMenu) {
@@ -25,6 +27,18 @@ class ProductPurchaseMenuController {
       'click',
       this.onClickTabContent.bind(this),
     );
+    $(`#${SELECTOR.tabContentContainerId}`).addEventListener(
+      'change',
+      this.onChangeTabContent.bind(this),
+    );
+  }
+
+  onChangeTabContent(event) {
+    const { id, value } = event.target;
+
+    if (id === SELECTOR.chargeInputId) {
+      Store.setLocalStorage(STORAGE_KEY.chargeInput, value);
+    }
   }
 
   renderMenuWithData() {
@@ -35,6 +49,13 @@ class ProductPurchaseMenuController {
     this.$productPurchaseMenuView.renderPurchaseChargeAmount(
       this.$productPurchaseMenuModel.getPurchaseChargeAmount(),
     );
+    this.renderReturnCoinTableWithData();
+    this.$productPurchaseMenuView.renderInputWithStorageData(
+      Store.getLocalStorage(STORAGE_KEY.chargeInput),
+    );
+  }
+
+  renderReturnCoinTableWithData() {
     this.$productPurchaseMenuView.renderReturnCoinTableWithData(
       this.$productPurchaseMenuModel.getReturnCoinQuantity(COIN_500),
       this.$productPurchaseMenuModel.getReturnCoinQuantity(COIN_100),
