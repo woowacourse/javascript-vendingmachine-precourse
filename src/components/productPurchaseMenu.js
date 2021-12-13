@@ -1,4 +1,5 @@
 import { ID, CLASS, DATASET } from '../constants/selector.js';
+import { COIN } from '../constants/coin.js';
 import { COIN_TABLE, PRODUCT_PURCHASE_TABLE } from '../constants/table.js';
 import {
   Form,
@@ -66,13 +67,13 @@ const createCoinRow = (coin, id) => {
 
 export const createCoinTable = () => {
   const coinTable = Table();
-  const coin500Row = createCoinRow('500원', ID.COIN_500);
-  const coin100Row = createCoinRow('100원', ID.COIN_100);
-  const coin50Row = createCoinRow('50원', ID.COIN_50);
-  const coin10Row = createCoinRow('10원', ID.COIN_10);
 
   TableHead(coinTable, COIN_TABLE.HEADS);
-  coinTable.append(coin500Row, coin100Row, coin50Row, coin10Row);
+  COIN.forEach((coin, index) => {
+    const tableRow = createCoinRow(`${coin}원`, ID.RETURN_COIN[index]);
+
+    coinTable.append(tableRow);
+  });
 
   return coinTable;
 };
