@@ -73,9 +73,15 @@ export default class ProductAddUtil {
     const tableRow = document.createElement('tr');
     appendClass(tableRow, 'product-manage-item');
 
-    createThClass(tableRow, name, 'product-manage-name');
-    createThClass(tableRow, price, 'product-manage-price');
-    createThClass(tableRow, quantity, 'product-manage-quantity');
+    createThClassDataset(tableRow, name, 'product-manage-name', 'data-add-name', name);
+    createThClassDataset(tableRow, price, 'product-manage-price', 'data-add-price', price);
+    createThClassDataset(
+      tableRow,
+      quantity,
+      'product-manage-quantity',
+      'data-add-quantity',
+      quantity,
+    );
 
     this.productAdd.tableBody.appendChild(tableRow);
     appendTheadStyle(this.productAdd.tableBody);
