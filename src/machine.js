@@ -82,7 +82,7 @@ export default class VendingMachine {
     addProduct(name, price, quantity){
         price = parseInt(price);
         quantity = parseInt(quantity);
-        
+
         if(this.validateAddProduct(name, price, quantity)){
             const product = new Product(name, price, quantity, this.productId++);
             this.displayProductAddTab(product);
@@ -144,9 +144,23 @@ export default class VendingMachine {
         document.getElementById(PURCHASE_TAB_ID.CHARGE_AMOUNT).innerHTML = input;
     }
 
+    validateUserBuy(money){
+        if(!validator.isNumber(money)){
+            return false;
+        }
+        if(validator.isNegative(money)){
+            return false;
+        }
+
+        return true;
+    }
+
     userBuy(money){
-        this.input = money;
-        this.displayInputCoin(this.input);
+        money = parseInt(money);
+        if(this.validateUserBuy(money)){
+            this.input += money;
+            this.displayInputCoin(this.input);
+        }
     }
 
     getRandomReturn(money){
