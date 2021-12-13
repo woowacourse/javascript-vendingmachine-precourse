@@ -19,10 +19,9 @@ export const generateChangesCoin = (change, coins) => {
   const machineCoins = { ...coins };
   let restChange = change;
   let index = 0;
-
   while (restChange > 0 && index < COIN_UNITS.length) {
     const coinUnit = COIN_UNITS[index];
-    if (machineCoins[coinUnit] === 0) index += 1;
+    if (machineCoins[coinUnit] === 0 || coinUnit > restChange) index += 1;
     else if (restChange >= coinUnit) {
       changeCoins[coinUnit] += 1;
       machineCoins[coinUnit] -= 1;
