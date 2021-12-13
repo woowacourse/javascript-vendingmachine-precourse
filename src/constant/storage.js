@@ -4,4 +4,5 @@ export default Object.freeze({
   rechargedCoin: 'rechargedCoin',
   rechargedCoinAmount: 'rechargedCoinAmount',
   rechargedMoneyAmount: 'rechargedMoneyAmount',
+  returnedCoin: 'returnedCoin',
 });

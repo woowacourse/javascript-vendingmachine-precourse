@@ -17,12 +17,8 @@ export default class VendingMachine {
     this.initializeRechargedCoin();
     this.initializeRechargedCoinAmount();
     this.initializeRechargedMoneyAmount();
-    this.returnedCoin = [
-      new Coin(COIN.COIN_500, null),
-      new Coin(COIN.COIN_100, null),
-      new Coin(COIN.COIN_50, null),
-      new Coin(COIN.COIN_10, null),
-    ];
+    this.initializeReturnedCoin();
+
     instance = this;
   }
 
@@ -47,7 +43,7 @@ export default class VendingMachine {
     ];
 
     if (loadRechargedCoin !== null) {
-      loadRechargedCoin.forEach((coin, index) => {
+      loadRechargedCoin.forEach((_, index) => {
         this.rechargedCoin[index].amount = loadRechargedCoin[index].amount;
       });
       this.convertAmountNullToZero();
@@ -69,6 +65,23 @@ export default class VendingMachine {
     this.rechargedMoneyAmount = null;
     if (loadedRechargedMoneyAmount !== null) {
       this.rechargedMoneyAmount = loadedRechargedMoneyAmount;
+    }
+  }
+
+  initializeReturnedCoin() {
+    const loadReturnedCoin = loadFromStorage(STORAGE.returnedCoin);
+    this.returnedCoin = [
+      new Coin(COIN.COIN_500, null),
+      new Coin(COIN.COIN_100, null),
+      new Coin(COIN.COIN_50, null),
+      new Coin(COIN.COIN_10, null),
+    ];
+
+    if (loadReturnedCoin !== null) {
+      loadReturnedCoin.forEach((_, index) => {
+        this.returnedCoin[index].amount = loadReturnedCoin[index].amount;
+      });
+      this.convertedRetrunedCoinCountNullToZero();
     }
   }
 
@@ -153,7 +166,7 @@ export default class VendingMachine {
 
   returnCoin() {
     let returnedAmount = 0;
-    this.convertedRetrunedCoinCountToZero();
+    this.convertedRetrunedCoinCountAllToZero();
 
     this.rechargedCoin.forEach((coin, index) => {
       const returnedCount = this.calculateReturnedCoinCount(returnedAmount, coin);
@@ -165,10 +178,19 @@ export default class VendingMachine {
 
     this.rechargedMoneyAmount -= returnedAmount;
     this.rechargedCoinAmount -= returnedAmount;
+    this.savePropertyAfterReturnedCoin();
   }
 
-  convertedRetrunedCoinCountToZero() {
+  convertedRetrunedCoinCountAllToZero() {
     this.returnedCoin.forEach((coin) => coin.resetAmountToZero());
+  }
+
+  convertedRetrunedCoinCountNullToZero() {
+    this.returnedCoin.forEach((coin) => {
+      if (coin.amount === null) {
+        coin.resetAmountToZero();
+      }
+    });
   }
 
   calculateReturnedCoinCount(returnedAmount, coin) {
@@ -178,6 +200,13 @@ export default class VendingMachine {
     );
 
     return returnedCount;
+  }
+
+  savePropertyAfterReturnedCoin() {
+    saveToStorage(STORAGE.rechargedMoneyAmount, this.rechargedMoneyAmount);
+    saveToStorage(STORAGE.rechargedCoinAmount, this.rechargedCoinAmount);
+    saveToStorage(STORAGE.returnedCoin, this.returnedCoin);
+    saveToStorage(STORAGE.rechargedCoin, this.rechargedCoin);
   }
 
   getProductList() {

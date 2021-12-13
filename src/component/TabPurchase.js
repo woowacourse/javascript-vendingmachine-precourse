@@ -92,12 +92,7 @@ export default class TabPurchase {
     this.coinReturnButton = new Button(SELECTOR.ID_COIN_RETURN_BUTTON, '반환하기');
     this.coinReturnTable = new CoinTable({
       columns: ['동전', '개수'],
-      initialData: [
-        [COIN.COIN_500, null],
-        [COIN.COIN_100, null],
-        [COIN.COIN_50, null],
-        [COIN.COIN_10, null],
-      ],
+      initialData: this.vendingMachine.getRetrunedCoin(),
       ids: COIN_TABLE_IDS,
     });
     this.$root.appendChild(this.coinReturnTitle.getTarget());
