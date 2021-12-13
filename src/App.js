@@ -1,14 +1,15 @@
 import { TABS, ID } from './constants/index.js';
 import Component from './core/Component.js';
-import TabMenu from './components/TabMenu.js';
-import TabContent from './components/TabContent.js';
+import TabMenu from './components/header/TabMenu.js';
+import TabContent from './components/main/TabContent.js';
 
 export default class App extends Component {
   setup() {
     this.$state = {
-      tabItems: TABS.map(({ id, title }, index) => {
+      tabData: TABS.map(({ id, title }, index) => {
         return { seq: index, id, title };
       }),
+      stock: [],
     };
   }
 
@@ -20,28 +21,28 @@ export default class App extends Component {
   }
 
   mounted() {
-    const { tabItems, changeTab } = this;
+    const { changeTab } = this;
+    const { tabData, stock } = this.$state;
     const $header = this.$target.querySelector('[data-component="tab-menu"]');
     const $main = this.$target.querySelector('[data-component="tab-content"]');
 
     new TabMenu($header, {
-      tabItems,
+      tabData,
       changeTab: changeTab.bind(this),
     });
-    new TabContent($main, { tabID: ID.PRDCT_ADD });
-  }
-
-  get tabItems() {
-    const { tabItems } = this.$state;
-    return tabItems;
+    new TabContent($main, {
+      stock,
+      tabID: ID.PRDCT_ADD,
+    });
   }
 
   changeTab(seq) {
+    const { stock } = this.$state;
     const $main = this.$target.querySelector('[data-component="tab-content"]');
-    const tabItems = [...this.$state.tabItems];
-    const index = tabItems.findIndex(v => v.seq === seq);
-    const tabId = tabItems[index].id;
+    const tabData = [...this.$state.tabData];
+    const index = tabData.findIndex(v => v.seq === seq);
+    const tabID = tabData[index].id;
 
-    new TabContent($main, { tabID: tabId });
+    new TabContent($main, { stock, tabID });
   }
 }

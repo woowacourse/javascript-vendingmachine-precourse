@@ -13,7 +13,7 @@ export default class Component {
   mounted() {}
 
   template() {
-    return "";
+    return '';
   }
 
   render() {
@@ -30,11 +30,11 @@ export default class Component {
 
   addEvent(eventType, selector, callback) {
     const children = [...this.$target.querySelectorAll(selector)];
-    const isTarget = (target) =>
-      children.includes(target) || target.closest(selector);
+    const isTarget = target => children.includes(target) || target.closest(selector);
 
-    this.$target.addEventListener(eventType, (event) => {
+    this.$target.addEventListener(eventType, event => {
       if (!isTarget(event.target)) return false;
+      event.preventDefault();
       callback(event);
     });
   }
