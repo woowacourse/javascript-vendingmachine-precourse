@@ -35,7 +35,7 @@ const initProductStatusTable = () => {
   initAllPurchaseButtonEvent();
 };
 
-const initPurchaseDomProperty = () => {
+const initPurchaseDom = () => {
   const charge = getItemOrNull(KEY.charge);
   if (charge || charge === 0) {
     setInnerHTML($(SELECTOR.chargeAmount), charge);
@@ -55,7 +55,7 @@ const purchaseProduct = item => {
     }
     setItem(KEY.charge, charge);
     setItem(KEY.product, products);
-    initPurchaseDomProperty();
+    initPurchaseDom();
   }
 };
 
@@ -84,27 +84,31 @@ const chargeMoney = () => {
   }
 };
 
-const getCount = x => {
-  const count = { coin: x.coin, quantity: 0 };
-  let chargeInput = getItemOrNull(KEY.charge);
-  const div = Math.trunc(chargeInput / x.coin);
+const calculateByQuantity = (div, x, chargeInput, minimalCoin) => {
   if (div <= x.quantity && chargeInput >= x.coin) {
     chargeInput -= x.coin * div;
     x.quantity -= div;
-    count.quantity = div;
+    minimalCoin.quantity = div;
   } else if (div > x.quantity && chargeInput >= x.coin) {
     chargeInput -= x.coin * x.quantity;
+    minimalCoin.quantity = x.quantity;
     x.quantity = 0;
-    count.quantity = x.quantity;
   }
   setItem(KEY.charge, chargeInput);
+};
 
-  return count;
+const findMinimalNum = x => {
+  const minimalCoin = { coin: x.coin, quantity: 0 };
+  const chargeInput = getItemOrNull(KEY.charge);
+  const div = Math.trunc(chargeInput / x.coin);
+  calculateByQuantity(div, x, chargeInput, minimalCoin);
+
+  return minimalCoin;
 };
 
 const makeMinimumCoin = () => {
   const vendingMachine = getItemOrNull(KEY.vending);
-  const minimumCoin = vendingMachine.coins.map(x => getCount(x));
+  const minimumCoin = vendingMachine.coins.map(x => findMinimalNum(x));
   minimumCoin.forEach(minimum => (vendingMachine.change -= minimum.coin * minimum.quantity));
   setItem(KEY.vending, vendingMachine);
 
