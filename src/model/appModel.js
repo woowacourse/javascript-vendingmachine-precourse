@@ -29,12 +29,12 @@ export default class AppModel {
   }
 
   setChargeAmount(amount) {
-    this.chargeAmount = this.chargeAmount > 0 ? this.addedChargeAmount(amount) : amount;
+    this.chargeAmount = this.chargeAmount > 0 ? this.getAddedChargeAmount(amount) : amount;
 
     setDataOnStorage(STRING.CHARGE_AMOUNT, this.chargeAmount);
   }
 
-  addedChargeAmount(amount) {
+  getAddedChargeAmount(amount) {
     return this.chargeAmount + amount;
   }
 
