@@ -1,4 +1,5 @@
 import { fetchHtmlView } from './fetch.js';
+import { moneyList } from './constants.js';
 
 function addProduct() {
     const name = document.querySelector("#product-name-input").value;
@@ -43,9 +44,7 @@ function isCorrectQuantity(quantity) {
 
 //
 let chargedMoney = 0;
-const totalChanges = {
-    500: 0, 100: 0, 50: 0, 10: 0,
-};
+const totalChanges = generateChangeObject();
 function chargeMoney() {
     const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
     if(isCorrectChargeMoney(chargeAmount)) {
@@ -70,11 +69,14 @@ function getTotalChanges(chargeAmount) {
     }
 }
 
-function getNewChanges(newChargeAmount) {
-    const result = {
-        500: 0, 100: 0, 50: 0, 10: 0
-    };
+function generateChangeObject() {
+    const result = {};
+    moneyList.forEach(coin => result[coin] = 0);
+    return result;
+}
 
+function getNewChanges(newChargeAmount) {
+    const result = generateChangeObject();
     while(newChargeAmount) {
         const coin = generateRandomChanges();
         if(newChargeAmount >= coin) {
@@ -86,11 +88,10 @@ function getNewChanges(newChargeAmount) {
 }
 
 function generateRandomChanges() {
-    return MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+    return MissionUtils.Random.pickNumberInList(moneyList);
 }
 
 function renderTotalChanges(changes) {
-    const moneyList = [10, 50, 100, 500];
     moneyList
         .forEach(coin => 
             document.querySelector(`#vending-machine-coin-${coin}-quantity`).textContent = changes[coin]);
