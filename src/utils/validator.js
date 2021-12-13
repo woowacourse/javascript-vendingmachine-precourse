@@ -14,7 +14,7 @@ function isProductNameValid(value) {
   return ProductNameCheckMethods.every((ProductNameCheckMethod) => ProductNameCheckMethod(value));
 }
 
-const MoneyCheckMethods = [
+const PriceCheckMethods = [
   (value) => {
     const isOver100 = value >= 100;
     if (!isOver100) {
@@ -31,8 +31,8 @@ const MoneyCheckMethods = [
   },
 ];
 
-export function isMoneyValid(value) {
-  return MoneyCheckMethods.every((MoneyCheckMethod) => MoneyCheckMethod(value));
+function isPriceValid(value) {
+  return PriceCheckMethods.every((PriceCheckMethod) => PriceCheckMethod(value));
 }
 
 const QuantityCheckMethods = [
@@ -50,5 +50,19 @@ function isQuantityValid(value) {
 }
 
 export function isProductInputsValid(productName, price, quantity) {
-  return isProductNameValid(productName) && isMoneyValid(price) && isQuantityValid(quantity);
+  return isProductNameValid(productName) && isPriceValid(price) && isQuantityValid(quantity);
+}
+
+const MoneyCheckMethods = [
+  (value) => {
+    const is10Multiple = value % 10 === 0;
+    if (!is10Multiple) {
+      alert(USER_INPUT_ALERT.multiple10Error);
+    }
+    return is10Multiple;
+  },
+];
+
+export function isMoneyValid(value) {
+  return MoneyCheckMethods.every((MoneyCheckMethod) => MoneyCheckMethod(value));
 }
