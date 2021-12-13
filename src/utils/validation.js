@@ -41,6 +41,11 @@ export const isValidCharge = (chargeInput) => {
     return false;
   }
 
+  if (isNotDividedBy10(chargeInput)) {
+    alert('투입할 금액은 10으로 나누어 떨어져야 합니다.  ex) 3000');
+    return false;
+  }
+
   return true;
 };
 
