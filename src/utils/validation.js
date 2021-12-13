@@ -1,5 +1,3 @@
-import { $id } from './dom.js';
-
 const isEmpty = (inputValue) => {
   return inputValue === '';
 };
