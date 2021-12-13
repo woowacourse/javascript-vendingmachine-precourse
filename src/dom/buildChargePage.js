@@ -61,7 +61,22 @@ function addCharge() {
     const vendingMachineChargeInput = document.querySelector("#vending-machine-charge-input");
     vendingMachine.chargeChange(vendingMachineChargeInput.value);
     vendingMachineChargeInput.value = "";
+    updateCoin();
     console.log(vendingMachine.getTotalChange());
+}
+
+function updateCoin() {
+    const vendingMachineCoin500Quantity = document.querySelector("#vending-machine-coin-500-quantity");
+    const vendingMachineCoin100Quantity = document.querySelector("#vending-machine-coin-100-quantity");
+    const vendingMachineCoin50Quantity = document.querySelector("#vending-machine-coin-50-quantity");
+    const vendingMachineCoin10Quantity = document.querySelector("#vending-machine-coin-10-quantity");
+
+    const coins = vendingMachine.getCoins();
+
+    vendingMachineCoin500Quantity.innerText = coins.coin500;
+    vendingMachineCoin100Quantity.innerText = coins.coin100;
+    vendingMachineCoin50Quantity.innerText = coins.coin50;
+    vendingMachineCoin10Quantity.innerText = coins.coin10;
 }
 
 function clearContainer(container) {

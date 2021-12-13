@@ -35,6 +35,16 @@ class VendingMachine {
         }
     }
 
+    getCoins() {
+        const coins = {
+            coin500: this.coin500,
+            coin100: this.coin100,
+            coin50: this.coin50,
+            coin10: this.coin10
+        }
+        return coins;
+    }
+
     getTotalChange() {
         return (this.coin500)*500 + (this.coin100)*100 + (this.coin50)*50 + (this.coin10)*10;
     }
