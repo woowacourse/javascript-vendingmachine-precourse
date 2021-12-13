@@ -1,4 +1,5 @@
 import Navigator from '../store/Navigator.js';
+import VendingMachine from '../store/VendingMachine.js';
 import Title from '../core/Title.js';
 import Input from '../core/Input.js';
 import Button from '../core/Button.js';
@@ -7,6 +8,7 @@ import AmountView from '../core/AmountView.js';
 import { isValidCoinRecharge } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
 import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
+import { COIN } from '../constant/coin.js';
 
 export default class TabMachineManage {
   constructor($parent, props) {
@@ -14,6 +16,7 @@ export default class TabMachineManage {
     this.props = props;
     this.$root = null;
     this.navigator = new Navigator();
+    this.vendingMcahine = new VendingMachine();
 
     this.createRootElement();
     this.determineDisplaying();
@@ -51,12 +54,12 @@ export default class TabMachineManage {
     this.havingCoinTitle = new Title('자판기가 보유한 동전');
     this.coinTable = new CoinTable({
       columns: ['동전', '개수'],
-      initialData: {
-        '500원': null,
-        '100원': null,
-        '50원': null,
-        '10원': null,
-      },
+      initialData: [
+        [COIN.COIN_500, null],
+        [COIN.COIN_100, null],
+        [COIN.COIN_50, null],
+        [COIN.COIN_10, null],
+      ],
     });
 
     this.$root.appendChild(this.havingCoinTitle.getTarget());
@@ -89,5 +92,10 @@ export default class TabMachineManage {
         rechargeCoin(coinValue);
       }
     });
+  }
+
+  updateRechargeState() {
+    this.chargedAmount.render(this.vendingMcahine.getRechargedCoinAmount());
+    this.coinTable.render(this.vendingMcahine.getRechargedCoin());
   }
 }

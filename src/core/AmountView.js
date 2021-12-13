@@ -10,7 +10,7 @@ export default class AmountView {
   }
 
   render(money) {
-    this.$target.insertAdjacentHTML('beforeend', this.template(money));
+    this.$target.innerHTML = this.template(money);
   }
 
   template(money) {

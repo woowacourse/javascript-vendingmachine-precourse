@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable class-methods-use-this */
 import Table from './Table.js';
 
@@ -8,9 +9,9 @@ export default class CoinTable extends Table {
 
   templateBody(coinList) {
     return `
-      ${Object.entries(coinList).map(([kind, count]) => `
+      ${coinList.map(([kind, count]) => `
         <tr>
-          <td>${kind}</td>
+          <td>${kind}원</td>
           <td>
             <span>${count === null ? '' : count}</span>
             <span>${count === null ? '' : '개'}</span>

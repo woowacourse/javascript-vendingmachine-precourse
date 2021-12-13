@@ -74,6 +74,10 @@ export default class VendingMachine {
   }
 
   getRechargedCoin() {
-    return this.rechargedCoin;
+    return this.rechargedCoin.map((coin) => [coin.type, coin.amount]);
+  }
+
+  getRechargedCoinAmount() {
+    return this.rechargedCoinAmount;
   }
 }

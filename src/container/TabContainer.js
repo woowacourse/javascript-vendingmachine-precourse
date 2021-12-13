@@ -41,5 +41,10 @@ export default class TabContainer {
 
   rechargeCoin(amount) {
     this.vendingMachine.rechargeCoin(Number.parseInt(amount, 10));
+    this.updateRechargeState();
+  }
+
+  updateRechargeState() {
+    this.tabMachineManage.updateRechargeState();
   }
 }
