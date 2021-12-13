@@ -9,9 +9,23 @@ export const TAB_MENUS_TEXT = `
   </main>
 `;
 
-export const PRODUCT_PURCHASE_TEXT = `
+export const getProductPurchaseText = (tabMenu) => {
+  const productPurchaseList = tabMenu['product_add_menu']
+    .map(
+      (item) => `
+        <tr class="product-purchase-item">
+          <td class="product-purchase-name">${item.name}</td>
+          <td class="product-purchase-price">${item.price}</td>
+          <td class="product-purchase-quantity">${item.quantity}</td>
+          <td><button>구매하기</button></td>
+        </tr>
+      `
+    )
+    .join('');
+
+  return `
     <section>
-      <h4>금액 "투입</h4>
+      <h4>금액 투입</h4>
       <form id="charge-form">
         <input type="number" id="charge-input" placeholder="투입할 금액"/>
         <button id="charge-button">충전하기</button>
@@ -22,11 +36,12 @@ export const PRODUCT_PURCHASE_TEXT = `
       <h4>구매할 수 있는 상품 현황</h4>
       <table>
         <tr>
-          <th>상품명</th>
-          <th>가격</th>
-          <th>수량</th>
+          <th dataset="data-product-name">상품명</th>
+          <th dataset="data-product-price">가격</th>
+          <th dataset="data-product-quantity">수량</th>
           <th>구매</th>
         </tr>
+        ${productPurchaseList}
       </table>
     </section>
     <section>
@@ -57,3 +72,4 @@ export const PRODUCT_PURCHASE_TEXT = `
     </section>
   
 `;
+};

@@ -81,7 +81,8 @@ class Controller {
         this.triggerVendingMachineChargeSubmitEvent();
         break;
       case 'product-purchase-menu':
-        this.view.showProductPurchaseScreen();
+        this.view.showProductPurchaseScreen(tabMenu);
+        this.triggerChargeSubmitEvent();
         break;
     }
   }
@@ -124,6 +125,13 @@ class Controller {
       tabMenu['vending_machine_manage_menu']['chargeAmount'];
 
     this.vendingMachine.setLocalStorage(tabMenu);
+  }
+
+  triggerChargeSubmitEvent() {
+    $id('charge-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const chargeInput = $id('charge-input').value;
+    });
   }
 
   triggerProductAddSubmitEvent() {

@@ -1,4 +1,4 @@
-import { PRODUCT_PURCHASE_TEXT, TAB_MENUS_TEXT } from '../utils/constants.js';
+import { getProductPurchaseText, TAB_MENUS_TEXT } from '../utils/constants.js';
 import { getProduceAddText, getVendingMachineManageText } from '../utils/template.js';
 
 class View {
@@ -22,8 +22,8 @@ class View {
     document.querySelector('main').innerHTML = getVendingMachineManageText(tabMenu);
   }
 
-  showProductPurchaseScreen() {
-    document.querySelector('main').innerHTML = PRODUCT_PURCHASE_TEXT;
+  showProductPurchaseScreen(tabMenu) {
+    document.querySelector('main').innerHTML = getProductPurchaseText(tabMenu);
   }
 }
 
