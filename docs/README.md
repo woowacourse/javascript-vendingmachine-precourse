@@ -139,8 +139,10 @@
  ┣ 📂utils
  ┃ ┣ 📜calculateMoney.js  # 동전이 총 얼마인지 계산하여 반환
  ┃ ┣ 📜constants.js # 상수 정리
+ ┃ ┣ 📜getSetItems.js # localStorage의 아이템 get, set 함수 정리
  ┃ ┣ 📜inputValue.js  # 입력창의 값을 가져오거나 설정
- ┃ ┗ 📜itemFromLocalStorage.js  # 저장소 관련 함수 정리
+ ┃ ┣ 📜itemFromLocalStorage.js  # 저장소 관련 함수 정리
+ ┃ ┗ 📜productNameConverter.js  # 공백을 -으로, -를 공백으로 변환하는 함수
  ┣ 📂views
  ┃ ┣ 📂chargeManager
  ┃ ┃ ┣ 📜addChargeManager.js  # 잔돈 충전 화면 추가
