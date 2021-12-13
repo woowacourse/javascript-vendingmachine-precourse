@@ -3,14 +3,16 @@ import createDocumentElement from "../util/createDocumentElement.js"
 import validatePrice from "../util/validatePrice.js";
 
 const productList = new ProductList;
+productList.getFromLocalStorage();
 
 function buildProductAdd() {
     const container = document.querySelector(".container");
-    console.log(container);
+    productList.getFromLocalStorage();
 
     clearContainer(container);
     productAddElement(container);
     productItemElement(container);
+    productItemRefresh();
     bindButtonEvent();
 }
 
