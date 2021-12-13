@@ -57,28 +57,32 @@ const DOMUtils = {
   showVendingMachineCharge: () => {
     const charge = UT.calculateToCharge(DB.load('vendingMachineCoins'));
 
-    if (charge > 0) {
-      $('#vending-machine-charge-amount').innerHTML = `${charge}`;
-      $('#vending-machine-monetary-unit').innerHTML = '원';
-      return;
-    }
+    if (UT.isZero(charge)) return DOMUtils.initVendingMachineCharge();
+
+    $('#vending-machine-charge-amount').innerHTML = `${charge}`;
+    $('#vending-machine-monetary-unit').innerHTML = '원';
+  },
+
+  initVendingMachineCharge: () => {
     DOMUtils.initElement('#vending-machine-charge-amount');
     DOMUtils.initElement('#vending-machine-monetary-unit');
   },
 
   showVendingMachineCoins: () => {
-    if (UT.isAllZero('vendingMachineCoins')) {
-      return UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
-        const [coinType] = array;
-
-        $(`#vending-machine-${coinType}-quantity`).innerHTML = '';
-      });
-    }
+    if (UT.isAllZero('vendingMachineCoins')) return DOMUtils.initVendingMachineCoins();
 
     UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
       const [coinType, quantity] = array;
 
       $(`#vending-machine-${coinType}-quantity`).innerHTML = `${quantity}개`;
+    });
+  },
+
+  initVendingMachineCoins: () => {
+    UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
+      const [coinType] = array;
+
+      $(`#vending-machine-${coinType}-quantity`).innerHTML = '';
     });
   },
 
