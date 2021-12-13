@@ -31,6 +31,11 @@ export const isValidCharge = (chargeInput) => {
     return false;
   }
 
+  if (isInValidInteger(chargeInput)) {
+    alert('투입할 금액은 소수 값을 가지고 있어서는 안됩니다.  ex) 3000');
+    return false;
+  }
+
   return true;
 };
 
