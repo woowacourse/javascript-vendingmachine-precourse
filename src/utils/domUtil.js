@@ -1,16 +1,17 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable indent */
 import {CLASS, ID, TABLE_MENU} from './constants.js';
+import {cellStyle, tableStyle} from './style.js';
 
 export const createInputElement = (type, id, placeholder) => {
   return `
-  <input type=${type ? type : 'text'} id=${id ? id : ''} placeholder=${placeholder ? placeholder : ''} />
+  <input type=${type ? type : 'text'} id=${id ? id : ''} placeholder='${placeholder ? placeholder : ''}' />
   `;
 };
 
 const createTableHead = (ths) => {
   return `
-  ${ths.map((th) => `<th> ${th} </th>`).join('')}
+  ${ths.map((th) => `<th style='${cellStyle}'> ${th} </th>`).join('')}
   `;
 };
 
@@ -20,9 +21,9 @@ export const createProductManageTable = (tableDataList) => {
     .map(
       ({name, price, quantity}) => `
     <tr class=${CLASS.PRODUCT_MANAGE_ITEM}>
-      <td class=${CLASS.PRODUCT_MANAGE_NAME}>${name}</td>
-      <td class=${CLASS.PRODUCT_MANAGE_PRICE}>${price}</td>
-      <td class=${CLASS.PRODUCT_MANAGE_QUANTITY}>${quantity}</td>
+      <td style='${cellStyle}' class=${CLASS.PRODUCT_MANAGE_NAME}>${name}</td>
+      <td style='${cellStyle}' class=${CLASS.PRODUCT_MANAGE_PRICE}>${price}</td>
+      <td style='${cellStyle}' class=${CLASS.PRODUCT_MANAGE_QUANTITY}>${quantity}</td>
     </tr>
     `
     )
@@ -33,20 +34,20 @@ export const createProductManageTable = (tableDataList) => {
 export const createVendingMachineChargeTable = () => {
   return `
       <tr>
-        <td>500원</td>
-        <td id=${ID.VENDING_MACHINE_COIN_500_QUANTITY}></td>
+        <td style='${cellStyle}'>500원</td>
+        <td style='${cellStyle}' id=${ID.VENDING_MACHINE_COIN_500_QUANTITY}></td>
       </tr>
       <tr>
-        <td>100원</td>
-        <td id=${ID.VENDING_MACHINE_COIN_100_QUANTITY}></td>
+        <td style='${cellStyle}'>100원</td>
+        <td style='${cellStyle}' id=${ID.VENDING_MACHINE_COIN_100_QUANTITY}></td>
       </tr>
       <tr>
-        <td>50원</td>
-        <td id=${ID.VENDING_MACHINE_COIN_50_QUANTITY}></td>
+        <td style='${cellStyle}'>50원</td>
+        <td style='${cellStyle}' id=${ID.VENDING_MACHINE_COIN_50_QUANTITY}></td>
       </tr>
       <tr>
-        <td>10원</td>
-        <td id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}></td>
+        <td style='${cellStyle}'>10원</td>
+        <td style='${cellStyle}' id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}></td>
       </tr>
   `;
 };
@@ -54,20 +55,20 @@ export const createVendingMachineChargeTable = () => {
 export const createPurchaseChargeTable = () => {
   return `
       <tr>
-        <td>500원</td>
-        <td id=${ID.COIN_500_QUANTITY}></td>
+        <td style='${cellStyle}'>500원</td>
+        <td style='${cellStyle}' id=${ID.COIN_500_QUANTITY}></td>
       </tr>
       <tr>
-        <td>100원</td>
-        <td id=${ID.COIN_100_QUANTITY}></td>
+        <td style='${cellStyle}'>100원</td>
+        <td style='${cellStyle}' id=${ID.COIN_100_QUANTITY}></td>
       </tr>
       <tr>
-        <td>50원</td>
-        <td id=${ID.COIN_50_QUANTITY}></td>
+        <td style='${cellStyle}'>50원</td>
+        <td style='${cellStyle}' id=${ID.COIN_50_QUANTITY}></td>
       </tr>
       <tr>
-        <td>10원</td>
-        <td id=${ID.COIN_10_QUANTITY}></td>
+        <td style='${cellStyle}'>10원</td>
+        <td style='${cellStyle}' id=${ID.COIN_10_QUANTITY}></td>
       </tr>
   `;
 };
@@ -78,10 +79,10 @@ export const createPurchaseTable = (tableDataList) => {
     .map(
       ({name, price, quantity}, index) => `
     <tr class=${CLASS.PRODUCT_PURCHASE_ITEM}>
-      <td class=${CLASS.PRODUCT_PURCHASE_NAME} data-product-name=${name}>${name}</td>
-      <td class=${CLASS.PRODUCT_PURCHASE_PRICE} data-product-price=${price}>${price}</td>
-      <td class=${CLASS.PRODUCT_PURCHASE_QUANTITY} data-product-quantity=${quantity}>${quantity}</td>
-      <td>
+      <td style='${cellStyle}' class=${CLASS.PRODUCT_PURCHASE_NAME} data-product-name=${name}>${name}</td>
+      <td style='${cellStyle}' class=${CLASS.PRODUCT_PURCHASE_PRICE} data-product-price=${price}>${price}</td>
+      <td style='${cellStyle}' class=${CLASS.PRODUCT_PURCHASE_QUANTITY} data-product-quantity=${quantity}>${quantity}</td>
+      <td style='${cellStyle}'>
         <button class=${CLASS.PRODUCT_PURCHASE_BUTTON} data-index=${index}>구매하기</button>
       </td>
     </tr>
@@ -93,7 +94,7 @@ export const createPurchaseTable = (tableDataList) => {
 
 export const createTable = (menu, ths, tableData) => {
   return `
-  <table>
+  <table style='${tableStyle}'>
     <thead>
       ${createTableHead(ths)}
     </thead>
