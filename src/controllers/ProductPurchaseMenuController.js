@@ -84,7 +84,7 @@ class ProductPurchaseMenuController {
     const purchaseChargeAmount = this.$productPurchaseMenuModel.getPurchaseChargeAmount();
     if (!this.validatePossibleReturnCoin(purchaseChargeAmount)) return;
 
-    [newPurchaseChargeAmount, newReturnAmount] = this.returnCoins();
+    const [newPurchaseChargeAmount, newReturnAmount] = this.returnCoins();
     this.renderAndSaveWithNewAmountData(newPurchaseChargeAmount, newReturnAmount);
   }
 
@@ -165,6 +165,7 @@ class ProductPurchaseMenuController {
   subtractPriceFromChargeAmount(selectPrice) {
     const subtractPrice =
       this.$productPurchaseMenuModel.getPurchaseChargeAmount() - Number(selectPrice);
+    console.log(subtractPrice);
     if (!ProductPurchaseMenuValidator.validateSubtractPricePlus(subtractPrice)) return false;
 
     this.$productPurchaseMenuModel.setPurchaseChargeAmount(subtractPrice);
