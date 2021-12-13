@@ -2,8 +2,8 @@ import store from '../store/index.js';
 
 class VendingMachine {
   constructor() {
-    this.currentTabMenu = 'product-add-menu';
     this.tabMenu = {
+      currentTabMenu: 'product-add-menu',
       product_add_menu: [],
       vending_machine_manage_menu: [],
       product_purchase_menu: [],
@@ -30,11 +30,12 @@ class VendingMachine {
   }
 
   setCurrentTabMenu(currentTabMenu) {
-    this.currentTabMenu = currentTabMenu;
+    this.tabMenu['currentTabMenu'] = currentTabMenu;
+    this.setLocalStorage(this.tabMenu);
   }
 
   getCurrentTabMenu() {
-    return this.currentTabMenu;
+    return this.tabMenu['currentTabMenu'];
   }
 }
 

@@ -18,7 +18,6 @@ class Controller {
     this.initDOM();
 
     this.triggerTabMenuClickEvent();
-    this.triggerProductAddSubmitEvent();
   }
 
   initDOM() {
@@ -47,6 +46,7 @@ class Controller {
     switch (currentTabMenu) {
       case 'product-add-menu':
         this.view.showProduceAddScreen(tabMenu);
+        this.triggerProductAddSubmitEvent();
         break;
       case 'vending-machine-manage-menu':
         this.view.showVendingMachineManageScreen();
