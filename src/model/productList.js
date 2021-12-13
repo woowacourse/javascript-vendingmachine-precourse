@@ -22,12 +22,12 @@ export default class ProductList {
     const index = this.findIndex(product);
     if(index === -1) {
       this.products.push(product);
-      localStorage.setItem(product.name, `${product.price}-${product.quantity}`);
+      localStorage.setItem(`product-${product.name}`, `${product.price}-${product.quantity}`);
     } else {
       let quantity = Number(this.products[index].quantity);
       quantity += Number(product.quantity);
       this.changePrice(index, product);
-      localStorage.setItem(product.name, `${this.products[index].price}-${quantity}`);
+      localStorage.setItem(`product-${product.name}`, `${this.products[index].price}-${quantity}`);
       this.updateProducts();
     }
   }
@@ -39,7 +39,7 @@ export default class ProductList {
     } else {
       let quantity = Number(this.products[index].quantity);
       quantity -= Number(product.quantity);
-      localStorage.setItem(product.name, `${product.price}-${quantity}`);
+      localStorage.setItem(`product-${product.name}`, `${product.price}-${quantity}`);
       this.updateProducts()
     }  
   }
@@ -54,9 +54,15 @@ export default class ProductList {
   updateProducts() {
     this.products = [];
     for(let i = 0; i < localStorage.length; i += 1) {
-      const name = localStorage.key(i);
-      const [price, quantity] = localStorage.getItem(localStorage.key(i)).split('-'); 
-      this.products.push(new Product(name, price, quantity));
+      if( this.isProduct(localStorage.key(i)) ) {
+        const [,name] = localStorage.key(i).split('-');
+        const [price, quantity] = localStorage.getItem(localStorage.key(i)).split('-'); 
+        this.products.push(new Product(name, price, quantity));
+      }
     }
+  }
+
+  isProduct(key) {
+    return key.includes('product-');
   }
 }
