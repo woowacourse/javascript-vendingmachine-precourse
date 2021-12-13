@@ -19,7 +19,6 @@ import {
   ProductTable,
   ProductTableSection,
   ProductTableTitle,
-  TableHead,
 } from './components.js';
 import { getFromStorage } from '../store.js';
 
@@ -27,8 +26,7 @@ export default class AddProducts {
   constructor() {
     this.section = this.createAddProductTab();
     this.DOMs = {};
-    this.addDOMs();
-    this.addAllProductRows();
+    this.handleDOMs();
   }
 
   createAddProductTab() {
@@ -58,13 +56,10 @@ export default class AddProducts {
   }
 
   static createTableContainer() {
-    const container = ProductTableSection;
-
-    const table = ProductTable;
-    table.appendChild(TableHead);
+    const container = ProductTableSection();
 
     container.appendChild(ProductTableTitle);
-    container.appendChild(table);
+    container.appendChild(ProductTable());
 
     return container;
   }
@@ -72,6 +67,7 @@ export default class AddProducts {
   addProductTableRow(name, property) {
     const productData = createProductObjects(name, property);
     const row = createTR(productData);
+    // console.log(row);
     this.DOMs.table.appendChild(row);
   }
 
@@ -82,13 +78,16 @@ export default class AddProducts {
     });
   }
 
-  addDOMs() {
-    this.DOMs.name = this.section.querySelector(`#${ID_PRODUCT_NAME_INPUT}`);
-    this.DOMs.price = this.section.querySelector(`#${ID_PRODUCT_PRICE_INPUT}`);
-    this.DOMs.quantity = this.section.querySelector(
-      `#${ID_PRODUCT_QUANTITY_INPUT}`,
-    );
-    this.DOMs.table = this.section.querySelector(`#${ID_PRODUCT_ADD_STATUS}`);
+  addDOM(key, id) {
+    this.DOMs[key] = this.section.querySelector(`#${id}`);
+  }
+
+  handleDOMs() {
+    this.addDOM('name', ID_PRODUCT_NAME_INPUT);
+    this.addDOM('price', ID_PRODUCT_PRICE_INPUT);
+    this.addDOM('quantity', ID_PRODUCT_QUANTITY_INPUT);
+    this.addDOM('table', ID_PRODUCT_ADD_STATUS);
+    this.addAllProductRows();
   }
 
   clearForm() {

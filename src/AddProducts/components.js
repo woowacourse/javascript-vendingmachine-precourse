@@ -131,15 +131,9 @@ export const ProductFormSubmit = customCreateElement({
 });
 
 // table components
-export const ProductTableSection = document.createElement('div');
-
-export const ProductTable = customCreateElement({
-  tag: 'table',
-  attributes: {
-    id: ID_PRODUCT_ADD_STATUS,
-    style: STYLE_TABLE,
-  },
-});
+export const ProductTableSection = function createNewSection() {
+  return document.createElement('div');
+};
 
 export const ProductTableTitle = customCreateElement({
   tag: 'h2',
@@ -153,3 +147,15 @@ const tableHeadData = [
 ];
 
 export const TableHead = createTH(tableHeadData);
+
+export const ProductTable = function createNewTable() {
+  const table = customCreateElement({
+    tag: 'table',
+    attributes: {
+      id: ID_PRODUCT_ADD_STATUS,
+      style: STYLE_TABLE,
+    },
+  });
+  table.appendChild(TableHead);
+  return table;
+};

@@ -14,7 +14,7 @@ import { customCreateElement } from './CreateElementUtils.js';
 export default class App {
   constructor() {
     this.app = document.querySelector('#app');
-    this.show = new AddProducts().section; // show add product menu on load
+    this.show = ''; // show add product menu on load
     this.renderInitial(); // initial render on page load
   }
 
@@ -27,9 +27,13 @@ export default class App {
       });
     }); // add event listeners to menu buttons
 
+    const tab = customCreateElement({ tag: 'section', id: 'tab' });
+    this.handleSectionsToggle();
+    tab.appendChild(this.show);
+
     this.app.appendChild(pageTitle);
     this.app.appendChild(navButtonsSection);
-    this.app.appendChild(this.show);
+    this.app.appendChild(tab);
   }
 
   // render each section on menu button click
@@ -40,14 +44,16 @@ export default class App {
 
   // check button and set show property accordingly
   handleSectionsToggle(e) {
-    const openTab = `${e.target.id.slice(0, -5)}${STRING_SECTION_SUFFIX}`; // id of section to show
-    if (openTab === ID_PRODUCT_ADD_TAB) this.show = new AddProducts().section;
-    else if (openTab === ID_MACHINE_TAB) {
-      this.show = new ChargeMachine().section;
-    } else if (openTab === ID_PURCHASE_TAB) {
-      this.show = new PurchaseProducts().section;
+    if (!e) this.show = new AddProducts().section;
+    else {
+      const openTab = `${e.target.id.slice(0, -5)}${STRING_SECTION_SUFFIX}`; // id of section to show
+      if (openTab === ID_PRODUCT_ADD_TAB) this.show = new AddProducts().section;
+      else if (openTab === ID_MACHINE_TAB) {
+        this.show = new ChargeMachine().section;
+      } else if (openTab === ID_PURCHASE_TAB) {
+        this.show = new PurchaseProducts().section;
+      }
+      this.renderSection();
     }
-
-    this.renderSection();
   }
 }
