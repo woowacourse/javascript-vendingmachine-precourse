@@ -94,6 +94,7 @@ const handleChargeInput = (event) => {
 
   currentAmount += chargeInput;
   showCurrentAmount(chargeAmountId, currentAmount);
+  setLocalStorage(STORAGE_NAME.USER_AMOUNT, currentAmount);
 };
 
 export const showProductPurchaseMenu = () => {

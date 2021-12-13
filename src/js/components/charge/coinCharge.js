@@ -31,7 +31,7 @@ const handleCoinChargeSubmit = (event) => {
 
   currentAmount += chargedCoin;
   showCurrentAmount(vendingMachineChargeAmountId, currentAmount);
-  setLocalStorage(STORAGE_NAME.AMOUNT, currentAmount);
+  setLocalStorage(STORAGE_NAME.MACHINE_AMOUNT, currentAmount);
   convertAmountIntoCoins(chargedCoin);
   showConvertedCoins(convertedCoins);
   setLocalStorage(STORAGE_NAME.COIN, convertedCoins);
@@ -40,7 +40,7 @@ const handleCoinChargeSubmit = (event) => {
 export const showManageMenu = () => {
   $('#app-container').innerHTML = coinChargeTemplate;
   const storedCharge = getLocalStorage(STORAGE_NAME.COIN);
-  const storedAmount = getLocalStorage(STORAGE_NAME.AMOUNT);
+  const storedAmount = getLocalStorage(STORAGE_NAME.MACHINE_AMOUNT);
 
   if (storedCharge.length !== 0) {
     currentAmount = Number(storedAmount);
