@@ -152,6 +152,7 @@ export default class View {
       );
       $tablePosition.appendChild($product);
     });
+    console.log("테이블 생성 완료");
   }
 
   renderReturn(vendingMachine) {

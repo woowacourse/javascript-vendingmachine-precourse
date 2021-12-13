@@ -39,8 +39,12 @@ export default class Controller {
     $purchaseTabBtn.addEventListener("click", (e) => {
       e.preventDefault();
       this.view.showSelectedID("purchase-tab");
-      this.view.renderProductTable(this.vendingMachine.productList);
+      // this.view.renderProductTable(this.vendingMachine.productList);
       this.view.renderReturn(this.vendingMachine);
+      this.view.renderProductTable(this.vendingMachine.productList);
+      if (this.vendingMachine.productList.length > 0) {
+        this.onClickPurchase();
+      }
     });
   }
 
@@ -99,6 +103,17 @@ export default class Controller {
     $coinReturnBtn.addEventListener("click", () => {
       this.vendingMachine.returnChange();
       this.view.renderReturn(this.vendingMachine);
+    });
+  }
+
+  onClickPurchase() {
+    document.querySelectorAll(".purchase-button").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        const parent = e.target.parentNode;
+        const selectedDrink = parent.children[0].dataset.productName;
+
+        this.vendingMachine.buyProduct(selectedDrink);
+      });
     });
   }
 }

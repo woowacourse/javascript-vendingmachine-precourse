@@ -52,4 +52,17 @@ export default class VendingMachine {
     });
     this.userMoney = zero;
   }
+
+  buyProduct(selectedDrink) {
+    this.productList.map((product) => {
+      if (
+        product.name === selectedDrink &&
+        product.price <= this.userMoney &&
+        product.quantity >= 1
+      ) {
+        product.quantity -= 1;
+        this.userMoney -= product.price;
+      }
+    });
+  }
 }
