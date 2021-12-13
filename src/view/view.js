@@ -95,7 +95,6 @@ export default class View {
   renderManageTab(productList) {
     const $tablePosition = document.getElementById("product-manage-item-first");
     $tablePosition.innerHTML = "<th>상품명</th><th>가격</th><th>수량</th>";
-
     productList.map((product) => {
       const $proudct = createElement(
         "tr",

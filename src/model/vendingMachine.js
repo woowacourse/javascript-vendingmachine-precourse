@@ -3,12 +3,14 @@ import {
   getOwnChange,
   setUserMoney,
   getUserMoney,
+  setProductList,
+  getProductList,
 } from "../storage/localStorage.js";
 import { COIN } from "../utils/constants.js";
 
 export default class VendingMachine {
   constructor() {
-    this.productList = [];
+    this.productList = getProductList();
     this.ownChange = getOwnChange();
     this.userMoney = getUserMoney();
     this.returnMoney = new Array(COIN.length).fill(0);
@@ -18,12 +20,14 @@ export default class VendingMachine {
     const isInclude = this.productList.some((product) => product.name === name);
     if (!isInclude) {
       this.productList.push({ name, price, quantity });
+      setProductList(this.productList);
       return;
     }
     this.productList.map((product) => {
       if (product.name === name) {
         product.price = price;
         product.quantity += quantity;
+        setProductList(this.productList);
         return false;
       }
     });
@@ -61,9 +65,9 @@ export default class VendingMachine {
     });
     this.userMoney = zero;
     setOwnChange(this.ownChange);
-    getOwnChange(this.ownChange);
+    // getOwnChange(this.ownChange);
     setUserMoney(this.userMoney);
-    getUserMoney(this.userMoney);
+    // getUserMoney(this.userMoney);
   }
 
   buyProduct(name) {
@@ -76,8 +80,9 @@ export default class VendingMachine {
       ) {
         product.quantity -= 1;
         this.userMoney -= product.price;
-        setUserMoney(this.userMoney);
         isAvailable = true;
+        setProductList(this.productList);
+        setUserMoney(this.userMoney);
         return false;
       }
     });

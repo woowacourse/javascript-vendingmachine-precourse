@@ -24,4 +24,23 @@ const getUserMoney = () => {
   return parseInt(localStorage.getItem("userMoney"), 10);
 };
 
-export { getOwnChange, setOwnChange, setUserMoney, getUserMoney };
+const setProductList = (productList) => {
+  localStorage.setItem("productList", JSON.stringify(productList));
+};
+
+const getProductList = () => {
+  if (localStorage.getItem("productList") === null) {
+    setProductList([]);
+  }
+
+  return JSON.parse(localStorage.getItem("productList"));
+};
+
+export {
+  getOwnChange,
+  setOwnChange,
+  setUserMoney,
+  getUserMoney,
+  setProductList,
+  getProductList,
+};
