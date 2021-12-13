@@ -1,11 +1,11 @@
 import { Container } from './components/elements.js';
-import Header from './components/header.js';
 import ProductAddMenuView from './views/productAddMenuView.js';
 import VendingMachineManageView from './views/vendingMachineManageMenuView.js';
 import ProductPurchaseMenuView from './views/productPurchaseMenuView.js';
+import HeaderView from './views/headerView.js';
 
-export default function VendingMachine(app) {
-  this.header = Header();
+export default function App(app) {
+  this.header = new HeaderView();
   this.menuViewContainer = Container('menu-view');
   this.productAddMenu = new ProductAddMenuView(this.menuViewContainer);
   this.vendingMachineManage = new VendingMachineManageView(
@@ -16,12 +16,10 @@ export default function VendingMachine(app) {
   );
 
   this.render = () => {
-    app.append(this.header, this.menuViewContainer);
-    this.productAddMenu.render();
-    this.vendingMachineManage.render();
-    this.productPurchaseMenu.render();
+    this.header.render();
+    app.append(this.menuViewContainer);
   };
 }
 
-const vendingMachine = new VendingMachine(document.querySelector('#app'));
+const vendingMachine = new App(document.querySelector('#app'));
 vendingMachine.render();
