@@ -1,9 +1,19 @@
 import $ from '../common/selector.js';
 import { store } from '../common/store.js';
 import { renderPurchaseProduct } from './renderPurchaseProduct.js';
+import { inputMoneyValidation } from '../common/inputMoneyValidation.js';
+import { clearInput } from '../common/clearInput.js';
 
 export const purchaseProduct = state => {
   const money = $('#charge-input').value;
+
+  const { isError, inValidText } = inputMoneyValidation(money);
+
+  if (isError) {
+    alert(inValidText);
+    clearInput('#charge-input');
+    return;
+  }
 
   if (!state.purchase.input) {
     state.purchase = {

@@ -1,13 +1,13 @@
 import $ from '../common/selector.js';
 import { clearInput } from '../common/clearInput.js';
 import { store } from '../common/store.js';
-import { inputChangeValiation } from './inputChangeValidation.js';
+import { inputMoneyValidation } from '../common/inputMoneyValidation.js';
 import { renderChange } from './renderChange.js';
 import { COINS } from '../../constants/constants.js';
 
 export const inputChange = state => {
   const money = $('#vending-machine-charge-input').value;
-  const { isError, inValidText } = inputChangeValiation(money);
+  const { isError, inValidText } = inputMoneyValidation(money);
 
   if (isError) {
     alert(inValidText);

@@ -3,9 +3,16 @@ import { TITLES } from '../../constants/constants.js';
 import { purchaseTemplates } from '../../constants/purchaseTemplates.js';
 
 export const renderPurchaseProduct = state => {
+  const { inputMoney, productTable, productItem } = purchaseTemplates;
+
+  const productList = state.products
+    .map(product => {
+      return productItem(product);
+    })
+    .join('');
+
   $('#tab-title').innerText = TITLES.PURCHASE_TAB;
-  $('#input_form').innerHTML = purchaseTemplates.inputMoney(
-    state.purchase.input,
-  );
-  $('#contents').innerHTML = purchaseTemplates.productList();
+  $('#input_form').innerHTML = inputMoney(state.purchase.input);
+  $('#contents').innerHTML = productTable;
+  $('.product-purchase-list').innerHTML = productList;
 };

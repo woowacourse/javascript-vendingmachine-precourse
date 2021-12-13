@@ -7,8 +7,7 @@ export const purchaseTemplates = {
     `;
   },
 
-  productList(product) {
-    return `
+  productTable: `
        <h3>구매할 수 있는 상품 현황</h3>
        <table>
         <thead>
@@ -19,23 +18,26 @@ export const purchaseTemplates = {
             <th>구매</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="product-purchase-item">
-            <td class="product-purchase-name" dataset="data-product-name">
-              콜라
-            </td>
-            <td class="product-purchase-price" dataset="data-product-price">
-              1500
-            </td>
-            <td class="product-purchase-quantity" dataset="data-product-quantity">
-              20
-            </td>
-            <td>
-              <button class="purchase-button">구매하기</button>
-            </td>
-          </tr>
+        <tbody class="product-purchase-list">
         </tbody>
       </table>
+    `,
+  productItem(product) {
+    return `
+      <tr class="product-purchase-item">
+        <td class="product-purchase-name" dataset="data-product-name">
+          ${product.name}
+        </td>
+        <td class="product-purchase-price" dataset="data-product-price">
+          ${product.price}
+        </td>
+        <td class="product-purchase-quantity" dataset="data-product-quantity">
+          ${product.quantity}
+        </td>
+        <td>
+          <button class="purchase-button">구매하기</button>
+        </td>
+      </tr>
     `;
   },
 };

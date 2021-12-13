@@ -1,6 +1,6 @@
 import { ERROR_MSG } from '../../constants/constants.js';
 
-export const inputChangeValiation = money => {
+export const inputMoneyValidation = money => {
   const validation = {
     isError: false,
     inValidText: '',
