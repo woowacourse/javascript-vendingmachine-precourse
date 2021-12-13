@@ -33,6 +33,9 @@ export function createButton(id, innerText) {
 export function createTable() {
   const table = document.createElement('table');
   table.style.borderCollapse = 'collapse';
+  const thead = document.createElement('thead');
+  const tbody = document.createElement('tbody');
+  table.append(thead, tbody);
 
   return table;
 }
