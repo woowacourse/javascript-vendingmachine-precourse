@@ -115,7 +115,13 @@ function setProductTable(productPurchaseDiv) {
 }
 
 function setChargeAmount(productPurchaseDiv) {
-  func.appendP(productPurchaseDiv, PRODUCT_PURCHASE.COIN_STORAGE, 'charge-amount');
+  func.appendPDataset(
+    productPurchaseDiv,
+    PRODUCT_PURCHASE.COIN_STORAGE,
+    'charge-amount',
+    'data-amount',
+    0,
+  );
 }
 
 function setReturnBtn(productPurchaseDiv) {

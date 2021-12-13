@@ -6,7 +6,7 @@ export default class VendingMachineUtil {
   constructor() {
     this.machine = new VendingMachine();
     this.coin = 0;
-    this.coinAmount = 0;
+    this.coinAmount = Number(this.machine.amount.dataset.machineAmount);
     this.addCoin();
     this.originCoin = [0, 0, 0, 0];
   }

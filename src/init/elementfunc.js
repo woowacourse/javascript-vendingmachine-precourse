@@ -13,9 +13,10 @@ export function appendTitle(element, text) {
   element.appendChild(title);
 }
 
-export function appendP(element, innerText, id) {
+export function appendPDataset(element, innerText, id, datasetKey, datasetVal) {
   const text = document.createElement('p');
   text.innerHTML = innerText;
+  text.setAttribute(datasetKey, datasetVal);
   appendId(text, id);
   element.appendChild(text);
 }
@@ -69,14 +70,6 @@ export function createBtnClass(element, text, className) {
 export function createTh(tableRow, text) {
   let head = document.createElement('th');
   head.innerHTML = text;
-
-  tableRow.appendChild(head);
-}
-
-export function createThClass(tableRow, text, className) {
-  let head = document.createElement('th');
-  head.innerHTML = text;
-  appendClass(head, className);
 
   tableRow.appendChild(head);
 }

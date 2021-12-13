@@ -7,7 +7,6 @@ import {
   appendClass,
   appendTheadStyle,
   createBtnClassDataset,
-  createThClass,
   createThClassDataset,
 } from '../init/elementfunc.js';
 import {
