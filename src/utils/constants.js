@@ -1,16 +1,9 @@
-export const ELEMENT_SID = {
-  APP: '#app',
-  TAB_VIEW: '#tab-view',
-  RESULT_VIEW: '#result-view',
-  PRODUCT_NAME_INPUT: '#product-name-input',
-  PRODUCT_PRICE_INPUT: '#product-price-input',
-  PRODUCT_QUANTITY_INPUT: '#product-quantity-input',
-  PRODUCT_ADD_BUTTON: '#product-add-button',
-  CHARGE_INPUT: '#vending-machine-charge-input',
-  PURCHASE_CHARGE_INPUT: '#charge-input',
-  PRODUCT_PURCHASE_TBODY: '#product-purchase-tbody',
+export const constantsInit = () => {
+  Object.entries(ELEMENT_ID).forEach(([key, value]) => (ELEMENT_SID[key] = `#${value}`));
+  Object.entries(ELEMENT_CLASS).forEach(([key, value]) => (ELEMENT_SCLASS[key] = `.${value}`));
 };
 export const ELEMENT_ID = {
+  APP: 'app',
   TAB_VIEW: 'tab-view',
   RESULT_VIEW: 'result-view',
   PRODUCT_ADD_MENU: 'product-add-menu',
@@ -33,6 +26,7 @@ export const ELEMENT_ID = {
     return `vending-machine-coin-${coin}-quantity`;
   },
 };
+export const ELEMENT_SID = {};
 export const ELEMENT_CLASS = {
   PRODUCT_MANAGE_ITEM: 'product-manage-item',
   PRODUCT_MANAGE_NAME: 'product-manage-name',
@@ -48,10 +42,7 @@ export const ELEMENT_CLASS = {
   PRODUCTS_TABLE: 'products-table',
   COINS_TABLE: 'coins-table',
 };
-export const ELEMENT_SCLASS = {
-  PRODUCT_PURCHASE_NAME: '.product-purchase-name',
-  PRODUCT_PURCHASE_PRICE: '.product-purchase-price',
-};
+export const ELEMENT_SCLASS = {};
 export const EVENT_TYPE = {
   CHANGE_TAB: 'changeTab',
   ADD_PRODUCT: 'addProduct',

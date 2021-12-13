@@ -24,7 +24,6 @@ export default {
   },
   sellable(name) {
     const pickedItem = this.products.find((item) => item[PRODUCT.NAME] === name);
-    console.log(pickedItem);
     if (pickedItem[PRODUCT.QUANTITY] <= 0) {
       alert(ALERT.NOT_ENOUGH_QUANTITY);
       return false;
@@ -36,7 +35,6 @@ export default {
   },
 };
 
-const isPickedProduct = (item, name) => item[PRODUCT.NAME] === name;
 const isValidProductInput = (products, product) => {
   if (product[PRODUCT.NAME] === '') {
     alert(ALERT.EMPTY_PRODUCT_NAME);

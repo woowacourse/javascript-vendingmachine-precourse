@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-import { ELEMENT_SID, EVENT_TYPE, PRODUCT, TAB } from '../utils/constants.js';
+import { ELEMENT_SID, EVENT_TYPE, PRODUCT, TAB, constantsInit } from '../utils/constants.js';
 
 import ManageProductView from '../views/ManageProductView.js';
 import LayoutView from '../views/LayoutView.js';
@@ -12,6 +12,7 @@ import PurchaseProductModel from '../models/PurchaseProductModel.js';
 
 export default {
   init() {
+    constantsInit();
     LayoutView.setup($(ELEMENT_SID.APP));
     TabView.setup($(ELEMENT_SID.TAB_VIEW)).on(EVENT_TYPE.CHANGE_TAB, (e) =>
       this.onChangeTab(e.detail.tabName),
