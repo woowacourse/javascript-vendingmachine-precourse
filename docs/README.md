@@ -31,7 +31,7 @@
         id : vending-machine-manage-menu
         ```
         
-    - 상품 구매
+    - 상품 구매;
         
         ```
         tag : button

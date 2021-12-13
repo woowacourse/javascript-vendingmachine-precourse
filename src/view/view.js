@@ -3,13 +3,13 @@ import {
   MANAGE_VIEW,
   CHARGE_VIEW,
   PURCHASE_VIEW,
-} from "./utils/renderDOM.js";
+} from "./utils/viewDOM.js";
 
 export default class View {
   constructor() {
     this.commonRender();
-    // this.manageTabRender();
-    // this.chargeTabRender();
+    this.manageTabRender();
+    this.chargeTabRender();
     this.purchaseTabRender();
   }
 
