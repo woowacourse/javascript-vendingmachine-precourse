@@ -1,4 +1,5 @@
 import { ID } from '../constants/selector.js';
+import { COIN } from '../constants/coin.js';
 import {
   Container,
   SubTitle,
@@ -63,19 +64,13 @@ export default function VendingMachineManageView() {
   };
 
   this.renderCoin = () => {
-    const coin500Row = document.querySelector(
-      `#${ID.VENDING_MACHINE_COIN_500}`
-    );
-    const coin100Row = document.querySelector(
-      `#${ID.VENDING_MACHINE_COIN_100}`
-    );
-    const coin50Row = document.querySelector(`#${ID.VENDING_MACHINE_COIN_50}`);
-    const coin10Row = document.querySelector(`#${ID.VENDING_MACHINE_COIN_10}`);
+    COIN.forEach((coin, index) => {
+      const coinData = document.querySelector(
+        `#${ID.VENDING_MACHINE_COIN[index]}`
+      );
 
-    coin500Row.innerHTML = vendingMachine.coin[500];
-    coin100Row.innerHTML = vendingMachine.coin[100];
-    coin50Row.innerHTML = vendingMachine.coin[50];
-    coin10Row.innerHTML = vendingMachine.coin[10];
+      coinData.innerHTML = `${vendingMachine.coin[coin]}개`;
+    });
   };
 
   this.initCharge = () => {
