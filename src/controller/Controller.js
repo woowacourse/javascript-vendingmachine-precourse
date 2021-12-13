@@ -1,5 +1,6 @@
 import VendingMachine from '../model/VendingMachine.js';
 import { $id } from '../utils/dom.js';
+import { productManageItemTemplate } from '../utils/template.js';
 import { isValidProductAddData } from '../utils/validation.js';
 import View from '../view/View.js';
 
@@ -58,8 +59,15 @@ class Controller {
     $id('product-add-form').addEventListener('submit', (e) => {
       e.preventDefault();
 
-      if (isValidProductAddData()) {
-        // 타입이 유효한 경우
+      const productNameInput = $id('product-name-input').value;
+      const productPriceInput = $id('product-price-input').value;
+      const productQuantityInput = $id('product-quantity-input').value;
+
+      if (isValidProductAddData(productNameInput, productPriceInput, productQuantityInput)) {
+        $id('product-status-table').insertAdjacentHTML(
+          'beforeend',
+          productManageItemTemplate(productNameInput, productPriceInput, productQuantityInput)
+        );
       }
     });
   }

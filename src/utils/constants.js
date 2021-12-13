@@ -20,7 +20,7 @@ export const PRODUCE_ADD_TEXT = `
     </section>
     <section>
       <h4>상품 현황</h4>
-      <table>
+      <table id="product-status-table">
         <tr>
           <th>상품명</th>
           <th>가격</th>

@@ -27,9 +27,7 @@ const isSameOrLessZero = (inputValue) => {
   return inputValue <= 0;
 };
 
-const isInValidProductName = () => {
-  const productNameInput = $id('product-name-input').value;
-
+const isInValidProductName = (productNameInput) => {
   if (isEmpty(productNameInput)) {
     alert('상품명을 입력해주세요.  ex) 사이다');
     return true;
@@ -48,9 +46,7 @@ const isInValidProductName = () => {
   return false;
 };
 
-const isInValidProductPrice = () => {
-  const productPriceInput = $id('product-price-input').value;
-
+const isInValidProductPrice = (productPriceInput) => {
   if (isEmpty(productPriceInput)) {
     alert('상품의 가격을 입력해주세요.  ex) 1500');
     return true;
@@ -74,9 +70,7 @@ const isInValidProductPrice = () => {
   return false;
 };
 
-const isInValidQuantityInput = () => {
-  const productQuantityInput = $id('product-quantity-input').value;
-
+const isInValidQuantityInput = (productQuantityInput) => {
   if (isEmpty(productQuantityInput)) {
     alert('상품의 수량을 입력해주세요.  ex) 20');
     return true;
@@ -95,16 +89,20 @@ const isInValidQuantityInput = () => {
   return false;
 };
 
-export const isValidProductAddData = () => {
-  if (isInValidProductName()) {
+export const isValidProductAddData = (
+  productNameInput,
+  productPriceInput,
+  productQuantityInput
+) => {
+  if (isInValidProductName(productNameInput)) {
     return false;
   }
 
-  if (isInValidProductPrice()) {
+  if (isInValidProductPrice(productPriceInput)) {
     return false;
   }
 
-  if (isInValidQuantityInput()) {
+  if (isInValidQuantityInput(productQuantityInput)) {
     return false;
   }
 
