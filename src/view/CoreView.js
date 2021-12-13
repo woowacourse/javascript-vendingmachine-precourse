@@ -11,6 +11,7 @@ export class CoreView {
     this.$chargeTab;
     this.$purchaseTab;
     this.$nav;
+    this.$sections;
     this.addCommonElements();
     this.productView = new ProductView();
     this.chargeView = new ChargeView();
@@ -19,7 +20,7 @@ export class CoreView {
   }
 
   onLoad() {
-    const $sectionArray = Array.from($All('#app > section'));
+    const $sectionArray = Array.from(this.$sections);
     $sectionArray[1].style.display = 'none';
     $sectionArray[2].style.display = 'none';
   }
@@ -35,7 +36,7 @@ export class CoreView {
   }
 
   handleSectionDisplay(i) {
-    const $sectionArray = Array.from($All('#app > section'));
+    const $sectionArray = Array.from(this.$sections);
     $sectionArray.map(($section, j) => {
       if (i === j) {
         $section.style.display = 'block';
@@ -51,5 +52,6 @@ export class CoreView {
     this.$productAddTab = $('#product-add-menu');
     this.$chargeTab = $('#vending-machine-manage-menu');
     this.$purchaseTab = $('#product-purchase-menu');
+    this.$sections = $All('#app > section');
   }
 }
