@@ -1,6 +1,8 @@
 import Product from "./Product.js";
 
 class ProductList {
+    item = [];
+
     constructor() {
         this.item = [];
     }
@@ -30,7 +32,7 @@ class ProductList {
     }
 
     getFromLocalStorage() {
-        this.item = JSON.parse(localStorage.getItem("productList"));
+        this.item = JSON.parse(localStorage.getItem("productList")) ?? [];
     }
 }
 

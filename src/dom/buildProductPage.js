@@ -68,9 +68,11 @@ function productItemRefresh() {
 
     deleteItemElement();
     productItemElement(container);
-    productList.getItem().map((item) => {
-        addItemElement(item.name, item.price, item.quantity);
-    });
+    if(productList.getItem() !== null) {
+        productList.getItem().map((item) => {
+            addItemElement(item.name, item.price, item.quantity);
+        });
+    }
 }
 
 function clearContainer(container) {
