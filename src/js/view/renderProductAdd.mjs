@@ -4,7 +4,7 @@ const $fragment = new DocumentFragment();
 
 function productAdd() {
   const $productAddWrap = document.createElement('section');
-  $productAddWrap.id = 'productAddWrap';
+  $productAddWrap.id = 'product-add-wrap';
 
   $productAddWrap.innerHTML = `
     <h2>상품 추가하기</h2>  
@@ -18,28 +18,23 @@ function productAdd() {
   $fragment.appendChild($productAddWrap);
 }
 
-function productCurrent() {
-  const $curProductWrap = document.createElement('section');
-  $curProductWrap.id = 'curProductWrap';
+function productStatus() {
+  const $productStatusWrap = document.createElement('section');
+  $productStatusWrap.id = 'product-status-wrap';
 
-  $curProductWrap.innerHTML = `
+  $productStatusWrap.innerHTML = `
     <h2>상품 현황</h2>
-    <table id="productsStatus">
+    <table>
       <thead>
         <th>상품명</th>
         <th>가격</th>
         <th>수량</th>
       </thead>
-      <tbody>
-        <tr class="product-manage-item">
-          <td class="product-manage-name"></td>
-          <td class="product-manage-price"></td>
-          <td class="product-manage-quantity"></td>
-        </tr>
+      <tbody id="product-status">
       </tbody>
     </table>
   `;
-  $fragment.appendChild($curProductWrap);
+  $fragment.appendChild($productStatusWrap);
 }
 
 export function renderProductAdd() {
@@ -48,11 +43,22 @@ export function renderProductAdd() {
   $main.id = 'productAddWrap';
 
   productAdd();
-  productCurrent();
+  productStatus();
   $main.appendChild($fragment);
   $app.appendChild($main);
 }
 
 export function renderProductConfirm() {
-  console.log(products);
+  const $productStatus = document.querySelector('#product-status');
+
+  $productStatus.innerHTML = products
+    .map(product => {
+      return `
+      <tr class="product-manage-item">
+        <td class="product-manage-name">${product.name}</td>
+        <td class="product-manage-price">${product.price}</td>
+        <td class="product-manage-quantity">${product.quantity}</td>
+      </tr>`;
+    })
+    .join('');
 }
