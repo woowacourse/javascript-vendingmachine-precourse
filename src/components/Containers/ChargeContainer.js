@@ -33,13 +33,13 @@ export default class ChargeContainer extends Component {
     <span id=${ID.VENDING_MACHINE_CHARGE_AMOUNT}>${this.$state.amount ? this.$state.amount : ''}</span>
     <div>
       <h2>자판기가 보유한 동전</h2>
-      <div id="vending-machine-table-container"></div>
+      <div id=${ID.VENDING_MACHINE_TABLE_CONTAINER}></div>
     </div>
     `;
   }
 
   setEvent() {
-    this.addEvent('submit', `#vending-machine-charge-form`, (event) => {
+    this.addEvent('submit', `#${ID.VENDING_MACHINE_CHARGE_FORM}`, (event) => {
       event.preventDefault();
       event.stopPropagation();
 
@@ -58,7 +58,7 @@ export default class ChargeContainer extends Component {
 
   printChargeForm() {
     return `
-        <form id="vending-machine-charge-form">
+        <form id=${ID.VENDING_MACHINE_CHARGE_FORM}>
           ${createInputElement('text', ID.VENDING_MACHINE_CHARGE_INPUT, '자판기가 보유할 금액')}
           <button id=${ID.VENDING_MACHINE_CHARGE_BUTTON}>충전하기</button>
         </form>

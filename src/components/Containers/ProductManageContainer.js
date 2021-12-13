@@ -11,7 +11,7 @@ export default class ProductManageContainer extends Component {
 
   mounted() {
     this.$state = {products: getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [])};
-    this.$target.querySelector(`#product-manage-table-container`).innerHTML = this.printProductTable();
+    this.$target.querySelector(`#${ID.PRODUCT_MANAGE_TABLE_CONTAINER}`).innerHTML = this.printProductTable();
   }
 
   template() {
@@ -22,13 +22,13 @@ export default class ProductManageContainer extends Component {
     </div>
     <div>
       <h2>상품 현황</h2>
-      <div id="product-manage-table-container"></div>
+      <div id=${ID.PRODUCT_MANAGE_TABLE_CONTAINER}></div>
     </div>
     `;
   }
 
   setEvent() {
-    this.addEvent('submit', `#product-manage-form`, (event) => {
+    this.addEvent('submit', `#${ID.PRODUCT_MANAGE_FORM}`, (event) => {
       event.preventDefault();
       event.stopPropagation();
 
@@ -45,7 +45,7 @@ export default class ProductManageContainer extends Component {
 
   printProductForm() {
     return `
-        <form id="product-manage-form">
+        <form id=${ID.PRODUCT_MANAGE_FORM}>
           ${createInputElement('text', ID.PRODUCT_NAME_INPUT, '상품명')}
           ${createInputElement('number', ID.PRODUCT_PRICE_INPUT, '가격')}
           ${createInputElement('number', ID.PRODUCT_QUANTITY_INPUT, '수량')}

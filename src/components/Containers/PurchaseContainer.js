@@ -16,8 +16,8 @@ export default class PurchaseContainer extends Component {
   }
 
   mounted() {
-    this.$target.querySelector(`#product-table-container`).innerHTML = this.printProductTable();
-    this.$target.querySelector(`#purchase-charge-table-container`).innerHTML = this.printChargeTable();
+    this.$target.querySelector(`#${ID.PRODUCT_TABLE_CONTAINER}`).innerHTML = this.printProductTable();
+    this.$target.querySelector(`#${ID.PURCHASE_CHARGE_TABLE_CONTAINER}`).innerHTML = this.printChargeTable();
   }
 
   template() {
@@ -30,12 +30,12 @@ export default class PurchaseContainer extends Component {
     <span id=${ID.CHARGE_AMOUNT}>${this.$state.purchaseAmount ? this.$state.purchaseAmount : ''}</span>
     <div>
       <h2>구매할 수 있는 상품 현황</h2>
-      <div id="product-table-container"></div>
+      <div id=${ID.PRODUCT_TABLE_CONTAINER}></div>
     </div>
     <div>
       <h2>잔돈</h2>
       <button id=${ID.COIN_RETURN_BUTTON}>반환하기</button>
-      <div id="purchase-charge-table-container"></div>
+      <div id=${ID.PURCHASE_CHARGE_TABLE_CONTAINER}></div>
     </div>
     `;
   }
@@ -48,7 +48,7 @@ export default class PurchaseContainer extends Component {
 
   printChargeForm() {
     return `
-        <form id="purchase-charge-form">
+        <form id=${ID.PURCHASE_CHARGE_FORM}>
           ${createInputElement('text', ID.CHARGE_INPUT, '투입할 금액')}
           <button id=${ID.CHARGE_BUTTON}>투입하기</button>
         </form>
@@ -75,7 +75,7 @@ export default class PurchaseContainer extends Component {
   }
 
   purchaseChargeFormClickHandler() {
-    this.addEvent('submit', `#purchase-charge-form`, (event) => {
+    this.addEvent('submit', `#${ID.PURCHASE_CHARGE_FORM}`, (event) => {
       event.preventDefault();
       event.stopPropagation();
 
@@ -123,11 +123,23 @@ export default class PurchaseContainer extends Component {
           returnCoins[coin] = Number.parseInt(amount / coin, 10);
         }
         amount = amount - coin * returnCoins[coin];
+
         this.setState({
           purchaseAmount: amount,
+          vendingMachineAmount: this.$state.vendingMachineAmount - coin * returnCoins[coin],
           vendingMachineCoins: Object.assign(this.$state.vendingMachineCoins, {[coin]: quantity - returnCoins[coin]}),
           returnCoins
         });
+        console.log(this.$state.vendingMachineAmount);
       });
+    this.saveReturnCoinResultInStroage();
+  }
+
+  saveReturnCoinResultInStroage() {
+    setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, this.$state.vendingMachineAmount);
+
+    setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, this.$state.vendingMachineCoins);
+
+    setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
   }
 }
