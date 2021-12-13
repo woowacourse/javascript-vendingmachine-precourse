@@ -90,20 +90,3 @@ export function createGridDiv(size, items, id, className) {
 
   return grid;
 }
-
-// ============== CREATE AMOUNT SHOWING FUNCTION ==============
-export function createAmountP(label, id) {
-  const chargeAmountP = customCreateElement({
-    tag: 'p',
-    value: label,
-  });
-
-  const chargeAmountSpan = customCreateElement({
-    tag: 'span',
-    attributes: { id },
-  });
-
-  chargeAmountP.appendChild(chargeAmountSpan);
-
-  return chargeAmountP;
-}

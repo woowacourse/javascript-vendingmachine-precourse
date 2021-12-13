@@ -3,25 +3,13 @@ import {
   ERROR_INVALID_PURCHASE_PRODUCT,
   ERROR_INVALID_PURCHASE_QUANTITY,
 } from './MachineOperation.constants.js';
-import { divideToCoins, getAllCoins, getCoins, mergeObj } from '../Utils.js';
+import { getAllCoins, getCoins } from '../Utils.js';
 import { isValidMoney } from '../validation.js';
 import { getFromStorage, setInStorage } from '../store.js';
 
 export default class MachineOperations {
   constructor() {
     this.errorMessage = '';
-  }
-
-  static registerCoin(amount) {
-    if (isValidMoney(amount)) {
-      const currentCoinObj = getFromStorage('coins') || {};
-      const newCoinObj = divideToCoins(amount);
-      const mergedCoins = mergeObj(currentCoinObj, newCoinObj);
-      setInStorage('coins', mergedCoins);
-      return true;
-    }
-
-    return false;
   }
 
   static registerInsert(value) {
@@ -71,29 +59,6 @@ export default class MachineOperations {
     }
 
     return true;
-  }
-
-  static mergeCoinObj(coinObj) {
-    const currentCoin = getAllCoins() || {};
-
-    const newCoin = Object.keys(coinObj).reduce((obj, key) => {
-      const newObj = { ...obj };
-      if (newObj[key]) newObj[key] += coinObj[key];
-      else newObj[key] = coinObj[key];
-      return newObj;
-    }, currentCoin);
-
-    return newCoin;
-  }
-
-  static getChargeSum() {
-    const coinObj = getAllCoins() || {};
-    const chargeSum = Object.keys(coinObj).reduce(
-      (sum, coin) => sum + coin * coinObj[coin],
-      0,
-    );
-
-    return chargeSum;
   }
 
   static returnCoins() {

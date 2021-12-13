@@ -7,7 +7,11 @@ import {
 } from './AddProducts/constants.js';
 import { getFromStorage } from './store.js';
 
-const validator = function validationFunctionBase(test, val, errorMessage) {
+export const validator = function validationFunctionBase(
+  test,
+  val,
+  errorMessage,
+) {
   if (!test(val)) {
     alert(errorMessage);
     return false;

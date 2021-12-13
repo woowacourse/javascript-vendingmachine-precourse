@@ -1,5 +1,5 @@
 import {
-  createAmountP,
+  // createAmountP,
   createContainer,
   createElements,
   createGridDiv,
@@ -12,7 +12,6 @@ import { getAllProducts } from '../Utils.js';
 import {
   ID_PURCHASE_TAB,
   CHARGE_MACHINE_FORM_CONTAINER_ITEMS,
-  STRING_CHARGE_AMOUNT_LABEL,
   ID_PURCHASE_CHARGE_AMOUNT,
   ID_RETURN_COIN_STATUS,
   ID_PURCHASE_PRODUCT_GRID,
@@ -86,12 +85,12 @@ export default class PurchaseProducts {
       this.handleInsertSubmit.bind(this),
     );
 
-    const chargeAmountP = createAmountP(
-      STRING_CHARGE_AMOUNT_LABEL,
-      ID_PURCHASE_CHARGE_AMOUNT,
-    );
+    // const chargeAmountP = createAmountP(
+    //   STRING_CHARGE_AMOUNT_LABEL,
+    //   ID_PURCHASE_CHARGE_AMOUNT,
+    // );
 
-    formContainer.append(chargeAmountP);
+    // formContainer.append(chargeAmountP);
 
     return formContainer;
   }
