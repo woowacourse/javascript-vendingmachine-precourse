@@ -1,10 +1,12 @@
 import AppView from '../view/appView.js';
 import AddController from './add/addController.js';
+import ManageController from './manage/manageController.js';
 
 export default class AppController {
   constructor() {
     this.appView = new AppView();
     this.addController = new AddController();
+    this.manageController = new ManageController();
 
     this.init();
   }
@@ -29,12 +31,14 @@ export default class AppController {
 
   handleChangeToManageTab(e) {
     e.preventDefault();
+
+    this.manageController.init();
   }
 
   handleChangeToAddTab(e) {
     e.preventDefault();
 
-    this.addController.init(this.appView.$main);
+    this.addController.init();
   }
 
   handleChangeToPurchaseTab(e) {

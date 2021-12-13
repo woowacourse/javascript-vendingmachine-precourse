@@ -1,3 +1,5 @@
+import NUMBER from '../constants/number.js';
+
 export const headerTemplate = () => {
   return `
   <h2>🥤자판기🥤</h2>
@@ -30,5 +32,47 @@ export const addTabTemplate = () => {
       </thead>
       <tbody></tbody>
     </table>
+  `;
+};
+
+export const manageTabTemplate = () => {
+  return `
+    <h2>자판기 동전 충전하기</h2>
+    <div>
+      <input id="vending-machine-charge-input" type="number" />
+      <button id="vending-machine-charge-button">충전하기</button>
+    </div>
+    <div>
+      보유금액: <span id="vending-machine-charge-amount">${NUMBER.ZERO}원</span>
+    </div>
+    <div>
+      <h2>자판기가 보유한 동전</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>동전</th>
+            <th>개수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>500원</th>
+            <th id="vending-machine-coin-500-quantity">${NUMBER.ZERO}개</th>
+          </tr>
+          <tr>
+            <th>100원</th>
+            <th id="vending-machine-coin-100-quantity">${NUMBER.ZERO}개</th>
+          </tr>
+          <tr>
+            <th>50원</th>
+            <th id="vending-machine-coin-50-quantity">${NUMBER.ZERO}개</th>
+          </tr>
+          <tr>
+            <th>10원</th>
+            <th id="vending-machine-coin-10-quantity">${NUMBER.ZERO}개</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   `;
 };

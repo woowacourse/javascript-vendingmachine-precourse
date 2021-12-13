@@ -14,6 +14,5 @@ export default class AppView {
     this.$productPurchaseMenu = $('#product-purchase-menu');
     this.$vendingMachineManageMenu = $('#vending-machine-manage-menu');
     this.$productAddMenu = $('#product-add-menu');
-    this.$main = $('main');
   }
 }

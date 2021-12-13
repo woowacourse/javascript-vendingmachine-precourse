@@ -5,7 +5,8 @@ export default class AddController {
     this.addView = new AddView();
   }
 
-  init($main) {
-    this.addView.renderAddTab($main);
+  init() {
+    this.addView.init();
+    this.addView.renderAddTab();
   }
 }
