@@ -146,6 +146,15 @@ class Controller {
     const tabMenu = this.vendingMachine.getLocalStorage();
     const purchaseItemIdx = tabMenu['product_add_menu'].findIndex((item) => item.name === name);
 
+    if (tabMenu['product_add_menu'][purchaseItemIdx].quantity - 1 < 0) {
+      alert('해당 물품이 품절이 되어, 구매할 수 없습니다');
+      return;
+    }
+    if (tabMenu['product_purchase_menu']['chargeAmount'] - price < 0) {
+      alert('투입한 금액이 부족하여, 해당 물품을 구매할 수 없습니다');
+      return;
+    }
+
     tabMenu['product_add_menu'][purchaseItemIdx].quantity -= 1;
     tabMenu['product_purchase_menu']['chargeAmount'] -= price;
 
