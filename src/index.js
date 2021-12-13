@@ -1,7 +1,7 @@
 import tabMenu from "./dom/tabMenu.js";
 import buildContainer from "./dom/buildContainer.js";
-import buildProductAdd from "./dom/buildProductAdd.js";
+import buildProductPage from "./dom/buildProductPage.js";
 
 tabMenu();
 buildContainer();
-buildProductAdd();
+buildProductPage();

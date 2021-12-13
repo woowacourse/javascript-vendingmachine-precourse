@@ -1,4 +1,4 @@
-import buildProductAdd from "./buildProductAdd.js";
+import buildProductPage from "./buildProductPage.js";
 import buildChargePage from "./buildChargePage.js";
 
 function tabMenu() {
@@ -14,7 +14,7 @@ function tabMenu() {
     productAddMenuButton.id = "product-add-menu";
     productAddMenuButton.innerText = "상품 관리";
     productAddMenuButton.onclick = () => {
-        buildProductAdd();
+        buildProductPage();
     }
 
     vendingMachineManageMenuButton.id = "vending-machine-manage-menu";

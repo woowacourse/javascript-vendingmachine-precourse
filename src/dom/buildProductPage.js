@@ -5,7 +5,7 @@ import validatePrice from "../util/validatePrice.js";
 const productList = new ProductList;
 productList.getFromLocalStorage();
 
-function buildProductAdd() {
+function buildProductPage() {
     const container = document.querySelector(".container");
     productList.getFromLocalStorage();
 
@@ -96,4 +96,4 @@ function bindButtonEvent() {
     }
 }
 
-export default buildProductAdd;
+export default buildProductPage;
