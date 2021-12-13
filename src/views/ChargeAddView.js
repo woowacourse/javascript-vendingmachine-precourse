@@ -12,18 +12,19 @@ export default class ChargeAddView extends ChargeAddController {
   setEvent() {
     this.chargeAddField.querySelector('#vending-machine-charge-button').addEventListener('click', (e) => {
       e.preventDefault();
-      this.addCoin = this.chargeAddField.querySelector('input').value;
-      chargeAddValiate(this.addCoin) && 
-      this.renderCharge(), this.getChargeCoin(), this.renderRandomCoin();
+      const addCoin = this.chargeAddField.querySelector('input').value;
+      chargeAddValiate(addCoin) 
+      ? (this.validAddCoin = addCoin, this.renderCharge(), this.getChargeCoin(), this.renderRandomCoin())
+      : "";
     })
   }
 
   renderCharge() {
     const $chargeWrap = document.querySelector('#vending-machine-charge-amount');
-    this.localTotalCharge && !this.addCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
-    !this.localTotalCharge && this.addCoin ? $chargeWrap.innerText = this.addCoin : "";
-    this.localTotalCharge && this.addCoin ? $chargeWrap.innerText = (Number(this.addCoin) + Number(this.localTotalCharge)) : "";
-    !this.localTotalCharge && !this.addCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
+    this.localTotalCharge && !this.validAddCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
+    !this.localTotalCharge && this.validAddCoin ? $chargeWrap.innerText = this.validAddCoin : "";
+    this.localTotalCharge && this.validAddCoin ? $chargeWrap.innerText = (Number(this.validAddCoin) + Number(this.localTotalCharge)) : "";
+    !this.localTotalCharge && !this.validAddCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
   }
 
   renderRandomCoin() {
