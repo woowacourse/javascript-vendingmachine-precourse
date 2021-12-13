@@ -82,10 +82,10 @@ export const LABEL = {
   QUANTITY_COIN: '개수',
   COIN: '동전',
   PURCHASE: '구매',
-  500: '500원',
-  100: '100원',
-  50: '50원',
-  10: '10원',
+  COIN500: '500원',
+  COIN100: '100원',
+  COIN50: '50원',
+  COIN10: '10원',
 };
 
 export const ERROR = {

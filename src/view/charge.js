@@ -11,6 +11,18 @@ export default class ChargePage {
     this.tr = document.createElement('tr');
     this.thCoin = document.createElement('th');
     this.thQuantity = document.createElement('th');
+    this.trFirst = document.createElement('tr');
+    this.trSecond = document.createElement('tr');
+    this.trThird = document.createElement('tr');
+    this.trForth = document.createElement('tr');
+    this.tdFirstValue = document.createElement('td');
+    this.tdSecondValue = document.createElement('td');
+    this.tdThirdValue = document.createElement('td');
+    this.tdForthValue = document.createElement('td');
+    this.tdFirstQuantity = document.createElement('td');
+    this.tdSecondQuantity = document.createElement('td');
+    this.tdThirdQuantity = document.createElement('td');
+    this.tdForthQuantity = document.createElement('td');
     this.controller = controller;
   }
 
@@ -27,7 +39,19 @@ export default class ChargePage {
     this.thQuantity.innerText = LABEL.QUANTITY_COIN;
     this.tr.appendChild(this.thCoin);
     this.tr.appendChild(this.thQuantity);
-    this.table.appendChild(this.tr);
+    this.tdFirstValue.innerText = LABEL.COIN10;
+    this.tdSecondValue.innerText = LABEL.COIN50;
+    this.tdThirdValue.innerText = LABEL.COIN100;
+    this.tdForthValue.innerText = LABEL.COIN500;
+    this.tdFirstQuantity.innerText = localStorage.getItem('10');
+    this.tdSecondQuantity.innerText = localStorage.getItem('50');
+    this.tdThirdQuantity.innerText = localStorage.getItem('100');
+    this.tdForthQuantity.innerText = localStorage.getItem('500');
+    this.trFirst.append(this.tdFirstValue, this.tdFirstQuantity);
+    this.trSecond.append(this.tdSecondValue, this.tdSecondQuantity);
+    this.trThird.append(this.tdThirdValue, this.tdThirdQuantity);
+    this.trForth.append(this.tdForthValue, this.tdForthQuantity);
+    this.table.append(this.tr, this.trFirst, this.trSecond, this.trThird, this.trForth);
   }
   
   // index.html에 생성한 tab들 넣기
@@ -47,11 +71,17 @@ export default class ChargePage {
     this.buttonCharge.addEventListener('click', (e) => {
       e.preventDefault();
       this.controller.chargeMoney(this.inputCoin.value);
-      console.log(this.inputCoin.value);
     })
   }
 
   showCurrentMoney(money) {
     this.textCurrent.innerText = `${TEXT.HAVE} ${money}`;
+  }
+
+  showCurrentCoins(coins) {
+    this.tdFirstQuantity.innerText = coins[0].quantity;
+    this.tdSecondQuantity.innerText = coins[1].quantity;
+    this.tdThirdQuantity.innerText = coins[2].quantity;
+    this.tdForthQuantity.innerText = coins[3].quantity;
   }
 }
