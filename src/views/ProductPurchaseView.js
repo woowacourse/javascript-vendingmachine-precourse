@@ -13,12 +13,19 @@ export default class ProductPurchaseView extends ProductPurchaseController {
       e.preventDefault();
       this.insertMoney = this.productPurchaseField.querySelector('input').value;
       this.renderMoney();
+      this.getInsertMoney();
     })
   }
 
   renderMoney() {
     const $moneyWrap = document.querySelector('#charge-amount');
-    $moneyWrap.innerText = this.insertMoney;
+    this.puchaseMoneyResult 
+    ? $moneyWrap.innerText = this.puchaseMoneyResult
+    : this.loacalTotalInsertMoney && !this.insertMoney ? $moneyWrap.innerText = this.loacalTotalInsertMoney : "";
+    !this.loacalTotalInsertMoney && this.insertMoney ? $moneyWrap.innerText = this.insertMoney : "";
+    this.loacalTotalInsertMoney && this.insertMoney ? $moneyWrap.innerText = (Number(this.insertMoney) + Number(this.loacalTotalInsertMoney)) : ""; 
   }
+
+
 
 }
