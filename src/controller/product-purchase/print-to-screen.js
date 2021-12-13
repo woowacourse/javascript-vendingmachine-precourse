@@ -4,11 +4,7 @@ import {
   COIN_LIST,
 } from '../../common/constants/constants.js';
 import { $ } from '../../common/dom/dom.js';
-import {
-  getRandomCoinsAmongList,
-  returnChangesinCoins,
-} from '../../common/utils.js';
-import { saveRandomAmountOfCoins } from '../../local-storage.js/product-purchase.js';
+import { returnChangesinCoins } from '../../common/utils.js';
 
 export const printInsertedMoney = () => {
   const moneychargedAmountList = JSON.parse(
@@ -28,7 +24,7 @@ export const printInsertedMoney = () => {
 };
 
 // print purchase items to screen
-export const printProductPurchaseItemsToScreen = () => {
+export const printProductItemsToPurchaseToScreen = () => {
   const productPurchseListArray = JSON.parse(
     localStorage.getItem(PRODUCT.LIST)
   );
@@ -36,11 +32,10 @@ export const printProductPurchaseItemsToScreen = () => {
   const $itemPrice = $('.product-purchase-price');
   const $itemQuantity = $('.product-purchase-quantity');
 
-  for (let i = 0; i < productPurchseListArray.length; i++) {
-    console.log(productPurchseListArray[i].name);
-    $itemName.innerHTML = productPurchseListArray[i].name;
-    $itemPrice.innerHTML = productPurchseListArray[i].price;
-    $itemQuantity.innerHTML = productPurchseListArray[i].quantity;
+  for (const item of productPurchseListArray) {
+    $itemName.innerHTML = item.name;
+    $itemPrice.innerHTML = item.price;
+    $itemQuantity.innerHTML = item.quantity;
   }
 };
 
