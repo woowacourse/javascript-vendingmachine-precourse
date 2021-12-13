@@ -14,8 +14,9 @@ function onMoneyInput(event, vendingMachine) {
   const input = $(`#${PURCHASE_INPUT_ID}`).value;
   const $moneySpan = $(`#${PURCHASE_AMOUNT_ID}`);
 
-  vendingMachine.setCurrentMoney(input);
-  $moneySpan.textContent = vendingMachine.money;
+  if (vendingMachine.setCurrentMoney(input)) {
+    $moneySpan.textContent = vendingMachine.money;
+  }
 }
 
 function onBuy(event, vendingMachine) {
