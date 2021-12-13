@@ -1,4 +1,4 @@
-# 프로젝트 결과물
+# 🎬 프로젝트 결과물
 
 ![my-project1](../images/my-project1.gif)
 
@@ -10,7 +10,7 @@
 
 ![my-project5](../images/my-project5.gif)
 
-# 파일 구조
+# 📂 파일 구조
 
 ```bash
 src
