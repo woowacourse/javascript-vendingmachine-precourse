@@ -41,6 +41,27 @@ const CHARGE_VIEW = `
     </tr>
   </table>
   `;
-const PURCHASE_VIEW = document.createElement("div");
+const PURCHASE_VIEW = `
+  <h2>금액 투입</h2>
+  <input placeholder="투입할 금액" id="charge-input"/> 
+  <button id="charge-button">투입하기</button>
+  <p> 투입한 금액: </p>
+  <text id = "charge-amount"></text>
+  <h2>구매할 수 있는 상품 현황</h2>
+  <table>
+    <th>상품명</th><th>가격</th><th>수량</th><th>구매</th>
+    <tr className = "product-purchase-item">
+    </tr>
+  </table>
+  <h2>잔돈</h2>
+  <button id="coin-return-button">반환하기</button>
+  <table>
+    <th>동전</th><th>개수</th>
+    <tr> <td>500원</td> <td id = coin-500-quantity></td> </tr>
+    <tr> <td>100</td> <td id = coin-100-quantity></td> </tr>
+    <tr> <td>50</td> <td id = coin-50-quantity></td> </tr>
+    <tr> <td>10</td> <td id = coin-10-quantity></td> </tr>
+  </table>
+  `;
 
 export { COMMON_VIEW, MANAGE_VIEW, CHARGE_VIEW, PURCHASE_VIEW };
