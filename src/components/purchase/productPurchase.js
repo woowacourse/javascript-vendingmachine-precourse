@@ -7,16 +7,16 @@ import { initProductPurchaseList, productPurchaseTemplate } from './productPurch
 
 let currentAmount = STANDARD.CURRENT_MONEY;
 const chargeAmountId = '#charge-amount';
-const storedProductItems = getLocalStorage(STORAGE_NAME.PRODUCT);
 
 const resetProductItemStorage = (name) => {
-  const productItems = storedProductItems.map((item) => {
+  const productItems = getLocalStorage(STORAGE_NAME.PRODUCT).map((item) => {
     if (item.name === name) {
       item.quantity -= 1;
     }
     return item;
   });
-  localStorage.setItem(STORAGE_NAME.PRODUCT, JSON.stringify(productItems));
+
+  setLocalStorage(STORAGE_NAME.PRODUCT, productItems);
 };
 
 const subtractPriceAndQuantity = (target, price) => {
