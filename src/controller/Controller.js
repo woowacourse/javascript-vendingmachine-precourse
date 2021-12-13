@@ -115,6 +115,11 @@ class Controller {
       alert('상품의 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.  ex)1500');
       return false;
     }
+
+    if (this.isEmpty(productQuantityInput)) {
+      alert('상품의 수량을 입력해주세요.  ex) 20');
+      return false;
+    }
   }
 
   triggerProductAddSubmitEvent() {
