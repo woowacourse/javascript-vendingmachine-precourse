@@ -2,13 +2,13 @@ import { COIN_VALUE } from '../constants.js';
 import Product from './product.js'
 import * as validator from './validator.js';
 import { getStorage, updateStorage } from '../utils/storage.js';
-import Coin from "./coin.js";
+import * as coinUtil from "../utils/coin.js";
 import * as displayer from './display.js';
 
 export default class Controller {
     constructor(){
         this.products = [];
-        this.coins = new Coin().coins;
+        this.coins = coinUtil.generateTemplateCoins();
         this.input = 0;
         this.productId = 0;
     }
@@ -41,12 +41,11 @@ export default class Controller {
     }
 
     getRandomCoins(money){
-        const coin = new Coin();
-        const inverted = coin.getInverted();
+        const inverted = coinUtil.generateInverted();
 
         const item = getStorage();
         while(money > 0){
-            const pick = MissionUtils.Random.pickNumberInList(coin.getOnlyValues());
+            const pick = MissionUtils.Random.pickNumberInList(coinUtil.generateOnlyValues());
             if(money >= pick){
                 money -= pick;
                 this.coins[inverted[pick]]++;
