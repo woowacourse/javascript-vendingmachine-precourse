@@ -12,6 +12,10 @@ import {
   createCoinTable,
 } from '../components/productPurchaseMenu.js';
 import { vendingMachine } from '../components/vendingMachine.js';
+import {
+  alertChargeErrorMessage,
+  isValidCharge,
+} from '../components/validator.js';
 
 export default function ProductPurchaseMenuView(container) {
   this.productPurchaseMenu = () => {
@@ -49,6 +53,11 @@ export default function ProductPurchaseMenuView(container) {
   this.onClickAddMoneyButton = (e) => {
     e.preventDefault();
     const addMoneyInput = document.querySelector(`#${ID.CHARGE_INPUT}`);
+
+    if (!isValidCharge(addMoneyInput.value)) {
+      alertChargeErrorMessage(addMoneyInput.value);
+      return;
+    }
 
     vendingMachine.addInsertMoney(parseInt(addMoneyInput.value));
     this.renderInsertMoney();
