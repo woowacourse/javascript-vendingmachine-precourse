@@ -64,4 +64,13 @@ const PURCHASE_VIEW = `
   </table>
   `;
 
-export { COMMON_VIEW, MANAGE_VIEW, CHARGE_VIEW, PURCHASE_VIEW };
+const BUTTONS = {
+  $manageTabBtn: document.getElementById("product-add-menu"),
+  $chargeTabBtn: document.getElementById("vending-machine-manage-menu"),
+  $purchaseTabBtn: document.getElementById("product-purchase-menu"),
+  $addProductBtn: document.getElementById("product-add-button"),
+  $chargeBtn: document.getElementById("charge-button"),
+  $coinReturnBtn: document.getElementById("coin-return-button"),
+};
+
+export { COMMON_VIEW, MANAGE_VIEW, CHARGE_VIEW, PURCHASE_VIEW, BUTTONS };

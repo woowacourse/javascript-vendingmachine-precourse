@@ -4,6 +4,7 @@ import {
   CHARGE_VIEW,
   PURCHASE_VIEW,
 } from "./utils/viewDOM.js";
+import { hideWithID, showWithID } from "./utils/handleDOM.js";
 
 export default class View {
   constructor() {
@@ -11,6 +12,20 @@ export default class View {
     this.manageTabRender();
     this.chargeTabRender();
     this.purchaseTabRender();
+    this.tab = ["manage-tab", "charge-tab", "purchase-tab"];
+    hideWithID("manage-tab");
+    hideWithID("charge-tab");
+    hideWithID("purchase-tab");
+  }
+
+  showSelectedID(tabId) {
+    this.tab.map((id) => {
+      if (tabId === id) {
+        showWithID(id);
+      } else {
+        hideWithID(id);
+      }
+    });
   }
 
   commonRender() {
