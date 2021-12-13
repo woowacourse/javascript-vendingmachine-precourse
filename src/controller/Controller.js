@@ -31,6 +31,34 @@ class Controller {
     this.renderCurrentTabMenu(initTabMenu);
   }
 
+  initProductAddInputValue() {
+    $id('product-name-input').value = '';
+    $id('product-price-input').value = '';
+    $id('product-quantity-input').value = '';
+  }
+
+  initVendingMachineChargeInputValue() {
+    $id('vending-machine-charge-input').value = '';
+  }
+
+  getRandomCoinList(chargeInputValue) {
+    const randomCoinList = { 500: 0, 100: 0, 50: 0, 10: 0 };
+    let sum = 0;
+
+    while (chargeInputValue !== sum) {
+      const number = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+
+      if (sum + number > chargeInputValue) {
+        continue;
+      }
+
+      randomCoinList[number] += 1;
+      sum += number;
+    }
+
+    return randomCoinList;
+  }
+
   render(currentTabMenu) {
     if (currentTabMenu == this.vendingMachine.getCurrentTabMenu()) {
       return;
@@ -58,76 +86,31 @@ class Controller {
     }
   }
 
-  initProductAddInputValue() {
-    $id('product-name-input').value = '';
-    $id('product-price-input').value = '';
-    $id('product-quantity-input').value = '';
-  }
-
-  renderProductManageList() {
+  renderProductManageList(productNameInput, productPriceInput, productQuantityInput) {
     const tabMenu = this.vendingMachine.getLocalStorage();
 
-    const productManageListText = tabMenu['product_add_menu']
-      .map((item) => productManageItemTemplate(item.name, item.price, item.quantity))
-      .join('');
+    tabMenu['product_add_menu'] = [
+      ...tabMenu['product_add_menu'],
+      { name: productNameInput, price: productPriceInput, quantity: productQuantityInput },
+    ];
 
-    $id('product-status-table').innerHTML =
-      ` <tr><th>상품명</th><th>가격</th><th>수량</th></tr>` + productManageListText;
+    const productManageListText =
+      ` <tr><th>상품명</th><th>가격</th><th>수량</th></tr>` +
+      tabMenu['product_add_menu']
+        .map((item) => productManageItemTemplate(item.name, item.price, item.quantity))
+        .join('');
+
+    $id('product-status-table').innerHTML = productManageListText;
 
     this.vendingMachine.setLocalStorage(tabMenu);
-  }
-
-  initVendingMachineChargeInputValue() {
-    $id('vending-machine-charge-input').value = '';
-  }
-
-  triggerProductAddSubmitEvent() {
-    $id('product-add-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const productNameInput = $id('product-name-input').value;
-      const productPriceInput = $id('product-price-input').value;
-      const productQuantityInput = $id('product-quantity-input').value;
-
-      if (isValidProductAddData(productNameInput, productPriceInput, productQuantityInput)) {
-        const tabMenu = this.vendingMachine.getLocalStorage();
-
-        tabMenu['product_add_menu'] = [
-          ...tabMenu['product_add_menu'],
-          { name: productNameInput, price: productPriceInput, quantity: productQuantityInput },
-        ];
-
-        this.initProductAddInputValue();
-        this.renderProductManageList();
-      }
-    });
-  }
-
-  getRandomCoinList(chargeInputValue) {
-    const randomCoinList = { 500: 0, 100: 0, 50: 0, 10: 0 };
-    let sum = 0;
-
-    while (chargeInputValue !== sum) {
-      const number = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
-
-      if (sum + number > chargeInputValue) {
-        continue;
-      }
-
-      randomCoinList[number] += 1;
-      sum += number;
-    }
-
-    return randomCoinList;
   }
 
   renderVendingMachineCharge(vendingMachineChargeInput) {
     const vendingMachineChargeNumber = parseInt(vendingMachineChargeInput, 10);
     const tabMenu = this.vendingMachine.getLocalStorage();
+    const coinList = this.getRandomCoinList(vendingMachineChargeNumber);
 
     tabMenu['vending_machine_manage_menu']['chargeAmount'] += vendingMachineChargeNumber;
-
-    const coinList = this.getRandomCoinList(vendingMachineChargeNumber);
 
     Object.keys(coinList).forEach((coin) => {
       tabMenu['vending_machine_manage_menu']['coinList'][coin] += coinList[coin];
@@ -141,6 +124,21 @@ class Controller {
       tabMenu['vending_machine_manage_menu']['chargeAmount'];
 
     this.vendingMachine.setLocalStorage(tabMenu);
+  }
+
+  triggerProductAddSubmitEvent() {
+    $id('product-add-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const productNameInput = $id('product-name-input').value;
+      const productPriceInput = $id('product-price-input').value;
+      const productQuantityInput = $id('product-quantity-input').value;
+
+      if (isValidProductAddData(productNameInput, productPriceInput, productQuantityInput)) {
+        this.renderProductManageList(productNameInput, productPriceInput, productQuantityInput);
+        this.initProductAddInputValue();
+      }
+    });
   }
 
   triggerVendingMachineChargeSubmitEvent() {
