@@ -21,7 +21,7 @@ export const MACHINE_MANAGE = {
   NUMBER_OF_COIN: '개수',
   ADD_BTN: '충전하기',
   INPUT: '자판기가 보유할 금액',
-  COIN_STORAGE: '보유 금액:',
+  COIN_STORAGE: '보유 금액: ',
   COIN_500: '500원',
   COIN_100: '100원',
   COIN_50: '50원',
