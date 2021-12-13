@@ -17,6 +17,8 @@
 
 ### 2️⃣ 상품 관리 탭
 
+![1](https://user-images.githubusercontent.com/24728385/145737618-d6d7a4f7-e805-47d4-9e83-2264dfceaa6f.gif)
+
 - **초기화**
 
 - [x] 🖨️  `상품 관리` template html 작성
@@ -51,6 +53,8 @@
 
 ### 3️⃣ **잔돈 충전 탭 (자판기 보유 동전)**
 
+![2](https://user-images.githubusercontent.com/24728385/145737644-b3cbd7ce-edca-4947-ba10-49685ebcd256.gif)
+
 - **초기화**
 - [x] 🖨️  `잔돈 충전` template html 작성
 - [x] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
@@ -74,6 +78,8 @@
 <hr/>
 
 ### 4️⃣  **상품 구매 메뉴**
+
+![3](https://user-images.githubusercontent.com/24728385/145737681-046549a3-3ea1-4914-8daa-2411c3b7f7b8.gif)
 
 - **초기화**
 
@@ -169,27 +175,7 @@ calculateToCharge: object => {
 
 <hr/>
 
-### 3. 독특한 자판기 시스템
-
-![image](https://user-images.githubusercontent.com/24728385/145353374-23caf044-59b9-427e-a141-b20bd8b1adb5.png)
-
-실행 결과 예시로 주어진 [vendingmachine_purchase.gif](https://github.com/woowacourse/javascript-vendingmachine-precourse/blob/main/images/vendingmachine_purchase.gif) 를 보면서 위와 같이 표현을 해보았습니다.
-
-제가 생각한 시나리오는 3, 4번과 같이 '상품 구매를 하면 자판기의 잔고에 추가가 되어야 한다' 였습니다. 그래서 잔돈 반환을 하면 총 2950원 에서 사용자가 받아야 할 금액이 500원을 반환해야 한다고 생각했습니다.
-
-집단지성의 힘을 빌리고자 지원자들이 모여있는 카톡방에서 질문을 했고 의견을 얻을 수 있었습니다.
-
-1. "지폐로 넣을 수도 있어서 잔고 충전은 안된다고 저는 생각했어요"
-2. "구매를 위해 넣은 돈으로는 동전을 안만든다고해서 잔돈은 최초 450원 이하로만 줄수 있을꺼에요"
-3. "잔고는 잔돈 충전만으로 가능하고, 구매를 위해 넣은 돈은 잔고를 충전할 수 없다고 생각했습니다!"
-
-위의 의견들을 종합해서 제가 내린 결론은 다음과 같습니다.
-
-> 상품 구매시 결제된 금액은 자판기 보유 금액 charge에 영향을 주지 않는다.
-
-<hr/>
-
-### 4. 자판기의 잔돈 반환 알고리즘
+### 3. 자판기의 잔돈 반환 알고리즘
 
 > **그리디 알고리즘**(욕심쟁이 알고리즘, Greedy Algorithm)이란 "매 선택에서 **지금 이 순간 당장 최적인 답**을 선택하여 적합한 결과를 도출하자" 라는 모토를 가지는 [알고리즘](https://namu.wiki/w/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) 설계 기법이다. - 출처 [#](https://namu.wiki/w/%EA%B7%B8%EB%A6%AC%EB%94%94%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 
@@ -229,7 +215,7 @@ const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
 
 <hr/>
 
-### 5. `dataset` 속성을 활용하는 법
+### 4. `dataset` 속성을 활용하는 법
 
 제품을 구매하기 위해서 `구매하기` 버튼을 누르면 제품의 정보를 얻어올 수 있어야 합니다. 
 프로그래밍 요구 사항에 명시된 `dataset`속성을 사용해서 다음과 같이 구현하였습니다.
@@ -261,6 +247,18 @@ getProductInformation: element => {
   };
 },
 ```
+
+<hr/>
+
+### 5. 컴포넌트의 재사용 with `Web Component`
+
+마크업을 하면서 3개의 컴포넌트가 중복으로 사용된다는 것을 알았습니다. 코드의 중복을 줄이고자 순수 Vanilla JS로만 구현할 수 있는 컴포넌트 생성하는 법을 검색하였고, 리액트 뷰 처럼 컴포넌트를 재활용 할 수 있는 [`web component`](https://developer.mozilla.org/ko/docs/Web/Web_Components) 를 알게되었습니다. 
+
+제가 알게된 `web component`의 장점은 사용자 인터페이스에서 원하는대로 사용할 수있는 사용자 정의 요소 및 해당 동작을 정의 할 수있는 `Custom elements` 입니다. 
+
+`Custom elements`를 사용해서 다음 이미지와 같이 중복되는 요소들을 찾아서 `component`화 하였고 중복되는 html 코드들을 효율적으로 줄일 수 있었습니다. 
+
+![image](https://user-images.githubusercontent.com/24728385/145716847-82443e05-67c8-4a1b-b6d3-e0fac231108c.png)
 
 <br/>
 
