@@ -1,8 +1,8 @@
-import { PRODUCT, ALERT } from '../utils/constants.js';
+import { PRODUCT, ALERT, LOCALSTORAGE } from '../utils/constants.js';
 
 const initProducts = () => {
-  return JSON.parse(localStorage.getItem('products'))
-    ? JSON.parse(localStorage.getItem('products'))
+  return JSON.parse(localStorage.getItem(LOCALSTORAGE.PRODUCTS))
+    ? JSON.parse(localStorage.getItem(LOCALSTORAGE.PRODUCTS))
     : [];
 };
 
@@ -31,7 +31,7 @@ export default {
     return true;
   },
   setProducts() {
-    localStorage.setItem('products', JSON.stringify(this.products));
+    localStorage.setItem(LOCALSTORAGE.PRODUCTS, JSON.stringify(this.products));
   },
 };
 

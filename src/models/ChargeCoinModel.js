@@ -1,8 +1,8 @@
-import { CHARGE, COINS, COINS_INIT_OBJECT, ALERT } from '../utils/constants.js';
+import { CHARGE, COINS, COINS_INIT_OBJECT, ALERT, LOCALSTORAGE } from '../utils/constants.js';
 
 const initCoins = () => {
-  return JSON.parse(localStorage.getItem('coins'))
-    ? JSON.parse(localStorage.getItem('coins'))
+  return JSON.parse(localStorage.getItem(LOCALSTORAGE.COINS))
+    ? JSON.parse(localStorage.getItem(LOCALSTORAGE.COINS))
     : COINS_INIT_OBJECT;
 };
 
@@ -42,7 +42,7 @@ export default {
     this.setCoins();
   },
   setCoins() {
-    localStorage.setItem('coins', JSON.stringify(this.coins));
+    localStorage.setItem(LOCALSTORAGE.COINS, JSON.stringify(this.coins));
   },
 };
 

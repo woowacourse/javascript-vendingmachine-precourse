@@ -99,3 +99,9 @@ export const COINS_INIT_OBJECT = {
   50: 0,
   10: 0,
 };
+
+export const LOCALSTORAGE = {
+  INPUT_MONEY: 'inputMoney',
+  COINS: 'coins',
+  PRODUCTS: 'products',
+};

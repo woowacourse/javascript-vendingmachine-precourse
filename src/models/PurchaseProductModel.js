@@ -1,7 +1,9 @@
-import { PRODUCT } from '../utils/constants.js';
+import { LOCALSTORAGE, PRODUCT } from '../utils/constants.js';
 
 const initInputMOney = () => {
-  return localStorage.getItem('inputMoney') ? localStorage.getItem('inputMoney') : parseInt(0);
+  return localStorage.getItem(LOCALSTORAGE.INPUT_MONEY)
+    ? localStorage.getItem(LOCALSTORAGE.INPUT_MONEY)
+    : parseInt(0);
 };
 export default {
   inputMoney: initInputMOney(),
@@ -31,7 +33,7 @@ export default {
     this.setInputMoney();
   },
   setInputMoney() {
-    localStorage.setItem('inputMoney', this.inputMoney);
+    localStorage.setItem(LOCALSTORAGE.INPUT_MONEY, this.inputMoney);
   },
 };
 
