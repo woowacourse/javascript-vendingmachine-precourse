@@ -23,14 +23,9 @@ import {
   VAL_PRODUCT_GRID_COLUMN_SIZE,
   VAL_COIN_GRID_COLUMN_SIZE,
   CLASS_PURCHASE_ITEM,
-  CLASS_PURCHASE_NAME,
-  CLASS_PURCHASE_PRICE,
   CLASS_PURCHASE_QUANTITY,
   STRING_PURCHASE_BUTTON,
   CLASS_PURCHASE_BUTTON,
-  DATA_PRODUCT_NAME,
-  DATA_PRODUCT_PRICE,
-  DATA_PRODUCT_QUANTITY,
   ID_PURCHASE_CHARGE_INPUT,
   ID_PURCHASE_CHARGE_SUBMIT,
   STRING_COIN_10,
@@ -41,6 +36,10 @@ import {
   ID_RETURN_COIN_100_QUANTITY,
   ID_RETURN_COIN_50_QUANTITY,
   ID_RETURN_COIN_10_QUANTITY,
+  STRING_RETURN_BUTTON,
+  ID_PURCHASE_COIN_RETURN_BUTTON,
+  CLASS_PURCHASE_NAME,
+  CLASS_PURCHASE_PRICE,
 } from './PurchaseProducts.constants.js';
 
 export default class PurchaseProducts {
@@ -65,9 +64,10 @@ export default class PurchaseProducts {
     this.addDOM('insertInput', ID_PURCHASE_CHARGE_INPUT);
     this.addDOM('insertSubmit', ID_PURCHASE_CHARGE_SUBMIT);
     this.addDOM('chargeAmount', ID_PURCHASE_CHARGE_AMOUNT);
+    this.addDOM('returnSubmit', ID_PURCHASE_COIN_RETURN_BUTTON);
     this.addDOM(STRING_COIN_500, ID_RETURN_COIN_500_QUANTITY);
-    this.addDOM(STRING_COIN_50, ID_RETURN_COIN_100_QUANTITY);
-    this.addDOM(STRING_COIN_100, ID_RETURN_COIN_50_QUANTITY);
+    this.addDOM(STRING_COIN_100, ID_RETURN_COIN_100_QUANTITY);
+    this.addDOM(STRING_COIN_50, ID_RETURN_COIN_50_QUANTITY);
     this.addDOM(STRING_COIN_10, ID_RETURN_COIN_10_QUANTITY);
     this.updateTotalAmount();
   }
@@ -106,7 +106,7 @@ export default class PurchaseProducts {
   }
 
   updateTotalAmount() {
-    const totalAmount = window.localStorage.getItem('insert') || '';
+    const totalAmount = JSON.parse(window.localStorage.getItem('insert')) || 0;
     this.DOMs.chargeAmount.innerText = totalAmount;
     this.DOMs.insertInput.value = '';
   }
@@ -121,28 +121,21 @@ export default class PurchaseProducts {
       CLASS_PURCHASE_ITEM,
     );
 
-    this.constructor.addDataset(grid, products);
-    this.constructor.appendButtonEventHandler(grid);
+    this.appendButtonEventHandler(grid);
 
     container.appendChild(grid);
   }
 
   static getAllItemObjects(products) {
-    Object.keys(products).reduce((array, p) => {
-      const items = this.constructor.createProductItemObject(products, p);
+    const productItems = Object.keys(products).reduce((array, p) => {
+      const items = this.createProductItemObject(products, p);
       return array.concat(items);
     }, []);
+
+    return productItems;
   }
 
-  static addDataset(item, data) {
-    Object.keys(data).forEach((name) => {
-      item.setAttribute(DATA_PRODUCT_NAME, name);
-      item.setAttribute(DATA_PRODUCT_PRICE, data[name].price);
-      item.setAttribute(DATA_PRODUCT_QUANTITY, data[name].quantity);
-    });
-  }
-
-  static appendButtonEventHandler(container) {
+  appendButtonEventHandler(container) {
     container.lastChild.appendChild(
       customCreateElement({
         tag: 'button',
@@ -158,9 +151,15 @@ export default class PurchaseProducts {
 
   handlePurchaseClick(e) {
     const item = e.target.parentNode.parentNode;
-    const { dataset } = item;
+    const dataset = {
+      productName: item.querySelector(`.${CLASS_PURCHASE_NAME}`).dataset
+        .productName,
+      productPrice: item.querySelector(`.${CLASS_PURCHASE_PRICE}`).dataset
+        .productPrice,
+      productQuantity: item.querySelector(`.${CLASS_PURCHASE_QUANTITY}`).dataset
+        .productQuantity,
+    };
     const purchased = MachineOperations.purchaseProduct(dataset);
-
     if (purchased) {
       this.updateTotalAmount();
       this.constructor.updateItemGrid(item);
@@ -169,7 +168,9 @@ export default class PurchaseProducts {
 
   static updateItemGrid(item) {
     const products = getAllProducts();
-    const newProduct = products[item.dataset.productName];
+    const name = item.querySelector('.product-purchase-name').dataset
+      .productName;
+    const newProduct = products[name];
     const target = item.querySelector(`.${CLASS_PURCHASE_QUANTITY}`);
     if (newProduct) {
       target.innerText = newProduct.quantity;
@@ -180,19 +181,22 @@ export default class PurchaseProducts {
 
   static createProductItemObject(product, key) {
     return [
-      createObjForElement('div', { class: CLASS_PURCHASE_NAME }, key),
-      createObjForElement(
-        'div',
-        { class: CLASS_PURCHASE_PRICE },
-        product[key].price,
-      ),
-      createObjForElement(
-        'div',
-        { class: CLASS_PURCHASE_QUANTITY },
-        product[key].quantity,
-      ),
+      this.createObjWithDataset('name', key),
+      this.createObjWithDataset('price', product[key].price),
+      this.createObjWithDataset('quantity', product[key].quantity),
       createObjForElement('div'),
     ];
+  }
+
+  static createObjWithDataset(type, val) {
+    const className = `product-purchase-${type}`;
+    const datasetName = `data-product-${type}`;
+    const attributes = Object.fromEntries([
+      ['class', className],
+      [datasetName, val],
+    ]);
+    const obj = createObjForElement('div', attributes, val);
+    return obj;
   }
 
   createPurchaseContainer() {
@@ -213,19 +217,47 @@ export default class PurchaseProducts {
   }
 
   createCoinContainer() {
-    const grid = createContainer(
+    const elements = this.createCoinContainerElements();
+    const { title, returnButton, grid } = elements;
+    return createContainer(document.createElement('section'), [
+      title,
+      returnButton,
+      grid,
+    ]);
+  }
+
+  createCoinContainerElements() {
+    const grid = this.constructor.createCoinGrid();
+    const title = customCreateElement({
+      tag: 'h2',
+      value: TITLE_RETURN_COIN_STATUS,
+    });
+    const returnButton = customCreateElement({
+      tag: 'button',
+      value: STRING_RETURN_BUTTON,
+    });
+    returnButton.addEventListener('click', this.handleReturn.bind(this));
+    return { title, returnButton, grid };
+  }
+
+  static createCoinGrid() {
+    return createContainer(
       document.createElement('div'),
       [createGridDiv(VAL_COIN_GRID_COLUMN_SIZE, COIN_RETURN_ITEMS)],
       ID_RETURN_COIN_STATUS,
     );
+  }
 
-    return createContainer(document.createElement('section'), [
-      customCreateElement({
-        tag: 'h2',
-        value: TITLE_RETURN_COIN_STATUS,
-      }),
-      grid,
-    ]);
+  handleReturn() {
+    const coins = MachineOperations.returnCoins();
+    this.updateTotalAmount();
+    this.renderReturnCoins(coins);
+  }
+
+  renderReturnCoins(coins) {
+    Object.keys(coins).forEach((coin) => {
+      this.DOMs[coin].innerText = `${coins[coin]}개`;
+    });
   }
 
   addAllPurchaseRows(grid) {

@@ -98,7 +98,7 @@ export default class ChargeMachine {
   static fillCoinGrids() {
     const coinObj = getAllCoins() || {};
     Object.keys(coinObj).forEach((coin) => {
-      this.DOMs[coin].innerText = coinObj[coin];
+      this.DOMs[coin].innerText = `${coinObj[coin]}개`;
     });
   }
 

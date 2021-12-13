@@ -11,7 +11,7 @@ import {
   ERROR_INVALID_QUANTITY,
   VAL_PRICE_ROUND_STANDARD,
 } from './MachineOperation.constants.js';
-import { getAllCoins, getAllProducts } from '../Utils.js';
+import { getAllCoins, getAllProducts, getCoins } from '../Utils.js';
 
 export default class MachineOperations {
   constructor() {
@@ -185,5 +185,28 @@ export default class MachineOperations {
     );
 
     return chargeSum;
+  }
+
+  static returnCoins() {
+    const insert = window.localStorage.getItem('insert');
+    const coins = getAllCoins();
+
+    if (insert > 10) {
+      const { returnCoins, left, newCoins } = getCoins(insert, coins);
+
+      if (left !== 0) window.localStorage.setItem('insert', left);
+      else window.localStorage.removeItem('insert');
+      if (!this.noChange(newCoins)) {
+        window.localStorage.setItem('coins', JSON.stringify(newCoins));
+      } else window.localStorage.removeItem('coins');
+
+      return returnCoins;
+    }
+
+    return {};
+  }
+
+  static noChange(obj) {
+    return Object.values(obj).reduce((acc, val) => acc + val, 0) === 0;
   }
 }

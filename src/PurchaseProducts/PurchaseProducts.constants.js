@@ -39,6 +39,7 @@ const STRING_PRODUCT_PRICE = '가격';
 const STRING_PRODUCT_QUANTITY = '수량';
 const STRING_PURCHASE_BUTTON_HEADER = '구매';
 export const STRING_PURCHASE_BUTTON = '구매하기';
+export const STRING_RETURN_BUTTON = '반환하기';
 export const VAL_PRODUCT_GRID_COLUMN_SIZE = '200px 100px 100px 100px';
 export const VAL_COIN_GRID_COLUMN_SIZE = '100px 100px';
 
