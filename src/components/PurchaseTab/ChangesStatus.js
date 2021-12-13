@@ -4,13 +4,10 @@ import ChangeStore from '../../stores/ChangesStore.js';
 import { returnChanges } from '../../actions/user.js';
 import { spendChanges } from '../../actions/changes.js';
 import { changeStatusTemplate } from '../../templates/Purchase.js';
-import { MESSAGE } from '../../utils/constants.js';
 
 export default class ChangesStatus extends Component {
   getGlobalState() {
-    const { chargedMoney, coins } = UserStore.getState();
-    const { changes } = ChangeStore.getState();
-    return { chargedMoney, coins, changes };
+    return UserStore.getState();
   }
 
   bindEvents() {
@@ -21,13 +18,13 @@ export default class ChangesStatus extends Component {
 
   onClickReturnButton({ id }) {
     if (id !== 'coin-return-button') return;
-    const { chargedMoney, changes } = this.getGlobalState();
-    if (chargedMoney === 0) return alert(MESSAGE.INVALID_RETURN_REQUEST);
-    if (changes === 0) return alert(MESSAGE.NOT_ENOUGH_CHANGES);
-
-    const { changeCoins, userChangeMoney } = ChangeStore.dispatch(
+    const { chargedMoney } = this.getGlobalState();
+    const { SUCCESS, error, data } = ChangeStore.dispatch(
       spendChanges(chargedMoney)
-    ).data;
+    );
+    if (!SUCCESS) return alert(error);
+
+    const { userChangeMoney, changeCoins } = data;
     UserStore.dispatch(
       returnChanges({ changes: userChangeMoney, changeCoins })
     );
@@ -45,6 +42,6 @@ export default class ChangesStatus extends Component {
         </tr>
         ${changeStatusTemplate(coins)}
       </table>
-      `;
+    `;
   }
 }

@@ -22,7 +22,8 @@ class ChangesStore extends Store {
       },
       [CHANGES_ACTION_TYPE.SPEND_CHANGES]: money => {
         const { changes, coins } = this.state;
-
+        if (money === 0)
+          return REDUCER_RESULT.FAIL(MESSAGE.INVALID_RETURN_REQUEST);
         if (changes === 0)
           return REDUCER_RESULT.FAIL(MESSAGE.NOT_ENOUGH_CHANGES);
 
