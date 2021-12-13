@@ -13,11 +13,10 @@ import {
 } from '../../constants/dom.js';
 import { DO_PURCHASE_TEXT } from '../../constants/text.js';
 
-export const initPurchasableProductTable = () => {
+export const initPurchasableProductTable = () =>
   vendingMachine.products.forEach(product => {
     createPurchaseTableRow(product.name, product.price, product.quantity);
   });
-};
 
 export const createPurchaseTableRow = (name, price, quantity) => {
   const tableBody = getPurchaseManagerPurchaseTableBody();
@@ -37,14 +36,13 @@ const createPurchasableProductTableRow = (name, price, quantity) => {
   return tableRow;
 };
 
-const createPurchasableProductTableData = (tableRow, name, price, quantity) => {
+const createPurchasableProductTableData = (tableRow, name, price, quantity) =>
   tableRow.append(
     createProductNameCell(name),
     createProductPriceCell(price),
     createProductQuantity(quantity),
     createPurchaseButtonCell(name)
   );
-};
 
 const createProductNameCell = name => {
   const productNameCell = document.createElement(TABLE_DATA);

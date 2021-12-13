@@ -1,7 +1,7 @@
 import { vendingMachine } from '../index.js';
 import { VENDING_MACHINE_CHARGES } from '../constants/key.js';
 
-export const saveCharges = () => {
+export const saveCharges = () =>
   localStorage.setItem(
     VENDING_MACHINE_CHARGES,
     JSON.stringify({
@@ -9,11 +9,9 @@ export const saveCharges = () => {
       coins: vendingMachine.coins,
     })
   );
-};
 
-const loadCharges = () => {
-  return JSON.parse(localStorage.getItem(VENDING_MACHINE_CHARGES));
-};
+const loadCharges = () =>
+  JSON.parse(localStorage.getItem(VENDING_MACHINE_CHARGES));
 
 export const initCharges = () => {
   const charges = loadCharges();

@@ -1,36 +1,28 @@
 export const app = document.getElementById('app');
 
-export const getMenuButtons = () => {
-  return [
-    document.getElementById('product-add-menu'),
-    document.getElementById('vending-machine-manage-menu'),
-    document.getElementById('product-purchase-menu'),
-  ];
-};
+export const getMenuButtons = () => [
+  document.getElementById('product-add-menu'),
+  document.getElementById('vending-machine-manage-menu'),
+  document.getElementById('product-purchase-menu'),
+];
 
-export const getManagers = () => {
-  return [
-    document.getElementById('product-manager'),
-    document.getElementById('vending-machine-manager'),
-    document.getElementById('purchase-manager'),
-  ];
-};
+export const getManagers = () => [
+  document.getElementById('product-manager'),
+  document.getElementById('vending-machine-manager'),
+  document.getElementById('purchase-manager'),
+];
 
-export const getProductAddButton = () => {
-  return document.getElementById('product-add-button');
-};
+export const getProductAddButton = () =>
+  document.getElementById('product-add-button');
 
-export const getProductManagerProductTableBody = () => {
-  return document.getElementById('product-manager-product-table-body');
-};
+export const getProductManagerProductTableBody = () =>
+  document.getElementById('product-manager-product-table-body');
 
-export const getVendingMachineChargeButton = () => {
-  return document.getElementById('vending-machine-charge-button');
-};
+export const getVendingMachineChargeButton = () =>
+  document.getElementById('vending-machine-charge-button');
 
-export const getVendingMachineChargeAmount = () => {
-  return document.getElementById('vending-machine-charge-amount');
-};
+export const getVendingMachineChargeAmount = () =>
+  document.getElementById('vending-machine-charge-amount');
 
 export const getVendingMachineCoinTableData = () => {
   return {
@@ -41,25 +33,18 @@ export const getVendingMachineCoinTableData = () => {
   };
 };
 
-export const getChargeButton = () => {
-  return document.getElementById('charge-button');
-};
+export const getChargeButton = () => document.getElementById('charge-button');
 
-export const getChargeAmount = () => {
-  return document.getElementById('charge-amount');
-};
+export const getChargeAmount = () => document.getElementById('charge-amount');
 
-export const getPurchaseManagerPurchaseTableBody = () => {
-  return document.getElementById('purchase-manager-purchase-table-body');
-};
+export const getPurchaseManagerPurchaseTableBody = () =>
+  document.getElementById('purchase-manager-purchase-table-body');
 
-export const getPurchaseButtonCollection = () => {
-  return document.getElementsByClassName('purchase-button');
-};
+export const getPurchaseButtonCollection = () =>
+  document.getElementsByClassName('purchase-button');
 
-export const getProductPurchaseItemCollection = () => {
-  return document.getElementsByClassName('product-purchase-item');
-};
+export const getProductPurchaseItemCollection = () =>
+  document.getElementsByClassName('product-purchase-item');
 
 export const getPurchasedItemQuantity = name => {
   const purchaseItems = getProductPurchaseItemCollection();
@@ -71,9 +56,8 @@ export const getPurchasedItemQuantity = name => {
   }
 };
 
-export const getProductManagerItemCollection = () => {
-  return document.getElementsByClassName('product-manage-item');
-};
+export const getProductManagerItemCollection = () =>
+  document.getElementsByClassName('product-manage-item');
 
 export const getPurchasedProductManagerItemQuantity = name => {
   const productItems = getProductManagerItemCollection();
@@ -85,9 +69,8 @@ export const getPurchasedProductManagerItemQuantity = name => {
   }
 };
 
-export const getCoinReturnButton = () => {
-  return document.getElementById('coin-return-button');
-};
+export const getCoinReturnButton = () =>
+  document.getElementById('coin-return-button');
 
 export const getReturnCoinTableData = () => {
   return {

@@ -22,7 +22,7 @@ export const addListenerToMenuButton = () => {
   });
 };
 
-const showOrHideManager = (managers, num) => {
+const showOrHideManager = (managers, num) =>
   managers.forEach(manager => {
     if (Number(manager.dataset.num) === num) {
       manager.style.display = BLOCK;
@@ -30,7 +30,6 @@ const showOrHideManager = (managers, num) => {
       manager.style.display = NONE;
     }
   });
-};
 
 export const addListenerToProductAddButton = () => {
   const productAddButton = getProductAddButton();

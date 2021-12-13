@@ -5,11 +5,10 @@ import {
 } from '../domElement.js';
 import { TABLE_ROW, CLASS, TABLE_DATA } from '../../constants/dom.js';
 
-export const createProductTableRow = products => {
+export const createProductTableRow = products =>
   products.forEach(product => {
     addTableBodyRow(product);
   });
-};
 
 const addTableBodyRow = product => {
   const tableBody = getProductManagerProductTableBody();

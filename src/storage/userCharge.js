@@ -1,9 +1,8 @@
 import { vendingMachine } from '../index.js';
 import { USER_CHARGE } from '../constants/key.js';
 
-export const saveUserCharge = () => {
+export const saveUserCharge = () =>
   localStorage.setItem(USER_CHARGE, vendingMachine.userAmount);
-};
 
 const loadUserCharge = () => {
   const userCharge = localStorage.getItem(USER_CHARGE);
