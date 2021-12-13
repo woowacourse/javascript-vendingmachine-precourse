@@ -1,13 +1,13 @@
 import { VALIDATION } from '../../common/constants/constants.js';
 import { $ } from '../../common/dom/dom.js';
 
-export const coinChargeInputValue = () => {
+export const machineChargeInputValue = () => {
   const $coinChargeInputValue = $('#vending-machine-charge-input').value;
 
   return parseInt($coinChargeInputValue, 10);
 };
 
-export const coinInputValidator = (coinChargeInputValue) => {
+export const machineChargeInputValidator = (coinChargeInputValue) => {
   let isValid = false;
 
   if (coinChargeInputValue.length < 1) {

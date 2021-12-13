@@ -1,6 +1,6 @@
 import { PRODUCT } from '../common/constants/constants.js';
 
-export const saveProductToStorage = function (
+export const saveItemsToStorage = function (
   productNameValue,
   productPriceValue,
   productQuantityValue

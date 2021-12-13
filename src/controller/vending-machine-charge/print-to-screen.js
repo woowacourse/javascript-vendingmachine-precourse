@@ -3,9 +3,8 @@ import {
   VENDING_MACHINE,
 } from '../../common/constants/constants.js';
 import { $ } from '../../common/dom/dom.js';
-import { getRandomCoinsAmongList } from '../../common/utils.js';
 
-export const printMoneyToScreen = () => {
+export const printChargedAmountToScreen = () => {
   const chargedAmountList = JSON.parse(localStorage.getItem('chargedAmount'));
   const $currentMachineMoney = $('#vending-machine-charge-amount');
   let amountArray = [];
@@ -27,7 +26,7 @@ export const printAmountOfCoinToScreen = () => {
   const $vendingMachine50Coin = $('#vending-machine-coin-50-quantity');
   const $vendingMachine10Coin = $('#vending-machine-coin-10-quantity');
   const coinList = JSON.parse(localStorage.getItem('coinList'));
-
+  console.log(coinList);
   $vendingMachine500Coin.innerHTML = `${coinList[COIN_LIST[0]]}개`;
   $vendingMachine100Coin.innerHTML = `${coinList[COIN_LIST[1]]}개`;
   $vendingMachine50Coin.innerHTML = `${coinList[COIN_LIST[2]]}개`;

@@ -1,5 +1,6 @@
 import { PRODUCT } from '../common/constants/constants.js';
-
+import { getRandomCoinsAmongList } from '../common/utils.js';
+import { printChargedAmountToScreen } from '../controller/vending-machine-charge/print-to-screen.js';
 export const saveCharegedAmountToStorage = (coinChargeInputValue) => {
   let chargedAmount = {}; // 추가할 값
 
@@ -14,4 +15,14 @@ export const saveCharegedAmountToStorage = (coinChargeInputValue) => {
   let finalChargedAmountList = prevChargedAmount.concat(chargedAmount);
 
   localStorage.setItem(PRODUCT.CHARGED, JSON.stringify(finalChargedAmountList));
+};
+
+export const saveRandomAmountOfCoins = () => {
+  const sum = printChargedAmountToScreen();
+  console.log(sum);
+  const randomCoinAmount = getRandomCoinsAmongList(sum);
+
+  localStorage.setItem('coinList', JSON.stringify(randomCoinAmount));
+
+  return JSON.parse(localStorage.getItem('coinList'));
 };
