@@ -143,7 +143,7 @@ const createPurchaseListTableHead = () => {
 const createPurchaseListTableHeadRow = () => {
   const tableRow = document.createElement(TABLE_ROW);
 
-  createPurchaseListTableHeader().forEach((header) => {
+  createPurchaseListTableHeader().forEach(header => {
     tableRow.appendChild(header);
   });
 

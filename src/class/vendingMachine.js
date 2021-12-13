@@ -82,7 +82,7 @@ export default class VendingMachine {
 
   _productModelDeleteAction(product) {
     this.products = this.products.filter(
-      (_product) => _product.name !== product.name
+      _product => _product.name !== product.name
     );
   }
 

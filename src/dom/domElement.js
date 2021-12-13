@@ -61,7 +61,7 @@ export const getProductPurchaseItemCollection = () => {
   return document.getElementsByClassName('product-purchase-item');
 };
 
-export const getPurchasedItemQuantity = (name) => {
+export const getPurchasedItemQuantity = name => {
   const purchaseItems = getProductPurchaseItemCollection();
 
   for (let item of purchaseItems) {
@@ -75,7 +75,7 @@ export const getProductManagerItemCollection = () => {
   return document.getElementsByClassName('product-manage-item');
 };
 
-export const getPurchasedProductManagerItemQuantity = (name) => {
+export const getPurchasedProductManagerItemQuantity = name => {
   const productItems = getProductManagerItemCollection();
 
   for (let item of productItems) {

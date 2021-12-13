@@ -17,7 +17,7 @@ export default class Product {
   }
 
   static searchProduct(name) {
-    return vendingMachine.products.find((product) => product.name === name);
+    return vendingMachine.products.find(product => product.name === name);
   }
 
   static deleteProduct(product) {

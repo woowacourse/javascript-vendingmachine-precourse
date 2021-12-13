@@ -5,13 +5,13 @@ import {
 } from '../domElement.js';
 import { TABLE_ROW, CLASS, TABLE_DATA } from '../../constants/dom.js';
 
-export const createProductTableRow = (products) => {
-  products.forEach((product) => {
+export const createProductTableRow = products => {
+  products.forEach(product => {
     addTableBodyRow(product);
   });
 };
 
-const addTableBodyRow = (product) => {
+const addTableBodyRow = product => {
   const tableBody = getProductManagerProductTableBody();
 
   tableBody.appendChild(
@@ -44,13 +44,13 @@ const createTableBodyData = (row, name, price, quantity) => {
   row.append(nameCell, priceCell, quantityCell);
 };
 
-export const updateProductItemAfterPurchase = (name) => {
+export const updateProductItemAfterPurchase = name => {
   const productItem = getPurchasedProductManagerItemQuantity(name);
 
   productItem.innerHTML -= 1;
 };
 
-export const deleteProductItem = (name) => {
+export const deleteProductItem = name => {
   const productItems = getProductManagerItemCollection();
 
   for (let item of productItems) {

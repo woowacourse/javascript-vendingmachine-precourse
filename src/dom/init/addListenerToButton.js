@@ -23,7 +23,7 @@ export const addListenerToMenuButton = () => {
 };
 
 const showOrHideManager = (managers, num) => {
-  managers.forEach((manager) => {
+  managers.forEach(manager => {
     if (Number(manager.dataset.num) === num) {
       manager.style.display = BLOCK;
     } else {

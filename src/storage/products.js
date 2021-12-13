@@ -1,7 +1,7 @@
 import { vendingMachine } from '../index.js';
 import { PRODUCTS } from '../constants/key.js';
 
-export const saveProductList = (productList) => {
+export const saveProductList = productList => {
   localStorage.setItem(PRODUCTS, JSON.stringify(productList));
 };
 

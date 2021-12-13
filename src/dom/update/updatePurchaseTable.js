@@ -14,7 +14,7 @@ import {
 import { DO_PURCHASE_TEXT } from '../../constants/text.js';
 
 export const initPurchasableProductTable = () => {
-  vendingMachine.products.forEach((product) => {
+  vendingMachine.products.forEach(product => {
     createPurchaseTableRow(product.name, product.price, product.quantity);
   });
 };
@@ -46,7 +46,7 @@ const createPurchasableProductTableData = (tableRow, name, price, quantity) => {
   );
 };
 
-const createProductNameCell = (name) => {
+const createProductNameCell = name => {
   const productNameCell = document.createElement(TABLE_DATA);
 
   productNameCell.setAttribute(CLASS, 'product-purchase-name');
@@ -56,7 +56,7 @@ const createProductNameCell = (name) => {
   return productNameCell;
 };
 
-const createProductPriceCell = (price) => {
+const createProductPriceCell = price => {
   const productPriceCell = document.createElement(TABLE_DATA);
 
   productPriceCell.setAttribute(CLASS, 'product-purchase-price');
@@ -66,7 +66,7 @@ const createProductPriceCell = (price) => {
   return productPriceCell;
 };
 
-const createProductQuantity = (quantity) => {
+const createProductQuantity = quantity => {
   const productQuantityCell = document.createElement(TABLE_DATA);
 
   productQuantityCell.setAttribute(CLASS, 'product-purchase-quantity');
@@ -76,7 +76,7 @@ const createProductQuantity = (quantity) => {
   return productQuantityCell;
 };
 
-const createPurchaseButtonCell = (name) => {
+const createPurchaseButtonCell = name => {
   const purchaseButtonCell = document.createElement(TABLE_DATA);
   const purchaseButton = document.createElement(BUTTON);
 
@@ -91,13 +91,13 @@ const createPurchaseButtonCell = (name) => {
   return purchaseButtonCell;
 };
 
-export const updatePurchasableProductTableAfterPurchase = (name) => {
+export const updatePurchasableProductTableAfterPurchase = name => {
   const purchasedItem = getPurchasedItemQuantity(name);
 
   purchasedItem.innerHTML -= 1;
 };
 
-export const deletePurchaseProduct = (name) => {
+export const deletePurchaseProduct = name => {
   const purchaseItems = getProductPurchaseItemCollection();
 
   for (let item of purchaseItems) {

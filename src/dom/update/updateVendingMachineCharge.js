@@ -8,7 +8,7 @@ import { COINS } from '../../constants/data.js';
 export const updateVendingMachineTable = () => {
   const vendingMachineCoinTableData = getVendingMachineCoinTableData();
 
-  COINS.forEach((coin) => {
+  COINS.forEach(coin => {
     vendingMachineCoinTableData[
       coin
     ].innerHTML = `${vendingMachine.coins[coin]}개`;

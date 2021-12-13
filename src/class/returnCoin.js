@@ -32,7 +32,7 @@ export default class ReturnCoin {
   }
 
   static pickCoin() {
-    COINS.forEach((coin) => {
+    COINS.forEach(coin => {
       while (vendingMachine.coins[coin] > 0 && vendingMachine.userAmount > 0) {
         vendingMachine.updateUserAmountModel(ACTION_WITHDRAW, coin);
         vendingMachine.updateVendingMachineChargeModel(ACTION_WITHDRAW, coin);

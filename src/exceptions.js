@@ -9,7 +9,7 @@ import {
   ALERT_LACK_OF_USER_CHANGE,
 } from './constants/alert.js';
 
-export const blankInputException = (input) => {
+export const blankInputException = input => {
   if (input.length === 0) {
     alert(ALERT_BLANK);
     return true;
@@ -18,7 +18,7 @@ export const blankInputException = (input) => {
   return false;
 };
 
-export const outRangeInputException = (input) => {
+export const outRangeInputException = input => {
   if (input <= 0) {
     alert(ALERT_OUT_RANGE);
     return true;
@@ -27,7 +27,7 @@ export const outRangeInputException = (input) => {
   return false;
 };
 
-export const outRangeProductPriceInputException = (input) => {
+export const outRangeProductPriceInputException = input => {
   if (input < 100) {
     alert(ALERT_OUT_RANGE_PRICE);
     return true;
@@ -36,7 +36,7 @@ export const outRangeProductPriceInputException = (input) => {
   return false;
 };
 
-export const noIntegerException = (input) => {
+export const noIntegerException = input => {
   if (!Number.isInteger(input)) {
     alert(ALERT_NOT_INTEGER);
     return true;
@@ -45,7 +45,7 @@ export const noIntegerException = (input) => {
   return false;
 };
 
-export const notMultipleOfTenException = (input) => {
+export const notMultipleOfTenException = input => {
   if (input % 10 !== 0) {
     alert(ALERT_NOT_MULTIPLE_OF_TEN);
     return true;
@@ -54,10 +54,10 @@ export const notMultipleOfTenException = (input) => {
   return false;
 };
 
-export const duplicatedProductException = (productName) => {
+export const duplicatedProductException = productName => {
   let isDuplicated = false;
 
-  vendingMachine.products.forEach((product) => {
+  vendingMachine.products.forEach(product => {
     if (product.name === productName) {
       alert(ALERT_DUPLICATED);
       isDuplicated = true;
@@ -67,7 +67,7 @@ export const duplicatedProductException = (productName) => {
   return isDuplicated;
 };
 
-export const lackOfUserChangeException = (price) => {
+export const lackOfUserChangeException = price => {
   if (vendingMachine.userAmount >= price) {
     return false;
   } else {
