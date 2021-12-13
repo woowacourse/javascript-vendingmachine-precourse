@@ -1,5 +1,12 @@
 import View from './View.js';
-import { ELEMENT_ID, COINS, CHARGE, EVENT_TYPE, ELEMENT_SID } from '../utils/constants.js';
+import {
+  ELEMENT_ID,
+  COINS,
+  CHARGE,
+  EVENT_TYPE,
+  ELEMENT_SID,
+  ELEMENT_CLASS,
+} from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
 import ChargeCoinModel from '../models/ChargeCoinModel.js';
 const ChargeCoinView = { ...View };
@@ -29,7 +36,7 @@ ChargeCoinView.template = function () {
 };
 
 ChargeCoinView.tableTemplate = function () {
-  return `<table>
+  return `<table class="${ELEMENT_CLASS.COINS_TABLE} ${ELEMENT_CLASS.TABLE_COMMON}">
     <thead> 
       <tr>
         <th>${CHARGE.COIN}</th>

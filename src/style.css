@@ -1,0 +1,18 @@
+table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+.table-common {
+  text-align: center;
+}
+.table-common th,
+td {
+  border: 1px solid black;
+  padding: 10px 0;
+}
+.products-table {
+  width: 400px;
+}
+.coins-table {
+  width: 300px;
+}

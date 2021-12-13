@@ -24,7 +24,7 @@ ManageProductView.template = function () {
     <button id=${ELEMENT_ID.PRODUCT_ADD_BUTTON}>추가하기</button>
   </div>
   <h4>상품 현황</h4>
-  <table>
+  <table class="${ELEMENT_CLASS.TABLE_COMMON} ${ELEMENT_CLASS.PRODUCTS_TABLE}">
     <thead> 
       <tr>
         <th>${PRODUCT.NAME}</th>

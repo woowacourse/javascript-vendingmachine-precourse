@@ -43,6 +43,10 @@ export const ELEMENT_CLASS = {
   PRODUCT_PURCHASE_PRICE: 'product-purchase-price',
   PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
   PURCHASE_BUTTON: 'purchase-button',
+  TABLE_COMMON: 'table-common',
+  VENDING_MACHINE_TABLE: 'vending-machine-table',
+  PRODUCTS_TABLE: 'products-table',
+  COINS_TABLE: 'coins-table',
 };
 export const ELEMENT_SCLASS = {
   PRODUCT_PURCHASE_NAME: '.product-purchase-name',

@@ -39,7 +39,7 @@ PurchaseProductView.productsTemplate = function () {
   </div>
   투입한 금액:<span id=${ELEMENT_ID.PURCHASE_CHARGE_AMOUNT}>${PurchaseProductModel.total()}</span>
   <h3>구매할 수 있는 상품 현황</h3>
-  <table>
+  <table class="${ELEMENT_CLASS.TABLE_COMMON} ${ELEMENT_CLASS.PRODUCTS_TABLE}" >
     <thead>
       <tr>
         <th>${PRODUCT.NAME}</th>
