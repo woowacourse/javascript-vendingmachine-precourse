@@ -9,9 +9,9 @@ const getChargeInput = function getChargeInputValue() {
 const handleChargeInput = function handleChargeFormInput() {
   const chargeValue = getChargeInput();
 
-  const register = registerChange(chargeValue);
+  const registerSuccess = registerChange(chargeValue);
 
-  if (register) {
+  if (registerSuccess) {
     this.renderChargeAmount(getChargeAmount());
     this.clearForm();
   }

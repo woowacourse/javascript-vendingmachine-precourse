@@ -1,10 +1,10 @@
 import { getFromStorage, setInStorage } from '../store.js';
 import { divideToCoins, mergeObj } from '../Utils.js';
-import { isValidMoney, validator } from '../validation.js';
+import { isValidMoney } from '../validation.js';
 import { ERROR_INVALID_INSERT } from './constants.js';
 
 export const registerChange = function addChangeToLocalStorage(amount) {
-  if (validator(isValidMoney, amount, ERROR_INVALID_INSERT)) {
+  if (isValidMoney(amount)) {
     const currentCoinObj = getFromStorage('coins') || {};
     const newCoinObj = divideToCoins(amount);
     const mergedCoins = mergeObj(currentCoinObj, newCoinObj);
@@ -12,6 +12,7 @@ export const registerChange = function addChangeToLocalStorage(amount) {
     return true;
   }
 
+  alert(ERROR_INVALID_INSERT);
   return false;
 };
 
