@@ -59,7 +59,7 @@ export default class TabProductAdd {
         SELECTOR.CLASS_PRODUCT_MANAGE_PRICE,
         SELECTOR.CLASS_PRODUCT_MANAGE_QUANTITY,
       ],
-      initialData: [],
+      initialData: this.vendingMachine.getProductList(),
     });
     this.$root.appendChild(this.listTitle.getTarget());
     this.$root.appendChild(this.listTable.getTarget());

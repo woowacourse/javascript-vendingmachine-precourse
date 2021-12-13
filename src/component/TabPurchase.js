@@ -77,7 +77,7 @@ export default class TabPurchase {
         SELECTOR.CLASS_PRODUCT_PURCHASE_QUANTITY,
         SELECTOR.CLASS_PRODUCT_PURCHASE_BUTTON,
       ],
-      initialData: [],
+      initialData: this.vendingMachine.getProductList(),
     });
     this.$root.appendChild(this.productListTitle.getTarget());
     this.$root.appendChild(this.productListTable.getTarget());

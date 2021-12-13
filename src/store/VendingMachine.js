@@ -2,6 +2,8 @@
 /* eslint-disable no-constructor-return */
 import Product from '../model/Product.js';
 import Coin from '../model/Coin.js';
+import { saveToStorage, loadFromStorage } from '../utils/localStorage.js';
+import STORAGE from '../constant/storage.js';
 import { COIN, COIN_ARRAY } from '../constant/coin.js';
 
 let instance = null;
@@ -11,7 +13,7 @@ export default class VendingMachine {
     if (instance !== null) {
       return instance;
     }
-    this.productList = [];
+    this.initializeProductList();
     this.rechargedCoin = [
       new Coin(COIN.COIN_500, null),
       new Coin(COIN.COIN_100, null),
@@ -29,6 +31,17 @@ export default class VendingMachine {
     instance = this;
   }
 
+  initializeProductList() {
+    const loadedProductList = loadFromStorage(STORAGE.productList);
+
+    this.productList = [];
+    if (loadedProductList !== null) {
+      loadedProductList.forEach((product) => {
+        this.productList.push(new Product(product.name, product.price, product.quantity));
+      });
+    }
+  }
+
   addProduct(name, price, quantity) {
     const index = this.findProductIndex(name);
 
@@ -37,6 +50,8 @@ export default class VendingMachine {
     } else {
       this.modifyProduct(index, name, price, quantity);
     }
+
+    saveToStorage(STORAGE.productList, this.productList);
   }
 
   findProductIndex(name) {
