@@ -43,6 +43,28 @@ export class VendingMachineModel {
     localStorage.setItem('products', JSON.stringify(this.products));
   }
 
+  addChargeMoney(chargeMoney) {
+    this.machineChargeAmount += chargeMoney;
+    localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
+    return this.machineChargeAmount;
+  }
+
+  addMachineCoins(chargeMoney) {
+    while (chargeMoney > 0) {
+      const randomCoin = MissionUtils.Random.pickNumberInList(coinList);
+      if (this.isEnoughMoneyForCoin(chargeMoney, randomCoin)) {
+        chargeMoney -= randomCoin;
+        this.machineCoins[randomCoin]++;
+      }
+    }
+    localStorage.setItem('machineCoins', JSON.stringify(this.machineCoins));
+    return this.machineCoins;
+  }
+
+  isEnoughMoneyForCoin(chargeMoney, randomCoin) {
+    return chargeMoney - randomCoin >= 0;
+  }
+
   buyProduct(productName, price) {
     this.addInsertedMoney(Number(`-${price}`));
     this.minusQuantity(productName);
@@ -62,32 +84,10 @@ export class VendingMachineModel {
     });
   }
 
-  addChargeMoney(chargeMoney) {
-    this.machineChargeAmount += chargeMoney;
-    localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
-    return this.machineChargeAmount;
-  }
-
-  addMachineCoins(chargeMoney) {
-    while (chargeMoney > 0) {
-      const randomCoin = MissionUtils.Random.pickNumberInList(coinList);
-      if (this.isEnoughMoneyForCoin(chargeMoney, randomCoin)) {
-        chargeMoney -= randomCoin;
-        this.machineCoins[randomCoin]++;
-      }
-    }
-    localStorage.setItem('machineCoins', JSON.stringify(this.machineCoins));
-    return this.machineCoins;
-  }
-
   addInsertedMoney(insertedMoney) {
     this.totalInsertedMoney += insertedMoney;
     localStorage.setItem('totalInsertedMoney', JSON.stringify(this.totalInsertedMoney));
     return this.totalInsertedMoney;
-  }
-
-  isEnoughMoneyForCoin(chargeMoney, randomCoin) {
-    return chargeMoney - randomCoin >= 0;
   }
 
   returnCoin() {
