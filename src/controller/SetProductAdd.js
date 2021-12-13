@@ -8,14 +8,17 @@ export default class SetProductAdd {
     this.productAdd = new ProductAdd(this.render);
   }
 
-  // initializeInputs = () => {
-  //   const $productNameInput = document.querySelector(DOM.$PRODUCT_NAME_INPUT);
-  //   const $productPriceInput = document.querySelector(DOM.$PRODUCT_PRICE_INPUT);
-  //   const $productQuantityInput = document.querySelector(DOM.$PRODUCT_QUANTITY_INPUT);
-  //   $productNameInput.value = '';
-  //   $productPriceInput.value = '';
-  //   $productQuantityInput.value = '';
-  // };
+  initializeInputs = () => {
+    const $productNameInput = document.querySelector(DOM.$PRODUCT_NAME_INPUT);
+    const $productPriceInput = document.querySelector(DOM.$PRODUCT_PRICE_INPUT);
+    const $productQuantityInput = document.querySelector(DOM.$PRODUCT_QUANTITY_INPUT);
+
+    $productNameInput.value = '';
+    $productPriceInput.value = '';
+    $productQuantityInput.value = '';
+
+    $productNameInput.focus();
+  };
 
   getProductInputs = () => {
     this.product.setInformation(this.productAdd.getInputs());
@@ -33,6 +36,6 @@ export default class SetProductAdd {
 
     this.getProductInputs();
     this.renderProduct();
-    // this.initializeInputs();
+    this.initializeInputs();
   };
 }
