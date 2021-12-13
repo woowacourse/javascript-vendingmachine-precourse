@@ -84,7 +84,7 @@ export default class PurchaseProducts {
   createFormContainer() {
     const container = InsertFormSection();
 
-    const button = PurchaseChargeSubmit;
+    const button = PurchaseChargeSubmit();
     button.addEventListener('click', handlePurchaseCharge.bind(this));
     const purchaseChargeSum = PurchaseChargeSumLabel;
     purchaseChargeSum.appendChild(PurchaseChargeSumSpan);

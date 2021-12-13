@@ -56,13 +56,15 @@ export const PurchaseChargeInput = customCreateElement({
   },
 });
 
-export const PurchaseChargeSubmit = customCreateElement({
-  tag: 'button',
-  attributes: {
-    id: ID_PURCHASE_CHARGE_SUBMIT,
-  },
-  value: VAL_CHARGE_SUBMIT,
-});
+export const PurchaseChargeSubmit = function createPurchaseSubmit() {
+  return customCreateElement({
+    tag: 'button',
+    attributes: {
+      id: ID_PURCHASE_CHARGE_SUBMIT,
+    },
+    value: VAL_CHARGE_SUBMIT,
+  });
+};
 
 export const PurchaseChargeSumLabel = customCreateElement({
   tag: 'p',

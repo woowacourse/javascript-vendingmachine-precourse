@@ -41,16 +41,16 @@ export default class AddProducts {
   }
 
   createFormContainer() {
-    const container = ProductFormSection;
+    const container = ProductFormSection();
 
     container.appendChild(ProductFormTitle);
     container.appendChild(ProductNameInput);
     container.appendChild(ProductPriceInput);
     container.appendChild(ProductQuantityInput);
 
-    const submitButton = ProductFormSubmit;
+    const submitButton = ProductFormSubmit();
     submitButton.addEventListener('click', handleProductInput.bind(this));
-    container.appendChild(ProductFormSubmit);
+    container.appendChild(submitButton);
 
     return container;
   }

@@ -62,9 +62,9 @@ export default class ChargeMachine {
   }
 
   createFormContainer() {
-    const container = ChargeFormSection;
+    const container = ChargeFormSection();
 
-    const button = ChargeFormSubmit;
+    const button = ChargeFormSubmit();
     button.addEventListener('click', handleChargeInput.bind(this));
     const chargeSum = ChargeSumLabel;
     chargeSum.appendChild(ChargeSumSpan);

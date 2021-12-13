@@ -74,7 +74,9 @@ const createTRs = function createTableRows(dataArray) {
 
 // ----------------- components -----------------
 // form components
-export const ChargeFormSection = document.createElement('div');
+export const ChargeFormSection = function createNewSection() {
+  return document.createElement('div');
+};
 
 export const ChargeFormTitle = customCreateElement({
   tag: 'h2',
@@ -90,13 +92,15 @@ export const ChargeInput = customCreateElement({
   },
 });
 
-export const ChargeFormSubmit = customCreateElement({
-  tag: 'button',
-  attributes: {
-    id: ID_MACHINE_CHARGE_SUBMIT,
-  },
-  value: VAL_INSERT_BUTTON,
-});
+export const ChargeFormSubmit = function createChargeSubmit() {
+  customCreateElement({
+    tag: 'button',
+    attributes: {
+      id: ID_MACHINE_CHARGE_SUBMIT,
+    },
+    value: VAL_INSERT_BUTTON,
+  });
+};
 
 export const ChargeSumLabel = customCreateElement({
   tag: 'p',

@@ -99,7 +99,9 @@ export const createTR = function createTableRow(data) {
 
 // ----------------- components -----------------
 // form components
-export const ProductFormSection = document.createElement('div');
+export const ProductFormSection = function createNewSection() {
+  return document.createElement('div');
+};
 
 export const ProductFormTitle = customCreateElement({
   tag: 'h2',
@@ -124,11 +126,13 @@ export const ProductQuantityInput = createInput(
   STRING_PRODUCT_QUANTITY,
 );
 
-export const ProductFormSubmit = customCreateElement({
-  tag: 'button',
-  attributes: { id: ID_PRODUCT_ADD_SUBMIT },
-  value: VAL_PRODUCT_ADD_SUBMIT,
-});
+export const ProductFormSubmit = function createProductSubmit() {
+  return customCreateElement({
+    tag: 'button',
+    attributes: { id: ID_PRODUCT_ADD_SUBMIT },
+    value: VAL_PRODUCT_ADD_SUBMIT,
+  });
+};
 
 // table components
 export const ProductTableSection = function createNewSection() {
