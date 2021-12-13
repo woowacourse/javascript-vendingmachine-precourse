@@ -9,17 +9,15 @@ export default class PurchaseContainer extends Component {
     this.$state = {
       purchaseAmount: getLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, 0),
       vendingMachineAmount: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, 0),
-      vendingMachinecoins: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, {}),
-      products: getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [])
+      vendingMachineCoins: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, {}),
+      products: getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, []),
+      returnCoins: {}
     };
   }
 
   mounted() {
     this.$target.querySelector(`#product-table-container`).innerHTML = this.printProductTable();
     this.$target.querySelector(`#purchase-charge-table-container`).innerHTML = this.printChargeTable();
-    if (this.$state.amount) {
-      this.printCoinQuantity(this.$state.coins);
-    }
   }
 
   template() {
@@ -36,6 +34,7 @@ export default class PurchaseContainer extends Component {
     </div>
     <div>
       <h2>잔돈</h2>
+      <button id=${ID.COIN_RETURN_BUTTON}>반환하기</button>
       <div id="purchase-charge-table-container"></div>
     </div>
     `;
@@ -44,6 +43,7 @@ export default class PurchaseContainer extends Component {
   setEvent() {
     this.purchaseChargeFormClickHandler();
     this.productPurchaseButtonClickHandler();
+    this.coinReturnButtonClickHandler();
   }
 
   printChargeForm() {
@@ -101,5 +101,33 @@ export default class PurchaseContainer extends Component {
         this.setEvent();
       }
     });
+  }
+
+  coinReturnButtonClickHandler() {
+    this.addEvent('click', `#${ID.COIN_RETURN_BUTTON}`, () => {
+      this.returnCoin(this.$state.purchaseAmount, this.$state.vendingMachineCoins);
+
+      this.printCoinQuantity(this.$state.returnCoins);
+      this.setEvent();
+    });
+  }
+
+  returnCoin(amount, coins) {
+    const returnCoins = {};
+    Object.entries(coins)
+      .sort((a, b) => b[0] - a[0])
+      .forEach(([coin, quantity]) => {
+        if (Number.parseInt(amount / coin, 10) >= quantity) {
+          returnCoins[coin] = quantity;
+        } else {
+          returnCoins[coin] = Number.parseInt(amount / coin, 10);
+        }
+        amount = amount - coin * returnCoins[coin];
+        this.setState({
+          purchaseAmount: amount,
+          vendingMachineCoins: Object.assign(this.$state.vendingMachineCoins, {[coin]: quantity - returnCoins[coin]}),
+          returnCoins
+        });
+      });
   }
 }
