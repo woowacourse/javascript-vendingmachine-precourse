@@ -22,6 +22,7 @@ export default class ChargingChangeView extends View {
     this.vendingMachineChargeButton = qs('#vending-machine-charge-button');
     
     this.bindEvents();
+    super.show();
   }
 
   bindEvents() {

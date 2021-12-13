@@ -1,5 +1,5 @@
-import { TAB_BUTTON_ELEMENTS } from "../constants.js";
-import { qs } from "../utils/index.js";
+import { TAB_BUTTON_ELEMENTS } from '../constants.js';
+import { qs } from '../utils/index.js';
 
 export default class InitialElementsView {
   constructor() {

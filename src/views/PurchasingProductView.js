@@ -25,6 +25,7 @@ export default class PurchasingProductView extends View {
     this.coinReturnButton = qs('#coin-return-button');
 
     this.bindEvents();
+    super.show();
   }
 
   bindEvents() {
@@ -107,7 +108,6 @@ class Template {
   }
 
   getReturnExchangeList(changeList) {
-    console.log(changeList);
     return `
       <h3>잔돈</h3>
       <button id="coin-return-button">반환하기</button>

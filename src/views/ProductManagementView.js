@@ -23,6 +23,7 @@ export default class ProductManagementView extends View {
     this.productAddButton = qs('#product-add-button');
 
     this.bindEvents();
+    super.show();
   }
 
   bindEvents() {

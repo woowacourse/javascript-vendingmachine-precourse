@@ -15,8 +15,9 @@ export default class Controller {
 
     this.store = store;
 
-    this.subscribeViewEvents();
+    this.clickedTab = store.clickedTab;
 
+    this.subscribeViewEvents();
     this.render();
   }
 
@@ -60,22 +61,85 @@ export default class Controller {
           JSON.parse(this.store.storage.getItem('puttedMoney')),
         ]);
       });
+    this.tabView
+      .on('@showProductPurchaseMenu', () => {
+        this.store.clickedTab = 'productPurchaseMenu';
+        this.render();
+      })
+      .on('@showVendingMachineManageMenu', () => {
+        this.store.clickedTab = 'vendingMachineManageMenu';
+        this.render();
+      })
+      .on('@showProductAddMenu', () => {
+        this.store.clickedTab = 'productAddMenu';
+        this.render();
+      });
   }
 
   render() {
-    this.productManagementView.hide(
-      JSON.parse(this.store.storage.getItem('productList')),
-    );
+    this.tabView.show();
 
-    this.chargingChangeView.hide([
-      JSON.parse(this.store.storage.getItem('changeList')),
-      this.store.getChangeListTotal(),
-    ]);
+    if (this.store.clickedTab === 'productPurchaseMenu') {
+      
+      this.productManagementView.show(
+        JSON.parse(this.store.storage.getItem('productList')),
+      );
 
-    this.purchasingProductView.show([
-      JSON.parse(this.store.storage.getItem('productList')),
-      JSON.parse(this.store.storage.getItem('changeList')),
-      JSON.parse(this.store.storage.getItem('puttedMoney')),
-    ]);
+      this.chargingChangeView.hide([
+        JSON.parse(this.store.storage.getItem('changeList')),
+        this.store.getChangeListTotal(),
+      ]);
+
+      this.purchasingProductView.hide([
+        JSON.parse(this.store.storage.getItem('productList')),
+        JSON.parse(this.store.storage.getItem('changeList')),
+        JSON.parse(this.store.storage.getItem('puttedMoney')),
+      ]);
+    } else if (this.store.clickedTab === 'vendingMachineManageMenu') {
+      this.productManagementView.hide(
+        JSON.parse(this.store.storage.getItem('productList')),
+      );
+
+      this.chargingChangeView.show([
+        JSON.parse(this.store.storage.getItem('changeList')),
+        this.store.getChangeListTotal(),
+      ]);
+
+      this.purchasingProductView.hide([
+        JSON.parse(this.store.storage.getItem('productList')),
+        JSON.parse(this.store.storage.getItem('changeList')),
+        JSON.parse(this.store.storage.getItem('puttedMoney')),
+      ]);
+    } else if (this.store.clickedTab === 'productAddMenu') {
+      this.productManagementView.hide(
+        JSON.parse(this.store.storage.getItem('productList')),
+      );
+
+      this.chargingChangeView.hide([
+        JSON.parse(this.store.storage.getItem('changeList')),
+        this.store.getChangeListTotal(),
+      ]);
+
+      this.purchasingProductView.show([
+        JSON.parse(this.store.storage.getItem('productList')),
+        JSON.parse(this.store.storage.getItem('changeList')),
+        JSON.parse(this.store.storage.getItem('puttedMoney')),
+      ]);
+    } else {
+      this.productManagementView.hide(
+        JSON.parse(this.store.storage.getItem('productList')),
+      );
+
+      this.chargingChangeView.hide([
+        JSON.parse(this.store.storage.getItem('changeList')),
+        this.store.getChangeListTotal(),
+      ]);
+
+      this.purchasingProductView.hide([
+        JSON.parse(this.store.storage.getItem('productList')),
+        JSON.parse(this.store.storage.getItem('changeList')),
+        JSON.parse(this.store.storage.getItem('puttedMoney')),
+      ]);
+    }
   }
 }
