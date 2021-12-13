@@ -1,5 +1,7 @@
+import { NUMBER } from "../constant/Constant.js";
+
 function validatePrice(input) {
-    return (input % 10) === 0 && input >= 100;
+    return (input % NUMBER.MINIMUM_COIN_UNIT) === 0 && input >= NUMBER.MINIMUM_PRICE;
 }
 
 export default validatePrice;

@@ -1,0 +1,52 @@
+export const TEXT = {
+    CHARGE_COIN_LABEL: "자판기 동전 충전하기",
+    MACHINE_CHARGE_PLACEHOLDER: "자판기가 보유할 금액",
+    MACHINE_CHARGE_BUTTON: "충전하기",
+    MACHINE_CHARGE_INFO_LABEL: "보유 금액: ",
+    MACHINE_COIN_INFO_LABEL: "자판기가 보유한 동전",
+    MACHINE_COIN_CATEGORY: "동전",
+    MACHINE_COIN_AMOUNT: "개수",
+    COIN_500: "500원",
+    COIN_100: "100원",
+    COIN_50: "50원",
+    COIN_10: "10원",
+    PRODUCT_ADD_LABEL: "상품 추가하기",
+    PRODUCT_NAME_PLACEHOLDER: "상품명",
+    PRODUCT_PRICE_PLACEHOLDER: "가격",
+    PRODUCT_QUANTITY_PLACEHOLDER: "수량",
+    PRODUCT_ADD_BUTTON: "추가하기",
+    PRODUCT_DISPLAY_LABEL: "상품 현황",
+    PRODUCT_ITEM_NAME: "상품명",
+    PRODUCT_ITEM_PRICE: "가격",
+    PRODUCT_ITEM_QUANTITY: "수량",
+    PRODUCT_ITEM_PURCHASE: "구매",
+    PRODUCT_ITEM_PURCHASE_BUTTON: "구매하기",
+    CHARGE_TO_PURCHASE_LABEL: "금액 투입",
+    CHARGE_TO_PURCHASE_PLACEHOLDER: "투입할 금액",
+    CHARGE_TO_PURCHASE_MONEY_LABEL: "투입한 금액: ",
+    PURCHASABLE_PRODUCE_LABEL: "구매할 수 있는 상품 현황",
+    RETURN_CHANGE_LABEL: "잔돈",
+    RETURN_CHANGE_BUTTON: "반환하기",
+    TAB_TITLE: "🥤자판기🥤",
+    TAB_PRODUCT_ADD_BUTTON: "상품 관리",
+    TAB_CHARGE_BUTTON: "잔돈 충전",
+    TAB_PURCHASE_BUTTON: "상품 구매",
+}
+
+export const MSG = {
+    INVALID_CHARGE: "올바르지 않은 잔돈 값입니다.",
+    INVALID_PRICE: "가격을 다시 입력해주세요",
+    INVALID_QUANTITY: "재고가 없습니다.",
+    INVALID_MONEY: "잔액이 부족합니다.",
+    INVALID_INPUT: "잘못된 입력 값 :",
+}
+
+export const NUMBER = {
+    MINIMUM_CHARGE: 10,
+    MINIMUM_COIN_UNIT: 10,
+    MINIMUM_PRICE: 100,
+    COIN_500: 500,
+    COIN_100: 100,
+    COIN_50: 50,
+    COIN_10: 10
+}

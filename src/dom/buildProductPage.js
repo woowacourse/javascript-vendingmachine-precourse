@@ -1,6 +1,7 @@
 import ProductList from "../product/ProductList.js";
 import createDocumentElement from "../util/createDocumentElement.js"
 import validatePrice from "../util/validatePrice.js";
+import { TEXT, MSG } from "../constant/Constant.js";
 
 const productList = new ProductList;
 
@@ -16,12 +17,12 @@ function buildProductPage() {
 }
 
 function productAddElement(container) {
-    const productAddLabel = createDocumentElement("h3", "상품 추가하기");
-    const productNameInput = createDocumentElement("input", "", "product-name-input", "상품명");
-    const productPriceInput = createDocumentElement("input", "", "product-price-input", "가격");
-    const productQuantityInput = createDocumentElement("input", "", "product-quantity-input", "수량");
-    const productAddButton = createDocumentElement("button", "추가하기", "product-add-button");
-    const productDisplayLabel = createDocumentElement("h3", "상품 현황");
+    const productAddLabel = createDocumentElement("h3", TEXT.PRODUCT_ADD_LABEL);
+    const productNameInput = createDocumentElement("input", "", "product-name-input", TEXT.PRODUCT_NAME_PLACEHOLDER);
+    const productPriceInput = createDocumentElement("input", "", "product-price-input", TEXT.PRODUCT_PRICE_PLACEHOLDER);
+    const productQuantityInput = createDocumentElement("input", "", "product-quantity-input", TEXT.PRODUCT_QUANTITY_PLACEHOLDER);
+    const productAddButton = createDocumentElement("button", TEXT.PRODUCT_ADD_BUTTON, "product-add-button");
+    const productDisplayLabel = createDocumentElement("h3", TEXT.PRODUCT_DISPLAY_LABEL);
 
     container.appendChild(productAddLabel);
     container.appendChild(productNameInput);
@@ -34,9 +35,9 @@ function productAddElement(container) {
 function productItemElement(container) {
     const productItemTable = document.createElement("table");
     const productItemTableRow =  document.createElement("tr");
-    const productItemName = createDocumentElement("td", "상품명");
-    const productItemPrice = createDocumentElement("td", "가격");
-    const productItemQuantity = createDocumentElement("td", "수량");
+    const productItemName = createDocumentElement("td", TEXT.PRODUCT_ITEM_NAME);
+    const productItemPrice = createDocumentElement("td", TEXT.PRODUCT_ITEM_PRICE);
+    const productItemQuantity = createDocumentElement("td", TEXT.PRODUCT_ITEM_QUANTITY);
 
     container.appendChild(productItemTable);
     productItemTable.appendChild(productItemTableRow);
@@ -92,7 +93,7 @@ function bindButtonEvent() {
             productItemRefresh();
         }
         else {
-            alert("가격을 다시 입력해주세요");
+            alert(MSG.INVALID_PRICE);
         }
     }
 }

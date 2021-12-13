@@ -1,3 +1,5 @@
+import { MSG, NUMBER } from "../constant/Constant.js";
+
 class VendingMachine {
     constructor() {
         this.coin500 = 0;
@@ -9,7 +11,7 @@ class VendingMachine {
 
     chargeChange(money) {
         while(money > 0) {
-            let coin = MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+            let coin = MissionUtils.Random.pickNumberInList([NUMBER.COIN_10, NUMBER.COIN_50, NUMBER.COIN_100, NUMBER.COIN_500]);
             if(coin <= money) {
                 this.addCoin(coin);
                 money -= coin;
@@ -20,20 +22,20 @@ class VendingMachine {
 
     addCoin(coin) {
         switch (coin) {
-            case 10:
+            case NUMBER.COIN_10:
                 this.coin10++;
                 break;
-            case 50:
+            case NUMBER.COIN_50:
                 this.coin50++;
                 break;
-            case 100:
+            case NUMBER.COIN_100:
                 this.coin100++;
                 break;
-            case 500:
+            case NUMBER.COIN_500:
                 this.coin500++;
                 break;
             default:
-                console.log("잘못된 입력 값 : " + coin);
+                console.log(MSG.INVALID_INPUT + coin);
         }
     }
 
@@ -62,7 +64,7 @@ class VendingMachine {
     }
 
     getTotalChange() {
-        return (this.coin500)*500 + (this.coin100)*100 + (this.coin50)*50 + (this.coin10)*10;
+        return (this.coin500)*NUMBER.COIN_500 + (this.coin100)*NUMBER.COIN_100 + (this.coin50)*NUMBER.COIN_50 + (this.coin10)*NUMBER.COIN_10;
     }
 
     returnCharge() {
@@ -74,22 +76,22 @@ class VendingMachine {
         }
 
         if(this.getTotalChange() > 0) {
-            while(this.coin500 > 0 && this.userInputMoney >= 500) {
+            while(this.coin500 > 0 && this.userInputMoney >= NUMBER.COIN_500) {
                 this.coin500--;
                 this.userInputMoney -= 500;
                 returnCoins.coin500++;
             }
-            while(this.coin100 > 0 && this.userInputMoney >= 100) {
+            while(this.coin100 > 0 && this.userInputMoney >= NUMBER.COIN_100) {
                 this.coin100--;
                 this.userInputMoney -= 100;
                 returnCoins.coin100++;
             }
-            while(this.coin50 > 0 && this.userInputMoney >= 50) {
+            while(this.coin50 > 0 && this.userInputMoney >= NUMBER.COIN_50) {
                 this.coin50--;
                 this.userInputMoney -= 50;
                 returnCoins.coin50++;
             }
-            while(this.coin10 > 0 && this.userInputMoney >= 10) {
+            while(this.coin10 > 0 && this.userInputMoney >= NUMBER.COIN_10) {
                 this.coin10--;
                 this.userInputMoney -= 10;
                 returnCoins.coin10++;
