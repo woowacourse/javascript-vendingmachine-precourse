@@ -2,7 +2,7 @@ import { on, qs } from '../utils/index.js';
 import View from './View.js';
 
 export default class ProductManagementView extends View {
-  constructor(element = qs('#product-purchase-view')) {
+  constructor(element = qs('#product-add-view')) {
     super(element);
     this.template = new Template();
 
@@ -27,7 +27,6 @@ export default class ProductManagementView extends View {
 
   bindEvents() {
     on(this.productAddButton, 'click', () => {
-      console.log('click');
       const name = this.productNameInput.value;
       const price = this.productPriceInput.value;
       const quantity = this.productQuantityInput.value;
@@ -65,8 +64,8 @@ class Template {
         <thead>
           <tr>
             <th>상품명</th>
-            <th>수량</th>
             <th>가격</th>
+            <th>수량</th>
           </tr>
         </thead>
         <tbody>
