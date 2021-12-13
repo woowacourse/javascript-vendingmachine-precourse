@@ -7,8 +7,10 @@ export default function controlProductPurchase() {
   $('#charge-button').addEventListener('click', () => {
     handleChargeButtonEvent();
   });
-  $('.purchase-button').addEventListener('click', (e) => {
-    handlePurchaseButtonEvent(e);
+  document.querySelectorAll('.purchase-button').forEach((item) => {
+    item.addEventListener('click', (e) => {
+      handlePurchaseButtonEvent(e);
+    });
   });
   $('#coin-return-button').addEventListener('click', () => {});
 }

@@ -2,6 +2,11 @@ import {
   DRINK_STORAGE_NAME,
   NOW_PRODUCT_TABLE_TITLE,
 } from '../constants/constants.js';
+import {
+  DRINK_MENU_KEY,
+  DRINK_PRICE_KEY,
+  DRINK_QUANTITY_KEY,
+} from '../constants/drinkConstants.js';
 import { $ } from '../dom/dom.js';
 import store from '../storage/store.js';
 
@@ -23,7 +28,7 @@ function createProductInfoTable(productinfoelements) {
 function createProductInfoElement(drinkMenuObjectList) {
   const drinkInfoElementTemplate = drinkMenuObjectList
     .map((item) => {
-      return `<tr><td>${item['menu']}</td><td>${item['price']}</td><td>${item['quantity']}</td></tr>`;
+      return `<tr><td>${item[DRINK_MENU_KEY]}</td><td>${item[DRINK_PRICE_KEY]}</td><td>${item[DRINK_QUANTITY_KEY]}</td></tr>`;
     })
     .join('');
   return drinkInfoElementTemplate;
