@@ -27,7 +27,7 @@ function VendingMachine() {
     let amount = charge;
 
     while (amount >= 0) {
-      const coin = MissionUtils.Random.pickNumberInList(COIN);
+      const coin = MissionUtils.Random.pickNumberInList(MACHINE.COIN);
 
       if (coin <= amount) {
         this.coin[coin] += 1;
