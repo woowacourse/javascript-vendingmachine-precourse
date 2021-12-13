@@ -120,7 +120,7 @@
 │   │   │   ├── ProductInputForm.js # 상품 추가 입력란
 │   │   │   └── ProductList.js # 상품 현황
 │   │   │
-│   │   ├── coins
+│   │   ├── coin
 │   │   │   ├── CoinInputForm.js # 자판기 보유 금액 충전 입력란
 │   │   │   └── CoinList.js # 자판기 보유 금액 현황
 │   │   │
@@ -136,7 +136,7 @@
 │   │   │   └── ReturnTable.js # 반환 동전 현황 테이블 템플릿
 │   │   │
 │   │   ├── ProductManage.js # 상품 관리 페이지
-│   │   ├── CoinsManage.js # 자판기 보유 동전 페이지
+│   │   ├── CoinManage.js # 자판기 보유 동전 페이지
 │   │   ├── PurchaseManage.js # 잔액 충전 & 상품 구매 페이지
 │   │   │
 │   │   └── StateList.js # 컴포넌트 공유 상태 목록
