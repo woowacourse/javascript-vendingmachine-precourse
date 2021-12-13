@@ -1,11 +1,11 @@
 export const isObjectEmpty = object => Object.keys(object).length === 0;
 
 export const convertArrayToObjectKeys = (array, value = 0) =>
-  array.reduce((obj, item) => {
+  array.reduce((object, item) => {
     return {
-      ...obj,
+      ...object,
       [item]: value,
     };
   }, {});
 
-export const convertObjectToArray = obj => Object.entries(obj);
+export const convertObjectToArray = object => Object.entries(object);
