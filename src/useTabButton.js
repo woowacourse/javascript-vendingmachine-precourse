@@ -1,10 +1,12 @@
 function tabMove($selectedContent){
     const $show = document.querySelector('.show')
 
-    $selectedContent.classList.remove('hide')
-    $selectedContent.classList.add('show')
-    $show.classList.remove('show')
-    $show.classList.add('hide')
+    if($show.id !== $selectedContent.id){
+        $selectedContent.classList.remove('hide')
+        $selectedContent.classList.add('show')
+        $show.classList.remove('show')
+        $show.classList.add('hide')        
+    }
 }
 
 export function useTabButton(e){
