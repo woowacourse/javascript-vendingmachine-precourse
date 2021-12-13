@@ -15,7 +15,7 @@ export default class ProductAdd {
   ];
 
   isBlank = ($element) => {
-    if ($element.value.trim.length < NUMBER.BLANK_CHECK_LENGTH) {
+    if ($element.value.trim().length < NUMBER.BLANK_CHECK_LENGTH) {
       this.render.alertMessage(ERROR_MESSAGE.PRODUCT_BLANK($element.placeholder));
       this.render.inputFocus($element);
 

@@ -1,4 +1,5 @@
 import ProductAdd from '../model/ProductAdd.js';
+import { DOM } from '../utils/constant.js';
 
 export default class SetProductAdd {
   constructor(render, product) {
@@ -6,6 +7,15 @@ export default class SetProductAdd {
     this.product = product;
     this.productAdd = new ProductAdd(this.render);
   }
+
+  // initializeInputs = () => {
+  //   const $productNameInput = document.querySelector(DOM.$PRODUCT_NAME_INPUT);
+  //   const $productPriceInput = document.querySelector(DOM.$PRODUCT_PRICE_INPUT);
+  //   const $productQuantityInput = document.querySelector(DOM.$PRODUCT_QUANTITY_INPUT);
+  //   $productNameInput.value = '';
+  //   $productPriceInput.value = '';
+  //   $productQuantityInput.value = '';
+  // };
 
   getProductInputs = () => {
     this.product.setInformation(this.productAdd.getInputs());
@@ -20,7 +30,9 @@ export default class SetProductAdd {
     if (!this.productAdd.isValidInputs()) {
       return;
     }
+
     this.getProductInputs();
     this.renderProduct();
+    // this.initializeInputs();
   };
 }
