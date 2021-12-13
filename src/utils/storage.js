@@ -8,7 +8,7 @@ export const setDataOnStorage = (key, data) => {
 export const loadDataFromStorage = (key) => {
   const loadedData = JSON.parse(localStorage.getItem(key));
 
-  if (key === STRING.COINS) {
+  if (key === STRING.COINS && loadedData) {
     return loadedData.map(({ unit, amount }) => new Coin(unit, amount));
   }
   return loadedData;
