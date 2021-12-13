@@ -49,7 +49,7 @@ const totalChanges = {
 function chargeMoney() {
     const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
     if(isCorrectChargeMoney(chargeAmount)) {
-        const newChanges = getChanges(chargeAmount);
+        const newChanges = getNewChanges(chargeAmount);
         for(let key in totalChanges) {
             totalChanges[key] += newChanges[key];
         }
@@ -61,7 +61,7 @@ function chargeMoney() {
     }
 }
 
-function getChanges(newChargeAmount) {
+function getNewChanges(newChargeAmount) {
     const result = {
         500: 0, 100: 0, 50: 0, 10: 0
     };
