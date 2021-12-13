@@ -1,0 +1,15 @@
+section{
+  padding-bottom:20px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  font-size:10px;
+  border: 1px solid black;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+}
+

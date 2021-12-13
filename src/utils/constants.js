@@ -46,15 +46,19 @@ export const VENDING_MACHINE_MANAGE_TEXT = `
         </tr>
         <tr>
           <th id="vending-machine-coin-500-quantity">500원</th>
+          <td></td>
         </tr>
         <tr>
           <th id="vending-machine-coin-100-quantity">100원</th>
+          <td></td>
         </tr>
         <tr>
           <th id="vending-machine-coin-50-quantity">50원</th>
+          <td></td>
         </tr>
         <tr>
           <th id="vending-machine-coin-10-quantity">10원</th>
+          <td></td>
         </tr>
       </table>
     </section>
@@ -90,15 +94,19 @@ export const PRODUCT_PURCHASE_TEXT = `
         </tr>
         <tr>
           <th id="coin-500-quantity">500원</th>
+          <td></td>
         </tr>
         <tr>
           <th id="coin-100-quantity">100원</th>
+          <td></td>
         </tr>
         <tr>
           <th id="coin-50-quantity">50원</th>
+          <td></td>
         </tr>
         <tr>
           <th id="coin-10-quantity">10원</th>
+          <td></td>
         </tr>
       </table>
     </section>
