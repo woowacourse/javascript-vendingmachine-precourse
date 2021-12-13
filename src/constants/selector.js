@@ -16,20 +16,24 @@ export const ID = {
   VENDING_MACHINE_CHARGE_INPUT: 'vending-machine-charge-input',
   VENDING_MACHINE_CHARGE_BUTTON: 'vending-machine-charge-button',
   VENDING_MACHINE_CHARGE_AMOUNT: 'vending-machine-charge-amount',
-  VENDING_MACHINE_COIN_500: 'vending-machine-coin-500-quantity',
-  VENDING_MACHINE_COIN_100: 'vending-machine-coin-100-quantity',
-  VENDING_MACHINE_COIN_50: 'vending-machine-coin-50-quantity',
-  VENDING_MACHINE_COIN_10: 'vending-machine-coin-10-quantity',
+  VENDING_MACHINE_COIN: [
+    'vending-machine-coin-500-quantity',
+    'vending-machine-coin-100-quantity',
+    'vending-machine-coin-50-quantity',
+    'vending-machine-coin-10-quantity',
+  ],
 
   // 상품 구매 메뉴
   CHARGE_INPUT: 'charge-input',
   CHARGE_BUTTON: 'charge-button',
   CHARGE_AMOUNT: 'charge-amount',
   COIN_RETURN_BUTTON: 'coin-return-button',
-  COIN_500: 'coin-500-quantity',
-  COIN_100: 'coin-100-quantity',
-  COIN_50: 'coin-50-quantity',
-  COIN_10: 'coin-10-quantity',
+  RETURN_COIN: [
+    'coin-500-quantity',
+    'coin-100-quantity',
+    'coin-50-quantity',
+    'coin-10-quantity',
+  ],
 };
 
 export const CLASS = {
