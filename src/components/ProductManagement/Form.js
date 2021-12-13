@@ -3,6 +3,7 @@ import { $, resetForm } from '../../utils/dom.js';
 import { MESSAGE } from '../../utils/constants.js';
 import { isValidPrice } from '../../utils/validations.js';
 import { addProduct } from '../../actions/product.js';
+import { parseNumberInput, parseStringInput } from '../../utils/input.js';
 import ProductStore from '../../stores/ProductStore.js';
 
 export default class Form extends Component {
@@ -11,10 +12,10 @@ export default class Form extends Component {
   }
 
   onSubmit() {
-    const name = $('#product-name-input', this.$container).value;
-    const price = Number($('#product-price-input', this.$container).value);
-    const quantity = Number(
-      $('#product-quantity-input', this.$container).value
+    const name = parseStringInput($('#product-name-input', this.$container));
+    const price = parseNumberInput($('#product-price-input', this.$container));
+    const quantity = parseNumberInput(
+      $('#product-quantity-input', this.$container)
     );
     if (!isValidPrice(price)) return alert(MESSAGE.INVALID_PRICE);
 

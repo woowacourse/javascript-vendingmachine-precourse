@@ -2,6 +2,7 @@ import Component from '../../core/Component.js';
 import { $, resetForm } from '../../utils/dom.js';
 import { MESSAGE } from '../../utils/constants.js';
 import { isValidChanges } from '../../utils/validations.js';
+import { parseNumberInput } from '../../utils/input.js';
 import { chargeChanges } from '../../actions/changes.js';
 import ChangesStore from '../../stores/ChangesStore.js';
 
@@ -11,8 +12,8 @@ export default class Form extends Component {
   }
 
   onSubmit() {
-    const money = Number(
-      $('#vending-machine-charge-input', this.$container).value
+    const money = parseNumberInput(
+      $('#vending-machine-charge-input', this.$container)
     );
     if (!isValidChanges(money)) return alert(MESSAGE.INVALID_CHARGING_CHANGES);
     ChangesStore.dispatch(chargeChanges(money));
