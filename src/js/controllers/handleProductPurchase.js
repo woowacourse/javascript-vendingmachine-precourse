@@ -34,8 +34,8 @@ function HandleProductPurchase() {
     return true;
   };
 
-  const isValidPurchase = (inputMoney, price) => {
-    if (price > inputMoney) {
+  const isValidPurchase = (inputMoney, productPrice) => {
+    if (productPrice > inputMoney) {
       alertMessage(ERROR.PRODUCT_IS_EXPENSIVE);
       return false;
     }
@@ -69,10 +69,10 @@ function HandleProductPurchase() {
   // (2) 상품을 구매하는 기능 구현
   $('#product-purchase-list').addEventListener('click', e => {
     if (e.target.className === 'purchase-button') {
-      const price = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
+      const productPrice = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
 
-      if (isValidPurchase(this.inputMoney, price) && isValidQuantity(e)) {
-        this.inputMoney = updateAmount(this.inputMoney, price);
+      if (isValidPurchase(this.inputMoney, productPrice) && isValidQuantity(e)) {
+        this.inputMoney = updateAmount(this.inputMoney, productPrice);
         renderInputMoney(this.inputMoney);
         updateProductQuantity(e);
       }
