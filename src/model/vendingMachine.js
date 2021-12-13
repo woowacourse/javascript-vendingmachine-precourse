@@ -5,7 +5,7 @@ export default class VendingMachine {
     this.productList = [];
     this.ownChange = new Array(COIN.length).fill(0);
     this.userMoney = 0;
-    this.returnMoney = 0;
+    this.returnMoney = new Array(COIN.length).fill(0);
   }
 
   addProduct(name, price, quantity) {
@@ -40,5 +40,16 @@ export default class VendingMachine {
 
   getMoney(money) {
     this.userMoney += money;
+  }
+
+  returnChange() {
+    let zero = this.userMoney;
+    this.ownChange.map((el, idx) => {
+      const canUse = Math.min(el, parseInt(zero / COIN[idx], 10));
+      this.ownChange[idx] -= canUse;
+      this.returnMoney[idx] = canUse;
+      zero -= canUse * COIN[idx];
+    });
+    this.userMoney = zero;
   }
 }
