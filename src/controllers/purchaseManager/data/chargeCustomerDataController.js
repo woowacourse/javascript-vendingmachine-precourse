@@ -1,16 +1,16 @@
 import {
-  getItemFromLocalStorage,
-  setItemFromLocalStorage,
-} from "../../../utils/itemFromLocalStorage.js";
+  getMoneyCustomer,
+  setMoneyCustomer,
+} from "../../../utils/getSetItems.js";
 
 const addMoneyCustomer = moneyStr => {
-  const moneyBefore = getItemFromLocalStorage("money");
+  const moneyBefore = getMoneyCustomer();
 
   if (moneyBefore) {
     const money = parseInt(moneyBefore, 10) + parseInt(moneyStr, 10);
-    setItemFromLocalStorage("money", money);
+    setMoneyCustomer(money);
   } else {
-    setItemFromLocalStorage("money", moneyStr);
+    setMoneyCustomer(moneyStr);
   }
 };
 

@@ -1,8 +1,8 @@
-import { getItemFromLocalStorage } from "./itemFromLocalStorage.js";
 import { COIN_TYPES } from "./constants.js";
+import { getCoinsInMachine } from "./getSetItems.js";
 
 const calculateMoney = () => {
-  const coinInMachine = getItemFromLocalStorage("coins");
+  const coinInMachine = getCoinsInMachine();
   let money = 0;
 
   if (coinInMachine) {

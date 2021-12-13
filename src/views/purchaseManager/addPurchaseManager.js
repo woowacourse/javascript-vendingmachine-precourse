@@ -20,7 +20,7 @@ const addPurchaseManager = () => {
       <table id="able-buy-product-table"></table>
       <h3>잔돈</h3>
       <button id="coin-return-button">반환하기</button>
-      <table id="return-coin-table" border="1"></table>
+      <table id="return-coin-table"></table>
     </div>
   `;
 };

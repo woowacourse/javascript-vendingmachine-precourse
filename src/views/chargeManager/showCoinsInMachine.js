@@ -1,6 +1,6 @@
 import { COIN_TYPES } from "../../utils/constants.js";
 import { insertCoinTypeToTable } from "../common/insertCoinTypeToTable.js";
-import { getItemFromLocalStorage } from "../../utils/itemFromLocalStorage.js";
+import { getCoinsInMachine } from "../../utils/getSetItems.js";
 
 const insertCoinTypesToTable = $table => {
   COIN_TYPES.forEach(coinType => {
@@ -26,7 +26,7 @@ const makeEmptyTable = () => {
 const showCoinsInMachine = () => {
   makeEmptyTable();
 
-  const coinsInMachine = getItemFromLocalStorage("coins");
+  const coinsInMachine = getCoinsInMachine();
 
   if (coinsInMachine) {
     const coinsQuantity = coinsInMachine.split(",");

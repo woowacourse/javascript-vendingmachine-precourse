@@ -1,8 +1,8 @@
 import { COIN_TYPES } from "../../../utils/constants.js";
 import {
-  getItemFromLocalStorage,
-  setItemFromLocalStorage,
-} from "../../../utils/itemFromLocalStorage.js";
+  getCoinsInMachine,
+  setCoinsInMachine,
+} from "../../../utils/getSetItems.js";
 
 const availableRandomCoin = money => {
   let coin = money;
@@ -37,7 +37,7 @@ const makeMoneyToCoins = money => {
 };
 
 const addCoinsInMachine = money => {
-  const coins = getItemFromLocalStorage("coins");
+  const coins = getCoinsInMachine();
   const newCoinQuantity = makeMoneyToCoins(money);
 
   if (coins) {
@@ -45,9 +45,9 @@ const addCoinsInMachine = money => {
     for (let i = 0; i < coinQuantity.length; i++) {
       coinQuantity[i] = parseInt(coinQuantity[i], 10) + newCoinQuantity[i];
     }
-    setItemFromLocalStorage("coins", coinQuantity.join(","));
+    setCoinsInMachine(coinQuantity.join(","));
   } else {
-    setItemFromLocalStorage("coins", newCoinQuantity.join(","));
+    setCoinsInMachine(newCoinQuantity.join(","));
   }
 };
 

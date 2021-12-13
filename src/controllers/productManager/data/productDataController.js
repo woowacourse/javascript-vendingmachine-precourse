@@ -1,8 +1,5 @@
-import {
-  getItemFromLocalStorage,
-  setItemFromLocalStorage,
-} from "../../../utils/itemFromLocalStorage.js";
 import { ALERT_MSG } from "../../../utils/constants.js";
+import { getProducts, setProducts } from "../../../utils/getSetItems.js";
 
 // 같은 이름과 가격을 가진 상품이 있으면 해당 상품의 위치를, 없으면 -1을 반환
 const isSameProductInProducts = (strOfProducts, name, price) => {
@@ -28,7 +25,7 @@ const addIfDuplicateProduct = (strOfProducts, index, quantity) => {
   info[2] = parseInt(info[2], 10) + parseInt(quantity, 10);
   products[index] = info.join("/");
 
-  setItemFromLocalStorage("products", products.join(","));
+  setProducts(products.join(","));
 };
 
 const duplicateName = (strOfProducts, name) => {
@@ -62,9 +59,10 @@ const changeProductInfo = (strOfProducts, name, price, quantity) => {
 // 상품명이 같은데 가격이 다르다면, 변경 여부 물어보기
 const askToChangeProductInfo = (products, name, price, quantity) => {
   const { askChangeProduct, wrongProductName } = ALERT_MSG;
+
   if (confirm(askChangeProduct)) {
     const changedProducts = changeProductInfo(products, name, price, quantity);
-    setItemFromLocalStorage("products", changedProducts.join(","));
+    setProducts(changedProducts.join(","));
   } else {
     alert(wrongProductName);
   }
@@ -79,19 +77,16 @@ const addProductInProducts = (name, price, quantity, products) => {
   } else if (duplicateName(products, name)) {
     askToChangeProductInfo(products, name, price, quantity);
   } else {
-    setItemFromLocalStorage(
-      "products",
-      `${products},${name}/${price}/${quantity}`,
-    );
+    setProducts(`${products},${name}/${price}/${quantity}`);
   }
 };
 
 const addProduct = (name, price, quantity) => {
-  const products = getItemFromLocalStorage("products");
+  const products = getProducts();
   const productInfo = `${name}/${price}/${quantity}`;
 
   if (products === null) {
-    setItemFromLocalStorage("products", productInfo);
+    setProducts(productInfo);
   } else {
     addProductInProducts(name, price, quantity, products);
   }
