@@ -104,7 +104,7 @@ class VendingMachineController {
     try {
       this.addProduct();
       this.$model.setProductAddInputsValue(() => INPUTS_DEFAULT_VALUE.PRODUCT_ADD);
-      this.$view.renderProductAdd(
+      this.$view.mainView.renderProductAdd(
         this.$model.getProductList(),
         this.$model.getProductAddInputsValue()
       );
@@ -128,7 +128,7 @@ class VendingMachineController {
       this.$model.setVendingMachineChargeInputsValue(
         () => INPUTS_DEFAULT_VALUE.VENDING_MACHINE_CHARGE
       );
-      this.$view.renderCoins(
+      this.$view.mainView.renderCoins(
         this.$model.getCoins(),
         this.$model.getVendingMachineChargeInputsValue()
       );
@@ -144,8 +144,11 @@ class VendingMachineController {
       } = e;
       try {
         this.purchaseProduct(dataset.id);
-        this.$view.renderProductPurchaseList(this.$model.getProductList());
-        this.$view.renderCharge(this.$model.getChargeAmount(), this.$model.getChargeInputsValue());
+        this.$view.mainView.renderProductPurchaseList(this.$model.getProductList());
+        this.$view.mainView.renderCharge(
+          this.$model.getChargeAmount(),
+          this.$model.getChargeInputsValue()
+        );
       } catch (error) {
         alert(error);
       }
@@ -166,7 +169,10 @@ class VendingMachineController {
     try {
       this.addCharge();
       this.$model.setChargeInputsValue(() => INPUTS_DEFAULT_VALUE.CHARGE);
-      this.$view.renderCharge(this.$model.getChargeAmount(), this.$model.getChargeInputsValue());
+      this.$view.mainView.renderCharge(
+        this.$model.getChargeAmount(),
+        this.$model.getChargeInputsValue()
+      );
     } catch (error) {
       alert(error);
     }
@@ -175,8 +181,11 @@ class VendingMachineController {
   /** renderCharge - clearChageInput 하는 로직 분리하기 */
   onClickCoinReturnButton() {
     const returnCoins = this.generateReturnCoin();
-    this.$view.renderCharge(this.$model.getChargeAmount(), this.$model.getChargeInputsValue());
-    this.$view.renderReturnCoins(returnCoins);
+    this.$view.mainView.renderCharge(
+      this.$model.getChargeAmount(),
+      this.$model.getChargeInputsValue()
+    );
+    this.$view.mainView.renderReturnCoins(returnCoins);
   }
 
   generateReturnCoin() {
