@@ -1,7 +1,6 @@
 import {
   $,
-  getItemOrNull,
-  setItem,
+  handleStorage,
   isMultipleOf10,
   isInputNumberValid,
   onKeyUpNumericEvent,
@@ -26,7 +25,7 @@ const makeRandomCoinQuantity = inputValue => {
 };
 
 const initChargeDomProperty = () => {
-  const vendingMachine = getItemOrNull(KEY.vending);
+  const vendingMachine = handleStorage.getItemOrNull(KEY.vending);
   clearInput($(SELECTOR.vendingChargeInput));
   if (vendingMachine) {
     setInnerHTML($(SELECTOR.vendingChargeAmount), vendingMachine.change);
@@ -37,14 +36,14 @@ const isChargeInputValid = chargeInput =>
   isInputNumberValid(chargeInput) && isMultipleOf10(chargeInput);
 
 const setVendingMachineByRandomCoin = (chargeInputValue, randomCoinQuantity) => {
-  let vendingMachine = getItemOrNull(KEY.vending);
+  let vendingMachine = handleStorage.getItemOrNull(KEY.vending);
   if (vendingMachine) {
     vendingMachine.change += chargeInputValue;
   } else if (vendingMachine === null) {
     vendingMachine = new VendingMachine(chargeInputValue);
   }
   randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
-  setItem(KEY.vending, vendingMachine);
+  handleStorage.setItem(KEY.vending, vendingMachine);
 };
 
 const chargeVending = () => {

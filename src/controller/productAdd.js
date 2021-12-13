@@ -1,7 +1,6 @@
 import {
   $,
-  getItemOrArray,
-  setItem,
+  handleStorage,
   isBlankExist,
   isInputNumberValid,
   isMultipleOf10,
@@ -32,9 +31,9 @@ const isProductInputsValid = (productName, productPrice, productQuantity) =>
   isInputNumberValid(productQuantity);
 
 const updateProductLocalStorage = product => {
-  const allProducts = getItemOrArray(KEY.product);
+  const allProducts = handleStorage.getItemOrArray(KEY.product);
   allProducts.push(product);
-  setItem(KEY.product, allProducts);
+  handleStorage.setItem(KEY.product, allProducts);
 };
 
 const addProduct = () => {
@@ -52,7 +51,7 @@ const addProduct = () => {
 };
 
 const initTable = () => {
-  const allProducts = getItemOrArray(KEY.product);
+  const allProducts = handleStorage.getItemOrArray(KEY.product);
   const table = document.querySelector('tbody');
   allProducts.forEach(product => addTableRow(table, productAddTableRow(product)));
 };

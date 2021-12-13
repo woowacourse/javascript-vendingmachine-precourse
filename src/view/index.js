@@ -1,4 +1,4 @@
-import { $, getItemOrNull } from '../controller/utils.js';
+import { $, handleStorage } from '../controller/utils.js';
 import {
   fixMenus,
   productAddMenu,
@@ -49,7 +49,7 @@ export const initReturnTable = returnCoin =>
   });
 
 export const initVendingTable = () => {
-  const vending = getItemOrNull(KEY.vending);
+  const vending = handleStorage.getItemOrNull(KEY.vending);
   if (vending) {
     vending.coins.forEach(
       x => ($(VENDING_MACHINE_COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`),
