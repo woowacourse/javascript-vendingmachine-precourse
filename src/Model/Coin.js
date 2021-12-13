@@ -1,4 +1,4 @@
-import { COIN_NOT_DIVIDE_10, LESS_THAN_10 } from "../constant/alertMessage.js";
+import { COIN_NOT_DIVIDE_10, LESS_THAN_10, NOT_EMPTY } from "../constant/alertMessage.js";
 import { isDivideTen } from "./utils.js";
 
 export default class Coin {
@@ -11,6 +11,9 @@ export default class Coin {
   }
 
   checkValid(targetCoin) {
+    if (targetCoin === 0) {
+      return alert(NOT_EMPTY);
+    }
     if (!isDivideTen(targetCoin)) {
       return alert(COIN_NOT_DIVIDE_10);
     }

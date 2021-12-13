@@ -8,3 +8,4 @@ export const IN_AVAILABLE_QUANTITY = `수량은 항상 0보다 커야합니다.`
 // 돈
 export const LESS_THAN_10 = `돈은 10원 이상부터 넣을 수 있습니다.`;
 export const COIN_NOT_DIVIDE_10 = `돈은 10의 단위로만 입력하실 수 있습니다.`;
+export const NOT_EMPTY = `돈을 입력해주세요.`;

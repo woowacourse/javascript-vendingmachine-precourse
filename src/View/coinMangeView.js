@@ -46,7 +46,7 @@ export default class CoinManageView {
   }
 
   handleClickEvent() {
-    this.coinStore.charge(this.input.value);
+    this.coinStore.charge(Number(this.input.value));
     this.loadTotalCoin();
     this.loadCoinToHave();
   }
