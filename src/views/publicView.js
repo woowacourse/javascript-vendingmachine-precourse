@@ -220,3 +220,12 @@ export const makeChangeStateContainer = (title, headers, raws) => {
 
   return div;
 };
+
+export const makeFormContainer = (form, event) => {
+  const div = document.createElement("div");
+  div.appendChild(makeTitle(form.TITLE));
+  div.appendChild(makeInputForm(form.INPUT, form.BUTTON, event));
+  div.appendChild(makeResultContainer(form.AMOUNT_HEADER, form.AMOUNT_ID));
+
+  return div;
+};

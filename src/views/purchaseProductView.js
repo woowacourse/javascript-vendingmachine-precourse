@@ -10,8 +10,7 @@ import {
   makeButton,
   makeClassButton,
   makeCoinTable,
-  makeInputForm,
-  makeResultContainer,
+  makeFormContainer,
   makeTableHeaders,
   makeTdWithClass,
   makeTitle,
@@ -25,30 +24,8 @@ import {
 } from "../controllers/purchaseProductController.js";
 
 // ----금액 투입하기 폼----
-const makeInsertMoneyContainer = () => {
-  const div = document.createElement("div");
-  div.appendChild(makeTitle(PURCHASE_TAP.INSERT_MONEY_TITLE));
-  div.appendChild(
-    makeInputForm(
-      PURCHASE_TAP.INSERT_MONEY_INPUT,
-      PURCHASE_TAP.INSERT_MONEY_BUTTON,
-      onClickInsertButton
-    )
-  );
-  div.appendChild(
-    makeResultContainer(
-      PURCHASE_TAP.INSERT_MONEY_AMOUNT_TITLE,
-      PURCHASE_TAP.INSERT_MONEY_AMOUNT_ID
-    )
-  );
-
-  return div;
-};
-
 export const renderMoney = money => {
-  const $charge_amount = document.getElementById(
-    PURCHASE_TAP.INSERT_MONEY_AMOUNT_ID
-  );
+  const $charge_amount = document.getElementById(PURCHASE_TAP.FORM.AMOUNT_ID);
   $charge_amount.innerText = money;
 };
 
@@ -137,6 +114,17 @@ const stringToIntegerArray = string => {
   return result;
 };
 
+const renderLocalstrorageInformation = purchaseProduct => {
+  if (localStorage.getItem(IS_RENDERED_INSERTED_MONEY) === "TRUE") {
+    renderMoney(purchaseProduct.getMoney());
+  }
+
+  const returnChanges = localStorage.getItem(IS_RENDERED_RETURN_CHANGES);
+  if (returnChanges) {
+    renderChanges(stringToIntegerArray(returnChanges));
+  }
+};
+
 export const renderChanges = changes => {
   PURCHASE_TAP.CHANGE_STATE_TABLE_RAWS.forEach((raw, index) => {
     document.getElementById(`${raw[ID]}`).innerText = getQuantityText(
@@ -147,15 +135,11 @@ export const renderChanges = changes => {
 
 export const renderPurchaseProductMenuView = purchaseProduct => {
   const $view_container = document.getElementById(VIEW_CONTAINER);
-  $view_container.appendChild(makeInsertMoneyContainer());
+  $view_container.appendChild(
+    makeFormContainer(PURCHASE_TAP.FORM, onClickInsertButton)
+  );
   $view_container.appendChild(makeproductStateContainer(purchaseProduct));
   $view_container.appendChild(makeChangeStateContainer());
 
-  if (localStorage.getItem(IS_RENDERED_INSERTED_MONEY) === "TRUE") {
-    renderMoney(purchaseProduct.getMoney());
-  }
-  const returnChanges = localStorage.getItem(IS_RENDERED_RETURN_CHANGES);
-  if (returnChanges) {
-    renderChanges(stringToIntegerArray(returnChanges));
-  }
+  renderLocalstrorageInformation(purchaseProduct);
 };

@@ -9,13 +9,21 @@ import {
   renderCoins,
 } from "../views/chargeChangeView.js";
 
-const resetInput = form => {
-  const input = form.querySelector(`#${CHARGE_TAP.CHARGE_INPUT[ID]}`);
+const resetInput = input => {
   input.value = "";
 };
 
 const setIsRender = () => {
   localStorage[IS_RENDERED_CHARGE_TAP] = "TRUE";
+};
+
+const charge = chargeInput => {
+  chargeChange.chargeCoin(parseInt(chargeInput.value));
+  renderChangeAmount(chargeChange.getTotalMoney());
+  renderCoins(chargeChange);
+  saveCoinsToLocalStorage(chargeChange);
+  setIsRender();
+  resetInput(chargeInput);
 };
 
 export const onClickChargeChangeTab = e => {
@@ -27,16 +35,9 @@ export const onClickChargeChangeTab = e => {
 export const onClickChargeButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
-  const chargeInput = form.querySelector(
-    `#${CHARGE_TAP.CHARGE_INPUT[ID]}`
-  ).value;
+  const chargeInput = form.querySelector(`#${CHARGE_TAP.FORM.INPUT[ID]}`);
 
-  if (checkChargeChangeInput(chargeInput)) {
-    chargeChange.chargeCoin(parseInt(chargeInput));
-    renderChangeAmount(chargeChange.getTotalMoney());
-    renderCoins(chargeChange);
-    saveCoinsToLocalStorage(chargeChange);
-    setIsRender();
-    resetInput(form);
+  if (checkChargeChangeInput(chargeInput.value)) {
+    charge(chargeInput);
   }
 };

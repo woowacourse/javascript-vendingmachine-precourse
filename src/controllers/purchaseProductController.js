@@ -7,7 +7,10 @@ import {
   QUANTITY,
 } from "../assets/constants/public.js";
 import { PURCHASE_TAP } from "../assets/constants/purchaseTap.js";
-import { saveAllToLocalStorage } from "../assets/utils/utils.js";
+import {
+  saveAllToLocalStorage,
+  saveInsertedMoneyToLocalStorage,
+} from "../assets/utils/utils.js";
 import {
   checkCanPurchase,
   checkInsertMoneyInput,
@@ -20,9 +23,7 @@ import {
 } from "../views/purchaseProductView.js";
 
 const resetInput = () => {
-  const $charge_input = document.getElementById(
-    PURCHASE_TAP.INSERT_MONEY_INPUT[ID]
-  );
+  const $charge_input = document.getElementById(PURCHASE_TAP.FORM.INPUT[ID]);
   $charge_input.value = "";
 };
 
@@ -46,6 +47,29 @@ const setReturnChanges = returnChanges => {
   localStorage[IS_RENDERED_RETURN_CHANGES] = returnChanges;
 };
 
+const insert = money => {
+  purchaseProduct.insertMoney(parseInt(money));
+  renderMoney(purchaseProduct.getMoney());
+  saveInsertedMoneyToLocalStorage(purchaseProduct);
+  setIsRenderInsertedMoney();
+  resetInput();
+};
+
+const purchase = form => {
+  purchaseProduct.purchaseProduct(getNameTag(form).innerText);
+  renderPurchase(purchaseProduct, form);
+  saveAllToLocalStorage(purchaseProduct);
+  setIsRenderInsertedMoney();
+};
+
+const returnChange = changes => {
+  renderMoney(purchaseProduct.getMoney());
+  renderChanges(changes);
+  saveAllToLocalStorage(purchaseProduct);
+  setReturnChanges(changes);
+  setIsRenderInsertedMoney();
+};
+
 export const onClickPurchaseProductTab = e => {
   event.preventDefault();
   purchaseProduct.loadFromLocalStorage();
@@ -55,16 +79,10 @@ export const onClickPurchaseProductTab = e => {
 export const onClickInsertButton = event => {
   event.preventDefault();
   const form = event.target.parentElement;
-  const money = form.querySelector(
-    `#${PURCHASE_TAP.INSERT_MONEY_INPUT[ID]}`
-  ).value;
+  const money = form.querySelector(`#${PURCHASE_TAP.FORM.INPUT[ID]}`).value;
 
   if (checkInsertMoneyInput(money)) {
-    purchaseProduct.insertMoney(parseInt(money));
-    renderMoney(purchaseProduct.getMoney());
-    saveAllToLocalStorage(purchaseProduct);
-    setIsRenderInsertedMoney();
-    resetInput();
+    insert(money);
   }
 };
 
@@ -79,19 +97,11 @@ export const onClickPurchaseButton = event => {
       getPriceTag(form).innerText
     )
   ) {
-    purchaseProduct.purchaseProduct(getNameTag(form).innerText);
-    renderPurchase(purchaseProduct, form);
-    saveAllToLocalStorage(purchaseProduct);
-    setIsRenderInsertedMoney();
+    purchase(form);
   }
 };
 
 export const onClickReturnButton = event => {
   event.preventDefault();
-  const returnChanges = purchaseProduct.getChanges();
-  renderMoney(purchaseProduct.getMoney());
-  renderChanges(returnChanges);
-  saveAllToLocalStorage(purchaseProduct);
-  setReturnChanges(returnChanges);
-  setIsRenderInsertedMoney();
+  returnChange(purchaseProduct.getChanges());
 };

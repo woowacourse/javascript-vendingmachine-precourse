@@ -14,6 +14,13 @@ const resetInputs = form => {
   );
 };
 
+const add = (form, name, price, quantity) => {
+  const newProduct = manageProduct.addProduct(name, price, quantity);
+  renderProduct(newProduct);
+  saveProductsToLocalStorage(manageProduct);
+  resetInputs(form);
+};
+
 export const onClickManageProductTab = e => {
   event.preventDefault();
   manageProduct.loadFromLocalStorage();
@@ -28,9 +35,6 @@ export const onClickAddButton = event => {
   );
 
   if (checkAddProductsInputs(manageProduct, name, price, quantity)) {
-    const newProduct = manageProduct.addProduct(name, price, quantity);
-    renderProduct(newProduct);
-    saveProductsToLocalStorage(manageProduct);
-    resetInputs(form);
+    add(form, name, price, quantity);
   }
 };
