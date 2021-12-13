@@ -24,17 +24,16 @@ export default class Controller {
     addCoin(money){
         money = parseInt(money);
         if(validator.checkAddcoin(money)){
-            this.getRandomCoins(money);
-
             const item = getStorage();
+            this.getRandomCoins(money, item);
+            updateStorage(item);
             displayer.displayPossessCoins(item);
         }
     }
 
-    getRandomCoins(money){
+    getRandomCoins(money, item){
         const inverted = coinUtil.generateInverted();
 
-        const item = getStorage();
         while(money > 0){
             const pick = MissionUtils.Random.pickNumberInList(coinUtil.generateOnlyValues());
             if(money >= pick){
@@ -42,14 +41,11 @@ export default class Controller {
                 item.coins[inverted[pick]]++;
             }
         }
-        
-        updateStorage(item);
     }
 
     userBuy(money){
         money = parseInt(money);
 
-        
         if(validator.checkUserBuy(money)){
             const item = getStorage();
             item.input += money;
@@ -60,7 +56,6 @@ export default class Controller {
     }
 
     buyProduct(product){
-        
         const item = getStorage();
         if(item.input >= product.price){
             item.input -= product.price;
@@ -72,40 +67,27 @@ export default class Controller {
     }
 
     returnMoney(){
-        
         const item = getStorage();
-        const coins = this.getRandomReturn(item.input, item);
-        
-        
+        const coins = this.getRandomReturn(item);
         updateStorage(item);
+
         displayer.displayReturnedCoins(coins);
         displayer.displayRemainCoins(item);
     }
 
-    getRandomReturn(money, item){
-        let returnCoin = {};
-        for(let key in COIN_VALUE){
-            returnCoin[key] = 0;
-        }
+    getRandomReturn(item){
+        const returnedCoins = coinUtil.generateTemplateCoins();
+        const inverted = coinUtil.generateInverted();
 
-        for(let key in COIN_VALUE){
-            if(money <= 0){
-                break;
-            }
-
-            let required = money / COIN_VALUE[key];
-
-            if(item.coins[key] > required){
-                item.coins[key] -= required;
-                money -= required * COIN_VALUE[key];
-                returnCoin[key] = required;
-            } else {
-                returnCoin[key] = item.coins[key];
-                money -= item.coins[key] * COIN_VALUE[key];
-                item.coins[key] = 0;
+        while(item.input > 0){
+            const pick = MissionUtils.Random.pickNumberInList(coinUtil.generateOnlyValues());
+            if(item.input >= pick){
+                item.input -= pick;
+                item.coins[inverted[pick]]--;
+                returnedCoins[inverted[pick]]++;
             }
         }
         
-        return returnCoin;
+        return returnedCoins;
     }
 }

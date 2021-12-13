@@ -1,6 +1,6 @@
 
 import { elementCreatorWithClass } from '../utils/dom.js';
-import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PURCHASE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_DATASET, ERROR_MESSAGE } from '../constants.js';
+import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PURCHASE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_DATASET} from '../constants.js';
 
 export const displayProductAddTab= (product)=>{
     const tr = elementCreatorWithClass('tr', ADD_TAB_CLASS.TABLE_TR, null);
