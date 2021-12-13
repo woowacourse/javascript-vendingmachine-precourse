@@ -77,6 +77,10 @@ class Controller {
     this.vendingMachine.setLocalStorage(tabMenu);
   }
 
+  initVendingMachineChargeInputValue() {
+    $id('vending-machine-charge-input').value = '';
+  }
+
   triggerProductAddSubmitEvent() {
     $id('product-add-form').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -146,6 +150,7 @@ class Controller {
       const vendingMachineChargeInput = $id('vending-machine-charge-input').value;
 
       if (isValidVendingMachineCharge(vendingMachineChargeInput)) {
+        this.initVendingMachineChargeInputValue();
         this.renderVendingMachineCharge(vendingMachineChargeInput);
       }
     });
