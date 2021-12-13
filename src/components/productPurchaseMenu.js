@@ -1,12 +1,9 @@
 import { ID } from '../constants/selector.js';
 import { COIN_TABLE, PRODUCT_PURCHASE_TABLE } from '../constants/table.js';
 import {
-  Container,
-  SubTitle,
   Form,
   Input,
   Button,
-  Span,
   Table,
   TableHead,
   TableRow,
@@ -14,29 +11,17 @@ import {
   TableDataWithId,
 } from './elements.js';
 
-const onClickAddMoneyButton = (e) => {
-  e.preventDefault();
-};
-
-const onClickReturnCoinButton = (e) => {
-  e.preventDefault();
-};
-
-const createAddMoneyForm = () => {
+export const createAddMoneyForm = (event) => {
   const addMoneyForm = Form();
   const addMoneyInput = Input(ID.CHARGE_INPUT, 'number', '투입할 금액');
-  const addMoneyButton = Button(
-    '투입하기',
-    ID.CHARGE_BUTTON,
-    onClickAddMoneyButton
-  );
+  const addMoneyButton = Button('투입하기', ID.CHARGE_BUTTON, event);
 
   addMoneyForm.append(addMoneyInput, addMoneyButton);
 
   return addMoneyForm;
 };
 
-const createProductPurchaseTable = () => {
+export const createProductPurchaseTable = () => {
   const productPurchaseTable = Table();
   TableHead(productPurchaseTable, PRODUCT_PURCHASE_TABLE.HEADS);
 
@@ -53,7 +38,7 @@ const createCoinRow = (coin, id) => {
   return tableRow;
 };
 
-const createCoinTable = () => {
+export const createCoinTable = () => {
   const coinTable = Table();
   const coin500Row = createCoinRow('500원', ID.COIN_500);
   const coin100Row = createCoinRow('100원', ID.COIN_100);
@@ -65,35 +50,3 @@ const createCoinTable = () => {
 
   return coinTable;
 };
-
-const ProductPurchaseMenu = () => {
-  const container = Container('product-purchase-view');
-  const addMoneySubTitle = SubTitle('금액 투입');
-  const productSubTitle = SubTitle('구매할 수 있는 상품 현황');
-  const changeSubTitle = SubTitle('잔돈');
-  const addMoneyForm = createAddMoneyForm();
-  const moneySpan = Span('투입한 금액: ');
-  const productPurchaseTable = createProductPurchaseTable();
-  const coinTable = createCoinTable();
-  const returnButton = Button(
-    '반환하기',
-    ID.COIN_RETURN_BUTTON,
-    onClickReturnCoinButton
-  );
-
-  container.append(
-    addMoneySubTitle,
-    addMoneyForm,
-    moneySpan,
-    productSubTitle,
-    productPurchaseTable,
-    changeSubTitle,
-    returnButton,
-    coinTable
-  );
-  container.setAttribute('class', 'invisible');
-
-  return container;
-};
-
-export default ProductPurchaseMenu;
