@@ -58,7 +58,6 @@ function HandleProductPurchase() {
     if (isValidCharge(purchaseInput)) {
       this.holdAmount += Number(purchaseInput);
       printInputCharge(this.holdAmount);
-      return;
     }
     resetPurchaseInput();
   });
