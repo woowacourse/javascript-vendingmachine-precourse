@@ -16,10 +16,10 @@ export default class PurchaseList extends Component {
   }
 
   bindEvents() {
-    this.appendRootEvents('click', event => this.onClickPurchase(event));
+    this.appendRootEvents('click', event => this.onClickPurchaseButton(event));
   }
 
-  onClickPurchase({ target }) {
+  onClickPurchaseButton({ target }) {
     if (target.className !== 'purchase-button') return;
     const { productName, productPrice } = getProductInformations(target);
     ProductStore.dispatch(sellProduct(productName));

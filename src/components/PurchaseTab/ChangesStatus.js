@@ -14,11 +14,13 @@ export default class ChangesStatus extends Component {
   }
 
   bindEvents() {
-    this.appendRootEvents('click', event => this.onClickReturnButton(event));
+    this.appendRootEvents('click', ({ target }) =>
+      this.onClickReturnButton(target)
+    );
   }
 
-  onClickReturnButton({ target }) {
-    if (target.id !== 'coin-return-button') return;
+  onClickReturnButton({ id }) {
+    if (id !== 'coin-return-button') return;
     const { chargedMoney, changes } = this.getGlobalState();
     if (chargedMoney === 0) return alert(MESSAGE.INVALID_RETURN_REQUEST);
     if (changes === 0) return alert(MESSAGE.NOT_ENOUGH_CHANGES);
@@ -34,15 +36,15 @@ export default class ChangesStatus extends Component {
   render() {
     const { coins } = this.getGlobalState();
     this.$container.innerHTML = `
-        <h3>잔돈</h3>
-        <button id="coin-return-button">반환하기</button>
-        <table>
-            <tr>
-                <th>동전</th>
-                <th>개수</th>
-            </tr>
-            ${changeStatusTemplate(coins)}
-        </table>
+      <h3>잔돈</h3>
+      <button id="coin-return-button">반환하기</button>
+      <table>
+        <tr>
+          <th>동전</th>
+          <th>개수</th>
+        </tr>
+        ${changeStatusTemplate(coins)}
+      </table>
       `;
   }
 }

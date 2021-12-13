@@ -23,6 +23,6 @@ export default class Form extends Component {
       <h3>금액 투입</h3>
       <input id="charge-input" type="number" required/>
       <button id="charge-button">투입하기</button>
-      `;
+    `;
   }
 }
