@@ -74,19 +74,19 @@ class Template {
         <tbody>
           <tr>
             <td>500</td>
-            <td id="vending-machine-coin-500-quantity">${data['500']}</td>
+            <td id="vending-machine-coin-500-quantity">${data['500']}개</td>
           </tr>
           <tr>
             <td>100</td>
-            <td id="vending-machine-coin-100-quantity">${data['100']}</td>
+            <td id="vending-machine-coin-100-quantity">${data['100']}개</td>
           </tr>
           <tr>
             <td>50</td>
-            <td id="vending-machine-coin-50-quantity">${data['50']}</td>
+            <td id="vending-machine-coin-50-quantity">${data['50']}개</td>
           </tr>
           <tr>
             <td>10</td>
-            <td id="vending-machine-coin-10-quantity">${data['10']}</td>
+            <td id="vending-machine-coin-10-quantity">${data['10']}개</td>
           </tr>
         </tbody>
       </table>
