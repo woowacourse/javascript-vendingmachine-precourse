@@ -12,8 +12,13 @@ class Controller {
   init() {
     this.view.showTabMenuScreen();
     this.initDOM();
-    this.triggerTabMenuClickEvent();
     this.initScreen();
+    this.triggerTabMenuClickEvent();
+  }
+  initDOM() {
+    this.$product_purchase_menu = document.getElementById('product-purchase-menu');
+    this.$vending_machine_manage_menu = document.getElementById('vending-machine-manage-menu');
+    this.$produce_add_menu = document.getElementById('product-add-menu');
   }
 
   initScreen() {
@@ -30,12 +35,6 @@ class Controller {
         this.view.showProductPurchaseScreen();
         break;
     }
-  }
-
-  initDOM() {
-    this.$product_purchase_menu = document.getElementById('product-purchase-menu');
-    this.$vending_machine_manage_menu = document.getElementById('vending-machine-manage-menu');
-    this.$produce_add_menu = document.getElementById('product-add-menu');
   }
 
   render(currentTabMenu) {
