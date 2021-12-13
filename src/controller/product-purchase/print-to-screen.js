@@ -71,3 +71,50 @@ export const manageDataAttribute = () => {
     $purchaseBtn.setAttribute('data-purchase-button', item.name);
   }
 };
+
+// 구매하기 버튼 클릭시 구매한 상품 (price, quantitiy) 각 -1 값 출력
+export const manageProductListAfterPuchased = () => {
+  const productListArray = JSON.parse(localStorage.getItem('productList'));
+  const $productQuantity = $('.product-purchase-quantity');
+  const $purchaseBtn = $('.purchase-button');
+
+  $purchaseBtn.addEventListener('click', (event) => {
+    for (const item of productListArray) {
+      // const sum = printInsertedMoney();
+
+      if (event.target.getAttribute('data-purchase-button') === item.name) {
+        $productQuantity.innerHTML--;
+        $productQuantity.setAttribute(
+          'data-product-quantity',
+          parseInt($productQuantity.innerHTML, 10)
+        );
+        // manageDifference(sum);
+      }
+    }
+  });
+};
+
+// // 차이 가격 각 행마다 나올수 있게
+// export const manageDifference = (sum) => {
+//   const $originAmount = parseInt($('.product-manage-quantity').innerHTML, 10);
+//   const $afterAmount = parseInt($('.product-purchase-quantity').innerHTML, 10);
+//   const $price = parseInt($('.product-purchase-price').innerHTML, 10);
+//   const $chargedAmount = $('#charge-amount');
+//   const productListArray = JSON.parse(localStorage.getItem('productList'));
+//   const $purchaseBtn = $('.purchase-button');
+//   let difference = 0;
+
+//   $purchaseBtn.addEventListener('click', (event) => {
+//     for (const item of productListArray) {
+//       if (event.target.getAttribute('data-purchase-button') === item.name) {
+//         console.log(`sum : ${sum}`);
+//         console.log(`originAmount : ${$originAmount}`);
+//         console.log(`afterAmount : ${$afterAmount}`);
+//         console.log(`price : ${$price}`);
+//         difference = sum - ($originAmount - $afterAmount) * $price;
+//       }
+//     }
+//   });
+
+//   $chargedAmount.innerHTML = `투입 금액: ${difference}원`;
+// };
