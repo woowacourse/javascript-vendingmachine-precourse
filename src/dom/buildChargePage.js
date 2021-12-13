@@ -20,6 +20,8 @@ function chargeElement(container) {
     const vendingMachineChargeAmount = createDocumentElement("span", "", "vending-machine-charge-amount");
     const vendingMachineCoinDisplayLabel = createDocumentElement("h3", "자판기가 보유한 동전");
 
+    vendingMachineChargeButton.onclick = () => addCharge();
+
     container.appendChild(vendingMachineChargeLabel);
     container.appendChild(vendingMachineChargeInput);
     container.appendChild(vendingMachineChargeButton);
@@ -53,6 +55,13 @@ function createTableRow(Table, innerText, id) {
     Table.appendChild(tableRow);
     tableRow.appendChild(coin);
     tableRow.appendChild(coinAmount);
+}
+
+function addCharge() {
+    const vendingMachineChargeInput = document.querySelector("#vending-machine-charge-input");
+    vendingMachine.chargeChange(vendingMachineChargeInput.value);
+    vendingMachineChargeInput.value = "";
+    console.log(vendingMachine.getTotalChange());
 }
 
 function clearContainer(container) {
