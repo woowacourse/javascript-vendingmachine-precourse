@@ -11,4 +11,6 @@ export default function renderUpdateNowSellingProductTable(
   const targetIndex = getTargetIndex(productName);
   const drinkStorage = store.getLocalStorage(DRINK_STORAGE_NAME);
   quantityNode.innerText = drinkStorage[targetIndex][DRINK_QUANTITY_KEY];
+  quantityNode.dataset.productQuantity =
+    drinkStorage[targetIndex][DRINK_QUANTITY_KEY];
 }
