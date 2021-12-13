@@ -76,3 +76,62 @@ export const manageTabTemplate = () => {
     </div>
   `;
 };
+
+export const purchaseTabTemplate = () => {
+  return `
+    <h2>금액 투입</h2>
+    <div>
+      <input id="charge-input" type="number" />
+      <button id="charge-button">투입하기</button>
+      <div>
+        투입한 금액: <span id="charge-amount">${NUMBER.ZERO}원</span>
+      </div>
+    </div>
+    <br />
+    <div>
+      <h2>구매할 수 있는 상품 현황</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>상품명</th>
+            <th>가격</th>
+            <th>수량</th>
+            <th>구매</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div>
+      <h2>잔돈</h2>
+      <button id="coin-return-button">반환하기</button>
+      <table>
+        <thead>
+          <tr>
+            <th>동전</th>
+            <th>개수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>500원</th>
+            <th id="coin-500-quantity">${NUMBER.ZERO}개</th>
+          </tr>
+          <tr>
+            <th>100원</th>
+            <th id="coin-100-quantity">${NUMBER.ZERO}개</th>
+          </tr>
+          <tr>
+            <th>50원</th>
+            <th id="coin-50-quantity">${NUMBER.ZERO}개</th>
+          </tr>
+          <tr>
+            <th>10원</th>
+            <th id="coin-10-quantity">${NUMBER.ZERO}개</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  `;
+};
