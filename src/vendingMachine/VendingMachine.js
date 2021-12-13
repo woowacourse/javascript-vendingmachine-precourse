@@ -46,6 +46,11 @@ class VendingMachine {
         return this.userInputMoney;
     }
 
+    reduceUserInputMoney(amount) {
+        this.userInputMoney -= amount;
+        this.setLocalStorage();
+    }
+
     getCoins() {
         const coins = {
             coin500: this.coin500,

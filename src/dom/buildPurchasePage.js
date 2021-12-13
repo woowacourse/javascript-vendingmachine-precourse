@@ -35,7 +35,7 @@ function productPurchaseElement(container) {
     container.appendChild(chargeInput);
     container.appendChild(chargeButton);
     container.appendChild(moneyLabel);
-    container.appendChild(chargeAmount);
+    moneyLabel.appendChild(chargeAmount);
     container.appendChild(productDisplayLabel);
 }
 
@@ -63,6 +63,11 @@ function addItemElement(name, price, quantity) {
     const productItemQuantity = createDocumentElement("td", quantity, "", "", "product-purchase-quantity");
     const productItemPurchase = createDocumentElement("td");
     const productItemPurchaseButton = createDocumentElement("button", "구매하기", "", "", "purchase-button");
+
+    productItemName.dataset.dataProductName = name;
+    productItemPrice.dataset.dataProductPrice = price;
+    productItemQuantity.dataset.dataProductproductItemQuantity = quantity;
+    productItemPurchaseButton.onclick = () => purchaseItem(name, price);
 
     productItemTable.appendChild(productItemTableRow);
     productItemTableRow.appendChild(productItemName);
@@ -98,12 +103,13 @@ function coinDisplayElement(container) {
 function chargeUserInputMoney() {
     const chargeInput = document.querySelector("#charge-input");
     vendingMachine.chargeUserInputMoney((Number)(chargeInput.value));
+    chargeInput.value = "";
     displayChargeAmount();
 }
 
 function displayChargeAmount() {
     const chargeAmount = document.querySelector("#charge-amount");
-    chargeAmount.innerText = vendingMachine.getUserInputMoney() + "원";
+    chargeAmount.innerText = vendingMachine.getUserInputMoney();
 }
 
 function returnCharge() {
@@ -119,6 +125,22 @@ function returnCharge() {
     returnCoin50Quantity.innerText = coins.coin50 + "개";
     returnCoin10Quantity.innerText = coins.coin10 + "개";
 
+    displayChargeAmount();
+}
+
+function purchaseItem(name, price) {
+    if(vendingMachine.getUserInputMoney() >= price) {
+        if(productList.purchaseItem(name)) {
+            vendingMachine.reduceUserInputMoney(price);
+        }
+        else{
+            alert("재고가 없습니다.");
+        }
+    }
+    else{
+        alert("잔액이 부족합니다.");
+    }
+    buildPurchasePage();
     displayChargeAmount();
 }
 

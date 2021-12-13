@@ -15,6 +15,16 @@ class ProductList {
         return this.item;
     }
 
+    purchaseItem(name) {
+        const found = this.item.find(element => element.name === name);
+        if(found.quantity > 0) {
+            found.quantity -= 1;
+            this.setLocalStorage();
+            return true;
+        }
+        return false;
+    }
+
     setLocalStorage() {
         localStorage.setItem("productList", JSON.stringify(this.getItem()));
     }
