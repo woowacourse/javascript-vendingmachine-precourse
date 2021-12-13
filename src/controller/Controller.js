@@ -15,6 +15,7 @@ class Controller {
     this.initScreen();
     this.triggerTabMenuClickEvent();
   }
+
   initDOM() {
     this.$product_purchase_menu = document.getElementById('product-purchase-menu');
     this.$vending_machine_manage_menu = document.getElementById('vending-machine-manage-menu');
@@ -22,19 +23,8 @@ class Controller {
   }
 
   initScreen() {
-    const currentTabMenu = this.vendingMachine.getCurrentTabMenu();
-
-    switch (currentTabMenu) {
-      case 'product-add-menu':
-        this.view.showProduceAddScreen();
-        break;
-      case 'vending-machine-manage-menu':
-        this.view.showVendingMachineManageScreen();
-        break;
-      case 'product-purchase-menu':
-        this.view.showProductPurchaseScreen();
-        break;
-    }
+    const initTabMenu = this.vendingMachine.getCurrentTabMenu();
+    this.renderCurrentTabMenu(initTabMenu);
   }
 
   render(currentTabMenu) {
@@ -43,18 +33,19 @@ class Controller {
     }
 
     this.vendingMachine.setCurrentTabMenu(currentTabMenu);
+    this.view.hideScreen();
+    this.renderCurrentTabMenu(currentTabMenu);
+  }
 
-    switch (currentTabMenu) {
+  renderCurrentTabMenu(tabMenu) {
+    switch (tabMenu) {
       case 'product-add-menu':
-        this.view.hideScreen();
         this.view.showProduceAddScreen();
         break;
       case 'vending-machine-manage-menu':
-        this.view.hideScreen();
         this.view.showVendingMachineManageScreen();
         break;
       case 'product-purchase-menu':
-        this.view.hideScreen();
         this.view.showProductPurchaseScreen();
         break;
     }
