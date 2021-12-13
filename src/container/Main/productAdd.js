@@ -18,7 +18,7 @@ export const createAddProduct = (storage, elements) => {
   const [{ value: name }, { value: price }, { value: quantity }] = elements;
   const newItems = [...getProducts(storage), { name, price, quantity }];
 
-  this.$storage.produce(
+  storage.produce(
     { [PRODUCT_ADD]: newItems },
     {
       [PURCHASE_MENU]: { ...storage.read(PURCHASE_MENU), [PRODUCT_ADD]: newItems },
