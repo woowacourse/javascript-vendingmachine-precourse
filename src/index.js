@@ -46,12 +46,32 @@ let chargedMoney = 0;
 function chargeMoney() {
     const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
     if(isCorrectChargeMoney(chargeAmount)) {
+        const newChanges = getChanges(chargeAmount);
         chargedMoney += Number(chargeAmount);
         renderChargedMoney(chargedMoney);
     }
     else { 
         alert("옳바른 형식이 아닙니다. 10의 배수로 입력해주세요.");
     }
+}
+
+function getChanges(newChargeAmount) {
+    const result = {
+        500: 0, 100: 0, 50: 0, 10: 0
+    };
+
+    while(newChargeAmount) {
+        const coin = generateRandomChanges();
+        if(newChargeAmount >= coin) {
+            result[coin] += 1;
+            newChargeAmount -= coin;
+        }
+    }
+    return result;
+}
+
+function generateRandomChanges() {
+    return MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
 }
 
 function renderChargedMoney(money) {
