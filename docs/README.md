@@ -45,14 +45,14 @@
 <div id = manage-tab> </div> 의 appendChild로 추가한다.
 ```
 
-- [ ] 탭 제목
+- [x] 탭 제목
     
     ```
     tag : h2
     내용 : 상품 추가하기
     ```
     
-- [ ] 3가지 input
+- [x] 3가지 input
     - 상품명
         
         ```
@@ -77,7 +77,7 @@
         id : product-quantity-input
         ```
         
-- [ ] 상품 추가하기 버튼
+- [x] 상품 추가하기 버튼
     
     ```
     tag : button
@@ -85,17 +85,17 @@
     id : product-add-button
     ```
     
-- [ ] 상품 현황 소제목
+- [x] 상품 현황 소제목
     
     ```
     tag : h2
     내용 : 상품 현황
     ```
     
-- [ ] 상품 현황 테이블
+- [x] 상품 현황 테이블
     
     ```
-    tag : button
+    tag : table
     내용 : 추가하기
     
     <tr className = "product-manage-item">
@@ -114,22 +114,29 @@
 <div id = charge-tab> </div> 의 appendChild로 추가한다.
 ```
 
-- [ ] 탭 제목
+- [x] 탭 제목
     
     ```
     tag : h2
     내용 : 자판기 동전 충전하기
     ```
     
-- [ ] input
+- [x] input
     
     ```
     tag : input
     placeholder : 자판기가 보유할 금액
     id : vending-machine-charge-input
     ```
-    
-- [ ] 텍스트 - 보유 금액
+- [x] button
+  
+  ```
+  tag: button
+  내용 : 충전하기
+  id : vending-machine-charge-button
+  ```
+
+- [x] 텍스트 - 보유 금액
     
     ```
     tag : text
@@ -137,21 +144,21 @@
     
     ```
     
-- [ ] 자판기 보유 금액
+- [x] 자판기 보유 금액
     
     ```
     tag : text
     id : vending-machine-charge-amount
     ```
     
-- [ ] 텍스트 - 자판기가 보유한 동전
+- [x] 텍스트 - 자판기가 보유한 동전
     
     ```
     tag : h2
     내용 : 자판기가 보유한 동전
     ```
     
-- [ ] 자판기가 보유한 동전 테이블
+- [x] 자판기가 보유한 동전 테이블
     
     ```
     tag : table
@@ -166,14 +173,14 @@
 <div id = purchase-tab> </div> 의 appendChild로 추가한다.
 ```
 
-- [ ] 탭 제목
+- [x] 탭 제목
     
     ```
     tag : h2
     내용 : 금액 투입
     ```
     
-- [ ] input - 투입할 금액
+- [x] input - 투입할 금액
     
     ```
     tag : input
@@ -181,7 +188,7 @@
     id : charge-input
     ```
     
-- [ ] 투입하기 버튼
+- [x] 투입하기 버튼
     
     ```
     tag : button
@@ -189,28 +196,28 @@
     id : charge-button
     ```
     
-- [ ] 텍스트 - 투입한 금액
+- [x] 텍스트 - 투입한 금액
     
     ```
     tag : text
     내용 : 투입한 금액: 
     ```
     
-- [ ] 텍스트 - 충전한 금액
+- [x] 텍스트 - 충전한 금액
     
     ```
     tag : text
     id : charge-amount
     ```
     
-- [ ] 텍스트 - 구매할 수 있는 상품 현황
+- [x] 텍스트 - 구매할 수 있는 상품 현황
     
     ```
     tag : h2
     내용 : 구매할 수 있는 상품 현황
     ```
     
-- [ ] 상품 테이블
+- [x] 상품 테이블
     
     ```
     tag : table
@@ -228,14 +235,14 @@
     	
     ```
     
-- [ ] 텍스트 - 잔돈
+- [x] 텍스트 - 잔돈
     
     ```
     tag : h2
     내용 : 잔돈
     ```
     
-- [ ] 반환하기 버튼
+- [x] 반환하기 버튼
     
     ```
     tag : button
@@ -243,7 +250,7 @@
     id : coin-return-button
     ```
     
-- [ ] 반환 받을 동전 테이블
+- [x] 반환 받을 동전 테이블
     
     ```
     tag : table
@@ -317,12 +324,39 @@
     ```
     수량 감소
     투입한 금액 감소
+    상품을 샀는지 안 샀는지 boolean 반환
     ```
 
 ---
 
 # Controlloer
+- Model과 View를 작성하며 필요한 순간마다 eventHandler를 작성한다.
 
-### 1. Valid 판단
+--- 
+# LocalStorage
+- 기본적으로 Model 안에서 모델 내부 변수들의 값이 변할 때마다 localStorage값을 갱신한다.
 
-### 2. 이벤트 핸들러
+## Model 내부 변수
+
+- [ ] productList
+  ``` 
+  상품 추가 시 갱신
+  상품 구매 시 갱신
+  ```
+
+- [ ] ownChange
+  ```
+  잔돈 충전 시 갱신
+  잔돈 반환 시 갱신
+  ```
+
+- [ ] userMoney
+  ```
+  금액 투입 시 갱신
+  상품 구매 시 갱신
+  ```
+
+- [ ] returnMoney
+  ```
+  변경 사항 없음
+  ```
