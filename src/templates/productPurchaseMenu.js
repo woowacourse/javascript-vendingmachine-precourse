@@ -3,7 +3,7 @@ import { createTheadTableDataTemplate } from './common.js';
 import SELECTOR from '../constants/selector.js';
 import STYLE from '../constants/style.js';
 
-const createTbodyTableDataTemplate = (text, className, dataset) => `
+const createTableDataTemplate = (text, className, dataset) => `
   <td ${dataset}="${text}" class="${className}" style="${STYLE.tableBodyData}">${text}</td>
 `;
 
@@ -14,24 +14,17 @@ const createTbodyTableDataWithButtonTemplate = () => `
 `;
 
 const createProductItemTemplate = (name, price, quantity) => `
-  <tr class="${SELECTOR.productPurchaseItemClass}">
-    ${createTbodyTableDataTemplate(
-      name,
-      SELECTOR.productPurchaseNameClass,
-      SELECTOR.dataProductNameDataset,
-    )}
-    ${createTbodyTableDataTemplate(
-      price,
-      SELECTOR.productPurchasePriceClass,
-      SELECTOR.dataProductPriceDataset,
-    )}
-    ${createTbodyTableDataTemplate(
-      quantity,
-      SELECTOR.productPurchaseQuantityClass,
-      SELECTOR.dataProductQuantityDataset,
-    )}
-    ${createTbodyTableDataWithButtonTemplate()}
-  </tr>
+  ${createTableDataTemplate(name, SELECTOR.productPurchaseNameClass, SELECTOR.productNameDataset)}
+  ${createTableDataTemplate(
+    price,
+    SELECTOR.productPurchasePriceClass,
+    SELECTOR.productPriceDataset,
+  )}
+  ${createTableDataTemplate(
+    quantity,
+    SELECTOR.productPurchaseQuantityClass,
+    SELECTOR.productQuantityDataset,
+  )}
 `;
 
 const createReturnCoinItemTemplate = (coin, amount) => `
@@ -60,27 +53,36 @@ export const createChargeFormTemplate = amount => `
 `;
 
 export const createProductTableBodyWithData = productItems => `
-  ${productItems
-    .map(item =>
-      createProductItemTemplate(item.productName, item.productPrice, item.productQuantity),
-    )
-    .join('')}
+  <tbody id="${SELECTOR.purchaseProductTableBodyId}">
+    ${productItems
+      .map(
+        item => `
+				<tr class="${SELECTOR.productPurchaseItemClass}">
+					${createProductItemTemplate(item.productName, item.productPrice, item.productQuantity)}
+					${createTbodyTableDataWithButtonTemplate()}
+				</tr>
+				`,
+      )
+      .join('')}
+  </tbody>
+`;
+
+const createProductTableHeadTemplate = () => `
+  <thead>
+    <tr>
+      ${createTheadTableDataTemplate('상품명')}
+      ${createTheadTableDataTemplate('가격')}
+      ${createTheadTableDataTemplate('수량')}
+      ${createTheadTableDataTemplate('구매')}
+    </tr>
+  </thead>
 `;
 
 export const createProductTableTemplate = () => `
   <h3>구매할 수 있는 상품 현황</h3>
   <table style="${STYLE.table}">
-    <thead>
-      <tr>
-        ${createTheadTableDataTemplate('상품명')}
-        ${createTheadTableDataTemplate('가격')}
-        ${createTheadTableDataTemplate('수량')}
-        ${createTheadTableDataTemplate('구매')}
-      </tr>
-    </thead>
-    <tbody id="${SELECTOR.purchaseProductTableBodyId}">
-      ${createProductTableBodyWithData([])}
-    </tbody>
+    ${createProductTableHeadTemplate()}
+    ${createProductTableBodyWithData([])}
   </table>
 `;
 
