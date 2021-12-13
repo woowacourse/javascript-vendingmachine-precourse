@@ -56,6 +56,9 @@ class Controller {
   isEmpty(inputValue) {
     return inputValue === '';
   }
+  isContainsBlank(productNameInput) {
+    return productNameInput.replace(/ /g, '').length === 0;
+  }
 
   isValidateProductAdd() {
     const productNameInput = $id('product-name-input').value;
@@ -63,7 +66,12 @@ class Controller {
     const productQuantityInput = $id('product-quantity-input').value;
 
     if (this.isEmpty(productNameInput)) {
-      alert('상품명을 입력해주세요. ex) 사이다');
+      alert('상품명을 입력해주세요.  ex) 사이다');
+      return false;
+    }
+
+    if (this.isContainsBlank(productNameInput)) {
+      alert('공백이 아닌 상품명을 입력해주세요.  ex) 사이다');
       return false;
     }
   }
