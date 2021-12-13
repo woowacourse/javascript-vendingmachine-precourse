@@ -7,6 +7,7 @@ export default function vendingMachine() {
   tabItems.setAttribute('id', 'tabItems');
   appBox.innerHTML = tabButtons();
   appBox.appendChild(tabItems);
+
   manageTabButtons();
 }
 new vendingMachine();
