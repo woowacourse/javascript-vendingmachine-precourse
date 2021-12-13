@@ -26,15 +26,12 @@ export const $all = (selector, target = document) => target.querySelectorAll(sel
  * @returns {Node}
  */
 export const $closest = (element, selector) => {
-  if (element.nodeType === 9) return false;
-
   let $element = element;
+  if ($element.nodeType === 9) return false;
   while ($element) {
     if (typeof $element.matches === 'function' && $element.matches(selector)) return $element;
-
     $element = $element.parentNode;
   }
-
   return false;
 };
 
@@ -96,10 +93,8 @@ export const isIncludes = (value, items) => items.includes(value);
  * @param {string} eventType
  * @param {function} listenser
  */
-export const addEvent = ($element, eventType, listenser) => {
+export const addEvent = ($element, eventType, listenser) =>
   $element.addEventListener(eventType, listenser);
-};
-
 /**
  * 양의 정수인지 검사합니다.
  * 1. 값이 0일 수 없습니다.
@@ -111,14 +106,10 @@ export const addEvent = ($element, eventType, listenser) => {
  */
 export const isPositiveInteger = (target, description) => {
   const parsed = +target;
-
   if (isEquals(parsed, ZERO)) return setErrorMessage('zeroError', description);
-
   if (parsed < ZERO) return setErrorMessage('negativeError', description);
-
   if (!isEquals(Number.isInteger(parsed), true))
     return setErrorMessage('decimalError', description);
-
   return parsed;
 };
 
@@ -147,9 +138,8 @@ export const getChildInput = selector =>
  *
  * @param {HTMLInputElement[]} targets
  */
-export const clearInput = targets => {
-  const copied = Array.from(targets);
-  copied.forEach((_, index) => {
-    copied[index].value = EMPTY;
+/* eslint-disable no-param-reassign */
+export const clearInput = targets =>
+  Array.from(targets).forEach(input => {
+    input.value = EMPTY;
   });
-};
