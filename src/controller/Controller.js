@@ -99,6 +99,38 @@ class Controller {
     });
   }
 
+  getRandomCoinList(chargeInputValue) {
+    const randomCoinList = { 500: 0, 100: 0, 50: 0, 10: 0 };
+
+    let sum = 0;
+    while (chargeInputValue !== sum) {
+      const number = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+
+      if (sum + number > chargeInputValue) {
+        continue;
+      }
+
+      randomCoinList[number] += 1;
+      sum += number;
+    }
+
+    return randomCoinList;
+  }
+
+  renderVendingMachineCharge(vendingMachineChargeInput) {
+    const vendingMachineChargeNumber = parseInt(vendingMachineChargeInput, 10);
+    const tabMenu = this.vendingMachine.getLocalStorage();
+
+    tabMenu['vending_machine_manage_menu']['chargeAmount'] += vendingMachineChargeNumber;
+
+    const coinList = this.getRandomCoinList(vendingMachineChargeNumber);
+
+    $id('vending-machine-charge-amount').innerText =
+      tabMenu['vending_machine_manage_menu']['chargeAmount'];
+
+    this.vendingMachine.setLocalStorage(tabMenu);
+  }
+
   triggerVendingMachineChargeSubmitEvent() {
     $id('vending-machine-charge-form').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -106,7 +138,7 @@ class Controller {
       const vendingMachineChargeInput = $id('vending-machine-charge-input').value;
 
       if (isValidVendingMachineCharge(vendingMachineChargeInput)) {
-        console.log('pass');
+        this.renderVendingMachineCharge(vendingMachineChargeInput);
       }
     });
   }
