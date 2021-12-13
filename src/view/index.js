@@ -34,6 +34,12 @@ export const initView = () => {
 
 export const addTableRow = (table, rowForm) => table.insertAdjacentHTML('beforeend', rowForm);
 
+export const setInnerHTML = (target, value) => (target.innerHTML = value);
+
+export const clearInput = input => (input.value = '');
+
+export const clearTable = table => (table.innerHTML = '');
+
 export const initReturnTable = returnCoin =>
   returnCoin.forEach(x => {
     $(`coin-${x.coin}-quantity`).innerHTML = `${x.quantity}개`;

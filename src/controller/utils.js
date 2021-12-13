@@ -2,8 +2,6 @@ import { ALERT_MESSAGE } from '../model/constants.js';
 
 export const $ = id => document.getElementById(id);
 
-export const appendChilds = (parent, childs) => childs.forEach(child => parent.appendChild(child));
-
 export const getItemOrArray = key => JSON.parse(localStorage.getItem(key)) || [];
 
 export const getItemOrNull = key => JSON.parse(localStorage.getItem(key));
