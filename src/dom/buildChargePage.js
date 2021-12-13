@@ -1,6 +1,7 @@
 import VendingMachine from "../vendingMachine/VendingMachine.js";
 import createDocumentElement from "../util/createDocumentElement.js";
 import createTableRow from "../util/createTableRow.js";
+import validateCharge from "../util/validateCharge.js";
 
 const vendingMachine = new VendingMachine;
 
@@ -52,10 +53,15 @@ function coinDisplayElement(container) {
 
 function addCharge() {
     const vendingMachineChargeInput = document.querySelector("#vending-machine-charge-input");
-    vendingMachine.chargeChange(vendingMachineChargeInput.value);
+    if(validateCharge(vendingMachineChargeInput.value)) {
+        vendingMachine.chargeChange(vendingMachineChargeInput.value);
+    }
+    else{
+        alert("올바르지 않은 잔돈 값입니다.");
+    }
+
     vendingMachineChargeInput.value = "";
     updateCoin();
-    console.log(vendingMachine.getTotalChange());
 }
 
 function updateCoin() {
