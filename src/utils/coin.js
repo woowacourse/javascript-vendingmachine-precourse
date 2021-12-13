@@ -52,4 +52,4 @@ const getSumCoins = ({ prevCoins, newCoins }) => {
   return coins;
 };
 
-export { getRandomChargeCoins, getSumCoins };
+export { getRandomChargeCoins, getSumCoins, getNewCoinBox };
