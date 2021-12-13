@@ -49,14 +49,30 @@ export default function ProductPurchaseMenuView(container) {
   this.onClickAddMoneyButton = (e) => {
     e.preventDefault();
     const addMoneyInput = document.querySelector(`#${ID.CHARGE_INPUT}`);
+
     vendingMachine.addInsertMoney(parseInt(addMoneyInput.value));
+    this.renderInsertMoney();
   };
 
   this.onClickReturnCoinButton = (e) => {
     e.preventDefault();
   };
 
+  this.renderInsertMoney = () => {
+    const moneySpan = document.querySelector(`#${ID.CHARGE_AMOUNT}`);
+
+    moneySpan.innerHTML = vendingMachine.insertMoney;
+  };
+
+  this.initInsertMoney = () => {
+    if (JSON.parse(localStorage.getItem('insert'))) {
+      vendingMachine.insertMoney = JSON.parse(localStorage.getItem('insert'));
+    }
+    this.renderInsertMoney();
+  };
+
   this.render = () => {
     container.append(this.productPurchaseMenu());
+    this.initInsertMoney();
   };
 }
