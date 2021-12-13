@@ -1,5 +1,5 @@
-import { $, handleStorage, validation, onKeyUpNumericEvent } from './utils.js';
-import { KEY, SELECTOR } from '../model/constants.js';
+import { $, validation, onKeyUpNumericEvent } from './utils.js';
+import { SELECTOR } from '../model/constants.js';
 import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/template.js';
 
 export default class Purchase {
@@ -33,7 +33,7 @@ export default class Purchase {
 
   initProductStatusTable() {
     const table = document.querySelector('tbody');
-    const allProducts = handleStorage.getItemOrArray(KEY.product);
+    const allProducts = this.model.getProducts();
     this.view.clearTable(table);
     this.view.addTableHeader(table, productPurchaseTableHeader());
     allProducts.forEach(product => this.view.addTableRow(table, productPurchaseTableRow(product)));
@@ -41,7 +41,7 @@ export default class Purchase {
   }
 
   initPurchaseDom() {
-    const charge = handleStorage.getItemOrNull(KEY.charge);
+    const charge = this.model.getCharge();
     if (charge || charge === 0) {
       this.view.setInnerHTML($(SELECTOR.chargeAmount), charge);
     }
@@ -53,17 +53,17 @@ export default class Purchase {
     if (selectProduct.quantity === 0) {
       products = products.filter(product => product.name !== selectProduct.name);
     }
-    handleStorage.setItem(KEY.product, products);
+    this.model.setProducts(products);
   }
 
   calculateCharge(selectProduct, charge) {
     charge -= selectProduct.price;
-    handleStorage.setItem(KEY.charge, charge);
+    this.model.setCharge(charge);
   }
 
   purchaseProduct(item) {
-    const charge = handleStorage.getItemOrNull(KEY.charge);
-    const products = handleStorage.getItemOrArray(KEY.product);
+    const charge = this.model.getCharge();
+    const products = this.model.getProducts();
     const selectProduct = products.find(e => e.name === item.childNodes[1].dataset.productName);
     if (validation.isEnoughCoin(charge, selectProduct.price)) {
       this.calculateProducts(selectProduct, products);
@@ -73,7 +73,7 @@ export default class Purchase {
   }
 
   initChargeDom() {
-    const charge = handleStorage.getItemOrNull(KEY.charge);
+    const charge = this.model.getCharge();
     this.view.clearInput($(SELECTOR.chargeInput));
     if (charge || charge === 0) {
       this.view.setInnerHTML($(SELECTOR.chargeAmount), charge);
@@ -86,14 +86,14 @@ export default class Purchase {
 
   chargeMoney() {
     const chargeInput = $(SELECTOR.chargeInput);
-    let charge = handleStorage.getItemOrNull(KEY.charge);
+    let charge = this.model.getCharge();
     if (this.isChargeInputValid(chargeInput)) {
       if (charge || charge === 0) {
         charge += parseInt(chargeInput.value);
       } else if (charge === null) {
         charge = parseInt(chargeInput.value);
       }
-      handleStorage.setItem(KEY.charge, charge);
+      this.model.setCharge(charge);
       this.initChargeDom();
     }
   }
@@ -108,12 +108,12 @@ export default class Purchase {
       minimalCoin.quantity = x.quantity;
       x.quantity = 0;
     }
-    handleStorage.setItem(KEY.charge, chargeInput);
+    this.model.setCharge(chargeInput);
   }
 
   findMinimalNum(x) {
     const minimalCoin = { coin: x.coin, quantity: 0 };
-    const chargeInput = handleStorage.getItemOrNull(KEY.charge);
+    const chargeInput = this.model.getCharge();
     const div = Math.trunc(chargeInput / x.coin);
     this.calculateByQuantity(div, x, chargeInput, minimalCoin);
 
@@ -121,10 +121,10 @@ export default class Purchase {
   }
 
   makeMinimumCoin() {
-    const vendingMachine = handleStorage.getItemOrNull(KEY.vending);
+    const vendingMachine = this.model.getVendingMachine();
     const minimumCoin = vendingMachine.coins.map(x => this.findMinimalNum(x));
     minimumCoin.forEach(minimum => (vendingMachine.change -= minimum.coin * minimum.quantity));
-    handleStorage.setItem(KEY.vending, vendingMachine);
+    this.model.setVendingMachine(vendingMachine);
 
     return minimumCoin;
   }
