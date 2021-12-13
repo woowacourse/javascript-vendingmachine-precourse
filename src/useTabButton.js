@@ -10,7 +10,7 @@ function tabMove($selectedContent){
 export function useTabButton(e){
     let $selectedContent = ''
     if(e.target.id === 'product-add-menu'){
-        $selectedContent = document.getElementById('product-add-content')
+        $selectedContent = document.querySelector('#product-add-content')
         tabMove($selectedContent)
     }
     if(e.target.id === 'vending-machine-manage-menu'){

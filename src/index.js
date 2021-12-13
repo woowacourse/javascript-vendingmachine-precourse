@@ -19,14 +19,15 @@ import { purchaseProduct } from './purchaseProduct.js'
         $productAddButton.addEventListener('click', ()=>{PRODUCTS = addProductList()})        
         
         //잔돈충전 충전하기 버튼 클릭
+        let vendingMachineCharge = ''
         const $vendingMachineChargeButton = document.querySelector('#vending-machine-charge-button')
-        $vendingMachineChargeButton.addEventListener('click', ()=>{addVendingMachineCharge()})
+        $vendingMachineChargeButton.addEventListener('click', ()=>{vendingMachineCharge = addVendingMachineCharge()})
         
 
         //상품구매 투입하기 버튼 클릭
         const $chargeButton = document.querySelector('#charge-button')
         $chargeButton.addEventListener('click', ()=>{
-                purchaseProduct(PRODUCTS)
+                purchaseProduct(PRODUCTS, vendingMachineCharge)
         })
     }
 

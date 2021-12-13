@@ -30,10 +30,15 @@ export class VENDING_MACHINE_CHARGE{
     constructor(){
         this.chargeArray = [0,0,0,0]
         this.chargeTotal = 0
+        this.coin = [500,100,50,10]
     }
 
     setChargeArray(i, randomNumber){
         this.chargeArray[i] += randomNumber
+    }
+    useChargeArray(i, coinAmount){
+        console.log('use'+' '+this.coin[i]+' '+ coinAmount)
+        this.chargeArray[i] -= Number(coinAmount)
     }
     setChargeTotal(newCharge){
         this.chargeTotal += Number(newCharge)
@@ -51,6 +56,17 @@ export class CUSTOMER_CHARGE{
     }
 
     setCustomerChargeTotal(newCustomerCharge){
+        //console.log(typeof newCustomerCharge + '' + newCustomerCharge)
         this.customerChargeTotal += Number(newCustomerCharge)
+    }
+
+    purchase(price){
+        //console.log(typeof price + '' + price)
+        this.customerChargeTotal -= Number(price)
+    }
+
+    setCustomerChargeArray(i, coinAmount){
+        //console.log(typeof coinAmount + '' + coinAmount)
+        this.customerChargeArray[i] += Number(coinAmount)
     }
 }

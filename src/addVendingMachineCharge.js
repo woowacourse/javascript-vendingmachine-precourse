@@ -83,7 +83,7 @@ export function addVendingMachineCharge(){
     const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input') 
     $vendingMachineChargeInput.value = ''
 
-
+    return vendingMachineCharge
 
 
 }
