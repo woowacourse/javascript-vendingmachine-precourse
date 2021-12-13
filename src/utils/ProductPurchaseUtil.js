@@ -1,5 +1,6 @@
-import { ALERT, PRODUCT_PURCHASE, ZERO } from '../constants.js';
+import { ALERT, PRODUCT_PURCHASE } from '../constants.js';
 import { checkPurchaseCoin } from './validators/checkInput.js';
+import { checkPurchasePrice, checkPurchaseQuantity } from './validators/checkPurchase.js';
 import ProductPurchase from '../elements/ProductPurchase.js';
 
 export default class ProductPurchaseUtil {
@@ -62,30 +63,12 @@ export default class ProductPurchaseUtil {
   }
 
   checkPurchase(element, price, quantity) {
-    if (this.checkPurchasePrice(price) && this.checkPurchaseQuantity(quantity)) {
+    if (checkPurchasePrice(this.coinAmount, price) && checkPurchaseQuantity(quantity)) {
       this.coinAmount -= price;
       this.renderCoinAmount(this.coinAmount);
       quantity -= 1;
       element.innerHTML = quantity;
       element.dataset.productQuantity = quantity;
     }
-  }
-
-  checkPurchasePrice(price) {
-    if (this.coinAmount < price) {
-      alert(ALERT.NO_PRICE);
-      return;
-    }
-
-    return true;
-  }
-
-  checkPurchaseQuantity(quantity) {
-    if (quantity == ZERO) {
-      alert(ALERT.NO_QUANTITY);
-      return;
-    }
-
-    return true;
   }
 }
