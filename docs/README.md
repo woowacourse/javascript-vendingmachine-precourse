@@ -5,6 +5,28 @@
 
 ## 🎯 구현할 기능 목록
 
+```
+- docs
+  |- README.md : 구현할 기능 목록 파일
+- src
+  |- app.js : 자판기 탭 메뉴 버튼 연결 클래스
+  |- view
+  |   |- tapView.js : 자판기 탭 메뉴 버튼을 표시하는 클래스
+  |   |- adminView.js : 상품 관리 탭을 표시하는 클래스
+  |   |- chargeView.js : 잔돈 충전 탭을 표시하는 클래스
+  |   |- purchaseView.js : 상품 구매 탭을 표시하는 클래스
+  |- Model
+  |   |- adminModel.js : 상품 관리 탭에 필요한 데이터를 저장하는 클래스
+  |   |- chargeModel.js : 잔돈 충전 탭에 필요한 데이터를 저장하는 클래스
+  |   |- purchaseModel.js : 상품 구매 탭에 필요한 데이터를 저장하는 클래스
+  |- Controller
+  |   |- adminController.js : 상품 관리 탭의 데이터를 View에 연결
+  |   |- chargeController.js : 잔돈 충전 탭의 데이터를 View에 연결
+  |   |- purchaseController.js : 상품 구매 탭의 데이터를 View에 연결
+  |- constants
+      |- constants.js : 상수 선언 파일
+```
+
 ### 1. 자판기 View
 
 - 자판기 타이틀 표시
