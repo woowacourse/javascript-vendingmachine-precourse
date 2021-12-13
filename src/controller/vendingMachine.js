@@ -43,8 +43,8 @@ export default class VendingMachine {
   }
 
   handlePurchaseEvent(e) {
-    if (e.target.id === PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PURCHASE_BUTTON) {
-      const name = e.target.parentNode.parentNode.childNodes[1].innerText;
+    if (e.target.className === PURCHASE_MENU.PURCHASE_ITEM_BUTTON) {
+      const name = e.target.parentNode.parentNode.childNodes[1].getAttribute(PURCHASE_MENU.DATASET.PRODUCT_NAME);
       const price = this.productModel.purchaseProduct(name);
 
       this.coinModel.clientMoney -= price;
@@ -58,7 +58,7 @@ export default class VendingMachine {
   handleReturnChangeEvent() {
     this.changeModel = new changeCalculator(this.coinModel.money);
     this.changeModel.returnChange(this.coinModel.clientMoney);
-    
+
     this.coinModel.clientMoney = 0;
 
     this.view.renderCoinStatus(PURCHASE_MENU.RETURN_TABLE_SELECTOR, this.changeModel.change);

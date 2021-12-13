@@ -24,7 +24,7 @@ export default class CoinMenu {
       <form>
         <input type="number" step="10" id="${COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_INPUT}" placeholder="자판기가 보유할 금액">
         <button id="${COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_BUTTON}">충전하기</button>
-        <p id="${COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT}">보유 금액:</p>
+        <p>보유 금액:<span id="${COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT}"></sapn></p>
       </form>`;
   }
 

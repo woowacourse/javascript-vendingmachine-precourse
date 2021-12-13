@@ -45,10 +45,10 @@ export default class ProductMenu {
   }
 
   productItemTemplate(product) {
-    return `<tr id="${PRODUCT_MENU.TABLE_SELECTOR.ITEM}">
-        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_NAME}">${product.name}</td>
-        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_PRICE}">${product.price}</td>
-        <td id="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_QUANTITY}">${product.quantity}</td>
+    return `<tr class="${PRODUCT_MENU.TABLE_SELECTOR.ITEM}">
+        <td class="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_NAME}">${product.name}</td>
+        <td class="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_PRICE}">${product.price}</td>
+        <td class="${PRODUCT_MENU.TABLE_SELECTOR.PRODUCT_QUANTITY}">${product.quantity}</td>
       </tr>`;
   }
 }
