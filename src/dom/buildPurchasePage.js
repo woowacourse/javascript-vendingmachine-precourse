@@ -29,6 +29,8 @@ function productPurchaseElement(container) {
     const chargeAmount = createDocumentElement("span", "", "charge-amount");
     const productDisplayLabel = createDocumentElement("h3", "구매할 수 있는 상품 현황");
 
+    chargeButton.onclick = () => chargeUserInputMoney();
+
     container.appendChild(productPurchaseLabel);
     container.appendChild(chargeInput);
     container.appendChild(chargeButton);
@@ -89,6 +91,17 @@ function coinDisplayElement(container) {
     createTableRow(coinDisplayTable,"100원","coin-100-quantity");
     createTableRow(coinDisplayTable,"50원","coin-50-quantity");
     createTableRow(coinDisplayTable,"10원","coin-10-quantity");
+}
+
+function chargeUserInputMoney() {
+    const chargeInput = document.querySelector("#charge-input");
+    vendingMachine.chargeUserInputMoney((Number)(chargeInput.value));
+    displayChargeAmount();
+}
+
+function displayChargeAmount() {
+    const chargeAmount = document.querySelector("#charge-amount");
+    chargeAmount.innerText = vendingMachine.getUserInputMoney() + "원";
 }
 
 function clearContainer(container) {

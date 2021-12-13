@@ -4,6 +4,7 @@ class VendingMachine {
         this.coin100 = 0;
         this.coin50 = 0;
         this.coin10 = 0;
+        this.userInputMoney = 0;
     }
 
     chargeChange(money) {
@@ -36,6 +37,15 @@ class VendingMachine {
         }
     }
 
+    chargeUserInputMoney(input) {
+        this.userInputMoney += input;
+        this.setLocalStorage();
+    }
+
+    getUserInputMoney() {
+        return this.userInputMoney;
+    }
+
     getCoins() {
         const coins = {
             coin500: this.coin500,
@@ -55,6 +65,7 @@ class VendingMachine {
         this.coin100 = JSON.parse(localStorage.getItem("vendingMachine100")) ?? 0;
         this.coin50 = JSON.parse(localStorage.getItem("vendingMachine50")) ?? 0;
         this.coin10 = JSON.parse(localStorage.getItem("vendingMachine10")) ?? 0;
+        this.userInputMoney = JSON.parse(localStorage.getItem("userInputMoney")) ?? 0;
     }
 
     setLocalStorage() {
@@ -62,6 +73,7 @@ class VendingMachine {
         localStorage.setItem("vendingMachine100", this.coin100);
         localStorage.setItem("vendingMachine50", this.coin50);
         localStorage.setItem("vendingMachine10", this.coin10);
+        localStorage.setItem("userInputMoney", this.userInputMoney);
     }
 }
 
