@@ -135,6 +135,43 @@
 
 <br/>
 
+## 🗂 프로그램 구조
+
+```javascript
+📦src
+ ┣ 📂model
+ ┃ ┗ 📜database.js											//
+ ┣ 📂views
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📜ChargeForm.js									//
+ ┃ ┃ ┣ 📜CoinTable.js										//
+ ┃ ┃ ┗ 📜ProductTable.js								//
+ ┃ ┣ 📂templates
+ ┃ ┃ ┗ 📜templates.js										//
+ ┃ ┣ 📜View.js													//
+ ┣ 📂controllers
+ ┃ ┣ 📂managers
+ ┃ ┃ ┣ 📜ProductAddManager.js           //
+ ┃ ┃ ┣ 📜ProductPurchaseManager.js      //
+ ┃ ┃ ┗ 📜VendingMachineChargeManager.js //
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📜calculateReturnCoins.js        //
+ ┃ ┃ ┣ 📜convertChargeIntoCoin.js       //
+ ┃ ┃ ┗ 📜getAllPurchaseButton.js        //
+ ┃ ┗ 📜Controller.js									  //
+ ┣ 📂constants
+ ┃ ┣ 📜constants.js											//
+ ┃ ┣ 📜errors.js												//
+ ┃ ┗ 📜selectors.js											//
+ ┣ 📂utils
+ ┃ ┣ 📜DOMUtils.js											//
+ ┃ ┣ 📜utils.js													//
+ ┃ ┗ 📜validators.js										//
+ ┗ 📜index.js														//
+```
+
+<br/>
+
 ## **🤔 고민했던 부분**
 
 ### 1. 자판기 보유 금액 만큼 동전 무작위 생성하는 알고리즘

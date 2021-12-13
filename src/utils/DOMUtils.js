@@ -1,6 +1,6 @@
 import { default as DB } from '../model/database.js';
 import { default as UT } from './utils.js';
-import { default as UI } from '../views/templates.js';
+import { default as UI } from '../views/templates/templates.js';
 import { SELECTOR } from '../constants/selectors.js';
 import { STORAGE, WORD } from '../constants/constants.js';
 

@@ -1,4 +1,4 @@
-import { default as UI } from './templates.js';
+import { default as UI } from './templates/templates.js';
 import { $, default as DOM } from '../utils/DOMUtils.js';
 import CoinTable from './components/CoinTable.js';
 import ProductTable from './components/ProductTable.js';
