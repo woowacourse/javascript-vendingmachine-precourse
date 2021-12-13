@@ -1,7 +1,6 @@
 import Component from '../../core/Component.js';
 import PurchaseTable from '../table/PurchaseTable.js';
-import { SELECTOR } from '../../constants/selector.js';
-import { DISPLAY } from '../../constants/display.js';
+import { DISPLAY, SELECTOR } from '../../constants/display.js';
 
 export default class PurchaseList extends Component {
   init() {

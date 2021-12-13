@@ -1,7 +1,6 @@
 import Component from '../../core/Component.js';
 import { $ } from '../../utils/element-tools.js';
-import { SELECTOR } from '../../constants/selector.js';
-import { DISPLAY } from '../../constants/display.js';
+import { DISPLAY, SELECTOR } from '../../constants/display.js';
 
 export default class ChargeInputForm extends Component {
   init() {
