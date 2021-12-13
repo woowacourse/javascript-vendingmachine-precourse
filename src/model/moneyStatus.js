@@ -1,12 +1,7 @@
 export default class MoneyStatus {
-  constructor() {
-    this.money = {
-      500: 0,
-      100: 0,
-      50: 0,
-      10: 0,
-    };
-    this.clientMoney = 0;
+  constructor(money, clientMoney) {
+    this.money = money;
+    this.clientMoney = clientMoney;
   }
 
   putMoney(inputMoney) {

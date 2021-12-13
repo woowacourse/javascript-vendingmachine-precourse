@@ -2,6 +2,7 @@ import { $, $$ } from '../utils/domElementTool.js';
 import { COIN_MENU, PRODUCT_MENU, PURCHASE_MENU } from '../data/elementData.js';
 import { getErrorMessage, getNotValidMoneyErrorMessage, getHasNoReturnErrorMessage } from './getErrorMessage.js';
 import { showAlert } from '../utils/showAlert.js';
+import { setLocalStorage, getLocalStorage } from '../utils/localStorage.js';
 import TabMenuController from './tabMenuController.js';
 import ProductManager from '../model/product.js';
 import VendingMachineView from '../vendingMachineView.js';
@@ -13,16 +14,26 @@ export default class VendingMachine {
     this.init();
   }
 
-  createModels() {
-    this.productModel = new ProductManager();
-    this.coinModel = new MoneyStatus();
+  init() {
+    const data = getLocalStorage();
+    this.view = new VendingMachineView(data[0]);
+    this.tabMenu = new TabMenuController();
+    this.createModels(data);
+    this.renderInitPage();
+    this.setEvent();
   }
 
-  init() {
-    this.createModels();
-    this.tabMenu = new TabMenuController();
-    this.view = new VendingMachineView(this.productModel.products);
-    this.setEvent();
+  createModels(data) {
+    this.productModel = new ProductManager(data[0]);
+    this.coinModel = new MoneyStatus(data[1], data[2]);
+  }
+
+  renderInitPage() {
+    this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
+    this.view.renderProducts(PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE, this.tabMenu.purchaseMenu.purchaseItemTemplate);
+    this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coinModel.getAmount());
+    this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.coinModel.clientMoney);
+    this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coinModel.money);
   }
 
   setEvent() {
@@ -40,6 +51,8 @@ export default class VendingMachine {
     } else if (e.target.id === PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_BUTTON) {
       this.handleClientChargeMoney();
     }
+
+    setLocalStorage(this.productModel.products, this.coinModel.money, this.coinModel.clientMoney);
   }
 
   handlePurchaseEvent(e) {
@@ -52,6 +65,7 @@ export default class VendingMachine {
       this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.coinModel.clientMoney);
       this.view.renderProducts(PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE, this.tabMenu.purchaseMenu.purchaseItemTemplate);
       this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
+      setLocalStorage(this.productModel.products, this.coinModel.money, this.coinModel.clientMoney);
     }
   }
 
@@ -67,6 +81,11 @@ export default class VendingMachine {
     const balance = this.changeModel.returnChange(this.coinModel.clientMoney, this.coinModel.getAmount());
     this.coinModel.clientMoney = balance;
 
+    this.renderAfterReturnStatus();
+    setLocalStorage(this.productModel.products, this.coinModel.money, this.coinModel.clientMoney);
+  }
+
+  renderAfterReturnStatus() {
     this.view.renderCoinStatus(PURCHASE_MENU.RETURN_TABLE_SELECTOR, this.changeModel.change);
     this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coinModel.money);
     this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coinModel.getAmount());

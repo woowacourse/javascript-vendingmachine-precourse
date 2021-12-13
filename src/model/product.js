@@ -1,6 +1,6 @@
 export default class ProductManager {
-  constructor() {
-    this.products = [];
+  constructor(products) {
+    this.products = products;
   }
 
   createProduct(name, price, quantity) {
