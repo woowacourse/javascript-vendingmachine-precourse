@@ -1,5 +1,6 @@
 import ProductControlController from "../controllers/ProductControlController.js";
 import { productControlTemplete, renderProductList } from "../utils/dom/productControlTemplete.js";
+import { productAddValiate } from "../utils/validation/productAddEvent.js";
 
 export default class ProductControlView extends ProductControlController {
 
@@ -13,7 +14,7 @@ export default class ProductControlView extends ProductControlController {
       e.preventDefault();
       this.product = [...this.proudctControlField.querySelectorAll('input')].map(v => v.value);
       [...this.proudctControlField.querySelectorAll('input')].map(v => v.value = "");
-      this.renderProduct();
+      productAddValiate(this.product) && this.renderProduct();
     });
   }
 
