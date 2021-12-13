@@ -2,6 +2,7 @@ import { $, getItemOrArray, getItemOrNull, setItem, isEnoughCoin } from './utils
 import {
   addTableRow,
   addTableHeader,
+  initReturnTable,
   clearTable,
   setInnerHTML,
   clearInput,
@@ -77,9 +78,46 @@ const chargeMoney = () => {
   initChargeDom();
 };
 
+const calculateByQuantity = (div, x, chargeInput, minimalCoin) => {
+  if (div <= x.quantity && chargeInput >= x.coin) {
+    chargeInput -= x.coin * div;
+    x.quantity -= div;
+    minimalCoin.quantity = div;
+  } else if (div > x.quantity && chargeInput >= x.coin) {
+    chargeInput -= x.coin * x.quantity;
+    minimalCoin.quantity = x.quantity;
+    x.quantity = 0;
+  }
+  setItem(KEY.charge, chargeInput);
+};
+
+const findMinimalNum = x => {
+  const minimalCoin = { coin: x.coin, quantity: 0 };
+  const chargeInput = getItemOrNull(KEY.charge);
+  const div = Math.trunc(chargeInput / x.coin);
+  calculateByQuantity(div, x, chargeInput, minimalCoin);
+
+  return minimalCoin;
+};
+
+const makeMinimumCoin = () => {
+  const vendingMachine = getItemOrNull(KEY.vending);
+  const minimumCoin = vendingMachine.coins.map(x => findMinimalNum(x));
+  minimumCoin.forEach(minimum => (vendingMachine.change -= minimum.coin * minimum.quantity));
+  setItem(KEY.vending, vendingMachine);
+
+  return minimumCoin;
+};
+
+const returnMoney = () => {
+  const minimumCoinArray = makeMinimumCoin();
+  initReturnTable(minimumCoinArray);
+  initChargeDom();
+};
+
 export const initAllPurchase = () => {
   initProductStatusTable();
   initChargeDom();
   $(SELECTOR.chargeButton).addEventListener('click', () => chargeMoney());
-  // $(SELECTOR.returnButton).addEventListener('click', () => returnMoney());
+  $(SELECTOR.returnButton).addEventListener('click', () => returnMoney());
 };
