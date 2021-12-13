@@ -5,7 +5,7 @@ export const saveProductList = (productList) => {
   localStorage.setItem(PRODUCTS, JSON.stringify(productList));
 };
 
-export const loadProductList = () => {
+const loadProductList = () => {
   const products = JSON.parse(localStorage.getItem(PRODUCTS));
 
   return !products ? [] : products;

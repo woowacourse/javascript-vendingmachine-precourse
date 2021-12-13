@@ -11,7 +11,7 @@ export const saveCharges = () => {
   );
 };
 
-export const loadCharges = () => {
+const loadCharges = () => {
   return JSON.parse(localStorage.getItem(VENDING_MACHINE_CHARGES));
 };
 

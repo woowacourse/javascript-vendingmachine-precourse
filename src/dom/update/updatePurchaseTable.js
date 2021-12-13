@@ -27,7 +27,7 @@ export const createPurchaseTableRow = (name, price, quantity) => {
   );
 };
 
-export const createPurchasableProductTableRow = (name, price, quantity) => {
+const createPurchasableProductTableRow = (name, price, quantity) => {
   const tableRow = document.createElement(TABLE_ROW);
 
   tableRow.setAttribute(CLASS, 'product-purchase-item');
@@ -37,12 +37,7 @@ export const createPurchasableProductTableRow = (name, price, quantity) => {
   return tableRow;
 };
 
-export const createPurchasableProductTableData = (
-  tableRow,
-  name,
-  price,
-  quantity
-) => {
+const createPurchasableProductTableData = (tableRow, name, price, quantity) => {
   tableRow.append(
     createProductNameCell(name),
     createProductPriceCell(price),
@@ -81,7 +76,7 @@ const createProductQuantity = (quantity) => {
   return productQuantityCell;
 };
 
-export const createPurchaseButtonCell = (name) => {
+const createPurchaseButtonCell = (name) => {
   const purchaseButtonCell = document.createElement(TABLE_DATA);
   const purchaseButton = document.createElement(BUTTON);
 

@@ -5,12 +5,6 @@ import {
 } from '../domElement.js';
 import { COINS } from '../../constants/data.js';
 
-const updateVendingMachineChargeAmount = () => {
-  const vendingMachineChargeAmount = getVendingMachineChargeAmount();
-
-  vendingMachineChargeAmount.innerHTML = vendingMachine.amount;
-};
-
 export const updateVendingMachineTable = () => {
   const vendingMachineCoinTableData = getVendingMachineCoinTableData();
 
@@ -24,4 +18,10 @@ export const updateVendingMachineTable = () => {
 export const updateVendingMachineCharge = () => {
   updateVendingMachineChargeAmount();
   updateVendingMachineTable();
+};
+
+const updateVendingMachineChargeAmount = () => {
+  const vendingMachineChargeAmount = getVendingMachineChargeAmount();
+
+  vendingMachineChargeAmount.innerHTML = vendingMachine.amount;
 };

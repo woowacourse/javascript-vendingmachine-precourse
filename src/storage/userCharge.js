@@ -5,7 +5,7 @@ export const saveUserCharge = () => {
   localStorage.setItem(USER_CHARGE, vendingMachine.userAmount);
 };
 
-export const loadUserCharge = () => {
+const loadUserCharge = () => {
   const userCharge = localStorage.getItem(USER_CHARGE);
 
   return userCharge ? Number(userCharge) : null;
