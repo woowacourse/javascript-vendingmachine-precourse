@@ -30,7 +30,10 @@ export default class Coin {
 
   setAmountHTML() {
     const amount = this.getAmount();
-    $(`#${SELECTOR.ID.COIN_CHARGE_AMOUNT}`).innerHTML = `${amount}원`;
+    $(`#${SELECTOR.ID.COIN_CHARGE_AMOUNT_DIV}`).innerHTML = `
+      ${COMMENT.COIN_CHARGE_AMOUNT}: 
+      <span id="${SELECTOR.ID.COIN_CHARGE_AMOUNT}">${amount}</span>원
+    `;
   }
 
   setStateOfCoin(newState) {
@@ -71,8 +74,8 @@ export default class Coin {
           ${COMMENT.COIN_CHARGE_BUTTON}
         </button>
       </form>
-      <div>${COMMENT.COIN_CHARGE_AMOUNT}: 
-        <span id="${SELECTOR.ID.COIN_CHARGE_AMOUNT}"></span>
+      <div id="${SELECTOR.ID.COIN_CHARGE_AMOUNT_DIV}">
+        ${COMMENT.COIN_CHARGE_AMOUNT}: 
       </div>
       <br />
       <h2>${COMMENT.COIN_MENU_TABLE}</h2>

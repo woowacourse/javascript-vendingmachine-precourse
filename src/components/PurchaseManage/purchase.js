@@ -157,9 +157,8 @@ export default class Purchase {
           ${COMMENT.PURCHASE_CHARGE_BUTTON}
         </button>
       </form>
-      <div>
+      <div id="${SELECTOR.ID.PURCHASE_CHARGE_AMOUNT_DIV}">
         ${COMMENT.PURCHASE_CHARGE_AMOUNT}:
-        <span id="${SELECTOR.ID.PURCHASE_CHARGE_AMOUNT}"></span>
       </div>
       <br />
       <h2>${COMMENT.PURCHASE_MENU_ITEM}</h2>
@@ -201,9 +200,12 @@ export default class Purchase {
     $(`#${SELECTOR.ID.BODY}`).innerHTML = this.template();
 
     if (this.getCharge() != 0) {
-      $(
-        `#${SELECTOR.ID.PURCHASE_CHARGE_AMOUNT}`
-      ).innerHTML = `${this.getCharge()}원`;
+      $(`#${SELECTOR.ID.PURCHASE_CHARGE_AMOUNT_DIV}`).innerHTML = `${
+        COMMENT.PURCHASE_CHARGE_AMOUNT
+      }:
+      <span id="${
+        SELECTOR.ID.PURCHASE_CHARGE_AMOUNT
+      }">${this.getCharge()}</span>원`;
     }
 
     setPurchaseProductTable(this.getProducts());
