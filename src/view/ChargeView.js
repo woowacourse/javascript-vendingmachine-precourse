@@ -1,3 +1,4 @@
+import { coinList } from '../utils/constant.js';
 import { $ } from '../utils/DOM.js';
 import { CHARGE_SECTION_TEMPLATE } from '../utils/template.js';
 
@@ -27,10 +28,14 @@ export class ChargeView {
   }
 
   showMachineCoins(machineCoins) {
-    this.$coin500Quantity.innerText = machineCoins[500] + '개';
-    this.$coin100Quantity.innerText = machineCoins[100] + '개';
-    this.$coin50Quantity.innerText = machineCoins[50] + '개';
-    this.$coin10Quantity.innerText = machineCoins[10] + '개';
+    const $coinArray = [
+      this.$coin500Quantity,
+      this.$coin100Quantity,
+      this.$coin50Quantity,
+      this.$coin10Quantity,
+    ];
+
+    $coinArray.map(($coin, index) => ($coin.innerText = machineCoins[coinList[index]] + '개'));
   }
 
   addElements() {
