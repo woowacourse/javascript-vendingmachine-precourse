@@ -1,5 +1,5 @@
 import ProductPurchaseController from "../controllers/ProductPurchaseController.js";
-import { productPurchaseTemplete } from "../utils/dom/productPurchaseTemplete.js";
+import { productPurchaseTemplete, renderAblePurchaseProductList } from "../utils/dom/productPurchaseTemplete.js";
 
 export default class ProductPurchaseView extends ProductPurchaseController {
 
@@ -26,6 +26,12 @@ export default class ProductPurchaseView extends ProductPurchaseController {
     this.loacalTotalInsertMoney && this.insertMoney ? $moneyWrap.innerText = (Number(this.insertMoney) + Number(this.loacalTotalInsertMoney)) : ""; 
   }
 
-
+  renderLocalPurchase() {
+    const $produtAblePurchaseWrap = document.querySelector('#product-purchase-wrap');
+    $produtAblePurchaseWrap.innerHTML = "";
+    this.purchaseProductResult
+    ? this.purchaseProductResult.map(v => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(v)))
+    : this.localProductList.map(v => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(v)));
+  }
 
 }

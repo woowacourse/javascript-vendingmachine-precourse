@@ -11,10 +11,12 @@ export const productPurchaseTemplete = `
   <h2>구매할 수 있는 상품 현황</h2>
   <table style="border: 1px solid black">
     <tbody id="product-purchase-wrap">
-      <td style="border: 1px solid black">상품명</td>
-      <td style="border: 1px solid black">가격</td>
-      <td style="border: 1px solid black">수량</td>
-      <td style="border: 1px solid black">구매</td>
+      <thead>
+        <td style="border: 1px solid black">상품명</td>
+        <td style="border: 1px solid black">가격</td>
+        <td style="border: 1px solid black">수량</td>
+        <td style="border: 1px solid black">구매</td>
+      </thead>
     </tbody>
   </table>
   <h2>잔돈</h2>
@@ -42,3 +44,15 @@ export const productPurchaseTemplete = `
     </tr>
   </table>
 `;
+
+export function renderAblePurchaseProductList(product) {
+  const divFragment = document.createElement('tr');
+    divFragment.innerHTML = `
+      <td  style="border: 1px solid black" data-product-name="${product[0]}">${product[0]}</td>
+      <td  style="border: 1px solid black" data-product-price="${product[1]}">${product[1]}</td>
+      <td  style="border: 1px solid black" data-product-quantity="${product[2]}">${product[2]}</td>
+      <td  style="border: 1px solid black"><button class="purchase-button">구매하기</button></td>
+    `;
+
+  return divFragment;
+}

@@ -18,4 +18,11 @@ export default class ProductPurchaseModel {
     return parseLocalTotalInsertMoney;
   }
 
+  getLocalProductList() {
+    const localProductList = localStorage.getItem("PRODUCT_LIST");
+    const parseLocalProductList = JSON.parse(localProductList);
+
+    return parseLocalProductList;
+  }
+
 }

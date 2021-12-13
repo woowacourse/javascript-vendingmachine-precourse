@@ -6,12 +6,14 @@ export default class ProductPurchaseController {
     this.$app = $app;
     this.insertMoney;
     this.loacalTotalInsertMoney;
-    this.puchaseMoneyResult 
+    this.puchaseMoneyResult;
+    this.localProductList;
     this.productPurchaseField = document.createElement('div');
     this.render();
     this.setEvent();
     this.setInsertMoney();
     this.renderMoney();
+    this.renderAblePurchase();
   }
 
   getInsertMoney() {
@@ -22,6 +24,11 @@ export default class ProductPurchaseController {
   setInsertMoney() {
     this.loacalTotalInsertMoney = this.purchaseModel.getLocalInsertMoney();
     this.renderMoney();
+  }
+
+  renderAblePurchase() {
+    this.localProductList = this.purchaseModel.getLocalProductList();
+    this.localProductList && this.renderLocalPurchase();
   }
 
 }
