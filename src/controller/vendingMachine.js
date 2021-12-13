@@ -1,6 +1,6 @@
 import { $, $$ } from '../utils/domElementTool.js';
 import { COIN_MENU, PRODUCT_MENU, PURCHASE_MENU } from '../data/elementData.js';
-import { getErrorMessage, getNotValidMoneyErrorMessage } from './getErrorMessage.js';
+import { getErrorMessage, getNotValidMoneyErrorMessage, getHasNoReturnErrorMessage } from './getErrorMessage.js';
 import { showAlert } from '../utils/showAlert.js';
 import TabMenuController from './tabMenuController.js';
 import ProductManager from '../model/product.js';
@@ -57,12 +57,19 @@ export default class VendingMachine {
 
   handleReturnChangeEvent() {
     this.changeModel = new changeCalculator(this.coinModel.money);
-    this.changeModel.returnChange(this.coinModel.clientMoney);
+    const errorMessage = getHasNoReturnErrorMessage(this.coinModel.clientMoney);
 
-    this.coinModel.clientMoney = 0;
+    if (errorMessage) {
+      showAlert(errorMessage);
+      return;
+    }
+
+    const balance = this.changeModel.returnChange(this.coinModel.clientMoney, this.coinModel.getAmount());
+    this.coinModel.clientMoney = balance;
 
     this.view.renderCoinStatus(PURCHASE_MENU.RETURN_TABLE_SELECTOR, this.changeModel.change);
     this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coinModel.money);
+    this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coinModel.getAmount());
     this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.coinModel.clientMoney);
   }
 

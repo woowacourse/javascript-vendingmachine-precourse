@@ -10,17 +10,27 @@ export default class changeCalculator {
     this.coins = [500, 100, 50, 10];
   }
 
-  returnChange(clientMoney) {
+  getReturnMoney(clientMoney, vendingMachineMoney) {
+    if (clientMoney > vendingMachineMoney) {
+      return vendingMachineMoney;
+    }
+  }
+
+  returnChange(clientMoney, vendingMachineMoney) {
+    let returnMoney = this.getReturnMoney(clientMoney, vendingMachineMoney);
+
     for (let coin of this.coins) {
       if (!this.money[coin]) {
         break;
-      } 
+      }
 
-      while (clientMoney >= coin && clientMoney >= 0) {
-      clientMoney -= coin; 
-      this.money[coin] -= 1; 
-      this.change[coin] += 1;
+      while (returnMoney >= coin && clientMoney >= 0) {
+        returnMoney -= coin;
+        this.money[coin] -= 1;
+        this.change[coin] += 1;
       }
     }
+
+    return clientMoney - vendingMachineMoney;
   }
 }

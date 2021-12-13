@@ -40,3 +40,11 @@ export const getNotValidMoneyErrorMessage = input => {
 
   return null;
 };
+
+export const getHasNoReturnErrorMessage = clientChargeAmount => {
+  if (clientChargeAmount === 0) {
+    return ERR_MESSAGE.HAS_NO_RETURN;
+  }
+
+  return null;
+};
