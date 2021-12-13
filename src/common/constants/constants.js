@@ -16,11 +16,14 @@ export const VALIDATION = {
   NAME: {
     NONE: '상품의 이름을 입력해 주십시오.',
     DUPLICATED: '상품의 이름은 중복이 될 수 없습니다.',
+    OVER_20: '상품의 이름은 20자를 넘을 수 없습니다.',
+    DUPLICATED: '중복된 상품명을 입력할 수 없습니다.',
   },
   PRICE: {
     NONE: '가격을 입력해 주십시오.',
     NEGATIVE: '가격을 0 이상의 정수로 입력해 주십시오.',
     MULTIPLE_OF_10: '가격은 10의 배수만 입력이 가능합니다.',
+    UNDER_100: '가격은 100 이하의 수를 입력할 수 없습니다.',
   },
   QUANTITIY: {
     NONE: '수량을 입력해 주십시오.',

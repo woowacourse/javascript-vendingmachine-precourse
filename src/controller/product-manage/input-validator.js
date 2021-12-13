@@ -25,6 +25,8 @@ const productNameValidator = (productNameValue) => {
   if (productNameValue.length < 1) {
     alert(VALIDATION.NAME.NONE);
     isValid;
+  } else if (productNameValue.length > 20) {
+    alert(VALIDATION.NAME.OVER_20);
   } else {
     isValid = true;
   }
@@ -44,6 +46,8 @@ const productPriceValidator = (productPriceValue) => {
     alert(VALIDATION.PRICE.NEGATIVE);
   } else if (productPriceValue % NUMBER.TEN !== 0) {
     alert(VALIDATION.PRICE.MULTIPLE_OF_10);
+  } else if (productPriceValue < 100 && productPriceValue > 0) {
+    alert(VALIDATION.PRICE.UNDER_100);
   } else {
     isValid = true;
   }
