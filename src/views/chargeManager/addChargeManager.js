@@ -17,7 +17,7 @@ const addChargeManager = () => {
       <h3>자판기 동전 충전하기</h3>
       ${addVendingMachineCharge()}
       <h3>자판기가 보유한 동전</h3>
-      <table id="vending-machine-coin-table" border="1"></table>
+      <table id="vending-machine-coin-table"></table>
     </div>
   `;
 };

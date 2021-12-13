@@ -17,7 +17,7 @@ const addPurchaseManager = () => {
       <h3>금액 투입</h3>
       ${addCharge()}
       <h3>구매할 수 있는 상품 현황</h3>
-      <table id="able-buy-product-table" border="1"></table>
+      <table id="able-buy-product-table"></table>
       <h3>잔돈</h3>
       <button id="coin-return-button">반환하기</button>
       <table id="return-coin-table" border="1"></table>

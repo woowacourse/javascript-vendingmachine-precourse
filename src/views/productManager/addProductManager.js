@@ -17,7 +17,7 @@ const addProductManager = () => {
       <h3>상품 추가하기</h3>
       ${addProductForm()}
       <h3>상품 현황</h3>
-      <table id="product-table" border="1"></table>
+      <table id="product-table"></table>
     </div>
   `;
 };

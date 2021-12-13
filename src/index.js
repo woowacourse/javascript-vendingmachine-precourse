@@ -5,6 +5,13 @@ class VendingMachine {
   constructor() {
     showAll();
     createAll();
+    this.importCss();
+  }
+
+  importCss() {
+    document.head.innerHTML += `
+      <link rel="stylesheet" href="src/index.css">
+    `;
   }
 }
 
