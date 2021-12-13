@@ -1,4 +1,4 @@
-import { ERROR } from '../constants/constants.js';
+import { ERROR, STORAGE } from '../constants/constants.js';
 import { default as UT } from './utils.js';
 import { default as DB } from '../model/database.js';
 
@@ -45,8 +45,8 @@ const validators = {
   },
 
   isValidCoinReturn: () => {
-    if (UT.isZero(DB.load('chargeToPurchaseProduct'))) return alert(ERROR.CHARGE_IS_ZERO);
-    if (UT.isZero(UT.calculateToCharge(DB.load('vendingMachineCoins'))))
+    if (UT.isZero(DB.load(STORAGE.CHARGE.NAME))) return alert(ERROR.CHARGE_IS_ZERO);
+    if (UT.isZero(UT.calculateToCharge(DB.load(STORAGE.COIN.NAME))))
       return alert(ERROR.COINS_ARE_ZERO);
 
     return true;

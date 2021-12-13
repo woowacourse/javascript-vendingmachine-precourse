@@ -29,3 +29,18 @@ export const REGEX = {
   HAS_SPECIAL: /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/g,
   HAS_NUMBER: /[^0-9]/g,
 };
+
+export const STORAGE = {
+  INVENTORY: {
+    NAME: 'inventory',
+    INIT: [],
+  },
+  COIN: {
+    NAME: 'coin',
+    INIT: { coin500: 0, coin100: 0, coin50: 0, coin10: 0 },
+  },
+  CHARGE: {
+    NAME: 'charge',
+    INIT: 0,
+  },
+};

@@ -1,4 +1,5 @@
 import { REGEX } from '../constants/constants.js';
+import { STORAGE } from '../constants/constants.js';
 import { default as DB } from '../model/database.js';
 
 const utils = {
@@ -15,7 +16,7 @@ const utils = {
   },
 
   isDuplacted: string => {
-    return DB.load('inventory').some(product => product.name === string);
+    return DB.load(STORAGE.INVENTORY.NAME).some(product => product.name === string);
   },
 
   hasSpecial: string => {
@@ -39,7 +40,7 @@ const utils = {
   },
 
   isChargeUnderProductPrice: number => {
-    return number > DB.load('chargeToPurchaseProduct');
+    return number > DB.load(STORAGE.CHARGE.NAME);
   },
 
   changeIdToComponent: string => {
@@ -83,24 +84,24 @@ const utils = {
   },
 
   updateAddedCharge: string => {
-    const charge = DB.load('chargeToPurchaseProduct');
+    const charge = DB.load(STORAGE.CHARGE.NAME);
 
-    DB.overwrite('chargeToPurchaseProduct', charge + Number(string));
+    DB.overwrite(STORAGE.CHARGE.NAME, charge + Number(string));
   },
 
   updateDeductedCharge: object => {
-    const charge = DB.load('chargeToPurchaseProduct');
+    const charge = DB.load(STORAGE.CHARGE.NAME);
 
-    DB.overwrite('chargeToPurchaseProduct', charge - object.price);
+    DB.overwrite(STORAGE.CHARGE.NAME, charge - object.price);
   },
 
   updateDeductedProductQuantity: data => {
-    const newObject = DB.load('inventory').map(object => {
+    const newObject = DB.load(STORAGE.INVENTORY.NAME).map(object => {
       if (object.name === data.name) object.quantity -= 1;
       return object;
     });
 
-    DB.overwrite('inventory', newObject);
+    DB.overwrite(STORAGE.INVENTORY.NAME, newObject);
   },
 };
 

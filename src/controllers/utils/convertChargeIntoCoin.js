@@ -1,10 +1,11 @@
 /* eslint-disable no-undef */
 import { default as DB } from '../../model/database.js';
+import { STORAGE } from '../../constants/constants.js';
 
 const convertChargeIntoCoin = charge => {
-  const coinWallet = DB.load('vendingMachineCoins');
+  const coinWallet = DB.load(STORAGE.COIN.NAME);
 
-  DB.overwrite('vendingMachineCoins', updateCoinWallet(charge, coinWallet));
+  DB.overwrite(STORAGE.COIN.NAME, updateCoinWallet(charge, coinWallet));
 };
 
 const updateCoinWallet = (charge, coinWallet) => {

@@ -3,6 +3,7 @@ import { default as V } from '../../utils/validators.js';
 import { default as DB } from '../../model/database.js';
 import getAllPurchaseButton from '../utils/getAllPurchaseButton.js';
 import { SELECTOR } from '../../constants/selectors.js';
+import { STORAGE } from '../../constants/constants.js';
 
 export default class ProductAddManager {
   constructor() {
@@ -23,7 +24,7 @@ export default class ProductAddManager {
       if (!V.isValidProductPrice(DOM.getProduct().price)) return;
       if (!V.isValidProductQuantity(DOM.getProduct().quantity)) return;
 
-      DB.save('inventory', DOM.getProduct());
+      DB.save(STORAGE.INVENTORY.NAME, DOM.getProduct());
 
       this.render();
       this.renderProductPurchaseManager();

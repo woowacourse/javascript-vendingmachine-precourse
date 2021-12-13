@@ -2,6 +2,7 @@ import { default as DB } from '../model/database.js';
 import { default as UT } from './utils.js';
 import { default as UI } from '../views/templates.js';
 import { SELECTOR } from '../constants/selectors.js';
+import { STORAGE } from '../constants/constants.js';
 
 export const $ = selector => document.querySelector(selector);
 
@@ -34,13 +35,13 @@ const DOMUtils = {
   },
 
   showInventory: () => {
-    $(SELECTOR.PRODUCT_INVENTORY).innerHTML = DB.load('inventory')
+    $(SELECTOR.PRODUCT_INVENTORY).innerHTML = DB.load(STORAGE.INVENTORY.NAME)
       .map(product => UI.inventoryTableRowHTML(product))
       .join('');
   },
 
   showIntentoryToPurchaseProduct: () => {
-    $(SELECTOR.PURCHASE_INVENTORY).innerHTML = DB.load('inventory')
+    $(SELECTOR.PURCHASE_INVENTORY).innerHTML = DB.load(STORAGE.INVENTORY.NAME)
       .map(product => UI.purchaseInventoryTableRowHTML(product))
       .join('');
   },
@@ -56,7 +57,7 @@ const DOMUtils = {
   },
 
   showVendingMachineCharge: () => {
-    const charge = UT.calculateToCharge(DB.load('vendingMachineCoins'));
+    const charge = UT.calculateToCharge(DB.load(STORAGE.COIN.NAME));
 
     if (UT.isZero(charge)) return DOMUtils.initVendingMachineCharge();
 
@@ -70,9 +71,9 @@ const DOMUtils = {
   },
 
   showVendingMachineCoins: () => {
-    if (UT.isAllZero('vendingMachineCoins')) return DOMUtils.initVendingMachineCoins();
+    if (UT.isAllZero(STORAGE.COIN.NAME)) return DOMUtils.initVendingMachineCoins();
 
-    UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
+    UT.insertHypen(DB.load(STORAGE.COIN.NAME)).forEach(array => {
       const [coinType, quantity] = array;
 
       $(SELECTOR.MAKE_COIN_ID(coinType)).innerHTML = `${quantity}개`;
@@ -80,7 +81,7 @@ const DOMUtils = {
   },
 
   initVendingMachineCoins: () => {
-    UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
+    UT.insertHypen(DB.load(STORAGE.COIN.NAME)).forEach(array => {
       const [coinType] = array;
 
       $(SELECTOR.MAKE_COIN_ID(coinType)).innerHTML = '';
@@ -96,7 +97,7 @@ const DOMUtils = {
   },
 
   showChargeToPurchaseProduct: () => {
-    const charge = DB.load('chargeToPurchaseProduct');
+    const charge = DB.load(STORAGE.CHARGE.NAME);
 
     if (UT.isZero(charge)) return DOMUtils.initChargeToPurchaseProduct();
 

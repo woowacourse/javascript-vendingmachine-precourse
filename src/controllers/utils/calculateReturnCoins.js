@@ -1,10 +1,11 @@
 import { default as DB } from '../../model/database.js';
 import { default as UT } from '../../utils/utils.js';
 import { default as DOM } from '../../utils/DOMUtils.js';
+import { STORAGE } from '../../constants/constants.js';
 
 const calculateReturnCoins = () => {
-  const charge = DB.load('chargeToPurchaseProduct');
-  const wallet = DB.load('vendingMachineCoins');
+  const charge = DB.load(STORAGE.CHARGE.NAME);
+  const wallet = DB.load(STORAGE.COIN.NAME);
   const emptyWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
 
   const [deductedWallet, returnCoinWallet] = useGreedyArgorithm(charge, wallet, emptyWallet);
@@ -30,13 +31,13 @@ const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
 
 const manageChargeToPurchaseProduct = (returnCoinWallet, charge) => {
   const sumCoins = UT.calculateToCharge(returnCoinWallet);
-  DB.overwrite('chargeToPurchaseProduct', charge - sumCoins);
+  DB.overwrite(STORAGE.CHARGE.NAME, charge - sumCoins);
 
   DOM.showChargeToPurchaseProduct();
 };
 
 const manageReturnCoins = (deductedWallet, returnCoinWallet) => {
-  DB.overwrite('vendingMachineCoins', deductedWallet);
+  DB.overwrite(STORAGE.COIN.NAME, deductedWallet);
 
   DOM.showReturnCoins(returnCoinWallet);
 };

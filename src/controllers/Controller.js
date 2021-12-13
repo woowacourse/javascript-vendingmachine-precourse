@@ -5,6 +5,7 @@ import ProductAddManager from './managers/ProductAddManager.js';
 import VendingMachineChargeManager from './managers/VendingMachineChargeManager.js';
 import ProductPurchaseManager from './managers/ProductPurchaseManager.js';
 import { SELECTOR } from '../constants/selectors.js';
+import { STORAGE } from '../constants/constants.js';
 
 export default class Controller {
   constructor() {
@@ -15,9 +16,9 @@ export default class Controller {
   }
 
   checkLocalStorage() {
-    DB.init('inventory');
-    DB.init('vendingMachineCoins', { coin500: 0, coin100: 0, coin50: 0, coin10: 0 });
-    DB.init('chargeToPurchaseProduct', 0);
+    DB.init(STORAGE.INVENTORY.NAME);
+    DB.init(STORAGE.COIN.NAME, STORAGE.COIN.INIT);
+    DB.init(STORAGE.CHARGE.NAME, STORAGE.CHARGE.INIT);
   }
 
   generateManagers() {

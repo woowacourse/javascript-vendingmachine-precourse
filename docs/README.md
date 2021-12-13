@@ -4,9 +4,9 @@
 
 - [x] ⚙️  localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다
   - [x] 상품을 정보를 관리하는 `inventory`를 생성한다
-  - [x] 자판기가 보유한 동전을 관리하는 `vendingMachineCoins`를 생성한다
+  - [x] 자판기가 보유한 동전을 관리하는 `coin`를 생성한다
     - [x] `{ coin500: 0, coin100: 0, coin50: 0, coin10: 0 }`으로 초기화 한다
-  - [x] 자판기에 투입한 금액을 관리하는 `chargeToPurchaseProduct`를 생성한다
+  - [x] 자판기에 투입한 금액을 관리하는 `charge`를 생성한다
     - [x] `0`으로 초기화 한다
   
 - [x] ⚙️  다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다
@@ -75,7 +75,7 @@
   - [x] ⚙️  자판기가 보유할 금액 만큼의 동전이 무작위로 생성된다
   - [x] 🖨️  보유 금액은 보유한 동전의 합산으로 출력한다
     - [x] 보유 금액은 `{금액}원` 형식으로 나타낸다
-  - [x] 💾  localStorage의 `vendingMachineCoins`에 금액 별 동전 개수를 저장한다
+  - [x] 💾  localStorage의 `coin`에 금액 별 동전 개수를 저장한다
 - **자판기가 보유한 동전 모듈**
 - [x] 🖨️  자판기가 보유한 동전 금액별 개수 출력
 
@@ -104,7 +104,7 @@
   - [x] 🚥 10의 배수 숫자만 허용한다
   
 - [x] 🖱️ 금액 입력 후`투입하기` 버튼을 클릭할 수 있다
-  - [x] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
+  - [x] 💾  localStorage의 `charge`에 투입한 금액을 저장한다
   - [x] 🖨️  투입한 금액: 옆에 `{금액}원` 형식으로 출력한다
   - [x] ⚙️  금액은 누적으로 투입할 수 있다
   
@@ -116,7 +116,7 @@
   - [x] 🚥  투입한 금액이 원하는 상품 가격 이상이어야 한다
   - [x] 🚥  수량이 0이하인 상품은 구매할 수 없다
   - [x] ⚙️  투입한 금액은 기존 투입한 금액에서 원하는 상품 가격을 차감한다
-    - [x] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
+    - [x] 💾  localStorage의 `charge`에 투입한 금액을 저장한다
     - [x] 🖨️ 투입한 금액을 업데이트해서 보여준다
   - [x] ⚙️  원하는 상품의 수량을 -1 한다
     - [x] 🖨️ 업데이트된 수량을 보여준다
@@ -127,10 +127,10 @@
   - [x] 🚥  투입한 금액이 0 이상이어야 한다
   - [x] 🚥  반환할 수 있는 잔돈이 더이상 없는 경우
   - [x] ⚙️  투입한 금액에서 반환한 금액의 총합을 차감한다
-    - [x] 💾  localStorage의 `chargeToPurchaseProduct`에 투입한 금액을 저장한다
+    - [x] 💾  localStorage의 `charge`에 투입한 금액을 저장한다
     - [x] 🖨️  투입한 금액: 옆에 `{금액}원` 형식으로 출력한다
   - [x] ⚙️  잔돈을 돌려줄 때는 현재 보유한 최소 개수의 동전으로 잔돈을 돌려준다
-    - [x] 💾  localStorage의 `vendingMachineCoins`의 금액 별 동전 개수를 차감 후 저장한다
+    - [x] 💾  localStorage의 `coin`의 금액 별 동전 개수를 차감 후 저장한다
     - [x] 🖨️  자판기가 반환한 동전 금액별 개수 출력한다
 
 <br/>
@@ -158,7 +158,7 @@
 
 ### 2. 자판기 보유 금액을 계산하는 방법
 
-`vendingMachineCoins`는 `{"coin500":0,"coin100":0,"coin50":1,"coin10":5}`처럼 각 동전별 갯수를 저장합니다. 이 객체를 사용해서 `자판기 보유 금액` 을 구하는 함수를 작성해보았습니다.
+`coin`는 `{"coin500":0,"coin100":0,"coin50":1,"coin10":5}`처럼 각 동전별 갯수를 저장합니다. 이 객체를 사용해서 `자판기 보유 금액` 을 구하는 함수를 작성해보았습니다.
 
 ```javascript
 //utils.js
@@ -191,9 +191,9 @@ calculateToCharge: object => {
 // calculateReturnCoins.js
 
 // 제품 구매를 위해 투입한 금액을 불러옵니다.
-const charge = DB.load('chargeToPurchaseProduct');  
+const charge = DB.load('charge');  
 // 자판기가 보유한 동전을 불러옵니다.
-const wallet = DB.load('vendingMachineCoins'); 
+const wallet = DB.load('coin'); 
 // 반환될 동전을 저장해주는 객체를 생성합니다.
 const emptyWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 }; 
 

@@ -5,6 +5,7 @@ import { default as UT } from '../../utils/utils.js';
 import calculateReturnCoins from '../utils/calculateReturnCoins.js';
 import getAllPurchaseButton from '../utils/getAllPurchaseButton.js';
 import { SELECTOR } from '../../constants/selectors.js';
+import { STORAGE } from '../../constants/constants.js';
 
 export default class ProductPurchaseManager {
   constructor() {
@@ -37,7 +38,7 @@ export default class ProductPurchaseManager {
   }
 
   manageAllPurchaseButton() {
-    UT.isExist(DB.load('inventory')) && getAllPurchaseButton();
+    UT.isExist(DB.load(STORAGE.INVENTORY.NAME)) && getAllPurchaseButton();
   }
 
   manageCoinReturn() {
@@ -53,7 +54,7 @@ export default class ProductPurchaseManager {
   }
 
   renderVendingMachineChargeManager() {
-    DOM.showVendingMachineCharge(); //잔돈충전 - 보유 금액 갱신
-    DOM.showVendingMachineCoins(); //잔돈충전 - 자판기가 보유한 동전 갱신
+    DOM.showVendingMachineCharge();
+    DOM.showVendingMachineCoins();
   }
 }
