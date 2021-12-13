@@ -5,7 +5,7 @@ import { DISPLAY } from './constants/display.js';
 
 import Component from './core/Component.js';
 import ProductManage from './components/ProductManage.js';
-import CoinsManage from './components/CoinsManage.js';
+import CoinManage from './components/CoinManage.js';
 import PurchaseManage from './components/PurchaseManage.js';
 
 export default class App extends Component {
@@ -26,7 +26,7 @@ export default class App extends Component {
 
   mounted() {
     this.addMount('product-add-menu', ProductManage);
-    this.addMount('vending-machine-manage-menu', CoinsManage);
+    this.addMount('vending-machine-manage-menu', CoinManage);
     this.addMount('product-purchase-menu', PurchaseManage);
   }
 

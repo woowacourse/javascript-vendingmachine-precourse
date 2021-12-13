@@ -8,7 +8,7 @@ import Component from '../core/Component.js';
 import CoinInputForm from './coins/CoinInputForm.js';
 import CoinList from './coins/CoinList.js';
 
-export default class CoinsManage extends Component {
+export default class CoinManage extends Component {
   init() {
     $coinState.add(this);
   }
