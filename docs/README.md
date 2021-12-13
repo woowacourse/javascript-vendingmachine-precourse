@@ -117,6 +117,10 @@
 
 <br>
 
+✍️ 애플리케이션의 구조는 아래와 같습니다.
+
+<br>
+
 <div align=center>
 
 <img src="./images/flow.jpg" width="800">
@@ -141,7 +145,7 @@
   
     > [**🗃Refactor: Storage 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/37d1c95654bcd86066b3ec5b2fdc4f1e2d457bb1)
   
-  - 이벤트 모듈은 성질 상 컴포넌트에 주입되는 형태이므로 common 디렉토리가 아닌 event 디렉토리로 독립시킵니다.
+  - ~~이벤트 모듈은 성질 상 컴포넌트에 주입되는 형태이므로 common 디렉토리가 아닌 event 디렉토리로 독립시킵니다.~~
     
     > [**✂️Rename: Event 모듈 이동**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/cd6358f463364b29e21d29611855b432dd685335)
 
@@ -153,7 +157,7 @@
 
 <br>
 
-- [ ] 렌더링을 담당하는 부분이 중복되어 나타나고 있습니다.
+- [x] 렌더링을 담당하는 부분이 중복되어 나타나고 있습니다.
   ```js
   // App.js
   mount() {
@@ -171,7 +175,63 @@
     });
   }
   ```
-  - 이를 수정하기 위해 설계와 구조를 다시 한 번 생각해야 합니다.
+  - 교체 후
+    ```js
+    // Component.js
+    constructor(selector, props) {
+      this.$element = $(selector);
+      this.$props = props;
+      this.$storage = Storage;
+      this.$storage.subscribe(this.render.bind(this));
+
+      this.initialized();
+      this.render();
+      this.setEvents();
+    }
+    ```
+    > [**🗃Refactor: 함수 분리 및 개선**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d53434f191586ec69404d67d476dcf9a203fc7de)
+
+<br>
+
+- [x] UI를 담당하는 컴포넌트의 길이가 난해하여 이를 모듈로 분리합니다.
+
+    > [**🗃Refactor: 프레젠테이션 컴포넌트 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d8b188c4f8041b2cb754522db8992e2a337b11c2)
+
+<br>
+
+- [x] 옵저버 패턴을 구체화하고 이벤트 모듈을 삭제합니다. 모듈에서 관리하는 이벤트는 각 컴포넌트에서 엘리먼트에 바인딩하여 이벤트 위임을 구현하는 것으로 처리합니다.
+
+    > [**🗃Refactor: 모듈 의존성 제거**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/8726e544f216ec4b047dc0e85504822117ff7eaf)
+
+<br>
+
+- [x] 컨테이너 컴포넌트를 수정하여 이벤트와 메인 컴포넌트에 집중된 비즈니스 로직을 명확히 분리합니다.
+
+    > [**🗃Refactor: 함수 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7ed63a8d0cc6a366eb02b6fddf9dd2e09ff0483d)
+
+    > [**🗃Refactor: 컨테이너 컴포넌트 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/f2a2ca54572f5426bf38716e9a36bea78e6d8ddd)
+
+    > [**🗃Refactor: 컨테이너 컴포넌트 함수 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/6bc2d4d1802617c2d1f269376a4ba17a093756be)
+
+<br>
+
+- [x] 정적 CSS 파일을 제거하고 JS에 주입(CSS in JS)합니다.
+
+    > [**🎆Style: 프레젠테이션 컴포넌트 CSS in JS**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/79ead19e72140a30ec4bef6a56e55a5db7fb3090)
+
+<br>
+
+- [x] App의 동작을 구체화합니다. 기본 값에 대한 세팅을 App 컴포넌트에 위임하고, 기본 값은 상수로서 관리합니다.
+
+    > [**✒️Feat: Default 값 상수화**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7159c1d065b84309f74e5c3fedbcc540c35be5d7)
+
+    > [**✒️Feat: App 세팅**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7887e4fc1e45871684e6820e532c842997577a86)
+
+<br>
+
+- [x] 불필요하게 중복되는 로직을 함수로 분리하여 처리합니다.
+
+    > [**✒️Feat: Storage produce 메서드 추가**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/c36f90a541583f1bf1fba940bb40e3c9b678a17f)
 
 <hr>
 <br>
@@ -415,3 +475,73 @@
 
 <hr>
 <br>
+
+## 4️⃣ 디렉토리 구조
+```
+│  .eslintrc.js
+│  .gitignore
+│  .npmrc
+│  cypress.json
+│  index.html
+│  index.js
+│  LICENSE
+│  package-lock.json
+│  package.json
+│  README.md
+│
+├─docs
+│  │  README.md
+│  │
+│  └─images
+│          flow.jpg
+│
+├─images
+│      beverage_icon.png
+│      test_result.png
+│      vendingmachine_coin.gif
+│      vendingmachine_inventory.gif
+│      vendingmachine_purchase.gif
+│
+├─src
+│  │  App.js
+│  │
+│  ├─common
+│  │      helper.js
+│  │      validations.js
+│  │
+│  ├─constants
+│  │      index.js
+│  │
+│  ├─container
+│  │  ├─Header
+│  │  │      index.js
+│  │  │
+│  │  ├─Main
+│  │  │      event.js
+│  │  │      index.js
+│  │  │      machineManage.js
+│  │  │      productAdd.js
+│  │  │      purchaseMenu.js
+│  │  │
+│  │  └─root
+│  │          Component.js
+│  │          Storage.js
+│  │
+│  └─presentational
+│      │  index.js
+│      │
+│      ├─Content
+│      │  │  index.js
+│      │  │  machineManage.js
+│      │  │  productAdd.js
+│      │  │  purchaseMenu.js
+│      │  │
+│      │  └─style
+│      │          index.js
+│      │
+│      └─Menu
+│              index.js
+│
+└─test
+        app.spec.js
+```
