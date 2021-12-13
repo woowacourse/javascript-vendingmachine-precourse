@@ -85,7 +85,7 @@ export const PURCHASE_STRING = Object.freeze({
 
 export const EMPTY = "";
 export const ZERO = 0;
-export const click = "click";
+export const CLICK = "click";
 
 export const TABLE_CLASS = Object.freeze({
     COIN_TABLE: "coin_table",
