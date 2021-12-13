@@ -1,9 +1,11 @@
 import { setDataOnStorage, loadDataFromStorage } from '../utils/storage.js';
 import { STRING } from '../constants/constants.js';
+import { defaultProducts, defaultAddTabInput } from './data.js';
 
 export default class AppModel {
   constructor() {
-    this.products = this.loadProducts() || [];
+    this.products = this.loadProducts() || defaultProducts();
+    this.addTabInput = defaultAddTabInput();
   }
 
   loadProducts() {
@@ -18,5 +20,9 @@ export default class AppModel {
     this.products = [...this.products, { ...product }];
 
     setDataOnStorage(STRING.PRODUCTS, this.products);
+  }
+
+  setAddTabInput(key, value) {
+    this.addTabInput[key] = value;
   }
 }

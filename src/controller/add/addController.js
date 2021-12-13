@@ -11,13 +11,14 @@ export default class AddController {
   init() {
     this.addView.init();
 
-    this.addView.renderAddTab(this.appModel.products);
+    this.addView.renderAddTab(this.appModel.products, this.appModel.addTabInput);
     this.addView.selectAddTabDOMS();
     this.attachAddTabEvents();
   }
 
   attachAddTabEvents() {
     this.addView.$productAddForm.addEventListener('submit', this.handleAddItem.bind(this));
+    this.addView.$productAddForm.addEventListener('input', this.handleChangeInput.bind(this));
   }
 
   handleAddItem(e) {
@@ -39,5 +40,12 @@ export default class AddController {
     const quantity = this.addView.$productQuantityInput.value;
 
     return [name, price, quantity];
+  }
+
+  handleChangeInput(e) {
+    const key = e.target.id.split('-')[1];
+    const { value } = e.target;
+
+    this.appModel.setAddTabInput(key, value);
   }
 }

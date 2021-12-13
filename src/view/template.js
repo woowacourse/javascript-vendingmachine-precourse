@@ -22,14 +22,16 @@ export const productTemplate = ({ name, price, quantity }) => {
   `;
 };
 
-export const addTabTemplate = (products) => {
+export const addTabTemplate = (products, inputs) => {
   return `
     <h2>상품 추가하기</h2>
     <div>
       <form id="product-add-form">
-        <input id="product-name-input" type="text" placeholder="상품명" />
-        <input id="product-price-input" type="number" placeholder="가격" />
-        <input id="product-quantity-input" type="number" placeholder="수량" />
+        <input id="product-name-input" type="text" placeholder="상품명" value="${inputs.name}"/>
+        <input id="product-price-input" type="number" placeholder="가격" value="${inputs.price}"/>
+        <input id="product-quantity-input" type="number" placeholder="수량" value="${
+          inputs.quantity
+        }"/>
         <button id="product-add-button">추가하기</button>
       </form>
     </div>

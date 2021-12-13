@@ -6,8 +6,8 @@ export default class AddView {
     this.$main = $('main');
   }
 
-  renderAddTab(products) {
-    this.$main.innerHTML = addTabTemplate(products);
+  renderAddTab(products, inputs) {
+    this.$main.innerHTML = addTabTemplate(products, inputs);
   }
 
   selectAddTabDOMS() {
