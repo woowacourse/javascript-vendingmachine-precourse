@@ -24,10 +24,6 @@ export const onClickMenuButton = buttonEvent => {
   buttonEvent();
 };
 
-export const getMoneyText = money => {
-  return `${money}원`;
-};
-
 export const getQuantityText = quantity => {
   return `${quantity}개`;
 };
@@ -57,6 +53,17 @@ export const makeButton = (buttonInformation, event) => {
   button.type = type;
   button.innerText = text;
   button.id = id;
+  button.addEventListener("click", event);
+
+  return button;
+};
+
+export const makeClassButton = (buttonInformation, event) => {
+  const [type, text, className] = buttonInformation;
+  const button = document.createElement("button");
+  button.type = type;
+  button.innerText = text;
+  button.className = className;
   button.addEventListener("click", event);
 
   return button;
@@ -110,11 +117,14 @@ export const makeTableHeaders = (headers, table) => {
   return tr;
 };
 
-export const makeTdWithClass = (text, className) => {
+export const makeTdWithClass = (text, className, dataset) => {
   const td = document.createElement("td");
   td.innerText = text;
   td.className = className;
   td.style.border = PRODUCT_TABLE.border;
+  if (dataset) {
+    td.setAttribute(dataset, text);
+  }
 
   return td;
 };

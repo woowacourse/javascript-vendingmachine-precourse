@@ -6,7 +6,6 @@ import {
   VIEW_CONTAINER,
 } from "../assets/constants/public.js";
 import {
-  getMoneyText,
   getQuantityText,
   makeButton,
   makeClassButton,
@@ -50,7 +49,7 @@ export const renderMoney = money => {
   const $charge_amount = document.getElementById(
     PURCHASE_TAP.INSERT_MONEY_AMOUNT_ID
   );
-  $charge_amount.innerText = getMoneyText(money);
+  $charge_amount.innerText = money;
 };
 
 // ----상품 현황----

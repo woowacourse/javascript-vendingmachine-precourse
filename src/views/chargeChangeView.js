@@ -10,7 +10,6 @@ import {
   makeChangeStateContainer,
   makeResultContainer,
   makeInputForm,
-  getMoneyText,
   getQuantityText,
 } from "../assets/utils/utils.js";
 
@@ -39,7 +38,7 @@ export const renderChangeAmount = money => {
   const $vending_machine_charge_amount = document.getElementById(
     CHARGE_TAP.CHANGE_AMOUNT_ID
   );
-  $vending_machine_charge_amount.innerText = getMoneyText(money);
+  $vending_machine_charge_amount.innerText = money;
 };
 
 export const renderCoins = chargeChange => {
