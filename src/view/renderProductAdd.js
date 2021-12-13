@@ -8,10 +8,13 @@ import {
   PRODUCT_NAME_TITLE,
   PRODUCT_PRICE_TITLE,
   PRODUCT_QUANTITY_TITLE,
-  PRODUCTS_STORAGE_KEY,
   PRODUCT_LIST_TITLE,
   PRODUCT_LIST_TABLE_ID,
   PRODUCT_ADD_CONTAINER_ID,
+  ADDED_PRODUCT_CLASS,
+  PRODUCT_MANAGE_NAME_CLASS,
+  PRODUCT_MANAGE_PRICE_CLASS,
+  PRODUCT_MANAGE_QUANTITY_CLASS,
 } from '../constant/constant.js';
 import $ from '../util/$.js';
 import removePreviousView from './removePreviousView.js';
@@ -31,10 +34,10 @@ function renderProductAddInput($productAdd) {
 
 function productListTemplate({ name, price, quantity }) {
   return `
-    <tr align="center" bgcolor="white" height="40">
-      <td align="center" width="160">${name}</td>
-      <td align="center" width="100">${price}</td>
-      <td align="center" width="100">${quantity}</td>
+    <tr class="${ADDED_PRODUCT_CLASS}" align="center" bgcolor="white" height="40">
+      <td class="${PRODUCT_MANAGE_NAME_CLASS}" align="center" width="160">${name}</td>
+      <td class="${PRODUCT_MANAGE_PRICE_CLASS}" align="center" width="100">${price}</td>
+      <td class="${PRODUCT_MANAGE_QUANTITY_CLASS}" align="center" width="100">${quantity}</td>
     </tr>
   `;
 }

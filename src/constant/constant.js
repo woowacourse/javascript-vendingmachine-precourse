@@ -31,10 +31,10 @@ export const PRODUCT_ADD_TAB_TITLE = '상품 관리';
 export const MANAGE_MENU_TAB_TITLE = '잔돈 충전';
 export const PRODUCT_PURCHASE_TAB_TITLE = '상품 구매';
 
-export const ADDED_PRODUCT_ID = 'product-manage-item';
-export const PRODUCT_MANAGE_NAME_ID = 'product-manage-name';
-export const PRODUCT_MANAGE_PRICE_ID = 'product-manage-price';
-export const PRODUCT_MANAGE_QUANTITY_ID = 'product-manage-quantity';
+export const ADDED_PRODUCT_CLASS = 'product-manage-item';
+export const PRODUCT_MANAGE_NAME_CLASS = 'product-manage-name';
+export const PRODUCT_MANAGE_PRICE_CLASS = 'product-manage-price';
+export const PRODUCT_MANAGE_QUANTITY_CLASS = 'product-manage-quantity';
 export const CHARGE_INPUT_ID = 'vending-machine-charge-input';
 export const CHARGE_BUTTON_ID = 'vending-machine-charge-button';
 export const CHARGE_AMOUNT_ID = 'vending-machine-charge-amount';

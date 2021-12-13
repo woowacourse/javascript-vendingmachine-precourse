@@ -1,8 +1,8 @@
 import {
-  ADDED_PRODUCT_ID,
-  PRODUCT_MANAGE_NAME_ID,
-  PRODUCT_MANAGE_PRICE_ID,
-  PRODUCT_MANAGE_QUANTITY_ID,
+  ADDED_PRODUCT_CLASS,
+  PRODUCT_MANAGE_NAME_CLASS,
+  PRODUCT_MANAGE_PRICE_CLASS,
+  PRODUCT_MANAGE_QUANTITY_CLASS,
 } from '../constant/constant.js';
 
 export default class Product {
@@ -18,10 +18,10 @@ export default class Product {
 
   addedTemplate() {
     return `
-      <tr class="${ADDED_PRODUCT_ID}"align="center" bgcolor="white" height="40">
-        <td class="${PRODUCT_MANAGE_NAME_ID}" align="center" width="160">${this.name}</td>
-        <td class="${PRODUCT_MANAGE_PRICE_ID}" align="center" width="100">${this.price}</td>
-        <td class="${PRODUCT_MANAGE_QUANTITY_ID}" align="center" width="100">${this.quantity}</td>
+      <tr class="${ADDED_PRODUCT_CLASS}"align="center" bgcolor="white" height="40">
+        <td class="${PRODUCT_MANAGE_NAME_CLASS}" align="center" width="160">${this.name}</td>
+        <td class="${PRODUCT_MANAGE_PRICE_CLASS}" align="center" width="100">${this.price}</td>
+        <td class="${PRODUCT_MANAGE_QUANTITY_CLASS}" align="center" width="100">${this.quantity}</td>
       </tr>
     `;
   }
