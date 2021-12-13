@@ -45,6 +45,8 @@ export default window.onload = function manageTabButtons() {
   );
   productPurchaseButton.addEventListener('click', () => {
     tabItems.innerHTML = productPurchase();
+    const productTable = document.querySelector('#product-table');
+    productTable.innerHTML += products;
     const chargeButton = document.querySelector('#charge-button');
     chargeButton.addEventListener('click', () => {
       addPurchase();

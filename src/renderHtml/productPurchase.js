@@ -10,7 +10,7 @@ export default function productPurchase() {
   </div>
   <div>
     <h2>구매할 수 있는 상품 현황</h2>
-    <table >
+    <table id="product-table" >
       <thead>
         <tr>
           <th>상품명</th>
