@@ -67,15 +67,15 @@
 
 
 ## 리팩터링
-- [x] 투입한 금액도 localStorage로 관리 
-- [ ] productPurchaseModel 리팩터링
+- [ ] 처음부터 리팩터링
 
-- [ ] render 하는 로직 controll에 (index.js 최대한 적게, controll이 view 호출)
+- [ ] productPurchaseModel 리팩터링
 - [ ] html 태그 함수는 길어져도 괜찮은지? (객체 key화?)
 - [ ] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다. (eslint 속성 추가)
   - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
 - [ ] 피드백 
 
+- [x] 투입한 금액도 localStorage로 관리 
 - [x] alert를 views로 옮기기 (models-views 서로 부르면 안됨)
 - [x] 검증 로직 m이냐 c냐? -> c!
 - [x] 구매할 수 없을 때, 수량 -1 되는 것 막음 

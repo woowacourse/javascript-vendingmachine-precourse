@@ -2,11 +2,12 @@ import $ from './utils/dom.js';
 import HandleProductAdd from './controllers/HandleProductAdd.js';
 import HandleVendingMachine from './controllers/HandleVendingMachine.js';
 import HandleProductPurchase from './controllers/HandleProductPurchase.js';
+import renderCSS from './views/renderCSS.js';
 import { renderNavbar, renderProductAdd, renderVendingMachine, renderProductPurchase } from './views/renderHTML.js';
 
 function VendingMachineApp() {
   this.init = () => {
-    $('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="./src/css/style.css">');
+    renderCSS();
     renderNavbar();
   };
 
