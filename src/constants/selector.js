@@ -1,18 +1,27 @@
 export const ID = {
   APP: 'app',
+  HEADER: 'machine-header',
+  NAV: 'machine-menu-tabs',
+  MENU_VIEW: 'machine-menu-view',
 
-  // 탭 메뉴 버튼
   PRODUCT_PURCHASE_MENU: 'product-purchase-menu',
   VENDING_MACHINE_MANAGE_MENU: 'vending-machine-manage-menu',
   PRODUCT_ADD_MENU: 'product-add-menu',
 
-  // 상품 관리(추가) 메뉴
+  PRODUCT_ADD_VIEW: 'product-add-view',
+  VENDING_MACHINE_MANAGE_VIEW: 'vending-machine-manage-view',
+  PRODUCT_PURCHASE_VIEW: 'product-purchase-view',
+
+  PRODUCT_TABLE: 'product-table',
+  MACHINE_COIN_TABLE: 'vending-machine-coin-table',
+  PRODUCT_PURCHASE_TABLE: 'product-purchase-table',
+  RETURN_COIN_TABLE: 'return-coin-table',
+
   PRODUCT_NAME_INPUT: 'product-name-input',
   PRODUCT_PRICE_INPUT: 'product-price-input',
   PRODUCT_QUANTITY_INPUT: 'product-quantity-input',
   PRODUCT_ADD_BUTTON: 'product-add-button',
 
-  // 잔돈 충전 (자판기 보유 동전) 메뉴
   VENDING_MACHINE_CHARGE_INPUT: 'vending-machine-charge-input',
   VENDING_MACHINE_CHARGE_BUTTON: 'vending-machine-charge-button',
   VENDING_MACHINE_CHARGE_AMOUNT: 'vending-machine-charge-amount',
@@ -23,7 +32,6 @@ export const ID = {
     'vending-machine-coin-10-quantity',
   ],
 
-  // 상품 구매 메뉴
   CHARGE_INPUT: 'charge-input',
   CHARGE_BUTTON: 'charge-button',
   CHARGE_AMOUNT: 'charge-amount',
