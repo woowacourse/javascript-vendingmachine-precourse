@@ -27,14 +27,21 @@ const isSameOrLessZero = (inputValue) => {
 
 export const isValidVendingMachineCharge = (vendingMachineChargeInput) => {
   if (isEmpty(vendingMachineChargeInput)) {
-    alert('자판기가 보유할 금액을 입력해주세요.  ex) 450');
+    alert('충전할 금액을 입력해주세요.  ex) 450');
     return false;
   }
 
-  if (isContainsBlank(vendingMachineChargeInput)) {
-    alert('공백이 아닌 자판기가 보유할 금액을 입력해주세요.  ex) 450');
+  if (isInValidInteger(vendingMachineChargeInput)) {
+    alert('충전할 금액은 소수 값을 가지고 있어서는 안됩니다.  ex) 450');
     return false;
   }
+
+  if (isNotDividedBy10(vendingMachineChargeInput)) {
+    alert('충전할 금액은 10으로 나누어 떨어져야 합니다.  ex) 450');
+    return false;
+  }
+
+  return true;
 };
 
 const isInValidProductName = (productNameInput) => {
