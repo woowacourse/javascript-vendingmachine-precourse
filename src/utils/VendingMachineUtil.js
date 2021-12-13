@@ -1,4 +1,4 @@
-import { ALERT, MACHINE_MANAGE } from '../constants.js';
+import { ALERT, COIN_ARR, MACHINE_MANAGE } from '../constants.js';
 import VendingMachine from '../elements/VendingMachine.js';
 import { checkCoin } from './validators/checkInput.js';
 
@@ -16,6 +16,7 @@ export default class VendingMachineUtil {
       console.log('submit');
       if (this.getCoin(this.machine.input)) {
         this.setCoinAmount(this.coin);
+        this.setCoinTable(this.coin);
         console.log(this.coinAmount);
       }
     });
@@ -33,5 +34,23 @@ export default class VendingMachineUtil {
   setCoinAmount(coin) {
     this.coinAmount += coin;
     this.machine.amount.innerHTML = MACHINE_MANAGE.COIN_STORAGE + this.coinAmount;
+  }
+
+  setCoinTable(coin) {
+    let coinIndexArr = [0, 0, 0, 0];
+    while (true) {
+      let unit = MissionUtils.Random.pickNumberInList(COIN_ARR);
+      let idx = COIN_ARR.indexOf(unit);
+      if (unit <= coin) {
+        coin -= unit;
+        coinIndexArr[idx] += 1;
+        console.log(coin);
+      }
+
+      if (coin == 0) {
+        break;
+      }
+    }
+    console.log(coinIndexArr);
   }
 }
