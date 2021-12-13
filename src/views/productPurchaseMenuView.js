@@ -64,22 +64,24 @@ export default function ProductPurchaseMenuView() {
     this.renderInsertMoney();
   };
 
-  this.onClickPurchaseProductButton = (e) => {
-    e.preventDefault();
-    const productName = this.getPurchaseProductName(e);
+  this.renderProductQuantity = (name, quantityData) => {
+    const product = vendingMachine.products.find(
+      (product) => product.name === name
+    );
 
-    vendingMachine.purchaseProduct(productName);
+    quantityData.innerHTML = product.quantity;
+    quantityData.dataset.productQuantity = product.quantity;
   };
 
-  this.getPurchaseProductName = (e) => {
-    const className = e.target.className;
+  this.onClickPurchaseProductButton = (e) => {
+    e.preventDefault();
     const tableRow = e.target.parentElement;
+    const productName = tableRow.children[0].dataset.productName;
+    const productQuantity = tableRow.children[2];
 
-    if (className === 'purchase-button') {
-      const name = tableRow.children[0].dataset.productName;
-
-      return name;
-    }
+    vendingMachine.purchaseProduct(productName);
+    this.renderInsertMoney();
+    this.renderProductQuantity(productName, productQuantity);
   };
 
   this.onClickReturnCoinButton = (e) => {
