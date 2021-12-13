@@ -36,6 +36,11 @@ export const isValidCharge = (chargeInput) => {
     return false;
   }
 
+  if (isSameOrLessZero(chargeInput)) {
+    alert('투입할 금액은 0보다 큰 값이어야 합니다.  ex) 3000');
+    return false;
+  }
+
   return true;
 };
 
