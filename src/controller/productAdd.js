@@ -1,4 +1,3 @@
-import { SELECTOR, KEY, ALERT_MESSAGE } from '../model/constants.js';
 import {
   $,
   getItemOrArray,
@@ -6,37 +5,36 @@ import {
   isBlankExist,
   isInputNumberValid,
   isMultipleOf10,
+  isOver100,
+  isAlreadyExistProduct,
+  onKeyUpNumericEvent,
 } from './utils.js';
+import { SELECTOR, KEY } from '../model/constants.js';
 import { productAddTableRow } from '../model/dom.js';
 import Product from '../model/product.js';
-
-const addTableRow = (table, product) =>
-  table.insertAdjacentHTML('beforeend', productAddTableRow(product));
-
-const isAlreadyExistProduct = input => {
-  const allProducts = getItemOrArray('products');
-  const isExist = allProducts.find(e => e.name === input);
-  if (isExist) {
-    alert(ALERT_MESSAGE.isAlreadyExistProduct);
-  }
-
-  return isExist;
-};
-const isProductNameValid = (placeholder, input) =>
-  !isBlankExist(placeholder, input) && !isAlreadyExistProduct(input);
-
-const isProductPriceValid = (placeholder, input) =>
-  isInputNumberValid(placeholder, input) && isMultipleOf10(placeholder, input);
-
-const isProductInputsValid = (productName, productPrice, productQuantity) =>
-  isProductNameValid(productName.placeholder, productName.value) &&
-  isProductPriceValid(productPrice.placeholder, productPrice.value) &&
-  isInputNumberValid(productQuantity.placeholder, productQuantity.value);
+import { addTableRow, clearInput } from '../view/index.js';
 
 const initInput = (productName, productPrice, productQuantity) => {
-  productName.value = '';
-  productPrice.value = '';
-  productQuantity.value = '';
+  clearInput(productName);
+  clearInput(productPrice);
+  clearInput(productQuantity);
+};
+
+const isProductNameValid = productName =>
+  !isBlankExist(productName) && !isAlreadyExistProduct(productName);
+
+const isProductPriceValid = productPrice =>
+  isInputNumberValid(productPrice) && isMultipleOf10(productPrice) && isOver100(productPrice);
+
+const isProductInputsValid = (productName, productPrice, productQuantity) =>
+  isProductNameValid(productName) &&
+  isProductPriceValid(productPrice) &&
+  isInputNumberValid(productQuantity);
+
+const updateProductLocalStorage = product => {
+  const allProducts = getItemOrArray(KEY.product);
+  allProducts.push(product);
+  setItem(KEY.product, allProducts);
 };
 
 const addProduct = () => {
@@ -44,27 +42,28 @@ const addProduct = () => {
   const productPrice = $(SELECTOR.productPriceInput);
   const productQuantity = $(SELECTOR.productQuantityInput);
   if (isProductInputsValid(productName, productPrice, productQuantity)) {
-    const allProducts = getItemOrArray(KEY.product);
-    const product = new Product(
-      productName.value,
-      parseInt(productPrice.value),
-      parseInt(productQuantity.value),
-    );
+    const product = new Product(productName.value, productPrice.value, productQuantity.value);
     const table = document.querySelector('tbody');
-    addTableRow(table, product);
-    allProducts.push(product);
-    setItem(KEY.product, allProducts);
+
+    updateProductLocalStorage(product);
+    addTableRow(table, productAddTableRow(product));
     initInput(productName, productPrice, productQuantity);
   }
 };
 
 const initTable = () => {
-  const table = document.querySelector('tbody');
   const allProducts = getItemOrArray(KEY.product);
-  allProducts.forEach(product => addTableRow(table, product));
+  const table = document.querySelector('tbody');
+  allProducts.forEach(product => addTableRow(table, productAddTableRow(product)));
 };
 
 export const initAllProductAdd = () => {
   initTable();
   $(SELECTOR.productAddButton).addEventListener('click', () => addProduct());
+  $(SELECTOR.productPriceInput).addEventListener('keyup', () =>
+    onKeyUpNumericEvent($(SELECTOR.productPriceInput)),
+  );
+  $(SELECTOR.productQuantityInput).addEventListener('keyup', () =>
+    onKeyUpNumericEvent($(SELECTOR.productQuantityInput)),
+  );
 };

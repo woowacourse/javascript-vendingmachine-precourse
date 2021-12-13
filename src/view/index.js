@@ -1,36 +1,44 @@
-import { $ } from '../controller/utils.js';
+import { $, getItemOrNull } from '../controller/utils.js';
 import {
   fixMenus,
   productAddMenu,
   vendingMachineManageMenu,
   productPurchaseMenu,
 } from '../model/dom.js';
-import { initAllProductAdd } from '../controller/productAdd.js';
+import { KEY, COIN_X_QUANTITY, VENDING_MACHINE_COIN_X_QUANTITY } from '../model/constants.js';
 
-export default class View {
-  constructor() {
-    this.$app = $('app');
-    this.$app.insertAdjacentHTML('afterbegin', fixMenus);
-    this.drawAddMenu();
-  }
+export const clearContainer = () => {
+  $('container').innerHTML = '';
+};
 
-  clearContainer() {
-    $('container').innerHTML = '';
-  }
+export const showAddMenu = () => {
+  clearContainer();
+  $('container').insertAdjacentHTML('afterbegin', productAddMenu);
+};
 
-  drawAddMenu() {
-    this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', productAddMenu);
-    initAllProductAdd();
-  }
+export const showVendingMenu = () => {
+  clearContainer();
+  $('container').insertAdjacentHTML('afterbegin', vendingMachineManageMenu);
+};
 
-  drawVendingMenu() {
-    this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', vendingMachineManageMenu);
-  }
+export const showPurchaseMenu = () => {
+  clearContainer();
+  $('container').insertAdjacentHTML('afterbegin', productPurchaseMenu);
+};
 
-  drawPurchaseMenu() {
-    this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', productPurchaseMenu);
-  }
-}
+export const initView = () => {
+  const $app = $('app');
+  $app.insertAdjacentHTML('afterbegin', fixMenus);
+  showAddMenu();
+};
+
+export const addTableHeader = (table, headerForm) =>
+  table.insertAdjacentHTML('beforeend', headerForm);
+
+export const addTableRow = (table, rowForm) => table.insertAdjacentHTML('beforeend', rowForm);
+
+export const setInnerHTML = (target, value) => (target.innerHTML = value);
+
+export const clearInput = input => (input.value = '');
+
+export const clearTable = table => (table.innerHTML = '');

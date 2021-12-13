@@ -60,16 +60,8 @@ export const productPurchaseMenu = `
 
 <h2>구매할 수 있는 상품 현황</h2>
 <table border="1">
-    <th>상품명</th>
-    <th>가격</th>
-    <th>수량</th>
-    <th>구매</th>
-    <tr class="product-purchase-item">
-        <td class="product-purchase-name"></td>
-        <td class="product-purchase-price"></td>
-        <td class="product-purchase-quantity"></td>
-        <td class="product-purchase-button"></td>
-    </tr>
+    <tbody>
+    </tbody>
 </table>
 
 <h2>잔돈</h2>
@@ -101,5 +93,21 @@ export const productAddTableRow = product => `
     <td class="product-manage-name">${product.name}</td>
     <td class="product-manage-price">${product.price}</td>
     <td class="product-manage-quantity">${product.quantity}</td>
+</tr>
+`;
+
+export const productPurchaseTableHeader = () => `
+<th>상품명</th>
+<th>가격</th>
+<th>수량</th>
+<th>구매</th>
+`;
+
+export const productPurchaseTableRow = product => `
+<tr class="product-purchase-item">
+    <td class="product-purchase-name" data-product-name=${product.name}>${product.name}</td>
+    <td class="product-purchase-price" data-product-price=${product.price}>${product.price}</td>
+    <td class="product-purchase-quantity" data-product-quantity=${product.quantity}>${product.quantity}</td>
+    <td><button class="purchase-button">구매하기</button></td>
 </tr>
 `;
