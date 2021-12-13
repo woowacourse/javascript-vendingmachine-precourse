@@ -1,3 +1,5 @@
+import { alertPurchaseErrorMessage, canPurchase } from './validator.js';
+
 function VendingMachine() {
   this.products = [];
   this.charge = 0;
@@ -44,6 +46,16 @@ function VendingMachine() {
 
   this.purchaseProduct = (name) => {
     const product = this.products.find((product) => product.name === name);
+
+    if (!canPurchase(product.price, this.insertMoney, product.quantity)) {
+      alertPurchaseErrorMessage(
+        product.price,
+        this.insertMoney,
+        product.quantity
+      );
+
+      return;
+    }
 
     product.quantity -= 1;
     this.insertMoney -= product.price;

@@ -36,6 +36,14 @@ const isValidProducQuantity = (quantity) => {
   return !isEmpty(quantity) && isMoreThanOne(quantity) && isInteger(quantity);
 };
 
+const isValidQuantity = (quantity) => {
+  return quantity > 0;
+};
+
+const haveMoney = (productPrice, insertMoney) => {
+  return insertMoney >= productPrice;
+};
+
 export const isValidProduct = (name, price, quantity) => {
   return (
     isValidProductName(name) &&
@@ -60,6 +68,23 @@ export const isValidCharge = (charge) => {
   return !isEmpty(charge) && isDividedBy10(charge) && isMoreThan10Won(charge);
 };
 
-export const alertChargeErrorMessage = (charge) => {
+export const alertChargeErrorMessage = () => {
   alert(ERROR.CHARGE);
+};
+
+export const canPurchase = (productPrice, insertMoney, quantity) => {
+  return isValidQuantity(quantity) && haveMoney(productPrice, insertMoney);
+};
+
+export const alertPurchaseErrorMessage = (
+  productPrice,
+  insertMoney,
+  quantity
+) => {
+  if (!isValidQuantity(quantity)) {
+    alert(ERROR.QUANTITY);
+  }
+  if (!haveMoney(productPrice, insertMoney)) {
+    alert(ERROR.MONEY);
+  }
 };
