@@ -1,16 +1,38 @@
 /* global MissionUtils */
 
 import Coins from './Coins.js';
+import tc from '../core/utils/tc.js';
 
 export default class VendingMachineCoins extends Coins {
+  static convertToRandomCoins(
+    chargingAmount,
+    _ = tc(chargingAmount, 'number')
+  ) {
+    let remain = chargingAmount;
+    const coins = new Coins();
+
+    while (remain > 0) {
+      const randomCoin = MissionUtils.Random.pickNumberInList([
+        500, 100, 50, 10,
+      ]);
+
+      if (remain - randomCoin >= 0) {
+        remain -= randomCoin;
+        coins.map.set(randomCoin, coins.map.get(randomCoin) + 1);
+      }
+    }
+
+    return coins;
+  }
+
   // TODO: 예외 처리
-  refill(chargeAmount) {
+  refill(chargeAmount, _ = tc(chargeAmount, 'number')) {
     const newCoins = VendingMachineCoins.convertToRandomCoins(chargeAmount);
 
     this.add(newCoins);
   }
 
-  returnChange(amount) {
+  returnChange(amount, _ = tc(amount, 'number')) {
     const change = new Coins();
     const divisor = [...this.keys];
     let remain = amount;
@@ -30,23 +52,5 @@ export default class VendingMachineCoins extends Coins {
     this.subtract(change);
 
     return { change, amount: amount - remain };
-  }
-
-  static convertToRandomCoins(chargingAmount) {
-    let remain = chargingAmount;
-    const coins = new Coins();
-
-    while (remain > 0) {
-      const randomCoin = MissionUtils.Random.pickNumberInList([
-        500, 100, 50, 10,
-      ]);
-
-      if (remain - randomCoin >= 0) {
-        remain -= randomCoin;
-        coins.map.set(randomCoin, coins.map.get(randomCoin) + 1);
-      }
-    }
-
-    return coins;
   }
 }

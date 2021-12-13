@@ -1,5 +1,10 @@
+import tc from '../core/utils/tc.js';
+
 export default class Coins {
-  constructor(coins = { '500': 0, '100': 0, '50': 0, '10': 0 }) {
+  constructor(
+    coins = { '500': 0, '100': 0, '50': 0, '10': 0 },
+    _ = tc(coins, 'object')
+  ) {
     this.map = new Map();
     this.keys = [500, 100, 50, 10];
     this.keys.forEach((key) => this.map.set(key, coins[key]));
@@ -9,13 +14,13 @@ export default class Coins {
     return this.keys.reduce((acc, key) => acc + key * this.map.get(key), 0);
   }
 
-  add(coins) {
+  add(coins, _ = tc(coins, Coins)) {
     this.keys.forEach((key) =>
       this.map.set(key, this.map.get(key) + coins.map.get(key))
     );
   }
 
-  subtract(coins) {
+  subtract(coins, _ = tc(coins, Coins)) {
     this.keys.forEach((key) =>
       this.map.set(key, this.map.get(key) - coins.map.get(key))
     );

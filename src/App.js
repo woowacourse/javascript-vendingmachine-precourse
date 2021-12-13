@@ -7,6 +7,7 @@ import VendingMachineManageMenu from './components/VendingMachineMenu/VendingMac
 
 import VendingMachine from './models/VendingMachine.js';
 import $ from './helpers.js';
+import tc from './core/utils/tc.js';
 
 export default class App extends Component {
   setup() {
@@ -61,11 +62,18 @@ export default class App extends Component {
     });
   }
 
-  navigate(to) {
+  navigate(to, _ = tc(to, 'string')) {
     this.setState({ currentTab: to });
   }
 
-  addItem(name, price, quantity) {
+  addItem(
+    name,
+    price,
+    quantity,
+    _0 = tc(name, 'string'),
+    _1 = tc(price, 'number'),
+    _2 = tc(quantity, 'number')
+  ) {
     const { vendingMachine } = this.state;
 
     this.setState({
@@ -73,19 +81,19 @@ export default class App extends Component {
     });
   }
 
-  refill(amount) {
+  refill(amount, _ = tc(amount, 'number')) {
     const { vendingMachine } = this.state;
 
     this.setState({ vendingMachine: vendingMachine.refillCoins(amount) });
   }
 
-  charge(amount) {
+  charge(amount, _ = tc(amount, 'number')) {
     const { vendingMachine } = this.state;
 
     this.setState({ vendingMachine: vendingMachine.charge(amount) });
   }
 
-  purchase(id) {
+  purchase(id, _ = tc(id, 'number')) {
     const { vendingMachine } = this.state;
 
     this.setState({ vendingMachine: vendingMachine.purchase(id) });

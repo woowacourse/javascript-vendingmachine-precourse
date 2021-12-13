@@ -1,11 +1,14 @@
+import Store from '../store/Store.js';
 import Items from './Items.js';
 import Coins from './Coins.js';
 import VendingMachineCoins from './VendingMachineCoins.js';
 import ChargedAmount from './ChargedAmount.js';
+import tc from '../core/utils/tc.js';
 
 // TODO: Coins 클래스 상속
+// TODO: 객체 컨테이너 자료구조를 Set으로 변경
 export default class VendingMachine {
-  constructor(store, { items, coins, chargedAmount }) {
+  constructor(store, { items, coins, chargedAmount }, _ = tc(store, Store)) {
     this.store = store;
     this.items = new Items(items);
     this.coins = new VendingMachineCoins(coins);
@@ -14,21 +17,28 @@ export default class VendingMachine {
   }
 
   // TODO: 예외 처리
-  addItem(name, price, quantity) {
+  addItem(
+    name,
+    price,
+    quantity,
+    _0 = tc(name, 'string'),
+    _1 = tc(price, 'number'),
+    _2 = (quantity, 'number')
+  ) {
     const result = this.store.insert({ name, price, quantity });
     this.items.insert(result.id, name, price, quantity);
 
     return this;
   }
 
-  refillCoins(chargeAmount) {
+  refillCoins(chargeAmount, _ = tc(chargeAmount, 'number')) {
     this.coins.refill(chargeAmount);
     this.store.updateCoins(this.coins.toObject());
 
     return this;
   }
 
-  charge(amount) {
+  charge(amount, _ = tc(amount, 'number')) {
     this.store.updateCharge(this.chargedAmount.amount + amount);
     this.chargedAmount.charge(amount);
 
@@ -36,7 +46,7 @@ export default class VendingMachine {
   }
 
   // TODO: 데이터 흐름 수정
-  purchase(id) {
+  purchase(id, _ = tc(id, 'number')) {
     const item = this.items.find(id);
 
     this.store.updateCharge(this.chargedAmount.purchase(item.price));

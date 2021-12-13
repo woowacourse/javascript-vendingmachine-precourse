@@ -1,5 +1,16 @@
+import tc from '../core/utils/tc.js';
+
 export default class Item {
-  constructor(id, name, price, quantity) {
+  constructor(
+    id,
+    name,
+    price,
+    quantity,
+    _0 = tc(id, 'number'),
+    _1 = tc(name, 'string'),
+    _2 = tc(price, 'number'),
+    _3 = tc(quantity, 'number')
+  ) {
     this.id = id;
     this.name = name;
     this.price = price;

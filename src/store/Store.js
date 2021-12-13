@@ -1,19 +1,25 @@
+import tc from '../core/utils/tc.js';
 import INIT_DATA from './initData.js';
 
 export default class Store {
-  constructor(name) {
-    const { localStorage } = window;
-
-    this.getLocalStorage = () => {
-      return JSON.parse(localStorage.getItem(name)) || INIT_DATA;
-    };
-
-    this.setLocalStorage = (state) => {
-      localStorage.setItem(name, JSON.stringify(state));
-    };
+  constructor(name, _ = tc(name, 'string')) {
+    this.name = name;
   }
 
-  find(query, callback) {
+  getLocalStorage() {
+    return JSON.parse(localStorage.getItem(this.name)) || INIT_DATA;
+  }
+
+  setLocalStorage(state, _ = tc(state, 'object')) {
+    localStorage.setItem(this.name, JSON.stringify(state));
+  }
+
+  find(
+    query,
+    callback,
+    _0 = tc(query, 'function'),
+    _1 = tc(callback, 'function')
+  ) {
     const { items } = this.getLocalStorage();
 
     callback(items.filter((item) => query(item)));
@@ -29,7 +35,7 @@ export default class Store {
     return { success: true, id };
   }
 
-  update(updatedItem) {
+  update(updatedItem, _ = tc(updatedItem, Array)) {
     const state = this.getLocalStorage();
     const result = state.items.findIndex((item) => item.id === updatedItem.id);
 
@@ -41,14 +47,14 @@ export default class Store {
     this.setLocalStorage(state);
   }
 
-  updateCoins(coins) {
+  updateCoins(coins, _ = tc(coins, 'object')) {
     const state = this.getLocalStorage();
 
     state.coins = coins;
     this.setLocalStorage(state);
   }
 
-  updateCharge(amount) {
+  updateCharge(amount, _ = tc(amount, 'number')) {
     const state = this.getLocalStorage();
 
     state.chargedAmount = amount;

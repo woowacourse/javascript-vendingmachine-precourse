@@ -1,5 +1,12 @@
+import tc from './utils/tc.js';
+
 export default class Router {
-  constructor(target, location) {
+  constructor(
+    target,
+    location,
+    _0 = tc(target, HTMLElement),
+    _1 = tc(location, 'string')
+  ) {
     this.$target = target;
     this.location = location;
 
