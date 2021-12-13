@@ -1,6 +1,5 @@
 import { $ } from '../dom/dom.js';
 import getTotalVendingCoin from '../modules/getTotalVendingCoin.js';
-import renderTotalCoinElement from './renderTotalCoinElement.js';
 
 function createChargeCoinElement(totalCoin) {
   return `
