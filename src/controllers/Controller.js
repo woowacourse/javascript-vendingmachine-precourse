@@ -1,5 +1,5 @@
 import View from '../views/View.js';
-import { $, default as DOM } from '../views/DOMUtils.js';
+import { $, default as DOM } from '../utils/DOMUtils.js';
 import { default as DB } from '../model/database.js';
 import ProductAddManager from './ProductAddManager.js';
 import VendingMachineChargeManager from './VendingMachineChargeManager.js';

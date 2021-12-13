@@ -1,5 +1,5 @@
 import { default as UI } from './templates.js';
-import { $, default as DOM } from './DOMUtils.js';
+import { $, default as DOM } from '../utils/DOMUtils.js';
 import CoinTable from './components/CoinTable.js';
 import ProductTable from './components/ProductTable.js';
 import ChargeForm from './components/ChargeForm.js';

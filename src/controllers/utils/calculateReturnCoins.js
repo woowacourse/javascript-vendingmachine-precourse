@@ -1,6 +1,6 @@
 import { default as DB } from '../../model/database.js';
 import { default as UT } from '../../utils/utils.js';
-import { default as DOM } from '../../views/DOMUtils.js';
+import { default as DOM } from '../../utils/DOMUtils.js';
 
 const calculateReturnCoins = () => {
   const charge = DB.load('chargeToPurchaseProduct');

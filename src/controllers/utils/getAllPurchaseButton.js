@@ -1,7 +1,7 @@
-import { $$ } from '../../views/DOMUtils.js';
+import { $$ } from '../../utils/DOMUtils.js';
 import { default as UT } from '../../utils/utils.js';
 import { default as V } from '../../utils/validators.js';
-import { default as DOM } from '../../views/DOMUtils.js';
+import { default as DOM } from '../../utils/DOMUtils.js';
 
 const getAllPurchaseButton = () => {
   $$('.purchase-button').forEach(button => addPurchaseButtonEvent(button));

@@ -1,5 +1,5 @@
 import { default as DB } from '../model/database.js';
-import { default as UT } from '../utils/utils.js';
+import { default as UT } from './utils.js';
 import { default as UI } from '../views/templates.js';
 
 export const $ = selector => document.querySelector(selector);
