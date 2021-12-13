@@ -9,7 +9,7 @@ export default class Vending {
 
   init() {
     this.addEventListeners();
-    this.view.initVendingTable();
+    this.view.initVendingTable(this.model.getVendingMachine());
     this.initChargeDomProperty();
   }
 
@@ -21,7 +21,7 @@ export default class Vending {
   }
 
   makeRandomCoinQuantity(inputValue) {
-    const amountArray = [0, 0, 0, 0];
+    const amountArray = COIN_ARRAY.map(x => x * 0);
     let totalPrice = 0;
 
     while (inputValue !== totalPrice) {
@@ -65,7 +65,7 @@ export default class Vending {
       const randomCoinQuantity = this.makeRandomCoinQuantity(chargeInputValue);
       this.setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity);
       this.initChargeDomProperty();
-      this.view.initVendingTable();
+      this.view.initVendingTable(this.model.getVendingMachine());
     }
   }
 }

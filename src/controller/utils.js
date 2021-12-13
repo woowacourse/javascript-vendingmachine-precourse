@@ -2,19 +2,9 @@ import { ALERT_MESSAGE } from '../model/constants.js';
 
 export const $ = id => document.getElementById(id);
 
-export const handleStorage = {
-  getItemOrArray(key) {
-    return JSON.parse(localStorage.getItem(key)) || [];
-  },
-  getItemOrNull(key) {
-    return JSON.parse(localStorage.getItem(key));
-  },
-  setItem(key, value) {
-    return localStorage.setItem(key, JSON.stringify(value));
-  },
-};
-
 const alertMessage = (input, message) => alert(`${input.placeholder}에 ${message}`);
+
+const getItemOrArray = key => JSON.parse(localStorage.getItem(key)) || [];
 
 export const validation = {
   isBlankExist(input) {
@@ -61,7 +51,7 @@ export const validation = {
     return isEnough;
   },
   isAlreadyExistProduct(productName) {
-    const allProducts = handleStorage.getItemOrArray('products');
+    const allProducts = getItemOrArray('products');
     const isExist = allProducts.find(e => e.name === productName.value);
     if (isExist) {
       alert(ALERT_MESSAGE.isAlreadyExistProduct);

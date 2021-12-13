@@ -1,11 +1,11 @@
-import { $, handleStorage } from '../controller/utils.js';
+import { $ } from '../controller/utils.js';
 import {
   headerMenu,
   productAddMenu,
   vendingMachineManageMenu,
   productPurchaseMenu,
 } from '../model/template.js';
-import { KEY, COIN_X_QUANTITY, VENDING_MACHINE_COIN_X_QUANTITY } from '../model/constants.js';
+import { COIN_X_QUANTITY, VENDING_MACHINE_COIN_X_QUANTITY } from '../model/constants.js';
 
 export default class View {
   constructor() {
@@ -59,8 +59,7 @@ export default class View {
     });
   }
 
-  initVendingTable() {
-    const vending = handleStorage.getItemOrNull(KEY.vending);
+  initVendingTable(vending) {
     if (vending) {
       vending.coins.forEach(
         x => ($(VENDING_MACHINE_COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`),
