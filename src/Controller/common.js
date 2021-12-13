@@ -17,12 +17,18 @@ const getMoneySum = (coin) => {
 
 const printValue = (value) => {
   let print = "";
-  if (+value > 0) print = value;
+  if (+value > 0) {
+    print = value;
+  }
   return print;
 };
 
 const printCount = (value) => {
-  return `${value}개`;
+  let print = "";
+  if (+value > 0) {
+    print = `${value}개`;
+  }
+  return print;
 };
 
 const checkEmpty = (value) => value.trim().length > 0;
