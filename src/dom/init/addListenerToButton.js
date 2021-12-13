@@ -2,8 +2,6 @@ import {
   getMenuButtons,
   getManagers,
   getCoinReturnButton,
-} from '../domElement.js';
-import {
   getProductAddButton,
   getVendingMachineChargeButton,
   getChargeButton,
