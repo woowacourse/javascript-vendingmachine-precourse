@@ -18,6 +18,7 @@ export default class Controller {
     this.onClickAddProduct(); // 상품 관리 탭 - 추가하기 버튼 클릭 시
     this.onClickChargeBtn(); // 잔돈 충전 탭 - 충전하기 버튼 클릭 시
     this.onClickPayBtn(); // 상품 구매 탭 - 투입하기 버튼 클릭 시
+    this.onClickReturn(); // 상품 구매 탭 - 반환하기 버튼 클릭 시
   }
 
   onClickTabBtn() {
@@ -26,17 +27,20 @@ export default class Controller {
     $manageTabBtn.addEventListener("click", (e) => {
       e.preventDefault();
       this.view.showSelectedID("manage-tab");
+      this.view.renderManageTab(this.vendingMachine.productList);
     });
 
     $chargeTabBtn.addEventListener("click", (e) => {
       e.preventDefault();
       this.view.showSelectedID("charge-tab");
+      this.view.renderChargeTab(this.vendingMachine.ownChange);
     });
 
     $purchaseTabBtn.addEventListener("click", (e) => {
       e.preventDefault();
       this.view.showSelectedID("purchase-tab");
       this.view.renderProductTable(this.vendingMachine.productList);
+      this.view.renderReturn(this.vendingMachine);
     });
   }
 
@@ -87,6 +91,14 @@ export default class Controller {
       }
       this.vendingMachine.getMoney(parseInt($buyMoney.value, 10));
       this.view.renderUserMoney(this.vendingMachine.userMoney);
+    });
+  }
+
+  onClickReturn() {
+    const { $coinReturnBtn } = this.view.buttons;
+    $coinReturnBtn.addEventListener("click", () => {
+      this.vendingMachine.returnChange();
+      this.view.renderReturn(this.vendingMachine);
     });
   }
 }

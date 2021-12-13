@@ -91,6 +91,7 @@ export default class View {
     };
   }
 
+  // 상품관리탭
   renderManageTab(productList) {
     const $tablePosition = document.getElementById("product-manage-item-first");
     $tablePosition.innerHTML = "<th>상품명</th><th>가격</th><th>수량</th>";
@@ -110,6 +111,7 @@ export default class View {
     });
   }
 
+  // 잔돈충전탭
   renderChargeTab(ownChange) {
     const $amount = document.getElementById("vending-machine-charge-amount");
     let sum = 0;
@@ -152,6 +154,15 @@ export default class View {
     });
   }
 
+  renderReturn(vendingMachine) {
+    const { userMoney, returnMoney } = vendingMachine;
+    this.renderUserMoney(userMoney);
+
+    returnMoney.map((coin, idx) => {
+      const $getChange = document.getElementById(`coin-${COIN[idx]}-quantity`);
+      $getChange.innerHTML = coin;
+    });
+  }
   // renderPurchaseTab(vendingMachine) {
   //   const { productList, returnChage, userMoney } = vendingMachine;
   // }
