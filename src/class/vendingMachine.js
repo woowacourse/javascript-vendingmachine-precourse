@@ -14,7 +14,7 @@ import Charge from './charge.js';
 import { saveCharges } from '../storage/vendingMachineCharge.js';
 import { updateVendingMachineCharge } from '../dom/update/updateVendingMachineCharge.js';
 import { saveUserCharge } from '../storage/userCharge.js';
-import { updateUserChargeAmount } from '../dom/update/updateUserCharge.js';
+import updateUserChargeAmount from '../dom/update/updateUserCharge.js';
 import {
   createPurchaseTableRow,
   updatePurchasableProductTableAfterPurchase,

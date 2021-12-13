@@ -6,7 +6,7 @@ import {
   PRODUCT_PURCHASE_TEXT,
 } from '../../constants/text.js';
 
-export const createMenu = () => {
+const createMenu = () => {
   const menu = document.createElement(DIV);
 
   menu.append(
@@ -47,3 +47,5 @@ const createProductPurchaseMenu = () => {
 
   return productPurchaseMenuButton;
 };
+
+export default createMenu;

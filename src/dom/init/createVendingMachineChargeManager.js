@@ -29,7 +29,7 @@ import {
   AMOUNT_TITLE,
 } from '../../constants/text.js';
 
-export const createVendingMachineChargeManager = () => {
+const createVendingMachineChargeManager = () => {
   const vendingMachineChargeManager = document.createElement(DIV);
 
   vendingMachineChargeManager.style.display = NONE;
@@ -172,3 +172,5 @@ const createCoinTableBodyRow = (coinName, id) => {
 
   return tableRow;
 };
+
+export default createVendingMachineChargeManager;

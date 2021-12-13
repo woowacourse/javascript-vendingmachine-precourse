@@ -26,7 +26,7 @@ import {
   PRODUCT_LIST_TITLE,
 } from '../../constants/text.js';
 
-export const createProductManager = () => {
+const createProductManager = () => {
   const productManager = document.createElement(DIV);
 
   productManager.style.display = NONE;
@@ -157,3 +157,5 @@ const createProductTableBody = () => {
 
   return tableBody;
 };
+
+export default createProductManager;

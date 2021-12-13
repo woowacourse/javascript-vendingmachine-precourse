@@ -1,5 +1,5 @@
-import { updateReturnCoinTable } from '../dom/update/updateReturnCoinTable.js';
-import { updateUserChargeAmount } from '../dom/update/updateUserCharge.js';
+import updateReturnCoinTable from '../dom/update/updateReturnCoinTable.js';
+import updateUserChargeAmount from '../dom/update/updateUserCharge.js';
 import {
   updateVendingMachineCharge,
   updateVendingMachineTable,

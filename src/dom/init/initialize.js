@@ -1,7 +1,7 @@
-import { createMenu } from './createMenu.js';
-import { createProductManager } from './createProductManager.js';
-import { createVendingMachineChargeManager } from './createVendingMachineChargeManager.js';
-import { createPurchaseManager } from './createPurchaseManager.js';
+import createMenu from './createMenu.js';
+import createProductManager from './createProductManager.js';
+import createVendingMachineChargeManager from './createVendingMachineChargeManager.js';
+import createPurchaseManager from './createPurchaseManager.js';
 import {
   addListenerToMenuButton,
   addListenerToProductAddButton,
@@ -16,10 +16,10 @@ import { initPurchasableProductTable } from '../update/updatePurchaseTable.js';
 import { vendingMachine } from '../../index.js';
 import { createProductTableRow } from '../update/updateProductTable.js';
 import { updateVendingMachineCharge } from '../update/updateVendingMachineCharge.js';
-import { updateUserChargeAmount } from '../update/updateUserCharge.js';
-import { createTitle } from './createTitle.js';
+import updateUserChargeAmount from '../update/updateUserCharge.js';
+import createTitle from './createTitle.js';
 
-export const initialize = () => {
+const initialize = () => {
   createTitle();
   createMenu();
   createManagers();
@@ -54,3 +54,5 @@ const addDataToView = () => {
   updateUserChargeAmount();
   initPurchasableProductTable();
 };
+
+export default initialize;

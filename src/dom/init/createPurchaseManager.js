@@ -35,7 +35,7 @@ import {
 } from '../../constants/text.js';
 import { ONE, THREE, COIN_LIST } from '../../constants/data.js';
 
-export const createPurchaseManager = () => {
+const createPurchaseManager = () => {
   const purchaseManager = document.createElement(DIV);
 
   purchaseManager.style.display = NONE;
@@ -261,3 +261,5 @@ const createCoinListTableBodyRow = (coinName, id) => {
 
   return tableRow;
 };
+
+export default createPurchaseManager;
