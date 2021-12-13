@@ -72,7 +72,13 @@ class ProductAddMenuController {
   }
 
   validateProductName(productName) {
-    return ProductAddMenuValidator.validateProductNameExist(productName);
+    return (
+      ProductAddMenuValidator.validateProductNameExist(productName) &&
+      ProductAddMenuValidator.validateProductNameAlreadyExist(
+        productName,
+        this.$productAddMenuModel.getProductItems(),
+      )
+    );
   }
 
   validateProductPrice(productPrice) {

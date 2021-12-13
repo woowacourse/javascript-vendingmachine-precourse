@@ -3,6 +3,10 @@ import MESSAGE from '../constants/message.js';
 export default {
   // 상품명 관련 검증 함수
   validateProductNameExist: name => (name ? true : alert(MESSAGE.productNameIsRequired)),
+  validateProductNameAlreadyExist: (name, productItems) =>
+    !productItems.find(item => item.productName === String(name))
+      ? true
+      : alert(MESSAGE.productNameAlreadyExist),
 
   // 상품 가격 관련 검증 함수
   validateProductPriceIsOver100: price =>

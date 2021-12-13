@@ -1,6 +1,7 @@
 export default {
   // 상품명 관련 메세지
   productNameIsRequired: '상품명을 입력 해주세요',
+  productNameAlreadyExist: '동일한 상품명이 이미 존재합니다.',
 
   // 상품 가격 관련 메세지
   productPriceMinimumIs100: '가격은 최소 100원 입니다',
