@@ -1,7 +1,7 @@
 import NavButtons from './NavButtons/NavButtons.js';
 import AddProducts from './AddProducts/view.js';
 import ChargeMachine from './ChargeMachine/view.js';
-import PurchaseProducts from './PurchaseProducts/PurchaseProducts.js';
+import PurchaseProducts from './PurchaseProducts/view.js';
 import {
   PAGE_TITLE,
   ID_PRODUCT_ADD_TAB,

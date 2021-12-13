@@ -11,7 +11,7 @@ export function getAllCoins() {
   return coins ? JSON.parse(coins) : {};
 }
 
-export function getCoins(amount, currentCoins) {
+export function getReturnCoins(amount, currentCoins) {
   const newCoins = { ...currentCoins };
   let left = amount;
   const returnCoins = Object.fromEntries(
@@ -26,6 +26,10 @@ export function getCoins(amount, currentCoins) {
   );
 
   return { returnCoins, left, newCoins };
+}
+
+export function noChange(obj) {
+  return Object.values(obj).reduce((acc, val) => acc + val, 0) === 0;
 }
 
 export const divideToCoins = function divideAmountIntoRandomCoins(amount) {

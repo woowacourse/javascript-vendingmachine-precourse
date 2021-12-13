@@ -67,7 +67,6 @@ export default class AddProducts {
   addProductTableRow(name, property) {
     const productData = createProductObjects(name, property);
     const row = createTR(productData);
-    // console.log(row);
     this.DOMs.table.appendChild(row);
   }
 

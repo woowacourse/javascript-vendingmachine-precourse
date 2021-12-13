@@ -54,3 +54,10 @@ export const isValidProduct = function validateProductInput(
     validator(isValidQuantity, quantity, ERROR_INVALID_QUANTITY)
   );
 };
+
+export const hasEnoughInsert = function checkForEnoughMoneyOnPurchase(
+  price,
+  insert,
+) {
+  return price <= insert;
+};
