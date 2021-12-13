@@ -11,10 +11,12 @@ export const PRODUCE_ADD_TEXT = `
   <main>
     <section>
       <h4>상품 추가하기</h4>
-      <input id="product-name-input" placeholder="상품명"/>
-      <input type="number" id="product-price-input" placeholder="가격"/>
-      <input type="number" id="product-quantity-input" placeholder="수량"/>
-      <button id="product-add-button">추가하기</button>
+      <form>
+        <input id="product-name-input" placeholder="상품명"/>
+        <input type="number" id="product-price-input" placeholder="가격"/>
+        <input type="number" id="product-quantity-input" placeholder="수량"/>
+        <button id="product-add-button">추가하기</button>
+      </form>
     </section>
     <section>
       <h4>상품 현황</h4>
@@ -33,8 +35,10 @@ export const VENDING_MACHINE_MANAGE_TEXT = `
   <main>
     <section>
       <h4>자판기 동전 충전하기</h4>
-      <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액"/>
-      <button id="vending-machine-charge-button">충전하기</button>
+      <form>
+        <input type="number" id="vending-machine-charge-input" placeholder="자판기가 보유할 금액"/>
+        <button id="vending-machine-charge-button">충전하기</button>
+      </form>
       <p>보유 금액: <div id="vending-machine-charge-amount"></div></p>
     </section>
     <section>
@@ -69,8 +73,10 @@ export const PRODUCT_PURCHASE_TEXT = `
   <main>
     <section>
       <h4>금액 투입</h4>
-      <input type="number" id="charge-input" placeholder="투입할 금액"/>
-      <button id="charge-button">충전하기</button>
+      <form>
+        <input type="number" id="charge-input" placeholder="투입할 금액"/>
+        <button id="charge-button">충전하기</button>
+      </form>
       <p>투입한 금액: <div id="charge-amount"></div></p>
     </section>
     <section>
