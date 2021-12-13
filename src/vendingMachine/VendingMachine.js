@@ -9,6 +9,11 @@ import {
   COIN_VALUE_50,
   COIN_VALUE_10,
   PURCHASE_AMOUNT_ID,
+  PURCHASE_500_QUANTITY_ID,
+  PURCHASE_100_QUANTITY_ID,
+  PURCHASE_50_QUANTITY_ID,
+  PURCHASE_10_QUANTITY_ID,
+  RETURN_COINS_KEY,
 } from '../constant/constant.js';
 import Coins from './Coins.js';
 import $ from '../util/$.js';
@@ -24,6 +29,7 @@ export default class VendingMachine {
     this.products = getProductsFromStorage() || [];
     this.change = new Coins();
     this.money = +localStorage.getItem(CURRENT_MONEY_KEY) || 0;
+    this.returnCoins = JSON.parse(localStorage.getItem(RETURN_COINS_KEY)) || [0, 0, 0, 0];
   }
 
   addProduct(product) {
@@ -80,16 +86,29 @@ export default class VendingMachine {
     coinValues.forEach((coinValue, index) => {
       const share = parseInt(currentMoney / coinValue, 10);
       const decreaseCount = this.change.decreaseCoin(share, index);
+      this.returnCoins[index] = decreaseCount;
       currentMoney -= decreaseCount * coinValue;
     });
     this.money = currentMoney;
     localStorage.setItem(CURRENT_MONEY_KEY, this.money);
     localStorage.setItem(COINS_STORAGE_KEY, JSON.stringify(this.change.coins));
+    localStorage.setItem(RETURN_COINS_KEY, JSON.stringify(this.returnCoins));
   }
 
   renderMoney() {
     const $moneyNode = $(`#${PURCHASE_AMOUNT_ID}`);
 
     $moneyNode.textContent = this.money;
+  }
+
+  renderReturnCoins() {
+    [
+      PURCHASE_500_QUANTITY_ID,
+      PURCHASE_100_QUANTITY_ID,
+      PURCHASE_50_QUANTITY_ID,
+      PURCHASE_10_QUANTITY_ID,
+    ].forEach((id, index) => {
+      $(`#${id}`).textContent = `${this.returnCoins[index]}개`;
+    });
   }
 }

@@ -32,6 +32,7 @@ import {
   TITLE_50,
   TITLE_10,
   PURCHASE_RETURN_BUTTON_ID,
+  RETURN_COINS_KEY,
 } from '../constant/constant.js';
 import { coinListHeaderTemplate } from './renderCharge.js';
 import $ from '../util/$.js';
@@ -101,7 +102,8 @@ function changeHeaderTemplate() {
   `;
 }
 
-function changeTemplate() {
+function changeTemplate(returnCoins) {
+  const isInStorage = JSON.parse(localStorage.getItem(RETURN_COINS_KEY));
   const titles = [TITLE_500, TITLE_100, TITLE_50, TITLE_10];
   const ids = [
     PURCHASE_500_QUANTITY_ID,
@@ -109,24 +111,24 @@ function changeTemplate() {
     PURCHASE_50_QUANTITY_ID,
     PURCHASE_10_QUANTITY_ID,
   ];
-  const template = ids.map((id, index) => `
-    <tr align="center" bgcolor="white" height="40">
-      <td align="center" width="62">${titles[index]}</td> 
-      <td id="${id}" align="center" width="62"></td>
-    </tr>
-  `).join('');
-
-  return template;
+  return (
+    ids.map((id, index) => `
+      <tr align="center" bgcolor="white" height="40">
+        <td align="center" width="62">${titles[index]}</td> 
+        <td id="${id}" align="center" width="62">${isInStorage ? `${returnCoins[index]}개` : ''}</td>
+      </tr>
+    `).join('')
+  );
 }
 
-function renderChange($purchase) {
+function renderChange($purchase, returnCoins) {
   const $change = document.createElement('div');
 
   $change.innerHTML = `
     ${changeHeaderTemplate()}
     <table id="${PURCHASE_COIN_TABLE_ID}" bgcolor="black" border="1" style="border-collapse:collapse;">
       ${coinListHeaderTemplate()}
-      ${changeTemplate()}
+      ${changeTemplate(returnCoins)}
     </table>
   `;
   $purchase.append($change);
@@ -141,6 +143,6 @@ export default function renderPurchase(vendingMachine) {
 
   renderPurchaseInput($purchase, vendingMachine.money);
   renderPurchaseProducts($purchase, vendingMachine.products);
-  renderChange($purchase);
+  renderChange($purchase, vendingMachine.returnCoins);
   $app.append($purchase);
 }

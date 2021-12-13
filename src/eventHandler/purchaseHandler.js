@@ -45,6 +45,8 @@ function moneyInputHandler(vendingMachine) {
 function onReturn(event, vendingMachine) {
   event.preventDefault();
   vendingMachine.returnChange();
+  vendingMachine.renderMoney();
+  vendingMachine.renderReturnCoins();
 }
 
 function returnHandler(vendingMachine) {

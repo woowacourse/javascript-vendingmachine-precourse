@@ -20,15 +20,14 @@ import {
   CHARGE_CONTAINER_ID,
   CHARGE_COIN_TALBE_ID,
   COINS_STORAGE_KEY,
-  COIN_SUM_KEY,
   CHARGE_INPUT_PLACEHOLDER_TITLE,
 } from '../constant/constant.js';
 import $ from '../util/$.js';
 import removePreviousView from './removePreviousView.js';
 
-function renderChargeInput($charge) {
+function renderChargeInput($charge, change) {
   const $inputContainer = document.createElement('div');
-  const change = localStorage.getItem(COIN_SUM_KEY);
+  const currentChange = change.getSum();
 
   $inputContainer.innerHTML = `
     <h3>${CHARGE_TITLE}</h3>
@@ -38,7 +37,7 @@ function renderChargeInput($charge) {
     </form>
     <br>
     <span>${CHARGE_AMOUNT_TITLE}:</span>
-    <span id="${CHARGE_AMOUNT_ID}">${change || ''}</span>
+    <span id="${CHARGE_AMOUNT_ID}">${currentChange || ''}</span>
   `;
   $charge.append($inputContainer);
 }
@@ -94,7 +93,7 @@ export default function renderCharge(vendingMachine) {
   const $charge = document.createElement('div');
   $charge.id = CHARGE_CONTAINER_ID;
 
-  renderChargeInput($charge);
+  renderChargeInput($charge, vendingMachine.change);
   renderChargeCoins($charge, vendingMachine.change);
   $app.append($charge);
 }
