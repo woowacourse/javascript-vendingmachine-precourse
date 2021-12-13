@@ -2,6 +2,7 @@ import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import printAddedProduct from '../views/productAddView.js';
 import { PRODUCT, ERROR, PRICE } from '../utils/constants.js';
+import alertMessage from '../views/alertMessage.js';
 
 function HandleProductAdd() {
   this.products = [];
@@ -15,7 +16,7 @@ function HandleProductAdd() {
 
   const isValidName = nameInput => {
     if (nameInput === '') {
-      alert(ERROR.NAME_BLANK);
+      alertMessage(ERROR.NAME_BLANK);
       $('#product-name-input').focus();
       return false;
     }
@@ -24,17 +25,17 @@ function HandleProductAdd() {
 
   const isValidPrice = priceInput => {
     if (priceInput === '') {
-      alert(ERROR.PRICE_BLANK);
+      alertMessage(ERROR.PRICE_BLANK);
       $('#product-price-input').focus();
       return false;
     }
     if (Number(priceInput) < PRODUCT.LEAST_PRICE) {
-      alert(ERROR.PRICE_TOO_LOW);
+      alertMessage(ERROR.PRICE_TOO_LOW);
       $('#product-price-input').focus();
       return false;
     }
     if (Number(priceInput) % PRICE.TEN_WON !== 0) {
-      alert(ERROR.PRICE_SHOULD_DIVIDED_INTO_TEN);
+      alertMessage(ERROR.PRICE_SHOULD_DIVIDED_INTO_TEN);
       $('#product-price-input').focus();
       return false;
     }
@@ -43,12 +44,12 @@ function HandleProductAdd() {
 
   const isValidQuantity = quantityInput => {
     if (quantityInput === '') {
-      alert(ERROR.QUANTITY_BLANK);
+      alertMessage(ERROR.QUANTITY_BLANK);
       $('#product-quantity-input').focus();
       return false;
     }
     if (Number(quantityInput) < PRODUCT.LEAST_QUANTITY) {
-      alert(ERROR.QUANTITY_TOO_LOW);
+      alertMessage(ERROR.QUANTITY_TOO_LOW);
       $('#product-quantity-input').focus();
       return false;
     }

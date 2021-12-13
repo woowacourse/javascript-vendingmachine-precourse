@@ -4,6 +4,7 @@ import renderProducts from '../views/renderProducts.js';
 import { resetPurchaseInput, printInputCharge } from '../views/productPurchaseView.js';
 import { getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
 import { ERROR, CHARGE, PRICE } from '../utils/constants.js';
+import alertMessage from '../views/alertMessage.js';
 
 function HandleProductPurchase() {
   this.holdAmount = Number($('#charge-amount').innerText) || 0;
@@ -16,15 +17,15 @@ function HandleProductPurchase() {
 
   const isValidCharge = chargeInput => {
     if (chargeInput === '') {
-      alert(ERROR.CHARGE_BLANK);
+      alertMessage(ERROR.CHARGE_BLANK);
       return false;
     }
     if (Number(chargeInput) < CHARGE.LEAST_PRICE) {
-      alert(ERROR.CHARGE_TOO_LOW);
+      alertMessage(ERROR.CHARGE_TOO_LOW);
       return false;
     }
     if (Number(chargeInput % PRICE.TEN_WON !== 0)) {
-      alert(ERROR.CHARGE_SHOULD_DIVIDED_INTO_TEN);
+      alertMessage(ERROR.CHARGE_SHOULD_DIVIDED_INTO_TEN);
       return false;
     }
     return true;
@@ -32,7 +33,7 @@ function HandleProductPurchase() {
 
   const isValidPurchase = (holdAmount, price) => {
     if (price > holdAmount) {
-      alert(ERROR.PRODUCT_IS_EXPENSIVE);
+      alertMessage(ERROR.PRODUCT_IS_EXPENSIVE);
       return false;
     }
     return true;
@@ -43,7 +44,7 @@ function HandleProductPurchase() {
     const products = store.getLocalStorage('products');
 
     if (!products[purchaseIndex].quantity) {
-      alert(ERROR.PRODUCT_EMPTY);
+      alertMessage(ERROR.PRODUCT_EMPTY);
       return false;
     }
     return true;
