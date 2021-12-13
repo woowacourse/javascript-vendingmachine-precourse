@@ -1,6 +1,6 @@
 const $fragment = new DocumentFragment();
 
-function renderChargeInput() {
+function chargeInput() {
   const $chargeInputWrap = document.createElement('section');
   $chargeInputWrap.id = 'chargeInputWrap';
 
@@ -16,7 +16,7 @@ function renderChargeInput() {
   $fragment.appendChild($chargeInputWrap);
 }
 
-function renderPurchaseItems() {
+function purchaseItems() {
   const $purchaseItemsWrap = document.createElement('section');
   $purchaseItemsWrap.id = 'purchaseItemsWrap';
 
@@ -43,7 +43,7 @@ function renderPurchaseItems() {
   $fragment.appendChild($purchaseItemsWrap);
 }
 
-function renderQuantityPerCoins() {
+function quantityPerCoins() {
   const $quantityPerCoinsWrap = document.createElement('section');
   $quantityPerCoinsWrap.id = 'quantityPerCoins';
 
@@ -78,14 +78,14 @@ function renderQuantityPerCoins() {
   $fragment.appendChild($quantityPerCoinsWrap);
 }
 
-export function renderProductPurchaseTab() {
+export function renderProductPurchase() {
   const $app = document.querySelector('#app');
   const $main = document.createElement('main');
   $main.id = 'productPurchaseOrQuantityWrap';
 
-  renderChargeInput();
-  renderPurchaseItems();
-  renderQuantityPerCoins();
+  chargeInput();
+  purchaseItems();
+  quantityPerCoins();
 
   $main.appendChild($fragment);
   $app.appendChild($main);

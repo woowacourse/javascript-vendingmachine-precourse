@@ -3,7 +3,7 @@ const $header = document.createElement('header');
 $header.id = 'header';
 const $fragment = new DocumentFragment();
 
-function renderTitle() {
+function title() {
   const $header = document.createElement('h1');
   $header.innerHTML =
     '<img src="../../images/beverage_icon.png" class="beverage_icon"/><h1>자판기</h1><img src="../../images/beverage_icon.png" class="beverage_icon"/>';
@@ -11,7 +11,7 @@ function renderTitle() {
   $fragment.appendChild($header);
 }
 
-function renderButtons() {
+function buttons() {
   const $buttonWrap = document.createElement('div');
   $buttonWrap.innerHTML = `
     <button id="product-add-menu">상품 관리</button>
@@ -22,8 +22,8 @@ function renderButtons() {
 }
 
 export function renderHeader() {
-  renderTitle();
-  renderButtons();
+  title();
+  buttons();
   $header.appendChild($fragment);
   $app.appendChild($header);
 }

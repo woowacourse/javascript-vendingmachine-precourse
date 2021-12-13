@@ -1,6 +1,6 @@
 const $fragment = new DocumentFragment();
 
-function renderChargeInput() {
+function chargeInput() {
   const $chargeInputWrap = document.createElement('section');
   $chargeInputWrap.id = 'chargeInputWrap';
 
@@ -16,7 +16,7 @@ function renderChargeInput() {
   $fragment.appendChild($chargeInputWrap);
 }
 
-function renderAmount() {
+function amount() {
   const $amountOfCoins = document.createElement('section');
   $amountOfCoins.id = 'amountOfCoinsWrap';
 
@@ -50,13 +50,13 @@ function renderAmount() {
   $fragment.appendChild($amountOfCoins);
 }
 
-export function renderVendingMachineManageTab() {
+export function renderVendingMachineManage() {
   const $app = document.querySelector('#app');
   const $main = document.createElement('main');
   $main.id = 'vendingMachineManageWrap';
 
-  renderChargeInput();
-  renderAmount();
+  chargeInput();
+  amount();
   $main.appendChild($fragment);
   $app.appendChild($main);
 }

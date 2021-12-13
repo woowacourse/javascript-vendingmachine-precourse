@@ -1,4 +1,4 @@
 export { renderHeader } from './renderHeader.mjs';
-export { renderProductAddTab } from './renderProductAddTab.mjs';
-export { renderVendingMachineManageTab } from './renderVendingMachineManageTab.mjs';
-export { renderProductPurchaseTab } from './renderProductPurchaseTab.mjs';
+export { renderProductAdd } from './renderProductAdd.mjs';
+export { renderVendingMachineManage } from './renderVendingMachineManage.mjs';
+export { renderProductPurchase } from './renderProductPurchase.mjs';
