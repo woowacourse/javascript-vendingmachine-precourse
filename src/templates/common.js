@@ -1,8 +1,8 @@
 import SELECTOR from '../constants/selector.js';
 import STYLE from '../constants/style.js';
-import { TAB_BUTTONS } from '../constants/common.js';
+import { MENU_BUTTONS } from '../constants/common.js';
 
-const createTabButtonTemplate = (text, id) => `
+const createMenuButtonTemplate = (text, id) => `
   <button id="${id}">${text}</button>
 `;
 
@@ -10,16 +10,20 @@ export const createVendingMachineHeaderTemplate = () => `
   <h1>🥤자판기🥤</h1>
 `;
 
-export const createTabButtonContainerTemplate = () => `
+export const createMenuButtonContainerTemplate = () => `
   <div id="${SELECTOR.tabButtonContainerId}">
-    ${TAB_BUTTONS.map(button => createTabButtonTemplate(button.text, button.id)).join('')}
+    ${MENU_BUTTONS.map(button => createMenuButtonTemplate(button.text, button.id)).join('')}
   </div>
 `;
 
-export const createTabContentContainerTemplate = () => `
+export const createMenuContentContainerTemplate = () => `
   <div id="${SELECTOR.tabContentContainerId}"></div>
 `;
 
 export const createTheadTableDataTemplate = text => `
   <td style="${STYLE.tableHeadData}">${text}</td>
+`;
+
+export const createMenuTitleTemplate = menuTitleName => `
+  <h2>${menuTitleName}</h2>
 `;

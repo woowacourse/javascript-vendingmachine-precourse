@@ -1,19 +1,20 @@
 import { $ } from '../utils/dom.js';
 import {
-  createTitleTemplate,
   createChargeFormTemplate,
   createProductTableTemplate,
   createReturnCoinTableTemplate,
   createProductTableBodyWithData,
   createReturnCoinTableBodyTemplate,
 } from '../templates/productPurchaseMenu.js';
+import { createMenuTitleTemplate } from '../templates/common.js';
 
 import SELECTOR from '../constants/selector.js';
+import { PRODUCT_PURCHASE_MENU } from '../constants/common.js';
 
 class ProductPurchaseMenuView {
   render() {
     $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
-      createTitleTemplate() +
+      createMenuTitleTemplate(PRODUCT_PURCHASE_MENU) +
       createChargeFormTemplate(0) +
       createProductTableTemplate() +
       createReturnCoinTableTemplate();

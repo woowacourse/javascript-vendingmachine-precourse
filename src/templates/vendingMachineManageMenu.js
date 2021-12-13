@@ -2,11 +2,6 @@ import { createTheadTableDataTemplate } from './common.js';
 
 import SELECTOR from '../constants/selector.js';
 import STYLE from '../constants/style.js';
-import { VENDING_MACHINE_MANAGE_TAB } from '../constants/common.js';
-
-export const createTitleTemplate = () => `
-  <h2>${VENDING_MACHINE_MANAGE_TAB}</h2>
-`;
 
 export const createCoinQuantityTableRowTemplate = (coin, amount, id) => `
   <tr>

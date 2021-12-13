@@ -1,18 +1,19 @@
 import { $ } from '../utils/dom.js';
 import {
-  createTitleTemplate,
   createChargeFormTemplate,
   createChargeAmountTemplate,
   createCoinQuantityTableTemplate,
   createCoinQuantityTableBodyTemplate,
 } from '../templates/vendingMachineManageMenu.js';
+import { createMenuTitleTemplate } from '../templates/common.js';
 
 import SELECTOR from '../constants/selector.js';
+import { VENDING_MACHINE_MANAGE_MENU } from '../constants/common.js';
 
 class VendingMachineManageMenuView {
   render() {
     $(`#${SELECTOR.tabContentContainerId}`).innerHTML =
-      createTitleTemplate() +
+      createMenuTitleTemplate(VENDING_MACHINE_MANAGE_MENU) +
       createChargeFormTemplate() +
       createChargeAmountTemplate(0) +
       createCoinQuantityTableTemplate(0, 0, 0, 0);

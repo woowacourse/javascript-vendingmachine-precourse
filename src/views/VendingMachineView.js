@@ -1,8 +1,8 @@
 import { $ } from '../utils/dom.js';
 import {
   createVendingMachineHeaderTemplate,
-  createTabButtonContainerTemplate,
-  createTabContentContainerTemplate,
+  createMenuButtonContainerTemplate,
+  createMenuContentContainerTemplate,
 } from '../templates/common.js';
 
 import SELECTOR from '../constants/selector.js';
@@ -15,8 +15,8 @@ class VendingMachineView {
   render() {
     $(`#${SELECTOR.vendingMachineApp}`).innerHTML =
       createVendingMachineHeaderTemplate() +
-      createTabButtonContainerTemplate() +
-      createTabContentContainerTemplate();
+      createMenuButtonContainerTemplate() +
+      createMenuContentContainerTemplate();
   }
 }
 

@@ -2,7 +2,6 @@ import { createTheadTableDataTemplate } from './common.js';
 
 import SELECTOR from '../constants/selector.js';
 import STYLE from '../constants/style.js';
-import { PRODUCT_PURCHASE_TAB } from '../constants/common.js';
 
 const createTbodyTableDataTemplate = (text, className, dataset) => `
   <td ${dataset}="${text}" class="${className}" style="${STYLE.tableBodyData}">${text}</td>
@@ -44,10 +43,6 @@ const createReturnCoinItemTemplate = (coin, amount) => `
       <span id="vending-machine-coin-${coin}-quantity">${amount}개</span>
     </td>
   </tr>
-`;
-
-export const createTitleTemplate = () => `
-  <h2>${PRODUCT_PURCHASE_TAB}</h2>
 `;
 
 export const createChargeFormTemplate = amount => `
