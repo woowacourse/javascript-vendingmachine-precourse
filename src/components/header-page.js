@@ -1,4 +1,4 @@
-import { elementCreator } from '../dom/util.js';
+import { elementCreator } from '../utils/dom.js';
 import createAddTab from './add-tab.js';
 import createManageTab from './manage-tab.js';
 import createPurchaseTab from './purchase-tab.js';

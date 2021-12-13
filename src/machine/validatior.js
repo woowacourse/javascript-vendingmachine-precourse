@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "./constants.js";
+import { ERROR_MESSAGE } from "../constants.js";
 
 const isNumber = (input) => {
     if(isNaN(input)){

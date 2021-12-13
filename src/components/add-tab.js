@@ -1,5 +1,5 @@
 import {ADD_TAB_ID} from '../constants.js'
-import { elementCreator } from "../dom/util.js"
+import { elementCreator } from "../utils/dom.js"
 
 const createAddGoodsElement = (addTab) => {
     addTab.append(elementCreator('h3', null, '상품 추가하기'));

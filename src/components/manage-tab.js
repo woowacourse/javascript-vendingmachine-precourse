@@ -1,4 +1,4 @@
-import { elementCreator } from "../dom/util.js"
+import { elementCreator } from "../utils/dom.js"
 import { COIN_TABLE_ID, MANAGE_TAB_ID } from "../constants.js";
 
 const createCoinTable = () => {
