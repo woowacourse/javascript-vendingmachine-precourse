@@ -338,25 +338,26 @@
 
 ## Model 내부 변수
 
-- [ ] productList
+- [x] productList
   ``` 
   상품 추가 시 갱신
   상품 구매 시 갱신
   ```
 
-- [ ] ownChange
+- [x] ownChange
   ```
   잔돈 충전 시 갱신
   잔돈 반환 시 갱신
   ```
 
-- [ ] userMoney
+- [x] userMoney
   ```
   금액 투입 시 갱신
   상품 구매 시 갱신
+  잔돈 반환 시 갱신
   ```
 
-- [ ] returnMoney
+- [x] returnMoney
   ```
   변경 사항 없음
   ```
