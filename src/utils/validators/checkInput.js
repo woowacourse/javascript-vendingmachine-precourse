@@ -41,3 +41,13 @@ export function checkCoin(coin) {
 
   return allowCoin;
 }
+
+export function checkPurchaseCoin(coin) {
+  console.log(coin);
+  let allowCoin = false;
+  if (coin > MINIMUM_CHARGE && coin % DIVIDE_CHARGE == ZERO) {
+    allowCoin = true;
+  }
+
+  return allowCoin;
+}

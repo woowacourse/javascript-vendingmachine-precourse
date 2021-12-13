@@ -1,3 +1,5 @@
+import { ALERT } from '../constants.js';
+import { checkPurchaseCoin } from './validators/checkInput.js';
 import ProductPurchase from '../elements/ProductPurchase.js';
 
 export default class ProductPurchaseUtil {
@@ -19,7 +21,10 @@ export default class ProductPurchaseUtil {
 
   getPurchaseCoin(input) {
     this.purchaseCoin = Number(input.value);
-
+    if (!checkPurchaseCoin(this.purchaseCoin)) {
+      alert(ALERT.WRONG_USER_CHARGE);
+      return;
+    }
     return this.purchaseCoin;
   }
 }
