@@ -1,3 +1,6 @@
+import buildProductAdd from "./buildProductAdd.js";
+import buildChargePage from "./buildChargePage.js";
+
 function tabMenu() {
     const app = document.getElementById("app");
     const header = document.createElement("header");
@@ -10,9 +13,15 @@ function tabMenu() {
 
     productAddMenuButton.id = "product-add-menu";
     productAddMenuButton.innerText = "상품 관리";
+    productAddMenuButton.onclick = () => {
+        buildProductAdd();
+    }
 
     vendingMachineManageMenuButton.id = "vending-machine-manage-menu";
     vendingMachineManageMenuButton.innerText = "잔돈 충전";
+    vendingMachineManageMenuButton.onclick = () => {
+        buildChargePage();
+    }
 
     productPurchaseMenuButton.id = "product-purchase-menu";
     productPurchaseMenuButton.innerText = "상품 구매";
