@@ -1,10 +1,10 @@
-import { CLASS, COIN_LIST, CUSTOM_EVENT_NAME, ID, SELECTOR } from '../constants.js';
+import { COIN_LIST, CUSTOM_EVENT_NAME, SELECTOR } from '../constants.js';
 import { on, qs, qsAll } from '../utils/index.js';
 import { checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
 import View from './View.js';
 
 export default class PurchasingProductView extends View {
-  constructor(element = qs(SELECTOR.PRODUCT_PURCHASE_VIEW)) {
+  constructor(element = qs(`#${SELECTOR.PRODUCT_PURCHASE_VIEW}`)) {
     super(element);
     this.template = new Template();
 
@@ -20,10 +20,10 @@ export default class PurchasingProductView extends View {
     this.element.innerHTML += this.template.getCanBuyProductList(productList);
     this.element.innerHTML += this.template.getReturnExchangeList(puttedMoney);
 
-    this.vendingMachineChargeInput = qs(SELECTOR.PURCHASE_CHARGE_INPUT);
-    this.vendingMachineChargeButton = qs(SELECTOR.PURCHASE_CHARGE_BUTTON);
-    this.currentPuttedMoney = qs(SELECTOR.PURCHASE_CHARGE_AMOUNT);
-    this.coinReturnButton = qs(SELECTOR.COIN_RETURN_BUTTON);
+    this.vendingMachineChargeInput = qs(`#${SELECTOR.PURCHASE_CHARGE_INPUT}`);
+    this.vendingMachineChargeButton = qs(`#${SELECTOR.PURCHASE_CHARGE_BUTTON}`);
+    this.currentPuttedMoney = qs(`#${SELECTOR.PURCHASE_CHARGE_AMOUNT}`);
+    this.coinReturnButton = qs(`#${SELECTOR.COIN_RETURN_BUTTON}`);
 
     this.currentPuttedMoney.innerText += puttedMoney.inputMoney;
 
@@ -32,10 +32,10 @@ export default class PurchasingProductView extends View {
   }
 
   bindEvents() {
-    const buttons = qsAll(SELECTOR.PRODUCT_PURCHASE_ITEM);
-    const names = qsAll(SELECTOR.PRODUCT_PURCHASE_NAME);
-    const prices = qsAll(SELECTOR.PRODUCT_PURCHASE_PRICE);
-    const quantities = qsAll(SELECTOR.PRODUCT_PURCHASE_QUANTITY);
+    const buttons = qsAll(`.${SELECTOR.PRODUCT_PURCHASE_ITEM}`);
+    const names = qsAll(`.${SELECTOR.PRODUCT_PURCHASE_NAME}`);
+    const prices = qsAll(`.${SELECTOR.PRODUCT_PURCHASE_PRICE}`);
+    const quantities = qsAll(`.${SELECTOR.PURCHASE_ITEM_QUANTITY}`);
 
     buttons.forEach((button, index) => {
       on(button, 'click', () => this.handlePurchse(names, prices, quantities, index));
@@ -72,11 +72,11 @@ export default class PurchasingProductView extends View {
 class Template {
   getInitialElements() {
     return `<h3>금액 투입</h3>
-      <input id="${ID.PURCHASE_CHARGE_INPUT}" type="number" placeholder="투입할 금액" />
-      <button id="${ID.PURCHASE_CHARGE_BUTTON}">투입하기</button>
+      <input id="${SELECTOR.PURCHASE_CHARGE_INPUT}" type="number" placeholder="투입할 금액" />
+      <button id="${SELECTOR.PURCHASE_CHARGE_BUTTON}">투입하기</button>
       <br /><br />
       <span>투입한 금액: </span>
-      <span id="${ID.PURCHASE_CHARGE_AMOUNT}"></span>
+      <span id="${SELECTOR.PURCHASE_CHARGE_AMOUNT}"></span>
     `;
   }
 
@@ -101,12 +101,12 @@ class Template {
 
   getProduct({ name, price, quantity }) {
     return `
-      <tr class="${CLASS.PRODUCT_PURCHASE_ITEM}">
-        <td class="${CLASS.PRODUCT_PURCHASE_NAME}" data-product-name=${name}>${name}</td>
-        <td class="${CLASS.PRODUCT_PURCHASE_PRICE}" data-product-price=${price}>${price}</td>
-        <td class="${CLASS.PRODUCT_PURCHASE_QUANTITY}" data-product-quantity=${quantity}>${quantity}</td>
-        <td class="${CLASS.PRODUCT_MANAGE_QUANTITY}">
-          <button class="${CLASS.PURCHASE_BUTTON}">구매하기</button>
+      <tr class="${SELECTOR.PRODUCT_PURCHASE_ITEM}">
+        <td class="${SELECTOR.PRODUCT_PURCHASE_NAME}" data-product-name=${name}>${name}</td>
+        <td class="${SELECTOR.PRODUCT_PURCHASE_PRICE}" data-product-price=${price}>${price}</td>
+        <td class="${SELECTOR.PURCHASE_ITEM_QUANTITY}" data-product-quantity=${quantity}>${quantity}</td>
+        <td class="${SELECTOR.PRODUCT_MANAGE_QUANTITY}">
+          <button class="${SELECTOR.PURCHASE_ITEM_BUTTON}">구매하기</button>
         </td>
       </tr>
     `;
@@ -115,7 +115,7 @@ class Template {
   getReturnExchangeList(changeList) {
     return `
       <h3>잔돈</h3>
-      <button id="${ID.COIN_RETURN_BUTTON}">반환하기</button>
+      <button id="${SELECTOR.COIN_RETURN_BUTTON}">반환하기</button>
       <table>
         <thead>
           <tr>
@@ -126,19 +126,19 @@ class Template {
         <tbody>
           <tr>
             <td>500</td>
-            <td id="${ID.COIN_500_QUANTITY}">${changeList.returnedCoins[COIN_LIST.FIVE_HUNDRED]}개</td>
+            <td id="${SELECTOR.COIN_500_QUANTITY}">${changeList.returnedCoins[COIN_LIST.FIVE_HUNDRED]}개</td>
           </tr>
           <tr>
             <td>100</td>
-            <td id="${ID.COIN_100_QUANTITY}">${changeList.returnedCoins[COIN_LIST.ONE_HUNDRED]}개</td>
+            <td id="${SELECTOR.COIN_100_QUANTITY}">${changeList.returnedCoins[COIN_LIST.ONE_HUNDRED]}개</td>
           </tr>
           <tr>
             <td>50</td>
-            <td id="${ID.COIN_50_QUANTITY}">${changeList.returnedCoins[COIN_LIST.FIFTY]}개</td>
+            <td id="${SELECTOR.COIN_50_QUANTITY}">${changeList.returnedCoins[COIN_LIST.FIFTY]}개</td>
           </tr>
           <tr>
             <td>10</td>
-            <td id="${ID.COIN_10_QUANTITY}">${changeList.returnedCoins[COIN_LIST.TEN]}개</td>
+            <td id="${SELECTOR.COIN_10_QUANTITY}">${changeList.returnedCoins[COIN_LIST.TEN]}개</td>
           </tr>
         </tbody>
       </table>

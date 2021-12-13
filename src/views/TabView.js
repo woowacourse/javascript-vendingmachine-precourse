@@ -4,12 +4,12 @@ import View from "./View.js";
 
 
 export default class TabView extends View {
-  constructor(element = qs(SELECTOR.TAB_BUTTONS)) {
+  constructor(element = qs(`#${SELECTOR.TAB_BUTTONS}`)) {
     super(element);
 
-    this.productPurchaseMenu = qs(SELECTOR.PURCHASE_MENU);
-    this.vendingMachineManageMenu = qs(SELECTOR.COIN_MENU);
-    this.productAddMenu = qs(SELECTOR.PRODUCT_MENU);
+    this.productPurchaseMenu = qs(`#${SELECTOR.PURCHASE_MENU}`);
+    this.vendingMachineManageMenu = qs(`#${SELECTOR.COIN_MENU}`);
+    this.productAddMenu = qs(`#${SELECTOR.PRODUCT_MENU}`);
 
     this.bindEvents();
   }

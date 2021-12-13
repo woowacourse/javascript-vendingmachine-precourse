@@ -1,10 +1,10 @@
-import { COIN_LIST, CUSTOM_EVENT_NAME, ID, INITIAL_COIN_LIST, SELECTOR } from '../constants.js';
+import { COIN_LIST, CUSTOM_EVENT_NAME, INITIAL_COIN_LIST, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
 import { checkMoreThanOneHundred, checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
 import View from './View.js';
 
 export default class ChargingChangeView extends View {
-  constructor(element = qs(SELECTOR.VENDING_MACHINE_MANAGE_VIEW)) {
+  constructor(element = qs(`#${SELECTOR.VENDING_MACHINE_MANAGE_VIEW}`)) {
     super(element);
     this.template = new Template();
 
@@ -19,18 +19,16 @@ export default class ChargingChangeView extends View {
     this.initializeElements();
     this.element.innerHTML += this.template.getCoinList(data);
 
-    this.vendingMachineChargeInput = qs(SELECTOR.COIN_CHARGE_INPUT);
-    this.vendingMachineChargeButton = qs(SELECTOR.COIN_CHARGE_BUTTON);
+    this.vendingMachineChargeInput = qs(`#${SELECTOR.COIN_CHARGE_INPUT}`);
+    this.vendingMachineChargeButton = qs(`#${SELECTOR.COIN_CHARGE_BUTTON}`);
 
     this.bindEvents();
     super.show();
   }
 
   bindEvents() {
-    on(
-      this.vendingMachineChargeButton,
-      'click',
-      () => this.handleVendingMachineChargeButton(),
+    on(this.vendingMachineChargeButton, 'click', () =>
+      this.handleVendingMachineChargeButton(),
     );
   }
 
@@ -39,13 +37,13 @@ export default class ChargingChangeView extends View {
     if (checkNumberLessThanZero(Number(inputChanges))) return;
     if (checkMoreThanOneHundred(Number(inputChanges))) return;
     if (!checkTenDigits(Number(inputChanges))) return;
-    
+
     const changes = this.handleCalculationChanges(
       inputChanges,
       INITIAL_COIN_LIST,
     );
     this.emit(CUSTOM_EVENT_NAME.CHARGE_CHANGES, { changes });
-  };
+  }
 
   handleCalculationChanges(inputChanges, changes) {
     while (inputChanges !== 0) {
@@ -65,8 +63,8 @@ class Template {
   getInitialElements() {
     return `<h3>자판기 동전 충전하기</h3>
       <div>
-        <input id="${ID.COIN_CHARGE_INPUT}" type="number" placeholder="자판기가 보유할 금액" />
-        <button id="${ID.COIN_CHARGE_BUTTON}">충전하기</button>
+        <input id="${SELECTOR.COIN_CHARGE_INPUT}" type="number" placeholder="자판기가 보유할 금액" />
+        <button id="${SELECTOR.COIN_CHARGE_BUTTON}">충전하기</button>
       </div>
       <br />
     `;
@@ -78,7 +76,7 @@ class Template {
     }</span>
       <h3>자판기가 보유한 동전</h3>
       <table>
-        <thead id="${ID.VENDING_MACHINE_CHARGE_AMOUNT}">
+        <thead id="${SELECTOR.VENDING_MACHINE_CHARGE_AMOUNT}">
           <tr>
             <th>동전</th>
             <th>개수</th>
@@ -87,19 +85,19 @@ class Template {
         <tbody>
           <tr>
             <td>500</td>
-            <td id="${ID.COIN_500}">${data[COIN_LIST.FIVE_HUNDRED]}개</td>
+            <td id="${SELECTOR.COIN_500}">${data[COIN_LIST.FIVE_HUNDRED]}개</td>
           </tr>
           <tr>
             <td>100</td>
-            <td id="${ID.COIN_100}">${data[COIN_LIST.ONE_HUNDRED]}개</td>
+            <td id="${SELECTOR.COIN_100}">${data[COIN_LIST.ONE_HUNDRED]}개</td>
           </tr>
           <tr>
             <td>50</td>
-            <td id="${ID.COIN_50}">${data[COIN_LIST.FIFTY]}개</td>
+            <td id="${SELECTOR.COIN_50}">${data[COIN_LIST.FIFTY]}개</td>
           </tr>
           <tr>
             <td>10</td>
-            <td id="${ID.COIN_10}">${data[COIN_LIST.TEN]}개</td>
+            <td id="${SELECTOR.COIN_10}">${data[COIN_LIST.TEN]}개</td>
           </tr>
         </tbody>
       </table>

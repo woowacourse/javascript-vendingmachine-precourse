@@ -1,10 +1,10 @@
-import { CLASS, CUSTOM_EVENT_NAME, ID, SELECTOR } from '../constants.js';
+import { CUSTOM_EVENT_NAME, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
 import { checkLengthLessThanZero, checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
 import View from './View.js';
 
 export default class ProductManagementView extends View {
-  constructor(element = qs(SELECTOR.PRODUCT_ADD_VIEW)) {
+  constructor(element = qs(`#${SELECTOR.PRODUCT_ADD_VIEW}`)) {
     super(element);
     this.template = new Template();
 
@@ -19,10 +19,10 @@ export default class ProductManagementView extends View {
     this.initializeElements();
     this.element.innerHTML += this.template.getProductList(data);
 
-    this.productNameInput = qs(SELECTOR.PRODUCT_NAME_INPUT);
-    this.productPriceInput = qs(SELECTOR.PRODUCT_PRICE_INPUT);
-    this.productQuantityInput = qs(SELECTOR.PRODUCT_QUANTITY_INPUT);
-    this.productAddButton = qs(SELECTOR.PRODUCT_ADD_BUTTON);
+    this.productNameInput = qs(`#${SELECTOR.PRODUCT_NAME_INPUT}`);
+    this.productPriceInput = qs(`#${SELECTOR.PRODUCT_PRICE_INPUT}`);
+    this.productQuantityInput = qs(`#${SELECTOR.PRODUCT_QUANTITY_INPUT}`);
+    this.productAddButton = qs(`#${SELECTOR.PRODUCT_ADD_BUTTON}`);
 
     this.bindEvents();
     super.show();
@@ -51,10 +51,10 @@ class Template {
   getInitialElements() {
     return `<h3>상품 추가하기</h3>
       <div>
-        <input id="${ID.PRODUCT_NAME_INPUT}" type="text" placeholder="상품명"/>
-        <input id="${ID.PRODUCT_PRICE_INPUT}" type="number" placeholder="가격"/>
-        <input id="${ID.PRODUCT_QUANTITY_INPUT}" type="number" placeholder="수량"/>
-        <button id="${ID.PRODUCT_ADD_BUTTON}">추가하기</button>
+        <input id="${SELECTOR.PRODUCT_NAME_INPUT}" type="text" placeholder="상품명"/>
+        <input id="${SELECTOR.PRODUCT_PRICE_INPUT}" type="number" placeholder="가격"/>
+        <input id="${SELECTOR.PRODUCT_QUANTITY_INPUT}" type="number" placeholder="수량"/>
+        <button id="${SELECTOR.PRODUCT_ADD_BUTTON}">추가하기</button>
       </div>
     `;
   }
@@ -79,10 +79,10 @@ class Template {
 
   getProduct({ name, price, quantity }) {
     return `
-      <tr class="${CLASS.PRODUCT_MANAGE_ITEM}">
-        <td class="${CLASS.PRODUCT_MANAGE_NAME}">${name}</td>
-        <td class="${CLASS.PRODUCT_MANAGE_PRICE}">${price}</td>
-        <td class="${CLASS.PRODUCT_MANAGE_QUANTITY}">${quantity}</td>
+      <tr class="${SELECTOR.PRODUCT_MANAGE_ITEM}">
+        <td class="${SELECTOR.PRODUCT_MANAGE_NAME}">${name}</td>
+        <td class="${SELECTOR.PRODUCT_MANAGE_PRICE}">${price}</td>
+        <td class="${SELECTOR.PRODUCT_MANAGE_QUANTITY}">${quantity}</td>
       </tr>
     `;
   }
