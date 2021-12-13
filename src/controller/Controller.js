@@ -72,6 +72,10 @@ class Controller {
     return inputValue < 100;
   }
 
+  isNotDividedBy10(inputValue) {
+    return inputValue % 10 !== 0;
+  }
+
   isValidateProductAdd() {
     const productNameInput = $id('product-name-input').value;
     const productPriceInput = $id('product-price-input').value;
@@ -103,6 +107,11 @@ class Controller {
     }
 
     if (this.isSmallerThan100(productPriceInput)) {
+      alert('상품의 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.  ex)1500');
+      return false;
+    }
+
+    if (this.isNotDividedBy10(productPriceInput)) {
       alert('상품의 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.  ex)1500');
       return false;
     }
