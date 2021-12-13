@@ -5,6 +5,7 @@ import { isValidProductAdd } from '../../utils/valid.js';
 import {
   getProductInputToObject,
   clearProductItemInput,
+  setProductTable,
 } from './productAdd.js';
 
 export default class Product {
@@ -79,18 +80,7 @@ export default class Product {
 
   render() {
     $(`#${SELECTOR.ID.BODY}`).innerHTML = this.template();
-    if (this.getProducts()) {
-      $(`#${SELECTOR.ID.PRODUCT_MANAGE_TABLE}`).innerHTML += this.getProducts()
-        .map(
-          ({ name, price, quantity }) => `
-            <tr class="${SELECTOR.CLASS.PRODUCT_MANAGE_ITEM}">
-              <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_NAME}">${name}</td>
-              <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_PRICE}">${price}</td>
-              <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_QUANTITY}">${quantity}</td>
-            </tr>`
-        )
-        .join('');
-    }
+    setProductTable(this.getProducts());
     this.setEvent();
   }
 }

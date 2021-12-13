@@ -23,6 +23,7 @@ export const SELECTOR = {
     PURCHASE_CHARGE_BUTTON: 'charge-button',
     PURCHASE_CHARGE_AMOUNT: 'charge-amount',
     PURCHASE_RETURN_BUTTON: 'coin-return-button',
+    PURCHASE_TABLE: 'purchase-table',
     PURCHASE_COIN_500: 'coin-500-quantity',
     PURCHASE_COIN_100: 'coin-100-quantity',
     PURCHASE_COIN_50: 'coin-50-quantity',
@@ -33,6 +34,16 @@ export const SELECTOR = {
     PRODUCT_MANAGE_NAME: 'product-manage-name',
     PRODUCT_MANAGE_PRICE: 'product-manage-price',
     PRODUCT_MANAGE_QUANTITY: 'product-manage-quantity',
+    PURCHASE_ITEM: 'product-purchase-item',
+    PURCHASE_BUTTON: 'purchase-button',
+    PURCHASE_NAME: 'product-purchase-name',
+    PURCHASE_PRICE: 'product-purchase-price',
+    PURCHASE_QUANTITY: 'product-purchase-quantity',
+  },
+  DATA_SET: {
+    DATA_PRODUCT_NAME: 'data-product-name',
+    DATA_PRODUCT_PRICE: 'data-product-price',
+    DATA_PRODUCT_QUANTITY: 'data-product-quantity',
   },
 };
 

@@ -1,13 +1,61 @@
 import { SELECTOR, COMMENT } from '../../constants/constant.js';
-import { $ } from '../../utils/selector.js';
+import { setStateToLocalStorage } from '../../utils/localStorage.js';
+import { $, $$ } from '../../utils/selector.js';
+import { isValidCoinCharge } from '../../utils/valid.js';
+import { getMoneyInput, setPurchaseProductTable } from './chargeMoney.js';
 
 export default class Purchase {
-  constructor() {
+  constructor($state) {
+    this.$state = $state;
     this.render();
   }
 
-  render() {
-    $(`#${SELECTOR.ID.BODY}`).innerHTML = `
+  getProducts() {
+    return this.$state.products;
+  }
+
+  getCharge() {
+    return this.$state.charge;
+  }
+
+  setStateOfCharge(newState) {
+    this.$state.charge += newState;
+    this.render();
+    setStateToLocalStorage(this.$state);
+  }
+
+  chargeMoney() {
+    const money = getMoneyInput();
+    const validation = isValidCoinCharge(money);
+    if (!validation.valid) {
+      alert(validation.errorMessage);
+      return;
+    }
+    this.setStateOfCharge(money);
+  }
+
+  purchaseProduct(e) {
+    console.log(e, 'purchase');
+  }
+
+  setEvent() {
+    $(`#${SELECTOR.ID.PURCHASE_CHARGE_BUTTON}`).addEventListener(
+      'click',
+      () => {
+        this.chargeMoney();
+      }
+    );
+
+    const purchaseButtons = $$(`.${SELECTOR.CLASS.PURCHASE_BUTTON}`);
+    for (const purchaseButton of purchaseButtons) {
+      purchaseButton.addEventListener('click', (e) => {
+        this.purchaseProduct(e);
+      });
+    }
+  }
+
+  template() {
+    return `
       <br />
       <h2>${COMMENT.PURCHASE_MENU_CHARGE}</h2>
       <form>
@@ -26,7 +74,7 @@ export default class Purchase {
       </div>
       <br />
       <h2>${COMMENT.PURCHASE_MENU_ITEM}</h2>
-      <table border="1">
+      <table id="${SELECTOR.ID.PURCHASE_TABLE}" border="1">
         <th>${COMMENT.PURCHASE_ITEM_NAME}</th>
         <th>${COMMENT.PURCHASE_ITEM_PRICE}</th>
         <th>${COMMENT.PURCHASE_ITEM_QUANTITY}</th>
@@ -58,5 +106,19 @@ export default class Purchase {
         </tr>
       </table>
     `;
+  }
+
+  render() {
+    $(`#${SELECTOR.ID.BODY}`).innerHTML = this.template();
+
+    if (this.getCharge() != 0) {
+      $(
+        `#${SELECTOR.ID.PURCHASE_CHARGE_AMOUNT}`
+      ).innerHTML = `${this.getCharge()}원`;
+    }
+
+    setPurchaseProductTable(this.getProducts());
+
+    this.setEvent();
   }
 }

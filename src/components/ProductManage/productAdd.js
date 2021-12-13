@@ -1,6 +1,21 @@
 import { $ } from '../../utils/selector.js';
 import { SELECTOR } from '../../constants/constant.js';
 
+export const setProductTable = (products) => {
+  if (products) {
+    $(`#${SELECTOR.ID.PRODUCT_MANAGE_TABLE}`).innerHTML += products
+      .map(
+        ({ name, price, quantity }) => `
+          <tr class="${SELECTOR.CLASS.PRODUCT_MANAGE_ITEM}">
+            <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_NAME}">${name}</td>
+            <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_PRICE}">${price}</td>
+            <td class="${SELECTOR.CLASS.PRODUCT_MANAGE_QUANTITY}">${quantity}</td>
+          </tr>`
+      )
+      .join('');
+  }
+};
+
 export const getProductInputToObject = () => {
   const name = $(`#${SELECTOR.ID.PRODUCT_NAME_INPUT}`).value;
   const price = $(`#${SELECTOR.ID.PRODUCT_PRICE_INPUT}`).value;
