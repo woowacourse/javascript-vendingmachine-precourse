@@ -120,6 +120,11 @@ class Controller {
       alert('상품의 수량을 입력해주세요.  ex) 20');
       return false;
     }
+
+    if (this.isInValidInteger(productQuantityInput)) {
+      alert('소수 값이 아닌 상품의 수량을 입력해주세요.  ex) 20');
+      return false;
+    }
   }
 
   triggerProductAddSubmitEvent() {
