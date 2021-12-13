@@ -87,11 +87,11 @@ export const TEN = 10;
 export const COIN_KEYS = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
 
 export const PRODUCT_ID_LENGTH = 6;
-export const ID_RANGE = {
+export const ID_RANGE = Object.freeze({
   MIN: 0,
   MAX: 9,
-};
-export const DATA_MODEL_KEYS = {
+});
+export const DATA_MODEL_KEYS = Object.freeze({
   TAB: 'tab',
 
   PRODUCT_ADD_INPUTS_VALUE: 'productAddInputsValue',
@@ -104,11 +104,10 @@ export const DATA_MODEL_KEYS = {
   CHARGE_INPUTS_VALUE: 'chargeInputsValue',
   CHARGE_AMOUNT: 'chargeAmount',
   RETURN_COINS: 'returnCoins',
-};
+});
 
 export const LOCALSTORAGE_DATA_MODEL_KEY = 'data-model';
-
-export const INPUTS_DEFAULT_VALUE = {
+export const INPUTS_DEFAULT_VALUE = Object.freeze({
   PRODUCT_ADD: {
     [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
     [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
@@ -120,11 +119,12 @@ export const INPUTS_DEFAULT_VALUE = {
   CHARGE: {
     [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
   },
-};
-export const COINS_DEFAULT_VALUE = {
+});
+
+export const COINS_DEFAULT_VALUE = Object.freeze({
   [`${FIVE_HUNDRED}`]: 0,
   [`${ONE_HUNDRED}`]: 0,
   [`${FIFTY}`]: 0,
   [`${TEN}`]: 0,
-};
+});
 export const COINS_KEY_ARRAY = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
