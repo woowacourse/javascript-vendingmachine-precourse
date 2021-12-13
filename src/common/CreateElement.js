@@ -10,7 +10,11 @@ export function createHeader(innerText) {
 }
 
 export function createForm() {
-  return document.createElement('form');
+  const form = document.createElement('form');
+  form.style.display = 'flex';
+  form.style.marginBottom = '10px';
+
+  return form;
 }
 
 export function createNumberInput(id, placeholder) {
