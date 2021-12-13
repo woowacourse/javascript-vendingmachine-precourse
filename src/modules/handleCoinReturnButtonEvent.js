@@ -1,4 +1,6 @@
+import renderReturnCoinTable from '../views/renderReturnCoinTable.js';
 import computeReturnCoinCount from './computeReturnCoinCount.js';
 export default function handleCoinReturnButtonEvent() {
-  computeReturnCoinCount();
+  const returnCoinObject = computeReturnCoinCount();
+  renderReturnCoinTable(returnCoinObject);
 }
