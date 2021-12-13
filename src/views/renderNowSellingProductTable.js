@@ -20,16 +20,19 @@ function renderNowSellingTableContainer() {
 }
 
 function createNowSellingProductTable(drinkStorage) {
-  return drinkStorage
-    .map((item, index) => {
-      return `<tr class="product-purchase-item" data-product-index='${index}'>
+  if (drinkStorage) {
+    return drinkStorage
+      .map((item, index) => {
+        return `<tr class="product-purchase-item" data-product-index='${index}'>
     <td class="product-purchase-name" data-product-name='${item[DRINK_MENU_KEY]}'>${item[DRINK_MENU_KEY]}</td>
     <td class="product-purchase-price" data-product-price= '${item[DRINK_PRICE_KEY]}'>${item[DRINK_PRICE_KEY]}</td>
     <td class="product-purchase-quantity" data-product-quantity='${item[DRINK_QUANTITY_KEY]}'>${item[DRINK_QUANTITY_KEY]}</td>
     <td><button class="purchase-button">구매하기</button>
     </tr>`;
-    })
-    .join('');
+      })
+      .join('');
+  }
+  return '';
 }
 
 export default function renderNowSellingProductTable() {
