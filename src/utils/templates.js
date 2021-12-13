@@ -88,7 +88,7 @@ export const productPurchaseMenuTemplate = () => {
       />
       <button type="submit" id=${ID.CHARGE_BTN}>투입하기</button>
     </form>
-    <div>투입한 금액: <span id=${ID.CHARGE_AMOUNT}></span></div>
+    <div>투입한 금액: <span id=${ID.CHARGE_AMOUNT}></span>원</div>
 
     <h3>구매할 수 있는 상품 현황</h3>
     <table>

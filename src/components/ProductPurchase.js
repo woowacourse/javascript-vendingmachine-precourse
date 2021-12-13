@@ -28,6 +28,7 @@ export default class ProductPurchase {
 
     $('form').addEventListener('submit', this.handleProductPurchaseSubmit);
     $('table').addEventListener('click', this.handleTableClick);
+    $(`#${ID.COIN_RETURN_BTN}`).addEventListener('click', this.handleCoinReturnClick);
   };
 
   loadChargeAmount = () => {
@@ -51,7 +52,7 @@ export default class ProductPurchase {
   };
 
   paintChargeAmount = () => {
-    $(`#${ID.CHARGE_AMOUNT}`).innerHTML = `${this.chargeAmount}원`;
+    $(`#${ID.CHARGE_AMOUNT}`).innerHTML = this.chargeAmount;
     return;
   };
 
@@ -80,6 +81,31 @@ export default class ProductPurchase {
       this.paintChargeAmount();
       this.clearInputs();
     }
+  };
+
+  handleCoinReturnClick = () => {
+    // TODO: 현재 자판기가 보유한 동전들: (VendingMachineManage의 loadCharges와 어떻게 병합할 수 있을지 궁리해보기)
+    const currentCharges = localStorage.getItem(LS_KEY.VENDING_MACHINE_MANAGE_CHARGES);
+    if (!currentCharges) {
+      return;
+    }
+    const parsedCharges = JSON.parse(currentCharges);
+    for (let i = 0; i < parsedCharges.length; i++) {
+      if (this.chargeAmount <= 0) {
+        break;
+      }
+      const obj = parsedCharges[i];
+      const currentChargeAmount = this.chargeAmount;
+      const coinCount = Math.min(
+        parseInt(currentChargeAmount / obj.coinType),
+        obj.quantity
+      );
+      this.updateChargeAmount(obj.coinType * coinCount);
+      this.paintCoin(obj.coinType, coinCount);
+      // TODO: VendingMachineManage의 updateCharges()와 로직 거의 동일. 어떻게 모듈화할지 궁리하기
+      this.updateCharges(parsedCharges, obj.coinType, coinCount);
+    }
+    this.paintChargeAmount();
   };
 
   validateChargeAmount = (chargeAmountInput) => {
@@ -163,7 +189,23 @@ export default class ProductPurchase {
     this.chargeAmount -= targetPrice;
     localStorage.setItem(LS_KEY_CHARGE_AMOUNT, JSON.stringify(this.chargeAmount));
   };
-
+  paintCoin = (coinType, quantity) => {
+    if (coinType === 500) $(`#${ID.COIN_500_QUANTITY}`).innerHTML = `${quantity}개`;
+    if (coinType === 100) $(`#${ID.COIN_100_QUANTITY}`).innerHTML = `${quantity}개`;
+    if (coinType === 50) $(`#${ID.COIN_50_QUANTITY}`).innerHTML = `${quantity}개`;
+    if (coinType === 10) $(`#${ID.COIN_10_QUANTITY}`).innerHTML = `${quantity}개`;
+  };
+  updateCharges = (parsedCharges, coinType, quantity) => {
+    parsedCharges.map((obj) => {
+      if (obj.coinType === coinType) {
+        obj.quantity -= quantity;
+      }
+    });
+    localStorage.setItem(
+      LS_KEY.VENDING_MACHINE_MANAGE_CHARGES,
+      JSON.stringify(parsedCharges)
+    );
+  };
   paintTemplate = () => {
     $(`#${ID.PAGE_CONTENT}`).innerHTML = productPurchaseMenuTemplate();
   };
