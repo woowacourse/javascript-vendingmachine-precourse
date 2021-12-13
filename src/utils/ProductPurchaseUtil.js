@@ -14,11 +14,8 @@ export default class ProductPurchaseUtil {
   addPurchaseCoin() {
     this.productPurchase.submit.addEventListener('click', e => {
       e.preventDefault();
-      console.log('submit');
       if (this.getPurchaseCoin(this.productPurchase.input)) {
-        console.log(this.purchaseCoin);
         this.setCoinAmount(this.purchaseCoin);
-        this.start = true;
       }
     });
   }
@@ -35,10 +32,10 @@ export default class ProductPurchaseUtil {
   setCoinAmount(coin) {
     if (this.start) {
       this.coinAmount = Number(this.productPurchase.amount.dataset.amount);
-      console.log(this.coinAmount);
     }
     this.coinAmount += coin;
     this.renderCoinAmount(this.coinAmount);
+    this.start = true;
   }
 
   renderCoinAmount(coinAmount) {

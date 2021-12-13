@@ -15,14 +15,12 @@ export default class PurchaseBtnHandler {
     const btn = this.tableRow.querySelector('.purchase-button');
     btn.addEventListener('click', e => {
       e.preventDefault();
-      console.log('물품 구매');
       this.getPurchaseProduct(btn);
     });
   }
 
   getPurchaseProduct(b) {
     const productTr = b.parentNode;
-    console.log(productTr);
     const name = productTr.querySelector('.product-purchase-name').dataset.productName;
     const price = productTr.querySelector('.product-purchase-price').dataset.productPrice;
     const quantityElement = productTr.querySelector('.product-purchase-quantity');
@@ -44,7 +42,6 @@ export default class PurchaseBtnHandler {
 
   getCoinAmount() {
     const coin = Number(document.querySelector('#charge-amount').dataset.amount);
-    console.log(coin);
     if (!coin) {
       alert(ALERT.NO_PRICE);
       return;
@@ -60,7 +57,7 @@ export default class PurchaseBtnHandler {
         addThQuantityTag = th.parentNode.querySelector('.product-manage-quantity');
       }
     }
-    console.log(addThQuantityTag);
+
     addThQuantityTag.innerHTML = quantity;
     addThQuantityTag.dataset.addQuantity = quantity;
   }

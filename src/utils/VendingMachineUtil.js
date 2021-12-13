@@ -14,11 +14,9 @@ export default class VendingMachineUtil {
   addCoin() {
     this.machine.submit.addEventListener('click', e => {
       e.preventDefault();
-      console.log('submit');
       if (this.getCoin(this.machine.input)) {
         this.setCoinAmount(this.coin);
         this.setRandomCoin(this.coin);
-        console.log(this.coinAmount);
       }
     });
   }
@@ -58,7 +56,6 @@ export default class VendingMachineUtil {
     coinIndexArr.forEach((v, idx) => {
       this.originCoin[idx] += v;
     });
-    console.log(this.originCoin);
     this.machine.coin500.innerHTML = this.originCoin[0] + MACHINE_MANAGE.COIN_UNIT;
     this.machine.coin100.innerHTML = this.originCoin[1] + MACHINE_MANAGE.COIN_UNIT;
     this.machine.coin50.innerHTML = this.originCoin[2] + MACHINE_MANAGE.COIN_UNIT;
