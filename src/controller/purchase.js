@@ -1,4 +1,13 @@
-import { $, getItemOrArray, getItemOrNull, setItem, isEnoughCoin } from './utils.js';
+import {
+  $,
+  getItemOrArray,
+  getItemOrNull,
+  setItem,
+  isMultipleOf10,
+  isInputNumberValid,
+  isEnoughCoin,
+  onKeyUpNumericEvent,
+} from './utils.js';
 import {
   addTableRow,
   addTableHeader,
@@ -66,16 +75,21 @@ const initChargeDom = () => {
   }
 };
 
+const isChargeInputValid = chargeInput =>
+  isInputNumberValid(chargeInput) && isMultipleOf10(chargeInput);
+
 const chargeMoney = () => {
   const chargeInput = $(SELECTOR.chargeInput);
   let charge = getItemOrNull(KEY.charge);
-  if (charge || charge === 0) {
-    charge += parseInt(chargeInput.value);
-  } else if (charge === null) {
-    charge = parseInt(chargeInput.value);
+  if (isChargeInputValid(chargeInput)) {
+    if (charge || charge === 0) {
+      charge += parseInt(chargeInput.value);
+    } else if (charge === null) {
+      charge = parseInt(chargeInput.value);
+    }
+    setItem(KEY.charge, charge);
+    initChargeDom();
   }
-  setItem(KEY.charge, charge);
-  initChargeDom();
 };
 
 const calculateByQuantity = (div, x, chargeInput, minimalCoin) => {
@@ -120,4 +134,7 @@ export const initAllPurchase = () => {
   initChargeDom();
   $(SELECTOR.chargeButton).addEventListener('click', () => chargeMoney());
   $(SELECTOR.returnButton).addEventListener('click', () => returnMoney());
+  $(SELECTOR.chargeInput).addEventListener('keyup', () =>
+    onKeyUpNumericEvent($(SELECTOR.chargeInput)),
+  );
 };
