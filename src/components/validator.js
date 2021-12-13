@@ -24,6 +24,10 @@ const isValidProductName = (name) => {
   return !isEmpty(name);
 };
 
+const isMoreThan10Won = (value) => {
+  return Number(value) >= 10;
+};
+
 const isValidProductPrice = (price) => {
   return !isEmpty(price) && isMoreThan100Won(price) && isDividedBy10(price);
 };
@@ -50,4 +54,12 @@ export const alertProductErrorMessage = (name, price, quantity) => {
   if (!isValidProducQuantity(quantity)) {
     alert(ERROR.PRODUCT_QUANTITY);
   }
+};
+
+export const isValidCharge = (charge) => {
+  return !isEmpty(charge) && isDividedBy10(charge) && isMoreThan10Won(charge);
+};
+
+export const alertChargeErrorMessage = (charge) => {
+  alert(ERROR.CHARGE);
 };

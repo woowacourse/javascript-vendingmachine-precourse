@@ -10,6 +10,10 @@ import {
   createCoinTable,
 } from '../components/vendingMachineManageMenu.js';
 import { vendingMachine } from '../components/vendingMachine.js';
+import {
+  alertChargeErrorMessage,
+  isValidCharge,
+} from '../components/validator.js';
 
 export default function VendingMachineManageView(container) {
   this.vendingMachineManageMenu = () => {
@@ -39,6 +43,11 @@ export default function VendingMachineManageView(container) {
     const chargeInput = document.querySelector(
       `#${ID.VENDING_MACHINE_CHARGE_INPUT}`
     );
+
+    if (!isValidCharge(chargeInput.value)) {
+      alertChargeErrorMessage(chargeInput.value);
+      return;
+    }
 
     vendingMachine.addCharge(parseInt(chargeInput.value));
     this.renderCharge();
