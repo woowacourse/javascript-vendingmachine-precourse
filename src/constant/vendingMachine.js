@@ -45,17 +45,19 @@ export const COIN_MANAGE = {
   },
 };
 
-export const PRODUCT_PURCHASE_MANAGE = {
+export const PURCHASE_MANAGE = {
   BUTTON: "상품 구매",
   CURRENT_PRODUCT_TO_BUY: "구매할 수 있는 상품 현황",
   COLUMNS: ["제품명", "가격", "수량", "구매"],
-  PURCHASE_BUTTON: { TEXT: "구매하기", ID: "purchase-button" },
-  PRODUCT_ITEM_ID: "product-purchase-item",
-  PRODUCT_COLUMNS_ID: [
+  PURCHASE_BUTTON: { TEXT: "구매하기", CLASS: "purchase-button" },
+  MENU_TBODY_ID: "product-menu-table-body",
+  PRODUCT_ITEM_CLASS: "product-purchase-item",
+  PRODUCT_COLUMNS_CLASS: [
     "product-purchase-name",
     "product-purchase-price",
     "product-purchase-quantity",
   ],
+  DATA_SET: ["data-product-name", "data-product-price", "data-product-quantity"],
   CHARGE: "잔돈",
   CHARGE_BUTTON: { TEXT: "반환하기", ID: "coin-return-button" },
   COIN_TO_USE: [

@@ -3,7 +3,7 @@ import {
   TITLE,
   PRODUCT_MANAGE,
   COIN_MANAGE,
-  PRODUCT_PURCHASE_MANAGE,
+  PURCHASE_MANAGE,
   VENDING_MACHINE_COIN,
   USER_COIN,
 } from "./constant/vendingMachine.js";
@@ -52,7 +52,7 @@ class VendingMachine {
     const productPurchaseMenuButton = makeElement({
       tag: "button",
       id: "product-purchase-menu",
-      innerText: PRODUCT_PURCHASE_MANAGE.BUTTON,
+      innerText: PURCHASE_MANAGE.BUTTON,
     });
 
     productAddMenuButton.addEventListener("click", () =>

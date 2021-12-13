@@ -4,6 +4,7 @@ import {
   IN_AVAILABLE_QUANTITY,
   LESS_THAN_100,
   NOT_DIVIDE_10,
+  SOLD_OUT,
 } from "../constant/alertMessage.js";
 import { PRODUCT } from "../constant/vendingMachine.js";
 import { isDivideTen } from "./utils.js";
@@ -58,11 +59,24 @@ export default class Product {
     return true;
   }
 
-  changeTableRowFormat(productId, { name, price, quantity }) {
+  changeTableRowFormat(productClass, { name, price, quantity }) {
     const newProductData = [name, price, quantity]
       .filter(data => data)
-      .map((value, key) => ({ text: value, id: productId[key] }));
+      .map((value, key) => ({ text: value, class: productClass[key] }));
     return newProductData;
+  }
+
+  checkStock(productName) {
+    const { quantity } = this.searchProduct(productName);
+    if (quantity <= 0) {
+      return alert(SOLD_OUT);
+    }
+    return true;
+  }
+
+  searchProduct(productName) {
+    const allProduct = this.getProductData();
+    return allProduct.filter(product => product.name === productName).pop();
   }
 
   getProductData() {
@@ -71,5 +85,15 @@ export default class Product {
 
   setProductData(productData) {
     return localStorage.setItem(PRODUCT, JSON.stringify(productData));
+  }
+
+  sell(productName) {
+    const allProduct = this.getProductData();
+    allProduct.forEach(product => {
+      if (product.name === productName) {
+        product.quantity -= 1;
+      }
+    });
+    this.setProductData(allProduct);
   }
 }

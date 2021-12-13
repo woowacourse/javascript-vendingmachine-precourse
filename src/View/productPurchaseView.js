@@ -1,4 +1,5 @@
-import { PRODUCT_PURCHASE_MANAGE } from "../constant/vendingMachine.js";
+import { LACK_OF_COIN } from "../constant/alertMessage.js";
+import { PURCHASE_MANAGE } from "../constant/vendingMachine.js";
 import Product from "../Model/Product.js";
 import UserCoin from "../Model/UserCoin.js";
 import { clearArea } from "../Model/utils.js";
@@ -20,35 +21,98 @@ export default class ProductPurchaseView {
   render() {
     clearArea(this.container);
     this.renderInsertCoinInput();
-    // this.renderProductTableToBuy();
+    this.renderProductTableToBuy();
     // this.renderCoinReturnTable();
-    this.bindInsertButtonEvent();
     this.bindDomElement();
+    this.bindEvent();
     this.loadUserCoin();
   }
 
   renderInsertCoinInput() {
     const inputFormArea = makeInputNumberFormToPrint({
-      TEXT: PRODUCT_PURCHASE_MANAGE.TEXT,
-      INPUT: PRODUCT_PURCHASE_MANAGE.INPUT,
-      BUTTON: PRODUCT_PURCHASE_MANAGE.INSERT_BUTTON,
+      TEXT: PURCHASE_MANAGE.TEXT,
+      INPUT: PURCHASE_MANAGE.INPUT,
+      BUTTON: PURCHASE_MANAGE.INSERT_BUTTON,
     });
     this.container.append(inputFormArea);
   }
 
-  bindInsertButtonEvent() {
-    const insertButton = document.getElementById(PRODUCT_PURCHASE_MANAGE.INSERT_BUTTON.ID);
-    insertButton.addEventListener("click", () => this.handleInsertButtonClick());
+  renderProductTableToBuy() {
+    const productTableTitle = makeElement({
+      tag: "h3",
+      innerText: PURCHASE_MANAGE.CURRENT_PRODUCT_TO_BUY,
+    });
+    const productTableArea = makeTableForm(PURCHASE_MANAGE.COLUMNS, PURCHASE_MANAGE.MENU_TBODY_ID);
+    this.container.append(productTableTitle, productTableArea);
+    this.productMenuTableBody = document.getElementById(PURCHASE_MANAGE.MENU_TBODY_ID);
+    this.renderProductList();
+  }
+
+  renderProductList() {
+    clearArea(this.productMenuTableBody);
+    const products = this.product.getProductData();
+    if (products === null) return;
+
+    products.forEach(product => {
+      const purchaseButton = makeElement({
+        tag: "button",
+        type: "button",
+        className: PURCHASE_MANAGE.PURCHASE_BUTTON.CLASS,
+        innerText: PURCHASE_MANAGE.PURCHASE_BUTTON.TEXT,
+      });
+      const rowData = this.product.changeTableRowFormat(PURCHASE_MANAGE.PRODUCT_COLUMNS_CLASS, {
+        name: product.name,
+        price: product.price,
+        quantity: product.quantity,
+      });
+      const tableRow = makeTableRow(
+        rowData,
+        PURCHASE_MANAGE.PRODUCT_ITEM_CLASS,
+        purchaseButton,
+        PURCHASE_MANAGE.DATA_SET
+      );
+      this.productMenuTableBody.appendChild(tableRow);
+    });
+  }
+
+  bindEvent() {
+    this.bindInsertButtonEvent();
+    this.bindPurchaseButtonEvent();
   }
 
   bindDomElement() {
-    this.insertCoinInput = document.getElementById(PRODUCT_PURCHASE_MANAGE.INPUT.ID);
-    this.insertAmountArea = document.getElementById(PRODUCT_PURCHASE_MANAGE.TEXT.PRINT_AMOUNT_ID);
+    this.insertCoinInput = document.getElementById(PURCHASE_MANAGE.INPUT.ID);
+    this.insertAmountArea = document.getElementById(PURCHASE_MANAGE.TEXT.PRINT_AMOUNT_ID);
+    this.purchaseButtons = document.querySelectorAll(`.${PURCHASE_MANAGE.PURCHASE_BUTTON.CLASS}`);
   }
 
-  handleInsertButtonClick() {
-    this.coinStore.insert(Number(this.insertCoinInput.value));
-    this.loadUserCoin();
+  bindInsertButtonEvent() {
+    const insertButton = document.getElementById(PURCHASE_MANAGE.INSERT_BUTTON.ID);
+    insertButton.addEventListener("click", () => {
+      this.coinStore.insert(Number(this.insertCoinInput.value));
+      this.loadUserCoin();
+    });
+  }
+
+  bindPurchaseButtonEvent() {
+    this.purchaseButtons.forEach(purchaseButton =>
+      purchaseButton.addEventListener("click", e => this.handleClickPurchaseButton(e))
+    );
+  }
+
+  handleClickPurchaseButton(event) {
+    const [name, price] = event.target.parentNode.children;
+    if (
+      this.coinStore.checkBuy(price.dataset.productPrice) &&
+      this.product.checkStock(name.dataset.productName)
+    ) {
+      this.coinStore.pay(price.dataset.productPrice);
+      this.product.sell(name.dataset.productName);
+      this.loadUserCoin();
+      this.renderProductList();
+      this.bindDomElement();
+      this.bindPurchaseButtonEvent();
+    }
   }
 
   loadUserCoin() {
@@ -56,54 +120,18 @@ export default class ProductPurchaseView {
     this.insertAmountArea.innerText = totalCoinToInsert;
   }
 }
-// const handleClickEvent = () => {
-//   const insertInputValue = document.getElementById(PRODUCT_PURCHASE_MANAGE.INPUT.ID).value;
-//   const InsertArea = document.getElementById(PRODUCT_PURCHASE_MANAGE.TEXT.PRINT_AMOUNT_ID);
-//   InsertArea.innerText = insertInputValue;
-// };
-
-// const renderProductList = tableBodyId => {
-//   const tableBody = document.getElementById(tableBodyId);
-//   const products = Product.getProductData();
-//   if (products === null) return;
-//   products.forEach(product => {
-//     const purchaseButton = makeElement({
-//       tag: "button",
-//       id: PRODUCT_PURCHASE_MANAGE.PURCHASE_BUTTON.ID,
-//       innerText: PRODUCT_PURCHASE_MANAGE.PURCHASE_BUTTON.TEXT,
-//       type: "button",
-//     });
-//     const rowData = Product.changeTableRowFormat(PRODUCT_PURCHASE_MANAGE.PRODUCT_COLUMNS_ID, {
-//       name: product.name,
-//       price: product.price,
-//       quantity: product.quantity,
-//     });
-//     makeTableRow(tableBody, rowData, PRODUCT_PURCHASE_MANAGE.PRODUCT_ITEM_ID, purchaseButton);
-//   });
-// };
-
-// const renderProductTableToBuy = container => {
-//   const productTableTitle = makeElement({
-//     tag: "h3",
-//     innerText: PRODUCT_PURCHASE_MANAGE.CURRENT_PRODUCT_TO_BUY,
-//   });
-//   const tableBodyId = "product-menu-table-body";
-//   const productTableArea = makeTableForm(PRODUCT_PURCHASE_MANAGE.COLUMNS, tableBodyId);
-//   container.append(productTableTitle, productTableArea);
-//   renderProductList(tableBodyId);
-// };
 
 // const renderCoinReturnTable = container => {
 //   const coinReturnTableTitle = makeElement({
 //     tag: "h3",
-//     innerText: PRODUCT_PURCHASE_MANAGE.CHARGE,
+//     innerText: PURCHASE_MANAGE.CHARGE,
 //   });
 //   const returnButton = makeElement({
 //     tag: "button",
-//     innerText: PRODUCT_PURCHASE_MANAGE.CHARGE_BUTTON.TEXT,
-//     id: PRODUCT_PURCHASE_MANAGE.CHARGE_BUTTON.ID,
+//     innerText: PURCHASE_MANAGE.CHARGE_BUTTON.TEXT,
+//     id: PURCHASE_MANAGE.CHARGE_BUTTON.ID,
 //     type: "button",
 //   });
 //   container.append(coinReturnTableTitle, returnButton);
-//   renderCoinTable(container, "coin-return-table-body", PRODUCT_PURCHASE_MANAGE.COIN_TO_USE);
+//   renderCoinTable(container, "coin-return-table-body", PURCHASE_MANAGE.COIN_TO_USE);
 // };

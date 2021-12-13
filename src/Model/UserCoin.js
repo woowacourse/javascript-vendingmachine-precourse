@@ -1,3 +1,4 @@
+import { LACK_OF_COIN } from "../constant/alertMessage.js";
 import { USER_COIN } from "../constant/vendingMachine.js";
 import Coin from "./Coin.js";
 
@@ -22,7 +23,15 @@ export default class UserCoin extends Coin {
     super.setCoinData(this.key, updateCoin);
   }
 
-  // 2. 돈 감소하기(상품가격)
-  //  - 값 가져오기
-  //  흐름: 상품 구매시 발생, 상품가격만큼 감소 -> 저장
+  checkBuy(coinToNeed) {
+    if (this.getCurrentCoinToHave() - coinToNeed >= 0) {
+      return true;
+    }
+    return alert(LACK_OF_COIN);
+  }
+
+  pay(productPrice) {
+    const updateCoin = this.getCurrentCoinToHave() - productPrice;
+    super.setCoinData(this.key, updateCoin);
+  }
 }

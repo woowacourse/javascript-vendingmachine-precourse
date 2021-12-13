@@ -1,18 +1,14 @@
 import { COIN_MANAGE } from "../constant/vendingMachine.js";
 
-export const makeElement = ({ tag, id, innerText, type, placeholder }) => {
+export const makeElement = ({ tag, id, innerText, type, placeholder, className, hasDataset }) => {
   const element = document.createElement(tag);
-  if (id) {
-    element.id = id;
-  }
-  if (innerText) {
-    element.innerText = innerText;
-  }
-  if (type) {
-    element.type = type;
-  }
-  if (placeholder) {
-    element.placeholder = placeholder;
+  if (id) element.id = id;
+  if (className) element.classList.add(className);
+  if (innerText) element.innerText = innerText;
+  if (type) element.type = type;
+  if (placeholder) element.placeholder = placeholder;
+  if (hasDataset) {
+    element.setAttribute(hasDataset.key, hasDataset.value);
   }
   return element;
 };
@@ -28,10 +24,16 @@ export const makeTableForm = (theadText, tableBodyId) => {
   return tableArea;
 };
 
-export const makeTableRow = (elements, rowId, button = "") => {
-  const tr = makeElement({ tag: "tr", id: rowId });
-  elements.forEach(rowData => {
-    const element = makeElement({ tag: "td", innerText: rowData.text, id: rowData.id });
+export const makeTableRow = (elements, rowClass, button = "", dataSet = "") => {
+  const tr = makeElement({ tag: "tr", className: rowClass });
+  elements.forEach((rowData, index) => {
+    const element = makeElement({
+      tag: "td",
+      innerText: rowData.text,
+      id: rowData.id,
+      className: rowData.class,
+      hasDataset: dataSet && { key: dataSet[index], value: rowData.text },
+    });
     tr.appendChild(element);
   });
   if (button) tr.appendChild(button);
