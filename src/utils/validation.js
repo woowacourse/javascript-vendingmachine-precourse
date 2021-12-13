@@ -1,4 +1,4 @@
-import { ALERT, PRODUCT } from './constants';
+import { ALERT, PRODUCT } from './constants.js';
 
 export const isValidMoneyInput = (money) => {
   if (money === '') {
@@ -17,33 +17,52 @@ export const isValidMoneyInput = (money) => {
 };
 
 export const isValidProductInput = (products, product) => {
-  if (product[PRODUCT.NAME] === '') {
-    alert(ALERT.EMPTY_PRODUCT_NAME);
+  if (isProductInputEmpty(product)) {
     return false;
   }
-  if (product[PRODUCT.PRICE] === '') {
-    alert(ALERT.EMPTY_PRODUCT_PRICE);
+  if (isAlreadyExistProduct(products, product)) {
     return false;
   }
-  if (product[PRODUCT.QUANTITY] === '') {
-    alert(ALERT.EMPTY_PRODUCT_QUANTITY);
-    return false;
-  }
-  if (products.filter((item) => item[PRODUCT.NAME] === product[PRODUCT.NAME]).length) {
-    alert(ALERT.SAME_NAME_PRODUCT_EXIST);
-    return;
-  }
-  if (parseInt(product[PRODUCT.PRICE]) <= 0) {
-    alert(ALERT.WRONG_PRODUCT_PRICE);
-    return false;
-  }
-  if (parseInt(product[PRODUCT.QUANTITY]) <= 0) {
-    alert(ALERT.WRONG_PRODUCT_QUANTITY);
-    return false;
-  }
-  if (parseInt(product[PRODUCT.PRICE]) % 10 !== 0) {
-    alert(ALERT.NOT_10_UNIT_PRICE);
+  if (isWrongProductNumbersInput(product)) {
     return false;
   }
   return true;
+};
+
+const isProductInputEmpty = (product) => {
+  if (product[PRODUCT.NAME] === '') {
+    alert(ALERT.EMPTY_PRODUCT_NAME);
+    return true;
+  }
+  if (product[PRODUCT.PRICE] === '') {
+    alert(ALERT.EMPTY_PRODUCT_PRICE);
+    return true;
+  }
+  if (product[PRODUCT.QUANTITY] === '') {
+    alert(ALERT.EMPTY_PRODUCT_QUANTITY);
+    return true;
+  }
+  return false;
+};
+const isAlreadyExistProduct = (products, product) => {
+  if (products.filter((item) => item[PRODUCT.NAME] === product[PRODUCT.NAME]).length) {
+    alert(ALERT.SAME_NAME_PRODUCT_EXIST);
+    return true;
+  }
+  return false;
+};
+const isWrongProductNumbersInput = (product) => {
+  if (parseInt(product[PRODUCT.PRICE]) <= 0) {
+    alert(ALERT.WRONG_PRODUCT_PRICE);
+    return true;
+  }
+  if (parseInt(product[PRODUCT.QUANTITY]) <= 0) {
+    alert(ALERT.WRONG_PRODUCT_QUANTITY);
+    return true;
+  }
+  if (parseInt(product[PRODUCT.PRICE]) % 10 !== 0) {
+    alert(ALERT.NOT_10_UNIT_PRICE);
+    return true;
+  }
+  return false;
 };
