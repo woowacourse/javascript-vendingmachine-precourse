@@ -2,6 +2,7 @@ import SetProductAdd from './SetProductAdd.js';
 import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER, STRING, COIN } from '../utils/constant.js';
 import SetVendingMachineCharge from './SetVendingMachineCharge.js';
 import SetVendingMachinePurchase from './SetVendingMachinePurchase.js';
+import CheckProductAddMenu from './CheckProductAddMenu.js';
 
 export default class CheckEventTarget {
   constructor(render, coins, product, vendingMachine) {
@@ -11,30 +12,10 @@ export default class CheckEventTarget {
     this.vendingMachine = vendingMachine;
   }
 
-  onClickProductAddButton = () => {
-    const $productAddButton = document.querySelector(DOM.$PRODUCT_ADD_BUTTON);
-    $productAddButton.addEventListener(EVENT.CLICK, () => {
-      this.setProductAdd = new SetProductAdd(this.render, this.product);
-      this.setProductAdd.setProduct();
-    });
-  };
-
-  hasProductAddMenuTemplate = () => {
-    const productAddMenuTemplate = localStorage.getItem(LOCAL_STORAGE.PRODUCT_ADD_MENU);
-    if (!productAddMenuTemplate) {
-      this.render.productAddMenuTemplate();
-      this.onClickProductAddButton();
-
-      return;
-    }
-
-    this.render.haveTemplate(productAddMenuTemplate);
-    this.onClickProductAddButton();
-  };
-
   isProductAddMenu = (eventTarget, $productAddMenu) => {
     if (eventTarget === $productAddMenu) {
-      this.hasProductAddMenuTemplate();
+      const checkProductAddMenu = new CheckProductAddMenu(this.render, this.product);
+      checkProductAddMenu.hasTemplate();
     }
   };
 
