@@ -1,1 +1,3 @@
-console.log("연결확인완료");
+import Controller from "./controller/controller.js";
+
+new Controller().init();
