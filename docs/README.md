@@ -8,7 +8,7 @@
 
 [x] 다른 탭으로 이동했다가 돌아와도 기존의 탭 상태가 유지되어 있어야 한다
 
-[ ] localStorage를 이용하여 새로고침하더라도 가장 최근에 작업한 정보를 불러올 수 있도록 한다
+[x] localStorage를 이용하여 새로고침하더라도 가장 최근에 작업한 정보를 불러올 수 있도록 한다
 
 <hr>
 
@@ -55,6 +55,14 @@
 [x] localStorage 값을 토대로 상품 현황에 유저가 입력한 값을 보여준다
 
 [x] 추가하기 버튼을 클릭할 때마다 상품현황이 update 되어 render가 된다
+
+[ ] 추가한 각 상품 요소의 class명은 product-manage-item이다
+
+[ ] 상품명에 해당하는 요소의 class명은 product-manage-name이다
+
+[ ] 가격에 해당하는 요소의 class명은 product-manage-price이다
+
+[ ] 수량에 해당하는 요소의 class명은 product-manage-quantity
 
 <hr>
 

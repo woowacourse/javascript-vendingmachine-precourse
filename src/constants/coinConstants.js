@@ -6,4 +6,4 @@ export const COIN_10 = '10';
 export const COIN_ZERO = 0;
 
 export const COIN_KEY_LIST = ['COIN_500', 'COIN_100', 'COIN_50', 'COIN_10'];
-export const COIN_LIST = ['500', '100', '50', '10'];
+export const COIN_LIST = [500, 100, 50, 10];

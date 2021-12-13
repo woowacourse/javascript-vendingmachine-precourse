@@ -3,35 +3,44 @@ import {
   COIN_100,
   COIN_50,
   COIN_10,
-  COIN_ZERO,
   COIN_KEY_LIST,
+  COIN_LIST,
 } from '../constants/coinConstants.js';
 
-function createRandomCount(item, vendingCoin) {
-  if (item > vendingCoin) return 0;
-  const limit = Number(vendingCoin) / Number(item);
-  let coinLimitList = [];
-  for (let i = 0; i < limit + 1; i++) {
-    coinLimitList.push(i);
-  }
-  return MissionUtils.Random.pickNumberInList(coinLimitList);
+function initCoinObject() {
+  let coinObject = {};
+  COIN_KEY_LIST.forEach((item) => {
+    coinObject[item] = 0;
+  });
+  return coinObject;
 }
 
-function createRandomCoinList(vendingCoin) {
-  let coinListObject = {};
-  const coinList = [COIN_500, COIN_100, COIN_50, COIN_10];
-  const coinKeyList = COIN_KEY_LIST;
-  for (let i = 0; i < coinList.length - 1; i++) {
-    if (vendingCoin === COIN_ZERO) break;
-    const count = createRandomCount(coinList[i], vendingCoin);
-    vendingCoin = vendingCoin - count * Number(coinList[i]);
-    coinListObject[coinKeyList[i]] = count;
+function setCoinObject(coinObject, coin) {
+  if (coin === Number(COIN_500)) {
+    coinObject[COIN_KEY_LIST[0]] += 1;
+  } else if (coin === Number(COIN_100)) {
+    coinObject[COIN_KEY_LIST[1]] += 1;
+  } else if (coin === Number(COIN_50)) {
+    coinObject[COIN_KEY_LIST[2]] += 1;
+  } else if (coin === Number(COIN_10)) {
+    coinObject[COIN_KEY_LIST[3]] += 1;
   }
-  coinListObject[coinKeyList[coinList.length - 1]] =
-    vendingCoin / Number(COIN_10);
-  return coinListObject;
+  return coinObject;
+}
+
+function pickRandomNumber() {
+  return MissionUtils.Random.pickNumberInList(COIN_LIST);
 }
 
 export default function createRandomCoinCount(vendingCoin) {
-  return createRandomCoinList(vendingCoin);
+  let coinObject = initCoinObject();
+  while (vendingCoin > 0) {
+    if (vendingCoin === 0) break;
+    const coin = pickRandomNumber();
+    if (coin <= vendingCoin) {
+      vendingCoin -= coin;
+      coinObject = setCoinObject(coinObject, coin);
+    }
+  }
+  return coinObject;
 }

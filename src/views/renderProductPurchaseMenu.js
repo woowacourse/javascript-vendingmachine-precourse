@@ -10,7 +10,7 @@ function renderCoinInputForm() {
     <button id="charge-button">투입하기</button>
   </div>
   <div>
-    투입한 금액: <span id="charge-amount-id"></span>
+    투입한 금액: <span id="charge-amount"></span>
   </div>
   <div class="now-selling-product-table-cotainer"></div>
   <div class="charge-table-container"></div>

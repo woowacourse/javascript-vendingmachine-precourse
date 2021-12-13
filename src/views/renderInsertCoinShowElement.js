@@ -5,8 +5,8 @@ import store from '../storage/store.js';
 export default function renderInsertCoinShowElement() {
   const userMoneyStorage = store.getLocalStorage(USERMONEY_STORAGE_NAME);
   if (userMoneyStorage) {
-    $('#charge-amount-id').innerText = `${userMoneyStorage}원`;
+    $('#charge-amount').innerText = `${userMoneyStorage}`;
   } else {
-    $('#charge-amount-id').innerText = `0원`;
+    $('#charge-amount').innerText = `0`;
   }
 }
