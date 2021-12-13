@@ -54,7 +54,7 @@ export default class ProductPurchaseTab {
   }
 
   getProductDataFromPurchaseButton(button) {
-    const tableItem = button.parentNode.parentNode;
+    const tableItem = button.closest(`.${CLASS.PRODUCT_PURCHASE.ITEM}`);
     const { productName: name } = tableItem.querySelector(`.${CLASS.PRODUCT_PURCHASE.NAME}`).dataset;
     const { productPrice: price } = tableItem.querySelector(`.${CLASS.PRODUCT_PURCHASE.PRICE}`).dataset;
     const { productQuantity: quantity } = tableItem.querySelector(`.${CLASS.PRODUCT_PURCHASE.QUANTITY}`).dataset;
