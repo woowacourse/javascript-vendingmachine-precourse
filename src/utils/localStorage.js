@@ -8,7 +8,6 @@ export const getStateFromLocalStorage = () => {
   const products = getLocalStorage('products') || [];
   const coins = getLocalStorage('coins') || { 500: 0, 100: 0, 50: 0, 10: 0 };
   const charge = getNumberLocalStorage('charge') || 0;
-  console.log(products, coins, charge);
   return { products, coins, charge };
 };
 

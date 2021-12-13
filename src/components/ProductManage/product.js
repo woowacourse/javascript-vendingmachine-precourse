@@ -1,27 +1,18 @@
 import { SELECTOR, COMMENT } from '../../constants/constant.js';
-import { setStateToLocalStorage } from '../../utils/localStorage.js';
 import { $ } from '../../utils/selector.js';
 import { isValidProductAdd } from '../../utils/valid.js';
+import { Component } from '../component.js';
 import {
   getProductInputToObject,
   clearProductItemInput,
   setProductTable,
 } from './productAdd.js';
 
-export default class Product {
+export default class Product extends Component {
   constructor($state) {
+    super($state);
     this.$state = $state;
     this.render();
-  }
-
-  getProducts() {
-    return this.$state.products;
-  }
-
-  setStateOfProduct(newState) {
-    this.$state.products = [...this.$state.products, newState];
-    this.render();
-    setStateToLocalStorage(this.$state);
   }
 
   addProductItem() {

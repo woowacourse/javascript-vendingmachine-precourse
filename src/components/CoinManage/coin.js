@@ -1,55 +1,30 @@
 import { SELECTOR, COMMENT } from '../../constants/constant.js';
-import { setStateToLocalStorage } from '../../utils/localStorage.js';
 import { $ } from '../../utils/selector.js';
 import { isValidCoinCharge } from '../../utils/valid.js';
+import { Component } from '../component.js';
 import {
   addCoinToTable,
   getAmountInput,
-  calculateRandomCoins,
+  getRandomCoins,
   clearAmountInput,
+  setAmountHTML,
 } from './coinCharge.js';
 
-export default class Coin {
+export default class Coin extends Component {
   constructor($state) {
+    super($state);
     this.$state = $state;
     this.render();
   }
 
-  getCoins() {
-    return this.$state.coins;
-  }
-
-  getAmount() {
-    let amount = 0;
-    const coins = this.getCoins();
-    for (let key in coins) {
-      amount += key * coins[key];
-    }
-    return amount;
-  }
-
-  setAmountHTML() {
-    const amount = this.getAmount();
-    $(`#${SELECTOR.ID.COIN_CHARGE_AMOUNT_DIV}`).innerHTML = `
-      ${COMMENT.COIN_CHARGE_AMOUNT}: 
-      <span id="${SELECTOR.ID.COIN_CHARGE_AMOUNT}">${amount}</span>원
-    `;
-  }
-
-  setStateOfCoin(newState) {
-    this.$state.coins = newState;
-    this.render();
-    setStateToLocalStorage(this.$state);
-  }
-
   chargeCoins() {
-    const amount = getAmountInput();
-    const validation = isValidCoinCharge(amount);
+    const amountInput = getAmountInput();
+    const validation = isValidCoinCharge(amountInput);
     if (!validation.valid) {
       alert(validation.errorMessage);
       return;
     }
-    const coinState = calculateRandomCoins(amount, this.getCoins());
+    const coinState = getRandomCoins(amountInput, this.getCoins());
     this.setStateOfCoin(coinState);
     clearAmountInput();
   }
@@ -69,6 +44,8 @@ export default class Coin {
           type="number"
           id="${SELECTOR.ID.COIN_CHARGE_INPUT}"
           placeholder="${COMMENT.COIN_CHARGE_INPUT}"
+          step="10"
+          min="0"
         />
         <button type="button" id="${SELECTOR.ID.COIN_CHARGE_BUTTON}">
           ${COMMENT.COIN_CHARGE_BUTTON}
@@ -105,10 +82,8 @@ export default class Coin {
   render() {
     $(`#${SELECTOR.ID.BODY}`).innerHTML = this.template();
 
-    if (this.getAmount() != 0) {
-      this.setAmountHTML();
-      addCoinToTable(this.getCoins());
-    }
+    setAmountHTML(this.getAmount());
+    addCoinToTable(this.getCoins(), this.getAmount());
 
     this.setEvent();
   }
