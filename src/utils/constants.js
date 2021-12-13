@@ -48,10 +48,7 @@ export const CLASS = Object.freeze({
   PRODUCT_PURCHASE_BUTTON: 'purchase-button',
   PRODUCT_PURCHASE_PRICE: 'product-purchase-price',
   PRODUCT_PURCHASE_QUANTITY: 'product-purchase-quantity',
-  PRODUCT_ADD_QUANTITY: 'product-purchase-quantity',
-  DATA_PRODUCT_NAME: 'data-product-name',
-  DATA_PRODUCT_PRICE: 'data-product-price',
-  DATA_PRODUCT_QUANTITY: 'data-product-quantity'
+  PRODUCT_ADD_QUANTITY: 'product-purchase-quantity'
 });
 
 export const MINIMUM_PRICE = 100;
