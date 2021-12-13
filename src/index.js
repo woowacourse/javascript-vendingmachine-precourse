@@ -14,7 +14,17 @@ class App {
     const controllerForCharge = new ChargeController(model, this.coreView);
     const controllerForBuy = new BuyController(model, this.coreView);
     this.controllerArray = [controllerForProduct, controllerForCharge, controllerForBuy];
+    this.triggerAllEvents();
+    this.loadAllLocalStorage();
     this.triggerTabEvent();
+  }
+
+  triggerAllEvents() {
+    this.controllerArray.map((controller) => controller.triggerEvent());
+  }
+
+  loadAllLocalStorage() {
+    this.controllerArray.map((controller) => controller.loadLocalStorage());
   }
 
   triggerTabEvent() {

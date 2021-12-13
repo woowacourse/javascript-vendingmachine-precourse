@@ -4,9 +4,6 @@ export class ChargeController {
   constructor(model, coreView) {
     this.model = model;
     this.coreView = coreView;
-
-    this.loadLocalStorage();
-    this.triggerEvent();
   }
 
   loadLocalStorage() {
