@@ -12,12 +12,6 @@ export default class EntrySection extends Component {
     `;
   }
 
-  setEvent() {
-    this.$target
-      .querySelector("button")
-      .addEventListener("click", this.$props.buttonInfo.callBack);
-  }
-
   getTableHeader() {
     return this.$props.tableHeaders
       .map((header) => `<th>${header}</th>`)

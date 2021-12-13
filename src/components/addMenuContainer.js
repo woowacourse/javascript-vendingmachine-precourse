@@ -28,7 +28,6 @@ export default class AddMenuContainer extends Component {
       buttonInfo: {
         id: "product-add-button",
         value: "추가하기",
-        callBack: () => alert("it worked"),
       },
     });
 

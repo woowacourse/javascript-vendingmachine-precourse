@@ -30,7 +30,6 @@ export default class CoinManageMenuContainer extends Component {
       buttonInfo: {
         id: "vending-machine-charge-button",
         value: "충전하기",
-        callBack: () => alert("it worked"),
       },
       moneyInfo: {
         id: "vending-machine-charge-amount",
