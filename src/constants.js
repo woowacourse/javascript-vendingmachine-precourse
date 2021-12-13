@@ -63,6 +63,12 @@ export const ALERT = {
   NO_COIN: '반환할 잔돈이 없어 반환이 불가합니다.',
 };
 
+export const KEY = {
+  PRODUCT: '상품',
+  VENDING_MACHINE_COIN: '충전금액',
+  PURCHASE_COIN: '투입금액',
+};
+
 export const NULL = '';
 export const ZERO = 0;
 export const DIVIDE_CHARGE = 10;
