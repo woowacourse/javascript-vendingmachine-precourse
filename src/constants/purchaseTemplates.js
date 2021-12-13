@@ -1,3 +1,5 @@
+import { COINS, NONE } from './constants.js';
+
 export const purchaseTemplates = {
   inputMoney(money) {
     return `
@@ -9,7 +11,7 @@ export const purchaseTemplates = {
 
   productTable: `
        <h3>구매할 수 있는 상품 현황</h3>
-       <table>
+       <table style='width: 70%'>
         <thead>
           <tr>
             <th>상품명</th>
@@ -31,6 +33,39 @@ export const purchaseTemplates = {
         <td class="product-purchase-quantity" data-product-quantity=${quantity}>${quantity}</td>
         <td><button class="purchase-button">구매하기</button></td>
       </tr>
+    `;
+  },
+
+  change(change) {
+    return `
+     <table style='margin-top: 3rem; width: 30%;'}>
+      <thead>
+        <tr>
+          <th>동전</th>
+          <th>개수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>500원</td>
+          <td vending-machine-coin-500-quantity>${
+            change[COINS[0]] ? change[COINS[0]] : NONE
+          }개</td>
+        </tr>
+        <tr>
+          <td>100원</td>
+          <td>${change[COINS[1]] ? change[COINS[1]] : NONE}개</td>
+        </tr>
+        <tr>
+          <td>50원</td>
+          <td>${change[COINS[2]] ? change[COINS[2]] : NONE}개</td>
+        </tr>
+        <tr>
+          <td>10원</td>
+          <td>${change[COINS[3]] ? change[COINS[3]] : NONE}개</td>
+        </tr>
+      </tbody>
+    </table>
     `;
   },
 };

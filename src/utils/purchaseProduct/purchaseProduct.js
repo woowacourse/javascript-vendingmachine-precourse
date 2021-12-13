@@ -9,20 +9,23 @@ export const purchaseProduct = (e, state) => {
   const price = products[3].dataset.productPrice;
   let quantity = products[5].dataset.productQuantity;
 
-  state.products = state.products.map(product => {
-    if (!product.quantity) {
-      alert(ERROR_MSG.SOLD_OUT);
-      return product;
-    }
-
-    if (product.id === id)
-      return { ...product, quantity: product.quantity - 1 };
-    else return product;
-  });
-
-  if (!quantity) {
-    state.purchase.input = Number(state.purchase.input) - Number(price);
+  if (quantity <= 0) {
+    alert(ERROR_MSG.SOLD_OUT);
+    return;
   }
+
+  if (state.purchase.input >= price) {
+    state.purchase.input = Number(state.purchase.input) - Number(price);
+  } else {
+    alert(ERROR_MSG.INSUFFICIENT_CASH);
+    return;
+  }
+
+  state.products = state.products.map(product => {
+    if (product.id === id) {
+      return { ...product, quantity: product.quantity - 1 };
+    } else return product;
+  });
 
   store.setData(state);
   renderPurchaseProduct(state);

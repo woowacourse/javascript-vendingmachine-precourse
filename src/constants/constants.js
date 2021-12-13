@@ -18,6 +18,7 @@ export const ERROR_MSG = {
   INPUT_MONEY: '금액을 입력해주세요.',
   VALIDATE_MONEY: '금액은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.',
   SOLD_OUT: '상품이 품절되었습니다!',
+  INSUFFICIENT_CASH: '잔액이 부족합니다!',
 };
 
 export const COINS = [500, 100, 50, 10];
