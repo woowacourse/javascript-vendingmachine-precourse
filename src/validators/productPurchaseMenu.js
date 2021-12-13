@@ -10,7 +10,7 @@ export default {
 
   // 투입한 금액에서 상품 가격을 뺀 금액 검증 함수
   validateSubtractPricePlus: subtractPrice =>
-    subtractPrice > 0 ? true : alert(MESSAGE.purchaseChargePriceHaveToUnderCharge),
+    subtractPrice >= 0 ? true : alert(MESSAGE.purchaseChargePriceHaveToUnderCharge),
 
   // 반환 관련 검증 함수
   validatePossibleReturn: charge => (charge ? true : alert(MESSAGE.returnMustHaveCharge)),
