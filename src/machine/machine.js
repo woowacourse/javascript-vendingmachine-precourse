@@ -39,19 +39,20 @@ export default class VendingMachine {
     }
 
     getRandomCoins(money){
-        let coinValue = [];
-        let invert = {};
-        for(let key in COIN_VALUE){
-            coinValue.push(COIN_VALUE[key]);
-            invert[COIN_VALUE[key]] = key;
-        }
+        const coin = new Coin();
+        const inverted = coin.getInverted();
+
+        const item = getStorage();
         while(money > 0){
-            const pick = MissionUtils.Random.pickNumberInList(coinValue);
+            const pick = MissionUtils.Random.pickNumberInList(coin.getOnlyValues());
             if(money >= pick){
                 money -= pick;
-                this.coins[invert[pick]]++;
+                this.coins[inverted[pick]]++;
             }
         }
+        
+        //TODO: change this => item
+        updateStorage(this);
     }
 
     buyProduct(product){
