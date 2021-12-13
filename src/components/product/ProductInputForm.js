@@ -29,9 +29,9 @@ export default class ProductInputForm extends Component {
     );
   }
 
-  bindInputFocus({ key, target }) {
-    if (key !== 'Enter') return false;
-    const focusSelector = `#${target.id}`;
+  bindInputFocus(event) {
+    if (event.key !== 'Enter') return false;
+    const focusSelector = `#${event.target.id}`;
     switch (focusSelector) {
       case SELECTOR.PRODUCT_NAME_INPUT:
         $(SELECTOR.PRODUCT_PRICE_INPUT).focus();
