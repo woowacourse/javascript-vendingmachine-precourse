@@ -45,9 +45,14 @@ export default class CoinReturnStatus extends Component {
   }
 
   mounted() {
-    const { chargeAmount, coins, purchaseChargeAmount } = this.$props;
+    const $coinReturnButton = document.querySelector("#coin-return-button");
 
-    // console.log(chargeAmount, coins, purchaseChargeAmount);
+    this.addEvent("click", $coinReturnButton, (e) => this.onClickHandler(e));
+  }
+
+  onClickHandler(e) {
+    console.log("click");
+    const { chargeAmount, coins, purchaseChargeAmount } = this.$props;
     const result = this.getMinimumReturnedCoins({
       currentCoins: { ...coins },
       purchaseChargeAmount,
