@@ -30,7 +30,10 @@ export default class Validation {
   }
 
   checkMoneyInput(money) {
-    if(Number.isNaN(Number(money)) || !money.trim()) { //이렇게 하면 음수도 되는지 확인 필요
+    if(Number.isNaN(Number(money)) || !money.trim()) {
+      return false;
+    }
+    if(Number(money) < 0 || Number(money)%10 !==0) {
       return false;
     }
     return true;
