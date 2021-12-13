@@ -27,12 +27,8 @@ function chargeElement(container) {
 
     vendingMachineChargeButton.onclick = () => addCharge();
 
-    container.appendChild(vendingMachineChargeLabel);
-    container.appendChild(vendingMachineChargeInput);
-    container.appendChild(vendingMachineChargeButton);
-    container.appendChild(vendingMachineMoneyLabel);
+    container.append(vendingMachineChargeLabel, vendingMachineChargeInput, vendingMachineChargeButton, vendingMachineMoneyLabel, vendingMachineCoinDisplayLabel);
     vendingMachineMoneyLabel.appendChild(vendingMachineChargeAmount);
-    container.appendChild(vendingMachineCoinDisplayLabel);
 }
 
 function coinDisplayElement(container) {
@@ -43,8 +39,7 @@ function coinDisplayElement(container) {
 
     container.appendChild(coinDisplayTable);
     coinDisplayTable.appendChild(coinDisplayTableRow);
-    coinDisplayTableRow.appendChild(coinCategory);
-    coinDisplayTableRow.appendChild(coinAmount);
+    coinDisplayTableRow.append(coinCategory, coinAmount);
 
     createTableRow(coinDisplayTable, TEXT.COIN_500,"vending-machine-coin-500-quantity");
     createTableRow(coinDisplayTable, TEXT.COIN_100,"vending-machine-coin-100-quantity");

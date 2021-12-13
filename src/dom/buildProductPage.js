@@ -24,12 +24,7 @@ function productAddElement(container) {
     const productAddButton = createDocumentElement("button", TEXT.PRODUCT_ADD_BUTTON, "product-add-button");
     const productDisplayLabel = createDocumentElement("h3", TEXT.PRODUCT_DISPLAY_LABEL);
 
-    container.appendChild(productAddLabel);
-    container.appendChild(productNameInput);
-    container.appendChild(productPriceInput);
-    container.appendChild(productQuantityInput);
-    container.appendChild(productAddButton);
-    container.appendChild(productDisplayLabel);
+    container.append(productAddLabel, productNameInput, productPriceInput, productQuantityInput, productAddButton, productDisplayLabel);
 }
 
 function productItemElement(container) {
@@ -41,9 +36,7 @@ function productItemElement(container) {
 
     container.appendChild(productItemTable);
     productItemTable.appendChild(productItemTableRow);
-    productItemTableRow.appendChild(productItemName);
-    productItemTableRow.appendChild(productItemPrice);
-    productItemTableRow.appendChild(productItemQuantity);
+    productItemTableRow.append(productItemName, productItemPrice, productItemQuantity);
 }
 
 function deleteItemElement() {
@@ -59,9 +52,7 @@ function addItemElement(name, price, quantity) {
     const productItemQuantity = createDocumentElement("td", quantity, "", "", "product-manage-quantity");
 
     productItemTable.appendChild(productItemTableRow);
-    productItemTableRow.appendChild(productItemName);
-    productItemTableRow.appendChild(productItemPrice);
-    productItemTableRow.appendChild(productItemQuantity);
+    productItemTableRow.append(productItemName, productItemPrice, productItemQuantity);
 }
 
 function productItemRefresh() {

@@ -32,12 +32,8 @@ function productPurchaseElement(container) {
 
     chargeButton.onclick = () => chargeUserInputMoney();
 
-    container.appendChild(productPurchaseLabel);
-    container.appendChild(chargeInput);
-    container.appendChild(chargeButton);
-    container.appendChild(moneyLabel);
+    container.append(productPurchaseLabel, chargeInput, chargeButton, moneyLabel, productDisplayLabel);
     moneyLabel.appendChild(chargeAmount);
-    container.appendChild(productDisplayLabel);
 }
 
 function productItemElement(container) {
@@ -50,10 +46,7 @@ function productItemElement(container) {
 
     container.appendChild(productItemTable);
     productItemTable.appendChild(productItemTableRow);
-    productItemTableRow.appendChild(productItemName);
-    productItemTableRow.appendChild(productItemPrice);
-    productItemTableRow.appendChild(productItemQuantity);
-    productItemTableRow.appendChild(productItemPurchase);
+    productItemTableRow.append(productItemName, productItemPrice, productItemQuantity, productItemPurchase);
 }
 
 function addItemElement(name, price, quantity) {
@@ -66,15 +59,12 @@ function addItemElement(name, price, quantity) {
     const productItemPurchaseButton = createDocumentElement("button", TEXT.PRODUCT_ITEM_PURCHASE_BUTTON, "", "", "purchase-button");
 
     productItemName.setAttribute("data-product-name", name);
-    productItemName.setAttribute("data-product-price", price);
-    productItemName.setAttribute("data-product-quantity", quantity);
+    productItemPrice.setAttribute("data-product-price", price);
+    productItemQuantity.setAttribute("data-product-quantity", quantity);
     productItemPurchaseButton.onclick = () => purchaseItem(name, price);
 
     productItemTable.appendChild(productItemTableRow);
-    productItemTableRow.appendChild(productItemName);
-    productItemTableRow.appendChild(productItemPrice);
-    productItemTableRow.appendChild(productItemQuantity);
-    productItemTableRow.appendChild(productItemPurchase);
+    productItemTableRow.append(productItemName, productItemPrice, productItemQuantity, productItemPurchase);
     productItemPurchase.appendChild(productItemPurchaseButton);
 }
 
@@ -88,12 +78,9 @@ function coinDisplayElement(container) {
 
     productItemPurchaseButton.onclick = () => returnCharge();
 
-    container.appendChild(productPurchaseLabel);
-    container.appendChild(productItemPurchaseButton);
-    container.appendChild(coinDisplayTable);
+    container.append(productPurchaseLabel, productItemPurchaseButton, coinDisplayTable);
     coinDisplayTable.appendChild(coinDisplayTableRow);
-    coinDisplayTableRow.appendChild(coinCategory);
-    coinDisplayTableRow.appendChild(coinAmount);
+    coinDisplayTableRow.append(coinCategory, coinAmount);
 
     createTableRow(coinDisplayTable, TEXT.COIN_500,"coin-500-quantity");
     createTableRow(coinDisplayTable, TEXT.COIN_100,"coin-100-quantity");
