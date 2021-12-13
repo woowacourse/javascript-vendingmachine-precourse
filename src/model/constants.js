@@ -52,3 +52,7 @@ export const ALERT_MESSAGE = {
 };
 
 export const COIN_ARRAY = [500, 100, 50, 10];
+
+export const COIN_X_QUANTITY = x => `coin-${x}-quantity`;
+
+export const VENDING_MACHINE_COIN_X_QUANTITY = x => `vending-machine-coin-${x}-quantity`;

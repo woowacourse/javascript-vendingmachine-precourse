@@ -5,16 +5,18 @@ import {
   setItem,
   isMultipleOf10,
   isInputNumberValid,
+  isEnoughCoin,
   onKeyUpNumericEvent,
 } from './utils.js';
 import {
   addTableRow,
+  addTableHeader,
   initReturnTable,
   clearTable,
   setInnerHTML,
   clearInput,
 } from '../view/index.js';
-import { KEY, SELECTOR, ALERT_MESSAGE } from '../model/constants.js';
+import { KEY, SELECTOR } from '../model/constants.js';
 import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/dom.js';
 
 const initAllPurchaseButtonEvent = () => {
@@ -28,7 +30,7 @@ const initProductStatusTable = () => {
   const table = document.querySelector('tbody');
   const allProducts = getItemOrArray(KEY.product);
   clearTable(table);
-  table.insertAdjacentHTML('beforeend', productPurchaseTableHeader());
+  addTableHeader(table, productPurchaseTableHeader());
   allProducts.forEach(product => addTableRow(table, productPurchaseTableRow(product)));
   initAllPurchaseButtonEvent();
 };
@@ -39,15 +41,6 @@ const initPurchaseDomProperty = () => {
     setInnerHTML($(SELECTOR.chargeAmount), charge);
   }
   initProductStatusTable();
-};
-
-const isEnoughCoin = (chargeInput, price) => {
-  const isEnough = chargeInput >= price;
-  if (!isEnough) {
-    alert(ALERT_MESSAGE.isNotEnoughCoin);
-  }
-
-  return isEnough;
 };
 
 const purchaseProduct = item => {
@@ -66,7 +59,7 @@ const purchaseProduct = item => {
   }
 };
 
-const initChargeDomProperty = () => {
+const initChargeDom = () => {
   const charge = getItemOrNull(KEY.charge);
   clearInput($(SELECTOR.chargeInput));
   if (charge || charge === 0) {
@@ -75,8 +68,7 @@ const initChargeDomProperty = () => {
 };
 
 const isChargeInputValid = chargeInput =>
-  isInputNumberValid(chargeInput.placeholder, chargeInput.value) &&
-  isMultipleOf10(chargeInput.placeholder, chargeInput.value);
+  isInputNumberValid(chargeInput) && isMultipleOf10(chargeInput);
 
 const chargeMoney = () => {
   const chargeInput = $(SELECTOR.chargeInput);
@@ -88,7 +80,7 @@ const chargeMoney = () => {
       charge = parseInt(chargeInput.value);
     }
     setItem(KEY.charge, charge);
-    initChargeDomProperty();
+    initChargeDom();
   }
 };
 
@@ -102,8 +94,8 @@ const getCount = x => {
     count.quantity = div;
   } else if (div > x.quantity && chargeInput >= x.coin) {
     chargeInput -= x.coin * x.quantity;
-    count.quantity = x.quantity;
     x.quantity = 0;
+    count.quantity = x.quantity;
   }
   setItem(KEY.charge, chargeInput);
 
@@ -122,12 +114,12 @@ const makeMinimumCoin = () => {
 const returnMoney = () => {
   const minimumCoinArray = makeMinimumCoin();
   initReturnTable(minimumCoinArray);
-  initChargeDomProperty();
+  initChargeDom();
 };
 
 export const initAllPurchase = () => {
   initProductStatusTable();
-  initChargeDomProperty();
+  initChargeDom();
   $(SELECTOR.chargeButton).addEventListener('click', () => chargeMoney());
   $(SELECTOR.returnButton).addEventListener('click', () => returnMoney());
   $(SELECTOR.chargeInput).addEventListener('keyup', () =>

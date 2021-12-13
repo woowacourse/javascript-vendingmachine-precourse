@@ -1,22 +1,22 @@
 import { SELECTOR } from '../model/constants.js';
-import { drawAddMenu, drawVendingMenu, drawPurchaseMenu } from '../view/index.js';
+import { showAddMenu, showVendingMenu, showPurchaseMenu } from '../view/index.js';
 import { initAllProductAdd } from './productAdd.js';
 import { initAllPurchase } from './purchase.js';
 import { initAllVending } from './vending.js';
 import { $ } from './utils.js';
 
 const callAddMenu = () => {
-  drawAddMenu();
+  showAddMenu();
   initAllProductAdd();
 };
 
 const callVendingMenu = () => {
-  drawVendingMenu();
+  showVendingMenu();
   initAllVending();
 };
 
 const callPurchaseMenu = () => {
-  drawPurchaseMenu();
+  showPurchaseMenu();
   initAllPurchase();
 };
 
