@@ -40,3 +40,28 @@ export const getProduceAddText = (tabMenu) => {
 
   `;
 };
+
+export const getVendingMachineCoinListTemplate = (coinList) => {
+  return `
+  <tr>
+    <th>동전</th>
+    <th>개수</th>
+  </tr>
+  <tr>
+    <th id="vending-machine-coin-500-quantity">500원</th>
+    <td>${coinList['500']}</td>
+  </tr>
+  <tr>
+    <th id="vending-machine-coin-100-quantity">100원</th>
+    <td>${coinList['100']}</td>
+  </tr>
+  <tr>
+    <th id="vending-machine-coin-50-quantity">50원</th>
+    <td>${coinList['50']}</td>
+  </tr>
+  <tr>
+    <th id="vending-machine-coin-10-quantity">10원</th>
+    <td>${coinList['10']}</td>
+  </tr>
+  `;
+};

@@ -21,7 +21,7 @@ export const VENDING_MACHINE_MANAGE_TEXT = `
     </section>
     <section>
       <h4>자판기가 보유한 동전</h4>
-      <table>
+      <table id="vending-machine-coin-list">
         <tr>
           <th>동전</th>
           <th>개수</th>

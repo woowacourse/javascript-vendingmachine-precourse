@@ -7,7 +7,7 @@ class VendingMachine {
       product_add_menu: [],
       vending_machine_manage_menu: {
         chargeAmount: 0,
-        coinList: [{ 500: 0 }, { 100: 0 }, { 50: 0 }, { 10: 0 }],
+        coinList: { 500: 0, 100: 0, 50: 0, 10: 0 },
       },
       product_purchase_menu: [],
     };

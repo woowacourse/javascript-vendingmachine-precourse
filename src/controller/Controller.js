@@ -1,6 +1,6 @@
 import VendingMachine from '../model/VendingMachine.js';
 import { $id } from '../utils/dom.js';
-import { productManageItemTemplate } from '../utils/template.js';
+import { getVendingMachineCoinListTemplate, productManageItemTemplate } from '../utils/template.js';
 import { isValidProductAddData, isValidVendingMachineCharge } from '../utils/validation.js';
 import View from '../view/View.js';
 
@@ -101,8 +101,8 @@ class Controller {
 
   getRandomCoinList(chargeInputValue) {
     const randomCoinList = { 500: 0, 100: 0, 50: 0, 10: 0 };
-
     let sum = 0;
+
     while (chargeInputValue !== sum) {
       const number = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
 
@@ -124,6 +124,14 @@ class Controller {
     tabMenu['vending_machine_manage_menu']['chargeAmount'] += vendingMachineChargeNumber;
 
     const coinList = this.getRandomCoinList(vendingMachineChargeNumber);
+
+    Object.keys(coinList).forEach((coin) => {
+      tabMenu['vending_machine_manage_menu']['coinList'][coin] += coinList[coin];
+    });
+
+    $id('vending-machine-coin-list').innerHTML = getVendingMachineCoinListTemplate(
+      tabMenu['vending_machine_manage_menu']['coinList']
+    );
 
     $id('vending-machine-charge-amount').innerText =
       tabMenu['vending_machine_manage_menu']['chargeAmount'];
