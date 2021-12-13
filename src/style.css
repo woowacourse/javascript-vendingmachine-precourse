@@ -3,14 +3,19 @@
 }
 .header {
   display: flex;
-  align-items: center;;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .header span {
-  line-height: 32px;
-  font-size: 32px;
+  line-height: 28px;
+  font-size: 28px;
   font-weight: 800;
 }
 .header img {
   height: 40px;
   width: auto;
+}
+
+.tab-menu {
+  margin-bottom: 10px;
 }

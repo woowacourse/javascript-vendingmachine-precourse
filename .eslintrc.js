@@ -4,8 +4,9 @@ module.exports = {
     es2020: true,
   },
   extends: ['airbnb-base', 'plugin:prettier/recommended'],
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 11,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   rules: {
