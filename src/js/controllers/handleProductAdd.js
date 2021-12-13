@@ -1,6 +1,6 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
-import printAddedProduct from '../views/productAddView.js';
+import { printAddedProduct, resetProductInput } from '../views/productAddView.js';
 import { PRODUCT, ERROR, PRICE } from '../utils/constants.js';
 import alertMessage from '../views/alertMessage.js';
 
@@ -66,6 +66,7 @@ function HandleProductAdd() {
     if (isValidName(nameInput) && isValidPrice(priceInput) && isValidQuantity(quantityInput)) {
       this.products.push({ name: nameInput, price: priceInput, quantity: quantityInput });
       store.setLocalStorage('products', this.products);
+      resetProductInput();
       printAddedProduct();
     }
   });
