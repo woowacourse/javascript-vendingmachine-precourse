@@ -38,9 +38,7 @@ export default class ProductAddMenu extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '#product-add-button', (e) => {
-      e.preventDefault();
-
+    this.addEvent('click', '#product-add-button', () => {
       const name = $('#product-name-input').value.trim();
       const price = $('#product-price-input').valueAsNumber;
       const quantity = $('#product-quantity-input').valueAsNumber;

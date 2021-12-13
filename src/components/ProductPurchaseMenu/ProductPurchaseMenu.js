@@ -74,9 +74,7 @@ export default class ProductPurchaseMenu extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '#charge-button', (e) => {
-      e.preventDefault();
-
+    this.addEvent('click', '#charge-button', () => {
       const chargingAmount = $('#charge-input').valueAsNumber;
 
       if (!isValidChargeAmount(chargingAmount)) {
@@ -89,8 +87,6 @@ export default class ProductPurchaseMenu extends Component {
     });
 
     this.addEvent('click', '.purchase-button', (e) => {
-      e.preventDefault();
-
       const { productPrice } = e.target
         .closest('tr')
         .querySelector('.product-purchase-price').dataset;
@@ -109,9 +105,7 @@ export default class ProductPurchaseMenu extends Component {
     });
 
     // TODO: 동전이 없을 경우 예외 처리, 잔돈 반환 후 동전 상태 저장, 다른 탭에 갔다 왔을 때 잔돈 상태 유지
-    this.addEvent('click', '#coin-return-button', (e) => {
-      e.preventDefault();
-
+    this.addEvent('click', '#coin-return-button', () => {
       this.props.returnChange();
     });
   }

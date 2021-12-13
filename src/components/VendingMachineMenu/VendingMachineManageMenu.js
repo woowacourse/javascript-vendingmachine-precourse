@@ -53,9 +53,7 @@ export default class VendingMachineManageMenu extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '#vending-machine-charge-button', (e) => {
-      e.preventDefault();
-
+    this.addEvent('click', '#vending-machine-charge-button', () => {
       const chargeAmount = $('#vending-machine-charge-input').valueAsNumber;
 
       if (!isValidChargeAmount(chargeAmount)) {

@@ -48,6 +48,8 @@ export default class Component {
 
     this.$target.addEventListener(type, (e) => {
       if (!isTarget(e.target)) return false;
+
+      e.preventDefault();
       callback(e);
     });
   }
