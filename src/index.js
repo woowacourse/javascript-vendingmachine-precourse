@@ -9,6 +9,7 @@ export default class VendingMachine {
     this.app.append(this.appHeader);
     this.makeHeaderHTML();
     this.makeContentsHTML();
+    this.checkUpdate();
   }
 
   makeHeaderHTML() {
@@ -34,12 +35,12 @@ export default class VendingMachine {
   }
 
   makeContentsHTML() {
-    const productAdd = new ProductAddTemplate();
-    const vendingMachineManage = new VendingMachineManageTemplate();
-    const productPurchase = new ProductPurcahseTemplate();
-    this.productAddScreen = productAdd.template();
-    this.vendingMachineManageScreen = vendingMachineManage.template();
-    this.productPurchaseScreen = productPurchase.template();
+    this.productAdd = new ProductAddTemplate();
+    this.vendingMachineManage = new VendingMachineManageTemplate();
+    this.productPurchase = new ProductPurcahseTemplate();
+    this.productAddScreen = this.productAdd.template();
+    this.vendingMachineManageScreen = this.vendingMachineManage.template();
+    this.productPurchaseScreen = this.productPurchase.template();
     this.hideAllScreen();
   }
 
@@ -65,6 +66,18 @@ export default class VendingMachine {
     e.preventDefault();
     this.hideAllScreen();
     this.productPurchaseScreen.style.display = 'block';
+  }
+
+  checkUpdate() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+      button.addEventListener('click', this.updateScreen.bind(this));
+    });
+  }
+
+  updateScreen(e) {
+    e.preventDefault();
+    this.productPurchaseScreen = this.productPurchase.updateScreen();
   }
 }
 
