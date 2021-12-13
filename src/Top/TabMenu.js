@@ -6,6 +6,7 @@ function onProductManageMenuClick(event) {
   event.preventDefault();
   setDisplayBlock($('product-manage-div'));
   setDisplayNone($('change-charge-div'));
+  setDisplayNone($('product-purchase-div'));
 }
 
 function setProductManageMenu() {
@@ -16,6 +17,7 @@ function onChangeChargeMenuClick(event) {
   event.preventDefault();
   setDisplayNone($('product-manage-div'));
   setDisplayBlock($('change-charge-div'));
+  setDisplayNone($('product-purchase-div'));
 }
 
 function setChangeChargeMenu() {
@@ -29,6 +31,7 @@ function onProductPurchaseMenuClick(event) {
   event.preventDefault();
   setDisplayNone($('product-manage-div'));
   setDisplayNone($('change-charge-div'));
+  setDisplayBlock($('product-purchase-div'));
 }
 
 function setProductPurchaseMenu() {

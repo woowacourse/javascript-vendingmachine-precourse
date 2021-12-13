@@ -4,6 +4,9 @@ export const HEADER = {
   PRODUCT_LIST: '상품 현황',
   COIN_CHARGE: '자판기 동전 충전하기',
   COIN_LIST: '자판기가 보유한 동전',
+  MONEY_INPUT: '금액 투입',
+  PURCHASABLE_LIST: '구매할 수 있는 상품 현황',
+  CHANGE: '잔돈',
 };
 
 export const MENU = {
@@ -16,11 +19,14 @@ export const PRODUCT = {
   NAME: '상품명',
   PRICE: '가격',
   QUANTITY: '수량',
+  PURCHASE: '구매',
 };
 
 export const AMOUNT = {
   TO_HAVE: '자판기가 보유할 금액',
   HAVE: '보유 금액: ',
+  TO_INPUT: '투입할 금액',
+  INPUT: '투입한 금액: ',
 };
 
 export const COIN = {
@@ -36,4 +42,7 @@ export const COIN = {
 export const BUTTON = {
   ADD: '추가하기',
   CHARGE: '충전하기',
+  INPUT: '투입하기',
+  PURCHASE: '구매하기',
+  RETURN: '반환하기',
 };
