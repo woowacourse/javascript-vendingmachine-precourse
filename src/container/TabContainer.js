@@ -39,6 +39,7 @@ export default class TabContainer {
 
   updateProductTable() {
     this.tabProductAdd.updateProductTable();
+    this.tabPurchase.updateProductTable();
   }
 
   rechargeCoin(amount) {

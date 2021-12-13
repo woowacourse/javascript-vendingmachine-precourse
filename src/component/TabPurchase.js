@@ -115,4 +115,8 @@ export default class TabPurchase {
   updateRechargeMoneyState() {
     this.chargingAmount.render(this.vendingMachine.getRechargedMoneyAmount());
   }
+
+  updateProductTable() {
+    this.productListTable.render(this.vendingMachine.getProductList());
+  }
 }
