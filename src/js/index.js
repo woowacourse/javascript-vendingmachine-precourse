@@ -1,5 +1,5 @@
 // prettier-ignore
-import { renderProductAddMenu, renderVendingMachineManageMenu, renderProductPurchaseMenu } from './render/render.js';
+import { renderProductAddMenu, renderVendingMachineManageMenu, renderProductPurchaseMenu } from './render/tabs.js';
 // prettier-ignore
 import {addInputAmount, callRenderAmountSpan } from './core/manageInputAmount.js';
 import { initRender, renderMenuItems } from './render/common.js';

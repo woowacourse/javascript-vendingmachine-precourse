@@ -3,8 +3,7 @@ import { $ } from '../util/dom.js';
 import { store } from '../store/store.js';
 import { check } from '../util/checkValue.js';
 import { localStorageConstants } from '../constant/localstorage.js';
-// prettier-ignore
-import { stringConstants, productItemsConstants, purchableProductItemsConstants } from '../constant/string.js';
+import { stringConstants, productItemsConstants } from '../constant/string.js';
 
 export const makeMenuTemplte = e => {
   e.preventDefault();

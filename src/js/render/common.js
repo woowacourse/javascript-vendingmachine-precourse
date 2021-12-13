@@ -89,7 +89,6 @@ export const renderCoinsItems = itemConstants => {
   }
 };
 
-//15줄 이하로 함수 줄이기 checkNull 만들까?
 export const renderMenuItems = itemConstants => {
   $(itemConstants.CONTAINER_ID).innerHTML = '';
   const menus = store.getItem(localStorageConstants.MENU);
@@ -97,13 +96,18 @@ export const renderMenuItems = itemConstants => {
     return;
   }
   for (let menu in menus) {
-    let newTr = document.createElement('tr');
-    newTr.innerHTML = `<td class='table-item ${itemConstants.TD_ID[0]}' id=${itemConstants.TD_ID[0]} data-product-name=${menus[menu].name}>${menus[menu].name}</td>
-    <td class='table-item ${itemConstants.TD_ID[1]}' id=${itemConstants.TD_ID[1]} data-product-price=${menus[menu].price}>${menus[menu].price}</td>
-    <td class='table-item ${itemConstants.TD_ID[2]}' id=${itemConstants.TD_ID[2]} data-product-quantity=${menus[menu].quantity}>${menus[menu].quantity}</td>`;
+    let newTr = makeTr(menus[menu], itemConstants);
     if (itemConstants.CONTAINER_ID === '#purchasable-product-table-body') {
       newTr.innerHTML += `<td class='table-item'><button class='purchase-button'>구매하기</button></td>`;
     }
     $(itemConstants.CONTAINER_ID).appendChild(newTr);
   }
+};
+
+export const makeTr = (menu, itemConstants) => {
+  let newTr = document.createElement('tr');
+  newTr.innerHTML = `<td class='table-item ${itemConstants.TD_ID[0]}' id=${itemConstants.TD_ID[0]} data-product-name=${menu.name}>${menu.name}</td>
+  <td class='table-item ${itemConstants.TD_ID[1]}' id=${itemConstants.TD_ID[1]} data-product-price=${menu.price}>${menu.price}</td>
+  <td class='table-item ${itemConstants.TD_ID[2]}' id=${itemConstants.TD_ID[2]} data-product-quantity=${menu.quantity}>${menu.quantity}</td>`;
+  return newTr;
 };
