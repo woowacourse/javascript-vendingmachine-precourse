@@ -39,3 +39,9 @@ export const DICT_PLACEHOLDER_INPUT = { ...DICT_KEY_PRODUCT_KOR };
 export const ID_FORM_ADD = `${ID_PREFIX}-add-form`;
 export const ID_BUTTON_ADD = `${ID_PREFIX}-add-button`;
 export const TEXT_BUTTON_ADD = '추가하기';
+
+export const ERROR_INVALID_NAME = `상품 이름이 잘못되었습니다. 다음 사항에 해당하는지 살펴보세요.
+1) 이미 있는 상품의 이름인가
+2) 공백 문자가 포함되어 있는가
+3) 숫자가 포함되어 있는가
+4) 특수 문자가 포함되어 있는가`;

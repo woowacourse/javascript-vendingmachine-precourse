@@ -1,7 +1,7 @@
 import AddForm from './addForm/index.js';
 import CurrentProductTable from './currentProductTable/index.js';
-import createContainer from '../utils/createContainer.js';
 import { HEADING_ADD, HEADING_CURRENT_PRODUCT } from './const.js';
+import createContainer from '../utils/createContainer.js';
 
 const createAddFormContainer = () => {
   const container = createContainer('add-form-container', HEADING_ADD);

@@ -16,6 +16,7 @@ module.exports = {
     'no-alert': 'off',
     'no-plusplus': 'off',
     'no-param-reassign': 'off',
+    'no-useless-escape': 'off',
     'no-continue': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',

@@ -10,11 +10,13 @@ import {
   DICT_TYPE_INPUT,
   ID_BUTTON_ADD,
   TEXT_BUTTON_ADD,
+  ERROR_INVALID_NAME,
 } from './const.js';
 import createInput from '../../utils/createInput.js';
 
 import Product from '../../../model/Product.js';
 import { addProduct } from '../../../library/storage/products.js';
+import isValidProductName from '../../../machine/utils/product/isValidProductName.js';
 
 class AddForm extends Form {
   constructor() {
@@ -51,6 +53,10 @@ class AddForm extends Form {
     const price = this.getInputValueByKey(KEY_INPUT_PRICE);
     const quantity = this.getInputValueByKey(KEY_INPUT_QUANTITY);
 
+    if (!isValidProductName(name)) {
+      alert(ERROR_INVALID_NAME);
+      return;
+    }
     addProduct(new Product(name, price, quantity));
   }
 }
