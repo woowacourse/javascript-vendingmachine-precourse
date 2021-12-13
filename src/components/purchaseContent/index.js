@@ -23,8 +23,8 @@ import {
   getChargedCoinOfConsumer,
   subtractChargedCoinOfConsumer,
 } from '../../library/storage/consumerCoin.js';
-import calculateReturnedCoins from '../../machine/utils/calculateReturnedCoins.js';
-import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
+import calculateReturnedCoins from '../../machine/utils/coins/calculateReturnedCoins.js';
+import calculateSumOfCoins from '../../machine/utils/coins/calculateSumOfCoins.js';
 
 const createConsumerChargeFormContainer = (chargedCoin) => {
   const container = createContainer(

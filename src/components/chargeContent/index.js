@@ -3,7 +3,7 @@ import VendingMachineCoinTable from './vendingMachineCoinTable/index.js';
 
 import createContainer from '../utils/createContainer.js';
 import { HEADING_CHARGE_MACHINE, ID_AMOUNT, LABEL_AMOUNT } from './const.js';
-import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
+import calculateSumOfCoins from '../../machine/utils/coins/calculateSumOfCoins.js';
 import createElement from '../utils/createElement.js';
 
 const createVendingMachineChargeFormContainer = (chargedCoins) => {

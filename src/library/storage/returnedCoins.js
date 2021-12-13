@@ -1,6 +1,6 @@
-import calculateSumOfCoins from '../../machine/utils/calculateSumOfCoins.js';
-import generateZeroCoins from '../../machine/utils/generateZeroCoins.js';
-import addCoins from '../../machine/utils/addCoins.js';
+import calculateSumOfCoins from '../../machine/utils/coins/calculateSumOfCoins.js';
+import generateZeroCoins from '../../machine/utils/coins/generateZeroCoins.js';
+import addCoins from '../../machine/utils/coins/addCoins.js';
 import { getItem, setItem } from './utils/index.js';
 
 const KEY_RETURNED_COINS = 'returned-coins.js';

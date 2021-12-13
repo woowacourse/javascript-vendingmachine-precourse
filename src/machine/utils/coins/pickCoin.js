@@ -1,4 +1,4 @@
-import { COINS } from '../const.js';
+import { COINS } from '../../const.js';
 
 const { MissionUtils } = window;
 

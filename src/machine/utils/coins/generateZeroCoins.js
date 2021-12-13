@@ -1,4 +1,4 @@
-import { COINS } from '../const.js';
+import { COINS } from '../../const.js';
 
 function generateZeroCoins() {
   return COINS.reduce((acc, cur) => ({ ...acc, [cur]: 0 }), {});
