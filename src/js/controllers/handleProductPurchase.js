@@ -2,7 +2,7 @@ import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import renderProducts from '../views/renderProducts.js';
 import { resetPurchaseInput, printInputCharge } from '../views/productPurchaseView.js';
-import { isValidCharge, isValidPurchase, getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
+import { isValidCharge, isValidPurchase, isValidQuantity, getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
 
 function HandleProductPurchase() {
   this.holdAmount = Number($('#charge-amount').innerText) || 0;
@@ -31,7 +31,7 @@ function HandleProductPurchase() {
     if (e.target.className === 'purchase-button') {
       const price = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
 
-      if (isValidPurchase(this.holdAmount, price)) {
+      if (isValidPurchase(this.holdAmount, price) && isValidQuantity(e)) {
         this.holdAmount = updateAmount(this.holdAmount, price);
         printInputCharge(this.holdAmount);
         updateProductQuantity(e);

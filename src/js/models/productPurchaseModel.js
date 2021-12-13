@@ -26,6 +26,17 @@ export const isValidPurchase = (holdAmount, price) => {
   return true;
 };
 
+export const isValidQuantity = e => {
+  const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
+  const products = store.getLocalStorage('products');
+
+  if (!products[purchaseIndex].quantity) {
+    alert(ERROR.PRODUCT_EMPTY);
+    return false;
+  }
+  return true;
+};
+
 const calculatefiveHundred = (change, hasCoin) => {
   const needCount = Math.floor(change / 500);
   if (needCount > hasCoin.fiveHundred) {
@@ -127,7 +138,5 @@ export const updateProductQuantity = e => {
     products[purchaseIndex].quantity -= 1;
     store.setLocalStorage('products', products);
     e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').innerText -= 1;
-    return;
   }
-  alert(ERROR.PRODUCT_EMPTY);
 };
