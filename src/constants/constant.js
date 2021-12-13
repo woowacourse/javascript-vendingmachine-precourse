@@ -57,10 +57,11 @@ export const LIMIT = {
 };
 
 export const ERROR = {
-  PRODUCT_NAME_ADD: '상품명을 기입해주세요.',
+  PRODUCT_NAME_ADD: '중복되지 않는 상품명을 기입해주세요.',
   PRODUCT_PRICE_ADD: '가격을 10원 단위로 100원 이상으로 기입해주세요.',
   PRODUCT_QUANTITY_ADD: '수량을 양의 정수로 기입해주세요.',
   COIN_AMOUNT: '금액을 10원 단위로 기입해주세요.',
+  PURCHASE: '상품을 구입할 수 없습니다. 가격과 수량을 확인해주세요!',
 };
 
 export const COMMENT = {

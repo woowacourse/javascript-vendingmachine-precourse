@@ -1,4 +1,5 @@
 import { LIMIT, ERROR } from '../constants/constant.js';
+import { getStateFromLocalStorage } from './localStorage.js';
 
 export const isValidProductAdd = (product) => {
   let validation = { valid: true, errorMessage: '' };
@@ -34,7 +35,7 @@ const isValidAmount = (amount) => {
 };
 
 const isValidName = (name) => {
-  return isNotNull(name);
+  return isNotNull(name) && isNotDuplicate(name);
 };
 
 const isValidPrice = (price) => {
@@ -50,6 +51,13 @@ const isValidQuantity = (quantity) => {
   return (
     isNotNull(quantity) && isNumber(quantity) && isPositiveInteger(quantity)
   );
+};
+
+const isNotDuplicate = (name) => {
+  const productsName = getStateFromLocalStorage().products.map(
+    (item) => item.name
+  );
+  return !productsName.includes(name);
 };
 
 const isPositiveInteger = (input) => {

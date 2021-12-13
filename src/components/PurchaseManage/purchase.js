@@ -1,8 +1,12 @@
-import { SELECTOR, COMMENT } from '../../constants/constant.js';
+import { SELECTOR, COMMENT, ERROR } from '../../constants/constant.js';
 import { setStateToLocalStorage } from '../../utils/localStorage.js';
 import { $, $$ } from '../../utils/selector.js';
 import { isValidCoinCharge } from '../../utils/valid.js';
-import { getMoneyInput, setPurchaseProductTable } from './chargeMoney.js';
+import {
+  getMoneyInput,
+  setPurchaseProductTable,
+  isAbleToPurchase,
+} from './chargeMoney.js';
 
 export default class Purchase {
   constructor($state) {
@@ -24,6 +28,35 @@ export default class Purchase {
     setStateToLocalStorage(this.$state);
   }
 
+  getClickedProduct(e) {
+    const clickProductName = e.path[2].children[0].dataset.productName;
+    const products = this.getProducts();
+    const clickProduct = products.find(
+      (item) => item.name === clickProductName
+    );
+    return clickProduct;
+  }
+
+  removeProduct(item) {
+    const idx = this.getProducts().indexOf(item);
+    this.getProducts().splice(idx, 1);
+  }
+
+  setQuantity(item, product) {
+    if (item.name == product.name) {
+      item.quantity--;
+      if (item.quantity == 0) {
+        this.removeProduct(item);
+      }
+    }
+  }
+
+  setStateOfProduct(product) {
+    this.getProducts().map((item) => this.setQuantity(item, product));
+    this.render();
+    setStateToLocalStorage(this.$state);
+  }
+
   chargeMoney() {
     const money = getMoneyInput();
     const validation = isValidCoinCharge(money);
@@ -35,7 +68,14 @@ export default class Purchase {
   }
 
   purchaseProduct(e) {
-    console.log(e, 'purchase');
+    const clickProduct = this.getClickedProduct(e);
+    if (!isAbleToPurchase(clickProduct, this.getCharge())) {
+      alert(ERROR.PURCHASE);
+      return;
+    }
+
+    this.setStateOfCharge(-clickProduct.price);
+    this.setStateOfProduct(clickProduct);
   }
 
   setEvent() {
