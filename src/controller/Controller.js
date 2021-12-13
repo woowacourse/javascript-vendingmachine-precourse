@@ -49,7 +49,7 @@ class Controller {
         this.triggerProductAddSubmitEvent();
         break;
       case 'vending-machine-manage-menu':
-        this.view.showVendingMachineManageScreen();
+        this.view.showVendingMachineManageScreen(tabMenu);
         this.triggerVendingMachineChargeSubmitEvent();
         break;
       case 'product-purchase-menu':
