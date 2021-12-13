@@ -62,6 +62,8 @@ export default class ProductInputForm extends Component {
       $(SELECTOR.PRODUCT_NAME_INPUT).value = '';
       $(SELECTOR.PRODUCT_PRICE_INPUT).value = '';
       $(SELECTOR.PRODUCT_QUANTITY_INPUT).value = '';
+
+      $(SELECTOR.PRODUCT_NAME_INPUT).focus();
     }
   }
 }
