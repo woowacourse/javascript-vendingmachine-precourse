@@ -87,6 +87,7 @@ class Controller {
       case 'product-purchase-menu':
         this.view.showProductPurchaseScreen(tabMenu);
         this.triggerChargeSubmitEvent();
+        this.triggerPurchaseClickEvent();
         break;
     }
   }
@@ -131,13 +132,55 @@ class Controller {
     this.vendingMachine.setLocalStorage(tabMenu);
   }
 
+  renderCharge(chargeInput) {
+    const chargeNumber = parseInt(chargeInput, 10);
+    const tabMenu = this.vendingMachine.getLocalStorage();
+    tabMenu['product_purchase_menu']['chargeAmount'] += chargeNumber;
+
+    $id('charge-amount').innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+
+    this.vendingMachine.setLocalStorage(tabMenu);
+  }
+
+  purchaseItem(name, price, idx) {
+    const tabMenu = this.vendingMachine.getLocalStorage();
+    const purchaseItemIdx = tabMenu['product_add_menu'].findIndex((item) => item.name === name);
+
+    tabMenu['product_add_menu'][purchaseItemIdx].quantity -= 1;
+    tabMenu['product_purchase_menu']['chargeAmount'] -= price;
+
+    $id('charge-amount').innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+
+    const productPurchaseQuantity = document.getElementsByClassName('product-purchase-quantity')[
+      idx
+    ];
+    productPurchaseQuantity.innerText = tabMenu['product_add_menu'][purchaseItemIdx].quantity;
+
+    this.vendingMachine.setLocalStorage(tabMenu);
+  }
+
+  triggerPurchaseClickEvent() {
+    const $purchaseButtons = document.getElementsByClassName('purchase-button');
+
+    for (let idx = 0; idx < $purchaseButtons.length; idx++) {
+      $purchaseButtons[idx].addEventListener('click', (e) => {
+        const name =
+          document.getElementsByClassName('product-purchase-name')[idx].dataset.productName;
+        const price =
+          document.getElementsByClassName('product-purchase-price')[idx].dataset.productPrice;
+
+        this.purchaseItem(name, parseInt(price, 10), idx);
+      });
+    }
+  }
+
   triggerChargeSubmitEvent() {
     $id('charge-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const chargeInput = $id('charge-input').value;
 
       if (isValidCharge(chargeInput)) {
-        console.log('pass');
+        this.renderCharge(chargeInput);
       }
     });
   }

@@ -14,14 +14,16 @@ export const getProductPurchaseText = (tabMenu) => {
     .map(
       (item) => `
         <tr class="product-purchase-item">
-          <td class="product-purchase-name">${item.name}</td>
-          <td class="product-purchase-price">${item.price}</td>
-          <td class="product-purchase-quantity">${item.quantity}</td>
-          <td><button>구매하기</button></td>
+          <td data-product-name=${item.name} class="product-purchase-name">${item.name}</td>
+          <td data-product-price=${item.price} class="product-purchase-price">${item.price}</td>
+          <td data-product-quantity=${item.quantity} class="product-purchase-quantity">${item.quantity}</td>
+          <td><button class="purchase-button">구매하기</button></td>
         </tr>
       `
     )
     .join('');
+
+  const { chargeAmount, coinList } = tabMenu['product_purchase_menu'];
 
   return `
     <section>
@@ -30,15 +32,15 @@ export const getProductPurchaseText = (tabMenu) => {
         <input type="number" id="charge-input" placeholder="투입할 금액"/>
         <button id="charge-button">충전하기</button>
       </form>
-      <p>투입한 금액: <div id="charge-amount"></div></p>
+      <p>투입한 금액: <span id="charge-amount">${chargeAmount}</span></p>
     </section>
     <section>
       <h4>구매할 수 있는 상품 현황</h4>
       <table>
         <tr>
-          <th dataset="data-product-name">상품명</th>
-          <th dataset="data-product-price">가격</th>
-          <th dataset="data-product-quantity">수량</th>
+          <th>상품명</th>
+          <th>가격</th>
+          <th>수량</th>
           <th>구매</th>
         </tr>
         ${productPurchaseList}

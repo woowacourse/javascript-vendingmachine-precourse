@@ -9,7 +9,10 @@ class VendingMachine {
         chargeAmount: 0,
         coinList: { 500: 0, 100: 0, 50: 0, 10: 0 },
       },
-      product_purchase_menu: [],
+      product_purchase_menu: {
+        chargeAmount: 0,
+        coinList: { 500: 0, 100: 0, 50: 0, 10: 0 },
+      },
     };
 
     this.init();
