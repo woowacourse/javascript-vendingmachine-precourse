@@ -1,7 +1,5 @@
-import { renderVendingMachineManage } from '../view/index.mjs';
+import { vendingMachineChargeAmount, renderVendingMachineManage } from '../view/index.mjs';
 import { VendingMachine } from '../model/VendingMachine.mjs';
-
-let machine = 0;
 
 function renderVendingMachineManageTab() {
   document.querySelector('main').remove();
@@ -11,18 +9,26 @@ function renderVendingMachineManageTab() {
 function addCoins() {
   window.addEventListener('click', e => {
     if (e.target !== document.querySelector('#vending-machine-charge-button')) return;
-    const chargeMoney = document.querySelector('#vending-machine-charge-input').value;
+    let chargeMoney = document.querySelector('#vending-machine-charge-input').value;
+    // const vendingMachineChargeAmount = document.querySelector('#vending-machine-charge-amount');
 
+    // 재접속
     if (localStorage.getItem('vending-machine-charge-amount')) {
-      machine.chargeMoney(chargeMoney);
+      chargeMoney = Number(localStorage.getItem('vending-machine-charge-amount')) + Number(chargeMoney);
+      localStorage.setItem('vending-machine-charge-amount', chargeMoney);
     } else {
-      machine = new VendingMachine(chargeMoney);
+      localStorage.setItem('vending-machine-charge-amount', chargeMoney);
+
+      // let machine = new VendingMachine(chargeMoney);
     }
+
+    vendingMachineChargeAmount();
   });
 }
 
 export function vendingMachineManageEvent() {
   const $vendingMachineManageMenu = document.querySelector('#vending-machine-manage-menu');
   $vendingMachineManageMenu.addEventListener('click', renderVendingMachineManageTab);
+
   addCoins();
 }

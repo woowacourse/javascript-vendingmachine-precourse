@@ -50,6 +50,11 @@ function amount() {
   $fragment.appendChild($amountOfCoins);
 }
 
+export function vendingMachineChargeAmount() {
+  const vendingMachineChargeAmount = document.querySelector('#vending-machine-charge-amount');
+  vendingMachineChargeAmount.textContent = localStorage.getItem('vending-machine-charge-amount');
+}
+
 export function renderVendingMachineManage() {
   const $app = document.querySelector('#app');
   const $main = document.createElement('main');
@@ -59,4 +64,5 @@ export function renderVendingMachineManage() {
   amount();
   $main.appendChild($fragment);
   $app.appendChild($main);
+  vendingMachineChargeAmount();
 }
