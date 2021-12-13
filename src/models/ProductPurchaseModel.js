@@ -25,4 +25,26 @@ export default class ProductPurchaseModel {
     return parseLocalProductList;
   }
 
+  setPurchaseProduct(selectProduct) {
+    const localProductList = JSON.parse(localStorage.getItem("PRODUCT_LIST"));
+    let localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));
+    localProductList.map(product => product[0] === selectProduct[0] 
+      ? (product[2] = (Number(product[2])-1), localTotalInsertMoney -= Number(product[1])) 
+      : "" );
+    localStorage.setItem("PRODUCT_LIST", JSON.stringify(localProductList));
+    localStorage.setItem("INSERT_MONEY", JSON.stringify(localTotalInsertMoney));
+  }
+
+  getPurchaseResult() {
+    const localProductList = JSON.parse(localStorage.getItem("PRODUCT_LIST"));
+
+    return localProductList;
+  }
+
+  getPuchaseMoneyResult() {
+    const localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));
+
+    return localTotalInsertMoney;
+  }
+
 }

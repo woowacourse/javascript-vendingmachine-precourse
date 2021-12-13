@@ -34,4 +34,17 @@ export default class ProductPurchaseView extends ProductPurchaseController {
     : this.localProductList.map(v => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(v)));
   }
 
+  setPurchaseEvent() {
+    this.productPurchaseField.querySelector('#product-purchase-wrap').addEventListener('click', ({ target }) => {
+      if (target.classList.contains('purchase-button')) {
+        this.purchaseProduct = [...target.closest('tr').childNodes]
+        .map(info => info.dataset)
+        .filter(info => info !== undefined)
+        .map(info => info.productName || info.productPrice || info.productQuantity)
+        .filter(info => info !== undefined);
+      }
+      this.purchaseProductEvent();
+    })
+  }
+
 }
