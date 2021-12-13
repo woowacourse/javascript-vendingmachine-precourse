@@ -64,6 +64,10 @@ class Controller {
     return !isNaN(Number(productNameInput));
   }
 
+  isInValidInteger(inputValue) {
+    return !Number.isInteger(Number(inputValue));
+  }
+
   isValidateProductAdd() {
     const productNameInput = $id('product-name-input').value;
     const productPriceInput = $id('product-price-input').value;
@@ -86,6 +90,11 @@ class Controller {
 
     if (this.isEmpty(productPriceInput)) {
       alert('상품의 가격을 입력해주세요.  ex) 1500');
+      return false;
+    }
+
+    if (this.isInValidInteger(productPriceInput)) {
+      alert('상품의 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.  ex)1500');
       return false;
     }
   }
