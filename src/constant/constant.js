@@ -63,6 +63,7 @@ export const PURCHASE_BUY_BUTTON_CLASS = 'purchase-button';
 export const PURCHASE_ITEM_NAME_CLASS = 'product-purchase-name';
 export const PURCHASE_ITEM_PRICE_CLASS = 'product-purchase-price';
 export const PURCHASE_ITEM_QUANTITY_CLASS = 'product-purchase-quantity';
+export const PURCHASE_RETURN_BUTTON_ID = 'coin-return-button';
 export const TAB_PRODUCT_ADD_ID = 'product-add-menu';
 export const TAB_CHARGE_ID = 'vending-machine-manage-menu';
 export const TAB_PURCHASE_ID = 'product-purchase-menu';
@@ -76,7 +77,6 @@ export const PURCHASE_CONTAINER_ID = 'purchase-container';
 export const CURRENT_TAB_KEY = 'current-tab';
 export const PRODUCTS_STORAGE_KEY = 'products';
 export const COINS_STORAGE_KEY = 'coins';
-export const COIN_SUM_KEY = 'sum';
 export const CURRENT_MONEY_KEY = 'money';
 
 export const MINIMUM_PRICE_INPUT = 100;

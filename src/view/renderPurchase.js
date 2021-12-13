@@ -31,6 +31,7 @@ import {
   TITLE_100,
   TITLE_50,
   TITLE_10,
+  PURCHASE_RETURN_BUTTON_ID,
 } from '../constant/constant.js';
 import { coinListHeaderTemplate } from './renderCharge.js';
 import $ from '../util/$.js';
@@ -95,7 +96,7 @@ function changeHeaderTemplate() {
     <br>
     <h3>${PURCHASE_CHANGE_TITLE}</h3>
     <form>
-      <button>${PURCHASE_RETURN_TITLE}</button>
+      <button id="${PURCHASE_RETURN_BUTTON_ID}">${PURCHASE_RETURN_TITLE}</button>
     </form>
   `;
 }

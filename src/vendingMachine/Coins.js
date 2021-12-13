@@ -15,7 +15,6 @@ import {
   CHARGE_100_QUANTITY_ID,
   CHARGE_50_QUANTITY_ID,
   CHARGE_10_QUANTITY_ID,
-  COIN_SUM_KEY,
   COINS_STORAGE_KEY,
 } from '../constant/constant.js';
 import $ from '../util/$.js';
@@ -56,8 +55,19 @@ export default class Coins {
     this.coins.forEach((coin, index) => {
       sum += coin * coinValues[index];
     });
-    localStorage.setItem(COIN_SUM_KEY, sum);
     return sum;
+  }
+
+  decreaseCoin(decrease, index) {
+    let decreaseCount = 0;
+
+    for (let count = 0; count < decrease; count += 1) {
+      if (this.coins[index] > 0) {
+        this.coins[index] -= 1;
+        decreaseCount += 1;
+      }
+    }
+    return decreaseCount;
   }
 
   template() {

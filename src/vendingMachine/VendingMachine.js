@@ -4,8 +4,14 @@ import {
   PRODUCTS_STORAGE_KEY,
   COINS_STORAGE_KEY,
   CURRENT_MONEY_KEY,
+  COIN_VALUE_500,
+  COIN_VALUE_100,
+  COIN_VALUE_50,
+  COIN_VALUE_10,
+  PURCHASE_AMOUNT_ID,
 } from '../constant/constant.js';
 import Coins from './Coins.js';
+import $ from '../util/$.js';
 
 function getProductsFromStorage() {
   const copy = JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY));
@@ -59,10 +65,31 @@ export default class VendingMachine {
       this.products[index].decreaseQuantity();
       this.money -= +price;
       this.products[index].renderUpdate($productNode, this.money);
+      this.renderMoney();
       localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(this.products));
       localStorage.setItem(CURRENT_MONEY_KEY, this.money);
       return true;
     }
     return false;
+  }
+
+  returnChange() {
+    let currentMoney = this.money;
+    const coinValues = [COIN_VALUE_500, COIN_VALUE_100, COIN_VALUE_50, COIN_VALUE_10];
+
+    coinValues.forEach((coinValue, index) => {
+      const share = parseInt(currentMoney / coinValue, 10);
+      const decreaseCount = this.change.decreaseCoin(share, index);
+      currentMoney -= decreaseCount * coinValue;
+    });
+    this.money = currentMoney;
+    localStorage.setItem(CURRENT_MONEY_KEY, this.money);
+    localStorage.setItem(COINS_STORAGE_KEY, JSON.stringify(this.change.coins));
+  }
+
+  renderMoney() {
+    const $moneyNode = $(`#${PURCHASE_AMOUNT_ID}`);
+
+    $moneyNode.textContent = this.money;
   }
 }

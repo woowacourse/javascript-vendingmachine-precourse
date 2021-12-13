@@ -6,6 +6,7 @@ import {
   PURCHASE_BUY_BUTTON_CLASS,
   PRODUCT_NODE_NAME_INDEX,
   PRODUCT_NODE_PRICE_INDEX,
+  PURCHASE_RETURN_BUTTON_ID,
 } from '../constant/constant.js';
 
 function onMoneyInput(event, vendingMachine) {
@@ -41,7 +42,19 @@ function moneyInputHandler(vendingMachine) {
   $moneyInput.addEventListener('click', (event) => onMoneyInput(event, vendingMachine));
 }
 
+function onReturn(event, vendingMachine) {
+  event.preventDefault();
+  vendingMachine.returnChange();
+}
+
+function returnHandler(vendingMachine) {
+  const $returnButton = $(`#${PURCHASE_RETURN_BUTTON_ID}`);
+
+  $returnButton.addEventListener('click', (event) => onReturn(event, vendingMachine));
+}
+
 export default function purchaseHandler(vendingMachine) {
   moneyInputHandler(vendingMachine);
   buyButtonHandler(vendingMachine);
+  returnHandler(vendingMachine);
 }
