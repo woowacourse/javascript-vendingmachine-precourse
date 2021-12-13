@@ -81,7 +81,7 @@ export default class Controller {
 
     if (this.store.clickedTab === 'productPurchaseMenu') {
       
-      this.productManagementView.show(
+      this.productManagementView.hide(
         JSON.parse(this.store.storage.getItem('productList')),
       );
 
@@ -90,7 +90,7 @@ export default class Controller {
         this.store.getChangeListTotal(),
       ]);
 
-      this.purchasingProductView.hide([
+      this.purchasingProductView.show([
         JSON.parse(this.store.storage.getItem('productList')),
         JSON.parse(this.store.storage.getItem('changeList')),
         JSON.parse(this.store.storage.getItem('puttedMoney')),
@@ -111,7 +111,7 @@ export default class Controller {
         JSON.parse(this.store.storage.getItem('puttedMoney')),
       ]);
     } else if (this.store.clickedTab === 'productAddMenu') {
-      this.productManagementView.hide(
+      this.productManagementView.show(
         JSON.parse(this.store.storage.getItem('productList')),
       );
 
@@ -120,7 +120,7 @@ export default class Controller {
         this.store.getChangeListTotal(),
       ]);
 
-      this.purchasingProductView.show([
+      this.purchasingProductView.hide([
         JSON.parse(this.store.storage.getItem('productList')),
         JSON.parse(this.store.storage.getItem('changeList')),
         JSON.parse(this.store.storage.getItem('puttedMoney')),

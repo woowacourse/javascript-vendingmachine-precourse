@@ -4,7 +4,7 @@ export const ERROR_MESSAGE = {
 
 export const TAB_BUTTON_ELEMENTS = {
   productPurchaseMenu: {
-    id: 'product-purchase-menu',
+    id: 'product-add-menu',
     value: '상품 관리',
   },
   vendingMachineManageMenu: {
@@ -12,7 +12,7 @@ export const TAB_BUTTON_ELEMENTS = {
     value: '잔돈 충전',
   },
   productAddMenu: {
-    id: 'product-add-menu',
+    id: 'product-purchase-menu',
     value: '상품 구매',
   },
 };

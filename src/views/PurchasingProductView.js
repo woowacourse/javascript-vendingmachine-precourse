@@ -71,7 +71,8 @@ class Template {
       <input id="charge-input" type="number" placeholder="투입할 금액" />
       <button id="charge-button">투입하기</button>
       <br /><br />
-      <span id="charge-amount">투입한 금액: </span>
+      <span>투입한 금액: </span>
+      <span id="charge-amount"></span>
     `;
   }
 
@@ -121,19 +122,19 @@ class Template {
         <tbody>
           <tr>
             <td>500</td>
-            <td id="coin-500-quantity">${changeList.returnedCoins['500']}</td>
+            <td id="coin-500-quantity">${changeList.returnedCoins['500']}개</td>
           </tr>
           <tr>
             <td>100</td>
-            <td id="coin-100-quantity">${changeList.returnedCoins['100']}</td>
+            <td id="coin-100-quantity">${changeList.returnedCoins['100']}개</td>
           </tr>
           <tr>
             <td>50</td>
-            <td id="coin-50-quantity">${changeList.returnedCoins['50']}</td>
+            <td id="coin-50-quantity">${changeList.returnedCoins['50']}개</td>
           </tr>
           <tr>
             <td>10</td>
-            <td id="coin-10-quantity">${changeList.returnedCoins['10']}</td>
+            <td id="coin-10-quantity">${changeList.returnedCoins['10']}개</td>
           </tr>
         </tbody>
       </table>
