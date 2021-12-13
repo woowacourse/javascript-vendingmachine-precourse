@@ -1,5 +1,6 @@
 import { INPUT, INVALID } from '../common/constants.js';
 import { $ } from '../common/elements.js';
+import invalidException from '../common/Exception.js';
 
 function checkProductNameInputValidation() {
   const productNameInput = $('product-name-input').value;
@@ -36,11 +37,6 @@ export function checkInputsValidation() {
   return (
     productNameInputValid && productPriceInputValid && productQuantityInputValid
   );
-}
-
-function invalidException(message, element) {
-  alert(message);
-  element.focus();
 }
 
 export function onInvalidInputsSubmit() {

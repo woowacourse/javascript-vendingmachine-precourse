@@ -1,4 +1,5 @@
 import createChangeCharge from './ChangeCharge/ChangeCharge.js';
+import setCoinChargeClick from './ChangeCharge/Charge.js';
 import setProductAddClick from './ProductManage/Add.js';
 import createProductManage from './ProductManage/ProductManage.js';
 import createProductPurchase from './ProductPurchase/ProductPurchase.js';
@@ -15,6 +16,7 @@ function initialize() {
   createElements();
   setTabMenu();
   setProductAddClick();
+  setCoinChargeClick();
 }
 
 initialize();
