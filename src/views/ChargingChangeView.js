@@ -36,9 +36,9 @@ export default class ChargingChangeView extends View {
 
   handleVendingMachineChargeButton() {
     const inputChanges = this.vendingMachineChargeInput.value;
-    if (checkNumberLessThanZero(parseInt(inputChanges))) return;
-    if (checkMoreThanOneHundred(parseInt(inputChanges))) return;
-    if (!checkTenDigits(parseInt(inputChanges))) return;
+    if (checkNumberLessThanZero(Number(inputChanges))) return;
+    if (checkMoreThanOneHundred(Number(inputChanges))) return;
+    if (!checkTenDigits(Number(inputChanges))) return;
     
     const changes = this.handleCalculationChanges(
       inputChanges,

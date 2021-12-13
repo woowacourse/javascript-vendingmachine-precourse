@@ -38,9 +38,9 @@ export default class ProductManagementView extends View {
     const quantity = this.productQuantityInput.value;
 
     if (checkLengthLessThanZero(name)) return;
-    if (checkNumberLessThanZero(parseInt(price))) return;
-    if (!checkTenDigits(parseInt(price))) return;
-    if (checkNumberLessThanZero(parseInt(quantity))) return;
+    if (checkNumberLessThanZero(Number(price))) return;
+    if (!checkTenDigits(Number(price))) return;
+    if (checkNumberLessThanZero(Number(quantity))) return;
 
     const product = { name, price, quantity };
     this.emit(CUSTOM_EVENT_NAME.ADD_PRODUCT, { product });

@@ -82,14 +82,14 @@ export default class Controller {
   }
 
   handlePurchaseProduct(event) {
-    const isPurchased = this.store.substractPuttedMoney(parseInt(event.detail.product.price));
+    const isPurchased = this.store.substractPuttedMoney(Number(event.detail.product.price));
     if (!isPurchased) return;
     this.store.substractProductQuantity(event.detail.product);
     this.setDisplayShowPurchasingProductView();
   }
 
   handleAddPuttedMoney(event) {
-    this.store.addPuttedMoney(parseInt(event.detail.puttedMoney));
+    this.store.addPuttedMoney(Number(event.detail.puttedMoney));
     this.setDisplayShowPurchasingProductView();
   }
 

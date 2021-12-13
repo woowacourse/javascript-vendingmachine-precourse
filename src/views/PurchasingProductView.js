@@ -54,8 +54,8 @@ export default class PurchasingProductView extends View {
   handleChargePuttedMoney() {
     const { value: puttedMoney } = this.vendingMachineChargeInput;
 
-    if (checkNumberLessThanZero(parseInt(puttedMoney))) return;
-    if (!checkTenDigits(parseInt(puttedMoney))) return;
+    if (checkNumberLessThanZero(Number(puttedMoney))) return;
+    if (!checkTenDigits(Number(puttedMoney))) return;
 
     this.emit(CUSTOM_EVENT_NAME.ADD_PUTTED_MONEY, { puttedMoney });
   }

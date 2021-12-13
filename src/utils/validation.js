@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from "../constants.js";
 
 export function checkNumberLessThanZero(value) {
-  if (isNaN(value) || value <= 0) {
+  if (Number.isNaN(value) || value <= 0) {
     alert(ERROR_MESSAGE.INCORRECT_NUMBER);
     return true;
   }
@@ -45,7 +45,7 @@ export function checkDuplicationName(productList, product) {
 }
 
 export function checkMoreThanOneHundred(value) {
-  if (isNaN(value) || value < 100) {
+  if (Number.isNaN(value) || value < 100) {
     alert(ERROR_MESSAGE.MORE_THAN_ONE_HUNDRED);
     return true;
   }

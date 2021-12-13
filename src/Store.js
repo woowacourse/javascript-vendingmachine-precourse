@@ -65,16 +65,16 @@ export default class Store {
   chargeChanges(changeList) {
     const originalChangeList = this.getChangeList();
 
-    originalChangeList[COIN_LIST.FIVE_HUNDRED] += parseInt(
+    originalChangeList[COIN_LIST.FIVE_HUNDRED] += Number(
       changeList[COIN_LIST.FIVE_HUNDRED],
     );
-    originalChangeList[COIN_LIST.ONE_HUNDRED] += parseInt(
+    originalChangeList[COIN_LIST.ONE_HUNDRED] += Number(
       changeList[COIN_LIST.ONE_HUNDRED],
     );
-    originalChangeList[COIN_LIST.FIFTY] += parseInt(
+    originalChangeList[COIN_LIST.FIFTY] += Number(
       changeList[COIN_LIST.FIFTY],
     );
-    originalChangeList[COIN_LIST.TEN] += parseInt(changeList[COIN_LIST.TEN]);
+    originalChangeList[COIN_LIST.TEN] += Number(changeList[COIN_LIST.TEN]);
 
     this.setChangeList(originalChangeList);
   }
@@ -108,13 +108,13 @@ export default class Store {
 
   addPuttedMoney(money) {
     const puttedMoney = this.getPuttedMoney();
-    puttedMoney.inputMoney = parseInt(puttedMoney.inputMoney) + money;
+    puttedMoney.inputMoney = Number(puttedMoney.inputMoney) + money;
     this.setPuttedMoney(puttedMoney);
   }
 
   substractPuttedMoney(money) {
     const puttedMoney = this.getPuttedMoney();
-    puttedMoney.inputMoney = parseInt(puttedMoney.inputMoney) - money;
+    puttedMoney.inputMoney = Number(puttedMoney.inputMoney) - money;
 
     if (!checkEnoughMoney(puttedMoney.inputMoney)) return false;
 
