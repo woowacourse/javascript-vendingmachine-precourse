@@ -15,14 +15,12 @@ export default class Controller {
       this.vendingMachine = new VendingMachine();
     }
     this.onClickTabBtn();
+
+    this.onClickAddProduct(); // 상품 관리 탭 - 추가하기 버튼 클릭 시
   }
 
   onClickTabBtn() {
-    const $manageTabBtn = document.getElementById("product-add-menu");
-    const $chargeTabBtn = document.getElementById(
-      "vending-machine-manage-menu"
-    );
-    const $purchaseTabBtn = document.getElementById("product-purchase-menu");
+    const { $manageTabBtn, $chargeTabBtn, $purchaseTabBtn } = this.view.buttons;
 
     $manageTabBtn.addEventListener("click", () => {
       this.view.showSelectedID("manage-tab");
@@ -34,6 +32,16 @@ export default class Controller {
 
     $purchaseTabBtn.addEventListener("click", () => {
       this.view.showSelectedID("purchase-tab");
+    });
+  }
+
+  onClickAddProduct() {
+    const { $addProductBtn } = this.view.buttons;
+    $addProductBtn.addEventListener("click", () => {
+      console.log("HI");
+      // 입력 검증
+      // this.vendingMachine.addProduct(name, price, quantity);
+      // console.log(this.vendingMachine.productList);
     });
   }
 }

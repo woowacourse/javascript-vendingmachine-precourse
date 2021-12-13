@@ -10,7 +10,7 @@ const MANAGE_VIEW = `
   <input placeholder="상품명" id="product-name-input"/>
   <input placeholder="가격" id="product-price-input"/>
   <input placeholder="수량" id="product-quantity-input"/>
-  <button id=" product-add-button">추가하기</button>
+  <button id="product-add-button">추가하기</button>
   <h2>상품 현황</h2>
   <table>
     <th>상품명</th><th>가격</th><th>수량</th>
@@ -64,13 +64,4 @@ const PURCHASE_VIEW = `
   </table>
   `;
 
-const BUTTONS = {
-  $manageTabBtn: document.getElementById("product-add-menu"),
-  $chargeTabBtn: document.getElementById("vending-machine-manage-menu"),
-  $purchaseTabBtn: document.getElementById("product-purchase-menu"),
-  $addProductBtn: document.getElementById("product-add-button"),
-  $chargeBtn: document.getElementById("charge-button"),
-  $coinReturnBtn: document.getElementById("coin-return-button"),
-};
-
-export { COMMON_VIEW, MANAGE_VIEW, CHARGE_VIEW, PURCHASE_VIEW, BUTTONS };
+export { COMMON_VIEW, MANAGE_VIEW, CHARGE_VIEW, PURCHASE_VIEW };

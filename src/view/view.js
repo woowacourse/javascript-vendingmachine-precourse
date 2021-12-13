@@ -12,7 +12,11 @@ export default class View {
     this.manageTabRender();
     this.chargeTabRender();
     this.purchaseTabRender();
+
     this.tab = ["manage-tab", "charge-tab", "purchase-tab"];
+    this.buttons = this.getButtons();
+    this.inputs = this.getInputs();
+
     hideWithID("manage-tab");
     hideWithID("charge-tab");
     hideWithID("purchase-tab");
@@ -58,5 +62,26 @@ export default class View {
     $purchaseTab.id = "purchase-tab";
     $purchaseTab.innerHTML = PURCHASE_VIEW;
     $app.after($purchaseTab);
+  }
+
+  getButtons() {
+    return {
+      $manageTabBtn: document.getElementById("product-add-menu"),
+      $chargeTabBtn: document.getElementById("vending-machine-manage-menu"),
+      $purchaseTabBtn: document.getElementById("product-purchase-menu"),
+      $addProductBtn: document.getElementById("product-add-button"),
+      $chargeBtn: document.getElementById("charge-button"),
+      $coinReturnBtn: document.getElementById("coin-return-button"),
+    };
+  }
+
+  getInputs() {
+    return {
+      $addName: document.getElementById(" product-name-input"),
+      $addPrice: document.getElementById("product-price-input"),
+      $addQuantity: document.getElementById("product-quantity-input"),
+      $chargeCoin: document.getElementById("vending-machine-charge-input"),
+      $buyMoney: document.getElementById("charge-input"),
+    };
   }
 }
