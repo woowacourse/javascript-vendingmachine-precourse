@@ -59,7 +59,11 @@ export default class TabPurchase {
     this.chargingTitle = new Title('금액 투입');
     this.chargingInput = new Input(SELECTOR.ID_CHARGE_INPUT, '투입할 금액', 'number');
     this.chargingSubmit = new Button(SELECTOR.ID_CHARGE_BUTTON, '투입하기');
-    this.chargingAmount = new AmountView(SELECTOR.ID_CHARGE_AMOUNT, '투입한 금액', 0);
+    this.chargingAmount = new AmountView(
+      SELECTOR.ID_CHARGE_AMOUNT,
+      '투입한 금액',
+      this.vendingMachine.getRechargedMoneyAmount()
+    );
 
     this.$root.appendChild(this.chargingTitle.getTarget());
     this.$root.appendChild(this.chargingInput.getTarget());

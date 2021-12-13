@@ -16,7 +16,7 @@ export default class VendingMachine {
     this.initializeProductList();
     this.initializeRechargedCoin();
     this.initializeRechargedCoinAmount();
-    this.rechargedMoneyAmount = null;
+    this.initializeRechargedMoneyAmount();
     this.returnedCoin = [
       new Coin(COIN.COIN_500, null),
       new Coin(COIN.COIN_100, null),
@@ -60,6 +60,15 @@ export default class VendingMachine {
     this.rechargedCoinAmount = null;
     if (loadedRechargedCoinAmount !== null) {
       this.rechargedCoinAmount = loadedRechargedCoinAmount;
+    }
+  }
+
+  initializeRechargedMoneyAmount() {
+    const loadedRechargedMoneyAmount = loadFromStorage(STORAGE.rechargedMoneyAmount);
+
+    this.rechargedMoneyAmount = null;
+    if (loadedRechargedMoneyAmount !== null) {
+      this.rechargedMoneyAmount = loadedRechargedMoneyAmount;
     }
   }
 
@@ -127,6 +136,7 @@ export default class VendingMachine {
 
   rechargeMoney(amount) {
     this.rechargedMoneyAmount += amount;
+    saveToStorage(STORAGE.rechargedMoneyAmount, this.rechargedMoneyAmount);
   }
 
   sellProduct(selledProduct) {
