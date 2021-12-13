@@ -1,6 +1,6 @@
 import { $, handleStorage } from '../controller/utils.js';
 import {
-  fixMenus,
+  headerMenu,
   productAddMenu,
   vendingMachineManageMenu,
   productPurchaseMenu,
@@ -28,7 +28,7 @@ export const showPurchaseMenu = () => {
 
 export const initView = () => {
   const $app = $('app');
-  $app.insertAdjacentHTML('afterbegin', fixMenus);
+  $app.insertAdjacentHTML('afterbegin', headerMenu);
   showAddMenu();
 };
 

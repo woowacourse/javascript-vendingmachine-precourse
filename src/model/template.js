@@ -1,4 +1,4 @@
-export const fixMenus = `
+export const headerMenu = `
 <div>
     <h1>🥤자판기🥤</h1>
     <button id="product-add-menu">상품 관리</button>
