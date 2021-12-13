@@ -6,7 +6,7 @@ export const PURCHASE_TAP = {
   INSERT_MONEY_AMOUNT_ID: "charge-amount",
   PRODUCT_STATE_TITLE: "구매할 수 있는 상품 현황",
   PRODUCT_STATE_TABLE_HEADERS: ["상품명", "가격", "수량", "구매"],
-  PRODUCT_STATE_IDS: [
+  PRODUCT_STATE_CLASSES: [
     "product-purchase-name",
     "product-purchase-price",
     "product-purchase-quantity",

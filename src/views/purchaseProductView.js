@@ -67,7 +67,9 @@ const makeproductStateTableRaw = product => {
   const information = product.getInformation();
   const tr = document.createElement("tr");
   information.forEach((tag, index) =>
-    tr.appendChild(makeTdWithClass(tag, PURCHASE_TAP.PRODUCT_STATE_IDS[index]))
+    tr.appendChild(
+      makeTdWithClass(tag, PURCHASE_TAP.PRODUCT_STATE_CLASSES[index])
+    )
   );
   tr.appendChild(makeproductStateTableButton());
 

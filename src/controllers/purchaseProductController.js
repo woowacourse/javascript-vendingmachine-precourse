@@ -27,15 +27,15 @@ const resetInput = () => {
 };
 
 const getNameTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_IDS[NAME]}`);
+  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_CLASSES[NAME]}`);
 };
 
 const getPriceTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_IDS[ID]}`);
+  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_CLASSES[ID]}`);
 };
 
 export const getQuantityTag = form => {
-  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_IDS[QUANTITY]}`);
+  return form.querySelector(`.${PURCHASE_TAP.PRODUCT_STATE_CLASSES[QUANTITY]}`);
 };
 
 const setIsRenderInsertedMoney = () => {
