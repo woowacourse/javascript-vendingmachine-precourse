@@ -1,21 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
 #app {
   padding: 40px;
 }
-.header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.header span {
+h1 {
   line-height: 28px;
   font-size: 28px;
   font-weight: 800;
+}
+h2 {
+  line-height: 22px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.header h1 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .header img {
   height: 40px;
   width: auto;
 }
-
 .tab-menu {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+#product-add-pane .row {
+  margin-bottom: 30px;
+}
+
+table {
+  border-collapse: collapse;
+}
+table td,
+table th {
+  border: 1px solid black;
+  min-width: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
 }

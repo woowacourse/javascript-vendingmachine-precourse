@@ -13,16 +13,14 @@ class Observable {
   }
 
   registerObserver(observer) {
-    this.observers.filter((_observer) => {
-      return _observer.getId() !== observer.getId();
-    });
     this.observers = [...this.observers, observer];
   }
 
   unregisterObserver({ id }) {
-    this.observers = this.observers.filter((_observer) => {
+    const observers = this.observers.filter((_observer) => {
       return _observer.getId() !== id;
     });
+    this.observers = [...observers];
   }
 }
 
