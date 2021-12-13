@@ -1,4 +1,4 @@
-import { DIVIDE_CHARGE, ZERO } from '../../constants.js';
+import { DIVIDE_CHARGE, MINIMUM_CHARGE, MINIMUN_PRICE, ZERO } from '../../constants.js';
 
 // 값이 있는지 체크
 export function checkProductName(productName) {
@@ -15,7 +15,7 @@ export function checkProductName(productName) {
 export function checkProductPrice(productPrice) {
   console.log(productPrice);
   let allowProductPrice = false;
-  if (productPrice > 0 && productPrice % DIVIDE_CHARGE == ZERO) {
+  if (productPrice > MINIMUN_PRICE && productPrice % DIVIDE_CHARGE == ZERO) {
     allowProductPrice = true;
   }
 
@@ -30,4 +30,14 @@ export function checkProductQuantity(productQuantity) {
   }
 
   return allowProductQuantity;
+}
+
+export function checkCoin(coin) {
+  console.log(coin);
+  let allowCoin = false;
+  if (coin > MINIMUM_CHARGE && coin % DIVIDE_CHARGE == ZERO) {
+    allowCoin = true;
+  }
+
+  return allowCoin;
 }
