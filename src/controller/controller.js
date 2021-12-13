@@ -1,5 +1,10 @@
 import View from "../view/view.js";
 import VendingMachine from "../model/vendingMachine.js";
+import {
+  isVaildPrice,
+  isValidName,
+  isValidQuantity,
+} from "../utils/validation.js";
 
 export default class Controller {
   constructor() {
@@ -37,11 +42,21 @@ export default class Controller {
 
   onClickAddProduct() {
     const { $addProductBtn } = this.view.buttons;
+    const { $addName, $addPrice, $addQuantity } = this.view.inputs;
+
     $addProductBtn.addEventListener("click", () => {
-      console.log("HI");
-      // 입력 검증
-      // this.vendingMachine.addProduct(name, price, quantity);
-      // console.log(this.vendingMachine.productList);
+      if (
+        !isValidName($addName.value) ||
+        !isVaildPrice($addPrice.value) ||
+        !isValidQuantity($addQuantity.value)
+      ) {
+        alert("다시 입력하세요.");
+      }
+      this.vendingMachine.addProduct(
+        $addName.value,
+        $addPrice.value,
+        $addQuantity.value
+      );
     });
   }
 }

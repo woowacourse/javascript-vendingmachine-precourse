@@ -77,7 +77,7 @@ export default class View {
 
   getInputs() {
     return {
-      $addName: document.getElementById(" product-name-input"),
+      $addName: document.getElementById("product-name-input"),
       $addPrice: document.getElementById("product-price-input"),
       $addQuantity: document.getElementById("product-quantity-input"),
       $chargeCoin: document.getElementById("vending-machine-charge-input"),
