@@ -78,22 +78,16 @@ export const getChange = () => {
   const hasCoin = store.getLocalStorage('coins');
 
   change = calculatefiveHundred(change, hasCoin);
-
   change = calculateOneHundred(change, hasCoin);
-
   change = calculateFifty(change, hasCoin);
-
   change = calculateTen(change, hasCoin);
 
-  $('#charge-amount').innerText = change;
-  store.setLocalStorage('holdAmount', change);
   return change;
 };
 
-export const updateAmount = (holdAmount, price) => {
-  holdAmount -= price;
-  store.setLocalStorage('holdAmount', holdAmount);
-  return holdAmount;
+export const updateAmount = (inputMoney, productPrice) => {
+  inputMoney -= productPrice;
+  return inputMoney;
 };
 
 export const updateProductQuantity = e => {

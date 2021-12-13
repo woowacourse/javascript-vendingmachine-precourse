@@ -6,7 +6,7 @@ import { getChange, updateProductQuantity, updateAmount } from '../models/produc
 import alertMessage from '../views/alertMessage.js';
 
 function HandleProductPurchase() {
-  this.inputMoney = Number($('#charge-amount').innerText) || 0;
+  this.inputMoney = 0;
 
   this.init = () => {
     if (store.getLocalStorage('inputMoney')) {
@@ -42,8 +42,7 @@ function HandleProductPurchase() {
     return true;
   };
 
-  const isValidQuantity = e => {
-    const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
+  const isValidQuantity = purchaseIndex => {
     const products = store.getLocalStorage('products');
 
     if (!products[purchaseIndex].quantity) {
@@ -70,9 +69,11 @@ function HandleProductPurchase() {
   $('#product-purchase-list').addEventListener('click', e => {
     if (e.target.className === 'purchase-button') {
       const productPrice = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
+      const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
 
-      if (isValidPurchase(this.inputMoney, productPrice) && isValidQuantity(e)) {
+      if (isValidPurchase(this.inputMoney, productPrice) && isValidQuantity(purchaseIndex)) {
         this.inputMoney = updateAmount(this.inputMoney, productPrice);
+        store.setLocalStorage('inputMoney', this.inputMoney);
         renderInputMoney(this.inputMoney);
         updateProductQuantity(e);
       }
@@ -82,6 +83,8 @@ function HandleProductPurchase() {
   // (3) 잔돈을 반환하는 기능
   $('#coin-return-button').addEventListener('click', () => {
     this.inputMoney = getChange();
+    store.setLocalStorage('inputMoney', this.inputMoney);
+    renderInputMoney();
   });
 
   this.init();
