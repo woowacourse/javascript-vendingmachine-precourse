@@ -86,6 +86,7 @@ export default function ProductPurchaseMenuView() {
 
   this.onClickReturnCoinButton = (e) => {
     e.preventDefault();
+    const returnCoin = vendingMachine.returnCoin();
   };
 
   this.renderInsertMoney = () => {

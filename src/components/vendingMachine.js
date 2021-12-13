@@ -1,3 +1,4 @@
+import { COIN } from '../constants/coin.js';
 import { alertPurchaseErrorMessage, canPurchase } from './validator.js';
 
 function VendingMachine() {
@@ -25,7 +26,7 @@ function VendingMachine() {
     let amount = charge;
 
     while (amount >= 0) {
-      const coin = MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+      const coin = MissionUtils.Random.pickNumberInList(COIN);
 
       if (coin <= amount) {
         this.coin[coin] += 1;
@@ -61,6 +62,29 @@ function VendingMachine() {
     this.insertMoney -= product.price;
     localStorage.setItem('product', JSON.stringify(this.products));
     localStorage.setItem('insert', JSON.stringify(this.insertMoney));
+  };
+
+  this.getReturnCoinCount = (coin) => {
+    const minCount = Math.min(
+      this.coin[coin],
+      parseInt(this.insertMoney / coin)
+    );
+
+    this.coin[coin] -= minCount;
+    this.insertMoney -= minCount * coin;
+    this.charge -= minCount * coin;
+
+    return minCount;
+  };
+
+  this.returnCoin = () => {
+    const returnCoin = COIN.map((coin) => this.getReturnCoinCount(coin));
+
+    localStorage.setItem('coin', JSON.stringify(this.coin));
+    localStorage.setItem('insert', JSON.stringify(this.insertMoney));
+    localStorage.setItem('charge', JSON.stringify(this.charge));
+
+    return returnCoin;
   };
 }
 
