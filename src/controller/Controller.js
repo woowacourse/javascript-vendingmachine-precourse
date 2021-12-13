@@ -76,6 +76,10 @@ class Controller {
     return inputValue % 10 !== 0;
   }
 
+  isSameOrLessZero(inputValue) {
+    return inputValue <= 0;
+  }
+
   isValidateProductAdd() {
     const productNameInput = $id('product-name-input').value;
     const productPriceInput = $id('product-price-input').value;
@@ -123,6 +127,11 @@ class Controller {
 
     if (this.isInValidInteger(productQuantityInput)) {
       alert('소수 값이 아닌 상품의 수량을 입력해주세요.  ex) 20');
+      return false;
+    }
+
+    if (this.isSameOrLessZero(productQuantityInput)) {
+      alert('0보다 큰 상품의 수량을 입력해주세요.  ex) 20');
       return false;
     }
   }
