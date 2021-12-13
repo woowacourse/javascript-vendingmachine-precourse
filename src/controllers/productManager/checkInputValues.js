@@ -1,12 +1,14 @@
-import { ALERT_MSG } from "../../utils/constants.js";
+import { ALERT_MSG, CONDITION } from "../../utils/constants.js";
 import { isPositiveInteger } from "../common/isPositiveInteger.js";
 
 // 상품 가격이 조건에 맞는지 확인
 // 조건: 100원 이상이며 10으로 나누어 떨어져야 함
 const isValidPrice = priceStr => {
   const price = parseInt(priceStr, 10);
+  const { PRICE } = CONDITION;
+  const { minPrice, divideUnit } = PRICE;
 
-  return price >= 100 && price % 10 === 0;
+  return price >= minPrice && price % divideUnit === 0;
 };
 
 // 상품명, 가격, 재고 중 비어있는 값이 있는지 확인
