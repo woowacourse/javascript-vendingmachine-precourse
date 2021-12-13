@@ -3,7 +3,7 @@ import { COIN_TABLE } from '../constants/table.js';
 import {
   Form,
   Input,
-  Button,
+  ButtonWithId,
   Table,
   TableHead,
   TableRow,
@@ -28,7 +28,7 @@ export const createAddCoinForm = (event) => {
     'number',
     '자판기가 보유할 금액'
   );
-  const addCoinButton = Button(
+  const addCoinButton = ButtonWithId(
     '충전하기',
     ID.VENDING_MACHINE_CHARGE_BUTTON,
     event

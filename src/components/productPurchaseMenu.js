@@ -3,7 +3,8 @@ import { COIN_TABLE, PRODUCT_PURCHASE_TABLE } from '../constants/table.js';
 import {
   Form,
   Input,
-  Button,
+  ButtonWithId,
+  ButtonWithClassName,
   Table,
   TableHead,
   TableRow,
@@ -16,16 +17,25 @@ import {
 export const createAddMoneyForm = (event) => {
   const addMoneyForm = Form();
   const addMoneyInput = Input(ID.CHARGE_INPUT, 'number', '투입할 금액');
-  const addMoneyButton = Button('투입하기', ID.CHARGE_BUTTON, event);
+  const addMoneyButton = ButtonWithId('투입하기', ID.CHARGE_BUTTON, event);
 
   addMoneyForm.append(addMoneyInput, addMoneyButton);
 
   return addMoneyForm;
 };
 
-export const createProductPurchaseRow = (datas, trClassName, tdClassNames) => {
+export const createProductPurchaseRow = (
+  datas,
+  trClassName,
+  tdClassNames,
+  event
+) => {
   const tr = TableRowWithClassName(trClassName);
-  const purchaseButton = Button('구매하기', CLASS.PRODUCT_PURCHASE_BUTTON);
+  const purchaseButton = ButtonWithClassName(
+    '구매하기',
+    CLASS.PRODUCT_PURCHASE_BUTTON,
+    event
+  );
 
   datas.forEach((data, index) => {
     const td = TableDataWithClassName(data, tdClassNames[index]);

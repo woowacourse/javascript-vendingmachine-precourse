@@ -3,7 +3,7 @@ import { PRODUCT_TABLE } from '../constants/table.js';
 import {
   Form,
   Input,
-  Button,
+  ButtonWithId,
   Table,
   TableHead,
   TableRowWithClassName,
@@ -19,7 +19,7 @@ export const createProductForm = (event) => {
     'number',
     '수량'
   );
-  const addButton = Button('추가하기', ID.PRODUCT_ADD_BUTTON, event);
+  const addButton = ButtonWithId('추가하기', ID.PRODUCT_ADD_BUTTON, event);
 
   productForm.append(
     productNameInput,
