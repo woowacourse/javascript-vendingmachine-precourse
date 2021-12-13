@@ -33,6 +33,23 @@ export default function productPurchase() {
           <th>동전</th>
           <th>개수</th>
         </tr>
+        
+          <tr>
+            <th>500원</th>
+            <th id="vending-machine-coin-500-quantity"></th>
+          </tr>
+          <tr>
+            <th>100원</th>
+            <th id="vending-machine-coin-500-quantity"></th>
+          </tr>
+          <tr>
+            <th>50원</th>
+            <th id="vending-machine-coin-500-quantity"></th>
+          </tr>
+          <tr>
+            <th>10원</th>
+            <th id="vending-machine-coin-500-quantity"></th>
+          </tr>
       </thead>
       <tbody>
        
