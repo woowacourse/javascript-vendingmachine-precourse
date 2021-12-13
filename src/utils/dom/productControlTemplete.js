@@ -15,3 +15,13 @@ export const productControlTemplete =  `
     </tbody>
   </table>
 `;
+
+export function renderProductList(product) {
+  const divFragment = document.createElement('tr');
+  divFragment.innerHTML = 
+  `<td style="border: 1px solid black">${product[0]}</td>
+    <td  style="border: 1px solid black">${product[1]}</td>
+    <td style="border: 1px solid black">${product[2]}</td>`;
+  
+  return divFragment;
+}
