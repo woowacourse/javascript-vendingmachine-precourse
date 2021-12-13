@@ -79,3 +79,41 @@ export const inputtedAmountSpanConstants = {
   P_VALUE: '투입한 금액',
   SPAN_ID: 'charge-amount',
 };
+
+export const coinItemsConstants = {
+  CONTAINER_ID: 'tbody',
+  ITEM_ID: [
+    'vending-machine-coin-500-quantity',
+    'vending-machine-coin-100-quantity',
+    'vending-machine-coin-50-quantity',
+    'vending-machine-coin-10-quantity',
+  ],
+};
+
+export const changesCoinItemsConstants = {
+  CONTAINER_ID: '#changes-coins-table-body',
+  ITEM_ID: [
+    'coin-500-quantity',
+    'coin-100-quantity',
+    'coin-50-quantity',
+    'coin-10-quantity',
+  ],
+};
+
+export const productItemsConstants = {
+  TD_ID: [
+    'product-manage-name',
+    'product-manage-price',
+    'product-manage-quantity',
+  ],
+  CONTAINER_ID: 'tbody',
+};
+
+export const purchableProductItemsConstants = {
+  TD_ID: [
+    'product-purchase-name',
+    'product-purchase-price',
+    ' product-purchase-quantity',
+  ],
+  CONTAINER_ID: '#purchasable-product-table-body',
+};

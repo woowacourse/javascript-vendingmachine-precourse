@@ -1,14 +1,13 @@
 // prettier-ignore
 import { getRandomCoinsList, reflectCoinsToLocalStorage } from './manageCoins.js';
 // prettier-ignore
-import {stringConstants, chargeChangesSpanConstants } from '../constant/string.js';
+import {stringConstants, chargeChangesSpanConstants, changesCoinItemsConstants } from '../constant/string.js';
 import { $ } from '../util/dom.js';
 import { check } from '../util/checkValue.js';
 import { store } from '../store/store.js';
 import { COINS_PRICE, DECIMAL } from '../constant/constant.js';
 import { localStorageConstants } from '../constant/localstorage.js';
-import { renderChangesCoinsItems } from '../render/render.js';
-import { renderAmountSpan } from '../render/common.js';
+import { renderAmountSpan, renderCoinsItems } from '../render/common.js';
 
 export const checkChangesInput = e => {
   e.preventDefault();
@@ -51,5 +50,5 @@ export const calculateChanges = (numberOfCoinsList, inputAmount) => {
   reflectCoinsToLocalStorage(numberOfCoinsList);
   store.setItem(localStorageConstants.INPUT_AMOUNT, inputAmount);
   store.setItem(localStorageConstants.CHANGES, changes);
-  renderChangesCoinsItems();
+  renderCoinsItems(changesCoinItemsConstants);
 };

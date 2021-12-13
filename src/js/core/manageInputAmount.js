@@ -3,6 +3,8 @@ import { check } from '../util/checkValue.js';
 import { store } from '../store/store.js';
 import { localStorageConstants } from '../constant/localstorage.js';
 import { DECIMAL } from '../constant/constant.js';
+import { renderAmountSpan } from '../render/common.js';
+import { inputtedAmountSpanConstants } from '../constant/string.js';
 
 export const addInputAmount = e => {
   e.preventDefault();
@@ -32,4 +34,11 @@ export const getSpanValue = (dataToImport, e) => {
     spanValue += parseInt($('#charge-input').value, DECIMAL);
   }
   return spanValue;
+};
+
+export const callRenderAmountSpan = () => {
+  renderAmountSpan(
+    inputtedAmountSpanConstants,
+    localStorageConstants.INPUT_AMOUNT,
+  );
 };

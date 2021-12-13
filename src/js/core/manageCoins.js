@@ -1,7 +1,8 @@
 import { $ } from '../util/dom.js';
 import { COINS, COINS_PRICE, DECIMAL } from '../constant/constant.js';
+import { coinItemsConstants } from '../constant/string.js';
 import { store } from '../store/store.js';
-import { renderCoinsItems } from '../render/render.js';
+import { renderCoinsItems } from '../render/common.js';
 import { localStorageConstants } from '../constant/localstorage.js';
 import { calculateChanges } from './manageChanges.js';
 
@@ -19,7 +20,7 @@ export const getRandomCoinsList = () => {
     }
   }
   addCoinsToExistingCoins(coinsList);
-  renderCoinsItems();
+  renderCoinsItems(coinItemsConstants);
 };
 
 const addCoinsToExistingCoins = coinsArray => {

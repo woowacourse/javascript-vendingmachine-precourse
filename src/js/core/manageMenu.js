@@ -1,10 +1,10 @@
-// prettier-ignore
-import { renderProductItems, renderProductPurchaseMenu } from '../render/render.js';
+import { renderMenuItems } from '../render/common.js';
 import { $ } from '../util/dom.js';
 import { store } from '../store/store.js';
 import { check } from '../util/checkValue.js';
 import { localStorageConstants } from '../constant/localstorage.js';
-import { stringConstants } from '../constant/string.js';
+// prettier-ignore
+import { stringConstants, productItemsConstants, purchableProductItemsConstants } from '../constant/string.js';
 
 export const makeMenuTemplte = e => {
   e.preventDefault();
@@ -18,7 +18,7 @@ export const makeMenuTemplte = e => {
     return;
   }
   addMenuToMenuTable(menuTemplate);
-  renderProductItems();
+  renderMenuItems(productItemsConstants);
 };
 
 export const addMenuToMenuTable = menuTemplate => {
@@ -34,7 +34,7 @@ export const addMenuToMenuTable = menuTemplate => {
 };
 
 export const purchaseMenu = target => {
-  const targetName = target.closest('tr').firstChild.nextSibling.innerText;
+  const targetName = target.closest('tr').firstChild.innerText;
   const menus = store.getItem(localStorageConstants.MENU);
   let inputtedAmount = store.getItem(localStorageConstants.INPUT_AMOUNT);
   const targetMenu = menus
@@ -46,5 +46,4 @@ export const purchaseMenu = target => {
   }
   store.setItem(localStorageConstants.INPUT_AMOUNT, inputtedAmount);
   store.setItem(localStorageConstants.MENU, menus);
-  renderProductPurchaseMenu();
 };
