@@ -42,10 +42,10 @@ class ProductPurchaseView {
 
   createChargeAmountSectionTemplate(chargeAmount) {
     if (chargeAmount === 0) {
-      return `<section id="${DOM.CHARGE_AMOUNT}">${CHARGE_AMOUNT_TEXT}</section>`;
+      return `${CHARGE_AMOUNT_TEXT}<span id="${DOM.CHARGE_AMOUNT}"></span>`;
     }
 
-    return `<section id="${DOM.CHARGE_AMOUNT}">${CHARGE_AMOUNT_TEXT}${chargeAmount}</section>`;
+    return `${CHARGE_AMOUNT_TEXT}<span id="${DOM.CHARGE_AMOUNT}">${chargeAmount}</span>`;
   }
 
   createProductPurchaseListSectionTemplate(productList) {
@@ -91,14 +91,14 @@ class ProductPurchaseView {
   /** renderCharge - clearChageInput 하는 로직 분리하기 */
   renderCharge(chargeAmount, chargeInputsValue) {
     $(DOM.CHARGE_INPUT).value = chargeInputsValue[DOM.CHARGE_INPUT];
-    $(DOM.CHARGE_AMOUNT).textContent = `${CHARGE_AMOUNT_TEXT}${chargeAmount}`;
+    $(DOM.CHARGE_AMOUNT).textContent = `${chargeAmount}`;
   }
 
   renderReturnCoins(returnCoins) {
-    $(DOM.COIN_500_QUANTITY).textContent = returnCoins[FIVE_HUNDRED];
-    $(DOM.COIN_100_QUANTITY).textContent = returnCoins[ONE_HUNDRED];
-    $(DOM.COIN_50_QUANTITY).textContent = returnCoins[FIFTY];
-    $(DOM.COIN_10_QUANTITY).textContent = returnCoins[TEN];
+    $(DOM.COIN_500_QUANTITY).textContent = `${returnCoins[FIVE_HUNDRED]}개`;
+    $(DOM.COIN_100_QUANTITY).textContent = `${returnCoins[ONE_HUNDRED]}개`;
+    $(DOM.COIN_50_QUANTITY).textContent = `${returnCoins[FIFTY]}개`;
+    $(DOM.COIN_10_QUANTITY).textContent = `${returnCoins[TEN]}개`;
   }
 }
 export default ProductPurchaseView;

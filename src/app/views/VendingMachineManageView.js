@@ -43,20 +43,20 @@ class VendingMachineManageView {
     return `<h3>자판기가 보유한 동전</h3>
           <table id="${DOM.VENDING_MACHINE_COINS_TABLE}">
             <tr><td>동전</td><td>개수</td></tr>
-            <tr><td>500</td><td id="${DOM.VENDING_MACHINE_COIN_500_QUANTITY}">${coins[FIVE_HUNDRED]}</td></tr>
-            <tr><td>100</td><td id="${DOM.VENDING_MACHINE_COIN_100_QUANTITY}">${coins[ONE_HUNDRED]}</td></tr>
-            <tr><td>50</td><td id="${DOM.VENDING_MACHINE_COIN_50_QUANTITY}">${coins[FIFTY]}</td></tr>
-            <tr><td>10</td><td id="${DOM.VENDING_MACHINE_COIN_10_QUANTITY}">${coins[TEN]}</td></tr>
+            <tr><td>500</td><td id="${DOM.VENDING_MACHINE_COIN_500_QUANTITY}">${coins[FIVE_HUNDRED]}개</td></tr>
+            <tr><td>100</td><td id="${DOM.VENDING_MACHINE_COIN_100_QUANTITY}">${coins[ONE_HUNDRED]}개</td></tr>
+            <tr><td>50</td><td id="${DOM.VENDING_MACHINE_COIN_50_QUANTITY}">${coins[FIFTY]}개</td></tr>
+            <tr><td>10</td><td id="${DOM.VENDING_MACHINE_COIN_10_QUANTITY}">${coins[TEN]}개</td></tr>
           </table>`;
   }
 
   renderCoins(coins, vendingMachineChargeInputsValue) {
     $(DOM.VENDING_MACHINE_CHARGE_INPUT).value =
       vendingMachineChargeInputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT];
-    $(DOM.VENDING_MACHINE_COIN_500_QUANTITY).textContent = coins[FIVE_HUNDRED];
-    $(DOM.VENDING_MACHINE_COIN_100_QUANTITY).textContent = coins[ONE_HUNDRED];
-    $(DOM.VENDING_MACHINE_COIN_50_QUANTITY).textContent = coins[FIFTY];
-    $(DOM.VENDING_MACHINE_COIN_10_QUANTITY).textContent = coins[TEN];
+    $(DOM.VENDING_MACHINE_COIN_500_QUANTITY).textContent = `${coins[FIVE_HUNDRED]}개`;
+    $(DOM.VENDING_MACHINE_COIN_100_QUANTITY).textContent = `${coins[ONE_HUNDRED]}개`;
+    $(DOM.VENDING_MACHINE_COIN_50_QUANTITY).textContent = `${coins[FIFTY]}개`;
+    $(DOM.VENDING_MACHINE_COIN_10_QUANTITY).textContent = `${coins[TEN]}개`;
   }
 }
 export default VendingMachineManageView;

@@ -57,8 +57,8 @@ class ProductAddView {
     return `${productList
       .map(
         (product) => `
-      <tr>
-        <td>${product.name}</td><td>${product.price}</td><td>${product.quantity}</td>
+      <tr class="${DOM.PRODUCT_MANAGE_ITEM_CLASSNAME}">
+        <td class="${DOM.PRODUCT_MANAGE_NAME_CLASSNAME}">${product.name}</td><td class="${DOM.PRODUCT_MANAGE_PRICE_CLASSNAME}">${product.price}</td><td class="${DOM.PRODUCT_MANAGE_QUANTITY_CLASSNAME}">${product.quantity}</td>
       </tr>
     `
       )

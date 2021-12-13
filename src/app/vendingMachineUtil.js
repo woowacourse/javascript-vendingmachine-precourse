@@ -49,20 +49,20 @@ class VendingMachineUtil {
   }
 
   static generateProductId(productList) {
-    let randomProductID = VendingMachineUtil.generateRandomProductId();
-    while (VendingMachineUtil.isImpossibleId(productList, randomProductID)) {
-      randomProductID = VendingMachineUtil.generateRandomProductId();
+    while (true) {
+      const randomProductId = VendingMachineUtil.generateRandomProductId();
+      if (this.isNotDuplicatedId(productList, randomProductId)) {
+        return randomProductId;
+      }
     }
-
-    return randomProductID;
   }
 
   static generateRandomProductId() {
     return [...new Array(PRODUCT_ID_LENGTH)].map(() => getRandomNumber()).join('');
   }
 
-  static isImpossibleId(productList, randomNumber) {
-    return productList.find((product) => product.id === randomNumber);
+  static isNotDuplicatedId(productList, randomNumber) {
+    return productList.find((product) => product.id === randomNumber) === undefined;
   }
 
   static isPurchaseButton(el) {
