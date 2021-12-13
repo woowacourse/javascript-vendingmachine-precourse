@@ -43,18 +43,26 @@ const initPurchaseDom = () => {
   initProductStatusTable();
 };
 
+const calculateProducts = (selectProduct, products) => {
+  selectProduct.quantity -= 1;
+  if (selectProduct.quantity === 0) {
+    products = products.filter(product => product.name !== selectProduct.name);
+  }
+  setItem(KEY.product, products);
+};
+
+const calculateCharge = (selectProduct, charge) => {
+  charge -= selectProduct.price;
+  setItem(KEY.charge, charge);
+};
+
 const purchaseProduct = item => {
-  let charge = getItemOrNull(KEY.charge);
-  let products = getItemOrArray(KEY.product);
+  const charge = getItemOrNull(KEY.charge);
+  const products = getItemOrArray(KEY.product);
   const selectProduct = products.find(e => e.name === item.childNodes[1].dataset.productName);
   if (isEnoughCoin(charge, selectProduct.price)) {
-    selectProduct.quantity -= 1;
-    charge -= selectProduct.price;
-    if (selectProduct.quantity === 0) {
-      products = products.filter(product => product.name !== selectProduct.name);
-    }
-    setItem(KEY.charge, charge);
-    setItem(KEY.product, products);
+    calculateProducts(selectProduct, products);
+    calculateCharge(selectProduct, charge);
     initPurchaseDom();
   }
 };
