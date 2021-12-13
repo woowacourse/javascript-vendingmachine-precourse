@@ -1,5 +1,6 @@
 import ChargeAddController from "../controllers/ChargeAddController.js";
 import { chargeAddTemplete } from "../utils/dom/chargeAddTemplete.js";
+import { chargeAddValiate } from "../utils/validation/chargeAddEvent.js";
 
 export default class ChargeAddView extends ChargeAddController {
 
@@ -11,14 +12,14 @@ export default class ChargeAddView extends ChargeAddController {
   setEvent() {
     this.chargeAddField.querySelector('#vending-machine-charge-button').addEventListener('click', (e) => {
       e.preventDefault();
-      this.chargeCoin = this.chargeAddField.querySelector('input').value;
-      this.renderCharge();
+      this.addCoin = this.chargeAddField.querySelector('input').value;
+      chargeAddValiate(this.addCoin) && this.renderCharge();
     })
   }
 
   renderCharge() {
     const $chargeWrap = document.querySelector('#vending-machine-charge-amount');
-    this.chargeCoin ? $chargeWrap.innerText = this.chargeCoin : "";
+    this.addCoin ? $chargeWrap.innerText = this.addCoin : "";
   }
 
 }
