@@ -7,7 +7,7 @@ function onAddProduct() {
     
     if(isCorrectProductInputs(name, price, quantity)) console.log('yeas');
     else {
-        console.log('nono');
+        alert("옳바른 형식이 아닙니다. 상품명: 1자 이상, 가격: 100원 이상 10 배수, 수량: 1 이상");
     }
 }
 
