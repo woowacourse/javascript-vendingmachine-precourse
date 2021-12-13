@@ -42,8 +42,11 @@ export function purchaseProduct(){
             console.log(selectedProduct.name)
             console.log(selectedProduct.quantity)
             selectedProduct.purchase()
-            const $productPurchaseQuantity = document.querySelector(`td[data-product-quantity="${selectedProduct.name}"]`)
-            $productPurchaseQuantity.innerHTML = selectedProduct.quantity
+            // const $productPurchaseQuantity = document.querySelector(`td[data-product-quantity="${selectedProduct.name}"]`)
+            // $productPurchaseQuantity.innerHTML = selectedProduct.quantity
+
+            addProductAddTable()
+            addProductPurchaseTable()
 
             //TO DO : 수량 0되면 클래스 삭제
             if(selectedProduct.quantity < 1){
