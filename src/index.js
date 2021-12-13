@@ -42,10 +42,12 @@ function isCorrectQuantity(quantity) {
 
 
 //
+let chargedMoney = 0;
 function chargeMoney() {
     const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
     if(isCorrectChargeMoney(chargeAmount)) {
-        renderChargedMoney(chargeAmount);
+        chargedMoney += Number(chargeAmount);
+        renderChargedMoney(chargedMoney);
     }
     else { 
         alert("옳바른 형식이 아닙니다. 10의 배수로 입력해주세요.");
