@@ -15,7 +15,7 @@ export function checkProductName(productName) {
 export function checkProductPrice(productPrice) {
   console.log(productPrice);
   let allowProductPrice = false;
-  if (productPrice > MINIMUN_PRICE && productPrice % DIVIDE_CHARGE == ZERO) {
+  if (productPrice >= MINIMUN_PRICE && productPrice % DIVIDE_CHARGE == ZERO) {
     allowProductPrice = true;
   }
 
@@ -35,7 +35,7 @@ export function checkProductQuantity(productQuantity) {
 export function checkCoin(coin) {
   console.log(coin);
   let allowCoin = false;
-  if (coin > MINIMUM_CHARGE && coin % DIVIDE_CHARGE == ZERO) {
+  if (coin >= MINIMUM_CHARGE && coin % DIVIDE_CHARGE == ZERO) {
     allowCoin = true;
   }
 
@@ -45,7 +45,7 @@ export function checkCoin(coin) {
 export function checkPurchaseCoin(coin) {
   console.log(coin);
   let allowCoin = false;
-  if (coin > MINIMUM_CHARGE && coin % DIVIDE_CHARGE == ZERO) {
+  if (coin >= MINIMUM_CHARGE && coin % DIVIDE_CHARGE == ZERO) {
     allowCoin = true;
   }
 
