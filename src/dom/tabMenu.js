@@ -1,5 +1,6 @@
 import buildProductPage from "./buildProductPage.js";
 import buildChargePage from "./buildChargePage.js";
+import buildPurchasePage from "./buildPurchasePage.js";
 
 function tabMenu() {
     const app = document.getElementById("app");
@@ -25,6 +26,9 @@ function tabMenu() {
 
     productPurchaseMenuButton.id = "product-purchase-menu";
     productPurchaseMenuButton.innerText = "상품 구매";
+    productPurchaseMenuButton.onclick = () => {
+        buildPurchasePage();
+    }
 
     header.appendChild(title);
     header.appendChild(productAddMenuButton);

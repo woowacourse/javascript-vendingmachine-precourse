@@ -1,4 +1,4 @@
-import createDocumentElement from "./createDocumentElement";
+import createDocumentElement from "./createDocumentElement.js";
 
 function createTableRow(Table, innerText, id) {
     const tableRow = document.createElement("tr");
