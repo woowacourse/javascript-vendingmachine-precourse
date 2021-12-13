@@ -25,16 +25,16 @@ const subtractPriceAndQuantity = (target, price) => {
   currentAmount -= price;
 };
 
-const haveCoinTemplate = (unit, quantity) => `
+const returnedCoinTemplate = (unit, quantity) => `
   <tr>
     <td>${unit}원</td>
     <td id="coin-${unit}-quantity">${quantity}개</td>
   </tr>
 `;
 
-const addReturnedCoin = (unit, quantity) => {
-  const haveCoin = haveCoinTemplate(unit, quantity);
-  $('#coin-return-result').insertAdjacentHTML('beforeend', haveCoin);
+const showReturnedCoin = (unit, quantity) => {
+  const returnedCoin = returnedCoinTemplate(unit, quantity);
+  $('#coin-return-result').insertAdjacentHTML('beforeend', returnedCoin);
 };
 
 const calculationQuantity = (unit, quantity) => {
@@ -50,10 +50,10 @@ const calculationQuantity = (unit, quantity) => {
 const makeReturnedCoinsView = (unit, storedQuantity) => {
   if (storedQuantity !== 0 && unit <= currentAmount) {
     const quantity = calculationQuantity(unit, storedQuantity);
-    addReturnedCoin(unit, quantity);
+    showReturnedCoin(unit, quantity);
     return quantity;
   }
-  addReturnedCoin(unit, 0);
+  showReturnedCoin(unit, 0);
   return 0;
 };
 
