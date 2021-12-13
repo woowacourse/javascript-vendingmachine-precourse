@@ -63,34 +63,58 @@ export default class VendingMachine {
   updateProductsModel(action, product) {
     switch (action) {
       case ACTION_ADD:
-        this.products.push(product);
+        this._productModelAddAction(product);
         break;
+
       case ACTION_DELETE:
-        this.products = this.products.filter(
-          (_product) => _product.name !== product.name
-        );
+        this._productModelDeleteAction(product);
         break;
+
       case ACTION_SAVE:
         saveProductList(this.products);
         break;
     }
   }
 
+  _productModelAddAction(product) {
+    this.products.push(product);
+  }
+
+  _productModelDeleteAction(product) {
+    this.products = this.products.filter(
+      (_product) => _product.name !== product.name
+    );
+  }
+
   updateProductsView(action, product) {
     switch (action) {
       case ACTION_ADD:
-        createProductTableRow([product]);
-        createPurchaseTableRow(product.name, product.price, product.quantity);
+        this._productViewAddAction(product);
         break;
+
       case ACTION_SELL:
-        updateProductItemAfterPurchase(product.name);
-        updatePurchasableProductTableAfterPurchase(product.name);
+        this._productViewSellAction(product);
         break;
+
       case ACTION_DELETE:
-        deleteProductItem(product.name);
-        deletePurchaseProduct(product.name);
+        this._productViewDeleteAction(product);
         break;
     }
+  }
+
+  _productViewAddAction(product) {
+    createProductTableRow([product]);
+    createPurchaseTableRow(product.name, product.price, product.quantity);
+  }
+
+  _productViewSellAction(product) {
+    updateProductItemAfterPurchase(product.name);
+    updatePurchasableProductTableAfterPurchase(product.name);
+  }
+
+  _productViewDeleteAction(product) {
+    deleteProductItem(product.name);
+    deletePurchaseProduct(product.name);
   }
 
   // 자판기 잔돈을 충전
@@ -112,14 +136,20 @@ export default class VendingMachine {
       case ACTION_CHARGE:
         Charge.chargeVendingMachine(charge);
         break;
+
       case ACTION_WITHDRAW:
-        this.amount -= charge;
-        this.coins[charge] -= 1;
+        this._vendingMachineChargeModelWithDrawAction(charge);
         break;
+
       case ACTION_SAVE:
         saveCharges();
         break;
     }
+  }
+
+  _vendingMachineChargeModelWithDrawAction(charge) {
+    this.amount -= charge;
+    this.coins[charge] -= 1;
   }
 
   updateVendingMachineChargeView() {
@@ -145,9 +175,11 @@ export default class VendingMachine {
       case ACTION_CHARGE:
         this.userAmount += charge;
         break;
+
       case ACTION_WITHDRAW:
         this.userAmount -= charge;
         break;
+
       case ACTION_SAVE:
         saveUserCharge();
         break;
