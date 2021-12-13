@@ -35,11 +35,12 @@ export const CHARGE_ELEMENT_ID = {
 };
 
 export const CHARGE_ERR =
-  '최소 10원 이상의 10원으로 나누어떨어지는 충전 금액을 입력하세요.';
+  '최소 10원 이상의 10원으로 나누어떨어지는 금액을 입력하세요.';
 
 export const CHARGE_RULES = {
   measures: 10,
   minCharge: 10,
+  coinList: [500, 100, 50, 10],
 };
 
 export const PURCHASE_ELEMENT_ID = {
@@ -59,6 +60,11 @@ export const PURCHASE_ELEMENT_CLASS = {
   productPurchaseName: 'product-purchase-name',
   productPurchasePrice: 'product-purchase-price',
   productPurchaseQuantity: 'product-purchase-quantity',
+};
+
+export const PURCHASE_ERR = {
+  shortMoney: '보유 금액이 부족합니다!',
+  noQuantity: '상품 수량이 없습니다!',
 };
 
 export const MENU_ELEMENT = {
