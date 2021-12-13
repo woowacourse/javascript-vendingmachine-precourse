@@ -6,5 +6,6 @@
 //   $chargeBtn: document.getElementById("charge-button"),
 //   $coinReturnBtn: document.getElementById("coin-return-button"),
 // };
+const COIN = [500, 100, 50, 10];
 
-// export { BUTTONS };
+export { COIN };
