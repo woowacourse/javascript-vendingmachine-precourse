@@ -6,6 +6,7 @@ import {
   getMoneyInput,
   setPurchaseProductTable,
   isAbleToPurchase,
+  addCoinToReturnTable,
 } from './chargeMoney.js';
 
 export default class Purchase {
@@ -20,6 +21,19 @@ export default class Purchase {
 
   getCharge() {
     return this.$state.charge;
+  }
+
+  getCoins() {
+    return this.$state.coins;
+  }
+
+  getAmount() {
+    let amount = 0;
+    const coins = this.getCoins();
+    for (let key in coins) {
+      amount += key * coins[key];
+    }
+    return amount;
   }
 
   setStateOfCharge(newState) {
@@ -78,6 +92,34 @@ export default class Purchase {
     this.setStateOfProduct(clickProduct);
   }
 
+  returnAmount() {
+    console.log(this.getCoins(), this.getAmount(), this.getCharge());
+    let amount = this.getAmount();
+    let charge = this.getCharge();
+    let coins = this.getCoins();
+    let coinList = [500, 100, 50, 10];
+    let returnCoins = { 500: 0, 100: 0, 50: 0, 10: 0 };
+    let idx = 0;
+    while (amount > 0 && charge > 0) {
+      // 해당 동전이 충전금보다 크거나 개수가 없으면 다음으로,,
+      if (coinList[idx] > charge || coins[coinList[idx]] == 0) {
+        idx++;
+      }
+      if (idx > coinList.length) {
+        break;
+      }
+      returnCoins[coinList[idx]]++;
+      charge -= coinList[idx];
+      coins[coinList[idx]]--;
+      amount -= coinList[idx];
+    }
+    this.$state.charge = charge > 0 ? charge : 0;
+    this.render();
+    setStateToLocalStorage(this.$state);
+    console.log(returnCoins);
+    addCoinToReturnTable(returnCoins);
+  }
+
   setEvent() {
     $(`#${SELECTOR.ID.PURCHASE_CHARGE_BUTTON}`).addEventListener(
       'click',
@@ -92,6 +134,13 @@ export default class Purchase {
         this.purchaseProduct(e);
       });
     }
+
+    $(`#${SELECTOR.ID.PURCHASE_RETURN_BUTTON}`).addEventListener(
+      'click',
+      () => {
+        this.returnAmount();
+      }
+    );
   }
 
   template() {
