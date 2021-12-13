@@ -49,7 +49,11 @@ export default class TabMachineManage {
     this.chargingTitle = new Title('자판기 동전 충전하기');
     this.coinInput = new Input(SELECTOR.ID_MACHINE_CHARGE_INPUT, '자판기가 보유할 금액', 'number');
     this.coinSubmit = new Button(SELECTOR.ID_MACHINE_CHARGE_BUTTON, '충전하기');
-    this.chargedAmount = new AmountView(SELECTOR.ID_MACHINE_CHARGE_AMOUNT, '보유금액', 0);
+    this.chargedAmount = new AmountView(
+      SELECTOR.ID_MACHINE_CHARGE_AMOUNT,
+      '보유금액',
+      this.vendingMcahine.getRechargedCoinAmount()
+    );
 
     this.$root.appendChild(this.chargingTitle.getTarget());
     this.$root.appendChild(this.coinInput.getTarget());
@@ -61,12 +65,7 @@ export default class TabMachineManage {
     this.havingCoinTitle = new Title('자판기가 보유한 동전');
     this.coinTable = new CoinTable({
       columns: ['동전', '개수'],
-      initialData: [
-        [COIN.COIN_500, null],
-        [COIN.COIN_100, null],
-        [COIN.COIN_50, null],
-        [COIN.COIN_10, null],
-      ],
+      initialData: this.vendingMcahine.getRechargedCoin(),
       ids: COIN_TABLE_IDS,
     });
 

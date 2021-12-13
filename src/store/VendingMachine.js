@@ -14,13 +14,8 @@ export default class VendingMachine {
       return instance;
     }
     this.initializeProductList();
-    this.rechargedCoin = [
-      new Coin(COIN.COIN_500, null),
-      new Coin(COIN.COIN_100, null),
-      new Coin(COIN.COIN_50, null),
-      new Coin(COIN.COIN_10, null),
-    ];
-    this.rechargedCoinAmount = null;
+    this.initializeRechargedCoin();
+    this.initializeRechargedCoinAmount();
     this.rechargedMoneyAmount = null;
     this.returnedCoin = [
       new Coin(COIN.COIN_500, null),
@@ -39,6 +34,32 @@ export default class VendingMachine {
       loadedProductList.forEach((product) => {
         this.productList.push(new Product(product.name, product.price, product.quantity));
       });
+    }
+  }
+
+  initializeRechargedCoin() {
+    const loadRechargedCoin = loadFromStorage(STORAGE.rechargedCoin);
+    this.rechargedCoin = [
+      new Coin(COIN.COIN_500, null),
+      new Coin(COIN.COIN_100, null),
+      new Coin(COIN.COIN_50, null),
+      new Coin(COIN.COIN_10, null),
+    ];
+
+    if (loadRechargedCoin !== null) {
+      loadRechargedCoin.forEach((coin, index) => {
+        this.rechargedCoin[index].amount = loadRechargedCoin[index].amount;
+      });
+      this.convertAmountNullToZero();
+    }
+  }
+
+  initializeRechargedCoinAmount() {
+    const loadedRechargedCoinAmount = loadFromStorage(STORAGE.rechargedCoinAmount);
+
+    this.rechargedCoinAmount = null;
+    if (loadedRechargedCoinAmount !== null) {
+      this.rechargedCoinAmount = loadedRechargedCoinAmount;
     }
   }
 
@@ -82,7 +103,8 @@ export default class VendingMachine {
         amount += pickedCoin;
       }
     }
-
+    saveToStorage(STORAGE.rechargedCoin, this.rechargedCoin);
+    saveToStorage(STORAGE.rechargedCoinAmount, this.rechargedCoinAmount);
     this.convertAmountNullToZero();
   }
 
