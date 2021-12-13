@@ -28,11 +28,11 @@ export default class AppModel {
     this.addTabInput[key] = value;
   }
 
-  // setChargeAmount(amount) {
-  //   this.chargeAmount = this.chargeAmount > 0 ? this.addedChargeAmount(amount) : amount;
+  setChargeAmount(amount) {
+    this.chargeAmount = this.chargeAmount > 0 ? this.addedChargeAmount(amount) : amount;
 
-  //   setDataOnStorage(STRING.CHARGE_AMOUNT, this.chargeAmount);
-  // }
+    setDataOnStorage(STRING.CHARGE_AMOUNT, this.chargeAmount);
+  }
 
   addedChargeAmount(amount) {
     return this.chargeAmount + amount;
