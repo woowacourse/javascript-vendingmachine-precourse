@@ -80,7 +80,7 @@ export default class ChargeModel {
   }
 
   addCoinStorage(chargeCoins) {
-    const { 500: coin500, 100: coin100, 50: coin50, 10: coin10 } = chargeCoins;
+    const { coin500, coin100, coin50, coin10 } = chargeCoins;
     const coinStorage = this.getCoinStorage();
     if (coinStorage) {
       coinStorage.coin500 += coin500;
