@@ -1,7 +1,7 @@
 import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER, STRING, COIN } from '../utils/constant.js';
-import SetVendingMachineCharge from './SetVendingMachineCharge.js';
 import SetVendingMachinePurchase from './SetVendingMachinePurchase.js';
 import CheckProductAddMenu from './CheckProductAddMenu.js';
+import CheckVendingMachineManageMenu from './CheckVendingMachineManageMenu.js';
 
 export default class CheckEventTarget {
   constructor(render, coins, product, vendingMachine) {
@@ -18,29 +18,10 @@ export default class CheckEventTarget {
     }
   };
 
-  onClickVendingMachineChargeButton = () => {
-    const $vendingMachineChargetButton = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_BUTTON);
-    $vendingMachineChargetButton.addEventListener(EVENT.CLICK, () => {
-      new SetVendingMachineCharge(this.render, this.coins);
-    });
-  };
-
-  hasVendingMachineManageMenuTemplate = () => {
-    const vendingMachineManageMenuTemplate = localStorage.getItem(LOCAL_STORAGE.VENDING_MACHINE_MANAGE_MENU);
-    if (!vendingMachineManageMenuTemplate) {
-      this.render.vendingMachineManageMenuTemplate();
-      this.onClickVendingMachineChargeButton();
-
-      return;
-    }
-
-    this.render.haveTemplate(vendingMachineManageMenuTemplate);
-    this.onClickVendingMachineChargeButton();
-  };
-
   isVendingMachineManageMenu = (eventTarget, $vendingMachineManageMenu) => {
     if (eventTarget === $vendingMachineManageMenu) {
-      this.hasVendingMachineManageMenuTemplate();
+      const checkVendingMachineManageMenu = new CheckVendingMachineManageMenu(this.render, this.coins);
+      checkVendingMachineManageMenu.hasTemplate();
     }
   };
 
