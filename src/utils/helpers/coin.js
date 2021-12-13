@@ -1,3 +1,4 @@
+import { convertObjectToArray } from '../general.js';
 import { COIN_UNITS, DEFAULT_VALUES } from '../constants.js';
 
 export const generateRandomCoins = money => {
@@ -33,7 +34,7 @@ export const generateChangesCoin = (change, coins) => {
 
 export const mergeCoins = (originCoins, newCoins) => {
   const mergedCoins = {};
-  for (const [unit, quantity] of Object.entries(originCoins)) {
+  for (const [unit, quantity] of convertObjectToArray(originCoins)) {
     mergedCoins[unit] = quantity + newCoins[unit];
   }
   return mergedCoins;

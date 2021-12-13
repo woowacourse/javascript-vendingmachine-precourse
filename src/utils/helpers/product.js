@@ -37,9 +37,9 @@ export const findDuplicatedProduct = (productName, products) =>
     return name === productName;
   });
 
-export const isChangeableProduct = (price, product) =>
-  !product ||
-  hasSamePrice(price, product) ||
+export const isChangeableProduct = (newPrice, duplicatedProduct) =>
+  !duplicatedProduct ||
+  hasSamePrice(newPrice, duplicatedProduct) ||
   window.confirm(MESSAGE.ASK_CHANGE_PRICE);
 
 const updateProduct = ({ price, quantity }, product) => {
