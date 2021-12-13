@@ -1,14 +1,27 @@
 import { fetchHtmlView } from './fetch.js';
 
-function onAddProduct() {
+function addProduct() {
     const name = document.querySelector("#product-name-input").value;
     const price = document.querySelector("#product-price-input").value;
     const quantity = document.querySelector("#product-quantity-input").value;
     
-    if(isCorrectProductInputs(name, price, quantity)) console.log('yeas');
+    if(isCorrectProductInputs(name, price, quantity)) {
+        renderNewProduct(name, price, quantity);
+    }
     else {
         alert("옳바른 형식이 아닙니다. 상품명: 1자 이상, 가격: 100원 이상 10 배수, 수량: 1 이상");
     }
+}
+
+function renderNewProduct(name, price, quantity) {
+    const productTable = document.querySelector("table");
+    const newProduct = document.createElement("tr");
+
+    newProduct.className = "product-manage-item";
+    newProduct.innerHTML = `<td class="product-manage-name">${name}</td>
+                            <td class="product-manage-price">${price}</td>
+                            <td class="product-manage-quantity">${quantity}</td>`;
+    productTable.appendChild(newProduct);
 }
 
 function isCorrectProductInputs(name, price, quantity) {
@@ -49,7 +62,7 @@ app.addEventListener('click', function(e) {
         "product-add-menu"() { onTabClick('product_manage.html'); },
         "vending-machine-manage-menu"() { onTabClick('machine_charge.html'); },
         "product-purchase-menu"() { onTabClick('product_purchase.html'); },
-        "product-add-button"() { onAddProduct() },
+        "product-add-button"() { addProduct() },
     };
     if(Object.keys(handlers).includes(e.target.id)) handlers[e.target.id]();
 });
