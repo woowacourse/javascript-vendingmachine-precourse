@@ -49,18 +49,23 @@ export function createButton(id, innerText) {
   return button;
 }
 
-export function createTable() {
+export function createTable(id) {
   const table = document.createElement('table');
+  table.setAttribute('id', id);
   table.style.borderCollapse = 'collapse';
-  const thead = document.createElement('thead');
-  const tbody = document.createElement('tbody');
-  table.append(thead, tbody);
 
   return table;
 }
 
 export function createTableRow() {
   return document.createElement('tr');
+}
+
+export function createTableClassRow(cla) {
+  const tr = createTableRow();
+  tr.setAttribute('class', cla);
+
+  return tr;
 }
 
 export function createTableHeader(innerText) {
@@ -75,6 +80,13 @@ export function createTableData(innerText) {
   const td = document.createElement('td');
   td.innerText = innerText;
   setTableStyle(td);
+
+  return td;
+}
+
+export function createTableClassData(cla, innerText) {
+  const td = createTableData(innerText);
+  td.setAttribute('class', cla);
 
   return td;
 }

@@ -33,15 +33,10 @@ function createPurchasableTableHeaderRow() {
   return purchasableTableHeaderRow;
 }
 
-function createPurchasableListTableHeader(purchasableListTable) {
-  const purchasableListTableHeader = purchasableListTable.firstChild;
-  const purchasableTableHeaderRow = createPurchasableTableHeaderRow();
-  purchasableListTableHeader.append(purchasableTableHeaderRow);
-}
-
 export default function createPurchasableListTable() {
-  const purchasableListTable = createTable();
-  createPurchasableListTableHeader(purchasableListTable);
+  const purchasableListTable = createTable('purchasable-list-table');
+  const purchasableTableHeaderRow = createPurchasableTableHeaderRow();
+  purchasableListTable.append(purchasableTableHeaderRow);
 
   return purchasableListTable;
 }

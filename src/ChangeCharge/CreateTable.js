@@ -21,12 +21,6 @@ function createCoinTableHeaderRow() {
   return coinTableHeaderRow;
 }
 
-function createCoinListTableHeader(coinListTable) {
-  const coinListTableHeader = coinListTable.firstChild;
-  const coinTableHeaderRow = createCoinTableHeaderRow();
-  coinListTableHeader.append(coinTableHeaderRow);
-}
-
 function createCoinTableDatas(innerTexts) {
   return innerTexts.map((won) => createTableData(won));
 }
@@ -51,16 +45,12 @@ function createCoinTableDataRows() {
   return coinTableDataRows;
 }
 
-function createCoinLIstTableBody(coinListTable) {
-  const coinListTableBody = coinListTable.lastChild;
-  const coinTableDataRows = createCoinTableDataRows();
-  coinTableDataRows.forEach((row) => coinListTableBody.append(row));
-}
-
 export default function createCoinListTable() {
-  const coinListTable = createTable();
-  createCoinListTableHeader(coinListTable);
-  createCoinLIstTableBody(coinListTable);
+  const coinListTable = createTable('coin-list-table');
+  const coinTableHeaderRow = createCoinTableHeaderRow();
+  coinListTable.append(coinTableHeaderRow);
+  const coinTableDataRows = createCoinTableDataRows();
+  coinTableDataRows.forEach((row) => coinListTable.append(row));
 
   return coinListTable;
 }

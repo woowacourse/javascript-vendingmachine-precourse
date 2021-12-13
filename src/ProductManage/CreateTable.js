@@ -21,9 +21,9 @@ function createProductTableHeaderRow() {
 }
 
 export default function createProductListTable() {
-  const productListTable = createTable();
+  const productListTable = createTable('product-list-table');
   const productTableHeaderRow = createProductTableHeaderRow();
-  productListTable.firstChild.append(productTableHeaderRow);
+  productListTable.append(productTableHeaderRow);
 
   return productListTable;
 }
