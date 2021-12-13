@@ -1,15 +1,13 @@
-import { useTabButton } from './useTabButton.js'
+export function drawPage() {
+    const $app = document.querySelector('#app');
 
-export function drawPage(){
-const $app = document.querySelector('#app')
-
-$app.innerHTML += `<h1>🥤자판기🥤</h1>
+    $app.innerHTML += `<h1>🥤자판기🥤</h1>
                     <button id="product-add-menu">상품 관리</button>
                     <button id="vending-machine-manage-menu">잔돈 충전</button>
                     <button id="product-purchase-menu">상품 구매</button>
-                    `
+                    `;
 
-$app.innerHTML += `<div id="product-add-content" class="show">
+    $app.innerHTML += `<div id="product-add-content" class="show">
                     <h3>상품 추가하기</h3>
                     <input id="product-name-input" type="text" placeholder="상품명"><input id="product-price-input" type="number" placeholder="가격"><input id="product-quantity-input" type="number" placeholder="수량"><button id="product-add-button">추가하기</button>
                     <br>
@@ -22,9 +20,9 @@ $app.innerHTML += `<div id="product-add-content" class="show">
                         </tr>
                         <tbody id="product-add-table"></tbody>
                     </table>
-                    </div>`
+                    </div>`;
 
-$app.innerHTML += `<div id="vending-machine-manage-content" class="hide">
+    $app.innerHTML += `<div id="vending-machine-manage-content" class="hide">
                     <h3>자판기 동전 충전하기</h3>
                     <input id="vending-machine-charge-input" type="number"><button id="vending-machine-charge-button">충전하기</button>
                     <p id="vending-machine-charge-amount">보유금액: </p>
@@ -52,9 +50,9 @@ $app.innerHTML += `<div id="vending-machine-manage-content" class="hide">
                             <td id="vending-machine-coin-10-quantity"></td>
                         </tr>
                     </table>
-                    </div>`
+                    </div>`;
 
-$app.innerHTML += `<div id="product-purchase-content" class="hide">
+    $app.innerHTML += `<div id="product-purchase-content" class="hide">
                     <h3>금액 투입</h3>
                     <input id="charge-input" type="number"><button id="charge-button">투입하기</button>
                     <p id="charge-amount">투입한 금액: </p>
@@ -94,5 +92,5 @@ $app.innerHTML += `<div id="product-purchase-content" class="hide">
                             <td class="coin-10-quantity"></td>
                         </tr>
                     </table>
-                    </div>`    
+                    </div>`;
 }
