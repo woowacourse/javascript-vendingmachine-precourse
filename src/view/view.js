@@ -129,6 +129,29 @@ export default class View {
     $amount.innerHTML = userMoney;
   }
 
+  // 상품 구매 탭에서의 동적 렌더링
+  renderProductTable(productList) {
+    const $tablePosition = document.getElementById("product-purchase");
+    $tablePosition.innerHTML =
+      "<th>상품명</th><th>가격</th><th>수량</th><th>구매</th>";
+
+    productList.map((product, idx) => {
+      const $product = createElement(
+        "tr",
+        `
+	      <td data-product-name="${product.name}" class="product-purchase-name">${product.name}</td>
+	      <td data-product-price="${product.price}" class="product-purchase-price">${product.price}</td>
+	      <td data-product-quantitiy="${product.quantitiy}" class="product-purchase-quantitiy">${product.quantity}</td>
+	      <button class="purchase-button">구매하기</button>
+        </tr>
+        `,
+        EMPTY,
+        "product-purchase-item"
+      );
+      $tablePosition.appendChild($product);
+    });
+  }
+
   // renderPurchaseTab(vendingMachine) {
   //   const { productList, returnChage, userMoney } = vendingMachine;
   // }

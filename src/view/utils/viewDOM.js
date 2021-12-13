@@ -41,6 +41,7 @@ const CHARGE_VIEW = `
     </tr>
   </table>
   `;
+
 const PURCHASE_VIEW = `
   <h2>금액 투입</h2>
   <input placeholder="투입할 금액" id="charge-input"/> 
@@ -48,10 +49,8 @@ const PURCHASE_VIEW = `
   <p> 투입한 금액: </p>
   <text id="charge-amount"></text>
   <h2>구매할 수 있는 상품 현황</h2>
-  <table>
+  <table id="product-purchase">
     <th>상품명</th><th>가격</th><th>수량</th><th>구매</th>
-    <tr className = "product-purchase-item">
-    </tr>
   </table>
   <h2>잔돈</h2>
   <button id="coin-return-button">반환하기</button>

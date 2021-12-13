@@ -36,6 +36,7 @@ export default class Controller {
     $purchaseTabBtn.addEventListener("click", (e) => {
       e.preventDefault();
       this.view.showSelectedID("purchase-tab");
+      this.view.renderProductTable(this.vendingMachine.productList);
     });
   }
 
@@ -68,6 +69,7 @@ export default class Controller {
     $chargeBtn.addEventListener("click", () => {
       if (!isValidCoin($chargeCoin.value)) {
         alert("다시 입력하세요.");
+        return;
       }
       this.vendingMachine.makeRandomChange(parseInt($chargeCoin.value, 10));
       this.view.renderChargeTab(this.vendingMachine.ownChange);
