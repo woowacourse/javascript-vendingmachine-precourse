@@ -4,6 +4,6 @@ export const resetPurchaseInput = () => {
   $('#charge-input').value = '';
 };
 
-export const printInputCharge = amount => {
-  $('#charge-amount').innerText = amount;
+export const printInputCharge = holdAmount => {
+  $('#charge-amount').innerText = holdAmount;
 };

@@ -18,8 +18,8 @@ export const isValidCharge = chargeInput => {
   return true;
 };
 
-export const isValidPurchase = (amount, price) => {
-  if (price > amount) {
+export const isValidPurchase = (holdAmount, price) => {
+  if (price > holdAmount) {
     alert(ERROR.PRODUCT_IS_EXPENSIVE);
     return false;
   }
@@ -114,9 +114,9 @@ export const getChange = () => {
   return change;
 };
 
-export const updateAmount = (amount, price) => {
-  amount -= price;
-  return amount;
+export const updateAmount = (holdAmount, price) => {
+  holdAmount -= price;
+  return holdAmount;
 };
 
 export const updateProductQuantity = e => {

@@ -5,7 +5,7 @@ import { resetPurchaseInput, printInputCharge } from '../views/productPurchaseVi
 import { isValidCharge, isValidPurchase, getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
 
 function HandleProductPurchase() {
-  this.amount = Number($('#charge-amount').innerText) || 0;
+  this.holdAmount = Number($('#charge-amount').innerText) || 0;
 
   this.init = () => {
     if (store.getLocalStorage('products')) {
@@ -19,8 +19,8 @@ function HandleProductPurchase() {
     const purchaseInput = $('#charge-input').value;
 
     if (isValidCharge(purchaseInput)) {
-      this.amount += Number(purchaseInput);
-      printInputCharge(this.amount);
+      this.holdAmount += Number(purchaseInput);
+      printInputCharge(this.holdAmount);
       return;
     }
     resetPurchaseInput();
@@ -31,9 +31,9 @@ function HandleProductPurchase() {
     if (e.target.className === 'purchase-button') {
       const price = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
 
-      if (isValidPurchase(this.amount, price)) {
-        this.amount = updateAmount(this.amount, price);
-        printInputCharge(this.amount);
+      if (isValidPurchase(this.holdAmount, price)) {
+        this.holdAmount = updateAmount(this.holdAmount, price);
+        printInputCharge(this.holdAmount);
         updateProductQuantity(e);
       }
     }
@@ -41,7 +41,7 @@ function HandleProductPurchase() {
 
   // (3) 잔돈을 반환하는 기능
   $('#coin-return-button').addEventListener('click', () => {
-    this.amount = getChange();
+    this.holdAmount = getChange();
   });
 
   this.init();
