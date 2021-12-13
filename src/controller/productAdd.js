@@ -1,6 +1,6 @@
 import { $, handleStorage, validation, onKeyUpNumericEvent } from './utils.js';
 import { SELECTOR, KEY } from '../model/constants.js';
-import { productAddTableRow } from '../model/dom.js';
+import { productAddTableRow } from '../model/template.js';
 import Product from '../model/product.js';
 import { addTableRow, clearInput } from '../view/index.js';
 

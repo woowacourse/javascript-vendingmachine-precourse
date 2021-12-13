@@ -4,7 +4,7 @@ import {
   productAddMenu,
   vendingMachineManageMenu,
   productPurchaseMenu,
-} from '../model/dom.js';
+} from '../model/template.js';
 import { KEY, COIN_X_QUANTITY, VENDING_MACHINE_COIN_X_QUANTITY } from '../model/constants.js';
 
 export const clearContainer = () => {

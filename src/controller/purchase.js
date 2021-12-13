@@ -8,7 +8,7 @@ import {
   clearInput,
 } from '../view/index.js';
 import { KEY, SELECTOR } from '../model/constants.js';
-import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/dom.js';
+import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/template.js';
 
 const initAllPurchaseButtonEvent = () => {
   const allButtons = document.querySelectorAll(`.${SELECTOR.purchaseButton}`);
