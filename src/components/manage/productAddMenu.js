@@ -8,10 +8,10 @@ import {
   initProductManageScreen,
 } from './manageTemplate.js';
 
-const storedProductItems = getLocalStorage(STORAGE_NAME.PRODUCT);
-
 const setProductItemsStorage = (productData) => {
+  const storedProductItems = getLocalStorage(STORAGE_NAME.PRODUCT);
   storedProductItems.push(productData);
+
   setLocalStorage(STORAGE_NAME.PRODUCT, storedProductItems);
 };
 
@@ -33,6 +33,7 @@ const handleProductMenuSubmit = (event) => {
 
 export const showProductAddMenu = () => {
   $('#app-container').innerHTML = productManageTemplate;
+  const storedProductItems = getLocalStorage(STORAGE_NAME.PRODUCT);
 
   if (storedProductItems) {
     initProductManageScreen(storedProductItems);
