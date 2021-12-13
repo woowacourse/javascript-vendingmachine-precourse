@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+#app {
+  min-width: 536px;
+}
+
 #main-menu {
   padding: 10px 0;
 }
@@ -26,7 +30,7 @@ section.component {
 
 table {
   width: 40%;
-  min-width: 520px;
+  min-width: 536px;
   border-collapse: collapse;
 }
 
