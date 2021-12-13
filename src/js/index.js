@@ -15,35 +15,47 @@ function App() {
   renderProductAddMenu();
 
   const handleClick = e => {
-    renderTabs(e);
-    if (e.target.classList.contains('purchase-button')) {
-      purchaseMenu(e.target);
-      renderMenuItems(purchableProductItemsConstants);
-      callRenderAmountSpan();
-    } else if (e.target.id === 'coin-return-button') {
-      getnumberOfCoinsList();
-      callRenderAmountSpan();
+    switch (e.target.id) {
+      case 'purchase-button':
+        purchaseMenu(e.target);
+        renderMenuItems(purchableProductItemsConstants);
+        callRenderAmountSpan();
+        break;
+      case 'coin-return-button':
+        getnumberOfCoinsList();
+        callRenderAmountSpan();
+        break;
+      default:
+        renderTabs(e);
     }
   };
 
   const handleSubmit = e => {
-    if (e.target.id === 'product-add-form') {
-      makeMenuTemplte(e);
-    } else if (e.target.id === 'vending-machine-charge-form') {
-      checkChangesInput(e);
-    } else if (e.target.id === 'charge-form') {
-      addInputAmount(e);
-      callRenderAmountSpan();
+    switch (e.target.id) {
+      case 'product-add-form':
+        makeMenuTemplte(e);
+        break;
+      case 'vending-machine-charge-form':
+        checkChangesInput(e);
+        break;
+      case 'charge-form':
+        addInputAmount(e);
+        callRenderAmountSpan();
+        break;
     }
   };
 
   const renderTabs = e => {
-    if (e.target.id === 'product-add-menu') {
-      renderProductAddMenu();
-    } else if (e.target.id === 'vending-machine-manage-menu') {
-      renderVendingMachineManageMenu();
-    } else if (e.target.id === 'product-purchase-menu') {
-      renderProductPurchaseMenu();
+    switch (e.target.id) {
+      case 'product-add-menu':
+        renderProductAddMenu();
+        break;
+      case 'vending-machine-manage-menu':
+        renderVendingMachineManageMenu();
+        break;
+      case 'product-purchase-menu':
+        renderProductPurchaseMenu();
+        break;
     }
   };
 

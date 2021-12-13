@@ -98,7 +98,7 @@ export const renderMenuItems = itemConstants => {
   for (let menu in menus) {
     let newTr = makeTr(menus[menu], itemConstants);
     if (itemConstants.CONTAINER_ID === '#purchasable-product-table-body') {
-      newTr.innerHTML += `<td class='table-item'><button class='purchase-button'>구매하기</button></td>`;
+      newTr.innerHTML += `<td class='table-item'><button id='purchase-button' class='purchase-button'>구매하기</button></td>`;
     }
     $(itemConstants.CONTAINER_ID).appendChild(newTr);
   }
