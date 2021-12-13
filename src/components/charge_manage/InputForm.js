@@ -2,10 +2,6 @@ import Component from "../root/Component.js";
 import { isValidCharge } from "../../utils/validation.js";
 
 export default class InputForm extends Component {
-  setup() {
-    console.log("charge input form", this);
-  }
-
   template() {
     const { chargeAmount } = this.$props;
 

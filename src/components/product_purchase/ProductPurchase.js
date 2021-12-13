@@ -11,7 +11,6 @@ export default class ProductPurchase extends Component {
     this.$state;
     this.callAPI = new API();
     this.initCallAPI();
-    console.log("ProductPurchase", this);
   }
 
   initCallAPI() {

@@ -2,10 +2,6 @@ import Component from "../root/Component.js";
 import setTableStyled from "../../style/setTableStyled.js";
 
 export default class ProductStatus extends Component {
-  setup() {
-    console.log("product status", this);
-  }
-
   template() {
     const { products } = this.$props;
 

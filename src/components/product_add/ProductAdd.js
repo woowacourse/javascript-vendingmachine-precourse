@@ -9,7 +9,6 @@ export default class ProductAdd extends Component {
     this.$state;
     this.callAPI = new API();
     this.initCallAPI();
-    console.log("ProductAdd", this);
   }
 
   initCallAPI() {

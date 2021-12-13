@@ -8,7 +8,6 @@ import Api from "./libs/api.js";
 
 export default class App extends Component {
   setup() {
-    console.log("App");
     this.$state;
     this.callAPI = new Api();
     this.initCallAPI();

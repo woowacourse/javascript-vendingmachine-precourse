@@ -43,8 +43,7 @@ const getPickRandomCoin = (coinBox) =>
 
 const getSumCoins = ({ prevCoins, newCoins }) => {
   const coins = {};
-  console.log("prevCoins:", prevCoins);
-  console.log("newCoins:", newCoins);
+
   for (let coin in prevCoins) {
     coins[coin] = prevCoins[coin] + newCoins[coin];
   }

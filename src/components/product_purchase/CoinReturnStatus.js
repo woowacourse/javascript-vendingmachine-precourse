@@ -3,10 +3,6 @@ import { getNewCoinBox } from "../../utils/coin.js";
 import getCoinUnitText from "../../utils/getCoinUnitText.js";
 
 export default class CoinReturnStatus extends Component {
-  setup() {
-    console.log("CoinReturnStatus", this);
-  }
-
   template() {
     const {
       returnedCoins: { coin500, coin100, coin50, coin10 },
@@ -48,7 +44,6 @@ export default class CoinReturnStatus extends Component {
   }
 
   onClickHandler(e) {
-    console.log("click");
     const { chargeAmount, coins, purchaseChargeAmount, setReturnedCoins } =
       this.$props;
 
@@ -63,7 +58,6 @@ export default class CoinReturnStatus extends Component {
     });
 
     setReturnedCoins({ ...props });
-    console.log("props", props);
   }
 
   getMinimumReturnedCoins({

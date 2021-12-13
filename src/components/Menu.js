@@ -1,10 +1,6 @@
 import Component from "./root/Component.js";
 
 export default class Menu extends Component {
-  setup() {
-    console.log("Menu");
-  }
-
   template() {
     return `
         <button id="product-add-menu">상품 관리</button>

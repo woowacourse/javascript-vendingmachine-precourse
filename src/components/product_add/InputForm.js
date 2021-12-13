@@ -2,10 +2,6 @@ import Component from "../root/Component.js";
 import { isValidProduct } from "../../utils/validation.js";
 
 export default class InputForm extends Component {
-  setup() {
-    console.log("Form", this);
-  }
-
   template() {
     return `
         <h3>상품 추가하기</h3>

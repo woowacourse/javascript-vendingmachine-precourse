@@ -3,10 +3,6 @@ import setTableStyled from "../../style/setTableStyled.js";
 import getCoinUnitText from "../../utils/getCoinUnitText.js";
 
 export default class CoinStatus extends Component {
-  setup() {
-    console.log("CoinStatus", this);
-  }
-
   template() {
     const {
       coins: { coin500, coin100, coin50, coin10 },

@@ -9,7 +9,6 @@ export default class ChargeManage extends Component {
     this.$state;
     this.callAPI = new API();
     this.initCallAPI();
-    console.log("ChargeManage", this);
   }
 
   initCallAPI() {

@@ -1,13 +1,9 @@
 import Component from "../root/Component.js";
 
 export default class ItemSatus extends Component {
-  setup() {
-    console.log("ItemSatus");
-  }
-
   template() {
     const { products } = this.$props;
-    console.log("$$$$$$$$$$$$$$$", products);
+
     return `
         <h3>구매할 수 있는 상품 현황</h3>
         <table>
