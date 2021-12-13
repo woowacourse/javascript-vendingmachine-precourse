@@ -8,6 +8,7 @@ import {
   getRandomCoinsAmongList,
   returnChangesinCoins,
 } from '../../common/utils.js';
+import { saveRandomAmountOfCoins } from '../../local-storage.js/product-purchase.js';
 
 export const printInsertedMoney = () => {
   const moneychargedAmountList = JSON.parse(
@@ -41,26 +42,6 @@ export const printProductPurchaseItemsToScreen = () => {
     $itemPrice.innerHTML = productPurchseListArray[i].price;
     $itemQuantity.innerHTML = productPurchseListArray[i].quantity;
   }
-};
-
-//Returning coins
-
-export const printReturnedCoins = () => {
-  const sum = printInsertedMoney();
-  const randomCoinAmount = returnChangesinCoins(sum, getRandomCoinsAmongList());
-  const $vendingMachinereturn500Coin = $('#vending-machine-coin-500-quantity');
-  const $vendingMachinereturn100Coin = $('#vending-machine-coin-100-quantity');
-  const $vendingMachinereturn50Coin = $('#vending-machine-coin-50-quantity');
-  const $vendingMachinereturn10Coin = $('#vending-machine-coin-10-quantity');
-
-  $vendingMachinereturn500Coin.innerHTML = `${
-    randomCoinAmount[COIN_LIST[0]]
-  }개`;
-  $vendingMachinereturn100Coin.innerHTML = `${
-    randomCoinAmount[COIN_LIST[1]]
-  }개`;
-  $vendingMachinereturn50Coin.innerHTML = `${randomCoinAmount[COIN_LIST[2]]}개`;
-  $vendingMachinereturn10Coin.innerHTML = `${randomCoinAmount[COIN_LIST[3]]}개`;
 };
 
 // Purchase items
@@ -119,7 +100,6 @@ export const manageDifference = (sum) => {
   const productListArray = JSON.parse(localStorage.getItem(PRODUCT.LIST));
   const $chargedAmount = $('#charge-amount');
   const $tabelBody = $('#purchase-table-body');
-  let difference = 0;
   // console.log($tabelBody);
   $tabelBody.addEventListener('click', (event) => {
     if (event.target.className !== 'purchase-button') return;
@@ -134,5 +114,28 @@ export const manageDifference = (sum) => {
         $chargedAmount.innerHTML = `${VENDING_MACHINE.INSERTED} ${sum} ${VENDING_MACHINE.WON}`;
       }
     }
+
+    return sum;
   });
+};
+
+//Returning coins
+
+export const printReturnedCoins = () => {
+  const coinList = JSON.parse(localStorage.getItem('coinList'));
+  const randomCoinAmount = returnChangesinCoins(32490, coinList);
+
+  const $vendingMachinereturn500Coin = $('#coin-500-quantity');
+  const $vendingMachinereturn100Coin = $('#coin-100-quantity');
+  const $vendingMachinereturn50Coin = $('#coin-50-quantity');
+  const $vendingMachinereturn10Coin = $('#coin-10-quantity');
+
+  $vendingMachinereturn500Coin.innerHTML = `${
+    randomCoinAmount[COIN_LIST[0]]
+  }개`;
+  $vendingMachinereturn100Coin.innerHTML = `${
+    randomCoinAmount[COIN_LIST[1]]
+  }개`;
+  $vendingMachinereturn50Coin.innerHTML = `${randomCoinAmount[COIN_LIST[2]]}개`;
+  $vendingMachinereturn10Coin.innerHTML = `${randomCoinAmount[COIN_LIST[3]]}개`;
 };

@@ -23,4 +23,6 @@ export const saveRandomAmountOfCoins = () => {
   const randomCoinAmount = getRandomCoinsAmongList(sum);
 
   localStorage.setItem('coinList', JSON.stringify(randomCoinAmount));
+
+  return JSON.parse(localStorage.getItem('coinList'));
 };
