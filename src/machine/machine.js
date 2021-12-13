@@ -1,9 +1,9 @@
-import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PURCHASE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_DATASET, ERROR_MESSAGE } from '../constants.js';
+import { COIN_VALUE } from '../constants.js';
 import Product from './product.js'
-import { elementCreatorWithClass } from '../utils/dom.js';
 import * as validator from './validator.js';
 import { getStorage, updateStorage } from '../utils/storage.js';
 import Coin from "./coin.js";
+import * as displayer from './display.js';
 
 export default class VendingMachine {
     constructor(){
@@ -21,11 +21,11 @@ export default class VendingMachine {
 
         if(validator.checkAddProduct(name, price, quantity, this.products)){
             const product = new Product(name, price, quantity, this.productId++);
-            this.displayProductAddTab(product);
-            this.displayProductPurchaseTab(product);
+            displayer.displayProductAddTab(product);
+            displayer.displayProductPurchaseTab(product, this);
             this.products.push(product);
 
-            //TODO: change this => item
+            //TODO: change this => item, except controller(this.buyProduct)
             updateStorage(this);
         }
     }
@@ -34,7 +34,9 @@ export default class VendingMachine {
         money = parseInt(money);
         if(validator.checkAddcoin(money)){
             this.getRandomCoins(money);
-            this.displayPossessCoins();
+
+            const item = getStorage();
+            displayer.displayPossessCoins(item);
         }
     }
 
@@ -61,7 +63,7 @@ export default class VendingMachine {
         const item = getStorage();
         if(validator.checkUserBuy(money)){
             this.input += money;
-            this.displayInputCoin(this.input);
+            displayer.displayInputCoin(this.input);
         }
 
         //TODO: change this => item
@@ -70,26 +72,28 @@ export default class VendingMachine {
 
     buyProduct(product){
 
-        const item = getStorage();
+        //TODO: const item = getStorage();
         if(this.input >= product.price){
             this.input -= product.price;
             product.quantity--;
 
-            this.displayChangedProduct(product);
+            updateStorage(this);
+            const item = getStorage();
+            displayer.displayChangedProduct(product, item);
         }
-
-        //TODO: change this => item
-        updateStorage(this);
     }
 
     returnMoney(){
         
-        const item = getStorage();
+        //const item = getStorage();
         const coins = this.getRandomReturn(this.input);
-        this.displayReturnedCoins(coins);
-        
-        //TODO: change this => item
         updateStorage(this);
+        
+        displayer.displayReturnedCoins(coins);
+
+        const item = getStorage();
+        displayer.displayRemainCoins(item);
+        //TODO: change this => item
     }
 
     getRandomReturn(money){
@@ -118,65 +122,4 @@ export default class VendingMachine {
         
         return returnCoin;
     }
-
-    displayProductAddTab(product){
-        const tr = elementCreatorWithClass('tr', ADD_TAB_CLASS.TABLE_TR, null);
-        tr.append(
-            elementCreatorWithClass('td', ADD_TAB_CLASS.TABLE_TD_NAME, product.name),
-            elementCreatorWithClass('td', ADD_TAB_CLASS.TABLE_TD_PRICE, product.price),
-            elementCreatorWithClass('td', ADD_TAB_CLASS.TABLE_TD_QUANTITY, product.quantity),
-        );
-        document.getElementById(ADD_TAB_ID.PRODUCT_TABLE).append(tr);
-    }
-
-    //TODO: seperate
-    displayPossessCoins(){
-        let total = 0;
-        for(let key in this.coins){
-            document.getElementById(COIN_TABLE_ID[key]).innerHTML = `${this.coins[key]}개`;
-            total += this.coins[key] * COIN_VALUE[key];
-        }
-        document.getElementById(MANAGE_TAB_ID.AMOUNT_SPAN_VALUE).innerHTML = total;
-    }
-    
-    displayProductPurchaseTab(product){
-        const tr = `<tr id= ${product.id} class= ${PURCHASE_TAB_CLASS.PURCHASE_ITEM}>
-                        <td class=${PURCHASE_TAB_CLASS.PRODUCT_NAME} 
-                            ${PURCHASE_TAB_DATASET.PRODUCT_NAME}=${product.name}>${product.name}</td>
-                        <td class=${PURCHASE_TAB_CLASS.PRODUCT_PRICE} 
-                            ${PURCHASE_TAB_DATASET.PRODUCT_PRICE}=${product.price}>${product.price}</td>
-                        <td class=${PURCHASE_TAB_CLASS.PRODUCT_QUANTITY} 
-                            ${PURCHASE_TAB_DATASET.PRODUCT_QUANTITY}=${product.quantity}>${product.quantity}</td>
-                        <td>
-                            <button class=${PURCHASE_TAB_CLASS.PURCHASE_BUTTON}>구매하기</button>
-                        </td>
-                    </tr>
-                    `
-        document.getElementById(PURCHASE_TAB_ID.PRODUCT_TABLE).insertAdjacentHTML('beforeend',tr);
-        const trId = document.getElementById(product.id);
-        trId.addEventListener('click', e=> {
-            e.preventDefault();
-            if(e.target.className == PURCHASE_TAB_CLASS.PURCHASE_BUTTON){
-                this.buyProduct(product);
-            }
-        })
-    }
-    
-    displayInputCoin(input){
-        document.getElementById(PURCHASE_TAB_ID.CHARGE_AMOUNT).innerHTML = input;
-    }
-
-    //TODO: seperate
-    displayChangedProduct(product){
-        document.querySelector(`#${product.id} .${PURCHASE_TAB_CLASS.PRODUCT_QUANTITY}`).innerHTML = product.quantity;
-        document.getElementById(PURCHASE_TAB_ID.CHARGE_AMOUNT).innerHTML = this.input;
-    }
-
-    //TODO: seperate
-    displayReturnedCoins(coins){
-        for(let key in this.coins){
-            document.getElementById(PURCHASE_TAB_ID.COIN_TABLE[key]).innerHTML = `${coins[key]}개`;
-            document.getElementById(COIN_TABLE_ID[key]).innerHTML = `${this.coins[key]}개`;
-        }
-    }   
 }
