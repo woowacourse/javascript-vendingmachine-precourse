@@ -31,4 +31,14 @@ const isValidQuantity = (input) => {
   return false;
 };
 
-export { trim, isValidName, isVaildPrice, isValidQuantity };
+const isValidCoin = (input) => {
+  const result = parseInt(trim(input), 10);
+
+  if (typeof result === "number" && result >= 10 && result % 10 === 0) {
+    return true;
+  }
+
+  return false;
+};
+
+export { trim, isValidName, isVaildPrice, isValidQuantity, isValidCoin };

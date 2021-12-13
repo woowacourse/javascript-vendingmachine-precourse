@@ -4,6 +4,7 @@ import {
   isVaildPrice,
   isValidName,
   isValidQuantity,
+  isValidCoin,
 } from "../utils/validation.js";
 
 export default class Controller {
@@ -14,8 +15,8 @@ export default class Controller {
 
   init() {
     this.onClickTabBtn();
-    this.onClickAddProduct();
-    // 상품 관리 탭 - 추가하기 버튼 클릭 시
+    this.onClickAddProduct(); // 상품 관리 탭 - 추가하기 버튼 클릭 시
+    this.onClickChargeBtn(); // 잔돈 충전 탭 - 충전하기 버튼 클릭 시
   }
 
   onClickTabBtn() {
@@ -57,6 +58,17 @@ export default class Controller {
         parseInt($addQuantity.value, 10)
       );
       this.view.renderProductTable(this.vendingMachine.productList);
+    });
+  }
+
+  onClickChargeBtn() {
+    const { $chargeBtn } = this.view.buttons;
+    const { $chargeCoin } = this.view.inputs;
+    $chargeBtn.addEventListener("click", () => {
+      if (!isValidCoin($chargeCoin.value)) {
+        alert("다시 입력하세요.");
+      }
+      // this.vendingMachine.
     });
   }
 }
