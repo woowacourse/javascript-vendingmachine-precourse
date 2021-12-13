@@ -59,7 +59,7 @@ export default class ChargeContainer extends Component {
   printChargeForm() {
     return `
         <form id="vending-machine-charge-form">
-          ${createInputElement('text', ID.VENDING_MACHINE_CHARGE_INPUT, '자판기가보유할금액')}
+          ${createInputElement('text', ID.VENDING_MACHINE_CHARGE_INPUT, '자판기가 보유할 금액')}
           <button id=${ID.VENDING_MACHINE_CHARGE_BUTTON}>충전하기</button>
         </form>
     `;

@@ -49,7 +49,7 @@ export default class PurchaseContainer extends Component {
   printChargeForm() {
     return `
         <form id="purchase-charge-form">
-          ${createInputElement('text', ID.CHARGE_INPUT, '투입할금액')}
+          ${createInputElement('text', ID.CHARGE_INPUT, '투입할 금액')}
           <button id=${ID.CHARGE_BUTTON}>투입하기</button>
         </form>
     `;
