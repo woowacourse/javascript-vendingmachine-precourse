@@ -8,7 +8,7 @@ import {
 } from './utils.js';
 import VendingMachine from '../model/vendingMachine.js';
 import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
-import { initVendingTable } from '../view/index.js';
+import { initVendingTable, clearInput, setInnerHTML } from '../view/index.js';
 
 const makeRandomCoinQuantity = inputValue => {
   const amountArray = [0, 0, 0, 0];
@@ -27,9 +27,9 @@ const makeRandomCoinQuantity = inputValue => {
 
 const initChargeDomProperty = () => {
   const vendingMachine = getItemOrNull(KEY.vending);
-  $(SELECTOR.vendingChargeInput).value = '';
+  clearInput($(SELECTOR.vendingChargeInput));
   if (vendingMachine) {
-    $(SELECTOR.vendingChargeAmount).innerHTML = vendingMachine.change;
+    setInnerHTML($(SELECTOR.vendingChargeAmount), vendingMachine.change);
   }
 };
 

@@ -7,9 +7,15 @@ import {
   isInputNumberValid,
   onKeyUpNumericEvent,
 } from './utils.js';
+import {
+  addTableRow,
+  initReturnTable,
+  clearTable,
+  setInnerHTML,
+  clearInput,
+} from '../view/index.js';
 import { KEY, SELECTOR, ALERT_MESSAGE } from '../model/constants.js';
 import { productPurchaseTableRow, productPurchaseTableHeader } from '../model/dom.js';
-import { addTableRow, initReturnTable } from '../view/index.js';
 
 const initAllPurchaseButtonEvent = () => {
   const allButtons = document.querySelectorAll(`.${SELECTOR.purchaseButton}`);
@@ -21,7 +27,7 @@ const initAllPurchaseButtonEvent = () => {
 const initProductStatusTable = () => {
   const table = document.querySelector('tbody');
   const allProducts = getItemOrArray(KEY.product);
-  table.innerHTML = '';
+  clearTable(table);
   table.insertAdjacentHTML('beforeend', productPurchaseTableHeader());
   allProducts.forEach(product => addTableRow(table, productPurchaseTableRow(product)));
   initAllPurchaseButtonEvent();
@@ -30,7 +36,7 @@ const initProductStatusTable = () => {
 const initPurchaseDomProperty = () => {
   const charge = getItemOrNull(KEY.charge);
   if (charge || charge === 0) {
-    $(SELECTOR.chargeAmount).innerHTML = charge;
+    setInnerHTML($(SELECTOR.chargeAmount), charge);
   }
   initProductStatusTable();
 };
@@ -62,9 +68,9 @@ const purchaseProduct = item => {
 
 const initChargeDomProperty = () => {
   const charge = getItemOrNull(KEY.charge);
-  $(SELECTOR.chargeInput).value = '';
+  clearInput($(SELECTOR.chargeInput));
   if (charge || charge === 0) {
-    $(SELECTOR.chargeAmount).innerHTML = charge;
+    setInnerHTML($(SELECTOR.chargeAmount), charge);
   }
 };
 

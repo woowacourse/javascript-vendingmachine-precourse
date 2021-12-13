@@ -10,7 +10,7 @@ import {
 import { SELECTOR, KEY, ALERT_MESSAGE } from '../model/constants.js';
 import { productAddTableRow } from '../model/dom.js';
 import Product from '../model/product.js';
-import { addTableRow } from '../view/index.js';
+import { addTableRow, clearInput } from '../view/index.js';
 
 const isAlreadyExistProduct = input => {
   const allProducts = getItemOrArray('products');
@@ -34,9 +34,9 @@ const isProductInputsValid = (productName, productPrice, productQuantity) =>
   isInputNumberValid(productQuantity.placeholder, productQuantity.value);
 
 const initInput = (productName, productPrice, productQuantity) => {
-  productName.value = '';
-  productPrice.value = '';
-  productQuantity.value = '';
+  clearInput(productName);
+  clearInput(productPrice);
+  clearInput(productQuantity);
 };
 
 const addProduct = () => {
