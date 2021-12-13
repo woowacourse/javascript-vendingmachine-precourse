@@ -15,16 +15,14 @@ function createProductManageDiv() {
 
 function createProductAdd(productManageDiv) {
   const productAddHeader = createHeader(HEADER.PRODUCT_ADD);
-  productManageDiv.append(productAddHeader);
   const productAddForm = createProductAddForm();
-  productManageDiv.append(productAddForm);
+  productManageDiv.append(productAddHeader, productAddForm);
 }
 
 function createProductList(productManageDiv) {
   const productListHeader = createHeader(HEADER.PRODUCT_LIST);
-  productManageDiv.append(productListHeader);
   const productListTable = createProductListTable();
-  productManageDiv.append(productListTable);
+  productManageDiv.append(productListHeader, productListTable);
 }
 
 export default function createProductManage() {

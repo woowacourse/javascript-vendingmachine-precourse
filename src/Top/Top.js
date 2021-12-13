@@ -12,7 +12,6 @@ function createMainHeader() {
 
 export default function createTop() {
   const mainHeader = createMainHeader();
-  $app.append(mainHeader);
   const tabMenu = createTabMenu();
-  $app.append(tabMenu);
+  $app.append(mainHeader, tabMenu);
 }
