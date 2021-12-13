@@ -1,4 +1,4 @@
-import { ID } from '../constants/selector.js';
+import { ID, CLASS } from '../constants/selector.js';
 import {
   Container,
   SubTitle,
@@ -9,6 +9,7 @@ import {
 import {
   createAddMoneyForm,
   createProductPurchaseTable,
+  createProductPurchaseRow,
   createCoinTable,
 } from '../components/productPurchaseMenu.js';
 import { vendingMachine } from '../components/vendingMachine.js';
@@ -17,7 +18,7 @@ import {
   isValidCharge,
 } from '../components/validator.js';
 
-export default function ProductPurchaseMenuView(container) {
+export default function ProductPurchaseMenuView() {
   this.productPurchaseMenu = () => {
     const container = Container('product-purchase-view');
     const addMoneySubTitle = SubTitle('금액 투입');
@@ -73,6 +74,28 @@ export default function ProductPurchaseMenuView(container) {
     moneySpan.innerHTML = vendingMachine.insertMoney;
   };
 
+  this.renderProductPurchase = (product) => {
+    const table = document.querySelector('#product-purchase-table');
+    const productRow = createProductPurchaseRow(
+      product,
+      CLASS.PRODUCT_PURCHASE_ITEM,
+      CLASS.PRODUCT_PURCHASE
+    );
+
+    table.append(productRow);
+  };
+
+  this.renderProducts = (products) => {
+    const productArray = products.map((product) => [
+      product.name,
+      product.price,
+      product.quantity,
+    ]);
+    productArray.forEach((product) => {
+      this.renderProductPurchase(product);
+    });
+  };
+
   this.initInsertMoney = () => {
     if (JSON.parse(localStorage.getItem('insert'))) {
       vendingMachine.insertMoney = JSON.parse(localStorage.getItem('insert'));
@@ -80,8 +103,18 @@ export default function ProductPurchaseMenuView(container) {
     this.renderInsertMoney();
   };
 
+  this.initProductTable = () => {
+    if (JSON.parse(localStorage.getItem('product'))) {
+      vendingMachine.products = JSON.parse(localStorage.getItem('product'));
+    }
+    this.renderProducts(vendingMachine.products);
+  };
+
   this.render = () => {
+    const container = document.querySelector('#menu-view');
+
     container.append(this.productPurchaseMenu());
     this.initInsertMoney();
+    this.initProductTable();
   };
 }

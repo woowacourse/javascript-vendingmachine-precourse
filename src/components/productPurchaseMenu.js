@@ -1,4 +1,4 @@
-import { ID } from '../constants/selector.js';
+import { ID, CLASS, DATASET } from '../constants/selector.js';
 import { COIN_TABLE, PRODUCT_PURCHASE_TABLE } from '../constants/table.js';
 import {
   Form,
@@ -7,8 +7,10 @@ import {
   Table,
   TableHead,
   TableRow,
+  TableRowWithClassName,
   TableData,
   TableDataWithId,
+  TableDataWithClassName,
 } from './elements.js';
 
 export const createAddMoneyForm = (event) => {
@@ -21,8 +23,22 @@ export const createAddMoneyForm = (event) => {
   return addMoneyForm;
 };
 
+export const createProductPurchaseRow = (datas, trClassName, tdClassNames) => {
+  const tr = TableRowWithClassName(trClassName);
+  const purchaseButton = Button('구매하기', CLASS.PRODUCT_PURCHASE_BUTTON);
+
+  datas.forEach((data, index) => {
+    const td = TableDataWithClassName(data, tdClassNames[index]);
+    td.dataset[DATASET[index]] = data;
+    tr.append(td);
+  });
+  tr.append(purchaseButton);
+
+  return tr;
+};
+
 export const createProductPurchaseTable = () => {
-  const productPurchaseTable = Table();
+  const productPurchaseTable = Table('product-purchase-table');
   TableHead(productPurchaseTable, PRODUCT_PURCHASE_TABLE.HEADS);
 
   return productPurchaseTable;
