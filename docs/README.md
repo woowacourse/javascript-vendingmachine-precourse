@@ -3,6 +3,38 @@
 </p>
 <h1 align="middle">자판기</h1>
 
+
+## 📝 구현 과정
+
+<br>
+
+- utils 폴더에 각종 상수`(constants.js)`와 HTML`(html.js)` 저장
+- 기본 페이지를 화면에 출력`(showMain.js)`
+- 각 페이지를 기준으로 폴더로 구분
+- 각 폴더는 3가지 기능으로 분리
+  - **View** : 해당하는 화면을 출력
+  - **Check** : 입력받은 값의 유효성 체크
+  - **Event** : 입력받은 값으로 계산을 하는 등의 이벤트 추가
+- 상품 관리 탭 `(ProductAdd)`
+  -  **ProductAddView** : 입력창, 추가 버튼, 상품 현황표 출력
+  -  **ProductAddCheck** : 입력받은 값의 유효성 판단 후 적합한 이벤트 실행
+  -  **ProductAddEvent** : 상품을 localStorage에 저장 후 상품 현황표 출력
+- 잔돈 충전 탭 `(MachineManage)`
+  -  **MachineManageView**: 입력창, 충전 버튼, 보유 금액, 자판기가 보유한 동전표 출력
+  -  **MachineManageCheck** : 입력받은 값의 유효성 판단 후 적합한 이벤트 실행
+  -  **MachineManageEvent** : 잔돈과 랜덤으로 생성된 동전들을 localStorage에 저장 후 동전표 출력
+- 상품 구매 탭 `(ProductPurchase)`
+  -  **ProductPurchaseView** : 입력창, 투입 버튼, 투입 금액, 상품 현황표, 반환 버튼, 반환 동전표 출력
+  -  **ProductPurchaseCheck** : 입력받은 값의 유효성 판단 후 적합한 이벤트 실행
+  -  **ProductPurchaseEvent** : 투입 금액과 잔돈으로 생성된 최소 개수 동전들을 localStorage에 저장 후 반환 동전표 출력
+- 상품 구매 이벤트 `(PurchaseEvent.js)`
+  - 구매 가능 여부 판단
+  - 구매 불가능시 alert
+  - 구매 가능시 물건 구매 후 변화된 내용들을 표로 출력
+
+<br>
+
+---
 ## ✅ 구현할 기능 목록
 
 <br>
