@@ -5,7 +5,7 @@ import ChargedAmount from './ChargedAmount.js';
 import PurchaseList from './PurchaseList.js';
 import ChangesStatus from './ChangesStatus.js';
 
-export default class Purchase extends Component {
+export default class PurchaseTab extends Component {
   initChildren() {
     this.children = [
       new Form(newElement('<form id="charge-money"/>')),

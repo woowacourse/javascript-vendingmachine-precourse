@@ -4,7 +4,7 @@ import Form from './Form.js';
 import ChargedAmount from './ChargedAmount.js';
 import CoinStatus from './CoinStatus.js';
 
-export default class Management extends Component {
+export default class MachineManagementTab extends Component {
   initChildren() {
     this.children = [
       new Form(newElement('<form id="vending-machine-charge-form"/>')),
