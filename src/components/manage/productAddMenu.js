@@ -31,7 +31,7 @@ const handleProductMenuSubmit = (event) => {
   setProductItemsStorage(productData);
 };
 
-export const showProductManage = () => {
+export const showProductAddMenu = () => {
   $('#app-container').innerHTML = productManageTemplate;
 
   if (storedProductItems) {

@@ -37,7 +37,7 @@ const handleCoinChargeSubmit = (event) => {
   setLocalStorage(STORAGE_NAME.COIN, convertedCoins);
 };
 
-export const showCoinCharge = () => {
+export const showManageMenu = () => {
   $('#app-container').innerHTML = coinChargeTemplate;
   const storedCharge = getLocalStorage(STORAGE_NAME.COIN);
   const storedAmount = getLocalStorage(STORAGE_NAME.AMOUNT);

@@ -92,7 +92,7 @@ const handleChargeInput = (event) => {
   showCurrentAmount(chargeAmountId, currentAmount);
 };
 
-export const showProductPurchase = () => {
+export const showProductPurchaseMenu = () => {
   $('#app-container').innerHTML = productPurchaseTemplate;
   const storedProductList = getLocalStorage(STORAGE_NAME.PRODUCT);
 
