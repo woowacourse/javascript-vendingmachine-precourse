@@ -14,8 +14,14 @@ const isDividedByGivenNum = (value, givenNum) => {
   return value % givenNum === 0;
 };
 
-const isValidName = (name) => {
+const isDuplicatedName = (name, products) => {
+  return products.some((product) => product.name === name);
+};
+
+const isValidName = (name, products) => {
   if (isEmpty(name)) return setErrorMessage(ERROR_MESSAGE.EMPTY_PRODUCT_NAME);
+  if (isDuplicatedName(name, products))
+    return setErrorMessage(ERROR_MESSAGE.DUPLICATED_PRODUCT_NAME);
 
   return true;
 };
@@ -39,6 +45,6 @@ const isValidQuantity = (quantity) => {
   return true;
 };
 
-export const isValidProductInput = (name, price, quantity) => {
-  return isValidName(name) && isValidPrice(price) && isValidQuantity(quantity);
+export const isValidProductInput = (name, price, quantity, products) => {
+  return isValidName(name, products) && isValidPrice(price) && isValidQuantity(quantity);
 };

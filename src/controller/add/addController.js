@@ -22,17 +22,22 @@ export default class AddController {
 
   handleAddItem(e) {
     e.preventDefault();
-    const name = this.addView.$productNameInput.value;
-    const price = this.addView.$productPriceInput.value;
-    const quantity = this.addView.$productQuantityInput.value;
+    const [name, price, quantity] = this.getInputValue();
 
-    if (isValidProductInput(name, price, quantity)) {
+    if (isValidProductInput(name, price, quantity, this.appModel.products)) {
       this.appModel.addProduct({ name, price, quantity });
       this.addView.renderProduct(name, price, quantity);
 
       return true;
     }
-
     return showError();
+  }
+
+  getInputValue() {
+    const name = this.addView.$productNameInput.value;
+    const price = this.addView.$productPriceInput.value;
+    const quantity = this.addView.$productQuantityInput.value;
+
+    return [name, price, quantity];
   }
 }
