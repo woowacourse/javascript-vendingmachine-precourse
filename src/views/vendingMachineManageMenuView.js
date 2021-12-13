@@ -42,6 +42,7 @@ export default function VendingMachineManageView(container) {
 
     vendingMachine.addCharge(parseInt(chargeInput.value));
     this.renderCharge();
+    vendingMachine.addCoin(parseInt(chargeInput.value));
   };
 
   this.renderCharge = () => {
