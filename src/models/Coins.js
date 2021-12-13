@@ -5,9 +5,13 @@ export default class Coins {
     coins = { '500': 0, '100': 0, '50': 0, '10': 0 },
     _ = tc(coins, 'object')
   ) {
-    this.map = new Map();
     this.keys = [500, 100, 50, 10];
+    this.map = new Map();
     this.keys.forEach((key) => this.map.set(key, coins[key]));
+  }
+
+  getKeys() {
+    return [...this.keys];
   }
 
   sum() {

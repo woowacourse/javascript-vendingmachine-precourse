@@ -25,6 +25,7 @@ export default class VendingMachineCoins extends Coins {
     return coins;
   }
 
+  // TODO: refill과 returnChange 클래스 분리
   // TODO: 예외 처리
   refill(chargeAmount, _ = tc(chargeAmount, 'number')) {
     const newCoins = VendingMachineCoins.convertToRandomCoins(chargeAmount);
@@ -34,7 +35,7 @@ export default class VendingMachineCoins extends Coins {
 
   returnChange(amount, _ = tc(amount, 'number')) {
     const change = new Coins();
-    const divisor = [...this.keys];
+    const divisor = this.getKeys().sort((a, b) => a - b);
     let remain = amount;
 
     // TODO: array 비어있는 여부 조사 좀더 좋은 방법 찾기, 타입체크도 리팩터링
