@@ -1,16 +1,13 @@
 import Component from "../common/component.js";
+import AddMenuContainer from "./addMenuContainer.js";
 import ButtonTabs from "./buttonTabs.js";
+import CoinManageMenuContainer from "./coinManageMenuContainer.js";
 import Header from "./header.js";
-
-const buttonIdToIndex = {
-  "product-purchase-menu": 0,
-  "vending-machine-manage-menu": 1,
-  "product-add-menu": 2,
-};
+import PurchaseMenuContainer from "./purchaseMenuContainer.js";
 
 export default class App extends Component {
   initialize() {
-    this.$state = { activeTab: 0 };
+    this.$state = { activeTab: "product-add-menu" };
   }
 
   template() {
@@ -22,23 +19,43 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.mountHeader();
+    this.mountButtonTabs();
+    this.mountContents();
+  }
+
+  mountHeader() {
     const $titleSelector = this.$target.querySelector("#title");
-    const $buttonTabsSelector = this.$target.querySelector("#button-tabs");
-    const $contentSelector = this.$target.querySelector("#content");
 
     new Header($titleSelector, {
       title: "자판기",
       imageSrc: "../../images/beverage_icon.png",
     });
+  }
+
+  mountButtonTabs() {
+    const $buttonTabsSelector = this.$target.querySelector("#button-tabs");
 
     new ButtonTabs($buttonTabsSelector, {
       buttonList: [
-        { name: "상품 구매", id: "product-purchase-menu" },
-        { name: "잔돈 충전", id: "vending-machine-manage-menu" },
         { name: "상품 관리", id: "product-add-menu" },
+        { name: "잔돈 충전", id: "vending-machine-manage-menu" },
+        { name: "상품 구매", id: "product-purchase-menu" },
       ],
       onClickCallback: this.onClickTab.bind(this),
     });
+  }
+
+  mountContents() {
+    const $contentSelector = this.$target.querySelector("#content");
+
+    if (this.$state.activeTab === "product-purchase-menu") {
+      new PurchaseMenuContainer($contentSelector, { menuItems: [] });
+    } else if (this.$state.activeTab === "vending-machine-manage-menu") {
+      new CoinManageMenuContainer($contentSelector);
+    } else {
+      new AddMenuContainer($contentSelector);
+    }
   }
 
   onClickTab(event) {
@@ -46,10 +63,6 @@ export default class App extends Component {
 
     if (target.tagName !== "BUTTON") return;
 
-    this.setState({ activeTab: this.getNewActiveTabIndex(target.id) });
-  }
-
-  getNewActiveTabIndex(buttonId) {
-    return buttonIdToIndex[buttonId];
+    this.setState({ activeTab: target.id });
   }
 }
