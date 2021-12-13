@@ -199,17 +199,17 @@ export default class VendingMachine {
       return;
     }
 
-    this.pay(product);
-    this.provide(product);
+    this._pay(product);
+    this._provide(product);
   }
 
-  pay(product) {
+  _pay(product) {
     this.updateUserAmountModel(ACTION_WITHDRAW, product.price);
     this.updateUserAmountModel(ACTION_SAVE, product.price);
     this.updateUserAmountView();
   }
 
-  provide(product) {
+  _provide(product) {
     Product.sellProduct(product);
     this.updateProductsModel(ACTION_SAVE, product);
     this.updateProductsView(ACTION_SELL, product);
