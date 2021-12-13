@@ -140,41 +140,132 @@
 ```javascript
 📦src
  ┣ 📂model
- ┃ ┗ 📜database.js											//
+ ┃ ┗ 📜database.js			   // localStorage의 데이터를 관리하는 Model
  ┣ 📂views
  ┃ ┣ 📂components
- ┃ ┃ ┣ 📜ChargeForm.js									//
- ┃ ┃ ┣ 📜CoinTable.js										//
- ┃ ┃ ┗ 📜ProductTable.js								//
+ ┃ ┃ ┣ 📜ChargeForm.js		 // 자판기 보유 금액, 투입한 금액 관련 Component
+ ┃ ┃ ┣ 📜CoinTable.js			 // 자판기 보유 동전, 반환되는 동전 관련 Component
+ ┃ ┃ ┗ 📜ProductTable.js	 // 상품 현황, 구매할 수 있는 상품 현황 관련 Component
  ┃ ┣ 📂templates
- ┃ ┃ ┗ 📜templates.js										//
- ┃ ┣ 📜View.js													//
+ ┃ ┃ ┗ 📜templates.js			 // 전체적인 html 뼈대를 구성하는 template
+ ┃ ┣ 📜View.js						 // 컴포넌트와 템플릿을 호출하는 View
  ┣ 📂controllers
  ┃ ┣ 📂managers
- ┃ ┃ ┣ 📜ProductAddManager.js           //
- ┃ ┃ ┣ 📜ProductPurchaseManager.js      //
- ┃ ┃ ┗ 📜VendingMachineChargeManager.js //
+ ┃ ┃ ┣ 📜ProductAddManager.js           // 상품 관리 비즈니스 로직을 담당하는 class
+ ┃ ┃ ┣ 📜ProductPurchaseManager.js      // 잔돈 충전 비즈니스 로직을 담당하는 class
+ ┃ ┃ ┗ 📜VendingMachineChargeManager.js // 상품 구매 비즈니스 로직을 담당하는 class
  ┃ ┣ 📂utils
- ┃ ┃ ┣ 📜calculateReturnCoins.js        //
- ┃ ┃ ┣ 📜convertChargeIntoCoin.js       //
- ┃ ┃ ┗ 📜getAllPurchaseButton.js        //
- ┃ ┗ 📜Controller.js									  //
+ ┃ ┃ ┣ 📜calculateReturnCoins.js    // 투입한 금액을 바탕으로 동전을 반환하는 function
+ ┃ ┃ ┣ 📜convertChargeIntoCoin.js   // 금액을 입력하면 무작위로 동전을 생성하는 function
+ ┃ ┃ ┗ 📜getAllPurchaseButton.js    // 구매 버튼의 활성화와 로직을 담당하는 function
+ ┃ ┗ 📜Controller.js			  				// 탭 메뉴 버튼과 managers를 활성화 하는 Controller
  ┣ 📂constants
- ┃ ┣ 📜constants.js											//
- ┃ ┣ 📜errors.js												//
- ┃ ┗ 📜selectors.js											//
+ ┃ ┣ 📜constants.js				// 정규식, localStorage, 단어, 숫자 관련 상수 모음
+ ┃ ┣ 📜errors.js					// 예외처리에서 발생하는 오류메시지 관련 상수 모음
+ ┃ ┗ 📜selectors.js				// html 선택자 관련 상수 모음
  ┣ 📂utils
- ┃ ┣ 📜DOMUtils.js											//
- ┃ ┣ 📜utils.js													//
- ┃ ┗ 📜validators.js										//
- ┗ 📜index.js														//
+ ┃ ┣ 📜DOMUtils.js				// DOM을 조작하는 function 모음
+ ┃ ┣ 📜utils.js						// Boolean, 문자열 조작, 데이터 계산하는 function 모음
+ ┃ ┗ 📜validators.js			// 각종 예외처리 들을 담당하는 function 모음
+ ┗ 📜index.js				      // controller를 호출
 ```
 
 <br/>
 
 ## **🤔 고민했던 부분**
 
-### 1. 자판기 보유 금액 만큼 동전 무작위 생성하는 알고리즘
+### 1. 규모있는 프로젝트의 효율적인 설계
+> 실제 설계에 사용한 Flow chart는 [여기](https://app.diagrams.net/#G1iQTbCXEIGvmoeMjggHDP-SqLe-xfz2kv)에서 확인 할 수 있습니다. (실제 구현 내용과 차이가 있습니다.)
+
+![image](https://user-images.githubusercontent.com/24728385/145797064-45980ca0-e68e-4a80-a0cb-92fa0f2305cf.png)
+
+3주차 과제를 처음 마주했을때 `기능 요구 사항`이 1, 2주차 과제에 비해서 많다고 생각했습니다. 개발이 물론 중요하지만 그 전에 설계를 잘해야 겠다는 생각을 했습니다. 진행방식을 따라서 기능 목록을 만들고 한 chapter의 정리가 끝나면 [Draw.io](https://app.diagrams.net/)를 사용해서 `flow chart`를 그렸습니다. **설계 하는 시간에만 하루를 과감히 투자하였습니다.**  개발 과정에 꼭 필요한 중요 로직을 설계하면서 구체화 하였습니다. 개발을 진행하면서 기능목록과 동시에 `flow chart`를 볼 수 있어서  기능목록을 작성할때는 생각하지 못했던 부분을  `flow chart`를 그리면서 알게되고, 개발을 진행하면서 설계 과정에서 생각하지 못한 부분을 찾아낼 수 있었습니다. 이렇게 요구사항에 대해서 깊이 파악할 수 있었고 **제가 생각할 수 있는 최선의 코드를 작성할 수 있었습니다.** 앞으로도 규모가 있는 프로젝트를 진행하게된다면 필수적으로 설계를 진행 할 예정입니다.
+
+
+
+### 2. 컴포넌트의 재사용 with `Web Component`
+
+![image](https://user-images.githubusercontent.com/24728385/145716847-82443e05-67c8-4a1b-b6d3-e0fac231108c.png)
+
+마크업을 하면서 3개의 컴포넌트가 중복으로 사용된다는 것을 알았습니다. 코드의 중복을 줄이고자 순수 Vanilla JS로만 구현할 수 있는 컴포넌트 생성하는 법을 검색하였고, 리액트 뷰 처럼 **컴포넌트를 재활용 할 수 있는 [`web component`](https://developer.mozilla.org/ko/docs/Web/Web_Components) 를 알게되었습니다.**  제가 알게된 `web component`의 장점은 사용자 인터페이스에서 원하는대로 사용할 수있는 사용자 정의 요소 및 해당 동작을 정의 할 수있는 `Custom elements` 입니다. `Custom elements`를 사용해서 위의 이미지와 같이 중복되는 요소들을 찾아서 `component`화 하였고 **중복되는 html 코드들을 효율적으로 줄일 수 있었습니다.** 
+
+```html
+<!-- Before -->
+<table border="1">
+  <thead>
+    <tr>
+      <th>동전</th>
+      <th>개수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>500원</td>
+      <td id="coin-500-quantity"></td>
+    </tr>
+    <tr>
+      <td>100원</td>
+      <td id="coin-100-quantity"></td>
+    </tr>
+    <tr>
+      <td>50원</td>
+      <td id="coin-50-quantity"></td>
+    </tr>
+    <tr>
+      <td>10원</td>
+      <td id="coin-10-quantity"></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- After -->
+<coin-table 
+  coin500id="coin-500-quantity"
+  coin100id="coin-100-quantity"
+  coin50id="coin-50-quantity"
+  coin10id="coin-10-quantity"
+></coin-table>
+```
+
+
+
+<hr/>
+
+### 2. `dataset` 속성을 활용하는 법
+
+제품을 구매하기 위해서 `구매하기` 버튼을 누르면 제품의 정보를 얻어올 수 있어야 합니다. 
+프로그래밍 요구 사항에 명시된 `dataset`속성을 사용해서 다음과 같이 구현하였습니다.
+
+```javascript
+//utils.js 
+
+addPurchaseButtonEvent: element => {
+  // 1. 제품의 구매하기 버튼을 누릅니다.
+  element.addEventListener('click', e => {
+    e.preventDefault();
+		
+    // 2. 클릭된 버튼을 감싸고있는 <td> 태그의 형제들을 찾아 
+    //    getProductInformation함수로 호출합니다.
+    const data = utils.getProductInformation(e.path[2].children);
+
+    // ... 중략 ...
+  });
+},
+
+getProductInformation: element => {
+  // 3. <td> 태그들이 담겨 있는 배열을 구조 분해하여 변수에 할당합니다.
+  const [name, price, quantity] = Array.from(element);
+
+  return {
+    // 4. dataset을 활용하여 각각의 정보를 가져오고 객체로 만들어 반환합니다.
+    name: name.dataset.productName,
+    price: price.dataset.productPrice,
+    quantity: quantity.dataset.productQuantity,
+  };
+},
+```
+<hr/>
+### 3. 자판기 보유 금액 만큼 동전 무작위 생성하는 알고리즘
 
 > 충전하고 싶은 금액을 입력하면 `Random.pickNumberInList` 을 사용해서 무작위로 동전을 뽑습니다. 이때 충전할 금액이 0이 될때까지 다음 과정을 수행합니다.
 
@@ -193,12 +284,13 @@
 
 <hr/>
 
-### 2. 자판기 보유 금액을 계산하는 방법
+### 4. 자판기 보유 금액을 계산하는 방법
 
 `coin`는 `{"coin500":0,"coin100":0,"coin50":1,"coin10":5}`처럼 각 동전별 갯수를 저장합니다. 이 객체를 사용해서 `자판기 보유 금액` 을 구하는 함수를 작성해보았습니다.
 
 ```javascript
 //utils.js
+
 calculateToCharge: object => {
   // 1. DB.load(string)로 동전별 갯수 object를 불러옵니다.
   //   1-1. Object.entries로 객체를 key와 value의 쌍을 이루는 배열로 변화시킵니다.
@@ -218,7 +310,7 @@ calculateToCharge: object => {
 
 <hr/>
 
-### 3. 자판기의 잔돈 반환 알고리즘
+### 5. 자판기의 잔돈 반환 알고리즘
 
 > **그리디 알고리즘**(욕심쟁이 알고리즘, Greedy Algorithm)이란 "매 선택에서 **지금 이 순간 당장 최적인 답**을 선택하여 적합한 결과를 도출하자" 라는 모토를 가지는 [알고리즘](https://namu.wiki/w/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) 설계 기법이다. - 출처 [#](https://namu.wiki/w/%EA%B7%B8%EB%A6%AC%EB%94%94%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 
@@ -255,53 +347,6 @@ const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
   return [wallet, emptyWallet];
 };
 ```
-
-<hr/>
-
-### 4. `dataset` 속성을 활용하는 법
-
-제품을 구매하기 위해서 `구매하기` 버튼을 누르면 제품의 정보를 얻어올 수 있어야 합니다. 
-프로그래밍 요구 사항에 명시된 `dataset`속성을 사용해서 다음과 같이 구현하였습니다.
-
-```javascript
-//utils.js 
-addPurchaseButtonEvent: element => {
-  // 1. 제품의 구매하기 버튼을 누릅니다.
-  element.addEventListener('click', e => {
-    e.preventDefault();
-		
-    // 2. 클릭된 버튼을 감싸고있는 <td> 태그의 형제들을 찾아 
-    //    getProductInformation함수로 호출합니다.
-    const data = utils.getProductInformation(e.path[2].children);
-
-    // ... 중략 ...
-  });
-},
-
-getProductInformation: element => {
-  // 3. <td> 태그들이 담겨 있는 배열을 구조 분해하여 변수에 할당합니다.
-  const [name, price, quantity] = Array.from(element);
-
-  return {
-    // 4. dataset을 활용하여 각각의 정보를 가져오고 객체로 만들어 반환합니다.
-    name: name.dataset.productName,
-    price: price.dataset.productPrice,
-    quantity: quantity.dataset.productQuantity,
-  };
-},
-```
-
-<hr/>
-
-### 5. 컴포넌트의 재사용 with `Web Component`
-
-마크업을 하면서 3개의 컴포넌트가 중복으로 사용된다는 것을 알았습니다. 코드의 중복을 줄이고자 순수 Vanilla JS로만 구현할 수 있는 컴포넌트 생성하는 법을 검색하였고, 리액트 뷰 처럼 컴포넌트를 재활용 할 수 있는 [`web component`](https://developer.mozilla.org/ko/docs/Web/Web_Components) 를 알게되었습니다. 
-
-제가 알게된 `web component`의 장점은 사용자 인터페이스에서 원하는대로 사용할 수있는 사용자 정의 요소 및 해당 동작을 정의 할 수있는 `Custom elements` 입니다. 
-
-`Custom elements`를 사용해서 다음 이미지와 같이 중복되는 요소들을 찾아서 `component`화 하였고 중복되는 html 코드들을 효율적으로 줄일 수 있었습니다. 
-
-![image](https://user-images.githubusercontent.com/24728385/145716847-82443e05-67c8-4a1b-b6d3-e0fac231108c.png)
 
 <br/>
 
