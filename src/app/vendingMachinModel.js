@@ -4,15 +4,18 @@ import {
   ERROR_MESSAGE,
   FIFTY,
   FIVE_HUNDRED,
+  LOCALSTORAGE_DATA_MODEL_KEY,
   ONE_HUNDRED,
   PLAIN_TEXT,
   TAB,
   TEN,
 } from '../lib/constants.js';
+import { getLocalStorageByKey, setLocalStorage } from '../lib/utils.js';
 
 /** Model */
 class VendingMachineModel {
   constructor() {
+    const prevValue = getLocalStorageByKey(LOCALSTORAGE_DATA_MODEL_KEY);
     if (prevValue) {
       this.setDataModel(prevValue);
     } else {
@@ -65,6 +68,7 @@ class VendingMachineModel {
 
   setDataModelPropertyValue(KEY, VALUE) {
     this.dataModel[KEY] = VALUE;
+    setLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY, JSON.stringify(this.dataModel));
   }
 
   setTab(newTab) {

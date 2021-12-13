@@ -105,3 +105,5 @@ export const DATA_MODEL_KEYS = {
   CHARGE_AMOUNT: 'chargeAmount',
   RETURN_COINS: 'returnCoins',
 };
+
+export const LOCALSTORAGE_DATA_MODEL_KEY = 'data-model';
