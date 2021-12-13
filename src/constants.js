@@ -38,7 +38,7 @@ export const PRODUCT_PURCHASE = {
   QUANTITY: '수량',
   PURCHASE: '구매',
   COIN: '동전',
-  COIN_STORAGE: '투입한 금액:',
+  COIN_STORAGE: '투입한 금액: ',
   NUMBER_OF_COIN: '개수',
   ADD_BTN: '투입하기',
   PURCHASE_BTN: '구매하기',
