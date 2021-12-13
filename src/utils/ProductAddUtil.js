@@ -1,11 +1,11 @@
 import { ALERT, PRODUCT_PURCHASE } from '../constants.js';
 import ProductAdd from '../elements/ProductAdd.js';
 import ProductPurchase from '../elements/ProductPurchase.js';
+import PurchaseBtnHandler from '../handler/PurchaseBtnHandler.js';
 
 import {
   appendClass,
   appendTheadStyle,
-  createBtnClass,
   createBtnClassDataset,
   createThClass,
   createThClassDataset,
@@ -94,7 +94,8 @@ export default class ProductAddUtil {
       'data-product-quantity',
       quantity,
     );
-    this.addProductPurchaseBtn(tableRow);
+
+    new PurchaseBtnHandler(this.addProductPurchaseBtn(tableRow));
 
     this.productPurchase.tableBody.appendChild(tableRow);
     appendTheadStyle(this.productPurchase.tableBody);
@@ -108,5 +109,6 @@ export default class ProductAddUtil {
       'data-product-purchase',
       'purchase',
     );
+    return tableRow;
   }
 }

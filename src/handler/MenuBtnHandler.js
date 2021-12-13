@@ -1,8 +1,4 @@
-import {
-  ProductAdd,
-  ProductPurchase,
-  VendingMachine,
-} from './elementDivClass.js';
+import { ProductAdd, ProductPurchase, VendingMachine } from './DivClass.js';
 
 export default class MenuBtnHandler {
   constructor() {
