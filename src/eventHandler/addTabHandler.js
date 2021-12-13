@@ -16,24 +16,38 @@ function setCurrentTab(id) {
   localStorage.setItem(CURRENT_TAB_KEY, id);
 }
 
-export default function addTabHandler(vendingMachine) {
+function addProductTabHanlder(vendingMachine) {
   const $tabProductAdd = $(`#${TAB_PRODUCT_ADD_ID}`);
-  const $tabCharge = $(`#${TAB_CHARGE_ID}`);
-  const $tabPurchase = $(`#${TAB_PURCHASE_ID}`);
 
   $tabProductAdd.addEventListener('click', () => {
     renderProductAdd(vendingMachine);
     addProductHandler(vendingMachine);
     setCurrentTab(TAB_PRODUCT_ADD_ID);
   });
+}
+
+function chargeTabHandler(vendingMachine) {
+  const $tabCharge = $(`#${TAB_CHARGE_ID}`);
+
   $tabCharge.addEventListener('click', () => {
     renderCharge(vendingMachine);
     chargeHandler(vendingMachine);
     setCurrentTab(TAB_CHARGE_ID);
   });
+}
+
+function purchaseTabHandler(vendingMachine) {
+  const $tabPurchase = $(`#${TAB_PURCHASE_ID}`);
+
   $tabPurchase.addEventListener('click', () => {
     renderPurchase(vendingMachine);
     purchaseHandler(vendingMachine);
     setCurrentTab(TAB_PURCHASE_ID);
   });
+}
+
+export default function addTabHandler(vendingMachine) {
+  addProductTabHanlder(vendingMachine);
+  chargeTabHandler(vendingMachine);
+  purchaseTabHandler(vendingMachine);
 }
