@@ -57,6 +57,7 @@ export const ERROR_MESSAGE = {
   PRODUCT_BLANK(placeholder) {
     return `${placeholder}을 입력해주세요.`;
   },
+  NO_DUPLICATE_NAME: '중복된 상품명이 있습니다. 중복되지 않는 상품명을 입력해주세요.',
   PRODUCT_POSITIVE_INTEGER: '양의 정수를 입력해주세요.',
   PRODUCT_MORE_THAN_ONE_HUNDRED: '상품 가격은 100원 이상으로 입력해주세요.',
   NOT_ENOUGH_AMOUNT: '금액이 부족합니다. 금액을 투입해주세요.',

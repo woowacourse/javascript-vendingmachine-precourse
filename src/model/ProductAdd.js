@@ -1,4 +1,4 @@
-import { DOM, ERROR_MESSAGE, NUMBER } from '../utils/constant.js';
+import { DOM, ERROR_MESSAGE, LOCAL_STORAGE, NUMBER } from '../utils/constant.js';
 
 export default class ProductAdd {
   constructor(render) {
@@ -18,6 +18,19 @@ export default class ProductAdd {
     if ($element.value.trim().length < NUMBER.BLANK_CHECK_LENGTH) {
       this.render.alertMessage(ERROR_MESSAGE.PRODUCT_BLANK($element.placeholder));
       this.render.inputFocus($element);
+
+      return true;
+    }
+
+    return false;
+  };
+
+  isDuplicateName = () => {
+    const productsInformation = JSON.parse(localStorage.getItem(LOCAL_STORAGE.PRODUCTS_INFORMATION));
+
+    if (productsInformation.find((productInformation) => productInformation[0] === this.$productNameInput.value)) {
+      this.render.alertMessage(ERROR_MESSAGE.NO_DUPLICATE_NAME);
+      this.render.inputFocus(this.$productNameInput);
 
       return true;
     }
@@ -68,7 +81,7 @@ export default class ProductAdd {
     this.isUnitOfTen() &&
     this.isMoreThanOneHundred();
 
-  isValidNameInput = () => !this.isBlank(this.$productNameInput);
+  isValidNameInput = () => !this.isBlank(this.$productNameInput) && !this.isDuplicateName();
 
   isValidInputs = () => this.isValidNameInput() && this.isValidPriceInput() && this.isQuantityInput();
 }
