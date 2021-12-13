@@ -7,11 +7,10 @@ import ProductStore from '../../stores/ProductStore.js';
 
 export default class Form extends Component {
   bindEvents() {
-    this.appendRootEvents('submit', event => this.onSubmit(event));
+    this.appendRootEvents('submit', () => this.onSubmit());
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onSubmit() {
     const name = $('#product-name-input', this.$container).value;
     const price = Number($('#product-price-input', this.$container).value);
     const quantity = Number(

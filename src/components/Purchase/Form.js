@@ -7,11 +7,10 @@ import UserStore from '../../stores/UserStore.js';
 
 export default class Form extends Component {
   bindEvents() {
-    this.appendRootEvents('submit', event => this.onSubmit(event));
+    this.appendRootEvents('submit', () => this.onSubmit());
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onSubmit() {
     const money = Number($('#charge-input').value);
     if (!isValidChargingMoney(money))
       return alert(MESSAGE.INVALID_CHARGING_MONEY);

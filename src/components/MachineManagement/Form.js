@@ -7,11 +7,10 @@ import ChangesStore from '../../stores/ChangesStore.js';
 
 export default class Form extends Component {
   bindEvents() {
-    this.appendRootEvents('submit', event => this.onSubmit(event));
+    this.appendRootEvents('submit', () => this.onSubmit());
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onSubmit() {
     const money = Number(
       $('#vending-machine-charge-input', this.$container).value
     );

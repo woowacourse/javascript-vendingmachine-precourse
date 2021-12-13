@@ -86,6 +86,9 @@ export default class Component {
   }
 
   appendRootEvents(type, handler) {
-    this.$container.addEventListener(type, handler);
+    this.$container.addEventListener(type, event => {
+      if (type === 'submit') event.preventDefault();
+      handler(event);
+    });
   }
 }
