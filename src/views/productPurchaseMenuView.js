@@ -46,7 +46,6 @@ export default function ProductPurchaseMenuView() {
       returnButton,
       coinTable
     );
-    container.setAttribute('class', 'invisible');
 
     return container;
   };

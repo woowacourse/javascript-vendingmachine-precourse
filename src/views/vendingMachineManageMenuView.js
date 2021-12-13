@@ -33,7 +33,6 @@ export default function VendingMachineManageView() {
       haveCoinSubTitle,
       coinTable
     );
-    container.setAttribute('class', 'invisible');
 
     return container;
   };

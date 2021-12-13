@@ -26,7 +26,6 @@ export default function ProductAddMenuView() {
       productStatusSubTitle,
       productTable
     );
-    container.setAttribute('class', 'invisible');
 
     return container;
   };
