@@ -1,3 +1,46 @@
+# 프로젝트 결과물
+
+![my-project1](../images/my-project1.gif)
+
+![my-project2](../images/my-project2.gif)
+
+![my-project3](../images/my-project3.gif)
+
+![my-project4](../images/my-project4.gif)
+
+![my-project5](../images/my-project5.gif)
+
+# 파일 구조
+
+```bash
+src
+ ┣ controller
+ ┃ ┣ CheckCoinReturn.js
+ ┃ ┣ CheckEventTarget.js
+ ┃ ┣ CheckProductAddMenu.js
+ ┃ ┣ CheckProductPurchaseMenu.js
+ ┃ ┣ CheckVendingMachineManageMenu.js
+ ┃ ┣ Controller.js
+ ┃ ┣ SetLocalStorage.js
+ ┃ ┣ SetProductAdd.js
+ ┃ ┣ SetVendingMachineCharge.js
+ ┃ ┗ SetVendingMachinePurchase.js
+ ┣ model
+ ┃ ┣ Coins.js
+ ┃ ┣ Product.js
+ ┃ ┣ ProductAdd.js
+ ┃ ┣ VendingMachine.js
+ ┃ ┗ VendingMachineCharge.js
+ ┣ style
+ ┃ ┗ style.css
+ ┣ utils
+ ┃ ┗ constant.js
+ ┣ view
+ ┃ ┣ Render.js
+ ┃ ┗ style.js
+ ┗ index.js
+```
+
 # 📄 구현할 기능 목록
 
 1. [x] 초기화면에 보여줄 template 적용
