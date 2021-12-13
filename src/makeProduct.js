@@ -3,7 +3,7 @@ import { PRODUCT, GAME } from './product.js'
 export function makeProduct($productNameInputValue, $productPriceInputValue, $productQuantityInputValue){
     //클래스 생성
     let product = $productNameInputValue
-    product = new PRODUCT($productNameInputValue, $productPriceInputValue, $productQuantityInputValue)
+    product = new PRODUCT($productNameInputValue, Number($productPriceInputValue), Number($productQuantityInputValue))
     
     GAME.PRODUCTS.push(product)
 
