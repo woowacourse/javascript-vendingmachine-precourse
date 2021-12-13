@@ -23,12 +23,17 @@ function isValidPrice(price) {
   return isAboveMinimum(price, MINIMUM_PRICE_INPUT) && isMultipleOf10(price);
 }
 
+function isDuplicatedName(products, name) {
+  return !products.find((product) => product.name === name);
+}
+
 export default class Validator {
-  static isValidAddInput({ name, price, quantity }) {
+  static isValidAddInput(products, { name, price, quantity }) {
     if (
       isNotEmptyName(name)
       && isValidPrice(price)
       && isAboveMinimum(quantity, MINIMUM_QUANTITY_INPUT)
+      && isDuplicatedName(products, name)
     ) {
       return true;
     }

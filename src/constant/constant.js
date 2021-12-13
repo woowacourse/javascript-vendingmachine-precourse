@@ -1,4 +1,4 @@
-export const ADD_ERROR_MESSAGE = '상품명, 가격, 수량을 모두 입력해주세요. 상품명은 100이상 10의 배수여야 합니다.';
+export const ADD_ERROR_MESSAGE = '상품명, 가격, 수량을 모두 입력해주세요. 상품명은 기존제품과 중복되지 않아야 하고 상품 가격은 100이상 10의 배수여야 합니다.';
 export const CHARGE_ERROR_MESSAGE = '투입 금액은 10원 이상이고 10의 배수여야 합니다.';
 export const PURCHASE_ERROR_MESSAGE = '투입 금액이 부족합니다.';
 

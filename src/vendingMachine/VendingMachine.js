@@ -21,7 +21,7 @@ export default class VendingMachine {
   }
 
   addProduct(product) {
-    if (Validator.isValidAddInput(product)) {
+    if (Validator.isValidAddInput(this.products, product)) {
       const addedProduct = new Product(product);
 
       this.products.push(addedProduct);
