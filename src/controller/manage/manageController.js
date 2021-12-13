@@ -13,7 +13,10 @@ export default class ManageController {
   init() {
     this.manageView.init();
 
-    this.manageView.renderManageTab(this.appModel.chargeAmount);
+    this.manageView.renderManageTab(
+      this.appModel.chargeAmount,
+      this.appModel.getCoinsAmountArray()
+    );
     this.manageView.selectManageTabDOM();
     this.attachManageTabEvents();
   }

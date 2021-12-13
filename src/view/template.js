@@ -1,4 +1,5 @@
 import NUMBER from '../constants/number.js';
+import { INDEX } from '../constants/constants.js';
 
 export const headerTemplate = () => {
   return `
@@ -53,7 +54,7 @@ export const addTabTemplate = (products, inputs) => {
   `;
 };
 
-export const manageTabTemplate = (chargeAmount) => {
+export const manageTabTemplate = (chargeAmount, coinsAmountArray) => {
   return `
     <h2>자판기 동전 충전하기</h2>
     <form id="vending-machine-manage-form">
@@ -75,19 +76,21 @@ export const manageTabTemplate = (chargeAmount) => {
         <tbody>
           <tr>
             <th>500원</th>
-            <th id="vending-machine-coin-500-quantity">${NUMBER.ZERO}개</th>
+            <th id="vending-machine-coin-500-quantity">${
+              coinsAmountArray[INDEX.FIVE_HUNDRED]
+            }개</th>
           </tr>
           <tr>
             <th>100원</th>
-            <th id="vending-machine-coin-100-quantity">${NUMBER.ZERO}개</th>
+            <th id="vending-machine-coin-100-quantity">${coinsAmountArray[INDEX.HUNDRED]}개</th>
           </tr>
           <tr>
             <th>50원</th>
-            <th id="vending-machine-coin-50-quantity">${NUMBER.ZERO}개</th>
+            <th id="vending-machine-coin-50-quantity">${coinsAmountArray[INDEX.FIFTY]}개</th>
           </tr>
           <tr>
             <th>10원</th>
-            <th id="vending-machine-coin-10-quantity">${NUMBER.ZERO}개</th>
+            <th id="vending-machine-coin-10-quantity">${coinsAmountArray[INDEX.TEN]}개</th>
           </tr>
         </tbody>
       </table>

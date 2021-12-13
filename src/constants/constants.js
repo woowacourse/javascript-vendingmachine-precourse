@@ -16,3 +16,10 @@ const NUMBER = {
 };
 
 export const COIN_UNIT = [NUMBER.FIVE_HUNDRED, NUMBER.HUNDRED, NUMBER.FIFTY, NUMBER.TEN];
+
+export const INDEX = {
+  FIVE_HUNDRED: 0,
+  HUNDRED: 1,
+  FIFTY: 2,
+  TEN: 3,
+};

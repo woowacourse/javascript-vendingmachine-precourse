@@ -58,4 +58,8 @@ export default class AppModel {
   setCoins() {
     setDataOnStorage(STRING.COINS, this.coins);
   }
+
+  getCoinsAmountArray() {
+    return this.coins.map((coin) => coin.amount);
+  }
 }
