@@ -60,6 +60,10 @@ class Controller {
     return productNameInput.replace(/ /g, '').length === 0;
   }
 
+  isNumberType(productNameInput) {
+    return !isNaN(Number(productNameInput));
+  }
+
   isValidateProductAdd() {
     const productNameInput = $id('product-name-input').value;
     const productPriceInput = $id('product-price-input').value;
@@ -72,6 +76,11 @@ class Controller {
 
     if (this.isContainsBlank(productNameInput)) {
       alert('공백이 아닌 상품명을 입력해주세요.  ex) 사이다');
+      return false;
+    }
+
+    if (this.isNumberType(productNameInput)) {
+      alert("숫자타입이 아닌 상품명을 입력해주세요.  ex) 사이다');");
       return false;
     }
   }
