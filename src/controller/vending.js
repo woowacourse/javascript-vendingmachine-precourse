@@ -1,61 +1,71 @@
 import { $, handleStorage, validation, onKeyUpNumericEvent } from './utils.js';
 import VendingMachine from '../model/vendingMachine.js';
 import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
-import { initVendingTable, clearInput, setInnerHTML } from '../view/index.js';
 
-const makeRandomCoinQuantity = inputValue => {
-  const amountArray = [0, 0, 0, 0];
-  let totalPrice = 0;
+export default class Vending {
+  constructor(view) {
+    this.view = view;
+  }
 
-  while (inputValue !== totalPrice) {
-    const coin = MissionUtils.Random.pickNumberInList(COIN_ARRAY);
-    if (totalPrice + coin <= inputValue) {
-      totalPrice += coin;
-      amountArray[COIN_ARRAY.indexOf(coin)] += 1;
+  init() {
+    this.addEventListeners();
+    this.view.initVendingTable();
+    this.initChargeDomProperty();
+  }
+
+  addEventListeners() {
+    $(SELECTOR.vendingChargeButton).addEventListener('click', () => this.chargeVending());
+    $(SELECTOR.vendingChargeInput).addEventListener('keyup', () =>
+      onKeyUpNumericEvent($(SELECTOR.vendingChargeInput)),
+    );
+  }
+
+  makeRandomCoinQuantity(inputValue) {
+    const amountArray = [0, 0, 0, 0];
+    let totalPrice = 0;
+
+    while (inputValue !== totalPrice) {
+      const coin = MissionUtils.Random.pickNumberInList(COIN_ARRAY);
+      if (totalPrice + coin <= inputValue) {
+        totalPrice += coin;
+        amountArray[COIN_ARRAY.indexOf(coin)] += 1;
+      }
+    }
+
+    return amountArray;
+  }
+
+  initChargeDomProperty() {
+    const vendingMachine = handleStorage.getItemOrNull(KEY.vending);
+    this.view.clearInput($(SELECTOR.vendingChargeInput));
+    if (vendingMachine) {
+      this.view.setInnerHTML($(SELECTOR.vendingChargeAmount), vendingMachine.change);
     }
   }
 
-  return amountArray;
-};
-
-const initChargeDomProperty = () => {
-  const vendingMachine = handleStorage.getItemOrNull(KEY.vending);
-  clearInput($(SELECTOR.vendingChargeInput));
-  if (vendingMachine) {
-    setInnerHTML($(SELECTOR.vendingChargeAmount), vendingMachine.change);
+  isChargeInputValid(chargeInput) {
+    return validation.isInputNumberValid(chargeInput) && validation.isMultipleOf10(chargeInput);
   }
-};
 
-const isChargeInputValid = chargeInput =>
-  validation.isInputNumberValid(chargeInput) && validation.isMultipleOf10(chargeInput);
-
-const setVendingMachineByRandomCoin = (chargeInputValue, randomCoinQuantity) => {
-  let vendingMachine = handleStorage.getItemOrNull(KEY.vending);
-  if (vendingMachine) {
-    vendingMachine.change += chargeInputValue;
-  } else if (vendingMachine === null) {
-    vendingMachine = new VendingMachine(chargeInputValue);
+  setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity) {
+    let vendingMachine = handleStorage.getItemOrNull(KEY.vending);
+    if (vendingMachine) {
+      vendingMachine.change += chargeInputValue;
+    } else if (vendingMachine === null) {
+      vendingMachine = new VendingMachine(chargeInputValue);
+    }
+    randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
+    handleStorage.setItem(KEY.vending, vendingMachine);
   }
-  randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
-  handleStorage.setItem(KEY.vending, vendingMachine);
-};
 
-const chargeVending = () => {
-  const chargeInput = $(SELECTOR.vendingChargeInput);
-  if (isChargeInputValid(chargeInput)) {
-    const chargeInputValue = parseInt(chargeInput.value);
-    const randomCoinQuantity = makeRandomCoinQuantity(chargeInputValue);
-    setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity);
-    initChargeDomProperty();
-    initVendingTable();
+  chargeVending() {
+    const chargeInput = $(SELECTOR.vendingChargeInput);
+    if (this.isChargeInputValid(chargeInput)) {
+      const chargeInputValue = parseInt(chargeInput.value);
+      const randomCoinQuantity = this.makeRandomCoinQuantity(chargeInputValue);
+      this.setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity);
+      this.initChargeDomProperty();
+      this.view.initVendingTable();
+    }
   }
-};
-
-export const initAllVending = () => {
-  initVendingTable();
-  initChargeDomProperty();
-  $(SELECTOR.vendingChargeButton).addEventListener('click', () => chargeVending());
-  $(SELECTOR.vendingChargeInput).addEventListener('keyup', () =>
-    onKeyUpNumericEvent($(SELECTOR.vendingChargeInput)),
-  );
-};
+}

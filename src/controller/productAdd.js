@@ -6,7 +6,11 @@ import Product from '../model/product.js';
 export default class ProductAdd {
   constructor(view) {
     this.view = view;
-    this.initTable(this.view);
+    this.init();
+  }
+
+  init() {
+    this.initTable();
     this.addEventListeners();
   }
 
@@ -20,10 +24,10 @@ export default class ProductAdd {
     );
   }
 
-  initTable(view) {
+  initTable() {
     const allProducts = handleStorage.getItemOrArray(KEY.product);
     const table = document.querySelector('tbody');
-    allProducts.forEach(product => view.addTableRow(table, productAddTableRow(product)));
+    allProducts.forEach(product => this.view.addTableRow(table, productAddTableRow(product)));
   }
 
   initInput(productName, productPrice, productQuantity) {
