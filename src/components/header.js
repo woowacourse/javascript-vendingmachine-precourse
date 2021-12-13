@@ -1,6 +1,7 @@
 import $ from '../util/domSelector.js';
 import header from '../templates/header.js';
 import { HEADER } from '../constants/selector.js';
+import ProductManagement from '../routes/productManagement.js';
 
 export default class Header {
   constructor($target) {
@@ -10,7 +11,7 @@ export default class Header {
 
   setEvent() {
     $(`#${HEADER.PRODUCT_ADD_MENU}`).addEventListener('click', () => {
-      console.log('PRODUCT_MENU');
+      new ProductManagement();
     });
 
     $(`#${HEADER.VENDING_MACHINE_MANAGE_MENU}`).addEventListener('click', () => {
@@ -23,7 +24,10 @@ export default class Header {
   }
 
   template() {
-    return header();
+    return `
+    ${header()}
+    <div id="${HEADER.CONTENT_CONTAINER}"></div>
+    `;
   }
 
   render() {
