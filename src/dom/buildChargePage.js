@@ -39,50 +39,20 @@ function coinDisplayElement(container) {
     coinDisplayTableRow.appendChild(coinCategory);
     coinDisplayTableRow.appendChild(coinAmount);
 
-    coin500DisplayElement(coinDisplayTable);
-    coin100DisplayElement(coinDisplayTable);
-    coin50DisplayElement(coinDisplayTable);
-    coin10DisplayElement(coinDisplayTable);
+    createTableRow(coinDisplayTable,"500원","vending-machine-coin-500-quantity");
+    createTableRow(coinDisplayTable,"100원","vending-machine-coin-100-quantity");
+    createTableRow(coinDisplayTable,"50원","vending-machine-coin-50-quantity");
+    createTableRow(coinDisplayTable,"10원","vending-machine-coin-10-quantity");
 }
 
-function coin500DisplayElement(Table) {
-    const coin500DisplayTableRow =  document.createElement("tr");
-    const coin500 = createDocumentElement("td", "500원");
-    const coin500Amount = createDocumentElement("td", "", "vending-machine-coin-500-quantity");
+function createTableRow(Table, innerText, id) {
+    const tableRow = document.createElement("tr");
+    const coin = createDocumentElement("td", innerText);
+    const coinAmount = createDocumentElement("td", "", id);
 
-    Table.appendChild(coin500DisplayTableRow);
-    coin500DisplayTableRow.appendChild(coin500);
-    coin500DisplayTableRow.appendChild(coin500Amount);
-}
-
-function coin100DisplayElement(Table) {
-    const coin100DisplayTableRow =  document.createElement("tr");
-    const coin100 = createDocumentElement("td", "100원");
-    const coin100Amount = createDocumentElement("td", "", "vending-machine-coin-100-quantity");
-
-    Table.appendChild(coin100DisplayTableRow);
-    coin100DisplayTableRow.appendChild(coin100);
-    coin100DisplayTableRow.appendChild(coin100Amount);
-}
-
-function coin50DisplayElement(Table) {
-    const coin50DisplayTableRow =  document.createElement("tr");
-    const coin50 = createDocumentElement("td", "50원");
-    const coin50Amount = createDocumentElement("td", "", "vending-machine-coin-50-quantity");
-
-    Table.appendChild(coin50DisplayTableRow);
-    coin50DisplayTableRow.appendChild(coin50);
-    coin50DisplayTableRow.appendChild(coin50Amount);
-}
-
-function coin10DisplayElement(Table) {
-    const coin10DisplayTableRow =  document.createElement("tr");
-    const coin10 = createDocumentElement("td", "10원");
-    const coin10Amount = createDocumentElement("td", "", "vending-machine-coin-10-quantity");
-
-    Table.appendChild(coin10DisplayTableRow);
-    coin10DisplayTableRow.appendChild(coin10);
-    coin10DisplayTableRow.appendChild(coin10Amount);
+    Table.appendChild(tableRow);
+    tableRow.appendChild(coin);
+    tableRow.appendChild(coinAmount);
 }
 
 function clearContainer(container) {
