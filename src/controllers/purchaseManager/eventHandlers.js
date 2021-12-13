@@ -1,6 +1,6 @@
 import { getInputValueById } from "../../utils/inputValue.js";
 import { isValidMoney } from "../common/checkMoneyInput.js";
-import { getItemFromLocalStorage } from "../../utils/itemFromLocalStorage.js";
+import { getMoneyCustomer } from "../../utils/getSetItems.js";
 import { addMoneyCustomer } from "./data/chargeCustomerDataController.js";
 import { purchaseProduct } from "./data/purchaseDataController.js";
 import { returnCoins } from "./data/returnCoinsDataController.js";
@@ -28,7 +28,7 @@ const onClickCustomerChargeButton = () => {
 };
 
 const purchaseLogic = (name, price) => {
-  const money = parseInt(getItemFromLocalStorage("money"), 10);
+  const money = parseInt(getMoneyCustomer(), 10);
 
   if (money < price) {
     alert(ALERT_MSG.lackMoney);
@@ -56,7 +56,7 @@ const onClickCoinReturnButton = () => {
   const $coinReturnButton = document.getElementById("coin-return-button");
 
   $coinReturnButton.addEventListener("click", () => {
-    const money = parseInt(getItemFromLocalStorage("money"), 10);
+    const money = parseInt(getMoneyCustomer(), 10);
     returnCoins(money);
     showAfterReturnCoins();
   });

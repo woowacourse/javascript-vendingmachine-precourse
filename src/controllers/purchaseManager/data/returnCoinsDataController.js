@@ -1,15 +1,16 @@
 import { COIN_TYPES } from "../../../utils/constants.js";
 import { calculateMoney } from "../../../utils/calculateMoney.js";
 import { insertQuantityOfCoins } from "../../../views/purchaseManager/showReturnCoins.js";
+import { removeItemFromLocalStorage } from "../../../utils/itemFromLocalStorage.js";
 import {
-  getItemFromLocalStorage,
-  setItemFromLocalStorage,
-  removeItemFromLocalStorage,
-} from "../../../utils/itemFromLocalStorage.js";
+  getCoinsInMachine,
+  setCoinsInMachine,
+  setMoneyCustomer,
+} from "../../../utils/getSetItems.js";
 
 // 자판기 안에 있는 모든 동전 반환
 const returnAllCoinsInMachine = (coins, moneyInMachine, money) => {
-  setItemFromLocalStorage("money", money - moneyInMachine);
+  setMoneyCustomer(money - moneyInMachine);
   removeItemFromLocalStorage("coins");
   insertQuantityOfCoins(coins);
 };
@@ -40,13 +41,13 @@ const returnMinCountOfCoins = (coinsInMachine, money) => {
     coinsInMachine[i] -= resultOfThisStep.quantity;
   }
 
-  setItemFromLocalStorage("money", money);
-  setItemFromLocalStorage("coins", coinsInMachine.join(","));
+  setMoneyCustomer(money);
+  setCoinsInMachine(coinsInMachine.join(","));
   insertQuantityOfCoins(returnCoins);
 };
 
 const returnCoins = money => {
-  const strOfCoinsInMachine = getItemFromLocalStorage("coins");
+  const strOfCoinsInMachine = getCoinsInMachine();
 
   if (strOfCoinsInMachine) {
     const coinsInMachine = strOfCoinsInMachine.split(",");
