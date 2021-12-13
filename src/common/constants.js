@@ -46,3 +46,16 @@ export const BUTTON = {
   PURCHASE: '구매하기',
   RETURN: '반환하기',
 };
+
+export const INVALID = {
+  PRODUCT_NAME: '상품명을 입력해 주세요.',
+  PRODUCT_PRICE:
+    '가격을 잘못 입력하셨습니다. 100원 이상의 올바른 가격을 입력해 주세요.',
+  PRODUCT_QUANTITY: '수량을 잘못 입력하셨습니다. 양의 정수를 입력해 주세요.',
+};
+
+export const INPUT = {
+  MIN_PRICE: 100,
+  QUOTIENT: 10,
+  MIN_QUANTITY: 1,
+};
