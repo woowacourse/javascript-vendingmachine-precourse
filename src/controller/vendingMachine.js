@@ -6,6 +6,7 @@ import TabMenuController from './tabMenuController.js';
 import ProductManager from '../model/product.js';
 import VendingMachineView from '../vendingMachineView.js';
 import MoneyStatus from '../model/moneyStatus.js';
+import changeCalculator from '../utils/changeCalculator.js';
 
 export default class VendingMachine {
   constructor() {
@@ -27,6 +28,7 @@ export default class VendingMachine {
   setEvent() {
     $$('form').forEach(form => form.addEventListener('click', this.handleFormEvent.bind(this)));
     $(`#${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE}`).addEventListener('click', this.handlePurchaseEvent.bind(this));
+    $(`#${PURCHASE_MENU.COIN_RETURN_BUTTON}`).addEventListener('click', this.handleReturnChangeEvent.bind(this));
   }
 
   handleFormEvent(e) {
@@ -51,6 +53,17 @@ export default class VendingMachine {
       this.view.renderProducts(PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE, this.tabMenu.purchaseMenu.purchaseItemTemplate);
       this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
     }
+  }
+
+  handleReturnChangeEvent() {
+    this.changeModel = new changeCalculator(this.coinModel.money);
+    this.changeModel.returnChange(this.coinModel.clientMoney);
+    
+    this.coinModel.clientMoney = 0;
+
+    this.view.renderCoinStatus(PURCHASE_MENU.RETURN_TABLE_SELECTOR, this.changeModel.change);
+    this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coinModel.money);
+    this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.coinModel.clientMoney);
   }
 
   submitProduct() {
