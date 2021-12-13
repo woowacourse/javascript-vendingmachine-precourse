@@ -7,7 +7,32 @@ class VendingMachine {
     }
 
     chargeChange(money) {
-        this.coin10 += money/10;
+        while(money > 0) {
+            let coin = MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+            if(coin <= money) {
+                this.addCoin(coin);
+                money -= coin;
+            }
+        }
+    }
+
+    addCoin(coin) {
+        switch (coin) {
+            case 10:
+                this.coin10++;
+                break;
+            case 50:
+                this.coin50++;
+                break;
+            case 100:
+                this.coin100++;
+                break;
+            case 500:
+                this.coin500++;
+                break;
+            default:
+                console.log("잘못된 입력 값 : " + coin);
+        }
     }
 
     getTotalChange() {
