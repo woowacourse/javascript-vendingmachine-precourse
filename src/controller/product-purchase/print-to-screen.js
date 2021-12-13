@@ -1,4 +1,4 @@
-import { $ } from '../../common/dom/dom.js';
+import { $, productPurchaseTable } from '../../common/dom/dom.js';
 import {
   getRandomCoinsAmongList,
   returnChangesinCoins,
@@ -8,7 +8,7 @@ export const printInsertedMoney = () => {
   const moneychargedAmountList = JSON.parse(
     localStorage.getItem('moneyChargedAmount')
   );
-  const $moneyChargePtag = $('#charge-amount');
+  const $currentMoney = $('#charge-amount');
   let amountArray = [];
   let sum = 0;
 
@@ -16,13 +16,12 @@ export const printInsertedMoney = () => {
     amountArray.push(moneychargedAmountList[i].value);
   }
   sum = amountArray.reduce((a, b) => a + b);
-  $moneyChargePtag.innerHTML = `투입한 금액: ${sum}원`;
+  $currentMoney.innerHTML = `투입한 금액: ${sum}원`;
 
   return sum;
 };
 
-export const purchaseItems = () => {};
-
+// print purchase items to screen
 export const printProductPurchaseItemsToScreen = () => {
   const productPurchseListArray = JSON.parse(
     localStorage.getItem('productList')
@@ -39,9 +38,12 @@ export const printProductPurchaseItemsToScreen = () => {
   }
 };
 
+//Returning coins
+
 export const printReturnedCoins = () => {
   const sum = printInsertedMoney();
   const randomCoinAmount = returnChangesinCoins(sum, getRandomCoinsAmongList());
+  console.log(randomCoinAmount);
   const $vendingMachinereturn500Coin = $('#vending-machine-coin-500-quantity');
   const $vendingMachinereturn100Coin = $('#vending-machine-coin-100-quantity');
   const $vendingMachinereturn50Coin = $('#vending-machine-coin-50-quantity');
@@ -51,4 +53,21 @@ export const printReturnedCoins = () => {
   $vendingMachinereturn100Coin.innerHTML = `${randomCoinAmount['100']}개`;
   $vendingMachinereturn50Coin.innerHTML = `${randomCoinAmount['50']}개`;
   $vendingMachinereturn10Coin.innerHTML = `${randomCoinAmount['10']}개`;
+};
+
+// Purchase items
+
+export const manageDataAttribute = () => {
+  const $productName = $('.product-purchase-name');
+  const $productPrice = $('.product-purchase-price');
+  const $productQuantity = $('.product-purchase-quantity');
+  const $purchaseBtn = $('.purchase-button');
+  const productListArray = JSON.parse(localStorage.getItem('productList'));
+
+  for (const item of productListArray) {
+    $productName.setAttribute('data-product-name', item.name);
+    $productPrice.setAttribute('data-product-price', item.price);
+    $productQuantity.setAttribute('data-product-quantity', item.quantity);
+    $purchaseBtn.setAttribute('data-purchase-button', item.name);
+  }
 };
