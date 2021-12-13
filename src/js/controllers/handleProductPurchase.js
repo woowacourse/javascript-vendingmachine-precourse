@@ -56,10 +56,10 @@ function HandleProductPurchase() {
   // (1) 금액 투입 기능
   $('#charge-button').addEventListener('click', e => {
     e.preventDefault();
-    const purchaseInput = $('#charge-input').value;
+    const chargeInput = $('#charge-input').value;
 
-    if (isValidCharge(purchaseInput)) {
-      this.inputMoney += Number(purchaseInput);
+    if (isValidCharge(chargeInput)) {
+      this.inputMoney += Number(chargeInput);
       store.setLocalStorage('inputMoney', this.inputMoney);
       printInputCharge(this.inputMoney);
     }
