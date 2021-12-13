@@ -64,9 +64,9 @@ function addItemElement(name, price, quantity) {
     const productItemPurchase = createDocumentElement("td");
     const productItemPurchaseButton = createDocumentElement("button", "구매하기", "", "", "purchase-button");
 
-    productItemName.dataset.dataProductName = name;
-    productItemPrice.dataset.dataProductPrice = price;
-    productItemQuantity.dataset.dataProductproductItemQuantity = quantity;
+    productItemName.setAttribute("data-product-name", name);
+    productItemName.setAttribute("data-product-price", price);
+    productItemName.setAttribute("data-product-quantity", quantity);
     productItemPurchaseButton.onclick = () => purchaseItem(name, price);
 
     productItemTable.appendChild(productItemTableRow);
