@@ -47,7 +47,6 @@ export default class CoinStatus {
   }
 
   render(coins) {
-    console.log(coins);
     coins.forEach((item, idx) => {
       this.content[idx].textContent = `${Object.values(item).join('')}개`;
     });

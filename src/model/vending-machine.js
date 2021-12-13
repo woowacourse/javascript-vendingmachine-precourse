@@ -16,14 +16,25 @@ export default class VendingMachine {
   }
 
   initCoin() {
-    kindsOfCoins.forEach((kind) => this.coins.push(new Coin(kind, 0)));
+    const localCoins = JSON.parse(localStorage.getItem('coins'));
+    if (localCoins) {
+      this.coins = localCoins.map((coin) => new Coin(...Object.values(coin)));
+    }
+    if (!localCoins) {
+      kindsOfCoins.forEach((kind) => this.coins.push(new Coin(kind, 0)));
+    }
   }
 
-  initMenu() {}
+  initMenu() {
+    this.items = JSON.parse(localStorage.getItem('items')).map(
+      (item) => new Item(...Object.values(item))
+    );
+  }
 
   addMenu({ name, price, quantity }) {
     const item = new Item(name, price, quantity);
     this.items.push(item);
+    localStorage.setItem('items', JSON.stringify(this.items));
     return item.array;
   }
 
@@ -37,6 +48,7 @@ export default class VendingMachine {
         change -= randomCoin;
       }
     }
+    localStorage.setItem('coins', JSON.stringify(this.coins));
   }
 
   insertMoney(money) {
@@ -61,6 +73,7 @@ export default class VendingMachine {
       }
     });
     this.soldOut();
+    localStorage.setItem('items', JSON.stringify(this.items));
   }
 
   soldOut() {
@@ -77,6 +90,7 @@ export default class VendingMachine {
       const change = new Coin(coin.kinds, amount);
       changeArr.push(change.obj);
     });
+    localStorage.setItem('coins', JSON.stringify(this.coins));
     return changeArr;
   }
 
