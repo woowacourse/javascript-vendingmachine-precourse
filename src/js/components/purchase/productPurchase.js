@@ -75,6 +75,10 @@ const handlePurchaseButtonClick = (event) => {
   const name = target.childNodes[1].dataset.productName;
   const price = target.childNodes[3].dataset.productPrice;
 
+  if (currentAmount < price) {
+    return alert(ERROR_MESSAGE.NOT_ENOUGH_MONEY);
+  }
+
   subtractPriceAndQuantity(target, price);
   showCurrentAmount(chargeAmountId, currentAmount);
   resetProductItemStorage(name);

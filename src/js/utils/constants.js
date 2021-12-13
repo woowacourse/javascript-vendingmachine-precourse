@@ -19,4 +19,5 @@ export const ERROR_MESSAGE = {
   NOT_DIVIDE_BY_TEN: `${STANDARD.DIVIDE_NUMBER}원으로 나누어 떨어진 값으로 입력해 주세요.`,
   COUNT_TOO_SMALL: `${STANDARD.PRODUCT_QUANTITY} 이상의 숫자로 입력해 주세요.`,
   CAN_NOT_OVERLAP: '상품명은 중복될 수 없습니다.',
+  NOT_ENOUGH_MONEY: '금액이 부족합니다.',
 };
