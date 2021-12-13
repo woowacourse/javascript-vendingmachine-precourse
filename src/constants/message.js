@@ -4,4 +4,7 @@ export const ERROR = {
   PRODUCT_QUANTITY: '1개 이상의 수량을 입력해주세요',
 
   CHARGE: '10원 이상, 10의 배수의 금액을 입력해주세요',
+
+  QUANTITY: '구매할 수 있는 수량이 없습니다',
+  MONEY: '투입한 금액이 부족합니다',
 };
