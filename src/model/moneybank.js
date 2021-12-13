@@ -4,6 +4,7 @@ export default class MoneyBank {
   constructor() {
     this.coins = [new Coin(10,0), new Coin(50,0), new Coin(100,0), new Coin(500,0)];
     this.money = 0;
+    this.insertedMoney = 0;
   }
 
   chargeMoney(money) {
@@ -43,5 +44,25 @@ export default class MoneyBank {
     this.coins[1].quantity = Number(localStorage.getItem('50'));
     this.coins[2].quantity = Number(localStorage.getItem('100'));
     this.coins[3].quantity = Number(localStorage.getItem('500'));
+  }
+
+  updateInsertedMoney() {
+    const insertedMoney = Number(localStorage.getItem('insertedMoney'));
+    if (insertedMoney > 0) {
+      this.insertedMoney = insertedMoney; 
+    } else {
+      localStorage.setItem('insertedMoney',0);
+    }
+  }
+
+  updateAll() {
+    this.updateMoney();
+    this.updateCoins();
+    this.updateInsertedMoney();
+  }
+
+  insertMoney(money) {
+    this.insertedMoney += Number(money);
+    localStorage.setItem('insertedMoney',this.insertedMoney);
   }
 }

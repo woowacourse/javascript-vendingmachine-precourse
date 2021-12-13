@@ -6,7 +6,7 @@ export default class PurchasePage {
     this.inputCoin = Input(PLACEHOLDER.INSERT_COIN);
     this.buttonInsert = Button(TEXT.INSERT);
     this.buttonReturn = Button(TEXT.RETURN);
-    this.textCurrent = P(TEXT.INSERTED);
+    this.textCurrent = P(`${TEXT.INSERTED} ${localStorage.getItem('insertedMoney')}`);
     this.tableCurrent = Table();
     this.tableReturn = Table();
     this.controller = controller;
@@ -41,5 +41,16 @@ export default class PurchasePage {
       Subtitle(SUBTITLE.LEFT_COIN),
       this.tableReturn
     );
+  }
+
+  buttonHandler() {
+    this.buttonInsert.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.controller.insertMoney(this.inputCoin.value);
+    })
+  }
+
+  showInsertedMoney(money) {
+    this.textCurrent.innerText = `${TEXT.INSERTED} ${money}`;
   }
 }

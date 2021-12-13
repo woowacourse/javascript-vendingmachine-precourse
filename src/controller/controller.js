@@ -4,16 +4,17 @@ import { Money } from './money.js';
 import Product from '../model/product.js';
 import ProductList from '../model/productList.js';
 import MoneyBank from '../model/moneybank.js';
+import { VendingMachine } from './vendingMachine.js';
 
 export class Controller {
   constructor() {
     this.productList = new ProductList();
     this.productList.updateProducts();
     this.moneyBank = new MoneyBank();
-    this.moneyBank.updateMoney();
-    this.moneyBank.updateCoins();
+    this.moneyBank.updateAll();
     this.inventory = new Inventory(this.productList);
     this.money = new Money(this.moneyBank);
+    this.vendingMachine = new VendingMachine(this.moneyBank, this.productList);
     this.view = new View(this);
   }
 
@@ -27,5 +28,10 @@ export class Controller {
     this.money.chargeMoney(money);
     this.money.showCurrentMoney(this.view.chargePage);
     this.money.showCurrentCoins(this.view.chargePage);
+  }
+
+  insertMoney(money) {
+    this.vendingMachine.insertMoney(money);
+    this.vendingMachine.showInsertedMoney(this.view.purchasePage);
   }
 }
