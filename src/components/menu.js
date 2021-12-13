@@ -1,49 +1,38 @@
 import { $ } from '../utils/selector.js';
 import { SELECTOR, COMMENT } from '../constants/constant.js';
-import { setLocalStorage, getLocalStorage } from '../utils/localStorage.js';
-import Product_Menu from './product_menu.js';
-import Coin_Menu from './coin_menu.js';
-import Purchase_Menu from './purchase_menu.js';
+import { getStateFromLocalStorage } from '../utils/localStorage.js';
+import Product from './ProductManage/product.js';
+import Coin from './CoinManage/coin.js';
+import Purchase from './PurchaseManage/purchase.js';
 
 export default class Menu {
   constructor($target) {
     this.$target = $target;
-    this.products = [];
-    this.coins = [];
-    window.onload = this.onload();
+    this.$state;
+    this.setup();
     this.render();
-    this.bindClickEvents();
   }
 
-  onload() {
-    const products = JSON.parse(getLocalStorage('products'));
-    const coins = JSON.parse(getLocalStorage('coins'));
-    this.products = products || [];
-    this.coins = coins || [];
-    console.log(this.products, this.coins);
+  setup() {
+    this.$state = getStateFromLocalStorage();
   }
 
-  bindClickEvents() {
+  setEvent() {
     $(`#${SELECTOR.ID.PRODUCT_MENU}`).addEventListener('click', () => {
-      setLocalStorage('menu', SELECTOR.ID.PRODUCT_MENU);
-      this.products = new Product_Menu(this.products).products;
+      this.$state = new Product(this.$state).$state;
     });
 
     $(`#${SELECTOR.ID.COIN_MENU}`).addEventListener('click', () => {
-      setLocalStorage('menu', SELECTOR.ID.COIN_MENU);
-      new Coin_Menu(this.coins);
-      console.log(this.coins);
+      this.$state = new Coin(this.$state).$state;
     });
 
     $(`#${SELECTOR.ID.PURCHASE_MENU}`).addEventListener('click', () => {
-      setLocalStorage('menu', SELECTOR.ID.PURCHASE_MENU);
-      new Purchase_Menu();
-      console.log(this.products);
+      this.$state = new Purchase(this.$state).$state;
     });
   }
 
-  render() {
-    this.$target.innerHTML += `
+  template() {
+    return `
       <h1>${COMMENT.VENDING_MACHINE}</h1>
       <div id="${SELECTOR.ID.HEADER}">   
         <button id="${SELECTOR.ID.PRODUCT_MENU}">${COMMENT.PRODUCT_MENU}</button>
@@ -52,5 +41,10 @@ export default class Menu {
       </div>
       <div id="${SELECTOR.ID.BODY}"></div>
     `;
+  }
+
+  render() {
+    this.$target.innerHTML += this.template();
+    this.setEvent();
   }
 }

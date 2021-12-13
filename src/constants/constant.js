@@ -39,6 +39,10 @@ export const SELECTOR = {
 export const LIMIT = {
   MIN_PRICE: 100,
   UNIT_PRICE: 10,
+  COIN_500: 500,
+  COIN_100: 100,
+  COIN_50: 50,
+  COIN_10: 10,
 };
 
 export const ERROR = {

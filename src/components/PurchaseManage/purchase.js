@@ -1,7 +1,7 @@
-import { SELECTOR, COMMENT } from '../constants/constant.js';
-import { $ } from '../utils/selector.js';
+import { SELECTOR, COMMENT } from '../../constants/constant.js';
+import { $ } from '../../utils/selector.js';
 
-export default class Purchase_Menu {
+export default class Purchase {
   constructor() {
     this.render();
   }

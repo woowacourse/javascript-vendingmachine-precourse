@@ -1,4 +1,15 @@
-import App from './components/app.js';
+import Menu from './components/menu.js';
+import { $ } from './utils/selector.js';
 
-const app = document.querySelector('#app');
-new App(app);
+export default class App {
+  constructor() {
+    this.$target = $('#app');
+    this.init();
+  }
+
+  init() {
+    new Menu(this.$target);
+  }
+}
+
+new App();
