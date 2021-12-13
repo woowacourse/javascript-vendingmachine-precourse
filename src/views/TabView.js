@@ -15,14 +15,22 @@ export default class TabView extends View {
   }
 
   bindEvents() {
-    on(this.productPurchaseMenu, 'click', () => {
-      this.emit(CUSTOM_EVENT_NAME.SHOW_PRODUCT_PURCHASE_MENU);
-    });
-    on(this.vendingMachineManageMenu, 'click', () => {
-      this.emit(CUSTOM_EVENT_NAME.SHOW_VENDING_MACHINE_MANAGE_MENU);
-    });
-    on(this.productAddMenu, 'click', () => {
-      this.emit(CUSTOM_EVENT_NAME.SHOW_PRODUCT_ADD_MENU);
-    });
+    on(this.productPurchaseMenu, 'click', () => this.handleProductPurchaseMenu());
+    on(this.vendingMachineManageMenu, 'click', () =>
+      this.handleVendingMachineManageMenu(),
+    );
+    on(this.productAddMenu, 'click', () => this.handleProductAddMenu());
+  }
+
+  handleProductPurchaseMenu() {
+    this.emit(CUSTOM_EVENT_NAME.SHOW_PRODUCT_PURCHASE_MENU);
+  }
+
+  handleVendingMachineManageMenu() {
+    this.emit(CUSTOM_EVENT_NAME.SHOW_VENDING_MACHINE_MANAGE_MENU);
+  }
+
+  handleProductAddMenu() {
+    this.emit(CUSTOM_EVENT_NAME.SHOW_PRODUCT_ADD_MENU);
   }
 }

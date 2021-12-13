@@ -9,6 +9,13 @@ export const COIN_LIST = {
   TEN: 10,
 }
 
+export const INITIAL_COIN_LIST = {
+  500: 0,
+  100: 0,
+  50: 0,
+  10: 0,
+};
+
 export const LOCAL_STORAGE_KEY = {
   PRODUCT_LIST: 'productList',
   CHANGE_LIST: 'changeList',

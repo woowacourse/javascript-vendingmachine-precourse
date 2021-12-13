@@ -14,7 +14,7 @@ export default class PurchasingProductView extends View {
     this.element.innerHTML = this.template.getInitialElements();
   }
 
-  show([productList, chargeList, puttedMoney]) {
+  show([productList, , puttedMoney]) {
     this.initializeElements();
     this.element.innerHTML += this.template.getCanBuyProductList(productList);
     this.element.innerHTML += this.template.getReturnExchangeList(puttedMoney);
@@ -22,47 +22,45 @@ export default class PurchasingProductView extends View {
     this.vendingMachineChargeInput = qs(SELECTOR.PURCHASE_CHARGE_INPUT);
     this.vendingMachineChargeButton = qs(SELECTOR.PURCHASE_CHARGE_BUTTON);
     this.currentPuttedMoney = qs(SELECTOR.PURCHASE_CHARGE_AMOUNT);
-    this.currentPuttedMoney.innerText += puttedMoney.inputMoney;
     this.coinReturnButton = qs(SELECTOR.COIN_RETURN_BUTTON);
+
+    this.currentPuttedMoney.innerText += puttedMoney.inputMoney;
 
     this.bindEvents();
     super.show();
   }
 
   bindEvents() {
-    this.handlePurchse();
-    this.handleChargePuttedMoney();
-    this.handleReturnExchanges();
-  }
-
-  handleReturnExchanges() {
-    on(this.coinReturnButton, 'click', () => {
-      this.emit(CUSTOM_EVENT_NAME.RETURN_EXCHANGES);
-    });
-  }
-
-  handleChargePuttedMoney() {
-    on(this.vendingMachineChargeButton, 'click', () => {
-      const { value: puttedMoney } = this.vendingMachineChargeInput;
-      this.emit(CUSTOM_EVENT_NAME.ADD_PUTTED_MONEY, { puttedMoney });
-    });
-  }
-
-  handlePurchse() {
     const buttons = qsAll(SELECTOR.PRODUCT_PURCHASE_ITEM);
     const names = qsAll(SELECTOR.PRODUCT_PURCHASE_NAME);
     const prices = qsAll(SELECTOR.PRODUCT_PURCHASE_PRICE);
     const quantities = qsAll(SELECTOR.PRODUCT_PURCHASE_QUANTITY);
 
     buttons.forEach((button, index) => {
-      on(button, 'click', () => {
-        const name = names[index].dataset.productName;
-        const price = prices[index].dataset.productPrice;
-        const quantity = quantities[index].dataset.productQuantity;
-        const product = { name, price, quantity };
-        this.emit(CUSTOM_EVENT_NAME.PURCHASE_PRODUCT, { product });
-      });
+      on(button, 'click', () => this.handlePurchse(names, prices, quantities, index));
     });
+    on(this.vendingMachineChargeButton, 'click', () =>
+      this.handleChargePuttedMoney(),
+    );
+    
+    on(this.coinReturnButton, 'click', () => this.handleReturnExchanges());
+  }
+
+  handleReturnExchanges() {
+    this.emit(CUSTOM_EVENT_NAME.RETURN_EXCHANGES);
+  }
+
+  handleChargePuttedMoney() {
+    const { value: puttedMoney } = this.vendingMachineChargeInput;
+    this.emit(CUSTOM_EVENT_NAME.ADD_PUTTED_MONEY, { puttedMoney });
+  }
+
+  handlePurchse(names, prices, quantities, index) {
+    const name = names[index].dataset.productName;
+    const price = prices[index].dataset.productPrice;
+    const quantity = quantities[index].dataset.productQuantity;
+    const product = { name, price, quantity };
+    this.emit(CUSTOM_EVENT_NAME.PURCHASE_PRODUCT, { product });
   }
 }
 

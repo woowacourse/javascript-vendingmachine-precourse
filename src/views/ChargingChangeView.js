@@ -1,4 +1,4 @@
-import { COIN_LIST, CUSTOM_EVENT_NAME, ID, SELECTOR } from '../constants.js';
+import { COIN_LIST, CUSTOM_EVENT_NAME, ID, INITIAL_COIN_LIST, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
 import View from './View.js';
 
@@ -26,30 +26,37 @@ export default class ChargingChangeView extends View {
   }
 
   bindEvents() {
-    on(this.vendingMachineChargeButton, 'click', () => {
-      let inputChanges = this.vendingMachineChargeInput.value;
-      if (inputChanges < 0) {
-        alert('올바른 액수를 입력해주세요.');
-        return;
-      }
+    on(
+      this.vendingMachineChargeButton,
+      'click',
+      () => this.handleVendingMachineChargeButton(),
+    );
+  }
 
-      let changes = {
-        500: 0,
-        100: 0,
-        50: 0,
-        10: 0,
-      };
-      while (inputChanges !== 0) {
-        const randomCoin = MissionUtils.Random.pickNumberInList(
-          Object.values(COIN_LIST),
-        );
-        if (inputChanges - randomCoin >= 0) {
-          changes[String(randomCoin)] += 1;
-          inputChanges -= randomCoin;
-        }
+  handleVendingMachineChargeButton() {
+    const inputChanges = this.vendingMachineChargeInput.value;
+    if (inputChanges < 0) {
+      alert('올바른 액수를 입력해주세요.');
+      return;
+    }
+    const changes = this.handleCalculationChanges(
+      inputChanges,
+      INITIAL_COIN_LIST,
+    );
+    this.emit(CUSTOM_EVENT_NAME.CHARGE_CHANGES, { changes });
+  };
+
+  handleCalculationChanges(inputChanges, changes) {
+    while (inputChanges !== 0) {
+      const randomCoin = MissionUtils.Random.pickNumberInList(
+        Object.values(COIN_LIST),
+      );
+      if (inputChanges - randomCoin >= 0) {
+        changes[String(randomCoin)] += 1;
+        inputChanges -= randomCoin;
       }
-      this.emit(CUSTOM_EVENT_NAME.CHARGE_CHANGES, { changes });
-    });
+    }
+    return changes;
   }
 }
 

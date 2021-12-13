@@ -1,4 +1,8 @@
-import { COIN_LIST, LOCAL_STORAGE_KEY } from './constants.js';
+import {
+  COIN_LIST,
+  INITIAL_COIN_LIST,
+  LOCAL_STORAGE_KEY,
+} from './constants.js';
 
 export default class Store {
   constructor() {
@@ -31,17 +35,15 @@ export default class Store {
 
   checkChangeList() {
     const changeList = this.getChangeList();
-    const initialChangeList = {
-      500: 0,
-      100: 0,
-      50: 0,
-      10: 0,
-    };
+    const initialChangeList = INITIAL_COIN_LIST;
     if (!changeList) this.setChangeList(initialChangeList);
   }
 
   setChangeList(data) {
-    return this.storage.setItem(LOCAL_STORAGE_KEY.CHANGE_LIST, JSON.stringify(data));
+    return this.storage.setItem(
+      LOCAL_STORAGE_KEY.CHANGE_LIST,
+      JSON.stringify(data),
+    );
   }
 
   getChangeList() {
@@ -79,12 +81,7 @@ export default class Store {
     const puttedMoney = this.getPuttedMoney();
     const initialPuttedMoney = {
       inputMoney: 0,
-      returnedCoins: {
-        500: 0,
-        100: 0,
-        50: 0,
-        10: 0,
-      },
+      returnedCoins: INITIAL_COIN_LIST,
     };
     if (!puttedMoney) this.setPuttedMoney(initialPuttedMoney);
   }
@@ -94,14 +91,17 @@ export default class Store {
   }
 
   setPuttedMoney(data) {
-    return this.storage.setItem(LOCAL_STORAGE_KEY.PUTTED_MONEY, JSON.stringify(data));
+    return this.storage.setItem(
+      LOCAL_STORAGE_KEY.PUTTED_MONEY,
+      JSON.stringify(data),
+    );
   }
 
   substractProductQuantity({ name }) {
     const productList = this.getProductList();
     const index = productList.findIndex((product) => product.name === name);
     productList[index].quantity -= 1;
-    this.setProductList(productList)
+    this.setProductList(productList);
   }
 
   addPuttedMoney(money) {
@@ -117,8 +117,13 @@ export default class Store {
   }
 
   returnExchanges(currentCharges, puttedMoney) {
-    const coinKeys = Object.keys(currentCharges);
+    this.calculateChanges(currentCharges, puttedMoney);
+    this.setPuttedMoney(puttedMoney);
+    this.setChangeList(currentCharges);
+  }
 
+  calculateChanges(currentCharges, puttedMoney) {
+    const coinKeys = Object.keys(currentCharges);
     let index = coinKeys.length - 1;
 
     while (puttedMoney.inputMoney !== 0) {
@@ -133,7 +138,5 @@ export default class Store {
         puttedMoney.returnedCoins[coinKeys[index]] += 1;
       }
     }
-    this.setPuttedMoney(puttedMoney);
-    this.setChangeList(currentCharges);
   }
 }

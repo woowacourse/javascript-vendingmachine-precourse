@@ -28,22 +28,16 @@ export default class ProductManagementView extends View {
   }
 
   bindEvents() {
-    on(this.productAddButton, 'click', () => {
-      const name = this.productNameInput.value;
-      const price = this.productPriceInput.value;
-      const quantity = this.productQuantityInput.value;
-
-      const product = { name, price, quantity };
-      this.emit(CUSTOM_EVENT_NAME.ADD_PRODUCT, { product });
-
-      this.clearInput();
-    });
+    on(this.productAddButton, 'click', () => this.handleProductAddButton());
   }
 
-  clearInput() {
-    this.productNameInput.value = null;
-    this.productPriceInput.value = null;
-    this.productQuantityInput.value = null;
+  handleProductAddButton() {
+    const name = this.productNameInput.value;
+    const price = this.productPriceInput.value;
+    const quantity = this.productQuantityInput.value;
+
+    const product = { name, price, quantity };
+    this.emit(CUSTOM_EVENT_NAME.ADD_PRODUCT, { product });
   }
 }
 
