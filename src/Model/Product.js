@@ -3,7 +3,7 @@ import {
   EMPTY_NAME,
   IN_AVAILABLE_QUANTITY,
   LESS_THAN_100,
-  NOT_DIVIDE_TEN,
+  NOT_DIVIDE_10,
 } from "../constant/alertMessage.js";
 import { PRODUCT } from "../constant/vendingMachine.js";
 import { isDivideTen } from "./utils.js";
@@ -43,7 +43,7 @@ export default class Product {
 
   checkPrice(price) {
     if (!isDivideTen(price)) {
-      return alert(NOT_DIVIDE_TEN);
+      return alert(NOT_DIVIDE_10);
     }
     if (price < 100) {
       return alert(LESS_THAN_100);

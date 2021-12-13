@@ -1,5 +1,7 @@
 export const TITLE = "🥤자판기🥤";
 export const PRODUCT = "Product";
+export const VENDING_MACHINE_COIN = "VendingMachineCoin";
+export const USER_COIN = "UserCoin";
 
 export const PRODUCT_MANAGE = {
   BUTTON: "상품 관리",
