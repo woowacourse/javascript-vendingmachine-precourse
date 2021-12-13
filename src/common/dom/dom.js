@@ -158,10 +158,12 @@ export const productListTable = `<tr class="product-manage-item">
 <td class="product-manage-quantity"></td>
 </tr>`;
 
-export const productPurchaseTable = `<tr class="product-purchase-item">
-<td class="product-purchase-name" data-product-name></td>
-<td class="product-purchase-price" data-product-price></td>
-<td class="product-purchase-quantity" data-product-quantity></td>
+export const productPurchaseTable = `
+<tr class="product-purchase-item">
+
+<td class="product-purchase-name" data-product-name=""></td>
+<td class="product-purchase-price" data-product-price=""></td>
+<td class="product-purchase-quantity" data-product-quantity=''></td>
 <td><button class="purchase-button">구매하기</button></td>
 
 </tr>`;
