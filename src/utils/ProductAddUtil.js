@@ -43,7 +43,6 @@ export default class ProductAddUtil {
   getProductName(input) {
     this.productName = input.value;
     if (!checkProductName(this.productName)) {
-      alert(ALERT.NULL_PRODUCT_NAME);
       return;
     }
     return this.productName;

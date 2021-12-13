@@ -1,11 +1,39 @@
-import { DIVIDE_CHARGE, MINIMUM_CHARGE, MINIMUN_PRICE, ZERO } from '../../constants.js';
+import { ALERT, DIVIDE_CHARGE, MINIMUM_CHARGE, MINIMUN_PRICE, ZERO } from '../../constants.js';
+import ProductAdd from '../../elements/ProductAdd.js';
 
 // 값이 있는지 체크
 export function checkProductName(productName) {
-  console.log(productName);
-  let allowProductName = false;
+  if (nameIsNull(productName)) {
+    alert(ALERT.NULL_PRODUCT_NAME);
+    return;
+  }
+
+  if (nameIsDuplicate(productName)) {
+    alert(ALERT.DUPLI_PRODUCT_NAME);
+    return;
+  }
+
+  return true;
+}
+
+function nameIsNull(productName) {
+  let allowProductName = true;
   if (productName) {
-    allowProductName = true;
+    allowProductName = false;
+  }
+
+  return allowProductName;
+}
+
+function nameIsDuplicate(productName) {
+  let allowProductName = false;
+  const productAdd = new ProductAdd();
+  const productNameArr = productAdd.tableBody.querySelectorAll('.product-manage-name');
+  for (let name of productNameArr) {
+    if (name.dataset.addName == productName) {
+      allowProductName = true;
+      break;
+    }
   }
 
   return allowProductName;
