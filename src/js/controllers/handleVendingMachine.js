@@ -1,12 +1,12 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import { ERROR, PRICE, CHARGE } from '../utils/constants.js';
-import chargeMoney from '../models/vendingMachineModel.js';
+import { Coin, chargeMoney } from '../models/vendingMachineModel.js';
 import { resetChargeInput, renderChargeMoney } from '../views/vendingMachineView.js';
 import alertMessage from '../views/alertMessage.js';
 
 function HandleVendingMachine() {
-  this.coins = { amount: 0, fiveHundred: 0, oneHundred: 0, fifty: 0, ten: 0 };
+  this.coins = new Coin();
 
   this.init = () => {
     if (store.getLocalStorage('coins')) {
@@ -38,7 +38,7 @@ function HandleVendingMachine() {
     if (isValidCharge(chargeInput)) {
       this.coins = chargeMoney(Number(chargeInput), this.coins);
       store.setLocalStorage('coins', this.coins);
-      printChargeMoney();
+      renderChargeMoney();
     }
     resetChargeInput();
   });

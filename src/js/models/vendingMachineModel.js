@@ -16,8 +16,9 @@ const countCoin = (coin, coins) => {
   }
 };
 
-const chargeMoney = (chargeInput, coins) => {
+export const chargeMoney = (chargeInput, coins) => {
   coins.amount += chargeInput;
+
   while (chargeInput) {
     const coin = getRandomCoin();
     if (coin > chargeInput) {
@@ -29,4 +30,10 @@ const chargeMoney = (chargeInput, coins) => {
   return coins;
 };
 
-export default chargeMoney;
+export function Coin() {
+  this.amount = 0;
+  this.fiveHundred = 0;
+  this.oneHundred = 0;
+  this.fifty = 0;
+  this.ten = 0;
+}
