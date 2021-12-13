@@ -1,3 +1,6 @@
+import { $id } from './dom.js';
+import { productManageItemTemplate } from './template.js';
+
 export const TAB_MENUS_TEXT = `
   <header>
     <h1>🥤자판기🥤</h1>
@@ -5,34 +8,12 @@ export const TAB_MENUS_TEXT = `
     <button id="vending-machine-manage-menu" >잔돈 충전</button>
     <button id="product-purchase-menu" style=>상품 구매</button>
   </header>
-`;
-
-export const PRODUCE_ADD_TEXT = `
   <main>
-    <section>
-      <h4>상품 추가하기</h4>
-      <form id="product-add-form">
-        <input id="product-name-input" placeholder="상품명"/>
-        <input type="number" id="product-price-input" placeholder="가격"/>
-        <input type="number" id="product-quantity-input" placeholder="수량"/>
-        <button id="product-add-button">추가하기</button>
-      </form>
-    </section>
-    <section>
-      <h4>상품 현황</h4>
-      <table id="product-status-table">
-        <tr>
-          <th>상품명</th>
-          <th>가격</th>
-          <th>수량</th>
-        </tr>
-      </table>
-    </section>
   </main>
 `;
 
 export const VENDING_MACHINE_MANAGE_TEXT = `
-  <main>
+  
     <section>
       <h4>자판기 동전 충전하기</h4>
       <form id="vending-machine-charge-form">
@@ -66,11 +47,11 @@ export const VENDING_MACHINE_MANAGE_TEXT = `
         </tr>
       </table>
     </section>
-  </main>
+  
 `;
 
 export const PRODUCT_PURCHASE_TEXT = `
-  <main>
+  
     <section>
       <h4>금액 "투입</h4>
       <form id="charge-form">
@@ -116,5 +97,5 @@ export const PRODUCT_PURCHASE_TEXT = `
         </tr>
       </table>
     </section>
-  </main>
+  
 `;

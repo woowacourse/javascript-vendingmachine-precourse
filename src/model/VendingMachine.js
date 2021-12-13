@@ -4,7 +4,7 @@ class VendingMachine {
   constructor() {
     this.currentTabMenu = 'product-add-menu';
     this.tabMenu = {
-      produce_add_menu: [],
+      product_add_menu: [],
       vending_machine_manage_menu: [],
       product_purchase_menu: [],
     };
@@ -14,10 +14,9 @@ class VendingMachine {
 
   init() {
     if (store.getLocalStorage()) {
-      this.menu = store.getLocalStorage();
+      this.tabMenu = store.getLocalStorage();
       return;
     }
-
     store.setLocalStorage(this.tabMenu);
   }
 
@@ -30,8 +29,8 @@ class VendingMachine {
     store.setLocalStorage(this.tabMenu);
   }
 
-  setCurrentTabMenu(tabMenu) {
-    this.currentTabMenu = tabMenu;
+  setCurrentTabMenu(currentTabMenu) {
+    this.currentTabMenu = currentTabMenu;
   }
 
   getCurrentTabMenu() {

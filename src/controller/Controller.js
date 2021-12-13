@@ -14,8 +14,9 @@ class Controller {
 
   init() {
     this.view.showTabMenuScreen();
-    this.initDOM();
     this.initScreen();
+    this.initDOM();
+
     this.triggerTabMenuClickEvent();
     this.triggerProductAddSubmitEvent();
   }
@@ -37,14 +38,15 @@ class Controller {
     }
 
     this.vendingMachine.setCurrentTabMenu(currentTabMenu);
-    this.view.hideScreen();
     this.renderCurrentTabMenu(currentTabMenu);
   }
 
-  renderCurrentTabMenu(tabMenu) {
-    switch (tabMenu) {
+  renderCurrentTabMenu(currentTabMenu) {
+    const tabMenu = this.vendingMachine.getLocalStorage();
+
+    switch (currentTabMenu) {
       case 'product-add-menu':
-        this.view.showProduceAddScreen();
+        this.view.showProduceAddScreen(tabMenu);
         break;
       case 'vending-machine-manage-menu':
         this.view.showVendingMachineManageScreen();
@@ -61,6 +63,19 @@ class Controller {
     $id('product-quantity-input').value = '';
   }
 
+  renderProductManageList() {
+    const tabMenu = this.vendingMachine.getLocalStorage();
+
+    const productManageListText = tabMenu['product_add_menu']
+      .map((item) => productManageItemTemplate(item.name, item.price, item.quantity))
+      .join('');
+
+    $id('product-status-table').innerHTML =
+      ` <tr><th>상품명</th><th>가격</th><th>수량</th></tr>` + productManageListText;
+
+    this.vendingMachine.setLocalStorage(tabMenu);
+  }
+
   triggerProductAddSubmitEvent() {
     $id('product-add-form').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -70,12 +85,17 @@ class Controller {
       const productQuantityInput = $id('product-quantity-input').value;
 
       if (isValidProductAddData(productNameInput, productPriceInput, productQuantityInput)) {
-        $id('product-status-table').insertAdjacentHTML(
-          'beforeend',
-          productManageItemTemplate(productNameInput, productPriceInput, productQuantityInput)
-        );
-
         this.initProductAddInputValue();
+
+        const tabMenu = this.vendingMachine.getLocalStorage();
+
+        tabMenu['product_add_menu'] = [
+          ...tabMenu['product_add_menu'],
+          { name: productNameInput, price: productPriceInput, quantity: productQuantityInput },
+        ];
+
+        this.renderProductManageList();
+        this.vendingMachine.setLocalStorage(tabMenu);
       }
     });
   }
