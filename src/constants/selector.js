@@ -41,10 +41,12 @@ export const CLASS = {
   ],
 
   PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
+  PRODUCT_PURCHASE_BUTTON: 'product-purchase-button',
   PRODUCT_PURCHASE: [
     'product-purchase-name',
     'product-purchase-price',
     'product-purchase-quantity',
-    'purchase-button',
   ],
 };
+
+export const DATASET = ['productName', 'productPrice', 'productQuantity'];
