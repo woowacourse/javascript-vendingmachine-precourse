@@ -1,6 +1,7 @@
 import { $, default as DOM } from '../views/DOMUtils.js';
 import { default as V } from '../utils/validators.js';
 import { default as DB } from '../model/database.js';
+import getAllPurchaseButton from './utils/getAllPurchaseButton.js';
 
 export default class ProductAddManager {
   constructor() {
@@ -30,6 +31,6 @@ export default class ProductAddManager {
 
   renderProductPurchaseManager() {
     DOM.showIntentoryToPurchaseProduct();
-    DOM.getAllPurchaseButton();
+    getAllPurchaseButton();
   }
 }

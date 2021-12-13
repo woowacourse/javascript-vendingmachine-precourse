@@ -1,7 +1,5 @@
 import { REGEX } from './constants.js';
 import { default as DB } from '../model/database.js';
-import { default as V } from './validators.js';
-import { default as DOM } from '../views/DOMUtils.js';
 
 const utils = {
   isBlank: string => {
@@ -74,19 +72,6 @@ const utils = {
     });
   },
 
-  addPurchaseButtonEvent: element => {
-    element.addEventListener('click', e => {
-      e.preventDefault();
-
-      const data = utils.getProductInformation(e.path[2].children);
-
-      if (!V.isValidProductPurchase(data)) return;
-
-      utils.updateDeductedCharge(data);
-      utils.updateDeductedProductQuantity(data);
-    });
-  },
-
   getProductInformation: element => {
     const [name, price, quantity] = Array.from(element);
 
@@ -99,16 +84,14 @@ const utils = {
 
   updateAddedCharge: string => {
     const charge = DB.load('chargeToPurchaseProduct');
-    DB.overwrite('chargeToPurchaseProduct', charge + Number(string));
 
-    DOM.showChargeToPurchaseProduct();
+    DB.overwrite('chargeToPurchaseProduct', charge + Number(string));
   },
 
   updateDeductedCharge: object => {
     const charge = DB.load('chargeToPurchaseProduct');
-    DB.overwrite('chargeToPurchaseProduct', charge - object.price);
 
-    DOM.showChargeToPurchaseProduct();
+    DB.overwrite('chargeToPurchaseProduct', charge - object.price);
   },
 
   updateDeductedProductQuantity: data => {
@@ -116,11 +99,8 @@ const utils = {
       if (object.name === data.name) object.quantity -= 1;
       return object;
     });
-    DB.overwrite('inventory', newObject);
 
-    DOM.showInventory();
-    DOM.showIntentoryToPurchaseProduct();
-    DOM.getAllPurchaseButton();
+    DB.overwrite('inventory', newObject);
   },
 };
 

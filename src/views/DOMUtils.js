@@ -107,10 +107,6 @@ const DOMUtils = {
     DOMUtils.initElement('#charge-amount');
     DOMUtils.initElement('#monetary-unit');
   },
-
-  getAllPurchaseButton: () => {
-    $$('.purchase-button').forEach(button => UT.addPurchaseButtonEvent(button));
-  },
 };
 
 export default DOMUtils;
