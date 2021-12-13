@@ -1,5 +1,5 @@
-import { SUBTITLE, LABEL, TEXT, PLACEHOLDER, ID } from '../utils/constant.js';
-import { Subtitle, InputById, PById, Table, Th, Tr, Theadbody, ButtonById } from '../components/compoenents.js';
+import { SUBTITLE, LABEL, TEXT, PLACEHOLDER, ID, DATASET } from '../utils/constant.js';
+import { Subtitle, InputById, PById, Table, Th, Tr, Theadbody, ButtonById, TdById, Td, TdByClassNameAndDataset } from '../components/compoenents.js';
 
 export default class PurchasePage {
   constructor(controller) {
@@ -10,6 +10,10 @@ export default class PurchasePage {
     this.tableCurrent = Table();
     this.tableReturn = Table();
     this.tbody = Theadbody([]);
+    this.tdFirstQuantity = TdById('',ID.TABLE_RETURN_10);
+    this.tdSecondQuantity = TdById('',ID.TABLE_RETURN_50);
+    this.tdThirdQuantity = TdById('',ID.TABLE_RETURN_100);
+    this.tdForthQuantity = TdById('',ID.TABLE_RETURN_500);
     this.controller = controller;
   }
 
@@ -23,10 +27,13 @@ export default class PurchasePage {
   }
 
   setTableReturn() {
-    this.tableReturn.appendChild(Tr([
-      Th(LABEL.COIN),
-      Th(LABEL.QUANTITY_COIN)
-    ]));
+    this.tableReturn.append(
+      Tr([Th(LABEL.COIN), Th(LABEL.QUANTITY_COIN)]),
+      Tr([Td(LABEL.COIN10), this.tdFirstQuantity]),
+      Tr([Td(LABEL.COIN50), this.tdSecondQuantity]),
+      Tr([Td(LABEL.COIN100), this.tdThirdQuantity]),
+      Tr([Td(LABEL.COIN500), this.tdForthQuantity]),
+    );
   }
   
   setUI(page) {
@@ -71,10 +78,10 @@ export default class PurchasePage {
 
   attachProduct(product) {
     const productTr = TrByClassName([
-      TdByClassName(product.name,CLASS.PRODUCT_NAME),
-      TdByClassName(product.price,CLASS.PRODUCT_PRICE),
-      TdByClassName(product.quantity,CLASS.PRODUCT_QUANTITY)
-    ],CLASS.PRODUCT_ITEM);
-    this.tableCurrent.appendChild(productTr);
+      TdByClassNameAndDataset(product.name,CLASS.PURCHASE_NAME, DATASET.PRODUCT_NAME),
+      TdByClassNameAndDataset(product.price,CLASS.PURCHASE_PRICE, DATASET.PRODUCT_PRICE),
+      TdByClassNameAndDataset(product.quantity,CLASS.PURCHASE_QUANTITY, DATASET.PRODUCT_QUANTITY)
+    ],CLASS.PURCHASE_ITEM);
+    this.tbody.appendChild(productTr);
   }
 }

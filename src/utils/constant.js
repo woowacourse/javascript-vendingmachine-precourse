@@ -61,10 +61,14 @@ export const CLASS = {
   PURCHASE_NAME: 'product-purchase-name',
   PURCHASE_PRICE: 'product-purchase-price',
   PURCHASE_QUANTITY: 'product-purchase-quantity',
-  DATA_PRODUCT_NAME: 'data-product-name',
-  DATA_PRODUCT_PRICE: 'data-product-price',
-  DATA_PRODUCT_QUANTITY: 'data-product-quantity',
+  
 };
+
+export const DATASET = {
+  PRODUCT_NAME: 'data-product-name',
+  PRODUCT_PRICE: 'data-product-price',
+  PRODUCT_QUANTITY: 'data-product-quantity',
+}
 
 export const TEXT = {
   ADD: '추가하기',

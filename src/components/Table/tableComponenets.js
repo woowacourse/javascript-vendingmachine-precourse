@@ -6,6 +6,7 @@ import Td from './td.js';
 import TrByClassName from './trByClassName.js';
 import TdByClassName from './tdByClassName.js';
 import TdById from './tdById.js';
+import TdByClassNameAndDataset from './tdByClassNameAndDataset.js';
 
 export {
     Table,
@@ -15,5 +16,6 @@ export {
     Td,
     TrByClassName,
     TdByClassName,
-    TdById
+    TdById,
+    TdByClassNameAndDataset
 };
