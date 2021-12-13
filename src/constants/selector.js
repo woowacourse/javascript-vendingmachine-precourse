@@ -3,7 +3,7 @@ export const ID = {
 
   // 탭 메뉴 버튼
   PRODUCT_PURCHASE_MENU: 'product-purchase-menu',
-  VENDING_MACHINE_MANAGE_MENU: 'vending-machine-manage-manu',
+  VENDING_MACHINE_MANAGE_MENU: 'vending-machine-manage-menu',
   PRODUCT_ADD_MENU: 'product-add-menu',
 
   // 상품 관리(추가) 메뉴
