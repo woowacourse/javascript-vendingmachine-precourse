@@ -38,14 +38,6 @@ export const createElements = function createMultipleElements(array) {
   return elements;
 };
 
-export const createObjForElement = function createObjectForElement(
-  tag,
-  attributes,
-  value,
-) {
-  return { tag, attributes, value };
-};
-
 // ============== CREATE CONTAINER FUNCTION ==============
 export function createContainer(container, elements, id) {
   const containerElement = elements.reduce((c, element) => {
@@ -55,38 +47,4 @@ export function createContainer(container, elements, id) {
 
   if (id) containerElement.id = id;
   return containerElement;
-}
-
-// ============== CREATE GRID ITEMS FUNCTIONS ==============
-export default function addBorders(elements) {
-  const newElements = elements.map((e) => {
-    const newElement = e;
-    newElement.style.border = '1px solid #000';
-    return newElement;
-  });
-
-  return newElements;
-}
-
-// add single row to grid
-export function addGridElements(grid, items) {
-  const gridRow = createElements(items);
-  const borderedGridRows = addBorders(gridRow);
-
-  borderedGridRows.forEach((row) => grid.appendChild(row));
-}
-
-// create grid template with headers
-export function createGridDiv(size, items, id, className) {
-  const grid = customCreateElement({
-    tag: 'div',
-    attributes: { id, class: className },
-  });
-  grid.style.display = 'grid';
-  grid.style.textAlign = 'center';
-  grid.style.gridTemplateColumns = size;
-
-  addGridElements(grid, items);
-
-  return grid;
 }

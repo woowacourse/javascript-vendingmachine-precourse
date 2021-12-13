@@ -54,7 +54,7 @@ export default class PurchaseProducts {
 
   purchaseProductsTab() {
     const formContainer = this.createFormContainer();
-    const purchaseContainer = this.createPurchaseContainer();
+    const purchaseContainer = this.constructor.createPurchaseContainer();
     const coinStatusContainer = this.createCoinContainer();
 
     return createContainer(
@@ -106,9 +106,8 @@ export default class PurchaseProducts {
     const productData = createProductObjects(name, property);
     const row = createTR(productData);
     const buttonTD = createButtonTD();
-    buttonTD.firstChild.addEventListener('click', (e) =>
-      handlePurchaseClick.bind(this)(e),
-    );
+    const button = buttonTD.firstChild;
+    button.addEventListener('click', (e) => handlePurchaseClick.bind(this)(e));
     row.append(buttonTD);
 
     this.DOMs.table.appendChild(row);
@@ -136,7 +135,7 @@ export default class PurchaseProducts {
     }
   }
 
-  createPurchaseContainer() {
+  static createPurchaseContainer() {
     const container = PurchaseTableSection();
     container.appendChild(PurchaseTableTitle);
     container.appendChild(PurchaseTable());
