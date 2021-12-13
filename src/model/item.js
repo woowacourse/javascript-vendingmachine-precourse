@@ -5,6 +5,10 @@ export default class Item {
     this.quantity = quantity;
   }
 
+  sell() {
+    this.quantity -= 1;
+  }
+
   get array() {
     return [this.name, this.price, this.quantity];
   }

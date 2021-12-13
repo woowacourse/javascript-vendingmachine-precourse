@@ -12,6 +12,7 @@ export const PRODUCT = {
   NAME: '상품명',
   PRICE: '가격',
   QUANTITY: '수량',
+  BUY: '구매',
 };
 
 export const CHARGE = {
@@ -19,6 +20,14 @@ export const CHARGE = {
   BUTTON: '충전하기',
   HODLING: '보유 금액: ',
   CHANGE: '자판기가 보유한 동전',
+};
+
+export const PURCHASE = {
+  TITLE: '금액 투입',
+  INSERT_BUTTON: '투입하기',
+  HOLDING: '투입한 금액: ',
+  CHANGE: '잔돈',
+  CHANGE_BUTTON: '반환하기',
 };
 
 export const ERROR = {
@@ -32,4 +41,7 @@ export const ERROR = {
   NOT_DIVIDED_BY_TEN: '가격은 10원 단위로 입력해주세요.',
   NOT_PLUS_CHARGE: '충전금액은 0이상의 자연수를 입력해주세요',
   NOT_DIVIDED_BY_TEN_CHARGE: '충전금액은 10원 단위로 입력해주세요',
+  NOT_PLUS_MONEY: '투입금액은 0이상의 자연수를 입력해주세요',
+  NOT_DIVIDED_BY_TEN_MONEY: '투입금액은 10원 단위로 입력해주세요',
+  SHORTAGE_MONEY: '금액이 부족합니다.',
 };

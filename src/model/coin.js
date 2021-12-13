@@ -10,6 +10,10 @@ export default class Coin {
     this.amount += 1;
   }
 
+  change(amount) {
+    this.amount -= amount;
+  }
+
   get obj() {
     const key = `${String(this.kinds)}${CURRENCY}`;
     return { [key]: this.amount };

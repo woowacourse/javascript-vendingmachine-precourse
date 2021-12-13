@@ -18,11 +18,6 @@ export default class ChargeChage {
     this.$element.append(this.$changeInput.component, this.$status.component);
   }
 
-  updateChange() {
-    this.$element.replaceChild(this.$element.firstElementChild, this.$changeInput.component);
-    this.updateChange();
-  }
-
   renderMoney(money) {
     this.$changeInput.chargeMoney(money);
   }

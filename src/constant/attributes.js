@@ -16,17 +16,18 @@ export const ID = {
   VENDING_MACHINE: {
     CHARGE: {
       INPUT: 'vending-machine-charge-input',
-      BUTTON: 'veding-machine-charge-button',
+      BUTTON: 'vending-machine-charge-button',
       AMOUNT: 'vending-machine-charge-amount',
     },
     COIN_QUANTITY: {
       FIVE_HUNDREDS: 'vending-machine-coin-500-quantity',
       ONE_HUNDRED: 'vending-machine-coin-100-quantity',
-      FIFTY: 'vending-machine-coin-50-quantinty',
+      FIFTY: 'vending-machine-coin-50-quantity',
       TEN: 'vending-machine-coin-10-quantity',
     },
   },
   CHARGE: {
+    FORM: 'charge-form',
     INPUT: 'charge-input',
     BUTTON: 'charge-button',
     AMOUNT: 'charge-amount',
@@ -49,7 +50,7 @@ export const CLASS = {
     MANAGE_PRICE: 'product-manage-price',
     MANAGE_QUANTITY: 'product-manage-quantity',
   },
-  PURCHACE: {
+  PURCHASE: {
     ITEM: 'product-purchase-item',
     BUY_BUTTON: 'purchase-button',
     NAME: 'product-purchase-name',
@@ -59,9 +60,9 @@ export const CLASS = {
 };
 
 export const DATASET = {
-  PRODUCT_NAME: 'data-product-name',
-  PRODUCT_PRICE: 'data-product-price',
-  PRODUCT_QUANTITY: 'data-product-quantity',
+  PRODUCT_NAME: 'productName',
+  PRODUCT_PRICE: 'productPrice',
+  PRODUCT_QUANTITY: 'productQuantity',
 };
 
 export const HINT = {
@@ -69,4 +70,5 @@ export const HINT = {
   PRICE: '가격',
   QUANTITY: '수량',
   CHANGE: '자판기가 보유할 금액',
+  PURCHASE: '투입할 금액',
 };

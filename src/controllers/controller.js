@@ -1,10 +1,18 @@
-import { ID } from '../constant/attributes.js';
-import { validateChange, validateProduct } from '../utils/validate.js';
+import { CLASS, ID } from '../constant/attributes.js';
+import { ERROR } from '../constant/text.js';
+import { validateChange, validateMoney, validateProduct } from '../utils/validate.js';
 
 export default class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+
+    this.init();
+  }
+
+  init() {
+    this.view.renderPurchaseProduct(this.model.totalMoney, this.model.menu);
+    this.addEventsToPurchaseProduct();
     this.view.renderChange(this.model.money, this.model.coinsArr);
     this.addEventsToChange();
     this.view.renderAddProduct(this.model.menu);
@@ -32,9 +40,48 @@ export default class Controller {
       case ID.MENU.CHANGE:
         this.view.renderChange(this.model.money, this.model.coinsArr);
         break;
+      case ID.MENU.PURCHASE:
+        this.view.renderPurchaseProduct(this.model.totalMoney, this.model.menu);
+        this.addEventsToPurchaseProduct();
+        break;
       default:
     }
   }
+
+  addEventsToPurchaseProduct() {
+    document.getElementById(ID.CHARGE.BUTTON).addEventListener('click', this.insertMoney);
+    document
+      .querySelectorAll(`.${CLASS.PURCHASE.BUY_BUTTON}`)
+      .forEach((button) => button.addEventListener('click', this.buyItem));
+    document.getElementById(ID.CHANGE.BUTTON).addEventListener('click', this.returnChange);
+  }
+
+  insertMoney = (e) => {
+    e.preventDefault();
+    const money = Number(document.getElementById(ID.CHARGE.INPUT).value);
+    const error = validateMoney(money);
+    if (error) {
+      return this.view.report(error);
+    }
+    this.model.insertMoney(money);
+    this.view.insertMoney(this.model.totalMoney);
+    return undefined;
+  };
+
+  buyItem = (e) => {
+    const name = e.target.dataset.id;
+    const price = this.model.inquirePrice(name);
+    const holding = this.model.totalMoney;
+    if (price > holding) {
+      return this.view.report(ERROR.SHORTAGE_MONEY);
+    }
+    this.model.sellItem(name);
+    this.view.renderPurchaseProduct(this.model.totalMoney, this.model.menu);
+    document
+      .querySelectorAll(`.${CLASS.PURCHASE.BUY_BUTTON}`)
+      .forEach((button) => button.addEventListener('click', this.buyItem));
+    return undefined;
+  };
 
   addItem(event) {
     event.preventDefault();
@@ -62,4 +109,9 @@ export default class Controller {
     this.view.renderChange(this.model.money, this.model.coinsArr);
     return undefined;
   }
+
+  returnChange = () => {
+    const { change } = this.model;
+    this.view.updateChange(this.model.totalMoney, change);
+  };
 }

@@ -56,3 +56,19 @@ export function createTrById(ids, ...items) {
   });
   return $tr;
 }
+
+export function includeTrData($tr, dataset) {
+  $tr.childNodes.forEach((node, idx) => {
+    node.dataset[dataset[idx]] = node.textContent;
+  });
+  return $tr;
+}
+
+export function createTrIncludesButton(cls, id, text) {
+  const $button = createElement('button', text);
+  const $td = createElement('td');
+  $button.classList.add(cls);
+  $button.dataset.id = id;
+  $td.appendChild($button);
+  return $td;
+}

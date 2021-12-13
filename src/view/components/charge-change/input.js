@@ -1,6 +1,7 @@
 import { ID, HINT } from '../../../constant/attributes.js';
 import { createElement, createInput } from '../../../utils/dom-utils.js';
 import { CHARGE } from '../../../constant/text.js';
+import { CURRENCY } from '../../../constant/constant.js';
 
 export default class ChangeInput {
   constructor(updateChange) {
@@ -17,7 +18,7 @@ export default class ChangeInput {
     this.$submitButton = createElement('button', CHARGE.BUTTON, ID.VENDING_MACHINE.CHARGE.BUTTON);
     this.$submitButton.type = 'submit';
     this.$holdingContainer = createElement('div', CHARGE.HODLING);
-    this.$holdingSpan = createElement('span', this.holdingAmount, ID.VENDING_MACHINE.CHARGE.AMOUNT);
+    this.$holdingSpan = createElement('span', null, ID.VENDING_MACHINE.CHARGE.AMOUNT);
   }
 
   appendChildren() {
@@ -27,9 +28,8 @@ export default class ChangeInput {
   }
 
   chargeMoney(money) {
-    this.$holdingSpan = createElement('span', money);
+    this.$holdingSpan = createElement('span', `${money}${CURRENCY}`);
     this.$holdingContainer.replaceChild(this.$holdingSpan, this.$holdingContainer.lastElementChild);
-    this.$container.replaceChild(this.$holdingContainer, this.$container.lastElementChild);
   }
 
   get component() {

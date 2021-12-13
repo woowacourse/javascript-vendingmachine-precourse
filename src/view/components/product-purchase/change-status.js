@@ -1,10 +1,10 @@
 import { CLASS, ID } from '../../../constant/attributes.js';
 import { CURRENCY, kindsOfCoins } from '../../../constant/constant.js';
 import { TABLE, TD } from '../../../constant/style.js';
-import { CHARGE } from '../../../constant/text.js';
+import { PURCHASE } from '../../../constant/text.js';
 import { createElement, createTr } from '../../../utils/dom-utils.js';
 
-export default class CoinStatus {
+export default class ChangeStatus {
   constructor() {
     this.content = [];
     this.sort = kindsOfCoins.map((kind) => `${kind}${CURRENCY}`);
@@ -15,11 +15,12 @@ export default class CoinStatus {
 
   create() {
     this.$container = createElement('div');
-    this.$title = createElement('h2', CHARGE.CHANGE);
+    this.$title = createElement('h2', PURCHASE.CHANGE);
+    this.$button = createElement('button', PURCHASE.CHANGE_BUTTON, ID.CHANGE.BUTTON);
   }
 
   appendChildren() {
-    this.$container.append(this.$title, this.$table);
+    this.$container.append(this.$title, this.$button, this.$table);
   }
 
   createTable() {
@@ -33,10 +34,10 @@ export default class CoinStatus {
 
   buildTable() {
     const idList = [
-      ID.VENDING_MACHINE.COIN_QUANTITY.FIVE_HUNDREDS,
-      ID.VENDING_MACHINE.COIN_QUANTITY.ONE_HUNDRED,
-      ID.VENDING_MACHINE.COIN_QUANTITY.FIFTY,
-      ID.VENDING_MACHINE.COIN_QUANTITY.TEN,
+      ID.CHANGE.COIN_QUANTITY.FIVE_HUNDREDS,
+      ID.CHANGE.COIN_QUANTITY.ONE_HUNDRED,
+      ID.CHANGE.COIN_QUANTITY.FIFTY,
+      ID.CHANGE.COIN_QUANTITY.TEN,
     ];
     this.sort.forEach((item, idx) => {
       const $tr = createTr(item, 0);
@@ -47,7 +48,6 @@ export default class CoinStatus {
   }
 
   render(coins) {
-    console.log(coins);
     coins.forEach((item, idx) => {
       this.content[idx].textContent = `${Object.values(item).join('')}개`;
     });

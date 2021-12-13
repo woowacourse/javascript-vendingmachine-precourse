@@ -70,3 +70,13 @@ export const validateChange = (money) => {
   }
   return undefined;
 };
+
+export const validateMoney = (money) => {
+  if (!isNaturalNumber(money)) {
+    return ERROR.NOT_PLUS_MONEY;
+  }
+  if (!isDividedByNumber(money)) {
+    return ERROR.NOT_DIVIDED_BY_TEN_MONEY;
+  }
+  return undefined;
+};
