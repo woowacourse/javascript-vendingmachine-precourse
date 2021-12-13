@@ -1,7 +1,7 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 
-export const resetPurchaseInput = () => {
+export const resetChargeInput = () => {
   $('#charge-input').value = '';
 };
 

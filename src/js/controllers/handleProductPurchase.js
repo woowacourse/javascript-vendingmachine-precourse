@@ -1,7 +1,7 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import { ERROR, CHARGE, PRICE } from '../utils/constants.js';
-import { resetPurchaseInput, renderProducts, renderInputMoney } from '../views/productPurchaseView.js';
+import { resetChargeInput, renderProducts, renderInputMoney } from '../views/productPurchaseView.js';
 import { getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
 import alertMessage from '../views/alertMessage.js';
 
@@ -63,7 +63,7 @@ function HandleProductPurchase() {
       store.setLocalStorage('inputMoney', this.inputMoney);
       renderInputMoney();
     }
-    resetPurchaseInput();
+    resetChargeInput();
   });
 
   // (2) 상품을 구매하는 기능 구현
