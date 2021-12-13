@@ -97,7 +97,12 @@ export default class ProductAddTemplate {
     this.makeProductStatusTable();
   }
 
-  template() {
+  update() {
+    this.makeProductStatusTable();
+  }
+
+  updateScreen() {
+    this.update();
     return this.productAddScreen;
   }
 }

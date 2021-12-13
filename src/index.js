@@ -38,9 +38,9 @@ export default class VendingMachine {
     this.productAdd = new ProductAddTemplate();
     this.vendingMachineManage = new VendingMachineManageTemplate();
     this.productPurchase = new ProductPurcahseTemplate();
-    this.productAddScreen = this.productAdd.template();
-    this.vendingMachineManageScreen = this.vendingMachineManage.template();
-    this.productPurchaseScreen = this.productPurchase.template();
+    this.productAddScreen = this.productAdd.updateScreen();
+    this.vendingMachineManageScreen = this.vendingMachineManage.updateScreen();
+    this.productPurchaseScreen = this.productPurchase.updateScreen();
     this.hideAllScreen();
   }
 
@@ -77,7 +77,9 @@ export default class VendingMachine {
 
   updateScreen(e) {
     e.preventDefault();
+    this.productAddScreen = this.productAdd.updateScreen();
     this.productPurchaseScreen = this.productPurchase.updateScreen();
+    this.vendingMachineManageScreen = this.vendingMachineManage.updateScreen();
   }
 }
 

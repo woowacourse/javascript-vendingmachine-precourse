@@ -116,10 +116,6 @@ export default class ProductPurcahseTemplate {
     this.connectEvent();
   }
 
-  template() {
-    return this.productPurchaseScreen;
-  }
-
   updateScreen() {
     this.update();
     return this.productPurchaseScreen;

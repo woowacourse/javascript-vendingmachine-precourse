@@ -113,7 +113,13 @@ export default class VendingMachineManageTemplate {
     ).innerHTML = `${currentCoin[10]}개`;
   }
 
-  template() {
+  update() {
+    this.coinInsert(0);
+    this.insertCoinTableData();
+  }
+
+  updateScreen() {
+    this.update();
     return this.vendingMachineManageScreen;
   }
 }
