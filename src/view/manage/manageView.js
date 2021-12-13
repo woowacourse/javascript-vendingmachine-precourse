@@ -6,8 +6,8 @@ export default class ManageView {
     this.$main = $('main');
   }
 
-  renderManageTab() {
-    this.$main.innerHTML = manageTabTemplate();
+  renderManageTab(chargeAmount) {
+    this.$main.innerHTML = manageTabTemplate(chargeAmount);
   }
 
   selectManageTabDOM() {
@@ -19,5 +19,9 @@ export default class ManageView {
     this.$coin100Quantity = $('#vending-machine-coin-100-quantity');
     this.$coin50Quantity = $('#vending-machine-coin-50-quantity');
     this.$coin10Quantity = $('#vending-machine-coin-10-quantity');
+  }
+
+  renderChargeAmount(chargeAmount) {
+    this.$chargeAmount.innerText = `${chargeAmount}원`;
   }
 }

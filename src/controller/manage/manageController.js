@@ -11,7 +11,7 @@ export default class ManageController {
   init() {
     this.manageView.init();
 
-    this.manageView.renderManageTab();
+    this.manageView.renderManageTab(this.appModel.chargeAmount);
     this.manageView.selectManageTabDOM();
     this.attachManageTabEvents();
   }
@@ -26,7 +26,8 @@ export default class ManageController {
     const chargeAmount = this.manageView.$chargeInput.value;
 
     if (isValidChargeAmount(chargeAmount)) {
-      return this.appModel.setChargeAmount(Number(chargeAmount));
+      this.appModel.setChargeAmount(Number(chargeAmount));
+      return this.manageView.renderChargeAmount(this.appModel.chargeAmount);
     }
 
     return showError();

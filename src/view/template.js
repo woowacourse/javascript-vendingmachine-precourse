@@ -53,7 +53,7 @@ export const addTabTemplate = (products, inputs) => {
   `;
 };
 
-export const manageTabTemplate = () => {
+export const manageTabTemplate = (chargeAmount) => {
   return `
     <h2>자판기 동전 충전하기</h2>
     <form id="vending-machine-manage-form">
@@ -61,7 +61,7 @@ export const manageTabTemplate = () => {
       <button id="vending-machine-charge-button">충전하기</button>
     </form>
     <div>
-      보유금액: <span id="vending-machine-charge-amount">${NUMBER.ZERO}원</span>
+      보유금액: <span id="vending-machine-charge-amount">${chargeAmount}원</span>
     </div>
     <div>
       <h2>자판기가 보유한 동전</h2>
