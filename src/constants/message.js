@@ -1,4 +1,4 @@
-export default {
+export default Object.freeze({
   // 상품명 관련 메세지
   productNameIsRequired: '상품명을 입력 해주세요',
   productNameAlreadyExist: '동일한 상품명이 이미 존재합니다.',
@@ -28,4 +28,4 @@ export default {
 
   // 반환 관련 메세지
   returnMustHaveCharge: '투입된 금액이 부족합니다',
-};
+});

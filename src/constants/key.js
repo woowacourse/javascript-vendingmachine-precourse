@@ -1,4 +1,4 @@
-export default {
+export default Object.freeze({
   // 메뉴 관련 STORAGE_KEY
   currentMenu: 'current-menu',
 
@@ -27,4 +27,4 @@ export default {
   productQuantityInput: 'product-quantity-input',
   vendingMachineChargeInput: 'vending-machine-charge-input',
   chargeInput: 'charge-input',
-};
+});

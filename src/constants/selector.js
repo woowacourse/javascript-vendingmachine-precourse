@@ -1,4 +1,4 @@
-export default {
+export default Object.freeze({
   // 공통
   vendingMachineApp: 'app',
   tabContentContainerId: 'tab-content-container',
@@ -49,4 +49,4 @@ export default {
   productQuantityDataset: 'data-product-quantity',
   purchaseProductTableBodyId: 'purchase-product-table-body',
   returnCoinTableBodyId: 'return-coin-table-body',
-};
+});
