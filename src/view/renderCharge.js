@@ -51,7 +51,7 @@ export function coinListHeaderTemplate() {
   `;
 }
 
-export function coinListTemplate(change) {
+function coinListTemplate(change) {
   const coins = JSON.parse(localStorage.getItem(COINS_STORAGE_KEY));
   const titles = [TITLE_500, TITLE_100, TITLE_50, TITLE_10];
   const ids = [
@@ -60,14 +60,14 @@ export function coinListTemplate(change) {
     CHARGE_50_QUANTITY_ID,
     CHARGE_10_QUANTITY_ID,
   ];
-  const template = ids.map((id, index) => `
-    <tr align="center" bgcolor="white" height="40">
-      <td align="center" width="62">${titles[index]}</td> 
-      <td id="${id}" align="center" width="62">${coins ? `${change.coins[index]}개` : ''}</td>
-    </tr>
-  `).join('');
-
-  return template;
+  return (
+    ids.map((id, index) => `
+      <tr align="center" bgcolor="white" height="40">
+        <td align="center" width="62">${titles[index]}</td> 
+        <td id="${id}" align="center" width="62">${coins ? `${change.coins[index]}개` : ''}</td>
+      </tr>
+    `).join('')
+  );
 }
 
 function renderChargeCoins($charge, change) {
