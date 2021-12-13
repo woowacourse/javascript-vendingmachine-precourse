@@ -42,8 +42,8 @@ export default class View {
   }
 
   setAllPage() {
-    this.app.appendChild(this.managePageDiv);
-    // this.app.appendChild(this.chargePageDiv);
+    // this.app.appendChild(this.managePageDiv);
+    this.app.appendChild(this.chargePageDiv);
     // this.app.appendChild(this.purchasePageDiv);
   }
 
@@ -75,6 +75,7 @@ export default class View {
 
   getChargePage() {
     this.chargePage.setUI(this.chargePageDiv);
+    this.chargePage.buttonHandler();
   }
 
   getPurchasePage() {

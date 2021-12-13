@@ -28,4 +28,11 @@ export default class Validation {
     }
     return true;
   }
+
+  checkMoneyInput(money) {
+    if(Number.isNaN(Number(money)) || !money.trim()) { //이렇게 하면 음수도 되는지 확인 필요
+      return false;
+    }
+    return true;
+  }
 }

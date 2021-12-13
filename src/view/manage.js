@@ -1,5 +1,4 @@
 import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS} from '../utils/constant.js';
-import { $ } from '../utils/selector.js';
 
 export default class ManagePage {
   constructor(controller) {

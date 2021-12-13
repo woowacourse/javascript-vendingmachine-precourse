@@ -7,7 +7,6 @@ export default class ChargePage {
     this.inputCoin = document.createElement('input');
     this.buttonCharge = document.createElement('button');
     this.textCurrent = document.createElement('p');
-    this.showCurrent = document.createElement('p');
     this.table = document.createElement('table');
     this.tr = document.createElement('tr');
     this.thCoin = document.createElement('th');
@@ -20,7 +19,7 @@ export default class ChargePage {
     this.subtitleCurrent.innerText = SUBTITLE.CURRENT_COIN;
     this.inputCoin.setAttribute('placeholder', PLACEHOLDER.CHARGE_COIN);
     this.buttonCharge.innerText = TEXT.CHARGE;
-    this.textCurrent.innerText = TEXT.HAVE;
+    this.textCurrent.innerText = `${TEXT.HAVE} ${localStorage.getItem('money')}`; //처음엔 null 뜸. 고쳐야함
   }
 
   setTable() {
@@ -40,18 +39,19 @@ export default class ChargePage {
     page.appendChild(this.inputCoin);
     page.appendChild(this.buttonCharge);
     page.appendChild(this.textCurrent);
-    page.appendChild(this.showCurrent);
     page.appendChild(this.subtitleCurrent);
     page.appendChild(this.table);
   }
 
-  buttonHandler(inventory) {
-    this.buttonAdd.addEventListener('click', (e) => {
+  buttonHandler() {
+    this.buttonCharge.addEventListener('click', (e) => {
       e.preventDefault();
-      const name = this.inputName.value;
-      const price = this.inputPrice.value;
-      const quantity = this.inputQuantity.value;
-      inventory.saveItem(name, price, quantity);
+      this.controller.chargeMoney(this.inputCoin.value);
+      console.log(this.inputCoin.value);
     })
+  }
+
+  showCurrentMoney(money) {
+    this.textCurrent.innerText = `${TEXT.HAVE} ${money}`;
   }
 }
