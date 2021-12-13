@@ -25,7 +25,7 @@ export default {
   sellable(name) {
     const pickedItem = this.products.find((item) => item[PRODUCT.NAME] === name);
     if (pickedItem[PRODUCT.QUANTITY] <= 0) {
-      alert('수량이 부족합니다.');
+      alert(ALERT.NOT_ENOUGH_QUANTITY);
       return false;
     }
     return true;
