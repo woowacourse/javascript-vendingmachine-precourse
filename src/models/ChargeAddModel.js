@@ -1,6 +1,7 @@
 export default class ChargeAddModel {
   constructor() {
     this.totalCharge;
+    this.randomCoin;
   }
 
   setLocalCharge(charge) {
@@ -9,6 +10,7 @@ export default class ChargeAddModel {
     ? this.totalCharge = Number(localCharge) + Number(charge)
     : this.totalCharge = Number(charge);
     localStorage.setItem("CHARGE", JSON.stringify(this.totalCharge));
+    this.setRandomCoinArray(charge);
   }
 
   getLocalCharge () {
@@ -17,4 +19,40 @@ export default class ChargeAddModel {
     
     return parseLocalTotalCharge;
   }
+
+  setRandomCoinArray(charge) {
+    const randomCoins = [];
+    let typeNuberCharge = Number(charge);
+    while(typeNuberCharge !== 0) {
+      let coin = MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+      typeNuberCharge -= coin;
+      if (typeNuberCharge >= 0) {
+        randomCoins.push(coin);
+      } else if (typeNuberCharge < 0) {
+        typeNuberCharge += coin;
+      }
+    }
+    this.setContainCoin(randomCoins);
+  }
+
+  setContainCoin(randomCoins) {
+    this.randomCoin = this.getRandonCoin();
+    randomCoins.map((coin) => {
+      if (coin === 500) {
+        this.randomCoin[0]++;
+      } else if (coin === 100) {
+        this.randomCoin[1]++;
+      } else if (coin === 50) {
+        this.randomCoin[2]++;
+      } else if (coin === 10) {
+        this.randomCoin[3]++;
+      }
+    });
+  }
+
+  getRandonCoin() {
+    return this.randomCoin ? this.randomCoin : [0, 0, 0, 0];
+  }
+
+
 }

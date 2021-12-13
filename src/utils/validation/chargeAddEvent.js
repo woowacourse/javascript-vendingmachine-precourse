@@ -10,3 +10,14 @@ export function chargeAddValiate(coin) {
 
   return result;
 }
+
+export function renderContainRandomCoin(coins) {
+  const contain500Coin = document.querySelector('#vending-machine-coin-500-quantity');
+  const contain100Coin = document.querySelector('#vending-machine-coin-100-quantity');
+  const contain50Coin = document.querySelector('#vending-machine-coin-50-quantity');
+  const contain10Coin = document.querySelector('#vending-machine-coin-10-quantity');
+  contain500Coin.innerText = `${coins[0]}개`;
+  contain100Coin.innerText = `${coins[1]}개`;
+  contain50Coin.innerText = `${coins[2]}개`;
+  contain10Coin.innerText = `${coins[3]}개`;
+}

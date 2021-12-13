@@ -1,6 +1,6 @@
 import ChargeAddController from "../controllers/ChargeAddController.js";
 import { chargeAddTemplete } from "../utils/dom/chargeAddTemplete.js";
-import { chargeAddValiate } from "../utils/validation/chargeAddEvent.js";
+import { chargeAddValiate, renderContainRandomCoin } from "../utils/validation/chargeAddEvent.js";
 
 export default class ChargeAddView extends ChargeAddController {
 
@@ -24,6 +24,10 @@ export default class ChargeAddView extends ChargeAddController {
     !this.localTotalCharge && this.addCoin ? $chargeWrap.innerText = this.addCoin : "";
     this.localTotalCharge && this.addCoin ? $chargeWrap.innerText = (Number(this.addCoin) + Number(this.localTotalCharge)) : "";
     !this.localTotalCharge && !this.addCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
+  }
+
+  renderRandomCoin() {
+    this.containRandomCoin && renderContainRandomCoin(this.containRandomCoin);
   }
 
 }

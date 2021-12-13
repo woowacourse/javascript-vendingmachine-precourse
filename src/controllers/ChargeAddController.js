@@ -7,19 +7,28 @@ export default class ChargeAddController {
     this.chargeAddField = document.createElement('div');
     this.addCoin;
     this.localTotalCharge;
+    this.containRandomCoin;
     this.render();
     this.setEvent();
     this.setChargeCoin();
     this.renderCharge();
+    this.setRandomCoin();
   }
 
   getChargeCoin() {
     this.chargeModel.setLocalCharge(this.addCoin);
     this.setChargeCoin();
+    this.setRandomCoin();
   }
 
   setChargeCoin() {
     this.localTotalCharge = this.chargeModel.getLocalCharge();
+  }
+
+  setRandomCoin() {
+    this.containRandomCoin = this.chargeModel.getRandonCoin();
+    console.log(this.containRandomCoin)
+    this.containRandomCoin && this.renderRandomCoin();
   }
 
 }
