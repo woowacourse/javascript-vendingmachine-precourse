@@ -1,4 +1,3 @@
-import SetProductAdd from './SetProductAdd.js';
 import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER, STRING, COIN } from '../utils/constant.js';
 import SetVendingMachineCharge from './SetVendingMachineCharge.js';
 import SetVendingMachinePurchase from './SetVendingMachinePurchase.js';

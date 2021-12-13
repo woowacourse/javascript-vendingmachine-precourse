@@ -28,7 +28,7 @@ export default class ProductAdd {
   isDuplicateName = () => {
     const productsInformation = JSON.parse(localStorage.getItem(LOCAL_STORAGE.PRODUCTS_INFORMATION));
 
-    if (productsInformation.find((productInformation) => productInformation[0] === this.$productNameInput.value)) {
+    if (productsInformation?.find((productInformation) => productInformation[0] === this.$productNameInput.value)) {
       this.render.alertMessage(ERROR_MESSAGE.NO_DUPLICATE_NAME);
       this.render.inputFocus(this.$productNameInput);
 
