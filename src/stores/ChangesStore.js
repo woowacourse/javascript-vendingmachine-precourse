@@ -1,7 +1,7 @@
 import Store from '../core/Store.js';
 import { CHANGES_ACTION_TYPE } from '../actions/changes.js';
 import {
-  generateRandomChanges,
+  generateRandomCoins,
   generateChangesCoin,
   mergeCoins,
 } from '../utils/helpers/coin.js';
@@ -15,10 +15,10 @@ class ChangesStore extends Store {
   setUpReducer() {
     this.reducer = {
       [CHANGES_ACTION_TYPE.CHARGE_CHANGES]: money => {
-        const { changes, coins } = this.state;
+        const { coins, changes } = this.state;
         this.setState({
           changes: changes + money,
-          coins: mergeCoins(coins, generateRandomChanges(money)),
+          coins: mergeCoins(coins, generateRandomCoins(money)),
         });
         return REDUCER_RESULT.SUCCESS();
       },

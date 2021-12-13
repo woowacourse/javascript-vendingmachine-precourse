@@ -1,7 +1,7 @@
 import { COIN_UNITS, DEFAULT_VALUES } from '../constants.js';
 
-export const generateRandomChanges = money => {
-  const coins = DEFAULT_VALUES.COINS;
+export const generateRandomCoins = money => {
+  const coins = DEFAULT_VALUES.COINS();
   let restMoney = money;
   while (restMoney > 0) {
     const unit = MissionUtils.Random.pickNumberInList(COIN_UNITS);
@@ -14,18 +14,18 @@ export const generateRandomChanges = money => {
 };
 
 export const generateChangesCoin = (change, coins) => {
-  const changeCoins = DEFAULT_VALUES.COINS;
+  const changeCoins = DEFAULT_VALUES.COINS();
   const machineCoins = { ...coins };
   let restChange = change;
   let index = 0;
 
   while (restChange > 0 && index < COIN_UNITS.length) {
-    const currentCoin = COIN_UNITS[index];
-    if (machineCoins[currentCoin] === 0) index += 1;
-    else if (restChange >= currentCoin) {
-      changeCoins[currentCoin] += 1;
-      machineCoins[currentCoin] -= 1;
-      restChange -= currentCoin;
+    const coinUnit = COIN_UNITS[index];
+    if (machineCoins[coinUnit] === 0) index += 1;
+    else if (restChange >= coinUnit) {
+      changeCoins[coinUnit] += 1;
+      machineCoins[coinUnit] -= 1;
+      restChange -= coinUnit;
     }
   }
   return { changeCoins, machineCoins };

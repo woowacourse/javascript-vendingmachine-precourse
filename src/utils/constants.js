@@ -34,7 +34,7 @@ export const DEFAULT_VALUES = {
   CHANGES: 0,
   CHARGED_MONEY: 0,
   PRODUCTS: [],
-  COINS: convertArrayToObjectKeys(COIN_UNITS),
+  COINS: () => convertArrayToObjectKeys(COIN_UNITS),
 };
 
 export const REDUCER_RESULT = {
