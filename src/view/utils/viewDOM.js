@@ -22,10 +22,10 @@ const CHARGE_VIEW = `
   <h2>자판기 동전 충전하기</h2>
   <input placeholder="자판기가 보유할 금액" id="vending-machine-charge-input"/>
   <button id="vending-machine-charge-button">충전하기</button>
-  <div> 보유금액: </div>
+  <div> 보유 금액: </div>
   <text id="vending-machine-charge-amount"></text>
   <h2>자판기가 보유한 동전</h2>
-  <table>
+  <table id="random-coin">
     <th>동전</th><th>개수</th>
     <tr>
       <td>500원</td> <td id="vending-machine-coin-500-quantity"></td>

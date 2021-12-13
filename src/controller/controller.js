@@ -57,7 +57,7 @@ export default class Controller {
         parseInt($addPrice.value, 10),
         parseInt($addQuantity.value, 10)
       );
-      this.view.renderProductTable(this.vendingMachine.productList);
+      this.view.renderManageTab(this.vendingMachine.productList);
     });
   }
 
@@ -69,6 +69,7 @@ export default class Controller {
         alert("다시 입력하세요.");
       }
       this.vendingMachine.makeRandomChange(parseInt($chargeCoin.value, 10));
+      this.view.renderChargeTab(this.vendingMachine.ownChange);
     });
   }
 }

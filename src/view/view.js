@@ -5,7 +5,7 @@ import {
   PURCHASE_VIEW,
 } from "./utils/viewDOM.js";
 import { createElement, hideWithID, showWithID } from "./utils/handleDOM.js";
-import { EMPTY } from "../utils/constants.js";
+import { COIN, EMPTY } from "../utils/constants.js";
 
 export default class View {
   constructor() {
@@ -91,7 +91,7 @@ export default class View {
     };
   }
 
-  renderProductTable(productList) {
+  renderManageTab(productList) {
     const $tablePosition = document.getElementById("product-manage-item-first");
     $tablePosition.innerHTML = "<th>상품명</th><th>가격</th><th>수량</th>";
 
@@ -108,5 +108,19 @@ export default class View {
       );
       $tablePosition.appendChild($proudct);
     });
+  }
+
+  renderChargeTab(ownChange) {
+    const $amount = document.getElementById("vending-machine-charge-amount");
+    let sum = 0;
+    ownChange.map((coin, idx) => {
+      const $product = document.getElementById(
+        `vending-machine-coin-${COIN[idx]}-quantity`
+      );
+      $product.innerHTML = `${coin}원`;
+      sum += coin * COIN[idx];
+    });
+
+    $amount.innerHTML = sum;
   }
 }
