@@ -9,4 +9,11 @@ export default class AddView {
   renderAddTab() {
     this.$main.innerHTML = addTabTemplate();
   }
+
+  selectAddTabDOMS() {
+    this.$productNameInput = $('#product-name-input');
+    this.$productPriceInput = $('#product-price-input');
+    this.$productQuantityInput = $('#product-quantity-input');
+    this.$productAddForm = $('#product-add-form');
+  }
 }

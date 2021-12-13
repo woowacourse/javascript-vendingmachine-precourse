@@ -16,10 +16,12 @@ export const addTabTemplate = () => {
   return `
     <h2>상품 추가하기</h2>
     <div>
-      <input id="product-name-input" type="text" placeholder="상품명" />
-      <input id="product-price-input" type="number" placeholder="가격" />
-      <input id="product-quantity-input" type="number" placeholder="수량" />
-      <button id="product-add-button">추가하기</button>
+      <form id="product-add-form">
+        <input id="product-name-input" type="text" placeholder="상품명" />
+        <input id="product-price-input" type="number" placeholder="가격" />
+        <input id="product-quantity-input" type="number" placeholder="수량" />
+        <button id="product-add-button">추가하기</button>
+      </form>
     </div>
     <h2>상품 현황</h2>
     <table>
