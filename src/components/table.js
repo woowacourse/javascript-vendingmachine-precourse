@@ -33,4 +33,12 @@ export default class Table extends Component {
     if (buttonInfo === undefined) return "";
     return `<button id=${buttonInfo.id}>${buttonInfo.value}</button>`;
   }
+
+  setEvent() {
+    const { buttonInfo } = this.$props;
+    if (buttonInfo !== undefined) {
+      const buttonSelector = this.$target.querySelector(`#${buttonInfo.id}`);
+      buttonSelector.addEventListener("click", buttonInfo.callBack);
+    }
+  }
 }

@@ -52,6 +52,7 @@ export default class PurchaseMenuContainer extends Component {
       buttonInfo: {
         id: "coin-return-button",
         value: "반환하기",
+        callBack: () => alert("callback"),
       },
     });
   }
