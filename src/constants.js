@@ -1,5 +1,10 @@
 export const ERROR_MESSAGE = {
   NO_SELECTOR: '선택자를 입력해주세요.',
+  INCORRECT_NUMBER: '올바른 숫자를 입력해주세요.',
+  NO_TEXT: '텍스트를 입력해주세요.',
+  INCORRECT_TEN_DIGITS: '10의 자리 숫자로 입력해주세요.',
+  NOT_ENOUGH_MONEY: '금액이 부족합니다.',
+  MORE_THAN_ONE_HUNDRED: '최소 충전 금액이 100원 이상입니다.'
 };
 
 export const COIN_LIST = {
