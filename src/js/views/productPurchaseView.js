@@ -24,3 +24,7 @@ export const renderProducts = () => {
     })
     .join('');
 };
+
+export const renderHoldAmount = () => {
+  $('#charge-amount').innerHTML = store.getLocalStorage('holdAmount');
+};
