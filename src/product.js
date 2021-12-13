@@ -59,17 +59,23 @@ export class CUSTOMER_CHARGE{
     }
 
     setCustomerChargeTotal(newCustomerCharge){
-        //console.log(typeof newCustomerCharge + '' + newCustomerCharge)
         this.customerChargeTotal += Number(newCustomerCharge)
     }
 
     purchase(price){
-        //console.log(typeof price + '' + price)
         this.customerChargeTotal -= Number(price)
     }
 
     setCustomerChargeArray(i, coinAmount){
-        //console.log(typeof coinAmount + '' + coinAmount)
         this.customerChargeArray[i] += Number(coinAmount)
     }
+}
+
+export const GAME = {
+    COIN_ARRAY : [500, 100, 50, 10],
+    VENDING_MACHINE_CHARGE_ARRAY : [0,0,0,0],
+    VENDING_MACHINE_CHARGE_TOTAL : 0,
+    CUSTOMER_CHARGE_ARRAY : [0,0,0,0],
+    CUSTOMER_CHARGE_TOTAL : 0,
+    PRODUCTS : []
 }

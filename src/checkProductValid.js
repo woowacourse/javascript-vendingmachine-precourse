@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from './product.js'
+import { ERROR_MESSAGE, GAME } from './product.js'
 
 //공백 예외처리
     function checkProducBlanktValid($productNameInput, $productPriceInput, $productQuantityInput){
@@ -36,22 +36,17 @@ import { ERROR_MESSAGE } from './product.js'
     //상품명 중복이 있는지
     function checkProductNameValid($productNameInput){
         console.log(document.querySelectorAll('.product-manage-name'))
-        const $productManageName = document.querySelectorAll('.product-manage-name')
-        if($productManageName.length !== 0){    
-            for (let productName of $productManageName){
-                if(productName.dataset.productName === $productNameInput.value){
-                    return false
-                }
-                return true
-            }        
-         }
+        for(let product of GAME.PRODUCTS){
+            if($productNameInput.value === product.name){
+                return false
+            }
+        }
          return true
     }
 
 
     
 export function checkProductValid($productNameInput, $productPriceInput, $productQuantityInput){
-    //TO DO : 스페이스바 없애기 처리
     //공백 예외처리
     if(!checkProducBlanktValid($productNameInput, $productPriceInput, $productQuantityInput)){
         alert(ERROR_MESSAGE.BLANK_ERROR)

@@ -1,36 +1,42 @@
-import { CUSTOMER_CHARGE } from './product.js'
+import { CUSTOMER_CHARGE, GAME } from './product.js'
 import { printVendingMachineChargeAmount, printVendingMachineChargeTable } from './printVendingMachineCharge.js'
+import { addProductAddTable, addProductPurchaseTable } from './addProductListTable.js'
 
 
 const customerCharge = new CUSTOMER_CHARGE()
 
+function deleteProduct(selectedProduct){
+    GAME.PRODUCTS = GAME.PRODUCTS.filter((element) => element.name !== selectedProduct.name)
+    addProductAddTable()
+    addProductPurchaseTable()
+}
 
-export function purchaseProduct(PRODUCTS, vendingMachineCharge){
+export function purchaseProduct(){
     //TO DO : 입력금액 예외처리(살수있는거 없으면 입력못하게 하기)
 
     //CUSTOMER_CHARGE 객체에 넣기
     const $chargeInput = document.querySelector('#charge-input')
-    customerCharge.setCustomerChargeTotal($chargeInput.value)
-    console.log(customerCharge.customerChargeTotal)
+
+    GAME.CUSTOMER_CHARGE_TOTAL += Number($chargeInput.value)
+    console.log(GAME.CUSTOMER_CHARGE_TOTAL)
 
     //투입한 금액에 출력
     const $chargeAmount = document.querySelector('#charge-amount')
-    $chargeAmount.innerHTML = `투입한 금액: ${customerCharge.customerChargeTotal}`
+    $chargeAmount.innerHTML = `투입한 금액: ${GAME.CUSTOMER_CHARGE_TOTAL}`
 
     //입력창 비우기
     $chargeInput.value = '' 
 
-    //TO DO : 구매버튼 클릭시
+    //구매버튼 클릭시
     const $productPurchaseTable = document.querySelector('#product-purchase-table')
     $productPurchaseTable.addEventListener('click',function(e){
-        console.log(PRODUCTS)
         if(e.target.tagName === 'BUTTON'){
             //PRODUCT 클래스에서 수량 빼기
             const productName = e.target.dataset.productName
             let selectedProduct = ''
-            for(let product of PRODUCTS){
+            for(let product of GAME.PRODUCTS){
                 if(product.name === productName){
-                    selectedProduct =  product
+                    selectedProduct = product
                 }
             }
             console.log(selectedProduct.name)
@@ -40,99 +46,72 @@ export function purchaseProduct(PRODUCTS, vendingMachineCharge){
             $productPurchaseQuantity.innerHTML = selectedProduct.quantity
 
             //TO DO : 수량 0되면 클래스 삭제
+            if(selectedProduct.quantity < 1){
+                deleteProduct(selectedProduct)
+            }
+            
 
-            //TO DO : CUSTOMER_CHARGE 클래스에서 금액빼기
-            customerCharge.purchase(selectedProduct.price)
-            console.log(customerCharge.customerChargeTotal)
+
+            //CUSTOMER_CHARGE 클래스에서 금액빼기
+            GAME.CUSTOMER_CHARGE_TOTAL -= selectedProduct.price
                 //투입한 금액에 출력
                 const $chargeAmount = document.querySelector('#charge-amount')
-                $chargeAmount.innerHTML = `투입한 금액: ${customerCharge.customerChargeTotal}`
-
+                $chargeAmount.innerHTML = `투입한 금액: ${GAME.CUSTOMER_CHARGE_TOTAL}`
         }
     })
 
 
 
-    //TO DO : 반환하기 클릭시
+    //반환하기 클릭시
     const $coninReturnButton = document.querySelector('#coin-return-button')
     $coninReturnButton.addEventListener('click',()=>{
-        console.log('소비자돈 '+ customerCharge.customerChargeTotal)
-        console.log(vendingMachineCharge.chargeArray)
-        console.log(customerCharge.customerChargeTotal)
+        console.log('소비자돈 '+ GAME.CUSTOMER_CHARGE_TOTAL)
+        console.log(GAME.VENDING_MACHINE_CHARGE_ARRAY)
+        console.log(GAME.VENDING_MACHINE_CHARGE_TOTAL)
         //잔돈충전 탭에서 보유금액 바꾸기
-        vendingMachineCharge.useChargeTotal(customerCharge.customerChargeTotal)
-            //TO DO : 큰 동전부터 계산하여 CUSTOMER_CHARGE 클래스에 넣기
-            let coin = [500,100,50,10]
+        GAME.VENDING_MACHINE_CHARGE_TOTAL -= GAME.CUSTOMER_CHARGE_TOTAL
+            //큰 동전부터 계산하여 CUSTOMER_CHARGE 클래스에 넣기
             let coinAmount = 0
-            for(let i in vendingMachineCharge.chargeArray){
-                // if(i===3){
-                //     coinAmount = customerCharge.customerChargeTotal/coin[i]
-                //     customerCharge.setCustomerChargeArray(i, coinAmount)
-                //     customerCharge.purchase(Number(coin[i]) * coinAmount)
-                //     vendingMachineCharge.useChargeArray(i, coinAmount)
-
-
-                //      //customerCharge.customerChargeTotal/coin[i]
-                // }
-                if(coin[i] * Number(vendingMachineCharge.chargeArray[i]) <= Number(customerCharge.customerChargeTotal)){
-                    console.log('if')
-                    coinAmount = Number(vendingMachineCharge.chargeArray[i])
-                    customerCharge.setCustomerChargeArray(i, coinAmount)
-                    customerCharge.purchase(Number(coin[i]) * coinAmount)
-                    vendingMachineCharge.useChargeArray(i, coinAmount)
-                    //             //투입한 금액에 출력
-                    //             const $chargeAmount = document.querySelector('#charge-amount')
-                    //             $chargeAmount.innerHTML = `투입한 금액: ${customerCharge.customerChargeTotal}`
+            for(let i in GAME.VENDING_MACHINE_CHARGE_ARRAY){
+                if(GAME.COIN_ARRAY[i] * GAME.VENDING_MACHINE_CHARGE_ARRAY[i] <= GAME.CUSTOMER_CHARGE_TOTAL){
+                    GAME.CUSTOMER_CHARGE_ARRAY[i] += GAME.VENDING_MACHINE_CHARGE_ARRAY[i]
+                    GAME.CUSTOMER_CHARGE_TOTAL -= GAME.COIN_ARRAY[i] * GAME.VENDING_MACHINE_CHARGE_ARRAY[i]
+                    GAME.VENDING_MACHINE_CHARGE_ARRAY[i] -= GAME.VENDING_MACHINE_CHARGE_ARRAY[i]
                 }
-                //else{
-                else if(coin[i] * vendingMachineCharge.chargeArray[i] > customerCharge.customerChargeTotal){
-                    console.log('else')
-                    coinAmount = parseInt(customerCharge.customerChargeTotal/Number(coin[i]))              
-                    customerCharge.setCustomerChargeArray(i, coinAmount)
-                    //console.log(customerCharge.customerChargeArray)
-                    //console.log(Number(customerCharge.customerChargeTotal))
-                    //console.log(coin[i])
-                    //console.log(Number(coin[i]))
-                    //console.log('자판기에 소요된 돈 :'+coin[i]+'를 '+customerCharge.customerChargeTotal/Number(coin[i]))
-                    console.log('자판기에 소요된 돈 :'+coin[i]+'를 '+coinAmount)
-                    //console.log(Number(customerCharge.customerChargeTotal)%Number(coin[i]))
-                    customerCharge.purchase(coin[i] * parseInt(customerCharge.customerChargeTotal/coin[i]))
-                    //console.log(customerCharge.customerChargeTotal)
-                    //console.log(coin[i])
-                    //console.log(parseInt(customerCharge.customerChargeTotal/coin[i]))
-                    vendingMachineCharge.useChargeArray(i, coinAmount)
+                else if(GAME.COIN_ARRAY[i] * GAME.VENDING_MACHINE_CHARGE_ARRAY[i] > GAME.CUSTOMER_CHARGE_TOTAL){
+                    coinAmount = GAME.CUSTOMER_CHARGE_TOTAL/GAME.COIN_ARRAY[i]
+                    console.log(`coinAmount ${typeof coinAmount} ${coinAmount}`)
+                    GAME.CUSTOMER_CHARGE_ARRAY[i] += coinAmount
+                    console.log(`CUSTOMER_CHARGE_ARRAY[${i}] ${typeof GAME.CUSTOMER_CHARGE_ARRAY[i]} ${GAME.CUSTOMER_CHARGE_ARRAY[i]}`)
+                    console.log('자판기에 소요된 돈 :'+GAME.COIN_ARRAY[i]+'를 '+coinAmount)
+                    GAME.CUSTOMER_CHARGE_TOTAL -= GAME.COIN_ARRAY[i] * coinAmount
+                    console.log(`GAME.CUSTOMER_CHARGE_TOTAL ${GAME.CUSTOMER_CHARGE_TOTAL}`)
+                    GAME.VENDING_MACHINE_CHARGE_ARRAY[i] -= coinAmount
+                    console.log(`GAME.VENDING_MACHINE_CHARGE_ARRAY[${i}] ${GAME.VENDING_MACHINE_CHARGE_ARRAY[i]}`)
                     }
-
-                
-                console.log(customerCharge.customerChargeArray)
-                console.log(vendingMachineCharge.chargeArray)  
-                console.log(customerCharge.customerChargeTotal)
-         
             }
 
                 
                             //투입한 금액에 출력
                             const $chargeAmount = document.querySelector('#charge-amount')
-                            $chargeAmount.innerHTML = `투입한 금액: ${customerCharge.customerChargeTotal}`
+                            $chargeAmount.innerHTML = `투입한 금액: ${GAME.CUSTOMER_CHARGE_TOTAL}`
             //반환된 동전 갯수 출력  
             const $coin500Quantity = document.querySelector('.coin-500-quantity')
             const $coin100Quantity = document.querySelector('.coin-100-quantity')
             const $coin50Quantity = document.querySelector('.coin-50-quantity')
             const $coin10Quantity = document.querySelector('.coin-10-quantity')
 
-            $coin500Quantity.innerHTML = customerCharge.customerChargeArray[0]
-            $coin100Quantity.innerHTML = customerCharge.customerChargeArray[1]
-            $coin50Quantity.innerHTML = customerCharge.customerChargeArray[2]
-            $coin10Quantity.innerHTML = customerCharge.customerChargeArray[3]
-                //customerCharge.CustomerChargeArray()  
+            $coin500Quantity.innerHTML = GAME.CUSTOMER_CHARGE_ARRAY[0]
+            $coin100Quantity.innerHTML = GAME.CUSTOMER_CHARGE_ARRAY[1]
+            $coin50Quantity.innerHTML = GAME.CUSTOMER_CHARGE_ARRAY[2]
+            $coin10Quantity.innerHTML = GAME.CUSTOMER_CHARGE_ARRAY[3]
+                
+
+
            
        
-            //TO DO : 잔돈 충전탭 reset
-            console.log(vendingMachineCharge.chargeTotal)
-            printVendingMachineChargeAmount(vendingMachineCharge)
-            printVendingMachineChargeTable(vendingMachineCharge)
-    })
-
-
-       
+            //잔돈 충전탭 reset
+            printVendingMachineChargeAmount()
+            printVendingMachineChargeTable()
+    })     
 }

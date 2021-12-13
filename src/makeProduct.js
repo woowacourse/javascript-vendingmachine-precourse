@@ -1,13 +1,20 @@
-import { PRODUCT } from './product.js'
+import { PRODUCT, GAME } from './product.js'
 
-    let PRODUCTS = []
 export function makeProduct($productNameInputValue, $productPriceInputValue, $productQuantityInputValue){
     //클래스 생성
+    let product = $productNameInputValue
+    product = new PRODUCT($productNameInputValue, $productPriceInputValue, $productQuantityInputValue)
+    
+    GAME.PRODUCTS.push(product)
 
-    $productNameInputValue = new PRODUCT($productNameInputValue, $productPriceInputValue, $productQuantityInputValue)
-    
-    PRODUCTS.push($productNameInputValue)
-    console.log(PRODUCTS)
-    
-    return PRODUCTS
+    console.log(GAME.PRODUCTS)
+    console.log(GAME.PRODUCTS[0].quantity)
+
+    for(let i in GAME.PRODUCTS){
+        if(GAME.PRODUCTS[i].quantity === 0){
+            GAME.PRODUCTS.splice(i,1)
+        }
+    }
+
+    console.log(GAME.PRODUCTS)
 }

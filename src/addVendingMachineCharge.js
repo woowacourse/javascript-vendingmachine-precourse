@@ -1,30 +1,31 @@
-import { VENDING_MACHINE_CHARGE, ERROR_MESSAGE } from './product.js'
+import { VENDING_MACHINE_CHARGE, ERROR_MESSAGE, GAME } from './product.js'
 import { printVendingMachineChargeAmount, printVendingMachineChargeTable } from './printVendingMachineCharge.js'
 
-let vendingMachineCharge = new VENDING_MACHINE_CHARGE()
 
-function addVENDING_MACHINE_CHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, randomNumber, i){
-    vendingMachineChargeTotal += chargeArray[i]*randomNumber
-    vendingMachineCharge.setChargeArray(i, randomNumber)
-    
-    console.log(chargeArray[i] + ' ' + randomNumber) 
-    return vendingMachineChargeTotal      
+function addVENDING_MACHINE_CHARGE(vendingMachineChargeSum, coinAmount, i){
+    vendingMachineChargeSum += GAME.COIN_ARRAY[i] * coinAmount
+    GAME.VENDING_MACHINE_CHARGE_ARRAY[i] = coinAmount
+
+    return vendingMachineChargeSum
 }
 
 
 
 //랜덤잔돈 만들기
-function makeRandomCharge($vendingMachineChargeInput, vendingMachineChargeTotal, chargeArray, vendingMachineCharge){
-    let i=0        
+function makeRandomCharge($vendingMachineChargeInput){
+    let i=0
+    let vendingMachineChargeSum = 0
     while(true){
         const randomNumber = MissionUtils.Random.pickNumberInRange(0, Number($vendingMachineChargeInput.value));
-        if(vendingMachineChargeTotal+(chargeArray[i]*randomNumber) < $vendingMachineChargeInput.value){
-            vendingMachineChargeTotal = addVENDING_MACHINE_CHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, randomNumber, i)
+        if(vendingMachineChargeSum+(GAME.COIN_ARRAY[i]*randomNumber) < $vendingMachineChargeInput.value){
+            vendingMachineChargeSum = addVENDING_MACHINE_CHARGE(vendingMachineChargeSum, randomNumber, i)
             i++
+            console.log('클릭')
         }
         if(i===3){
-            vendingMachineChargeTotal = addVENDING_MACHINE_CHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, ($vendingMachineChargeInput.value-vendingMachineChargeTotal)/10, i)
+            vendingMachineChargeSum = addVENDING_MACHINE_CHARGE(vendingMachineChargeSum, ($vendingMachineChargeInput.value-vendingMachineChargeSum)/10, i)
             i++
+            console.log('클릭')
         }
         if(i>3){
             break;
@@ -35,14 +36,10 @@ function makeRandomCharge($vendingMachineChargeInput, vendingMachineChargeTotal,
 
 function makeRandomChargeArray(){
     const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input')  
-    let vendingMachineChargeTotal = 0
-    const chargeArray = [500, 100, 50, 10]
-
     //자판기 보유금액 출력
-    printVendingMachineChargeAmount(vendingMachineCharge)
-
+    printVendingMachineChargeAmount()
     //랜덤잔돈 만들기
-    makeRandomCharge($vendingMachineChargeInput, vendingMachineChargeTotal, chargeArray, vendingMachineCharge)    
+    makeRandomCharge($vendingMachineChargeInput)  
 }
 
 //잔돈 입력값 유효성 검사
@@ -68,17 +65,17 @@ function emptyVendingMachineChargeInput(){
 }
 
 export function addVendingMachineCharge(){
+    console.log('클릭')
     //유효성 검사
     if(checkVendingMachineChargeInputValid()){
-        const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input') 
-        vendingMachineCharge.setChargeTotal($vendingMachineChargeInput.value)
+        const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input')
+        GAME.VENDING_MACHINE_CHARGE_TOTAL += Number($vendingMachineChargeInput.value)
         makeRandomChargeArray()
 
         //자판기 잔돈 테이블에 추가       
-        printVendingMachineChargeTable(vendingMachineCharge)
+        printVendingMachineChargeTable()
     }
 
     //입력창 비우기
     emptyVendingMachineChargeInput()
-    return vendingMachineCharge
 }
