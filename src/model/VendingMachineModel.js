@@ -1,4 +1,4 @@
-import { coinList } from '../utils/constant.js';
+import { coinList, EXCEPTION_ALERT } from '../utils/constant.js';
 
 export class VendingMachineModel {
   products = JSON.parse(localStorage.getItem('products')) || [];
@@ -18,9 +18,29 @@ export class VendingMachineModel {
   };
 
   addProduct(productName, price, quantity) {
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i].productName !== productName) {
+        continue;
+      }
+      if (this.products[i].price === price) {
+        this.addExistingProduct(i, quantity);
+        return this.products;
+      }
+      alert(EXCEPTION_ALERT.differentPriceError);
+      return;
+    }
+    this.addNewProduct(productName, price, quantity);
+    return this.products;
+  }
+
+  addExistingProduct(index, quantity) {
+    this.products[index].quantity += quantity;
+    localStorage.setItem('products', JSON.stringify(this.products));
+  }
+
+  addNewProduct(productName, price, quantity) {
     this.products = [...this.products, { productName, price, quantity }];
     localStorage.setItem('products', JSON.stringify(this.products));
-    return this.products;
   }
 
   buyProduct(productName, price) {

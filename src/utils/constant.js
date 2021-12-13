@@ -9,4 +9,5 @@ export const USER_INPUT_ALERT = {
 
 export const EXCEPTION_ALERT = {
   notEnoughMoneyError: '금액이 부족해 구매할 수 없습니다.',
+  differentPriceError: '같은 제품에, 다른 가격을 입력하셨습니다.',
 };

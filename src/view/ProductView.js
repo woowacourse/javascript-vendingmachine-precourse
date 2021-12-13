@@ -20,8 +20,8 @@ export class ProductView {
     this.$productAddButton.addEventListener('click', (e) => {
       e.preventDefault();
       const product = this.$productNameInput.value;
-      const price = this.$productPriceInput.value;
-      const quantity = this.$productQuantityInput.value;
+      const price = Number(this.$productPriceInput.value);
+      const quantity = Number(this.$productQuantityInput.value);
       fn(product, price, quantity);
     });
   }

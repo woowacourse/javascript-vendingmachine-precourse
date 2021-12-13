@@ -26,6 +26,9 @@ export class ProductController {
       return;
     }
     const products = this.model.addProduct(productName, price, quantity);
+    if (products === undefined) {
+      return;
+    }
     this.coreView.productView.showProduct(products);
   }
 }
