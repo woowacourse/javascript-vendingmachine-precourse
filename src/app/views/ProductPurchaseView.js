@@ -7,6 +7,10 @@ import {
   TEN,
 } from '../../lib/constants.js';
 import { $ } from '../../lib/utils.js';
+import {
+  CHANGE_COIN_TABLE_HEADER,
+  PRODUCT_PURCHASE_LIST_TABLE_HEADER_TEMPLATE,
+} from '../../template/constants.js';
 
 class ProductPurchaseView {
   constructor(mainSection, chargeInputsValue, chargeAmount, productList) {
@@ -47,23 +51,8 @@ class ProductPurchaseView {
   createProductPurchaseListSectionTemplate(productList) {
     return `<h3>구매할 수 있는 상품 현황</h3>
       <table id="${DOM.PRODUCT_PURCHASE_LIST_TABLE}">
-        <tr>
-          <td>상품명</td>
-          <td>개수</td>
-          <td>수량</td>
-          <td>구매</td>
-        </tr>
-        ${productList
-          .map(
-            (product) =>
-              `<tr class="${DOM.PRODUCT_PURCHASE_ITEM_CLASSNAME}">
-              <td class="${DOM.PRODUCT_PURCHASE_NAME_CLASSNAME}" ${DOM.DATASET_PRODUCT_NAME}="${product.name}">${product.name}</td>
-              <td class="${DOM.PRODUCT_PURCHASE_PRICE_CLASSNAME}" ${DOM.DATASET_PRODUCT_PRICE}="${product.price}">${product.price}</td>
-              <td class="${DOM.PRODUCT_PURCHASE_QUANTITY_CLASSNAME}" ${DOM.DATASET_PRODUCT_QUNATITY}="${product.quantity}">${product.quantity}</td>
-              <td><button class="${DOM.PURCHASE_BUTTON_CLASSNAME}" data-id="${product.id}">상품구매</button></td>
-              <tr>`
-          )
-          .join('')}
+        ${PRODUCT_PURCHASE_LIST_TABLE_HEADER_TEMPLATE}
+        ${this.createProductPurchaseListTemplate(productList)}
       </table>`;
   }
 
@@ -71,37 +60,16 @@ class ProductPurchaseView {
     return `<h3>잔돈</h3>
       <button id="${DOM.COIN_RETURN_BUTTON}">반환하기</button>
       <table>
-        <tr>
-          <td>동전</td>
-          <td>개수</td>
-        </tr>
-        <tr>
-          <td>500</td>
-          <td id="${DOM.COIN_500_QUANTITY}"></td>
-        </tr>
-        <tr>
-          <td>100</td>
-          <td id="${DOM.COIN_100_QUANTITY}"></td>
-        </tr>
-        <tr>
-          <td>50</td>
-          <td id="${DOM.COIN_50_QUANTITY}"></td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td id="${DOM.COIN_10_QUANTITY}"></td>
-        </tr>
+        ${CHANGE_COIN_TABLE_HEADER}
+        <tr><td>500</td><td id="${DOM.COIN_500_QUANTITY}"></td></tr>
+        <tr><td>100</td><td id="${DOM.COIN_100_QUANTITY}"></td></tr>
+        <tr><td>50</td><td id="${DOM.COIN_50_QUANTITY}"></td></tr>
+        <tr><td>10</td><td id="${DOM.COIN_10_QUANTITY}"></td></tr>
       </table>`;
   }
 
-  renderProductPurchaseList(productList) {
-    $(DOM.PRODUCT_PURCHASE_LIST_TABLE).innerHTML = `<tr>
-      <td>상품명</td>
-      <td>개수</td>
-      <td>수량</td>
-      <td>구매</td>
-    </tr>
-    ${productList
+  createProductPurchaseListTemplate(productList) {
+    return `${productList
       .map(
         (product) =>
           `<tr class="${DOM.PRODUCT_PURCHASE_ITEM_CLASSNAME}">
@@ -112,6 +80,12 @@ class ProductPurchaseView {
           <tr>`
       )
       .join('')}`;
+  }
+
+  renderProductPurchaseList(productList) {
+    $(DOM.PRODUCT_PURCHASE_LIST_TABLE).innerHTML = `${PRODUCT_PURCHASE_LIST_TABLE_HEADER_TEMPLATE}
+    ${this.createProductPurchaseListTemplate(productList)}
+    `;
   }
 
   /** renderCharge - clearChageInput 하는 로직 분리하기 */

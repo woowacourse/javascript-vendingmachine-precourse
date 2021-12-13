@@ -39,13 +39,7 @@ class ProductAddView {
     return `<h3>상품 현황</h3>
       <table id="${DOM.PRODUCT_LIST_TABLE}">
         ${PRODUCT_LIST_TABLE_HEADER_TEMPLATE}
-        ${productList
-          .map(
-            (product) => `<tr class="${DOM.PRODUCT_MANAGE_ITEM_CLASS}">
-            <td class="${DOM.PRODUCT_MANAGE_NAME_CLASS}">${product.name}</td><td class="${DOM.PRODUCT_MANAGE_PRICE_CLASS}">${product.price}</td><td class="${DOM.PRODUCT_MANAGE_QUANTITY_CLASS}">${product.quantity}</td>
-          </tr>`
-          )
-          .join('')}
+        ${this.createProductListTemplate(productList)}
       </table>
       `;
   }
@@ -55,7 +49,12 @@ class ProductAddView {
     $(DOM.PRODUCT_PRICE_INPUT).value = productAddInputsValue[DOM.PRODUCT_PRICE_INPUT];
     $(DOM.PRODUCT_QUANTITY_INPUT).value = productAddInputsValue[DOM.PRODUCT_QUANTITY_INPUT];
     $(DOM.PRODUCT_LIST_TABLE).innerHTML = `${PRODUCT_LIST_TABLE_HEADER_TEMPLATE}
-    ${productList
+    ${this.createProductListTemplate(productList)}
+    `;
+  }
+
+  createProductListTemplate(productList) {
+    return `${productList
       .map(
         (product) => `
       <tr>
