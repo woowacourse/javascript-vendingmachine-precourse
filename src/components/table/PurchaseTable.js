@@ -4,7 +4,9 @@ import { DISPLAY } from '../../constants/display.js';
 
 export default class PurchaseTable extends TableCreate {
   _renderColumnBody(value, index) {
-    const $column = createElement('TR');
+    const $column = createElement('TR', '', {
+      className: 'product-purchase-item',
+    });
     const { name, price, quantity } = value;
     $column.dataset.primary = index;
     $column.innerHTML = `
