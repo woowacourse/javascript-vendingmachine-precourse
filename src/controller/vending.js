@@ -12,12 +12,12 @@ import { initVendingTable, clearInput, setInnerHTML } from '../view/index.js';
 
 const makeRandomCoinQuantity = inputValue => {
   const amountArray = [0, 0, 0, 0];
-  let price = 0;
+  let totalPrice = 0;
 
-  while (inputValue !== price) {
+  while (inputValue !== totalPrice) {
     const coin = MissionUtils.Random.pickNumberInList(COIN_ARRAY);
-    if (price + coin <= inputValue) {
-      price += coin;
+    if (totalPrice + coin <= inputValue) {
+      totalPrice += coin;
       amountArray[COIN_ARRAY.indexOf(coin)] += 1;
     }
   }

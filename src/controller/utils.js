@@ -8,10 +8,12 @@ export const getItemOrNull = key => JSON.parse(localStorage.getItem(key));
 
 export const setItem = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 
+const alertMessage = (input, message) => alert(`${input.placeholder}에 ${message}`);
+
 export const isBlankExist = input => {
   const isIncludeBlank = input.value === '' || input.value.includes(' ');
   if (isIncludeBlank) {
-    alert(`${input.placeholder}에 ${ALERT_MESSAGE.isBlank}`);
+    alertMessage(input, ALERT_MESSAGE.isBlank);
   }
 
   return isIncludeBlank;
@@ -20,7 +22,7 @@ export const isBlankExist = input => {
 export const isPositiveNumber = input => {
   const isPositive = parseInt(input.value, 10) > 0;
   if (!isPositive) {
-    alert(`${input.placeholder}에 ${ALERT_MESSAGE.isNotPositiveNumber}`);
+    alertMessage(input, ALERT_MESSAGE.isNotPositiveNumber);
   }
 
   return isPositive;
@@ -31,7 +33,7 @@ export const isInputNumberValid = input => !isBlankExist(input) && isPositiveNum
 export const isMultipleOf10 = input => {
   const isMultiple = parseInt(input.value, 10) % 10 === 0;
   if (!isMultiple) {
-    alert(`${input.placeholder}에 ${ALERT_MESSAGE.isNotMultipleOf10}`);
+    alertMessage(input, ALERT_MESSAGE.isNotMultipleOf10);
   }
 
   return isMultiple;
@@ -40,7 +42,7 @@ export const isMultipleOf10 = input => {
 export const isOver100 = input => {
   const isOver = parseInt(input.value) >= 100;
   if (!isOver) {
-    alert(`${input.placeholder}에 ${ALERT_MESSAGE.isNotOver100}`);
+    alertMessage(input, ALERT_MESSAGE.isNotOver100)
   }
 
   return isOver;
