@@ -43,10 +43,16 @@ function isCorrectQuantity(quantity) {
 
 //
 let chargedMoney = 0;
+const totalChanges = {
+    500: 0, 100: 0, 50: 0, 10: 0,
+};
 function chargeMoney() {
     const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
     if(isCorrectChargeMoney(chargeAmount)) {
         const newChanges = getChanges(chargeAmount);
+        for(let key in totalChanges) {
+            totalChanges[key] += newChanges[key];
+        }
         chargedMoney += Number(chargeAmount);
         renderChargedMoney(chargedMoney);
     }
