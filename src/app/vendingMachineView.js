@@ -1,4 +1,12 @@
-import { TAB, DOM, PLAIN_TEXT, COINS_KEY, CHARGE_AMOUNT_TEXT } from '../lib/constants.js';
+import {
+  TAB,
+  DOM,
+  CHARGE_AMOUNT_TEXT,
+  FIVE_HUNDRED,
+  ONE_HUNDRED,
+  FIFTY,
+  TEN,
+} from '../lib/constants.js';
 import { $ } from '../lib/utils.js';
 import { PRODUCT_LIST_TABLE_HEADER_TEMPLATE } from '../template/constants.js';
 
@@ -113,24 +121,16 @@ class VendingMachineView {
     return `<h3>자판기가 보유한 동전</h3>
     <table id="${DOM.VENDING_MACHINE_COINS_TABLE}">
       <tr><td>동전</td><td>개수</td></tr>
-      <tr><td>500</td><td id="${DOM.VENDING_MACHINE_COIN_500_QUANTITY}">${
-      coins[COINS_KEY[500]]
-    }</td></tr>
-      <tr><td>100</td><td id="${DOM.VENDING_MACHINE_COIN_100_QUANTITY}">${
-      coins[COINS_KEY[100]]
-    }</td></tr>
-      <tr><td>50</td><td id="${DOM.VENDING_MACHINE_COIN_50_QUANTITY}">${
-      coins[COINS_KEY[50]]
-    }</td></tr>
-      <tr><td>10</td><td id="${DOM.VENDING_MACHINE_COIN_10_QUANTITY}">${
-      coins[COINS_KEY[10]]
-    }</td></tr>
+      <tr><td>500</td><td id="${DOM.VENDING_MACHINE_COIN_500_QUANTITY}">${coins[FIVE_HUNDRED]}</td></tr>
+      <tr><td>100</td><td id="${DOM.VENDING_MACHINE_COIN_100_QUANTITY}">${coins[ONE_HUNDRED]}</td></tr>
+      <tr><td>50</td><td id="${DOM.VENDING_MACHINE_COIN_50_QUANTITY}">${coins[FIFTY]}</td></tr>
+      <tr><td>10</td><td id="${DOM.VENDING_MACHINE_COIN_10_QUANTITY}">${coins[TEN]}</td></tr>
     </table>`;
   }
 
   /** Product Purchase */
   generateProductPurchaseMenuTemplate(model) {
-    const inputsSectionTemplate = this.generateChargeInputSectionTemplate(model.chargeInputValue);
+    const inputsSectionTemplate = this.generateChargeInputSectionTemplate(model.chargeInputsValue);
     const chargeAmountSectionTemplate = this.generateChargeAmountSectionTemplate(
       model.chargeAmount
     );
@@ -183,6 +183,7 @@ class VendingMachineView {
 
   generateChangeCoinSectionTemplate() {
     return `<h3>잔돈</h3>
+    <button id="${DOM.COIN_RETURN_BUTTON}">반환하기</button>
     <table>
       <tr>
         <td>동전</td>
@@ -190,27 +191,27 @@ class VendingMachineView {
       </tr>
       <tr>
         <td>500</td>
-        <td></td>
+        <td id="${DOM.COIN_500_QUANTITY}"></td>
       </tr>
       <tr>
         <td>100</td>
-        <td></td>
+        <td id="${DOM.COIN_100_QUANTITY}"></td>
       </tr>
       <tr>
         <td>50</td>
-        <td></td>
+        <td id="${DOM.COIN_50_QUANTITY}"></td>
       </tr>
       <tr>
         <td>10</td>
-        <td></td>
+        <td id="${DOM.COIN_10_QUANTITY}"></td>
       </tr>
     </table>`;
   }
 
-  renderProductAdd(productList) {
-    $(DOM.PRODUCT_NAME_INPUT).value = PLAIN_TEXT;
-    $(DOM.PRODUCT_PRICE_INPUT).value = PLAIN_TEXT;
-    $(DOM.PRODUCT_QUANTITY_INPUT).value = PLAIN_TEXT;
+  renderProductAdd(productList, productAddInputsValue) {
+    $(DOM.PRODUCT_NAME_INPUT).value = productAddInputsValue[DOM.PRODUCT_NAME_INPUT];
+    $(DOM.PRODUCT_PRICE_INPUT).value = productAddInputsValue[DOM.PRODUCT_PRICE_INPUT];
+    $(DOM.PRODUCT_QUANTITY_INPUT).value = productAddInputsValue[DOM.PRODUCT_QUANTITY_INPUT];
     $(DOM.PRODUCT_LIST_TABLE).innerHTML = `${PRODUCT_LIST_TABLE_HEADER_TEMPLATE}
   ${productList
     .map(
@@ -223,15 +224,15 @@ class VendingMachineView {
     .join('')}`;
   }
 
-  renderCoins(coins) {
-    $(DOM.VENDING_MACHINE_COIN_500_QUANTITY).textContent = coins[COINS_KEY[500]];
-    $(DOM.VENDING_MACHINE_COIN_100_QUANTITY).textContent = coins[COINS_KEY[100]];
-    $(DOM.VENDING_MACHINE_COIN_50_QUANTITY).textContent = coins[COINS_KEY[50]];
-    $(DOM.VENDING_MACHINE_COIN_10_QUANTITY).textContent = coins[COINS_KEY[10]];
+  renderCoins(coins, vendingMachineChargeInputValue) {
+    $(DOM.VENDING_MACHINE_CHARGE_INPUT).value = vendingMachineChargeInputValue;
+    $(DOM.VENDING_MACHINE_COIN_500_QUANTITY).textContent = coins[FIVE_HUNDRED];
+    $(DOM.VENDING_MACHINE_COIN_100_QUANTITY).textContent = coins[ONE_HUNDRED];
+    $(DOM.VENDING_MACHINE_COIN_50_QUANTITY).textContent = coins[FIFTY];
+    $(DOM.VENDING_MACHINE_COIN_10_QUANTITY).textContent = coins[TEN];
   }
 
   renderProductPurchaseList(productList) {
-    console.log(productList);
     $(DOM.PRODUCT_PURCHASE_LIST_TABLE).innerHTML = `<tr>
     <td>상품명</td>
     <td>개수</td>
@@ -251,8 +252,17 @@ class VendingMachineView {
     .join('')}`;
   }
 
-  renderCharge(chargeAmount) {
+  /** renderCharge - clearChageInput 하는 로직 분리하기 */
+  renderCharge(chargeAmount, chargeInputValue) {
+    $(DOM.CHARGE_INPUT).value = chargeInputValue;
     $(DOM.CHARGE_AMOUNT).textContent = `${CHARGE_AMOUNT_TEXT}${chargeAmount}`;
+  }
+
+  renderReturnCoins(returnCoins) {
+    $(DOM.COIN_500_QUANTITY).textContent = returnCoins[FIVE_HUNDRED];
+    $(DOM.COIN_100_QUANTITY).textContent = returnCoins[ONE_HUNDRED];
+    $(DOM.COIN_50_QUANTITY).textContent = returnCoins[FIFTY];
+    $(DOM.COIN_10_QUANTITY).textContent = returnCoins[TEN];
   }
 }
 export default VendingMachineView;

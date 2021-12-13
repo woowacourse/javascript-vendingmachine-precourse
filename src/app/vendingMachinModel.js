@@ -1,4 +1,15 @@
-import { COINS_KEY, DOM, ERROR_MESSAGE, FIND_FAILURE, PLAIN_TEXT, TAB } from '../lib/constants.js';
+import {
+  COIN_KEYS,
+  DOM,
+  ERROR_MESSAGE,
+  FIFTY,
+  FIVE_HUNDRED,
+  ONE_HUNDRED,
+  PLAIN_TEXT,
+  TAB,
+  TEN,
+} from '../lib/constants.js';
+import Coin from '../modules/coin.js';
 import VendingMachineUtil from './vendingMachineUtil.js';
 
 /** Model */
@@ -26,19 +37,26 @@ class VendingMachineModel {
     };
     this.vendingMachineCharge = 0;
     this.coins = {
-      [`${COINS_KEY[500]}`]: 0,
-      [`${COINS_KEY[100]}`]: 0,
-      [`${COINS_KEY[50]}`]: 0,
-      [`${COINS_KEY[10]}`]: 0,
+      [`${FIVE_HUNDRED}`]: 0,
+      [`${ONE_HUNDRED}`]: 0,
+      [`${FIFTY}`]: 0,
+      [`${TEN}`]: 0,
     };
   }
 
   initProductPurchaseModel() {
-    this.chargeInputValue = {
+    this.chargeInputsValue = {
       [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
     };
 
     this.chargeAmount = 0;
+
+    this.returnCoin = {
+      [`${FIVE_HUNDRED}`]: 0,
+      [`${ONE_HUNDRED}`]: 0,
+      [`${FIFTY}`]: 0,
+      [`${TEN}`]: 0,
+    };
   }
 
   setTab(newTab) {
@@ -53,8 +71,16 @@ class VendingMachineModel {
     this.vendingMachineChargeInputsValue = predicate(this.vendingMachineChargeInputsValue);
   }
 
-  setChargeInputValue(predicate) {
-    this.chargeInputValue = predicate(this.chargeInputValue);
+  setChargeInputsValue(predicate) {
+    this.chargeInputsValue = predicate(this.chargeInputsValue);
+  }
+
+  setCoins(newCoins) {
+    this.coins = newCoins;
+  }
+
+  setChargeAmount(newChargeAmount) {
+    this.chargeAmount = newChargeAmount;
   }
 
   /** 세개의 인풋 중 하나라도 입력이 안되어 있다면  */
@@ -67,11 +93,6 @@ class VendingMachineModel {
         quantity: Number(this.productAddInputsValue[DOM.PRODUCT_QUANTITY_INPUT]),
       };
       this.productList = [...this.productList, newProduct];
-      this.productAddInputsValue = {
-        [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
-        [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
-        [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
-      };
     }
   }
 
@@ -92,7 +113,7 @@ class VendingMachineModel {
   purchaseProduct(productId) {
     const targetProduct = this.findProduct(productId);
 
-    if (targetProduct === FIND_FAILURE) {
+    if (targetProduct === undefined) {
       throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_UNDEFINED);
     }
     if (targetProduct.quantity === 0) {
@@ -114,8 +135,8 @@ class VendingMachineModel {
   }
 
   addCharge() {
-    if (VendingMachineUtil.isValidCharge(this.chargeInputValue, DOM.CHARGE_INPUT)) {
-      this.chargeAmount = this.chargeAmount + Number(this.chargeInputValue[DOM.CHARGE_INPUT]);
+    if (VendingMachineUtil.isValidCharge(this.chargeInputsValue, DOM.CHARGE_INPUT)) {
+      this.chargeAmount = this.chargeAmount + Number(this.chargeInputsValue[DOM.CHARGE_INPUT]);
     }
   }
 }

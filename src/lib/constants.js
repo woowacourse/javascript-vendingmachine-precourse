@@ -72,12 +72,18 @@ export const ERROR_MESSAGE = Object.freeze({
   PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_ZERO: '상품이 품절 되었습니다.',
   PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_TOO_EXPENSIVE: '투입 금액으로는 구매할 수 없습니다.',
 });
-export const COINS_KEY = Object.freeze({
-  500: 'coin-500',
-  100: 'coin-100',
-  50: 'coin-50',
-  10: 'coin-10',
-});
 
-export const FIND_FAILURE = -1;
 export const CHARGE_AMOUNT_TEXT = '투입한 금액 : ';
+
+export const FIVE_HUNDRED = 500;
+export const ONE_HUNDRED = 100;
+export const FIFTY = 50;
+export const TEN = 10;
+
+export const COIN_KEYS = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];
+
+export const PRODUCT_ID_LENGTH = 6;
+export const ID_RANGE = {
+  MIN: 0,
+  MAX: 9,
+};

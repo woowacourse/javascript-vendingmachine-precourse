@@ -1,4 +1,4 @@
-import { COINS_KEY, DOM, ERROR_MESSAGE, FIND_FAILURE } from '../lib/constants.js';
+import { DOM, ERROR_MESSAGE, PRODUCT_ID_LENGTH } from '../lib/constants.js';
 import {
   getRandomNumber,
   hasSomeEmptyString,
@@ -43,7 +43,7 @@ class VendingMachineUtil {
 
   static combineCurrentCoinsAndNewCoins(currentCoins, newCoins) {
     const combinedCoins = {};
-    Object.values(COINS_KEY).forEach((key) => {
+    Object.keys(currentCoins).forEach((key) => {
       combinedCoins[key] = currentCoins[key] + newCoins[key];
     });
 
@@ -51,16 +51,20 @@ class VendingMachineUtil {
   }
 
   static generateProductId(productList) {
-    let randomNumber = getRandomNumber(productList.length);
-    while (VendingMachineUtil.isPossibleId(productList, randomNumber)) {
-      randomNumber = getRandomNumber(productList.length);
+    let randomProductID = VendingMachineUtil.generateRandomProductId();
+    while (VendingMachineUtil.isImpossibleId(productList, randomProductID)) {
+      randomProductID = VendingMachineUtil.generateRandomProductId();
     }
 
-    return `${randomNumber}`;
+    return randomProductID;
   }
 
-  static isPossibleId(productList, randomNumber) {
-    return productList.find((product) => product.id === randomNumber) === FIND_FAILURE;
+  static generateRandomProductId() {
+    return [...new Array(PRODUCT_ID_LENGTH)].map(() => getRandomNumber()).join('');
+  }
+
+  static isImpossibleId(productList, randomNumber) {
+    return productList.find((product) => product.id === randomNumber);
   }
 
   static isPurchaseButton(el) {

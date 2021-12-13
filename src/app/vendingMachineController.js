@@ -1,5 +1,6 @@
-import { DOM, INPUT_TYPE, TAB } from '../lib/constants.js';
+import { DOM, INPUT_TYPE, PLAIN_TEXT, TAB } from '../lib/constants.js';
 import { $ } from '../lib/utils.js';
+import Coin from '../modules/coin.js';
 import VendingMachineUtil from './vendingMachineUtil.js';
 
 /** Controller */
@@ -41,6 +42,7 @@ class VendingMachineController {
     );
     $(DOM.CHARGE_FORM).addEventListener('input', this.onInputChargeForm.bind(this));
     $(DOM.CHARGE_FORM).addEventListener('submit', this.onSubmitChargeForm.bind(this));
+    $(DOM.COIN_RETURN_BUTTON).addEventListener('click', this.onClickCoinReturnButton.bind(this));
   }
   onClickTabMenuSection(e) {
     const {
@@ -68,19 +70,20 @@ class VendingMachineController {
     const {
       target: { value, id, type },
     } = e;
-    if (type === INPUT_TYPE.TEXT) {
-      this.$model.setProductAddInputsValue((prev) => ({ ...prev, [`${id}`]: value }));
-    }
-    if (type === INPUT_TYPE.NUMBER) {
-      this.$model.setProductAddInputsValue((prev) => ({ ...prev, [`${id}`]: value }));
-    }
+    this.$model.setProductAddInputsValue((prev) => ({ ...prev, [`${id}`]: value }));
   }
 
   onSubmitProductAddForm(e) {
     e.preventDefault();
     try {
       this.$model.addProduct();
-      this.$view.renderProductAdd(this.$model.productList);
+      this.$model.setProductAddInputsValue((prev) => ({
+        ...prev,
+        [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
+        [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
+        [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
+      }));
+      this.$view.renderProductAdd(this.$model.productList, this.$model.productAddInputsValue);
     } catch (e) {
       alert(e);
     }
@@ -96,7 +99,14 @@ class VendingMachineController {
     e.preventDefault();
     try {
       this.$model.addCoins();
-      this.$view.renderCoins(this.$model.coins);
+      this.$model.setVendingMachineChargeInputsValue((prev) => ({
+        ...prev,
+        [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
+      }));
+      this.$view.renderCoins(
+        this.$model.coins,
+        this.$model.vendingMachineChargeInputsValue[`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]
+      );
     } catch (e) {
       alert(e);
     }
@@ -122,17 +132,43 @@ class VendingMachineController {
       target: { value, id },
     } = e;
 
-    this.$model.setChargeInputValue((prev) => ({ ...prev, [`${id}`]: value }));
+    this.$model.setChargeInputsValue((prev) => ({ ...prev, [`${id}`]: value }));
   }
   onSubmitChargeForm(e) {
     e.preventDefault();
 
     try {
       this.$model.addCharge();
-      this.$view.renderCharge(this.$model.chargeAmount);
+      this.$model.setChargeInputsValue((prev) => ({
+        ...prev,
+        [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
+      }));
+      this.$view.renderCharge(
+        this.$model.chargeAmount,
+        this.$model.chargeInputsValue[DOM.CHARGE_INPUT]
+      );
     } catch (e) {
       alert(e);
     }
+  }
+  /** renderCharge - clearChageInput 하는 로직 분리하기 */
+  onClickCoinReturnButton() {
+    const returnCoin = this.generateReturnCoin();
+
+    this.$view.renderCharge(
+      this.$model.chargeAmount,
+      this.$model.chargeInputsValue[DOM.CHARGE_INPUT]
+    );
+    this.$view.renderReturnCoins(returnCoin);
+  }
+  generateReturnCoin() {
+    const { returnCoins, chargeAmount, coins } = Coin.generateReturnCoin(
+      this.$model.chargeAmount,
+      this.$model.coins
+    );
+    this.$model.setChargeAmount(chargeAmount);
+    this.$model.setCoins(coins);
+    return returnCoins;
   }
 }
 export default VendingMachineController;
