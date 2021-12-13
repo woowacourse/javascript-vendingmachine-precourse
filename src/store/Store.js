@@ -1,4 +1,5 @@
 import tc from '../core/utils/tc.js';
+import Item from '../models/Item.js';
 import INIT_DATA from './initData.js';
 
 export default class Store {
@@ -35,15 +36,15 @@ export default class Store {
     return { success: true, id };
   }
 
-  update(updatedItem, _ = tc(updatedItem, Array)) {
+  update(id, updatedItem, _0 = tc(id, 'number'), _1 = tc(updatedItem, Item)) {
     const state = this.getLocalStorage();
-    const result = state.items.findIndex((item) => item.id === updatedItem.id);
+    const result = state.items.findIndex((item) => item.id === id);
 
     if (result === -1) {
       return { success: false };
     }
 
-    state.items[result] = updatedItem;
+    state.items[result] = { ...updatedItem, id };
     this.setLocalStorage(state);
   }
 

@@ -52,7 +52,7 @@ export default class VendingMachine {
     this.store.updateCharge(this.chargedAmount.purchase(item.price));
 
     this.items.purchase(id);
-    this.store.update(item);
+    this.store.update(id, item);
 
     return this;
   }

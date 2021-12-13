@@ -31,13 +31,13 @@ export default class ProductPurchaseMenu extends Component {
         <th>가격</th>
         <th>수량</th>
         <th>구매</th>
-        ${items.items
-          .filter((item) => item.quantity > 0)
-          .map((item) => {
+        ${[...items.items.entries()]
+          .filter(([id, item]) => item.quantity > 0)
+          .map(([id, item]) => {
             return `
             <tr
               class='product-purchase-item'
-              data-product-id='${item.id}'
+              data-product-id='${id}'
             >
               <td class='product-purchase-name' data-product-name='${item.name}'>${item.name}</td>
               <td class='product-purchase-price' data-product-price='${item.price}'>${item.price}</td>

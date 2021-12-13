@@ -3,19 +3,21 @@ import tc from '../core/utils/tc.js';
 
 export default class Items {
   constructor(items, _ = tc(items, 'object')) {
-    this.items = items.map(
-      ({ id, name, price, quantity }) => new Item(id, name, price, quantity)
+    this.items = new Map();
+
+    items.forEach(({ id, name, price, quantity }) =>
+      this.items.set(id, new Item(name, price, quantity))
     );
   }
 
   find(id, _ = tc(id, 'number')) {
-    const index = this.items.findIndex((item) => item.id === id);
+    const item = this.items.get(id);
 
-    if (index === -1) {
-      return null;
+    if (!item) {
+      throw 'no such item';
     }
 
-    return this.items[index];
+    return item;
   }
 
   insert(
@@ -28,15 +30,11 @@ export default class Items {
     _2 = tc(price, 'number'),
     _3 = tc(quantity, 'number')
   ) {
-    this.items.push(new Item(id, name, price, quantity));
+    this.items.set(id, new Item(name, price, quantity));
   }
 
   purchase(id, _ = tc(id, 'number')) {
     const item = this.find(id);
-
-    if (!item) {
-      throw 'no such item';
-    }
 
     item.purchase();
 
