@@ -37,7 +37,7 @@ function productStatus() {
   $fragment.appendChild($productStatusWrap);
 }
 
-export function renderProductAdd() {
+export function renderProductAdd(products) {
   const $app = document.querySelector('#app');
   const $main = document.createElement('main');
   $main.id = 'productAddWrap';
@@ -46,11 +46,14 @@ export function renderProductAdd() {
   productStatus();
   $main.appendChild($fragment);
   $app.appendChild($main);
+
+  renderProductConfirm(products);
 }
 
-export function renderProductConfirm() {
+export function renderProductConfirm(products) {
   const $productStatus = document.querySelector('#product-status');
 
+  if (!products) return;
   $productStatus.innerHTML = products
     .map(product => {
       return `
