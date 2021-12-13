@@ -5,10 +5,6 @@ export const resetPurchaseInput = () => {
   $('#charge-input').value = '';
 };
 
-export const printInputCharge = holdAmount => {
-  $('#charge-amount').innerText = holdAmount;
-};
-
 export const renderProducts = () => {
   $('#product-purchase-list').innerHTML = store
     .getLocalStorage('products')

@@ -1,7 +1,7 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import { ERROR, CHARGE, PRICE } from '../utils/constants.js';
-import { resetPurchaseInput, printInputCharge, renderProducts, renderInputMoney } from '../views/productPurchaseView.js';
+import { resetPurchaseInput, renderProducts, renderInputMoney } from '../views/productPurchaseView.js';
 import { getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
 import alertMessage from '../views/alertMessage.js';
 
@@ -61,7 +61,7 @@ function HandleProductPurchase() {
     if (isValidCharge(chargeInput)) {
       this.inputMoney += Number(chargeInput);
       store.setLocalStorage('inputMoney', this.inputMoney);
-      printInputCharge(this.inputMoney);
+      renderInputMoney();
     }
     resetPurchaseInput();
   });
@@ -73,7 +73,7 @@ function HandleProductPurchase() {
 
       if (isValidPurchase(this.inputMoney, price) && isValidQuantity(e)) {
         this.inputMoney = updateAmount(this.inputMoney, price);
-        printInputCharge(this.inputMoney);
+        renderInputMoney(this.inputMoney);
         updateProductQuantity(e);
       }
     }
