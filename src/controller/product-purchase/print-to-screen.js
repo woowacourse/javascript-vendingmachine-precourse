@@ -87,38 +87,52 @@ export const manageProductListAfterPuchased = () => {
   const $purchaseBtn = $('.purchase-button');
 
   $purchaseBtn.addEventListener('click', (event) => {
+    const sum = printInsertedMoney();
     for (const item of productListArray) {
-      // const sum = printInsertedMoney();
-
       if (event.target.getAttribute('data-purchase-button') === item.name) {
         $productQuantity.innerHTML--;
         $productQuantity.setAttribute(
           'data-product-quantity',
           parseInt($productQuantity.innerHTML, 10)
         );
-        // manageDifference(sum);
       }
     }
+    manageDifference(sum);
   });
+};
+
+const getCurrentQuantity = (targetProduct) => {
+  console.log(targetProduct);
+
+  const parent = targetProduct.parentNode.parentNode;
+
+  const targetProductQuantity = parent
+    .querySelector('.product-purchase-quantity')
+    .getAttribute('data-product-quantity');
+
+  console.log(targetProductQuantity);
+  return targetProductQuantity;
 };
 
 // 차이 가격 각 행마다 나올수 있게
 export const manageDifference = (sum) => {
-  const $originAmount = parseInt($('.product-manage-quantity').innerHTML, 10);
-  const $afterAmount = parseInt($('.product-purchase-quantity').innerHTML, 10);
-  const $price = parseInt($('.product-purchase-price').innerHTML, 10);
-  const $chargedAmount = $('#charge-amount');
   const productListArray = JSON.parse(localStorage.getItem(PRODUCT.LIST));
-  const $purchaseBtn = $('.purchase-button');
+  const $chargedAmount = $('#charge-amount');
+  const $tabelBody = $('#purchase-table-body');
   let difference = 0;
+  // console.log($tabelBody);
+  $tabelBody.addEventListener('click', (event) => {
+    if (event.target.className !== 'purchase-button') return;
 
-  $purchaseBtn.addEventListener('click', (event) => {
     for (const item of productListArray) {
       if (event.target.getAttribute('data-purchase-button') === item.name) {
-        difference = sum - ($originAmount - $afterAmount) * $price;
+        // 차이금액 (보유금액 - (기존 수량 - 현재 수량 ) * 상품 가격)
+        sum -=
+          (parseInt(item.quantity, 10) - getCurrentQuantity(event.target)) *
+          parseInt(item.price, 10);
+
+        $chargedAmount.innerHTML = `${VENDING_MACHINE.INSERTED} ${sum} ${VENDING_MACHINE.WON}`;
       }
     }
   });
-
-  $chargedAmount.innerHTML = `${VENDING_MACHINE.INSERTED} ${difference} ${VENDING_MACHINE.WON}`;
 };
