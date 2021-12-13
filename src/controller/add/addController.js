@@ -28,7 +28,7 @@ export default class AddController {
 
     if (isValidProductInput(name, price, quantity)) {
       this.appModel.addProduct({ name, price, quantity });
-      // this.addView.renderProduct(name, price, quantity);
+      this.addView.renderProduct(name, price, quantity);
 
       return true;
     }
