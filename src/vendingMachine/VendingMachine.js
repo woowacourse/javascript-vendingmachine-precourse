@@ -54,10 +54,14 @@ export default class VendingMachine {
   }
 
   sellProduct({ name, price }) {
-    const index = this.getProductIndexByName(name);
-    this.products[index].decreaseQuantity();
-    this.money -= +price;
-    localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(this.products));
-    localStorage.setItem(CURRENT_MONEY_KEY, this.money);
+    if (Validator.isBuyable(price, this.money)) {
+      const index = this.getProductIndexByName(name);
+      this.products[index].decreaseQuantity();
+      this.money -= +price;
+      localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(this.products));
+      localStorage.setItem(CURRENT_MONEY_KEY, this.money);
+      return true;
+    }
+    return false;
   }
 }

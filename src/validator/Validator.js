@@ -4,6 +4,7 @@ import {
   MINIMUM_QUANTITY_INPUT,
   MINIMUM_CHARGE_INPUT,
   CHARGE_ERROR_MESSAGE,
+  PURCHASE_ERROR_MESSAGE,
 } from '../constant/constant.js';
 
 function isNotEmptyName(name) {
@@ -40,6 +41,14 @@ export default class Validator {
       return true;
     }
     alert(CHARGE_ERROR_MESSAGE);
+    return false;
+  }
+
+  static isBuyable(price, money) {
+    if (money >= price) {
+      return true;
+    }
+    alert(PURCHASE_ERROR_MESSAGE);
     return false;
   }
 }
