@@ -3,6 +3,36 @@
 </p>
 <h1 align="middle">자판기 기능 목록</h1>
 
+## 구현 목표
+
+자판기를 구현한다.
+판매할 상품을 관리할 수 있고, 자판기 내의 잔돈도 관리할 수 있다.
+소비자는 돈을 넣고, 상품을 구매할 수 있다.
+
+## 📂 폴더 구조
+
+```
+src
+ ┣ controller
+ ┃ ┗ MainController.js
+ ┣ models
+ ┃ ┣ ChargeCoinModel.js
+ ┃ ┣ ManaageProductModel.js
+ ┃ ┗ PurchaseProductModel.js
+ ┣ utils
+ ┃ ┣ dom.js
+ ┃ ┣ constants.js
+ ┃ ┗ validation.js
+ ┣ views
+ ┃ ┣ View.js
+ ┃ ┣ LayoutView.js
+ ┃ ┣ TabView.js
+ ┃ ┣ ManageProductView.js
+ ┃ ┣ ChargeCoinView.js
+ ┃ ┗ PurchaseProductView.js.js
+ ┗ index.js
+```
+
 ## 🎯 구현 기능 목록
 
 #### 레이아웃
