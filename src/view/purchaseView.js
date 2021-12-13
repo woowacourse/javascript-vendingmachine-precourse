@@ -24,9 +24,16 @@ export default class PurchaseView extends TapView {
     <h3>금액 투입</h3>
     <input id=${PURCHASE_ELEMENT_ID.chargeInput} type='number' placeholder='투입할 금액'></input>
     <button id=${PURCHASE_ELEMENT_ID.chargeButton}>충전하기</button>
-		</br></br>
+    </br></br>
     <span id=${PURCHASE_ELEMENT_ID.chargeAmount}>보유 금액: <span>
     `;
+  }
+
+  static updateChargeInput(purchaseObject) {
+    super.setHtmlToElement(
+      document.querySelector(`#${PURCHASE_ELEMENT_ID.chargeAmount}`),
+      `보유 금액: ${purchaseObject.getChargeMoneyStorage() || 0}원`,
+    );
   }
 
   static purchaseProductComponent() {
@@ -56,13 +63,13 @@ export default class PurchaseView extends TapView {
 
   static purchaseProductTable({ name, price, quantity }) {
     return `
-		<tr class=${PURCHASE_ELEMENT_CLASS.productPurchaseItem}>
-			<td class=${PURCHASE_ELEMENT_CLASS.productPurchaseName} data-product-name=${name}>${name}</td>
-			<td class=${PURCHASE_ELEMENT_CLASS.productPurchasePrice} data-product-price=${price}>${price}</td>
-			<td class=${PURCHASE_ELEMENT_CLASS.productPurchaseQuantity} data-product-name=${quantity}>${quantity}</td>
-			<td><button class=${PURCHASE_ELEMENT_CLASS.purchaseButton}>구매하기</button></td>
-		</tr>
-		`;
+    <tr class=${PURCHASE_ELEMENT_CLASS.productPurchaseItem}>
+      <td class=${PURCHASE_ELEMENT_CLASS.productPurchaseName} data-product-name=${name}>${name}</td>
+      <td class=${PURCHASE_ELEMENT_CLASS.productPurchasePrice} data-product-price=${price}>${price}</td>
+      <td class=${PURCHASE_ELEMENT_CLASS.productPurchaseQuantity} data-product-quantity=${quantity}>${quantity}</td>
+      <td><button class=${PURCHASE_ELEMENT_CLASS.purchaseButton}>구매하기</button></td>
+    </tr>
+    `;
   }
 
   static changeMoneyComponent() {
@@ -73,10 +80,10 @@ export default class PurchaseView extends TapView {
     <table border="1">
       <td>동전</td>
       <td>개수</td>
-			${this.coinTable(PURCHASE_ELEMENT_ID.coin500, 500)}
-			${this.coinTable(PURCHASE_ELEMENT_ID.coin100, 100)}
-			${this.coinTable(PURCHASE_ELEMENT_ID.coin50, 50)}
-			${this.coinTable(PURCHASE_ELEMENT_ID.coin10, 10)}
+      ${this.coinTable(PURCHASE_ELEMENT_ID.coin500, 500)}
+      ${this.coinTable(PURCHASE_ELEMENT_ID.coin100, 100)}
+      ${this.coinTable(PURCHASE_ELEMENT_ID.coin50, 50)}
+      ${this.coinTable(PURCHASE_ELEMENT_ID.coin10, 10)}
     </table>
     `;
   }
@@ -87,6 +94,6 @@ export default class PurchaseView extends TapView {
       <td>${coinType}원</td>
       <td id=${id}></td>
     </tr>
-		`;
+    `;
   }
 }
