@@ -65,11 +65,11 @@ c. 잔돈 반환
 
 ## 🎬 프로젝트 시연
 
-![화면 기록 2021-12-14 오전 12 46 36](https://user-images.githubusercontent.com/24906022/145843856-041fc29c-510a-4506-bdfa-3f42e9a7a5df.gif)
+<img src="https://user-images.githubusercontent.com/24906022/145843856-041fc29c-510a-4506-bdfa-3f42e9a7a5df.gif" width="40%" />
 
-![화면 기록 2021-12-14 오전 12 49 32](https://user-images.githubusercontent.com/24906022/145844129-355a18d9-e819-4b9e-9f2b-006de53a08b4.gif)
+<img src="https://user-images.githubusercontent.com/24906022/145844129-355a18d9-e819-4b9e-9f2b-006de53a08b4.gif" width="40%" />
 
-![화면 기록 2021-12-14 오전 12 50 57](https://user-images.githubusercontent.com/24906022/145844775-65521ef8-1ab0-4cd0-abbe-bfccf1db12f1.gif)
+<img src="https://user-images.githubusercontent.com/24906022/145844775-65521ef8-1ab0-4cd0-abbe-bfccf1db12f1.gif" width="40%" />
 
 <br>
 
