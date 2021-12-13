@@ -14,6 +14,14 @@ export default class Product {
     return this.quantity >= requiredQuantity;
   }
 
+  changePrice(price) {
+    this.price = price;
+  }
+
+  addQuantity(quantity) {
+    this.quantity += quantity;
+  }
+
   sellProduct() {
     this.quantity -= 1;
   }
