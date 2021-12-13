@@ -40,6 +40,7 @@ export default class Controller {
       e.preventDefault();
       this.view.showSelectedID("purchase-tab");
       this.view.renderReturn(this.vendingMachine);
+      this.view.renderUserMoney(this.vendingMachine.userMoney);
       this.view.renderProductTable(this.vendingMachine.productList);
       if (this.vendingMachine.productList.length > 0) {
         this.onClickPurchase();
