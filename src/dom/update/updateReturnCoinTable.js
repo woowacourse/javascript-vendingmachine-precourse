@@ -1,4 +1,4 @@
-import ReturnCoin from '../../class/returnCoin.js';
+import ReturnCoin from '../../class/ReturnCoin.js';
 import { getReturnCoinTableData } from '../domElement.js';
 import { COINS } from '../../constants/data.js';
 

@@ -3,14 +3,14 @@ import {
   getVendingMachineChargeInput,
   getChargeInput,
 } from '../user.js';
-import Product from './product.js';
+import Product from './Product.js';
 import { saveProductList } from '../storage/products.js';
 import {
   updateProductItemAfterPurchase,
   createProductTableRow,
   deleteProductItem,
 } from '../dom/update/updateProductTable.js';
-import Charge from './charge.js';
+import Charge from './Charge.js';
 import { saveCharges } from '../storage/vendingMachineCharge.js';
 import { updateVendingMachineCharge } from '../dom/update/updateVendingMachineCharge.js';
 import { saveUserCharge } from '../storage/userCharge.js';
@@ -21,7 +21,7 @@ import {
   deletePurchaseProduct,
 } from '../dom/update/updatePurchaseTable.js';
 import { lackOfUserChangeException } from '../exceptions.js';
-import ReturnCoin from './returnCoin.js';
+import ReturnCoin from './ReturnCoin.js';
 import {
   ACTION_CHARGE,
   ACTION_SAVE,
