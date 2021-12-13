@@ -7,14 +7,11 @@ const calculateReturnCoins = () => {
   const wallet = DB.load('vendingMachineCoins');
   const emptyWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
 
-  const [DeductedWallet, returnCoinWallet] = useGreedyArgorithm(charge, wallet, emptyWallet);
+  const [deductedWallet, returnCoinWallet] = useGreedyArgorithm(charge, wallet, emptyWallet);
 
-  const sumCoins = UT.calculateToCharge(returnCoinWallet);
-  DB.overwrite('chargeToPurchaseProduct', charge - sumCoins);
-  DOM.showChargeToPurchaseProduct();
+  manageChargeToPurchaseProduct(returnCoinWallet, charge);
 
-  DB.overwrite('vendingMachineCoins', DeductedWallet);
-  DOM.showReturnCoins(returnCoinWallet);
+  manageReturnCoins(deductedWallet, returnCoinWallet);
 };
 
 const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
@@ -29,6 +26,19 @@ const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
   [500, 100, 50, 10].forEach(coinType => tryCaseByCoinType(coinType));
 
   return [wallet, emptyWallet];
+};
+
+const manageChargeToPurchaseProduct = (returnCoinWallet, charge) => {
+  const sumCoins = UT.calculateToCharge(returnCoinWallet);
+  DB.overwrite('chargeToPurchaseProduct', charge - sumCoins);
+
+  DOM.showChargeToPurchaseProduct();
+};
+
+const manageReturnCoins = (deductedWallet, returnCoinWallet) => {
+  DB.overwrite('vendingMachineCoins', deductedWallet);
+
+  DOM.showReturnCoins(returnCoinWallet);
 };
 
 export default calculateReturnCoins;
