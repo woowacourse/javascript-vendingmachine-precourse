@@ -1,4 +1,6 @@
 import Store from '../core/Store.js';
+import ChangesStore from './ChangesStore.js';
+import { chargeChanges } from '../actions/changes.js';
 import { USER_ACTION_TYPE } from '../actions/user.js';
 import { userStoreInitialState } from '../utils/initialStates.js';
 import { UserStorage } from '../storages/index.js';
@@ -13,6 +15,7 @@ class UserStore extends Store {
       },
       [USER_ACTION_TYPE.SPEND_MONEY]: money => {
         this.setState({ chargedMoney: this.state.chargedMoney - money });
+        ChangesStore.dispatch(chargeChanges(money));
         return REDUCER_RESULT.SUCCESS();
       },
       [USER_ACTION_TYPE.RETURN_CHANGES]: ({ changes, changeCoins }) => {
