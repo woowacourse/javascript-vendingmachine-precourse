@@ -63,9 +63,7 @@ export function coinListTemplate(change) {
   const template = ids.map((id, index) => `
     <tr align="center" bgcolor="white" height="40">
       <td align="center" width="62">${titles[index]}</td> 
-      <td id="${id}" align="center" width="62">
-        ${coins ? `${change.coins[index]}개` : ''}
-      </td>
+      <td id="${id}" align="center" width="62">${coins ? `${change.coins[index]}개` : ''}</td>
     </tr>
   `).join('');
 
