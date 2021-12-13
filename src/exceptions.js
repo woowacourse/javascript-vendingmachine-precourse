@@ -10,48 +10,43 @@ import {
 } from './constants/alert.js';
 
 export const blankInputException = input => {
-  if (input.length === 0) {
+  if (!input.length) {
     alert(ALERT_BLANK);
-    return true;
   }
 
-  return false;
+  return !input.length;
 };
 
 export const outRangeInputException = input => {
   if (input <= 0) {
     alert(ALERT_OUT_RANGE);
-    return true;
   }
 
-  return false;
+  return input <= 0;
 };
 
 export const outRangeProductPriceInputException = input => {
   if (input < 100) {
     alert(ALERT_OUT_RANGE_PRICE);
-    return true;
   }
 
-  return false;
+  return input < 100;
 };
 
 export const noIntegerException = input => {
   if (!Number.isInteger(input)) {
     alert(ALERT_NOT_INTEGER);
-    return true;
   }
 
-  return false;
+  return !Number.isInteger(input);
 };
 
 export const notMultipleOfTenException = input => {
   if (input % 10 !== 0) {
     alert(ALERT_NOT_MULTIPLE_OF_TEN);
-    return true;
   }
 
-  return false;
+  return input % 10 !== 0;
 };
 
 export const duplicatedProductException = productName => {
@@ -68,10 +63,9 @@ export const duplicatedProductException = productName => {
 };
 
 export const lackOfUserChangeException = price => {
-  if (vendingMachine.userAmount >= price) {
-    return false;
-  } else {
+  if (vendingMachine.userAmount < price) {
     alert(ALERT_LACK_OF_USER_CHANGE);
-    return true;
   }
+
+  return vendingMachine.userAmount < price;
 };
