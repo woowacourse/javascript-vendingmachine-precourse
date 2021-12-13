@@ -54,8 +54,8 @@ export default class Controller {
       }
       this.vendingMachine.addProduct(
         $addName.value,
-        $addPrice.value,
-        $addQuantity.value
+        parseInt($addPrice.value, 10),
+        parseInt($addQuantity.value, 10)
       );
     });
   }
