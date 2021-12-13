@@ -3,6 +3,7 @@ export const CHARGE_ERROR_MESSAGE = '투입 금액은 10원 이상이고 10의 �
 export const PURCHASE_ERROR_MESSAGE = '투입 금액이 부족합니다.';
 
 export const CHARGE_TITLE = '자판기 동전 충전하기';
+export const CHARGE_INPUT_PLACEHOLDER_TITLE = '자판기가 보유할 금액';
 export const CHARGE_BUTTON_TITLE = '충전하기';
 export const CHARGE_AMOUNT_TITLE = '보유 금액';
 export const CHARGE_COIN_TITLE = '자판기가 보유한 동전';

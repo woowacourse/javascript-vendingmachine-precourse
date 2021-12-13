@@ -21,6 +21,7 @@ import {
   CHARGE_COIN_TALBE_ID,
   COINS_STORAGE_KEY,
   COIN_SUM_KEY,
+  CHARGE_INPUT_PLACEHOLDER_TITLE,
 } from '../constant/constant.js';
 import $ from '../util/$.js';
 import removePreviousView from './removePreviousView.js';
@@ -32,7 +33,7 @@ function renderChargeInput($charge) {
   $inputContainer.innerHTML = `
     <h3>${CHARGE_TITLE}</h3>
     <form>
-      <input id="${CHARGE_INPUT_ID}" type="number"></input>
+      <input id="${CHARGE_INPUT_ID}" type="number" placeholder="${CHARGE_INPUT_PLACEHOLDER_TITLE}"></input>
       <button id="${CHARGE_BUTTON_ID}">${CHARGE_BUTTON_TITLE}</button>
     </form>
     <br>
