@@ -2,7 +2,8 @@ import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import renderProducts from '../views/renderProducts.js';
 import { resetPurchaseInput, printInputCharge } from '../views/productPurchaseView.js';
-import { isValidCharge, isValidPurchase, isValidQuantity, getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
+import { getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
+import { ERROR, CHARGE, PRICE } from '../utils/constants.js';
 
 function HandleProductPurchase() {
   this.holdAmount = Number($('#charge-amount').innerText) || 0;
@@ -11,6 +12,41 @@ function HandleProductPurchase() {
     if (store.getLocalStorage('products')) {
       renderProducts();
     }
+  };
+
+  const isValidCharge = chargeInput => {
+    if (chargeInput === '') {
+      alert(ERROR.CHARGE_BLANK);
+      return false;
+    }
+    if (Number(chargeInput) < CHARGE.LEAST_PRICE) {
+      alert(ERROR.CHARGE_TOO_LOW);
+      return false;
+    }
+    if (Number(chargeInput % PRICE.TEN_WON !== 0)) {
+      alert(ERROR.CHARGE_SHOULD_DIVIDED_INTO_TEN);
+      return false;
+    }
+    return true;
+  };
+
+  const isValidPurchase = (holdAmount, price) => {
+    if (price > holdAmount) {
+      alert(ERROR.PRODUCT_IS_EXPENSIVE);
+      return false;
+    }
+    return true;
+  };
+
+  const isValidQuantity = e => {
+    const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
+    const products = store.getLocalStorage('products');
+
+    if (!products[purchaseIndex].quantity) {
+      alert(ERROR.PRODUCT_EMPTY);
+      return false;
+    }
+    return true;
   };
 
   // (1) 금액 투입 기능

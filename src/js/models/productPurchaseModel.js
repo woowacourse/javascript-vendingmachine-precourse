@@ -1,41 +1,5 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
-import { ERROR, PRICE, CHARGE } from '../utils/constants.js';
-
-export const isValidCharge = chargeInput => {
-  if (chargeInput === '') {
-    alert(ERROR.CHARGE_BLANK);
-    return false;
-  }
-  if (Number(chargeInput) < CHARGE.LEAST_PRICE) {
-    alert(ERROR.CHARGE_TOO_LOW);
-    return false;
-  }
-  if (Number(chargeInput % PRICE.TEN_WON !== 0)) {
-    alert(ERROR.CHARGE_SHOULD_DIVIDED_INTO_TEN);
-    return false;
-  }
-  return true;
-};
-
-export const isValidPurchase = (holdAmount, price) => {
-  if (price > holdAmount) {
-    alert(ERROR.PRODUCT_IS_EXPENSIVE);
-    return false;
-  }
-  return true;
-};
-
-export const isValidQuantity = e => {
-  const purchaseIndex = e.target.closest('.product-purchase-item').querySelector('.product-purchase-quantity').dataset.productQuantity;
-  const products = store.getLocalStorage('products');
-
-  if (!products[purchaseIndex].quantity) {
-    alert(ERROR.PRODUCT_EMPTY);
-    return false;
-  }
-  return true;
-};
 
 const calculatefiveHundred = (change, hasCoin) => {
   const needCount = Math.floor(change / 500);
