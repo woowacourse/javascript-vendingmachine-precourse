@@ -1,7 +1,7 @@
-import { $, default as DOM } from '../utils/DOMUtils.js';
-import { default as V } from '../utils/validators.js';
-import { default as DB } from '../model/database.js';
-import getAllPurchaseButton from './utils/getAllPurchaseButton.js';
+import { $, default as DOM } from '../../utils/DOMUtils.js';
+import { default as V } from '../../utils/validators.js';
+import { default as DB } from '../../model/database.js';
+import getAllPurchaseButton from '../utils/getAllPurchaseButton.js';
 
 export default class ProductAddManager {
   constructor() {

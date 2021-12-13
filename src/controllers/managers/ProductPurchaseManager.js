@@ -1,9 +1,9 @@
-import { $, default as DOM } from '../utils/DOMUtils.js';
-import { default as V } from '../utils/validators.js';
-import { default as DB } from '../model/database.js';
-import { default as UT } from '../utils/utils.js';
-import calculateReturnCoins from './utils/calculateReturnCoins.js';
-import getAllPurchaseButton from './utils/getAllPurchaseButton.js';
+import { $, default as DOM } from '../../utils/DOMUtils.js';
+import { default as V } from '../../utils/validators.js';
+import { default as DB } from '../../model/database.js';
+import { default as UT } from '../../utils/utils.js';
+import calculateReturnCoins from '../utils/calculateReturnCoins.js';
+import getAllPurchaseButton from '../utils/getAllPurchaseButton.js';
 
 export default class ProductPurchaseManager {
   constructor() {
