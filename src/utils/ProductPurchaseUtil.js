@@ -18,15 +18,6 @@ export default class ProductPurchaseUtil {
     this.coinAmount = Number(this.productPurchase.amount.dataset.amount);
   }
 
-  addPurchaseCoin() {
-    this.productPurchase.submit.addEventListener('click', e => {
-      e.preventDefault();
-      if (this.getPurchaseCoin(this.productPurchase.input)) {
-        this.updateCoinAmount(this.purchaseCoin);
-      }
-    });
-  }
-
   getPurchaseCoin(input) {
     this.purchaseCoin = Number(input.value);
     if (!checkPurchaseCoin(this.purchaseCoin)) {
@@ -34,6 +25,15 @@ export default class ProductPurchaseUtil {
       return;
     }
     return this.purchaseCoin;
+  }
+
+  addPurchaseCoin() {
+    this.productPurchase.submit.addEventListener('click', e => {
+      e.preventDefault();
+      if (this.getPurchaseCoin(this.productPurchase.input)) {
+        this.updateCoinAmount(this.purchaseCoin);
+      }
+    });
   }
 
   updateCoinAmount(coin) {
@@ -47,6 +47,13 @@ export default class ProductPurchaseUtil {
     this.productPurchase.amount.setAttribute('data-amount', coinAmount);
   }
 
+  renderCoinTable(arr) {
+    this.productPurchase.coin500.innerHTML = arr[0] + PRODUCT_PURCHASE.COIN_UNIT;
+    this.productPurchase.coin100.innerHTML = arr[1] + PRODUCT_PURCHASE.COIN_UNIT;
+    this.productPurchase.coin50.innerHTML = arr[2] + PRODUCT_PURCHASE.COIN_UNIT;
+    this.productPurchase.coin10.innerHTML = arr[3] + PRODUCT_PURCHASE.COIN_UNIT;
+  }
+
   addReturnCoin() {
     this.productPurchase.returnBtn.addEventListener('click', e => {
       e.preventDefault();
@@ -55,14 +62,18 @@ export default class ProductPurchaseUtil {
       console.log(this.coinAmount);
       const returnVal = returnCoin(this.machineUtil.originCoin, this.coinAmount);
       this.renderCoinTable(returnVal.arr);
+      this.machineUtil.setCoinTable(this.reverseArr(returnVal.arr));
+      this.machineUtil.setCoinAmount(-(this.coinAmount - returnVal.coin));
       this.renderCoinAmount(returnVal.coin);
     });
   }
 
-  renderCoinTable(arr) {
-    this.productPurchase.coin500.innerHTML = arr[0] + PRODUCT_PURCHASE.COIN_UNIT;
-    this.productPurchase.coin100.innerHTML = arr[1] + PRODUCT_PURCHASE.COIN_UNIT;
-    this.productPurchase.coin50.innerHTML = arr[2] + PRODUCT_PURCHASE.COIN_UNIT;
-    this.productPurchase.coin10.innerHTML = arr[3] + PRODUCT_PURCHASE.COIN_UNIT;
+  reverseArr(arr) {
+    arr.forEach((val, idx) => {
+      val *= -1;
+      arr[idx] = val;
+    });
+    console.log(arr);
+    return arr;
   }
 }
