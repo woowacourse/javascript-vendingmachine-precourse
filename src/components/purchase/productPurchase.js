@@ -47,19 +47,25 @@ const calculationQuantity = (unit, quantity) => {
   return count;
 };
 
-const handleCoinReturnButton = () => {
+const makeReturnedCoinsView = (unit, storedQuantity) => {
+  if (storedQuantity !== 0 && unit <= currentAmount) {
+    const quantity = calculationQuantity(unit, storedQuantity);
+    addReturnedCoin(unit, quantity);
+    return quantity;
+  }
+  addReturnedCoin(unit, 0);
+  return 0;
+};
+
+const handleCoinReturnClick = () => {
   const storedCoins = getLocalStorage(STORAGE_NAME.COIN);
   $('#coin-return-result').innerHTML = '';
 
   for (const unit of COIN_UNITS) {
-    if (storedCoins[unit] !== 0 && unit <= currentAmount) {
-      const quantity = calculationQuantity(unit, storedCoins[unit]);
-      addReturnedCoin(unit, quantity);
-      storedCoins[unit] -= quantity;
-    } else {
-      addReturnedCoin(unit, 0);
-    }
+    const removedQuantity = makeReturnedCoinsView(unit, storedCoins[unit]);
+    storedCoins[unit] -= removedQuantity;
   }
+
   showCurrentAmount(chargeAmountId, currentAmount);
   setLocalStorage(STORAGE_NAME.COIN, storedCoins);
 };
@@ -99,5 +105,5 @@ export const showProductPurchase = () => {
     item.addEventListener('click', handlePurchaseButtonClick),
   );
   $('form').addEventListener('submit', handleChargeInput);
-  $('#coin-return-button').addEventListener('click', handleCoinReturnButton);
+  $('#coin-return-button').addEventListener('click', handleCoinReturnClick);
 };
