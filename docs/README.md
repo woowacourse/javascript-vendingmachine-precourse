@@ -3,6 +3,47 @@
 </p>
 <h1 align="middle">자판기</h1>
 
+# 📜 폴더 구조
+
+```bash
+📦src
+ ┣ 📂constants
+ ┃ ┣ 📜common.js
+ ┃ ┣ 📜key.js
+ ┃ ┣ 📜message.js
+ ┃ ┣ 📜selector.js
+ ┃ ┗ 📜style.js
+ ┣ 📂controllers
+ ┃ ┣ 📜ProductAddMenuController.js
+ ┃ ┣ 📜ProductPurchaseMenuController.js
+ ┃ ┣ 📜VendingMachineController.js
+ ┃ ┗ 📜VendingMachineManageMenuController.js
+ ┣ 📂models
+ ┃ ┣ 📜ProductAddMenuModel.js
+ ┃ ┣ 📜ProductPurchaseMenuModel.js
+ ┃ ┣ 📜VendingMachineManageMenuModel.js
+ ┃ ┗ 📜VendingMachineModel.js
+ ┣ 📂templates
+ ┃ ┣ 📜common.js
+ ┃ ┣ 📜productAddMenu.js
+ ┃ ┣ 📜productPurchaseMenu.js
+ ┃ ┗ 📜vendingMachineManageMenu.js
+ ┣ 📂utils
+ ┃ ┣ 📜dom.js
+ ┃ ┣ 📜index.js
+ ┃ ┗ 📜store.js
+ ┣ 📂validators
+ ┃ ┣ 📜productAddMenu.js
+ ┃ ┣ 📜productPurchaseMenu.js
+ ┃ ┗ 📜vendingMachineManageMenu.js
+ ┣ 📂views
+ ┃ ┣ 📜ProductAddMenuView.js
+ ┃ ┣ 📜ProductPurchaseMenuView.js
+ ┃ ┣ 📜VendingMachineManageMenuView.js
+ ┃ ┗ 📜VendingMachineView.js
+ ┗ 📜index.js
+```
+
 # 📌 기능 목록
 
 **반환되는 동전이 최소한이 되는 자판기를 구현한다.**
@@ -114,6 +155,7 @@
 - [x] Controller들 메소드들 15자 이하로 분리
 - [x] Controller의 changeMenu 메소드 깔끔하게 어떻게 할 지 생각
 - [ ] 템플릿 함수 정리
+- [ ] 상품 중복 추가 안되게 구현
 
 ## 📍 마지막으로 체크하기
 
