@@ -1,5 +1,6 @@
 import ProductPurchaseController from "../controllers/ProductPurchaseController.js";
 import { productPurchaseTemplete, renderAblePurchaseProductList } from "../utils/dom/productPurchaseTemplete.js";
+import { moneyAddValidate } from "../utils/validation/moneyAdd.js";
 
 export default class ProductPurchaseView extends ProductPurchaseController {
 
@@ -11,9 +12,10 @@ export default class ProductPurchaseView extends ProductPurchaseController {
   setEvent() {
     this.productPurchaseField.querySelector('#charge-button').addEventListener('click', (e) => {
       e.preventDefault();
-      this.insertMoney = this.productPurchaseField.querySelector('input').value;
-      this.renderMoney();
-      this.getInsertMoney();
+      const insertMoney  = this.productPurchaseField.querySelector('input').value;
+      moneyAddValidate(insertMoney) 
+      ? (this.validInsertMoney = insertMoney, this.renderMoney(), this.getInsertMoney())
+      : "";
     })
   }
 
@@ -21,9 +23,9 @@ export default class ProductPurchaseView extends ProductPurchaseController {
     const $moneyWrap = document.querySelector('#charge-amount');
     this.puchaseMoneyResult 
     ? $moneyWrap.innerText = this.puchaseMoneyResult
-    : this.loacalTotalInsertMoney && !this.insertMoney ? $moneyWrap.innerText = this.loacalTotalInsertMoney : "";
-    !this.loacalTotalInsertMoney && this.insertMoney ? $moneyWrap.innerText = this.insertMoney : "";
-    this.loacalTotalInsertMoney && this.insertMoney ? $moneyWrap.innerText = (Number(this.insertMoney) + Number(this.loacalTotalInsertMoney)) : ""; 
+    : this.loacalTotalInsertMoney && !this.validInsertMoney ? $moneyWrap.innerText = this.loacalTotalInsertMoney : "";
+    !this.loacalTotalInsertMoney && this.validInsertMoney ? $moneyWrap.innerText = this.validInsertMoney : "";
+    this.loacalTotalInsertMoney && this.validInsertMoney ? $moneyWrap.innerText = (Number(this.validInsertMoney) + Number(this.loacalTotalInsertMoney)) : ""; 
   }
 
   renderLocalPurchase() {

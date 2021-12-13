@@ -4,7 +4,7 @@ export default class ProductPurchaseController {
   constructor($app) {
     this.purchaseModel = new ProductPurchaseModel();
     this.$app = $app;
-    this.insertMoney;
+    this.validInsertMoney;
     this.loacalTotalInsertMoney;
     this.localProductList;
     this.purchaseProduct;
@@ -19,7 +19,7 @@ export default class ProductPurchaseController {
   }
 
   getInsertMoney() {
-    this.insertMoney && this.purchaseModel.setLocalInsertMoney(this.insertMoney);
+    this.validInsertMoney && this.purchaseModel.setLocalInsertMoney(this.validInsertMoney);
     this.setInsertMoney();
   }
 
