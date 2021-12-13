@@ -14,6 +14,7 @@ class VendingMachine {
                 money -= coin;
             }
         }
+        this.setLocalStorage();
     }
 
     addCoin(coin) {
@@ -50,10 +51,17 @@ class VendingMachine {
     }
 
     getFromLocalStorage() {
-        this.coin500 = JSON.parse(localStorage.getItem("vendingMachine500"));
-        this.coin100 = JSON.parse(localStorage.getItem("vendingMachine100"));
-        this.coin50 = JSON.parse(localStorage.getItem("vendingMachine50"));
-        this.coin10 = JSON.parse(localStorage.getItem("vendingMachine10"));
+        this.coin500 = JSON.parse(localStorage.getItem("vendingMachine500")) ?? 0;
+        this.coin100 = JSON.parse(localStorage.getItem("vendingMachine100")) ?? 0;
+        this.coin50 = JSON.parse(localStorage.getItem("vendingMachine50")) ?? 0;
+        this.coin10 = JSON.parse(localStorage.getItem("vendingMachine10")) ?? 0;
+    }
+
+    setLocalStorage() {
+        localStorage.setItem("vendingMachine500", this.coin500);
+        localStorage.setItem("vendingMachine100", this.coin100);
+        localStorage.setItem("vendingMachine50", this.coin50);
+        localStorage.setItem("vendingMachine10", this.coin10);
     }
 }
 

@@ -10,6 +10,7 @@ function buildChargePage() {
     clearContainer(container);
     chargeElement(container);
     coinDisplayElement(container);
+    updateCoin();
 }
 
 function chargeElement(container) {
@@ -73,10 +74,10 @@ function updateCoin() {
 
     const coins = vendingMachine.getCoins();
 
-    vendingMachineCoin500Quantity.innerText = coins.coin500;
-    vendingMachineCoin100Quantity.innerText = coins.coin100;
-    vendingMachineCoin50Quantity.innerText = coins.coin50;
-    vendingMachineCoin10Quantity.innerText = coins.coin10;
+    vendingMachineCoin500Quantity.innerText = coins.coin500 + "개";
+    vendingMachineCoin100Quantity.innerText = coins.coin100 + "개";
+    vendingMachineCoin50Quantity.innerText = coins.coin50 + "개";
+    vendingMachineCoin10Quantity.innerText = coins.coin10 + "개";
 }
 
 function clearContainer(container) {
