@@ -4,6 +4,7 @@ export default class Table extends Component {
   template() {
     return `
       <h2>${this.$props.title}</h2>
+      ${this.getOptionalButton()}
       <table>
         <tr>${this.getTableHeader()}</tr>
         ${this.getTableContents()}
@@ -24,5 +25,12 @@ export default class Table extends Component {
 
   getTableRow(tableRow) {
     return `<tr>${tableRow.map((entry) => `<td>${entry}</td>`).join("")}</tr>`;
+  }
+
+  getOptionalButton() {
+    const { buttonInfo } = this.$props;
+
+    if (buttonInfo === undefined) return "";
+    return `<button id=${buttonInfo.id}>${buttonInfo.value}</button>`;
   }
 }
