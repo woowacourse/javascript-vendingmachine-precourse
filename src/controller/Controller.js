@@ -55,6 +55,12 @@ class Controller {
     }
   }
 
+  initProductAddInputValue() {
+    $id('product-name-input').value = '';
+    $id('product-price-input').value = '';
+    $id('product-quantity-input').value = '';
+  }
+
   triggerProductAddSubmitEvent() {
     $id('product-add-form').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -68,6 +74,8 @@ class Controller {
           'beforeend',
           productManageItemTemplate(productNameInput, productPriceInput, productQuantityInput)
         );
+
+        this.initProductAddInputValue();
       }
     });
   }
