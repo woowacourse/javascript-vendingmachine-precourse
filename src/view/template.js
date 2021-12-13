@@ -25,16 +25,14 @@ export const productTemplate = ({ name, price, quantity }) => {
 export const addTabTemplate = (products, inputs) => {
   return `
     <h2>상품 추가하기</h2>
-    <div>
-      <form id="product-add-form">
-        <input id="product-name-input" type="text" placeholder="상품명" value="${inputs.name}"/>
-        <input id="product-price-input" type="number" placeholder="가격" value="${inputs.price}"/>
-        <input id="product-quantity-input" type="number" placeholder="수량" value="${
-          inputs.quantity
-        }"/>
-        <button id="product-add-button">추가하기</button>
-      </form>
-    </div>
+    <form id="product-add-form">
+      <input id="product-name-input" type="text" placeholder="상품명" value="${inputs.name}"/>
+      <input id="product-price-input" type="number" placeholder="가격" value="${inputs.price}"/>
+      <input id="product-quantity-input" type="number" placeholder="수량" value="${
+        inputs.quantity
+      }"/>
+      <button id="product-add-button">추가하기</button>
+    </form>
     <h2>상품 현황</h2>
     <table>
       <thead>
@@ -58,10 +56,10 @@ export const addTabTemplate = (products, inputs) => {
 export const manageTabTemplate = () => {
   return `
     <h2>자판기 동전 충전하기</h2>
-    <div>
+    <form id="vending-machine-manage-form">
       <input id="vending-machine-charge-input" type="number" />
       <button id="vending-machine-charge-button">충전하기</button>
-    </div>
+    </form>
     <div>
       보유금액: <span id="vending-machine-charge-amount">${NUMBER.ZERO}원</span>
     </div>

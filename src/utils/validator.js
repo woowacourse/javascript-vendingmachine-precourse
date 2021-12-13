@@ -32,7 +32,7 @@ const isValidPrice = (price) => {
   if (!isOverGivenNum(price, NUMBER.HUNDRED))
     return setErrorMessage(ERROR_MESSAGE.NOT_OVER_HUNDRED);
   if (!isDividedByGivenNum(price, NUMBER.TEN))
-    return setErrorMessage(ERROR_MESSAGE.NOT_DIVIDED_BY_TEN);
+    return setErrorMessage(ERROR_MESSAGE.NOT_DIVIDED_BY_TEN_PRICE);
 
   return true;
 };
@@ -47,4 +47,14 @@ const isValidQuantity = (quantity) => {
 
 export const isValidProductInput = (name, price, quantity, products) => {
   return isValidName(name, products) && isValidPrice(price) && isValidQuantity(quantity);
+};
+
+export const isValidChargeAmount = (amount) => {
+  if (isEmpty(amount)) return setErrorMessage(ERROR_MESSAGE.EMPTY_CHARGE_AMOUNT);
+  if (isNaN(amount)) return setErrorMessage(ERROR_MESSAGE.NOT_NUMBER);
+  if (!isOverGivenNum(amount, NUMBER.TEN)) return setErrorMessage(ERROR_MESSAGE.NOT_OVER_TEN);
+  if (!isDividedByGivenNum(amount, NUMBER.TEN))
+    return setErrorMessage(ERROR_MESSAGE.NOT_DIVIDED_BY_TEN);
+
+  return true;
 };
