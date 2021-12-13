@@ -1,5 +1,18 @@
-import { SUBTITLE, LABEL, TEXT, PLACEHOLDER, ID, DATASET } from '../utils/constant.js';
-import { Subtitle, InputById, PById, Table, Th, Tr, Theadbody, ButtonById, TdById, Td, TdByClassNameAndDataset } from '../components/compoenents.js';
+import { SUBTITLE, LABEL, TEXT, PLACEHOLDER, ID, DATASET, CLASS} from '../utils/constant.js';
+import { 
+  Subtitle,
+  InputById,
+  PById,
+  Table,
+  Th,
+  Tr,
+  TrByClassName,
+  Theadbody,
+  ButtonById,
+  TdById,
+  Td,
+  TdByClassNameAndDataset
+} from '../components/compoenents.js';
 
 export default class PurchasePage {
   constructor(controller) {
@@ -47,14 +60,22 @@ export default class PurchasePage {
       Subtitle(SUBTITLE.ITEMLIST),
       this.tableCurrent,
       Subtitle(SUBTITLE.LEFT_COIN),
+      this.buttonReturn,
       this.tableReturn
     );
   }
 
-  buttonHandler() {
+  insertButtonHandler() {
     this.buttonInsert.addEventListener('click', (e) => {
       e.preventDefault();
       this.controller.insertMoney(this.inputCoin.value);
+    })
+  }
+
+  returnButtonHandler() {
+    this.buttonReturn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // this.controller.insertMoney(this.inputCoin.value);
     })
   }
 

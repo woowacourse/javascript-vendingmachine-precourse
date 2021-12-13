@@ -40,7 +40,7 @@ export default class View {
   initPages(products) {
     this.getManagePage(products);
     this.getChargePage();
-    this.getPurchasePage();
+    this.getPurchasePage(products);
   }
 
   getManagePage(products) {
@@ -54,9 +54,11 @@ export default class View {
     this.chargePage.buttonHandler();
   }
 
-  getPurchasePage() {
+  getPurchasePage(products) {
     this.purchasePage.setUI(this.purchasePageDiv);
-    this.purchasePage.buttonHandler();
+    this.purchasePage.showProductListAll(products);
+    this.purchasePage.insertButtonHandler();
+    this.purchasePage.returnButtonHandler();
   }
 
   hideAllPage() {

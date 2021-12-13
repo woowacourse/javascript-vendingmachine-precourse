@@ -65,9 +65,9 @@ export const CLASS = {
 };
 
 export const DATASET = {
-  PRODUCT_NAME: 'data-product-name',
-  PRODUCT_PRICE: 'data-product-price',
-  PRODUCT_QUANTITY: 'data-product-quantity',
+  PRODUCT_NAME: 'productName',
+  PRODUCT_PRICE: 'productPrice',
+  PRODUCT_QUANTITY: 'productQuantity',
 }
 
 export const TEXT = {
