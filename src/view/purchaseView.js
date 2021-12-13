@@ -25,14 +25,14 @@ export default class PurchaseView extends TapView {
     <input id=${PURCHASE_ELEMENT_ID.chargeInput} type='number' placeholder='투입할 금액'></input>
     <button id=${PURCHASE_ELEMENT_ID.chargeButton}>충전하기</button>
     </br></br>
-    <span id=${PURCHASE_ELEMENT_ID.chargeAmount}>보유 금액: <span>
+    <span id=${PURCHASE_ELEMENT_ID.chargeAmount}><span>
     `;
   }
 
   static updateChargeInput(purchaseObject) {
     super.setHtmlToElement(
       document.querySelector(`#${PURCHASE_ELEMENT_ID.chargeAmount}`),
-      `보유 금액: ${purchaseObject.getChargeMoneyStorage() || 0}원`,
+      `${purchaseObject.getChargeMoneyStorage() || 0}`,
     );
   }
 
@@ -95,5 +95,14 @@ export default class PurchaseView extends TapView {
       <td id=${id}></td>
     </tr>
     `;
+  }
+
+  static addReturnCoins([coin500, coin100, coin50, coin10]) {
+    document.querySelector(`#${PURCHASE_ELEMENT_ID.coin500}`).innerHTML =
+      coin500;
+    document.querySelector(`#${PURCHASE_ELEMENT_ID.coin100}`).innerHTML =
+      coin100;
+    document.querySelector(`#${PURCHASE_ELEMENT_ID.coin50}`).innerHTML = coin50;
+    document.querySelector(`#${PURCHASE_ELEMENT_ID.coin10}`).innerHTML = coin10;
   }
 }

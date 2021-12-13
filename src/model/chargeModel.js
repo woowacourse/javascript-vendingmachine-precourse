@@ -60,38 +60,27 @@ export default class ChargeModel {
   }
 
   randomCharge() {
-    const coin500 = MissionUtils.Random.pickNumberInList(
-      this.getPickNumberRange(0, 500),
-    );
-    const coin100 = MissionUtils.Random.pickNumberInList(
-      this.getPickNumberRange(500 * coin500, 100),
-    );
-    const coin50 = MissionUtils.Random.pickNumberInList(
-      this.getPickNumberRange(500 * coin500 + 100 * coin100, 50),
-    );
-    const coin10 = MissionUtils.Random.pickNumberInList(
-      this.getPickNumberRange(500 * coin500 + 100 * coin100 + 50 * coin50, 10),
-    );
-    this.addCoinStorage({ coin500, coin100, coin50, coin10 });
+    let chargeAmount = this.getChargeInput();
+    const coins = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
+    while (chargeAmount > 0) {
+      const coin = MissionUtils.Random.pickNumberInList(CHARGE_RULES.coinList);
+      if (coin <= chargeAmount) {
+        chargeAmount -= coin;
+        coins[this.changeValueToKey(coin)] += 1;
+      }
+    }
+    this.addCoinStorage(coins);
   }
 
-  getPickNumberRange(chargedAmount, type) {
-    const chargeAmount = this.getChargeInput();
-    const rangeArray = [];
-    let rangeNum = 0;
-    while (rangeNum * type <= chargeAmount - chargedAmount) {
-      rangeArray.push(rangeNum);
-      rangeNum += 1;
-    }
-    if (type === 10) {
-      return [Math.max(...rangeArray)];
-    }
-
-    return rangeArray;
+  changeValueToKey(value) {
+    if (value === 500) return 'coin500';
+    if (value === 100) return 'coin100';
+    if (value === 50) return 'coin50';
+    return 'coin10';
   }
 
   addCoinStorage(chargeCoins) {
-    const { coin500, coin100, coin50, coin10 } = chargeCoins;
+    const { 500: coin500, 100: coin100, 50: coin50, 10: coin10 } = chargeCoins;
     const coinStorage = this.getCoinStorage();
     if (coinStorage) {
       coinStorage.coin500 += coin500;
