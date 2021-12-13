@@ -5,8 +5,8 @@ import {
 } from '../controller/VendingMachine.js';
 
 import Component from '../core/Component.js';
-import CoinInputForm from './coins/CoinInputForm.js';
-import CoinList from './coins/CoinList.js';
+import CoinInputForm from './coin/CoinInputForm.js';
+import CoinList from './coin/CoinList.js';
 
 export default class CoinManage extends Component {
   init() {
