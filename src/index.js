@@ -7,13 +7,9 @@ import HeaderView from './components/header/headerView.js';
 export default function App(app) {
   this.header = new HeaderView();
   this.menuViewContainer = Container('menu-view');
-  this.productAddMenu = new ProductAddMenuView(this.menuViewContainer);
-  this.vendingMachineManage = new VendingMachineManageView(
-    this.menuViewContainer
-  );
-  this.productPurchaseMenu = new ProductPurchaseMenuView(
-    this.menuViewContainer
-  );
+  this.productAddMenu = new ProductAddMenuView();
+  this.vendingMachineManage = new VendingMachineManageView();
+  this.productPurchaseMenu = new ProductPurchaseMenuView();
 
   this.render = () => {
     this.header.render();
