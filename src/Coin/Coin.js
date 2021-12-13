@@ -1,7 +1,8 @@
 export default class Coin {
   static instance;
+
   constructor() {
-    if (this.instance) return this.instance;
+    if (Coin.instance) return Coin.instance;
     this.amountCost = 0;
     this.chargeCost = 0;
     this.currentCoin = {
@@ -10,7 +11,7 @@ export default class Coin {
       50: 0,
       10: 0,
     };
-    this.instance = this;
+    Coin.instance = this;
   }
 
   additionalInputCoin(inputCoin) {
