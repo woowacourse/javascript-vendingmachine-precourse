@@ -1,4 +1,9 @@
-const loadStorage = (instance, parsed) => {
+export const getStorage = () => {
+    return JSON.parse(localStorage.machine);
+}
+
+export const loadStorage = (instance) => {
+    const parsed = getStorage();
     instance.coins = parsed.coins;
     instance.input = parsed.input;
     instance.productId = parsed.productId;
@@ -9,15 +14,10 @@ export const updateStorage = (instance) => {
     localStorage.machine = JSON.stringify(instance);
 }
 
-export const getStorage = () => {
-    return JSON.parse(localStorage.machine);
-}
-
-export const checkStorage = (instance) => {
+export const checkStorage = () => {
     if(localStorage.machine === undefined){
-        localStorage.machine = JSON.stringify(instance);
-    }else{
-        let parsed = JSON.parse(localStorage.machine);
-        loadStorage(instance, parsed);
+        return false;
+    }else {
+        return true;
     }
 }

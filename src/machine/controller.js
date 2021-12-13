@@ -5,7 +5,7 @@ import { getStorage, updateStorage } from '../utils/storage.js';
 import Coin from "./coin.js";
 import * as displayer from './display.js';
 
-export default class VendingMachine {
+export default class Controller {
     constructor(){
         this.products = [];
         this.coins = new Coin().coins;
