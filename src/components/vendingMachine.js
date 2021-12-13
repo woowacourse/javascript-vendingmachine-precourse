@@ -7,6 +7,7 @@ function VendingMachine() {
     50: 0,
     10: 0,
   };
+  this.insertMoney = 0;
 
   this.addProduct = (product) => {
     this.products.push(product);
@@ -34,6 +35,11 @@ function VendingMachine() {
       }
     }
     localStorage.setItem('coin', JSON.stringify(this.coin));
+  };
+
+  this.addInsertMoney = (money) => {
+    this.insertMoney += money;
+    localStorage.setItem('insert', JSON.stringify(this.insertMoney));
   };
 }
 

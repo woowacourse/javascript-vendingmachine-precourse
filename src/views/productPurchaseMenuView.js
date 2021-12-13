@@ -11,6 +11,7 @@ import {
   createProductPurchaseTable,
   createCoinTable,
 } from '../components/productPurchaseMenu.js';
+import { vendingMachine } from '../components/vendingMachine.js';
 
 export default function ProductPurchaseMenuView(container) {
   this.productPurchaseMenu = () => {
@@ -47,6 +48,8 @@ export default function ProductPurchaseMenuView(container) {
 
   this.onClickAddMoneyButton = (e) => {
     e.preventDefault();
+    const addMoneyInput = document.querySelector(`#${ID.CHARGE_INPUT}`);
+    vendingMachine.addInsertMoney(parseInt(addMoneyInput.value));
   };
 
   this.onClickReturnCoinButton = (e) => {
