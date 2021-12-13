@@ -1,5 +1,5 @@
 import { VALIDATION } from '../../common/constants/constants.js';
-import { $ } from '../../common/dom/dom.js';
+import { $ } from '../../common/dom/templates.js';
 
 export const moneyChargeInputValue = () => {
   const $chargeInputValue = $('#charge-input').value;

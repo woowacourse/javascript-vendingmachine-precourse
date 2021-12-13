@@ -3,7 +3,7 @@ import {
   PRODUCT,
   COIN_LIST,
 } from '../../common/constants/constants.js';
-import { $ } from '../../common/dom/dom.js';
+import { $ } from '../../common/dom/templates.js';
 import { returnChangesinCoins } from '../../common/utils.js';
 
 export const printInsertedMoney = () => {

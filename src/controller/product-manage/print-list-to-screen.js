@@ -1,5 +1,5 @@
 import { PRODUCT } from '../../common/constants/constants.js';
-import { $ } from '../../common/dom/dom.js';
+import { $ } from '../../common/dom/templates.js';
 
 export const printItemsToScreen = () => {
   const productListArray = JSON.parse(localStorage.getItem(PRODUCT.LIST));

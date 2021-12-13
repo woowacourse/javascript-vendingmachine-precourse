@@ -3,7 +3,7 @@ import {
   productMangeMenu,
   vendingMachineManageMenu,
   productPurchaseMenu,
-} from '../dom/dom.js';
+} from '../dom/templates.js';
 
 export const SELECTOR = {
   HEADER: header,

@@ -2,7 +2,7 @@ import {
   $,
   productListTable,
   productPurchaseTable,
-} from '../common/dom/dom.js';
+} from '../common/dom/templates.js';
 import {
   DISPLAY,
   INSERT_HTML,
