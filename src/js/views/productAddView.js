@@ -1,7 +1,7 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 
-export const printAddedProduct = () => {
+export const renderProduct = () => {
   const template = store
     .getLocalStorage('products')
     .map(v => {

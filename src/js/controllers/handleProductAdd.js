@@ -1,6 +1,6 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
-import { printAddedProduct, resetProductInput } from '../views/productAddView.js';
+import { renderProduct, resetProductInput } from '../views/productAddView.js';
 import { PRODUCT, ERROR, PRICE } from '../utils/constants.js';
 import alertMessage from '../views/alertMessage.js';
 
@@ -10,7 +10,7 @@ function HandleProductAdd() {
   this.init = () => {
     if (store.getLocalStorage('products')) {
       this.products = store.getLocalStorage('products');
-      printAddedProduct();
+      renderProduct();
     }
   };
 
