@@ -21,22 +21,16 @@ export default {
     this.setCoins();
   },
   total() {
-    return COINS.reduce((sum, coin) => {
-      return sum + this.coins[coin] * coin;
-    }, 0);
+    return COINS.reduce((sum, coin) => parseInt(sum + this.coins[coin] * coin), 0);
   },
   list() {
     return this.coins;
   },
   return(money) {
     COINS.forEach((coin) => {
-      if (parseInt(money / coin) !== 0 && this.coins[coin] > 0) {
-        if (coin * this.coins[coin] <= money) {
-          this.coins[coin] = 0;
-          money = 0;
-        }
-        this.coins[coin] -= parseInt(money / coin);
-        money -= parseInt(money / coin) * coin;
+      while (money >= coin && this.coins[coin]) {
+        money -= coin;
+        this.coins[coin] -= 1;
       }
     });
     this.setCoins();
