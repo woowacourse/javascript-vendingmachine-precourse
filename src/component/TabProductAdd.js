@@ -40,7 +40,7 @@ export default class TabProductAdd {
     this.addTitle = new Title('상품 추가하기');
     this.name = new Input(SELECTOR.ID_PRODUCT_NAME_INPUT, '상품명', 'text');
     this.price = new Input(SELECTOR.ID_PRODUCT_PRICE_INPUT, '가격', 'number');
-    this.quantity = new Input(SELECTOR.ID_PRODUCT_PRICE_INPUT, '수량', 'number');
+    this.quantity = new Input(SELECTOR.ID_PRODUCT_QUANTITY_INPUT, '수량', 'number');
     this.addButton = new Button(SELECTOR.ID_PRODUCT_ADD_BUTTON, '추가하기');
 
     this.$root.appendChild(this.addTitle.getTarget());

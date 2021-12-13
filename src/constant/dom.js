@@ -39,7 +39,7 @@ export const SELECTOR = Object.freeze({
   ID_PRODUCT_ADD_TAB: 'product-add-tab',
   ID_PRODUCT_NAME_INPUT: 'product-name-input',
   ID_PRODUCT_PRICE_INPUT: 'product-price-input',
-  ID_PRODUCT_QUANTITY_INPU: 'product-quantity-input',
+  ID_PRODUCT_QUANTITY_INPUT: 'product-quantity-input',
   ID_PRODUCT_ADD_BUTTON: 'product-add-button',
   ID_MACHINE_CHARGE_INPUT: 'vending-machine-charge-input',
   ID_MACHINE_CHARGE_BUTTON: 'vending-machine-charge-button',

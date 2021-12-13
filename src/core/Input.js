@@ -12,7 +12,7 @@ export default class Input {
 
   render() {
     this.$target = document.createElement(TAG.TAG_INPUT);
-    this.$target.setAttribute(DOM_ATTRIBUTE.ID, this.targetID);
+    this.$target.setAttribute(DOM_ATTRIBUTE.ID, this.targetId);
     this.$target.placeholder = this.placeholder;
     this.$target.type = this.type;
   }
