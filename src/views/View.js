@@ -7,7 +7,6 @@ import ChargeForm from './components/ChargeForm.js';
 export default class View {
   constructor() {
     this.loadWebComponents();
-    $('#app').insertAdjacentHTML('beforeend', UI.commonHTML);
     this.makeComponents();
     DOM.hideComponents();
   }
@@ -19,9 +18,14 @@ export default class View {
   }
 
   makeComponents() {
+    this.showMenuComponent();
     this.showProductAddComponent();
     this.showVendingMachineManageComponent();
     this.showProductPurchaseComponent();
+  }
+
+  showMenuComponent() {
+    $('#app').insertAdjacentHTML('beforeend', UI.commonHTML);
   }
 
   showProductAddComponent() {
