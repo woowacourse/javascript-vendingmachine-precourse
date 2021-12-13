@@ -30,6 +30,11 @@ export const isValidVendingMachineCharge = (vendingMachineChargeInput) => {
     alert('자판기가 보유할 금액을 입력해주세요.  ex) 450');
     return false;
   }
+
+  if (isContainsBlank(vendingMachineChargeInput)) {
+    alert('공백이 아닌 자판기가 보유할 금액을 입력해주세요.  ex) 450');
+    return false;
+  }
 };
 
 const isInValidProductName = (productNameInput) => {
