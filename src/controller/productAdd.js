@@ -31,18 +31,22 @@ const isProductInputsValid = (productName, productPrice, productQuantity) =>
   isProductPriceValid(productPrice) &&
   isInputNumberValid(productQuantity);
 
+const updateProductLocalStorage = product => {
+  const allProducts = getItemOrArray(KEY.product);
+  allProducts.push(product);
+  setItem(KEY.product, allProducts);
+};
+
 const addProduct = () => {
   const productName = $(SELECTOR.productNameInput);
   const productPrice = $(SELECTOR.productPriceInput);
   const productQuantity = $(SELECTOR.productQuantityInput);
   if (isProductInputsValid(productName, productPrice, productQuantity)) {
-    const allProducts = getItemOrArray(KEY.product);
     const product = new Product(productName.value, productPrice.value, productQuantity.value);
     const table = document.querySelector('tbody');
 
-    allProducts.push(product);
+    updateProductLocalStorage(product);
     addTableRow(table, productAddTableRow(product));
-    setItem(KEY.product, allProducts);
     initInput(productName, productPrice, productQuantity);
   }
 };

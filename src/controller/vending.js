@@ -36,18 +36,23 @@ const initChargeDomProperty = () => {
 const isChargeInputValid = chargeInput =>
   isInputNumberValid(chargeInput) && isMultipleOf10(chargeInput);
 
+const setVendingMachineByRandomCoin = (chargeInputValue, randomCoinQuantity) => {
+  let vendingMachine = getItemOrNull(KEY.vending);
+  if (vendingMachine) {
+    vendingMachine.change += chargeInputValue;
+  } else if (vendingMachine === null) {
+    vendingMachine = new VendingMachine(chargeInputValue);
+  }
+  randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
+  setItem(KEY.vending, vendingMachine);
+};
+
 const chargeVending = () => {
   const chargeInput = $(SELECTOR.vendingChargeInput);
   if (isChargeInputValid(chargeInput)) {
     const chargeInputValue = parseInt(chargeInput.value);
     const randomCoinQuantity = makeRandomCoinQuantity(chargeInputValue);
-    let vendingMachine = getItemOrNull(KEY.vending);
-
-    if (vendingMachine) vendingMachine.change += chargeInputValue;
-    else if (vendingMachine === null) vendingMachine = new VendingMachine(chargeInputValue);
-
-    randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
-    setItem(KEY.vending, vendingMachine);
+    setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity);
     initChargeDomProperty();
     initVendingTable();
   }
