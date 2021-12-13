@@ -47,7 +47,7 @@ export const productPurchaseTemplate = `
           <th>개수</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="coin-return-result">
         <tr>
           <td>500원</td>
           <td id="coin-500-quantity"></td>
