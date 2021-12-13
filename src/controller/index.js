@@ -2,6 +2,7 @@ import { SELECTOR } from '../model/constants.js';
 import { showAddMenu, showVendingMenu, showPurchaseMenu } from '../view/index.js';
 import { initAllProductAdd } from './productAdd.js';
 import { initAllVending } from './vending.js';
+import { initAllPurchase } from './purchase.js';
 import { $ } from './utils.js';
 
 const callAddMenu = () => {
@@ -16,7 +17,7 @@ const callVendingMenu = () => {
 
 const callPurchaseMenu = () => {
   showPurchaseMenu();
-  //initAllPurchase();
+  initAllPurchase();
 };
 
 export const initController = () => {

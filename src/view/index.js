@@ -43,6 +43,11 @@ export const clearInput = input => (input.value = '');
 
 export const clearTable = table => (table.innerHTML = '');
 
+export const initReturnTable = returnCoin =>
+  returnCoin.forEach(x => {
+    $(COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`;
+  });
+
 export const initVendingTable = () => {
   const vending = getItemOrNull(KEY.vending);
   if (vending) {
