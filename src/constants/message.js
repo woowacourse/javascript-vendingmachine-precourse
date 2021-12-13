@@ -7,4 +7,7 @@ export const ERROR = {
 
   QUANTITY: '구매할 수 있는 수량이 없습니다',
   MONEY: '투입한 금액이 부족합니다',
+
+  RETURN_CHARGE: '자판기 보유 금액이 없어 반환이 불가능합니다',
+  RETURN_MONEY: '투입 금액이 없어 반환이 불가능합니다',
 };

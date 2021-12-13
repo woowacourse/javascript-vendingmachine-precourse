@@ -15,6 +15,8 @@ import {
 import { vendingMachine } from '../components/vendingMachine.js';
 import {
   alertChargeErrorMessage,
+  alertReturnErrorMessage,
+  canReturn,
   isValidCharge,
 } from '../components/validator.js';
 import { PRODUCT_PURCHASE_TABLE } from '../constants/table.js';
@@ -86,6 +88,15 @@ export default function ProductPurchaseMenuView() {
 
   this.onClickReturnCoinButton = (e) => {
     e.preventDefault();
+    if (!canReturn(vendingMachine.charge, vendingMachine.insertMoney)) {
+      alertReturnErrorMessage(
+        vendingMachine.charge,
+        vendingMachine.insertMoney
+      );
+
+      return;
+    }
+
     const returnCoinCount = vendingMachine.returnCoin();
 
     this.renderInsertMoney();

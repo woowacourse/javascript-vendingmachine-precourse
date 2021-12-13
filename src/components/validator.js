@@ -44,6 +44,14 @@ const haveMoney = (productPrice, insertMoney) => {
   return insertMoney >= productPrice;
 };
 
+const haveCharge = (charge) => {
+  return charge > 0;
+};
+
+const haveInsertMoney = (money) => {
+  return money > 0;
+};
+
 export const isValidProduct = (name, price, quantity) => {
   return (
     isValidProductName(name) &&
@@ -86,5 +94,18 @@ export const alertPurchaseErrorMessage = (
   }
   if (!haveMoney(productPrice, insertMoney)) {
     alert(ERROR.MONEY);
+  }
+};
+
+export const canReturn = (charge, money) => {
+  return haveCharge(charge) && haveInsertMoney(money);
+};
+
+export const alertReturnErrorMessage = (charge, money) => {
+  if (!haveCharge(charge)) {
+    alert(ERROR.RETURN_CHARGE);
+  }
+  if (!haveInsertMoney(money)) {
+    alert(ERROR.RETURN_MONEY);
   }
 };
