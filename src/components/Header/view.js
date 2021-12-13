@@ -1,10 +1,10 @@
 import { ID } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import { Container, Title } from '../elements.js';
-import { createTabNav } from './header.js';
-import ProductAddMenuView from '../ProductAddMenu/productAddMenuView.js';
-import VendingMachineManageView from '../VendingMachineManageMenu/vendingMachineManageMenuView.js';
-import ProductPurchaseMenuView from '../ProductPurchaseMenu/productPurchaseMenuView.js';
+import { createTabNav } from './element.js';
+import ProductAddMenuView from '../ProductAddMenu/view.js';
+import VendingMachineManageView from '../VendingMachineManageMenu/view.js';
+import ProductPurchaseMenuView from '../ProductPurchaseMenu/view.js';
 
 export default function HeaderView() {
   const productAddMenu = new ProductAddMenuView();

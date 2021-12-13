@@ -1,9 +1,9 @@
 import { ID } from './constants/selector.js';
 import { Container } from './components/elements.js';
-import ProductAddMenuView from './components/productAddMenu/productAddMenuView.js';
-import VendingMachineManageView from './components/vendingMachineManageMenu/vendingMachineManageMenuView.js';
-import ProductPurchaseMenuView from './components/productPurchaseMenu/productPurchaseMenuView.js';
-import HeaderView from './components/header/headerView.js';
+import ProductAddMenuView from './components/ProductAddMenu/view.js';
+import VendingMachineManageView from './components/VendingMachineManageMenu/view.js';
+import ProductPurchaseMenuView from './components/ProductPurchaseMenu/view.js';
+import HeaderView from './components/Header/view.js';
 
 export default function App(app) {
   this.header = new HeaderView();

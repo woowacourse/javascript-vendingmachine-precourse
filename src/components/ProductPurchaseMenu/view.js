@@ -13,7 +13,7 @@ import {
   createProductPurchaseTable,
   createProductPurchaseRow,
   createCoinTable,
-} from './productPurchaseMenu.js';
+} from './element.js';
 import { vendingMachine } from '../vendingMachine.js';
 import {
   alertChargeErrorMessage,

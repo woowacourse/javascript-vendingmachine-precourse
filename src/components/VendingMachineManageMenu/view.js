@@ -2,10 +2,7 @@ import { ID } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import { STORAGE_KEY } from '../../constants/storageKey.js';
 import { Container, SubTitle, Span, SpanWithId } from '../elements.js';
-import {
-  createAddCoinForm,
-  createCoinTable,
-} from './vendingMachineManageMenu.js';
+import { createAddCoinForm, createCoinTable } from './element.js';
 import { vendingMachine } from '../vendingMachine.js';
 import { alertChargeErrorMessage, isValidCharge } from '../validator.js';
 

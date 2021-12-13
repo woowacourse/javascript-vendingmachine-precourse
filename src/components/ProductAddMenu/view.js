@@ -6,7 +6,7 @@ import {
   createProductForm,
   createProductTable,
   createProductRow,
-} from './productAddMenu.js';
+} from './element.js';
 import Product from '../product.js';
 import { vendingMachine } from '../vendingMachine.js';
 import { alertProductErrorMessage, isValidProduct } from '../validator.js';
