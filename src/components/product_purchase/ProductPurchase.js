@@ -29,7 +29,13 @@ export default class ProductPurchase extends Component {
   mounted() {
     const {
       addPurchaseChargeAmount,
-      $state: { purchaseChargeAmount, products, chargeAmount, coins },
+      $state: {
+        purchaseChargeAmount,
+        products,
+        chargeAmount,
+        coins,
+        returnedCoins,
+      },
     } = this;
     const $chargeInputForm = document.querySelector("#charge-input-form");
     const $productPurchaseItemSatus = document.querySelector(
@@ -52,6 +58,8 @@ export default class ProductPurchase extends Component {
       chargeAmount,
       coins,
       purchaseChargeAmount,
+      setReturnedCoins: this.setReturnedCoins.bind(this),
+      returnedCoins,
     });
 
     setTableStyled(this.$target);
@@ -67,7 +75,12 @@ export default class ProductPurchase extends Component {
 
   purchaseItem(props) {
     const payload = { ...props };
+    this.callAPI.setVendingMachine(payload);
+    this.setState(payload);
+  }
 
+  setReturnedCoins(props) {
+    const payload = { ...props };
     this.callAPI.setVendingMachine(payload);
     this.setState(payload);
   }

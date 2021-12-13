@@ -12,38 +12,38 @@ export default class CoinStatus extends Component {
     } = this.$props;
 
     return `
-    <h3>자판기가 보유한 동전</h3>
-        <table>
-          <thead>
-            <tr><th>동전</th><th>개수</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>500원</td>
-              <td id="vending-machine-coin-500-quantity">
-                ${this.getCoinQuantityText(coin500)}
-              </td>
-            </tr>
-            <tr>
-              <td>100원</td>
-              <td id="vending-machine-coin-100-quantity">
-                ${this.getCoinQuantityText(coin100)}
-              </td>
-            </tr>
-            <tr>
-              <td>50원</td>
-              <td id="vending-machine-coin-50-quantity">
-                ${this.getCoinQuantityText(coin50)}
-              </td>
-            </tr>
-            <tr>
-              <td>10원</td>
-              <td id="vending-machine-coin-10-quantity">
-                ${this.getCoinQuantityText(coin10)}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <h3>자판기가 보유한 동전</h3>
+      <table>
+        <thead>
+          <tr><th>동전</th><th>개수</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>500원</td>
+            <td id="vending-machine-coin-500-quantity">${this.getCoinUnitText(
+              coin500
+            )}</td>
+          </tr>
+          <tr>
+            <td>100원</td>
+            <td id="vending-machine-coin-100-quantity">${this.getCoinUnitText(
+              coin100
+            )}</td>
+          </tr>
+          <tr>
+            <td>50원</td>
+            <td id="vending-machine-coin-50-quantity">${this.getCoinUnitText(
+              coin50
+            )}</td>
+          </tr>
+          <tr>
+            <td>10원</td>
+            <td id="vending-machine-coin-10-quantity">${this.getCoinUnitText(
+              coin10
+            )}</td>
+          </tr>
+        </tbody>
+      </table>
     `;
   }
 
@@ -51,7 +51,7 @@ export default class CoinStatus extends Component {
     setTableStyled(this.$target);
   }
 
-  getCoinQuantityText(coin) {
+  getCoinUnitText(coin) {
     return coin ? `${coin}개` : ``;
   }
 }

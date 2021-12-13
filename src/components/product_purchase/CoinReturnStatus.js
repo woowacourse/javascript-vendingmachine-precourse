@@ -7,6 +7,10 @@ export default class CoinReturnStatus extends Component {
   }
 
   template() {
+    const {
+      returnedCoins: { coin500, coin100, coin50, coin10 },
+    } = this.$props;
+
     return `
         <h3>잔돈</h3>
         <button id="coin-return-button">반환하기</button>
@@ -17,31 +21,27 @@ export default class CoinReturnStatus extends Component {
           <tbody>
             <tr>
               <td>500원</td>
-              <td id="coin-500-quantity">
-                00
-              </td>
+              <td id="coin-500-quantity">${this.getCoinUnitText(coin500)}</td>
             </tr>
             <tr>
               <td>100원</td>
-              <td id="coin-100-quantity">
-                00
-              </td>
+              <td id="coin-100-quantity">${this.getCoinUnitText(coin100)}</td>
             </tr>
             <tr>
               <td>50원</td>
-              <td id="coin-50-quantity">
-                00
-              </td>
+              <td id="coin-50-quantity">${this.getCoinUnitText(coin50)}</td>
             </tr>
             <tr>
               <td>10원</td>
-              <td id="coin-10-quantity">
-                00
-              </td>
+              <td id="coin-10-quantity">${this.getCoinUnitText(coin10)}</td>
             </tr>
           </tbody>
         </table>
     `;
+  }
+
+  getCoinUnitText(coin) {
+    return coin ? `${coin}개` : ``;
   }
 
   mounted() {
@@ -52,13 +52,21 @@ export default class CoinReturnStatus extends Component {
 
   onClickHandler(e) {
     console.log("click");
-    const { chargeAmount, coins, purchaseChargeAmount } = this.$props;
-    const result = this.getMinimumReturnedCoins({
+    const { chargeAmount, coins, purchaseChargeAmount, setReturnedCoins } =
+      this.$props;
+
+    if (purchaseChargeAmount >= 1000) {
+      window.alert("지폐는 잔돈으로 반환 할 수 없습니다.");
+      return;
+    }
+    const props = this.getMinimumReturnedCoins({
       currentCoins: { ...coins },
       purchaseChargeAmount,
       chargeAmount,
     });
-    console.log("result", result);
+
+    setReturnedCoins({ ...props });
+    console.log("props", props);
   }
 
   getMinimumReturnedCoins({

@@ -22,6 +22,12 @@ export default class Api {
         coin50: 0,
         coin10: 0,
       },
+      returnedCoins: {
+        coin500: 0,
+        coin100: 0,
+        coin50: 0,
+        coin10: 0,
+      },
       purchaseChargeAmount: 0,
     };
 
