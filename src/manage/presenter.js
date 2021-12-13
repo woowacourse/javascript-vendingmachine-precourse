@@ -28,7 +28,7 @@ export default function ManagePresenter() {
     };
 
     const setInitialManage = () => {
-        const $addTitle = createTitle("상품 추가하기");
+        const $addTitle = createTitle(STRING.TITLE);
         const $productInput = createInput(ID.NAME_INPUT, STRING.NAME);
         const $priceInput = createInput(ID.PRICE_INPUT, STRING.PRICE);
         const $amountInput = createInput(ID.QUANTITY_INPUT, STRING.AMOUNT);

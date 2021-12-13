@@ -24,6 +24,7 @@ export const MANAGE_STRING = Object.freeze({
     AMOUNT: "수량",
     ADD: "추가하기",
     STATE: "상품 현황",
+    TITLE: "상품 추가하기",
 });
 
 export const CHARGE_TAB_ID = Object.freeze({
@@ -49,6 +50,7 @@ export const CHARGE_STRING = Object.freeze({
     COIN_50: "50",
     COIN_10: "10",
     WON: "원",
+    EACH: "개",
 });
 
 export const PURCHASE_TAB_ID = Object.freeze({
@@ -83,6 +85,7 @@ export const PURCHASE_STRING = Object.freeze({
 
 export const EMPTY = "";
 export const ZERO = 0;
+export const click = "click";
 
 export const TABLE_CLASS = Object.freeze({
     COIN_TABLE: "coin_table",

@@ -2,6 +2,8 @@ import {
     PURCHASE_TAB_ID as ID,
     LOACL_STORAGE as LOCAL,
     EMPTY,
+    CHARGE_STRING,
+    CLICK,
 } from "../storage/constant.js";
 import { clearInput } from "../storage/createElement.js";
 import { getLocalStorage, setLocalStorage } from "../storage/localStorage.js";
@@ -21,7 +23,7 @@ export default function PurchaseContainer() {
     const setButtonListener = () => {
         const $chargeButton = document.getElementById(ID.CHARGE_BUTTON);
         const $returnButton = document.getElementById(ID.RETURN_BUTTON);
-        $chargeButton.addEventListener("click", function (e) {
+        $chargeButton.addEventListener(CLICK, function (e) {
             e.preventDefault();
             const chargeVal = checkNumContainDivideTen($chargeInput.value);
 
@@ -30,7 +32,7 @@ export default function PurchaseContainer() {
             clearInput($chargeInput);
         });
 
-        $returnButton.addEventListener("click", function (e) {
+        $returnButton.addEventListener(CLICK, function (e) {
             e.preventDefault();
             const loadCoin = getLocalStorage(LOCAL.COIN_AMOUNT);
             if (loadCoin !== EMPTY) {
@@ -49,7 +51,7 @@ export default function PurchaseContainer() {
         const $coin_10 = document.getElementById(ID.COIN_10);
 
         [$coin_500, $coin_100, $coin_50, $coin_10].forEach((element, idx) => {
-            element.innerText = `${result[idx]}개`;
+            element.innerText = `${result[idx]}${CHARGE_STRING.EACH}`;
         });
     };
 

@@ -3,6 +3,7 @@ import {
     MANAGE_TAB_CLASS as CLASS,
     LOACL_STORAGE as LOCAL,
     TABLE_CLASS,
+    CLICK,
 } from "../storage/constant.js";
 import { Product } from "./product.js";
 import { appendTable, clearInput } from "../storage/createElement.js";
@@ -23,7 +24,7 @@ export default function ManageContainer() {
 
     const setButtonListener = () => {
         const $addButton = document.getElementById(ID.ADD_BUTTON);
-        $addButton.addEventListener("click", function (e) {
+        $addButton.addEventListener(CLICK, function (e) {
             e.preventDefault();
             const productInfo = getProductInfo();
             const product = new Product(

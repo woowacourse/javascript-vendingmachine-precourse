@@ -1,6 +1,7 @@
 import { clickHandler } from "./initialPresent.js";
 import { EMPTY } from "./constant.js";
 import { purchase } from "../purchase/calc.js";
+import { PURCHASE_STRING, CLICK } from "./constant.js";
 export const createTitle = (text) => {
     const $h3 = document.createElement("h3");
     $h3.textContent = text;
@@ -32,7 +33,7 @@ export const createTab = (id, text) => {
     const $tab = document.createElement("button");
     $tab.id = id;
     $tab.innerText = text;
-    $tab.addEventListener("click", function (e) {
+    $tab.addEventListener(CLICK, function (e) {
         e.preventDefault();
         clickHandler(e.target.id);
     });
@@ -112,8 +113,8 @@ const addColms = (idx, td, object) => {
 const addPurchaseButtons = (rows, element, td) => {
     const button = document.createElement("button");
     button.className = element;
-    button.innerText = "구매하기";
-    button.addEventListener("click", function (e) {
+    button.innerText = PURCHASE_STRING.PURCHASE;
+    button.addEventListener(CLICK, function (e) {
         e.preventDefault();
         purchase(rows);
     });

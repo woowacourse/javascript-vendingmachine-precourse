@@ -1,5 +1,9 @@
 import { getLocalStorage } from "../storage/localStorage.js";
-import { EMPTY, LOACL_STORAGE as LOCAL } from "../storage/constant.js";
+import {
+    EMPTY,
+    LOACL_STORAGE as LOCAL,
+    CHARGE_STRING as STRING,
+} from "../storage/constant.js";
 
 export const Coin = function () {
     this.coin_500 = 0;
@@ -45,8 +49,8 @@ export const appendTable = (coin, ID) => {
         coin.coin_50 += curCoin[0].coin_50;
         coin.coin_10 += curCoin[0].coin_10;
     }
-    $coin_500.innerHTML = `${coin.coin_500}개`;
-    $coin_100.innerHTML = `${coin.coin_100}개`;
-    $coin_50.innerHTML = `${coin.coin_50}개`;
-    $coin_10.innerHTML = `${coin.coin_10}개`;
+    $coin_500.innerHTML = `${coin.coin_500}${STRING.EACH}`;
+    $coin_100.innerHTML = `${coin.coin_100}${STRING.EACH}`;
+    $coin_50.innerHTML = `${coin.coin_50}${STRING.EACH}`;
+    $coin_10.innerHTML = `${coin.coin_10}${STRING.EACH}`;
 };

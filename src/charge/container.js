@@ -3,6 +3,7 @@ import {
     CHARGE_STRING as STRING,
     ZERO,
     LOACL_STORAGE as LOCAL,
+    CLICK,
 } from "../storage/constant.js";
 import { appendLocalStorage } from "../storage/localStorage.js";
 import { appendTable } from "./Coin.js";
@@ -19,7 +20,7 @@ export default function ChargeContainer(coin) {
 
     const setButtonListener = () => {
         const $chargeButton = document.getElementById(ID.CHARGE_BUTTON);
-        $chargeButton.addEventListener("click", function (e) {
+        $chargeButton.addEventListener(CLICK, function (e) {
             e.preventDefault();
             const amount = getChargeInput();
             getCoin(amount);
