@@ -9,11 +9,28 @@ export const COIN_LIST = {
   TEN: 10,
 }
 
+export const LOCAL_STORAGE_KEY = {
+  PRODUCT_LIST: 'productList',
+  CHANGE_LIST: 'changeList',
+  PUTTED_MONEY: 'puttedMoney',
+};
+
 export const TAB_TYPE = {
   PRODUCT_MANAGEMENT: 'PRODUCT_MANAGEMENT',
   CHARGING_CHANGE: 'CHARGING_CHANGE',
   PURCHASING_PRODUCT: 'PURCHASING_PRODUCT',
 };
+
+export const CUSTOM_EVENT_NAME = {
+ CHARGE_CHANGES: '@chargeChanges', 
+ ADD_PRODUCT: '@addProduct',
+ RETURN_EXCHANGES: '@returnExchanges',
+ ADD_PUTTED_MONEY: '@addPuttedMoney',
+ PURCHASE_PRODUCT: '@purchaseProduct',
+ SHOW_PRODUCT_PURCHASE_MENU: '@showProductPurchaseMenu',
+ SHOW_VENDING_MACHINE_MANAGE_MENU: '@showVendingMachineManageMenu',
+ SHOW_PRODUCT_ADD_MENU: '@showProductAddMenu',
+}
 
 export const SELECTOR = {
   COIN_MENU: '#vending-machine-manage-menu',

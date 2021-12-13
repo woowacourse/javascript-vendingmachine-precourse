@@ -1,4 +1,4 @@
-import { CLASS, COIN_LIST, ID, SELECTOR } from '../constants.js';
+import { CLASS, COIN_LIST, CUSTOM_EVENT_NAME, ID, SELECTOR } from '../constants.js';
 import { on, qs, qsAll } from '../utils/index.js';
 import View from './View.js';
 
@@ -37,14 +37,14 @@ export default class PurchasingProductView extends View {
 
   handleReturnExchanges() {
     on(this.coinReturnButton, 'click', () => {
-      this.emit('@returnExchanges');
+      this.emit(CUSTOM_EVENT_NAME.RETURN_EXCHANGES);
     });
   }
 
   handleChargePuttedMoney() {
     on(this.vendingMachineChargeButton, 'click', () => {
       const { value: puttedMoney } = this.vendingMachineChargeInput;
-      this.emit('@addPuttedMoney', { puttedMoney });
+      this.emit(CUSTOM_EVENT_NAME.ADD_PUTTED_MONEY, { puttedMoney });
     });
   }
 
@@ -60,7 +60,7 @@ export default class PurchasingProductView extends View {
         const price = prices[index].dataset.productPrice;
         const quantity = quantities[index].dataset.productQuantity;
         const product = { name, price, quantity };
-        this.emit('@purchaseProduct', { product });
+        this.emit(CUSTOM_EVENT_NAME.PURCHASE_PRODUCT, { product });
       });
     });
   }

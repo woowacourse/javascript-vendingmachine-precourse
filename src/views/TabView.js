@@ -1,4 +1,4 @@
-import { SELECTOR } from "../constants.js";
+import { CUSTOM_EVENT_NAME, SELECTOR } from "../constants.js";
 import { on, qs } from "../utils/index.js";
 import View from "./View.js";
 
@@ -16,13 +16,13 @@ export default class TabView extends View {
 
   bindEvents() {
     on(this.productPurchaseMenu, 'click', () => {
-      this.emit('@showProductPurchaseMenu');
+      this.emit(CUSTOM_EVENT_NAME.SHOW_PRODUCT_PURCHASE_MENU);
     });
     on(this.vendingMachineManageMenu, 'click', () => {
-      this.emit('@showVendingMachineManageMenu');
+      this.emit(CUSTOM_EVENT_NAME.SHOW_VENDING_MACHINE_MANAGE_MENU);
     });
     on(this.productAddMenu, 'click', () => {
-      this.emit('@showProductAddMenu');
+      this.emit(CUSTOM_EVENT_NAME.SHOW_PRODUCT_ADD_MENU);
     });
   }
 }

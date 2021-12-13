@@ -1,3 +1,5 @@
+import { CUSTOM_EVENT_NAME, TAB_TYPE } from "./constants.js";
+
 export default class Controller {
   constructor(
     {
@@ -22,56 +24,56 @@ export default class Controller {
   }
 
   subscribeViewEvents() {
-    this.productManagementView.on('@addProduct', (event) => {
+    this.productManagementView.on(CUSTOM_EVENT_NAME.ADD_PRODUCT, (event) => {
       this.store.addProduct(event.detail.product);
       const productList = this.store.getProductList();
       this.productManagementView.show(productList);
     });
-    this.chargingChangeView.on('@chargeChanges', (event) => {
+    this.chargingChangeView.on(CUSTOM_EVENT_NAME.CHARGE_CHANGES, (event) => {
       this.store.chargeChanges(event.detail.changes);
-      const currentCharges = this.store.getCurrentChanges();
-      const currentChargeTotal = this.store.getChangeListTotal()
+      const currentCharges = this.store.getChangeList();
+      const currentChargeTotal = this.store.getChangeListTotal();
       this.chargingChangeView.show([currentCharges, currentChargeTotal]);
     });
     this.purchasingProductView
-      .on('@purchaseProduct', (event) => {
+      .on(CUSTOM_EVENT_NAME.PURCHASE_PRODUCT, (event) => {
         this.store.substractProductQuantity(event.detail.product);
         this.store.substractPuttedMoney(parseInt(event.detail.product.price));
         this.purchasingProductView.show([
-          JSON.parse(this.store.storage.getItem('productList')),
-          JSON.parse(this.store.storage.getItem('changeList')),
-          JSON.parse(this.store.storage.getItem('puttedMoney')),
+          this.store.getProductList(),
+          this.store.getChangeList(),
+          this.store.getPuttedMoney(),
         ]);
       })
-      .on('@addPuttedMoney', (event) => {
+      .on(CUSTOM_EVENT_NAME.ADD_PUTTED_MONEY, (event) => {
         this.store.addPuttedMoney(parseInt(event.detail.puttedMoney));
         this.purchasingProductView.show([
-          JSON.parse(this.store.storage.getItem('productList')),
-          JSON.parse(this.store.storage.getItem('changeList')),
-          JSON.parse(this.store.storage.getItem('puttedMoney')),
+          this.store.getProductList(),
+          this.store.getChangeList(),
+          this.store.getPuttedMoney(),
         ]);
       })
-      .on('@returnExchanges', () => {
-        const currentCharges = this.store.getCurrentChanges();
+      .on(CUSTOM_EVENT_NAME.RETURN_EXCHANGES, () => {
+        const currentCharges = this.store.getChangeList();
         const puttedMoney = this.store.getPuttedMoney();
         this.store.returnExchanges(currentCharges, puttedMoney);
         this.purchasingProductView.show([
-          JSON.parse(this.store.storage.getItem('productList')),
-          JSON.parse(this.store.storage.getItem('changeList')),
-          JSON.parse(this.store.storage.getItem('puttedMoney')),
+          this.store.getProductList(),
+          this.store.getChangeList(),
+          this.store.getPuttedMoney(),
         ]);
       });
     this.tabView
-      .on('@showProductPurchaseMenu', () => {
-        this.store.clickedTab = 'productPurchaseMenu';
+      .on(CUSTOM_EVENT_NAME.SHOW_PRODUCT_PURCHASE_MENU, () => {
+        this.store.clickedTab = TAB_TYPE.PURCHASING_PRODUCT;
         this.render();
       })
-      .on('@showVendingMachineManageMenu', () => {
-        this.store.clickedTab = 'vendingMachineManageMenu';
+      .on(CUSTOM_EVENT_NAME.SHOW_VENDING_MACHINE_MANAGE_MENU, () => {
+        this.store.clickedTab = TAB_TYPE.CHARGING_CHANGE;
         this.render();
       })
-      .on('@showProductAddMenu', () => {
-        this.store.clickedTab = 'productAddMenu';
+      .on(CUSTOM_EVENT_NAME.SHOW_PRODUCT_ADD_MENU, () => {
+        this.store.clickedTab = TAB_TYPE.PRODUCT_MANAGEMENT;
         this.render();
       });
   }
@@ -79,66 +81,66 @@ export default class Controller {
   render() {
     this.tabView.show();
 
-    if (this.store.clickedTab === 'productPurchaseMenu') {
+    if (this.store.clickedTab === TAB_TYPE.PURCHASING_PRODUCT) {
       
       this.productManagementView.hide(
-        JSON.parse(this.store.storage.getItem('productList')),
+        this.store.getProductList(),
       );
 
       this.chargingChangeView.hide([
-        JSON.parse(this.store.storage.getItem('changeList')),
+        this.store.getChangeList(),
         this.store.getChangeListTotal(),
       ]);
 
       this.purchasingProductView.show([
-        JSON.parse(this.store.storage.getItem('productList')),
-        JSON.parse(this.store.storage.getItem('changeList')),
-        JSON.parse(this.store.storage.getItem('puttedMoney')),
+        this.store.getProductList(),
+        this.store.getChangeList(),
+        this.store.getPuttedMoney(),
       ]);
-    } else if (this.store.clickedTab === 'vendingMachineManageMenu') {
+    } else if (this.store.clickedTab === TAB_TYPE.CHARGING_CHANGE) {
       this.productManagementView.hide(
-        JSON.parse(this.store.storage.getItem('productList')),
+        this.store.getProductList(),
       );
 
       this.chargingChangeView.show([
-        JSON.parse(this.store.storage.getItem('changeList')),
+        this.store.getChangeList(),
         this.store.getChangeListTotal(),
       ]);
 
       this.purchasingProductView.hide([
-        JSON.parse(this.store.storage.getItem('productList')),
-        JSON.parse(this.store.storage.getItem('changeList')),
-        JSON.parse(this.store.storage.getItem('puttedMoney')),
+        this.store.getProductList(),
+        this.store.getChangeList(),
+        this.store.getPuttedMoney(),
       ]);
-    } else if (this.store.clickedTab === 'productAddMenu') {
+    } else if (this.store.clickedTab === TAB_TYPE.PRODUCT_MANAGEMENT) {
       this.productManagementView.show(
-        JSON.parse(this.store.storage.getItem('productList')),
+        this.store.getProductList(),
       );
 
       this.chargingChangeView.hide([
-        JSON.parse(this.store.storage.getItem('changeList')),
+        this.store.getChangeList(),
         this.store.getChangeListTotal(),
       ]);
 
       this.purchasingProductView.hide([
-        JSON.parse(this.store.storage.getItem('productList')),
-        JSON.parse(this.store.storage.getItem('changeList')),
-        JSON.parse(this.store.storage.getItem('puttedMoney')),
+        this.store.getProductList(),
+        this.store.getChangeList(),
+        this.store.getPuttedMoney(),
       ]);
     } else {
       this.productManagementView.hide(
-        JSON.parse(this.store.storage.getItem('productList')),
+        this.store.getProductList(),
       );
 
       this.chargingChangeView.hide([
-        JSON.parse(this.store.storage.getItem('changeList')),
+        this.store.getChangeList(),
         this.store.getChangeListTotal(),
       ]);
 
       this.purchasingProductView.hide([
-        JSON.parse(this.store.storage.getItem('productList')),
-        JSON.parse(this.store.storage.getItem('changeList')),
-        JSON.parse(this.store.storage.getItem('puttedMoney')),
+        this.store.getProductList(),
+        this.store.getChangeList(),
+        this.store.getPuttedMoney(),
       ]);
     }
   }

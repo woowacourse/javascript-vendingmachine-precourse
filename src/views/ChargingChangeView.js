@@ -1,4 +1,4 @@
-import { COIN_LIST, ID, SELECTOR } from '../constants.js';
+import { COIN_LIST, CUSTOM_EVENT_NAME, ID, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
 import View from './View.js';
 
@@ -48,7 +48,7 @@ export default class ChargingChangeView extends View {
           inputChanges -= randomCoin;
         }
       }
-      this.emit('@chargeChanges', { changes });
+      this.emit(CUSTOM_EVENT_NAME.CHARGE_CHANGES, { changes });
     });
   }
 }

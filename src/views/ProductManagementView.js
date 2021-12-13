@@ -1,4 +1,4 @@
-import { CLASS, ID, SELECTOR } from '../constants.js';
+import { CLASS, CUSTOM_EVENT_NAME, ID, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
 import View from './View.js';
 
@@ -34,7 +34,7 @@ export default class ProductManagementView extends View {
       const quantity = this.productQuantityInput.value;
 
       const product = { name, price, quantity };
-      this.emit('@addProduct', { product });
+      this.emit(CUSTOM_EVENT_NAME.ADD_PRODUCT, { product });
 
       this.clearInput();
     });

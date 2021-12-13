@@ -1,3 +1,5 @@
+import { COIN_LIST, LOCAL_STORAGE_KEY } from './constants.js';
+
 export default class Store {
   constructor() {
     this.storage = window.localStorage;
@@ -9,59 +11,72 @@ export default class Store {
   }
 
   checkProductList() {
-    const productList = this.storage.getItem('productList');
-    if (!productList) this.storage.setItem('productList', JSON.stringify([]));
+    const productList = this.getProductList();
+    if (!productList) this.setProductList([]);
   }
 
   addProduct(product) {
-    const productListOfJson = this.storage.getItem('productList');
-    const productList = JSON.parse(productListOfJson);
+    const productList = this.getProductList();
     productList.push(product);
-    this.storage.setItem('productList', JSON.stringify(productList));
+    this.setProductList(productList);
   }
 
   getProductList() {
-    return JSON.parse(this.storage.getItem('productList'));
+    return JSON.parse(this.storage.getItem(LOCAL_STORAGE_KEY.PRODUCT_LIST));
+  }
+
+  setProductList(data) {
+    this.storage.setItem(LOCAL_STORAGE_KEY.PRODUCT_LIST, JSON.stringify(data));
   }
 
   checkChangeList() {
-    const changeList = this.storage.getItem('changeList');
+    const changeList = this.getChangeList();
     const initialChangeList = {
       500: 0,
       100: 0,
       50: 0,
       10: 0,
     };
-    if (!changeList)
-      this.storage.setItem('changeList', JSON.stringify(initialChangeList));
+    if (!changeList) this.setChangeList(initialChangeList);
+  }
+
+  setChangeList(data) {
+    return this.storage.setItem(LOCAL_STORAGE_KEY.CHANGE_LIST, JSON.stringify(data));
+  }
+
+  getChangeList() {
+    return JSON.parse(this.storage.getItem(LOCAL_STORAGE_KEY.CHANGE_LIST));
   }
 
   getChangeListTotal() {
-    const changeList = this.getCurrentChanges();
-    const foo500 = changeList['500'] * 500;
-    const foo100 = changeList['100'] * 100;
-    const foo50 = changeList['50'] * 50;
-    const foo10 = changeList['10'] * 10;
-    return foo500 + foo100 + foo50 + foo10
+    const changeList = this.getChangeList();
+    return (
+      changeList[COIN_LIST.FIVE_HUNDRED] * 500 +
+      changeList[COIN_LIST.ONE_HUNDRED] * 100 +
+      changeList[COIN_LIST.FIFTY] * 50 +
+      changeList[COIN_LIST.TEN] * 10
+    );
   }
 
   chargeChanges(changeList) {
-    const originalChangeList = this.getCurrentChanges();
-    
-    originalChangeList['500'] += parseInt(changeList['500']);
-    originalChangeList['100'] += parseInt(changeList['100']);
-    originalChangeList['50'] += parseInt(changeList['50']);
-    originalChangeList['10'] += parseInt(changeList['10']);
+    const originalChangeList = this.getChangeList();
 
-    this.storage.setItem('changeList', JSON.stringify(originalChangeList));
-  }
+    originalChangeList[COIN_LIST.FIVE_HUNDRED] += parseInt(
+      changeList[COIN_LIST.FIVE_HUNDRED],
+    );
+    originalChangeList[COIN_LIST.ONE_HUNDRED] += parseInt(
+      changeList[COIN_LIST.ONE_HUNDRED],
+    );
+    originalChangeList[COIN_LIST.FIFTY] += parseInt(
+      changeList[COIN_LIST.FIFTY],
+    );
+    originalChangeList[COIN_LIST.TEN] += parseInt(changeList[COIN_LIST.TEN]);
 
-  getCurrentChanges() {
-    return JSON.parse(this.storage.getItem('changeList'));
+    this.setChangeList(originalChangeList);
   }
 
   checkPuttedMoney() {
-    const puttedMoney = this.storage.getItem('puttedMoney');
+    const puttedMoney = this.getPuttedMoney();
     const initialPuttedMoney = {
       inputMoney: 0,
       returnedCoins: {
@@ -71,31 +86,34 @@ export default class Store {
         10: 0,
       },
     };
-    if (!puttedMoney)
-      this.storage.setItem('puttedMoney', JSON.stringify(initialPuttedMoney));
+    if (!puttedMoney) this.setPuttedMoney(initialPuttedMoney);
   }
 
   getPuttedMoney() {
-    return JSON.parse(this.storage.getItem('puttedMoney'));
+    return JSON.parse(this.storage.getItem(LOCAL_STORAGE_KEY.PUTTED_MONEY));
+  }
+
+  setPuttedMoney(data) {
+    return this.storage.setItem(LOCAL_STORAGE_KEY.PUTTED_MONEY, JSON.stringify(data));
   }
 
   substractProductQuantity({ name }) {
     const productList = this.getProductList();
     const index = productList.findIndex((product) => product.name === name);
     productList[index].quantity -= 1;
-    this.storage.setItem('productList', JSON.stringify(productList));
+    this.setProductList(productList)
   }
 
   addPuttedMoney(money) {
     const puttedMoney = this.getPuttedMoney();
     puttedMoney.inputMoney = parseInt(puttedMoney.inputMoney) + money;
-    this.storage.setItem('puttedMoney', JSON.stringify(puttedMoney));
+    this.setPuttedMoney(puttedMoney);
   }
 
   substractPuttedMoney(money) {
     const puttedMoney = this.getPuttedMoney();
     puttedMoney.inputMoney = parseInt(puttedMoney.inputMoney) - money;
-    this.storage.setItem('puttedMoney', JSON.stringify(puttedMoney));
+    this.setPuttedMoney(puttedMoney);
   }
 
   returnExchanges(currentCharges, puttedMoney) {
@@ -115,7 +133,7 @@ export default class Store {
         puttedMoney.returnedCoins[coinKeys[index]] += 1;
       }
     }
-    this.storage.setItem('puttedMoney', JSON.stringify(puttedMoney));
-    this.storage.setItem('changeList', JSON.stringify(currentCharges));
-  }  
+    this.setPuttedMoney(puttedMoney);
+    this.setChangeList(currentCharges);
+  }
 }
