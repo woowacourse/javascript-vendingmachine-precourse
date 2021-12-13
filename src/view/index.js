@@ -7,52 +7,64 @@ import {
 } from '../model/template.js';
 import { KEY, COIN_X_QUANTITY, VENDING_MACHINE_COIN_X_QUANTITY } from '../model/constants.js';
 
-export const clearContainer = () => {
-  $('container').innerHTML = '';
-};
-
-export const showAddMenu = () => {
-  clearContainer();
-  $('container').insertAdjacentHTML('afterbegin', productAddMenu);
-};
-
-export const showVendingMenu = () => {
-  clearContainer();
-  $('container').insertAdjacentHTML('afterbegin', vendingMachineManageMenu);
-};
-
-export const showPurchaseMenu = () => {
-  clearContainer();
-  $('container').insertAdjacentHTML('afterbegin', productPurchaseMenu);
-};
-
-export const initView = () => {
-  const $app = $('app');
-  $app.insertAdjacentHTML('afterbegin', headerMenu);
-  showAddMenu();
-};
-
-export const addTableHeader = (table, headerForm) =>
-  table.insertAdjacentHTML('beforeend', headerForm);
-
-export const addTableRow = (table, rowForm) => table.insertAdjacentHTML('beforeend', rowForm);
-
-export const setInnerHTML = (target, value) => (target.innerHTML = value);
-
-export const clearInput = input => (input.value = '');
-
-export const clearTable = table => (table.innerHTML = '');
-
-export const initReturnTable = returnCoin =>
-  returnCoin.forEach(x => {
-    $(COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`;
-  });
-
-export const initVendingTable = () => {
-  const vending = handleStorage.getItemOrNull(KEY.vending);
-  if (vending) {
-    vending.coins.forEach(
-      x => ($(VENDING_MACHINE_COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`),
-    );
+export default class View {
+  constructor() {
+    this.$app = $('app');
+    this.$app.insertAdjacentHTML('afterbegin', headerMenu);
+    this.showAddMenu();
   }
-};
+
+  clearContainer() {
+    $('container').innerHTML = '';
+  }
+
+  showAddMenu() {
+    this.clearContainer();
+    $('container').insertAdjacentHTML('afterbegin', productAddMenu);
+  }
+
+  showVendingMenu() {
+    this.clearContainer();
+    $('container').insertAdjacentHTML('afterbegin', vendingMachineManageMenu);
+  }
+
+  showPurchaseMenu() {
+    this.clearContainer();
+    $('container').insertAdjacentHTML('afterbegin', productPurchaseMenu);
+  }
+
+  addTableHeader(table, headerForm) {
+    table.insertAdjacentHTML('beforeend', headerForm);
+  }
+
+  addTableRow(table, rowForm) {
+    table.insertAdjacentHTML('beforeend', rowForm);
+  }
+
+  setInnerHTML(target, value) {
+    target.innerHTML = value;
+  }
+
+  clearInput(input) {
+    input.value = '';
+  }
+
+  clearTable(table) {
+    table.innerHTML = '';
+  }
+
+  initReturnTable(returnCoin) {
+    returnCoin.forEach(x => {
+      $(COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`;
+    });
+  }
+
+  initVendingTable() {
+    const vending = handleStorage.getItemOrNull(KEY.vending);
+    if (vending) {
+      vending.coins.forEach(
+        x => ($(VENDING_MACHINE_COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`),
+      );
+    }
+  }
+}

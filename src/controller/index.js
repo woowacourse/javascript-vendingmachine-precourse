@@ -1,28 +1,29 @@
 import { SELECTOR } from '../model/constants.js';
-import { showAddMenu, showVendingMenu, showPurchaseMenu } from '../view/index.js';
-import { initAllProductAdd } from './productAdd.js';
-import { initAllVending } from './vending.js';
-import { initAllPurchase } from './purchase.js';
+import ProductAdd from './productAdd.js';
 import { $ } from './utils.js';
 
-const callAddMenu = () => {
-  showAddMenu();
-  initAllProductAdd();
-};
+export default class Controller {
+  constructor(view) {
+    this.view = view;
+    this.addEventListeners(this.view);
+    this.productAdd = new ProductAdd(this.view);
+  }
 
-const callVendingMenu = () => {
-  showVendingMenu();
-  initAllVending();
-};
+  addEventListeners(view) {
+    $(SELECTOR.addMenu).addEventListener('click', () => this.callAddMenu(view));
+    $(SELECTOR.vendingMenu).addEventListener('click', () => this.allVendingMenu(view));
+    $(SELECTOR.purchaseMenu).addEventListener('click', () => this.callPurchaseMenu(view));
+  }
 
-const callPurchaseMenu = () => {
-  showPurchaseMenu();
-  initAllPurchase();
-};
+  callAddMenu(view) {
+    view.showAddMenu();
+  }
 
-export const initController = () => {
-  $(SELECTOR.addMenu).addEventListener('click', () => callAddMenu());
-  $(SELECTOR.vendingMenu).addEventListener('click', () => callVendingMenu());
-  $(SELECTOR.purchaseMenu).addEventListener('click', () => callPurchaseMenu());
-  initAllProductAdd();
-};
+  callVendingMenu(view) {
+    view.showVendingMenu();
+  }
+
+  callPurchaseMenu(view) {
+    view.showPurchaseMenu();
+  }
+}

@@ -1,5 +1,9 @@
-import { initView } from './view/index.js';
-import { initController } from './controller/index.js';
+import View from './view/index.js';
+import Controller from './controller/index.js';
 
-initView();
-initController();
+const init = () => {
+  const view = new View();
+  const controller = new Controller(view);
+};
+
+init();
