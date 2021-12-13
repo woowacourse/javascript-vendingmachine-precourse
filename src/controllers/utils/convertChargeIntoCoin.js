@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { default as DB } from '../model/database.js';
+import { default as DB } from '../../model/database.js';
 
 const convertChargeIntoCoin = charge => {
   const coinWallet = DB.load('vendingMachineCoins');
