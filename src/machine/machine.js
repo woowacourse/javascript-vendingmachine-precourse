@@ -55,26 +55,41 @@ export default class VendingMachine {
         updateStorage(this);
     }
 
-    buyProduct(product){
-        if(this.input >= product.price){
-            this.input -= product.price;
-            product.quantity--;
-
-            this.changeDisplayProduct(product);
-        }
-    }
-
     userBuy(money){
         money = parseInt(money);
+
+        const item = getStorage();
         if(validator.checkUserBuy(money)){
             this.input += money;
             this.displayInputCoin(this.input);
         }
+
+        //TODO: change this => item
+        updateStorage(this);
+    }
+
+    buyProduct(product){
+
+        const item = getStorage();
+        if(this.input >= product.price){
+            this.input -= product.price;
+            product.quantity--;
+
+            this.displayChangedProduct(product);
+        }
+
+        //TODO: change this => item
+        updateStorage(this);
     }
 
     returnMoney(){
+        
+        const item = getStorage();
         const coins = this.getRandomReturn(this.input);
         this.displayReturnedCoins(coins);
+        
+        //TODO: change this => item
+        updateStorage(this);
     }
 
     getRandomReturn(money){
@@ -114,12 +129,16 @@ export default class VendingMachine {
         document.getElementById(ADD_TAB_ID.PRODUCT_TABLE).append(tr);
     }
 
-
-    changeDisplayProduct(product){
-        document.querySelector(`#${product.id} .${PURCHASE_TAB_CLASS.PRODUCT_QUANTITY}`).innerHTML = product.quantity;
-        document.getElementById(PURCHASE_TAB_ID.CHARGE_AMOUNT).innerHTML = this.input;
+    //TODO: seperate
+    displayPossessCoins(){
+        let total = 0;
+        for(let key in this.coins){
+            document.getElementById(COIN_TABLE_ID[key]).innerHTML = `${this.coins[key]}개`;
+            total += this.coins[key] * COIN_VALUE[key];
+        }
+        document.getElementById(MANAGE_TAB_ID.AMOUNT_SPAN_VALUE).innerHTML = total;
     }
-
+    
     displayProductPurchaseTab(product){
         const tr = `<tr id= ${product.id} class= ${PURCHASE_TAB_CLASS.PURCHASE_ITEM}>
                         <td class=${PURCHASE_TAB_CLASS.PRODUCT_NAME} 
@@ -142,28 +161,22 @@ export default class VendingMachine {
             }
         })
     }
-
-    displayPossessCoins(){
-        let total = 0;
-        for(let key in this.coins){
-            document.getElementById(COIN_TABLE_ID[key]).innerHTML = `${this.coins[key]}개`;
-            total += this.coins[key] * COIN_VALUE[key];
-        }
-        document.getElementById(MANAGE_TAB_ID.AMOUNT_SPAN_VALUE).innerHTML = total;
-    }
-
     
-
     displayInputCoin(input){
         document.getElementById(PURCHASE_TAB_ID.CHARGE_AMOUNT).innerHTML = input;
     }
 
+    //TODO: seperate
+    displayChangedProduct(product){
+        document.querySelector(`#${product.id} .${PURCHASE_TAB_CLASS.PRODUCT_QUANTITY}`).innerHTML = product.quantity;
+        document.getElementById(PURCHASE_TAB_ID.CHARGE_AMOUNT).innerHTML = this.input;
+    }
+
+    //TODO: seperate
     displayReturnedCoins(coins){
         for(let key in this.coins){
             document.getElementById(PURCHASE_TAB_ID.COIN_TABLE[key]).innerHTML = `${coins[key]}개`;
             document.getElementById(COIN_TABLE_ID[key]).innerHTML = `${this.coins[key]}개`;
         }
-    }
-
-    
+    }   
 }
