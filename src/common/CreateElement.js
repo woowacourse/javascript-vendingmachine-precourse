@@ -1,5 +1,15 @@
+import { setDisplayNone, setTableStyle } from './elements.js';
+
 export function createDiv() {
   return document.createElement('div');
+}
+
+export function createMenuDiv(id) {
+  const menuDiv = createDiv();
+  menuDiv.setAttribute('id', id);
+  setDisplayNone(menuDiv);
+
+  return menuDiv;
 }
 
 export function createHeader(innerText) {
@@ -50,9 +60,16 @@ export function createTableRow() {
 
 export function createTableHeader(innerText) {
   const th = document.createElement('th');
-  th.style.padding = '10px 50px';
-  th.style.border = '1px solid';
   th.innerText = innerText;
+  setTableStyle(th);
 
   return th;
+}
+
+export function createTableData(innerText) {
+  const td = document.createElement('td');
+  td.innerText = innerText;
+  setTableStyle(td);
+
+  return td;
 }

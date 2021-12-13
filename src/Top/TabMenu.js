@@ -1,10 +1,11 @@
 /* eslint-disable comma-dangle */
 
-import { $ } from '../common/elements.js';
+import { $, setDisplayBlock, setDisplayNone } from '../common/elements.js';
 
 function onProductManageMenuClick(event) {
   event.preventDefault();
-  $('product-manage-div').style.display = 'block';
+  setDisplayBlock($('product-manage-div'));
+  setDisplayNone($('change-charge-div'));
 }
 
 function setProductManageMenu() {
@@ -13,7 +14,8 @@ function setProductManageMenu() {
 
 function onChangeChargeMenuClick(event) {
   event.preventDefault();
-  $('product-manage-div').style.display = 'none';
+  setDisplayNone($('product-manage-div'));
+  setDisplayBlock($('change-charge-div'));
 }
 
 function setChangeChargeMenu() {
@@ -25,7 +27,8 @@ function setChangeChargeMenu() {
 
 function onProductPurchaseMenuClick(event) {
   event.preventDefault();
-  $('product-manage-div').style.display = 'none';
+  setDisplayNone($('product-manage-div'));
+  setDisplayNone($('change-charge-div'));
 }
 
 function setProductPurchaseMenu() {
