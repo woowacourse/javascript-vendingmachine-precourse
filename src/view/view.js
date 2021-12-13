@@ -75,7 +75,8 @@ export default class View {
       $chargeTabBtn: document.getElementById("vending-machine-manage-menu"),
       $purchaseTabBtn: document.getElementById("product-purchase-menu"),
       $addProductBtn: document.getElementById("product-add-button"),
-      $chargeBtn: document.getElementById("charge-button"),
+      $chargeBtn: document.getElementById("vending-machine-charge-button"),
+      $payBtn: document.getElementById("charge-button"),
       $coinReturnBtn: document.getElementById("coin-return-button"),
     };
   }
