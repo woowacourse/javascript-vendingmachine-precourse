@@ -1,4 +1,4 @@
-import { NAV_BUTTON_ITEMS } from './NavButtons.constants.js';
+import { NAV_BUTTON_ITEMS } from './constants.js';
 import { createElements, createContainer } from '../CreateElementUtils.js';
 
 export default class NavButtons {

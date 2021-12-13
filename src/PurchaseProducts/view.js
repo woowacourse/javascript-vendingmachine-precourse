@@ -1,4 +1,10 @@
 import { createContainer } from '../CreateElementUtils.js';
+import {
+  STRING_COIN_10,
+  STRING_COIN_100,
+  STRING_COIN_50,
+  STRING_COIN_500,
+} from '../globalConstants.js';
 import { getFromStorage } from '../store.js';
 import {
   CoinReturnButton,
@@ -25,10 +31,6 @@ import {
   CLASS_PURCHASE_QUANTITY,
   ID_PURCHASE_CHARGE_INPUT,
   ID_PURCHASE_CHARGE_SUBMIT,
-  STRING_COIN_10,
-  STRING_COIN_100,
-  STRING_COIN_50,
-  STRING_COIN_500,
   ID_RETURN_COIN_500_QUANTITY,
   ID_RETURN_COIN_100_QUANTITY,
   ID_RETURN_COIN_50_QUANTITY,

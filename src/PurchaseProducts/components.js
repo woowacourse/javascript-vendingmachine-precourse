@@ -1,5 +1,15 @@
 import { customCreateElement } from '../CreateElementUtils.js';
 import {
+  STRING_COIN_10,
+  STRING_COIN_100,
+  STRING_COIN_50,
+  STRING_COIN_500,
+  STYLE_TABLE,
+  STYLE_TABLE_BORDER,
+  VAL_COLUMN_SIZE,
+  VAL_ROW_SIZE,
+} from '../globalConstants.js';
+import {
   CLASS_PURCHASE_BUTTON,
   CLASS_PURCHASE_ITEM,
   CLASS_PURCHASE_PREFIX,
@@ -16,10 +26,6 @@ import {
   ID_RETURN_COIN_STATUS,
   PLACEHOLDER_CHARGE_INPUT,
   STRING_CHARGE_AMOUNT_LABEL,
-  STRING_COIN_10,
-  STRING_COIN_100,
-  STRING_COIN_50,
-  STRING_COIN_500,
   STRING_COIN_NAMES_HEADER,
   STRING_COIN_QUANTITY_HEADER,
   STRING_PRODUCT_NAME,
@@ -28,16 +34,13 @@ import {
   STRING_PURCHASE_BUTTON,
   STRING_PURCHASE_BUTTON_HEADER,
   STRING_RETURN_BUTTON,
-  STYLE_TABLE,
-  STYLE_TABLE_BORDER,
   TITLE_FORM,
   TITLE_PURCHASE_PRODUCT,
   TITLE_RETURN_COIN_STATUS,
   VAL_CHARGE_SUBMIT,
-  VAL_COLUMN_SIZE,
-  VAL_ROW_SIZE,
 } from './constants.js';
 
+// --------------- form component ---------------
 export const InsertFormSection = function createNewInsertFormSection() {
   return document.createElement('div');
 };
@@ -76,6 +79,7 @@ export const PurchaseChargeSumSpan = customCreateElement({
   attributes: { id: ID_PURCHASE_CHARGE_AMOUNT },
 });
 
+// --------------- table component ---------------
 const createProperty = function createProductPropertyObject(
   type,
   value,
@@ -94,7 +98,7 @@ export const createProductObjects = function createProductPropertyObjectSet(
 ) {
   return [
     createProperty('name', name, `${VAL_COLUMN_SIZE * 2}px`),
-    createProperty('price', property.price, `${VAL_COLUMN_SIZE}px`),
+    createProperty('price', `${property.price}원`, `${VAL_COLUMN_SIZE}px`),
     createProperty('quantity', property.quantity, `${VAL_COLUMN_SIZE}px`),
   ];
 };

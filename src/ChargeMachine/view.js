@@ -8,10 +8,6 @@ import {
   ID_MACHINE_COIN_100_QUANTITY,
   ID_MACHINE_COIN_50_QUANTITY,
   ID_MACHINE_COIN_10_QUANTITY,
-  STRING_COIN_500,
-  STRING_COIN_50,
-  STRING_COIN_100,
-  STRING_COIN_10,
 } from './constants.js';
 import {
   ChargeFormSection,
@@ -27,6 +23,12 @@ import {
 import handleChargeInput from './eventhandler.js';
 import { getChargeAmount } from './models.js';
 import { getFromStorage } from '../store.js';
+import {
+  STRING_COIN_10,
+  STRING_COIN_100,
+  STRING_COIN_50,
+  STRING_COIN_500,
+} from '../globalConstants.js';
 
 export default class ChargeMachine {
   constructor() {

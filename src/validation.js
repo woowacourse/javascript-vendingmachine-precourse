@@ -3,8 +3,8 @@ import {
   ERROR_EMPTY_NAME,
   ERROR_INVALID_PRICE,
   ERROR_INVALID_QUANTITY,
-  VAL_PRICE_ROUND_STANDARD,
 } from './AddProducts/constants.js';
+import { VAL_PRICE_ROUND_STANDARD } from './globalConstants.js';
 import { getFromStorage } from './store.js';
 
 const isUniqueName = function checkDuplicateNameInput(name) {

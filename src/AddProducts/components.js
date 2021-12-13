@@ -1,5 +1,11 @@
 import { customCreateElement } from '../CreateElementUtils.js';
 import {
+  STYLE_TABLE,
+  STYLE_TABLE_BORDER,
+  VAL_COLUMN_SIZE,
+  VAL_ROW_SIZE,
+} from '../globalConstants.js';
+import {
   CLASS_PRODUCT_ITEM,
   CLASS_PRODUCT_NAME,
   CLASS_PRODUCT_PRICE,
@@ -12,16 +18,12 @@ import {
   STRING_PRODUCT_NAME,
   STRING_PRODUCT_PRICE,
   STRING_PRODUCT_QUANTITY,
-  STYLE_TABLE,
-  STYLE_TABLE_BORDER,
   TITLE_CURRENT_STATUS,
   TITLE_FORM,
-  VAL_COLUMN_SIZE,
   VAL_PRODUCT_ADD_SUBMIT,
-  VAL_ROW_SIZE,
 } from './constants.js';
 
-// ------------- element generators -------------
+// --------------- form components --------------
 const createInput = function createInputElement(id, type, placeholder) {
   return customCreateElement({
     tag: 'input',
@@ -29,6 +31,42 @@ const createInput = function createInputElement(id, type, placeholder) {
   });
 };
 
+export const ProductFormSection = function createNewSection() {
+  return document.createElement('div');
+};
+
+export const ProductFormTitle = customCreateElement({
+  tag: 'h2',
+  value: TITLE_FORM,
+});
+
+export const ProductNameInput = createInput(
+  ID_PRODUCT_NAME_INPUT,
+  'text',
+  STRING_PRODUCT_NAME,
+);
+
+export const ProductPriceInput = createInput(
+  ID_PRODUCT_PRICE_INPUT,
+  'number',
+  STRING_PRODUCT_PRICE,
+);
+
+export const ProductQuantityInput = createInput(
+  ID_PRODUCT_QUANTITY_INPUT,
+  'number',
+  STRING_PRODUCT_QUANTITY,
+);
+
+export const ProductFormSubmit = function createProductSubmit() {
+  return customCreateElement({
+    tag: 'button',
+    attributes: { id: ID_PRODUCT_ADD_SUBMIT },
+    value: VAL_PRODUCT_ADD_SUBMIT,
+  });
+};
+
+// -------------- table components --------------
 const createProperty = function createProductPropertyObject(
   className,
   value,
@@ -43,7 +81,11 @@ export const createProductObjects = function createProductPropertyObjectSet(
 ) {
   return [
     createProperty(CLASS_PRODUCT_NAME, name, `${VAL_COLUMN_SIZE * 2}px`),
-    createProperty(CLASS_PRODUCT_PRICE, property.price, `${VAL_COLUMN_SIZE}px`),
+    createProperty(
+      CLASS_PRODUCT_PRICE,
+      `${property.price}원`,
+      `${VAL_COLUMN_SIZE}px`,
+    ),
     createProperty(
       CLASS_PRODUCT_QUANTITY,
       property.quantity,
@@ -97,44 +139,6 @@ export const createTR = function createTableRow(data) {
   return rowWithData;
 };
 
-// ----------------- components -----------------
-// form components
-export const ProductFormSection = function createNewSection() {
-  return document.createElement('div');
-};
-
-export const ProductFormTitle = customCreateElement({
-  tag: 'h2',
-  value: TITLE_FORM,
-});
-
-export const ProductNameInput = createInput(
-  ID_PRODUCT_NAME_INPUT,
-  'text',
-  STRING_PRODUCT_NAME,
-);
-
-export const ProductPriceInput = createInput(
-  ID_PRODUCT_PRICE_INPUT,
-  'number',
-  STRING_PRODUCT_PRICE,
-);
-
-export const ProductQuantityInput = createInput(
-  ID_PRODUCT_QUANTITY_INPUT,
-  'number',
-  STRING_PRODUCT_QUANTITY,
-);
-
-export const ProductFormSubmit = function createProductSubmit() {
-  return customCreateElement({
-    tag: 'button',
-    attributes: { id: ID_PRODUCT_ADD_SUBMIT },
-    value: VAL_PRODUCT_ADD_SUBMIT,
-  });
-};
-
-// table components
 export const ProductTableSection = function createNewSection() {
   return document.createElement('div');
 };

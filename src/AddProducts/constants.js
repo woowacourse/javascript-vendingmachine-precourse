@@ -19,14 +19,11 @@ export const STRING_PRODUCT_NAME = '상품명';
 export const STRING_PRODUCT_PRICE = '가격';
 export const STRING_PRODUCT_QUANTITY = '수량';
 export const VAL_PRODUCT_ADD_SUBMIT = '추가하기';
-export const VAL_COLUMN_SIZE = '100';
-export const VAL_ROW_SIZE = '50';
-export const STYLE_TABLE = 'border-collapse: collapse; text-align: center';
-export const STYLE_TABLE_BORDER = 'border: 1px solid black;';
-export const VAL_PRICE_ROUND_STANDARD = 10;
 
 // error messages
 export const ERROR_DUPLICATE_NAME = '이미 존재하는 상품입니다.';
-export const ERROR_EMPTY_NAME = '상품명을 입력해주세요';
-export const ERROR_INVALID_PRICE = '가격이 유효하지 않습니다';
-export const ERROR_INVALID_QUANTITY = '수량이 유효하지 않습니다';
+export const ERROR_EMPTY_NAME = '상품명을 입력해주세요.';
+export const ERROR_INVALID_PRICE =
+  '가격의 최소 단위는 10원입니다. 다시 입력해주세요.';
+export const ERROR_INVALID_QUANTITY =
+  '0개 이하의 수량은 입력이 불가능합니다. 다시 입력해주세요.';

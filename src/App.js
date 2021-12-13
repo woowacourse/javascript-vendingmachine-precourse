@@ -1,4 +1,4 @@
-import NavButtons from './NavButtons/NavButtons.js';
+import NavButtons from './NavButtons/view.js';
 import AddProducts from './AddProducts/view.js';
 import ChargeMachine from './ChargeMachine/view.js';
 import PurchaseProducts from './PurchaseProducts/view.js';
@@ -8,13 +8,13 @@ import {
   ID_MACHINE_TAB,
   ID_PURCHASE_TAB,
   STRING_SECTION_SUFFIX,
-} from './App.constants.js';
+} from './globalConstants.js';
 import { customCreateElement } from './CreateElementUtils.js';
 
 export default class App {
   constructor() {
     this.app = document.querySelector('#app');
-    this.show = ''; // show add product menu on load
+    this.show = '';
     this.renderInitial(); // initial render on page load
   }
 
@@ -28,7 +28,7 @@ export default class App {
     }); // add event listeners to menu buttons
 
     const tab = customCreateElement({ tag: 'section', id: 'tab' });
-    this.handleSectionsToggle();
+    this.show = new AddProducts().section;
     tab.appendChild(this.show);
 
     this.app.appendChild(pageTitle);

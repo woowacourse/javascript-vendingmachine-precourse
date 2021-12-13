@@ -19,14 +19,6 @@ export const VAL_INSERT_BUTTON = '충전하기';
 export const STRING_CHARGE_SUM_LABEL = '보유 금액: ';
 export const STRING_COIN_NAMES_HEADER = '동전';
 export const STRING_COIN_QUANTITY_HEADER = '갯수';
-export const STRING_COIN_500 = '500';
-export const STRING_COIN_100 = '100';
-export const STRING_COIN_50 = '50';
-export const STRING_COIN_10 = '10';
-export const STYLE_TABLE = 'border-collapse: collapse; text-align: center';
-export const STYLE_TABLE_BORDER = 'border: 1px solid black;';
-export const VAL_COLUMN_SIZE = '100';
-export const VAL_ROW_SIZE = '50';
 
 // error messages
-export const ERROR_INVALID_INSERT = '투입 금액이 유효하지 않습니다';
+export const ERROR_INVALID_INSERT = '투입 금액이 유효하지 않습니다.';
