@@ -1,19 +1,6 @@
 import { $ } from '../../utils/querySelector.js';
 
 export const coinChargeTemplate = `
-  <style>
-    table {
-      width: 10em;
-      border: 1px solid #444444;
-      border-collapse: collapse;
-    }
-    th,td {
-      border: 1px solid #444444;
-      text-align: center;
-      padding: 10px 0;
-    }
-  </style>
-
   <div>
     <h3>자판기 동전 충전하기</h3>
     <form>

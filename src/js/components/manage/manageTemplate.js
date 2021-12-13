@@ -1,19 +1,6 @@
 import { $ } from '../../utils/querySelector.js';
 
 const productManageTemplate = `
-  <style>
-    table {
-      width: 25em;
-      border: 1px solid #444444;
-      border-collapse: collapse;
-    }
-    th,td {
-      border: 1px solid #444444;
-      text-align: center;
-      padding: 10px 0;
-    }
-  </style>
-
   <div>
     <h3>상품 추가하기</h3>
     <form>

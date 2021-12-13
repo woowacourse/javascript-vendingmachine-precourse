@@ -1,18 +1,6 @@
 import { $ } from '../../utils/querySelector.js';
 
 export const productPurchaseTemplate = `
-  <style>
-    table {
-      border: 1px solid #444444;
-      border-collapse: collapse;
-    }
-    th,td {
-      border: 1px solid #444444;
-      text-align: center;
-      padding: 10px 15px;
-    }
-  </style>
-
   <div>
     <h3>금액 투입</h3>
     <form>

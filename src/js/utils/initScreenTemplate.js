@@ -1,6 +1,6 @@
 export const initScreenTemplate = `
   <div>
-    <h1>🥤자판기🥤</h1>
+    <h2>🥤자판기🥤</h2>
     <nav>
       <button id="product-add-menu">상품 관리</button>
       <button id="vending-machine-manage-menu">잔돈 충전</button>
