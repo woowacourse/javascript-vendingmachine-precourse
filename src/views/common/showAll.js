@@ -1,17 +1,17 @@
-import { showHeader } from "../header/showHeader.js";
+import { addHeader } from "../header/addHeader.js";
 import { addProductManager } from "../productManager/addProductManager.js";
 import { addChargeManager } from "../chargeManager/addChargeManager.js";
 import { addPurchaseManager } from "../purchaseManager/addPurchaseManager.js";
-import { showProducts } from "../productManager/showProducts.js";
-import { showProductsAbleToBuy } from "../purchaseManager/showProductsAbleToBuy.js";
-import { showMoneyCustomer } from "../purchaseManager/showMoneyCustomer.js";
-import { showMoneyInMachine } from "../chargeManager/showMoneyInMachine.js";
-import { showCoinsInMachine } from "../chargeManager/showCoinsInMachine.js";
+import { showProducts } from "../productManager/show/showProducts.js";
+import { showProductsAbleToBuy } from "../purchaseManager/show/showProductsAbleToBuy.js";
+import { showMoneyCustomer } from "../purchaseManager/show/showMoneyCustomer.js";
+import { showMoneyInMachine } from "../chargeManager/show/showMoneyInMachine.js";
+import { showCoinsInMachine } from "../chargeManager/show/showCoinsInMachine.js";
 
 // 초기 화면
 // 헤더를 보여주고 각 탭은 숨김 상태에서 시작
 const showAll = () => {
-  showHeader();
+  addHeader();
   addProductManager();
   addChargeManager();
   addPurchaseManager();

@@ -1,4 +1,4 @@
-const showHeader = () => {
+const addHeader = () => {
   const $app = document.getElementById("app");
 
   $app.innerHTML = `
@@ -9,4 +9,4 @@ const showHeader = () => {
   `;
 };
 
-export { showHeader };
+export { addHeader };

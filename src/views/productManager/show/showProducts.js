@@ -1,5 +1,5 @@
-import { getProducts } from "../../utils/getSetItems.js";
-import { convertHyphenToSpace } from "../../utils/productNameConverter.js";
+import { getProducts } from "../../../utils/getSetItems.js";
+import { convertHyphenToSpace } from "../../../utils/productNameConverter.js";
 
 // 상품을 테이블에 삽입
 const insertProductToTable = (name, price, quantity) => {

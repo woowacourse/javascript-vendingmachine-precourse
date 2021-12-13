@@ -1,5 +1,5 @@
-import { COIN_TYPES } from "../../utils/constants.js";
-import { insertCoinTypeToTable } from "../common/insertCoinTypeToTable.js";
+import { COIN_TYPES } from "../../../utils/constants.js";
+import { insertCoinTypeToTable } from "../../common/insertCoinTypeToTable.js";
 
 // 각 동전 개수 데이터 삽입
 const insertQuantityOfCoins = coins => {

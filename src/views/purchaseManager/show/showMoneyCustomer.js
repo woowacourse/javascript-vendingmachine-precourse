@@ -1,4 +1,4 @@
-import { getMoneyCustomer } from "../../utils/getSetItems.js";
+import { getMoneyCustomer } from "../../../utils/getSetItems.js";
 
 // 손님이 투입한 금액 보여주기
 const showMoneyCustomer = () => {

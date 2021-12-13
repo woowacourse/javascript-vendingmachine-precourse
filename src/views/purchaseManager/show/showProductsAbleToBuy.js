@@ -1,6 +1,6 @@
-import { onClickPurchaseButton } from "../../controllers/purchaseManager/eventHandlers.js";
-import { getProducts } from "../../utils/getSetItems.js";
-import { convertHyphenToSpace } from "../../utils/productNameConverter.js";
+import { onClickPurchaseButton } from "../../../controllers/purchaseManager/eventHandlers.js";
+import { getProducts } from "../../../utils/getSetItems.js";
+import { convertHyphenToSpace } from "../../../utils/productNameConverter.js";
 
 // 상품을 테이블에 삽입
 const insertAbleProductsToTable = (name, price, quantity) => {

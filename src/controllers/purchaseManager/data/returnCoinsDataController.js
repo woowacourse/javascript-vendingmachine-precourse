@@ -1,5 +1,5 @@
 import { COIN_TYPES } from "../../../utils/constants.js";
-import { insertQuantityOfCoins } from "../../../views/purchaseManager/showReturnCoins.js";
+import { insertQuantityOfCoins } from "../../../views/purchaseManager/show/showReturnCoins.js";
 import { removeItemFromLocalStorage } from "../../../utils/itemFromLocalStorage.js";
 import {
   getCoinsInMachine,
