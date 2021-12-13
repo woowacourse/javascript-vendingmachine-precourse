@@ -20,12 +20,12 @@ export default class ChangesStatus extends Component {
   onClickReturnButton({ target }) {
     if (target.id !== 'coin-return-button') return;
     const { chargedMoney, changes } = this.getGlobalState();
+    if (chargedMoney === 0) return alert(MESSAGE.INVALID_RETURN_REQUEST);
     if (changes === 0) return alert(MESSAGE.NOT_ENOUGH_CHANGES);
 
     const { changeCoins, userChangeMoney } = ChangeStore.dispatch(
       spendChanges(chargedMoney)
     ).data;
-
     UserStore.dispatch(
       returnChanges({ changes: userChangeMoney, changeCoins })
     );
