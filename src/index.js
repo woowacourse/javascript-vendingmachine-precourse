@@ -1,5 +1,5 @@
 import VendingMachineView from './app/views/index.js';
-import VendingMachineModel from './app/vendingMachinModel.js';
+import VendingMachineModel from './app/model/index.js';
 import VendingMachineController from './app/controllers/index.js';
 
 /* eslint-disable */

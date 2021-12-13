@@ -8,10 +8,9 @@ import {
   PLAIN_TEXT,
   TAB,
   TEN,
-} from '../lib/constants.js';
-import store from '../modules/store.js';
+} from '../../lib/constants.js';
+import store from '../../modules/store.js';
 
-/** Model */
 class VendingMachineModel {
   constructor() {
     const prevValue = store.getLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY);
@@ -159,7 +158,6 @@ class VendingMachineModel {
     return this.dataModel[DATA_MODEL_KEYS.PRODUCT_LIST];
   }
 
-  /** 세개의 인풋 중 하나라도 입력이 안되어 있다면  */
   findProduct(productId) {
     const position = this.getProductList().findIndex((product) => product.id === productId);
 
