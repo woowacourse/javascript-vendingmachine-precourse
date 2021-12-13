@@ -4,7 +4,7 @@ import { products, addProduct } from '../model/products.mjs';
 
 function renderProductAddTab() {
   document.querySelector('main').remove();
-  renderProductAdd();
+  renderProductAdd(products);
 }
 
 export function productAddEvent() {
@@ -14,6 +14,7 @@ export function productAddEvent() {
 
   window.addEventListener('click', e => {
     if (e.target !== document.querySelector('#product-add-button')) return;
+
     e.preventDefault();
     const name = document.querySelector('#product-name-input').value;
     const price = document.querySelector('#product-price-input').value;
