@@ -43,6 +43,25 @@ export class VendingMachineModel {
     localStorage.setItem('products', JSON.stringify(this.products));
   }
 
+  buyProduct(productName, price) {
+    this.addInsertedMoney(Number(`-${price}`));
+    this.minusQuantity(productName);
+  }
+
+  minusQuantity(productName) {
+    this.products.some((product, index) => {
+      if (product.productName !== productName) {
+        return false;
+      }
+      if (Number(product.quantity) === 1) {
+        this.products.splice(index, 1);
+      }
+      product.quantity--;
+      localStorage.setItem('products', JSON.stringify(this.products));
+      return true;
+    });
+  }
+
   addChargeMoney(chargeMoney) {
     this.machineChargeAmount += chargeMoney;
     localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
@@ -61,14 +80,14 @@ export class VendingMachineModel {
     return this.machineCoins;
   }
 
-  isEnoughMoneyForCoin(chargeMoney, randomCoin) {
-    return chargeMoney - randomCoin >= 0;
-  }
-
   addInsertedMoney(insertedMoney) {
     this.totalInsertedMoney += insertedMoney;
     localStorage.setItem('totalInsertedMoney', JSON.stringify(this.totalInsertedMoney));
     return this.totalInsertedMoney;
+  }
+
+  isEnoughMoneyForCoin(chargeMoney, randomCoin) {
+    return chargeMoney - randomCoin >= 0;
   }
 
   returnCoin() {
