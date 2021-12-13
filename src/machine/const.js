@@ -8,3 +8,8 @@ export const PRODUCT_PRICE = {
 export const PRODUCT_QUANTITY = {
   min: 1,
 };
+
+export const COIN_CHARGE = {
+  min: 10,
+  divider: 10,
+};
