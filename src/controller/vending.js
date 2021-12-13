@@ -33,6 +33,9 @@ const initChargeDomProperty = () => {
   }
 };
 
+const isChargeInputValid = chargeInput =>
+  isInputNumberValid(chargeInput) && isMultipleOf10(chargeInput);
+
 const setVendingMachineByRandomCoin = (chargeInputValue, randomCoinQuantity) => {
   let vendingMachine = getItemOrNull(KEY.vending);
   if (vendingMachine) {
@@ -41,21 +44,25 @@ const setVendingMachineByRandomCoin = (chargeInputValue, randomCoinQuantity) => 
     vendingMachine = new VendingMachine(chargeInputValue);
   }
   randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
-  console.log(vendingMachine);
   setItem(KEY.vending, vendingMachine);
 };
 
 const chargeVending = () => {
   const chargeInput = $(SELECTOR.vendingChargeInput);
-  const chargeInputValue = parseInt(chargeInput.value);
-  const randomCoinQuantity = makeRandomCoinQuantity(chargeInputValue);
-  setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity);
-  initChargeDomProperty();
-  initVendingTable();
+  if (isChargeInputValid(chargeInput)) {
+    const chargeInputValue = parseInt(chargeInput.value);
+    const randomCoinQuantity = makeRandomCoinQuantity(chargeInputValue);
+    setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity);
+    initChargeDomProperty();
+    initVendingTable();
+  }
 };
 
 export const initAllVending = () => {
   initVendingTable();
   initChargeDomProperty();
   $(SELECTOR.vendingChargeButton).addEventListener('click', () => chargeVending());
+  $(SELECTOR.vendingChargeInput).addEventListener('keyup', () =>
+    onKeyUpNumericEvent($(SELECTOR.vendingChargeInput)),
+  );
 };
