@@ -1,3 +1,4 @@
+import { DISPLAY } from '../common/constants/constants.js';
 import { $ } from '../common/dom/dom.js';
 
 const productManageButtonEvent = () => {
@@ -7,9 +8,9 @@ const productManageButtonEvent = () => {
     const $app = $('#app');
     const appNodes = $app.childNodes;
 
-    appNodes[1].style.display = 'block';
-    appNodes[2].style.display = 'none';
-    appNodes[3].style.display = 'none';
+    appNodes[1].style.display = DISPLAY.BLOCK;
+    appNodes[2].style.display = DISPLAY.NONE;
+    appNodes[3].style.display = DISPLAY.NONE;
   });
 };
 const VendingManageButtonEvent = () => {
@@ -19,9 +20,9 @@ const VendingManageButtonEvent = () => {
     const $app = $('#app');
     const appNodes = $app.childNodes;
 
-    appNodes[1].style.display = 'none';
-    appNodes[2].style.display = 'block';
-    appNodes[3].style.display = 'none';
+    appNodes[1].style.display = DISPLAY.NONE;
+    appNodes[2].style.display = DISPLAY.BLOCK;
+    appNodes[3].style.display = DISPLAY.NONE;
   });
 };
 const productPurchaseButtonEvent = () => {
@@ -31,9 +32,9 @@ const productPurchaseButtonEvent = () => {
     const $app = $('#app');
     const appNodes = $app.childNodes;
 
-    appNodes[1].style.display = 'none';
-    appNodes[2].style.display = 'none';
-    appNodes[3].style.display = 'block';
+    appNodes[1].style.display = DISPLAY.NONE;
+    appNodes[2].style.display = DISPLAY.NONE;
+    appNodes[3].style.display = DISPLAY.BLOCK;
   });
 };
 

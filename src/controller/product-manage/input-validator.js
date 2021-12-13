@@ -1,4 +1,4 @@
-import { VALIDATION } from '../../common/constants/constants.js';
+import { VALIDATION, NUMBER } from '../../common/constants/constants.js';
 import { $ } from '../../common/dom/dom.js';
 
 export const getProductNameValue = () => {
@@ -42,7 +42,7 @@ const productPriceValidator = (productPriceValue) => {
     isValid;
   } else if (productPriceValue < 0) {
     alert(VALIDATION.PRICE.NEGATIVE);
-  } else if (productPriceValue % 10 !== 0) {
+  } else if (productPriceValue % NUMBER.TEN !== 0) {
     alert(VALIDATION.PRICE.MULTIPLE_OF_10);
   } else {
     isValid = true;

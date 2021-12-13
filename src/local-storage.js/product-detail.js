@@ -1,3 +1,5 @@
+import { PRODUCT } from '../common/constants/constants.js';
+
 export const saveProductToStorage = function (
   productNameValue,
   productPriceValue,
@@ -10,12 +12,12 @@ export const saveProductToStorage = function (
   newProduct.quantity = productQuantityValue;
 
   // localStorage 저장된 값을 분해해서
-  let prevProductList = JSON.parse(localStorage.getItem('productList'));
+  let prevProductList = JSON.parse(localStorage.getItem(PRODUCT.LIST));
   if (prevProductList === null) {
     prevProductList = [];
   }
 
   let finalProductList = prevProductList.concat(newProduct);
 
-  localStorage.setItem('productList', JSON.stringify(finalProductList));
+  localStorage.setItem(PRODUCT.LIST, JSON.stringify(finalProductList));
 };
