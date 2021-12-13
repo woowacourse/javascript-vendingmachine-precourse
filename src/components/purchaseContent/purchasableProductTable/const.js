@@ -20,3 +20,6 @@ export const DICT_PROPS_BUTTON = {
 };
 
 export const ACTION_PURCHASE = 'onPurchaseButtonClick';
+
+export const ERROR_CANNOT_PURCHASE =
+  '충전 금액이 모자라 상품을 구매할 수 없습니다. 금액을 충전해주세요.';

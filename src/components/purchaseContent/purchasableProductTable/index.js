@@ -7,13 +7,17 @@ import {
   CLASS_NAME_PRODUCT_ITEM,
   DICT_CLASS_NAME_PRODUCT,
   DICT_PROPS_BUTTON,
+  ERROR_CANNOT_PURCHASE,
   HEADER_PURCHASE,
   ID_TABLE_PURCHASE,
   LIST_DATASET,
 } from './const.js';
 import createElement from '../../utils/createElement.js';
 import { sellProduct } from '../../../library/storage/products.js';
-import { subtractChargedCoinOfConsumer } from '../../../library/storage/consumerCoin.js';
+import {
+  getChargedCoinOfConsumer,
+  subtractChargedCoinOfConsumer,
+} from '../../../library/storage/consumerCoin.js';
 
 class PurchasableProductTable extends ProductTable {
   constructor(products) {
@@ -48,6 +52,10 @@ class PurchasableProductTable extends ProductTable {
     window.location.reload();
     const { productName, productPrice } = product;
 
+    if (getChargedCoinOfConsumer() < productPrice) {
+      alert(ERROR_CANNOT_PURCHASE);
+      return;
+    }
     sellProduct(productName);
     subtractChargedCoinOfConsumer(productPrice);
   }

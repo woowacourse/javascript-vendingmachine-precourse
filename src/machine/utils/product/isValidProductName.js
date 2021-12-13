@@ -6,7 +6,7 @@ import hasWhiteSpace from '../../../utils/hasWhiteSpace.js';
 function isValidProductName(productName) {
   const currentProductNames = getProducts().map((product) => product.name);
   return (
-    currentProductNames.includes(productName) === -1 &&
+    !currentProductNames.includes(productName) &&
     !hasNumber(productName) &&
     !hasWhiteSpace(productName) &&
     !hasSpecialCharacter(productName)
