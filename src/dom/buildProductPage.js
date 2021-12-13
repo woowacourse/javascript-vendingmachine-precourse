@@ -3,7 +3,6 @@ import createDocumentElement from "../util/createDocumentElement.js"
 import validatePrice from "../util/validatePrice.js";
 
 const productList = new ProductList;
-productList.getFromLocalStorage();
 
 function buildProductPage() {
     const container = document.querySelector(".container");

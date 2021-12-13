@@ -6,11 +6,11 @@ import createTableRow from "../util/createTableRow.js";
 const productList = new ProductList;
 const vendingMachine = new VendingMachine;
 
-productList.getFromLocalStorage();
-vendingMachine.getFromLocalStorage();
-
 function buildPurchasePage() {
     const container = document.querySelector(".container");
+
+    productList.getFromLocalStorage();
+    vendingMachine.getFromLocalStorage();
 
     clearContainer(container)
     productPurchaseElement(container);
@@ -80,6 +80,8 @@ function coinDisplayElement(container) {
     const coinCategory = createDocumentElement("td", "동전");
     const coinAmount = createDocumentElement("td", "개수");
 
+    productItemPurchaseButton.onclick = () => returnCharge();
+
     container.appendChild(productPurchaseLabel);
     container.appendChild(productItemPurchaseButton);
     container.appendChild(coinDisplayTable);
@@ -102,6 +104,22 @@ function chargeUserInputMoney() {
 function displayChargeAmount() {
     const chargeAmount = document.querySelector("#charge-amount");
     chargeAmount.innerText = vendingMachine.getUserInputMoney() + "원";
+}
+
+function returnCharge() {
+    const coins = vendingMachine.returnCharge();
+
+    const returnCoin500Quantity = document.querySelector("#coin-500-quantity");
+    const returnCoin100Quantity = document.querySelector("#coin-100-quantity");
+    const returnCoin50Quantity = document.querySelector("#coin-50-quantity");
+    const returnCoin10Quantity = document.querySelector("#coin-10-quantity");
+
+    returnCoin500Quantity.innerText = coins.coin500 + "개";
+    returnCoin100Quantity.innerText = coins.coin100 + "개";
+    returnCoin50Quantity.innerText = coins.coin50 + "개";
+    returnCoin10Quantity.innerText = coins.coin10 + "개";
+
+    displayChargeAmount();
 }
 
 function clearContainer(container) {

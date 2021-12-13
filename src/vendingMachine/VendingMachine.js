@@ -60,6 +60,41 @@ class VendingMachine {
         return (this.coin500)*500 + (this.coin100)*100 + (this.coin50)*50 + (this.coin10)*10;
     }
 
+    returnCharge() {
+        let returnCoins = {
+            coin500: 0,
+            coin100: 0,
+            coin50: 0,
+            coin10: 0
+        }
+
+        if(this.getTotalChange() > 0) {
+            while(this.coin500 > 0 && this.userInputMoney >= 500) {
+                this.coin500--;
+                this.userInputMoney -= 500;
+                returnCoins.coin500++;
+            }
+            while(this.coin100 > 0 && this.userInputMoney >= 100) {
+                this.coin100--;
+                this.userInputMoney -= 100;
+                returnCoins.coin100++;
+            }
+            while(this.coin50 > 0 && this.userInputMoney >= 50) {
+                this.coin50--;
+                this.userInputMoney -= 50;
+                returnCoins.coin50++;
+            }
+            while(this.coin10 > 0 && this.userInputMoney >= 10) {
+                this.coin10--;
+                this.userInputMoney -= 10;
+                returnCoins.coin10++;
+            }
+        }
+
+        this.setLocalStorage();
+        return returnCoins;
+    }
+
     getFromLocalStorage() {
         this.coin500 = JSON.parse(localStorage.getItem("vendingMachine500")) ?? 0;
         this.coin100 = JSON.parse(localStorage.getItem("vendingMachine100")) ?? 0;

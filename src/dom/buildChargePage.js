@@ -3,10 +3,11 @@ import createDocumentElement from "../util/createDocumentElement.js";
 import createTableRow from "../util/createTableRow.js";
 
 const vendingMachine = new VendingMachine;
-vendingMachine.getFromLocalStorage();
 
 function buildChargePage() {
     const container = document.querySelector(".container");
+
+    vendingMachine.getFromLocalStorage();
 
     clearContainer(container);
     chargeElement(container);
