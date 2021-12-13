@@ -6,7 +6,7 @@ export const APP_TEMPLATE = `
     <button id="product-purchase-menu">상품 구매</button>
   </nav>
   <section id="product-add-section"></section>
-  <section id="product-balance-section"></section>
+  <section id="product-charge-section"></section>
   <section id="product-buy-section"></section>
 `;
 

@@ -3,7 +3,7 @@ import { CHARGE_SECTION_TEMPLATE } from '../utils/template.js';
 
 export class ChargeView {
   constructor() {
-    this.$productBalanceSection = $('#product-balance-section');
+    this.$productChargeSection = $('#product-charge-section');
     this.$chargeInput;
     this.$chargeButton;
     this.$machineChargeAmount;
@@ -34,7 +34,7 @@ export class ChargeView {
   }
 
   addElements() {
-    this.$productBalanceSection.innerHTML = CHARGE_SECTION_TEMPLATE;
+    this.$productChargeSection.innerHTML = CHARGE_SECTION_TEMPLATE;
     this.$chargeInput = $('#vending-machine-charge-input');
     this.$chargeButton = $('#vending-machine-charge-button');
     this.$machineChargeAmount = $('#vending-machine-charge-amount');
