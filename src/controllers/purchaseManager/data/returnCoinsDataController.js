@@ -1,5 +1,4 @@
 import { COIN_TYPES } from "../../../utils/constants.js";
-import { calculateMoney } from "../../../utils/calculateMoney.js";
 import { insertQuantityOfCoins } from "../../../views/purchaseManager/showReturnCoins.js";
 import { removeItemFromLocalStorage } from "../../../utils/itemFromLocalStorage.js";
 import {
@@ -50,12 +49,11 @@ const returnMinCountOfCoins = (coinsInMachine, money) => {
 };
 
 // 잔돈 반환
-const returnCoins = money => {
+const returnCoins = (money, moneyInMachine) => {
   const strOfCoinsInMachine = getCoinsInMachine();
 
   if (strOfCoinsInMachine) {
     const coinsInMachine = strOfCoinsInMachine.split(",");
-    const moneyInMachine = calculateMoney();
 
     if (moneyInMachine <= money) {
       returnAllCoinsInMachine(coinsInMachine, moneyInMachine, money);

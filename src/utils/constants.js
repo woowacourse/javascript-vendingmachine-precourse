@@ -7,6 +7,8 @@ const ALERT_MSG = {
   lackMoney: "금액이 부족합니다.",
   askChangeProduct:
     "이미 같은 이름의 상품이 존재합니다. 해당 상품의 가격과 재고를 입력한 값으로 변경하시겠습니까?",
+  noMoneyCustomer: "투입한 금액이 없습니다.",
+  noMoneyInMachine: "자판기 속에 돈이 없어 반환에 실패하였습니다.",
 };
 
 const COIN_TYPES = [500, 100, 50, 10];

@@ -5,6 +5,8 @@ import { addMoneyCustomer } from "./data/chargeCustomerDataController.js";
 import { purchaseProduct } from "./data/purchaseDataController.js";
 import { returnCoins } from "./data/returnCoinsDataController.js";
 import { ALERT_MSG } from "../../utils/constants.js";
+import { alertReturnCoins } from "./alertAboutReturnCoins.js";
+import { calculateMoney } from "../../utils/calculateMoney.js";
 import { resetChargeCustomerInput } from "../../views/common/resetInput.js";
 import {
   showAfterAddOrPurchaseProduct,
@@ -59,9 +61,15 @@ const onClickCoinReturnButton = () => {
   const $coinReturnButton = document.getElementById("coin-return-button");
 
   $coinReturnButton.addEventListener("click", () => {
+    const moneyInMachine = calculateMoney();
     const money = parseInt(getMoneyCustomer(), 10);
-    returnCoins(money);
-    showAfterReturnCoins();
+
+    if (money === 0 || moneyInMachine === 0) {
+      alertReturnCoins(money, moneyInMachine);
+    } else {
+      returnCoins(money, moneyInMachine);
+      showAfterReturnCoins();
+    }
   });
 };
 
