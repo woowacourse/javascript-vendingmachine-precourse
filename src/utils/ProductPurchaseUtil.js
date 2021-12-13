@@ -1,4 +1,4 @@
-import { ALERT, PRODUCT_PURCHASE } from '../constants.js';
+import { ALERT, PRODUCT_PURCHASE, ZERO } from '../constants.js';
 import { checkPurchaseCoin } from './validators/checkInput.js';
 import ProductPurchase from '../elements/ProductPurchase.js';
 
@@ -8,7 +8,6 @@ export default class ProductPurchaseUtil {
     this.coinAmount = 0;
     this.purchaseCoin = 0;
     this.addPurchaseCoin();
-    this.purchaseBtn();
   }
 
   addPurchaseCoin() {
@@ -18,6 +17,7 @@ export default class ProductPurchaseUtil {
       if (this.getPurchaseCoin(this.productPurchase.input)) {
         console.log(this.purchaseCoin);
         this.setCoinAmount(this.purchaseCoin);
+        this.purchaseBtn();
       }
     });
   }
@@ -33,11 +33,59 @@ export default class ProductPurchaseUtil {
 
   setCoinAmount(coin) {
     this.coinAmount += coin;
-    this.productPurchase.amount.innerHTML = PRODUCT_PURCHASE.COIN_STORAGE + this.coinAmount;
+    this.renderCoinAmount(this.coinAmount);
+  }
+
+  renderCoinAmount(coinAmount) {
+    this.productPurchase.amount.innerHTML = PRODUCT_PURCHASE.COIN_STORAGE + coinAmount;
   }
 
   purchaseBtn() {
-    const btn = document.querySelector('.purchase-button').dataset.ProductName;
+    const btn = this.productPurchase.tableBody.querySelectorAll('.purchase-button');
     console.log(btn);
+    for (let b of btn) {
+      b.addEventListener('click', e => {
+        e.preventDefault();
+        console.log('물품 구매');
+        this.getPurchaseProduct(b);
+      });
+    }
+  }
+
+  getPurchaseProduct(b) {
+    const productTr = b.parentNode;
+    console.log(productTr);
+    const price = productTr.querySelector('.product-purchase-price').dataset.productPrice;
+    const quantityElement = productTr.querySelector('.product-purchase-quantity');
+    const quantity = quantityElement.dataset.productQuantity;
+    this.checkPurchase(quantityElement, price, quantity);
+  }
+
+  checkPurchase(element, price, quantity) {
+    if (this.checkPurchasePrice(price) && this.checkPurchaseQuantity(quantity)) {
+      this.coinAmount -= price;
+      this.renderCoinAmount(this.coinAmount);
+      quantity -= 1;
+      element.innerHTML = quantity;
+      element.dataset.productQuantity = quantity;
+    }
+  }
+
+  checkPurchasePrice(price) {
+    if (this.coinAmount < price) {
+      alert(ALERT.NO_PRICE);
+      return;
+    }
+
+    return true;
+  }
+
+  checkPurchaseQuantity(quantity) {
+    if (quantity == ZERO) {
+      alert(ALERT.NO_QUANTITY);
+      return;
+    }
+
+    return true;
   }
 }

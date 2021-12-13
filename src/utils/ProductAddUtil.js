@@ -98,7 +98,6 @@ export default class ProductAddUtil {
 
     this.productPurchase.tableBody.appendChild(tableRow);
     appendTheadStyle(this.productPurchase.tableBody);
-    console.log(tableRow.dataset.product);
   }
 
   addProductPurchaseBtn(tableRow) {
