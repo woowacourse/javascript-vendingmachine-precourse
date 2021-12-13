@@ -77,13 +77,17 @@ export class VendingMachineModel {
   addMachineCoins(chargeMoney) {
     while (chargeMoney > 0) {
       const randomCoin = MissionUtils.Random.pickNumberInList(coinList);
-      if (chargeMoney - randomCoin >= 0) {
+      if (isEnoughMoneyForCoin(chargeMoney, randomCoin)) {
         chargeMoney -= randomCoin;
         this.machineCoins[randomCoin]++;
       }
     }
     localStorage.setItem('machineCoins', JSON.stringify(this.machineCoins));
     return this.machineCoins;
+  }
+
+  isEnoughMoneyForCoin(chargeMoney, randomCoin) {
+    return chargeMoney - randomCoin >= 0;
   }
 
   returnCoin() {
