@@ -20,9 +20,11 @@ export class BuyView {
     this.addElements();
   }
 
-  setOnCoinReturnClick(fn) {
-    this.$coinReturnButton.addEventListener('click', () => {
-      fn();
+  setOnMoneySubmit(fn) {
+    this.$insertButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const insertedMoney = Number(this.$insertInput.value);
+      fn(insertedMoney);
     });
   }
 
@@ -40,11 +42,9 @@ export class BuyView {
     });
   }
 
-  setOnMoneySubmit(fn) {
-    this.$insertButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      const insertedMoney = Number(this.$insertInput.value);
-      fn(insertedMoney);
+  setOnCoinReturnClick(fn) {
+    this.$coinReturnButton.addEventListener('click', () => {
+      fn();
     });
   }
 
