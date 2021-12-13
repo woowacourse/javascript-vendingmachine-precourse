@@ -44,3 +44,21 @@ export const STORAGE = {
     INIT: 0,
   },
 };
+
+export const COIN_ARRAY = [500, 100, 50, 10];
+
+export const WORD = {
+  INPUT: 'INPUT',
+  BLOCK: 'block',
+  WON: '원',
+  EA: '개',
+  HYPHEN: '-',
+  HASH: '#',
+  COMPONENT: 'component',
+};
+
+export const NUMBER = {
+  HUNDRED_MULTIPLE: 100,
+  TEN_MULTIPLE: 10,
+  TARGET_INDEX: 4,
+};

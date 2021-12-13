@@ -1,7 +1,7 @@
 import { default as DB } from '../../model/database.js';
 import { default as UT } from '../../utils/utils.js';
 import { default as DOM } from '../../utils/DOMUtils.js';
-import { STORAGE } from '../../constants/constants.js';
+import { STORAGE, COIN_ARRAY } from '../../constants/constants.js';
 
 const calculateReturnCoins = () => {
   const charge = DB.load(STORAGE.CHARGE.NAME);
@@ -17,14 +17,14 @@ const calculateReturnCoins = () => {
 
 const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
   const tryCaseByCoinType = coinType => {
-    while (charge >= coinType && wallet['coin' + coinType] > 0) {
-      wallet['coin' + coinType] -= 1;
-      emptyWallet['coin' + coinType] += 1;
+    while (charge >= coinType && wallet[STORAGE.COIN.NAME + coinType] > 0) {
+      wallet[STORAGE.COIN.NAME + coinType] -= 1;
+      emptyWallet[STORAGE.COIN.NAME + coinType] += 1;
       charge -= coinType;
     }
   };
 
-  [500, 100, 50, 10].forEach(coinType => tryCaseByCoinType(coinType));
+  COIN_ARRAY.forEach(coinType => tryCaseByCoinType(coinType));
 
   return [wallet, emptyWallet];
 };

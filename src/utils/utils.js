@@ -1,5 +1,5 @@
 import { REGEX } from '../constants/constants.js';
-import { STORAGE } from '../constants/constants.js';
+import { STORAGE, NUMBER, WORD } from '../constants/constants.js';
 import { default as DB } from '../model/database.js';
 
 const utils = {
@@ -28,7 +28,7 @@ const utils = {
   },
 
   isNotTenMultiple: string => {
-    return Number(string) % 10 !== 0;
+    return Number(string) % NUMBER.TEN_MULTIPLE !== 0;
   },
 
   isZero: string => {
@@ -44,11 +44,11 @@ const utils = {
   },
 
   changeIdToComponent: string => {
-    const result = string.split('-');
+    const result = string.split(WORD.HYPHEN);
     result.pop();
-    result.push('component');
+    result.push(WORD.COMPONENT);
 
-    return '#' + result.join('-');
+    return WORD.HASH + result.join(WORD.HYPHEN);
   },
 
   calculateToCharge: object => {
@@ -69,7 +69,7 @@ const utils = {
     return Object.entries(object).map(array => {
       const [coinType, quantity] = array;
 
-      return [utils.insertAt(coinType, 4, '-'), quantity];
+      return [utils.insertAt(coinType, NUMBER.TARGET_INDEX, WORD.HYPHEN), quantity];
     });
   },
 

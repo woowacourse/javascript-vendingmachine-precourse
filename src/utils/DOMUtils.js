@@ -2,7 +2,7 @@ import { default as DB } from '../model/database.js';
 import { default as UT } from './utils.js';
 import { default as UI } from '../views/templates.js';
 import { SELECTOR } from '../constants/selectors.js';
-import { STORAGE } from '../constants/constants.js';
+import { STORAGE, WORD } from '../constants/constants.js';
 
 export const $ = selector => document.querySelector(selector);
 
@@ -15,7 +15,7 @@ const DOMUtils = {
 
   initProductInput: () => {
     Array.from($(SELECTOR.PRODUCT_ADD_FORM).children).forEach(element => {
-      if (element.tagName === 'INPUT') element.value = '';
+      if (element.tagName === WORD.INPUT) element.value = '';
     });
   },
 
@@ -53,7 +53,7 @@ const DOMUtils = {
   showComponent: id => {
     DOMUtils.hideComponents();
 
-    $(UT.changeIdToComponent(id)).style.display = 'block';
+    $(UT.changeIdToComponent(id)).style.display = WORD.BLOCK;
   },
 
   showVendingMachineCharge: () => {
@@ -62,7 +62,7 @@ const DOMUtils = {
     if (UT.isZero(charge)) return DOMUtils.initVendingMachineCharge();
 
     $(SELECTOR.COIN_CHARGE_AMOUNT).innerHTML = `${charge}`;
-    $(SELECTOR.COIN_CHARGE_UNIT).innerHTML = '원';
+    $(SELECTOR.COIN_CHARGE_UNIT).innerHTML = WORD.WON;
   },
 
   initVendingMachineCharge: () => {
@@ -76,7 +76,7 @@ const DOMUtils = {
     UT.insertHypen(DB.load(STORAGE.COIN.NAME)).forEach(array => {
       const [coinType, quantity] = array;
 
-      $(SELECTOR.MAKE_COIN_ID(coinType)).innerHTML = `${quantity}개`;
+      $(SELECTOR.MAKE_COIN_ID(coinType)).innerHTML = `${quantity}${WORD.EA}`;
     });
   },
 
@@ -92,7 +92,7 @@ const DOMUtils = {
     UT.insertHypen(object).forEach(array => {
       const [coinType, quantity] = array;
 
-      $(SELECTOR.MAKE_COIN_QUANTITY_ID(coinType)).innerHTML = `${quantity}개`;
+      $(SELECTOR.MAKE_COIN_QUANTITY_ID(coinType)).innerHTML = `${quantity}${WORD.EA}`;
     });
   },
 
@@ -102,7 +102,7 @@ const DOMUtils = {
     if (UT.isZero(charge)) return DOMUtils.initChargeToPurchaseProduct();
 
     $(SELECTOR.PURCHASE_CHARGE_AMOUNT).innerHTML = charge;
-    $(SELECTOR.PURCHASE_CHARGE_UNIT).innerHTML = '원';
+    $(SELECTOR.PURCHASE_CHARGE_UNIT).innerHTML = WORD.WON;
   },
 
   initChargeToPurchaseProduct: () => {

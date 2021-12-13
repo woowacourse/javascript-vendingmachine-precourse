@@ -1,4 +1,4 @@
-import { ERROR, STORAGE } from '../constants/constants.js';
+import { ERROR, STORAGE, NUMBER } from '../constants/constants.js';
 import { default as UT } from './utils.js';
 import { default as DB } from '../model/database.js';
 
@@ -14,7 +14,8 @@ const validators = {
   isValidProductPrice: string => {
     if (UT.isBlank(string)) return alert(ERROR.PRODUCT_PRICE_BLANK_SUBMIT);
     if (UT.hasSpecial(string)) return alert(ERROR.PRODUCT_PRICE_INCLUDE_SPECIAL);
-    if (UT.isUnder(string, 100)) return alert(ERROR.PRODUCT_PRICE_UNDER_HUNDRED);
+    if (UT.isUnder(string, NUMBER.HUNDRED_MULTIPLE))
+      return alert(ERROR.PRODUCT_PRICE_UNDER_HUNDRED);
     if (UT.isNotTenMultiple(string)) return alert(ERROR.PRODUCT_PRICE_NOT_TEN_MULTIPLE);
 
     return true;
@@ -31,7 +32,7 @@ const validators = {
   isValidCharge: string => {
     if (UT.isBlank(string)) return alert(ERROR.CHARGE_BLANK_SUBMIT);
     if (UT.hasSpecial(string)) return alert(ERROR.CHARGE_INCLUDE_SPECIAL);
-    if (UT.isUnder(string, 10)) return alert(ERROR.CHARGE_UNDER_TEN);
+    if (UT.isUnder(string, NUMBER.TEN_MULTIPLE)) return alert(ERROR.CHARGE_UNDER_TEN);
     if (UT.isNotTenMultiple(string)) return alert(ERROR.CHARGE_NOT_TEN_MULTIPLE);
 
     return true;

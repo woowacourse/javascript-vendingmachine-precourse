@@ -11,7 +11,7 @@ const convertChargeIntoCoin = charge => {
 const updateCoinWallet = (charge, coinWallet) => {
   const addRandomCoin = array => {
     const number = MissionUtils.Random.pickNumberInList(array);
-    coinWallet['coin' + number] += 1;
+    coinWallet[STORAGE.COIN.NAME + number] += 1;
     charge -= number;
   };
 

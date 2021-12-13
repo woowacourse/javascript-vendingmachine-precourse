@@ -9,11 +9,6 @@ export const SELECTOR = {
   COIN_CHARGE_AMOUNT: '#vending-machine-charge-amount',
   COIN_CHARGE_UNIT: '#vending-machine-monetary-unit',
 
-  COIN_500: '#vending-machine-coin-500-quantity',
-  COIN_100: '#vending-machine-coin-100-quantity',
-  COIN_50: '#vending-machine-coin-50-quantity',
-  COIN_10: '#vending-machine-coin-10-quantity',
-
   PRODUCT_MENU: '#product-add-menu',
   PRODUCT_NAME_INPUT: '#product-name-input',
   PRODUCT_PRICE_INPUT: '#product-price-input',
