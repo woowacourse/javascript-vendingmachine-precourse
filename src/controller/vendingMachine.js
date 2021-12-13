@@ -15,7 +15,6 @@ export default class VendingMachine {
   createModels() {
     this.productModel = new ProductManager();
     this.coinModel = new MoneyStatus();
-    this.purchaseCoinModel = new MoneyStatus();
   }
 
   init() {
@@ -27,6 +26,7 @@ export default class VendingMachine {
 
   setEvent() {
     $$('form').forEach(form => form.addEventListener('click', this.handleFormEvent.bind(this)));
+    $(`#${PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE}`).addEventListener('click', this.handlePurchaseEvent.bind(this));
   }
 
   handleFormEvent(e) {
@@ -36,14 +36,27 @@ export default class VendingMachine {
     } else if (e.target.id === COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_BUTTON) {
       this.handleChargeCoin();
     } else if (e.target.id === PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_BUTTON) {
-      this.handlePurchaseProduct();
+      this.handleClientChargeMoney();
+    }
+  }
+
+  handlePurchaseEvent(e) {
+    if (e.target.id === PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.PURCHASE_BUTTON) {
+      const name = e.target.parentNode.parentNode.childNodes[1].innerText;
+      const price = this.productModel.purchaseProduct(name);
+
+      this.coinModel.clientMoney -= price;
+
+      this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.coinModel.clientMoney);
+      this.view.renderProducts(PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE, this.tabMenu.purchaseMenu.purchaseItemTemplate);
+      this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
     }
   }
 
   submitProduct() {
     const name = $(`#${PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_NAME_INPUT}`).value;
-    const price = $(`#${PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_PRICE_INPUT}`).value;
-    const quantity = $(`#${PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_QUANTITY_INPUT}`).value;
+    const price = Number($(`#${PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_PRICE_INPUT}`).value);
+    const quantity = Number($(`#${PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_QUANTITY_INPUT}`).value);
     const errorMessage = getErrorMessage(this.productModel.products, name, price);
 
     if (errorMessage) {
@@ -78,8 +91,8 @@ export default class VendingMachine {
     this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coinModel.money);
   }
 
-  handlePurchaseProduct() {
-    this.submitChargeInput(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_INPUT, this.purchaseCoinModel);
-    this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.purchaseCoinModel.getAmount());
+  handleClientChargeMoney() {
+    this.coinModel.clientMoney += Number($(`#${PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_INPUT}`).value);
+    this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.coinModel.clientMoney);
   }
 }

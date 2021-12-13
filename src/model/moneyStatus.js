@@ -6,6 +6,7 @@ export default class MoneyStatus {
       50: 0,
       10: 0,
     };
+    this.clientMoney = 0;
   }
 
   putMoney(inputMoney) {
