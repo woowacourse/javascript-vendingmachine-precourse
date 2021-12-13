@@ -4,7 +4,7 @@ export default function productPurchase() {
     <h2>금액 투입</h2>
     <form>
       <input type="number" id="charge-input" maxlength="20" placeholder="투입할 금액" />
-      <button id="charge-button">투입하기</button>
+      <button id="charge-button" type="button">투입하기</button>
     </form>
     <p>투입한 금액: <span id="charge-amount"></span>원</p>
   </div>
