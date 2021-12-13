@@ -1,5 +1,6 @@
 import VendingMachine from "../vendingMachine/VendingMachine.js";
 import createDocumentElement from "../util/createDocumentElement.js";
+import createTableRow from "../util/createTableRow.js";
 
 const vendingMachine = new VendingMachine;
 vendingMachine.getFromLocalStorage();
@@ -46,16 +47,6 @@ function coinDisplayElement(container) {
     createTableRow(coinDisplayTable,"100원","vending-machine-coin-100-quantity");
     createTableRow(coinDisplayTable,"50원","vending-machine-coin-50-quantity");
     createTableRow(coinDisplayTable,"10원","vending-machine-coin-10-quantity");
-}
-
-function createTableRow(Table, innerText, id) {
-    const tableRow = document.createElement("tr");
-    const coin = createDocumentElement("td", innerText);
-    const coinAmount = createDocumentElement("td", "", id);
-
-    Table.appendChild(tableRow);
-    tableRow.appendChild(coin);
-    tableRow.appendChild(coinAmount);
 }
 
 function addCharge() {

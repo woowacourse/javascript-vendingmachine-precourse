@@ -1,4 +1,4 @@
-function createDocumentElement(tag, innerText, id='', placeholder='', className='') {
+function createDocumentElement(tag, innerText='', id='', placeholder='', className='') {
     const newElement = document.createElement(tag);
 
     newElement.id = id;
