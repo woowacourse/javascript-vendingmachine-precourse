@@ -1,4 +1,5 @@
-import { ERROR, STORAGE, NUMBER } from '../constants/constants.js';
+import { STORAGE, NUMBER } from '../constants/constants.js';
+import { ERROR } from '../constants/errors.js';
 import { default as UT } from './utils.js';
 import { default as DB } from '../model/database.js';
 
