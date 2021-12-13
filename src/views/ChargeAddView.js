@@ -14,7 +14,7 @@ export default class ChargeAddView extends ChargeAddController {
       e.preventDefault();
       this.addCoin = this.chargeAddField.querySelector('input').value;
       chargeAddValiate(this.addCoin) && 
-      this.renderCharge(), this.getChargeCoin();
+      this.renderCharge(), this.getChargeCoin(), this.renderRandomCoin();
     })
   }
 
@@ -27,7 +27,9 @@ export default class ChargeAddView extends ChargeAddController {
   }
 
   renderRandomCoin() {
-    this.containRandomCoin && renderContainRandomCoin(this.containRandomCoin);
+    this.localRandomCoin && renderContainRandomCoin(this.localRandomCoin);
   }
+
+  
 
 }

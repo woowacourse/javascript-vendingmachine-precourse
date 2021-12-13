@@ -48,10 +48,13 @@ export default class ChargeAddModel {
         this.randomCoin[3]++;
       }
     });
+    localStorage.setItem("RANDOM_COIN", JSON.stringify(this.randomCoin));
   }
 
   getRandonCoin() {
-    return this.randomCoin ? this.randomCoin : [0, 0, 0, 0];
+    const randomCoinLocal = JSON.parse(localStorage.getItem("RANDOM_COIN"));
+
+    return randomCoinLocal ? randomCoinLocal : [0, 0, 0, 0];
   }
 
 
