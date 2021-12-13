@@ -18,6 +18,8 @@
       "WithStatement",
       "BinaryExpression[operator='in']"
     ],
-    "allowForLoopAfterthoughts": true
+    "no-plusplus": "off",
+    "no-param-reassign": "off",
+    "consistent-return": "off"
   }
 }

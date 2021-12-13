@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, STANDARD } from '../../utils/constants.js';
+import { ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
 import { $ } from '../../utils/querySelector.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { showCurrentAmount } from '../../view/view.js';
@@ -8,17 +8,31 @@ import { initProductPurchaseList, productPurchaseTemplate } from './productPurch
 let currentAmount = STANDARD.CURRENT_MONEY;
 const chargeAmountId = '#charge-amount';
 
+const resetProductItemStorage = (storedProductItems, name) => {
+  const productItems = storedProductItems.map((item) => {
+    if (item.name === name) {
+      item.quantity -= 1;
+    }
+    return item;
+  });
+  localStorage.setItem(STORAGE_NAME.PRODUCT, JSON.stringify(productItems));
+};
+
+const subtractPriceAndQuantity = (target, price) => {
+  target.childNodes[5].dataset.productQuantity--;
+  target.childNodes[5].innerText--;
+  currentAmount -= price;
+};
+
 const handlePurchaseButtonClick = (event) => {
   const target = event.target.parentElement.parentElement;
   const name = target.childNodes[1].dataset.productName;
   const price = target.childNodes[3].dataset.productPrice;
-  const quantity = target.childNodes[5].dataset.productQuantity;
 
-  target.childNodes[5].dataset.productQuantity--;
-  target.childNodes[5].innerText--;
-
-  currentAmount -= price;
+  subtractPriceAndQuantity(target, price);
   showCurrentAmount(chargeAmountId, currentAmount);
+  const storedProductItems = getProductItemStorage();
+  resetProductItemStorage(storedProductItems, name);
 };
 
 const handleChargeInput = (event) => {
