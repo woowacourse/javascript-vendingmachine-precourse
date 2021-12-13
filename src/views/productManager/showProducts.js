@@ -1,4 +1,5 @@
 import { getProducts } from "../../utils/getSetItems.js";
+import { convertHyphenToSpace } from "../../utils/productNameConverter.js";
 
 const insertProductToTable = (name, price, quantity) => {
   const $productTable = document.getElementById("product-table");
@@ -32,6 +33,7 @@ const showProducts = () => {
 
     products.forEach(product => {
       const productInfo = product.split("/");
+      productInfo[0] = convertHyphenToSpace(productInfo[0]);
       insertProductToTable(productInfo[0], productInfo[1], productInfo[2]);
     });
   }

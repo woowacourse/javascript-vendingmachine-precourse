@@ -1,5 +1,6 @@
 import { ALERT_MSG } from "../../../utils/constants.js";
 import { getProducts, setProducts } from "../../../utils/getSetItems.js";
+import { convertSpaceToHyphen } from "../../../utils/productNameConverter.js";
 
 // 같은 이름과 가격을 가진 상품이 있으면 해당 상품의 위치를, 없으면 -1을 반환
 const isSameProductInProducts = (strOfProducts, name, price) => {
@@ -83,6 +84,7 @@ const addProductInProducts = (name, price, quantity, products) => {
 
 const addProduct = (name, price, quantity) => {
   const products = getProducts();
+  name = convertSpaceToHyphen(name);
   const productInfo = `${name}/${price}/${quantity}`;
 
   if (products === null) {
