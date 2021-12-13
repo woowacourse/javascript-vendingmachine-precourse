@@ -39,8 +39,10 @@
   - 반환된 잔돈을 화면에 보여준다. ✔️
 
 ## Refactor 목록
-- machine.js getRandomReturn, getRandomCoin 중복되는 부분 함수 만들기
+- <del>machine.js getRandomReturn, getRandomCoin 중복되는 부분 함수 만들기</del>
+- localStorage 적용하기
 - displayProductPurchaseTab 이벤트 리스너 분리하기
+
 
 ---
 

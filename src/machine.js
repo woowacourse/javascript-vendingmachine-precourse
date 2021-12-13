@@ -2,6 +2,7 @@ import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PU
 import Product from './product.js'
 import { elementCreatorWithClass } from './dom/util.js';
 import * as validator from './validatior.js';
+import { saveStorage } from './util/storage.js';
 
 export default class VendingMachine {
     constructor(){
@@ -88,6 +89,7 @@ export default class VendingMachine {
             this.displayProductAddTab(product);
             this.displayProductPurchaseTab(product);
             this.products.push(product);
+            saveStorage(this);
         }
     }
 
@@ -165,6 +167,10 @@ export default class VendingMachine {
 
     getRandomReturn(money){
         let returnCoin = {};
+        for(let key in COIN_VALUE){
+            returnCoin[key] = 0;
+        }
+
         for(let key in COIN_VALUE){
             if(money <= 0){
                 break;

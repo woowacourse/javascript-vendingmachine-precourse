@@ -1,10 +1,11 @@
-import {ADD_TAB_ID, MANAGE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_ID} from './constants.js';
 import { elementCreator } from './dom/util.js';
 import createAddTab from './tabs/add-tab.js';
 import createManageTab from './tabs/manage-tab.js';
 import createPurchaseTab from './tabs/purchase-tab.js';
 
+import createEventListeners from './eventListeners.js';
 import VendingMachine from './machine.js';
+import { checkStorage } from './util/storage.js';
 
 const addButtonId = 'product-add-menu';
 const manageButtonId = 'vending-machine-manage-menu';
@@ -52,37 +53,7 @@ buttons.addEventListener('click', e =>{
     };
 });
 
-//자판기 객체 생성
+//자판기 객체 초기화
 const vendingMachine = new VendingMachine();
-
-const addTabButton = document.getElementById(ADD_TAB_ID.ADD_BUTTON)
-addTabButton.addEventListener('click', e => {
-    e.preventDefault();
-    const name = document.getElementById(ADD_TAB_ID.NAME_INPUT).value;
-    const price = document.getElementById(ADD_TAB_ID.PRICE_INPUT).value;
-    const quantity = document.getElementById(ADD_TAB_ID.QUANTITY_INPUT).value;
-    
-    vendingMachine.addProduct(name, price, quantity);
-})
-
-const manageTabButton = document.getElementById(MANAGE_TAB_ID.CHARGE_BUTTON)
-manageTabButton.addEventListener('click', e=> {
-    e.preventDefault();
-    const money = document.getElementById(MANAGE_TAB_ID.CHARGE_INPUT).value;
-
-    vendingMachine.addCoin(money);
-})
-
-const purchaseTabButton = document.getElementById(PURCHASE_TAB_ID.CHARGE_BUTTON)
-purchaseTabButton.addEventListener('click', e=> {
-    e.preventDefault();
-    const money = document.getElementById(PURCHASE_TAB_ID.CHARGE_INPUT).value;
-
-    vendingMachine.userBuy(money);
-})
-
-const returnButton = document.getElementById(PURCHASE_TAB_ID.RETURN_BUTTON)
-returnButton.addEventListener('click', e => {
-    e.preventDefault();
-    vendingMachine.returnMoney();
-})
+checkStorage(vendingMachine);
+createEventListeners(vendingMachine);
