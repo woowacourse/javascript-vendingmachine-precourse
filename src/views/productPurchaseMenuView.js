@@ -86,7 +86,18 @@ export default function ProductPurchaseMenuView() {
 
   this.onClickReturnCoinButton = (e) => {
     e.preventDefault();
-    const returnCoin = vendingMachine.returnCoin();
+    const returnCoinCount = vendingMachine.returnCoin();
+
+    this.renderInsertMoney();
+    this.renderReturnCoin(returnCoinCount);
+  };
+
+  this.renderReturnCoin = (counts) => {
+    counts.forEach((count, index) => {
+      const coinData = document.querySelector(`#${ID.RETURN_COIN[index]}`);
+
+      coinData.innerHTML = `${count}개`;
+    });
   };
 
   this.renderInsertMoney = () => {
