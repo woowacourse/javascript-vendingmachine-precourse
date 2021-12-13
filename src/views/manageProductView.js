@@ -6,7 +6,7 @@ import {
   makeTableHeaders,
   makeInput,
   makeTdWithClass,
-} from "../assets/utils/utils.js";
+} from "./publicView.js";
 import { MANAGE_TAP } from "../assets/constants/manageTap.js";
 
 // 상품 추가하기 폼

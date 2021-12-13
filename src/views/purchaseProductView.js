@@ -5,8 +5,8 @@ import {
   PRODUCT_TABLE,
   VIEW_CONTAINER,
 } from "../assets/constants/public.js";
+import { getQuantityText } from "../assets/utils/utils.js";
 import {
-  getQuantityText,
   makeButton,
   makeClassButton,
   makeCoinTable,
@@ -15,7 +15,7 @@ import {
   makeTableHeaders,
   makeTdWithClass,
   makeTitle,
-} from "../assets/utils/utils.js";
+} from "./publicView.js";
 import { PURCHASE_TAP } from "../assets/constants/purchaseTap.js";
 import {
   getQuantityTag,

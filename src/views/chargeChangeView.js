@@ -5,13 +5,13 @@ import {
   VIEW_CONTAINER,
 } from "../assets/constants/public.js";
 import { CHARGE_TAP } from "../assets/constants/chargeTap.js";
+import { getQuantityText } from "../assets/utils/utils.js";
 import {
   makeTitle,
   makeChangeStateContainer,
   makeResultContainer,
   makeInputForm,
-  getQuantityText,
-} from "../assets/utils/utils.js";
+} from "./publicView.js";
 
 // ----자판기 동전 충전하기 폼 렌더링 함수----
 const makeChargeChangeContainer = () => {
