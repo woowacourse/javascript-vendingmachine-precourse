@@ -49,26 +49,26 @@ export const getProductPurchaseText = (tabMenu) => {
     <section>
       <h4>잔돈</h4>
       <button id="coin-return-button">반환하기</button>
-      <table>
+      <table id="coin-return-table">
         <tr>
           <th>동전</th>
           <th>개수</th>
         </tr>
         <tr>
-          <th id="coin-500-quantity">500원</th>
-          <td></td>
+          <th>500원</th>
+          <td  id="coin-500-quantity">${coinList['500']}개</td>
         </tr>
         <tr>
-          <th id="coin-100-quantity">100원</th>
-          <td></td>
+          <th>100원</th>
+          <td id="coin-100-quantity">${coinList['100']}개</td>
         </tr>
         <tr>
-          <th id="coin-50-quantity">50원</th>
-          <td></td>
+          <th>50원</th>
+          <td id="coin-50-quantity">${coinList['50']}개</td>
         </tr>
         <tr>
-          <th id="coin-10-quantity">10원</th>
-          <td></td>
+          <th>10원</th>
+          <td id="coin-10-quantity">${coinList['10']}개</td>
         </tr>
       </table>
     </section>

@@ -48,20 +48,20 @@ export const getVendingMachineCoinListTemplate = (coinList) => {
       <th>개수</th>
     </tr>
     <tr>
-      <th id="vending-machine-coin-500-quantity">500원</th>
-      <td>${coinList['500']}개</td>
+      <th >500원</th>
+      <td id="vending-machine-coin-500-quantity">${coinList['500']}개</td>
     </tr>
     <tr>
-      <th id="vending-machine-coin-100-quantity">100원</th>
-      <td>${coinList['100']}개</td>
+      <th>100원</th>
+      <td id="vending-machine-coin-100-quantity">${coinList['100']}개</td>
     </tr>
     <tr>
-      <th id="vending-machine-coin-50-quantity">50원</th>
-      <td>${coinList['50']}개</td>
+      <th>50원</th>
+      <td id="vending-machine-coin-50-quantity">${coinList['50']}개</td>
     </tr>
     <tr>
-      <th id="vending-machine-coin-10-quantity">10원</th>
-      <td>${coinList['10']}개</td>
+      <th>10원</th>
+      <td id="vending-machine-coin-10-quantity">${coinList['10']}개</td>
     </tr>
   `;
 };
@@ -86,20 +86,20 @@ export const getVendingMachineManageText = (tabMenu) => {
           <th>개수</th>
         </tr>
         <tr>
-          <th id="vending-machine-coin-500-quantity">500원</th>
-          <td>${coinList['500']}개</td>
+          <th>500원</th>
+          <td id="vending-machine-coin-500-quantity">${coinList['500']}개</td>
         </tr>
         <tr>
-          <th id="vending-machine-coin-100-quantity">100원</th>
-          <td>${coinList['100']}개</td>
+          <th>100원</th>
+          <td id="vending-machine-coin-100-quantity">${coinList['100']}개</td>
         </tr>
         <tr>
-          <th id="vending-machine-coin-50-quantity">50원</th>
-          <td>${coinList['50']}개</td>
+          <th>50원</th>
+          <td id="vending-machine-coin-50-quantity">${coinList['50']}개</td>
         </tr>
         <tr>
-          <th id="vending-machine-coin-10-quantity">10원</th>
-          <td>${coinList['10']}개</td>
+          <th>10원</th>
+          <td id="vending-machine-coin-10-quantity">${coinList['10']}개</td>
         </tr>
       </table>
     </section>

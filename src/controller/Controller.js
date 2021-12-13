@@ -88,6 +88,7 @@ class Controller {
         this.view.showProductPurchaseScreen(tabMenu);
         this.triggerChargeSubmitEvent();
         this.triggerPurchaseClickEvent();
+        this.triggerCoinReturnClickEvent();
         break;
     }
   }
@@ -111,16 +112,23 @@ class Controller {
     this.vendingMachine.setLocalStorage(tabMenu);
   }
 
-  renderVendingMachineCharge(vendingMachineChargeInput) {
-    const vendingMachineChargeNumber = parseInt(vendingMachineChargeInput, 10);
+  renderVendingMachineChargeLocalStorage(vendingMachineChargeNumber) {
     const tabMenu = this.vendingMachine.getLocalStorage();
     const coinList = this.getRandomCoinList(vendingMachineChargeNumber);
 
     tabMenu['vending_machine_manage_menu']['chargeAmount'] += vendingMachineChargeNumber;
-
     Object.keys(coinList).forEach((coin) => {
       tabMenu['vending_machine_manage_menu']['coinList'][coin] += coinList[coin];
     });
+
+    this.vendingMachine.setLocalStorage(tabMenu);
+  }
+
+  renderVendingMachineCharge(vendingMachineChargeInput) {
+    const tabMenu = this.vendingMachine.getLocalStorage();
+    const vendingMachineChargeNumber = parseInt(vendingMachineChargeInput, 10);
+
+    this.renderVendingMachineChargeLocalStorage(vendingMachineChargeNumber);
 
     $id('vending-machine-coin-list').innerHTML = getVendingMachineCoinListTemplate(
       tabMenu['vending_machine_manage_menu']['coinList']
@@ -128,8 +136,6 @@ class Controller {
 
     $id('vending-machine-charge-amount').innerText =
       tabMenu['vending_machine_manage_menu']['chargeAmount'];
-
-    this.vendingMachine.setLocalStorage(tabMenu);
   }
 
   renderCharge(chargeInput) {
@@ -166,6 +172,69 @@ class Controller {
     productPurchaseQuantity.innerText = tabMenu['product_add_menu'][purchaseItemIdx].quantity;
 
     this.vendingMachine.setLocalStorage(tabMenu);
+  }
+
+  getCoinReturnList() {
+    const tabMenu = this.vendingMachine.getLocalStorage();
+    let { chargeAmount } = tabMenu['product_purchase_menu'];
+    const { coinList } = tabMenu['vending_machine_manage_menu'];
+
+    const coinReturnList = { 500: 0, 100: 0, 50: 0, 10: 0 };
+
+    const descendingKeys = Object.keys(coinList)
+      .map((coin) => parseInt(coin, 10))
+      .sort((a, b) => b - a);
+
+    for (let i = 0; i < descendingKeys.length; i++) {
+      let maxNumber = Math.floor(chargeAmount / descendingKeys[i]);
+      maxNumber =
+        maxNumber < coinList[descendingKeys[i].toString()]
+          ? maxNumber
+          : coinList[descendingKeys[i].toString()];
+
+      tabMenu['vending_machine_manage_menu']['coinList'][descendingKeys[i].toString()] -= maxNumber;
+      chargeAmount -= maxNumber * descendingKeys[i];
+      tabMenu['vending_machine_manage_menu']['chargeAmount'] -= maxNumber * descendingKeys[i];
+      tabMenu['product_purchase_menu']['chargeAmount'] -= maxNumber * descendingKeys[i];
+      coinReturnList[descendingKeys[i].toString()] += maxNumber;
+    }
+
+    tabMenu['product_purchase_menu']['coinList'] = coinReturnList;
+
+    $id('charge-amount').innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+    $id('coin-return-table').innerHTML = `
+      <tr>
+        <th>동전</th>
+        <th>개수</th>
+      </tr>
+      <tr>
+        <th id="coin-500-quantity">500원</th>
+        <td>${tabMenu['product_purchase_menu']['coinList']['500']}개</td>
+      </tr>
+      <tr>
+        <th id="coin-100-quantity">100원</th>
+        <td>${tabMenu['product_purchase_menu']['coinList']['100']}개</td>
+      </tr>
+      <tr>
+        <th id="coin-50-quantity">50원</th>
+        <td>${tabMenu['product_purchase_menu']['coinList']['50']}개</td>
+      </tr>
+      <tr>
+        <th id="coin-10-quantity">10원</th>
+        <td>${tabMenu['product_purchase_menu']['coinList']['10']}개</td>
+      </tr>
+    `;
+
+    this.vendingMachine.setLocalStorage(tabMenu);
+    this.renderVendingMachineChargeLocalStorage(chargeAmount);
+
+    return coinReturnList;
+  }
+
+  triggerCoinReturnClickEvent() {
+    $id('coin-return-button').addEventListener('click', (e) => {
+      this.getCoinReturnList();
+    });
   }
 
   triggerPurchaseClickEvent() {
