@@ -13,9 +13,5 @@ export default class VendingMachine {
 
     // createMenuBar
     new MenuBar();
-
-    // createPageContentContainer
-    const $pageContentContainer = createDiv(ID.PAGE_CONTENT);
-    $('#app').appendChild($pageContentContainer);
   };
 }

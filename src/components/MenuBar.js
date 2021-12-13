@@ -3,6 +3,8 @@ import ProductAdd from './ProductAdd.js';
 import VendingMachineManage from './VendingMachineManage.js';
 import ProductPurchase from './ProductPurchase.js';
 
+const LS_KEY_RECENT_MENU = 'recentMenu';
+
 export default class MenuBar {
   constructor() {
     this.init();
@@ -22,10 +24,21 @@ export default class MenuBar {
     $menuBar.appendChild($vendingMachineManageMenuBtn);
     $menuBar.appendChild($productPurchaseMenuBtn);
     $('#app').appendChild($menuBar);
+
+    // createPageContentContainer
+    const $pageContentContainer = createDiv(ID.PAGE_CONTENT);
+    $('#app').appendChild($pageContentContainer);
   };
 
   loadRecentMenu = () => {
-    // TODO: load the menu page which user was recently working on
+    const recentMenu = localStorage.getItem(LS_KEY_RECENT_MENU);
+    if (recentMenu === '0') new ProductAdd();
+    if (recentMenu === '1') new VendingMachineManage();
+    if (recentMenu === '2') new ProductPurchase();
+  };
+
+  saveRecentMenu = (id) => {
+    localStorage.setItem(LS_KEY_RECENT_MENU, id);
   };
 
   handleMenuBarClick = (e) => {
@@ -33,12 +46,15 @@ export default class MenuBar {
     if (!clickedBtn) return;
     if (clickedBtn.id === ID.PRODUCT_ADD_MENU) {
       new ProductAdd();
+      this.saveRecentMenu('0');
     }
     if (clickedBtn.id === ID.VENDING_MACHINE_MANAGE_MENU) {
       new VendingMachineManage();
+      this.saveRecentMenu('1');
     }
     if (clickedBtn.id === ID.PRODUCT_PURCHASE_MENU) {
       new ProductPurchase();
+      this.saveRecentMenu('2');
     }
   };
 }
