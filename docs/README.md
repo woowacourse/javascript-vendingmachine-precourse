@@ -67,7 +67,7 @@
 
 
 ## 리팩터링
-- [ ] 상품 구매 탭도 다시 클릭했을 때 가져올 수 있도록 함 
+- [x] 투입한 금액도 localStorage로 관리 
 - [ ] productPurchaseModel 리팩터링
 
 - [ ] render 하는 로직 controll에 (index.js 최대한 적게, controll이 view 호출)

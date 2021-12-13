@@ -86,11 +86,13 @@ export const getChange = () => {
   change = calculateTen(change, hasCoin);
 
   $('#charge-amount').innerText = change;
+  store.setLocalStorage('holdAmount', change);
   return change;
 };
 
 export const updateAmount = (holdAmount, price) => {
   holdAmount -= price;
+  store.setLocalStorage('holdAmount', holdAmount);
   return holdAmount;
 };
 
