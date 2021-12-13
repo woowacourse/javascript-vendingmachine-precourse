@@ -15,11 +15,11 @@ export class BuyController {
     const products = this.model.products;
     const changeCoins = this.model.changeCoins;
     this.coreView.buyView.showTotalInsertedMoney(totalInsertedMoney);
+    this.coreView.buyView.showChangeCoin(changeCoins);
     if (products.length === 0) {
       return;
     }
     this.coreView.buyView.showProductForBuy(products);
-    this.coreView.buyView.showChangeCoin(changeCoins);
   }
 
   triggerEvent() {

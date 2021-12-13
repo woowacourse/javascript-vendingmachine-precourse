@@ -9,16 +9,16 @@ export class ProductController {
     this.triggerEvent();
   }
 
-  triggerEvent() {
-    this.coreView.productView.setOnProductSubmit(this.onProductSubmit.bind(this));
-  }
-
   loadLocalStorage() {
     const products = this.model.products;
     if (products.length === 0) {
       return;
     }
     this.coreView.productView.showProduct(products);
+  }
+
+  triggerEvent() {
+    this.coreView.productView.setOnProductSubmit(this.onProductSubmit.bind(this));
   }
 
   onProductSubmit(productName, price, quantity) {
