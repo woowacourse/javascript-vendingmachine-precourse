@@ -8,10 +8,12 @@ export const $app = $('app');
 
 export function setDisplayNone(elem) {
   elem.style.display = 'none';
+  localStorage.setItem(elem.id, 'none');
 }
 
 export function setDisplayBlock(elem) {
   elem.style.display = 'block';
+  localStorage.setItem(elem.id, 'block');
 }
 
 export function setTableStyle(elem) {

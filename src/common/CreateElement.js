@@ -7,7 +7,12 @@ export function createDiv() {
 export function createMenuDiv(id) {
   const menuDiv = createDiv();
   menuDiv.setAttribute('id', id);
-  setDisplayNone(menuDiv);
+
+  if (localStorage.getItem(id)) {
+    menuDiv.style.display = localStorage.getItem(id);
+  } else {
+    setDisplayNone(menuDiv);
+  }
 
   return menuDiv;
 }
