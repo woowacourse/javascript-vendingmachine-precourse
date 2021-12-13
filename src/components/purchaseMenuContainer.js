@@ -35,7 +35,7 @@ export default class PurchaseMenuContainer extends Component {
       },
       moneyInfo: {
         id: "vending-machine-charge-amount",
-        type: "보유",
+        type: "투입",
       },
     });
 
