@@ -1,16 +1,17 @@
 import Component from '../../core/Component.js';
 import { $ } from '../../utils/element-tools.js';
 import { SELECTOR } from '../../constants/selector.js';
+import { DISPLAY } from '../../constants/display.js';
 
 export default class ProductInputForm extends Component {
   htmlTemplate() {
     return `
-    <h3>상품 추가하기</h3>
+    <h3>${DISPLAY.TITLE_PRODUCT_ADD}</h3>
     <div>
-      <input type="text" id="product-name-input" placeholder="상품명"/>
-      <input type="text" id="product-price-input" placeholder="가격"/>
-      <input type="number" id="product-quantity-input" placeholder="수량"/>
-      <button id="product-add-button">추가하기</button>
+      <input type="text" id="product-name-input" placeholder="${DISPLAY.TEXT_PRODUCT_NAME}"/>
+      <input type="text" id="product-price-input" placeholder="${DISPLAY.TEXT_PRODUCT_PRICE}"/>
+      <input type="number" id="product-quantity-input" placeholder="${DISPLAY.TEXT_PRODUCT_QUANTITY}"/>
+      <button id="product-add-button">${DISPLAY.BUTTON_PRODUCT_ADD}</button>
     </div>
     `;
   }

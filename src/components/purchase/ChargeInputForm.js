@@ -1,6 +1,7 @@
 import Component from '../../core/Component.js';
 import { $ } from '../../utils/element-tools.js';
 import { SELECTOR } from '../../constants/selector.js';
+import { DISPLAY } from '../../constants/display.js';
 
 export default class ChargeInputForm extends Component {
   init() {
@@ -10,12 +11,12 @@ export default class ChargeInputForm extends Component {
   htmlTemplate() {
     const { state } = this._props;
     return `
-    <h3>금액 투입</h3>
+    <h3>${DISPLAY.TITLE_AMOUNT_CHARGE}</h3>
     <div>
-      <input type="number" id="charge-input" placeholder="투입할 금액"/>
-      <button id="charge-button">투입하기</button>
+      <input type="number" id="charge-input" placeholder="${DISPLAY.TEXT_AMOUNT_INPUT}"/>
+      <button id="charge-button">${DISPLAY.BUTTON_AMOUNT_CHARGE}</button>
     </div>
-    <p>투입한 금액: <span id="charge-amount">${state.value}</span>원</p>
+    <p>${DISPLAY.TEXT_AMOUNT_CHARGE}: <span id="charge-amount">${state.value}</span>${DISPLAY.UNIT_MONEY}</p>
     `;
   }
 

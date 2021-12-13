@@ -1,16 +1,17 @@
 import Component from '../../core/Component.js';
 import { $ } from '../../utils/element-tools.js';
+import { DISPLAY } from '../../constants/display.js';
 
 export default class CoinInputForm extends Component {
   htmlTemplate() {
     const { chargeAmount } = this._props;
     return `
-    <h3>자판기 동전 충전하기</h3>
+    <h3>${DISPLAY.TITLE_COIN_CHARGE}</h3>
     <div>
       <input type="number" id="vending-machine-charge-input"/>
-      <button id="vending-machine-charge-button">충전하기</button>
+      <button id="vending-machine-charge-button">${DISPLAY.BUTTON_COIN_CHARGE}</button>
     </div>
-    <p>보유 금액: <span id="vending-machine-charge-amount">${chargeAmount}</span>원</p>
+    <p>${DISPLAY.TEXT_COIN_TOTAL}: <span id="vending-machine-charge-amount">${chargeAmount}</span>${DISPLAY.UNIT_MONEY}</p>
     `;
   }
 

@@ -4,6 +4,7 @@ import ReturnTable from '../table/ReturnTable.js';
 import { SELECTOR } from '../../constants/selector.js';
 import { CONSTANTS } from '../../constants/constants.js';
 import { cloneObject } from '../../utils/data-tools.js';
+import { DISPLAY } from '../../constants/display.js';
 
 export default class ReturnCoinResult extends Component {
   init() {
@@ -15,7 +16,10 @@ export default class ReturnCoinResult extends Component {
   domTemplate() {
     const { returnCoin } = this._state;
 
-    const createTable = new ReturnTable('잔돈', ['동전', '개수']);
+    const createTable = new ReturnTable(DISPLAY.TITLE_PURCHASE_BALANCE, [
+      DISPLAY.TEXT_COIN,
+      DISPLAY.TEXT_COIN_QUANTITY,
+    ]);
     const $purchaseTable = createTable.setContents(returnCoin).result;
 
     return $purchaseTable;

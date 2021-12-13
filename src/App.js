@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import { $, $$ } from './utils/element-tools.js';
 import { CONFIG } from './constants/config.js';
+import { DISPLAY } from './constants/display.js';
 
 import Component from './core/Component.js';
 import ProductManage from './components/ProductManage.js';
@@ -10,7 +11,7 @@ import PurchaseManage from './components/PurchaseManage.js';
 export default class App extends Component {
   htmlTemplate() {
     return `
-      <h1>🥤자판기🥤</h1>
+      <h1>${DISPLAY.TITLE_APP}</h1>
       <nav id="main-menu">
         ${CONFIG.APP_MAIN_MENU.map(
           ({ id, name }) => `<button id=${id}>${name}</button>`
