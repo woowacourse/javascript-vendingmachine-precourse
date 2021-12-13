@@ -43,6 +43,9 @@ export class VENDING_MACHINE_CHARGE{
     setChargeTotal(newCharge){
         this.chargeTotal += Number(newCharge)
     }
+    useChargeTotal(price){
+        this.chargeTotal -= price
+    }
     getName(){
         console.log(this.chargeArray)
     }

@@ -1,28 +1,21 @@
 import { VENDING_MACHINE_CHARGE, ERROR_MESSAGE } from './product.js'
+import { printVendingMachineChargeAmount, printVendingMachineChargeTable } from './printVendingMachineCharge.js'
 
 let vendingMachineCharge = new VENDING_MACHINE_CHARGE()
 
 function addVENDING_MACHINE_CHARGE(vendingMachineCharge, vendingMachineChargeTotal, chargeArray, randomNumber, i){
     vendingMachineChargeTotal += chargeArray[i]*randomNumber
     vendingMachineCharge.setChargeArray(i, randomNumber)
+    
     console.log(chargeArray[i] + ' ' + randomNumber) 
     return vendingMachineChargeTotal      
 }
 
-function makeRandomCharge(){
-    const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input')  
-    const randomNumber = MissionUtils.Random.pickNumberInRange(0, Number($vendingMachineChargeInput.value));
 
-    let vendingMachineChargeTotal = 0
-    const chargeArray = [500, 100, 50, 10]
-    let i=0
-    
-    //보유금액 출력
-    vendingMachineCharge.setChargeTotal($vendingMachineChargeInput.value)
-    const $vendingMachineChargeAmount = document.querySelector('#vending-machine-charge-amount')
-    $vendingMachineChargeAmount.innerHTML = `보유금액: ${vendingMachineCharge.chargeTotal}`
 
-    //랜덤잔돈 만들기
+//랜덤잔돈 만들기
+function makeRandomCharge($vendingMachineChargeInput, vendingMachineChargeTotal, chargeArray, vendingMachineCharge){
+    let i=0        
     while(true){
         const randomNumber = MissionUtils.Random.pickNumberInRange(0, Number($vendingMachineChargeInput.value));
         if(vendingMachineChargeTotal+(chargeArray[i]*randomNumber) < $vendingMachineChargeInput.value){
@@ -34,11 +27,22 @@ function makeRandomCharge(){
             i++
         }
         if(i>3){
-            console.log(vendingMachineChargeTotal) 
             break;
         }
+    }         
+}
 
-    }        
+
+function makeRandomChargeArray(){
+    const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input')  
+    let vendingMachineChargeTotal = 0
+    const chargeArray = [500, 100, 50, 10]
+
+    //자판기 보유금액 출력
+    printVendingMachineChargeAmount(vendingMachineCharge)
+
+    //랜덤잔돈 만들기
+    makeRandomCharge($vendingMachineChargeInput, vendingMachineChargeTotal, chargeArray, vendingMachineCharge)    
 }
 
 //잔돈 입력값 유효성 검사
@@ -52,38 +56,29 @@ function checkVendingMachineChargeInputValid(){
         alert(ERROR_MESSAGE.VENDING_MACHINE_CHARGE_INPUT_NUMBER_ERROR)
         return false
     }
-    console.log($vendingMachineChargeInput.value)
     return true
 }
 
+
+
+//입력창 비우기
+function emptyVendingMachineChargeInput(){
+    const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input') 
+    $vendingMachineChargeInput.value = ''        
+}
+
 export function addVendingMachineCharge(){
-
-
-    
+    //유효성 검사
     if(checkVendingMachineChargeInputValid()){
-        makeRandomCharge()
+        const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input') 
+        vendingMachineCharge.setChargeTotal($vendingMachineChargeInput.value)
+        makeRandomChargeArray()
 
-        vendingMachineCharge.getName()
-
-
-        //html에 출력
-        const $vendingMachineCoin500Quantity = document.querySelector('#vending-machine-coin-500-quantity')
-        const $vendingMachineCoin100Quantity = document.querySelector('#vending-machine-coin-100-quantity')
-        const $vendingMachineCoin50Quantity = document.querySelector('#vending-machine-coin-50-quantity')
-        const $vendingMachineCoin10Quantity = document.querySelector('#vending-machine-coin-10-quantity')
-
-        $vendingMachineCoin500Quantity.innerHTML = vendingMachineCharge.chargeArray[0]
-        $vendingMachineCoin100Quantity.innerHTML = vendingMachineCharge.chargeArray[1]
-        $vendingMachineCoin50Quantity.innerHTML = vendingMachineCharge.chargeArray[2]
-        $vendingMachineCoin10Quantity.innerHTML = vendingMachineCharge.chargeArray[3]
-    
+        //자판기 잔돈 테이블에 추가       
+        printVendingMachineChargeTable(vendingMachineCharge)
     }
 
     //입력창 비우기
-    const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input') 
-    $vendingMachineChargeInput.value = ''
-
+    emptyVendingMachineChargeInput()
     return vendingMachineCharge
-
-
 }

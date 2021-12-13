@@ -1,4 +1,5 @@
 import { CUSTOMER_CHARGE } from './product.js'
+import { printVendingMachineChargeAmount, printVendingMachineChargeTable } from './printVendingMachineCharge.js'
 
 
 const customerCharge = new CUSTOMER_CHARGE()
@@ -57,6 +58,9 @@ export function purchaseProduct(PRODUCTS, vendingMachineCharge){
     $coninReturnButton.addEventListener('click',()=>{
         console.log('소비자돈 '+ customerCharge.customerChargeTotal)
         console.log(vendingMachineCharge.chargeArray)
+        console.log(customerCharge.customerChargeTotal)
+        //잔돈충전 탭에서 보유금액 바꾸기
+        vendingMachineCharge.useChargeTotal(customerCharge.customerChargeTotal)
             //TO DO : 큰 동전부터 계산하여 CUSTOMER_CHARGE 클래스에 넣기
             let coin = [500,100,50,10]
             let coinAmount = 0
@@ -76,9 +80,9 @@ export function purchaseProduct(PRODUCTS, vendingMachineCharge){
                     customerCharge.setCustomerChargeArray(i, coinAmount)
                     customerCharge.purchase(Number(coin[i]) * coinAmount)
                     vendingMachineCharge.useChargeArray(i, coinAmount)
-                                //투입한 금액에 출력
-                                const $chargeAmount = document.querySelector('#charge-amount')
-                                $chargeAmount.innerHTML = `투입한 금액: ${customerCharge.customerChargeTotal}`
+                    //             //투입한 금액에 출력
+                    //             const $chargeAmount = document.querySelector('#charge-amount')
+                    //             $chargeAmount.innerHTML = `투입한 금액: ${customerCharge.customerChargeTotal}`
                 }
                 //else{
                 else if(coin[i] * vendingMachineCharge.chargeArray[i] > customerCharge.customerChargeTotal){
@@ -96,18 +100,20 @@ export function purchaseProduct(PRODUCTS, vendingMachineCharge){
                     //console.log(customerCharge.customerChargeTotal)
                     //console.log(coin[i])
                     //console.log(parseInt(customerCharge.customerChargeTotal/coin[i]))
-
                     vendingMachineCharge.useChargeArray(i, coinAmount)
-                                //투입한 금액에 출력
-                                const $chargeAmount = document.querySelector('#charge-amount')
-                                $chargeAmount.innerHTML = `투입한 금액: ${customerCharge.customerChargeTotal}`
-                }
+                    }
+
+                
                 console.log(customerCharge.customerChargeArray)
                 console.log(vendingMachineCharge.chargeArray)  
                 console.log(customerCharge.customerChargeTotal)
          
             }
 
+                
+                            //투입한 금액에 출력
+                            const $chargeAmount = document.querySelector('#charge-amount')
+                            $chargeAmount.innerHTML = `투입한 금액: ${customerCharge.customerChargeTotal}`
             //반환된 동전 갯수 출력  
             const $coin500Quantity = document.querySelector('.coin-500-quantity')
             const $coin100Quantity = document.querySelector('.coin-100-quantity')
@@ -122,6 +128,9 @@ export function purchaseProduct(PRODUCTS, vendingMachineCharge){
            
        
             //TO DO : 잔돈 충전탭 reset
+            console.log(vendingMachineCharge.chargeTotal)
+            printVendingMachineChargeAmount(vendingMachineCharge)
+            printVendingMachineChargeTable(vendingMachineCharge)
     })
 
 
