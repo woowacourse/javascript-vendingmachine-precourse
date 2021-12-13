@@ -53,11 +53,12 @@ export default class VendingMachine {
     return this.products.findIndex((product) => product.name === name);
   }
 
-  sellProduct({ name, price }) {
+  sellProduct({ name, price }, $productNode) {
     if (Validator.isBuyable(price, this.money)) {
       const index = this.getProductIndexByName(name);
       this.products[index].decreaseQuantity();
       this.money -= +price;
+      this.products[index].renderUpdate($productNode, this.money);
       localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(this.products));
       localStorage.setItem(CURRENT_MONEY_KEY, this.money);
       return true;

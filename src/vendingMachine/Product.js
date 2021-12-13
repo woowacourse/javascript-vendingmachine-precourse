@@ -3,7 +3,10 @@ import {
   PRODUCT_MANAGE_NAME_CLASS,
   PRODUCT_MANAGE_PRICE_CLASS,
   PRODUCT_MANAGE_QUANTITY_CLASS,
+  PRODUCT_NODE_QUANTITY_INDEX,
+  PURCHASE_AMOUNT_ID,
 } from '../constant/constant.js';
+import $ from '../util/$.js';
 
 export default class Product {
   constructor({ name, price, quantity }) {
@@ -28,5 +31,13 @@ export default class Product {
 
   render(dom) {
     dom.insertAdjacentHTML('beforeend', this.addedTemplate());
+  }
+
+  renderUpdate($productNode, money) {
+    const $tableNode = $productNode;
+    const $moneyNode = $(`#${PURCHASE_AMOUNT_ID}`);
+
+    $tableNode[PRODUCT_NODE_QUANTITY_INDEX].textContent = this.quantity;
+    $moneyNode.textContent = money;
   }
 }
