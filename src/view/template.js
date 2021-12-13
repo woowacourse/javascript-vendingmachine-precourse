@@ -54,11 +54,14 @@ export const addTabTemplate = (products, inputs) => {
   `;
 };
 
-export const manageTabTemplate = (chargeAmount, coinsAmountArray) => {
+export const manageTabTemplate = (chargeAmount, coinsAmountArray, chargeInput) => {
   return `
+  
     <h2>자판기 동전 충전하기</h2>
     <form id="vending-machine-manage-form">
-      <input id="vending-machine-charge-input" type="number" />
+      <input id="vending-machine-charge-input" type="number" placeholder="충전할 금액" ${
+        chargeInput && `value=${chargeInput}`
+      } />
       <button id="vending-machine-charge-button">충전하기</button>
     </form>
     <div>

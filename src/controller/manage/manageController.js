@@ -15,7 +15,8 @@ export default class ManageController {
 
     this.manageView.renderManageTab(
       this.appModel.chargeAmount,
-      this.appModel.getCoinsAmountArray()
+      this.appModel.getCoinsAmountArray(),
+      this.appModel.manageTabInput
     );
     this.manageView.selectManageTabDOM();
     this.attachManageTabEvents();
@@ -23,6 +24,7 @@ export default class ManageController {
 
   attachManageTabEvents() {
     this.manageView.$manageForm.addEventListener('submit', this.handleCharge.bind(this));
+    this.manageView.$chargeInput.addEventListener('input', this.handleInputChange.bind(this));
   }
 
   handleCharge(e) {
@@ -51,5 +53,11 @@ export default class ManageController {
     }
 
     this.appModel.addAccumulatedCoinsAmounts();
+  }
+
+  handleInputChange(e) {
+    const chargeAmount = e.target.value;
+
+    this.appModel.setManageTabInput(chargeAmount);
   }
 }

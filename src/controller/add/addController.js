@@ -18,7 +18,7 @@ export default class AddController {
 
   attachAddTabEvents() {
     this.addView.$productAddForm.addEventListener('submit', this.handleAddItem.bind(this));
-    this.addView.$productAddForm.addEventListener('input', this.handleChangeInput.bind(this));
+    this.addView.$productAddForm.addEventListener('input', this.handleInputChange.bind(this));
   }
 
   handleAddItem(e) {
@@ -42,7 +42,7 @@ export default class AddController {
     return [name, price, quantity];
   }
 
-  handleChangeInput(e) {
+  handleInputChange(e) {
     const key = e.target.id.split('-')[1];
     const { value } = e.target;
 

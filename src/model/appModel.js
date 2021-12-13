@@ -8,7 +8,10 @@ export default class AppModel {
     this.products = this.loadProducts() || defaultProducts();
     this.chargeAmount = this.loadChargeAmount() || NUMBER.ZERO;
     this.coins = this.loadCoins() || defaultCoins();
+
     this.addTabInput = defaultAddTabInput();
+    this.manageTabInput = STRING.EMPTY;
+    console.log(this.manageTabInput);
   }
 
   loadProducts() {
@@ -61,5 +64,9 @@ export default class AppModel {
 
   getCoinsAmountArray() {
     return this.coins.map((coin) => coin.amount);
+  }
+
+  setManageTabInput(value) {
+    this.manageTabInput = value;
   }
 }

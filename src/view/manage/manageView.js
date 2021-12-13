@@ -7,8 +7,8 @@ export default class ManageView {
     this.$main = $('main');
   }
 
-  renderManageTab(chargeAmount, coinsAmountArray) {
-    this.$main.innerHTML = manageTabTemplate(chargeAmount, coinsAmountArray);
+  renderManageTab(chargeAmount, coinsAmountArray, chargeInput) {
+    this.$main.innerHTML = manageTabTemplate(chargeAmount, coinsAmountArray, chargeInput);
   }
 
   selectManageTabDOM() {
