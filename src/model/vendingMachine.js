@@ -1,9 +1,10 @@
+import { setOwnChange, getOwnChange } from "../storage/localStorage.js";
 import { COIN } from "../utils/constants.js";
 
 export default class VendingMachine {
   constructor() {
     this.productList = [];
-    this.ownChange = new Array(COIN.length).fill(0);
+    this.ownChange = getOwnChange();
     this.userMoney = 0;
     this.returnMoney = new Array(COIN.length).fill(0);
   }
@@ -36,6 +37,8 @@ export default class VendingMachine {
       }
     });
     this.ownChange[COIN.length - 1] += zero / 10;
+    console.log(this.ownChange);
+    setOwnChange(this.ownChange);
   }
 
   getMoney(money) {
@@ -51,6 +54,8 @@ export default class VendingMachine {
       zero -= canUse * COIN[idx];
     });
     this.userMoney = zero;
+    setOwnChange(this.ownChange);
+    getOwnChange(this.ownChange);
   }
 
   buyProduct(name) {
