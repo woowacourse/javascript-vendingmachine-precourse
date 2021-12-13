@@ -14,9 +14,9 @@ export default class VendingMachineCoin extends Coin {
   }
 
   makeRandomCoin(totalMoney) {
-    const coinToHave = { 10: 0, 50: 0, 100: 0, 500: 0 };
+    const coinToHave = { 500: 0, 100: 0, 50: 0, 10: 0 };
     while (totalMoney) {
-      const randomCoin = MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+      const randomCoin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
       if (totalMoney - randomCoin >= 0) {
         coinToHave[randomCoin] += 1;
         totalMoney -= randomCoin;
@@ -26,7 +26,7 @@ export default class VendingMachineCoin extends Coin {
   }
 
   save(newCoinList) {
-    const currentCoinList = super.getCoinData(this.key);
+    const currentCoinList = this.getCurrentCoinToHave();
     if (currentCoinList) {
       for (const coin in currentCoinList) {
         newCoinList[coin] += currentCoinList[coin];
@@ -36,6 +36,15 @@ export default class VendingMachineCoin extends Coin {
   }
 
   getTotalCoin() {
-    // 총 보유동전 리턴
+    const currentCoinList = this.getCurrentCoinToHave();
+    let totalCoin = 0;
+    for (const [coin, number] of Object.entries(currentCoinList)) {
+      totalCoin += coin * number;
+    }
+    return totalCoin;
+  }
+
+  getCurrentCoinToHave() {
+    return super.getCoinData(this.key);
   }
 }

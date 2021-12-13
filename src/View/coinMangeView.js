@@ -13,8 +13,9 @@ export default class CoinManageView {
     clearArea(this.container);
     this.renderChargeCoinInput();
     this.renderHaveCoinTable();
-    this.bindDom();
     this.bindChargeButtonEvent();
+    this.loadTotalCoin();
+    this.loadCoinToHave();
   }
 
   renderChargeCoinInput() {
@@ -24,6 +25,13 @@ export default class CoinManageView {
       BUTTON: COIN_MANAGE.CHARGE_BUTTON,
     });
     this.container.append(inputFormArea);
+    this.input = document.getElementById(COIN_MANAGE.INPUT.ID);
+  }
+
+  loadTotalCoin() {
+    this.coinToHave = document.getElementById(COIN_MANAGE.TEXT.PRINT_AMOUNT_ID);
+    const totalCoin = this.coinStore.getTotalCoin() || 0;
+    this.coinToHave.innerText = totalCoin;
   }
 
   renderHaveCoinTable() {
@@ -32,19 +40,23 @@ export default class CoinManageView {
     renderCoinTable(this.container, "coin-table-body", COIN_MANAGE.COIN_TO_USE);
   }
 
-  bindDom() {
-    this.input = document.getElementById(COIN_MANAGE.INPUT.ID);
-    this.chargeArea = document.getElementById(COIN_MANAGE.TEXT.PRINT_AMOUNT_ID);
-    this.chargeButton = document.getElementById(COIN_MANAGE.CHARGE_BUTTON.ID);
-  }
-
   bindChargeButtonEvent() {
-    this.chargeButton.addEventListener("click", () => this.handleClickEvent());
+    const chargeButton = document.getElementById(COIN_MANAGE.CHARGE_BUTTON.ID);
+    chargeButton.addEventListener("click", () => this.handleClickEvent());
   }
 
   handleClickEvent() {
     this.coinStore.charge(this.input.value);
-    // 보유동전 총액 가져오기 <- 자판기동전객체한테 부탁
-    this.chargeArea.innerText = this.input.value;
+    this.loadTotalCoin();
+    this.loadCoinToHave();
+  }
+
+  loadCoinToHave() {
+    const currentCoinToHave = this.coinStore.getCurrentCoinToHave();
+    COIN_MANAGE.COIN_TO_USE.forEach(coin => {
+      const coinKey = coin.QUANTITY_ID.match(/\d+/g).pop();
+      const coinAmountArea = document.getElementById(coin.QUANTITY_ID);
+      coinAmountArea.innerText = `${currentCoinToHave[coinKey]}개`;
+    });
   }
 }

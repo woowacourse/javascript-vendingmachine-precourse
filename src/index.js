@@ -5,6 +5,7 @@ import {
   PRODUCT_MANAGE,
   COIN_MANAGE,
   PRODUCT_PURCHASE_MANAGE,
+  VENDING_MACHINE_COIN,
 } from "./constant/vendingMachine.js";
 import ProductAddView from "./View/productAddView.js";
 import CoinManageView from "./View/coinMangeView.js";
@@ -22,6 +23,7 @@ class VendingMachine {
     menuButton.insertAdjacentElement("afterend", this.contentContainer);
     this.setData("Product", []);
     this.setData("Coin", []);
+    this.setData(VENDING_MACHINE_COIN, []);
   }
 
   setData(key, value) {
