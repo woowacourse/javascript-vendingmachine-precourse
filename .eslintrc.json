@@ -12,9 +12,10 @@
     "prettier/prettier": ["error", { "printwidth": "100" }],
     "import/prefer-default-export": "off",
     "import/extensions": "off",
+    "no-param-reassign": "off",
     "class-methods-use-this": "off",
     "max-depth": ["error", 2],
     "max-lines-per-function": ["error", 15]
   },
-  "ignorePatterns": ["cypress/*", "test/*"]
+  "ignorePatterns": ["cypress/*", "test/*", "template.js"]
 }
