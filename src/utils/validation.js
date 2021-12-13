@@ -36,6 +36,11 @@ export const isValidVendingMachineCharge = (vendingMachineChargeInput) => {
     return false;
   }
 
+  if (isSameOrLessZero(vendingMachineChargeInput)) {
+    alert('충전할 금액은 0보다 큰 값이어야 합니다.  ex) 450');
+    return false;
+  }
+
   if (isNotDividedBy10(vendingMachineChargeInput)) {
     alert('충전할 금액은 10으로 나누어 떨어져야 합니다.  ex) 450');
     return false;
