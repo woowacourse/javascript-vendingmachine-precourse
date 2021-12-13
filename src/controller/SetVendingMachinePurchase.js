@@ -9,6 +9,12 @@ export default class SetVendingMachinePurchase {
     this.$chargeInput = document.querySelector(DOM.$CHARGE_INPUT);
   }
 
+  initializeInput = () => {
+    const $chargeInput = document.querySelector(DOM.$CHARGE_INPUT);
+    $chargeInput.value = '';
+    $chargeInput.focus();
+  };
+
   renderChargeInput = () => {
     this.render.chargeInputTemplate(TEMPLATE.CHARGE_INPUT(this.getTotalChargeAmount()));
   };
@@ -26,5 +32,6 @@ export default class SetVendingMachinePurchase {
 
     this.setChargeInput();
     this.renderChargeInput();
+    this.initializeInput();
   };
 }
