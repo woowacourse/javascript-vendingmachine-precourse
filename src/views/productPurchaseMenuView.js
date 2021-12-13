@@ -4,7 +4,7 @@ import {
   SubTitle,
   Span,
   SpanWithId,
-  Button,
+  ButtonWithId,
 } from '../components/elements.js';
 import {
   createAddMoneyForm,
@@ -17,6 +17,7 @@ import {
   alertChargeErrorMessage,
   isValidCharge,
 } from '../components/validator.js';
+import { PRODUCT_PURCHASE_TABLE } from '../constants/table.js';
 
 export default function ProductPurchaseMenuView() {
   this.productPurchaseMenu = () => {
@@ -29,7 +30,7 @@ export default function ProductPurchaseMenuView() {
     const moneySpan = SpanWithId('', ID.CHARGE_AMOUNT);
     const productPurchaseTable = createProductPurchaseTable();
     const coinTable = createCoinTable();
-    const returnButton = Button(
+    const returnButton = ButtonWithId(
       '반환하기',
       ID.COIN_RETURN_BUTTON,
       this.onClickReturnCoinButton
@@ -63,6 +64,24 @@ export default function ProductPurchaseMenuView() {
     this.renderInsertMoney();
   };
 
+  this.onClickPurchaseProductButton = (e) => {
+    e.preventDefault();
+    const productName = this.getPurchaseProductName(e);
+
+    vendingMachine.purchaseProduct(productName);
+  };
+
+  this.getPurchaseProductName = (e) => {
+    const className = e.target.className;
+    const tableRow = e.target.parentElement;
+
+    if (className === 'purchase-button') {
+      const name = tableRow.children[0].dataset.productName;
+
+      return name;
+    }
+  };
+
   this.onClickReturnCoinButton = (e) => {
     e.preventDefault();
   };
@@ -78,7 +97,8 @@ export default function ProductPurchaseMenuView() {
     const productRow = createProductPurchaseRow(
       product,
       CLASS.PRODUCT_PURCHASE_ITEM,
-      CLASS.PRODUCT_PURCHASE
+      CLASS.PRODUCT_PURCHASE,
+      this.onClickPurchaseProductButton
     );
 
     table.append(productRow);

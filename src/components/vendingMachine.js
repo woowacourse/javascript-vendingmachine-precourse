@@ -41,6 +41,17 @@ function VendingMachine() {
     this.insertMoney += money;
     localStorage.setItem('insert', JSON.stringify(this.insertMoney));
   };
+
+  this.purchaseProduct = (name) => {
+    this.products.forEach((product) => {
+      if (product.name === name) {
+        product.quantity -= 1;
+        this.insertMoney -= product.price;
+      }
+    });
+    localStorage.setItem('product', JSON.stringify(this.products));
+    localStorage.setItem('insert', JSON.stringify(this.insertMoney));
+  };
 }
 
 export const vendingMachine = new VendingMachine();
