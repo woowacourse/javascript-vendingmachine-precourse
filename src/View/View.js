@@ -26,7 +26,6 @@ import {
 
 export default class View {
   constructor() {
-    this.app = document.getElementById("app");
     this.menu = createDiv();
     this.productAddMenu = createButton(
       VANDING_MACHINE_MENU.PRODUCT_ADD,
@@ -45,9 +44,10 @@ export default class View {
       this.vendingMachineManageMenu,
       this.productPurchaseMenu
     );
-    this.app.append(createH1(TITLE.VENDING_MACHINE), this.menu);
     this.form = createDiv();
-    this.app.append(this.form);
+    document
+      .getElementById("app")
+      .append(createH1(TITLE.VENDING_MACHINE), this.menu, this.form);
   }
 
   resetForm(nowForm) {
@@ -59,8 +59,7 @@ export default class View {
 
   // 상품 추가
   displayProductAdd(product) {
-    this.productAddMenu.addEventListener("click", (event) => {
-      event.preventDefault();
+    this.productAddMenu.addEventListener("click", () => {
       if (!this.addProductForm) {
         this.addProductForm = createDiv();
         this.productTable = createTable(TEXT.PRODUCT);
@@ -84,19 +83,17 @@ export default class View {
       ADD_PRODUCT.QUANTITY,
       TEXT.QUANTITIY
     );
-    this.productAddButton = createButton(ADD_PRODUCT.BUTTON, BUTTON.ADD);
     inputForm.append(
       this.productNameInput,
       this.productPriceInput,
       this.productQuantityInput,
-      this.productAddButton
+      createButton(ADD_PRODUCT.BUTTON, BUTTON.ADD)
     );
     return inputForm;
   }
 
   bindProductAdd(handler) {
     this.form.addEventListener("click", (event) => {
-      event.preventDefault();
       if (event.target.id === ADD_PRODUCT.BUTTON) {
         handler(
           this.productNameInput.value,
@@ -127,8 +124,7 @@ export default class View {
 
   // 잔돈 충전
   displayChargeCoin(coin) {
-    this.vendingMachineManageMenu.addEventListener("click", (event) => {
-      event.preventDefault();
+    this.vendingMachineManageMenu.addEventListener("click", () => {
       if (!this.chargeCoinForm) {
         this.createChargeCoinForm(getMoneySum(coin));
       }
@@ -150,18 +146,12 @@ export default class View {
 
   createCoinInputForm(sum) {
     const div = createDiv();
-    this.vendingMachineChargeInput = createInput(
-      CHARGE_COIN.INPUT,
-      TEXT.COIN_WILL
-    );
+    this.chargeInput = createInput(CHARGE_COIN.INPUT, TEXT.COIN_WILL);
     const chargeDiv = createDiv(TEXT.COIN_DONE, TEXT.COIN_DONE);
-    this.vendingMachinechargeAmount = createSpan(
-      CHARGE_COIN.AMOUNT,
-      printValue(sum)
-    );
-    chargeDiv.append(this.vendingMachinechargeAmount);
+    this.chargeAmount = createSpan(CHARGE_COIN.AMOUNT, printValue(sum));
+    chargeDiv.append(this.chargeAmount);
     div.append(
-      this.vendingMachineChargeInput,
+      this.chargeInput,
       createButton(CHARGE_COIN.BUTTON, BUTTON.CHARGE),
       chargeDiv
     );
@@ -172,8 +162,8 @@ export default class View {
     this.form.addEventListener("click", (event) => {
       event.preventDefault();
       if (event.target.id === CHARGE_COIN.BUTTON) {
-        handler(this.vendingMachineChargeInput.value);
-        this.vendingMachineChargeInput.value = "";
+        handler(this.chargeInput.value);
+        this.chargeInput.value = "";
       }
     });
   }
@@ -183,7 +173,7 @@ export default class View {
       coins.forEach((value, index) => {
         getElement(CHARGE_COIN.QUANTITY[index]).textContent = printCount(value);
       });
-      this.vendingMachinechargeAmount.textContent = printValue(sum);
+      this.chargeAmount.textContent = printValue(sum);
     }
   }
 
@@ -193,15 +183,11 @@ export default class View {
       if (!this.productPurchaseForm) {
         this.productPurchaseForm = createDiv();
         this.avaiableProductTable = createTable([...TEXT.PRODUCT, TEXT.BUY]);
-        this.leftOverTable = createCoinTable(PURCHASE.LEFT_COIN);
         this.productPurchaseForm.append(
-          createH3(TITLE.ADD_MONEY),
           this.createBillForm(money),
           createH3(TITLE.AVAILABLE_PRODUCT),
           this.avaiableProductTable,
-          createH3(TITLE.LEFTOVER),
-          createButton(PURCHASE.RETURN, BUTTON.RETURN),
-          this.leftOverTable
+          this.createLeftOverForm()
         );
       }
       this.resetForm(this.productPurchaseForm);
@@ -212,11 +198,25 @@ export default class View {
   createBillForm(money) {
     const div = createDiv();
     this.chargeInput = createInput(PURCHASE.INPUT, TEXT.PURCHASE_WILL);
-    this.chargeButton = createButton(PURCHASE.ADD, BUTTON.BILL);
     this.chargeDiv = createDiv(TEXT.PURCHASE_DONE, TEXT.PURCHASE_DONE);
     this.chargeAmount = createSpan(PURCHASE.AMOUNT, printValue(money));
     this.chargeDiv.append(this.chargeAmount);
-    div.append(this.chargeInput, this.chargeButton, this.chargeDiv);
+    div.append(
+      createH3(TITLE.ADD_MONEY),
+      this.chargeInput,
+      createButton(PURCHASE.ADD, BUTTON.BILL),
+      this.chargeDiv
+    );
+    return div;
+  }
+
+  createLeftOverForm() {
+    const div = createDiv();
+    div.append(
+      createH3(TITLE.LEFTOVER),
+      createButton(PURCHASE.RETURN, BUTTON.RETURN),
+      createCoinTable(PURCHASE.LEFT_COIN)
+    );
     return div;
   }
 
@@ -225,17 +225,33 @@ export default class View {
       resetTable(this.avaiableProductTable);
       product.forEach((value) => {
         const tr = createTr(PURCHASE.ITEM);
-        const tdName = createTd(PURCHASE.NAME, value.name);
-        const tdPrice = createTd(PURCHASE.PRICE, value.price);
-        const tdQuantity = createTd(PURCHASE.QUANTITY, value.quantity);
-        const tdButton = createButton(PURCHASE.PURCHASE, BUTTON.PURCHASE);
-        tdName.setAttribute(PURCHASE.DATASET_NAME, value.name);
-        tdPrice.setAttribute(PURCHASE.DATASET_PRICE, value.price);
-        tdQuantity.setAttribute(PURCHASE.DATASET_QUANTITY, value.quantity);
-        tr.append(tdName, tdPrice, tdQuantity, tdButton);
+        tr.append(
+          this.createNameDataset(value),
+          this.createPriceDataset(value),
+          this.createQuantityDataset(value),
+          createButton(PURCHASE.PURCHASE, BUTTON.PURCHASE)
+        );
         this.avaiableProductTable.append(tr);
       });
     }
+  }
+
+  createNameDataset(value) {
+    const tdName = createTd(PURCHASE.NAME, value.name);
+    tdName.setAttribute(PURCHASE.DATASET_NAME, value.name);
+    return tdName;
+  }
+
+  createPriceDataset(value) {
+    const tdPrice = createTd(PURCHASE.PRICE, value.price);
+    tdPrice.setAttribute(PURCHASE.DATASET_PRICE, value.price);
+    return tdPrice;
+  }
+
+  createQuantityDataset(value) {
+    const tdQuantity = createTd(PURCHASE.QUANTITY, value.quantity);
+    tdQuantity.setAttribute(PURCHASE.DATASET_QUANTITY, value.quantity);
+    return tdQuantity;
   }
 
   bindMoneyAdd(handler) {
