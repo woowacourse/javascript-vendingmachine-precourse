@@ -49,3 +49,6 @@ export const ERROR_INVALID_NAME = `상품 이름이 잘못되었습니다. 다�
 export const ERROR_INVALID_PRICE = `상품 가격이 잘못되었습니다. 다음 사항에 해당하는지 살펴보세요.
 1) 100원 이상의 금액인가
 2) 10으로 나누어떨어지는 금액인가`;
+
+export const ERROR_INVALID_QUANTITY = `상품 개수가 잘못되었습니다. 다음 사항에 해당하는지 살펴보세요.
+1) 1개 이상인가`;

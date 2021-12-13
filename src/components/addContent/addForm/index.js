@@ -12,6 +12,7 @@ import {
   TEXT_BUTTON_ADD,
   ERROR_INVALID_NAME,
   ERROR_INVALID_PRICE,
+  ERROR_INVALID_QUANTITY,
 } from './const.js';
 import createInput from '../../utils/createInput.js';
 
@@ -19,6 +20,7 @@ import Product from '../../../model/Product.js';
 import { addProduct } from '../../../library/storage/products.js';
 import isValidProductName from '../../../machine/utils/product/isValidProductName.js';
 import isValidProductPrice from '../../../machine/utils/product/isValidProductPrice.js';
+import isValidProductQuantity from '../../../machine/utils/product/isValidProductQuantity.js';
 
 class AddForm extends Form {
   constructor() {
@@ -57,10 +59,12 @@ class AddForm extends Form {
 
     const isValidName = isValidProductName(name);
     const isValidPrice = isValidProductPrice(price);
+    const isValidQuantity = isValidProductQuantity(quantity);
     if (!isValidName) alert(ERROR_INVALID_NAME);
     if (!isValidPrice) alert(ERROR_INVALID_PRICE);
+    if (!isValidQuantity) alert(ERROR_INVALID_QUANTITY);
 
-    if (!isValidName || !isValidPrice) return;
+    if (!isValidName || !isValidPrice || !isValidQuantity) return;
 
     addProduct(new Product(name, price, quantity));
   }
