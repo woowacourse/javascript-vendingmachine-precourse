@@ -1,10 +1,4 @@
-import {
-  $,
-  handleStorage,
-  isMultipleOf10,
-  isInputNumberValid,
-  onKeyUpNumericEvent,
-} from './utils.js';
+import { $, handleStorage, validation, onKeyUpNumericEvent } from './utils.js';
 import VendingMachine from '../model/vendingMachine.js';
 import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
 import { initVendingTable, clearInput, setInnerHTML } from '../view/index.js';
@@ -33,7 +27,7 @@ const initChargeDomProperty = () => {
 };
 
 const isChargeInputValid = chargeInput =>
-  isInputNumberValid(chargeInput) && isMultipleOf10(chargeInput);
+  validation.isInputNumberValid(chargeInput) && validation.isMultipleOf10(chargeInput);
 
 const setVendingMachineByRandomCoin = (chargeInputValue, randomCoinQuantity) => {
   let vendingMachine = handleStorage.getItemOrNull(KEY.vending);

@@ -1,11 +1,4 @@
-import {
-  $,
-  handleStorage,
-  isMultipleOf10,
-  isInputNumberValid,
-  isEnoughCoin,
-  onKeyUpNumericEvent,
-} from './utils.js';
+import { $, handleStorage, validation, onKeyUpNumericEvent } from './utils.js';
 import {
   addTableRow,
   addTableHeader,
@@ -58,7 +51,7 @@ const purchaseProduct = item => {
   const charge = handleStorage.getItemOrNull(KEY.charge);
   const products = handleStorage.getItemOrArray(KEY.product);
   const selectProduct = products.find(e => e.name === item.childNodes[1].dataset.productName);
-  if (isEnoughCoin(charge, selectProduct.price)) {
+  if (validation.isEnoughCoin(charge, selectProduct.price)) {
     calculateProducts(selectProduct, products);
     calculateCharge(selectProduct, charge);
     initPurchaseDom();
@@ -74,7 +67,7 @@ const initChargeDom = () => {
 };
 
 const isChargeInputValid = chargeInput =>
-  isInputNumberValid(chargeInput) && isMultipleOf10(chargeInput);
+  validation.isInputNumberValid(chargeInput) && validation.isMultipleOf10(chargeInput);
 
 const chargeMoney = () => {
   const chargeInput = $(SELECTOR.chargeInput);

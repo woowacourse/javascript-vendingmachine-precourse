@@ -1,13 +1,4 @@
-import {
-  $,
-  handleStorage,
-  isBlankExist,
-  isInputNumberValid,
-  isMultipleOf10,
-  isOver100,
-  isAlreadyExistProduct,
-  onKeyUpNumericEvent,
-} from './utils.js';
+import { $, handleStorage, validation, onKeyUpNumericEvent } from './utils.js';
 import { SELECTOR, KEY } from '../model/constants.js';
 import { productAddTableRow } from '../model/dom.js';
 import Product from '../model/product.js';
@@ -20,15 +11,17 @@ const initInput = (productName, productPrice, productQuantity) => {
 };
 
 const isProductNameValid = productName =>
-  !isBlankExist(productName) && !isAlreadyExistProduct(productName);
+  !validation.isBlankExist(productName) && !validation.isAlreadyExistProduct(productName);
 
 const isProductPriceValid = productPrice =>
-  isInputNumberValid(productPrice) && isMultipleOf10(productPrice) && isOver100(productPrice);
+  validation.isInputNumberValid(productPrice) &&
+  validation.isMultipleOf10(productPrice) &&
+  validation.isOver100(productPrice);
 
 const isProductInputsValid = (productName, productPrice, productQuantity) =>
   isProductNameValid(productName) &&
   isProductPriceValid(productPrice) &&
-  isInputNumberValid(productQuantity);
+  validation.isInputNumberValid(productQuantity);
 
 const updateProductLocalStorage = product => {
   const allProducts = handleStorage.getItemOrArray(KEY.product);

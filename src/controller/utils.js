@@ -16,61 +16,59 @@ export const handleStorage = {
 
 const alertMessage = (input, message) => alert(`${input.placeholder}에 ${message}`);
 
-export const isBlankExist = input => {
-  const isIncludeBlank = input.value === '' || input.value.includes(' ');
-  if (isIncludeBlank) {
-    alertMessage(input, ALERT_MESSAGE.isBlank);
-  }
+export const validation = {
+  isBlankExist(input) {
+    const isIncludeBlank = input.value === '' || input.value.includes(' ');
+    if (isIncludeBlank) {
+      alertMessage(input, ALERT_MESSAGE.isBlank);
+    }
 
-  return isIncludeBlank;
-};
+    return isIncludeBlank;
+  },
+  isPositiveNumber(input) {
+    const isPositive = parseInt(input.value, 10) > 0;
+    if (!isPositive) {
+      alertMessage(input, ALERT_MESSAGE.isNotPositiveNumber);
+    }
 
-const isPositiveNumber = input => {
-  const isPositive = parseInt(input.value, 10) > 0;
-  if (!isPositive) {
-    alertMessage(input, ALERT_MESSAGE.isNotPositiveNumber);
-  }
+    return isPositive;
+  },
+  isInputNumberValid(input) {
+    return !this.isBlankExist(input) && this.isPositiveNumber(input);
+  },
+  isMultipleOf10(input) {
+    const isMultiple = parseInt(input.value, 10) % 10 === 0;
+    if (!isMultiple) {
+      alertMessage(input, ALERT_MESSAGE.isNotMultipleOf10);
+    }
 
-  return isPositive;
-};
+    return isMultiple;
+  },
+  isOver100(input) {
+    const isOver = parseInt(input.value) >= 100;
+    if (!isOver) {
+      alertMessage(input, ALERT_MESSAGE.isNotOver100);
+    }
 
-export const isInputNumberValid = input => !isBlankExist(input) && isPositiveNumber(input);
+    return isOver;
+  },
+  isEnoughCoin(chargeInput, price) {
+    const isEnough = chargeInput >= price;
+    if (!isEnough) {
+      alert(ALERT_MESSAGE.isNotEnoughCoin);
+    }
 
-export const isMultipleOf10 = input => {
-  const isMultiple = parseInt(input.value, 10) % 10 === 0;
-  if (!isMultiple) {
-    alertMessage(input, ALERT_MESSAGE.isNotMultipleOf10);
-  }
+    return isEnough;
+  },
+  isAlreadyExistProduct(productName) {
+    const allProducts = handleStorage.getItemOrArray('products');
+    const isExist = allProducts.find(e => e.name === productName.value);
+    if (isExist) {
+      alert(ALERT_MESSAGE.isAlreadyExistProduct);
+    }
 
-  return isMultiple;
-};
-
-export const isOver100 = input => {
-  const isOver = parseInt(input.value) >= 100;
-  if (!isOver) {
-    alertMessage(input, ALERT_MESSAGE.isNotOver100);
-  }
-
-  return isOver;
-};
-
-export const isEnoughCoin = (chargeInput, price) => {
-  const isEnough = chargeInput >= price;
-  if (!isEnough) {
-    alert(ALERT_MESSAGE.isNotEnoughCoin);
-  }
-
-  return isEnough;
-};
-
-export const isAlreadyExistProduct = productName => {
-  const allProducts = getItemOrArray('products');
-  const isExist = allProducts.find(e => e.name === productName.value);
-  if (isExist) {
-    alert(ALERT_MESSAGE.isAlreadyExistProduct);
-  }
-
-  return isExist;
+    return isExist;
+  },
 };
 
 export const onKeyUpNumericEvent = input => (input.value = input.value.replace(/[^0-9]/g, ''));
