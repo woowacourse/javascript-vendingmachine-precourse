@@ -41,6 +41,8 @@
 ## Refactor 목록
 - <del>machine.js getRandomReturn, getRandomCoin 중복되는 부분 함수 만들기</del>
 - localStorage 적용하기
+- index.js 에서 탭 버튼 화면 분리하기 ✔️
+- machine.js 에서 display(화면 보여주는 기능) 함수들 분리하기
 - displayProductPurchaseTab 이벤트 리스너 분리하기
 
 

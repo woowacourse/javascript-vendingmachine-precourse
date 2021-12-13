@@ -1,3 +1,9 @@
+export const TABS = {
+    ADD_BUTTON_ID: 'product-add-menu',
+    MANAGE_BUTTON_ID: 'vending-machine-manage-menu',
+    PURCHASE_BUTTON_ID: 'product-purchase-menu'
+}
+
 export const ADD_TAB_ID = {
     NAME_INPUT: 'product-name-input',
     PRICE_INPUT: 'product-price-input',

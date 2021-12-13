@@ -2,7 +2,7 @@ import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PU
 import Product from './product.js'
 import { elementCreatorWithClass } from './dom/util.js';
 import * as validator from './validatior.js';
-import { saveStorage } from './util/storage.js';
+import { saveStorage } from './storage/util.js';
 
 export default class VendingMachine {
     constructor(){

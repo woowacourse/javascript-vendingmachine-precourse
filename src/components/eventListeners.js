@@ -1,4 +1,4 @@
-import {ADD_TAB_ID, MANAGE_TAB_ID, PURCHASE_TAB_CLASS, PURCHASE_TAB_ID} from './constants.js';
+import {ADD_TAB_ID, MANAGE_TAB_ID, PURCHASE_TAB_ID} from '../constants.js';
 
 export default (vendingMachine) => {
     const addTabButton = document.getElementById(ADD_TAB_ID.ADD_BUTTON)
@@ -12,7 +12,7 @@ export default (vendingMachine) => {
 })
 
 const manageTabButton = document.getElementById(MANAGE_TAB_ID.CHARGE_BUTTON)
-manageTabButton.addEventListener('click', e=> {
+    manageTabButton.addEventListener('click', e=> {
     e.preventDefault();
     const money = document.getElementById(MANAGE_TAB_ID.CHARGE_INPUT).value;
 
