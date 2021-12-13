@@ -12,7 +12,17 @@ export const headerTemplate = () => {
   `;
 };
 
-export const addTabTemplate = () => {
+export const productTemplate = ({ name, price, quantity }) => {
+  return `
+    <tr class="product-manage-item">
+      <th class="product-manage-name">${name}</th>
+      <th class="product-manage-price">${price}</th>
+      <th class="product-manage-quantity">${quantity}</th>
+    </tr>
+  `;
+};
+
+export const addTabTemplate = (products) => {
   return `
     <h2>상품 추가하기</h2>
     <div>
@@ -32,7 +42,13 @@ export const addTabTemplate = () => {
           <th>수량</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+      ${products
+        .map((product) => {
+          return productTemplate(product);
+        })
+        .join('')}
+      </tbody>
     </table>
   `;
 };

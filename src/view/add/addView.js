@@ -1,13 +1,13 @@
 import { $ } from '../../utils/DOMhelper.js';
-import { addTabTemplate } from '../template.js';
+import { addTabTemplate, productTemplate } from '../template.js';
 
 export default class AddView {
   init() {
     this.$main = $('main');
   }
 
-  renderAddTab() {
-    this.$main.innerHTML = addTabTemplate();
+  renderAddTab(products) {
+    this.$main.innerHTML = addTabTemplate(products);
   }
 
   selectAddTabDOMS() {
@@ -15,5 +15,10 @@ export default class AddView {
     this.$productPriceInput = $('#product-price-input');
     this.$productQuantityInput = $('#product-quantity-input');
     this.$productAddForm = $('#product-add-form');
+    this.$tbody = $('tbody');
+  }
+
+  renderProduct(name, price, quantity) {
+    this.$tbody.insertAdjacentHTML('beforeend', productTemplate({ name, price, quantity }));
   }
 }

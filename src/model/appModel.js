@@ -1,9 +1,13 @@
-import { setDataOnStorage } from '../utils/storage.js';
+import { setDataOnStorage, loadDataFromStorage } from '../utils/storage.js';
 import { STRING } from '../constants/constants.js';
 
 export default class AppModel {
   constructor() {
-    this.products = [];
+    this.products = this.loadProducts() || [];
+  }
+
+  loadProducts() {
+    return loadDataFromStorage(STRING.PRODUCTS);
   }
 
   setProducts(products) {

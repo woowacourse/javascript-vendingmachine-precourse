@@ -11,7 +11,7 @@ export default class AddController {
   init() {
     this.addView.init();
 
-    this.addView.renderAddTab();
+    this.addView.renderAddTab(this.appModel.products);
     this.addView.selectAddTabDOMS();
     this.attachAddTabEvents();
   }
@@ -28,6 +28,7 @@ export default class AddController {
 
     if (isValidProductInput(name, price, quantity)) {
       this.appModel.addProduct({ name, price, quantity });
+      // this.addView.renderProduct(name, price, quantity);
 
       return true;
     }
