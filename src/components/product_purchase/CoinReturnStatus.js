@@ -1,5 +1,6 @@
 import Component from "../root/Component.js";
 import { getNewCoinBox } from "../../utils/coin.js";
+import getCoinUnitText from "../../utils/getCoinUnitText.js";
 
 export default class CoinReturnStatus extends Component {
   setup() {
@@ -21,27 +22,23 @@ export default class CoinReturnStatus extends Component {
           <tbody>
             <tr>
               <td>500원</td>
-              <td id="coin-500-quantity">${this.getCoinUnitText(coin500)}</td>
+              <td id="coin-500-quantity">${getCoinUnitText(coin500)}</td>
             </tr>
             <tr>
               <td>100원</td>
-              <td id="coin-100-quantity">${this.getCoinUnitText(coin100)}</td>
+              <td id="coin-100-quantity">${getCoinUnitText(coin100)}</td>
             </tr>
             <tr>
               <td>50원</td>
-              <td id="coin-50-quantity">${this.getCoinUnitText(coin50)}</td>
+              <td id="coin-50-quantity">${getCoinUnitText(coin50)}</td>
             </tr>
             <tr>
               <td>10원</td>
-              <td id="coin-10-quantity">${this.getCoinUnitText(coin10)}</td>
+              <td id="coin-10-quantity">${getCoinUnitText(coin10)}</td>
             </tr>
           </tbody>
         </table>
     `;
-  }
-
-  getCoinUnitText(coin) {
-    return coin ? `${coin}개` : ``;
   }
 
   mounted() {
