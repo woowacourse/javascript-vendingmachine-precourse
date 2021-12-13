@@ -7,7 +7,6 @@ import { $ } from './utils.js';
 export default class Controller {
   constructor(view) {
     this.view = view;
-    this.addEventListeners(this.view);
     this.productAdd = new ProductAdd(this.view);
     this.vending = new Vending(this.view);
     this.purchase = new Purchase(this.view);
