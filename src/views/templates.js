@@ -14,7 +14,7 @@ const templates = {
     <div id="product-add-component">
 
         <h3>상품 추가하기</h3>
-        <form>
+        <form id="product-add-form">
             <input type="text" id="product-name-input" placeholder="상품명" />
             <input type="number" id="product-price-input" placeholder="가격" />
             <input type="number" id="product-quantity-input" placeholder="수량" />

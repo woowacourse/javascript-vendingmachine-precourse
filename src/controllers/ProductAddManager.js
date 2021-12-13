@@ -10,6 +10,7 @@ export default class ProductAddManager {
 
   render() {
     DOM.showInventory();
+    DOM.initProductInput();
   }
 
   manage() {
@@ -22,9 +23,13 @@ export default class ProductAddManager {
 
       DB.save('inventory', DOM.getProduct());
 
-      DOM.showInventory();
-      DOM.showIntentoryToPurchaseProduct();
-      DOM.getAllPurchaseButton();
+      this.render();
+      this.renderProductPurchaseManager();
     });
+  }
+
+  renderProductPurchaseManager() {
+    DOM.showIntentoryToPurchaseProduct();
+    DOM.getAllPurchaseButton();
   }
 }

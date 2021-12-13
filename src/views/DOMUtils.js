@@ -11,6 +11,12 @@ const DOMUtils = {
     $(selector).innerHTML = '';
   },
 
+  initProductInput: () => {
+    Array.from($('#product-add-form').children).forEach(element => {
+      if (element.tagName === 'INPUT') element.value = '';
+    });
+  },
+
   getProduct: () => {
     return {
       name: $('#product-name-input').value,
