@@ -2,7 +2,7 @@ import { ALERT, PRODUCT_PURCHASE } from '../constants.js';
 import ProductAdd from '../elements/ProductAdd.js';
 import ProductPurchase from '../elements/ProductPurchase.js';
 import PurchaseBtnHandler from '../handler/PurchaseBtnHandler.js';
-
+import Storage from './localStorage/Storage.js';
 import {
   appendClass,
   appendTheadStyle,
@@ -19,6 +19,7 @@ export default class ProductAddUtil {
   constructor() {
     this.productAdd = new ProductAdd();
     this.productPurchase = new ProductPurchase();
+    this.storage = new Storage();
     this.productName = '';
     this.productPrice = 0;
     this.productQuantity = 0;
@@ -35,6 +36,7 @@ export default class ProductAddUtil {
       ) {
         this.addProductAddTable(this.productName, this.productPrice, this.productQuantity);
         this.addProductPurchaseTable(this.productName, this.productPrice, this.productQuantity);
+        this.addProductLocalStorage(this.productName, this.productPrice, this.productQuantity);
       }
     });
   }
