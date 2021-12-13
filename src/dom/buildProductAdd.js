@@ -1,5 +1,6 @@
 import ProductList from "../product/ProductList.js";
 import createDocumentElement from "../util/createDocumentElement.js"
+import validatePrice from "../util/validatePrice.js";
 
 const productList = new ProductList;
 
@@ -55,8 +56,13 @@ function bindButtonEvent() {
         const price = document.querySelector("#product-price-input").value;
         const quantity = document.querySelector("#product-quantity-input").value;
 
-        productList.addItem(name, price, quantity);
-        console.log(productList.getItem());
+        if(validatePrice(price)) {
+            productList.addItem(name, price, quantity);
+            console.log(productList.getItem());
+        }
+        else {
+            alert("가격을 다시 입력해주세요");
+        }
     }
 }
 
