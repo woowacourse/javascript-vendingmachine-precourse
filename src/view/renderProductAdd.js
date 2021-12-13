@@ -24,10 +24,12 @@ function renderProductAddInput($productAdd) {
 
   $inputContainer.innerHTML = `
     <h3>${PRODUCT_ADD_TITLE}</h3>
-    <input id="${PRODUCT_NAME_INPUT_ID}" type="text" placeholder="상품명"></input>
-    <input id="${PRODUCT_PRICE_INPUT_ID}" type="number" placeholder="가격"></input>
-    <input id="${PRODUCT_QUANTITY_INPUT_ID}" type="number" placeholder="수량"></input>
-    <button id="${PRODUCT_ADD_BUTTON_ID}">추가하기</button>
+    <form>
+      <input id="${PRODUCT_NAME_INPUT_ID}" type="text" placeholder="상품명"></input>
+      <input id="${PRODUCT_PRICE_INPUT_ID}" type="number" placeholder="가격"></input>
+      <input id="${PRODUCT_QUANTITY_INPUT_ID}" type="number" placeholder="수량"></input>
+      <button id="${PRODUCT_ADD_BUTTON_ID}">추가하기</button>
+    </form>
   `;
   $productAdd.append($inputContainer);
 }

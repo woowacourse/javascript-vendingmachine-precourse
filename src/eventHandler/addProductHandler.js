@@ -14,7 +14,8 @@ function renderProduct(product) {
   product.render($table);
 }
 
-function onAdd(vendingMachine) {
+function onAdd(event, vendingMachine) {
+  event.preventDefault();
   const product = {
     name: $(`#${PRODUCT_NAME_INPUT_ID}`).value,
     price: $(`#${PRODUCT_PRICE_INPUT_ID}`).value,
@@ -30,5 +31,5 @@ function onAdd(vendingMachine) {
 export default function addProductHandler(vendingMachine) {
   const $button = $(`#${PRODUCT_ADD_BUTTON_ID}`);
 
-  $button.addEventListener('click', () => onAdd(vendingMachine));
+  $button.addEventListener('click', (event) => onAdd(event, vendingMachine));
 }
