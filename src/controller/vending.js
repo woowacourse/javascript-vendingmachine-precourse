@@ -1,6 +1,5 @@
-import { $, handleStorage, validation, onKeyUpNumericEvent } from './utils.js';
-import VendingMachine from '../model/vendingMachine.js';
-import { KEY, SELECTOR, COIN_ARRAY } from '../model/constants.js';
+import { $, validation, onKeyUpNumericEvent } from './utils.js';
+import { SELECTOR, COIN_ARRAY } from '../model/constants.js';
 
 export default class Vending {
   constructor(view, model) {
@@ -37,7 +36,7 @@ export default class Vending {
   }
 
   initChargeDomProperty() {
-    const vendingMachine = handleStorage.getItemOrNull(KEY.vending);
+    const vendingMachine = this.model.getVendingMachine();
     this.view.clearInput($(SELECTOR.vendingChargeInput));
     if (vendingMachine) {
       this.view.setInnerHTML($(SELECTOR.vendingChargeAmount), vendingMachine.change);
@@ -49,14 +48,14 @@ export default class Vending {
   }
 
   setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity) {
-    let vendingMachine = handleStorage.getItemOrNull(KEY.vending);
+    let vendingMachine = this.model.getVendingMachine();
     if (vendingMachine) {
       vendingMachine.change += chargeInputValue;
     } else if (vendingMachine === null) {
-      vendingMachine = new VendingMachine(chargeInputValue);
+      vendingMachine = this.model.makeVendingMachine(chargeInputValue);
     }
     randomCoinQuantity.forEach((v, i) => (vendingMachine.coins[i].quantity += v));
-    handleStorage.setItem(KEY.vending, vendingMachine);
+    this.model.setVendingMachine(vendingMachine);
   }
 
   chargeVending() {
