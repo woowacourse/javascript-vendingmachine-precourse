@@ -2,7 +2,7 @@ import { $ } from '../../utils/querySelector.js';
 import { COIN_UNITS, ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { showConvertedCoins, coinChargeTemplate } from './coinChargeTemplate.js';
-import { getChargeStorage, setChargeStorage } from '../storage/coin.js';
+import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
 import { showCurrentAmount } from '../../view/view.js';
 
 let currentAmount = STANDARD.CURRENT_MONEY;
@@ -21,7 +21,6 @@ const convertAmountIntoCoins = (amount) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
 const handleCoinChargeSubmit = (event) => {
   event.preventDefault();
   const chargedCoin = Number($('#vending-machine-charge-input').value);
@@ -32,19 +31,19 @@ const handleCoinChargeSubmit = (event) => {
 
   currentAmount += chargedCoin;
   showCurrentAmount(vendingMachineChargeAmountId, currentAmount);
-  setChargeStorage(STORAGE_NAME.AMOUNT, currentAmount);
+  setLocalStorage(STORAGE_NAME.AMOUNT, currentAmount);
   convertAmountIntoCoins(chargedCoin);
   showConvertedCoins(convertedCoins);
-  setChargeStorage(STORAGE_NAME.COIN, convertedCoins);
+  setLocalStorage(STORAGE_NAME.COIN, convertedCoins);
 };
 
 export const showCoinCharge = () => {
   $('#app-container').innerHTML = coinChargeTemplate;
-  const storedCharge = getChargeStorage(STORAGE_NAME.COIN);
-  const storedAmount = getChargeStorage(STORAGE_NAME.AMOUNT);
+  const storedCharge = getLocalStorage(STORAGE_NAME.COIN);
+  const storedAmount = getLocalStorage(STORAGE_NAME.AMOUNT);
 
-  if (storedCharge) {
-    currentAmount = storedAmount;
+  if (storedCharge.length !== 0) {
+    currentAmount = Number(storedAmount);
     convertedCoins = storedCharge;
     showConvertedCoins(storedCharge);
     showCurrentAmount(vendingMachineChargeAmountId, storedAmount);

@@ -1,5 +1,5 @@
-import { getProductItemStorage } from '../components/storage/product.js';
-import { ERROR_MESSAGE, STANDARD } from './constants.js';
+import { getLocalStorage } from '../components/storage/storage.js';
+import { ERROR_MESSAGE, STANDARD, STORAGE_NAME } from './constants.js';
 
 const { CANNOT_BE_BLANK, LESS_THAN_STANDARD, NOT_DIVIDE_BY_TEN, COUNT_TOO_SMALL, CAN_NOT_OVERLAP } =
   ERROR_MESSAGE;
@@ -18,7 +18,7 @@ const isMinimumPrice = (price) => {
 };
 
 const isNameOverlap = (newName) => {
-  const storedItemName = getProductItemStorage();
+  const storedItemName = getLocalStorage(STORAGE_NAME.PRODUCT);
   return storedItemName.find(({ name }) => name === newName);
 };
 

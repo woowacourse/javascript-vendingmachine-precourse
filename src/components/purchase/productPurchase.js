@@ -2,13 +2,14 @@ import { ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/constants.js'
 import { $ } from '../../utils/querySelector.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { showCurrentAmount } from '../../view/view.js';
-import { getProductItemStorage } from '../storage/product.js';
+import { getLocalStorage } from '../storage/storage.js';
 import { initProductPurchaseList, productPurchaseTemplate } from './productPurchaseTemplate.js';
 
 let currentAmount = STANDARD.CURRENT_MONEY;
 const chargeAmountId = '#charge-amount';
+const storedProductItems = getLocalStorage(STORAGE_NAME.PRODUCT);
 
-const resetProductItemStorage = (storedProductItems, name) => {
+const resetProductItemStorage = (name) => {
   const productItems = storedProductItems.map((item) => {
     if (item.name === name) {
       item.quantity -= 1;
@@ -31,8 +32,7 @@ const handlePurchaseButtonClick = (event) => {
 
   subtractPriceAndQuantity(target, price);
   showCurrentAmount(chargeAmountId, currentAmount);
-  const storedProductItems = getProductItemStorage();
-  resetProductItemStorage(storedProductItems, name);
+  resetProductItemStorage(name);
 };
 
 const handleChargeInput = (event) => {
@@ -49,7 +49,7 @@ const handleChargeInput = (event) => {
 
 export const showProductPurchase = () => {
   $('#app-container').innerHTML = productPurchaseTemplate;
-  const storedProductList = getProductItemStorage();
+  const storedProductList = getLocalStorage(STORAGE_NAME.PRODUCT);
 
   if (storedProductList) {
     initProductPurchaseList(storedProductList);

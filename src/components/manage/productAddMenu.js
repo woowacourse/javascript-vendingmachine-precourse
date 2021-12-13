@@ -1,11 +1,19 @@
+import { STORAGE_NAME } from '../../utils/constants.js';
 import { $ } from '../../utils/querySelector.js';
 import { isValidProductValue } from '../../utils/validation.js';
-import { setProductItemStorage, getProductItemStorage } from '../storage/product.js';
+import { setLocalStorage, getLocalStorage } from '../storage/storage.js';
 import {
   addProductItem,
   productManageTemplate,
   initProductManageScreen,
 } from './manageTemplate.js';
+
+const storedProductItems = getLocalStorage(STORAGE_NAME.PRODUCT);
+
+const setProductItemsStorage = (productData) => {
+  storedProductItems.push(productData);
+  setLocalStorage(STORAGE_NAME.PRODUCT, storedProductItems);
+};
 
 const handleProductMenuSubmit = (event) => {
   event.preventDefault();
@@ -18,13 +26,13 @@ const handleProductMenuSubmit = (event) => {
   if (!isValidProductValue(productData)) {
     return;
   }
+
   addProductItem(productData);
-  setProductItemStorage(productData);
+  setProductItemsStorage(productData);
 };
 
 export const showProductManage = () => {
   $('#app-container').innerHTML = productManageTemplate;
-  const storedProductItems = getProductItemStorage();
 
   if (storedProductItems) {
     initProductManageScreen(storedProductItems);
