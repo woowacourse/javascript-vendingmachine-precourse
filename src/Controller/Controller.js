@@ -1,13 +1,12 @@
 import {
   getMoneySum,
-  checkEmpty,
-  checkInteger,
-  checkOverHundred,
-  checkTenTimes,
-  checkOverZero,
-  checkUnderZero,
   getIndex,
   getValue,
+  productNameValidator,
+  productPriceValidator,
+  productQuantityValidator,
+  chargeCoinValidator,
+  moneyAddValidator,
 } from "./common.js";
 import { ERROR } from "../constant/textConstant.js";
 
@@ -42,36 +41,18 @@ export default class Controller {
   };
 
   productAddHandler = (name, price, quantity) => {
-    let flag = true;
-    if (!checkEmpty(name)) {
-      alert(ERROR.LENGTH_OVER_ONE);
-      flag = false;
-    }
-    if (
-      !checkInteger(price) ||
-      !checkOverHundred(price) ||
-      !checkTenTimes(price)
-    ) {
-      alert(ERROR.OVER100_DIV10);
-      flag = false;
-    }
+    const flag =
+      productNameValidator(name) &&
+      productPriceValidator(price) &&
+      productQuantityValidator(quantity);
 
-    if (!checkInteger(quantity) || !checkOverZero(quantity)) {
-      alert(ERROR.OVER_ONE);
-      flag = false;
+    if (flag) {
+      this.model.addProduct(name, price, quantity);
     }
-
-    if (flag) this.model.addProduct(name, price, quantity);
   };
 
   chargeCoinHandler = (chargeMoney) => {
-    if (
-      !checkInteger(chargeMoney) ||
-      !checkUnderZero(chargeMoney) ||
-      !checkTenTimes(chargeMoney)
-    ) {
-      alert(ERROR.OVER10_DIV10);
-    } else {
+    if (chargeCoinValidator(chargeMoney)) {
       this.makeMoneyCoin(+chargeMoney);
     }
   };
@@ -92,13 +73,7 @@ export default class Controller {
   };
 
   moneyAddHandler = (money) => {
-    if (
-      !checkInteger(money) ||
-      !checkUnderZero(money) ||
-      !checkTenTimes(money)
-    ) {
-      alert(ERROR.OVER10_DIV10);
-    } else {
+    if (moneyAddValidator(money)) {
       this.model.addMoney(+money);
       return this.model.money;
     }
@@ -129,7 +104,6 @@ export default class Controller {
         returnCoin[index] += 1;
       }
     });
-
     this.model.submitMoney(sum);
     this.model.submitCoin(returnCoin);
     this.view.displayReturnCoin(returnCoin);

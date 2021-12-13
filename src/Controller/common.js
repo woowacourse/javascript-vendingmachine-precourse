@@ -1,3 +1,5 @@
+import { ERROR } from "../constant/textConstant.js";
+
 const resetTable = (table) => {
   while (table.children.length > 1) {
     table.removeChild(table.lastChild);
@@ -47,6 +49,54 @@ const getValue = (index) => {
   return money;
 };
 
+const productNameValidator = (name) => {
+  if (!checkEmpty(name)) {
+    alert(ERROR.LENGTH_OVER_ONE);
+    return false;
+  }
+  return true;
+};
+
+const productPriceValidator = (price) => {
+  if (
+    !checkInteger(price) ||
+    !checkOverHundred(price) ||
+    !checkTenTimes(price)
+  ) {
+    alert(ERROR.OVER100_DIV10);
+    return false;
+  }
+  return true;
+};
+
+const productQuantityValidator = (quantity) => {
+  if (!checkInteger(quantity) || !checkOverZero(quantity)) {
+    alert(ERROR.OVER_ONE);
+    return false;
+  }
+  return true;
+};
+
+const chargeCoinValidator = (chargeMoney) => {
+  if (
+    !checkInteger(chargeMoney) ||
+    !checkUnderZero(chargeMoney) ||
+    !checkTenTimes(chargeMoney)
+  ) {
+    alert(ERROR.OVER10_DIV10);
+    return false;
+  }
+  return true;
+};
+
+const moneyAddValidator = (money) => {
+  if (!checkInteger(money) || !checkUnderZero(money) || !checkTenTimes(money)) {
+    alert(ERROR.OVER10_DIV10);
+    return false;
+  }
+  return true;
+};
+
 export {
   resetTable,
   getMoneySum,
@@ -60,4 +110,9 @@ export {
   checkUnderZero,
   getIndex,
   getValue,
+  productNameValidator,
+  productPriceValidator,
+  productQuantityValidator,
+  chargeCoinValidator,
+  moneyAddValidator,
 };
