@@ -2,7 +2,7 @@
 /* eslint-disable no-constructor-return */
 import Product from '../model/Product.js';
 import Coin from '../model/Coin.js';
-import { COIN } from '../constant/coin.js';
+import { COIN, COIN_ARRAY } from '../constant/coin.js';
 
 let instance = null;
 
@@ -50,24 +50,36 @@ export default class VendingMachine {
 
   rechargeCoin(totalAmount) {
     this.rechargedCoinAmount += totalAmount;
-    let amount = totalAmount;
+    let amount = 0;
 
+    while (amount < totalAmount) {
+      const pickedCoin = this.pickRandomCoin();
+
+      if (amount + pickedCoin <= totalAmount) {
+        const index = this.findCoinIndex(pickedCoin);
+        this.rechargedCoin[index].increaseAmount();
+        amount += pickedCoin;
+      }
+    }
+
+    this.convertAmountNullToZero();
+  }
+
+  convertAmountNullToZero() {
     this.rechargedCoin.forEach((coin) => {
-      if (coin.type === COIN.COIN_10) {
-        const amountCoin10 = parseInt(amount / coin.type, 10);
-        coin.increaseAmount(amountCoin10);
-      } else {
-        const maxRange = parseInt(amount / coin.type, 10) + 1;
-        const randomNum = this.pickRandomCount(maxRange);
-        coin.increaseAmount(randomNum);
-        amount -= coin.type * randomNum;
+      if (coin.amount === null) {
+        coin.resetAmountToZero();
       }
     });
   }
 
-  pickRandomCount(maxRange) {
+  findCoinIndex(pickedCoin) {
+    return this.rechargedCoin.findIndex((coin) => coin.type === pickedCoin);
+  }
+
+  pickRandomCoin() {
     // eslint-disable-next-line no-undef
-    return MissionUtils.Random.pickNumberInList([...Array(maxRange)].map((v, i) => i));
+    return MissionUtils.Random.pickNumberInList(COIN_ARRAY);
   }
 
   rechargeMoney(amount) {

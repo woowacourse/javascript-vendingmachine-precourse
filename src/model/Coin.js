@@ -4,7 +4,11 @@ export default class Coin {
     this.amount = amount;
   }
 
-  increaseAmount(count) {
-    this.amount += count;
+  increaseAmount() {
+    this.amount += 1;
+  }
+
+  resetAmountToZero() {
+    this.amount = 0;
   }
 }
