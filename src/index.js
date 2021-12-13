@@ -1,13 +1,9 @@
 import { fetchHtmlView } from './fetch.js';
 
-function onProductManageTabClick() {
-    document.querySelector("#tab-content").innerHTML = 'hihi';
-}
-function onMachineChargeTabClick() {
-    document.querySelector("#tab-content").innerHTML = 'hihaai';
-}
-function onProductPurchaseTabClick() {
-    document.querySelector("#tab-content").innerHTML = 'hisshi';
+function onTabClick(fileName) {
+    fetchHtmlView(fileName)
+        .then(view => document.querySelector("#tab-content").innerHTML = view)
+        .catch(err => alert(err));
 }
 
 // DOM
@@ -19,9 +15,9 @@ app.addEventListener('click', function(e) {
     e.preventDefault();
 
     const handlers = {
-        "product-add-menu"() { onProductManageTabClick(); },
-        "vending-machine-manage-menu"() { onMachineChargeTabClick(); },
-        "product-purchase-menu"() { onProductPurchaseTabClick(); },
+        "product-add-menu"() { onTabClick('product_manage.html') },
+        "vending-machine-manage-menu"() { onTabClick('machine_charge.html'); },
+        "product-purchase-menu"() { onTabClick('product_purchase.html'); },
     };
     if(Object.keys(handlers).includes(e.target.id)) handlers[e.target.id]();
 });
