@@ -38,4 +38,11 @@ export const isMultipleOf10 = (placeholder, input) => {
   return isMultiple;
 };
 
+export const isOver100 = (placeholder, input) => {
+  const isOver = parseInt(input) >= 100;
+  if (!isOver) {
+    alert(`${placeholder}에 ${ALERT_MESSAGE.isNotOver100}`);
+  }
+};
+
 export const onKeyUpNumericEvent = input => (input.value = input.value.replace(/[^0-9]/g, ''));
