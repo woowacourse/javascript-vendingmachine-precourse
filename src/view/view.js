@@ -118,7 +118,7 @@ export default class View {
       const $product = document.getElementById(
         `vending-machine-coin-${COIN[idx]}-quantity`
       );
-      $product.innerHTML = `${coin}원`;
+      $product.innerHTML = `${coin}개`;
       sum += coin * COIN[idx];
     });
 
@@ -158,10 +158,7 @@ export default class View {
 
     returnMoney.map((coin, idx) => {
       const $getChange = document.getElementById(`coin-${COIN[idx]}-quantity`);
-      $getChange.innerHTML = coin;
+      $getChange.innerHTML = `${coin}개`;
     });
   }
-  // renderPurchaseTab(vendingMachine) {
-  //   const { productList, returnChage, userMoney } = vendingMachine;
-  // }
 }

@@ -57,9 +57,9 @@ const PURCHASE_VIEW = `
   <table>
     <th>동전</th><th>개수</th>
     <tr> <td>500원</td> <td id = coin-500-quantity></td> </tr>
-    <tr> <td>100</td> <td id = coin-100-quantity></td> </tr>
-    <tr> <td>50</td> <td id = coin-50-quantity></td> </tr>
-    <tr> <td>10</td> <td id = coin-10-quantity></td> </tr>
+    <tr> <td>100원</td> <td id = coin-100-quantity></td> </tr>
+    <tr> <td>50원</td> <td id = coin-50-quantity></td> </tr>
+    <tr> <td>10원</td> <td id = coin-10-quantity></td> </tr>
   </table>
   `;
 
