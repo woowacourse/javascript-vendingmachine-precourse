@@ -1,6 +1,6 @@
 export const ADD_ERROR_MESSAGE = '상품명, 가격, 수량을 모두 입력해주세요. 상품명은 기존제품과 중복되지 않아야 하고 상품 가격은 100이상 10의 배수여야 합니다.';
 export const CHARGE_ERROR_MESSAGE = '투입 금액은 10원 이상이고 10의 배수여야 합니다.';
-export const PURCHASE_ERROR_MESSAGE = '투입 금액이 부족합니다.';
+export const PURCHASE_ERROR_MESSAGE = '투입 금액과 상품의 수량을 확인해주세요.';
 
 export const CHARGE_TITLE = '자판기 동전 충전하기';
 export const CHARGE_INPUT_PLACEHOLDER_TITLE = '자판기가 보유할 금액';

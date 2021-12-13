@@ -6,6 +6,7 @@ import {
   PURCHASE_BUY_BUTTON_CLASS,
   PRODUCT_NODE_NAME_INDEX,
   PRODUCT_NODE_PRICE_INDEX,
+  PRODUCT_NODE_QUANTITY_INDEX,
   PURCHASE_RETURN_BUTTON_ID,
 } from '../constant/constant.js';
 
@@ -24,6 +25,7 @@ function onBuy(event, vendingMachine) {
   const productToBuy = {
     name: $productNode[PRODUCT_NODE_NAME_INDEX].dataset.productName,
     price: $productNode[PRODUCT_NODE_PRICE_INDEX].dataset.productPrice,
+    quantity: $productNode[PRODUCT_NODE_QUANTITY_INDEX].dataset.productQuantity,
   };
 
   vendingMachine.sellProduct(productToBuy, $productNode);

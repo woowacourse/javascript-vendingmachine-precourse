@@ -65,8 +65,8 @@ export default class VendingMachine {
     return this.products.findIndex((product) => product.name === name);
   }
 
-  sellProduct({ name, price }, $productNode) {
-    if (Validator.isBuyable(price, this.money)) {
+  sellProduct({ name, price, quantity }, $productNode) {
+    if (Validator.isBuyable(price, quantity, this.money)) {
       const index = this.getProductIndexByName(name);
       this.products[index].decreaseQuantity();
       this.money -= +price;

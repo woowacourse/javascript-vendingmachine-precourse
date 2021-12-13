@@ -49,8 +49,8 @@ export default class Validator {
     return false;
   }
 
-  static isBuyable(price, money) {
-    if (money >= price) {
+  static isBuyable(price, quantity, money) {
+    if (money >= price && +quantity > 0) {
       return true;
     }
     alert(PURCHASE_ERROR_MESSAGE);
