@@ -85,6 +85,7 @@ export const ALERT = {
   WRONG_CHARGE_INPUT: '잘못된 충전 금액입니다.',
   NOT_ENOUGH_QUANTITY: '수량이 부족합니다.',
   NOT_ENOUGH_MONEY: '돈이 부족합니다.',
+  SAME_NAME_PRODUCT_EXIST: '같은 이름의 상품이 있습니다.',
 };
 
 export const COINS = [500, 100, 50, 10];

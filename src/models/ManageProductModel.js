@@ -9,7 +9,7 @@ const initProducts = () => {
 export default {
   products: initProducts(),
   add(product) {
-    if (!isValidProductInput(product)) {
+    if (!isValidProductInput(this.products, product)) {
       return;
     }
     this.products.push(product);
@@ -24,6 +24,7 @@ export default {
   },
   sellable(name) {
     const pickedItem = this.products.find((item) => item[PRODUCT.NAME] === name);
+    console.log(pickedItem);
     if (pickedItem[PRODUCT.QUANTITY] <= 0) {
       alert(ALERT.NOT_ENOUGH_QUANTITY);
       return false;
@@ -36,7 +37,7 @@ export default {
 };
 
 const isPickedProduct = (item, name) => item[PRODUCT.NAME] === name;
-const isValidProductInput = (product) => {
+const isValidProductInput = (products, product) => {
   if (product[PRODUCT.NAME] === '') {
     alert(ALERT.EMPTY_PRODUCT_NAME);
     return false;
@@ -48,6 +49,10 @@ const isValidProductInput = (product) => {
   if (product[PRODUCT.QUANTITY] === '') {
     alert(ALERT.EMPTY_PRODUCT_QUANTITY);
     return false;
+  }
+  if (products.filter((item) => item[PRODUCT.NAME] === product[PRODUCT.NAME]).length) {
+    alert(ALERT.SAME_NAME_PRODUCT_EXIST);
+    return;
   }
   if (parseInt(product[PRODUCT.PRICE]) <= 0) {
     alert(ALERT.WRONG_PRODUCT_PRICE);

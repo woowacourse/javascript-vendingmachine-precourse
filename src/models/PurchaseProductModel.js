@@ -1,4 +1,4 @@
-import { LOCALSTORAGE, PRODUCT } from '../utils/constants.js';
+import { LOCALSTORAGE, PRODUCT, ALERT } from '../utils/constants.js';
 
 const initInputMOney = () => {
   return localStorage.getItem(LOCALSTORAGE.INPUT_MONEY)
