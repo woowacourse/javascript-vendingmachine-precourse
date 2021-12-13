@@ -6,27 +6,18 @@ import * as coinUtil from "../utils/coin.js";
 import * as displayer from './display.js';
 
 export default class Controller {
-    constructor(){
-        this.products = [];
-        this.coins = coinUtil.generateTemplateCoins();
-        this.input = 0;
-        this.productId = 0;
-    }
-
     addProduct(name, price, quantity){
         price = parseInt(price);
         quantity = parseInt(quantity);
         
         const item = getStorage();
-
-        if(validator.checkAddProduct(name, price, quantity, this.products)){
-            const product = new Product(name, price, quantity, this.productId++);
+        if(validator.checkAddProduct(name, price, quantity, item.products)){
+            const product = new Product(name, price, quantity, item.productId++);
             displayer.displayProductAddTab(product);
             displayer.displayProductPurchaseTab(product, this);
-            this.products.push(product);
+            item.products.push(product);
 
-            //TODO: change this => item, except controller(this.buyProduct)
-            updateStorage(this);
+            updateStorage(item);
         }
     }
 
@@ -48,54 +39,50 @@ export default class Controller {
             const pick = MissionUtils.Random.pickNumberInList(coinUtil.generateOnlyValues());
             if(money >= pick){
                 money -= pick;
-                this.coins[inverted[pick]]++;
+                item.coins[inverted[pick]]++;
             }
         }
         
-        //TODO: change this => item
-        updateStorage(this);
+        updateStorage(item);
     }
 
     userBuy(money){
         money = parseInt(money);
 
-        const item = getStorage();
+        
         if(validator.checkUserBuy(money)){
-            this.input += money;
-            displayer.displayInputCoin(this.input);
+            const item = getStorage();
+            item.input += money;
+            
+            updateStorage(item);
+            displayer.displayInputCoin(item.input);
         }
-
-        //TODO: change this => item
-        updateStorage(this);
     }
 
     buyProduct(product){
-
-        //TODO: const item = getStorage();
-        if(this.input >= product.price){
-            this.input -= product.price;
+        
+        const item = getStorage();
+        if(item.input >= product.price){
+            item.input -= product.price;
             product.quantity--;
 
-            updateStorage(this);
-            const item = getStorage();
+            updateStorage(item);
             displayer.displayChangedProduct(product, item);
         }
     }
 
     returnMoney(){
         
-        //const item = getStorage();
-        const coins = this.getRandomReturn(this.input);
-        updateStorage(this);
-        
-        displayer.displayReturnedCoins(coins);
-
         const item = getStorage();
+        const coins = this.getRandomReturn(item.input, item);
+        
+        
+        updateStorage(item);
+        displayer.displayReturnedCoins(coins);
         displayer.displayRemainCoins(item);
-        //TODO: change this => item
     }
 
-    getRandomReturn(money){
+    getRandomReturn(money, item){
         let returnCoin = {};
         for(let key in COIN_VALUE){
             returnCoin[key] = 0;
@@ -108,14 +95,14 @@ export default class Controller {
 
             let required = money / COIN_VALUE[key];
 
-            if(this.coins[key] > required){
-                this.coins[key] -= required;
+            if(item.coins[key] > required){
+                item.coins[key] -= required;
                 money -= required * COIN_VALUE[key];
                 returnCoin[key] = required;
             } else {
-                returnCoin[key] = this.coins[key];
-                money -= this.coins[key] * COIN_VALUE[key];
-                this.coins[key] = 0;
+                returnCoin[key] = item.coins[key];
+                money -= item.coins[key] * COIN_VALUE[key];
+                item.coins[key] = 0;
             }
         }
         
