@@ -67,7 +67,7 @@ class VendingMachineModel {
 
   setDataModelPropertyValue(KEY, VALUE) {
     this.dataModel[KEY] = VALUE;
-    store.setLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY, JSON.stringify(this.dataModel));
+    store.setLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY, this.dataModel);
   }
 
   setTab(newTab) {

@@ -107,3 +107,24 @@ export const DATA_MODEL_KEYS = {
 };
 
 export const LOCALSTORAGE_DATA_MODEL_KEY = 'data-model';
+
+export const INPUTS_DEFAULT_VALUE = {
+  PRODUCT_ADD: {
+    [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
+    [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
+    [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
+  },
+  VENDING_MACHINE_CHARGE: {
+    [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
+  },
+  CHARGE: {
+    [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
+  },
+};
+export const COINS_DEFAULT_VALUE = {
+  [`${FIVE_HUNDRED}`]: 0,
+  [`${ONE_HUNDRED}`]: 0,
+  [`${FIFTY}`]: 0,
+  [`${TEN}`]: 0,
+};
+export const COINS_KEY_ARRAY = [FIVE_HUNDRED, ONE_HUNDRED, FIFTY, TEN];

@@ -1,22 +1,12 @@
-import { COIN_KEYS, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN } from '../lib/constants.js';
+import { COINS_DEFAULT_VALUE, COINS_KEY_ARRAY, COIN_KEYS } from '../lib/constants.js';
 
 class Coin {
   static getRandomCoins(charge) {
     let tempCharge = charge;
 
-    const randomCoins = {
-      [`${FIVE_HUNDRED}`]: 0,
-      [`${ONE_HUNDRED}`]: 0,
-      [`${FIFTY}`]: 0,
-      [`${TEN}`]: 0,
-    };
+    const randomCoins = COINS_DEFAULT_VALUE;
     while (tempCharge !== 0) {
-      const randomCoin = window.MissionUtils.Random.pickNumberInList([
-        FIVE_HUNDRED,
-        ONE_HUNDRED,
-        FIFTY,
-        TEN,
-      ]);
+      const randomCoin = window.MissionUtils.Random.pickNumberInList(COINS_KEY_ARRAY);
 
       if (tempCharge - randomCoin >= 0) {
         randomCoins[`${randomCoin}`] = randomCoins[`${randomCoin}`] + 1;
@@ -41,15 +31,10 @@ class Coin {
     return COIN_KEYS.find((KEY) => coins[KEY] !== 0 && check >= Number(KEY));
   }
 
-  static generateReturnCoin(chargeAmount, coins) {
+  static computeReturnCoin(chargeAmount, coins) {
     let tempChargeAmount = chargeAmount;
     const tempCoins = { ...coins };
-    const returnCoins = {
-      [`${FIVE_HUNDRED}`]: 0,
-      [`${ONE_HUNDRED}`]: 0,
-      [`${FIFTY}`]: 0,
-      [`${TEN}`]: 0,
-    };
+    const returnCoins = COINS_DEFAULT_VALUE;
 
     while (true) {
       if (tempChargeAmount === 0) {

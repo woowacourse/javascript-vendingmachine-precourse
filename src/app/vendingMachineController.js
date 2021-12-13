@@ -1,11 +1,4 @@
-import {
-  DATA_MODEL_KEYS,
-  DOM,
-  ERROR_MESSAGE,
-  INPUT_TYPE,
-  PLAIN_TEXT,
-  TAB,
-} from '../lib/constants.js';
+import { DOM, ERROR_MESSAGE, INPUTS_DEFAULT_VALUE, TAB } from '../lib/constants.js';
 import { $ } from '../lib/utils.js';
 import Coin from '../modules/coin.js';
 import VendingMachineUtil from './vendingMachineUtil.js';
@@ -24,39 +17,50 @@ class VendingMachineController {
     const tab = this.$model.getTab();
 
     if (tab === TAB.PRODUCT_ADD_MENU) {
-      this.$view.renderProductAddMenu(
-        this.$model.getProductAddInputsValue(),
-        this.$model.getProductList()
-      );
-      this.registerProductAddMenuEventHandler();
+      this.executeRenderProductAddMenu();
     }
-
     if (tab === TAB.VENDING_MACHINE_MANAGE_MENU) {
-      this.$view.renderVendingMachineManageMenu(
-        this.$model.getVendingMachineChargeInputsValue(),
-        this.$model.getCoins()
-      );
-      this.registerVendingMachineManageMenuEventHandler();
+      this.executeRenderVendingMachineManageMenu();
     }
-
     if (tab === TAB.PRODUCT_PURCHASE_MENU) {
-      this.$view.renderProductPurchaseMenu(
-        this.$model.getChargeInputsValue(),
-        this.$model.getChargeAmount(),
-        this.$model.getProductList()
-      );
-      this.registerProductPurchaseMenuEventHandler();
-      // add dataset
+      this.executeRenderProductPurchaseMenu();
     }
+  }
+
+  executeRenderProductAddMenu() {
+    this.$view.renderProductAddMenu(
+      this.$model.getProductAddInputsValue(),
+      this.$model.getProductList()
+    );
+    this.registerProductAddMenuEventHandler();
+  }
+
+  executeRenderVendingMachineManageMenu() {
+    this.$view.renderVendingMachineManageMenu(
+      this.$model.getVendingMachineChargeInputsValue(),
+      this.$model.getCoins()
+    );
+    this.registerVendingMachineManageMenuEventHandler();
+  }
+
+  executeRenderProductPurchaseMenu() {
+    this.$view.renderProductPurchaseMenu(
+      this.$model.getChargeInputsValue(),
+      this.$model.getChargeAmount(),
+      this.$model.getProductList()
+    );
+    this.registerProductPurchaseMenuEventHandler();
   }
 
   registerTabEventHandler() {
     this.$view.tabMenuSection.addEventListener('click', this.onClickTabMenuSection.bind(this));
   }
+
   registerProductAddMenuEventHandler() {
     $(DOM.PRODUCT_ADD_FORM).addEventListener('input', this.onInputProductAddForm.bind(this));
     $(DOM.PRODUCT_ADD_FORM).addEventListener('submit', this.onSubmitProductAddForm.bind(this));
   }
+
   registerVendingMachineManageMenuEventHandler() {
     $(DOM.VENDING_MACHINE_CHARGE_FORM).addEventListener(
       'input',
@@ -67,6 +71,7 @@ class VendingMachineController {
       this.onSubmitVendingMachineChargeForm.bind(this)
     );
   }
+
   registerProductPurchaseMenuEventHandler() {
     $(DOM.PRODUCT_PURCHASE_LIST_TABLE).addEventListener(
       'click',
@@ -76,6 +81,7 @@ class VendingMachineController {
     $(DOM.CHARGE_FORM).addEventListener('submit', this.onSubmitChargeForm.bind(this));
     $(DOM.COIN_RETURN_BUTTON).addEventListener('click', this.onClickCoinReturnButton.bind(this));
   }
+
   onClickTabMenuSection(e) {
     const {
       target: { textContent },
@@ -97,20 +103,16 @@ class VendingMachineController {
     e.preventDefault();
     try {
       this.addProduct();
-      this.$model.setProductAddInputsValue((prev) => ({
-        ...prev,
-        [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
-        [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
-        [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
-      }));
+      this.$model.setProductAddInputsValue(() => INPUTS_DEFAULT_VALUE.PRODUCT_ADD);
       this.$view.renderProductAdd(
         this.$model.getProductList(),
         this.$model.getProductAddInputsValue()
       );
-    } catch (e) {
-      alert(e);
+    } catch (error) {
+      alert(error);
     }
   }
+
   onInputVendingMachineChargeForm(e) {
     const {
       target: { value, id },
@@ -118,38 +120,38 @@ class VendingMachineController {
 
     this.$model.setVendingMachineChargeInputsValue((prev) => ({ ...prev, [`${id}`]: value }));
   }
+
   onSubmitVendingMachineChargeForm(e) {
     e.preventDefault();
     try {
       this.addCoins();
-      this.$model.setVendingMachineChargeInputsValue((prev) => ({
-        ...prev,
-        [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
-      }));
+      this.$model.setVendingMachineChargeInputsValue(
+        () => INPUTS_DEFAULT_VALUE.VENDING_MACHINE_CHARGE
+      );
       this.$view.renderCoins(
         this.$model.getCoins(),
         this.$model.getVendingMachineChargeInputsValue()
       );
-    } catch (e) {
-      alert(e);
+    } catch (error) {
+      alert(error);
     }
   }
+
   onClickProductPurchaseListTable(e) {
     if (VendingMachineUtil.isPurchaseButton(e.target)) {
       const {
-        target: {
-          dataset: { id: productId },
-        },
+        target: { dataset },
       } = e;
       try {
-        this.purchaseProduct(productId);
+        this.purchaseProduct(dataset.id);
         this.$view.renderProductPurchaseList(this.$model.getProductList());
         this.$view.renderCharge(this.$model.getChargeAmount(), this.$model.getChargeInputsValue());
-      } catch (e) {
-        alert(e);
+      } catch (error) {
+        alert(error);
       }
     }
   }
+
   onInputChargeForm(e) {
     const {
       target: { value, id },
@@ -157,20 +159,19 @@ class VendingMachineController {
 
     this.$model.setChargeInputsValue((prev) => ({ ...prev, [`${id}`]: value }));
   }
+
   onSubmitChargeForm(e) {
     e.preventDefault();
 
     try {
       this.addCharge();
-      this.$model.setChargeInputsValue((prev) => ({
-        ...prev,
-        [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
-      }));
+      this.$model.setChargeInputsValue(() => INPUTS_DEFAULT_VALUE.CHARGE);
       this.$view.renderCharge(this.$model.getChargeAmount(), this.$model.getChargeInputsValue());
-    } catch (e) {
-      alert(e);
+    } catch (error) {
+      alert(error);
     }
   }
+
   /** renderCharge - clearChageInput 하는 로직 분리하기 */
   onClickCoinReturnButton() {
     const returnCoins = this.generateReturnCoin();
@@ -179,7 +180,7 @@ class VendingMachineController {
   }
 
   generateReturnCoin() {
-    const { returnCoins, chargeAmount, coins } = Coin.generateReturnCoin(
+    const { returnCoins, chargeAmount, coins } = Coin.computeReturnCoin(
       this.$model.getChargeAmount(),
       this.$model.getCoins()
     );
@@ -200,6 +201,7 @@ class VendingMachineController {
       this.$model.setProductList([...this.$model.getProductList(), newProduct]);
     }
   }
+
   /** 동전을 추가하는 로직 */
   addCoins() {
     const vendingMachineInputsValue = this.$model.getVendingMachineChargeInputsValue();
@@ -216,6 +218,7 @@ class VendingMachineController {
       );
     }
   }
+
   purchaseProduct(productId) {
     const { targetProduct, position } = this.$model.findProduct(productId);
     if (targetProduct === undefined) {
