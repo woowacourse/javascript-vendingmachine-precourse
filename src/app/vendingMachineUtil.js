@@ -22,7 +22,6 @@ class VendingMachineUtil {
     if (isNumberStringNotDivideBy10(inputsValue[DOM.PRODUCT_PRICE_INPUT])) {
       throw new Error(ERROR_MESSAGE.PRODUCT_ADD_ERROR_PRICE_DIVIDE_BY_10);
     }
-
     return true;
   }
 
@@ -33,7 +32,6 @@ class VendingMachineUtil {
     if (isNumberStringNotDivideBy10(inputsValue[id])) {
       throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_DEVIDE_BY_10);
     }
-
     return true;
   }
 

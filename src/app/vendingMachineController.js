@@ -1,4 +1,11 @@
-import { DOM, INPUT_TYPE, PLAIN_TEXT, TAB } from '../lib/constants.js';
+import {
+  DATA_MODEL_KEYS,
+  DOM,
+  ERROR_MESSAGE,
+  INPUT_TYPE,
+  PLAIN_TEXT,
+  TAB,
+} from '../lib/constants.js';
 import { $ } from '../lib/utils.js';
 import Coin from '../modules/coin.js';
 import VendingMachineUtil from './vendingMachineUtil.js';
@@ -9,13 +16,38 @@ class VendingMachineController {
     this.$view = view;
     this.$model = model;
 
-    this.initView();
     this.registerTabEventHandler();
-    this.registerProductAddMenuEventHandler();
+    this.triggerRenderMainView();
   }
 
-  initView() {
-    this.$view.renderMain(this.$model);
+  triggerRenderMainView() {
+    const tab = this.$model.getTab();
+
+    if (tab === TAB.PRODUCT_ADD_MENU) {
+      this.$view.renderProductAddMenu(
+        this.$model.getProductAddInputsValue(),
+        this.$model.getProductList()
+      );
+      this.registerProductAddMenuEventHandler();
+    }
+
+    if (tab === TAB.VENDING_MACHINE_MANAGE_MENU) {
+      this.$view.renderVendingMachineManageMenu(
+        this.$model.getVendingMachineChargeInputsValue(),
+        this.$model.getCoins()
+      );
+      this.registerVendingMachineManageMenuEventHandler();
+    }
+
+    if (tab === TAB.PRODUCT_PURCHASE_MENU) {
+      this.$view.renderProductPurchaseMenu(
+        this.$model.getChargeInputsValue(),
+        this.$model.getChargeAmount(),
+        this.$model.getProductList()
+      );
+      this.registerProductPurchaseMenuEventHandler();
+      // add dataset
+    }
   }
 
   registerTabEventHandler() {
@@ -48,27 +80,15 @@ class VendingMachineController {
     const {
       target: { textContent },
     } = e;
-
+    /** 절차지향적 ? */
     this.$model.setTab(textContent);
-    this.$view.renderMain(this.$model);
 
-    if (this.$model.tab === TAB.PRODUCT_ADD_MENU) {
-      this.registerProductAddMenuEventHandler();
-      return;
-    }
-    if (this.$model.tab === TAB.VENDING_MACHINE_MANAGE_MENU) {
-      this.registerVendingMachineManageMenuEventHandler();
-      return;
-    }
-    if (this.$model.tab === TAB.PRODUCT_PURCHASE_MENU) {
-      this.registerProductPurchaseMenuEventHandler();
-      return;
-    }
+    this.triggerRenderMainView();
   }
 
   onInputProductAddForm(e) {
     const {
-      target: { value, id, type },
+      target: { value, id },
     } = e;
     this.$model.setProductAddInputsValue((prev) => ({ ...prev, [`${id}`]: value }));
   }
@@ -76,14 +96,17 @@ class VendingMachineController {
   onSubmitProductAddForm(e) {
     e.preventDefault();
     try {
-      this.$model.addProduct();
+      this.addProduct();
       this.$model.setProductAddInputsValue((prev) => ({
         ...prev,
         [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
         [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
         [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
       }));
-      this.$view.renderProductAdd(this.$model.productList, this.$model.productAddInputsValue);
+      this.$view.renderProductAdd(
+        this.$model.getProductList(),
+        this.$model.getProductAddInputsValue()
+      );
     } catch (e) {
       alert(e);
     }
@@ -98,14 +121,14 @@ class VendingMachineController {
   onSubmitVendingMachineChargeForm(e) {
     e.preventDefault();
     try {
-      this.$model.addCoins();
+      this.addCoins();
       this.$model.setVendingMachineChargeInputsValue((prev) => ({
         ...prev,
         [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
       }));
       this.$view.renderCoins(
-        this.$model.coins,
-        this.$model.vendingMachineChargeInputsValue[`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]
+        this.$model.getCoins(),
+        this.$model.getVendingMachineChargeInputsValue()
       );
     } catch (e) {
       alert(e);
@@ -119,9 +142,9 @@ class VendingMachineController {
         },
       } = e;
       try {
-        this.$model.purchaseProduct(productId);
-        this.$view.renderProductPurchaseList(this.$model.productList);
-        this.$view.renderCharge(this.$model.chargeAmount);
+        this.purchaseProduct(productId);
+        this.$view.renderProductPurchaseList(this.$model.getProductList());
+        this.$view.renderCharge(this.$model.getChargeAmount(), this.$model.getChargeInputsValue());
       } catch (e) {
         alert(e);
       }
@@ -138,37 +161,92 @@ class VendingMachineController {
     e.preventDefault();
 
     try {
-      this.$model.addCharge();
+      this.addCharge();
       this.$model.setChargeInputsValue((prev) => ({
         ...prev,
         [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
       }));
-      this.$view.renderCharge(
-        this.$model.chargeAmount,
-        this.$model.chargeInputsValue[DOM.CHARGE_INPUT]
-      );
+      this.$view.renderCharge(this.$model.getChargeAmount(), this.$model.getChargeInputsValue());
     } catch (e) {
       alert(e);
     }
   }
   /** renderCharge - clearChageInput 하는 로직 분리하기 */
   onClickCoinReturnButton() {
-    const returnCoin = this.generateReturnCoin();
-
-    this.$view.renderCharge(
-      this.$model.chargeAmount,
-      this.$model.chargeInputsValue[DOM.CHARGE_INPUT]
-    );
-    this.$view.renderReturnCoins(returnCoin);
+    const returnCoins = this.generateReturnCoin();
+    this.$view.renderCharge(this.$model.getChargeAmount(), this.$model.getChargeInputsValue());
+    this.$view.renderReturnCoins(returnCoins);
   }
+
   generateReturnCoin() {
     const { returnCoins, chargeAmount, coins } = Coin.generateReturnCoin(
-      this.$model.chargeAmount,
-      this.$model.coins
+      this.$model.getChargeAmount(),
+      this.$model.getCoins()
     );
     this.$model.setChargeAmount(chargeAmount);
     this.$model.setCoins(coins);
     return returnCoins;
+  }
+
+  /** Add Product 로직 */
+  addProduct() {
+    if (VendingMachineUtil.isValidProduct(this.$model.getProductAddInputsValue())) {
+      const newProduct = {
+        id: VendingMachineUtil.generateProductId(this.$model.getProductList()),
+        name: this.$model.getProductAddInputValueById(DOM.PRODUCT_NAME_INPUT),
+        price: Number(this.$model.getProductAddInputValueById(DOM.PRODUCT_PRICE_INPUT)),
+        quantity: Number(this.$model.getProductAddInputValueById(DOM.PRODUCT_QUANTITY_INPUT)),
+      };
+      this.$model.setProductList([...this.$model.getProductList(), newProduct]);
+    }
+  }
+  /** 동전을 추가하는 로직 */
+  addCoins() {
+    const vendingMachineInputsValue = this.$model.getVendingMachineChargeInputsValue();
+    const vendingMachineChargeInputValue = this.$model.getVendingMachineChargeInputValueByInputId(
+      DOM.VENDING_MACHINE_CHARGE_INPUT
+    );
+    /** 캡슐화 완료 */
+    if (
+      VendingMachineUtil.isValidCharge(vendingMachineInputsValue, DOM.VENDING_MACHINE_CHARGE_INPUT)
+    ) {
+      const newCoins = VendingMachineUtil.getNewCoins(Number(vendingMachineChargeInputValue));
+      this.$model.setCoins(
+        VendingMachineUtil.combineCurrentCoinsAndNewCoins(this.$model.getCoins(), newCoins)
+      );
+    }
+  }
+  purchaseProduct(productId) {
+    const { targetProduct, position } = this.$model.findProduct(productId);
+    if (targetProduct === undefined) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_UNDEFINED);
+    }
+    if (targetProduct.quantity === 0) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_ZERO);
+    }
+    if (targetProduct.price > this.$model.getChargeAmount()) {
+      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_TOO_EXPENSIVE);
+    }
+    this.sellProduct(targetProduct, position);
+  }
+
+  sellProduct(targetProduct, position) {
+    this.$model.setProductInProductList({
+      newProduct: { ...targetProduct, quantity: targetProduct.quantity - 1 },
+      position,
+    });
+
+    this.$model.setChargeAmount(this.$model.getChargeAmount() - targetProduct.price);
+  }
+
+  addCharge() {
+    if (VendingMachineUtil.isValidCharge(this.$model.getChargeInputsValue(), DOM.CHARGE_INPUT)) {
+      const newChargeAmount =
+        this.$model.getChargeAmount() +
+        Number(this.$model.getChargeInputValueById(DOM.CHARGE_INPUT));
+
+      this.$model.setChargeAmount(newChargeAmount);
+    }
   }
 }
 export default VendingMachineController;

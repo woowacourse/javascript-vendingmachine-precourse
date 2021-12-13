@@ -14,6 +14,10 @@ export const DOM = Object.freeze({
   PRODUCT_ADD_BUTTON: 'product-add-button',
 
   PRODUCT_LIST_TABLE: 'product-list-table',
+  PRODUCT_MANAGE_ITEM_CLASS: 'product-manage-item',
+  PRODUCT_MANAGE_NAME_CLASS: 'product-manage-name',
+  PRODUCT_MANAGE_PRICE_CLASS: 'product-manage-price',
+  PRODUCT_MANAGE_QUANTITY_CLASS: 'product-manage-quantity',
 
   /** VENDING MACHINE CHARGE MENU */
   VENDING_MACHINE_CHARGE_FORM: 'vending-machine-charge-form',
@@ -86,4 +90,18 @@ export const PRODUCT_ID_LENGTH = 6;
 export const ID_RANGE = {
   MIN: 0,
   MAX: 9,
+};
+export const DATA_MODEL_KEYS = {
+  TAB: 'tab',
+
+  PRODUCT_ADD_INPUTS_VALUE: 'productAddInputsValue',
+  PRODUCT_LIST: 'productList',
+
+  VENDING_MACHINE_CHARGE_INPUTS_VALUE: 'vendingMachineChargeInputsValue',
+  VENDING_MACHINE_CHARGE: 'vendingMachineCharge',
+  COINS: 'coins',
+
+  CHARGE_INPUTS_VALUE: 'chargeInputsValue',
+  CHARGE_AMOUNT: 'chargeAmount',
+  RETURN_COINS: 'returnCoins',
 };

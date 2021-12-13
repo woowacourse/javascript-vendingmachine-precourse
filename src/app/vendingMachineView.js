@@ -32,23 +32,31 @@ class VendingMachineView {
     this.mainSection = $(DOM.MAIN_SECTION);
   }
 
-  renderMain(model) {
-    if (model.tab === TAB.PRODUCT_ADD_MENU) {
-      this.mainSection.innerHTML = this.generateProductAddMenuTemplate(model);
-    }
-    if (model.tab === TAB.VENDING_MACHINE_MANAGE_MENU) {
-      this.mainSection.innerHTML = this.generateVendingMachineManageMenuTemplate(model);
-    }
-    if (model.tab === TAB.PRODUCT_PURCHASE_MENU) {
-      this.mainSection.innerHTML = this.generateProductPurchaseMenuTemplate(model);
-    }
+  renderProductAddMenu(productAddInputsValue, productList) {
+    this.mainSection.innerHTML = this.generateProductAddMenuTemplate(
+      productAddInputsValue,
+      productList
+    );
   }
 
-  generateProductAddMenuTemplate(model) {
-    const productAddSectionTemplate = this.generateProductAddSectionTemplate(
-      model.productAddInputsValue
+  renderVendingMachineManageMenu(vendingMachineChargeInputsValue, coins) {
+    this.mainSection.innerHTML = this.generateVendingMachineManageMenuTemplate(
+      vendingMachineChargeInputsValue,
+      coins
     );
-    const productListSectionTemplate = this.generateProductListSectionTemplate(model.productList);
+  }
+
+  renderProductPurchaseMenu(chargeInputsValue, chargeAmount, productList) {
+    this.mainSection.innerHTML = this.generateProductPurchaseMenuTemplate(
+      chargeInputsValue,
+      chargeAmount,
+      productList
+    );
+  }
+
+  generateProductAddMenuTemplate(productAddInputsValue, productList) {
+    const productAddSectionTemplate = this.generateProductAddSectionTemplate(productAddInputsValue);
+    const productListSectionTemplate = this.generateProductListSectionTemplate(productList);
 
     return `${productAddSectionTemplate}${productListSectionTemplate}`;
   }
@@ -79,8 +87,8 @@ class VendingMachineView {
       ${productList
         .map(
           (product) => `
-        <tr>
-          <td>${product.name}</td><td>${product.price}</td><td>${product.quantity}</td>
+        <tr class="${DOM.PRODUCT_MANAGE_ITEM_CLASS}">
+          <td class="${DOM.PRODUCT_MANAGE_NAME_CLASS}">${product.name}</td><td class="${DOM.PRODUCT_MANAGE_PRICE_CLASS}">${product.price}</td><td class="${DOM.PRODUCT_MANAGE_QUANTITY_CLASS}">${product.quantity}</td>
         </tr>
       `
         )
@@ -90,14 +98,13 @@ class VendingMachineView {
   }
 
   /** Vending Machine Manage */
-  generateVendingMachineManageMenuTemplate(model) {
+  generateVendingMachineManageMenuTemplate(vendingMachineChargeInputsValue, coins) {
     const inputSectionTemplate = this.generateVendingMachineChargeInputSectionTemplate(
-      model.vendingMachineChargeInputsValue
+      vendingMachineChargeInputsValue
     );
     const chargeAmountSectionTemplate = this.generateVendingMachineChargeAmountSectionTemplate();
-    const coinQauntitySectionTemplate = this.generateVendingMachineCoinQauntitySectionTemplate(
-      model.coins
-    );
+    const coinQauntitySectionTemplate =
+      this.generateVendingMachineCoinQauntitySectionTemplate(coins);
 
     return `${inputSectionTemplate}${chargeAmountSectionTemplate}${coinQauntitySectionTemplate}`;
   }
@@ -129,14 +136,11 @@ class VendingMachineView {
   }
 
   /** Product Purchase */
-  generateProductPurchaseMenuTemplate(model) {
-    const inputsSectionTemplate = this.generateChargeInputSectionTemplate(model.chargeInputsValue);
-    const chargeAmountSectionTemplate = this.generateChargeAmountSectionTemplate(
-      model.chargeAmount
-    );
-    const productPurchaseListSectionTemplate = this.generateProductPurchaseListSectionTemplate(
-      model.productList
-    );
+  generateProductPurchaseMenuTemplate(chargeInputsValue, chargeAmount, productList) {
+    const inputsSectionTemplate = this.generateChargeInputSectionTemplate(chargeInputsValue);
+    const chargeAmountSectionTemplate = this.generateChargeAmountSectionTemplate(chargeAmount);
+    const productPurchaseListSectionTemplate =
+      this.generateProductPurchaseListSectionTemplate(productList);
     const changeCoinSectionTemplate = this.generateChangeCoinSectionTemplate();
 
     return `${inputsSectionTemplate}${chargeAmountSectionTemplate}${productPurchaseListSectionTemplate}${changeCoinSectionTemplate}`;
@@ -224,8 +228,9 @@ class VendingMachineView {
     .join('')}`;
   }
 
-  renderCoins(coins, vendingMachineChargeInputValue) {
-    $(DOM.VENDING_MACHINE_CHARGE_INPUT).value = vendingMachineChargeInputValue;
+  renderCoins(coins, vendingMachineChargeInputsValue) {
+    $(DOM.VENDING_MACHINE_CHARGE_INPUT).value =
+      vendingMachineChargeInputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT];
     $(DOM.VENDING_MACHINE_COIN_500_QUANTITY).textContent = coins[FIVE_HUNDRED];
     $(DOM.VENDING_MACHINE_COIN_100_QUANTITY).textContent = coins[ONE_HUNDRED];
     $(DOM.VENDING_MACHINE_COIN_50_QUANTITY).textContent = coins[FIFTY];
@@ -253,8 +258,8 @@ class VendingMachineView {
   }
 
   /** renderCharge - clearChageInput 하는 로직 분리하기 */
-  renderCharge(chargeAmount, chargeInputValue) {
-    $(DOM.CHARGE_INPUT).value = chargeInputValue;
+  renderCharge(chargeAmount, chargeInputsValue) {
+    $(DOM.CHARGE_INPUT).value = chargeInputsValue[DOM.CHARGE_INPUT];
     $(DOM.CHARGE_AMOUNT).textContent = `${CHARGE_AMOUNT_TEXT}${chargeAmount}`;
   }
 
