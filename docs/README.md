@@ -56,13 +56,13 @@
 
 [x] 추가하기 버튼을 클릭할 때마다 상품현황이 update 되어 render가 된다
 
-[ ] 추가한 각 상품 요소의 class명은 product-manage-item이다
+[x] 추가한 각 상품 요소의 class명은 product-manage-item이다
 
-[ ] 상품명에 해당하는 요소의 class명은 product-manage-name이다
+[x] 상품명에 해당하는 요소의 class명은 product-manage-name이다
 
-[ ] 가격에 해당하는 요소의 class명은 product-manage-price이다
+[x] 가격에 해당하는 요소의 class명은 product-manage-price이다
 
-[ ] 수량에 해당하는 요소의 class명은 product-manage-quantity
+[x] 수량에 해당하는 요소의 class명은 product-manage-quantity
 
 <hr>
 
