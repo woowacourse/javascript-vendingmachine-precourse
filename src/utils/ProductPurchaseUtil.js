@@ -8,6 +8,7 @@ export default class ProductPurchaseUtil {
     this.coinAmount = 0;
     this.purchaseCoin = 0;
     this.addPurchaseCoin();
+    this.purchaseBtn();
   }
 
   addPurchaseCoin() {
@@ -33,5 +34,10 @@ export default class ProductPurchaseUtil {
   setCoinAmount(coin) {
     this.coinAmount += coin;
     this.productPurchase.amount.innerHTML = PRODUCT_PURCHASE.COIN_STORAGE + this.coinAmount;
+  }
+
+  purchaseBtn() {
+    const btn = document.querySelector('.purchase-button').dataset.ProductName;
+    console.log(btn);
   }
 }

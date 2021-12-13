@@ -20,6 +20,28 @@ export function appendP(element, innerText, id) {
   element.appendChild(text);
 }
 
+export function appendClass(element, className) {
+  element.setAttribute('class', className);
+}
+
+export function appendTableStyle(table) {
+  table.style.borderCollapse = 'collapse';
+  table.style.borderSpacing = 0;
+}
+
+export function appendTheadStyle(thead) {
+  const tr = thead.querySelectorAll('tr');
+  for (let t of tr) {
+    t.style.padding = '10px';
+    t.style.border = '1px solid #000';
+  }
+  const th = thead.querySelectorAll('th');
+  for (let t of th) {
+    t.style.padding = '15px';
+    t.style.border = '1px solid #000';
+  }
+}
+
 export function createInput(element, text, type, id) {
   const input = document.createElement('input');
   input.placeholder = text;
@@ -59,24 +81,20 @@ export function createThClass(tableRow, text, className) {
   tableRow.appendChild(head);
 }
 
-export function appendClass(element, className) {
-  element.setAttribute('class', className);
+export function createBtnClassDataset(element, text, className, datasetKey, datasetVal) {
+  const btn = document.createElement('button');
+  btn.setAttribute('class', className);
+  btn.setAttribute(datasetKey, datasetVal);
+  appendText(btn, text);
+
+  element.appendChild(btn);
 }
 
-export function appendTableStyle(table) {
-  table.style.borderCollapse = 'collapse';
-  table.style.borderSpacing = 0;
-}
+export function createThClassDataset(tableRow, text, className, datasetKey, datasetVal) {
+  let head = document.createElement('th');
+  head.innerHTML = text;
+  head.setAttribute(datasetKey, datasetVal);
+  appendClass(head, className);
 
-export function appendTheadStyle(thead) {
-  const tr = thead.querySelectorAll('tr');
-  for (let t of tr) {
-    t.style.padding = '10px';
-    t.style.border = '1px solid #000';
-  }
-  const th = thead.querySelectorAll('th');
-  for (let t of th) {
-    t.style.padding = '15px';
-    t.style.border = '1px solid #000';
-  }
+  tableRow.appendChild(head);
 }

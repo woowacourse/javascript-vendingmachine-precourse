@@ -6,7 +6,9 @@ import {
   appendClass,
   appendTheadStyle,
   createBtnClass,
+  createBtnClassDataset,
   createThClass,
+  createThClassDataset,
 } from '../init/elementfunc.js';
 import {
   checkProductName,
@@ -83,16 +85,29 @@ export default class ProductAddUtil {
     const tableRow = document.createElement('tr');
     appendClass(tableRow, 'product-purchase-item');
 
-    createThClass(tableRow, name, 'product-purchase-name');
-    createThClass(tableRow, price, 'product-purchase-price');
-    createThClass(tableRow, quantity, 'product-purchase-quantity');
+    createThClassDataset(tableRow, name, 'product-purchase-name', 'data-product-name', name);
+    createThClassDataset(tableRow, price, 'product-purchase-price', 'data-product-price', price);
+    createThClassDataset(
+      tableRow,
+      quantity,
+      'product-purchase-quantity',
+      'data-product-quantity',
+      quantity,
+    );
     this.addProductPurchaseBtn(tableRow);
 
     this.productPurchase.tableBody.appendChild(tableRow);
     appendTheadStyle(this.productPurchase.tableBody);
+    console.log(tableRow.dataset.product);
   }
 
   addProductPurchaseBtn(tableRow) {
-    createBtnClass(tableRow, PRODUCT_PURCHASE.PURCHASE_BTN, 'purchase-button');
+    createBtnClassDataset(
+      tableRow,
+      PRODUCT_PURCHASE.PURCHASE_BTN,
+      'purchase-button',
+      'data-product-purchase',
+      'purchase',
+    );
   }
 }
