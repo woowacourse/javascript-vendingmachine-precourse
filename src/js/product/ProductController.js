@@ -13,7 +13,7 @@ export default class ProductController {
     this.initPage();
     this.initDOMS();
     this.setEvent();
-    this.view.renderProductTable(this.$productTableBody, this.model.getProducts());
+    this.updatePage();
   };
 
   initDOMS = () => {
