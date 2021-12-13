@@ -123,4 +123,13 @@ export default class View {
 
     $amount.innerHTML = sum;
   }
+
+  renderUserMoney(userMoney) {
+    const $amount = document.getElementById("charge-amount");
+    $amount.innerHTML = userMoney;
+  }
+
+  // renderPurchaseTab(vendingMachine) {
+  //   const { productList, returnChage, userMoney } = vendingMachine;
+  // }
 }

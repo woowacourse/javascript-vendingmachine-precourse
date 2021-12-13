@@ -46,7 +46,7 @@ const PURCHASE_VIEW = `
   <input placeholder="투입할 금액" id="charge-input"/> 
   <button id="charge-button">투입하기</button>
   <p> 투입한 금액: </p>
-  <text id = "charge-amount"></text>
+  <text id="charge-amount"></text>
   <h2>구매할 수 있는 상품 현황</h2>
   <table>
     <th>상품명</th><th>가격</th><th>수량</th><th>구매</th>

@@ -37,4 +37,8 @@ export default class VendingMachine {
     });
     this.ownChange[COIN.length - 1] += zero / 10;
   }
+
+  getMoney(money) {
+    this.userMoney += money;
+  }
 }
