@@ -19,7 +19,7 @@ export const isBlankExist = input => {
   return isIncludeBlank;
 };
 
-export const isPositiveNumber = input => {
+const isPositiveNumber = input => {
   const isPositive = parseInt(input.value, 10) > 0;
   if (!isPositive) {
     alertMessage(input, ALERT_MESSAGE.isNotPositiveNumber);
@@ -42,7 +42,7 @@ export const isMultipleOf10 = input => {
 export const isOver100 = input => {
   const isOver = parseInt(input.value) >= 100;
   if (!isOver) {
-    alertMessage(input, ALERT_MESSAGE.isNotOver100)
+    alertMessage(input, ALERT_MESSAGE.isNotOver100);
   }
 
   return isOver;
@@ -57,9 +57,9 @@ export const isEnoughCoin = (chargeInput, price) => {
   return isEnough;
 };
 
-export const isAlreadyExistProduct = input => {
+export const isAlreadyExistProduct = productName => {
   const allProducts = getItemOrArray('products');
-  const isExist = allProducts.find(e => e.name === input.value);
+  const isExist = allProducts.find(e => e.name === productName.value);
   if (isExist) {
     alert(ALERT_MESSAGE.isAlreadyExistProduct);
   }
