@@ -1,5 +1,5 @@
-import { ID } from '../constants/selector.js';
-import { Nav, ButtonWithId } from './elements.js';
+import { ID } from '../../constants/selector.js';
+import { Nav, ButtonWithId } from '../elements.js';
 
 export const createTabNav = (event) => {
   const tabNav = Nav('menu-tabs');

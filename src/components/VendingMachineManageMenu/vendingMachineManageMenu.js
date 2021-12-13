@@ -1,6 +1,6 @@
-import { ID } from '../constants/selector.js';
-import { COIN } from '../constants/coin.js';
-import { COIN_TABLE } from '../constants/table.js';
+import { ID } from '../../constants/selector.js';
+import { COIN } from '../../constants/coin.js';
+import { COIN_TABLE } from '../../constants/table.js';
 import {
   Form,
   Input,
@@ -10,7 +10,7 @@ import {
   TableRow,
   TableData,
   TableDataWithId,
-} from './elements.js';
+} from '../elements.js';
 
 export const createAddCoinForm = (event) => {
   const addCoinForm = Form();

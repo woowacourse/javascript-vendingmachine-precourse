@@ -1,25 +1,25 @@
-import { ID, CLASS } from '../constants/selector.js';
+import { ID, CLASS } from '../../constants/selector.js';
 import {
   Container,
   SubTitle,
   Span,
   SpanWithId,
   ButtonWithId,
-} from '../components/elements.js';
+} from '../elements.js';
 import {
   createAddMoneyForm,
   createProductPurchaseTable,
   createProductPurchaseRow,
   createCoinTable,
-} from '../components/productPurchaseMenu.js';
-import { vendingMachine } from '../components/vendingMachine.js';
+} from './productPurchaseMenu.js';
+import { vendingMachine } from '../vendingMachine.js';
 import {
   alertChargeErrorMessage,
   alertReturnErrorMessage,
   canReturn,
   isValidCharge,
-} from '../components/validator.js';
-import { PRODUCT_PURCHASE_TABLE } from '../constants/table.js';
+} from '../validator.js';
+import { PRODUCT_PURCHASE_TABLE } from '../../constants/table.js';
 
 export default function ProductPurchaseMenuView() {
   this.productPurchaseMenu = () => {

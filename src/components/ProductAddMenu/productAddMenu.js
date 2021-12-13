@@ -1,5 +1,5 @@
-import { ID } from '../constants/selector.js';
-import { PRODUCT_TABLE } from '../constants/table.js';
+import { ID } from '../../constants/selector.js';
+import { PRODUCT_TABLE } from '../../constants/table.js';
 import {
   Form,
   Input,
@@ -8,7 +8,7 @@ import {
   TableHead,
   TableRowWithClassName,
   TableDataWithClassName,
-} from './elements.js';
+} from '../elements.js';
 
 export const createProductForm = (event) => {
   const productForm = Form();

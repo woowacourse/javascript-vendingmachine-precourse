@@ -1,20 +1,12 @@
-import { ID } from '../constants/selector.js';
-import { COIN } from '../constants/coin.js';
-import {
-  Container,
-  SubTitle,
-  Span,
-  SpanWithId,
-} from '../components/elements.js';
+import { ID } from '../../constants/selector.js';
+import { COIN } from '../../constants/coin.js';
+import { Container, SubTitle, Span, SpanWithId } from '../elements.js';
 import {
   createAddCoinForm,
   createCoinTable,
-} from '../components/vendingMachineManageMenu.js';
-import { vendingMachine } from '../components/vendingMachine.js';
-import {
-  alertChargeErrorMessage,
-  isValidCharge,
-} from '../components/validator.js';
+} from './vendingMachineManageMenu.js';
+import { vendingMachine } from '../vendingMachine.js';
+import { alertChargeErrorMessage, isValidCharge } from '../validator.js';
 
 export default function VendingMachineManageView() {
   this.vendingMachineManageMenu = () => {

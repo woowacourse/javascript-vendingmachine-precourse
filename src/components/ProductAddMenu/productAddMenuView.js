@@ -1,16 +1,13 @@
-import { ID, CLASS } from '../constants/selector.js';
-import { Container, SubTitle } from '../components/elements.js';
+import { ID, CLASS } from '../../constants/selector.js';
+import { Container, SubTitle } from '../elements.js';
 import {
   createProductForm,
   createProductTable,
   createProductRow,
-} from '../components/productAddMenu.js';
-import Product from '../components/product.js';
-import { vendingMachine } from '../components/vendingMachine.js';
-import {
-  alertProductErrorMessage,
-  isValidProduct,
-} from '../components/validator.js';
+} from './productAddMenu.js';
+import Product from '../product.js';
+import { vendingMachine } from '../vendingMachine.js';
+import { alertProductErrorMessage, isValidProduct } from '../validator.js';
 
 export default function ProductAddMenuView() {
   this.productAddMenu = () => {

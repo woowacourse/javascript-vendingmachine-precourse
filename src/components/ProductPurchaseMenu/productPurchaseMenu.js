@@ -1,6 +1,6 @@
-import { ID, CLASS, DATASET } from '../constants/selector.js';
-import { COIN } from '../constants/coin.js';
-import { COIN_TABLE, PRODUCT_PURCHASE_TABLE } from '../constants/table.js';
+import { ID, CLASS, DATASET } from '../../constants/selector.js';
+import { COIN } from '../../constants/coin.js';
+import { COIN_TABLE, PRODUCT_PURCHASE_TABLE } from '../../constants/table.js';
 import {
   Form,
   Input,
@@ -13,7 +13,7 @@ import {
   TableData,
   TableDataWithId,
   TableDataWithClassName,
-} from './elements.js';
+} from '../elements.js';
 
 export const createAddMoneyForm = (event) => {
   const addMoneyForm = Form();
