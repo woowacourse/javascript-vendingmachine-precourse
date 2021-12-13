@@ -1,4 +1,4 @@
-import { CUSTOMER_CHARGE, GAME } from './product.js'
+import { ERROR_MESSAGE, CUSTOMER_CHARGE, GAME } from './product.js'
 import { printVendingMachineChargeAmount, printVendingMachineChargeTable } from './printVendingMachineCharge.js'
 import { addProductAddTable, addProductPurchaseTable } from './addProductListTable.js'
 
@@ -11,18 +11,39 @@ function deleteProduct(selectedProduct){
     addProductPurchaseTable()
 }
 
-export function purchaseProduct(){
-    //TO DO : 입력금액 예외처리(살수있는거 없으면 입력못하게 하기)
+//입력창 예외처리
+function checkChargeInputValid($chargeInput){
+    //공백체크
+    if($chargeInput.value.trim() === ''){
+        alert(ERROR_MESSAGE.BLANK_ERROR)
+        return false
+    }
+    //마이너스 체크
+    else if($chargeInput.value <= 0){
+        alert(ERROR_MESSAGE.CHARGE_INPUT_MINUS_ERROR)
+        return false
+    }
+    //정수확인, 요구사항확인
+    else if($chargeInput.value%10 !== 0){
+        alert(ERROR_MESSAGE.CHARGE_INPUT_INT_ERROR)
+        return false
+    }
+    return true
+}
 
-    //CUSTOMER_CHARGE 객체에 넣기
+export function purchaseProduct(){
+    //입력금액 예외처리(살수있는거 없으면 입력못하게 하기)
     const $chargeInput = document.querySelector('#charge-input')
 
-    GAME.CUSTOMER_CHARGE_TOTAL += Number($chargeInput.value)
-    console.log(GAME.CUSTOMER_CHARGE_TOTAL)
+    if(checkChargeInputValid($chargeInput)){
+        //CUSTOMER_CHARGE 객체에 넣기
+        GAME.CUSTOMER_CHARGE_TOTAL += Number($chargeInput.value)
+        console.log(GAME.CUSTOMER_CHARGE_TOTAL)
 
-    //투입한 금액에 출력
-    const $chargeAmount = document.querySelector('#charge-amount')
-    $chargeAmount.innerHTML = `투입한 금액: ${GAME.CUSTOMER_CHARGE_TOTAL}`
+        //투입한 금액에 출력
+        const $chargeAmount = document.querySelector('#charge-amount')
+        $chargeAmount.innerHTML = `투입한 금액: ${GAME.CUSTOMER_CHARGE_TOTAL}`        
+    }
 
     //입력창 비우기
     $chargeInput.value = '' 
@@ -42,8 +63,6 @@ export function purchaseProduct(){
             console.log(selectedProduct.name)
             console.log(selectedProduct.quantity)
             selectedProduct.purchase()
-            // const $productPurchaseQuantity = document.querySelector(`td[data-product-quantity="${selectedProduct.name}"]`)
-            // $productPurchaseQuantity.innerHTML = selectedProduct.quantity
 
             addProductAddTable()
             addProductPurchaseTable()

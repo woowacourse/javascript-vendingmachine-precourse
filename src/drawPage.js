@@ -56,7 +56,7 @@ $app.innerHTML += `<div id="vending-machine-manage-content" class="hide">
 
 $app.innerHTML += `<div id="product-purchase-content" class="hide">
                     <h3>금액 투입</h3>
-                    <input id="charge-input"><button id="charge-button">투입하기</button>
+                    <input id="charge-input" type="number"><button id="charge-button">투입하기</button>
                     <p id="charge-amount">투입한 금액: </p>
                     <br>
                     <h3>구매할 수 있는 상품 현황</h3>

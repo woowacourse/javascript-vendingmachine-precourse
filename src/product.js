@@ -22,8 +22,9 @@ export const ERROR_MESSAGE = {
     PRODUCT_PRICE_INPUT_ERROR : '상품가격은 100보다 크고 10으로 나누어 떨어져야합니다',
     PRODUCT_QUANTITY_INPUT_ERROR : '상품수량은 0보다 크고 정수이어야합니다',
     PRODUCT_NAME_DUPLICATE : '이미 등록된 상품입니다',
-    VENDING_MACHINE_CHARGE_INPUT_NUMBER_ERROR : '잔돈은 0보다 크고 10으로 나누어떨어져야합니다.'
-
+    VENDING_MACHINE_CHARGE_INPUT_NUMBER_ERROR : '잔돈은 0보다 크고 10으로 나누어떨어져야합니다.',
+    CHARGE_INPUT_MINUS_ERROR : '투입금액은 음수또는 0 일 수 없습니다.',
+    CHARGE_INPUT_INT_ERROR : '투입금액은 10으로 나누어 떨어져야 합니다.'
 }
 
 export class VENDING_MACHINE_CHARGE{
