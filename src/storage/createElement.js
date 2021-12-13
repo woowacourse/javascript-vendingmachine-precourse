@@ -115,8 +115,6 @@ const addPurchaseButtons = (rows, element, td) => {
     button.innerText = "구매하기";
     button.addEventListener("click", function (e) {
         e.preventDefault();
-        // 여기서 값 하나를 빼주고, Coin에 있는 값도 하나 빼주면 됨.
-        // 사용자 현재 금액, 물건 금액, 물건 수량
         purchase(rows);
     });
     td.append(button);

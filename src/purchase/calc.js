@@ -6,7 +6,6 @@ import {
 import { getLocalStorage, setLocalStorage } from "../storage/localStorage.js";
 
 export const purchase = function (rows) {
-    // 여기서 조건 검색 후 값 수정
     const price = rows.childNodes[1].dataset.productPrice;
 
     const loadProduct = getLocalStorage(LOCAL.PRODUCT);

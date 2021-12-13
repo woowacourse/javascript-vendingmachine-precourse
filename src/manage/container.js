@@ -1,17 +1,12 @@
 import {
     MANAGE_TAB_ID as ID,
     MANAGE_TAB_CLASS as CLASS,
-    EMPTY,
     LOACL_STORAGE as LOCAL,
     TABLE_CLASS,
-    ERROR_MESSAGE,
 } from "../storage/constant.js";
 import { Product } from "./product.js";
 import { appendTable, clearInput } from "../storage/createElement.js";
-import {
-    appendLocalStorage,
-    getLocalStorage,
-} from "../storage/localStorage.js";
+import { appendLocalStorage } from "../storage/localStorage.js";
 import {
     checkProductDuplicate,
     checkNumContainDivideTen,
@@ -50,7 +45,6 @@ export default function ManageContainer() {
     };
 
     const getProductInfo = () => {
-        // 여기서 validation 검사 해야 함.
         const $nameVal = checkProductDuplicate($name.value);
         const $priceVal = checkNumContainDivideTen($price.value, true);
         const $quantityVal = checkNumExceptDivedeTen($quantity.value);

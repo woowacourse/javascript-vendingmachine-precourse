@@ -27,7 +27,6 @@ export default function ChargeContainer(coin) {
     };
 
     const getChargeInput = () => {
-        // 여기서 validation을 해야 함.
         const $inputVal = checkNumContainDivideTen($input.value);
         $amount.innerHTML += $inputVal;
 
@@ -35,7 +34,6 @@ export default function ChargeContainer(coin) {
     };
 
     const getCoin = (amount) => {
-        // amount 만큼 추가된 동전의 값들이 더해진다.
         let numAmount = Number(amount);
         const arr = [
             Number(STRING.COIN_500),

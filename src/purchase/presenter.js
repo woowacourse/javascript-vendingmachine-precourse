@@ -64,7 +64,6 @@ export default function PurchasePresenter() {
             MANAGE_STRING.AMOUNT,
             STRING.PURCHASE,
         ]);
-        // appendTable() 여기서 localStorage에서 값 얻어 올 것.
         appendDiv($container, [$purchaseTitle, $purchaseTable]);
         const loadProduct = getLocalStorage(LOACL_STORAGE.PRODUCT);
         if (loadProduct !== EMPTY) {

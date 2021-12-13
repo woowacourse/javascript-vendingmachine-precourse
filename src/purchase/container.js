@@ -37,7 +37,6 @@ export default function PurchaseContainer() {
                 const curCoins = JSON.parse(loadCoin);
                 const result = gridCalc($chargeAmount.value, curCoins[0]);
                 showReturnCoin(result);
-                // 반환한 개수만큼 localStorage에서 개수를 차감해줘야 함.
                 returnLocalStorage(curCoins[0], result);
             }
         });
