@@ -50,12 +50,16 @@ function chargeMoney() {
     const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
     if(isCorrectChargeMoney(chargeAmount)) {
         getTotalChanges(chargeAmount);
-        chargedMoney += Number(chargeAmount);
+        getTotalChargedMoney(chargeAmount);
         renderChargedMoney(chargedMoney);
     }
     else { 
         alert("옳바른 형식이 아닙니다. 10의 배수로 입력해주세요.");
     }
+}
+
+function getTotalChargedMoney(chargeAmount) {
+    chargedMoney += Number(chargeAmount);
 }
 
 function getTotalChanges(chargeAmount) {
