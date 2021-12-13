@@ -22,12 +22,12 @@ export class VendingMachineModel {
       if (this.products[i].productName !== productName) {
         continue;
       }
-      if (this.products[i].price === price) {
-        this.addExistingProduct(i, quantity);
-        return this.products;
+      if (this.products[i].price !== price) {
+        alert(EXCEPTION_ALERT.differentPriceError);
+        return;
       }
-      alert(EXCEPTION_ALERT.differentPriceError);
-      return;
+      this.addExistingProduct(i, quantity);
+      return this.products;
     }
     this.addNewProduct(productName, price, quantity);
     return this.products;
