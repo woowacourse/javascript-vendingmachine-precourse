@@ -4,9 +4,8 @@ export const changeTemplates = {
   changeInputs(money) {
     return `
       <input id="vending-machine-charge-input" type="number" placeholder="잔돈 충전" />   
-      <input type="text" style="display:none;" />
       <button id="vending-machine-charge-button">충전하기</button>
-      <h4>보유 금액: ${money}</h4>
+      <h4 id="vending-machine-charge-amount">보유 금액: ${money}</h4>
     `;
   },
 
@@ -22,7 +21,9 @@ export const changeTemplates = {
       <tbody>
         <tr>
           <td>500원</td>
-          <td>${change[COINS[0]] ? change[COINS[0]] : NONE}개</td>
+          <td vending-machine-coin-500-quantity>${
+            change[COINS[0]] ? change[COINS[0]] : NONE
+          }개</td>
         </tr>
         <tr>
           <td>100원</td>

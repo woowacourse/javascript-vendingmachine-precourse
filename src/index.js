@@ -10,13 +10,14 @@ function vendingMachine() {
   this.state = {
     products: [],
     change: {},
-    purchase: [],
+    purchase: {},
   };
 
   this.init = () => {
     renderTabs();
     if (store.getData()) this.state = store.getData();
     if (!this.state.change.amount) this.state.change.amount = 0;
+    if (!this.state.purchase.input) this.state.purchase.input = 0;
     this.tab = TABS.ADD_MENU_TAB;
     renderProducts(this.state);
     this.initEventListeners();
