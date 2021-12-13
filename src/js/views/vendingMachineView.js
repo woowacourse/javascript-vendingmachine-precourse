@@ -5,7 +5,7 @@ export const resetChargeInput = () => {
   $('#vending-machine-charge-input').value = '';
 };
 
-export const printChargeMoney = () => {
+export const renderChargeMoney = () => {
   const coins = store.getLocalStorage('coins');
   $('#vending-machine-charge-amount').innerText = `${coins.amount}원`;
   $('#vending-machine-coin-500-quantity').innerText = `${coins.fiveHundred}개`;

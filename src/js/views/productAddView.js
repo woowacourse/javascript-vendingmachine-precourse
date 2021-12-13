@@ -14,7 +14,6 @@ export const renderProduct = () => {
     `;
     })
     .join('');
-
   $('tbody').innerHTML = template;
 };
 

@@ -1,8 +1,8 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
-import chargeMoney from '../models/vendingMachineModel.js';
-import { resetChargeInput, printChargeMoney } from '../views/vendingMachineView.js';
 import { ERROR, PRICE, CHARGE } from '../utils/constants.js';
+import chargeMoney from '../models/vendingMachineModel.js';
+import { resetChargeInput, renderChargeMoney } from '../views/vendingMachineView.js';
 import alertMessage from '../views/alertMessage.js';
 
 function HandleVendingMachine() {
@@ -11,7 +11,7 @@ function HandleVendingMachine() {
   this.init = () => {
     if (store.getLocalStorage('coins')) {
       this.coins = store.getLocalStorage('coins');
-      printChargeMoney();
+      renderChargeMoney();
     }
   };
 
