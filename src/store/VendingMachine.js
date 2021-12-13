@@ -147,6 +147,8 @@ export default class VendingMachine {
     });
 
     this.rechargedMoneyAmount -= selledProduct.price;
+    saveToStorage(STORAGE.productList, this.productList);
+    saveToStorage(STORAGE.rechargedMoneyAmount, this.rechargedMoneyAmount);
   }
 
   returnCoin() {
