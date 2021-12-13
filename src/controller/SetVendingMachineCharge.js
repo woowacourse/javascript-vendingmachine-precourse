@@ -15,6 +15,12 @@ export default class SetVendingMachineCharge {
     this.setVendingMachine();
   }
 
+  initializeInput = () => {
+    const $vendingMachineChargeInput = document.querySelector(DOM.$VENDING_MACHINE_CHARGE_INPUT);
+    $vendingMachineChargeInput.value = '';
+    $vendingMachineChargeInput.focus();
+  };
+
   renderVendingMachineChargeAmount = () => {
     this.render.vendingMachineChargeAmountTemplate(this.vendingMachineChargeAmount);
   };
@@ -37,9 +43,11 @@ export default class SetVendingMachineCharge {
     if (!this.vendingMachineCharge.isValidInput()) {
       return;
     }
+
     this.getVendingMachineChargeInput();
     this.renderVendingMachineChargeAmount();
     this.getRandomCoins();
     this.renderVendingMachineChargeTable();
+    this.initializeInput();
   };
 }
