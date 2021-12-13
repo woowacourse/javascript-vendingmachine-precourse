@@ -1,4 +1,5 @@
 import { LOCALSTORAGE, PRODUCT, ALERT } from '../utils/constants.js';
+import { isValidMoneyInput } from '../utils/validation.js';
 
 const initInputMOney = () => {
   return localStorage.getItem(LOCALSTORAGE.INPUT_MONEY)
@@ -8,7 +9,7 @@ const initInputMOney = () => {
 export default {
   inputMoney: initInputMOney(),
   add(money) {
-    if (!isValidInputMoney(money)) {
+    if (!isValidMoneyInput(money)) {
       return;
     }
     this.inputMoney += parseInt(money);
@@ -35,20 +36,4 @@ export default {
   setInputMoney() {
     localStorage.setItem(LOCALSTORAGE.INPUT_MONEY, parseInt(this.inputMoney));
   },
-};
-
-const isValidInputMoney = (money) => {
-  if (money === '') {
-    alert(ALERT.EMPTY_MONEY_INPUT);
-    return false;
-  }
-  if (parseInt(money) < 0) {
-    alert(ALERT.WRONG_CHARGE_INPUT);
-    return false;
-  }
-  if (parseInt(money) % 10 !== 0) {
-    alert(ALERT.NOT_10_UNIT_PRICE);
-    return false;
-  }
-  return true;
 };

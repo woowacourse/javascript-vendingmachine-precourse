@@ -1,4 +1,5 @@
-import { CHARGE, COINS, COINS_INIT_OBJECT, ALERT, LOCALSTORAGE } from '../utils/constants.js';
+import { CHARGE, COINS, COINS_INIT_OBJECT, LOCALSTORAGE } from '../utils/constants.js';
+import { isValidMoneyInput } from '../utils/validation.js';
 
 const initCoins = () => {
   return JSON.parse(localStorage.getItem(LOCALSTORAGE.COINS))
@@ -38,20 +39,4 @@ export default {
   setCoins() {
     localStorage.setItem(LOCALSTORAGE.COINS, JSON.stringify(this.coins));
   },
-};
-
-const isValidMoneyInput = (money) => {
-  if (money === '') {
-    alert(ALERT.EMPTY_MONEY_INPUT);
-    return false;
-  }
-  if (parseInt(money) < 0) {
-    alert(ALERT.WRONG_CHARGE_INPUT);
-    return false;
-  }
-  if (parseInt(money) % 10 !== 0) {
-    alert(ALERT.NOT_10_UNIT_PRICE);
-    return false;
-  }
-  return true;
 };

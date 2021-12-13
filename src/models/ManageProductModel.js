@@ -1,4 +1,5 @@
 import { PRODUCT, ALERT, LOCALSTORAGE } from '../utils/constants.js';
+import { isValidProductInput } from '../utils/validation.js';
 
 const initProducts = () => {
   return JSON.parse(localStorage.getItem(LOCALSTORAGE.PRODUCTS))
@@ -33,36 +34,4 @@ export default {
   setProducts() {
     localStorage.setItem(LOCALSTORAGE.PRODUCTS, JSON.stringify(this.products));
   },
-};
-
-const isValidProductInput = (products, product) => {
-  if (product[PRODUCT.NAME] === '') {
-    alert(ALERT.EMPTY_PRODUCT_NAME);
-    return false;
-  }
-  if (product[PRODUCT.PRICE] === '') {
-    alert(ALERT.EMPTY_PRODUCT_PRICE);
-    return false;
-  }
-  if (product[PRODUCT.QUANTITY] === '') {
-    alert(ALERT.EMPTY_PRODUCT_QUANTITY);
-    return false;
-  }
-  if (products.filter((item) => item[PRODUCT.NAME] === product[PRODUCT.NAME]).length) {
-    alert(ALERT.SAME_NAME_PRODUCT_EXIST);
-    return;
-  }
-  if (parseInt(product[PRODUCT.PRICE]) <= 0) {
-    alert(ALERT.WRONG_PRODUCT_PRICE);
-    return false;
-  }
-  if (parseInt(product[PRODUCT.QUANTITY]) <= 0) {
-    alert(ALERT.WRONG_PRODUCT_QUANTITY);
-    return false;
-  }
-  if (parseInt(product[PRODUCT.PRICE]) % 10 !== 0) {
-    alert(ALERT.NOT_10_UNIT_PRICE);
-    return false;
-  }
-  return true;
 };
