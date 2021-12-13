@@ -5,13 +5,9 @@ export const createElement = (tagName, tagText = '', options = {}) => {
   const $create = document.createElement(tagName);
   $create.innerText = tagText;
 
-  const { id, className, dataset } = options;
+  const { id, className } = options;
   if (id) $create.id = id;
   if (className) $create.className = className;
-  if (dataset) {
-    const { datasetName, datasetValue } = dataset;
-    $create.setAttribute(datasetName, datasetValue);
-  }
 
   return $create;
 };
