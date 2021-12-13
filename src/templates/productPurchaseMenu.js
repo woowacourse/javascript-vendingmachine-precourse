@@ -33,7 +33,7 @@ const createReturnCoinItemTemplate = (coin, amount) => `
       ${coin}원
     </td>
     <td style="${STYLE.tableBodyData}">
-      <span id="vending-machine-coin-${coin}-quantity">${amount}개</span>
+      <span id="coin-${coin}-quantity">${amount}개</span>
     </td>
   </tr>
 `;
