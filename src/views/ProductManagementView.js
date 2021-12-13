@@ -1,5 +1,6 @@
 import { CLASS, CUSTOM_EVENT_NAME, ID, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
+import { checkLengthLessThanZero, checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
 import View from './View.js';
 
 export default class ProductManagementView extends View {
@@ -35,6 +36,11 @@ export default class ProductManagementView extends View {
     const name = this.productNameInput.value;
     const price = this.productPriceInput.value;
     const quantity = this.productQuantityInput.value;
+
+    if (checkLengthLessThanZero(name)) return;
+    if (checkNumberLessThanZero(parseInt(price))) return;
+    if (!checkTenDigits(parseInt(price))) return;
+    if (checkNumberLessThanZero(parseInt(quantity))) return;
 
     const product = { name, price, quantity };
     this.emit(CUSTOM_EVENT_NAME.ADD_PRODUCT, { product });

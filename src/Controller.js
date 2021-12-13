@@ -82,8 +82,9 @@ export default class Controller {
   }
 
   handlePurchaseProduct(event) {
+    const isPurchased = this.store.substractPuttedMoney(parseInt(event.detail.product.price));
+    if (!isPurchased) return;
     this.store.substractProductQuantity(event.detail.product);
-    this.store.substractPuttedMoney(parseInt(event.detail.product.price));
     this.setDisplayShowPurchasingProductView();
   }
 

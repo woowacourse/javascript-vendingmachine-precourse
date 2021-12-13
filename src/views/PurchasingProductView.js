@@ -1,5 +1,6 @@
 import { CLASS, COIN_LIST, CUSTOM_EVENT_NAME, ID, SELECTOR } from '../constants.js';
 import { on, qs, qsAll } from '../utils/index.js';
+import { checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
 import View from './View.js';
 
 export default class PurchasingProductView extends View {
@@ -52,6 +53,10 @@ export default class PurchasingProductView extends View {
 
   handleChargePuttedMoney() {
     const { value: puttedMoney } = this.vendingMachineChargeInput;
+
+    if (checkNumberLessThanZero(parseInt(puttedMoney))) return;
+    if (!checkTenDigits(parseInt(puttedMoney))) return;
+
     this.emit(CUSTOM_EVENT_NAME.ADD_PUTTED_MONEY, { puttedMoney });
   }
 

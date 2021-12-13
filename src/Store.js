@@ -3,6 +3,7 @@ import {
   INITIAL_COIN_LIST,
   LOCAL_STORAGE_KEY,
 } from './constants.js';
+import { checkDuplicationName, checkEnoughMoney } from './utils/validation.js';
 
 export default class Store {
   constructor() {
@@ -21,6 +22,7 @@ export default class Store {
 
   addProduct(product) {
     const productList = this.getProductList();
+    if (checkDuplicationName(productList, product)) return;
     productList.push(product);
     this.setProductList(productList);
   }
@@ -113,22 +115,28 @@ export default class Store {
   substractPuttedMoney(money) {
     const puttedMoney = this.getPuttedMoney();
     puttedMoney.inputMoney = parseInt(puttedMoney.inputMoney) - money;
+
+    if (!checkEnoughMoney(puttedMoney.inputMoney)) return false;
+
     this.setPuttedMoney(puttedMoney);
+    return true;
   }
 
   returnExchanges(currentCharges, puttedMoney) {
-    this.calculateChanges(currentCharges, puttedMoney);
+    const coinKeys = Object.keys(currentCharges);
+    this.calculateChanges(currentCharges, puttedMoney, coinKeys);
     this.setPuttedMoney(puttedMoney);
     this.setChangeList(currentCharges);
   }
 
-  calculateChanges(currentCharges, puttedMoney) {
-    const coinKeys = Object.keys(currentCharges);
+  calculateChanges(currentCharges, puttedMoney, coinKeys) {
     let index = coinKeys.length - 1;
-
     while (puttedMoney.inputMoney !== 0) {
       if (index < 0) break;
-      if (!currentCharges[coinKeys[index]]) {
+      if (
+        !currentCharges[coinKeys[index]] ||
+        puttedMoney.inputMoney - coinKeys[index] < 0
+      ) {
         index -= 1;
         continue;
       }

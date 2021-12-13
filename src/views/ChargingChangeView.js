@@ -1,5 +1,6 @@
 import { COIN_LIST, CUSTOM_EVENT_NAME, ID, INITIAL_COIN_LIST, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
+import { checkMoreThanOneHundred, checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
 import View from './View.js';
 
 export default class ChargingChangeView extends View {
@@ -35,10 +36,10 @@ export default class ChargingChangeView extends View {
 
   handleVendingMachineChargeButton() {
     const inputChanges = this.vendingMachineChargeInput.value;
-    if (inputChanges < 0) {
-      alert('올바른 액수를 입력해주세요.');
-      return;
-    }
+    if (checkNumberLessThanZero(parseInt(inputChanges))) return;
+    if (checkMoreThanOneHundred(parseInt(inputChanges))) return;
+    if (!checkTenDigits(parseInt(inputChanges))) return;
+    
     const changes = this.handleCalculationChanges(
       inputChanges,
       INITIAL_COIN_LIST,
