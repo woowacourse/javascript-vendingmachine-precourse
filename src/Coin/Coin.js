@@ -3,6 +3,7 @@ export default class Coin {
   constructor() {
     if (this.instance) return this.instance;
     this.amountCost = 0;
+    this.chargeCost = 0;
     this.currentCoin = {
       500: 0,
       100: 0,
@@ -30,6 +31,11 @@ export default class Coin {
       if (coin == 10) this.currentCoin[10] += 1;
       if (changeToCoinCost == 0) break;
     }
+  }
+
+  additionalInputCharge(inputCharge) {
+    this.chargeCost += inputCharge;
+    return this.chargeCost;
   }
 
   getCoin() {
