@@ -12,5 +12,6 @@ export const isNumberStringNotDivideBy10 = (str) => {
   return Number(str) % 10 !== 0;
 };
 export const getRandomNumber = () => {
-  return window.MissionUtils.Random.pickNumberInRange(ID_RANGE.MIN, ID_RANGE.MAX);
+  return Number.parseInt(Math.random() * ID_RANGE.MAX, 10);
+  // return window.MissionUtils.Random.pickNumberInRange(ID_RANGE.MIN, ID_RANGE.MAX);
 };
