@@ -1,6 +1,7 @@
 import { SELECTOR } from '../model/constants.js';
 import Vending from './vending.js';
 import ProductAdd from './productAdd.js';
+import Purchase from './purchase.js';
 import { $ } from './utils.js';
 
 export default class Controller {
@@ -9,25 +10,27 @@ export default class Controller {
     this.addEventListeners(this.view);
     this.productAdd = new ProductAdd(this.view);
     this.vending = new Vending(this.view);
+    this.purchase = new Purchase(this.view);
   }
 
-  addEventListeners(view) {
-    $(SELECTOR.addMenu).addEventListener('click', () => this.callAddMenu(view));
-    $(SELECTOR.vendingMenu).addEventListener('click', () => this.callVendingMenu(view));
-    $(SELECTOR.purchaseMenu).addEventListener('click', () => this.callPurchaseMenu(view));
+  addEventListeners() {
+    $(SELECTOR.addMenu).addEventListener('click', () => this.callAddMenu());
+    $(SELECTOR.vendingMenu).addEventListener('click', () => this.callVendingMenu());
+    $(SELECTOR.purchaseMenu).addEventListener('click', () => this.callPurchaseMenu());
   }
 
-  callAddMenu(view) {
-    view.showAddMenu();
+  callAddMenu() {
+    this.view.showAddMenu();
     this.productAdd.init();
   }
 
-  callVendingMenu(view) {
-    view.showVendingMenu();
+  callVendingMenu() {
+    this.view.showVendingMenu();
     this.vending.init();
   }
 
-  callPurchaseMenu(view) {
-    view.showPurchaseMenu();
+  callPurchaseMenu() {
+    this.view.showPurchaseMenu();
+    this.purchase.init();
   }
 }
