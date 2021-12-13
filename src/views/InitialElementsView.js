@@ -21,8 +21,7 @@ class Template {
     ${Object.values(TAB_TYPE)
       .map((tabType) => ({ tabType, tabLabel: TAB_LABEL[tabType] }))
       .map(this.getTabButton)
-      .join('')
-    }
+      .join('')}
     </div>
     <div id="${SELECTOR.PRODUCT_PURCHASE_VIEW}"></div>
     <div id="${SELECTOR.VENDING_MACHINE_MANAGE_VIEW}"></div>

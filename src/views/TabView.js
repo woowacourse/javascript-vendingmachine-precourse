@@ -1,7 +1,6 @@
-import { CUSTOM_EVENT_NAME, SELECTOR } from "../constants.js";
-import { on, qs } from "../utils/index.js";
-import View from "./View.js";
-
+import { CUSTOM_EVENT_NAME, SELECTOR } from '../constants.js';
+import { on, qs } from '../utils/index.js';
+import View from './View.js';
 
 export default class TabView extends View {
   constructor(element = qs(`#${SELECTOR.TAB_BUTTONS}`)) {
@@ -15,7 +14,9 @@ export default class TabView extends View {
   }
 
   bindEvents() {
-    on(this.productPurchaseMenu, 'click', () => this.handleProductPurchaseMenu());
+    on(this.productPurchaseMenu, 'click', () =>
+      this.handleProductPurchaseMenu(),
+    );
     on(this.vendingMachineManageMenu, 'click', () =>
       this.handleVendingMachineManageMenu(),
     );

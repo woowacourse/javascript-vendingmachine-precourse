@@ -1,6 +1,15 @@
-import { COIN_LIST, CUSTOM_EVENT_NAME, INITIAL_COIN_LIST, SELECTOR } from '../constants.js';
+import {
+  COIN_LIST,
+  CUSTOM_EVENT_NAME,
+  INITIAL_COIN_LIST,
+  SELECTOR,
+} from '../constants.js';
 import { on, qs } from '../utils/index.js';
-import { checkMoreThanOneHundred, checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
+import {
+  checkMoreThanOneHundred,
+  checkNumberLessThanZero,
+  checkTenDigits,
+} from '../utils/validation.js';
 import View from './View.js';
 
 export default class ChargingChangeView extends View {
@@ -71,9 +80,7 @@ class Template {
   }
 
   getCoinList([data, total]) {
-    return `<span>보유 금액: ${
-      total === undefined ? '' : total
-    }</span>
+    return `<span>보유 금액: ${total === undefined ? '' : total}</span>
       <h3>자판기가 보유한 동전</h3>
       <table>
         <thead id="${SELECTOR.VENDING_MACHINE_CHARGE_AMOUNT}">

@@ -1,6 +1,10 @@
 import { CUSTOM_EVENT_NAME, SELECTOR } from '../constants.js';
 import { on, qs } from '../utils/index.js';
-import { checkLengthLessThanZero, checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
+import {
+  checkLengthLessThanZero,
+  checkNumberLessThanZero,
+  checkTenDigits,
+} from '../utils/validation.js';
 import View from './View.js';
 
 export default class ProductManagementView extends View {

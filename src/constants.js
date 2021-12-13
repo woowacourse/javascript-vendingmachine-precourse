@@ -4,7 +4,7 @@ export const ERROR_MESSAGE = {
   NO_TEXT: '텍스트를 입력해주세요.',
   INCORRECT_TEN_DIGITS: '10의 자리 숫자로 입력해주세요.',
   NOT_ENOUGH_MONEY: '금액이 부족합니다.',
-  MORE_THAN_ONE_HUNDRED: '최소 충전 금액이 100원 이상입니다.'
+  MORE_THAN_ONE_HUNDRED: '최소 충전 금액이 100원 이상입니다.',
 };
 
 export const COIN_LIST = {
@@ -12,7 +12,7 @@ export const COIN_LIST = {
   ONE_HUNDRED: 100,
   FIFTY: 50,
   TEN: 10,
-}
+};
 
 export const INITIAL_COIN_LIST = {
   500: 0,
@@ -28,15 +28,15 @@ export const LOCAL_STORAGE_KEY = {
 };
 
 export const CUSTOM_EVENT_NAME = {
- CHARGE_CHANGES: '@chargeChanges', 
- ADD_PRODUCT: '@addProduct',
- RETURN_EXCHANGES: '@returnExchanges',
- ADD_PUTTED_MONEY: '@addPuttedMoney',
- PURCHASE_PRODUCT: '@purchaseProduct',
- SHOW_PRODUCT_PURCHASE_MENU: '@showProductPurchaseMenu',
- SHOW_VENDING_MACHINE_MANAGE_MENU: '@showVendingMachineManageMenu',
- SHOW_PRODUCT_ADD_MENU: '@showProductAddMenu',
-}
+  CHARGE_CHANGES: '@chargeChanges',
+  ADD_PRODUCT: '@addProduct',
+  RETURN_EXCHANGES: '@returnExchanges',
+  ADD_PUTTED_MONEY: '@addPuttedMoney',
+  PURCHASE_PRODUCT: '@purchaseProduct',
+  SHOW_PRODUCT_PURCHASE_MENU: '@showProductPurchaseMenu',
+  SHOW_VENDING_MACHINE_MANAGE_MENU: '@showVendingMachineManageMenu',
+  SHOW_PRODUCT_ADD_MENU: '@showProductAddMenu',
+};
 
 export const SELECTOR = {
   APP: 'app',

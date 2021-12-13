@@ -1,6 +1,9 @@
 import { COIN_LIST, CUSTOM_EVENT_NAME, SELECTOR } from '../constants.js';
 import { on, qs, qsAll } from '../utils/index.js';
-import { checkNumberLessThanZero, checkTenDigits } from '../utils/validation.js';
+import {
+  checkNumberLessThanZero,
+  checkTenDigits,
+} from '../utils/validation.js';
 import View from './View.js';
 
 export default class PurchasingProductView extends View {
@@ -38,12 +41,14 @@ export default class PurchasingProductView extends View {
     const quantities = qsAll(`.${SELECTOR.PURCHASE_ITEM_QUANTITY}`);
 
     buttons.forEach((button, index) => {
-      on(button, 'click', () => this.handlePurchse(names, prices, quantities, index));
+      on(button, 'click', () =>
+        this.handlePurchse(names, prices, quantities, index),
+      );
     });
     on(this.vendingMachineChargeButton, 'click', () =>
       this.handleChargePuttedMoney(),
     );
-    
+
     on(this.coinReturnButton, 'click', () => this.handleReturnExchanges());
   }
 
@@ -126,19 +131,27 @@ class Template {
         <tbody>
           <tr>
             <td>500</td>
-            <td id="${SELECTOR.COIN_500_QUANTITY}">${changeList.returnedCoins[COIN_LIST.FIVE_HUNDRED]}개</td>
+            <td id="${SELECTOR.COIN_500_QUANTITY}">${
+      changeList.returnedCoins[COIN_LIST.FIVE_HUNDRED]
+    }개</td>
           </tr>
           <tr>
             <td>100</td>
-            <td id="${SELECTOR.COIN_100_QUANTITY}">${changeList.returnedCoins[COIN_LIST.ONE_HUNDRED]}개</td>
+            <td id="${SELECTOR.COIN_100_QUANTITY}">${
+      changeList.returnedCoins[COIN_LIST.ONE_HUNDRED]
+    }개</td>
           </tr>
           <tr>
             <td>50</td>
-            <td id="${SELECTOR.COIN_50_QUANTITY}">${changeList.returnedCoins[COIN_LIST.FIFTY]}개</td>
+            <td id="${SELECTOR.COIN_50_QUANTITY}">${
+      changeList.returnedCoins[COIN_LIST.FIFTY]
+    }개</td>
           </tr>
           <tr>
             <td>10</td>
-            <td id="${SELECTOR.COIN_10_QUANTITY}">${changeList.returnedCoins[COIN_LIST.TEN]}개</td>
+            <td id="${SELECTOR.COIN_10_QUANTITY}">${
+      changeList.returnedCoins[COIN_LIST.TEN]
+    }개</td>
           </tr>
         </tbody>
       </table>

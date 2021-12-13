@@ -71,9 +71,7 @@ export default class Store {
     originalChangeList[COIN_LIST.ONE_HUNDRED] += Number(
       changeList[COIN_LIST.ONE_HUNDRED],
     );
-    originalChangeList[COIN_LIST.FIFTY] += Number(
-      changeList[COIN_LIST.FIFTY],
-    );
+    originalChangeList[COIN_LIST.FIFTY] += Number(changeList[COIN_LIST.FIFTY]);
     originalChangeList[COIN_LIST.TEN] += Number(changeList[COIN_LIST.TEN]);
 
     this.setChangeList(originalChangeList);
