@@ -172,7 +172,21 @@
 
 > ### 구매하기 로직 관련
 
-    [ ] purchase-button 클릭시  구매 수량을 늘린다
+    [x] purchase-button 클릭시 e.target.parentElement.parentElement를 활용하여 dataset을 통해 상품 이름 , 가격, 수량 정보를 받아온다
+
+    [x] 만약 수량이 0이라면 error로 간주하고 alert로 처리한다
+
+    [ ] 수량이 1이상이라면 투입한 금액에서 구매금액을 뺀다
+
+    [ ] 투입한 금액이 구매금액보다 작을 경우 error로 간주하고 alert로 처리한다
+
+    [ ] 투입한 금액이 구매금액보다 클 경우 투입한 금액을 구매금액을 뺀 것을 userMoneylocalStorage에 업데이트 한다
+
+    [ ] 투입한 금액이 구매금액보다 클 경우 구매한 제품의 수량의 개수를 drinkStorage에서 하나를 뺀다
+
+    [ ] update된 drinkStorage에 따라서 구매할 수 있는 상품 table을 update한다
+
+    [ ] 업데이트된 투입한 금액을 투입한 금액에 렌더링한다
 
 [x] 반환하기 버튼 요소는 coin-return-button id를 가진다
 
@@ -218,7 +232,7 @@
 
     [x] 자판기가 보유한 동전의 종류별 개수의 경우 vendingCoin localStorage에서 관리한다
 
-    [ ] 유저가 투입한 금액의 경우 userMoney localstorage에서 관리한다
+    [x] 유저가 투입한 금액의 경우 userMoney localstorage에서 관리한다
 
 [ ] 변수들의 경우 localStorage에 저장된 값이 없을 경우 초기화를 진행한다
 
