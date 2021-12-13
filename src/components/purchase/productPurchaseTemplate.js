@@ -1,6 +1,4 @@
 import { $ } from '../../utils/querySelector.js';
-// eslint-disable-next-line import/no-cycle
-import { handlePurchaseButtonClick } from './productPurchase.js';
 
 export const productPurchaseTemplate = `
   <style>
@@ -89,6 +87,4 @@ export const initProductPurchaseList = (storedProductItems) => {
   storedProductItems.forEach((item) => {
     addProductItem(item);
   });
-
-  $('.purchase-button').addEventListener('click', handlePurchaseButtonClick);
 };

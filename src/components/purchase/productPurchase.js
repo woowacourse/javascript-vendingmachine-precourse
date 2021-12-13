@@ -3,25 +3,24 @@ import { $ } from '../../utils/querySelector.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { showCurrentAmount } from '../../view/view.js';
 import { getProductItemStorage } from '../storage/product.js';
-// eslint-disable-next-line import/no-cycle
 import { initProductPurchaseList, productPurchaseTemplate } from './productPurchaseTemplate.js';
 
 let currentAmount = STANDARD.CURRENT_MONEY;
 const chargeAmountId = '#charge-amount';
 
-export const handlePurchaseButtonClick = () => {
-  const price = $('.product-purchase-price');
-  const quantity = $('.product-purchase-quantity');
+const handlePurchaseButtonClick = (event) => {
+  const target = event.target.parentElement.parentElement;
+  const name = target.childNodes[1].dataset.productName;
+  const price = target.childNodes[3].dataset.productPrice;
+  const quantity = target.childNodes[5].dataset.productQuantity;
 
-  // eslint-disable-next-line no-plusplus
-  quantity.textContent--;
-  // eslint-disable-next-line no-plusplus
-  quantity.dataset.productQuantity--;
-  currentAmount -= price.textContent;
+  target.childNodes[5].dataset.productQuantity--;
+  target.childNodes[5].innerText--;
+
+  currentAmount -= price;
   showCurrentAmount(chargeAmountId, currentAmount);
 };
 
-// eslint-disable-next-line consistent-return
 const handleChargeInput = (event) => {
   event.preventDefault();
   const chargeInput = Number($('#charge-input').value);
@@ -42,5 +41,9 @@ export const showProductPurchase = () => {
     initProductPurchaseList(storedProductList);
   }
 
+  const $productPurchaseItems = document.querySelectorAll('.product-purchase-item');
+  $productPurchaseItems.forEach((item) =>
+    item.addEventListener('click', handlePurchaseButtonClick),
+  );
   $('form').addEventListener('submit', handleChargeInput);
 };

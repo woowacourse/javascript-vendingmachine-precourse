@@ -17,6 +17,7 @@
       "FunctionExpression",
       "WithStatement",
       "BinaryExpression[operator='in']"
-    ]
+    ],
+    "allowForLoopAfterthoughts": true
   }
 }
