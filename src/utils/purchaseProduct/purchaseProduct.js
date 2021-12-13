@@ -1,30 +1,27 @@
-import $ from '../common/selector.js';
 import { store } from '../common/store.js';
+import { ERROR_MSG } from '../../constants/constants.js';
 import { renderPurchaseProduct } from './renderPurchaseProduct.js';
-import { inputMoneyValidation } from '../common/inputMoneyValidation.js';
-import { clearInput } from '../common/clearInput.js';
 
-export const purchaseProduct = state => {
-  const money = $('#charge-input').value;
+export const purchaseProduct = (e, state) => {
+  const products = e.target.closest('tr').childNodes;
+  const id = e.target.closest('tr').dataset.productId;
+  const name = products[1].dataset.productName;
+  const price = products[3].dataset.productPrice;
+  let quantity = products[5].dataset.productQuantity;
 
-  const { isError, inValidText } = inputMoneyValidation(money);
+  state.products = state.products.map(product => {
+    if (!product.quantity) {
+      alert(ERROR_MSG.SOLD_OUT);
+      return product;
+    }
 
-  if (isError) {
-    alert(inValidText);
-    clearInput('#charge-input');
-    return;
-  }
+    if (product.id === id)
+      return { ...product, quantity: product.quantity - 1 };
+    else return product;
+  });
 
-  if (!state.purchase.input) {
-    state.purchase = {
-      input: money,
-      500: 0,
-      100: 0,
-      50: 0,
-      10: 0,
-    };
-  } else {
-    state.purchase.input = Number(state.purchase.input) + Number(money);
+  if (!quantity) {
+    state.purchase.input = Number(state.purchase.input) - Number(price);
   }
 
   store.setData(state);

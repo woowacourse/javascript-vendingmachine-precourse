@@ -17,6 +17,7 @@ export const ERROR_MSG = {
   VALIDATE_QUANTITY: '상품 개수는 1보다 작을 수 없습니다.',
   INPUT_MONEY: '금액을 입력해주세요.',
   VALIDATE_MONEY: '금액은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.',
+  SOLD_OUT: '상품이 품절되었습니다!',
 };
 
 export const COINS = [500, 100, 50, 10];

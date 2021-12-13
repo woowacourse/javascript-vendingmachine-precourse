@@ -4,6 +4,7 @@ import { renderProducts } from './addProduct/renderProducts.js';
 import { renderChange } from './inputChange/renderChange.js';
 import { inputChange } from './inputChange/inputChange.js';
 import { renderPurchaseProduct } from './purchaseProduct/renderPurchaseProduct.js';
+import { inputUserMoney } from './purchaseProduct/inputUserMoney.js';
 import { purchaseProduct } from './purchaseProduct/purchaseProduct.js';
 
 export const changeTab = async (e, tab, state) => {
@@ -31,7 +32,13 @@ export const changeTab = async (e, tab, state) => {
 
     $('#charge-button').addEventListener('click', e => {
       e.preventDefault();
-      purchaseProduct(state);
+      inputUserMoney(state);
+    });
+
+    $('.product-purchase-list').addEventListener('click', e => {
+      if (e.target.classList.contains('purchase-button')) {
+        purchaseProduct(e, state);
+      }
     });
     return;
   }
