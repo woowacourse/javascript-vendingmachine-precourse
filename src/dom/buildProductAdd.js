@@ -1,3 +1,7 @@
+import ProductList from "../product/ProductList.js";
+
+const productList = new ProductList;
+
 function buildProductAdd() {
     const container = document.querySelector(".container");
     console.log(container);
@@ -5,6 +9,7 @@ function buildProductAdd() {
     clearContainer(container);
     productAddElement(container);
     productItemElement(container);
+    bindButtonEvent();
 }
 
 function productAddElement(container) {
@@ -54,6 +59,19 @@ function productItemElement(container) {
 
 function clearContainer(container) {
     container.innerHTML = "";
+}
+
+function bindButtonEvent() {
+    const button = document.querySelector("#product-add-button");
+
+    button.onclick = () => {
+        const name = document.querySelector("#product-name-input").value;
+        const price = document.querySelector("#product-price-input").value;
+        const quantity = document.querySelector("#product-quantity-input").value;
+
+        productList.addItem(name, price, quantity);
+        console.log(productList.getItem());
+    }
 }
 
 export default buildProductAdd;
