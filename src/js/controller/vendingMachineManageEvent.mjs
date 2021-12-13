@@ -1,16 +1,22 @@
 import { renderVendingMachineManage } from '../view/index.mjs';
+import { VendingMachine } from '../model/VendingMachine.mjs';
 
 function renderVendingMachineManageTab() {
   document.querySelector('main').remove();
   renderVendingMachineManage();
 }
 
+function addCoins() {
+  window.addEventListener('click', e => {
+    if (e.target !== document.querySelector('#vending-machine-charge-button')) return;
+    const chargeMoney = document.querySelector('#vending-machine-charge-input').value;
+    const vendingMachineChargeAmount = new VendingMachine(chargeMoney);
+    console.log(vendingMachineChargeAmount);
+  });
+}
+
 export function vendingMachineManageEvent() {
-  const $vendingMachineManageMenu = document.querySelector(
-    '#vending-machine-manage-menu'
-  );
-  $vendingMachineManageMenu.addEventListener(
-    'click',
-    renderVendingMachineManageTab
-  );
+  const $vendingMachineManageMenu = document.querySelector('#vending-machine-manage-menu');
+  $vendingMachineManageMenu.addEventListener('click', renderVendingMachineManageTab);
+  addCoins();
 }
