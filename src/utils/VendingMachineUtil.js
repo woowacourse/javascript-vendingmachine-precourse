@@ -8,6 +8,7 @@ export default class VendingMachineUtil {
     this.coin = 0;
     this.coinAmount = 0;
     this.addCoin();
+    this.originCoin = [0, 0, 0, 0];
   }
 
   addCoin() {
@@ -16,7 +17,7 @@ export default class VendingMachineUtil {
       console.log('submit');
       if (this.getCoin(this.machine.input)) {
         this.setCoinAmount(this.coin);
-        this.setCoinTable(this.coin);
+        this.setRandomCoin(this.coin);
         console.log(this.coinAmount);
       }
     });
@@ -36,7 +37,7 @@ export default class VendingMachineUtil {
     this.machine.amount.innerHTML = MACHINE_MANAGE.COIN_STORAGE + this.coinAmount;
   }
 
-  setCoinTable(coin) {
+  setRandomCoin(coin) {
     let coinIndexArr = [0, 0, 0, 0];
     while (true) {
       let unit = MissionUtils.Random.pickNumberInList(COIN_ARR);
@@ -44,13 +45,23 @@ export default class VendingMachineUtil {
       if (unit <= coin) {
         coin -= unit;
         coinIndexArr[idx] += 1;
-        console.log(coin);
       }
 
       if (coin == 0) {
         break;
       }
     }
-    console.log(coinIndexArr);
+    this.setCoinTable(coinIndexArr);
+  }
+
+  setCoinTable(coinIndexArr) {
+    coinIndexArr.forEach((v, idx) => {
+      this.originCoin[idx] += v;
+    });
+    console.log(this.originCoin);
+    this.machine.coin500.innerHTML = this.originCoin[0] + MACHINE_MANAGE.COIN_UNIT;
+    this.machine.coin100.innerHTML = this.originCoin[1] + MACHINE_MANAGE.COIN_UNIT;
+    this.machine.coin50.innerHTML = this.originCoin[2] + MACHINE_MANAGE.COIN_UNIT;
+    this.machine.coin10.innerHTML = this.originCoin[3] + MACHINE_MANAGE.COIN_UNIT;
   }
 }

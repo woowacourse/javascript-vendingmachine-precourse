@@ -26,6 +26,7 @@ export const MACHINE_MANAGE = {
   COIN_100: '100원',
   COIN_50: '50원',
   COIN_10: '10원',
+  COIN_UNIT: '개',
 };
 
 export const PRODUCT_PURCHASE = {
