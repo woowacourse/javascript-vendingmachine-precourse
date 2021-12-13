@@ -5,6 +5,7 @@ import { MESSAGE, REDUCER_RESULT } from '../utils/constants.js';
 import {
   deserializeProductsData,
   hasDuplicatedProductName,
+  sellProduct,
 } from '../utils/helpers/product.js';
 import { productStoreInitialState } from '../utils/initialStates.js';
 import { ProductsStorage } from '../storages/index.js';
@@ -28,11 +29,7 @@ class ProductStore extends Store {
         return REDUCER_RESULT.SUCCESS();
       },
       [PRODUCT_ACTION_TYPE.SELL_PRODUCT]: productName => {
-        const newProducts = this.state.products.map(item => {
-          const { name } = item.getInformation();
-          if (name === productName) item.sellProduct();
-          return item;
-        });
+        const newProducts = sellProduct(productName, this.state.products);
         this.setState({ products: newProducts });
         return REDUCER_RESULT.SUCCESS();
       },

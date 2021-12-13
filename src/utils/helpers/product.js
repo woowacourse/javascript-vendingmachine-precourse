@@ -22,3 +22,10 @@ export const hasDuplicatedProductName = (productName, products) =>
     const { name } = product.getInformation();
     return name === productName;
   });
+
+export const sellProduct = (productName, products) =>
+  products.map(item => {
+    const { name } = item.getInformation();
+    if (name === productName) item.sellProduct();
+    return item;
+  });
