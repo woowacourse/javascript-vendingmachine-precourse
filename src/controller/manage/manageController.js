@@ -42,9 +42,8 @@ export default class ManageController {
   }
 
   createRandomCoins(chargeAmount) {
-    const randomUnit = MissionUtils.Random.pickNumberInList(COIN_UNIT);
-
     while (chargeAmount > 0) {
+      const randomUnit = MissionUtils.Random.pickNumberInList(COIN_UNIT);
       if (chargeAmount >= randomUnit) {
         chargeAmount -= randomUnit;
         this.appModel.findCoin(randomUnit).accumulate(NUMBER.ONE);
