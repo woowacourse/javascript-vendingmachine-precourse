@@ -117,7 +117,7 @@ export const productPurchaseMenu = `<div class="product-purchase-menu">
         <th>구매</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody id="purchase-table-body"></tbody>
   </table>
 </div>
 <div class="changes">
