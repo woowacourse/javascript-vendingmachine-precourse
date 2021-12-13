@@ -1,5 +1,5 @@
 import NavButtons from './NavButtons/NavButtons.js';
-import AddProducts from './AddProducts/AddProducts.js';
+import AddProducts from './AddProducts/view.js';
 import ChargeMachine from './ChargeMachine/ChargeMachine.js';
 import PurchaseProducts from './PurchaseProducts/PurchaseProducts.js';
 import {
@@ -15,7 +15,7 @@ export default class App {
   constructor() {
     this.app = document.querySelector('#app');
     this.show = new AddProducts().section; // show add product menu on load
-    window.addEventListener('load', this.renderInitial.bind(this)); // initial render on page load
+    this.renderInitial(); // initial render on page load
   }
 
   renderInitial() {

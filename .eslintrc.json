@@ -10,6 +10,7 @@
   },
   "rules": {
     "import/extensions": ["off"],
-    "no-alert": "off"
+    "no-alert": "off",
+    "operator-linebreak": "off"
   }
 }

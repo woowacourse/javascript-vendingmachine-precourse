@@ -27,3 +27,31 @@ export function getCoins(amount, currentCoins) {
 
   return { returnCoins, left, newCoins };
 }
+
+export const divideToCoins = function divideAmountIntoRandomCoins(amount) {
+  let left = amount;
+  const coinObj = {};
+
+  while (left !== 0) {
+    const randomCoin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]); // eslint-disable-line
+    if (randomCoin <= left) {
+      coinObj[randomCoin] = coinObj[randomCoin] + 1 || 1;
+      left -= randomCoin;
+    }
+  }
+
+  return coinObj;
+};
+
+export const mergeObj = function deepMergeObjects(obj1, obj2) {
+  const resultObj = Object.keys(obj2).reduce(
+    (obj, key) => {
+      const newObj = { ...obj };
+      newObj[key] = (newObj[key] || 0) + obj2[key];
+      return newObj;
+    },
+    { ...obj1 },
+  );
+
+  return resultObj;
+};

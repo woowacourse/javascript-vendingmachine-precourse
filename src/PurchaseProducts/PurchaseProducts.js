@@ -168,7 +168,7 @@ export default class PurchaseProducts {
 
   static updateItemGrid(item) {
     const products = getAllProducts();
-    const name = item.querySelector('.product-purchase-name').dataset
+    const name = item.querySelector(`.${CLASS_PURCHASE_NAME}`).dataset
       .productName;
     const newProduct = products[name];
     const target = item.querySelector(`.${CLASS_PURCHASE_QUANTITY}`);
