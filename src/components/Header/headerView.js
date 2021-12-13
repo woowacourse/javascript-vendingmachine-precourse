@@ -1,4 +1,5 @@
 import { ID } from '../../constants/selector.js';
+import { MACHINE } from '../../constants/machine.js';
 import { Container, Title } from '../elements.js';
 import { createTabNav } from './header.js';
 import ProductAddMenuView from '../ProductAddMenu/productAddMenuView.js';
@@ -11,8 +12,8 @@ export default function HeaderView() {
   const productPurchaseMenu = new ProductPurchaseMenuView();
 
   this.header = () => {
-    const header = Container('header');
-    const title = Title('🥤 자판기 🥤');
+    const header = Container(ID.HEADER);
+    const title = Title(MACHINE.TITLE);
     const tabNav = createTabNav(this.onClickMenuTabButton);
 
     header.append(title, tabNav);
@@ -21,7 +22,7 @@ export default function HeaderView() {
   };
 
   this.initMenuViewContainer = () => {
-    const menuViewContainer = document.querySelector('#menu-view');
+    const menuViewContainer = document.querySelector(`#${ID.MENU_VIEW}`);
 
     menuViewContainer.innerHTML = '';
   };
@@ -43,7 +44,7 @@ export default function HeaderView() {
   };
 
   this.render = () => {
-    const container = document.querySelector('#app');
+    const container = document.querySelector(`#${ID.APP}`);
 
     container.append(this.header());
   };

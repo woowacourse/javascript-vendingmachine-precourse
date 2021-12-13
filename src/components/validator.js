@@ -1,3 +1,4 @@
+import { MACHINE } from '../constants/machine.js';
 import { ERROR } from '../constants/message.js';
 
 const isEmpty = (value) => {
@@ -5,15 +6,15 @@ const isEmpty = (value) => {
 };
 
 const isMoreThan100Won = (value) => {
-  return Number(value) >= 100;
+  return Number(value) >= MACHINE.RULE.HUNDRED;
 };
 
 const isDividedBy10 = (value) => {
-  return Number(value) % 10 === 0;
+  return Number(value) % MACHINE.RULE.TEN === 0;
 };
 
 const isMoreThanOne = (value) => {
-  return Number(value) > 0;
+  return Number(value) > MACHINE.RULE.ZERO;
 };
 
 const isInteger = (value) => {
@@ -25,7 +26,7 @@ const isValidProductName = (name) => {
 };
 
 const isMoreThan10Won = (value) => {
-  return Number(value) >= 10;
+  return Number(value) >= MACHINE.RULE.TEN;
 };
 
 const isValidProductPrice = (price) => {
@@ -37,7 +38,7 @@ const isValidProducQuantity = (quantity) => {
 };
 
 const isValidQuantity = (quantity) => {
-  return quantity > 0;
+  return quantity > MACHINE.RULE.ZERO;
 };
 
 const haveMoney = (productPrice, insertMoney) => {
@@ -45,11 +46,11 @@ const haveMoney = (productPrice, insertMoney) => {
 };
 
 const haveCharge = (charge) => {
-  return charge > 0;
+  return charge > MACHINE.RULE.ZERO;
 };
 
 const haveInsertMoney = (money) => {
-  return money > 0;
+  return money > MACHINE.RULE.ZERO;
 };
 
 export const isValidProduct = (name, price, quantity) => {

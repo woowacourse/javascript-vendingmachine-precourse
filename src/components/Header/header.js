@@ -1,20 +1,21 @@
 import { ID } from '../../constants/selector.js';
+import { MACHINE } from '../../constants/machine.js';
 import { Nav, ButtonWithId } from '../elements.js';
 
 export const createTabNav = (event) => {
-  const tabNav = Nav('menu-tabs');
+  const tabNav = Nav(ID.NAV);
   const productAddMenuTab = ButtonWithId(
-    '상품 관리',
+    MACHINE.MENU.PRODUCT_ADD,
     ID.PRODUCT_ADD_MENU,
     event
   );
   const vendingMachineManageMenuTab = ButtonWithId(
-    '잔돈 충전',
+    MACHINE.MENU.MANAGE,
     ID.VENDING_MACHINE_MANAGE_MENU,
     event
   );
   const productPurchaseMenuTab = ButtonWithId(
-    '상품 구매',
+    MACHINE.MENU.PRODUCT_PURCHASE,
     ID.PRODUCT_PURCHASE_MENU,
     event
   );

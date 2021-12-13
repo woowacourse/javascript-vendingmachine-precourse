@@ -1,4 +1,5 @@
-import { COIN } from '../constants/coin.js';
+import { MACHINE } from '../constants/machine.js';
+import { STORAGE_KEY } from '../constants/storageKey.js';
 import { alertPurchaseErrorMessage, canPurchase } from './validator.js';
 
 function VendingMachine() {
@@ -14,12 +15,12 @@ function VendingMachine() {
 
   this.addProduct = (product) => {
     this.products.push(product);
-    localStorage.setItem('product', JSON.stringify(this.products));
+    localStorage.setItem(STORAGE_KEY.PRODUCT, JSON.stringify(this.products));
   };
 
   this.addCharge = (charge) => {
     this.charge += charge;
-    localStorage.setItem('charge', JSON.stringify(this.charge));
+    localStorage.setItem(STORAGE_KEY.CHARGE, JSON.stringify(this.charge));
   };
 
   this.addCoin = (charge) => {
@@ -37,12 +38,12 @@ function VendingMachine() {
         break;
       }
     }
-    localStorage.setItem('coin', JSON.stringify(this.coin));
+    localStorage.setItem(STORAGE_KEY.COIN, JSON.stringify(this.coin));
   };
 
   this.addInsertMoney = (money) => {
     this.insertMoney += money;
-    localStorage.setItem('insert', JSON.stringify(this.insertMoney));
+    localStorage.setItem(STORAGE_KEY.INSERT, JSON.stringify(this.insertMoney));
   };
 
   this.purchaseProduct = (name) => {
@@ -60,8 +61,8 @@ function VendingMachine() {
 
     product.quantity -= 1;
     this.insertMoney -= product.price;
-    localStorage.setItem('product', JSON.stringify(this.products));
-    localStorage.setItem('insert', JSON.stringify(this.insertMoney));
+    localStorage.setItem(STORAGE_KEY.PRODUCT, JSON.stringify(this.products));
+    localStorage.setItem(STORAGE_KEY.INSERT, JSON.stringify(this.insertMoney));
   };
 
   this.getReturnCoinCount = (coin) => {
@@ -78,11 +79,13 @@ function VendingMachine() {
   };
 
   this.returnCoin = () => {
-    const returnCoin = COIN.map((coin) => this.getReturnCoinCount(coin));
+    const returnCoin = MACHINE.COIN.map((coin) =>
+      this.getReturnCoinCount(coin)
+    );
 
-    localStorage.setItem('coin', JSON.stringify(this.coin));
-    localStorage.setItem('insert', JSON.stringify(this.insertMoney));
-    localStorage.setItem('charge', JSON.stringify(this.charge));
+    localStorage.setItem(STORAGE_KEY.COIN, JSON.stringify(this.coin));
+    localStorage.setItem(STORAGE_KEY.INSERT, JSON.stringify(this.insertMoney));
+    localStorage.setItem(STORAGE_KEY.CHARGE, JSON.stringify(this.charge));
 
     return returnCoin;
   };

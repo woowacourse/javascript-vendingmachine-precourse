@@ -1,6 +1,5 @@
 import { ID, CLASS, DATASET } from '../../constants/selector.js';
-import { COIN } from '../../constants/coin.js';
-import { COIN_TABLE, PRODUCT_PURCHASE_TABLE } from '../../constants/table.js';
+import { MACHINE } from '../../constants/machine.js';
 import {
   Form,
   Input,
@@ -17,8 +16,16 @@ import {
 
 export const createAddMoneyForm = (event) => {
   const addMoneyForm = Form();
-  const addMoneyInput = Input(ID.CHARGE_INPUT, 'number', '투입할 금액');
-  const addMoneyButton = ButtonWithId('투입하기', ID.CHARGE_BUTTON, event);
+  const addMoneyInput = Input(
+    ID.CHARGE_INPUT,
+    'number',
+    MACHINE.INPUT.USER_MONEY
+  );
+  const addMoneyButton = ButtonWithId(
+    MACHINE.BUTTON.ADD_USER_MONEY,
+    ID.CHARGE_BUTTON,
+    event
+  );
 
   addMoneyForm.append(addMoneyInput, addMoneyButton);
 
@@ -33,7 +40,7 @@ export const createProductPurchaseRow = (
 ) => {
   const tr = TableRowWithClassName(trClassName);
   const purchaseButton = ButtonWithClassName(
-    '구매하기',
+    MACHINE.BUTTON.PURCHASE,
     CLASS.PRODUCT_PURCHASE_BUTTON,
     event
   );
@@ -49,8 +56,8 @@ export const createProductPurchaseRow = (
 };
 
 export const createProductPurchaseTable = () => {
-  const productPurchaseTable = Table('product-purchase-table');
-  TableHead(productPurchaseTable, PRODUCT_PURCHASE_TABLE.HEADS);
+  const productPurchaseTable = Table(ID.PRODUCT_PURCHASE_TABLE);
+  TableHead(productPurchaseTable, MACHINE.TABLE.PRODUCT_PURCHASE_HEADS);
 
   return productPurchaseTable;
 };
@@ -68,9 +75,12 @@ const createCoinRow = (coin, id) => {
 export const createCoinTable = () => {
   const coinTable = Table();
 
-  TableHead(coinTable, COIN_TABLE.HEADS);
-  COIN.forEach((coin, index) => {
-    const tableRow = createCoinRow(`${coin}원`, ID.RETURN_COIN[index]);
+  TableHead(coinTable, MACHINE.TABLE.COIN_HEADS);
+  MACHINE.COIN.forEach((coin, index) => {
+    const tableRow = createCoinRow(
+      `${coin}${MACHINE.WON}`,
+      ID.RETURN_COIN[index]
+    );
 
     coinTable.append(tableRow);
   });

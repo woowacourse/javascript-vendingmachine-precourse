@@ -1,4 +1,6 @@
 import { ID, CLASS } from '../../constants/selector.js';
+import { MACHINE } from '../../constants/machine.js';
+import { STORAGE_KEY } from '../../constants/storageKey.js';
 import { Container, SubTitle } from '../elements.js';
 import {
   createProductForm,
@@ -11,9 +13,9 @@ import { alertProductErrorMessage, isValidProduct } from '../validator.js';
 
 export default function ProductAddMenuView() {
   this.productAddMenu = () => {
-    const container = Container('product-add-view');
-    const addProductSubTitle = SubTitle('상품 추가하기');
-    const productStatusSubTitle = SubTitle('상품 현황');
+    const container = Container(ID.PRODUCT_ADD_VIEW);
+    const addProductSubTitle = SubTitle(MACHINE.SUBTITLE.ADD_PRODUCT);
+    const productStatusSubTitle = SubTitle(MACHINE.SUBTITLE.PRODUCT_STATUS);
     const productForm = createProductForm(this.onClickAddButton);
     const productTable = createProductTable();
 
@@ -66,7 +68,7 @@ export default function ProductAddMenuView() {
   };
 
   this.renderProduct = (product) => {
-    const table = document.querySelector('#product-table');
+    const table = document.querySelector(`#${ID.PRODUCT_TABLE}`);
     const productRow = createProductRow(
       product,
       CLASS.PRODUCT_MANAGE_ITEM,
@@ -94,14 +96,16 @@ export default function ProductAddMenuView() {
   };
 
   this.initTable = () => {
-    if (JSON.parse(localStorage.getItem('product'))) {
-      vendingMachine.products = JSON.parse(localStorage.getItem('product'));
+    if (JSON.parse(localStorage.getItem(STORAGE_KEY.PRODUCT))) {
+      vendingMachine.products = JSON.parse(
+        localStorage.getItem(STORAGE_KEY.PRODUCT)
+      );
     }
     this.renderProducts(vendingMachine.products);
   };
 
   this.render = () => {
-    const container = document.querySelector('#menu-view');
+    const container = document.querySelector(`#${ID.MENU_VIEW}`);
 
     container.append(this.productAddMenu());
     this.initTable();

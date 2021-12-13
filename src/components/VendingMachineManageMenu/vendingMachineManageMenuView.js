@@ -1,5 +1,6 @@
 import { ID } from '../../constants/selector.js';
-import { COIN } from '../../constants/coin.js';
+import { MACHINE } from '../../constants/machine.js';
+import { STORAGE_KEY } from '../../constants/storageKey.js';
 import { Container, SubTitle, Span, SpanWithId } from '../elements.js';
 import {
   createAddCoinForm,
@@ -10,12 +11,12 @@ import { alertChargeErrorMessage, isValidCharge } from '../validator.js';
 
 export default function VendingMachineManageView() {
   this.vendingMachineManageMenu = () => {
-    const container = Container('vending-machine-manage-view');
-    const addCoinSubTitle = SubTitle('자판기 동전 충전하기');
+    const container = Container(ID.VENDING_MACHINE_MANAGE_VIEW);
+    const addCoinSubTitle = SubTitle(MACHINE.SUBTITLE.ADD_COIN);
     const addCoinForm = createAddCoinForm(this.onClickAddCoinButton);
-    const holdAmountSpan = Span('보유 금액: ');
+    const holdAmountSpan = Span(MACHINE.TEXT.HAVE_AMOUNT);
     const chargeAmountSpan = SpanWithId('', ID.VENDING_MACHINE_CHARGE_AMOUNT);
-    const haveCoinSubTitle = SubTitle('자판기가 보유한 동전');
+    const haveCoinSubTitle = SubTitle(MACHINE.SUBTITLE.HAVE_COIN);
     const coinTable = createCoinTable();
 
     container.append(
@@ -52,35 +53,37 @@ export default function VendingMachineManageView() {
       `#${ID.VENDING_MACHINE_CHARGE_AMOUNT}`
     );
 
-    chargeAmountSpan.innerHTML = vendingMachine.charge;
+    chargeAmountSpan.innerHTML = `${vendingMachine.charge}${MACHINE.WON}`;
   };
 
   this.renderCoin = () => {
-    COIN.forEach((coin, index) => {
+    MACHINE.COIN.forEach((coin, index) => {
       const coinData = document.querySelector(
         `#${ID.VENDING_MACHINE_COIN[index]}`
       );
 
-      coinData.innerHTML = `${vendingMachine.coin[coin]}개`;
+      coinData.innerHTML = `${vendingMachine.coin[coin]}${MACHINE.COUNT}`;
     });
   };
 
   this.initCharge = () => {
-    if (JSON.parse(localStorage.getItem('charge'))) {
-      vendingMachine.charge = JSON.parse(localStorage.getItem('charge'));
+    if (JSON.parse(localStorage.getItem(STORAGE_KEY.CHARGE))) {
+      vendingMachine.charge = JSON.parse(
+        localStorage.getItem(STORAGE_KEY.CHARGE)
+      );
     }
     this.renderCharge();
   };
 
   this.initCoin = () => {
-    if (JSON.parse(localStorage.getItem('coin'))) {
-      vendingMachine.coin = JSON.parse(localStorage.getItem('coin'));
+    if (JSON.parse(localStorage.getItem(STORAGE_KEY.COIN))) {
+      vendingMachine.coin = JSON.parse(localStorage.getItem(STORAGE_KEY.COIN));
     }
     this.renderCoin();
   };
 
   this.render = () => {
-    const container = document.querySelector('#menu-view');
+    const container = document.querySelector(`#${ID.MENU_VIEW}`);
 
     container.append(this.vendingMachineManageMenu());
     this.initCharge();

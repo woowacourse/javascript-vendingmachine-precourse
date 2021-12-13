@@ -1,5 +1,5 @@
 import { ID } from '../../constants/selector.js';
-import { PRODUCT_TABLE } from '../../constants/table.js';
+import { MACHINE } from '../../constants/machine.js';
 import {
   Form,
   Input,
@@ -12,14 +12,26 @@ import {
 
 export const createProductForm = (event) => {
   const productForm = Form();
-  const productNameInput = Input(ID.PRODUCT_NAME_INPUT, 'text', '상품명');
-  const productPriceInput = Input(ID.PRODUCT_PRICE_INPUT, 'number', '가격');
+  const productNameInput = Input(
+    ID.PRODUCT_NAME_INPUT,
+    'text',
+    MACHINE.INPUT.PRODUCT_NAME
+  );
+  const productPriceInput = Input(
+    ID.PRODUCT_PRICE_INPUT,
+    'number',
+    MACHINE.INPUT.PRODUCT_PRICE
+  );
   const productQuantityInput = Input(
     ID.PRODUCT_QUANTITY_INPUT,
     'number',
-    '수량'
+    MACHINE.INPUT.PRODUCT_QUANTITY
   );
-  const addButton = ButtonWithId('추가하기', ID.PRODUCT_ADD_BUTTON, event);
+  const addButton = ButtonWithId(
+    MACHINE.BUTTON.ADD_PRODUCT,
+    ID.PRODUCT_ADD_BUTTON,
+    event
+  );
 
   productForm.append(
     productNameInput,
@@ -42,8 +54,8 @@ export const createProductRow = (datas, trClassName, tdClassNames) => {
 };
 
 export const createProductTable = () => {
-  const productTable = Table('product-table');
-  TableHead(productTable, PRODUCT_TABLE.HEADS);
+  const productTable = Table(ID.PRODUCT_TABLE);
+  TableHead(productTable, MACHINE.TABLE.PRODUCT_HEADS);
 
   return productTable;
 };

@@ -1,6 +1,5 @@
 import { ID } from '../../constants/selector.js';
-import { COIN } from '../../constants/coin.js';
-import { COIN_TABLE } from '../../constants/table.js';
+import { MACHINE } from '../../constants/machine.js';
 import {
   Form,
   Input,
@@ -17,10 +16,10 @@ export const createAddCoinForm = (event) => {
   const addCoinInput = Input(
     ID.VENDING_MACHINE_CHARGE_INPUT,
     'number',
-    '자판기가 보유할 금액'
+    MACHINE.INPUT.CHARGE
   );
   const addCoinButton = ButtonWithId(
-    '충전하기',
+    MACHINE.BUTTON.ADD_COIN,
     ID.VENDING_MACHINE_CHARGE_BUTTON,
     event
   );
@@ -43,9 +42,12 @@ const createCoinRow = (coin, id) => {
 export const createCoinTable = () => {
   const coinTable = Table();
 
-  TableHead(coinTable, COIN_TABLE.HEADS);
-  COIN.forEach((coin, index) => {
-    const tableRow = createCoinRow(`${coin}원`, ID.VENDING_MACHINE_COIN[index]);
+  TableHead(coinTable, MACHINE.TABLE.COIN_HEADS);
+  MACHINE.COIN.forEach((coin, index) => {
+    const tableRow = createCoinRow(
+      `${coin}${MACHINE.WON}`,
+      ID.VENDING_MACHINE_COIN[index]
+    );
 
     coinTable.append(tableRow);
   });

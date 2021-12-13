@@ -1,4 +1,6 @@
 import { ID, CLASS } from '../../constants/selector.js';
+import { MACHINE } from '../../constants/machine.js';
+import { STORAGE_KEY } from '../../constants/storageKey.js';
 import {
   Container,
   SubTitle,
@@ -19,21 +21,20 @@ import {
   canReturn,
   isValidCharge,
 } from '../validator.js';
-import { PRODUCT_PURCHASE_TABLE } from '../../constants/table.js';
 
 export default function ProductPurchaseMenuView() {
   this.productPurchaseMenu = () => {
-    const container = Container('product-purchase-view');
-    const addMoneySubTitle = SubTitle('금액 투입');
-    const productSubTitle = SubTitle('구매할 수 있는 상품 현황');
-    const changeSubTitle = SubTitle('잔돈');
+    const container = Container(ID.PRODUCT_PURCHASE_VIEW);
+    const addMoneySubTitle = SubTitle(MACHINE.SUBTITLE.INSERT_MONEY);
+    const productSubTitle = SubTitle(MACHINE.SUBTITLE.PRODUCT_PURCHASE_STATUS);
+    const changeSubTitle = SubTitle(MACHINE.SUBTITLE.CHANGE);
     const addMoneyForm = createAddMoneyForm(this.onClickAddMoneyButton);
-    const insertSpan = Span('투입한 금액: ');
+    const insertSpan = Span(MACHINE.TEXT.USER_MONEY);
     const moneySpan = SpanWithId('', ID.CHARGE_AMOUNT);
     const productPurchaseTable = createProductPurchaseTable();
     const coinTable = createCoinTable();
     const returnButton = ButtonWithId(
-      '반환하기',
+      MACHINE.BUTTON.RETURN,
       ID.COIN_RETURN_BUTTON,
       this.onClickReturnCoinButton
     );
@@ -107,18 +108,18 @@ export default function ProductPurchaseMenuView() {
     counts.forEach((count, index) => {
       const coinData = document.querySelector(`#${ID.RETURN_COIN[index]}`);
 
-      coinData.innerHTML = `${count}개`;
+      coinData.innerHTML = `${count}${MACHINE.COUNT}`;
     });
   };
 
   this.renderInsertMoney = () => {
     const moneySpan = document.querySelector(`#${ID.CHARGE_AMOUNT}`);
 
-    moneySpan.innerHTML = vendingMachine.insertMoney;
+    moneySpan.innerHTML = `${vendingMachine.insertMoney}${MACHINE.WON}`;
   };
 
   this.renderProductPurchase = (product) => {
-    const table = document.querySelector('#product-purchase-table');
+    const table = document.querySelector(`#${ID.PRODUCT_PURCHASE_TABLE}`);
     const productRow = createProductPurchaseRow(
       product,
       CLASS.PRODUCT_PURCHASE_ITEM,
@@ -141,21 +142,25 @@ export default function ProductPurchaseMenuView() {
   };
 
   this.initInsertMoney = () => {
-    if (JSON.parse(localStorage.getItem('insert'))) {
-      vendingMachine.insertMoney = JSON.parse(localStorage.getItem('insert'));
+    if (JSON.parse(localStorage.getItem(STORAGE_KEY.INSERT))) {
+      vendingMachine.insertMoney = JSON.parse(
+        localStorage.getItem(STORAGE_KEY.INSERT)
+      );
     }
     this.renderInsertMoney();
   };
 
   this.initProductTable = () => {
-    if (JSON.parse(localStorage.getItem('product'))) {
-      vendingMachine.products = JSON.parse(localStorage.getItem('product'));
+    if (JSON.parse(localStorage.getItem(STORAGE_KEY.PRODUCT))) {
+      vendingMachine.products = JSON.parse(
+        localStorage.getItem(STORAGE_KEY.PRODUCT)
+      );
     }
     this.renderProducts(vendingMachine.products);
   };
 
   this.render = () => {
-    const container = document.querySelector('#menu-view');
+    const container = document.querySelector(`#${ID.MENU_VIEW}`);
 
     container.append(this.productPurchaseMenu());
     this.initInsertMoney();
