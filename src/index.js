@@ -41,6 +41,12 @@ function isCorrectQuantity(quantity) {
 }
 
 
+function chargeMoney() {
+    const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
+    
+}
+
+
 
 //
 
@@ -63,6 +69,7 @@ app.addEventListener('click', function(e) {
         "vending-machine-manage-menu"() { onTabClick('machine_charge.html'); },
         "product-purchase-menu"() { onTabClick('product_purchase.html'); },
         "product-add-button"() { addProduct() },
+        "vending-machine-charge-button"() { chargeMoney() },
     };
     if(Object.keys(handlers).includes(e.target.id)) handlers[e.target.id]();
 });
