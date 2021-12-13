@@ -5,8 +5,12 @@ const loadStorage = (instance, parsed) => {
     instance.products = parsed.products;
 }
 
-export const saveStorage = (instance) => {
+export const updateStorage = (instance) => {
     localStorage.machine = JSON.stringify(instance);
+}
+
+export const getStorage = () => {
+    return JSON.parse(localStorage.machine);
 }
 
 export const checkStorage = (instance) => {

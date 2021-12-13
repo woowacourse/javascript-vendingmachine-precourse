@@ -2,15 +2,13 @@ import { ADD_TAB_ID, ADD_TAB_CLASS, MANAGE_TAB_ID, COIN_VALUE, COIN_TABLE_ID, PU
 import Product from './product.js'
 import { elementCreatorWithClass } from '../utils/dom.js';
 import * as validator from './validator.js';
-import { saveStorage } from '../utils/storage.js';
+import { getStorage, updateStorage } from '../utils/storage.js';
+import Coin from "./coin.js";
 
 export default class VendingMachine {
     constructor(){
         this.products = [];
-        this.coins = {};
-        for(let key in COIN_VALUE){
-            this.coins[key] = 0;
-        }
+        this.coins = new Coin().coins;
         this.input = 0;
         this.productId = 0;
     }
@@ -18,13 +16,17 @@ export default class VendingMachine {
     addProduct(name, price, quantity){
         price = parseInt(price);
         quantity = parseInt(quantity);
+        
+        const item = getStorage();
 
         if(validator.checkAddProduct(name, price, quantity, this.products)){
             const product = new Product(name, price, quantity, this.productId++);
             this.displayProductAddTab(product);
             this.displayProductPurchaseTab(product);
             this.products.push(product);
-            saveStorage(this);
+
+            //TODO: change this => item
+            updateStorage(this);
         }
     }
 
@@ -33,6 +35,22 @@ export default class VendingMachine {
         if(validator.checkAddcoin(money)){
             this.getRandomCoins(money);
             this.displayPossessCoins();
+        }
+    }
+
+    getRandomCoins(money){
+        let coinValue = [];
+        let invert = {};
+        for(let key in COIN_VALUE){
+            coinValue.push(COIN_VALUE[key]);
+            invert[COIN_VALUE[key]] = key;
+        }
+        while(money > 0){
+            const pick = MissionUtils.Random.pickNumberInList(coinValue);
+            if(money >= pick){
+                money -= pick;
+                this.coins[invert[pick]]++;
+            }
         }
     }
 
@@ -56,22 +74,6 @@ export default class VendingMachine {
     returnMoney(){
         const coins = this.getRandomReturn(this.input);
         this.displayReturnedCoins(coins);
-    }
-
-    getRandomCoins(money){
-        let coinValue = [];
-        let invert = {};
-        for(let key in COIN_VALUE){
-            coinValue.push(COIN_VALUE[key]);
-            invert[COIN_VALUE[key]] = key;
-        }
-        while(money > 0){
-            const pick = MissionUtils.Random.pickNumberInList(coinValue);
-            if(money >= pick){
-                money -= pick;
-                this.coins[invert[pick]]++;
-            }
-        }
     }
 
     getRandomReturn(money){
@@ -100,7 +102,7 @@ export default class VendingMachine {
         
         return returnCoin;
     }
-    
+
     displayProductAddTab(product){
         const tr = elementCreatorWithClass('tr', ADD_TAB_CLASS.TABLE_TR, null);
         tr.append(
