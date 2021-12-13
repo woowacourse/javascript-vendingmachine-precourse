@@ -20,6 +20,8 @@ import {
     TABLE_CLASS,
     LOACL_STORAGE,
     EMPTY,
+    PURCHASE_STRING as STRING,
+    MANAGE_STRING,
 } from "../storage/constant.js";
 import { getLocalStorage } from "../storage/localStorage.js";
 import PurchaseContainer from "./container.js";
@@ -38,11 +40,11 @@ export default function PurchasePresenter() {
     };
 
     const setChargeDiv = () => {
-        const $addTitle = createTitle("금액 투입");
-        const $amountInput = createInput(ID.CHARGE_INPUT, "투입할 금액");
-        const $addButton = createButton(ID.CHARGE_BUTTON, "투입하기");
+        const $addTitle = createTitle(STRING.INPUT_TITLE);
+        const $amountInput = createInput(ID.CHARGE_INPUT, STRING.INPUT_AMOUNT);
+        const $addButton = createButton(ID.CHARGE_BUTTON, STRING.INPUT_MONEY);
         const $br = createBr();
-        const $span = createSpan(EMPTY, "투입한 금액: ");
+        const $span = createSpan(EMPTY, STRING.INPUT_AMOUNT);
         const $totalAmount = createSpan(ID.CHARGE_AMOUNT, EMPTY);
         appendDiv($container, [
             $addTitle,
@@ -55,12 +57,12 @@ export default function PurchasePresenter() {
     };
 
     const setPurchaseDiv = () => {
-        const $purchaseTitle = createTitle("구매할 수 있는 상품현황");
+        const $purchaseTitle = createTitle(STRING.PRODUCT_CAN_PURCHASE);
         const $purchaseTable = createTable(TABLE_CLASS.PRODUCT_TABLE, [
-            "상품명",
-            "가격",
-            "수량",
-            "구매",
+            MANAGE_STRING.NAME,
+            MANAGE_STRING.PRICE,
+            MANAGE_STRING.AMOUNT,
+            STRING.PURCHASE,
         ]);
         // appendTable() 여기서 localStorage에서 값 얻어 올 것.
         appendDiv($container, [$purchaseTitle, $purchaseTable]);
@@ -81,8 +83,11 @@ export default function PurchasePresenter() {
         }
     };
     const setReturnDiv = () => {
-        const $returnTitle = createTitle("잔돈");
-        const $returnButton = createButton(ID.RETURN_BUTTON, "반환하기");
+        const $returnTitle = createTitle(STRING.RETURN_TITLE);
+        const $returnButton = createButton(
+            ID.RETURN_BUTTON,
+            STRING.RETURN_BUTTON,
+        );
         const $returnTable = createTable(TABLE_CLASS.COIN_TABLE, [
             CHARGE_STRING.COIN,
             CHARGE_STRING.COUNT,

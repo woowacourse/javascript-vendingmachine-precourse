@@ -70,6 +70,17 @@ export const PURCHASE_TAB_CLASS = Object.freeze({
     PURCHASE_QUANTITY: "product-purchase-quantity",
 });
 
+export const PURCHASE_STRING = Object.freeze({
+    INPUT_TITLE: "금액 투입",
+    INPUT_AMOUNT: "투입할 금액",
+    INPUT_MONEY: "투입하기",
+    INPUT_AMOUNT: "투입한 금액: ",
+    PRODUCT_CAN_PURCHASE: "구매할 수 있는 상품현황",
+    PURCHASE: "구매",
+    RETURN_TITLE: "잔돈",
+    RETURN_BUTTON: "반환하기",
+});
+
 export const EMPTY = "";
 export const ZERO = 0;
 
