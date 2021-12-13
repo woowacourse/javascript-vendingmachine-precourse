@@ -9,7 +9,7 @@ export const TAB = {
   ID_PURCHASE: 'product-purchase-menu',
 };
 
-export const MARGIN = '4px';
+export const MARGIN = '2px';
 
 export const SUBTITLE = {
   ADD_PRODUCT: '상품 추가하기',

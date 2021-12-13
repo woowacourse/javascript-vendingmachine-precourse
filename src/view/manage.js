@@ -1,52 +1,47 @@
 import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS} from '../utils/constant.js';
+import { Subtitle, Input, Button, Table, Th, Tr, TdByClassName, TrByClassName, Theadbody } from '../components/compoenents.js';
 
 export default class ManagePage {
   constructor(controller) {
-    this.subtitleAdd = document.createElement('h3');
-    this.subtitleCurrent = document.createElement('h3');
-    this.inputName = document.createElement('input');
-    this.inputPrice = document.createElement('input');
-    this.inputQuantity = document.createElement('input');
-    this.buttonAdd = document.createElement('button');
-    this.table = document.createElement('table');
-    this.thead = document.createElement('thead');
-    this.tbody = document.createElement('tbody');
-    this.tr = document.createElement('tr');
-    this.thName = document.createElement('th');
-    this.thPrice = document.createElement('th');
-    this.thQuantity = document.createElement('th');
+    this.inputName = Input(PLACEHOLDER.PRODUCT_NAME);
+    this.inputPrice = Input(PLACEHOLDER.PRICE);
+    this.inputQuantity = Input(PLACEHOLDER.PRODUCT_QUANTITY);
+    this.buttonAdd = Button(TEXT.ADD);
+    this.table = Table();
+    this.tbody = Theadbody([]);
     this.controller = controller;
   }
 
   setUIText() {
-    this.subtitleAdd.innerText = SUBTITLE.ADD_PRODUCT;
-    this.subtitleCurrent.innerText = SUBTITLE.CURRENT_PRODUCT;
-    this.inputName.setAttribute('placeholder', PLACEHOLDER.PRODUCT_NAME);
-    this.inputPrice.setAttribute('placeholder', PLACEHOLDER.PRICE);
     this.inputPrice.setAttribute('type', 'number');
     this.inputPrice.setAttribute('min',100);
     this.inputPrice.setAttribute('step',10);
-    this.inputQuantity.setAttribute('placeholder', PLACEHOLDER.PRODUCT_QUANTITY);
-    this.buttonAdd.innerText = TEXT.ADD;
   }
 
   setTable() {
-    this.thName.innerText = LABEL.PRODUCT_NAME;
-    this.thPrice.innerText = LABEL.PRICE;
-    this.thQuantity.innerText = LABEL.QUANTITY_PRODUCT;
-    this.tr.append(this.thName, this.thPrice, this.thQuantity);
-    this.thead.append(this.tr);
-    this.table.appendChild(this.thead);
+    const tr = Tr([
+      Th(LABEL.PRODUCT_NAME),
+      Th(LABEL.PRICE),
+      Th(LABEL.QUANTITY_PRODUCT)
+    ]);
+    const thead = Theadbody([tr]);
+    this.table.appendChild(thead);
   }
   
-  // index.html에 생성한 tab들 넣기
   setUI(page) {
     this.setUIText();
     this.setTable();
     this.inputPrice.style.margin = MARGIN;
-    page.append(this.subtitleAdd,this.inputName,this.inputPrice,this.inputQuantity); 
     this.buttonAdd.style.margin = MARGIN;
-    page.append(this.buttonAdd,this.subtitleCurrent,this.table);
+    page.append(
+      Subtitle(SUBTITLE.ADD_PRODUCT),
+      this.inputName,
+      this.inputPrice,
+      this.inputQuantity,
+      this.buttonAdd,
+      Subtitle(SUBTITLE.CURRENT_PRODUCT),
+      this.table
+    );
   }
 
   buttonHandler() {
@@ -65,28 +60,20 @@ export default class ManagePage {
         this.attachNewProduct(products[i]);
       }
     }
-    this.tbody.setAttribute('id','tbody');
     this.table.appendChild(this.tbody);
   }
 
   cleantable() {
     this.tbody.remove();
-    this.tbody = document.createElement('tbody');
+    this.tbody = Theadbody([]);
   }
 
   attachNewProduct(product) {
-    const productTr = document.createElement('tr');
-    productTr.setAttribute('class', CLASS.PRODUCT_ITEM);
-    const productNameTd = document.createElement('td');
-    productNameTd.setAttribute('class', CLASS.PRODUCT_NAME);
-    const productPriceTd = document.createElement('td');
-    productPriceTd.setAttribute('class', CLASS.PRODUCT_PRICE);
-    const prodcutQuantityTd = document.createElement('td');
-    prodcutQuantityTd.setAttribute('class', CLASS.PRODUCT_QUANTITY);
-    productNameTd.innerText = product.name;
-    productPriceTd.innerText = product.price;
-    prodcutQuantityTd.innerText = product.quantity;
-    productTr.append(productNameTd, productPriceTd, prodcutQuantityTd);
+    const productTr = TrByClassName([
+      TdByClassName(product.name,CLASS.PRODUCT_NAME),
+      TdByClassName(product.price,CLASS.PRODUCT_PRICE),
+      TdByClassName(product.quantity,CLASS.PRODUCT_QUANTITY)
+    ],CLASS.PRODUCT_ITEM);
     this.tbody.appendChild(productTr);
   }
 }
