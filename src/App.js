@@ -1,8 +1,8 @@
 import Component from "./components/root/Component.js";
 import Menu from "./components/Menu.js";
-import ProductAdd from "./components/product_add/ProductAdd.js";
-import ChargeManage from "./components/charge_manage/ChargeManage.js";
-import ProductPurchase from "./components/product_purchase/ProductPurchase.js";
+import ProductAdd from "./components/product_add/Main.js";
+import ChargeManage from "./components/charge_manage/Main.js";
+import ProductPurchase from "./components/product_purchase/Main.js";
 
 import Api from "./libs/api.js";
 
