@@ -55,6 +55,13 @@ export function isProductInputsValid(productName, price, quantity) {
 
 const MoneyCheckMethods = [
   (value) => {
+    const isPositive = value > 0;
+    if (!isPositive) {
+      alert(USER_INPUT_ALERT.over100Error);
+    }
+    return isPositive;
+  },
+  (value) => {
     const is10Multiple = value % 10 === 0;
     if (!is10Multiple) {
       alert(USER_INPUT_ALERT.multiple10Error);
