@@ -1,7 +1,9 @@
+import { COIN } from "../utils/constants.js";
+
 export default class VendingMachine {
   constructor() {
     this.productList = [];
-    this.ownChange = 0;
+    this.ownChange = new Array(COIN.length).fill(0);
     this.userMoney = 0;
     this.returnMoney = 0;
   }
@@ -19,5 +21,20 @@ export default class VendingMachine {
         return false;
       }
     });
+  }
+
+  makeRandomChange(charged) {
+    let zero = charged;
+    COIN.map((coin, idx) => {
+      if (zero / coin > 0) {
+        const randomQuantity = MissionUtils.Random.pickNumberInRange(
+          0,
+          parseInt(zero / coin, 10)
+        );
+        zero -= randomQuantity * coin;
+        this.ownChange[idx] += randomQuantity;
+      }
+    });
+    this.ownChange[COIN.length - 1] += zero / 10;
   }
 }

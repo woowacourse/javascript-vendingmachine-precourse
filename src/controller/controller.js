@@ -68,7 +68,7 @@ export default class Controller {
       if (!isValidCoin($chargeCoin.value)) {
         alert("다시 입력하세요.");
       }
-      // this.vendingMachine.
+      this.vendingMachine.makeRandomChange(parseInt($chargeCoin.value, 10));
     });
   }
 }
