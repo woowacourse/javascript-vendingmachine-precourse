@@ -2,6 +2,7 @@ import ProductPurchase from '../elements/ProductPurchase.js';
 import { checkPurchasePrice, checkPurchaseQuantity } from '../utils/validators/checkPurchase.js';
 import { ALERT, PRODUCT_PURCHASE } from '../constants.js';
 import ProductAdd from '../elements/ProductAdd.js';
+import Storage from '../utils/localStorage/Storage.js';
 
 export default class PurchaseBtnHandler {
   constructor(tableRow) {
@@ -9,6 +10,7 @@ export default class PurchaseBtnHandler {
     this.purchaseBtn();
     this.productPurchase = new ProductPurchase();
     this.productAdd = new ProductAdd();
+    this.storage = new Storage();
   }
 
   purchaseBtn() {
@@ -36,6 +38,11 @@ export default class PurchaseBtnHandler {
       quantity -= 1;
       element.innerHTML = quantity;
       element.dataset.productQuantity = quantity;
+      this.storage.updateProduct({
+        name: name,
+        price: price,
+        quantity: quantity,
+      });
       this.renderProductAddTable(name, quantity);
     }
   }

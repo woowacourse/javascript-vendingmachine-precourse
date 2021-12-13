@@ -24,6 +24,13 @@ export default class ProductAddUtil {
     this.productPrice = 0;
     this.productQuantity = 0;
     this.addProduct();
+    this.getCurrentProduct();
+  }
+
+  getCurrentProduct() {
+    const current = this.storage.product;
+    this.addProductAddTable(current.name, current.price, current.quantity);
+    this.addProductPurchaseTable(current.name, current.price, current.quantity);
   }
 
   addProduct() {
@@ -36,7 +43,11 @@ export default class ProductAddUtil {
       ) {
         this.addProductAddTable(this.productName, this.productPrice, this.productQuantity);
         this.addProductPurchaseTable(this.productName, this.productPrice, this.productQuantity);
-        this.addProductLocalStorage(this.productName, this.productPrice, this.productQuantity);
+        this.storage.updateProduct({
+          name: this.productName,
+          price: this.productPrice,
+          quantity: this.productQuantity,
+        });
       }
     });
   }

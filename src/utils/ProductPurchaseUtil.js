@@ -3,11 +3,13 @@ import { checkPurchaseCoin } from './validators/checkInput.js';
 import ProductPurchase from '../elements/ProductPurchase.js';
 import returnCoin from './returnCoin/returnCoin.js';
 import VendingMachineUtil from './VendingMachineUtil.js';
+import Storage from './localStorage/Storage.js';
 
 export default class ProductPurchaseUtil {
   constructor() {
     this.productPurchase = new ProductPurchase();
     this.machineUtil = new VendingMachineUtil();
+    this.storage = new Storage();
     this.purchaseCoin = 0;
     this.addPurchaseCoin();
     this.addReturnCoin();
