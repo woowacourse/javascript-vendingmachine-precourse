@@ -17,6 +17,8 @@ export default class AppController {
     this.appView.renderHeader();
     this.appView.selectHeaderDOM();
     this.attachHeaderEvents();
+
+    this.addController.init();
   }
 
   attachHeaderEvents() {
