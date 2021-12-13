@@ -8,4 +8,17 @@ export default class ChargeAddView extends ChargeAddController {
     this.$app.append(this.chargeAddField);
   }
 
+  setEvent() {
+    this.chargeAddField.querySelector('#vending-machine-charge-button').addEventListener('click', (e) => {
+      e.preventDefault();
+      this.chargeCoin = this.chargeAddField.querySelector('input').value;
+      this.renderCharge();
+    })
+  }
+
+  renderCharge() {
+    const $chargeWrap = document.querySelector('#vending-machine-charge-amount');
+    this.chargeCoin ? $chargeWrap.innerText = this.chargeCoin : "";
+  }
+
 }

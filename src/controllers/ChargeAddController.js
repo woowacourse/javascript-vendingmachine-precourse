@@ -3,8 +3,7 @@ export default class ChargeAddController {
     this.$app = $app;
     this.chargeAddField = document.createElement('div');
     this.render();
+    this.setEvent();
   }
-
-  render () {}
 
 }
