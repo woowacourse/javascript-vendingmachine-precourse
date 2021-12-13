@@ -1,9 +1,9 @@
 import { COIN_UNITS, ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
 import { $ } from '../../utils/querySelector.js';
 import { isDivideByTen } from '../../utils/validation.js';
-import { showCurrentAmount } from '../../view/view.js';
+import { showCurrentAmount, initProductPurchaseList } from '../../view/view.js';
 import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
-import { initProductPurchaseList, productPurchaseTemplate } from './productPurchaseTemplate.js';
+import { productPurchaseTemplate } from './productPurchaseTemplate.js';
 
 let currentAmount = STANDARD.CURRENT_MONEY;
 const chargeAmountId = '#charge-amount';
@@ -97,17 +97,21 @@ const handleChargeInput = (event) => {
   setLocalStorage(STORAGE_NAME.USER_AMOUNT, currentAmount);
 };
 
-export const showProductPurchaseMenu = () => {
-  $('#app-container').innerHTML = productPurchaseTemplate;
-  const storedProductList = getLocalStorage(STORAGE_NAME.PRODUCT);
-  const storedUserAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT);
-
+const initProductPurchaseMenu = (storedProductList, storedUserAmount) => {
   if (storedProductList) {
     initProductPurchaseList(storedProductList);
   }
   if (storedUserAmount) {
     showCurrentAmount(chargeAmountId, storedUserAmount);
   }
+};
+
+export const showProductPurchaseMenu = () => {
+  $('#app-container').innerHTML = productPurchaseTemplate;
+  const storedProductList = getLocalStorage(STORAGE_NAME.PRODUCT);
+  const storedUserAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT);
+
+  initProductPurchaseMenu(storedProductList, storedUserAmount);
 
   const $productPurchaseItems = document.querySelectorAll('.product-purchase-item');
   $productPurchaseItems.forEach((item) =>

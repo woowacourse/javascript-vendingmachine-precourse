@@ -1,5 +1,3 @@
-import { $ } from '../../utils/querySelector.js';
-
 export const productPurchaseTemplate = `
   <div>
     <h3>금액 투입</h3>
@@ -57,7 +55,7 @@ export const productPurchaseTemplate = `
   </div>
 `;
 
-const purchaseAbleListTemplate = ({ name, price, quantity }) => `
+export const purchaseAbleListTemplate = ({ name, price, quantity }) => `
   <tr class='product-purchase-item'>
     <td class='product-purchase-name' data-product-name='${name}'>${name}</td>
     <td class='product-purchase-price' data-product-price='${price}'>${price}</td>
@@ -65,14 +63,3 @@ const purchaseAbleListTemplate = ({ name, price, quantity }) => `
     <td><button class="purchase-button">구매하기</button></td>
   </tr>
 `;
-
-const addProductItem = (productData) => {
-  const productItem = purchaseAbleListTemplate(productData);
-  $('#product-purchase-list').insertAdjacentHTML('beforeend', productItem);
-};
-
-export const initProductPurchaseList = (storedProductItems) => {
-  storedProductItems.forEach((item) => {
-    addProductItem(item);
-  });
-};
