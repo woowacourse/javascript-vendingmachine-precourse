@@ -42,3 +42,12 @@ export const setInnerHTML = (target, value) => (target.innerHTML = value);
 export const clearInput = input => (input.value = '');
 
 export const clearTable = table => (table.innerHTML = '');
+
+export const initVendingTable = () => {
+  const vending = getItemOrNull(KEY.vending);
+  if (vending) {
+    vending.coins.forEach(
+      x => ($(VENDING_MACHINE_COIN_X_QUANTITY(x.coin)).innerHTML = `${x.quantity}개`),
+    );
+  }
+};
