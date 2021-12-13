@@ -1,6 +1,6 @@
 import { $ } from '../dom/dom.js';
 import handleChargeButtonEvent from '../modules/handleChargeButtonEvent.js';
-
+import handleCoinReturnButtonEvent from '../modules/handleCoinReturnButtonEvent.js';
 import handlePurchaseButtonEvent from '../modules/handlePurchaseButtonEvent.js';
 
 export default function controlProductPurchase() {
@@ -12,5 +12,7 @@ export default function controlProductPurchase() {
       handlePurchaseButtonEvent(e);
     });
   });
-  $('#coin-return-button').addEventListener('click', () => {});
+  $('#coin-return-button').addEventListener('click', () => {
+    handleCoinReturnButtonEvent();
+  });
 }
