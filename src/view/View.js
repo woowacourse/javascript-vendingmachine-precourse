@@ -3,7 +3,6 @@ import {
   TAB_MENUS_TEXT,
   VENDING_MACHINE_MANAGE_TEXT,
 } from '../utils/constants.js';
-import { $id } from '../utils/dom.js';
 import { getProduceAddText } from '../utils/template.js';
 
 class View {
@@ -16,10 +15,10 @@ class View {
   }
 
   showTabMenuScreen() {
-    this.$app.insertAdjacentHTML('beforeend', TAB_MENUS_TEXT);
+    this.$app.innerHTML = TAB_MENUS_TEXT;
   }
 
-  showProduceAddScreen(tabMenu) {
+  showProductAddScreen(tabMenu) {
     document.querySelector('main').innerHTML = getProduceAddText(tabMenu);
   }
 

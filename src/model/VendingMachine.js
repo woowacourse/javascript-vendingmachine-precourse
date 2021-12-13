@@ -31,7 +31,7 @@ class VendingMachine {
 
   setCurrentTabMenu(currentTabMenu) {
     this.tabMenu['currentTabMenu'] = currentTabMenu;
-    this.setLocalStorage(this.tabMenu);
+    store.setLocalStorage(this.tabMenu);
   }
 
   getCurrentTabMenu() {

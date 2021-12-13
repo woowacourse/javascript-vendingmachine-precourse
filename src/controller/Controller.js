@@ -23,7 +23,7 @@ class Controller {
   initDOM() {
     this.$product_purchase_menu = document.getElementById('product-purchase-menu');
     this.$vending_machine_manage_menu = document.getElementById('vending-machine-manage-menu');
-    this.$produce_add_menu = document.getElementById('product-add-menu');
+    this.$product_add_menu = document.getElementById('product-add-menu');
   }
 
   initScreen() {
@@ -45,7 +45,7 @@ class Controller {
 
     switch (currentTabMenu) {
       case 'product-add-menu':
-        this.view.showProduceAddScreen(tabMenu);
+        this.view.showProductAddScreen(tabMenu);
         this.triggerProductAddSubmitEvent();
         break;
       case 'vending-machine-manage-menu':
@@ -111,7 +111,7 @@ class Controller {
       this.render(currentTabMenu);
     });
 
-    this.$produce_add_menu.addEventListener('click', (e) => {
+    this.$product_add_menu.addEventListener('click', (e) => {
       const currentTabMenu = e.target.id;
       this.render(currentTabMenu);
     });
