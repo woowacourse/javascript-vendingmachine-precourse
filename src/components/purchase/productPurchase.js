@@ -2,7 +2,7 @@ import { COIN_UNITS, ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/c
 import { $ } from '../../utils/querySelector.js';
 import { isDivideByTen } from '../../utils/validation.js';
 import { showCurrentAmount } from '../../view/view.js';
-import { getLocalStorage } from '../storage/storage.js';
+import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
 import { initProductPurchaseList, productPurchaseTemplate } from './productPurchaseTemplate.js';
 
 let currentAmount = STANDARD.CURRENT_MONEY;
@@ -55,11 +55,13 @@ const handleCoinReturnButton = () => {
     if (storedCoins[unit] !== 0 && unit <= currentAmount) {
       const quantity = calculationQuantity(unit, storedCoins[unit]);
       addReturnedCoin(unit, quantity);
+      storedCoins[unit] -= quantity;
     } else {
       addReturnedCoin(unit, 0);
     }
   }
   showCurrentAmount(chargeAmountId, currentAmount);
+  setLocalStorage(STORAGE_NAME.COIN, storedCoins);
 };
 
 const handlePurchaseButtonClick = (event) => {
