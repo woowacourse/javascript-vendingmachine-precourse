@@ -180,9 +180,9 @@
 
     [x] 투입한 금액이 구매금액보다 작을 경우 error로 간주하고 alert로 처리한다
 
-    [ ] 투입한 금액이 구매금액보다 클 경우 투입한 금액을 구매금액을 뺀 것을 userMoneylocalStorage에 업데이트 한다
+    [x] 투입한 금액이 구매금액보다 클 경우 투입한 금액을 구매금액을 뺀 것을 userMoneylocalStorage에 업데이트 한다
 
-    [ ] 투입한 금액이 구매금액보다 클 경우 구매한 제품의 수량의 개수를 drinkStorage에서 하나를 뺀다
+    [x] 투입한 금액이 구매금액보다 클 경우 구매한 제품의 수량의 개수를 drinkStorage에서 하나를 뺀다
 
     [ ] update된 drinkStorage에 따라서 구매할 수 있는 상품 table을 update한다
 
