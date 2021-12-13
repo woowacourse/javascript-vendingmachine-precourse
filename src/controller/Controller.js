@@ -1,7 +1,11 @@
 import VendingMachine from '../model/VendingMachine.js';
 import { $id } from '../utils/dom.js';
 import { getVendingMachineCoinListTemplate, productManageItemTemplate } from '../utils/template.js';
-import { isValidProductAddData, isValidVendingMachineCharge } from '../utils/validation.js';
+import {
+  isValidCharge,
+  isValidProductAddData,
+  isValidVendingMachineCharge,
+} from '../utils/validation.js';
 import View from '../view/View.js';
 
 class Controller {
@@ -131,6 +135,10 @@ class Controller {
     $id('charge-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const chargeInput = $id('charge-input').value;
+
+      if (isValidCharge(chargeInput)) {
+        console.log('pass');
+      }
     });
   }
 

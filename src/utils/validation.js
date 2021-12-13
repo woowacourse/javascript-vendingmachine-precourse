@@ -25,6 +25,15 @@ const isSameOrLessZero = (inputValue) => {
   return inputValue <= 0;
 };
 
+export const isValidCharge = (chargeInput) => {
+  if (isEmpty(chargeInput)) {
+    alert('투입할 금액을 입력해주세요.  ex) 3000');
+    return false;
+  }
+
+  return true;
+};
+
 export const isValidVendingMachineCharge = (vendingMachineChargeInput) => {
   if (isEmpty(vendingMachineChargeInput)) {
     alert('충전할 금액을 입력해주세요.  ex) 450');
