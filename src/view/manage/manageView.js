@@ -1,3 +1,4 @@
+import NUMBER from '../../constants/number.js';
 import { $ } from '../../utils/DOMhelper.js';
 import { manageTabTemplate } from '../template.js';
 
@@ -23,5 +24,20 @@ export default class ManageView {
 
   renderChargeAmount(chargeAmount) {
     this.$chargeAmount.innerText = `${chargeAmount}원`;
+  }
+
+  renderCoins(coins) {
+    return coins.forEach(({ unit, amount }) => {
+      const targetDOM = this.getCoinDOM(unit);
+      console.log(targetDOM, unit, amount);
+      targetDOM.innerHTML = `${amount}개`;
+    });
+  }
+
+  getCoinDOM(unit) {
+    if (unit === NUMBER.FIVE_HUNDRED) return this.$coin500Quantity;
+    if (unit === NUMBER.HUNDRED) return this.$coin100Quantity;
+    if (unit === NUMBER.FIFTY) return this.$coin50Quantity;
+    if (unit === NUMBER.TEN) return this.$coin10Quantity;
   }
 }
