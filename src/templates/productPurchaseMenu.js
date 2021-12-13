@@ -58,8 +58,8 @@ export const createProductTableBodyWithData = productItems => `
       .map(
         item => `
           <tr class="${SELECTOR.productPurchaseItemClass}">
-          	${createProductItemTemplate(item.productName, item.productPrice, item.productQuantity)}
-          	${createTbodyTableDataWithButtonTemplate()}
+            ${createProductItemTemplate(item.productName, item.productPrice, item.productQuantity)}
+            ${createTbodyTableDataWithButtonTemplate()}
           </tr>
         `,
       )
