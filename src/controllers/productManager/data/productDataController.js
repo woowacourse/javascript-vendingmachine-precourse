@@ -42,6 +42,34 @@ const duplicateName = (strOfProducts, name) => {
   return productNames.includes(name);
 };
 
+// 상품 가격 및 재고 변경
+const changeProductInfo = (strOfProducts, name, price, quantity) => {
+  const products = strOfProducts.split(",");
+
+  for (let i = 0; i < products.length; i++) {
+    const info = products[i].split("/");
+    if (info[0] === name) {
+      info[1] = price;
+      info[2] = quantity;
+      products[i] = info.join("/");
+      break;
+    }
+  }
+
+  return products;
+};
+
+// 상품명이 같은데 가격이 다르다면, 변경 여부 물어보기
+const askToChangeProductInfo = (products, name, price, quantity) => {
+  const { askChangeProduct, wrongProductName } = ALERT_MSG;
+  if (confirm(askChangeProduct)) {
+    const changedProducts = changeProductInfo(products, name, price, quantity);
+    setItemFromLocalStorage("products", changedProducts.join(","));
+  } else {
+    alert(wrongProductName);
+  }
+};
+
 // 기존 상품 목록에 새 상품 추가하기
 const addProductInProducts = (name, price, quantity, products) => {
   const index = isSameProductInProducts(products, name, price);
@@ -49,7 +77,7 @@ const addProductInProducts = (name, price, quantity, products) => {
   if (index !== -1) {
     addIfDuplicateProduct(products, index, quantity);
   } else if (duplicateName(products, name)) {
-    alert(ALERT_MSG.wrongProductName);
+    askToChangeProductInfo(products, name, price, quantity);
   } else {
     setItemFromLocalStorage(
       "products",
