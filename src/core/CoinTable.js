@@ -8,13 +8,13 @@ export default class CoinTable extends Table {
   }
 
   templateBody(coinList) {
+    const { ids } = this.props;
     return `
       ${coinList.map(([kind, count]) => `
         <tr>
           <td>${kind}원</td>
           <td>
-            <span>${count === null ? '' : count}</span>
-            <span>${count === null ? '' : '개'}</span>
+            <span id="${ids[kind]}">${count === null ? '' : `${count}개`}</span>
           </td>
         </tr>
       `).join('')}

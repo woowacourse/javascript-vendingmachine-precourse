@@ -10,6 +10,13 @@ import { TAB_ID } from '../constant/dataset.js';
 import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
 import { COIN } from '../constant/coin.js';
 
+const COIN_TABLE_IDS = {
+  [COIN.COIN_500]: SELECTOR.ID_MACHINE_COINT_500_QUANTITY,
+  [COIN.COIN_100]: SELECTOR.ID_MACHINE_COINT_100_QUANTITY,
+  [COIN.COIN_50]: SELECTOR.ID_MACHINE_COINT_50_QUANTITY,
+  [COIN.COIN_10]: SELECTOR.ID_MACHINE_COINT_10_QUANTITY,
+};
+
 export default class TabMachineManage {
   constructor($parent, props) {
     this.$parent = $parent;
@@ -60,6 +67,7 @@ export default class TabMachineManage {
         [COIN.COIN_50, null],
         [COIN.COIN_10, null],
       ],
+      ids: COIN_TABLE_IDS,
     });
 
     this.$root.appendChild(this.havingCoinTitle.getTarget());

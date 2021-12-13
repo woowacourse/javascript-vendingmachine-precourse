@@ -11,6 +11,13 @@ import { TAB_ID } from '../constant/dataset.js';
 import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
 import { COIN } from '../constant/coin.js';
 
+const COIN_TABLE_IDS = {
+  [COIN.COIN_500]: SELECTOR.ID_COIN_500_QUANTITY,
+  [COIN.COIN_100]: SELECTOR.ID_COIN_100_QUANTITY,
+  [COIN.COIN_50]: SELECTOR.ID_COIN_50_QUANTITY,
+  [COIN.COIN_10]: SELECTOR.ID_COIN_10_QUANTITY,
+};
+
 export default class TabPurchase {
   constructor($parent, props) {
     this.$parent = $parent;
@@ -87,6 +94,7 @@ export default class TabPurchase {
         [COIN.COIN_50, null],
         [COIN.COIN_10, null],
       ],
+      ids: COIN_TABLE_IDS,
     });
     this.$root.appendChild(this.coinReturnTitle.getTarget());
     this.$root.appendChild(this.coinReturnButton.getTarget());
