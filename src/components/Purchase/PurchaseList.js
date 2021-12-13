@@ -6,7 +6,7 @@ import { sellProduct } from '../../actions/product.js';
 
 import { getProductInformations } from '../../utils/dom.js';
 import { filterPurchaseableProduct } from '../../utils/helpers/product.js';
-import { purchaseProductsView } from '../../utils/views.js';
+import { purchaseProductsTemplate } from '../../templates/Purchase.js';
 
 export default class PurchaseList extends Component {
   getGlobalState() {
@@ -37,7 +37,7 @@ export default class PurchaseList extends Component {
               <th>수량</th>
               <th>구매</th>
           </tr>
-        ${purchaseProductsView(
+        ${purchaseProductsTemplate(
           filterPurchaseableProduct(chargedMoney, products)
         )}
         </table>

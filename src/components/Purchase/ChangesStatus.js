@@ -3,7 +3,7 @@ import UserStore from '../../stores/UserStore.js';
 import ChangeStore from '../../stores/ChangesStore.js';
 import { returnChanges } from '../../actions/user.js';
 import { spendChanges } from '../../actions/changes.js';
-import { changeStatusView } from '../../utils/views.js';
+import { changeStatusTemplate } from '../../templates/Purchase.js';
 import { MESSAGE } from '../../utils/constants.js';
 
 export default class ChangesStatus extends Component {
@@ -41,7 +41,7 @@ export default class ChangesStatus extends Component {
                 <th>동전</th>
                 <th>개수</th>
             </tr>
-            ${changeStatusView(coins)}
+            ${changeStatusTemplate(coins)}
         </table>
       `;
   }

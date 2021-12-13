@@ -1,6 +1,6 @@
 import Component from '../../core/Component.js';
 import ChangesStore from '../../stores/ChangesStore.js';
-import { coinStatusView } from '../../utils/views.js';
+import { coinStatusTemplate } from '../../templates/MachineManagement.js';
 
 export default class CoinStatus extends Component {
   getGlobalState() {
@@ -16,7 +16,7 @@ export default class CoinStatus extends Component {
             <th>동전</th>
             <th>개수</th>
         </tr>
-        ${coinStatusView(coins)}
+        ${coinStatusTemplate(coins)}
     </table>
       `;
   }

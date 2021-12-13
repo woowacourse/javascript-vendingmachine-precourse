@@ -7,3 +7,5 @@ export const convertArrayToObjectKeys = (array, value = 0) =>
       [item]: value,
     };
   }, {});
+
+export const convertObjectToArray = obj => Object.entries(obj);
