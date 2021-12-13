@@ -12,4 +12,16 @@ const getOwnChange = () => {
   return JSON.parse(localStorage.getItem("ownChange"));
 };
 
-export { getOwnChange, setOwnChange };
+const setUserMoney = (userMoney) => {
+  localStorage.setItem("userMoney", parseInt(userMoney, 10));
+};
+
+const getUserMoney = () => {
+  if (localStorage.getItem("userMoney") === null) {
+    setUserMoney(0);
+  }
+
+  return parseInt(localStorage.getItem("userMoney"), 10);
+};
+
+export { getOwnChange, setOwnChange, setUserMoney, getUserMoney };

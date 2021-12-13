@@ -1,11 +1,16 @@
-import { setOwnChange, getOwnChange } from "../storage/localStorage.js";
+import {
+  setOwnChange,
+  getOwnChange,
+  setUserMoney,
+  getUserMoney,
+} from "../storage/localStorage.js";
 import { COIN } from "../utils/constants.js";
 
 export default class VendingMachine {
   constructor() {
     this.productList = [];
     this.ownChange = getOwnChange();
-    this.userMoney = 0;
+    this.userMoney = getUserMoney();
     this.returnMoney = new Array(COIN.length).fill(0);
   }
 
@@ -26,6 +31,7 @@ export default class VendingMachine {
 
   makeRandomChange(charged) {
     let zero = charged;
+
     COIN.map((coin, idx) => {
       if (zero / coin > 0) {
         const randomQuantity = MissionUtils.Random.pickNumberInRange(
@@ -37,12 +43,12 @@ export default class VendingMachine {
       }
     });
     this.ownChange[COIN.length - 1] += zero / 10;
-    console.log(this.ownChange);
     setOwnChange(this.ownChange);
   }
 
   getMoney(money) {
     this.userMoney += money;
+    setUserMoney(this.userMoney);
   }
 
   returnChange() {
@@ -56,6 +62,8 @@ export default class VendingMachine {
     this.userMoney = zero;
     setOwnChange(this.ownChange);
     getOwnChange(this.ownChange);
+    setUserMoney(this.userMoney);
+    getUserMoney(this.userMoney);
   }
 
   buyProduct(name) {
@@ -68,6 +76,7 @@ export default class VendingMachine {
       ) {
         product.quantity -= 1;
         this.userMoney -= product.price;
+        setUserMoney(this.userMoney);
         isAvailable = true;
         return false;
       }
