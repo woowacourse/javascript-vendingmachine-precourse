@@ -3,8 +3,9 @@ import { isValidProductInput } from '../../utils/validator.js';
 import { showError } from '../../utils/error.js';
 
 export default class AddController {
-  constructor() {
+  constructor(appModel) {
     this.addView = new AddView();
+    this.appModel = appModel;
   }
 
   init() {
@@ -21,13 +22,12 @@ export default class AddController {
 
   handleAddItem(e) {
     e.preventDefault();
-
     const name = this.addView.$productNameInput.value;
     const price = this.addView.$productPriceInput.value;
     const quantity = this.addView.$productQuantityInput.value;
 
     if (isValidProductInput(name, price, quantity)) {
-      // console.log(name, price, quantity);
+      this.appModel.addProduct({ name, price, quantity });
 
       return true;
     }

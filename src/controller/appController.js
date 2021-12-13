@@ -2,13 +2,16 @@ import AppView from '../view/appView.js';
 import AddController from './add/addController.js';
 import ManageController from './manage/manageController.js';
 import PurchaseController from './purchase/purchaseController.js';
+import AppModel from '../model/appModel.js';
 
 export default class AppController {
   constructor() {
     this.appView = new AppView();
-    this.addController = new AddController();
-    this.manageController = new ManageController();
-    this.purchaseController = new PurchaseController();
+    this.appModel = new AppModel();
+
+    this.addController = new AddController(this.appModel);
+    this.manageController = new ManageController(this.appModel);
+    this.purchaseController = new PurchaseController(this.appModel);
 
     this.init();
   }
