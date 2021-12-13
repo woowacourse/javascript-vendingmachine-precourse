@@ -4,6 +4,7 @@ import {
   setProducts,
 } from "../../../utils/getSetItems.js";
 
+// 상품 구매
 const purchaseProduct = (name, price, money) => {
   const products = getProducts().split(",");
   const newProducts = [];

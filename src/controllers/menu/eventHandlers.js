@@ -4,6 +4,7 @@ import VisibleChargeManager from "../../views/chargeManager/visibleChargeManager
 import VisibleProductManager from "../../views/productManager/visibleProductManager.js";
 import VisiblePurchaseManager from "../../views/purchaseManager/visiblePurchaseManager.js";
 
+// 상품 관리 메뉴 버튼 클릭 이벤트
 const onClickProductAddMenu = () => {
   const $productAddMenuButton = document.getElementById("product-add-menu");
 
@@ -13,6 +14,7 @@ const onClickProductAddMenu = () => {
   });
 };
 
+// 잔돈 충전 메뉴 버튼 클릭 이벤트
 const onClickVendingMachineManageMenu = () => {
   const $vendingMachineManageMenuButton = document.getElementById(
     "vending-machine-manage-menu",
@@ -24,6 +26,7 @@ const onClickVendingMachineManageMenu = () => {
   });
 };
 
+// 상품 구매 메뉴 버튼 클릭 이벤트
 const onClickProductPurchaseMenu = () => {
   const $productPurchaseMenuButton = document.getElementById(
     "product-purchase-menu",

@@ -1,6 +1,7 @@
 import { COIN_TYPES } from "./constants.js";
 import { getCoinsInMachine } from "./getSetItems.js";
 
+// 자판기 속 동전을 세어 총 얼마가 있는지 반환
 const calculateMoney = () => {
   const coinInMachine = getCoinsInMachine();
   let money = 0;

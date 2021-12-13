@@ -4,6 +4,7 @@ import { addProduct } from "./data/productDataController.js";
 import { showAfterAddOrPurchaseProduct } from "../../views/common/showAll.js";
 import { resetAddProductInput } from "../../views/common/resetInput.js";
 
+// 클릭 이벤트 발생 시 실행할 함수
 const processing = e => {
   e.preventDefault();
   const name = getInputValueById("product-name-input");

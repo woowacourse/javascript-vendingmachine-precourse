@@ -1,3 +1,4 @@
+// html element 중 input의 value getter & setter
 const getInputValueById = elementId => {
   const $element = document.getElementById(elementId);
 

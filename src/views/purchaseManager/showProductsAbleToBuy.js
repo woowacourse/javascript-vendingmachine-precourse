@@ -2,6 +2,7 @@ import { onClickPurchaseButton } from "../../controllers/purchaseManager/eventHa
 import { getProducts } from "../../utils/getSetItems.js";
 import { convertHyphenToSpace } from "../../utils/productNameConverter.js";
 
+// 상품을 테이블에 삽입
 const insertAbleProductsToTable = (name, price, quantity) => {
   const $ableBuyProductTable = document.getElementById(
     "able-buy-product-table",
@@ -17,6 +18,7 @@ const insertAbleProductsToTable = (name, price, quantity) => {
   `;
 };
 
+// 빈 테이블 생성
 const makeEmptyTable = () => {
   const $ableBuyProductTable = document.getElementById(
     "able-buy-product-table",
@@ -30,6 +32,7 @@ const makeEmptyTable = () => {
   `;
 };
 
+// 재고가 있는 상품 보여주기
 const showProductsAbleToBuy = () => {
   makeEmptyTable();
   const strOfProducts = getProducts();

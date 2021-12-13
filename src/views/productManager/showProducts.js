@@ -1,6 +1,7 @@
 import { getProducts } from "../../utils/getSetItems.js";
 import { convertHyphenToSpace } from "../../utils/productNameConverter.js";
 
+// 상품을 테이블에 삽입
 const insertProductToTable = (name, price, quantity) => {
   const $productTable = document.getElementById("product-table");
 
@@ -13,6 +14,7 @@ const insertProductToTable = (name, price, quantity) => {
   `;
 };
 
+// 빈 테이블 생성
 const makeEmptyTable = () => {
   const $productTable = document.getElementById("product-table");
 
@@ -23,6 +25,7 @@ const makeEmptyTable = () => {
   `;
 };
 
+// 모든 상품 보여주기
 const showProducts = () => {
   const strOfProducts = getProducts();
 

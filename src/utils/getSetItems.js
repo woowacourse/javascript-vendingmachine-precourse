@@ -3,6 +3,7 @@ import {
   setItemFromLocalStorage,
 } from "./itemFromLocalStorage.js";
 
+// 상품 getter & setter
 const getProducts = () => {
   const strOfproducts = getItemFromLocalStorage("products");
 
@@ -13,6 +14,7 @@ const setProducts = strOfproducts => {
   setItemFromLocalStorage("products", strOfproducts);
 };
 
+// 자판기 속 동전 getter & setter
 const getCoinsInMachine = () => {
   const strOfCoins = getItemFromLocalStorage("coins");
 
@@ -23,6 +25,7 @@ const setCoinsInMachine = strOfCoins => {
   setItemFromLocalStorage("coins", strOfCoins);
 };
 
+// 손님이 투입한 금액 getter & setter
 const getMoneyCustomer = () => {
   const money = getItemFromLocalStorage("money");
 

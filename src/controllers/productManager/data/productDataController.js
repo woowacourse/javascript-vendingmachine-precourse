@@ -82,6 +82,7 @@ const addProductInProducts = (name, price, quantity, products) => {
   }
 };
 
+// 상품 추가
 const addProduct = (name, price, quantity) => {
   const products = getProducts();
   name = convertSpaceToHyphen(name);

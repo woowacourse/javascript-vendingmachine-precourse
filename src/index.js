@@ -8,6 +8,7 @@ class VendingMachine {
     this.importCss();
   }
 
+  // css 파일 추가
   importCss() {
     document.head.innerHTML += `
       <link rel="stylesheet" href="src/index.css">

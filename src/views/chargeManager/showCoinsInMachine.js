@@ -2,6 +2,7 @@ import { COIN_TYPES } from "../../utils/constants.js";
 import { insertCoinTypeToTable } from "../common/insertCoinTypeToTable.js";
 import { getCoinsInMachine } from "../../utils/getSetItems.js";
 
+// 동전 테이블에 동전 종류 삽입
 const insertCoinTypesToTable = $table => {
   COIN_TYPES.forEach(coinType => {
     insertCoinTypeToTable(
@@ -12,6 +13,7 @@ const insertCoinTypesToTable = $table => {
   });
 };
 
+// 빈 테이블 생성
 const makeEmptyTable = () => {
   const $coinTable = document.getElementById("vending-machine-coin-table");
 
@@ -23,6 +25,7 @@ const makeEmptyTable = () => {
   insertCoinTypesToTable($coinTable);
 };
 
+// 자판기 속 동전 보여주기
 const showCoinsInMachine = () => {
   makeEmptyTable();
 

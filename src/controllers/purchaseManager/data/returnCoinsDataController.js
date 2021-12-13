@@ -15,6 +15,7 @@ const returnAllCoinsInMachine = (coins, moneyInMachine, money) => {
   insertQuantityOfCoins(coins);
 };
 
+// 각 동전마다 반환할 수 있는 개수를 셈
 const countOfCoinType = (coinType, coinQuantity, money) => {
   const count = money / coinType;
   let quantity = 0;
@@ -30,6 +31,8 @@ const countOfCoinType = (coinType, coinQuantity, money) => {
   return { quantity: quantity, money: money };
 };
 
+// 반환될 동전의 최소 개수를 세어 반환
+// 자판기 내의 돈이 반환할 돈보다 많을 경우 실행됨
 const returnMinCountOfCoins = (coinsInMachine, money) => {
   const returnCoins = [];
 
@@ -46,6 +49,7 @@ const returnMinCountOfCoins = (coinsInMachine, money) => {
   insertQuantityOfCoins(returnCoins);
 };
 
+// 잔돈 반환
 const returnCoins = money => {
   const strOfCoinsInMachine = getCoinsInMachine();
 

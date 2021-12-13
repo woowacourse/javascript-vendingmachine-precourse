@@ -11,6 +11,7 @@ import {
   showAfterReturnCoins,
 } from "../../views/common/showAll.js";
 
+// 금액 투입 이벤트
 const onClickCustomerChargeButton = () => {
   const $customerChargeButton = document.getElementById("charge-button");
 
@@ -27,6 +28,7 @@ const onClickCustomerChargeButton = () => {
   });
 };
 
+// 상품 구매 이벤트
 const purchaseLogic = (name, price) => {
   const money = parseInt(getMoneyCustomer(), 10);
 
@@ -52,6 +54,7 @@ const onClickPurchaseButton = () => {
   }
 };
 
+// 잔돈 반환 이벤트
 const onClickCoinReturnButton = () => {
   const $coinReturnButton = document.getElementById("coin-return-button");
 

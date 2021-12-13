@@ -3,6 +3,7 @@ import {
   setMoneyCustomer,
 } from "../../../utils/getSetItems.js";
 
+// 금액 투입 시 기존 금액에 누적하여 저장. 기존 금액이 없다면 새로 저장.
 const addMoneyCustomer = moneyStr => {
   const moneyBefore = getMoneyCustomer();
 

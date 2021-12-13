@@ -4,6 +4,7 @@ import {
   setCoinsInMachine,
 } from "../../../utils/getSetItems.js";
 
+// 동전을 랜덤으로 뽑아 가능하다면 반환
 const availableRandomCoin = money => {
   let coin = money;
 
@@ -14,6 +15,7 @@ const availableRandomCoin = money => {
   return coin;
 };
 
+// 동전 수 증가
 const incQuantity = (coin, coinQuantity) => {
   for (let i = 0; i < COIN_TYPES.length; i++) {
     if (coin === COIN_TYPES[i]) {
@@ -24,6 +26,7 @@ const incQuantity = (coin, coinQuantity) => {
   return coinQuantity;
 };
 
+// 돈을 랜덤하게 동전으로 변환
 const makeMoneyToCoins = money => {
   let coinQuantity = [0, 0, 0, 0];
 
@@ -36,6 +39,7 @@ const makeMoneyToCoins = money => {
   return coinQuantity;
 };
 
+// 동전을 자판기에 저장
 const addCoinsInMachine = money => {
   const coins = getCoinsInMachine();
   const newCoinQuantity = makeMoneyToCoins(money);

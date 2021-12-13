@@ -1,5 +1,6 @@
 import { getMoneyCustomer } from "../../utils/getSetItems.js";
 
+// 손님이 투입한 금액 보여주기
 const showMoneyCustomer = () => {
   const $chargeAmountDiv = document.getElementById("charge-amount-div");
   const moneyCustomer = getMoneyCustomer();
