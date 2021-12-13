@@ -83,8 +83,10 @@
 
 `상품 가격`은 다음 조건을 만족해야 한다.
 
-- [ ] 상품 가격은 100원 이상이다.
-- [ ] 상품 가격은 10원으로 나누어떨어진다.
+[완료 커밋](https://github.com/leegwae/javascript-vendingmachine-precourse/commit/be8c79545a17906fcd0f29cb16247370a045db93)
+
+- [x] 상품 가격은 100원 이상이다.
+- [x] 상품 가격은 10원으로 나누어떨어진다.
 
 
 
