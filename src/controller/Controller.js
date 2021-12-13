@@ -80,7 +80,12 @@ class Controller {
     }
 
     if (this.isNumberType(productNameInput)) {
-      alert("숫자타입이 아닌 상품명을 입력해주세요.  ex) 사이다');");
+      alert('숫자 타입이 아닌 상품명을 입력해주세요.  ex) 사이다');
+      return false;
+    }
+
+    if (this.isEmpty(productPriceInput)) {
+      alert('상품의 가격을 입력해주세요.  ex) 1500');
       return false;
     }
   }
