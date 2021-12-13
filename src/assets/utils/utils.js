@@ -25,3 +25,7 @@ export const saveProductsToLocalStorage = vendingMachine => {
 export const saveCoinsToLocalStorage = vendingMachine => {
   localStorage["coins"] = vendingMachine.getCoins();
 };
+
+export const saveInsertedMoneyToLocalStorage = vendingMachine => {
+  localStorage["insertedMoney"] = vendingMachine.getMoney();
+};
