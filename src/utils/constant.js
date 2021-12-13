@@ -1,6 +1,7 @@
 export const DOM = {
   $TR: 'tr',
   $APP: '#app',
+  $HEAD: 'head',
   $COIN_500_QUANTITY: '#coin-500-quantity',
   $COIN_100_QUANTITY: '#coin-100-quantity',
   $COIN_50_QUANTITY: '#coin-50-quantity',
