@@ -21,7 +21,9 @@ export default class TabContainer {
     this.tabMachineManage = new TabMachineManage(this.$target, {
       rechargeCoin: this.rechargeCoin.bind(this),
     });
-    this.tabPurchase = new TabPurchase(this.$target);
+    this.tabPurchase = new TabPurchase(this.$target, {
+      rechargeMoney: this.rechargeMoney.bind(this),
+    });
   }
 
   showFocusedTab() {
@@ -46,5 +48,14 @@ export default class TabContainer {
 
   updateRechargeState() {
     this.tabMachineManage.updateRechargeState();
+  }
+
+  rechargeMoney(amount) {
+    this.vendingMachine.rechargeMoney(Number.parseFloat(amount, 10));
+    this.updateRechargeMoneyState();
+  }
+
+  updateRechargeMoneyState() {
+    this.tabPurchase.updateRechargeMoneyState();
   }
 }

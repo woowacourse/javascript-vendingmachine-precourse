@@ -19,6 +19,7 @@ export default class VendingMachine {
       new Coin(COIN.COIN_10, null),
     ];
     this.rechargedCoinAmount = null;
+    this.rechargedMoneyAmount = null;
     instance = this;
   }
 
@@ -69,6 +70,10 @@ export default class VendingMachine {
     return MissionUtils.Random.pickNumberInList([...Array(maxRange)].map((v, i) => i));
   }
 
+  rechargeMoney(amount) {
+    this.rechargedMoneyAmount += amount;
+  }
+
   getProductList() {
     return this.productList;
   }
@@ -79,5 +84,9 @@ export default class VendingMachine {
 
   getRechargedCoinAmount() {
     return this.rechargedCoinAmount;
+  }
+
+  getRechargedMoneyAmount() {
+    return this.rechargedMoneyAmount;
   }
 }

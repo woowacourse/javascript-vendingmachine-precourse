@@ -92,7 +92,7 @@ export const isValidProductAdd = (values) => {
   return true;
 };
 
-export const isValidCoinRecharge = (value) => {
+export const isValidRecharge = (value) => {
   if (!isValidMoney(value)) {
     return false;
   }

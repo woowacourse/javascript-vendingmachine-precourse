@@ -5,7 +5,7 @@ import Input from '../core/Input.js';
 import Button from '../core/Button.js';
 import CoinTable from '../core/CoinTable.js';
 import AmountView from '../core/AmountView.js';
-import { isValidCoinRecharge } from '../utils/validation.js';
+import { isValidRecharge } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
 import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
 import { COIN } from '../constant/coin.js';
@@ -88,7 +88,7 @@ export default class TabMachineManage {
     this.coinSubmit.getTarget().addEventListener(EVENT.CLICK, () => {
       const coinValue = this.coinInput.getTarget().value;
 
-      if (isValidCoinRecharge(coinValue)) {
+      if (isValidRecharge(coinValue)) {
         rechargeCoin(coinValue);
       }
     });

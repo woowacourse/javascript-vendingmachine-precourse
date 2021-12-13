@@ -1,12 +1,14 @@
 import Navigator from '../store/Navigator.js';
+import VendingMachine from '../store/VendingMachine.js';
 import Title from '../core/Title.js';
 import Input from '../core/Input.js';
 import Button from '../core/Button.js';
 import ProductPurchaseTable from '../core/ProductPurchaseTable.js';
 import CoinTable from '../core/CoinTable.js';
 import AmountView from '../core/AmountView.js';
+import { isValidRecharge } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, SELECTOR } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
 import { COIN } from '../constant/coin.js';
 
 export default class TabPurchase {
@@ -15,10 +17,12 @@ export default class TabPurchase {
     this.props = props;
     this.$root = null;
     this.navigator = new Navigator();
+    this.vendingMachine = new VendingMachine();
 
     this.createRootElement();
     this.determineDisplaying();
     this.render();
+    this.setEvent();
   }
 
   createRootElement() {
@@ -95,5 +99,20 @@ export default class TabPurchase {
 
   hide() {
     this.$root.setAttribute(DOM_ATTRIBUTE.HIDDEN, true);
+  }
+
+  setEvent() {
+    const { rechargeMoney } = this.props;
+    this.chargingSubmit.getTarget().addEventListener(EVENT.CLICK, () => {
+      const chargingValue = this.chargingInput.getTarget().value;
+
+      if (isValidRecharge(chargingValue)) {
+        rechargeMoney(chargingValue);
+      }
+    });
+  }
+
+  updateRechargeMoneyState() {
+    this.chargingAmount.render(this.vendingMachine.getRechargedMoneyAmount());
   }
 }
