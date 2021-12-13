@@ -1,3 +1,5 @@
+import { products } from '../model/products.mjs';
+
 const $fragment = new DocumentFragment();
 
 function productAdd() {
@@ -22,7 +24,7 @@ function productCurrent() {
 
   $curProductWrap.innerHTML = `
     <h2>상품 현황</h2>
-    <table>
+    <table id="productsStatus">
       <thead>
         <th>상품명</th>
         <th>가격</th>
@@ -49,4 +51,8 @@ export function renderProductAdd() {
   productCurrent();
   $main.appendChild($fragment);
   $app.appendChild($main);
+}
+
+export function renderProductConfirm() {
+  console.log(products);
 }
