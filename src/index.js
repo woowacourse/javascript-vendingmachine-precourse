@@ -51,6 +51,7 @@ function chargeMoney() {
     if(isCorrectChargeMoney(chargeAmount)) {
         getTotalChanges(chargeAmount);
         getTotalChargedMoney(chargeAmount);
+        renderTotalChanges(totalChanges);
         renderChargedMoney(chargedMoney);
     }
     else { 
@@ -86,6 +87,13 @@ function getNewChanges(newChargeAmount) {
 
 function generateRandomChanges() {
     return MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+}
+
+function renderTotalChanges(changes) {
+    const moneyList = [10, 50, 100, 500];
+    moneyList
+        .forEach(coin => 
+            document.querySelector(`#vending-machine-coin-${coin}-quantity`).textContent = changes[coin]);
 }
 
 function renderChargedMoney(money) {
