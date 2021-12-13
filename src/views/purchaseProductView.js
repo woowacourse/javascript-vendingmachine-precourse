@@ -9,6 +9,7 @@ import {
   getMoneyText,
   getQuantityText,
   makeButton,
+  makeClassButton,
   makeCoinTable,
   makeInputForm,
   makeResultContainer,
@@ -57,7 +58,7 @@ const makeproductStateTableButton = () => {
   const td = document.createElement("td");
   td.style.border = PRODUCT_TABLE.border;
   td.appendChild(
-    makeButton(PURCHASE_TAP.PRODUCT_STATE_BUTTON, onClickPurchaseButton)
+    makeClassButton(PURCHASE_TAP.PRODUCT_STATE_BUTTON, onClickPurchaseButton)
   );
 
   return td;
@@ -68,7 +69,11 @@ const makeproductStateTableRaw = product => {
   const tr = document.createElement("tr");
   information.forEach((tag, index) =>
     tr.appendChild(
-      makeTdWithClass(tag, PURCHASE_TAP.PRODUCT_STATE_CLASSES[index])
+      makeTdWithClass(
+        tag,
+        PURCHASE_TAP.PRODUCT_STATE_CLASSES[index],
+        PURCHASE_TAP.PRODUCT_STATE_DATASET[index]
+      )
     )
   );
   tr.appendChild(makeproductStateTableButton());

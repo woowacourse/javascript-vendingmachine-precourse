@@ -11,6 +11,11 @@ export const PURCHASE_TAP = {
     "product-purchase-price",
     "product-purchase-quantity",
   ],
+  PRODUCT_STATE_DATASET: [
+    "data-product-name",
+    "data-product-price",
+    "data-product-quantity",
+  ],
   PRODUCT_STATE_BUTTON: ["button", "구매하기", "purchase-button"],
   CHANGE_STATE_TITLE: "잔돈",
   CHANGE_STATE_BUTTON: ["button", "반환하기", "coin-return-button"],
