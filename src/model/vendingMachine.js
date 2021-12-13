@@ -53,16 +53,21 @@ export default class VendingMachine {
     this.userMoney = zero;
   }
 
-  buyProduct(selectedDrink) {
+  buyProduct(name) {
+    let isAvailable = false;
     this.productList.map((product) => {
       if (
-        product.name === selectedDrink &&
+        product.name === name &&
         product.price <= this.userMoney &&
         product.quantity >= 1
       ) {
         product.quantity -= 1;
         this.userMoney -= product.price;
+        isAvailable = true;
+        return false;
       }
     });
+
+    return isAvailable;
   }
 }

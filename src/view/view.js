@@ -143,7 +143,7 @@ export default class View {
         `
 	      <td data-product-name="${product.name}" class="product-purchase-name">${product.name}</td>
 	      <td data-product-price="${product.price}" class="product-purchase-price">${product.price}</td>
-	      <td data-product-quantitiy="${product.quantitiy}" class="product-purchase-quantitiy">${product.quantity}</td>
+	      <td data-product-quantity="${product.quantity}" class="product-purchase-quantitiy">${product.quantity}</td>
 	      <button class="purchase-button">구매하기</button>
         </tr>
         `,
@@ -152,12 +152,10 @@ export default class View {
       );
       $tablePosition.appendChild($product);
     });
-    console.log("테이블 생성 완료");
   }
 
   renderReturn(vendingMachine) {
     const { userMoney, returnMoney } = vendingMachine;
-    this.renderUserMoney(userMoney);
 
     returnMoney.map((coin, idx) => {
       const $getChange = document.getElementById(`coin-${COIN[idx]}-quantity`);

@@ -39,7 +39,6 @@ export default class Controller {
     $purchaseTabBtn.addEventListener("click", (e) => {
       e.preventDefault();
       this.view.showSelectedID("purchase-tab");
-      // this.view.renderProductTable(this.vendingMachine.productList);
       this.view.renderReturn(this.vendingMachine);
       this.view.renderProductTable(this.vendingMachine.productList);
       if (this.vendingMachine.productList.length > 0) {
@@ -103,6 +102,7 @@ export default class Controller {
     $coinReturnBtn.addEventListener("click", () => {
       this.vendingMachine.returnChange();
       this.view.renderReturn(this.vendingMachine);
+      this.view.renderUserMoney(this.vendingMachine.userMoney);
     });
   }
 
@@ -110,9 +110,16 @@ export default class Controller {
     document.querySelectorAll(".purchase-button").forEach((item) => {
       item.addEventListener("click", (e) => {
         const parent = e.target.parentNode;
-        const selectedDrink = parent.children[0].dataset.productName;
+        const name = parent.children[0].dataset.productName;
+        const quantity = parent.children[2];
 
-        this.vendingMachine.buyProduct(selectedDrink);
+        if (this.vendingMachine.buyProduct(name)) {
+          quantity.dataset.productQuantity -= 1;
+          quantity.innerHTML = quantity.dataset.productQuantity;
+          this.view.renderUserMoney(this.vendingMachine.userMoney);
+          return;
+        }
+        alert("살 수 없습니다.");
       });
     });
   }
