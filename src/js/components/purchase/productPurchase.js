@@ -100,9 +100,13 @@ const handleChargeInput = (event) => {
 export const showProductPurchaseMenu = () => {
   $('#app-container').innerHTML = productPurchaseTemplate;
   const storedProductList = getLocalStorage(STORAGE_NAME.PRODUCT);
+  const storedUserAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT);
 
   if (storedProductList) {
     initProductPurchaseList(storedProductList);
+  }
+  if (storedUserAmount) {
+    showCurrentAmount(chargeAmountId, storedUserAmount);
   }
 
   const $productPurchaseItems = document.querySelectorAll('.product-purchase-item');
