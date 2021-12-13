@@ -17,9 +17,9 @@ function createMenuButtons() {
 }
 
 export default function createTabMenu() {
-  const menuDiv = createDiv();
+  const tabMenuDiv = createDiv();
   const menuButtons = createMenuButtons();
-  menuButtons.forEach((button) => menuDiv.append(button));
+  menuButtons.forEach((button) => tabMenuDiv.append(button));
 
-  return menuDiv;
+  return tabMenuDiv;
 }
