@@ -16,6 +16,12 @@ export default class ProductPurchaseManager {
   }
 
   manage() {
+    this.manageChargeToPurhcaseProduct;
+    this.manageAllPurchaseButton();
+    this.manageCoinReturn();
+  }
+
+  manageChargeToPurhcaseProduct() {
     $('#charge-button').addEventListener('click', e => {
       e.preventDefault();
 
@@ -24,9 +30,13 @@ export default class ProductPurchaseManager {
 
       UT.updateAddedCharge(charge);
     });
+  }
 
+  manageAllPurchaseButton() {
     UT.isExist(DB.load('inventory')) && DOM.getAllPurchaseButton();
+  }
 
+  manageCoinReturn() {
     $('#coin-return-button').addEventListener('click', e => {
       e.preventDefault();
 

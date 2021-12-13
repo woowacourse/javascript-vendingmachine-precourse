@@ -97,11 +97,13 @@ const DOMUtils = {
   showChargeToPurchaseProduct: () => {
     const charge = DB.load('chargeToPurchaseProduct');
 
-    if (charge > 0) {
-      $('#charge-amount').innerHTML = charge;
-      $('#monetary-unit').innerHTML = '원';
-      return;
-    }
+    if (UT.isZero(charge)) return DOMUtils.initChargeToPurchaseProduct();
+
+    $('#charge-amount').innerHTML = charge;
+    $('#monetary-unit').innerHTML = '원';
+  },
+
+  initChargeToPurchaseProduct: () => {
     DOMUtils.initElement('#charge-amount');
     DOMUtils.initElement('#monetary-unit');
   },
