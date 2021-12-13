@@ -3,6 +3,7 @@ import { $, default as DOM } from '../utils/DOMUtils.js';
 import CoinTable from './components/CoinTable.js';
 import ProductTable from './components/ProductTable.js';
 import ChargeForm from './components/ChargeForm.js';
+import { SELECTOR } from '../constants/selectors.js';
 
 export default class View {
   constructor() {
@@ -25,18 +26,18 @@ export default class View {
   }
 
   showMenuComponent() {
-    $('#app').insertAdjacentHTML('beforeend', UI.commonHTML);
+    $(SELECTOR.APP).insertAdjacentHTML('beforeend', UI.commonHTML);
   }
 
   showProductAddComponent() {
-    $('#component').insertAdjacentHTML('beforeend', UI.productAddHTML);
+    $(SELECTOR.COMPONENT).insertAdjacentHTML('beforeend', UI.productAddHTML);
   }
 
   showVendingMachineManageComponent() {
-    $('#component').insertAdjacentHTML('beforeend', UI.vendingMachineManageHTML);
+    $(SELECTOR.COMPONENT).insertAdjacentHTML('beforeend', UI.vendingMachineManageHTML);
   }
 
   showProductPurchaseComponent() {
-    $('#component').insertAdjacentHTML('beforeend', UI.productPurchaseHTML);
+    $(SELECTOR.COMPONENT).insertAdjacentHTML('beforeend', UI.productPurchaseHTML);
   }
 }

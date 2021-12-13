@@ -4,6 +4,7 @@ import { default as DB } from '../model/database.js';
 import ProductAddManager from './managers/ProductAddManager.js';
 import VendingMachineChargeManager from './managers/VendingMachineChargeManager.js';
 import ProductPurchaseManager from './managers/ProductPurchaseManager.js';
+import { SELECTOR } from '../constants/selectors.js';
 
 export default class Controller {
   constructor() {
@@ -26,7 +27,7 @@ export default class Controller {
   }
 
   tabMenuManager() {
-    Array.from($('#tab-menu').children).forEach(menu => this.addClickEvent(menu));
+    Array.from($(SELECTOR.TAB_MENU).children).forEach(menu => this.addClickEvent(menu));
   }
 
   addClickEvent(menu) {

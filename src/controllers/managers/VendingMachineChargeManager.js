@@ -1,6 +1,7 @@
 import { $, default as DOM } from '../../utils/DOMUtils.js';
 import { default as V } from '../../utils/validators.js';
 import convertChargeIntoCoin from '../utils/convertChargeIntoCoin.js';
+import { SELECTOR } from '../../constants/selectors.js';
 
 export default class VendingMachineChargeManager {
   constructor() {
@@ -14,7 +15,7 @@ export default class VendingMachineChargeManager {
   }
 
   manage() {
-    $('#vending-machine-charge-button').addEventListener('click', e => {
+    $(SELECTOR.COIN_CHARGE_BUTTON).addEventListener('click', e => {
       e.preventDefault();
 
       if (!V.isValidCharge(DOM.getCharge().vendingMachine)) return;

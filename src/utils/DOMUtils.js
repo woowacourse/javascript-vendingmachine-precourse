@@ -1,6 +1,7 @@
 import { default as DB } from '../model/database.js';
 import { default as UT } from './utils.js';
 import { default as UI } from '../views/templates.js';
+import { SELECTOR } from '../constants/selectors.js';
 
 export const $ = selector => document.querySelector(selector);
 
@@ -12,40 +13,40 @@ const DOMUtils = {
   },
 
   initProductInput: () => {
-    Array.from($('#product-add-form').children).forEach(element => {
+    Array.from($(SELECTOR.PRODUCT_ADD_FORM).children).forEach(element => {
       if (element.tagName === 'INPUT') element.value = '';
     });
   },
 
   getProduct: () => {
     return {
-      name: $('#product-name-input').value,
-      price: $('#product-price-input').value,
-      quantity: $('#product-quantity-input').value,
+      name: $(SELECTOR.PRODUCT_NAME_INPUT).value,
+      price: $(SELECTOR.PRODUCT_PRICE_INPUT).value,
+      quantity: $(SELECTOR.PRODUCT_QUANTITY_INPUT).value,
     };
   },
 
   getCharge: () => {
     return {
-      vendingMachine: $('#vending-machine-charge-input').value,
-      toPurchaseProduct: $('#charge-input').value,
+      vendingMachine: $(SELECTOR.COIN_CHARGE_INPUT).value,
+      toPurchaseProduct: $(SELECTOR.PURCHASE_CHARGE_INPUT).value,
     };
   },
 
   showInventory: () => {
-    $('#product-inventory').innerHTML = DB.load('inventory')
+    $(SELECTOR.PRODUCT_INVENTORY).innerHTML = DB.load('inventory')
       .map(product => UI.inventoryTableRowHTML(product))
       .join('');
   },
 
   showIntentoryToPurchaseProduct: () => {
-    $('#product-purchase-inventory').innerHTML = DB.load('inventory')
+    $(SELECTOR.PURCHASE_INVENTORY).innerHTML = DB.load('inventory')
       .map(product => UI.purchaseInventoryTableRowHTML(product))
       .join('');
   },
 
   hideComponents: () => {
-    Array.from($('#component').children).forEach(menu => (menu.style.display = 'none'));
+    Array.from($(SELECTOR.COMPONENT).children).forEach(menu => (menu.style.display = 'none'));
   },
 
   showComponent: id => {
@@ -59,13 +60,13 @@ const DOMUtils = {
 
     if (UT.isZero(charge)) return DOMUtils.initVendingMachineCharge();
 
-    $('#vending-machine-charge-amount').innerHTML = `${charge}`;
-    $('#vending-machine-monetary-unit').innerHTML = '원';
+    $(SELECTOR.COIN_CHARGE_AMOUNT).innerHTML = `${charge}`;
+    $(SELECTOR.COIN_CHARGE_UNIT).innerHTML = '원';
   },
 
   initVendingMachineCharge: () => {
-    DOMUtils.initElement('#vending-machine-charge-amount');
-    DOMUtils.initElement('#vending-machine-monetary-unit');
+    DOMUtils.initElement(SELECTOR.COIN_CHARGE_AMOUNT);
+    DOMUtils.initElement(SELECTOR.COIN_CHARGE_UNIT);
   },
 
   showVendingMachineCoins: () => {
@@ -74,7 +75,7 @@ const DOMUtils = {
     UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
       const [coinType, quantity] = array;
 
-      $(`#vending-machine-${coinType}-quantity`).innerHTML = `${quantity}개`;
+      $(SELECTOR.MAKE_COIN_ID(coinType)).innerHTML = `${quantity}개`;
     });
   },
 
@@ -82,7 +83,7 @@ const DOMUtils = {
     UT.insertHypen(DB.load('vendingMachineCoins')).forEach(array => {
       const [coinType] = array;
 
-      $(`#vending-machine-${coinType}-quantity`).innerHTML = '';
+      $(SELECTOR.MAKE_COIN_ID(coinType)).innerHTML = '';
     });
   },
 
@@ -90,7 +91,7 @@ const DOMUtils = {
     UT.insertHypen(object).forEach(array => {
       const [coinType, quantity] = array;
 
-      $(`#${coinType}-quantity`).innerHTML = `${quantity}개`;
+      $(SELECTOR.MAKE_COIN_QUANTITY_ID(coinType)).innerHTML = `${quantity}개`;
     });
   },
 
@@ -99,13 +100,13 @@ const DOMUtils = {
 
     if (UT.isZero(charge)) return DOMUtils.initChargeToPurchaseProduct();
 
-    $('#charge-amount').innerHTML = charge;
-    $('#monetary-unit').innerHTML = '원';
+    $(SELECTOR.PURCHASE_CHARGE_AMOUNT).innerHTML = charge;
+    $(SELECTOR.PURCHASE_CHARGE_UNIT).innerHTML = '원';
   },
 
   initChargeToPurchaseProduct: () => {
-    DOMUtils.initElement('#charge-amount');
-    DOMUtils.initElement('#monetary-unit');
+    DOMUtils.initElement(SELECTOR.PURCHASE_CHARGE_AMOUNT);
+    DOMUtils.initElement(SELECTOR.PURCHASE_CHARGE_UNIT);
   },
 };
 

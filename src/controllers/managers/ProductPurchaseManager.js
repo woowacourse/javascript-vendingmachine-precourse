@@ -4,6 +4,7 @@ import { default as DB } from '../../model/database.js';
 import { default as UT } from '../../utils/utils.js';
 import calculateReturnCoins from '../utils/calculateReturnCoins.js';
 import getAllPurchaseButton from '../utils/getAllPurchaseButton.js';
+import { SELECTOR } from '../../constants/selectors.js';
 
 export default class ProductPurchaseManager {
   constructor() {
@@ -23,7 +24,7 @@ export default class ProductPurchaseManager {
   }
 
   manageChargeToPurhcaseProduct() {
-    $('#charge-button').addEventListener('click', e => {
+    $(SELECTOR.PURCHASE_CHARGE_BUTTON).addEventListener('click', e => {
       e.preventDefault();
 
       const charge = DOM.getCharge().toPurchaseProduct;
@@ -40,7 +41,7 @@ export default class ProductPurchaseManager {
   }
 
   manageCoinReturn() {
-    $('#coin-return-button').addEventListener('click', e => {
+    $(SELECTOR.COIN_RETURN_BUTTON).addEventListener('click', e => {
       e.preventDefault();
 
       if (!V.isValidCoinReturn()) return;

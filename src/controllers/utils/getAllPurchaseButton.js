@@ -2,9 +2,10 @@ import { $$ } from '../../utils/DOMUtils.js';
 import { default as UT } from '../../utils/utils.js';
 import { default as V } from '../../utils/validators.js';
 import { default as DOM } from '../../utils/DOMUtils.js';
+import { SELECTOR } from '../../constants/selectors.js';
 
 const getAllPurchaseButton = () => {
-  $$('.purchase-button').forEach(button => addPurchaseButtonEvent(button));
+  $$(SELECTOR.PURCHASE_ITEM_BUTTON).forEach(button => addPurchaseButtonEvent(button));
 };
 
 const addPurchaseButtonEvent = element => {
