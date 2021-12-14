@@ -155,6 +155,7 @@ function renderDecreaseQuantity(quantityCell, quantity) {
 function returnMoney() {
     calculateMinimumChanges();
     renderChanges(inputChanges);
+    renderInputMoney(totalInputMoney);
 }
 
 function calculateMinimumChanges() {
