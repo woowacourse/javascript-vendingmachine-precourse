@@ -17,6 +17,7 @@ export default class VendingMachineManageMenuController {
     const chargeButton = document.querySelector("#charge-button");
     chargeButton.addEventListener("click", this.onClickChargeButton.bind(this));
     this.purchaseBtnClickEvent();
+    this.returnBtnClickEvent();
   }
 
   purchaseBtnClickEvent() {
@@ -51,6 +52,7 @@ export default class VendingMachineManageMenuController {
       };
     }
     this.saveAmount(productIndex);
+    this.savePrice();
     this.initialize();
   }
 
@@ -59,5 +61,38 @@ export default class VendingMachineManageMenuController {
     postData[productIndex].quantity = this.products[productIndex].quantity;
     setData("products", postData);
     this.productPurchaseMenuView.render(getData("products"), getData("money"));
+  }
+
+  savePrice() {
+    let postData = getData("money");
+    postData = this.money;
+    setData("money", postData);
+    this.productPurchaseMenuView.render(getData("products"), getData("money"));
+  }
+
+  returnBtnClickEvent() {
+    const returnButton = document.querySelector("#coin-return-button");
+    returnButton.addEventListener("click", this.onClickReturnButton.bind(this));
+    this.purchaseBtnClickEvent();
+  }
+
+  onClickReturnButton() {
+    this.getReturnCoinArray();
+  }
+
+  getReturnCoinArray() {
+    const coinList = [500, 100, 50, 10];
+    let returnMoney = this.money;
+    let returnCoinArray = [];
+
+    coinList.forEach((coin) => {
+      let needCoinCount = Math.floor(returnMoney / coin);
+      if (needCoinCount > coin.count) {
+        needCoinCount = coin.count;
+      }
+      returnMoney -= coin * needCoinCount;
+      returnCoinArray.push(needCoinCount);
+    });
+    return returnCoinArray;
   }
 }
