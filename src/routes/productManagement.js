@@ -1,5 +1,5 @@
 import $ from '../util/domSelector.js';
-import { PRODUCT_MANAGEMENT } from '../constants/selector.js';
+import { HEADER, PRODUCT_MANAGEMENT } from '../constants/selector.js';
 import InputProduct from '../components/inputProduct.js';
 import DisplayProducts from '../components/displayProducts.js';
 import displayProducts from '../templates/displayProducts.js';
@@ -8,6 +8,11 @@ import { setLocalStorage, getLocalStorage } from '../store.js';
 
 export default class ProductManagement {
   constructor() {
+    this.initialize();
+  }
+
+  initialize() {
+    $(`#${HEADER.CONTENT_CONTAINER}`).innerHTML = '';
     this.render();
   }
 
@@ -22,14 +27,7 @@ export default class ProductManagement {
 
   setStore(products, productObject) {
     setLocalStorage('products', [...products, productObject]);
-    this.update(productObject);
-  }
-
-  update(productObject) {
-    $(`.${PRODUCT_MANAGEMENT.CLASS.PRODUCT_MANAGE_ITEM}`).innerHTML += displayProducts(productObject);
-    $(`#${PRODUCT_MANAGEMENT.ID.PRODUCT_NAME_INPUT}`).value = '';
-    $(`#${PRODUCT_MANAGEMENT.ID.PRODUCT_PRICE_INPUT}`).value = '';
-    $(`#${PRODUCT_MANAGEMENT.ID.PRODUCT_QUANTITY_INPUT}`).value = '';
+    this.initialize();
   }
 
   setEvent() {
