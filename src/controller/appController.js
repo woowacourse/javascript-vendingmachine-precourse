@@ -21,7 +21,7 @@ export default class AppController {
     this.appView.selectHeaderDOM();
     this.attachHeaderEvents();
 
-    this.addController.init();
+    this.purchaseController.init();
   }
 
   attachHeaderEvents() {

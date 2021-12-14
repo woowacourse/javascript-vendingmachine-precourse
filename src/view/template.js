@@ -1,4 +1,5 @@
 import NUMBER from '../constants/number.js';
+import { STRING } from '../constants/constants.js';
 import { INDEX } from '../constants/constants.js';
 
 export const headerTemplate = () => {
@@ -56,7 +57,6 @@ export const addTabTemplate = (products, inputs) => {
 
 export const manageTabTemplate = (chargeAmount, coinsAmountArray, chargeInput) => {
   return `
-  
     <h2>자판기 동전 충전하기</h2>
     <form id="vending-machine-manage-form">
       <input id="vending-machine-charge-input" type="number" placeholder="충전할 금액" ${
@@ -101,7 +101,8 @@ export const manageTabTemplate = (chargeAmount, coinsAmountArray, chargeInput) =
   `;
 };
 
-export const purchaseTabTemplate = () => {
+export const purchaseTabTemplate = (products) => {
+  console.log(products);
   return `
     <h2>금액 투입</h2>
     <div>
@@ -123,7 +124,20 @@ export const purchaseTabTemplate = () => {
             <th>구매</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          ${products
+            .map(({ name, price, quantity }) => {
+              return `
+              <tr class="product-purchase-item">
+                <th class="product-purchase-name" data-product-name="${name}">${name}</th>
+                <th class="product-purchase-price" data-product-price="${price}">${price}</th>
+                <th class="product-purchase-quantity" data-product-quantity="${quantity}">${quantity}</th>
+                <th><button>구매하기</button></th>
+              </tr>
+            `;
+            })
+            .join(STRING.EMPTY)}
+        </tbody>
       </table>
     </div>
     <div>

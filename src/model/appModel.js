@@ -11,7 +11,6 @@ export default class AppModel {
 
     this.addTabInput = defaultAddTabInput();
     this.manageTabInput = STRING.EMPTY;
-    console.log(this.manageTabInput);
   }
 
   loadProducts() {

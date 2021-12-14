@@ -6,7 +6,7 @@ export default class PurchaseView {
     this.$main = $('main');
   }
 
-  renderPurchaseTab() {
-    this.$main.innerHTML = purchaseTabTemplate();
+  renderPurchaseTab(products) {
+    this.$main.innerHTML = purchaseTabTemplate(products);
   }
 }
