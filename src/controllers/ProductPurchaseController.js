@@ -24,7 +24,8 @@ export default class ProductPurchaseController {
 
   renderPorductPurchase() {
     this.productPurchaseField.style = ("display: block");
-    this.renderMoney();
+    // this.renderMoney();
+    this.setInsertMoney()
     this.renderAblePurchase();
   }
 

@@ -14,18 +14,16 @@ export default class ProductPurchaseView extends ProductPurchaseController {
       e.preventDefault();
       const insertMoney  = this.productPurchaseField.querySelector('input').value;
       moneyAddValidate(insertMoney) 
-      ? (this.validInsertMoney = insertMoney, this.renderMoney(), this.getInsertMoney())
+      ? (this.validInsertMoney = insertMoney, this.getInsertMoney())
       : "";
+      this.validInsertMoney = 0;
     })
   }
 
   renderMoney() {
     const $moneyWrap = document.querySelector('#charge-amount');
-    this.puchaseMoneyResult 
-    ? $moneyWrap.innerText = this.puchaseMoneyResult
-    : this.loacalTotalInsertMoney && !this.validInsertMoney ? $moneyWrap.innerText = this.loacalTotalInsertMoney : "";
+    this.loacalTotalInsertMoney ? $moneyWrap.innerText = this.loacalTotalInsertMoney : "";
     !this.loacalTotalInsertMoney && this.validInsertMoney ? $moneyWrap.innerText = this.validInsertMoney : "";
-    this.loacalTotalInsertMoney && this.validInsertMoney ? $moneyWrap.innerText = (Number(this.validInsertMoney) + Number(this.loacalTotalInsertMoney)) : ""; 
   }
 
   renderLocalPurchase() {
