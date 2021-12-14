@@ -1,5 +1,5 @@
-import { DATA_MODEL_KEYS, DOM, ERROR_MESSAGE } from '../../lib/constants.js';
-import { $, isPurchaseButton, isValidCharge } from '../../lib/utils.js';
+import { DATA_MODEL_KEYS, DOM } from '../../lib/constants.js';
+import { $, isCanBuyProduct, isPurchaseButton, isValidCharge } from '../../lib/utils.js';
 import Coin from '../../modules/coin.js';
 import { defaultValueGenerators } from '../model/index.js';
 
@@ -22,18 +22,24 @@ class ProductPurchaseController {
   onClickProductPurchaseListTable(e) {
     if (isPurchaseButton(e.target)) {
       const {
-        target: { dataset },
+        target: {
+          dataset: { id },
+        },
       } = e;
-      try {
-        this.purchaseProduct(dataset.id);
-        this.$view.mainView.renderProductPurchaseList(this.$model.getProductList());
-        this.$view.mainView.renderCharge(
-          this.$model.getChargeAmount(),
-          this.$model.getChargeInputsValue()
-        );
-      } catch (error) {
-        alert(error);
-      }
+      this.executeProductPurchaseProcess(id);
+    }
+  }
+
+  executeProductPurchaseProcess(productId) {
+    try {
+      this.purchaseProduct(productId);
+      this.$view.mainView.renderProductPurchaseList(this.$model.getProductList());
+      this.$view.mainView.renderCharge(
+        this.$model.getChargeAmount(),
+        this.$model.getChargeInputsValue()
+      );
+    } catch (error) {
+      alert(error);
     }
   }
 
@@ -47,6 +53,10 @@ class ProductPurchaseController {
 
   onSubmitChargeForm(e) {
     e.preventDefault();
+    this.executeInputChargeProcess();
+  }
+
+  executeInputChargeProcess() {
     try {
       this.addCharge();
       this.$model.setChargeInputsValue(() =>
@@ -61,9 +71,8 @@ class ProductPurchaseController {
     }
   }
 
-  /** renderCharge - clearChageInput 하는 로직 분리하기 */
   onClickCoinReturnButton() {
-    const returnCoins = this.generateReturnCoin();
+    const returnCoins = this.getChange();
     this.$view.mainView.renderCharge(
       this.$model.getChargeAmount(),
       this.$model.getChargeInputsValue()
@@ -71,8 +80,8 @@ class ProductPurchaseController {
     this.$view.mainView.renderReturnCoins(returnCoins);
   }
 
-  generateReturnCoin() {
-    const { returnCoins, chargeAmount, coins } = Coin.computeReturnCoin(
+  getChange() {
+    const { returnCoins, chargeAmount, coins } = Coin.computeReturnCoins(
       this.$model.getChargeAmount(),
       this.$model.getCoins()
     );
@@ -88,34 +97,21 @@ class ProductPurchaseController {
 
   purchaseProduct(productId) {
     const { targetProduct, position } = this.$model.findProduct(productId);
-    if (targetProduct === undefined) {
-      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_UNDEFINED);
+    if (isCanBuyProduct(targetProduct, this.$model.getChargeAmount())) {
+      this.$model.setProductInProductList({
+        newProduct: { ...targetProduct, quantity: targetProduct.quantity - 1 },
+        position,
+      });
+      this.$model.setChargeAmount(this.$model.getChargeAmount() - targetProduct.price);
     }
-    if (targetProduct.quantity === 0) {
-      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_ZERO);
-    }
-    if (targetProduct.price > this.$model.getChargeAmount()) {
-      throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_TOO_EXPENSIVE);
-    }
-    this.sellProduct(targetProduct, position);
-  }
-
-  sellProduct(targetProduct, position) {
-    this.$model.setProductInProductList({
-      newProduct: { ...targetProduct, quantity: targetProduct.quantity - 1 },
-      position,
-    });
-
-    this.$model.setChargeAmount(this.$model.getChargeAmount() - targetProduct.price);
   }
 
   addCharge() {
     if (isValidCharge(this.$model.getChargeInputsValue(), DOM.CHARGE_INPUT)) {
-      const newChargeAmount =
-        this.$model.getChargeAmount() +
-        Number(this.$model.getChargeInputValueById(DOM.CHARGE_INPUT));
-
-      this.$model.setChargeAmount(newChargeAmount);
+      this.$model.addChargeAmount(
+        Number(this.$model.getChargeInputValueById(DOM.CHARGE_INPUT)),
+        DATA_MODEL_KEYS.CHARGE_AMOUNT
+      );
     }
   }
 }

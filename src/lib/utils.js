@@ -30,6 +30,28 @@ export const isValidProduct = (inputsValue) => {
   return true;
 };
 
+export const isUndefinedProduct = (product) => {
+  return product === undefined;
+};
+export const isSoldOutProduct = (product) => {
+  return product.quantity === 0;
+};
+export const isNotEnoughMoney = (product, chargeAmount) => {
+  return product.price > chargeAmount;
+};
+
+export const isCanBuyProduct = (product, chargeAmount) => {
+  if (isUndefinedProduct(product)) {
+    throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_UNDEFINED);
+  }
+  if (isSoldOutProduct(product)) {
+    throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_ZERO);
+  }
+  if (isNotEnoughMoney(product, chargeAmount)) {
+    throw new Error(ERROR_MESSAGE.PURCHASE_PRODUCT_ERROR_TARGET_PRODUCT_IS_TOO_EXPENSIVE);
+  }
+  return true;
+};
 export const isValidCharge = (inputsValue, id) => {
   if (isNumberStringIsNegative(inputsValue[id])) {
     throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_IS_NEGATIVE_NUMBER);
@@ -39,7 +61,15 @@ export const isValidCharge = (inputsValue, id) => {
   }
   return true;
 };
-
+export const isValidChargeAmount = (chargeAmount) => {
+  if (isNumberStringIsNegative(chargeAmount)) {
+    throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_IS_NEGATIVE_NUMBER);
+  }
+  if (isNumberStringNotDivideBy10(chargeAmount)) {
+    throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_DEVIDE_BY_10);
+  }
+  return true;
+};
 export const isPurchaseButton = (el) => {
   return el.className === DOM.PURCHASE_BUTTON_CLASSNAME;
 };
