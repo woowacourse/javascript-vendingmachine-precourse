@@ -1,9 +1,9 @@
 import VendingMachineApp from './vendingMachineApp.js';
 
-export default class index {
+export default class App {
   constructor() {
     new VendingMachineApp();
   }
 }
 
-new index();
+new App();
