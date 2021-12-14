@@ -2,7 +2,7 @@ import { $, validation, onKeyUpNumericEvent } from './utils.js';
 import { SELECTOR } from '../model/constants.js';
 import { productAddTableRow } from '../model/template.js';
 
-export default class ProductAdd {
+export default class AddTab {
   constructor(view, model) {
     this.view = view;
     this.model = model;

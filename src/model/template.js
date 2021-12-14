@@ -1,4 +1,4 @@
-export const headerMenu = `
+export const headerTab = `
 <div>
     <h1>🥤자판기🥤</h1>
     <button id="product-add-menu">상품 관리</button>
@@ -8,7 +8,7 @@ export const headerMenu = `
 <div id="container"></div>
 `;
 
-export const productAddMenu = `
+export const productAddTab = `
 <h2>상품 추가하기</h2>
 <input type="text" id="product-name-input" placeholder="상품명"/>
 <input type="number" id="product-price-input" placeholder="가격"/>
@@ -23,7 +23,7 @@ export const productAddMenu = `
 </table>
 `;
 
-export const vendingMachineManageMenu = `
+export const vendingMachineManageTab = `
 <h2>자판기 동전 충전하기</h2>
 <input type="number" placeholder="자판기가 보유할 금액" id="vending-machine-charge-input"/>
 <button id="vending-machine-charge-button">충전하기</button>
@@ -52,7 +52,7 @@ export const vendingMachineManageMenu = `
 </table>
 `;
 
-export const productPurchaseMenu = `
+export const productPurchaseTab = `
 <h2>금액 투입</h2>
 <input type="number" placeholder="투입할 금액" id="charge-input"/>
 <button id="charge-button">투입하기</button>

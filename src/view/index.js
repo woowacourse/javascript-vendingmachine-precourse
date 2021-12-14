@@ -1,36 +1,36 @@
 import { $ } from '../controller/utils.js';
 import {
-  headerMenu,
-  productAddMenu,
-  vendingMachineManageMenu,
-  productPurchaseMenu,
+  headerTab,
+  productAddTab,
+  vendingMachineManageTab,
+  productPurchaseTab,
 } from '../model/template.js';
 import { COIN_X_QUANTITY, VENDING_MACHINE_COIN_X_QUANTITY } from '../model/constants.js';
 
 export default class View {
   constructor() {
     this.$app = $('app');
-    this.$app.insertAdjacentHTML('afterbegin', headerMenu);
-    this.showAddMenu();
+    this.$app.insertAdjacentHTML('afterbegin', headerTab);
+    this.showAddTab();
   }
 
   clearContainer() {
     $('container').innerHTML = '';
   }
 
-  showAddMenu() {
+  showAddTab() {
     this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', productAddMenu);
+    $('container').insertAdjacentHTML('afterbegin', productAddTab);
   }
 
-  showVendingMenu() {
+  showVendingTab() {
     this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', vendingMachineManageMenu);
+    $('container').insertAdjacentHTML('afterbegin', vendingMachineManageTab);
   }
 
-  showPurchaseMenu() {
+  showPurchaseTab() {
     this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', productPurchaseMenu);
+    $('container').insertAdjacentHTML('afterbegin', productPurchaseTab);
   }
 
   addTableHeader(table, headerForm) {

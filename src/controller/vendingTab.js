@@ -1,7 +1,7 @@
 import { $, validation, onKeyUpNumericEvent } from './utils.js';
 import { SELECTOR, COIN_ARRAY } from '../model/constants.js';
 
-export default class Vending {
+export default class VendingTab {
   constructor(view, model) {
     this.view = view;
     this.model = model;
