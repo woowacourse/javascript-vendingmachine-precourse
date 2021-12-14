@@ -3,7 +3,7 @@ import { TITLES } from '../../constants/constants.js';
 import { purchaseTemplates } from '../../constants/purchaseTemplates.js';
 
 export const renderPurchaseProduct = state => {
-  const { inputMoney, productTable, productItem } = purchaseTemplates;
+  const { inputMoney, productTable, productItem, change } = purchaseTemplates;
 
   const productList = state.products
     .map(product => {
@@ -15,4 +15,5 @@ export const renderPurchaseProduct = state => {
   $('#input_form').innerHTML = inputMoney(state.purchase.input);
   $('#contents').innerHTML = productTable;
   $('.product-purchase-list').innerHTML = productList;
+  $('#product-table').insertAdjacentHTML('afterend', change(state.purchase));
 };

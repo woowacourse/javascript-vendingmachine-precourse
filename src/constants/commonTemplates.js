@@ -21,5 +21,6 @@ export const commonTemplates = {
       </nav>
       <h3 id="tab-title"></h3>
       <form id="input_form"></form>
-      <div id="contents"></div>`,
+      <div id="contents"></div>
+      `,
 };

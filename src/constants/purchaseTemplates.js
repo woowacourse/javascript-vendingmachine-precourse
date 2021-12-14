@@ -10,6 +10,7 @@ export const purchaseTemplates = {
   },
 
   productTable: `
+    <div id="product-table">
        <h3>구매할 수 있는 상품 현황</h3>
        <table style='width: 70%'>
         <thead>
@@ -23,6 +24,7 @@ export const purchaseTemplates = {
         <tbody class="product-purchase-list">
         </tbody>
       </table>
+    <div>
     `,
   productItem(product) {
     const { id, name, price, quantity } = product;
@@ -38,7 +40,9 @@ export const purchaseTemplates = {
 
   change(change) {
     return `
-     <table style='margin-top: 3rem; width: 30%;'}>
+    <h3>잔돈</h3>
+    <button id="coin-return-button">반환하기</button>
+     <table style='margin-top: 20px; width: 30%;'}>
       <thead>
         <tr>
           <th>동전</th>
@@ -48,21 +52,19 @@ export const purchaseTemplates = {
       <tbody>
         <tr>
           <td>500원</td>
-          <td vending-machine-coin-500-quantity>${
-            change[COINS[0]] ? change[COINS[0]] : NONE
-          }개</td>
+          <td id="coin-500-quantity">${change[COINS[0]]}개</td>
         </tr>
         <tr>
           <td>100원</td>
-          <td>${change[COINS[1]] ? change[COINS[1]] : NONE}개</td>
+          <td id="coin-100-quantity">${change[COINS[1]]}개</td>
         </tr>
         <tr>
           <td>50원</td>
-          <td>${change[COINS[2]] ? change[COINS[2]] : NONE}개</td>
+          <td id="coin-50-quantity">${change[COINS[2]]}개</td>
         </tr>
         <tr>
           <td>10원</td>
-          <td>${change[COINS[3]] ? change[COINS[3]] : NONE}개</td>
+          <td id="coin-10-quantity">${change[COINS[3]]}개</td>
         </tr>
       </tbody>
     </table>

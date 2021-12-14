@@ -21,11 +21,11 @@ export const purchaseProduct = (e, state) => {
     return;
   }
 
-  state.products = state.products.map(product => {
-    if (product.id === id) {
-      return { ...product, quantity: product.quantity - 1 };
-    } else return product;
-  });
+  state.products = state.products.map(product =>
+    product.id === id
+      ? { ...product, quantity: product.quantity - 1 }
+      : product,
+  );
 
   store.setData(state);
   renderPurchaseProduct(state);

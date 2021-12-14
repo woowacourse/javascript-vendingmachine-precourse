@@ -6,6 +6,7 @@ import { inputChange } from './inputChange/inputChange.js';
 import { renderPurchaseProduct } from './purchaseProduct/renderPurchaseProduct.js';
 import { inputUserMoney } from './purchaseProduct/inputUserMoney.js';
 import { purchaseProduct } from './purchaseProduct/purchaseProduct.js';
+import { returnChange } from './purchaseProduct/returnChange.js';
 
 export const changeTab = async (e, tab, state) => {
   const tabName = e.target.dataset.tabName;
@@ -39,6 +40,11 @@ export const changeTab = async (e, tab, state) => {
       if (e.target.classList.contains('purchase-button')) {
         purchaseProduct(e, state);
       }
+    });
+
+    $('#coin-return-button').addEventListener('click', e => {
+      e.preventDefault();
+      returnChange(state);
     });
     return;
   }
