@@ -109,9 +109,7 @@ const getCurrentQuantity = (targetProduct) => {
 
 export const printReturnedCoins = () => {
   const coinList = JSON.parse(localStorage.getItem('coinList'));
-  const randomCoinAmount = returnChangesinCoins(32490, coinList);
-  // 코인값 가져오기
-
+  const randomCoinAmount = returnChangesinCoins(getCurrentSum(), coinList);
   const $vendingMachinereturn500Coin = $('#coin-500-quantity');
   const $vendingMachinereturn100Coin = $('#coin-100-quantity');
   const $vendingMachinereturn50Coin = $('#coin-50-quantity');
