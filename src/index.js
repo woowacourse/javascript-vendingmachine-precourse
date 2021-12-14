@@ -152,6 +152,7 @@ function calculateMinimumChanges() {
         while(coin <= totalInputMoney) {
             if(totalChanges[coin] < 1) break;
             totalInputMoney -= coin;
+            chargedMoney -= coin;
             totalChanges[coin] -= 1;
             inputChanges[coin] += 1;
         }
