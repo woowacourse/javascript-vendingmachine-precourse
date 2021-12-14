@@ -14,33 +14,33 @@
 ├── assets  
 │　　└── index.css  
 └── src  
-　　├── index.js  
-　　├── app.js  
-　　├── components  
-　　│　　├── header.js  
+　　├── index.js                             // 시작점  
+　　├── app.js                               // 유저가 선택한 메뉴를 생성함  
+　　├── components                           // 메뉴들을 컴포넌트화  
+　　│　　├── header.js                       // 유저가 메뉴를 선택할 수 있는 인터페이스 제공  
 　　│　　├── product-add  
-　　│　　│　　├── index.js  
-　　│　　│　　├── header.js  
-　　│　　│　　└── table.js  
+　　│　　│　　├── index.js                   // 상품관리 메뉴 컴포넌트  
+　　│　　│　　├── header.js                  // 상품관리 내 상품추가  
+　　│　　│　　└── table.js                   // 상품관리 내 상품현황  
 　　│　　├── vending-machine-manage  
-　　│　　│　　├── header.js  
-　　│　　│　　├── index.js  
-　　│　　│　　└── stored.js  
+　　│　　│　　├── index.js                   // 잔돈충전 메뉴 컴포넌트  
+　　│　　│　　├── header.js                  // 잔돈충전 내 충전하기  
+　　│　　│　　└── stored.js                  // 잔돈충전 내 보유한 동전  
 　　│　　└── product-purchase  
-　　│　　　　├── changes.js  
-　　│　　　　├── header.js  
-　　│　　　　├── index.js  
-　　│　　　　├── inserted.js  
-　　│　　　　└── products.js  
+　　│　　　　├── index.js                    // 상품구매 메뉴 컴포넌트  
+　　│　　　　├── header.js                   // 상품구매 내 금액 투입  
+　　│　　　　├── inserted.js                 // 상품구매 내 투입한 금액 컴포넌트  
+　　│　　　　├── products.js                 // 상품구매 내 구매가능 상품현황  
+　　│　　　　└── changes.js                  // 상품구매 내 잔돈 반환  
 　　├── essential  
-　　│　　└── component.js  
+　　│　　└── component.js                   // 컴포넌트 추상화 클래스  
 　　├── model  
-　　│　　└── product.js  
+　　│　　└── product.js                     // 상품 추상화 클래스  
 　　└── utils  
-　　　　├── constants.js  
-　　　　├── storage.js  
-　　　　├── style.js  
-　　　　└── validator.js  
+　　　　├── constants.js                    // 상수를 모아놓은 곳  
+　　　　├── storage.js                      // localStorage 관련 기능  
+　　　　├── style.js                        // css 적용하기 위해 만듦  
+　　　　└── validator.js                    // 유효성 검사 기능 모아놓은 곳  
 
 ---
 
@@ -78,7 +78,7 @@
 - 투입한 금액에 맞춰 상품을 구매할 수 있다
   - 구매하면 투입한 금액이 줄어든다
   - 구매하면 상품 수량이 줄어든다
-  - 상품 수량이 0이 되면 어떻게할까? 구매하기버튼 비활성화 or 아예 목록에서 지워버리기
+  - 상품 수량이 0이 된 상품은 더이상 보이지 않는다
   - 투입한 금액에 비해 상품 가격이 비싸면 구매 불가함을 알린다
 - 남은 금액에 대해서 잔돈을 반환한다
   - `반환하기` 버튼을 통해 반환받을 수 있다
