@@ -24,6 +24,7 @@ export default class ProductPurchaseView extends ProductPurchaseController {
     const $moneyWrap = document.querySelector('#charge-amount');
     this.loacalTotalInsertMoney ? $moneyWrap.innerText = this.loacalTotalInsertMoney : "";
     !this.loacalTotalInsertMoney && this.validInsertMoney ? $moneyWrap.innerText = this.validInsertMoney : "";
+    !this.loacalTotalInsertMoney && !this.validInsertMoney ? $moneyWrap.innerText = "0" : "";
   }
 
   renderLocalPurchase() {
@@ -49,9 +50,17 @@ export default class ProductPurchaseView extends ProductPurchaseController {
 
   setReutrnEvent() {
     const $chargeReturnButton = document.querySelector('#coin-return-button');
-    $chargeReturnButton.addEventListener('click', (e) => {
-      this.returnCharge();
+    $chargeReturnButton.addEventListener('click', () => {
+      this.checkRandomCoin() 
+      ? this.returnCharge()
+      : alert("자판기에 동전이 없습니다");
     })
+  }
+
+  checkRandomCoin() {
+    const localRandonCoin = JSON.parse(localStorage.getItem("RANDOM_COIN"));
+
+    return localRandonCoin;
   }
   
   renderChargeResult() {
