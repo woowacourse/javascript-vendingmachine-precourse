@@ -1,4 +1,5 @@
 import Validation from '../utils/validation.js';
+import { ERROR } from '../utils/constant.js';
 
 export class VendingMachine {
   constructor(moneyBank, productList) {
@@ -12,7 +13,7 @@ export class VendingMachine {
     if (isValid) {
       this.moneyBank.insertMoney(money);
     } else {
-      alert('잘못된 금액 값입니다.');
+      alert(MONEYINPUT);
     }
   }
 
@@ -31,7 +32,7 @@ export class VendingMachine {
       view.showProductListAll(this.productList.products);
       this.showInsertedMoney(view);
     } else {
-      alert('구매할 수 없습니다.');
+      alert(ERROR.CANTPURCHASE);
     }
   }
 

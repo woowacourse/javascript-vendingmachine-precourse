@@ -1,4 +1,5 @@
 import Validation from '../utils/validation.js';
+import { ERROR } from '../utils/constant.js';
 
 export class Money {
   constructor(moneyBank) {
@@ -13,7 +14,7 @@ export class Money {
       const coinArray = this.getRandomCoins(money);
       this.moneyBank.chargeCoins(coinArray);
     } else {
-      alert('잘못된 금액 입력값입니다.');
+      alert(ERROR.MONEYINPUT);
     }
   }
 

@@ -1,4 +1,4 @@
-import { SUBTITLE, LABEL, TEXT, PLACEHOLDER, ID, DATASET, CLASS } from '../utils/constant.js';
+import { SUBTITLE, LABEL, TEXT, PLACEHOLDER, ID, DATASETKEY, CLASS } from '../utils/constant.js';
 import {
   Subtitle,
   InputById,
@@ -97,9 +97,9 @@ export default class PurchasePage {
   attachProduct(product) {
     const productTr = TrByClassName(
       [
-        TdByClassNameAndDataset(product.name, CLASS.PURCHASE_NAME, DATASET.PRODUCT_NAME),
-        TdByClassNameAndDataset(product.price, CLASS.PURCHASE_PRICE, DATASET.PRODUCT_PRICE),
-        TdByClassNameAndDataset(product.quantity, CLASS.PURCHASE_QUANTITY, DATASET.PRODUCT_QUANTITY),
+        TdByClassNameAndDataset(product.name, CLASS.PURCHASE_NAME, DATASETKEY.PRODUCT_NAME),
+        TdByClassNameAndDataset(product.price, CLASS.PURCHASE_PRICE, DATASETKEY.PRODUCT_PRICE),
+        TdByClassNameAndDataset(product.quantity, CLASS.PURCHASE_QUANTITY, DATASETKEY.PRODUCT_QUANTITY),
         TdButtonClassName(CLASS.PURCHASE_BUTTON, product.name, this.controller),
       ],
       CLASS.PURCHASE_ITEM,

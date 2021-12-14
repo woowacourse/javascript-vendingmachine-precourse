@@ -19,7 +19,7 @@ export default class MoneyBank {
     localStorage.setItem('10', this.coins[0].quantity);
     localStorage.setItem('50', this.coins[1].quantity);
     localStorage.setItem('100', this.coins[2].quantity);
-    localStorage.setItem('500', this.coins[3].quantity); // 하드코딩하지말것. 수정해야함
+    localStorage.setItem('500', this.coins[3].quantity);
   }
 
   updateMoney() {

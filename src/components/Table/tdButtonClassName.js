@@ -1,9 +1,10 @@
 import Button from '../Button/button.js';
+import { TEXT } from '../../utils/constant.js';
 
 const TdButtonClassName = (className, productName, controller) => {
   const tdButtonClassName = document.createElement('td');
   tdButtonClassName.setAttribute('class', className);
-  const button = Button('구매하기'); // 상수화할것
+  const button = Button(TEXT.PURCHASE);
   button.addEventListener('click', e => {
     e.preventDefault();
     controller.purchase(productName);

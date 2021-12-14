@@ -63,7 +63,7 @@ export const CLASS = {
   PURCHASE_QUANTITY: 'product-purchase-quantity',
 };
 
-export const DATASET = {
+export const DATASETKEY = {
   PRODUCT_NAME: 'productName',
   PRODUCT_PRICE: 'productPrice',
   PRODUCT_QUANTITY: 'productQuantity',
@@ -76,6 +76,7 @@ export const TEXT = {
   INSERT: '투입 하기',
   INSERTED: '투입한 금액: ',
   RETURN: '반환하기',
+  PURCHASE: '구입하기',
 };
 
 export const LABEL = {
@@ -93,4 +94,7 @@ export const LABEL = {
 
 export const ERROR = {
   MANAGEINPUT: '입력한 값이 올바르지 않습니다',
+  MONEYINPUT: '잘못된 금액 입력값입니다.',
+  CANTPURCHASE: '구매할 수 없습니다.',
+  CANTFINDPRODUCT: '해당 상품을 찾을 수 없습니다.',
 };

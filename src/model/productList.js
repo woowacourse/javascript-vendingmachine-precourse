@@ -1,4 +1,5 @@
 import Product from './product.js';
+import { ERROR } from '../utils/constant.js';
 
 export default class ProductList {
   constructor() {
@@ -35,7 +36,7 @@ export default class ProductList {
   removeProduct(productName) {
     const index = this.findIndex(productName);
     if (index === -1) {
-      alert('해당 상품은 없습니다.'); // 상수화 필요
+      alert(ERROR.CANTFINDPRODUCT); // 상수화 필요
     } else {
       this.products[index].quantity -= 1;
       localStorage.setItem(`product-${productName}`, `${this.products[index].price}-${this.products[index].quantity}`);
