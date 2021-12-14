@@ -9,7 +9,7 @@ const coinToIdx = {
 
 const getPickCoinList = (amount) => COINS.filter((coin) => amount >= coin);
 
-const distributeCoin = (amount) => {
+const getDistributedCoinRandomly = (amount) => {
     let chargeAmount = amount;
     const ret = Array(COINS.length).fill(0);
 
@@ -22,4 +22,4 @@ const distributeCoin = (amount) => {
     return ret;
 };
 
-export default distributeCoin;
+export default getDistributedCoinRandomly;

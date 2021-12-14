@@ -1,6 +1,6 @@
 import ChargeCoinTap from '../view/ChargeCoinTap.js';
 import { checkChargeAmount } from '../asset/validation/index.js';
-import { getEnableChargeAmount, distributeCoin } from '../asset/util/index.js';
+import { getEnableChargeAmount, getDistributedCoinRandomly } from '../asset/util/index.js';
 import { getChargeAmount, getCoinCnts, setCoinCnts } from '../localStorage/index.js';
 
 export default class ChargeCoin {
@@ -32,7 +32,7 @@ export default class ChargeCoin {
     }
 
     chargeCoin(chargeAmount) {
-        const distributedCoin = distributeCoin(getChargeAmount() + chargeAmount);
+        const distributedCoin = getDistributedCoinRandomly(getChargeAmount() + chargeAmount);
 
         setCoinCnts(distributedCoin);
         this.render();

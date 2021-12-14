@@ -1,6 +1,6 @@
 import { COINS } from '../constants/index.js';
 
-const distributeCoinGreedily = (amount, coinCnts) => {
+const getDistributedCoinGreedily = (amount, coinCnts) => {
     let inputAmount = amount;
 
     return COINS.map((coin, idx) => {
@@ -12,4 +12,4 @@ const distributeCoinGreedily = (amount, coinCnts) => {
     });
 };
 
-export default distributeCoinGreedily;
+export default getDistributedCoinGreedily;

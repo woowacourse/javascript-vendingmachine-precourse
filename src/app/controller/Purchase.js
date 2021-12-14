@@ -9,7 +9,7 @@ import {
     setCoinCnts,
 } from '../localStorage/index.js';
 import { ERROR_MSG } from '../asset/constants/index.js';
-import { distributeCoinGreedily, calcCoinAmount } from '../asset/util/index.js';
+import { getDistributedCoinGreedily, calcCoinAmount } from '../asset/util/index.js';
 
 export default class Purchase {
     constructor($skeleton) {
@@ -81,7 +81,7 @@ export default class Purchase {
             }
 
             const coinCnts = getCoinCnts();
-            const distributedCoin = distributeCoinGreedily(getInputAmount(), coinCnts);
+            const distributedCoin = getDistributedCoinGreedily(getInputAmount(), coinCnts);
 
             this.updateAmount(-calcCoinAmount(distributedCoin));
             setCoinCnts(coinCnts.map((coinCnt, idx) => coinCnt - distributedCoin[idx]));
