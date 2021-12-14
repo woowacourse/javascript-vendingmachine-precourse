@@ -1,5 +1,5 @@
 import { $ } from '../dom.js';
-import DrawTable from '../drawTable.js';
+import AddModeDrawTable from './addModeDrawTable.js';
 import Item from '../item/item.js';
 import PurchaseItem from '../purchaseMode/purchaseItem.js';
 function alreadyContain(itemList, name, price, count) {
@@ -18,11 +18,11 @@ export default function addItem(name, price, count) {
     let itemCount = parseInt(itemList[alreadyinCheck].count);
     itemList[alreadyinCheck].count = itemCount+parseInt(count);
     localStorage.setItem('itemList', JSON.stringify(itemList));
-    DrawTable();
+    AddModeDrawTable();
   }
   else {
     itemList.push(new Item(name, price, count));
     localStorage.setItem('itemList', JSON.stringify(itemList));
-    DrawTable();
+    AddModeDrawTable();
   }
 }
