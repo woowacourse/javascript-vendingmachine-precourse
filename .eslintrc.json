@@ -9,11 +9,13 @@
     "ecmaVersion": 12
   },
   "rules": {
-    "prettier/prettier": ["error", { "printwidth": "100" }],
+    "prettier/prettier": ["error"],
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     "no-param-reassign": "off",
     "no-new": "off",
+    "no-alert": "off",
+    "consistent-return": "off",
     "class-methods-use-this": "off",
     "max-depth": ["error", 2],
     "max-lines-per-function": ["error", 15]

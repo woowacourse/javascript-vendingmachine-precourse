@@ -43,6 +43,7 @@ export default class ManageController {
 
   createRandomCoins(chargeAmount) {
     while (chargeAmount > 0) {
+      // eslint-disable-next-line no-undef
       const randomUnit = MissionUtils.Random.pickNumberInList(COIN_UNIT);
       if (chargeAmount >= randomUnit) {
         chargeAmount -= randomUnit;
