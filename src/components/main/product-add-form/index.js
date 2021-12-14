@@ -3,6 +3,7 @@ import Component from '../../../core/Component.js';
 export default class ProductAddForm extends Component {
   template() {
     return `
+        <h3>상품 추가하기</h3>
         <form>
           <input type="text" id="product-name-input" placeholder="상품명" maxlength="15" />
           <input type="number" id="product-price-input" placeholder="가격" />

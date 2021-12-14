@@ -16,17 +16,20 @@ export default class TabContent extends Component {
   mounted() {
     const { tabID } = this.$props;
     const $tabContent = this.$target.querySelector(`[data-component="${tabID}"]`);
-    return this.getDataComponent($tabContent, tabID);
+
+    this.getDataComponent($tabContent, tabID);
   }
 
   getDataComponent($target, tabID) {
-    const { stock } = this.$props;
+    const { stock, chargedCoins } = this.$props;
+
     switch (tabID) {
       case ID.PRDCT_ADD:
         return new ProductAddTab($target, { stock });
 
       case ID.MCHNE_MANAGE:
-        return new MachineManageTab($target, { stock });
+        console.log(chargedCoins);
+        return new MachineManageTab($target, { chargedCoins });
 
       case ID.PRDCT_PURCHASE:
         return new ProductPurchaseTab($target, { stock });

@@ -18,3 +18,5 @@ export const TABS = [
     title: '상품 구매',
   },
 ];
+
+export const COINS = [500, 100, 50, 10];

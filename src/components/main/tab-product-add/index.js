@@ -12,6 +12,7 @@ export default class ProductAddTab extends Component {
   template() {
     return `
         <div data-component="product-add-form"></div>
+        <br>
         <div data-component="product-table"></div>
       `;
   }
@@ -28,6 +29,7 @@ export default class ProductAddTab extends Component {
 
   addProduct({ name, price, quantity }) {
     const { stock } = this.$state;
+    console.log(stock);
     this.setState({
       stock: [...stock, { name, price, quantity }],
     });

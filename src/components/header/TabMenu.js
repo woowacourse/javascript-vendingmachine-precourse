@@ -6,7 +6,7 @@ export default class TabMenu extends Component {
 
     return `
       <h1>🥤자판기🥤</h1>
-      <nav style="height: 50px">
+      <nav style="height: 35px">
         <ul style="list-style: none; padding: 0px;">
           ${tabData
             .map(

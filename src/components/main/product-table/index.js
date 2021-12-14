@@ -4,7 +4,7 @@ export default class ProductTable extends Component {
   template() {
     const { stock } = this.$props;
     return `
-      <h2>상품 현황</h2>
+      <h3>상품 현황</h3>
       <table>
         <thead>
           <tr>
