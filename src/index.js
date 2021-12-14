@@ -109,7 +109,10 @@ function isCorrectChargeMoney(money) {
 //
 function putMoney() {
     const inputAmount = document.querySelector("#charge-input").value;
-    console.log(inputAmount);
+    if(isCorrectChargeMoney(inputAmount)) console.log('yea');
+    else {
+        console.log('nono');
+    }
 }
 
 
