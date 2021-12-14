@@ -16,6 +16,14 @@ export default class ChargeAddController {
     this.renderRandomCoin();
   }
 
+  renderChargeAdd () {
+    this.chargeAddField.style = ("display: block");
+    this.setChargeCoin();
+    this.setRandomCoin()
+    this.renderCharge();
+    this.renderRandomCoin();
+  }
+
   getChargeCoin() {
     this.chargeModel.setLocalCharge(this.validAddCoin);
     this.setChargeCoin();

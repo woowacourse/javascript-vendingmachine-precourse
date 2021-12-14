@@ -13,11 +13,10 @@ export default class ProductControlController {
     this.renderProduct();
   }
 
-  render () {}
-
-  setEvent() {}
-
-  renderProduct() {}
+  renderProductControl () {
+    this.proudctControlField.style = ("display: block");
+    this.controlModel;
+  }
 
   getProductList(product) {
     product.length > 0 && this.controlModel.setLoacalProductList([product]);

@@ -10,9 +10,33 @@ export default class App {
     this.productControlView = new ProductControlView($app);
     this.chargeAddView = new ChargeAddView($app);
     this.productPurchaseView = new ProductPurchaseView($app);
+    this.$tabButtonWrap = document.querySelector('#product-menu');
+    this.gameStart();
+    this.tabButtonEvent();
   }
 
   renderTabButton() {
-    this.$app.append(tabButtonTemplete());
+    this.$app.innerHTML = (tabButtonTemplete());
   }
+
+  gameStart() {
+    [...this.$app.childNodes].map(conponent => conponent.style = ("display: none"));
+    this.$tabButtonWrap.style = ("display: block");
+    this.productControlView.renderProductControl();
+  }
+
+  tabButtonEvent() {
+    this.$tabButtonWrap.addEventListener('click', ({ target }) => {
+      [...this.$app.childNodes].map(conponent => conponent.style = ("display: none"))
+      this.$tabButtonWrap.style = ("display: block");
+      if (target.id === "product-add-menu") {
+        this.productControlView.renderProductControl();
+      } else if (target.id === "vending-machine-manage-menu") {
+        this.chargeAddView.renderChargeAdd();
+      } else if (target.id === "product-purchase-menu") {
+        this.productPurchaseView.renderPorductPurchase();
+      }
+    })
+  }
+
 }

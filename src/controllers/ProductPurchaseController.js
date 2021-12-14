@@ -22,6 +22,12 @@ export default class ProductPurchaseController {
     this.renderRetrunCharge();
   }
 
+  renderPorductPurchase() {
+    this.productPurchaseField.style = ("display: block");
+    this.renderMoney();
+    this.renderAblePurchase();
+  }
+
   getInsertMoney() {
     this.validInsertMoney && this.purchaseModel.setLocalInsertMoney(this.validInsertMoney);
     this.setInsertMoney();
