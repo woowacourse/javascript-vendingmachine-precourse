@@ -1,8 +1,6 @@
 # 자판기
 
-자판기를 Vanilla Javascript로 구현한 프로젝트입니다.
-
-반환되는 동전이 최소한이 되는 자판기를 구현한다.
+반환되는 동전이 최소한이 되는 자판기를 Vanilla Javascript로 구현한 프로젝트입니다.
 
 <br>
 
@@ -10,13 +8,19 @@
 
 ### 1) 공통
 
+---
+
 - [x] 상품 관리를 눌러 상품 관리 탭으로 이동할 수 있다.
 - [x] 잔돈 충전을 눌러 잔돈 충전 탭으로 이동할 수 있다.
-- [x] 상품 구매를 눌러 상품 구매 탭으로 이동할 수 있다
+- [x] 상품 구매를 눌러 상품 구매 탭으로 이동할 수 있다.
+- [x] 새로고침을 하더라도 가장 최근에 작업한 정보들을 불러올 수 있어야한다. (localStorage)
+- [x] 다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다.
 
 <br>
 
 ### 2) 상품 관리 탭
+
+---
 
 `상품 관리`탭은 자판기가 보유하고 있는 **상품을 추가**하는 기능을 수행한다.
 
@@ -25,8 +29,6 @@
   - [x] 상품 가격은 100원부터 시작한다.
   - [x] 상품 가격은 10원으로 나누어 떨어져야한다.
 - [x] 추가한 상품을 확인할 수 있다.
-- [x] 새로고침을 하더라도 가장 최근에 작업한 정보들을 불러올 수 있어야한다. (localStorage)
-- [x] 다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다.
 
 <br>
 
@@ -42,8 +44,6 @@
   - [x] 자판기 보유 금액을 누적하여 충전할 수 있다. 추가 충전 금액만큼의 동전이 무작위로 생성되어 기존 동전들에 더해진다.
 - [x] 자판기가 보유한 금액을 볼 수 있다.
 - [x] 자판기가 보유한 동전을 볼 수 있다.
-- [x] 새로고침을 하더라도 가장 최근에 작업한 정보들을 불러올 수 있어야한다. (localStorage)
-- [x] 다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다.
 
 <br>
 
@@ -66,12 +66,10 @@
   - [x] 잔돈을 반환할 수 없는 경우 잔돈으로 반환할 수 있는 금액만 반환한다.
 - [x] 반환받은 잔돈(동전 종류와 개수)을 볼 수 있다.
   - [x] 동전의 개수를 나타내는 정보는 `{개수}개` 형식으로 나타낸다.
-- [x] 새로고침을 하더라도 가장 최근에 작업한 정보들을 불러올 수 있어야한다. (localStorage)
-- [x] 다른 탭으로 이동했다 돌아와도 기존 탭의 상태가 유지되어야 한다.
 
 <br>
 
-### 예외사항
+### 5) 예외사항
 
 - [x] 웹사이트 첫 접속시 상품 관리 탭을 보여줘야 한다.
 - [x] 상품 등록할 때 입력값(수량, 가격, 이름)에 대한 추가적인 유효성 검사를 진행한다.
@@ -92,57 +90,3 @@
   - [x] 물건의 수량이 0보다 커야한다.
 
 <br>
-
-### 5) DOM 선택자 사용
-
-### DOM 선택자
-
-각 요소에 아래와 같은 선택자를 반드시 지정한다.
-
-**탭 메뉴 버튼**
-
-- `상품 구매` 탭으로 이동하는 메뉴 버튼 id는 `product-purchase-menu`이다.
-- `잔돈 충전`탭으로 이동하는 메뉴 버튼 id는 `vending-machine-manage-menu`이다.
-- `상품 관리`탭으로 이동하는 메뉴 버튼 id는 `product-add-menu`이다.
-
-**상품 관리(추가) 메뉴**
-
-- 상품 추가 입력 폼의 상품명 입력 요소의 id는 `product-name-input`이다.
-- 상품 추가 입력 폼의 상품 가격 입력 요소의 id는 `product-price-input`이다.
-- 상품 추가 입력 폼의 수량 입력 요소의 id는 `product-quantity-input`이다.
-- 상품 `추가하기` 버튼 요소의 id는 `product-add-button`이다.
-- 추가한 각 상품 요소의 class명은 `product-manage-item`이며, 하위에 아래 요소들을 갖는다.
-  - 상품명에 해당하는 요소의 class명은 `product-manage-name`이다.
-  - 가격에 해당하는 요소의 class명은 `product-manage-price`이다.
-  - 수량에 해당하는 요소의 class명은 `product-manage-quantity`이다.
-
-**잔돈 충전 (자판기 보유 동전) 메뉴**
-
-- 자판기가 보유할 금액을 충전할 요소의 id는 `vending-machine-charge-input`이다.
-- `충전하기` 버튼에 해당하는 요소의 id는 `vending-machine-charge-button`이다.
-- 충전된 금액을 확인하는 요소의 id는 `vending-machine-charge-amount` 이다.
-- 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-  - 500원: `vending-machine-coin-500-quantity`
-  - 100원: `vending-machine-coin-100-quantity`
-  - 50원: `vending-machine-coin-50-quantity`
-  - 10원: `vending-machine-coin-10-quantity`
-
-**상품 구매 메뉴**
-
-- 투입 금액 입력 요소의 id는 `charge-input`이다.
-- 투입하기 버튼 요소의 id는 `charge-button`이다.
-- 투입한 금액을 확인하는 요소의 id는 `charge-amount`이다.
-- 반환하기 버튼 요소의 id는 `coin-return-button`이다.
-- 반환된 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-  - 500원: `coin-500-quantity`
-  - 100원: `coin-100-quantity`
-  - 50원: `coin-50-quantity`
-  - 10원: `coin-10-quantity`
-- 각 상품 요소의 class명은 `product-purchase-item`이고, 하위에 아래 요소들을 갖는다.
-  - 구매 버튼에 해당하는 요소의 class명은 `purchase-button`이다.
-  - 상품명에 해당하는 요소의 class명은 `product-purchase-name`이다.
-  - 가격에 해당하는 요소의 class명은 `product-purchase-price`이다.
-  - 수량에 해당하는 요소의 class명은 `product-purchase-quantity`이다.
-  - 상품명은 `dataset` 속성을 사용하고 `data-product-name` 형식으로 저장한다.
-  - 가격은 `dataset` 속성을 사용하고 `data-product-price` 형식으로 저장한다.
-  - 수량은 `dataset` 속성을 사용하고 `data-product-quantity` 형식으로 저장한다.
