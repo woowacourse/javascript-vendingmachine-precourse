@@ -17,22 +17,28 @@
 ```bash
 src
  ┣ controller
- ┃ ┣ CheckCoinReturn.js
+ ┃ ┣ ProductAddMenu
+ ┃ ┃ ┣ CheckProductAddMenu.js
+ ┃ ┃ ┗ SetProductAdd.js
+ ┃ ┣ ProductPurchaseMenu
+ ┃ ┃ ┣ CheckCoinReturn.js
+ ┃ ┃ ┣ CheckProductPurchaseMenu.js
+ ┃ ┃ ┣ SetCoinReturn.js
+ ┃ ┃ ┣ SetPurchaseButtons.js
+ ┃ ┃ ┗ SetVendingMachinePurchase.js
+ ┃ ┣ VendingMachineChargeMenu
+ ┃ ┃ ┣ CheckVendingMachineManageMenu.js
+ ┃ ┃ ┗ SetVendingMachineCharge.js
+ ┃ ┣ localStorage
+ ┃ ┃ ┗ SetLocalStorage.js
  ┃ ┣ CheckEventTarget.js
- ┃ ┣ CheckProductAddMenu.js
- ┃ ┣ CheckProductPurchaseMenu.js
- ┃ ┣ CheckVendingMachineManageMenu.js
- ┃ ┣ Controller.js
- ┃ ┣ SetLocalStorage.js
- ┃ ┣ SetProductAdd.js
- ┃ ┣ SetVendingMachineCharge.js
- ┃ ┗ SetVendingMachinePurchase.js
+ ┃ ┗ Controller.js
  ┣ model
  ┃ ┣ Coins.js
  ┃ ┣ Product.js
  ┃ ┣ ProductAdd.js
- ┃ ┣ VendingMachine.js
- ┃ ┗ VendingMachineCharge.js
+ ┃ ┣ ValidationInputCoin.js
+ ┃ ┗ VendingMachine.js
  ┣ style
  ┃ ┗ style.css
  ┣ utils
