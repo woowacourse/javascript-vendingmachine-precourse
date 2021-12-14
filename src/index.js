@@ -29,6 +29,7 @@ export class Buying{
       const vendingMachine = new VendingMachine();
       window.localStorage.setItem('itemList', JSON.stringify(vendingMachine.state.itemList));
       window.localStorage.setItem('coinList', JSON.stringify(vendingMachine.state.coinList));
+      window.localStorage.setItem('pushCoin', JSON.stringify({ "money": 0 }));
     }
   }
   start() {

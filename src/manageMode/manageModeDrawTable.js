@@ -2,7 +2,7 @@ import { $ } from '../dom.js';
 
 function addTable() {
   const table = document.createElement('table');
-  table.id = "product-table";
+  table.id = "coin-table";
   return table;
 }
 function addTableHead() {
@@ -28,17 +28,16 @@ function drawItemInTable(coinList) {
     countTd.innerText = `${coinList[i].count}개`;
     countTd.id = `vending-machine-coin-${coinUnit[i]}-quantity`;
     tr.append(unitTd, countTd);
-    $("#product-table").appendChild(tr);
+    $("#coin-table").appendChild(tr);
   }
 }
 export default function ManageModeDrawTable() {
   $('#content').append(addTable());
-  const table = $("#product-table");
+  const table = $("#coin-table");
   while (table.firstChild) {
     table.removeChild(table.lastChild);
   }
   table.appendChild(addTableHead());
   const coinList = JSON.parse(localStorage.getItem('coinList'));
-  console.log(coinList);
   drawItemInTable(coinList);
 } 
