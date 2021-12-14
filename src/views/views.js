@@ -14,7 +14,7 @@ export function initialViews() {
 
 export function productManagementView() {
   $app.innerHTML += `
-    <div id="product-manager" hidden>
+    <div id="product-component" hidden>
       <h3>상품 추가하기</h3>
       <form>
         <input id="product-name-input" placeholder="상품명" />
@@ -32,7 +32,7 @@ export function productManagementView() {
 
 export function changeChargeView() {
   $app.innerHTML += `
-    <div id="charge-manager" hidden>
+    <div id="charge-component" hidden>
       <h3>자판기 동전 충전하기</h3>
       <input id="vending-machine-charge-input" type="number" placeholder="자판기가 보유할 금액" />
       <button id="vending-machine-charge-button">충전하기</button>
@@ -47,7 +47,7 @@ export function changeChargeView() {
 
 export function productPurchaseView() {
   $app.innerHTML += `
-    <div id="purchase-manager" hidden>
+    <div id="purchase-component" hidden>
       <h3>금액 투입</h3>
       <input id="charge-input" type="number" placeholder="투입할 금액" />
       <button id="charge-button">투입하기</button>
