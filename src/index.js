@@ -126,6 +126,24 @@ function renderInputMoney(money) {
     document.querySelector("#charge-amount").textContent = `투입한 금액: ${money}`;
 }
 
+//
+function purchaseProduct(target) {
+    const currentRow = target.parentElement.parentElement;
+    let quantity = parseInt(currentRow.children[2].dataset?.productQuantity, 10);
+    const price = parseInt(currentRow.children[1].dataset?.productPrice, 10);
+    
+    if(totalInputMoney >= price && quantity > 0) {
+        quantity -= 1;
+        currentRow.children[2].dataset.productQuantity = quantity.toString();
+        currentRow.children[2].textContent = quantity.toString();
+    }
+    else {
+        alert("더이상 구매할 수 없습니다.");
+    }
+}
+
+//
+
 function renderProductList(products) {
     const productTable = document.querySelector("table");
     products.forEach(product => {
@@ -133,15 +151,12 @@ function renderProductList(products) {
         const newProductRow = document.createElement("tr");
         newProductRow.className = "product-purchase-item";
         newProductRow.innerHTML = `<td class="product-purchase-name" data-product-name="${name}">${name}</td>
-                                    <td class="product-purchase-price" data-prouct-price="${price}">${price}</td>
+                                    <td class="product-purchase-price" data-product-price="${price}">${price}</td>
                                     <td class="product-purchase-quantity" data-product-quantity="${quantity}">${quantity}</td>
                                     <td><button class="purchase-button">구매하기</button></td>`;
         productTable.appendChild(newProductRow);
     });
 }
-
-
-//
 
 function onTabClick(fileName, tabId) {
     fetchHtmlView(fileName)
@@ -168,7 +183,7 @@ const app = document.querySelector("#app");
 fetchHtmlView('tab.html').then(view => app.innerHTML = view);
 
 // variables
-let productList = [];
+let productList = [{name: 'as', price: '1000', quantity: '1'}];
 let chargedMoney = 0;
 const totalChanges = generateChangeObject();
 let totalInputMoney = 0;
@@ -184,5 +199,10 @@ app.addEventListener('click', function(e) {
         "vending-machine-charge-button"() { chargeMoney(); },
         "charge-button"() { putMoney(); },
     };
-    if(Object.keys(handlers).includes(e.target.id)) handlers[e.target.id]();
+    const classHandlers = {
+        "purchase-button"() { purchaseProduct(e.target); },
+    };
+
+    if(Object.keys(idHandlers).includes(e.target.id)) idHandlers[e.target.id]();
+    if(Object.keys(classHandlers).includes(e.target.className)) classHandlers[e.target.className]();
 });
