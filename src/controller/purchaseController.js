@@ -113,6 +113,9 @@ export default class PurchaseController {
     purchaseObject.setChargeMoneyStorage(chargeMoney);
     PurchaseView.updateChargeInput(purchaseObject);
     PurchaseView.addReturnCoins(returnCoins);
+    if (Math.max(...returnCoins) === 0) {
+      alert(PURCHASE_ERR.noCoins);
+    }
     this.updateCoinStorage(returnCoins);
   }
 

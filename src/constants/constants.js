@@ -66,6 +66,7 @@ export const PURCHASE_ELEMENT_CLASS = {
 export const PURCHASE_ERR = {
   shortMoney: '보유 금액이 부족합니다!',
   noQuantity: '상품 수량이 없습니다!',
+  noCoins: '반환할 동전이 없습니다!',
 };
 
 export const MENU_ELEMENT = {
