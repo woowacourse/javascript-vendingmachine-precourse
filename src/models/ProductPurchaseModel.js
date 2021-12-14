@@ -1,4 +1,4 @@
-import { PRODUCT, NUMBER, NOTHING } from "../utils/constants.js";
+import { PRODUCT, NUMBER, NOTHING, COIN_TYPE } from "../utils/constants.js";
 import { checkInsertPrice } from "../utils/validation/moneyAdd.js";
 
 export default class ProductPurchaseModel {
@@ -42,6 +42,18 @@ export default class ProductPurchaseModel {
     }
   }
 
+  getLocalRandonCoin() {
+    const randomCoinLocal = JSON.parse(localStorage.getItem("RANDOM_COIN"));
+
+    return randomCoinLocal;
+  }
+
+  getLocalReturnCharge() {
+    const localRetrunCharge = JSON.parse(localStorage.getItem("CHARGE_RESULT"));
+
+    return localRetrunCharge;
+  }
+
   getPurchaseResult() {
     const localProductList = JSON.parse(localStorage.getItem("PRODUCT_LIST"));
 
@@ -68,29 +80,29 @@ export default class ProductPurchaseModel {
   calculateMinCharge(randomCoinLocal, localCharge, localTotalInsertMoney) {
     const chargeCount = Object.values(randomCoinLocal);
     const maxChargeCount = Object.values(randomCoinLocal).reduce((a, b) => a + b);
-    const result = Array.from({ length: chargeCount.length }, () => 0)
-    let outCharge = 0;
-    for (let i = 0; i < maxChargeCount; i++) {
+    const result = Array.from({ length: chargeCount.length }, () => NUMBER.ZERO)
+    let outCharge = NUMBER.ZERO;
+    for (let i = NUMBER.ZERO; i < maxChargeCount; i++) {
       let coin;
-      if (chargeCount[0] > 0 && localTotalInsertMoney >= 500) {
-        coin = 500;
-        result[0]++;
-        chargeCount[0]--;
+      if (chargeCount[COIN_TYPE.FIVEHUN] > NUMBER.ZERO && localTotalInsertMoney >= NUMBER.FIVEHUN) {
+        coin = NUMBER.FIVEHUN;
+        result[NUMBER.ZERO]++;
+        chargeCount[NUMBER.ZERO]--;
         outCharge += coin;
-      } else if (chargeCount[1] > 0 && localTotalInsertMoney >= 100) {
-        coin = 100;
-        result[1]++;
-        chargeCount[1]--;
+      } else if (chargeCount[COIN_TYPE.ONEHUN] > NUMBER.ZERO && localTotalInsertMoney >= NUMBER.ONEHUN) {
+        coin = NUMBER.ONEHUN;
+        result[NUMBER.ONE]++;
+        chargeCount[NUMBER.ONE]--;
         outCharge += coin;
-      } else if (chargeCount[2] > 0 && localTotalInsertMoney >= 50) {
-        coin = 50;
-        result[2]++;
-        chargeCount[2]--;
+      } else if (chargeCount[COIN_TYPE.FIFTY] > NUMBER.ZERO && localTotalInsertMoney >= NUMBER.FIFTY) {
+        coin = NUMBER.FIFTY;
+        result[NUMBER.TWO]++;
+        chargeCount[NUMBER.TWO]--;
         outCharge += coin;
-      } else if (chargeCount[3] > 0 && localTotalInsertMoney >= 10) {
-        coin = 10;
-        result[3]++;
-        chargeCount[3]--;
+      } else if (chargeCount[COIN_TYPE.TEN] > NUMBER.ZERO && localTotalInsertMoney >= NUMBER.TEN) {
+        coin = NUMBER.TEN;
+        result[NUMBER.THREE]++;
+        chargeCount[NUMBER.THREE]--;
         outCharge += coin;
       }
       if (localTotalInsertMoney === NUMBER.ZERO) break;
@@ -106,17 +118,4 @@ export default class ProductPurchaseModel {
     localStorage.setItem("RANDOM_COIN", JSON.stringify(chargeCount));
     localStorage.setItem("CHARGE_RESULT", JSON.stringify(result));
   }
-
-  getLocalRandonCoin() {
-    const randomCoinLocal = JSON.parse(localStorage.getItem("RANDOM_COIN"));
-
-    return randomCoinLocal;
-  }
-
-  getLocalReturnCharge() {
-    const localRetrunCharge = JSON.parse(localStorage.getItem("CHARGE_RESULT"));
-
-    return localRetrunCharge;
-  }
-
 }

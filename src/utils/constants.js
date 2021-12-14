@@ -19,6 +19,8 @@ export const ERROR_MESSAGE = {
 export const NUMBER = {
   ZERO: 0,
   ONE: 1,
+  TWO: 2,
+  THREE: 3,
   TEN: 10,
   FIFTY: 50,
   ONEHUN: 100,
@@ -38,3 +40,17 @@ export const COIN_TYPE = {
   TEN: 3,
 }
 
+export const ELEMENT_ID = {
+  PRODUCT_MENU: "#product-menu",
+  PRODUCT_ADD_MENU: "product-add-menu",
+  MACHINE_MAMAGE_MENU: "vending-machine-manage-menu",
+  PRODUCT_PURCHASE_MENU: "product-purchase-menu",
+  MACHINE_500_QUANTITY: "#vending-machine-coin-500-quantity",
+  MACHINE_100_QUANTITY: "#vending-machine-coin-100-quantity",
+  MACHINE_50_QUANTITY: "#vending-machine-coin-50-quantity",
+  MACHINE_10_QUANTITY: "#vending-machine-coin-10-quantity",
+  CHARGE_500_QUANTITY: "#coin-500-quantity",
+  CHARGE_100_QUANTITY: "#coin-100-quantity",
+  CHARGE_50_QUANTITY: "#coin-50-quantity",
+  CHARGE_10_QUANTITY: "#coin-10-quantity",
+}

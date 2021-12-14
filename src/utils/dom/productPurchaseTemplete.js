@@ -1,4 +1,4 @@
-import { COIN_TYPE } from "../constants.js";
+import { COIN_TYPE, ELEMENT_ID } from "../constants.js";
 
 export const productPurchaseTemplete = `
   <h2>금액 투입</h2>
@@ -60,10 +60,10 @@ export function renderAblePurchaseProductList(product) {
 }
 
 export function renderCharge(charge) {
-  const contain500Coin = document.querySelector('#coin-500-quantity');
-  const contain100Coin = document.querySelector('#coin-100-quantity');
-  const contain50Coin = document.querySelector('#coin-50-quantity');
-  const contain10Coin = document.querySelector('#coin-10-quantity');
+  const contain500Coin = document.querySelector(ELEMENT_ID.CHARGE_500_QUANTITY);
+  const contain100Coin = document.querySelector(ELEMENT_ID.CHARGE_100_QUANTITY);
+  const contain50Coin = document.querySelector(ELEMENT_ID.CHARGE_50_QUANTITY);
+  const contain10Coin = document.querySelector(ELEMENT_ID.CHARGE_10_QUANTITY);
   contain500Coin.innerText = `${charge[COIN_TYPE.FIVEHUN]}개`;
   contain100Coin.innerText = `${charge[COIN_TYPE.ONEHUN]}개`;
   contain50Coin.innerText = `${charge[COIN_TYPE.FIFTY]}개`;

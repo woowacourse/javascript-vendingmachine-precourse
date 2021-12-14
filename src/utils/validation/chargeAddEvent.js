@@ -1,11 +1,11 @@
-import { COIN_TYPE, ERROR_MESSAGE } from "../constants.js";
+import { COIN_TYPE, ELEMENT_ID, ERROR_MESSAGE, NUMBER } from "../constants.js";
 
 export function chargeAddValiate(coin) {
   let result = true;
   if (!coin) {
     alert(ERROR_MESSAGE.CHARGE_NOEMPTY_INPUT);
     result = false;
-  } else if (Number(coin) - parseInt(Number(coin)) !== 0 || coin <= 0) {
+  } else if (Number(coin) - parseInt(Number(coin)) !== NUMBER.ZERO || coin <= NUMBER.ZERO) {
     alert(ERROR_MESSAGE.CHARGE_NATURALNUM);
     result = false;
   }
@@ -14,10 +14,10 @@ export function chargeAddValiate(coin) {
 }
 
 export function renderContainRandomCoin(coins) {
-  const contain500Coin = document.querySelector('#vending-machine-coin-500-quantity');
-  const contain100Coin = document.querySelector('#vending-machine-coin-100-quantity');
-  const contain50Coin = document.querySelector('#vending-machine-coin-50-quantity');
-  const contain10Coin = document.querySelector('#vending-machine-coin-10-quantity');
+  const contain500Coin = document.querySelector(ELEMENT_ID.MACHINE_500_QUANTITY);
+  const contain100Coin = document.querySelector(ELEMENT_ID.MACHINE_100_QUANTITY);
+  const contain50Coin = document.querySelector(ELEMENT_ID.MACHINE_50_QUANTITY);
+  const contain10Coin = document.querySelector(ELEMENT_ID.MACHINE_10_QUANTITY);
   contain500Coin.innerText = `${coins[COIN_TYPE.FIVEHUN]}개`;
   contain100Coin.innerText = `${coins[COIN_TYPE.ONEHUN]}개`;
   contain50Coin.innerText = `${coins[COIN_TYPE.FIFTY]}개`;
