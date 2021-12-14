@@ -3,6 +3,7 @@ import { HEADER, CHANGE_CHARGE } from '../constants/selector.js';
 import { COIN, NUMBER } from '../constants/constants.js';
 import InputChange from '../components/inputChange.js';
 import VendingmachineCoin from '../components/vendingmachineCoin.js';
+import { validateChangeInput } from '../util/validation.js';
 import coinGenerator from '../util/coinGenerator.js';
 import { setLocalStorage, getLocalStorage } from '../store.js';
 
@@ -56,9 +57,12 @@ export default class ChangeCharge {
   setEvent() {
     $(`#${CHANGE_CHARGE.ID.CHARGE_BUTTON}`).addEventListener('click', () => {
       const chargeValue = $(`#${CHANGE_CHARGE.ID.CHARGE_INPUT}`).value;
-      const coinObject = coinGenerator(this.getStore(), Number(chargeValue));
 
-      this.setStore(coinObject);
+      if (validateChangeInput(chargeValue)) {
+        const coinObject = coinGenerator(this.getStore(), Number(chargeValue));
+
+        this.setStore(coinObject);
+      }
     });
   }
 
