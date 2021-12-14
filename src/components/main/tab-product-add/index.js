@@ -29,9 +29,7 @@ export default class ProductAddTab extends Component {
 
   addProduct({ name, price, quantity }) {
     const { stock } = this.$state;
-    console.log(stock);
-    this.setState({
-      stock: [...stock, { name, price, quantity }],
-    });
+    stock.push({ name, price, quantity });
+    this.setState({ stock });
   }
 }

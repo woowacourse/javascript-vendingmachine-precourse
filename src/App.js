@@ -7,7 +7,11 @@ export default class App extends Component {
   setup() {
     this.$state = {
       tabData: TABS.map(({ id, title }, index) => ({ seq: index, id, title })),
-      stock: [],
+      stock: [
+        { name: '사이다', price: 200, quantity: 20 },
+        { name: '콜라', price: 300, quantity: 20 },
+        { name: '과자', price: 300, quantity: 0 },
+      ],
       chargedCoins: COINS.map(unit => ({ unit, count: 0 })),
     };
   }
