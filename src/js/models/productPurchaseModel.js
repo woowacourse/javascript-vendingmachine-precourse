@@ -46,16 +46,6 @@ export const calculateCharge = change => {
   return countCharge;
 };
 
-export const getChange = () => {
-  const hasCoin = store.getLocalStorage('coins');
-  const change = Number($('#charge-amount').innerText);
-
-  if (change > hasCoin.amount) {
-    return change - hasCoin.amount;
-  }
-  return 0;
-};
-
 export const updateAmount = (inputMoney, productPrice) => {
   inputMoney -= productPrice;
   return inputMoney;
