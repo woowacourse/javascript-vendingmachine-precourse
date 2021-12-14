@@ -54,15 +54,22 @@ export default class ProductPurchaseModel {
     return localTotalInsertMoney;
   }
 
-  setMinCharge() {
+  getMinCharge() {
     const randomCoinLocal = JSON.parse(localStorage.getItem("RANDOM_COIN"));
     let localCharge = JSON.parse(localStorage.getItem("CHARGE"));
+    let localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));  
+    randomCoinLocal.find(coin => coin !== NUMBER.ZERO) 
+    ? this.calculateMinCharge(randomCoinLocal, localCharge, localTotalInsertMoney) 
+    : NOTHING;
+    
+    return JSON.parse(localStorage.getItem("CHARGE_RESULT"));
+  }
+
+  calculateMinCharge(randomCoinLocal, localCharge, localTotalInsertMoney) {
     const chargeCount = Object.values(randomCoinLocal);
     const maxChargeCount = Object.values(randomCoinLocal).reduce((a, b) => a + b);
-    let localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));  
-
+    const result = Array.from({ length: chargeCount.length }, () => 0)
     let outCharge = 0;
-    const result = Array.from({length: chargeCount.length }, () => 0)
     for (let i = 0; i < maxChargeCount; i++) {
       let coin;
       if (chargeCount[0] > 0 && localTotalInsertMoney >= 500) {
@@ -86,20 +93,27 @@ export default class ProductPurchaseModel {
         chargeCount[3]--;
         outCharge += coin;
       }
-      if (localTotalInsertMoney === 0) break;
-      localTotalInsertMoney -= coin;
+      if (localTotalInsertMoney === NUMBER.ZERO) break;
+      coin ? localTotalInsertMoney -= coin : NOTHING;
     }
     let returnCharge = localCharge - outCharge;
+    this.setMinCharge(returnCharge, localTotalInsertMoney, chargeCount, result)
+  }
 
+  setMinCharge(returnCharge, localTotalInsertMoney, chargeCount, result) {
     localStorage.setItem("CHARGE", JSON.stringify(returnCharge));
     localStorage.setItem("INSERT_MONEY", JSON.stringify(localTotalInsertMoney));
     localStorage.setItem("RANDOM_COIN", JSON.stringify(chargeCount));
     localStorage.setItem("CHARGE_RESULT", JSON.stringify(result));
-
-    return result;
   }
 
-  getReturnCharge() {
+  getLocalRandonCoin() {
+    const randomCoinLocal = JSON.parse(localStorage.getItem("RANDOM_COIN"));
+
+    return randomCoinLocal;
+  }
+
+  getLocalReturnCharge() {
     const localRetrunCharge = JSON.parse(localStorage.getItem("CHARGE_RESULT"));
 
     return localRetrunCharge;

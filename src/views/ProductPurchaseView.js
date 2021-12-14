@@ -55,6 +55,8 @@ export default class ProductPurchaseView extends ProductPurchaseController {
       this.checkRandomCoin() 
       ? this.returnCharge()
       : alert(ERROR_MESSAGE.NOCOIN_IN_MACHINE);
+      this.getRandomCoin();
+      this.localRandomCoin && this.localRandomCoin.find(coin => coin !== NUMBER.ZERO) ? NOTHING : alert("잔돈이 부족합니다");
     })
   }
 
@@ -65,7 +67,9 @@ export default class ProductPurchaseView extends ProductPurchaseController {
   }
   
   renderChargeResult() {
-    this.chargeResult && renderCharge(this.chargeResult);
+    console.log(this.localProductList)
+    console.log(this.chargeResult)
+    !this.localReturnCharge && this.chargeResult ? renderCharge(this.chargeResult) : NOTHING;
     this.localReturnCharge && renderCharge(this.localReturnCharge);
     this.renderMoney();
   }

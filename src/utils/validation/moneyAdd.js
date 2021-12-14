@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, NUMBER, PRODUCT } from "../constants.js";
+import { ERROR_MESSAGE, NOTHING, NUMBER, PRODUCT } from "../constants.js";
 
 export function moneyAddValidate(money) {
   let result = true;

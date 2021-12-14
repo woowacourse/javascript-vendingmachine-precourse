@@ -53,14 +53,19 @@ export default class ProductPurchaseController {
   }
 
   returnCharge() {
-    this.chargeResult = this.purchaseModel.setMinCharge();
+    this.chargeResult = this.purchaseModel.getMinCharge();
+    console.log(this.chargeResult)
     this.setInsertMoney();
     this.renderChargeResult();
   }
 
   renderRetrunCharge() {
-    this.localReturnCharge = this.purchaseModel.getReturnCharge();
+    this.localReturnCharge = this.purchaseModel.getLocalReturnCharge();
     this.renderChargeResult();
+  }
+
+  getRandomCoin() {
+    this.localRandomCoin = this.purchaseModel.getLocalRandonCoin();
   }
 
 }
