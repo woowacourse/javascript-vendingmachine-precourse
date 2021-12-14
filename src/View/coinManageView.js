@@ -30,7 +30,7 @@ export default class CoinManageView {
       BUTTON: COIN_MANAGE.CHARGE_BUTTON,
     });
     this.container.append(inputFormArea);
-    this.input = document.getElementById(COIN_MANAGE.INPUT.ID);
+    this.coinChargeInput = document.getElementById(COIN_MANAGE.INPUT.ID);
   }
 
   renderHaveCoinTable() {
@@ -42,16 +42,16 @@ export default class CoinManageView {
   bindChargeButtonEvent() {
     const chargeButton = document.getElementById(COIN_MANAGE.CHARGE_BUTTON.ID);
     chargeButton.addEventListener("click", () => {
-      this.coinStore.charge(this.input.value);
+      this.coinStore.charge(this.coinChargeInput.value);
       this.loadTotalCoin();
       this.loadCoinToHave();
     });
   }
 
   loadTotalCoin() {
-    this.coinToHave = document.getElementById(COIN_MANAGE.TEXT.PRINT_AMOUNT_ID);
+    this.coinToHaveArea = document.getElementById(COIN_MANAGE.TEXT.PRINT_AMOUNT_ID);
     const totalCoin = this.coinStore.getTotalCoin();
-    this.coinToHave.innerText = totalCoin;
+    this.coinToHaveArea.innerText = totalCoin;
   }
 
   loadCoinToHave() {
