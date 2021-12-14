@@ -2,6 +2,7 @@ import ProductAddMenuView from "./views/ProductAddMenuView.js";
 import VendingMachineManageMenuView from "./views/VendingMachineManageMenuView.js";
 import ProductPurchaseMenuView from "./views/ProductPurchaseMenuView.js";
 import ProductAddMenuController from "./controller/ProductAddMenuController.js";
+import VendingMachineManageMenuController from "./controller/VendingMachineManageMenuController.js";
 import { getData, setData } from "./utils/localStorage.js";
 
 export default class Menu {
@@ -11,6 +12,8 @@ export default class Menu {
     this.productPurchaseMenuView = new ProductPurchaseMenuView();
 
     this.ProductAddMenuController = new ProductAddMenuController();
+    this.VendingMachineManageMenuController =
+      new VendingMachineManageMenuController();
   }
 
   productAddMenuInitialize() {
@@ -19,7 +22,7 @@ export default class Menu {
   }
 
   vendingMachineManageMenuInitialize() {
-    this.vendingMachineManageMenuView.render();
+    this.vendingMachineManageMenuView.render(getData("coins"));
   }
 
   productPurchaseMenuInitialize() {

@@ -7,7 +7,7 @@ const vendingMachineManageMenu = {
         <input id="vending-machine-charge-input" placeholder="자판기가 보유할 금액" type="number"/>
         <button id="vending-machine-charge-button">충전하기</button>
       </form><br />
-      보유 금액: <span id="ending-machine-charge-amount"></span>
+      보유 금액: <span id="vending-machine-charge-amount"></span>
     </section>
     <br />
     <section>
