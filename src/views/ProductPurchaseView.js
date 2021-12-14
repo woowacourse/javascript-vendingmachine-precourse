@@ -1,4 +1,5 @@
 import ProductPurchaseController from "../controllers/ProductPurchaseController.js";
+import { ERROR_MESSAGE, NOTHING, NUMBER } from "../utils/constants.js";
 import { productPurchaseTemplete, renderAblePurchaseProductList, renderCharge } from "../utils/dom/productPurchaseTemplete.js";
 import { moneyAddValidate } from "../utils/validation/moneyAdd.js";
 
@@ -15,24 +16,24 @@ export default class ProductPurchaseView extends ProductPurchaseController {
       const insertMoney  = this.productPurchaseField.querySelector('input').value;
       moneyAddValidate(insertMoney) 
       ? (this.validInsertMoney = insertMoney, this.getInsertMoney())
-      : "";
-      this.validInsertMoney = 0;
+      : NOTHING;
+      this.validInsertMoney = NUMBER.ZERO;
     })
   }
 
   renderMoney() {
     const $moneyWrap = document.querySelector('#charge-amount');
-    this.loacalTotalInsertMoney ? $moneyWrap.innerText = this.loacalTotalInsertMoney : "";
-    !this.loacalTotalInsertMoney && this.validInsertMoney ? $moneyWrap.innerText = this.validInsertMoney : "";
-    !this.loacalTotalInsertMoney && !this.validInsertMoney ? $moneyWrap.innerText = "0" : "";
+    this.loacalTotalInsertMoney ? $moneyWrap.innerText = this.loacalTotalInsertMoney : NOTHING;
+    !this.loacalTotalInsertMoney && this.validInsertMoney ? $moneyWrap.innerText = this.validInsertMoney : NOTHING;
+    !this.loacalTotalInsertMoney && !this.validInsertMoney ? $moneyWrap.innerText = "0" : NOTHING;
   }
 
   renderLocalPurchase() {
     const $produtAblePurchaseWrap = document.querySelector('#product-purchase-wrap');
-    $produtAblePurchaseWrap.innerHTML = "";
+    $produtAblePurchaseWrap.innerHTML = NOTHING;
     this.purchaseProductResult
     ? this.purchaseProductResult.map(productInfo => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(productInfo)))
-    : this.localProductList.map(v => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(v)));
+    : this.localProductList.map(product => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(product)));
   }
 
   setPurchaseEvent() {
@@ -53,7 +54,7 @@ export default class ProductPurchaseView extends ProductPurchaseController {
     $chargeReturnButton.addEventListener('click', () => {
       this.checkRandomCoin() 
       ? this.returnCharge()
-      : alert("자판기에 동전이 없습니다");
+      : alert(ERROR_MESSAGE.NOCOIN_IN_MACHINE);
     })
   }
 

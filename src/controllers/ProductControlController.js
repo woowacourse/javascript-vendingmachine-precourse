@@ -1,4 +1,5 @@
 import ProductControlModel from "../models/ProductControlModel.js";
+import { ELEMENT_SHOW, NUMBER } from "../utils/constants.js";
 
 export default class ProductControlController {
   constructor($app) {
@@ -13,13 +14,13 @@ export default class ProductControlController {
   }
 
   renderProductControl () {
-    this.proudctControlField.style = ("display: block");
+    this.proudctControlField.style = ELEMENT_SHOW;
     this.controlModel;
     this.getProductList();
   }
 
   getProductList() {
-    this.product.length > 0 && this.controlModel.setLoacalProductList([this.product]);
+    this.product.length > NUMBER.ZERO && this.controlModel.setLoacalProductList([this.product]);
     this.setProductList()
   }
 

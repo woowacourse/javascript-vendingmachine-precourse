@@ -1,4 +1,5 @@
 import ChargeAddModel from "../models/ChargeAddModel.js";
+import { ELEMENT_SHOW } from "../utils/constants.js";
 
 export default class ChargeAddController {
   constructor($app) {
@@ -17,7 +18,7 @@ export default class ChargeAddController {
   }
 
   renderChargeAdd () {
-    this.chargeAddField.style = ("display: block");
+    this.chargeAddField.style = ELEMENT_SHOW;
     this.setChargeCoin();
     this.setRandomCoin()
     this.renderCharge();

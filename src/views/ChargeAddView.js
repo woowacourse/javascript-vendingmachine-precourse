@@ -1,4 +1,5 @@
 import ChargeAddController from "../controllers/ChargeAddController.js";
+import { NOTHING, NUMBER } from "../utils/constants.js";
 import { chargeAddTemplete } from "../utils/dom/chargeAddTemplete.js";
 import { chargeAddValiate, renderContainRandomCoin } from "../utils/validation/chargeAddEvent.js";
 
@@ -15,16 +16,16 @@ export default class ChargeAddView extends ChargeAddController {
       const addCoin = this.chargeAddField.querySelector('input').value;
       chargeAddValiate(addCoin) 
       ? (this.validAddCoin = addCoin, this.renderCharge(), this.getChargeCoin(), this.renderRandomCoin())
-      : "";
-      this.validAddCoin = 0;
+      : NOTHING;
+      this.validAddCoin = NUMBER.ZERO;
     })
   }
 
   renderCharge() {
     const $chargeWrap = document.querySelector('#vending-machine-charge-amount');
-    !this.validAddCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
-    !this.localTotalCharge && this.validAddCoin ? $chargeWrap.innerText = this.validAddCoin : "";
-    this.localTotalCharge && this.validAddCoin ? $chargeWrap.innerText = (Number(this.validAddCoin) + Number(this.localTotalCharge)) : "";
+    !this.validAddCoin ? $chargeWrap.innerText = this.localTotalCharge : NOTHING;
+    !this.localTotalCharge && this.validAddCoin ? $chargeWrap.innerText = this.validAddCoin : NOTHING;
+    this.localTotalCharge && this.validAddCoin ? $chargeWrap.innerText = (Number(this.validAddCoin) + Number(this.localTotalCharge)) : NOTHING;
   }
 
   renderRandomCoin() {

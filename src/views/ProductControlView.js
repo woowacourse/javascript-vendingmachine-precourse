@@ -1,4 +1,5 @@
 import ProductControlController from "../controllers/ProductControlController.js";
+import { NOTHING, NUMBER } from "../utils/constants.js";
 import { productControlTemplete, renderProductList } from "../utils/dom/productControlTemplete.js";
 import { productAddValiate } from "../utils/validation/productAddEvent.js";
 
@@ -22,9 +23,9 @@ export default class ProductControlView extends ProductControlController {
   renderProduct() {
     const $productListWrap = document.querySelector('#product-control-wrap');
     $productListWrap.innerHTML = "";
-    this.localProductList && this.product.length === 0 ? this.localProductList.map(v => $productListWrap.append(renderProductList(v))): "",
-    this.localProductList && this.product.length > 0 ? this.localProductList.map(v => $productListWrap.append(renderProductList(v))) : "",
-    !this.localProductList && this.product.length > 0 ? $productListWrap.append(renderProductList(this.product)) : "";
+    this.localProductList && this.product.length === NUMBER.ZERO ? this.localProductList.map(product => $productListWrap.append(renderProductList(product))): NOTHING,
+    this.localProductList && this.product.length > NUMBER.ZERO ? this.localProductList.map(product => $productListWrap.append(renderProductList(product))) : NOTHING,
+    !this.localProductList && this.product.length > NUMBER.ZERO ? $productListWrap.append(renderProductList(this.product)) : NOTHING;
   }
 
 }

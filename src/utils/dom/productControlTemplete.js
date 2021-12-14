@@ -1,3 +1,5 @@
+import { PRODUCT } from "../constants.js";
+
 export const productControlTemplete =  `
   <h2>상품 추가하기</h2>
   <form id="product-control-form">
@@ -21,9 +23,9 @@ export const productControlTemplete =  `
 export function renderProductList(product) {
   const divFragment = document.createElement('tr');
   divFragment.className = "product-manage-item";
-  divFragment.innerHTML = `<td class="product-manage-name" style="border: 1px solid black">${product[0]}</td>
-    <td class="product-manage-price" style="border: 1px solid black">${product[1]}</td>
-    <td class="product-manage-quantity" style="border: 1px solid black">${product[2]}</td>`;
+  divFragment.innerHTML = `<td class="product-manage-name" style="border: 1px solid black">${product[PRODUCT.NAME]}</td>
+    <td class="product-manage-price" style="border: 1px solid black">${product[PRODUCT.PRICE]}</td>
+    <td class="product-manage-quantity" style="border: 1px solid black">${product[PRODUCT.COUNT]}</td>`;
   
   return divFragment;
 }

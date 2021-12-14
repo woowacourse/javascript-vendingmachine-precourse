@@ -1,3 +1,5 @@
+import { COIN_TYPE } from "../constants.js";
+
 export const productPurchaseTemplete = `
   <h2>금액 투입</h2>
   <form id="charge-form">
@@ -62,8 +64,8 @@ export function renderCharge(charge) {
   const contain100Coin = document.querySelector('#coin-100-quantity');
   const contain50Coin = document.querySelector('#coin-50-quantity');
   const contain10Coin = document.querySelector('#coin-10-quantity');
-  contain500Coin.innerText = `${charge[0]}개`;
-  contain100Coin.innerText = `${charge[1]}개`;
-  contain50Coin.innerText = `${charge[2]}개`;
-  contain10Coin.innerText = `${charge[3]}개`;
+  contain500Coin.innerText = `${charge[COIN_TYPE.FIVEHUN]}개`;
+  contain100Coin.innerText = `${charge[COIN_TYPE.ONEHUN]}개`;
+  contain50Coin.innerText = `${charge[COIN_TYPE.FIFTY]}개`;
+  contain10Coin.innerText = `${charge[COIN_TYPE.TEN]}개`;
 }

@@ -1,3 +1,5 @@
+import { COIN_TYPE, NUMBER } from "../utils/constants.js";
+
 export default class ChargeAddModel {
   constructor() {
     this.totalCharge;
@@ -24,11 +26,11 @@ export default class ChargeAddModel {
     const randomCoins = [];
     let typeNuberCharge = Number(charge);
     while(typeNuberCharge !== 0) {
-      let coin = MissionUtils.Random.pickNumberInList([10, 50, 100, 500]);
+      let coin = MissionUtils.Random.pickNumberInList([NUMBER.TEN, NUMBER.FIFTY, NUMBER.ONEHUN, NUMBER.FIVEHUN]);
       typeNuberCharge -= coin;
-      if (typeNuberCharge >= 0) {
+      if (typeNuberCharge >= NUMBER.ZERO) {
         randomCoins.push(coin);
-      } else if (typeNuberCharge < 0) {
+      } else if (typeNuberCharge < NUMBER.ZERO) {
         typeNuberCharge += coin;
       }
     }
@@ -38,14 +40,14 @@ export default class ChargeAddModel {
   setContainCoin(randomCoins) {
     this.randomCoin = this.getRandonCoin();
     randomCoins.map((coin) => {
-      if (coin === 500) {
-        this.randomCoin[0]++;
-      } else if (coin === 100) {
-        this.randomCoin[1]++;
-      } else if (coin === 50) {
-        this.randomCoin[2]++;
-      } else if (coin === 10) {
-        this.randomCoin[3]++;
+      if (coin === NUMBER.FIVEHUN) {
+        this.randomCoin[COIN_TYPE.FIVEHUN]++;
+      } else if (coin === NUMBER.ONEHUN) {
+        this.randomCoin[COIN_TYPE.ONEHUN]++;
+      } else if (coin === NUMBER.FIFTY) {
+        this.randomCoin[COIN_TYPE.FIFTY]++;
+      } else if (coin === NUMBER.TEN) {
+        this.randomCoin[COIN_TYPE.TEN]++;
       }
     });
     localStorage.setItem("RANDOM_COIN", JSON.stringify(this.randomCoin));
@@ -54,7 +56,7 @@ export default class ChargeAddModel {
   getRandonCoin() {
     const randomCoinLocal = JSON.parse(localStorage.getItem("RANDOM_COIN"));
 
-    return randomCoinLocal ? randomCoinLocal : [0, 0, 0, 0];
+    return randomCoinLocal ? randomCoinLocal : [NUMBER.ZERO, NUMBER.ZERO, NUMBER.ZERO, NUMBER.ZERO];
   }
 
 

@@ -1,3 +1,4 @@
+import { ELEMENT_HIDE, ELEMENT_SHOW } from "./utils/constants.js";
 import { tabButtonTemplete } from "./utils/dom/tabButtonTemplete.js";
 import ChargeAddView from "./views/ChargeAddView.js";
 import ProductControlView from "./views/ProductControlView.js";
@@ -20,15 +21,15 @@ export default class App {
   }
 
   gameStart() {
-    [...this.$app.childNodes].map(conponent => conponent.style = ("display: none"));
-    this.$tabButtonWrap.style = ("display: block");
+    [...this.$app.childNodes].map(conponent => conponent.style = ELEMENT_HIDE);
+    this.$tabButtonWrap.style = ELEMENT_SHOW;
     this.productControlView.renderProductControl();
   }
 
   tabButtonEvent() {
     this.$tabButtonWrap.addEventListener('click', ({ target }) => {
-      [...this.$app.childNodes].map(conponent => conponent.style = ("display: none"))
-      this.$tabButtonWrap.style = ("display: block");
+      [...this.$app.childNodes].map(conponent => conponent.style = ELEMENT_HIDE)
+      this.$tabButtonWrap.style = ELEMENT_SHOW;
       if (target.id === "product-add-menu") {
         this.productControlView.renderProductControl();
       } else if (target.id === "vending-machine-manage-menu") {

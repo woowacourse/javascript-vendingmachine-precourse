@@ -1,4 +1,5 @@
 import ProductPurchaseModel from "../models/ProductPurchaseModel.js";
+import { ELEMENT_SHOW } from "../utils/constants.js";
 
 export default class ProductPurchaseController {
   constructor($app) {
@@ -23,8 +24,7 @@ export default class ProductPurchaseController {
   }
 
   renderPorductPurchase() {
-    this.productPurchaseField.style = ("display: block");
-    // this.renderMoney();
+    this.productPurchaseField.style = ELEMENT_SHOW;
     this.setInsertMoney()
     this.renderAblePurchase();
   }

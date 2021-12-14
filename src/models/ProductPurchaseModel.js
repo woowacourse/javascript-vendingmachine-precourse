@@ -1,3 +1,6 @@
+import { PRODUCT, NUMBER, NOTHING } from "../utils/constants.js";
+import { checkInsertPrice } from "../utils/validation/moneyAdd.js";
+
 export default class ProductPurchaseModel {
   constructor() {
     this.totalInsertMoney;
@@ -28,27 +31,15 @@ export default class ProductPurchaseModel {
   setPurchaseProduct(selectProduct) {
     const localProductList = JSON.parse(localStorage.getItem("PRODUCT_LIST"));
     let localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));
-    let checkInsertPriceResult = this.checkInsertPrice(localTotalInsertMoney, localProductList, selectProduct);
+    let checkInsertPriceResult = checkInsertPrice(localTotalInsertMoney, localProductList, selectProduct);
     if (checkInsertPriceResult) {
-      localProductList.map(product => product[0] === selectProduct[0] 
-        ? (product[2] = (Number(product[2])-1), localTotalInsertMoney -= Number(product[1])) 
-        : "" );
-      localProductList.forEach((product, i) => product[2] === 0 ? localProductList.splice(i, 1): "");
+      localProductList.map(product => product[PRODUCT.NAME] === selectProduct[PRODUCT.NAME] 
+        ? (product[PRODUCT.COUNT] = (Number(product[PRODUCT.COUNT]) - NUMBER.ONE), localTotalInsertMoney -= Number(product[PRODUCT.PRICE])) 
+        : NOTHING );
+      localProductList.forEach((product, i) => product[PRODUCT.COUNT] === NUMBER.ZERO ? localProductList.splice(i, NUMBER.ONE): NOTHING);
       localStorage.setItem("PRODUCT_LIST", JSON.stringify(localProductList));
       localStorage.setItem("INSERT_MONEY", JSON.stringify(localTotalInsertMoney));
     }
-  }
-
-  checkInsertPrice(localTotalInsertMoney, localProductList, selectProduct) {
-    let result = true;
-    localProductList.map(product => product[0] === selectProduct[0]
-      ? product[1] > localTotalInsertMoney
-        ? (alert("투입 금액보다 바싼 상품은 구매할 수 없습니다"), result = false)
-        : ""
-      : ""
-    );
-
-    return result;
   }
 
   getPurchaseResult() {
@@ -62,7 +53,6 @@ export default class ProductPurchaseModel {
 
     return localTotalInsertMoney;
   }
-
 
   setMinCharge() {
     const randomCoinLocal = JSON.parse(localStorage.getItem("RANDOM_COIN"));
