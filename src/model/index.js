@@ -9,6 +9,12 @@ export default class Model {
     };
   }
 
+  addProduct(product) {
+    const allProducts = this.getProducts();
+    allProducts.push(product);
+    this.setProducts(allProducts);
+  }
+
   setProducts(value) {
     localStorage.setItem(KEY.product, JSON.stringify(value));
   }

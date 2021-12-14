@@ -48,7 +48,7 @@ export default class Purchase {
     this.initProductStatusTable();
   }
 
-  calculateProducts(selectProduct, products) {
+  calculateProduct(selectProduct, products) {
     selectProduct.quantity -= 1;
     if (selectProduct.quantity === 0) {
       products = products.filter(product => product.name !== selectProduct.name);
@@ -66,7 +66,7 @@ export default class Purchase {
     const products = this.model.getProducts();
     const selectProduct = products.find(e => e.name === item.childNodes[1].dataset.productName);
     if (validation.isEnoughCoin(charge, selectProduct.price)) {
-      this.calculateProducts(selectProduct, products);
+      this.calculateProduct(selectProduct, products);
       this.calculateCharge(selectProduct, charge);
       this.initPurchaseDom();
     }

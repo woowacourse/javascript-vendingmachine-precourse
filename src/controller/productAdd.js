@@ -57,12 +57,6 @@ export default class ProductAdd {
     );
   }
 
-  updateProductLocalStorage(product) {
-    const allProducts = this.model.getProducts();
-    allProducts.push(product);
-    this.model.setProducts(allProducts);
-  }
-
   addProduct() {
     const productName = $(SELECTOR.productNameInput);
     const productPrice = $(SELECTOR.productPriceInput);
@@ -70,8 +64,7 @@ export default class ProductAdd {
     if (this.isProductInputsValid(productName, productPrice, productQuantity)) {
       const product = this.model.makeProduct(productName, productPrice, productQuantity);
       const table = document.querySelector('tbody');
-
-      this.updateProductLocalStorage(product);
+      this.model.addProduct(product);
       this.view.addTableRow(table, productAddTableRow(product));
       this.initInput(productName, productPrice, productQuantity);
     }

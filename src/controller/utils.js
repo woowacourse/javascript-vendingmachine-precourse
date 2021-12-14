@@ -15,6 +15,7 @@ export const validation = {
 
     return isIncludeBlank;
   },
+
   isPositiveNumber(input) {
     const isPositive = parseInt(input.value, 10) > 0;
     if (!isPositive) {
@@ -23,9 +24,11 @@ export const validation = {
 
     return isPositive;
   },
+
   isInputNumberValid(input) {
     return !this.isBlankExist(input) && this.isPositiveNumber(input);
   },
+
   isMultipleOf10(input) {
     const isMultiple = parseInt(input.value, 10) % 10 === 0;
     if (!isMultiple) {
@@ -34,6 +37,7 @@ export const validation = {
 
     return isMultiple;
   },
+
   isOver100(input) {
     const isOver = parseInt(input.value) >= 100;
     if (!isOver) {
@@ -42,6 +46,7 @@ export const validation = {
 
     return isOver;
   },
+
   isEnoughCoin(chargeInput, price) {
     const isEnough = chargeInput >= price;
     if (!isEnough) {
@@ -50,6 +55,7 @@ export const validation = {
 
     return isEnough;
   },
+
   isAlreadyExistProduct(productName) {
     const allProducts = getItemOrArray('products');
     const isExist = allProducts.find(e => e.name === productName.value);
