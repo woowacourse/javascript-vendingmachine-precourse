@@ -15,6 +15,7 @@
     "no-plusplus": "off",
     "no-param-reassign": "off",
     "consistent-return": "off",
-    "guard-for-in": "off"
+    "guard-for-in": "off",
+    "import/no-cycle": "off"
   }
 }

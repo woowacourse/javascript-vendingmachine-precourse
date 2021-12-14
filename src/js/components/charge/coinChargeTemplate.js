@@ -48,16 +48,7 @@ const haveCoinTemplate = (unit, quantity) => `
   </tr>
 `;
 
-const addConvertedCoins = (unit, quantity) => {
+export const addConvertedCoins = (unit, quantity) => {
   const haveCoin = haveCoinTemplate(unit, quantity);
   $('#vending-machine-coin-list').insertAdjacentHTML('afterbegin', haveCoin);
-};
-
-export const showConvertedCoins = (convertedCoins) => {
-  $('#vending-machine-coin-list').innerHTML = '';
-
-  // eslint-disable-next-line no-restricted-syntax
-  for (const unit in convertedCoins) {
-    addConvertedCoins(unit, convertedCoins[unit]);
-  }
 };
