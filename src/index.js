@@ -59,7 +59,7 @@ function chargeMoney() {
 }
 
 function getTotalChargedMoney(chargeAmount) {
-    chargedMoney += Number(chargeAmount);
+    chargedMoney += parseInt(chargeAmount, 10);
 }
 
 function getTotalChanges(chargeAmount) {
