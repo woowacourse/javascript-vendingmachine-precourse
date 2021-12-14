@@ -116,9 +116,9 @@
 │   └── js
 │       ├── index.js                     // 페이지에 접속하면 초기 화면을 구성하는 html, css을 렌더링 하고, 각 메뉴를 눌렀을 때 알맞은 화면 렌더링 및 해당 Controller로 이동한다. 
 │       ├── controllers                  // models, views 사이를 연결하면서 이벤트를 관리하고, 프로그램이 돌아갈 수 있게 하는 역할
-│       │   ├── HandleProductAdd.js      // 메뉴 ‘상품 관리’를 클릭했을 때 실행하는 로직
-│       │   ├── HandleVendingMachine.js  // 메뉴 ‘잔돈 충전’을 클릭했을 때 실행하는 로직 
-│       │   └── HandleProductPurchase.js // 메뉴 ‘상품 구매’를 클릭했을 때 실행하는 로직 
+│       │   ├── handleProductAdd.js      // 메뉴 ‘상품 관리’를 클릭했을 때 실행하는 로직
+│       │   ├── handleVendingMachine.js  // 메뉴 ‘잔돈 충전’을 클릭했을 때 실행하는 로직 
+│       │   └── handleProductPurchase.js // 메뉴 ‘상품 구매’를 클릭했을 때 실행하는 로직 
 │       ├── models                       // 데이터를 관리하는 역할 (views에 접근하지 않음)
 │       │   ├── productAddModel.js       // HandleProductAdd.js에서 호출하는 model
 │       │   ├── vendingMachineModel.js   // HandleVendingMachine.js에서 호출하는 model
@@ -138,7 +138,7 @@
     └── app.spec.js
 ```
 각 메뉴별로 controller, models, views 파일이 하나씩 존재합니다. 
-<br>'상품 관리' 메뉴는 `HandleProductAdd.js`(controller), `productAddModel.js`(model), `productAddView.js`(view)이며 
-<br>'잔돈 충전' 메뉴는 `HandleVendingMachine.js`(controller), `vendingMachineModel.js`(model), `vendingMachineView.js`(view)이며 
-<br>'상품 구매' 메뉴는 `HandleProductPurchase.js`(controller), `productPurchaseModel.js`(model), `productPurchaseView.js`(view)입니다. 
+<br>'상품 관리' 메뉴는 `handleProductAdd.js`(controller), `productAddModel.js`(model), `productAddView.js`(view)이며 
+<br>'잔돈 충전' 메뉴는 `handleVendingMachine.js`(controller), `vendingMachineModel.js`(model), `vendingMachineView.js`(view)이며 
+<br>'상품 구매' 메뉴는 `handleProductPurchase.js`(controller), `productPurchaseModel.js`(model), `productPurchaseView.js`(view)입니다. 
 
