@@ -31,7 +31,7 @@ export default class Product {
   }
 
   checkName(name) {
-    if (name === null) {
+    if (name === "") {
       return alert(EMPTY_NAME);
     }
     const productList = this.getProductData().map(product => product.name);
@@ -60,9 +60,10 @@ export default class Product {
   }
 
   changeTableRowFormat(productClass, { name, price, quantity }) {
-    const newProductData = [name, price, quantity]
-      .filter(data => data)
-      .map((value, key) => ({ text: value, class: productClass[key] }));
+    const newProductData = [name, price, quantity].map((value, key) => ({
+      text: value,
+      class: productClass[key],
+    }));
     return newProductData;
   }
 

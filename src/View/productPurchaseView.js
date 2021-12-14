@@ -53,7 +53,7 @@ export default class ProductPurchaseView {
   renderProductList() {
     clearArea(this.productMenuTableBody);
     const products = this.product.getProductData();
-    if (products === null) return;
+    if (products.length === 0) return;
 
     products.forEach(product => {
       const purchaseButton = makeElement({

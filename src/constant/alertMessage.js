@@ -1,5 +1,5 @@
 // 제품추가
-export const EMPTY_NAME = `제품명을 입력해주세요.`;
+export const EMPTY_NAME = `상품명을 입력해주세요.`;
 export const DUPLICATE_NAME = `이미 추가된 제품명입니다.`;
 export const NOT_DIVIDE_10 = `가격은 10의 단위로만 입력하실 수 있습니다.`;
 export const LESS_THAN_100 = `가격은 최소 100원 이상으로 입력하실 수 있습니다.`;
