@@ -2,26 +2,11 @@ import { ID } from '../constants.js';
 
 export const getVendingMachineCoinListTemplate = (coinList) => {
   return `
-    <tr>
-      <th>동전</th>
-      <th>개수</th>
-    </tr>
-    <tr>
-      <th >500원</th>
-      <td id=${ID.VENDING_MACHINE_COIN_500_QUANTITY}>${coinList['500']}개</td>
-    </tr>
-    <tr>
-      <th>100원</th>
-      <td id=${ID.VENDING_MACHINE_COIN_100_QUANTITY}>${coinList['100']}개</td>
-    </tr>
-    <tr>
-      <th>50원</th>
-      <td id=${ID.VENDING_MACHINE_COIN_50_QUANTITY}>${coinList['50']}개</td>
-    </tr>
-    <tr>
-      <th>10원</th>
-      <td id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}>${coinList['10']}개</td>
-    </tr>
+    <tr><th>동전</th><th>개수</th></tr>
+    <tr><th >500원</th><td id=${ID.VENDING_MACHINE_COIN_500_QUANTITY}>${coinList['500']}개</td></tr>
+    <tr><th>100원</th><td id=${ID.VENDING_MACHINE_COIN_100_QUANTITY}>${coinList['100']}개</td></tr>
+    <tr><th>50원</th><td id=${ID.VENDING_MACHINE_COIN_50_QUANTITY}>${coinList['50']}개</td></tr>
+    <tr><th>10원</th><td id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}>${coinList['10']}개</td></tr>
   `;
 };
 
@@ -38,26 +23,11 @@ export const getVendingMachineManageTemplate = (vendingMachineManageMenu) => {
     <section>
       <h4>자판기가 보유한 동전</h4>
       <table id=${ID.VENDING_MACHINE_COIN_LIST}>
-        <tr>
-          <th>동전</th>
-          <th>개수</th>
-        </tr>
-        <tr>
-          <th>500원</th>
-          <td id=${ID.VENDING_MACHINE_COIN_500_QUANTITY}>${vendingMachineManageMenu.coinList['500']}개</td>
-        </tr>
-        <tr>
-          <th>100원</th>
-          <td id=${ID.VENDING_MACHINE_COIN_100_QUANTITY}>${vendingMachineManageMenu.coinList['100']}개</td>
-        </tr>
-        <tr>
-          <th>50원</th>
-          <td id=${ID.VENDING_MACHINE_COIN_50_QUANTITY}>${vendingMachineManageMenu.coinList['50']}개</td>
-        </tr>
-        <tr>
-          <th>10원</th>
-          <td id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}">${vendingMachineManageMenu.coinList['10']}개</td>
-        </tr>
+        <tr><th>동전</th><th>개수</th></tr>
+        <tr><th>500원</th><td id=${ID.VENDING_MACHINE_COIN_500_QUANTITY}>${vendingMachineManageMenu.coinList['500']}개</td></tr>
+        <tr><th>100원</th><td id=${ID.VENDING_MACHINE_COIN_100_QUANTITY}>${vendingMachineManageMenu.coinList['100']}개</td></tr>
+        <tr><th>50원</th><td id=${ID.VENDING_MACHINE_COIN_50_QUANTITY}>${vendingMachineManageMenu.coinList['50']}개</td></tr>
+        <tr><th>10원</th><td id=${ID.VENDING_MACHINE_COIN_10_QUANTITY}">${vendingMachineManageMenu.coinList['10']}개</td></tr>
       </table>
     </section>
   `;

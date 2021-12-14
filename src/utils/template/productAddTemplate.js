@@ -24,8 +24,7 @@ export const getProductMangeListTemplate = (productAddMenu) => {
 };
 
 export const getProduceAddTemplate = (productAddMenu) => {
-  return `
-    <section>
+  return `<section>
       <h4>상품 추가하기</h4>
       <form id=${ID.PRODUCT_ADD_FORM}>
         <input id=${ID.PRODUCT_NAME_INPUT} placeholder="상품명"/>
@@ -37,15 +36,10 @@ export const getProduceAddTemplate = (productAddMenu) => {
     <section>
       <h4>상품 현황</h4>
       <table id=${ID.PRODUCT_STATUS_TABLE}>
-        <tr>
-          <th>상품명</th>
-          <th>가격</th> 
-          <th>수량</th>
-        </tr>
+        <tr><th>상품명</th><th>가격</th> <th>수량</th></tr>
         ${productAddMenu
           .map((item) => productManageItemTemplate(item.name, item.price, item.quantity))
           .join('')}
       </table>
-    </section>
-  `;
+    </section>`;
 };

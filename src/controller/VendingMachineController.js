@@ -10,7 +10,6 @@ class VendingMachineController {
     this.vendingMachine = new VendingMachine();
     this.view = new View();
     this.getCurrentTabMenu = this.vendingMachine.getCurrentTabMenu();
-
     this.init();
 
     this.productAddController = new ProductAddController(
@@ -18,13 +17,11 @@ class VendingMachineController {
       this.view,
       this.getCurrentTabMenu
     );
-
     this.vendingMachineManageController = new VendingMachineManageController(
       this.vendingMachine,
       this.view,
       this.getCurrentTabMenu
     );
-
     this.productPurchaseController = new ProductPurchaseController(
       this.vendingMachine,
       this.view,

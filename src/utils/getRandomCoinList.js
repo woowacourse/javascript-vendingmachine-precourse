@@ -10,14 +10,11 @@ export const getRandomCoinList = (chargeInputValue) => {
 
   while (chargeInputValue !== sum) {
     const number = getRandomCoin();
-
     if (sum + number > chargeInputValue) {
       continue;
     }
-
     randomCoinList[number] += 1;
     sum += number;
   }
-
   return randomCoinList;
 };
