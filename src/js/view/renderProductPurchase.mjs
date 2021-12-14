@@ -1,4 +1,4 @@
-import { products } from '../model/products.mjs';
+import { products } from '../model/setProducts.mjs';
 
 const $fragment = new DocumentFragment();
 

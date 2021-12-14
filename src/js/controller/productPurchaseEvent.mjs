@@ -4,7 +4,7 @@ import {
   renderChargedMoney,
   renderReturnCoins
 } from '../view/index.mjs';
-import { products } from '../model/products.mjs';
+import { products } from '../model/setProducts.mjs';
 
 /*
   4) 상품 구매 탭
