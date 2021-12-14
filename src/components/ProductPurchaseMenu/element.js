@@ -12,7 +12,7 @@ import {
   TableHead,
   TableRowWithClassName,
   TableDataWithClassName,
-} from '../Element/elements.js';
+} from '../Element/domElement.js';
 import { createCoinTable } from '../Element/coinTable.js';
 
 const createMoneyAddForm = (event) => {

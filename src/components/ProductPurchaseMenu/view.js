@@ -2,7 +2,7 @@ import { $ } from '../../utils/dom.js';
 import { ID, CLASS } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import { STORAGE_KEY } from '../../constants/storageKey.js';
-import { Container } from '../Element/elements.js';
+import { Container } from '../Element/domElement.js';
 import {
   moneyAddForm,
   userMoneySpan,

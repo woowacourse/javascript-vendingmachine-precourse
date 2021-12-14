@@ -1,6 +1,6 @@
 import { ID } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
-import { Nav, ButtonWithId } from '../Element/elements.js';
+import { Nav, ButtonWithId } from '../Element/domElement.js';
 
 export const createTabNav = (event) => {
   const tabNav = Nav(ID.NAV);

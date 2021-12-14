@@ -8,7 +8,7 @@ import {
   TableWithHead,
   TableRowWithClassName,
   TableDataWithClassName,
-} from '../Element/elements.js';
+} from '../Element/domElement.js';
 
 const createProductInput = () => {
   const productNameInput = Input(

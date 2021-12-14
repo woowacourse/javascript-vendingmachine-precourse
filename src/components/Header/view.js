@@ -1,7 +1,7 @@
 import { $ } from '../../utils/dom.js';
 import { ID } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
-import { Container, Title } from '../Element/elements.js';
+import { Container, Title } from '../Element/domElement.js';
 import { createTabNav } from './element.js';
 import ProductAddMenuView from '../ProductAddMenu/view.js';
 import VendingMachineManageView from '../VendingMachineManageMenu/view.js';
