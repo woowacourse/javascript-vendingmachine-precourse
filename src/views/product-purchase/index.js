@@ -1,5 +1,6 @@
 import { ELEMENT_IDS } from '../../constants.js';
 import { htmlToElement } from '../../utils.js';
+import ProductPurchaseChargeView from './product-purchase-charge-view.js';
 import ProductPurchaseFormView from './product-purchase-form-view.js';
 import ProductPurchaseTableView from './product-purchase-table-view.js';
 
@@ -22,6 +23,7 @@ class ProductPurchaseView {
   mountChildViews() {
     this.$form = new ProductPurchaseFormView(this.$view).mount();
     this.$table = new ProductPurchaseTableView(this.$view).mount();
+    this.$charge = new ProductPurchaseChargeView(this.$view).mount();
   }
 
   unmount() {

@@ -34,8 +34,8 @@ class ProductPurchaseTableView extends Observer {
     return `
       <tr class="${ITEM}">
         <td class="${ITEM_NAME}" ${DATA_ITEM_NAME}="${name}">${name}</td>
-        <td class="${ITEM_PRICE}" ${DATA_ITEM_PRICE}="${price}">${price}원</td>
-        <td class="${ITEM_QUANTITY}" ${DATA_ITEM_QUANTITY}="${quantity}">${quantity}개</td>
+        <td class="${ITEM_PRICE}" ${DATA_ITEM_PRICE}="${price}">${price}</td>
+        <td class="${ITEM_QUANTITY}" ${DATA_ITEM_QUANTITY}="${quantity}">${quantity}</td>
         <td><button type="button" class="${PURCHASE_BUTTON}">구매하기</button></td>
       </tr>
     `;

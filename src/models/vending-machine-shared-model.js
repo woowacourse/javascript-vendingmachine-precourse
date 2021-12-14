@@ -13,6 +13,8 @@ class VendingMachineSharedModel extends Observable {
 
   chargeMoney = 0;
 
+  chargeCoins = { ...INITIAL_COINS };
+
   constructor() {
     if (VendingMachineSharedModel.instance) {
       return VendingMachineSharedModel.instance;
@@ -82,6 +84,7 @@ class VendingMachineSharedModel extends Observable {
     this.productItems = (data && data.productItems) || [];
     this.assetCoins = (data && data.assetCoins) || { ...INITIAL_COINS };
     this.chargeMoney = (data && data.chargeMoney) || 0;
+    this.chargeCoins = (data && data.chargeCoins) || { ...INITIAL_COINS };
   }
 
   saveDataToLocalStorage() {
@@ -90,6 +93,7 @@ class VendingMachineSharedModel extends Observable {
       productItems: this.productItems,
       assetCoins: this.assetCoins,
       chargeMoney: this.chargeMoney,
+      chargeCoins: this.chargeCoins,
     };
     const json = JSON.stringify(data);
     window.localStorage.setItem(LOCAL_STORAGE_KEY, json);

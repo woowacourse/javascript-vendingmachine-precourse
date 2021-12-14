@@ -28,6 +28,7 @@ export const ELEMENT_IDS = Object.freeze({
     PANE: 'product-purchase-pane',
     FORM: 'product-purchase-form',
     TABLE: 'product-purchase-table',
+    CHARGE_TABLE: 'charge-table',
     CHARGE_INPUT: 'charge-input',
     CHARGE_BUTTON: 'charge-button',
     CHARGE_AMOUNT: 'charge-amount',

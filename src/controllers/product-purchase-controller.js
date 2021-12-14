@@ -3,7 +3,9 @@ import {
   PRODUCT_PRICE_UNIT,
   ELEMENT_CLASSES,
   ELEMENT_DATA_ATTRIBUTES,
-  PURCHASE_MESSAGE
+  PURCHASE_MESSAGE,
+  COIN_UNITS,
+  INITIAL_COINS,
 } from '../constants.js';
 import { isEmptyString, isNaturalNum } from '../utils.js';
 import VendingMachineSharedModel from '../models/vending-machine-shared-model.js';
@@ -30,12 +32,15 @@ class ProductPurchaseController extends Observer {
   registerEventListener() {
     const { $chargeButton } = this.$view.$form;
     $chargeButton.addEventListener('click', () => this.handleSubmitMoney());
+    const { $coinReturnButton } = this.$view.$charge;
+    $coinReturnButton.addEventListener('click', () => this.handleClickReturnChargeButton());
   }
 
   registerPurchaseButtonClickEventListener() {
     const $buttons = document.querySelectorAll(`.${ELEMENT_CLASSES.PRODUCT_PURCHASE.PURCHASE_BUTTON}`);
     $buttons.forEach(($button) => {
-      $button.addEventListener('click', (e) => this.handleClickPurchaseBtn(e));
+      $button.removeEventListener('click', this.handleClickPurchaseBtn);
+      $button.addEventListener('click', this.handleClickPurchaseBtn);
     });
   }
 
@@ -51,7 +56,7 @@ class ProductPurchaseController extends Observer {
     alert(message);
   }
 
-  handleClickPurchaseBtn(e) {
+  handleClickPurchaseBtn = (e) => {
     const $button = e.target || e.currentTarget;
     const parent = $button.closest('tr');
     const { ITEM_NAME, ITEM_PRICE, ITEM_QUANTITY } = ELEMENT_DATA_ATTRIBUTES.PRODUCT_PURCHASE;
@@ -62,6 +67,30 @@ class ProductPurchaseController extends Observer {
       quantity: parseInt(quantityNode.getAttribute(`${ITEM_QUANTITY}`), 10),
     };
     this.purchaseProduct(item);
+  }
+
+  // eslint-disable-next-line max-lines-per-function
+  handleClickReturnChargeButton(e) {
+    let { chargeMoney } = this.model;
+    const assetCoins = { ...this.model.assetCoins };
+    const chargeCoins = { ...INITIAL_COINS };
+    for (let i = 0; i < COIN_UNITS.length; i += 1) {
+      const unit = COIN_UNITS[i];
+      const quotient = parseInt(chargeMoney / unit, 10);
+      if (assetCoins[unit] >= quotient) {
+        chargeCoins[unit] += quotient;
+        assetCoins[unit] -= quotient;
+        chargeMoney -= quotient * unit;
+      } else {
+        chargeMoney -= assetCoins[unit] * unit;
+        chargeCoins[unit] = assetCoins[unit];
+        assetCoins[unit] = 0;
+      }
+    }
+
+    this.model.chargeMoney = chargeMoney;
+    this.model.chargeCoins = { ...chargeCoins };
+    this.model.assetCoins = { ...assetCoins };
   }
 
   purchaseProduct({ name, price, quantity }) {

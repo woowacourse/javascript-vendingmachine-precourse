@@ -26,8 +26,8 @@ class ProductAddTableView extends Observer {
     return `
       <tr>
         <td>${name}</td>
-        <td>${price}원</td>
-        <td>${quantity}개</td>
+        <td>${price}</td>
+        <td>${quantity}</td>
       </tr>
     `;
   };
