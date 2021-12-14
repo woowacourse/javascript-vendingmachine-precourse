@@ -111,3 +111,42 @@ const isQuantityEnough = (quantity) => {
   }
   return true;
 };
+
+const returnMoney = () => {
+  let money = getMoneyFromLocalStorage('money');
+  const coins = getCoinsFromLocalStorage('coin');
+  let answer = { 500: 0, 100: 0, 50: 0, 10: 0 };
+
+  for (let i of [500, 100, 50, 10]) {
+    let num = findNumberOfCoin(money, i);
+    money -= num * i;
+    answer[i] = num;
+  }
+  updateCoinTableRow(answer);
+
+  for (let i of [500, 100, 50, 10]) {
+    answer[i] = coins[i] - answer[i];
+  }
+  saveCoinsToLocalStorage('coin', answer);
+  saveMoneyToLocalStorage('money', money);
+};
+
+const findNumberOfCoin = (money, coinPrice) => {
+  const coins = getCoinsFromLocalStorage('coin');
+  if (parseInt(money / coinPrice) < coins[coinPrice]) {
+    return parseInt(money / coinPrice);
+  } else {
+    return coins[coinPrice];
+  }
+};
+
+const updateCoinTableRow = (answer) => {
+  for (let key in answer) {
+    let price = key;
+    let quantity = answer[key];
+
+    let coinQunatity = document.getElementById(`coin-${price}-quantity`);
+    coinQunatity.innerText = quantity;
+    coinQunatity.insertAdjacentHTML('beforeend', `<span>개</span>`);
+  }
+};
