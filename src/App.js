@@ -61,6 +61,7 @@ export default class App extends Component {
     this.setState({ curTab: tabID });
   }
 
+  // ProductAddTab 관련 메소드
   addProduct({ name, price, quantity }) {
     const { tabData } = this.$state;
 
@@ -69,10 +70,12 @@ export default class App extends Component {
     });
   }
 
+  // MachineChargeTab 관련 메소드
   chargeMachine(unit, count) {
     const { tabData } = this.$state;
     const index = tabData.chargedCoins.findIndex(v => v.unit === unit);
     const acc = tabData.chargedCoins[index].count;
+
     let copied = [...tabData.chargedCoins];
     copied[index].count = acc + count;
 
@@ -84,7 +87,7 @@ export default class App extends Component {
     });
   }
 
-  // ProductPurchaseTab
+  // ProductPurchaseTab 관련 메소드
   chargeUserMoney(amount) {
     const { tabData } = this.$state;
 
@@ -110,25 +113,27 @@ export default class App extends Component {
     copied[index].quantity -= 1;
 
     this.setState({
-      tabData: {
-        ...tabData,
-        userMoney: userMoney - price,
-        stock: [...copied],
-      },
+      tabData: { ...tabData, userMoney: userMoney - price, stock: [...copied] },
     });
   }
 
   returnChange() {
     const { tabData } = this.$state;
     const { userMoney, chargedCoins } = tabData;
-    const changes = [...chargedCoins];
-    const sortedCoinUnit = COINS.sort((a, b) => b - a);
+    const [remainChange, changes] = this.computeChange(userMoney, chargedCoins);
 
+    this.setState({
+      tabData: { ...tabData, userMoney: remainChange, chargedCoins: [...changes] },
+    });
+  }
+
+  computeChange(userMoney, chargedCoins) {
+    const sortedCoinUnit = COINS.sort((a, b) => b - a);
     let remainChange = userMoney;
+    let changes = [...chargedCoins];
 
     for (let unit of sortedCoinUnit) {
-      const count = remainChange / unit;
-
+      const count = Math.floor(remainChange / unit);
       if (count > 0 && this.hasMachineEnoughChange(unit, count)) {
         const index = changes.findIndex(v => v.unit === unit);
         changes[index].count -= count;
@@ -136,13 +141,7 @@ export default class App extends Component {
       }
     }
 
-    this.setState({
-      tabData: {
-        ...tabData,
-        userMoney: remainChange,
-        chargedCoins: [...changes],
-      },
-    });
+    return [remainChange, [...changes]];
   }
 
   hasMachineEnoughChange(unit, count) {
