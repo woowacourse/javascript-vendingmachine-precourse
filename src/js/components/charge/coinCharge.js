@@ -1,6 +1,6 @@
 import { $ } from '../../utils/querySelector.js';
 import { COIN_UNITS, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
-import { isValidCoinCharge } from '../../utils/validation.js';
+import { isValidInputAmount } from '../../utils/validation.js';
 import { showConvertedCoins, coinChargeTemplate } from './coinChargeTemplate.js';
 import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
 import { showCurrentAmount } from '../../view/view.js';
@@ -34,7 +34,7 @@ const handleCoinChargeSubmit = (event) => {
   let chargedCoin = Number($('#vending-machine-charge-input').value);
   const storedChargeCoins = getLocalStorage(STORAGE_NAME.COIN);
 
-  if (!isValidCoinCharge(chargedCoin)) {
+  if (!isValidInputAmount(chargedCoin)) {
     return;
   }
 
@@ -49,7 +49,7 @@ export const showManageMenu = () => {
   $('#app-container').innerHTML = coinChargeTemplate;
   const storedChargeCoins = getLocalStorage(STORAGE_NAME.COIN);
 
-  if (storedChargeCoins.length !== 0) {
+  if (storedChargeCoins) {
     convertedCoins = storedChargeCoins;
     showConvertedCoins(storedChargeCoins);
     const currentAmount = calculationCurrentAmount(storedChargeCoins);

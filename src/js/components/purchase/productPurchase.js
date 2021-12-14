@@ -1,12 +1,12 @@
 import { COIN_UNITS, ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
 import { $ } from '../../utils/querySelector.js';
-import { isDivideByTen } from '../../utils/validation.js';
+import { isValidInputAmount } from '../../utils/validation.js';
 import { showCurrentAmount, initProductPurchaseList } from '../../view/view.js';
 import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
 import { productPurchaseTemplate } from './productPurchaseTemplate.js';
 
 let currentAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT)
-  ? getLocalStorage(STORAGE_NAME.USER_AMOUNT)
+  ? Number(getLocalStorage(STORAGE_NAME.USER_AMOUNT))
   : STANDARD.CURRENT_MONEY;
 const chargeAmountId = '#charge-amount';
 
@@ -62,7 +62,7 @@ const makeReturnedCoinsView = (unit, storedQuantity) => {
 const handleCoinReturnClick = () => {
   const storedCoins = getLocalStorage(STORAGE_NAME.COIN);
   $('#coin-return-result').innerHTML = '';
-
+  // eslint-disable-next-line no-restricted-syntax
   for (const unit of COIN_UNITS) {
     const removedQuantity = makeReturnedCoinsView(unit, storedCoins[unit]);
     storedCoins[unit] -= removedQuantity;
@@ -92,8 +92,8 @@ const handleChargeInput = (event) => {
   event.preventDefault();
   const chargeInput = Number($('#charge-input').value);
 
-  if (isDivideByTen(chargeInput)) {
-    return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
+  if (!isValidInputAmount(chargeInput)) {
+    return;
   }
 
   currentAmount += chargeInput;

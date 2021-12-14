@@ -9,7 +9,7 @@ const isNegativeNumber = (quantity) => {
   return quantity < PRODUCT_QUANTITY;
 };
 
-export const isDivideByTen = (target) => {
+const isDivideByTen = (target) => {
   return target % DIVIDE_NUMBER !== 0;
 };
 
@@ -36,6 +36,16 @@ const isValidProductPrice = (price) => {
   return true;
 };
 
+export const isValidInputAmount = (amount) => {
+  if (isNegativeNumber(amount)) {
+    return alert(COUNT_TOO_SMALL);
+  }
+  if (isDivideByTen(amount)) {
+    return alert(NOT_DIVIDE_BY_TEN);
+  }
+  return true;
+};
+
 export const isValidProductValue = (productData) => {
   const { name, price, quantity } = productData;
 
@@ -49,15 +59,5 @@ export const isValidProductValue = (productData) => {
     return alert(COUNT_TOO_SMALL);
   }
   if (!isValidProductPrice(price)) return false;
-  return true;
-};
-
-export const isValidCoinCharge = (chargedCoin) => {
-  if (isNegativeNumber(chargedCoin)) {
-    return alert(COUNT_TOO_SMALL);
-  }
-  if (isDivideByTen(chargedCoin)) {
-    return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
-  }
   return true;
 };
