@@ -50,7 +50,22 @@ function amount() {
   $fragment.appendChild($amountOfCoins);
 }
 
-export function vendingMachineChargeAmount() {
+export function renderAmountCoins() {
+  if (localStorage.getItem('amount-of-coins')) {
+    const amountOfCoins = JSON.parse(localStorage.getItem('amount-of-coins'));
+    const vendingMachineCoin_500Quantity = document.querySelector('#vending-machine-coin-500-quantity');
+    const vendingMachineCoin_100Quantity = document.querySelector('#vending-machine-coin-100-quantity');
+    const vendingMachineCoin_50Quantity = document.querySelector('#vending-machine-coin-50-quantity');
+    const vendingMachineCoin_10Quantity = document.querySelector('#vending-machine-coin-10-quantity');
+
+    vendingMachineCoin_500Quantity.textContent = amountOfCoins['500_WON'];
+    vendingMachineCoin_100Quantity.textContent = amountOfCoins['100_WON'];
+    vendingMachineCoin_50Quantity.textContent = amountOfCoins['50_WON'];
+    vendingMachineCoin_10Quantity.textContent = amountOfCoins['10_WON'];
+  }
+}
+
+export function renderVendingMachineChargeAmount() {
   const vendingMachineChargeAmount = document.querySelector('#vending-machine-charge-amount');
   vendingMachineChargeAmount.textContent = localStorage.getItem('vending-machine-charge-amount');
 }
@@ -64,5 +79,6 @@ export function renderVendingMachineManage() {
   amount();
   $main.appendChild($fragment);
   $app.appendChild($main);
-  vendingMachineChargeAmount();
+  renderAmountCoins();
+  renderVendingMachineChargeAmount();
 }
