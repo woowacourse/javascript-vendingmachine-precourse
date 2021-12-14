@@ -1,12 +1,15 @@
 import { fetchHtmlView } from './fetch.js';
 import { moneyList } from './constants.js';
 
+//
+let productList = [];
 function addProduct() {
     const name = document.querySelector("#product-name-input").value;
     const price = document.querySelector("#product-price-input").value;
     const quantity = document.querySelector("#product-quantity-input").value;
     
     if(isCorrectProductInputs(name, price, quantity)) {
+        productList.push({ name, price, quantity });
         renderNewProduct(name, price, quantity);
     }
     else {
