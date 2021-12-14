@@ -5,7 +5,9 @@ import { showCurrentAmount, initProductPurchaseList } from '../../view/view.js';
 import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
 import { productPurchaseTemplate } from './productPurchaseTemplate.js';
 
-let currentAmount = STANDARD.CURRENT_MONEY;
+let currentAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT)
+  ? getLocalStorage(STORAGE_NAME.USER_AMOUNT)
+  : STANDARD.CURRENT_MONEY;
 const chargeAmountId = '#charge-amount';
 
 const resetProductItemStorage = (name) => {
@@ -68,6 +70,7 @@ const handleCoinReturnClick = () => {
 
   showCurrentAmount(chargeAmountId, currentAmount);
   setLocalStorage(STORAGE_NAME.COIN, storedCoins);
+  setLocalStorage(STORAGE_NAME.USER_AMOUNT, currentAmount);
 };
 
 const handlePurchaseButtonClick = (event) => {
@@ -82,6 +85,7 @@ const handlePurchaseButtonClick = (event) => {
   subtractPriceAndQuantity(target, price);
   showCurrentAmount(chargeAmountId, currentAmount);
   resetProductItemStorage(name);
+  setLocalStorage(STORAGE_NAME.USER_AMOUNT, currentAmount);
 };
 
 const handleChargeInput = (event) => {
