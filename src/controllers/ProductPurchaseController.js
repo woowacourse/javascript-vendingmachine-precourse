@@ -5,13 +5,6 @@ export default class ProductPurchaseController {
   constructor($app) {
     this.purchaseModel = new ProductPurchaseModel();
     this.$app = $app;
-    this.validInsertMoney;
-    this.loacalTotalInsertMoney;
-    this.localProductList;
-    this.purchaseProduct;
-    this.puchaseMoneyResult;
-    this.chargeResult;
-    this.localReturnCharge;
     this.productPurchaseField = document.createElement('div');
     this.render();
     this.setEvent();
