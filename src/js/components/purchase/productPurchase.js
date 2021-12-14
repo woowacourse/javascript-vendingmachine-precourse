@@ -9,6 +9,7 @@ import { $ } from '../../utils/querySelector.js';
 import { isValidInputAmount } from '../../utils/validation.js';
 import { showCurrentAmount } from '../../view/currentAmount.js';
 import { getLocalStorage, setLocalStorage } from '../../utils/storage.js';
+import { showReturnedCoin } from '../../view/productPurchase.js';
 
 let currentAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT)
   ? Number(getLocalStorage(STORAGE_NAME.USER_AMOUNT))
@@ -29,18 +30,6 @@ const subtractPriceAndQuantity = (target, price) => {
   target.childNodes[5].dataset.productQuantity--;
   target.childNodes[5].innerText--;
   currentAmount -= price;
-};
-
-const returnedCoinTemplate = (unit, quantity) => `
-  <tr>
-    <td>${unit}원</td>
-    <td id="coin-${unit}-quantity">${quantity}개</td>
-  </tr>
-`;
-
-const showReturnedCoin = (unit, quantity) => {
-  const returnedCoin = returnedCoinTemplate(unit, quantity);
-  $('#coin-return-result').insertAdjacentHTML('beforeend', returnedCoin);
 };
 
 const calculationQuantity = (unit, quantity) => {
@@ -66,6 +55,7 @@ const makeReturnedCoinsView = (unit, storedQuantity) => {
 export const handleCoinReturnClick = () => {
   const storedCoins = getLocalStorage(STORAGE_NAME.COIN);
   $('#coin-return-result').innerHTML = '';
+
   // eslint-disable-next-line no-restricted-syntax
   for (const unit of COIN_UNITS) {
     const removedQuantity = makeReturnedCoinsView(unit, storedCoins[unit]);

@@ -63,3 +63,10 @@ export const purchaseAbleListTemplate = ({ name, price, quantity }) => `
     <td><button class="purchase-button">구매하기</button></td>
   </tr>
 `;
+
+export const returnedCoinTemplate = (unit, quantity) => `
+  <tr>
+    <td>${unit}원</td>
+    <td id="coin-${unit}-quantity">${quantity}개</td>
+  </tr>
+`;

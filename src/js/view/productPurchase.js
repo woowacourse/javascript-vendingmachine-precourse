@@ -4,6 +4,7 @@ import { AMOUNT_ID, STORAGE_NAME } from '../utils/constants.js';
 import {
   productPurchaseTemplate,
   purchaseAbleListTemplate,
+  returnedCoinTemplate,
 } from '../components/purchase/productPurchaseTemplate.js';
 import { showCurrentAmount } from './currentAmount.js';
 import {
@@ -11,6 +12,11 @@ import {
   handlePurchaseButtonClick,
   handleCoinReturnClick,
 } from '../components/purchase/productPurchase.js';
+
+export const showReturnedCoin = (unit, quantity) => {
+  const returnedCoin = returnedCoinTemplate(unit, quantity);
+  $('#coin-return-result').insertAdjacentHTML('beforeend', returnedCoin);
+};
 
 const initProductPurchaseList = (storedProductItems) => {
   storedProductItems.forEach((item) => {
