@@ -121,7 +121,7 @@ export default class VendingMachine {
 
       if (amount + pickedCoin <= totalAmount) {
         const index = this.findCoinIndex(pickedCoin);
-        this.rechargedCoin[index].increaseAmount(1);
+        this.rechargedCoin[index].increaseCount(1);
         amount += pickedCoin;
       }
     }
@@ -132,8 +132,8 @@ export default class VendingMachine {
 
   convertAmountNullToZero() {
     this.rechargedCoin.forEach((coin) => {
-      if (coin.amount === null) {
-        coin.resetAmountToZero();
+      if (coin.count === null) {
+        coin.resetCountToZero();
       }
     });
   }
@@ -171,8 +171,8 @@ export default class VendingMachine {
     this.rechargedCoin.forEach((coin, index) => {
       const returnedCount = this.calculateReturnedCoinCount(returnedAmount, coin);
 
-      this.returnedCoin[index].increaseAmount(returnedCount);
-      coin.decreaseAmount(returnedCount);
+      this.returnedCoin[index].increaseCount(returnedCount);
+      coin.decreaseCount(returnedCount);
       returnedAmount += coin.type * returnedCount;
     });
 
@@ -182,13 +182,13 @@ export default class VendingMachine {
   }
 
   convertedRetrunedCoinCountAllToZero() {
-    this.returnedCoin.forEach((coin) => coin.resetAmountToZero());
+    this.returnedCoin.forEach((coin) => coin.resetCountToZero());
   }
 
   convertedRetrunedCoinCountNullToZero() {
     this.returnedCoin.forEach((coin) => {
-      if (coin.amount === null) {
-        coin.resetAmountToZero();
+      if (coin.count === null) {
+        coin.resetCountToZero();
       }
     });
   }
@@ -196,7 +196,7 @@ export default class VendingMachine {
   calculateReturnedCoinCount(returnedAmount, coin) {
     const returnedCount = Math.min(
       parseInt((this.rechargedMoneyAmount - returnedAmount) / coin.type, 10),
-      coin.amount
+      coin.count
     );
 
     return returnedCount;
@@ -214,7 +214,7 @@ export default class VendingMachine {
   }
 
   getRechargedCoin() {
-    return this.rechargedCoin.map((coin) => [coin.type, coin.amount]);
+    return this.rechargedCoin.map((coin) => [coin.type, coin.count]);
   }
 
   getRechargedCoinAmount() {
@@ -226,6 +226,6 @@ export default class VendingMachine {
   }
 
   getRetrunedCoin() {
-    return this.returnedCoin.map((coin) => [coin.type, coin.amount]);
+    return this.returnedCoin.map((coin) => [coin.type, coin.count]);
   }
 }

@@ -1,18 +1,18 @@
 export default class Coin {
-  constructor(type, amount) {
+  constructor(type, count) {
     this.type = type;
-    this.amount = amount;
+    this.count = count;
   }
 
-  increaseAmount(increaseCount) {
-    this.amount += increaseCount;
+  increaseCount(count) {
+    this.count += count;
   }
 
-  decreaseAmount(decreaseCount) {
-    this.amount -= decreaseCount;
+  decreaseCount(count) {
+    this.count -= count;
   }
 
-  resetAmountToZero() {
-    this.amount = 0;
+  resetCountToZero() {
+    this.count = 0;
   }
 }
