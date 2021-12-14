@@ -1,4 +1,5 @@
 export const MENU_BUTTON = {
+  ALL: "menu-button-area",
   BUY_PRODUCT: "product-purchase-menu",
   CHANGE_MANAGE:"vending-machine-manage-menu",
   PRODUCT_MANAGE: "vending-machine-manage-menu",

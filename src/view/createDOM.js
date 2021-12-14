@@ -1,25 +1,32 @@
 export const setDOM = (node) => document.body.appendChild(node);
 
+export const createDiv = (id) => {
+  const div = document.createElement("div");
+  div.setAttribute("id", id);
+
+  return div;
+}
+
 export const createButton = (id, innerText) => {
   const button = document.createElement("button");
   button.innerHTML = innerText;
   button.setAttribute("id", id);
 
-  setDOM(button);
+  return button;
 };
 
 export const createTable = (className, headValue) => {
   const table = document.createElement("table");
   table.setAttribute("class", className);
   
-  const th = headValue.forEach((val) => {
+  headValue.forEach((val) => {
     const items = document.createElement("th");
     items.innerHTML = val;
 
-    table.appendChild(th);
+    table.appendChild(items);
   });
 
-  setDOM(table);
+  return table;
 };
 
 export const createTd = (className, valueArr) => {
@@ -39,16 +46,16 @@ export const createTd = (className, valueArr) => {
 
 export const createInput = (id, type, innerText) => {
   const input = document.createElement("input");
-  input.innerHTML = innerText;
+  input.setAttribute("placeholder", innerText);
   input.setAttribute("id", id);
   input.setAttribute("type", type);
 
-  setDOM(input);
+  return input;
 };
 
 export const createText = (textValue) => {
   const text = document.createElement("h3");
   text.innerHTML = textValue;
 
-  setDOM(text);
+  return text;
 };

@@ -1,9 +1,13 @@
-import { createButton, createText } from "./createDOM.js";
+import { createButton, createText, createDiv, setDOM } from "./createDOM.js";
 import { TITLE, MENU_BUTTON } from "../constants/constants.js";
 
 export const loadButton = () => {
-  createText(TITLE.TITLE);
-  createButton(MENU_BUTTON.PRODUCT_MANAGE, TITLE.MANAGE_PRODUCT);
-  createButton(MENU_BUTTON.CHANGE_MANAGE, TITLE.MANAGE_CHARGE);
-  createButton(MENU_BUTTON.BUY_PRODUCT, TITLE.BUY_PRODUCT);
+  const area = createDiv(MENU_BUTTON.ALL);
+
+  area.appendChild(createText(TITLE.TITLE));
+  area.appendChild(createButton(MENU_BUTTON.PRODUCT_MANAGE, TITLE.MANAGE_PRODUCT));
+  area.appendChild(createButton(MENU_BUTTON.CHANGE_MANAGE, TITLE.MANAGE_CHARGE));
+  area.appendChild(createButton(MENU_BUTTON.BUY_PRODUCT, TITLE.BUY_PRODUCT));
+
+  setDOM(area);
 };
