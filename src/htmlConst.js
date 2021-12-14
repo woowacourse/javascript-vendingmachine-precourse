@@ -1,4 +1,6 @@
 import { pushMenuObject, getMenuObject, getMenuObjectKey } from './setMenuObject.js';
+import { pushProductObject } from './productAdd.js';
+import { checkPrice, checkQuantity } from './checkProductInputValue.js';
 
 export const $productAdd = document.querySelector('#product-add');
 export const $vendingMachineManage = document.querySelector('#vending-machine-manage');
@@ -6,6 +8,10 @@ export const $purchaseMenue = document.querySelector('#purchase-menue');
 export const $productPurchaseMenu = document.querySelector('#product-purchase-menu');
 export const $vendingMachineManageMenu = document.querySelector('#vending-machine-manage-menu');
 export const $productAddMenu = document.querySelector('#product-add-menu');
+export const $productNameInput = document.querySelector('#product-name-input');
+export const $productPriceInput = document.querySelector('#product-price-input');
+export const $productQuantityInput = document.querySelector('#product-quantity-input');
+export const $productAddButton = document.querySelector('#product-add-button');
 
 $productAddMenu.addEventListener('click', (e) => {
   e.preventDefault();
@@ -23,6 +29,15 @@ $productPurchaseMenu.addEventListener('click', (e) => {
   e.preventDefault();
   pushMenuObject(0, 0, 1);
   displayDiv();
+});
+
+$productAddButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  const productName = $productNameInput.value;
+  const productPrice = $productPriceInput.value;
+  const productQuantity = $productQuantityInput.value;
+  if (!checkPrice(productPrice) || !checkQuantity(productQuantity)) return;
+  pushProductObject(productName, productPrice, productQuantity);
 });
 
 export const displayDiv = () => {
