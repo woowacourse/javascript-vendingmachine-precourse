@@ -20,10 +20,25 @@ export default class VendingMachine {
       throw EXCEPTIONS.WRONG_ITEM;
     }
 
-    const result = this.store.insert({ name, price, quantity });
+    const duplicatedItems = this.items.findByName(name);
+
+    if (duplicatedItems.length >= 1) {
+      duplicatedItems.forEach(([id]) => {
+        this.updateItem(id, { name, price, quantity });
+      });
+
+      return this;
+    }
+
+    const result = this.store.insertItem({ name, price, quantity });
     this.items.insert(result.id, name, price, quantity);
 
     return this;
+  }
+
+  updateItem(id, { name, price, quantity }) {
+    this.store.updateItem(id, { name, price, quantity });
+    this.items.items.set(id, { name, price, quantity });
   }
 
   refillCoins(amount) {
@@ -50,17 +65,23 @@ export default class VendingMachine {
 
   // TODO: 데이터 흐름 수정
   purchase(id) {
-    const item = this.items.find(id);
+    const item = this.items.findById(id);
 
     this.store.updateCharge(this.chargedAmount.purchase(item.price));
-
     this.items.purchase(id);
-    this.store.update(id, item);
+
+    if (this.items.findById(id).isOutOfStock()) {
+      this.store.removeitem(id);
+
+      return this;
+    }
+
+    this.store.updateItem(id, item.toObject());
 
     return this;
   }
 
-  // amount 직접 접근 안 하도록 수정
+  // amount 직접 접근 안 하도록 수정t
   returnChange() {
     const { change, amount } = this.coins.returnChange(
       this.chargedAmount.amount

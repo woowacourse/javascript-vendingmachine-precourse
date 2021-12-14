@@ -25,4 +25,10 @@ export default class Item {
 
     return `${name}(${price}원) * ${quantity}개`;
   }
+
+  toObject() {
+    const { name, price, quantity } = this;
+
+    return { name, price, quantity };
+  }
 }

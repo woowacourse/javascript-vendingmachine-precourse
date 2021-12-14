@@ -10,7 +10,7 @@ export default class Items {
     );
   }
 
-  find(id) {
+  findById(id) {
     const item = this.items.get(id);
 
     if (!item) {
@@ -20,12 +20,16 @@ export default class Items {
     return item;
   }
 
+  findByName(name) {
+    return [...this.items.entries()].filter((item) => item[1].name === name);
+  }
+
   insert(id, name, price, quantity) {
     this.items.set(id, new Item(name, price, quantity));
   }
 
   purchase(id) {
-    const item = this.find(id);
+    const item = this.findById(id);
 
     item.purchase();
 

@@ -19,7 +19,7 @@ export default class Store {
     callback(items.filter((item) => query(item)));
   }
 
-  insert({ name, price, quantity }) {
+  insertItem({ name, price, quantity }) {
     const state = this.getLocalStorage();
     const id = Date.now();
 
@@ -29,7 +29,7 @@ export default class Store {
     return { success: true, id };
   }
 
-  update(id, updatedItem) {
+  updateItem(id, updatedItem) {
     const state = this.getLocalStorage();
     const result = state.items.findIndex((item) => item.id === id);
 
@@ -37,8 +37,24 @@ export default class Store {
       return { success: false };
     }
 
-    state.items[result] = { ...updatedItem, id };
+    state.items[result] = { ...state.items[result], ...updatedItem };
     this.setLocalStorage(state);
+
+    return { success: true };
+  }
+
+  removeitem(id) {
+    const state = this.getLocalStorage();
+    const result = state.items.findIndex((item) => item.id === id);
+
+    if (result === -1) {
+      return { success: false };
+    }
+
+    state.items.splice(result, 1);
+    this.setLocalStorage(state);
+
+    return { success: true };
   }
 
   updateCoins(coins) {
@@ -46,6 +62,8 @@ export default class Store {
 
     state.coins = coins;
     this.setLocalStorage(state);
+
+    return { success: true };
   }
 
   updateCharge(amount) {
@@ -53,5 +71,7 @@ export default class Store {
 
     state.chargedAmount = amount;
     this.setLocalStorage(state);
+
+    return { success: true };
   }
 }
