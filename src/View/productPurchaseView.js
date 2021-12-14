@@ -8,6 +8,7 @@ import {
   makeInputNumberFormToPrint,
   makeTableForm,
   makeTableRow,
+  renderCoinAmount,
   renderCoinTable,
 } from "./template.js";
 
@@ -139,11 +140,7 @@ export default class ProductPurchaseView {
     const returnCoin = this.coinStore.getReturnLog() || undefined;
     if (returnCoin === undefined) return;
 
-    PURCHASE_MANAGE.COIN_TO_USE.forEach(coin => {
-      const coinKey = coin.QUANTITY_ID.match(/\d+/g).pop();
-      const coinAmountArea = document.getElementById(coin.QUANTITY_ID);
-      coinAmountArea.innerText = `${returnCoin[coinKey]}개`;
-    });
+    renderCoinAmount(PURCHASE_MANAGE, returnCoin);
   }
 
   handleClickPurchaseButton(event) {

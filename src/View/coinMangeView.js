@@ -1,7 +1,12 @@
 import { COIN_MANAGE } from "../constant/vendingMachine.js";
 import { clearArea } from "../Model/utils.js";
 import VendingMachineCoin from "../Model/VendingMachineCoin.js";
-import { makeElement, makeInputNumberFormToPrint, renderCoinTable } from "./template.js";
+import {
+  makeElement,
+  makeInputNumberFormToPrint,
+  renderCoinAmount,
+  renderCoinTable,
+} from "./template.js";
 
 export default class CoinManageView {
   constructor(container) {
@@ -52,11 +57,7 @@ export default class CoinManageView {
   loadCoinToHave() {
     const currentCoinToHave = this.coinStore.getCurrentCoinToHave();
     if (Object.keys(currentCoinToHave).length !== 0) {
-      COIN_MANAGE.COIN_TO_USE.forEach(coin => {
-        const coinKey = coin.QUANTITY_ID.match(/\d+/g).pop();
-        const coinAmountArea = document.getElementById(coin.QUANTITY_ID);
-        coinAmountArea.innerText = `${currentCoinToHave[coinKey]}개`;
-      });
+      renderCoinAmount(COIN_MANAGE, currentCoinToHave);
     }
   }
 }

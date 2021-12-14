@@ -80,3 +80,11 @@ export const renderCoinTable = (container, tableBodyId, coinToUse) => {
   });
   tableHead.appendChild(tableBodyArea);
 };
+
+export const renderCoinAmount = (renderPage, currentCoinToHave) => {
+  renderPage.COIN_TO_USE.forEach(coin => {
+    const coinKey = coin.QUANTITY_ID.match(/\d+/g).pop();
+    const coinAmountArea = document.getElementById(coin.QUANTITY_ID);
+    coinAmountArea.innerText = `${currentCoinToHave[coinKey]}개`;
+  });
+};
