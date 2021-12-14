@@ -1,12 +1,11 @@
-import Navigator from '../store/Navigator.js';
-import VendingMachine from '../store/VendingMachine.js';
+import Tab from './core/Tab.js';
 import Title from './core/Title.js';
 import Input from './core/Input.js';
 import Button from './core/Button.js';
 import ProductStatusTable from './core/ProductStatusTable.js';
 import { isValidProductAdd } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { EVENT, INPUT_TYPE } from '../constant/dom.js';
 import { ID, CLASS } from '../constant/selector.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 
@@ -17,27 +16,12 @@ const PRODUCT_TABLE_CLASS = [
   CLASS.PRODUCT_MANAGE_QUANTITY,
 ];
 
-export default class TabProductAdd {
+export default class TabProductAdd extends Tab {
   constructor($parent, props) {
-    this.$parent = $parent;
-    this.props = props;
-    this.$root = null;
-    this.navigator = new Navigator();
-    this.vendingMachine = new VendingMachine();
+    super($parent, props, ID.PRODUCT_ADD_TAB, TAB_ID.TAB_PRODUCT_ADD);
 
-    this.createRootElement();
-    this.determineDisplaying();
     this.render();
     this.setEvent();
-  }
-
-  createRootElement() {
-    const $div = document.createElement(TAG.TAG_DIV);
-    $div.setAttribute(DOM_ATTRIBUTE.ID, ID.PRODUCT_ADD_TAB);
-    $div.setAttribute(DOM_ATTRIBUTE.DATA_TAB_ID, TAB_ID.TAB_PRODUCT_ADD);
-
-    this.$parent.appendChild($div);
-    this.$root = $div;
   }
 
   render() {
@@ -68,22 +52,6 @@ export default class TabProductAdd {
     });
     this.$root.appendChild(this.listTitle.getTarget());
     this.$root.appendChild(this.listTable.getTarget());
-  }
-
-  determineDisplaying() {
-    if (this.navigator.getFocusedTab() === TAB_ID.TAB_PRODUCT_ADD) {
-      this.show();
-    } else {
-      this.hide();
-    }
-  }
-
-  show() {
-    this.$root.removeAttribute(DOM_ATTRIBUTE.HIDDEN);
-  }
-
-  hide() {
-    this.$root.setAttribute(DOM_ATTRIBUTE.HIDDEN, true);
   }
 
   setEvent() {

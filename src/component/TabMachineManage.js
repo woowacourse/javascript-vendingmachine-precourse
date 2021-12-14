@@ -1,5 +1,4 @@
-import Navigator from '../store/Navigator.js';
-import VendingMachine from '../store/VendingMachine.js';
+import Tab from './core/Tab.js';
 import Title from './core/Title.js';
 import Input from './core/Input.js';
 import Button from './core/Button.js';
@@ -7,7 +6,7 @@ import CoinTable from './core/CoinTable.js';
 import AmountView from './core/AmountView.js';
 import { isValidRecharge } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { EVENT, INPUT_TYPE } from '../constant/dom.js';
 import { ID } from '../constant/selector.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 import { COIN } from '../constant/coin.js';
@@ -20,27 +19,12 @@ const COIN_TABLE_IDS = {
   [COIN.COIN_10]: ID.MACHINE_COIN_10_QUANTITY,
 };
 
-export default class TabMachineManage {
+export default class TabMachineManage extends Tab {
   constructor($parent, props) {
-    this.$parent = $parent;
-    this.props = props;
-    this.$root = null;
-    this.navigator = new Navigator();
-    this.vendingMcahine = new VendingMachine();
+    super($parent, props, ID.MACHINE_MANAGE_TAB, TAB_ID.TAB_MACHINE_MANAGE);
 
-    this.createRootElement();
-    this.determineDisplaying();
     this.render();
     this.setEvent();
-  }
-
-  createRootElement() {
-    const $div = document.createElement(TAG.TAG_DIV);
-    $div.setAttribute(DOM_ATTRIBUTE.ID, ID.MACHINE_MANAGE_TAB);
-    $div.setAttribute(DOM_ATTRIBUTE.DATA_TAB_ID, TAB_ID.TAB_MACHINE_MANAGE);
-
-    this.$parent.appendChild($div);
-    this.$root = $div;
   }
 
   render() {
@@ -55,7 +39,7 @@ export default class TabMachineManage {
     this.chargedAmount = new AmountView(
       ID.MACHINE_CHARGE_AMOUNT,
       TITLE.RECHARGE_COIN_AMOUNT,
-      this.vendingMcahine.getRechargedCoinAmount()
+      this.vendingMachine.getRechargedCoinAmount()
     );
 
     this.$root.appendChild(this.chargingTitle.getTarget());
@@ -68,28 +52,12 @@ export default class TabMachineManage {
     this.havingCoinTitle = new Title(TITLE.HAVING_COIN);
     this.coinTable = new CoinTable({
       columns: COIN_TABLE_COLUMN,
-      initialData: this.vendingMcahine.getRechargedCoin(),
+      initialData: this.vendingMachine.getRechargedCoin(),
       ids: COIN_TABLE_IDS,
     });
 
     this.$root.appendChild(this.havingCoinTitle.getTarget());
     this.$root.appendChild(this.coinTable.getTarget());
-  }
-
-  determineDisplaying() {
-    if (this.navigator.getFocusedTab() === TAB_ID.TAB_MACHINE_MANAGE) {
-      this.show();
-    } else {
-      this.hide();
-    }
-  }
-
-  show() {
-    this.$root.removeAttribute(DOM_ATTRIBUTE.HIDDEN);
-  }
-
-  hide() {
-    this.$root.setAttribute(DOM_ATTRIBUTE.HIDDEN, true);
   }
 
   setEvent() {
@@ -105,7 +73,7 @@ export default class TabMachineManage {
   }
 
   updateRechargeState() {
-    this.chargedAmount.render(this.vendingMcahine.getRechargedCoinAmount());
-    this.coinTable.render(this.vendingMcahine.getRechargedCoin());
+    this.chargedAmount.render(this.vendingMachine.getRechargedCoinAmount());
+    this.coinTable.render(this.vendingMachine.getRechargedCoin());
   }
 }

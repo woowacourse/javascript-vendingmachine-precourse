@@ -1,6 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import Navigator from '../store/Navigator.js';
-import VendingMachine from '../store/VendingMachine.js';
+import Tab from './core/Tab.js';
 import Title from './core/Title.js';
 import Input from './core/Input.js';
 import Button from './core/Button.js';
@@ -10,7 +9,7 @@ import AmountView from './core/AmountView.js';
 import { isValidRecharge, canBePurchase, canBeReturn } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
 import { ID, CLASS } from '../constant/selector.js';
-import { TAG, DOM_ATTRIBUTE, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { EVENT, INPUT_TYPE } from '../constant/dom.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 import { COIN } from '../constant/coin.js';
 
@@ -29,35 +28,12 @@ const COIN_TABLE_IDS = {
   [COIN.COIN_10]: ID.COIN_10_QUANTITY,
 };
 
-export default class TabPurchase {
+export default class TabPurchase extends Tab {
   constructor($parent, props) {
-    this.$parent = $parent;
-    this.props = props;
-    this.$root = null;
-    this.navigator = new Navigator();
-    this.vendingMachine = new VendingMachine();
+    super($parent, props, ID.PURCHASE_TAB, TAB_ID.TAB_PURCHASE);
 
-    this.createRootElement();
-    this.determineDisplaying();
     this.render();
     this.setEvent();
-  }
-
-  createRootElement() {
-    const $div = document.createElement(TAG.TAG_DIV);
-    $div.setAttribute(DOM_ATTRIBUTE.ID, ID.PURCHASE_TAB);
-    $div.setAttribute(DOM_ATTRIBUTE.DATA_TAB_ID, TAB_ID.TAB_PURCHASE);
-
-    this.$parent.appendChild($div);
-    this.$root = $div;
-  }
-
-  determineDisplaying() {
-    if (this.navigator.getFocusedTab() === TAB_ID.TAB_PURCHASE) {
-      this.show();
-    } else {
-      this.hide();
-    }
   }
 
   render() {
@@ -104,14 +80,6 @@ export default class TabPurchase {
     this.$root.appendChild(this.coinReturnTitle.getTarget());
     this.$root.appendChild(this.coinReturnButton.getTarget());
     this.$root.appendChild(this.coinReturnTable.getTarget());
-  }
-
-  show() {
-    this.$root.removeAttribute(DOM_ATTRIBUTE.HIDDEN);
-  }
-
-  hide() {
-    this.$root.setAttribute(DOM_ATTRIBUTE.HIDDEN, true);
   }
 
   setEvent() {
