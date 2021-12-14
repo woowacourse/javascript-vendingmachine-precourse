@@ -74,7 +74,7 @@ ${tableInitialize(TEXT.PRODUCT)}
 const coinChargeForm = (sum) => `<h3>${TITLE.CHARGE_COIN}</h3>
 <div>
 <input id=${CHARGE_COIN.INPUT} placeholder='${TEXT.COIN_WILL}'>
-<button id=${CHARGE_COIN.BUTTON}>${BUTTON.ADD}</button>
+<button id=${CHARGE_COIN.BUTTON}>${BUTTON.CHARGE}</button>
 <div>${TEXT.COIN_DONE}
 <span id = ${CHARGE_COIN.AMOUNT}>${sum > 0 ? sum : ""}</span>
 </div>
