@@ -9,13 +9,13 @@ import {
   ID_PURCHASE_TAB,
   STRING_SECTION_SUFFIX,
 } from './globalConstants.js';
-import { customCreateElement } from './CreateElementUtils.js';
+import { customCreateElement } from './utils/createElementUtils.js';
 
 export default class App {
   constructor() {
     this.app = document.querySelector('#app');
     this.show = '';
-    this.renderInitial(); // initial render on page load
+    this.renderInitial();
   }
 
   renderInitial() {
@@ -25,7 +25,7 @@ export default class App {
       b.addEventListener('click', (e) => {
         this.handleSectionsToggle(e);
       });
-    }); // add event listeners to menu buttons
+    });
 
     const tab = customCreateElement({ tag: 'section', id: 'tab' });
     this.show = new AddProducts().section;
@@ -36,13 +36,11 @@ export default class App {
     this.app.appendChild(tab);
   }
 
-  // render each section on menu button click
   renderSection() {
     this.app.removeChild(this.app.lastChild);
     this.app.appendChild(this.show);
   }
 
-  // check button and set show property accordingly
   handleSectionsToggle(e) {
     if (!e) this.show = new AddProducts().section;
     else {

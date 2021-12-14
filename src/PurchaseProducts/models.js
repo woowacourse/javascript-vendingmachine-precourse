@@ -1,5 +1,5 @@
 import { getFromStorage, removeFromStorage, setInStorage } from '../store.js';
-import { getReturnCoins, noChange } from '../Utils.js';
+import { getReturnCoins, noChange } from '../utils/generalUtils.js';
 import { hasEnoughInsert, isValidMoney } from '../validation.js';
 import {
   ERROR_INVALID_INSERT,

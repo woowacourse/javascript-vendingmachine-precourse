@@ -1,5 +1,5 @@
 import { getFromStorage, setInStorage } from '../store.js';
-import { divideToCoins, mergeObj } from '../Utils.js';
+import { divideToCoins, mergeObj } from '../utils/generalUtils.js';
 import { isValidMoney } from '../validation.js';
 import { ERROR_INVALID_INSERT } from './constants.js';
 

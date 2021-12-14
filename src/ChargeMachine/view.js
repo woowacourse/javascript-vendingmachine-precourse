@@ -1,4 +1,4 @@
-import { createContainer } from '../CreateElementUtils.js';
+import { createContainer } from '../utils/createElementUtils.js';
 import {
   ID_MACHINE_TAB,
   ID_MACHINE_CHARGE_AMOUNT,

@@ -1,4 +1,4 @@
-import { createContainer } from '../CreateElementUtils.js';
+import { createContainer } from '../utils/createElementUtils.js';
 import {
   ID_PRODUCT_ADD_TAB,
   ID_PRODUCT_NAME_INPUT,

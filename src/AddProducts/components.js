@@ -1,4 +1,4 @@
-import { customCreateElement } from '../CreateElementUtils.js';
+import { customCreateElement } from '../utils/createElementUtils.js';
 import {
   STYLE_TABLE,
   STYLE_TABLE_BORDER,

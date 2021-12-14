@@ -1,4 +1,4 @@
-import { getDOMObj } from '../Utils.js';
+import { getDOMObj } from '../utils/generalUtils.js';
 import { ID_MACHINE_CHARGE_INPUT } from './constants.js';
 import { getChargeAmount, registerChange } from './models.js';
 

@@ -1,4 +1,4 @@
-import { getDOMObj } from '../Utils.js';
+import { getDOMObj } from '../utils/generalUtils.js';
 import {
   ID_PRODUCT_NAME_INPUT,
   ID_PRODUCT_PRICE_INPUT,

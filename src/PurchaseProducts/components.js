@@ -1,4 +1,4 @@
-import { customCreateElement } from '../CreateElementUtils.js';
+import { customCreateElement } from '../utils/createElementUtils.js';
 import {
   STRING_COIN_10,
   STRING_COIN_100,
