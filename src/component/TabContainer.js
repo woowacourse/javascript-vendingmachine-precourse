@@ -16,14 +16,14 @@ export default class TabContainer {
 
   init() {
     this.tabProductAdd = new TabProductAdd(this.$target, {
-      addProduct: this.addProduct.bind(this),
+      requestAddProduct: this.requestAddProduct.bind(this),
     });
     this.tabMachineManage = new TabMachineManage(this.$target, {
-      rechargeCoin: this.rechargeCoin.bind(this),
+      requestRechargeCoin: this.requestRechargeCoin.bind(this),
     });
     this.tabPurchase = new TabPurchase(this.$target, {
-      rechargeMoney: this.rechargeMoney.bind(this),
-      purchaseProduct: this.purchaseProduct.bind(this),
+      requestRechargeMoney: this.requestRechargeMoney.bind(this),
+      requestPurchaseProduct: this.requestPurchaseProduct.bind(this),
       requestReturnCoin: this.requestReturnCoin.bind(this),
     });
   }
@@ -34,39 +34,22 @@ export default class TabContainer {
     this.tabPurchase.determineDisplaying();
   }
 
-  addProduct(name, price, quantity) {
+  requestAddProduct(name, price, quantity) {
     this.vendingMachine.addProduct(name, Number.parseInt(price, 10), Number.parseInt(quantity, 10));
     this.updateProductTable();
   }
 
-  updateProductTable() {
-    this.tabProductAdd.updateProductTable();
-    this.tabPurchase.updateProductTable();
-  }
-
-  rechargeCoin(amount) {
+  requestRechargeCoin(amount) {
     this.vendingMachine.rechargeCoin(Number.parseInt(amount, 10));
-    this.updateRechargeState();
+    this.updateRechargeCoinState();
   }
 
-  updateRechargeState() {
-    this.tabMachineManage.updateRechargeState();
-  }
-
-  rechargeMoney(amount) {
+  requestRechargeMoney(amount) {
     this.vendingMachine.rechargeMoney(Number.parseFloat(amount, 10));
     this.updateRechargeMoneyState();
   }
 
-  updateRechargeMoneyState() {
-    this.tabPurchase.updateRechargeMoneyState();
-  }
-
-  updateReturnedCoinTable() {
-    this.tabPurchase.updateCoinTable();
-  }
-
-  purchaseProduct(product) {
+  requestPurchaseProduct(product) {
     this.vendingMachine.sellProduct(product);
 
     this.updateProductTable();
@@ -76,8 +59,26 @@ export default class TabContainer {
   requestReturnCoin() {
     this.vendingMachine.returnCoin();
 
-    this.updateRechargeState();
+    this.updateRechargeCoinState();
     this.updateRechargeMoneyState();
     this.updateReturnedCoinTable();
+  }
+
+  updateProductTable() {
+    this.tabProductAdd.rerenderProductTable();
+    this.tabPurchase.rerenderProductTable();
+  }
+
+  updateRechargeCoinState() {
+    this.tabMachineManage.rerenderChargedAmount();
+    this.tabMachineManage.rerenderCoinTable();
+  }
+
+  updateRechargeMoneyState() {
+    this.tabPurchase.rerenderCharginAmount();
+  }
+
+  updateReturnedCoinTable() {
+    this.tabPurchase.rerenderCoinTable();
   }
 }

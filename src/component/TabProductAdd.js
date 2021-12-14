@@ -44,18 +44,18 @@ export default class TabProductAdd extends Tab {
   }
 
   renderTable() {
-    this.listTitle = new Title(TITLE.PRODUCT_LIST);
-    this.listTable = new ProductStatusTable({
+    this.productListTitle = new Title(TITLE.PRODUCT_LIST);
+    this.productListTable = new ProductStatusTable({
       columns: PRODUCT_TABLE_COLUM,
       classes: PRODUCT_TABLE_CLASS,
       initialData: this.vendingMachine.getProductList(),
     });
-    this.$root.appendChild(this.listTitle.getTarget());
-    this.$root.appendChild(this.listTable.getTarget());
+    this.$root.appendChild(this.productListTitle.getTarget());
+    this.$root.appendChild(this.productListTable.getTarget());
   }
 
   setEvent() {
-    const { addProduct } = this.props;
+    const { requestAddProduct } = this.props;
 
     this.addButton.getTarget().addEventListener(EVENT.CLICK, () => {
       const nameValue = this.nameInput.getTarget().value;
@@ -63,12 +63,12 @@ export default class TabProductAdd extends Tab {
       const quantityValue = this.quantityInput.getTarget().value;
 
       if (isValidProductAdd([nameValue, priceValue, quantityValue])) {
-        addProduct(nameValue, priceValue, quantityValue);
+        requestAddProduct(nameValue, priceValue, quantityValue);
       }
     });
   }
 
-  updateProductTable() {
-    this.listTable.render(this.vendingMachine.getProductList());
+  rerenderProductTable() {
+    this.productListTable.render(this.vendingMachine.getProductList());
   }
 }

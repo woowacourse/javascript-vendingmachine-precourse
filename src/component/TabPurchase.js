@@ -89,18 +89,18 @@ export default class TabPurchase extends Tab {
   }
 
   setRechargeEvent() {
-    const { rechargeMoney } = this.props;
+    const { requestRechargeMoney } = this.props;
     this.chargingSubmit.getTarget().addEventListener(EVENT.CLICK, () => {
       const chargingValue = this.chargingInput.getTarget().value;
 
       if (isValidRecharge(chargingValue)) {
-        rechargeMoney(chargingValue);
+        requestRechargeMoney(chargingValue);
       }
     });
   }
 
   setPurchaseEvent() {
-    const { purchaseProduct } = this.props;
+    const { requestPurchaseProduct } = this.props;
 
     this.productListTable.getTarget().addEventListener(EVENT.CLICK, (e) => {
       if (e.target.className === CLASS.PRODUCT_PURCHASE_BUTTON) {
@@ -110,7 +110,7 @@ export default class TabPurchase extends Tab {
         const quantity = this.getProductQuantity($clickedProduct);
 
         if (canBePurchase(this.vendingMachine.getRechargedMoneyAmount(), price)) {
-          purchaseProduct({ name, price, quantity });
+          requestPurchaseProduct({ name, price, quantity });
         }
       }
     });
@@ -146,15 +146,15 @@ export default class TabPurchase extends Tab {
     return $productQuantity.dataset.productQuantity;
   }
 
-  updateRechargeMoneyState() {
+  rerenderCharginAmount() {
     this.chargingAmount.render(this.vendingMachine.getRechargedMoneyAmount());
   }
 
-  updateProductTable() {
+  rerenderProductTable() {
     this.productListTable.render(this.vendingMachine.getProductList());
   }
 
-  updateCoinTable() {
+  rerenderCoinTable() {
     this.coinReturnTable.render(this.vendingMachine.getReturnedCoin());
   }
 }

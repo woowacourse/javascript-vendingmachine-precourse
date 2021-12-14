@@ -61,19 +61,22 @@ export default class TabMachineManage extends Tab {
   }
 
   setEvent() {
-    const { rechargeCoin } = this.props;
+    const { requestRechargeCoin } = this.props;
 
     this.coinSubmit.getTarget().addEventListener(EVENT.CLICK, () => {
       const coinValue = this.coinInput.getTarget().value;
 
       if (isValidRecharge(coinValue)) {
-        rechargeCoin(coinValue);
+        requestRechargeCoin(coinValue);
       }
     });
   }
 
-  updateRechargeState() {
+  rerenderChargedAmount() {
     this.chargedAmount.render(this.vendingMachine.getRechargedCoinAmount());
+  }
+
+  rerenderCoinTable() {
     this.coinTable.render(this.vendingMachine.getRechargedCoin());
   }
 }
