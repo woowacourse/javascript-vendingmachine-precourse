@@ -1,7 +1,7 @@
 import { renderProductAddPage, renderProductStatusTable } from '../view/index.mjs';
 import { Product } from '../model/Product.mjs';
 import { addProduct } from '../model/setProducts.mjs';
-import { inputValidate } from './util/validate.mjs';
+import { inputValidate, priceValidate } from './util/validate.mjs';
 
 function initProductAddPage() {
   document.querySelector('main').remove();
@@ -15,6 +15,7 @@ function productAddButton(e) {
 
   if (e.target !== document.querySelector('#product-add-button')) return;
   if (!inputValidate(name, price, quantity)) return;
+  if (!priceValidate(price)) return;
 
   addProduct(new Product(name, price, quantity));
   renderProductStatusTable();
