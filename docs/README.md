@@ -4,6 +4,7 @@
 
 - [x] ⚙️  localStorage를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다
   - [x] 상품을 정보를 관리하는 `inventory`를 생성한다
+    - [x] `[]`으로 초기화 한다
   - [x] 자판기가 보유한 동전을 관리하는 `coin`를 생성한다
     - [x] `{ coin500: 0, coin100: 0, coin50: 0, coin10: 0 }`으로 초기화 한다
   - [x] 자판기에 투입한 금액을 관리하는 `charge`를 생성한다
@@ -172,7 +173,7 @@
 
 <br/>
 
-## **🤔 고민했던 부분**
+## 🤔 고민했던 부분
 
 ### 1. 규모있는 프로젝트의 효율적인 설계
 > 실제 설계에 사용한 Flow chart는 [여기](https://app.diagrams.net/#G1iQTbCXEIGvmoeMjggHDP-SqLe-xfz2kv)에서 확인 할 수 있습니다. (실제 구현 내용과 차이가 있습니다.)
@@ -181,7 +182,7 @@
 
 3주차 과제를 처음 마주했을때 `기능 요구 사항`이 1, 2주차 과제에 비해서 많다고 생각했습니다. 개발이 물론 중요하지만 그 전에 설계를 잘해야 겠다는 생각을 했습니다. 진행방식을 따라서 기능 목록을 만들고 한 chapter의 정리가 끝나면 [Draw.io](https://app.diagrams.net/)를 사용해서 `flow chart`를 그렸습니다. **설계 하는 시간에만 하루를 과감히 투자하였습니다.**  개발 과정에 꼭 필요한 중요 로직을 설계하면서 구체화 하였습니다. 개발을 진행하면서 기능목록과 동시에 `flow chart`를 볼 수 있어서  기능목록을 작성할때는 생각하지 못했던 부분을  `flow chart`를 그리면서 알게되고, 개발을 진행하면서 설계 과정에서 생각하지 못한 부분을 찾아낼 수 있었습니다. 이렇게 요구사항에 대해서 깊이 파악할 수 있었고 **제가 생각할 수 있는 최선의 코드를 작성할 수 있었습니다.** 앞으로도 규모가 있는 프로젝트를 진행하게된다면 필수적으로 설계를 진행 할 예정입니다.
 
-
+<hr/>
 
 ### 2. 컴포넌트의 재사용 with `Web Component`
 
@@ -226,12 +227,27 @@
   coin10id="coin-10-quantity"
 ></coin-table>
 ```
-
-
-
 <hr/>
+### 3. 과연 옳은 MVC패턴을 구현하였는가
 
-### 2. `dataset` 속성을 활용하는 법
+![image](https://user-images.githubusercontent.com/24728385/145813117-5c03cda8-a3ef-499f-b71b-88e6876ac8a3.png)
+
+> 구현과 1차 리팩토링이 완료된 저의 프로그램 구조를 [마인드맵](https://whimsical.com/)으로 도식화한 모습입니다. 
+
+2주 차 피드백중 하나였던 '비즈니스 로직과 UI 로직을 분리해라'를 지키기 위해서 MVC 패턴으로 구현하려고 노력하였습니다. 특히  [[10분 테코톡] 🧀 제리의 MVC 패턴](https://www.youtube.com/watch?v=ogaXW6KPc8I) 영상을 보면서 이해력을 높일 수 있었습니다. 여려 규칙들이 많지만 제가 집중한 부분은 다음과 같습니다.
+
+1. View는 비즈니스 로직에 관여하지 않는다.
+2. Model은 Controller와 View에 의존하지 않아야 한다.
+3. View가 Model로부터 데이터를 받을때는 사용자마다 다르게 보여주어야 하는 데이터에 대해서만 받는다.
+4. View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다.
+
+아쉬운점이 있다면 아직 완벽한 이해를 하지 못해서 utils(공통적으로 사용하는 함수 모음), constants(상수 모음) 폴더는 Model, Controller, View 하위에 구성하지 못했습니다. MVC 패턴의 추가 학습을 통해 좀더 명확한 이해가 필요 할 것 같습니다.
+
+<br/>
+
+## ⚙️ 핵심 구현 사항
+
+### 1. `dataset` 속성을 활용하는 법
 
 제품을 구매하기 위해서 `구매하기` 버튼을 누르면 제품의 정보를 얻어올 수 있어야 합니다. 
 프로그래밍 요구 사항에 명시된 `dataset`속성을 사용해서 다음과 같이 구현하였습니다.
@@ -265,7 +281,7 @@ getProductInformation: element => {
 },
 ```
 <hr/>
-### 3. 자판기 보유 금액 만큼 동전 무작위 생성하는 알고리즘
+### 2. 자판기 보유 금액 만큼 동전 무작위 생성하는 알고리즘
 
 > 충전하고 싶은 금액을 입력하면 `Random.pickNumberInList` 을 사용해서 무작위로 동전을 뽑습니다. 이때 충전할 금액이 0이 될때까지 다음 과정을 수행합니다.
 
@@ -284,7 +300,7 @@ getProductInformation: element => {
 
 <hr/>
 
-### 4. 자판기 보유 금액을 계산하는 방법
+### 3. 자판기 보유 금액을 계산하는 방법
 
 `coin`는 `{"coin500":0,"coin100":0,"coin50":1,"coin10":5}`처럼 각 동전별 갯수를 저장합니다. 이 객체를 사용해서 `자판기 보유 금액` 을 구하는 함수를 작성해보았습니다.
 
@@ -310,7 +326,7 @@ calculateToCharge: object => {
 
 <hr/>
 
-### 5. 자판기의 잔돈 반환 알고리즘
+### 4. 자판기의 잔돈 반환 알고리즘
 
 > **그리디 알고리즘**(욕심쟁이 알고리즘, Greedy Algorithm)이란 "매 선택에서 **지금 이 순간 당장 최적인 답**을 선택하여 적합한 결과를 도출하자" 라는 모토를 가지는 [알고리즘](https://namu.wiki/w/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98) 설계 기법이다. - 출처 [#](https://namu.wiki/w/%EA%B7%B8%EB%A6%AC%EB%94%94%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 
@@ -327,24 +343,29 @@ const wallet = DB.load('coin');
 const emptyWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 }; 
 
 const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
-  const tryCaseByCoinType = coinType => {
-    // 2. 투입한 금액이 선택한 동전보다 크고 선택한 동전을 자판기가 보유하고 있으면
-    while (charge >= coinType && wallet['coin' + coinType] > 0) {
-      // 3. 자판기가 보유한 선택한 동전의 개수를 -1 합니다.
-      wallet['coin' + coinType] -= 1;
-      // 4. 반환될 동전을 저장해주는 객체의 선택한 동전 개수를 +1 합니다.
-      emptyWallet['coin' + coinType] += 1;
-      // 5. 투입한 금액에서 선택한 동전 금액만큼 차감합니다.
-      charge -= coinType;
-    }
-  };
-
-  // 1. 500, 100, 50, 10의 순서로 tryCaseByCoinType를 시도합니다.
-  [500, 100, 50, 10].forEach(coinType => tryCaseByCoinType(coinType));
+  // 0. 매개변수들을 객체로 생성에서 data에 저장합니다.
+  const data = { charge, wallet, emptyWallet };
+  
+	// 1. 500, 100, 50, 10의 순서로 tryCaseByCoinType를 시도합니다.
+  [500, 100, 50, 10].forEach(coinType => tryCaseByCoinType(coinType, data));
 
   // 6. 2번의 조건을 모두 통과하면 차감이 완료된 자판기가 보유한 동전 객체와 
   //    반환될 동전을 저장해주는 객체를 반환합니다.
-  return [wallet, emptyWallet];
+  return [data.wallet, data.emptyWallet];
+};
+
+const tryCaseByCoinType = (coinType, data) => {
+    // 2. 투입한 금액이 선택한 동전보다 크고 선택한 동전을 자판기가 보유하고 있으면
+    while (charge >= coinType && wallet['coin' + coinType] > 0) {
+    // 3. 자판기가 보유한 선택한 동전의 개수를 -1 합니다.
+    data.wallet[STORAGE.COIN.NAME + coinType] -= 1;
+
+    // 4. 반환될 동전을 저장해주는 객체의 선택한 동전 개수를 +1 합니다.
+    data.emptyWallet[STORAGE.COIN.NAME + coinType] += 1;
+
+    // 5. 투입한 금액에서 선택한 동전 금액만큼 차감합니다.
+    data.charge -= coinType;
+  }
 };
 ```
 
@@ -404,35 +425,3 @@ const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
   - [x] 상품명은 `dataset` 속성을 사용하고 `data-product-name` 형식으로 저장한다.
   - [x] 가격은 `dataset` 속성을 사용하고 `data-product-price` 형식으로 저장한다.
   - [x] 수량은 `dataset` 속성을 사용하고 `data-product-quantity` 형식으로 저장한다.
-
-<hr/>
-
-### **라이브러리**
-
-- 잔돈을 무작위로 생성하는 기능은 `[MissionUtils` 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)의 `Random.pickNumberInList`를 사용해 구한다.
-  - `MissionUtils` 라이브러리 스크립트는 `index.html`에 이미 포함되어 전역 객체에 추가되어 있으므로, 따로 `import` 하지 않아도 구현 코드 어디에서든 사용할 수 있다.
-
-<hr/>
-
-### **공통 요구사항**
-
-- 스크립트 추가 외에 주어진 `index.html`파일은 수정할 수 없다.
-  - 스타일(css)은 채점 요소가 아니다.
-- 모든 예외 발생 상황은 `alert`메서드를 이용하여 처리한다.
-- 외부 라이브러리(jQuery, Lodash 등)를 사용하지 않고, 순수 Vanilla JS로만 구현한다.
-- **자바스크립트 코드 컨벤션을 지키면서 프로그래밍** 한다. 정답이 없으므로, 다양한 컨벤션을 비교해보며 스스로 더 적절해보이는 컨벤션을 자율적으로 선택한다.
-  - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
-  - [Airbnb JavaScript Style Guide()](https://github.com/airbnb/javascript)
-  - [JavaScript Standard Style](https://standardjs.com/)
-  - [NHN FE개발랩](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
-- **indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용**한다.
-  - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-  - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
-- **함수(또는 메소드)가 한 가지 일만 하도록 최대한 작게** 만들어라.
-- 변수 선언시 `var` 를 사용하지 않는다. `const` 와 `let` 을 사용한다.
-  - [const](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/const)
-  - [let](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/let)
-- `import` 문을 이용해 스크립트를 모듈화하고 불러올 수 있게 만든다.
-  - [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/import](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/import)
-- **함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.**
-  - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
