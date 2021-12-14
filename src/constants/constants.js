@@ -81,10 +81,10 @@ export const UNIT = {
   BUY: "구매",
   COIN: "동전",
   QUANTITY: "개수",
-  COIN_500: "500원",
-  COIN_100: "100원",
-  COIN_50: "50원",
-  COIN_10: "10원",
+  COIN_500: 500,
+  COIN_100: 100,
+  COIN_50: 50,
+  COIN_10: 10,
   HAVE: "보유 금액:",
 };
 
@@ -94,3 +94,8 @@ export const COINS = [
   ["50원", " "],
   ["10원", " "],
 ]
+
+export const COIN_TABLES = {
+  HAVE: "coin-table-have",
+  RETURN: "coin-table-return"
+}

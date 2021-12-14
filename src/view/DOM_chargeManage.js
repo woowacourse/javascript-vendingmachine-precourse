@@ -1,4 +1,4 @@
-import { TITLE, UNIT, CHARGE_MANAGE, PRODUCT_PURCHASE_TABLE, MENU_BUTTON, COINS } from "../constants/constants.js";
+import { TITLE, UNIT, CHARGE_MANAGE, COIN_TABLES, PRODUCT_PURCHASE_TABLE, MENU_BUTTON, COINS } from "../constants/constants.js";
 import { setDOM, createButton, createPtag, createInput, createTable, createText, createDiv, createTd } from "./createDOM.js";
 
 export const initChargeManage = () => {
@@ -13,7 +13,7 @@ export const initChargeManage = () => {
   area.appendChild(createPtag("", "have-coin"));
 
   area.appendChild(createText(TITLE.STORE_CHARGE));
-  area.appendChild(createTable(PRODUCT_PURCHASE_TABLE.CLASS, tableTD));
+  area.appendChild(createTable(COIN_TABLES.HAVE, tableTD));
 
   setDOM(area); 
   hideChargeManage();
@@ -32,9 +32,11 @@ export const hideChargeManage = () => {
 
 
 export const getCoin = () => {
+  /*
   const isExist = document.querySelector(`.${PRODUCT_PURCHASE_TABLE.CLASS}`);
   
   if(isExist === null) {
     COINS.forEach((coinUnit) => createTd(PRODUCT_PURCHASE_TABLE.CLASS, coinUnit));
   }
+  */
 }

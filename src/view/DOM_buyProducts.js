@@ -1,4 +1,4 @@
-import { TITLE, UNIT, BUY_PRODUCT, PRODUCT_PURCHASE_TABLE, PRODUCT_MANAGE_TABLE, MENU_BUTTON, COINS } from "../constants/constants.js";
+import { TITLE, UNIT, BUY_PRODUCT, COIN_TABLES, PRODUCT_MANAGE_TABLE, MENU_BUTTON, COINS } from "../constants/constants.js";
 import { setDOM, createButton, createPtag, createInput, createTable, createText, createDiv, createTd } from "./createDOM.js";
 
 export const initBuyProduct = () => {
@@ -19,7 +19,7 @@ export const initBuyProduct = () => {
   
   area.appendChild(createText(TITLE.CHARGE));
   area.appendChild(createButton(BUY_PRODUCT.COIN_RETURN_BUTTON,"반환하기"));
-  area.appendChild(createTable(PRODUCT_PURCHASE_TABLE.CLASS, coinTable));
+  area.appendChild(createTable(COIN_TABLES.RETURN, coinTable));
 
   setDOM(area); 
   hideBuyProduct();

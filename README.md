@@ -191,9 +191,9 @@
 
   <b>productManage.js (상품관리)</b>
 
-  - [ ] localStroage에서 등록된 상품 현황 불러오기
-  - [ ] DOM 초기화 하기
-  - [ ] 추가하기 버튼 이벤트 함수
+  - [x] localStroage에서 등록된 상품 현황 불러오기
+  - [x] DOM 초기화 하기
+  - [x] 추가하기 버튼 이벤트 함수
 
   <b>buyProducts.js (상품구매)</b>
 
