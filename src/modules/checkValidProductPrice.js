@@ -1,5 +1,5 @@
 import { ALERT_MSG, PRICE_ERROR } from '../constants/errorConstants.js';
-import checkDividTenError from './checkDivideTenError.js';
+import checkDivideTenError from './checkDivideTenError.js';
 import checkUserInputEmpty from './checkUserInputEmpty.js';
 import checkValidNumberInput from './checkValidNumberInput.js';
 import showAlertMsg from './showAlertMsg.js';
@@ -11,7 +11,7 @@ function checkNumberCondition(userinputnumber) {
     isTrue = false;
   }
   if (isTrue) {
-    isTrue = checkDividTenError(userinputnumber);
+    isTrue = checkDivideTenError(userinputnumber);
   }
   return isTrue;
 }
