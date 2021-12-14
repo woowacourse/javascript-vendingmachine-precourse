@@ -28,7 +28,6 @@ const isValidName = (name, products) => {
 
 const isValidPrice = (price) => {
   if (isEmpty(price)) return setErrorMessage(ERROR_MESSAGE.EMPTY_PRODUCT_PRICE);
-  if (isNaN(price)) return setErrorMessage(ERROR_MESSAGE.NOT_NUMBER);
   if (!isOverGivenNum(price, NUMBER.HUNDRED))
     return setErrorMessage(ERROR_MESSAGE.NOT_OVER_HUNDRED);
   if (!isDividedByGivenNum(price, NUMBER.TEN))
@@ -39,7 +38,6 @@ const isValidPrice = (price) => {
 
 const isValidQuantity = (quantity) => {
   if (isEmpty(quantity)) return setErrorMessage(ERROR_MESSAGE.EMPTY_PRODUCT_QUANTITY);
-  if (isNaN(quantity)) return setErrorMessage(ERROR_MESSAGE.NOT_NUMBER);
   if (!isOverGivenNum(quantity, NUMBER.ONE)) return setErrorMessage(ERROR_MESSAGE.NOT_OVER_ONE);
 
   return true;
@@ -51,7 +49,6 @@ export const isValidProductInput = (name, price, quantity, products) => {
 
 export const isValidChargeAmount = (amount) => {
   if (isEmpty(amount)) return setErrorMessage(ERROR_MESSAGE.EMPTY_CHARGE_AMOUNT);
-  if (isNaN(amount)) return setErrorMessage(ERROR_MESSAGE.NOT_NUMBER);
   if (!isOverGivenNum(amount, NUMBER.TEN)) return setErrorMessage(ERROR_MESSAGE.NOT_OVER_TEN);
   if (!isDividedByGivenNum(amount, NUMBER.TEN))
     return setErrorMessage(ERROR_MESSAGE.NOT_DIVIDED_BY_TEN);
