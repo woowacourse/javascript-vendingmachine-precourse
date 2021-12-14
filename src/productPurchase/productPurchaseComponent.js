@@ -72,5 +72,35 @@ export default class productPurchaseComponent {
     LocalStorageUtils.setProductAddItem(data);
   }
 
-  onClickChagesButton = () => {};
+  onClickChagesButton = () => {
+    let data = LocalStorageUtils.getMachineManageTableItem();
+    const [newData, changesCoins] = this.calculateChanges(data);
+  };
+
+  calculateChanges(data) {
+    const coins = Object.keys(data).reverse();
+    let remain = this.chargeMoney;
+    let changesCoins = {};
+    let changesCoin;
+
+    coins.forEach((coin) => {
+      let count = data[coin];
+      [remain, count, changesCoin] = this.subtractCoin(remain, coin, count);
+      data[coin] = count;
+      changesCoins[coin] = changesCoin;
+    });
+
+    return [data, changesCoins];
+  }
+
+  subtractCoin(remain, coin, count) {
+    let changesCoin = 0;
+
+    while (count > 0 && remain >= coin) {
+      count -= 1;
+      remain -= coin;
+      changesCoin += 1;
+    }
+    return [remain, count, changesCoin];
+  }
 }
