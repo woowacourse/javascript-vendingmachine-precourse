@@ -1,4 +1,5 @@
 import { TABS, ID, COINS } from './constants/index.js';
+import { isValidProduct } from './validations/index.js';
 import Component from './core/Component.js';
 import TabMenu from './components/header/TabMenu.js';
 import TabContent from './components/main/TabContent.js';
@@ -38,10 +39,7 @@ export default class App extends Component {
     const $header = this.$target.querySelector('[data-component="tab-menu"]');
     const $main = this.$target.querySelector('[data-component="tab-content"]');
 
-    new TabMenu($header, {
-      tabItems,
-      changeTab: changeTab.bind(this),
-    });
+    new TabMenu($header, { tabItems, changeTab: changeTab.bind(this) });
     new TabContent($main, {
       tabID: curTab,
       tabData,
@@ -64,6 +62,10 @@ export default class App extends Component {
   // ProductAddTab 관련 메소드
   addProduct({ name, price, quantity }) {
     const { tabData } = this.$state;
+    const names = tabData.stock.map(obj => obj.name);
+    if (!isValidProduct({ name, price, quantity }, names)) {
+      return;
+    }
 
     this.setState({
       tabData: { ...tabData, stock: [...tabData.stock, { name, price, quantity }] },

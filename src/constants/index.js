@@ -20,3 +20,6 @@ export const TABS = [
 ];
 
 export const COINS = [500, 100, 50, 10];
+
+export const CHARGE_MINIMUM = 100;
+export const DIVIDE_MININUM = 10;
