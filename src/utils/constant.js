@@ -1,4 +1,4 @@
-export const coinList = [500, 100, 50, 10];
+export const COIN_LIST = [500, 100, 50, 10];
 
 export const USER_INPUT_ALERT = {
   blankNameError: '상품명이 비어있습니다.',

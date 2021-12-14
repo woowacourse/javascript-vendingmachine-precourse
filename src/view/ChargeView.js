@@ -1,4 +1,4 @@
-import { coinList } from '../utils/constant.js';
+import { COIN_LIST } from '../utils/constant.js';
 import { $ } from '../utils/DOM.js';
 import { CHARGE_SECTION_TEMPLATE } from '../utils/template.js';
 
@@ -35,7 +35,7 @@ export class ChargeView {
       this.$coin10Quantity,
     ];
 
-    $coinArray.map(($coin, index) => ($coin.innerText = machineCoins[coinList[index]] + '개'));
+    $coinArray.map(($coin, index) => ($coin.innerText = machineCoins[COIN_LIST[index]] + '개'));
   }
 
   addElements() {

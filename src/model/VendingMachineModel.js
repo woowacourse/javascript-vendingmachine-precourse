@@ -1,4 +1,4 @@
-import { coinList, EXCEPTION_ALERT } from '../utils/constant.js';
+import { COIN_LIST, EXCEPTION_ALERT } from '../utils/constant.js';
 
 export class VendingMachineModel {
   products = JSON.parse(localStorage.getItem('products')) || [];
@@ -51,7 +51,7 @@ export class VendingMachineModel {
 
   addMachineCoins(chargeMoney) {
     while (chargeMoney > 0) {
-      const randomCoin = MissionUtils.Random.pickNumberInList(coinList);
+      const randomCoin = MissionUtils.Random.pickNumberInList(COIN_LIST);
       if (this.isEnoughMoneyForCoin(chargeMoney, randomCoin)) {
         chargeMoney -= randomCoin;
         this.machineCoins[randomCoin]++;
@@ -108,7 +108,7 @@ export class VendingMachineModel {
   returnAllMachineCoin() {
     this.totalInsertedMoney -= this.machineChargeAmount;
     this.machineChargeAmount = 0;
-    for (let coin in this.changeCoins) {
+    for (let coin of COIN_LIST) {
       this.changeCoins[coin] += this.machineCoins[coin];
       this.machineCoins[coin] = 0;
     }
@@ -116,7 +116,7 @@ export class VendingMachineModel {
 
   returnTotalInsertedMoney() {
     this.machineChargeAmount -= this.totalInsertedMoney;
-    coinList.some((coin) => {
+    COIN_LIST.some((coin) => {
       const coinCount = this.calculateCoinCount(coin);
       this.returnSomeCoin(coin, coinCount);
       if (this.totalInsertedMoney === 0) {
