@@ -33,11 +33,15 @@ function itemAddButton() {
 }
 
 export default function AddMode() {
+  const container = $('#content');
+  while (container.firstChild) {
+    container.removeChild(container.lastChild);
+  }
   const addModeTitle = document.createElement('h2');
   addModeTitle.innerText = "상품 추가하기"
-  $('#content').append(addModeTitle, itemNameInput(), itemPriceInput(), itemCountInput(), itemAddButton());
+  container.append(addModeTitle, itemNameInput(), itemPriceInput(), itemCountInput(), itemAddButton());
   const addTableTitle = document.createElement('h2');
   addTableTitle.innerText = "상품 현황";
-  $('#content').append(addTableTitle);
+  container.append(addTableTitle);
   AddModeDrawTable();  
 }
