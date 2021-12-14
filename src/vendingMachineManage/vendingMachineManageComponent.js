@@ -46,4 +46,13 @@ export default class VendingMachineManageComponent {
 
     LocalStorageUtils.setMachineManageTableItem(coinStatus);
   }
+
+  calculateAmount() {
+    let coinStatus = LocalStorageUtils.getMachineManageTableItem();
+    let totalAmount = Object.entries(coinStatus).reduce((prev, curr) => {
+      return prev + Number(curr[0]) * curr[1];
+    }, 0);
+
+    return totalAmount;
+  }
 }
