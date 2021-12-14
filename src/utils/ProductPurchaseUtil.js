@@ -1,5 +1,5 @@
 import { ALERT, PRODUCT_PURCHASE } from '../constants.js';
-import { checkPurchaseCoin } from './validators/checkInput.js';
+import { checkPurchaseCoin, checkReturnCoin } from './validators/checkInput.js';
 import ProductPurchase from '../elements/ProductPurchase.js';
 import returnCoin from './returnCoin/returnCoin.js';
 import VendingMachineUtil from './VendingMachineUtil.js';
@@ -70,15 +70,17 @@ export default class ProductPurchaseUtil {
     this.productPurchase.returnBtn.addEventListener('click', e => {
       e.preventDefault();
       this.getCoin();
-      console.log(this.machineUtil.originCoin);
-      console.log(this.coinAmount);
-      const returnVal = returnCoin(this.machineUtil.originCoin, this.coinAmount);
-      this.renderCoinTable(returnVal.arr);
-      this.machineUtil.setCoinTable(this.reverseArr(returnVal.arr));
-      this.machineUtil.setCoinAmount(-(this.coinAmount - returnVal.coin));
-      this.renderCoinAmount(returnVal.coin);
-      this.storage.updatePurchaseCoin({ purchaseCoin: returnVal.coin });
-      this.machineUtil.setLocalStorage(this.machineUtil.originCoin, this.machineUtil.coinAmount);
+
+      if (checkReturnCoin(this.machineUtil.coinAmount)) {
+        const returnVal = returnCoin(this.machineUtil.originCoin, this.coinAmount);
+
+        this.renderCoinTable(returnVal.arr);
+        this.machineUtil.setCoinTable(this.reverseArr(returnVal.arr));
+        this.machineUtil.setCoinAmount(-(this.coinAmount - returnVal.coin));
+        this.renderCoinAmount(returnVal.coin);
+        this.storage.updatePurchaseCoin({ purchaseCoin: returnVal.coin });
+        this.machineUtil.setLocalStorage(this.machineUtil.originCoin, this.machineUtil.coinAmount);
+      }
     });
   }
 

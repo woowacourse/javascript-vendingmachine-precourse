@@ -8,6 +8,14 @@ function getData(key) {
   let data = '';
   data = JSON.parse(localStorage.getItem(key));
 
+  if (!data) {
+    data = {
+      name: '',
+      price: 0,
+      quantity: 0,
+    };
+  }
+
   return data;
 }
 

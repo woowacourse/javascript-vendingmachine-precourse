@@ -79,3 +79,13 @@ export function checkPurchaseCoin(coin) {
 
   return allowCoin;
 }
+
+export function checkReturnCoin(returnCoin) {
+  let allowCoin = true;
+  if (returnCoin == ZERO) {
+    alert(ALERT.NO_COIN);
+    return;
+  }
+
+  return allowCoin;
+}
