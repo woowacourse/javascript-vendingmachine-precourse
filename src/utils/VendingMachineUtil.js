@@ -19,6 +19,7 @@ export default class VendingMachineUtil {
 
   getCurrentCoin() {
     const current = this.storage.vendingMachinCoin;
+    console.log(current);
     if (current.coin == null) {
       this.getCoin();
       return;

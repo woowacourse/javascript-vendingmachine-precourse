@@ -32,12 +32,28 @@ function getProduct() {
 }
 
 function getVendingMachineCoin() {
-  const coin = getData(KEY.VENDING_MACHINE_COIN);
+  let coin = getData(KEY.VENDING_MACHINE_COIN);
+  if (coin) {
+    return coin;
+  }
+  coin = {
+    coin: 0,
+    coin500: 0,
+    coin100: 0,
+    coin50: 0,
+    coin10: 0,
+  };
   return coin;
 }
 
 function getPurchaseCoin() {
-  const coin = getData(KEY.PURCHASE_COIN);
+  let coin = getData(KEY.PURCHASE_COIN);
+  if (coin) {
+    return coin;
+  }
+  coin = {
+    productCoin: 0,
+  };
   return coin;
 }
 
@@ -78,14 +94,10 @@ export default class Storage {
   }
 
   updateMachineCoin(addCoin) {
-    const originCoin = this.vendingMachinCoin;
-
     this.setMachineCoin(addCoin);
   }
 
   updatePurchaseCoin(addCoin) {
-    const originCoin = this.purchaseCoin;
-
     this.setPurchaseCoin(addCoin);
   }
 }
