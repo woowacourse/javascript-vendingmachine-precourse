@@ -1,3 +1,5 @@
+import { INVALID } from '../common/constants.js';
+
 import { updatePurchasableToLocalStorage } from './Purchasable.js';
 
 function getPurchasePriceElements() {
@@ -32,12 +34,17 @@ function updateAmountInput(productRowIdx) {
   const price = purchasePriceElements[productRowIdx - 1].textContent;
   const amountInput = localStorage.getItem('투입한 금액');
   const newAmountInput = amountInput * 1 - price * 1;
-  localStorage.setItem('투입한 금액', newAmountInput);
+
+  if (newAmountInput < 0) {
+    alert(INVALID.MINUS);
+  } else {
+    updateQuantity(productRowIdx);
+    localStorage.setItem('투입한 금액', newAmountInput);
+  }
 }
 
 function getPurchaseProduct(event) {
   const productRowIdx = event.srcElement.parentElement.parentElement.rowIndex;
-  updateQuantity(productRowIdx);
   updateAmountInput(productRowIdx);
 }
 
