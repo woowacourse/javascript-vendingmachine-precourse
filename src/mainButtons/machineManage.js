@@ -1,4 +1,4 @@
-import ManageMode from '../mode/manageMode.js';
+import ManageMode from '../manageMode/manageMode.js';
 
 export default function MachineManage() {
   const machineManage = document.createElement('button');

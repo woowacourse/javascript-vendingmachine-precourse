@@ -24,11 +24,18 @@ export class Buying{
     contents.id = "content";
     $('#app').appendChild(contents);
   } 
+  checkLocalStorage() {
+    if (!window.localStorage.getItem('itemList')) {
+      const vendingMachine = new VendingMachine();
+      window.localStorage.setItem('itemList', JSON.stringify(vendingMachine.state.itemList));
+      window.localStorage.setItem('coinList', JSON.stringify(vendingMachine.state.coinList));
+    }
+  }
   start() {
     this.drawMainTitle();
     this.drawModeButtons();
     this.drawContentBox();
-    const machine = new VendingMachine();
+    this.checkLocalStorage();
   }
 }
 const buying = new Buying();

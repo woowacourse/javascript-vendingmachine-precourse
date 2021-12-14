@@ -1,4 +1,4 @@
-import PurchaseMode from '../mode/purchaseMode.js';
+import PurchaseMode from '../purchaseMode/purchaseMode.js';
 export default function ProductPurchase() {
   const productPurchase = document.createElement('button');
   productPurchase.id = "product-purchase-menu";

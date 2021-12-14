@@ -6,7 +6,7 @@ export default class VendingMachine{
   }
   itemInsert(name, price, count) {
     const item = Item(name, price, count);
-    this.state.itemList(item);
+    this.state.itemList.push(item);
   }
   coinInsert(money) {
     coinUnit = [500, 100, 50, 10];

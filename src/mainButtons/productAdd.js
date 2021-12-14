@@ -1,4 +1,4 @@
-import AddMode from '../mode/addMode.js';
+import AddMode from '../addMode/addMode.js';
 
 export default function ProductAdd() {
   const productAdd = document.createElement('button');
