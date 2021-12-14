@@ -1,7 +1,10 @@
-class Storage {
+import Observable from '../observable.js';
+
+class Storage extends Observable {
   #items;
 
   constructor(items = []) {
+    super();
     this.#items = [...items];
   }
 
