@@ -11,6 +11,7 @@ export const ERROR = {
   CHARGE_SHOULD_DIVIDED_INTO_TEN: '10원으로 나누어지지 않습니다.',
   PRODUCT_IS_EXPENSIVE: '현재 넣은 금액보다 상품의 가격이 더 높습니다. 돈을 더 넣으세요.',
   PRODUCT_EMPTY: '상품이 없습니다.',
+  NO_MONEY: '거슬러줄 수 있는 돈이 없습니다.',
 };
 
 export const PRICE = {

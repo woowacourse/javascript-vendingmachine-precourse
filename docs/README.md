@@ -66,11 +66,6 @@
 - [x] 반환한 동전의 개수가 {개수}개 형식으로 나타난다. 
 
 
-## 리팩터링
-- [ ] productPurchaseModel 리팩터링
-- [ ] 함수라인 15줄
-  - [ ] productPurchaseModel
-  - [ ] renderHTML 
 
 - [x] 투입한 금액도 localStorage로 관리 
 - [x] alert를 views로 옮기기 (models-views 서로 부르면 안됨)

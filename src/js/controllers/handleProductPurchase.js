@@ -79,9 +79,13 @@ function HandleProductPurchase() {
   });
 
   $('#coin-return-button').addEventListener('click', () => {
-    this.inputMoney = getChange();
-    store.setLocalStorage('inputMoney', this.inputMoney);
-    renderInputMoney();
+    if (store.getLocalStorage('coins')) {
+      this.inputMoney = getChange();
+      store.setLocalStorage('inputMoney', this.inputMoney);
+      renderInputMoney();
+      return;
+    }
+    alertMessage(ERROR.NO_MONEY);
   });
 
   this.init();
