@@ -1,6 +1,6 @@
 import { $id } from '../utils/dom.js';
 import { productManageItemTemplate } from '../utils/template.js';
-import { isValidProductAddData } from '../utils/validation.js';
+import { isValidProductAddData } from '../utils/validation/productAddValidation.js';
 
 class ProductAddController {
   constructor(vendingMachine, view, currentTabMenu) {

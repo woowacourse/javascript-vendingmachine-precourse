@@ -23,6 +23,7 @@ class VendingMachine {
       this.tabMenu = store.getLocalStorage();
       return;
     }
+
     store.setLocalStorage(this.tabMenu);
   }
 

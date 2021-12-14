@@ -1,4 +1,4 @@
-const getRandomCoin = (list) => {
+const getRandomCoin = () => {
   return MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
 };
 
@@ -7,7 +7,7 @@ export const getRandomCoinList = (chargeInputValue) => {
   let sum = 0;
 
   while (chargeInputValue !== sum) {
-    const number = getRandomCoin([500, 100, 50, 10]);
+    const number = getRandomCoin();
 
     if (sum + number > chargeInputValue) {
       continue;

@@ -8,7 +8,6 @@ class VendingMachineController {
   constructor() {
     this.vendingMachine = new VendingMachine();
     this.view = new View();
-
     this.init();
 
     this.productAddController = new ProductAddController(

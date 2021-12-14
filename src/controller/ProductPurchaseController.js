@@ -1,7 +1,7 @@
 import { $id } from '../utils/dom.js';
 import { getRandomCoinList } from '../utils/getRandomCoinList.js';
 import { getCoinReturnListTemplate } from '../utils/template.js';
-import { isValidCharge } from '../utils/validation.js';
+import { isValidChargeData } from '../utils/validation/productPurchaseValidation.js';
 
 class ProductPurchaseController {
   constructor(vendingMachine, view, currentTabMenu) {
@@ -160,7 +160,7 @@ class ProductPurchaseController {
       e.preventDefault();
       const chargeInput = this.$charge_input.value;
 
-      if (isValidCharge(chargeInput)) {
+      if (isValidChargeData(chargeInput)) {
         this.renderCharge(chargeInput);
       }
     });

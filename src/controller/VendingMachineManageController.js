@@ -1,7 +1,7 @@
 import { $id } from '../utils/dom.js';
 import { getRandomCoinList } from '../utils/getRandomCoinList.js';
 import { getVendingMachineCoinListTemplate } from '../utils/template.js';
-import { isValidVendingMachineCharge } from '../utils/validation.js';
+import { isValidVendingMachineChargeData } from '../utils/validation/vendingMachineManageValidation.js';
 
 class VendingMachineManageController {
   constructor(vendingMachine, view, currentTabMenu) {
@@ -81,7 +81,7 @@ class VendingMachineManageController {
 
       const vendingMachineChargeInput = this.$vending_machine_charge_input.value;
 
-      if (isValidVendingMachineCharge(vendingMachineChargeInput)) {
+      if (isValidVendingMachineChargeData(vendingMachineChargeInput)) {
         this.initVendingMachineChargeInputValue();
         this.renderVendingMachineCharge(vendingMachineChargeInput);
       }
