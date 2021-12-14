@@ -35,7 +35,7 @@ export default class ManageController {
     if (isValidChargeAmount(chargeAmount)) {
       this.createRandomCoins(chargeAmount);
       this.manageView.renderChargeAmount(this.appModel.getTotalCoinValue());
-      this.appModel.setCoins();
+      this.appModel.setCoins(this.appModel.coins);
       return this.manageView.renderCoins(this.appModel.coins);
     }
 

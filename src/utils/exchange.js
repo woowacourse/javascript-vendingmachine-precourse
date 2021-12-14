@@ -21,7 +21,7 @@ export const exchangeWithCoins = (inputChargeAmount, appModel) => {
 
   const exchangeResult = getExchangeResult(amountForCoinExchange, appModel);
 
-  appModel.setCoins();
+  appModel.setCoins(appModel.coins);
 
   return exchangeResult;
 };

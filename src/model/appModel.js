@@ -46,7 +46,9 @@ export default class AppModel {
     return this.coins.forEach((coin) => coin.addAmount());
   }
 
-  setCoins() {
+  setCoins(coins) {
+    this.coins = coins;
+
     setDataOnStorage(STRING.COINS, this.coins);
   }
 
