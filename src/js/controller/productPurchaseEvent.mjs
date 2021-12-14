@@ -19,6 +19,11 @@ import { products } from '../model/products.mjs';
   예외처리
   - 금액은 10원으로 나누어 떨어지는 금액만 투입할 수 있다.
   - 자판기가 보유한 금액은 {금액}원 형식으로 나타낸다.
+
+  ------------------------------------------------------------------------------
+  1. [구매하기] 버튼을 눌렀을 때 해당 상품 [가격만큼] [수량] 차감.
+  2. 차감된 charge-input 다시 [투입한 금액]에 반영
+
 */
 
 function renderProductPurchaseTab() {
@@ -28,6 +33,27 @@ function renderProductPurchaseTab() {
 
 function addPurchaseMoney() {
   window.addEventListener('click', e => {});
+}
+
+function purchase() {
+  window.addEventListener('click', e => {
+    if (e.target !== document.querySelector('.purchase-button')) return;
+    const productName = e.target.closest('.product-purchase-item').children[0].innerText;
+    let setProducts = products.map(product => {
+      if (product.name === productName) {
+        product.quantity--;
+
+        // localStorage 변경
+        let input = localStorage.getItem('charge-input');
+        let finalInput = input - product.price;
+        localStorage.setItem('charge-input', finalInput);
+        renderChargedMoney();
+      }
+      return product;
+    });
+    localStorage.setItem('products', JSON.stringify(setProducts));
+    renderProductPurchaseStatus(setProducts);
+  });
 }
 
 export function productPurchaseEvent() {
@@ -49,4 +75,5 @@ export function productPurchaseEvent() {
   });
 
   renderProductPurchaseStatus();
+  purchase();
 }

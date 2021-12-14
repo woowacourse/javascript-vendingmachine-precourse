@@ -103,9 +103,9 @@ export function renderProductPurchaseStatus(products) {
     .map(product => {
       return `
         <tr class="product-purchase-item">
-        <td><span class="product-purchase-name" data-product-name="1">${product.name}</span></td>
-        <td><span class="product-purchase-price" data-product-price="100">${product.price}</span></td>
-        <td><span class="product-purchase-quantity" data-product-quantity="10">${product.quantity}</span></td>
+        <td><span class="product-purchase-name" data-product-name="${product.name}">${product.name}</span></td>
+        <td><span class="product-purchase-price" data-product-price="${product.price}">${product.price}</span></td>
+        <td><span class="product-purchase-quantity" data-product-quantity="${product.quantity}">${product.quantity}</span></td>
         <td><button class="purchase-button">구매하기</button></td>
       </tr>`;
     })
