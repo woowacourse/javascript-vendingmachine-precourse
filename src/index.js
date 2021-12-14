@@ -107,14 +107,21 @@ function isCorrectChargeMoney(money) {
 }
 
 //
+let totalInputMoney = 0;
 function putMoney() {
     const inputAmount = document.querySelector("#charge-input").value;
     if(isCorrectChargeMoney(inputAmount)) {
-        document.querySelector("#charge-amount").textContent = `투입한 금액: ${inputAmount}`;
+        totalInputMoney += parseInt(inputAmount, 10);
+        // document.querySelector("#charge-amount").textContent = `투입한 금액: ${totalInputMoney}`;
+        renderInputMoney(totalInputMoney);
     }
     else {
         console.log('nono');
     }
+}
+
+function renderInputMoney(money) {
+    document.querySelector("#charge-amount").textContent = `투입한 금액: ${money}`;
 }
 
 
