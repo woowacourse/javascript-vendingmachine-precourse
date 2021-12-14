@@ -16,17 +16,29 @@ const calculateReturnCoins = () => {
 };
 
 const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
-  const tryCaseByCoinType = coinType => {
-    while (charge >= coinType && wallet[STORAGE.COIN.NAME + coinType] > 0) {
-      wallet[STORAGE.COIN.NAME + coinType] -= 1;
-      emptyWallet[STORAGE.COIN.NAME + coinType] += 1;
-      charge -= coinType;
-    }
-  };
+  const data = { charge, wallet, emptyWallet };
 
-  COIN_ARRAY.forEach(coinType => tryCaseByCoinType(coinType));
+  COIN_ARRAY.forEach(coinType => tryCaseByCoinType(coinType, data));
 
-  return [wallet, emptyWallet];
+  return [data.wallet, data.emptyWallet];
+};
+
+const tryCaseByCoinType = (coinType, data) => {
+  while (isChargeBiggerThanCoin(data, coinType) && isAvailable(data, coinType)) {
+    data.wallet[STORAGE.COIN.NAME + coinType] -= 1;
+
+    data.emptyWallet[STORAGE.COIN.NAME + coinType] += 1;
+
+    data.charge -= coinType;
+  }
+};
+
+const isChargeBiggerThanCoin = (data, coinType) => {
+  return data.charge >= coinType;
+};
+
+const isAvailable = (data, coinType) => {
+  return data.wallet[STORAGE.COIN.NAME + coinType] > 0;
 };
 
 const manageChargeToPurchaseProduct = (returnCoinWallet, charge) => {
