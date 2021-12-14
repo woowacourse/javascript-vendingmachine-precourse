@@ -1,3 +1,5 @@
+import { products } from '../model/products.mjs';
+
 const $fragment = new DocumentFragment();
 
 function chargeInput() {
@@ -29,13 +31,7 @@ function purchaseItems() {
         <th>수량</th>
         <th>구매</th>
       </thead>
-      <tbody>
-        <tr class="product-purchase-item">
-          <td><span class="product-purchase-name" data-product-name="1"></span></td>
-          <td><span class="product-purchase-price" data-product-price="100"></span></td>
-          <td><span class="product-purchase-quantity" data-product-quantity="10"></span></td>
-          <td><button class="purchase-button">구매하기</button></td>
-        </tr>
+      <tbody id="product-purchase-status">
       </tbody>
     </table>
   `;
@@ -78,7 +74,7 @@ function quantityPerCoins() {
   $fragment.appendChild($quantityPerCoinsWrap);
 }
 
-export function renderProductPurchase() {
+export function renderProductPurchase(products) {
   const $app = document.querySelector('#app');
   const $main = document.createElement('main');
   $main.id = 'productPurchaseOrQuantityWrap';
@@ -89,4 +85,23 @@ export function renderProductPurchase() {
 
   $main.appendChild($fragment);
   $app.appendChild($main);
+
+  renderProductPurchaseStatus(products);
+}
+
+export function renderProductPurchaseStatus(products) {
+  const $productPurchaseStatus = document.querySelector('#product-purchase-status');
+
+  if (!products) return;
+  $productPurchaseStatus.innerHTML = products
+    .map(product => {
+      return `
+        <tr class="product-purchase-item">
+        <td><span class="product-purchase-name" data-product-name="1">${product.name}</span></td>
+        <td><span class="product-purchase-price" data-product-price="100">${product.price}</span></td>
+        <td><span class="product-purchase-quantity" data-product-quantity="10">${product.quantity}</span></td>
+        <td><button class="purchase-button">구매하기</button></td>
+      </tr>`;
+    })
+    .join('');
 }
