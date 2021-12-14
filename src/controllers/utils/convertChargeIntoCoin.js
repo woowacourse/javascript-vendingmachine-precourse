@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { default as DB } from '../../model/database.js';
-import { STORAGE, COIN_ARRAY, COIN_TYPE } from '../../constants/constants.js';
+import { STORAGE, COIN_ARRAY } from '../../constants/constants.js';
 
 const convertChargeIntoCoin = charge => {
   const coinWallet = DB.load(STORAGE.COIN.NAME);
@@ -9,20 +9,27 @@ const convertChargeIntoCoin = charge => {
 };
 
 const updateCoinWallet = (charge, coinWallet) => {
-  const addRandomCoin = array => {
-    const number = MissionUtils.Random.pickNumberInList(array);
-    coinWallet[STORAGE.COIN.NAME + number] += 1;
-    charge -= number;
-  };
+  const data = { charge, coinWallet };
 
-  while (charge > 0) {
-    if (charge >= COIN_TYPE[500]) addRandomCoin(COIN_ARRAY[500]);
-    if (charge >= COIN_TYPE[100]) addRandomCoin(COIN_ARRAY[100]);
-    if (charge >= COIN_TYPE[50]) addRandomCoin(COIN_ARRAY[50]);
-    if (charge >= COIN_TYPE[10]) addRandomCoin(COIN_ARRAY[10]);
-  }
+  while (data.charge > 0) tryCaseByCoinType(data);
 
-  return coinWallet;
+  return data.coinWallet;
+};
+
+const tryCaseByCoinType = data => {
+  COIN_ARRAY[500].forEach(coinType => tryCaseByCoinArray(coinType, data));
+};
+
+const tryCaseByCoinArray = (coinType, data) => {
+  if (data.charge >= coinType) addRandomCoin(COIN_ARRAY[coinType], data);
+};
+
+const addRandomCoin = (array, data) => {
+  const number = MissionUtils.Random.pickNumberInList(array);
+
+  data.coinWallet[STORAGE.COIN.NAME + number] += 1;
+
+  data.charge -= number;
 };
 
 export default convertChargeIntoCoin;
