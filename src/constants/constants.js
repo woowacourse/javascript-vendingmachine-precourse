@@ -17,12 +17,15 @@ export const CHARGE_MANAGE = {
   INPUT_ID: "vending-machine-charge-input",
   BUTTON_ID: "vending-machine-charge-button",
   AMOUNT_ID: "vending-machine-charge-amount",
-  //보유 동전 개수 해당 ID
-  COIN500: "vending-machine-coin-500-quantity",
-  COIN100: "vending-machine-coin-100-quantity",
-  COIN50: "vending-machine-coin-50-quantity",
-  COIN10: "vending-machine-coin-10-quantity",
 };
+
+export const CHARGE_MANAGE_COIN = [
+  //보유 동전 개수 해당 ID
+  "vending-machine-coin-500-quantity",
+  "vending-machine-coin-100-quantity",
+  "vending-machine-coin-50-quantity",
+  "vending-machine-coin-10-quantity",
+]
 
 export const BUY_PRODUCT = {
   CHARGE_INPUT: "charge-input",

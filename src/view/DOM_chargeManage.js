@@ -10,7 +10,7 @@ export const initChargeManage = () => {
   area.appendChild(createInput(CHARGE_MANAGE.INPUT_ID, "text", TITLE.STORE_CHARGE));
   area.appendChild(createButton(CHARGE_MANAGE.BUTTON_ID,"충전하기"));
   area.appendChild(createPtag(UNIT.HAVE, "coin-text"));
-  area.appendChild(createPtag("", "have-coin"));
+  area.appendChild(createPtag("", CHARGE_MANAGE.AMOUNT_ID));
 
   area.appendChild(createText(TITLE.STORE_CHARGE));
   area.appendChild(createTable(COIN_TABLES.HAVE, tableTD));
