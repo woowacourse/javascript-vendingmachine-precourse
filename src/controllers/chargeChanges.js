@@ -8,8 +8,11 @@ export function clickChargeButton(e) {
   let changes = getLocalStorageItem(CHANGE_KEY);
   const $vendingMachineChargeInput = document.getElementById("vending-machine-charge-input");
   const inputMoney = $vendingMachineChargeInput.value;
-  const inputCoins = makeRandomCoins(inputMoney);
 
+  if(inputMoney % 10 !== 0) 
+  alert("10원 단위로 충전가능")
+  else {
+    const inputCoins = makeRandomCoins(inputMoney);
   if(changes === null) setLocalStorageItem(CHANGE_KEY,inputCoins);
   else {
     changes.ten += inputCoins.ten;
@@ -21,6 +24,7 @@ export function clickChargeButton(e) {
   }  
   updateState();
   rendering();
+}
 }
 
 export function makeRandomCoins(money) {

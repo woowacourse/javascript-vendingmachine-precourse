@@ -6,7 +6,4 @@ import { state, updateState } from "./models/state.js";
 updateState();
 initialViews();
 initialEvent();
-
 rendering();
-
-console.log(state);

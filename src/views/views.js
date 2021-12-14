@@ -1,5 +1,5 @@
 import { state } from "../models/state.js";
-
+import {clickEvents} from "../controllers/eventController.js"
 const $app = document.getElementById("app");
 
 export function initialViews() {
@@ -123,6 +123,7 @@ export function showPurchaseView() {
   const $productPurchaseItemTable = document.getElementById("product-purchase-item-table");
   const $chargeAmount = document.getElementById("charge-amount");
   
+
   $chargeAmount.innerText = `${state.inputMoney}`;
   
   $productPurchaseItemTable.innerHTML = `
@@ -132,14 +133,15 @@ export function showPurchaseView() {
   <th>구매</th>
   `;
 
-  state.productList.map((item, index) => {
+  state.productList.map((item) => {
     $productPurchaseItemTable.innerHTML += `
     <tr class="product-purchase-item">
       <td class="product-purchase-name" data-product-name=${item.name}>${item.name}</td>
       <td class="product-purchase-price" data-product-price=${item.price}>${item.price}</td>
       <td class="product-purchase-quantity" data-product-quantity=${item.quantity}>${item.quantity}</td>
-      <td><button class="purchase-button">구매하기</button></td>
+      <td> <button class="purchase-button" id=${item.name}>구매하기 </button></td>
     </tr>
   `;
   })
+  clickEvents();
 }

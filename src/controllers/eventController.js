@@ -1,7 +1,7 @@
 import { productManagementEvent, productPurchaseEvent, changeChargeEvent } from "../controllers/menu.js";
 import { clickProductAddButton } from "./addProduct.js";
 import { clickChargeButton } from "./chargeChanges.js";
-import { clickInputMoneyButton } from "./purchaseProduct.js";
+import { clickInputMoneyButton, purchase, clickReturnButton } from "./purchaseProduct.js";
 
 export function initialEvent() {
   menuEvent();
@@ -22,8 +22,18 @@ export function clickEvents() {
   const $productAddButton = document.getElementById("product-add-button");
   const $vendingMachineChargeButton = document.getElementById("vending-machine-charge-button");
   const $chargeButton = document.getElementById("charge-button");
-
+  const $coinReturnButton = document.getElementById("coin-return-button");
+  
   $productAddButton.addEventListener("click", clickProductAddButton);
   $vendingMachineChargeButton.addEventListener("click", clickChargeButton);
   $chargeButton.addEventListener("click", clickInputMoneyButton);
+  $coinReturnButton.addEventListener("click", clickReturnButton);
+
+  document.querySelectorAll('.purchase-button').forEach((item) => {
+    item.addEventListener('click', (e) => {
+      purchase(e.target.id);
+
+    });
+  });
+
 }
