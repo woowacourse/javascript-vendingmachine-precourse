@@ -1,4 +1,7 @@
 import { $ } from './dom.js';
+import MachineManage from './mainButtons/machineManage.js';
+import ProductAdd from './mainButtons/productAdd.js';
+import ProductPurchase from './mainButtons/productPurchase.js';
 import VendingMachine from './vendingMachine/vendingMachine.js';
 export class Buying{
   drawMainTitle() {
@@ -12,18 +15,8 @@ export class Buying{
     $('#app').appendChild(h1);
   }
   drawModeButtons() {
-    let button = document.createElement('button');
-    const productPurchase = button.cloneNode(true);
-    productPurchase.id = "product-purchase-menu";
-    productPurchase.innerText = "상품 구매";
-    const machineManage = button.cloneNode(true);
-    machineManage.id = "vending-machine-manage-menu";
-    machineManage.innerText = "잔돈 충전";
-    const productAdd = button.cloneNode(true);
-    productAdd.id = "product-add-menu";
-    productAdd.innerText = "상품 관리";
     let buttons = document.createElement('div');
-    buttons.append(productAdd, machineManage, productPurchase);
+    buttons.append(ProductPurchase(), ProductAdd(), MachineManage());
     $('#app').appendChild(buttons);
   }
   drawContentBox() {
@@ -36,7 +29,6 @@ export class Buying{
     this.drawModeButtons();
     this.drawContentBox();
     const machine = new VendingMachine();
-    console.log(machine);
   }
 }
 const buying = new Buying();
