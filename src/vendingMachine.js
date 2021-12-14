@@ -1,7 +1,7 @@
 import VendingMachineView from './view/vendingMachineView.js';
-import ManageTab from './tab/manageTab.js';
-import BuyProductTab from './tab/buyProductTab.js';
-import ChangeChargeTab from './tab/changeChargeTab.js';
+import ManageTab from './tabs/manageTab.js';
+import BuyProductTab from './tabs/buyProductTab.js';
+import ChangeChargeTab from './tabs/changeChargeTab.js';
 
 export default class VendingMachine {
   constructor() {

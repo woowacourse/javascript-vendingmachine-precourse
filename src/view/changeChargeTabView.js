@@ -1,6 +1,6 @@
 import { CHANGE_TEMPLATE } from '../constant.js';
 
-export default class ProductPurchaseTabView {
+export default class ChangeChargeTabView {
   constructor() {
     this.container = document.getElementById('tabContent');
   }
