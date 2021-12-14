@@ -16,8 +16,8 @@ export default class AmountView {
   template(money) {
     return `
       <span>${this.labelName}:</span>
-      <span id="${this.targetId}">${money === 0 ? '' : money}</span>
-      <span>${money === 0 ? '' : '원'}</span>
+      <span id="${this.targetId}">${money === null ? '' : money}</span>
+      <span>${money === null ? '' : '원'}</span>
     `;
   }
 
