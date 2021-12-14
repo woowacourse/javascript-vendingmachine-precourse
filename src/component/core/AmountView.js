@@ -1,4 +1,4 @@
-import { TAG } from '../constant/dom.js';
+import { TAG } from '../../constant/dom.js';
 
 export default class AmountView {
   constructor(targetId, labelName, initialMoney) {

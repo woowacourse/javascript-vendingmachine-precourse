@@ -1,4 +1,4 @@
-import { TAG, DOM_ATTRIBUTE } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE } from '../../constant/dom.js';
 
 export default class Input {
   constructor(targetId, placeholder, type) {

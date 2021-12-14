@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { TAG } from '../constant/dom.js';
+import { TAG } from '../../constant/dom.js';
 
 export default class Table {
   constructor(props) {

@@ -1,10 +1,10 @@
 import Navigator from '../store/Navigator.js';
 import VendingMachine from '../store/VendingMachine.js';
-import Title from '../core/Title.js';
-import Input from '../core/Input.js';
-import Button from '../core/Button.js';
-import CoinTable from '../core/CoinTable.js';
-import AmountView from '../core/AmountView.js';
+import Title from './core/Title.js';
+import Input from './core/Input.js';
+import Button from './core/Button.js';
+import CoinTable from './core/CoinTable.js';
+import AmountView from './core/AmountView.js';
 import { isValidRecharge } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
 import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';

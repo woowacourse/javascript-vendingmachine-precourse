@@ -1,5 +1,5 @@
 import Table from './Table.js';
-import { SELECTOR } from '../constant/dom.js';
+import { SELECTOR } from '../../constant/dom.js';
 
 export default class ProductPurchaseTable extends Table {
   renderBody(productList) {
