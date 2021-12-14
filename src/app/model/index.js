@@ -109,7 +109,6 @@ class VendingMachineModel {
     this.setDataModelPropertyValue(DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE, newVendingMachineCharge);
   }
 
-  /** getter */
   getDataModel() {
     return this.dataModel;
   }

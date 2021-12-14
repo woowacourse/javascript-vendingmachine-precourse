@@ -86,7 +86,6 @@ class ProductPurchaseView {
     `;
   }
 
-  /** renderCharge - clearChageInput 하는 로직 분리하기 */
   renderCharge(chargeAmount, chargeInputsValue) {
     $(DOM.CHARGE_INPUT).value = chargeInputsValue[DOM.CHARGE_INPUT];
     $(DOM.CHARGE_AMOUNT).textContent = `${chargeAmount}`;

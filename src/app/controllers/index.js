@@ -3,7 +3,6 @@ import ProductAddController from '../controllers/ProductAddController.js';
 import ProductPurchaseController from '../controllers/ProductPurchaseController.js';
 import VendingMachineManageController from '../controllers/VendingMachineManageController.js';
 
-/** Controller */
 class VendingMachineController {
   constructor({ view, model }) {
     this.$view = view;
@@ -73,7 +72,6 @@ class VendingMachineController {
     const {
       target: { textContent },
     } = e;
-    /** 절차지향적 ? */
     this.$model.setTab(textContent);
     this.triggerRenderMainView();
   }

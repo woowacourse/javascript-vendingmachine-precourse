@@ -4,7 +4,6 @@ import ProductAddView from './ProductAddView.js';
 import ProductPurchaseView from './ProductPurchaseView.js';
 import VendingMachineManageView from './VendingMachineManageView.js';
 
-/** View */
 class VendingMachineView {
   constructor() {
     this.$app = $('app');

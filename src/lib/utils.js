@@ -86,7 +86,6 @@ export const isNotDuplicatedId = (productList, randomNumber) => {
   return productList.find((product) => product.id === randomNumber) === undefined;
 };
 
-/** Coin Utils */
 export const isCoinGreatherThanZero = (coinQunatity) => coinQunatity > 0;
 
 export const isCoinValueLessThanChargeAmount = (coin, chargeAmount) => coin <= chargeAmount;
