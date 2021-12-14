@@ -86,7 +86,17 @@ export default class VendingMachine {
         setUserMoney(this.userMoney);
       }
     });
-
+    this.deleteHistory();
     return isAvailable;
+  }
+
+  deleteHistory() {
+    this.productList.forEach((product, idx) => {
+      if (product.quantity === 0) {
+        this.productList.splice(idx, 1);
+        setProductList(this.productList);
+        setUserMoney(this.userMoney);
+      }
+    });
   }
 }
