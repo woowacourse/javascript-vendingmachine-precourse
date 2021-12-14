@@ -6,8 +6,8 @@ export default class VendingMachineManageTemplate {
     this.app = document.getElementById('app');
     this.vendingMachineManageScreen = document.createElement('div');
     this.app.append(this.vendingMachineManageScreen);
-    this.makeBasicTemplate();
     this.coin = new Coin();
+    this.makeBasicTemplate();
   }
 
   makeBasicTemplate() {
@@ -61,24 +61,12 @@ export default class VendingMachineManageTemplate {
 
   makeCoinTableBody() {
     this.coinTableBody.innerHTML = '';
-    const coin500Class = document.createElement('tr');
-    coin500Class.innerHTML =
-      '<td>500원</td><td id="vending-machine-coin-500-quantity"></td>';
-    const coin100Class = document.createElement('tr');
-    coin100Class.innerHTML =
-      '<td>100원</td><td id="vending-machine-coin-100-quantity"></td>';
-    const coin50Class = document.createElement('tr');
-    coin50Class.innerHTML =
-      '<td>50원</td><td id="vending-machine-coin-50-quantity"></td>';
-    const coin10Class = document.createElement('tr');
-    coin10Class.innerHTML =
-      '<td>10원</td><td id="vending-machine-coin-10-quantity"></td>';
-    this.coinTableBody.append(
-      coin500Class,
-      coin100Class,
-      coin50Class,
-      coin10Class
-    );
+    console.log(this.coin.getCoinList());
+    this.coin.getCoinList().forEach((coinValue) => {
+      const coinClass = document.createElement('tr');
+      coinClass.innerHTML = `<td>${coinValue}원</td><td id="vending-machine-coin-${coinValue}-quantity"></td>`;
+      this.coinTableBody.append(coinClass);
+    });
   }
 
   submitCoinInput(e) {
@@ -99,18 +87,11 @@ export default class VendingMachineManageTemplate {
 
   insertCoinTableData() {
     const currentCoin = this.coin.getCoin();
-    document.getElementById(
-      'vending-machine-coin-500-quantity'
-    ).innerHTML = `${currentCoin[500]}개`;
-    document.getElementById(
-      'vending-machine-coin-100-quantity'
-    ).innerHTML = `${currentCoin[100]}개`;
-    document.getElementById(
-      'vending-machine-coin-50-quantity'
-    ).innerHTML = `${currentCoin[50]}개`;
-    document.getElementById(
-      'vending-machine-coin-10-quantity'
-    ).innerHTML = `${currentCoin[10]}개`;
+    this.coin.getCoinList().forEach((coinValue) => {
+      document.getElementById(
+        `vending-machine-coin-${coinValue}-quantity`
+      ).innerHTML = `${currentCoin[coinValue]}개`;
+    });
   }
 
   update() {

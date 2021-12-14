@@ -137,20 +137,11 @@ export default class ProductPurcahseTemplate {
 
   makeCoinReturnTableBody() {
     this.coinReturnTableBody.innerHTML = '';
-    const coin500Class = document.createElement('tr');
-    coin500Class.innerHTML = '<td>500원</td><td id="coin-500-quantity"></td>';
-    const coin100Class = document.createElement('tr');
-    coin100Class.innerHTML = '<td>100원</td><td id="coin-100-quantity"></td>';
-    const coin50Class = document.createElement('tr');
-    coin50Class.innerHTML = '<td>50원</td><td id="coin-50-quantity"></td>';
-    const coin10Class = document.createElement('tr');
-    coin10Class.innerHTML = '<td>10원</td><td id="coin-10-quantity"></td>';
-    this.coinReturnTableBody.append(
-      coin500Class,
-      coin100Class,
-      coin50Class,
-      coin10Class
-    );
+    this.coin.getCoinList().forEach((coinValue) => {
+      const coinClass = document.createElement('tr');
+      coinClass.innerHTML = `<td>${coinValue}원</td><td id="coin-${coinValue}-quantity"></td>`;
+      this.coinReturnTableBody.append(coinClass);
+    });
   }
 
   purchaseProduct(e, index) {
