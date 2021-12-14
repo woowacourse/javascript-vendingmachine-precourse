@@ -4,6 +4,7 @@ import { COIN, NUMBER } from '../constants/constants.js';
 import InputCoin from '../components/inputCoin.js';
 import ChangeCoin from '../components/changeCoin.js';
 import PurchaseList from '../components/purchaseList.js';
+import { validatePurchase, validateCoinInput } from '../util/validation.js';
 import { setLocalStorage, getLocalStorage } from '../store.js';
 
 export default class PurchaseProduct {
@@ -44,8 +45,9 @@ export default class PurchaseProduct {
     return getLocalStorage('products') || [];
   }
 
-  setProductStore(newProductObject) {
-    setLocalStorage('products', newProductObject);
+  setProductStore(clickedProductIndex) {
+    this.productObjects[clickedProductIndex].quantity--;
+    setLocalStorage('products', this.productObjects);
     this.initialize();
   }
 
@@ -75,9 +77,10 @@ export default class PurchaseProduct {
     const clickedProductIndex = this.productObjects.findIndex(
       productObject => productObject.name === productName
     );
-    this.productObjects[clickedProductIndex].quantity--;
-    this.updateUser(-this.productObjects[clickedProductIndex].price);
-    this.setProductStore(this.productObjects);
+    if (validatePurchase(this.productObjects, clickedProductIndex, this.insertedCoin)) {
+      this.updateUser(-this.productObjects[clickedProductIndex].price);
+      this.setProductStore(clickedProductIndex);
+    }
   }
 
   updateUser(price) {
@@ -87,7 +90,9 @@ export default class PurchaseProduct {
   insertCoinEvent() {
     $(`#${PRODUCT_PURCHASE.ID.CHARGE_BUTTON}`).addEventListener('click', () => {
       const insertCoin = $(`#${PRODUCT_PURCHASE.ID.CHARGE_INPUT}`).value;
-      this.setUserStore(insertCoin);
+      if (validateCoinInput(insertCoin)) {
+        this.setUserStore(insertCoin);
+      }
     });
   }
 

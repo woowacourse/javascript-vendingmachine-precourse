@@ -47,3 +47,23 @@ export function validateChangeInput(chargeValue) {
   }
   return true;
 }
+
+export function validateCoinInput(chargeValue) {
+  if (!isNull(chargeValue)) {
+    return alert(ERROR_MESSAGE.NULL);
+  }
+  if (!checkCharge(Number(chargeValue))) {
+    return alert(ERROR_MESSAGE.CHARGE);
+  }
+  return true;
+}
+
+export function validatePurchase(productObjects, index, insertedCoin) {
+  if (productObjects[index].quantity === NUMBER.ZERO) {
+    return alert(ERROR_MESSAGE.SOLD_OUT);
+  }
+  if (insertedCoin.insertCoin - productObjects[index].price < NUMBER.ZERO) {
+    return alert(ERROR_MESSAGE.LACK);
+  }
+  return true;
+}
