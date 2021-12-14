@@ -5,6 +5,7 @@ import { TABS } from './constants/constants.js';
 import { renderTabs } from './utils/common/renderTabs.js';
 import { renderProducts } from './utils/addProduct/renderProducts.js';
 import { addProduct } from './utils/addProduct/addProduct.js';
+import { initialSetting } from './utils/common/initialSetting.js';
 
 function vendingMachine() {
   this.state = {
@@ -16,10 +17,7 @@ function vendingMachine() {
   this.init = () => {
     renderTabs();
     if (store.getData()) this.state = store.getData();
-    if (!this.state.change.amount) this.state.change.amount = 0;
-    if (!this.state.purchase.input) this.state.purchase.input = 0;
-    this.tab = TABS.ADD_MENU_TAB;
-    renderProducts(this.state);
+    initialSetting(this.state, this.tab);
     this.initEventListeners();
   };
 
