@@ -46,7 +46,7 @@ export default class VendingMachine {
       loadRechargedCoin.forEach((_, index) => {
         this.rechargedCoin[index].amount = loadRechargedCoin[index].amount;
       });
-      this.convertAmountNullToZero();
+      this.convertRechargedCoinCountNullToZero();
     }
   }
 
@@ -127,10 +127,10 @@ export default class VendingMachine {
     }
     saveToStorage(STORAGE.rechargedCoin, this.rechargedCoin);
     saveToStorage(STORAGE.rechargedCoinAmount, this.rechargedCoinAmount);
-    this.convertAmountNullToZero();
+    this.convertRechargedCoinCountNullToZero();
   }
 
-  convertAmountNullToZero() {
+  convertRechargedCoinCountNullToZero() {
     this.rechargedCoin.forEach((coin) => {
       if (coin.count === null) {
         coin.resetCountToZero();
