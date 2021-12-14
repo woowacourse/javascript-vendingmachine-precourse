@@ -22,10 +22,16 @@ export default class ProductManage {
           const addValue = [$name.value, $price.value, $quantity.value];
 
           createTd(PRODUCT_MANAGE_TABLE.CLASS, itemClass, addValue);
-        })
+          this.setLocalStorage(...addValue);
+        });
     };
 
-    setLocalStorage(name, price, quantity) {
-      localStorage.setItem();
+    setLocalStorage(nameValue, priceValue, quantityValue) {
+      let storeInfo = JSON.parse(localStorage.getItem("productList"));
+      const product = [{name: nameValue, price: priceValue, quantity: quantityValue}];
+
+      console.log(storeInfo);
+      storeInfo !== null ? storeInfo.push(product) : storeInfo = product;
+      localStorage.setItem("productList", JSON.stringify(storeInfo));
     }
 };

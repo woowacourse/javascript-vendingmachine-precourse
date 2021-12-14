@@ -41,7 +41,6 @@ export const createTd = (className, itemClass, valueArr) => {
     tr.appendChild(items);
   });
 
-  console.log(table)
   table.appendChild(tr);
 };
 
