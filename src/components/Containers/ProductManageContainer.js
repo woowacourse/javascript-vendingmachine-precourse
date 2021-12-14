@@ -37,7 +37,6 @@ export default class ProductManageContainer extends Component {
       if (isValidProductInput(name, price, quantity)) {
         this.setState({products: [...this.$state.products, {name, price, quantity}]});
         this.saveProductsInStroage();
-        this.setEvent();
       }
     });
   }

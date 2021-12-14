@@ -45,7 +45,6 @@ export default class ChargeContainer extends Component {
         this.charge(amountValue);
         this.setState({amount: this.$state.amount + amountValue});
         this.saveChargedResultInStroage();
-        this.setEvent();
       }
     });
   }

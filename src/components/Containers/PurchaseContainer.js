@@ -92,12 +92,10 @@ export default class PurchaseContainer extends Component {
     this.addEvent('click', `.${CLASS.PURCHASE_BUTTON}`, (event) => {
       const {index} = event.target.dataset;
       const {price, quantity} = this.$state.products[index];
-
       if (isValidPurchaseProduct(this.$state.purchaseAmount, price, quantity)) {
         this.$state.products[index].quantity = this.$state.products[index].quantity - 1;
         this.setState({purchaseAmount: this.$state.purchaseAmount - price});
         this.savePurchaseResultInStorage();
-        this.setEvent();
       }
     });
   }
@@ -116,20 +114,16 @@ export default class PurchaseContainer extends Component {
     Object.entries(coins)
       .sort((a, b) => b[0] - a[0])
       .forEach(([coin, quantity]) => {
-        if (Number.parseInt(amount / coin, 10) >= quantity) {
-          returnCoins[coin] = quantity;
-        } else {
-          returnCoins[coin] = Number.parseInt(amount / coin, 10);
-        }
-        amount = amount - coin * returnCoins[coin];
+        if (Number.parseInt(amount / coin, 10) >= quantity) returnCoins[coin] = quantity;
+        else returnCoins[coin] = Number.parseInt(amount / coin, 10);
 
+        amount = amount - coin * returnCoins[coin];
         this.setState({
           purchaseAmount: amount,
           vendingMachineAmount: this.$state.vendingMachineAmount - coin * returnCoins[coin],
           vendingMachineCoins: Object.assign(this.$state.vendingMachineCoins, {[coin]: quantity - returnCoins[coin]}),
           returnCoins
         });
-        console.log(this.$state.vendingMachineAmount);
       });
     this.saveReturnCoinResultInStroage();
   }
