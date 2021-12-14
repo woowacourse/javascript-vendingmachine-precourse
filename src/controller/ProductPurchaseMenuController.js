@@ -77,7 +77,8 @@ export default class VendingMachineManageMenuController {
   }
 
   onClickReturnButton() {
-    this.getReturnCoinArray();
+    let returnCoinArray = this.getReturnCoinArray();
+    this.saveReturn(returnCoinArray);
   }
 
   getReturnCoinArray() {
@@ -94,5 +95,16 @@ export default class VendingMachineManageMenuController {
       returnCoinArray.push(needCoinCount);
     });
     return returnCoinArray;
+  }
+
+  saveReturn(returnCoinArray) {
+    let returnObject = {
+      coin500Quantity: returnCoinArray[0],
+      coin100Quantity: returnCoinArray[1],
+      coin50Quantity: returnCoinArray[2],
+      coin10Quantity: returnCoinArray[3],
+    };
+    setData("return", returnObject);
+    this.productPurchaseMenuView.renderReturnCoin();
   }
 }
