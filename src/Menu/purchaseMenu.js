@@ -126,13 +126,10 @@ const returnMoney = () => {
     let num = findNumberOfCoin(money, i);
     money -= num * i;
     answer[i] = num;
+    coins[i] -= answer[i];
   }
   updateCoinTableRow(answer);
-
-  for (let i of COINS) {
-    answer[i] = coins[i] - answer[i];
-  }
-  saveCoinsToLocalStorage(answer);
+  saveCoinsToLocalStorage(coins);
   saveMoneyToLocalStorage(money);
   updateMoney(money);
 };
