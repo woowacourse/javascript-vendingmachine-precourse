@@ -7,6 +7,7 @@ import {
   saveProductToLocalStorage,
   saveProductsToLocalStorage,
 } from '../utilsLocalStorage.js';
+import { COINS, MONEY_INPUT_UINT, PURCHASE_PRODUCT_MIN_QUANTITY, PURCHASE_MONEY_MIN } from '../Class/consts.js';
 
 export const initPurchaseMenu = () => {
   const chargeButton = document.getElementById('charge-button');
@@ -33,7 +34,7 @@ const chargeMoney = () => {
 };
 
 const isChargeInputValid = (chargeInput) => {
-  if (chargeInput % 10 !== 0) {
+  if (chargeInput % MONEY_INPUT_UINT !== 0) {
     alert('invalid chargeInput');
     return false;
   }
@@ -97,7 +98,7 @@ const findProductIndex = (products, name) => {
 };
 
 const isMoneyEnough = (money) => {
-  if (money < 0) {
+  if (money < PURCHASE_MONEY_MIN) {
     alert('not enough moeny');
     return false;
   }
@@ -105,7 +106,7 @@ const isMoneyEnough = (money) => {
 };
 
 const isQuantityEnough = (quantity) => {
-  if (quantity - 1 < 0) {
+  if (quantity - 1 < PURCHASE_PRODUCT_MIN_QUANTITY) {
     alert('not enough quantity');
     return false;
   }
@@ -117,14 +118,14 @@ const returnMoney = () => {
   const coins = getCoinsFromLocalStorage();
   let answer = { 500: 0, 100: 0, 50: 0, 10: 0 };
 
-  for (let i of [500, 100, 50, 10]) {
+  for (let i of COINS) {
     let num = findNumberOfCoin(money, i);
     money -= num * i;
     answer[i] = num;
   }
   updateCoinTableRow(answer);
 
-  for (let i of [500, 100, 50, 10]) {
+  for (let i of COINS) {
     answer[i] = coins[i] - answer[i];
   }
   saveCoinsToLocalStorage(answer);

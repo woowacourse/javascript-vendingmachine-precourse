@@ -1,3 +1,4 @@
+import { ADD_PRODUCT_PRICE_MIN, ADD_PRODUCT_PRICE_UNIT, ADD_PRODUCT_QUANTITY_MIN } from '../Class/consts.js';
 import { Product } from '../Class/Product.js';
 import { saveProductToLocalStorage, getProductsFromLocalStorage } from '../utilsLocalStorage.js';
 
@@ -60,17 +61,17 @@ const productNameValid = (name) => {
 };
 
 const productPriceValid = (price) => {
-  if (price <= 100) {
+  if (price <= ADD_PRODUCT_PRICE_MIN) {
     return false;
   }
-  if (price % 10 !== 0) {
+  if (price % ADD_PRODUCT_PRICE_UNIT !== 0) {
     return false;
   }
   return true;
 };
 
 const productQuantityValid = (quantity) => {
-  if (quantity <= 0) {
+  if (quantity <= ADD_PRODUCT_QUANTITY_MIN) {
     return false;
   }
   return true;

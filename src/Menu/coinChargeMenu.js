@@ -1,4 +1,5 @@
 import { saveCoinsToLocalStorage, getCoinsFromLocalStorage } from '../utilsLocalStorage.js';
+import { COINS, COIN_CHARGE_MIN, COIN_CHARGE_UNIT } from '../Class/consts.js';
 
 export const initCoinMenu = () => {
   const coinAddButton = document.getElementById('vending-machine-charge-button');
@@ -34,7 +35,6 @@ const addCoins = () => {
 const getRandomCoins = () => {
   let chargeInput = Number(document.getElementById('vending-machine-charge-input').value);
 
-  const COINS = [500, 100, 50, 10];
   let price = 0;
   let coins = { 500: 0, 100: 0, 50: 0, 10: 0 };
 
@@ -62,7 +62,7 @@ const isCoinInputValid = (chargeInput) => {
 };
 
 const isCoinInputOverZero = (chargeInput) => {
-  if (chargeInput < 0) {
+  if (chargeInput < COIN_CHARGE_MIN) {
     alert('chage more money');
     return false;
   }
@@ -70,7 +70,7 @@ const isCoinInputOverZero = (chargeInput) => {
 };
 
 const isCoinInputMulOfTen = (chargeInput) => {
-  if (chargeInput % 10 !== 0) {
+  if (chargeInput % COIN_CHARGE_UNIT !== 0) {
     alert('chage multiple of 10');
     return false;
   }
