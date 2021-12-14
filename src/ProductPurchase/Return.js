@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 
 import { createCoin } from '../ChangeCharge/CreateTable.js';
-import { COIN } from '../common/constants.js';
 import { $ } from '../common/elements.js';
 
 function createCoins() {
@@ -13,46 +12,73 @@ function createCoins() {
   return [won500, won100, won50, won10];
 }
 
-function getMinusAmount(amount, element, coin) {
-  let minusAmount = amount;
+function setValues(element, maxi, amountHave) {
+  element.textContent = `${maxi}개`;
+  localStorage.setItem('보유 금액', amountHave);
+}
 
-  if (amount) {
-    element.textContent = `${parseInt(minusAmount / coin, 10)}개`;
-    minusAmount %= coin;
+function getMinusAmount(amount, element, coin) {
+  let amountHave = localStorage.getItem('보유 금액') * 1;
+  let maxi = parseInt(amount / coin, 10);
+
+  while (maxi) {
+    if (maxi * coin <= amountHave) {
+      amount -= maxi * coin;
+      amountHave -= maxi * coin;
+      setValues(element, maxi, amountHave);
+      break;
+    }
+    maxi -= 1;
   }
 
-  return minusAmount;
+  return amount;
+}
+
+function setChangeCoinToLocalStorage(coins) {
+  const counts = [];
+
+  coins.forEach((coin) => {
+    counts.push(coin.innerText);
+  });
+  localStorage.setItem('잔돈', JSON.stringify(counts));
 }
 
 function createCoinCounts() {
   const coins = createCoins();
   let amount = localStorage.getItem('투입한 금액') * 1;
-  amount = getMinusAmount(amount, coins[0], COIN.FIVE_HUN);
-  amount = getMinusAmount(amount, coins[1], COIN.HUN);
-  amount = getMinusAmount(amount, coins[2], COIN.FIVE_TEN);
-  getMinusAmount(amount, coins[3], COIN.TEN);
 
-  return coins;
+  amount = getMinusAmount(amount, coins[0], 500);
+  amount = getMinusAmount(amount, coins[1], 100);
+  amount = getMinusAmount(amount, coins[2], 50);
+  amount = getMinusAmount(amount, coins[3], 10);
+  localStorage.setItem('투입한 금액', amount);
+  setChangeCoinToLocalStorage(coins);
 }
 
-function setChangeCoinToLocalStorage() {
-  const coins = createCoinCounts();
-  const counts = [];
-
-  coins.forEach((coin) => {
-    counts.push(coin.textContent);
-  });
-  localStorage.setItem('잔돈', JSON.stringify(counts));
-}
-
-export default function onReturnClick() {
+function setChangeCoinTable() {
   const changeCoinTable = $('change-coin-table');
-  const coins = createCoinCounts();
 
-  for (let i = 0; i < 4; i += 1) {
-    const countCell = changeCoinTable.rows[i + 1].cells[1];
-    countCell.innerText = coins[i].textContent;
+  if (localStorage.getItem('잔돈')) {
+    const counts = JSON.parse(localStorage.getItem('잔돈'));
+
+    for (let i = 0; i < 4; i += 1) {
+      const countCell = changeCoinTable.rows[i + 1].cells[1];
+      countCell.innerText = counts[i];
+    }
   }
+}
 
-  setChangeCoinToLocalStorage();
+export default function onReturnClick(event) {
+  event.preventDefault();
+  const changeCoinTable = $('change-coin-table');
+  createCoinCounts();
+  const coins = localStorage.getItem('잔돈');
+
+  if (coins) {
+    for (let i = 0; i < 4; i += 1) {
+      const countCell = changeCoinTable.rows[i + 1].cells[1];
+      countCell.innerText = coins[i].innerText;
+    }
+  }
+  setChangeCoinTable();
 }
