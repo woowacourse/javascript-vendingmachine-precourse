@@ -10,7 +10,6 @@ function getData(key) {
   if (data) {
     return data;
   }
-  return;
 }
 
 function removeData(key) {
@@ -22,12 +21,12 @@ function getProduct() {
   if (product) {
     return product;
   }
-
   product = {
     name: '',
-    price: 0,
-    quantity: 0,
+    price: ZERO,
+    quantity: ZERO,
   };
+
   return product;
 }
 
@@ -37,11 +36,11 @@ function getVendingMachineCoin() {
     return coin;
   }
   coin = {
-    coin: 0,
-    coin500: 0,
-    coin100: 0,
-    coin50: 0,
-    coin10: 0,
+    coin: ZERO,
+    coin500: ZERO,
+    coin100: ZERO,
+    coin50: ZERO,
+    coin10: ZERO,
   };
   return coin;
 }
@@ -52,7 +51,7 @@ function getPurchaseCoin() {
     return coin;
   }
   coin = {
-    productCoin: 0,
+    productCoin: ZERO,
   };
   return coin;
 }
@@ -85,8 +84,7 @@ export default class Storage {
       this.setProduct(addProduct);
       return;
     }
-
-    if (originProduct.quantity == 0) {
+    if (originProduct.quantity == ZERO) {
       removeData(KEY.PRODUCT);
     }
 

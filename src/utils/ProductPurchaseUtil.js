@@ -57,10 +57,8 @@ export default class ProductPurchaseUtil {
   addReturnCoin() {
     this.productPurchase.returnBtn.addEventListener('click', e => {
       e.preventDefault();
-
       if (checkReturnCoin(this.machineUtil.coinAmount)) {
         const returnVal = returnCoin(this.machineUtil.originCoin, this.coinAmount);
-
         this.renderCoinTable(returnVal.arr);
         this.machineUtil.setCoinTable(this.reverseArr(returnVal.arr));
         this.machineUtil.setCoinAmount(-(this.coinAmount - returnVal.coin));

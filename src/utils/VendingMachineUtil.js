@@ -48,6 +48,7 @@ export default class VendingMachineUtil {
       alert(ALERT.WRONG_COIN_CHARGE);
       return;
     }
+
     return this.coin;
   }
 
@@ -70,6 +71,7 @@ export default class VendingMachineUtil {
         coinIndexArr[idx] += 1;
       }
     }
+
     this.setCoinTable(coinIndexArr);
   }
 

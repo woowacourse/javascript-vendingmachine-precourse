@@ -39,11 +39,7 @@ export default class ProductAddUtil {
   addProduct() {
     this.productAdd.submit.addEventListener('click', e => {
       e.preventDefault();
-      if (
-        this.getProductName(this.productAdd.nameInput) &&
-        this.getProductPrice(this.productAdd.priceInput) &&
-        this.getProductQuantity(this.productAdd.quantityInput)
-      ) {
+      if (this.getInput()) {
         this.addProductAddTable(this.productName, this.productPrice, this.productQuantity);
         this.addProductPurchaseTable(this.productName, this.productPrice, this.productQuantity);
         this.storage.updateProduct({
@@ -53,6 +49,18 @@ export default class ProductAddUtil {
         });
       }
     });
+  }
+
+  getInput() {
+    if (
+      this.getProductName(this.productAdd.nameInput) &&
+      this.getProductPrice(this.productAdd.priceInput) &&
+      this.getProductQuantity(this.productAdd.quantityInput)
+    ) {
+      return true;
+    }
+
+    return;
   }
 
   getProductName(input) {

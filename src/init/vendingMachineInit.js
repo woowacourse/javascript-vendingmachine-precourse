@@ -1,4 +1,4 @@
-import { COIN_UNIT, MACHINE_MANAGE, ZERO } from '../constants.js';
+import { MACHINE_MANAGE } from '../constants.js';
 import * as func from './elementfunc.js';
 
 function setTableBody(tbody) {
@@ -8,7 +8,6 @@ function setTableBody(tbody) {
     MACHINE_MANAGE.COIN_50,
     MACHINE_MANAGE.COIN_10,
   ];
-
   const idArr = [
     'vending-machine-coin-500-quantity',
     'vending-machine-coin-100-quantity',
@@ -24,7 +23,6 @@ function setTableStyle(table, thead, tbody) {
   func.appendTheadStyle(tbody);
 }
 
-// set thead
 function setTableHead(thead) {
   let tableRow = document.createElement('tr');
   func.createTh(tableRow, MACHINE_MANAGE.COIN);
@@ -33,12 +31,10 @@ function setTableHead(thead) {
   thead.appendChild(tableRow);
 }
 
-// 표 요소 추가
 function setTable(vendingMachineDiv) {
   let table = document.createElement('table');
   let thead = document.createElement('thead');
   let tbody = document.createElement('tbody');
-
   table.appendChild(thead);
   table.appendChild(tbody);
 
@@ -52,7 +48,6 @@ function setTable(vendingMachineDiv) {
 function setVendingChargeAmount(vendingMachineDiv) {
   const amountText = func.createTag('p', 'amount', MACHINE_MANAGE.COIN_STORAGE);
   func.appendSpanData(amountText, 'vending-machine-charge-amount', 'data-machine-amount', 0);
-
   vendingMachineDiv.appendChild(amountText);
 }
 
@@ -69,14 +64,18 @@ function setVendingChargeInput(vendingMachineDiv) {
   );
 }
 
+function setVendingMachine(vendingMachineDiv) {
+  setVendingChargeInput(vendingMachineDiv);
+  setVendingChargeBtn(vendingMachineDiv);
+  setVendingChargeAmount(vendingMachineDiv);
+}
+
 function createVendingMachineDiv() {
   const vendingMachineDiv = document.createElement('div');
   func.appendId(vendingMachineDiv, 'vending-machine-charge');
 
   func.appendTitle(vendingMachineDiv, MACHINE_MANAGE.ADD_TITLE);
-  setVendingChargeInput(vendingMachineDiv);
-  setVendingChargeBtn(vendingMachineDiv);
-  setVendingChargeAmount(vendingMachineDiv);
+  setVendingMachine(vendingMachineDiv);
 
   func.appendTitle(vendingMachineDiv, MACHINE_MANAGE.COIN_TITLE);
   setTable(vendingMachineDiv);

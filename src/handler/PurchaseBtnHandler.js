@@ -39,11 +39,7 @@ export default class PurchaseBtnHandler {
       quantity -= 1;
       element.innerHTML = quantity;
       element.dataset.productQuantity = quantity;
-      this.storage.updateProduct({
-        name: name,
-        price: price,
-        quantity: quantity,
-      });
+      this.storage.updateProduct({ name: name, price: price, quantity: quantity });
       this.renderProductAddTable(name, quantity);
     }
   }
@@ -54,6 +50,7 @@ export default class PurchaseBtnHandler {
       alert(ALERT.NO_PRICE);
       return;
     }
+
     this.coinAmount = coin;
   }
 

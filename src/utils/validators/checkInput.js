@@ -7,7 +7,6 @@ export function checkProductName(productName) {
     alert(ALERT.NULL_PRODUCT_NAME);
     return;
   }
-
   if (nameIsDuplicate(productName)) {
     alert(ALERT.DUPLI_PRODUCT_NAME);
     return;

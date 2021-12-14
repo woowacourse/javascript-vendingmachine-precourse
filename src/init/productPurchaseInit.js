@@ -1,58 +1,16 @@
 import { PRODUCT_PURCHASE, ZERO } from '../constants.js';
 import * as func from './elementfunc.js';
 
-function setTableBody10(tbody) {
-  let table10Row = document.createElement('tr');
-  func.createTh(table10Row, PRODUCT_PURCHASE.COIN_10);
-  let heading_2 = document.createElement('th');
-  func.appendId(heading_2, 'coin-10-quantity');
-  heading_2.innerHTML = ZERO + '개';
-
-  table10Row.appendChild(heading_2);
-  tbody.appendChild(table10Row);
-}
-
-function setTableBody50(tbody) {
-  let table50Row = document.createElement('tr');
-  func.createTh(table50Row, PRODUCT_PURCHASE.COIN_50);
-  let heading_2 = document.createElement('th');
-  func.appendId(heading_2, 'coin-50-quantity');
-  heading_2.innerHTML = ZERO + '개';
-
-  table50Row.appendChild(heading_2);
-  tbody.appendChild(table50Row);
-}
-
-function setTableBody100(tbody) {
-  let table100Row = document.createElement('tr');
-  func.createTh(table100Row, PRODUCT_PURCHASE.COIN_100);
-  let heading_2 = document.createElement('th');
-  func.appendId(heading_2, 'coin-100-quantity');
-  heading_2.innerHTML = ZERO + '개';
-
-  table100Row.appendChild(heading_2);
-  tbody.appendChild(table100Row);
-}
-
-function setTableBody500(tbody) {
-  let table500Row = document.createElement('tr');
-
-  func.createTh(table500Row, PRODUCT_PURCHASE.COIN_500);
-  let heading_2 = document.createElement('th');
-  func.appendId(heading_2, 'coin-500-quantity');
-  heading_2.innerHTML = ZERO + '개';
-  table500Row.appendChild(heading_2);
-
-  tbody.appendChild(table500Row);
-}
-
-// function setTableRow()
-
 function setTableBody(tbody) {
-  setTableBody500(tbody);
-  setTableBody100(tbody);
-  setTableBody50(tbody);
-  setTableBody10(tbody);
+  const textArr = [
+    PRODUCT_PURCHASE.COIN_500,
+    PRODUCT_PURCHASE.COIN_100,
+    PRODUCT_PURCHASE.COIN_50,
+    PRODUCT_PURCHASE.COIN_10,
+  ];
+
+  const idArr = ['coin-500-quantity', 'coin-100-quantity', 'coin-50-quantity', 'coin-10-quantity'];
+  func.createTableRow(textArr, idArr, tbody);
 }
 
 // set thead
@@ -131,15 +89,19 @@ function setChargeInput(productPurchaseDiv) {
   func.createInput(productPurchaseDiv, PRODUCT_PURCHASE.INPUT, 'number', 'charge-input');
 }
 
+function setPurchase(productPurchaseDiv) {
+  setChargeInput(productPurchaseDiv);
+  setReturnBtn(productPurchaseDiv);
+  setChargeAmount(productPurchaseDiv);
+}
+
 // 전체 감싸주는 Div 생성
 function createProductPurchaseDiv() {
   const productPurchaseDiv = document.createElement('div');
   func.appendId(productPurchaseDiv, 'product-purchase-div');
 
   func.appendTitle(productPurchaseDiv, PRODUCT_PURCHASE.ADD_TITLE);
-  setChargeInput(productPurchaseDiv);
-  setReturnBtn(productPurchaseDiv);
-  setChargeAmount(productPurchaseDiv);
+  setPurchase(productPurchaseDiv);
 
   func.appendTitle(productPurchaseDiv, PRODUCT_PURCHASE.PRODUCT_TITLE);
   setProductTable(productPurchaseDiv);
