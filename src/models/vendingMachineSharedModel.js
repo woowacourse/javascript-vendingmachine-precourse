@@ -30,8 +30,20 @@ class VendingMachineSharedModel extends Observable {
     return true;
   }
 
-  addProductItem(item) {
-    this.productItems = [...this.productItems, item];
+  addProductItem(newItem) {
+    let hasSameItem = false;
+    const productItems = this.productItems.map((item) => {
+      if (newItem.name === item.name && newItem.price === item.price) {
+        hasSameItem = true;
+        return { name: item.name, price: item.price, quantity: item.quantity + newItem.quantity };
+      }
+      return item;
+    });
+    if (hasSameItem) {
+      this.productItems = productItems;
+      return;
+    }
+    this.productItems = [...productItems, newItem];
   }
 
   loadDataFromLocalStorage() {

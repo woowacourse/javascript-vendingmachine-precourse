@@ -32,7 +32,11 @@ class ProductAddController {
     const quantityString = this.view.$quantityInput.value.trim();
     const { isValid, message } = this.isValid(name, priceString, quantityString);
     if (isValid) {
-      this.model.addProductItem({ name, price: priceString, quantity: quantityString });
+      this.model.addProductItem({
+        name,
+        price: parseInt(priceString, 10),
+        quantity: parseInt(quantityString, 10),
+      });
       return;
     }
     alert(message);
