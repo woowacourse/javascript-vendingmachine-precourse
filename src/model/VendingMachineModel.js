@@ -75,14 +75,18 @@ export class VendingMachineModel {
       if (product.productName !== productName) {
         return false;
       }
-      if (Number(product.quantity) === 1) {
-        this.products.splice(index, 1);
-      } else {
-        product.quantity--;
-      }
+      this.minusQuantityByCondition(product, index);
       localStorage.setItem('products', JSON.stringify(this.products));
       return true;
     });
+  }
+
+  minusQuantityByCondition(product, index) {
+    if (Number(product.quantity) === 1) {
+      this.products.splice(index, 1);
+      return;
+    }
+    product.quantity--;
   }
 
   addInsertedMoney(insertedMoney) {
