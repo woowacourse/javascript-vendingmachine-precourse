@@ -1,13 +1,15 @@
+import { PRODUCT_ELEMENT } from '../utils/constants.js';
+
 export const productListTemplate = products =>
   products
     ? products
         .map(product => {
           const { name, price, quantity } = product.getInformation();
           return `
-        <tr class="product-manage-item">
-          <td class="product-manage-name">${name}</td>
-          <td class="product-manage-price">${price}원</td>
-          <td class="product-manage-quantity">${quantity}개</td>
+        <tr class=${PRODUCT_ELEMENT.MANAGE_ITEM}>
+          <td class=${PRODUCT_ELEMENT.MANAGE_NAME}>${name}</td>
+          <td class=${PRODUCT_ELEMENT.MANAGE_PRICE}>${price}원</td>
+          <td class=${PRODUCT_ELEMENT.MANAGE_QUANT}>${quantity}개</td>
         </tr>`;
         })
         .join('')

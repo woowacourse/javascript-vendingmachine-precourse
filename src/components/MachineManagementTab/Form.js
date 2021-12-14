@@ -1,6 +1,6 @@
 import Component from '../../core/Component.js';
 import { $, resetForm } from '../../utils/dom.js';
-import { MESSAGE } from '../../utils/constants.js';
+import { MESSAGE, MACHINE_ELEMENT, SELECTOR } from '../../utils/constants.js';
 import { isValidChanges } from '../../utils/validations.js';
 import { parseNumberInput } from '../../utils/input.js';
 import { chargeChanges } from '../../actions/changes.js';
@@ -13,7 +13,7 @@ export default class Form extends Component {
 
   onSubmit() {
     const money = parseNumberInput(
-      $('#vending-machine-charge-input', this.$container)
+      $(SELECTOR.VENDING_MACHINE_CHARGE_INPUT, this.$container)
     );
     if (!isValidChanges(money)) return alert(MESSAGE.INVALID_CHARGING_CHANGES);
     ChangesStore.dispatch(chargeChanges(money));
@@ -23,8 +23,8 @@ export default class Form extends Component {
   render() {
     this.$container.innerHTML = `
       <h3>자판기 동전 충전하기</h3>
-      <input id="vending-machine-charge-input" type="number" placeholder="자판기가 보유할 금액" required/>
-      <button id="vending-machine-charge-button">충전하기</button>
+      <input id=${MACHINE_ELEMENT.CHARGE_INPUT} type="number" placeholder="자판기가 보유할 금액" required/>
+      <button id=${MACHINE_ELEMENT.CHARGE_BUTTON}>충전하기</button>
       `;
   }
 }

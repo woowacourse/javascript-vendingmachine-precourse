@@ -1,3 +1,5 @@
+import { SELECTOR } from './constants.js';
+
 export const $ = (selector, target = document) =>
   target.querySelector(selector);
 
@@ -28,8 +30,8 @@ export const resetForm = formElement => {
 };
 
 export const getProductInformations = target => {
-  const parentNode = target.closest('.product-purchase-item');
-  const { productName } = $('.product-purchase-name', parentNode).dataset;
-  const { productPrice } = $('.product-purchase-price', parentNode).dataset;
+  const parentNode = target.closest(SELECTOR.PURCHASE_ITEM);
+  const { productName } = $(SELECTOR.PURCHASE_NAME, parentNode).dataset;
+  const { productPrice } = $(SELECTOR.PURCHASE_PRICE, parentNode).dataset;
   return { productName, productPrice: Number(productPrice) };
 };

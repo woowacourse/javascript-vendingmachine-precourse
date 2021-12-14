@@ -1,6 +1,7 @@
 import Component from '../../core/Component.js';
 import UserStore from '../../stores/UserStore.js';
 import ChangeStore from '../../stores/ChangesStore.js';
+import { PURCHASE_ELEMENT } from '../../utils/constants.js';
 import { returnChanges } from '../../actions/user.js';
 import { spendChanges } from '../../actions/changes.js';
 import { changeStatusTemplate } from '../../templates/Purchase.js';
@@ -34,7 +35,7 @@ export default class ChangesStatus extends Component {
     const { coins } = this.getGlobalState();
     this.$container.innerHTML = `
       <h3>잔돈</h3>
-      <button id="coin-return-button">반환하기</button>
+      <button id=${PURCHASE_ELEMENT.RETURN_BUTTON}>반환하기</button>
       <table>
         <tr>
           <th>동전</th>

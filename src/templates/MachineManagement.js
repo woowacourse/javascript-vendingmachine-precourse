@@ -1,4 +1,5 @@
 import { convertObjectToArray } from '../utils/general.js';
+import { MACHINE_ELEMENT } from '../utils/constants.js';
 
 export const coinStatusTemplate = coins =>
   convertObjectToArray(coins)
@@ -6,7 +7,7 @@ export const coinStatusTemplate = coins =>
       return `
         <tr>
             <td>${unit}</td>
-            <td id="vending-machine-coin-${unit}-quantity">${quantity}개</td>
+            <td id=${MACHINE_ELEMENT.COIN_QUANT(unit)}>${quantity}개</td>
         </tr>
     `;
     })
