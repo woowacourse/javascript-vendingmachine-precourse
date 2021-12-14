@@ -1,4 +1,4 @@
-import { ALERT, PRODUCT_PURCHASE } from '../constants.js';
+import { ALERT, PRODUCT_PURCHASE, ZERO } from '../constants.js';
 import ProductAdd from '../elements/ProductAdd.js';
 import ProductPurchase from '../elements/ProductPurchase.js';
 import PurchaseBtnHandler from '../handler/PurchaseBtnHandler.js';
@@ -29,7 +29,8 @@ export default class ProductAddUtil {
 
   getCurrentProduct() {
     const current = this.storage.product;
-    if (current == null) {
+    console.log(current);
+    if (current.quantity == ZERO) {
       return;
     }
     this.addProductAddTable(current.name, current.price, current.quantity);

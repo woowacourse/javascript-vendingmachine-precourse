@@ -8,15 +8,19 @@ export default class VendingMachineUtil {
     this.machine = new VendingMachine();
     this.storage = new Storage();
     this.coin = 0;
-    this.coinAmount = Number(this.machine.amount.dataset.machineAmount);
     this.addCoin();
     this.originCoin = [0, 0, 0, 0];
     this.getCurrentCoin();
   }
 
+  getCoin() {
+    this.coinAmount = Number(this.machine.amount.dataset.machineAmount);
+  }
+
   getCurrentCoin() {
     const current = this.storage.vendingMachinCoin;
-    if (current == null) {
+    if (current.coin == null) {
+      this.getCoin();
       return;
     }
     this.coinAmount = current.coin;
@@ -29,16 +33,16 @@ export default class VendingMachineUtil {
   addCoin() {
     this.machine.submit.addEventListener('click', e => {
       e.preventDefault();
-      if (this.getCoin(this.machine.input)) {
+      if (this.getMachineCoin(this.machine.input)) {
         this.setCoinAmount(this.coin);
         this.renderCoinAmount(this.coinAmount);
-        this.setRandomCoin(this.coin); // 이새끼가 문제임
+        this.setRandomCoin(this.coin);
         this.setLocalStorage(this.originCoin, this.coinAmount);
       }
     });
   }
 
-  getCoin(input) {
+  getMachineCoin(input) {
     this.coin = Number(input.value);
     if (!checkCoin(this.coin)) {
       alert(ALERT.WRONG_COIN_CHARGE);
@@ -52,7 +56,7 @@ export default class VendingMachineUtil {
   }
 
   renderCoinAmount(coinAmount) {
-    this.machine.amount.innerHTML = MACHINE_MANAGE.COIN_STORAGE + coinAmount;
+    this.machine.amount.innerHTML = coinAmount;
   }
 
   setRandomCoin(coin) {
@@ -79,6 +83,12 @@ export default class VendingMachineUtil {
     this.machine.coin10.innerHTML = this.originCoin[3] + MACHINE_MANAGE.COIN_UNIT;
   }
 
+  mergeCoin(coinIndexArr) {
+    coinIndexArr.forEach((v, idx) => {
+      this.originCoin[idx] += v;
+    });
+  }
+
   setLocalStorage(originCoin, coinAmount) {
     const coin = {
       coin: coinAmount,
@@ -90,11 +100,5 @@ export default class VendingMachineUtil {
 
     this.storage.updateMachineCoin(coin);
     this.renderCoinAmount(coinAmount);
-  }
-
-  mergeCoin(coinIndexArr) {
-    coinIndexArr.forEach((v, idx) => {
-      this.originCoin[idx] += v;
-    });
   }
 }

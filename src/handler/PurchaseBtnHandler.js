@@ -71,7 +71,7 @@ export default class PurchaseBtnHandler {
   }
 
   renderCoinAmount(coinAmount) {
-    this.productPurchase.amount.innerHTML = PRODUCT_PURCHASE.COIN_STORAGE + coinAmount;
+    this.productPurchase.amount.innerHTML = coinAmount;
     this.productPurchase.amount.setAttribute('data-amount', coinAmount);
   }
 }

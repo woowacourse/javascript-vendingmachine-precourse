@@ -46,6 +46,8 @@ function setTableBody500(tbody) {
   tbody.appendChild(table500Row);
 }
 
+// function setTableRow()
+
 function setTableBody(tbody) {
   setTableBody500(tbody);
   setTableBody100(tbody);
@@ -115,13 +117,10 @@ function setProductTable(productPurchaseDiv) {
 }
 
 function setChargeAmount(productPurchaseDiv) {
-  func.appendPDataset(
-    productPurchaseDiv,
-    PRODUCT_PURCHASE.COIN_STORAGE,
-    'charge-amount',
-    'data-amount',
-    0,
-  );
+  const amount = func.createTag('p', 'pur-amount', PRODUCT_PURCHASE.COIN_STORAGE);
+  func.appendSpanData(amount, 'charge-amount', 'data-amount', ZERO);
+
+  productPurchaseDiv.appendChild(amount);
 }
 
 function setReturnBtn(productPurchaseDiv) {

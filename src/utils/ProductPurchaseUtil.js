@@ -11,23 +11,25 @@ export default class ProductPurchaseUtil {
     this.machineUtil = new VendingMachineUtil();
     this.storage = new Storage();
     this.purchaseCoin = 0;
+    this.getCurrentCoin();
     this.addPurchaseCoin();
     this.addReturnCoin();
-    this.getCoin();
-    this.getCurrentCoin();
   }
 
   getCoin() {
     this.coinAmount = Number(this.productPurchase.amount.dataset.amount);
+    console.log(this.coinAmount);
   }
 
   getCurrentCoin() {
     const current = this.storage.purchaseCoin;
-    if (current == null) {
+    console.log(current);
+    if (current.purchaseCoin == null) {
+      this.getCoin();
       return;
     }
-    console.log(current);
-    this.updateCoinAmount(current.purchaseCoin);
+    this.coinAmount = current.purchaseCoin;
+    this.renderCoinAmount(this.coinAmount);
   }
 
   getPurchaseCoin(input) {
@@ -54,22 +56,9 @@ export default class ProductPurchaseUtil {
     this.renderCoinAmount(this.coinAmount);
   }
 
-  renderCoinAmount(coinAmount) {
-    this.productPurchase.amount.innerHTML = PRODUCT_PURCHASE.COIN_STORAGE + coinAmount;
-    this.productPurchase.amount.setAttribute('data-amount', coinAmount);
-  }
-
-  renderCoinTable(arr) {
-    this.productPurchase.coin500.innerHTML = arr[0] + PRODUCT_PURCHASE.COIN_UNIT;
-    this.productPurchase.coin100.innerHTML = arr[1] + PRODUCT_PURCHASE.COIN_UNIT;
-    this.productPurchase.coin50.innerHTML = arr[2] + PRODUCT_PURCHASE.COIN_UNIT;
-    this.productPurchase.coin10.innerHTML = arr[3] + PRODUCT_PURCHASE.COIN_UNIT;
-  }
-
   addReturnCoin() {
     this.productPurchase.returnBtn.addEventListener('click', e => {
       e.preventDefault();
-      this.getCoin();
 
       if (checkReturnCoin(this.machineUtil.coinAmount)) {
         const returnVal = returnCoin(this.machineUtil.originCoin, this.coinAmount);
@@ -84,12 +73,23 @@ export default class ProductPurchaseUtil {
     });
   }
 
+  renderCoinAmount(coinAmount) {
+    this.productPurchase.amount.innerHTML = coinAmount;
+    this.productPurchase.amount.setAttribute('data-amount', coinAmount);
+  }
+
+  renderCoinTable(arr) {
+    this.productPurchase.coin500.innerHTML = arr[0] + PRODUCT_PURCHASE.COIN_UNIT;
+    this.productPurchase.coin100.innerHTML = arr[1] + PRODUCT_PURCHASE.COIN_UNIT;
+    this.productPurchase.coin50.innerHTML = arr[2] + PRODUCT_PURCHASE.COIN_UNIT;
+    this.productPurchase.coin10.innerHTML = arr[3] + PRODUCT_PURCHASE.COIN_UNIT;
+  }
+
   reverseArr(arr) {
     arr.forEach((val, idx) => {
       val *= -1;
       arr[idx] = val;
     });
-    console.log(arr);
     return arr;
   }
 }

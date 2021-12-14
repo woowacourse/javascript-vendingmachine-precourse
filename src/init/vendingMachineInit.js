@@ -1,4 +1,4 @@
-import { COIN_ARR, COIN_UNIT, MACHINE_MANAGE, ZERO } from '../constants.js';
+import { COIN_UNIT, MACHINE_MANAGE, ZERO } from '../constants.js';
 import * as func from './elementfunc.js';
 
 function setTableBody(tbody) {
@@ -15,21 +15,7 @@ function setTableBody(tbody) {
     'vending-machine-coin-50-quantity',
     'vending-machine-coin-10-quantity',
   ];
-  setTableRow(textArr, idArr, tbody);
-}
-
-function setTableRow(textArr, idArr, tbody) {
-  textArr.forEach((text, idx) => {
-    let tableRow = document.createElement('tr');
-    func.createTh(tableRow, text);
-
-    let heading_2 = document.createElement('th');
-    func.appendId(heading_2, idArr[idx]);
-    heading_2.innerHTML = ZERO + COIN_UNIT;
-
-    tableRow.appendChild(heading_2);
-    tbody.appendChild(tableRow);
-  });
+  func.createTableRow(textArr, idArr, tbody);
 }
 
 function setTableStyle(table, thead, tbody) {
@@ -64,13 +50,10 @@ function setTable(vendingMachineDiv) {
 }
 
 function setVendingChargeAmount(vendingMachineDiv) {
-  func.appendPDataset(
-    vendingMachineDiv,
-    MACHINE_MANAGE.COIN_STORAGE,
-    'vending-machine-charge-amount',
-    'data-machine-amount',
-    0,
-  );
+  const amountText = func.createTag('p', 'amount', MACHINE_MANAGE.COIN_STORAGE);
+  func.appendSpanData(amountText, 'vending-machine-charge-amount', 'data-machine-amount', 0);
+
+  vendingMachineDiv.appendChild(amountText);
 }
 
 function setVendingChargeBtn(vendingMachineDiv) {

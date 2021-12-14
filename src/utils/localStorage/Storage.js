@@ -1,4 +1,4 @@
-import { KEY } from '../../constants.js';
+import { KEY, ZERO } from '../../constants.js';
 
 function setData(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
@@ -7,16 +7,10 @@ function setData(key, data) {
 function getData(key) {
   let data = '';
   data = JSON.parse(localStorage.getItem(key));
-
-  if (!data) {
-    data = {
-      name: '',
-      price: 0,
-      quantity: 0,
-    };
+  if (data) {
+    return data;
   }
-
-  return data;
+  return;
 }
 
 function removeData(key) {
@@ -24,10 +18,16 @@ function removeData(key) {
 }
 
 function getProduct() {
-  const product = getData(KEY.PRODUCT);
-  if (product.quantity == 0) {
-    return;
+  let product = getData(KEY.PRODUCT);
+  if (product) {
+    return product;
   }
+
+  product = {
+    name: '',
+    price: 0,
+    quantity: 0,
+  };
   return product;
 }
 
@@ -70,7 +70,7 @@ export default class Storage {
       return;
     }
 
-    if (originProduct.name == addProduct.name) {
+    if (originProduct.quantity == 0) {
       removeData(KEY.PRODUCT);
     }
 

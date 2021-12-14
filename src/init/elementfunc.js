@@ -1,37 +1,11 @@
+import { ZERO, COIN_UNIT } from '../constants.js';
+
 export function createTag(tag, id, text) {
   const element = document.createElement(`${tag}`);
   appendId(element, id);
   appendText(element, text);
 
   return element;
-}
-
-export function createTable(bodyID, thArr) {
-  let table = document.createElement('table');
-  let thead = document.createElement('thead');
-  let tbody = document.createElement('tbody');
-  tbody.setAttribute('id', bodyID);
-  table.appendChild(thead);
-  table.appendChild(tbody);
-
-  let tableRow = document.createElement('tr');
-  for (let th of thArr) {
-    createTh(tableRow, th);
-  }
-  thead.appendChild(tableRow);
-
-  appendTableStyle(table);
-  appendTheadStyle(thead);
-  appendTheadStyle(tbody);
-
-  return table;
-}
-
-export function createTh(tableRow, text) {
-  let head = document.createElement('th');
-  head.innerHTML = text;
-
-  tableRow.appendChild(head);
 }
 
 export function appendText(element, text) {
@@ -49,9 +23,8 @@ export function appendTitle(element, text) {
   element.appendChild(title);
 }
 
-export function appendPDataset(element, innerText, id, datasetKey, datasetVal) {
-  const text = document.createElement('p');
-  text.innerHTML = innerText;
+export function appendSpanData(element, id, datasetKey, datasetVal) {
+  const text = document.createElement('span');
   text.setAttribute(datasetKey, datasetVal);
   appendId(text, id);
   element.appendChild(text);
@@ -59,24 +32,6 @@ export function appendPDataset(element, innerText, id, datasetKey, datasetVal) {
 
 export function appendClass(element, className) {
   element.setAttribute('class', className);
-}
-
-export function appendTableStyle(table) {
-  table.style.borderCollapse = 'collapse';
-  table.style.borderSpacing = 0;
-}
-
-export function appendTheadStyle(thead) {
-  const tr = thead.querySelectorAll('tr');
-  for (let t of tr) {
-    t.style.padding = '10px';
-    t.style.border = '1px solid #000';
-  }
-  const th = thead.querySelectorAll('th');
-  for (let t of th) {
-    t.style.padding = '15px';
-    t.style.border = '1px solid #000';
-  }
 }
 
 export function createInput(element, text, type, id) {
@@ -110,6 +65,67 @@ export function createBtnClassDataset(element, text, className, datasetKey, data
   appendText(btn, text);
 
   element.appendChild(btn);
+}
+
+// create table func
+export function createTable(bodyID, thArr) {
+  let table = document.createElement('table');
+  let thead = document.createElement('thead');
+  let tbody = document.createElement('tbody');
+  tbody.setAttribute('id', bodyID);
+
+  table.appendChild(thead);
+  table.appendChild(tbody);
+
+  let tableRow = document.createElement('tr');
+  for (let th of thArr) {
+    createTh(tableRow, th);
+  }
+  thead.appendChild(tableRow);
+  appendTableStyle(table);
+  appendTheadStyle(thead);
+  appendTheadStyle(tbody);
+
+  return table;
+}
+
+export function createTableRow(textArr, idArr, tbody) {
+  textArr.forEach((text, idx) => {
+    let tableRow = document.createElement('tr');
+    createTh(tableRow, text);
+
+    let head_2 = document.createElement('th');
+    appendId(head_2, idArr[idx]);
+    head_2.innerHTML = ZERO + COIN_UNIT;
+
+    tableRow.appendChild(head_2);
+    tbody.appendChild(tableRow);
+  });
+}
+
+export function appendTableStyle(table) {
+  table.style.borderCollapse = 'collapse';
+  table.style.borderSpacing = 0;
+}
+
+export function appendTheadStyle(thead) {
+  const tr = thead.querySelectorAll('tr');
+  for (let t of tr) {
+    t.style.padding = '10px';
+    t.style.border = '1px solid #000';
+  }
+  const th = thead.querySelectorAll('th');
+  for (let t of th) {
+    t.style.padding = '15px';
+    t.style.border = '1px solid #000';
+  }
+}
+
+export function createTh(tableRow, text) {
+  let head = document.createElement('th');
+  head.innerHTML = text;
+
+  tableRow.appendChild(head);
 }
 
 export function createThClassDataset(tableRow, text, className, datasetKey, datasetVal) {
