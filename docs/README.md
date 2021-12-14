@@ -2,6 +2,8 @@
 
 ## ✅ 기능 목록
 
+- 🚨 예외적인 상황 표시
+
 - #### 개발 환경 설정
 
   - [x] linter와 code formater 환경 설정
@@ -93,3 +95,38 @@
     - [x] 반환된 각 동전의 개수에 해당하는 요소에 id 입력한다
     - [x] 반환된 동전만큼 저장된 동전개수에서 뺀다
     - [x] 반환하고 남은 동전을 로컬 스토리지에 저장한다
+
+## 🗂 src 폴더 구조
+
+```bash
+📦src
+ ┣ 📂css
+ ┃ ┗ 📜index.css
+ ┗ 📂js
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂charge
+ ┃ ┃ ┃ ┣ 📜coinCharge.js
+ ┃ ┃ ┃ ┗ 📜coinChargeTemplate.js
+ ┃ ┃ ┣ 📂manage
+ ┃ ┃ ┃ ┣ 📜manageTemplate.js
+ ┃ ┃ ┃ ┗ 📜productAddMenu.js
+ ┃ ┃ ┣ 📂purchase
+ ┃ ┃ ┃ ┣ 📜productPurchase.js
+ ┃ ┃ ┃ ┗ 📜productPurchaseTemplate.js
+ ┃ ┃ ┗ 📜menu.js
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📜calculation.js
+ ┃ ┃ ┣ 📜constants.js
+ ┃ ┃ ┣ 📜querySelector.js
+ ┃ ┃ ┣ 📜storage.js
+ ┃ ┃ ┗ 📜validation.js
+ ┃ ┣ 📂view
+ ┃ ┃ ┣ 📂init
+ ┃ ┃ ┃ ┣ 📜initScreen.js
+ ┃ ┃ ┃ ┗ 📜initScreenTemplate.js
+ ┃ ┃ ┣ 📜coinCharge.js
+ ┃ ┃ ┣ 📜currentAmount.js
+ ┃ ┃ ┣ 📜productManage.js
+ ┃ ┃ ┗ 📜productPurchase.js
+ ┃ ┗ 📜index.js
+```
