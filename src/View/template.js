@@ -15,12 +15,13 @@ export const makeElement = ({ tag, id, innerText, type, placeholder, className, 
 
 export const makeTableForm = (theadText, tableBodyId) => {
   const tableArea = makeElement({ tag: "table" });
+  const tableHead = makeElement({ tag: "thead" });
   theadText.forEach(tableHeadText => {
     const th = makeElement({ tag: "th", innerText: tableHeadText });
-    tableArea.appendChild(th);
+    tableHead.appendChild(th);
   });
   const tableBody = makeElement({ tag: "tbody", id: tableBodyId });
-  tableArea.appendChild(tableBody);
+  tableArea.append(tableHead, tableBody);
   return tableArea;
 };
 
@@ -77,5 +78,5 @@ export const renderCoinTable = (container, tableBodyId, coinToUse) => {
     const tableRow = makeTableRow(coin);
     tableBodyArea.appendChild(tableRow);
   });
-  container.append(tableBodyArea);
+  tableHead.appendChild(tableBodyArea);
 };
