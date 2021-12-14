@@ -1,11 +1,11 @@
 import { DOM, NUMBER } from '../utils/constant.js';
-import VendingMachineCharge from '../model/VendingMachineCharge.js';
+import ValidationInputCoin from '../model/ValidationInputCoin.js';
 
 export default class SetVendingMachineCharge {
   constructor(render, coins) {
     this.render = render;
     this.coins = coins;
-    this.vendingMachineCharge = new VendingMachineCharge(this.render, DOM.$VENDING_MACHINE_CHARGE_INPUT);
+    this.validationInputCoin = new ValidationInputCoin(this.render, DOM.$VENDING_MACHINE_CHARGE_INPUT);
     this.vendingMachineChargeAmount = NUMBER.ZERO;
     this.coin10 = NUMBER.ZERO;
     this.coin50 = NUMBER.ZERO;
@@ -30,7 +30,7 @@ export default class SetVendingMachineCharge {
   };
 
   getVendingMachineChargeInput = () => {
-    this.vendingMachineChargeAmount = this.vendingMachineCharge.getInput();
+    this.vendingMachineChargeAmount = this.validationInputCoin.getInput();
     this.coins.setCoinAmount(this.vendingMachineChargeAmount);
     this.vendingMachineChargeAmount = this.coins.getCoinAmount();
   };
@@ -40,7 +40,7 @@ export default class SetVendingMachineCharge {
   };
 
   setVendingMachine = () => {
-    if (!this.vendingMachineCharge.isValidInput()) {
+    if (!this.validationInputCoin.isValidInput()) {
       return;
     }
 

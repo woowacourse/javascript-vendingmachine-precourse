@@ -1,11 +1,11 @@
 import { DOM, TEMPLATE } from '../utils/constant.js';
-import VendingMachineCharge from '../model/VendingMachineCharge.js';
+import ValidationInputCoin from '../model/ValidationInputCoin.js';
 
 export default class SetVendingMachinePurchase {
   constructor(render, vendingMachine) {
     this.render = render;
     this.vendingMachine = vendingMachine;
-    this.vendingMachineCharge = new VendingMachineCharge(this.render, DOM.$CHARGE_INPUT);
+    this.validationInputCoin = new ValidationInputCoin(this.render, DOM.$CHARGE_INPUT);
     this.$chargeInput = document.querySelector(DOM.$CHARGE_INPUT);
   }
 
@@ -26,7 +26,7 @@ export default class SetVendingMachinePurchase {
   };
 
   setVendingMachineCharge = () => {
-    if (!this.vendingMachineCharge.isValidInput()) {
+    if (!this.validationInputCoin.isValidInput()) {
       return;
     }
 

@@ -1,6 +1,6 @@
 import { NUMBER, ERROR_MESSAGE } from '../utils/constant.js';
 
-export default class VendingMachineCharge {
+export default class ValidationInputCoin {
   constructor(render, element) {
     this.render = render;
     this.$targetElement = document.querySelector(element);
