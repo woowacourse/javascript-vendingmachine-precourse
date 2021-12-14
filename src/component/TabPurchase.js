@@ -9,9 +9,12 @@ import CoinTable from './core/CoinTable.js';
 import AmountView from './core/AmountView.js';
 import { isValidRecharge, canBePurchase, canBeReturn } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 import { COIN } from '../constant/coin.js';
 
+const PRODUCT_TABLE_COLUMN = [COLUMN.NAME, COLUMN.PURCHASE, COLUMN.QUANTITY, COLUMN.PURCHASE];
+const COIN_TABLE_COLUMN = [COLUMN.COIN, COLUMN.COUNT];
 const COIN_TABLE_IDS = {
   [COIN.COIN_500]: SELECTOR.ID_COIN_500_QUANTITY,
   [COIN.COIN_100]: SELECTOR.ID_COIN_100_QUANTITY,
@@ -57,12 +60,12 @@ export default class TabPurchase {
   }
 
   renderInput() {
-    this.chargingTitle = new Title('금액 투입');
-    this.chargingInput = new Input(SELECTOR.ID_CHARGE_INPUT, '투입할 금액', 'number');
-    this.chargingSubmit = new Button(SELECTOR.ID_CHARGE_BUTTON, '투입하기');
+    this.chargingTitle = new Title(TITLE.RECHARGE_MONEY);
+    this.chargingInput = new Input(SELECTOR.ID_CHARGE_INPUT, PLACEHOLDER.MONEY, INPUT_TYPE.NUMBER);
+    this.chargingSubmit = new Button(SELECTOR.ID_CHARGE_BUTTON, TITLE.RECHARGE_MONEY_BUTTON);
     this.chargingAmount = new AmountView(
       SELECTOR.ID_CHARGE_AMOUNT,
-      '투입한 금액',
+      TITLE.RECHARGE_MONEY_AMOUNT,
       this.vendingMachine.getRechargedMoneyAmount()
     );
 
@@ -73,9 +76,9 @@ export default class TabPurchase {
   }
 
   renderProductTable() {
-    this.productListTitle = new Title('구매할 수 있는 상품 현황');
+    this.productListTitle = new Title(TITLE.PURCHASABLE_PRODUCT_LIST);
     this.productListTable = new ProductPurchaseTable({
-      columns: ['상품명', '가격', '수량', '구매하기'],
+      columns: PRODUCT_TABLE_COLUMN,
       classes: [
         SELECTOR.CLASS_PRODUCT_PURCHASE_NAME,
         SELECTOR.CLASS_PRODUCT_PURCHASE_PRICE,
@@ -89,10 +92,10 @@ export default class TabPurchase {
   }
 
   renderCoinTable() {
-    this.coinReturnTitle = new Title('잔돈');
-    this.coinReturnButton = new Button(SELECTOR.ID_COIN_RETURN_BUTTON, '반환하기');
+    this.coinReturnTitle = new Title(TITLE.RETURN_COIN);
+    this.coinReturnButton = new Button(SELECTOR.ID_COIN_RETURN_BUTTON, TITLE.RETURN_COIN_BUTTON);
     this.coinReturnTable = new CoinTable({
-      columns: ['동전', '개수'],
+      columns: COIN_TABLE_COLUMN,
       initialData: this.vendingMachine.getReturnedCoin(),
       ids: COIN_TABLE_IDS,
     });

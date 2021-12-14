@@ -6,7 +6,10 @@ import Button from './core/Button.js';
 import ProductStatusTable from './core/ProductStatusTable.js';
 import { isValidProductAdd } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
+
+const PRODUCT_LIST_COLUM = [COLUMN.NAME, COLUMN.PRICE, COLUMN.QUANTITY];
 
 export default class TabProductAdd {
   constructor($parent, props) {
@@ -37,11 +40,11 @@ export default class TabProductAdd {
   }
 
   renderInputs() {
-    this.addTitle = new Title('상품 추가하기');
-    this.name = new Input(SELECTOR.ID_PRODUCT_NAME_INPUT, '상품명', 'text');
-    this.price = new Input(SELECTOR.ID_PRODUCT_PRICE_INPUT, '가격', 'number');
-    this.quantity = new Input(SELECTOR.ID_PRODUCT_QUANTITY_INPUT, '수량', 'number');
-    this.addButton = new Button(SELECTOR.ID_PRODUCT_ADD_BUTTON, '추가하기');
+    this.addTitle = new Title(TITLE.PRODUCT_ADD_TITLE);
+    this.name = new Input(SELECTOR.ID_PRODUCT_NAME_INPUT, PLACEHOLDER.NAME, INPUT_TYPE.TEXT);
+    this.price = new Input(SELECTOR.ID_PRODUCT_PRICE_INPUT, PLACEHOLDER.PRICE, INPUT_TYPE.NUMBER);
+    this.quantity = new Input(SELECTOR.ID_PRODUCT_QUANTITY_INPUT, PLACEHOLDER.QUANTITY, INPUT_TYPE.NUMBER);
+    this.addButton = new Button(SELECTOR.ID_PRODUCT_ADD_BUTTON, TITLE.PRODUCT_ADD_BUTTON);
 
     this.$root.appendChild(this.addTitle.getTarget());
     this.$root.appendChild(this.name.getTarget());
@@ -51,9 +54,9 @@ export default class TabProductAdd {
   }
 
   renderTable() {
-    this.listTitle = new Title('상품 현황');
+    this.listTitle = new Title(TITLE.PRODUCT_LIST);
     this.listTable = new ProductStatusTable({
-      columns: ['상품명', '가격', '수량'],
+      columns: PRODUCT_LIST_COLUM,
       classes: [
         SELECTOR.CLASS_PRODUCT_MANAGE_NAME,
         SELECTOR.CLASS_PRODUCT_MANAGE_PRICE,

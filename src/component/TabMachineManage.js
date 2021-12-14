@@ -7,9 +7,11 @@ import CoinTable from './core/CoinTable.js';
 import AmountView from './core/AmountView.js';
 import { isValidRecharge } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 import { COIN } from '../constant/coin.js';
 
+const COIN_TABLE_COLUMN = [COLUMN.COIN, COLUMN.COUNT];
 const COIN_TABLE_IDS = {
   [COIN.COIN_500]: SELECTOR.ID_MACHINE_COINT_500_QUANTITY,
   [COIN.COIN_100]: SELECTOR.ID_MACHINE_COINT_100_QUANTITY,
@@ -46,12 +48,12 @@ export default class TabMachineManage {
   }
 
   renderInput() {
-    this.chargingTitle = new Title('자판기 동전 충전하기');
-    this.coinInput = new Input(SELECTOR.ID_MACHINE_CHARGE_INPUT, '자판기가 보유할 금액', 'number');
-    this.coinSubmit = new Button(SELECTOR.ID_MACHINE_CHARGE_BUTTON, '충전하기');
+    this.chargingTitle = new Title(TITLE.RECHARGE_COIN);
+    this.coinInput = new Input(SELECTOR.ID_MACHINE_CHARGE_INPUT, PLACEHOLDER.COIN, INPUT_TYPE.NUMBER);
+    this.coinSubmit = new Button(SELECTOR.ID_MACHINE_CHARGE_BUTTON, TITLE.RECHARGE_COIN_BUTTON);
     this.chargedAmount = new AmountView(
       SELECTOR.ID_MACHINE_CHARGE_AMOUNT,
-      '보유금액',
+      TITLE.RECHARGE_COIN_AMOUNT,
       this.vendingMcahine.getRechargedCoinAmount()
     );
 
@@ -62,9 +64,9 @@ export default class TabMachineManage {
   }
 
   renderTable() {
-    this.havingCoinTitle = new Title('자판기가 보유한 동전');
+    this.havingCoinTitle = new Title(TITLE.HAVING_COIN);
     this.coinTable = new CoinTable({
-      columns: ['동전', '개수'],
+      columns: COIN_TABLE_COLUMN,
       initialData: this.vendingMcahine.getRechargedCoin(),
       ids: COIN_TABLE_IDS,
     });

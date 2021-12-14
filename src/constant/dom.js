@@ -60,3 +60,8 @@ export const SELECTOR = Object.freeze({
 export const EVENT = Object.freeze({
   CLICK: 'click',
 });
+
+export const INPUT_TYPE = Object.freeze({
+  TEXT: 'text',
+  NUMBER: 'number',
+});
