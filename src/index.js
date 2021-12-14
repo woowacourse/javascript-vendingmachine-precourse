@@ -1,38 +1,9 @@
 import { fetchHtmlView } from './fetch.js';
 import { moneyList } from './constants.js';
 
-//
-function addProduct() {
-    const name = document.querySelector("#product-name-input").value;
-    const price = document.querySelector("#product-price-input").value;
-    const quantity = document.querySelector("#product-quantity-input").value;
-    
-    if(isCorrectProductInputs(name, price, quantity)) {
-        productList.push({ name, price, quantity });
-        setDataInLocalStorage('productList', JSON.stringify(productList));
-        renderAddedProductList(productList);
-    }
-    else {
-        alert("옳바른 형식이 아닙니다. 상품명: 1자 이상, 가격: 100원 이상 10 배수, 수량: 1 이상");
-    }
-}
-
-function isCorrectProductInputs(name, price, quantity) {
-    return isCorrectName(name) && isCorrectPrice(price) && isCorrectQuantity(quantity);
-}
-
-function isCorrectName(name) {
-    return !!name.trim();
-}
-
-function isCorrectPrice(price) {
-    return Number(price) >= 100 && Number(price) % 10 === 0;
-}
-
-function isCorrectQuantity(quantity) {
-    return Number(quantity) >= 1;
-}
-
+import VendingMachine from './model/vending-machine.js';
+import AddProductController from './controller/add-product-controller.js';
+import AddProductView from './view/add-product-view.js';
 
 //
 function chargeMoney() {
@@ -208,19 +179,19 @@ function renderProductList(products) {
     });
 }
 
-function renderAddedProductList(products) {
-    const productTable = document.querySelector("table");
-    productTable.innerHTML = '';
-    products.forEach(product => {
-        const {name, price, quantity} = product;
-        const newProductRow = document.createElement("tr");
-        newProductRow.className = "product-manage-item";
-        newProductRow.innerHTML = `<td class="product-manage-name">${name}</td>
-                                    <td class="product-manage-price">${price}</td>
-                                    <td class="product-manage-quantity">${quantity}</td>`;
-        productTable.appendChild(newProductRow);
-    });
-}
+// function renderAddedProductList(products) {
+//     const productTable = document.querySelector("table");
+//     productTable.innerHTML = '';
+//     products.forEach(product => {
+//         const {name, price, quantity} = product;
+//         const newProductRow = document.createElement("tr");
+//         newProductRow.className = "product-manage-item";
+//         newProductRow.innerHTML = `<td class="product-manage-name">${name}</td>
+//                                     <td class="product-manage-price">${price}</td>
+//                                     <td class="product-manage-quantity">${quantity}</td>`;
+//         productTable.appendChild(newProductRow);
+//     });
+// }
 
 function onTabClick(fileName, tabId) {
     fetchHtmlView(fileName)
@@ -232,7 +203,7 @@ function renderView(view, tabId) {
     document.querySelector("#tab-content").innerHTML = view;
     switch(tabId) {
         case 1: 
-            renderAddedProductList(productList);
+            addProuctView.renderAddedProductList(vendingMachine.productList);
             break;
         case 2: 
             renderChargedMoney(chargedMoney);
@@ -255,11 +226,15 @@ const app = document.querySelector("#app");
 fetchHtmlView('tab.html').then(view => app.innerHTML = view);
 
 // variables
-let productList = JSON.parse(getDataInLocalStorage('productList')) || [];
+// let productList = JSON.parse(getDataInLocalStorage('productList')) || [];
 let chargedMoney = parseInt(getDataInLocalStorage('chargedMoney'), 10) || 0;
 const totalChanges = JSON.parse(getDataInLocalStorage('totalChanges')) || generateChangeObject();
 const inputChanges = JSON.parse(getDataInLocalStorage('inputChanges')) || generateChangeObject();
 let totalInputMoney = parseInt(getDataInLocalStorage('totalInputMoney'), 10) || 0;
+
+const vendingMachine = new VendingMachine();
+const addProductController = new AddProductController(vendingMachine);
+const addProuctView = new AddProductView();
 
 app.addEventListener('click', function(e) {
     e.preventDefault();
@@ -268,7 +243,7 @@ app.addEventListener('click', function(e) {
         "product-add-menu"() { onTabClick('product_manage.html', 1); },
         "vending-machine-manage-menu"() { onTabClick('machine_charge.html', 2); },
         "product-purchase-menu"() { onTabClick('product_purchase.html', 3); },
-        "product-add-button"() { addProduct(); },
+        "product-add-button"() { addProductController.addProduct(); },
         "vending-machine-charge-button"() { chargeMoney(); },
         "charge-button"() { putMoney(); },
         "coin-return-button"() { returnMoney(); },
