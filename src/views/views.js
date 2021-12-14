@@ -24,9 +24,9 @@ export function productManagementView() {
       <button id="product-add-button">추가하기</button>
       <h3>상품 현황</h3>
       <table id="product-table">
-      <th>상품명</th>
-      <th>가격</th>
-      <th>수량</th>
+        <th>상품명</th>
+        <th>가격</th>
+        <th>수량</th>
       </table>
     </div>
   `;
@@ -39,8 +39,9 @@ export function changeChargeView() {
       <h3>자판기 동전 충전하기</h3>
       <input id="vending-machine-charge-input" type="number" placeholder="자판기가 보유할 금액" />
       <button id="vending-machine-charge-button">충전하기</button>
-      <div id="machine-charge-amount-div">보유 금액:</div>
-    
+      <div id="machine-charge-amount-div">보유 금액:
+        <div id="machine-charge-amount"></div>
+      </div>
       <h3>자판기가 보유한 동전</h3>
       <table id="vending-machine-coin-table"></table>
     </div>
@@ -83,4 +84,32 @@ export function showProductList() {
     </tr>
   `;
   })
+}
+
+export function showCurrentChanges() {
+  const $vendingMachineCoinTable = document.getElementById("vending-machine-coin-table");
+  const $machineChargeAmount = document.getElementById("machine-charge-amount");
+  
+  $machineChargeAmount.innerText = `${state.changes.total}`;
+
+  $vendingMachineCoinTable.innerHTML = `
+  <th>동전</th>
+  <th>개수</th>
+  <tr>
+    <td>500원</td>
+    <td class="vending-machine-coin-500-quantity">${state.changes.fiveHundred}</td>
+  </tr>
+  <tr>
+    <td>100원</td>
+    <td class="vending-machine-coin-100-quantity">${state.changes.hundred}</td>
+  </tr>
+  <tr>
+    <td>50원</td>
+    <td class="vending-machine-coin-50-quantity">${state.changes.fifty}</td>
+  </tr>
+  <tr>
+    <td>10원</td>
+    <td class="vending-machine-coin-10-quantity">${state.changes.ten}</td>
+  </tr>
+`;
 }
