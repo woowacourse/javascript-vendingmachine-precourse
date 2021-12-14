@@ -1,14 +1,10 @@
 /* global MissionUtils */
 
 import Coins from './Coins.js';
-import tc from '../core/utils/tc.js';
 import { COINAGE } from '../configs/constants.js';
 
 export default class VendingMachineCoins extends Coins {
-  static convertToRandomCoins(
-    chargingAmount,
-    _ = tc(chargingAmount, 'number')
-  ) {
+  static convertToRandomCoins(chargingAmount) {
     let remain = chargingAmount;
     const coins = new Coins();
 
@@ -26,13 +22,13 @@ export default class VendingMachineCoins extends Coins {
 
   // TODO: refill과 returnChange 클래스 분리
   // TODO: 예외 처리
-  refill(chargeAmount, _ = tc(chargeAmount, 'number')) {
+  refill(chargeAmount) {
     const newCoins = VendingMachineCoins.convertToRandomCoins(chargeAmount);
 
     this.add(newCoins);
   }
 
-  returnChange(amount, _ = tc(amount, 'number')) {
+  returnChange(amount) {
     const change = new Coins();
     const divisor = this.getKeys().sort((a, b) => a - b);
     let remain = amount;

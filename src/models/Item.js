@@ -1,15 +1,7 @@
-import tc from '../core/utils/tc.js';
 import { EXCEPTIONS } from '../configs/constants.js';
 
 export default class Item {
-  constructor(
-    name,
-    price,
-    quantity,
-    _0 = tc(name, 'string'),
-    _1 = tc(price, 'number'),
-    _2 = tc(quantity, 'number')
-  ) {
+  constructor(name, price, quantity) {
     this.name = name;
     this.price = price;
     this.quantity = quantity;

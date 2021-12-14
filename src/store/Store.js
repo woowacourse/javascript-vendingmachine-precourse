@@ -1,9 +1,7 @@
-import tc from '../core/utils/tc.js';
-import Item from '../models/Item.js';
 import { INIT_DATA } from '../configs/constants.js';
 
 export default class Store {
-  constructor(name, _ = tc(name, 'string')) {
+  constructor(name) {
     this.name = name;
   }
 
@@ -11,16 +9,11 @@ export default class Store {
     return JSON.parse(localStorage.getItem(this.name)) || INIT_DATA;
   }
 
-  setLocalStorage(state, _ = tc(state, 'object')) {
+  setLocalStorage(state) {
     localStorage.setItem(this.name, JSON.stringify(state));
   }
 
-  find(
-    query,
-    callback,
-    _0 = tc(query, 'function'),
-    _1 = tc(callback, 'function')
-  ) {
+  find(query, callback) {
     const { items } = this.getLocalStorage();
 
     callback(items.filter((item) => query(item)));
@@ -36,7 +29,7 @@ export default class Store {
     return { success: true, id };
   }
 
-  update(id, updatedItem, _0 = tc(id, 'number'), _1 = tc(updatedItem, Item)) {
+  update(id, updatedItem) {
     const state = this.getLocalStorage();
     const result = state.items.findIndex((item) => item.id === id);
 
@@ -48,14 +41,14 @@ export default class Store {
     this.setLocalStorage(state);
   }
 
-  updateCoins(coins, _ = tc(coins, 'object')) {
+  updateCoins(coins) {
     const state = this.getLocalStorage();
 
     state.coins = coins;
     this.setLocalStorage(state);
   }
 
-  updateCharge(amount, _ = tc(amount, 'number')) {
+  updateCharge(amount) {
     const state = this.getLocalStorage();
 
     state.chargedAmount = amount;

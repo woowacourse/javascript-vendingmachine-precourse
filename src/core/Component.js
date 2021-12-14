@@ -1,12 +1,5 @@
-import tc from './utils/tc.js';
-
 export default class Component {
-  constructor(
-    $target,
-    props = null,
-    _0 = tc($target, HTMLElement),
-    _1 = tc(props, 'object')
-  ) {
+  constructor($target, props = null) {
     this.$target = $target;
     this.props = props;
     this.setup();
@@ -34,20 +27,13 @@ export default class Component {
 
   setEvent() {}
 
-  addEvent(
-    type,
-    selector,
-    callback,
-    _0 = tc(type, 'string'),
-    _1 = tc(selector, 'string'),
-    _2 = tc(callback, 'function')
-  ) {
+  addEvent(type, selector, callback) {
     const children = [...this.$target.querySelectorAll(selector)];
     const isTarget = (target) =>
       children.includes(target) || target.closest(selector);
 
     this.$target.addEventListener(type, (e) => {
-      if (!isTarget(e.target)) return false;
+      if (!isTarget(e.target)) return;
 
       e.preventDefault();
       callback(e);

@@ -5,15 +5,8 @@ import {
   PRODUCT_QUNATITY_RANGE,
   CHARGE_AMOUNT_RANGE,
 } from '../configs/constants.js';
-import tc from '../core/utils/tc.js';
 
-const isSafeRange = (
-  value,
-  { MIN, MAX },
-  _0 = tc(value, 'number'),
-  _1 = tc(MIN, 'number'),
-  _2 = tc(MAX, 'number')
-) => value >= MIN && value <= MAX;
+const isSafeRange = (value, { MIN, MAX }) => value >= MIN && value <= MAX;
 
 const isDivisableByMinCoin = (amount) => amount % Math.min(...COINAGE) === 0;
 

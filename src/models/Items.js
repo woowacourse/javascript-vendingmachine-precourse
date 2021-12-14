@@ -1,9 +1,8 @@
 import Item from './Item.js';
-import tc from '../core/utils/tc.js';
 import { EXCEPTIONS } from '../configs/constants.js';
 
 export default class Items {
-  constructor(items, _ = tc(items, 'object')) {
+  constructor(items) {
     this.items = new Map();
 
     items.forEach(({ id, name, price, quantity }) =>
@@ -11,7 +10,7 @@ export default class Items {
     );
   }
 
-  find(id, _ = tc(id, 'number')) {
+  find(id) {
     const item = this.items.get(id);
 
     if (!item) {
@@ -21,20 +20,11 @@ export default class Items {
     return item;
   }
 
-  insert(
-    id,
-    name,
-    price,
-    quantity,
-    _0 = tc(id, 'number'),
-    _1 = tc(name, 'string'),
-    _2 = tc(price, 'number'),
-    _3 = tc(quantity, 'number')
-  ) {
+  insert(id, name, price, quantity) {
     this.items.set(id, new Item(name, price, quantity));
   }
 
-  purchase(id, _ = tc(id, 'number')) {
+  purchase(id) {
     const item = this.find(id);
 
     item.purchase();

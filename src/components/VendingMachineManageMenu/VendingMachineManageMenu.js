@@ -1,6 +1,6 @@
 import Component from '../../core/Component.js';
 import ChargeCoinSection from './sections/ChargeCoinSection.js';
-import ChargedCoinSection from './ChargedCoinSection.js';
+import ChargedCoinSection from './sections/ChargedCoinSection.js';
 import $ from '../../utils/helpers.js';
 
 export default class VendingMachineManageMenu extends Component {

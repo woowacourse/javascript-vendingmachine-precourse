@@ -1,14 +1,12 @@
-import Store from '../store/Store.js';
 import Items from './Items.js';
 import Coins from './Coins.js';
 import VendingMachineCoins from './VendingMachineCoins.js';
 import ChargedAmount from './ChargedAmount.js';
-import tc from '../core/utils/tc.js';
 import { isValidItem, isValidChargeAmount } from '../utils/validations.js';
 import { EXCEPTIONS } from '../configs/constants.js';
 
 export default class VendingMachine {
-  constructor(store, { items, coins, chargedAmount }, _ = tc(store, Store)) {
+  constructor(store, { items, coins, chargedAmount }) {
     this.store = store;
     this.items = new Items(items);
     this.coins = new VendingMachineCoins(coins);
@@ -17,14 +15,7 @@ export default class VendingMachine {
   }
 
   // TODO: 예외 처리
-  addItem(
-    name,
-    price,
-    quantity,
-    _0 = tc(name, 'string'),
-    _1 = tc(price, 'number'),
-    _2 = (quantity, 'number')
-  ) {
+  addItem(name, price, quantity) {
     if (!isValidItem(name, price, quantity)) {
       throw EXCEPTIONS.WRONG_ITEM;
     }
@@ -35,7 +26,7 @@ export default class VendingMachine {
     return this;
   }
 
-  refillCoins(amount, _ = tc(amount, 'number')) {
+  refillCoins(amount) {
     if (!isValidChargeAmount(amount)) {
       throw EXCEPTIONS.WRONG_CHARGE_AMOUNT;
     }
@@ -46,7 +37,7 @@ export default class VendingMachine {
     return this;
   }
 
-  charge(amount, _ = tc(amount, 'number')) {
+  charge(amount) {
     if (!isValidChargeAmount(amount)) {
       throw EXCEPTIONS.WRONG_CHARGE_AMOUNT;
     }
@@ -58,7 +49,7 @@ export default class VendingMachine {
   }
 
   // TODO: 데이터 흐름 수정
-  purchase(id, _ = tc(id, 'number')) {
+  purchase(id) {
     const item = this.items.find(id);
 
     this.store.updateCharge(this.chargedAmount.purchase(item.price));

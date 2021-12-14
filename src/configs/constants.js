@@ -32,4 +32,5 @@ export const EXCEPTIONS = {
   NO_SUCH_ITEM: new Error('아이템 조회에 실패했습니다.'),
   NOT_ENOUGH_MONEY: new Error('금액이 부족합니다.'),
   WRONG_CHARGE_AMOUNT: new Error('올바른 금액을 투입해주세요.'),
+  WRONG_ITEM: new Error('잘못된 상품 정보입니다.'),
 };

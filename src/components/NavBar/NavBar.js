@@ -1,6 +1,5 @@
 import Component from '../../core/Component.js';
 import { TAB } from '../../configs/constants.js';
-import tc from '../../core/utils/tc.js';
 
 export default class NavBar extends Component {
   template() {
@@ -11,7 +10,7 @@ export default class NavBar extends Component {
       `;
   }
 
-  addRoute(selector, to, _0 = tc(selector, 'string'), _1 = tc(to, 'string')) {
+  addRoute(selector, to) {
     const { navigate } = this.props;
 
     this.addEvent('click', selector, () => {
