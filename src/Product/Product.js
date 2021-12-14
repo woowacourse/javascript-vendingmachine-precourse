@@ -3,8 +3,14 @@ export default class Product {
 
   constructor() {
     if (Product.instance) return Product.instance;
-    this.currentProducts = [];
-    this.chargeCost = 0;
+    if (localStorage.getItem('currentProducts') == null)
+      this.currentProducts = [];
+    else
+      this.currentProducts = JSON.parse(
+        localStorage.getItem('currentProducts')
+      );
+    if (localStorage.getItem('chargeCost') == null) this.chargeCost = 0;
+    else this.chargeCost = Number(localStorage.getItem('chargeCost'));
     Product.instance = this;
   }
 
@@ -15,10 +21,12 @@ export default class Product {
       quantity,
     };
     this.currentProducts.push(product);
+    this.setLocalStorage();
   }
 
   additionalInputCharge(inputCharge) {
     this.chargeCost += inputCharge;
+    this.setLocalStorage();
     return this.chargeCost;
   }
 
@@ -33,10 +41,12 @@ export default class Product {
     if (selectProduct.quantity == 0) {
       this.currentProducts.splice(index, 1);
     }
+    this.setLocalStorage();
   }
 
   setChargeCost(changedChargeCost) {
     this.chargeCost = changedChargeCost;
+    this.setLocalStorage();
   }
 
   getChargeCost() {
@@ -45,5 +55,13 @@ export default class Product {
 
   getProduct() {
     return this.currentProducts;
+  }
+
+  setLocalStorage() {
+    localStorage.setItem(
+      'currentProducts',
+      JSON.stringify(this.currentProducts)
+    );
+    localStorage.setItem('chargeCost', this.chargeCost);
   }
 }

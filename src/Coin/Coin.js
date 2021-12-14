@@ -3,13 +3,16 @@ export default class Coin {
 
   constructor() {
     if (Coin.instance) return Coin.instance;
-    this.amountCost = 0;
-    this.currentCoin = {
-      500: 0,
-      100: 0,
-      50: 0,
-      10: 0,
-    };
+    if (localStorage.getItem('amountCost') == null) this.amountCost = 0;
+    else this.amountCost = Number(localStorage.getItem('amountCost'));
+    if (localStorage.getItem('currentCoin') == null)
+      this.currentCoin = {
+        500: 0,
+        100: 0,
+        50: 0,
+        10: 0,
+      };
+    else this.currentCoin = JSON.parse(localStorage.getItem('currentCoin'));
     this.coinList = [500, 100, 50, 10];
     Coin.instance = this;
   }
@@ -17,6 +20,7 @@ export default class Coin {
   additionalInputCoin(inputCoin) {
     this.amountCost += inputCoin;
     this.addCoin(inputCoin);
+    this.setLocalStorage();
     return this.amountCost;
   }
 
@@ -41,6 +45,7 @@ export default class Coin {
     });
     returnCoinList['charge'] = returnCoin;
     this.amountCost -= chargeCoin - returnCoin;
+    this.setLocalStorage();
     return returnCoinList;
   }
 
@@ -58,5 +63,10 @@ export default class Coin {
 
   getCoinList() {
     return this.coinList;
+  }
+
+  setLocalStorage() {
+    localStorage.setItem('currentCoin', JSON.stringify(this.currentCoin));
+    localStorage.setItem('amountCost', this.amountCost);
   }
 }
