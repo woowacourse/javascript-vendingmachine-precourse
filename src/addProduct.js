@@ -11,10 +11,6 @@ export default function addProduct() {
   product.name = productNameInput.value;
   product.price = productPriceInput.value;
   product.quantity = productQuantityInput.value;
-  const newProduct = `<tr>
-  <td>${product.name}</td>
-  <td>${product.price}</td>
-  <td>${product.quantity}</td>
-  </tr>`;
-  return newProduct;
+
+  return product;
 }

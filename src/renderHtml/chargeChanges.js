@@ -21,15 +21,15 @@ export default function chargeChanges() {
           </tr>
           <tr>
             <th>100원</th>
-            <th id="vending-machine-coin-500-quantity"></th>
+            <th id="vending-machine-coin-100-quantity"></th>
           </tr>
           <tr>
             <th>50원</th>
-            <th id="vending-machine-coin-500-quantity"></th>
+            <th id="vending-machine-coin-50-quantity"></th>
           </tr>
           <tr>
             <th>10원</th>
-            <th id="vending-machine-coin-500-quantity"></th>
+            <th id="vending-machine-coin-10-quantity"></th>
           </tr>
         </thead>
        
