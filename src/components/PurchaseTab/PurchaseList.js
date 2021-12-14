@@ -1,7 +1,7 @@
 import Component from '../../core/Component.js';
 import UserStore from '../../stores/UserStore.js';
 import ProductStore from '../../stores/ProductStore.js';
-import { EVENT_TYPE } from '../../utils/constants.js';
+import { EVENT_TYPE, PURCHASE_ELEMENT } from '../../utils/constants.js';
 import { spendMoney } from '../../actions/user.js';
 import { sellProduct } from '../../actions/product.js';
 import { getProductInformations } from '../../utils/dom.js';
@@ -22,7 +22,7 @@ export default class PurchaseList extends Component {
   }
 
   onClickPurchaseButton({ target }) {
-    if (target.className !== 'purchase-button') return;
+    if (target.className !== PURCHASE_ELEMENT.PURCHASE_BUTTON) return;
     const { productName, productPrice } = getProductInformations(target);
     ProductStore.dispatch(sellProduct(productName));
     UserStore.dispatch(spendMoney(productPrice));

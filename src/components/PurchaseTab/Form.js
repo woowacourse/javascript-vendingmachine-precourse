@@ -1,5 +1,6 @@
 import Component from '../../core/Component.js';
 import { $, resetForm } from '../../utils/dom.js';
+import { parseNumberInput } from '../../utils/input.js';
 import { chargeMoney } from '../../actions/user.js';
 import { isValidChargingMoney } from '../../utils/validations.js';
 import {
@@ -16,7 +17,7 @@ export default class Form extends Component {
   }
 
   onSubmit() {
-    const money = Number($(SELECTOR.CHARGE_INPUT).value);
+    const money = parseNumberInput($(SELECTOR.CHARGE_INPUT));
     if (!isValidChargingMoney(money))
       return alert(MESSAGE.INVALID_CHARGING_MONEY);
     UserStore.dispatch(chargeMoney(money));

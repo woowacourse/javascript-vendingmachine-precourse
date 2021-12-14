@@ -26,10 +26,8 @@ export const sellProduct = (productName, products) =>
     return item;
   });
 
-const hasSamePrice = (inputedPrice, product) => {
-  const { price } = product.getInformation();
-  return inputedPrice === price;
-};
+const hasSamePrice = (inputedPrice, product) =>
+  product.getInformation().price === inputedPrice;
 
 export const findDuplicatedProduct = (productName, products) =>
   products.find(product => {
