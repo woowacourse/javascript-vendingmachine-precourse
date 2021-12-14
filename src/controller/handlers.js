@@ -44,9 +44,6 @@ const handleProductManageTab = () => {
 };
 
 const handleProductAddButton = () => {
-  // 유효성 검사 통과 시,
-  // 로컬 스토리지에 값 저장
-  // 현재 탭 view와 다른 탭 view에 적용
   if (
     bindProductValidator(
       getProductNameValue(),
@@ -88,7 +85,7 @@ const handleMoneyChargeTab = () => {
 
 const handleMoneyChargeButton = () => {
   if (machineChargeInputValidator(machineChargeInputValue())) {
-    // 스펠링 틀림
+    // 스펠링 교정
     saveCharegedAmountToStorage(machineChargeInputValue());
     printChargedAmountToScreen();
     saveRandomAmountOfCoins();
@@ -96,7 +93,6 @@ const handleMoneyChargeButton = () => {
 
     manageDataAttributes();
     manageProductListAfterPuchased();
-    // calculateDifference();
   }
 };
 
