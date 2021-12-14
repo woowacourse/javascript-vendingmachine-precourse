@@ -109,4 +109,11 @@ export default class PurchasePage {
     ],CLASS.PURCHASE_ITEM);
     this.tbody.appendChild(productTr);
   }
+
+  showReturnCoins(returnCoins) {
+    [ this.tdFirstQuantity.innerText,
+      this.tdSecondQuantity.innerText,
+      this.tdThirdQuantity.innerText,
+      this.tdForthQuantity.innerText] = returnCoins;
+  }
 }

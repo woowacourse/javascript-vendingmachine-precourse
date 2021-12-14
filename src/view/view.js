@@ -21,8 +21,8 @@ export default class View {
   }
 
   setAllPage() {
-    // this.app.appendChild(this.managePageDiv);
-    // this.app.appendChild(this.chargePageDiv);
+    this.app.appendChild(this.managePageDiv);
+    this.app.appendChild(this.chargePageDiv);
     this.app.appendChild(this.purchasePageDiv);
   }
 

@@ -20,10 +20,6 @@ export class VendingMachine {
     view.showInsertedMoney(this.moneyBank.insertedMoney);
   }
 
-  returnMoney(money) {
-    console.log(money);
-  }
-
   purchase(productName, view) {
     const price = this.productList.getProductPrice(productName);
     const quantity = this.productList.getProductQuantity(productName);
@@ -31,11 +27,17 @@ export class VendingMachine {
     const isValid = this.valid.checkPurchasePossible(price, quantity, insertedMoney);
     if(isValid) {
       this.productList.removeProduct(productName);
-      this.moneyBank.useMoney(price);
+      this.moneyBank.useInsertedMoney(price);
       view.showProductListAll(this.productList.products);
       this.showInsertedMoney(view);
     } else {
       alert('구매할 수 없습니다.');
     }
+  }
+
+  returnMoney(money,view) {
+    const returnCoins = this.moneyBank.returnCoins(money);
+    console.log(returnCoins);
+    view.showReturnCoins(returnCoins);
   }
 }

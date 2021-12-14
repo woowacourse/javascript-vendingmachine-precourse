@@ -22,6 +22,7 @@ export class Controller {
     const product = new Product(name, price, quantity);
     this.inventory.addProduct(product);
     this.inventory.showProductList(this.view.managePage);
+    this.view.purchasePage.showProductListAll(this.productList.products);
   }
 
   chargeMoney(money) {
@@ -36,10 +37,16 @@ export class Controller {
   }
 
   returnMoney(money) {
-    this.vendingMachine.returnMoney(money);
+    this.vendingMachine.returnMoney(money, this.view.purchasePage);
+    this.vendingMachine.showInsertedMoney(this.view.purchasePage);
+    this.money.showCurrentMoney(this.view.chargePage);
+    this.money.showCurrentCoins(this.view.chargePage);
   }
 
   purchase(productName) {
     this.vendingMachine.purchase(productName, this.view.purchasePage);
+    this.inventory.showProductList(this.view.managePage);
+    this.money.showCurrentMoney(this.view.chargePage);
+    this.money.showCurrentCoins(this.view.chargePage);
   }
 }

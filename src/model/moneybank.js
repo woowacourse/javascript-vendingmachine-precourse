@@ -66,8 +66,36 @@ export default class MoneyBank {
     localStorage.setItem('insertedMoney',this.insertedMoney);
   }
 
-  useMoney(productPrice) {
+  useInsertedMoney(productPrice) {
     this.insertedMoney -= Number(productPrice);
     localStorage.setItem('insertedMoney', this.insertedMoney);
   }
+
+  useMoney(returnMoney) { 
+    if(this.money >= Number(returnMoney)) {
+      this.money -= Number(returnMoney);
+    } else {
+      this.money = 0;
+    }
+    localStorage.setItem('money', this.money);
+  }
+
+  returnCoins(money) {
+    this.insertedMoney = 0;
+    localStorage.setItem('insertedMoney',this.insertedMoney);
+    this.useMoney(money);
+    const returnCoins = [0,0,0,0];
+    let leftMoney = money;
+    for(let i = 3; i >=0 ; i -= 1) {
+      while(leftMoney >= this.coins[i].value && this.coins[i].quantity !== 0) {
+        this.coins[i].quantity -= 1;
+        leftMoney -= this.coins[i].value;
+        returnCoins[i] += 1;
+      }
+      localStorage.setItem(this.coins[i].value,this.coins[i].quantity);
+    }
+    return returnCoins;
+  }
+
+  
 }
