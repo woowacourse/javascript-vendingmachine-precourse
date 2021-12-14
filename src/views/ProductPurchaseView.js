@@ -1,5 +1,5 @@
 import ProductPurchaseController from "../controllers/ProductPurchaseController.js";
-import { productPurchaseTemplete, renderAblePurchaseProductList } from "../utils/dom/productPurchaseTemplete.js";
+import { productPurchaseTemplete, renderAblePurchaseProductList, renderCharge } from "../utils/dom/productPurchaseTemplete.js";
 import { moneyAddValidate } from "../utils/validation/moneyAdd.js";
 
 export default class ProductPurchaseView extends ProductPurchaseController {
@@ -47,6 +47,19 @@ export default class ProductPurchaseView extends ProductPurchaseController {
       }
       this.purchaseProductEvent();
     })
+  }
+
+  setReutrnEvent() {
+    const $chargeReturnButton = document.querySelector('#coin-return-button');
+    $chargeReturnButton.addEventListener('click', (e) => {
+      this.returnCharge();
+    })
+  }
+  
+  renderChargeResult() {
+    this.chargeResult && renderCharge(this.chargeResult);
+    this.localReturnCharge && renderCharge(this.localReturnCharge);
+    this.renderMoney();
   }
 
 }

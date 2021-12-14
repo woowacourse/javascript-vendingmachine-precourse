@@ -56,3 +56,15 @@ export function renderAblePurchaseProductList(product) {
 
   return divFragment;
 }
+
+export function renderCharge(charge) {
+  console.log(charge)
+  const contain500Coin = document.querySelector('#coin-500-quantity');
+  const contain100Coin = document.querySelector('#coin-100-quantity');
+  const contain50Coin = document.querySelector('#coin-50-quantity');
+  const contain10Coin = document.querySelector('#coin-10-quantity');
+  contain500Coin.innerText = `${charge[0]}개`;
+  contain100Coin.innerText = `${charge[1]}개`;
+  contain50Coin.innerText = `${charge[2]}개`;
+  contain10Coin.innerText = `${charge[3]}개`;
+}

@@ -26,7 +26,6 @@ export default class ProductPurchaseModel {
   }
 
   setPurchaseProduct(selectProduct) {
-    console.log("실행")
     const localProductList = JSON.parse(localStorage.getItem("PRODUCT_LIST"));
     let localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));
     localProductList.map(product => product[0] === selectProduct[0] 
@@ -47,6 +46,61 @@ export default class ProductPurchaseModel {
     const localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));
 
     return localTotalInsertMoney;
+  }
+
+
+  setMinCharge() {
+    const randomCoinLocal = JSON.parse(localStorage.getItem("RANDOM_COIN"));
+    let localCharge = JSON.parse(localStorage.getItem("CHARGE"));
+    const chargeCount = Object.values(randomCoinLocal);
+    const maxChargeCount = Object.values(randomCoinLocal).reduce((a, b) => a + b);
+    let localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));  
+
+    let outCharge = 0;
+    const result = Array.from({length: chargeCount.length }, () => 0)
+    for (let i = 0; i < maxChargeCount; i++) {
+      let coin;
+      if (chargeCount[0] > 0 && localTotalInsertMoney >= 500) {
+        coin = 500;
+        result[0]++;
+        chargeCount[0]--;
+        outCharge += coin;
+      } else if (chargeCount[1] > 0 && localTotalInsertMoney >= 100) {
+        coin = 100;
+        result[1]++;
+        chargeCount[1]--;
+        outCharge += coin;
+      } else if (chargeCount[2] > 0 && localTotalInsertMoney >= 50) {
+        coin = 50;
+        result[2]++;
+        chargeCount[2]--;
+        outCharge += coin;
+      } else if (chargeCount[3] > 0 && localTotalInsertMoney >= 10) {
+        coin = 10;
+        result[3]++;
+        chargeCount[3]--;
+        outCharge += coin;
+      }
+      if (localTotalInsertMoney === 0) break;
+      localTotalInsertMoney -= coin;
+    }
+    let returnCharge = localCharge - outCharge
+
+    console.log(result);
+    console.log(chargeCount)
+
+    localStorage.setItem("CHARGE", JSON.stringify(returnCharge));
+    localStorage.setItem("INSERT_MONEY", JSON.stringify(localTotalInsertMoney));
+    localStorage.setItem("RANDOM_COIN", JSON.stringify(chargeCount));
+    localStorage.setItem("CHARGE_RESULT", JSON.stringify(result));
+
+    return result;
+  }
+
+  getReturnCharge() {
+    const localRetrunCharge = JSON.parse(localStorage.getItem("CHARGE_RESULT"));
+
+    return localRetrunCharge;
   }
 
 }
