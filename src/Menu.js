@@ -27,6 +27,6 @@ export default class Menu {
   }
 
   productPurchaseMenuInitialize() {
-    this.productPurchaseMenuView.render(getData("products"));
+    this.productPurchaseMenuView.render(getData("products"), getData("money"));
   }
 }
