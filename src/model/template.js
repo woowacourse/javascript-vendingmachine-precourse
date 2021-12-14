@@ -96,7 +96,7 @@ export const productAddTableRow = product => `
 </tr>
 `;
 
-export const productPurchaseTableHeader = () => `
+export const productPurchaseTableHeader = `
 <th>상품명</th>
 <th>가격</th>
 <th>수량</th>

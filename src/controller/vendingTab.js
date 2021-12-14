@@ -10,7 +10,7 @@ export default class VendingTab {
   init() {
     this.addEventListeners();
     this.view.initVendingTable(this.model.getVendingMachine());
-    this.initChargeDomProperty();
+    this.initChargeDom();
   }
 
   addEventListeners() {
@@ -35,7 +35,7 @@ export default class VendingTab {
     return amountArray;
   }
 
-  initChargeDomProperty() {
+  initChargeDom() {
     const vendingMachine = this.model.getVendingMachine();
     this.view.clearInput($(SELECTOR.vendingChargeInput));
     if (vendingMachine) {
@@ -64,7 +64,7 @@ export default class VendingTab {
       const chargeInputValue = parseInt(chargeInput.value);
       const randomCoinQuantity = this.makeRandomCoinQuantity(chargeInputValue);
       this.setVendingMachineByRandomCoin(chargeInputValue, randomCoinQuantity);
-      this.initChargeDomProperty();
+      this.initChargeDom();
       this.view.initVendingTable(this.model.getVendingMachine());
     }
   }

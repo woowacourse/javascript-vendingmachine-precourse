@@ -10,8 +10,12 @@ import { COIN_X_QUANTITY, VENDING_MACHINE_COIN_X_QUANTITY } from '../model/const
 export default class View {
   constructor() {
     this.$app = $('app');
-    this.$app.insertAdjacentHTML('afterbegin', headerTab);
+    this.showHeaderTab();
     this.showAddTab();
+  }
+
+  showHeaderTab() {
+    this.$app.insertAdjacentHTML('afterbegin', headerTab);
   }
 
   clearContainer() {

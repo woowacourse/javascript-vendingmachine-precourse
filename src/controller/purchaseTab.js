@@ -35,7 +35,7 @@ export default class PurchaseTab {
     const table = document.querySelector('tbody');
     const allProducts = this.model.getProducts();
     this.view.clearTable(table);
-    this.view.addTableHeader(table, productPurchaseTableHeader());
+    this.view.addTableHeader(table, productPurchaseTableHeader);
     allProducts.forEach(product => this.view.addTableRow(table, productPurchaseTableRow(product)));
     this.initAllPurchaseButtonEvent();
   }
