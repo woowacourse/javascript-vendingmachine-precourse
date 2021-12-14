@@ -17,17 +17,6 @@ export default class ProductAddView {
     this.bindAddProductEvent();
   }
 
-  bindInputs() {
-    this.productNameInput = document.getElementById(PRODUCT_MANAGE.PRODUCT_NAME.ID);
-    this.productPriceInput = document.getElementById(PRODUCT_MANAGE.PRICE.ID);
-    this.productQuantityInput = document.getElementById(PRODUCT_MANAGE.QUANTITY.ID);
-  }
-
-  bindAddProductEvent() {
-    const addButton = document.getElementById(PRODUCT_MANAGE.ADD_BUTTON.ID);
-    addButton.addEventListener("click", () => this.addProduct());
-  }
-
   renderInputForm() {
     const inputFormArea = makeElement({ tag: "form" });
     const inputFormTitle = makeElement({
@@ -73,25 +62,10 @@ export default class ProductAddView {
     const productTableTitle = makeElement({ tag: "h3", innerText: PRODUCT_MANAGE.TABLE_TEXT });
     const tableArea = makeTableForm(PRODUCT_MANAGE.COLUMNS);
     this.container.append(productTableTitle, tableArea);
-    this.updateProductList();
+    this.renderProductList();
   }
 
-  getNewProductData() {
-    const inputs = [this.productNameInput, this.productPriceInput, this.productQuantityInput];
-    const newProduct = inputs.map(input => input.value.replace(/\s*/g, ""));
-    clearInputValue(inputs);
-    return newProduct;
-  }
-
-  addProduct() {
-    const newProduct = this.getNewProductData();
-    if (this.product.checkValidNewProductData(newProduct)) {
-      this.product.addNewProduct(newProduct);
-      this.updateProductList();
-    }
-  }
-
-  updateProductList() {
+  renderProductList() {
     const tableBodyArea = document.querySelector("tbody");
     clearArea(tableBodyArea);
     const products = this.product.getProductData();
@@ -106,5 +80,31 @@ export default class ProductAddView {
       const tableRow = makeTableRow(rowData, PRODUCT_MANAGE.NEW_PRODUCT_ID);
       tableBodyArea.appendChild(tableRow);
     });
+  }
+
+  bindInputs() {
+    this.productNameInput = document.getElementById(PRODUCT_MANAGE.PRODUCT_NAME.ID);
+    this.productPriceInput = document.getElementById(PRODUCT_MANAGE.PRICE.ID);
+    this.productQuantityInput = document.getElementById(PRODUCT_MANAGE.QUANTITY.ID);
+  }
+
+  bindAddProductEvent() {
+    const addButton = document.getElementById(PRODUCT_MANAGE.ADD_BUTTON.ID);
+    addButton.addEventListener("click", () => this.handleAddProductButtonEvent());
+  }
+
+  getInputValue() {
+    const inputs = [this.productNameInput, this.productPriceInput, this.productQuantityInput];
+    const productDataToInput = inputs.map(input => input.value.replace(/\s*/g, ""));
+    clearInputValue(inputs);
+    return productDataToInput;
+  }
+
+  handleAddProductButtonEvent() {
+    const newProduct = this.getInputValue();
+    if (this.product.checkValidNewProductData(newProduct)) {
+      this.product.addNewProduct(newProduct);
+      this.renderProductList();
+    }
   }
 }
