@@ -1,8 +1,6 @@
-import { $, ID, CLASS } from '../utils/dom.js';
+import { $, createTRow, createTData, ID, CLASS } from '../utils/dom.js';
 import { productAddMenuTemplate } from '../utils/templates.js';
 import { RULES, ERROR_MSG, LS_KEY } from '../utils/constants.js';
-
-const LS_KEY_PRODUCTS = LS_KEY.PRODUCT_ADD_PRODUCTS;
 
 export default class ProductAdd {
   constructor() {
@@ -22,7 +20,7 @@ export default class ProductAdd {
   };
 
   loadProducts = () => {
-    const loadedProducts = localStorage.getItem(LS_KEY_PRODUCTS);
+    const loadedProducts = localStorage.getItem(LS_KEY.PRODUCT_ADD_PRODUCTS);
     if (!loadedProducts) {
       return;
     }
@@ -77,23 +75,18 @@ export default class ProductAdd {
 
   saveProduct = (product) => {
     this.products.push(product);
-    localStorage.setItem(LS_KEY_PRODUCTS, JSON.stringify(this.products));
+    localStorage.setItem(LS_KEY.PRODUCT_ADD_PRODUCTS, JSON.stringify(this.products));
   };
 
   paintProduct = (product) => {
     const $table = $(`table`);
-    const $newTableRow = document.createElement('tr');
-    $newTableRow.classList.add(CLASS.PRODUCT_MANAGE_ITEM);
-
-    const $newTableData__name = document.createElement('td');
-    const $newTableData__price = document.createElement('td');
-    const $newTableData__quantity = document.createElement('td');
-    $newTableData__name.innerHTML = product.name;
-    $newTableData__price.innerHTML = product.price;
-    $newTableData__quantity.innerHTML = product.quantity;
-    $newTableData__name.classList.add(CLASS.PRODUCT_MANAGE_NAME);
-    $newTableData__price.classList.add(CLASS.PRODUCT_MANAGE_PRICE);
-    $newTableData__quantity.classList.add(CLASS.PRODUCT_MANAGE_QUANTITY);
+    const $newTableRow = createTRow(CLASS.PRODUCT_MANAGE_ITEM);
+    const $newTableData__name = createTData(CLASS.PRODUCT_MANAGE_NAME, product.name);
+    const $newTableData__price = createTData(CLASS.PRODUCT_MANAGE_PRICE, product.price);
+    const $newTableData__quantity = createTData(
+      CLASS.PRODUCT_MANAGE_QUANTITY,
+      product.quantity
+    );
 
     $newTableRow.appendChild($newTableData__name);
     $newTableRow.appendChild($newTableData__price);

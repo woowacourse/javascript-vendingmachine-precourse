@@ -2,8 +2,7 @@ import { $, createDiv, createBtn, ID } from '../utils/dom.js';
 import ProductAdd from './ProductAdd.js';
 import VendingMachineManage from './VendingMachineManage.js';
 import ProductPurchase from './ProductPurchase.js';
-
-const LS_KEY_RECENT_MENU = 'recentMenu';
+import { LS_KEY, MENU_INDEX } from '../utils/constants.js';
 
 export default class MenuBar {
   constructor() {
@@ -25,20 +24,25 @@ export default class MenuBar {
     $menuBar.appendChild($productPurchaseMenuBtn);
     $('#app').appendChild($menuBar);
 
-    // createPageContentContainer
     const $pageContentContainer = createDiv(ID.PAGE_CONTENT);
     $('#app').appendChild($pageContentContainer);
   };
 
   loadRecentMenu = () => {
-    const recentMenu = localStorage.getItem(LS_KEY_RECENT_MENU);
-    if (recentMenu === '0') new ProductAdd();
-    if (recentMenu === '1') new VendingMachineManage();
-    if (recentMenu === '2') new ProductPurchase();
+    const recentMenu = localStorage.getItem(LS_KEY.RECENT_MENU);
+    if (recentMenu === MENU_INDEX.PRODUCT_ADD) {
+      new ProductAdd();
+    }
+    if (recentMenu === MENU_INDEX.VENDING_MACHINE_MANAGE) {
+      new VendingMachineManage();
+    }
+    if (recentMenu === MENU_INDEX.PRODUCT_PURCHASE) {
+      new ProductPurchase();
+    }
   };
 
   saveRecentMenu = (id) => {
-    localStorage.setItem(LS_KEY_RECENT_MENU, id);
+    localStorage.setItem(LS_KEY.RECENT_MENU, id);
   };
 
   handleMenuBarClick = (e) => {
@@ -46,15 +50,15 @@ export default class MenuBar {
     if (!clickedBtn) return;
     if (clickedBtn.id === ID.PRODUCT_ADD_MENU) {
       new ProductAdd();
-      this.saveRecentMenu('0');
+      this.saveRecentMenu(MENU_INDEX.PRODUCT_ADD);
     }
     if (clickedBtn.id === ID.VENDING_MACHINE_MANAGE_MENU) {
       new VendingMachineManage();
-      this.saveRecentMenu('1');
+      this.saveRecentMenu(MENU_INDEX.VENDING_MACHINE_MANAGE);
     }
     if (clickedBtn.id === ID.PRODUCT_PURCHASE_MENU) {
       new ProductPurchase();
-      this.saveRecentMenu('2');
+      this.saveRecentMenu(MENU_INDEX.PRODUCT_PURCHASE);
     }
   };
 }

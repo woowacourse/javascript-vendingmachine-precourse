@@ -1,18 +1,16 @@
-import { $, ID, CLASS } from '../utils/dom.js';
+import { $, createTRow, createTData, ID, CLASS } from '../utils/dom.js';
 import { productPurchaseMenuTemplate } from '../utils/templates.js';
-import { RULES, ERROR_MSG, LS_KEY } from '../utils/constants.js';
-
-const LS_KEY_CHARGE_AMOUNT = LS_KEY.PRODUCT_PURCHASE_CHARGE_AMOUNT;
+import { RULES, ERROR_MSG, LS_KEY, COIN } from '../utils/constants.js';
 
 export default class ProductPurchase {
   constructor() {
     this.chargeAmount = 0;
     this.availableProducts = [];
     this.coinToBeReturned = [
-      { coinType: 500, quantity: 0 },
-      { coinType: 100, quantity: 0 },
-      { coinType: 50, quantity: 0 },
-      { coinType: 10, quantity: 0 },
+      { coinType: COIN.FIVE_HUNDRED, quantity: 0 },
+      { coinType: COIN.A_HUNDRED, quantity: 0 },
+      { coinType: COIN.FIFTY, quantity: 0 },
+      { coinType: COIN.TEN, quantity: 0 },
     ];
     this.init();
   }
@@ -32,7 +30,9 @@ export default class ProductPurchase {
   };
 
   loadChargeAmount = () => {
-    const loadedChargeAmount = localStorage.getItem(LS_KEY_CHARGE_AMOUNT);
+    const loadedChargeAmount = localStorage.getItem(
+      LS_KEY.PRODUCT_PURCHASE_CHARGE_AMOUNT
+    );
     if (!loadedChargeAmount) {
       return;
     }
@@ -62,10 +62,14 @@ export default class ProductPurchase {
 
   paintCoinToBeReturned = () => {
     this.coinToBeReturned.map(({ coinType, quantity }) => {
-      if (coinType === 500) $(`#${ID.COIN_500_QUANTITY}`).innerHTML = `${quantity}개`;
-      if (coinType === 100) $(`#${ID.COIN_100_QUANTITY}`).innerHTML = `${quantity}개`;
-      if (coinType === 50) $(`#${ID.COIN_50_QUANTITY}`).innerHTML = `${quantity}개`;
-      if (coinType === 10) $(`#${ID.COIN_10_QUANTITY}`).innerHTML = `${quantity}개`;
+      if (coinType === COIN.FIVE_HUNDRED)
+        $(`#${ID.COIN_500_QUANTITY}`).innerHTML = `${quantity}개`;
+      if (coinType === COIN.A_HUNDRED)
+        $(`#${ID.COIN_100_QUANTITY}`).innerHTML = `${quantity}개`;
+      if (coinType === COIN.FIFTY)
+        $(`#${ID.COIN_50_QUANTITY}`).innerHTML = `${quantity}개`;
+      if (coinType === COIN.TEN)
+        $(`#${ID.COIN_10_QUANTITY}`).innerHTML = `${quantity}개`;
     });
   };
 
@@ -120,40 +124,38 @@ export default class ProductPurchase {
 
   saveChargeAmount = (chargeAmountInput) => {
     this.chargeAmount += chargeAmountInput;
-    localStorage.setItem(LS_KEY_CHARGE_AMOUNT, JSON.stringify(this.chargeAmount));
+    localStorage.setItem(
+      LS_KEY.PRODUCT_PURCHASE_CHARGE_AMOUNT,
+      JSON.stringify(this.chargeAmount)
+    );
     return;
   };
 
-  paintProduct = (product) => {
+  paintProduct = ({ name, price, quantity }) => {
     const $table = $(`tbody`);
-    const $newTableRow = document.createElement('tr');
-    $newTableRow.classList.add(CLASS.PRODUCT_PURCHASE_ITEM);
-
-    const $newTableData__name = document.createElement('td');
-    const $newTableData__price = document.createElement('td');
-    const $newTableData__quantity = document.createElement('td');
-
-    const $newTableData__purchase = document.createElement('td');
+    const $newTableRow = createTRow(CLASS.PRODUCT_PURCHASE_ITEM);
+    const $newTableData__name = createTData(CLASS.PRODUCT_PURCHASE_NAME, name);
+    const $newTableData__price = createTData(CLASS.PRODUCT_PURCHASE_PRICE, price);
+    const $newTableData__quantity = createTData(
+      CLASS.PRODUCT_PURCHASE_QUANTITY,
+      quantity
+    );
+    const $newTableData__purchase = createTData(CLASS.PURCHASE_TD, '');
     const $newTableData__purchaseBtn = document.createElement('button');
     $newTableData__purchaseBtn.innerHTML = '구매하기';
-    $newTableData__purchase.appendChild($newTableData__purchaseBtn);
-
-    $newTableData__name.innerHTML = product.name;
-    $newTableData__price.innerHTML = product.price;
-    $newTableData__quantity.innerHTML = product.quantity;
-    $newTableData__name.classList.add(CLASS.PRODUCT_PURCHASE_NAME);
-    $newTableData__price.classList.add(CLASS.PRODUCT_PURCHASE_PRICE);
-    $newTableData__quantity.classList.add(CLASS.PRODUCT_PURCHASE_QUANTITY);
     $newTableData__purchaseBtn.classList.add(CLASS.PURCHASE_BTN);
 
-    $newTableData__name.dataset.productName = product.name;
-    $newTableData__price.dataset.productPrice = product.price;
-    $newTableData__quantity.dataset.productQuantity = product.quantity;
+    $newTableData__name.dataset.productName = name;
+    $newTableData__price.dataset.productPrice = price;
+    $newTableData__quantity.dataset.productQuantity = quantity;
 
-    $newTableRow.appendChild($newTableData__name);
-    $newTableRow.appendChild($newTableData__price);
-    $newTableRow.appendChild($newTableData__quantity);
-    $newTableRow.appendChild($newTableData__purchase);
+    $newTableData__purchase.appendChild($newTableData__purchaseBtn);
+    $newTableRow.append(
+      $newTableData__name,
+      $newTableData__price,
+      $newTableData__quantity,
+      $newTableData__purchase
+    );
     $table.appendChild($newTableRow);
   };
 
@@ -187,13 +189,19 @@ export default class ProductPurchase {
 
   updateChargeAmount = (targetPrice) => {
     this.chargeAmount -= targetPrice;
-    localStorage.setItem(LS_KEY_CHARGE_AMOUNT, JSON.stringify(this.chargeAmount));
+    localStorage.setItem(
+      LS_KEY.PRODUCT_PURCHASE_CHARGE_AMOUNT,
+      JSON.stringify(this.chargeAmount)
+    );
   };
   paintCoin = (coinType, quantity) => {
-    if (coinType === 500) $(`#${ID.COIN_500_QUANTITY}`).innerHTML = `${quantity}개`;
-    if (coinType === 100) $(`#${ID.COIN_100_QUANTITY}`).innerHTML = `${quantity}개`;
-    if (coinType === 50) $(`#${ID.COIN_50_QUANTITY}`).innerHTML = `${quantity}개`;
-    if (coinType === 10) $(`#${ID.COIN_10_QUANTITY}`).innerHTML = `${quantity}개`;
+    if (coinType === COIN.FIVE_HUNDRED)
+      $(`#${ID.COIN_500_QUANTITY}`).innerHTML = `${quantity}개`;
+    if (coinType === COIN.A_HUNDRED)
+      $(`#${ID.COIN_100_QUANTITY}`).innerHTML = `${quantity}개`;
+    if (coinType === COIN.FIFTY)
+      $(`#${ID.COIN_50_QUANTITY}`).innerHTML = `${quantity}개`;
+    if (coinType === COIN.TEN) $(`#${ID.COIN_10_QUANTITY}`).innerHTML = `${quantity}개`;
   };
   updateCharges = (parsedCharges, coinType, quantity) => {
     parsedCharges.map((obj) => {

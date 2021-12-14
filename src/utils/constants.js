@@ -11,7 +11,21 @@ export const ERROR_MSG = {
 };
 
 export const LS_KEY = {
+  RECENT_MENU: 'recentMenu',
   PRODUCT_ADD_PRODUCTS: 'products',
   VENDING_MACHINE_MANAGE_CHARGES: 'charges',
   PRODUCT_PURCHASE_CHARGE_AMOUNT: 'chargeAmount',
+};
+
+export const MENU_INDEX = {
+  PRODUCT_ADD: '0',
+  VENDING_MACHINE_MANAGE: '1',
+  PRODUCT_PURCHASE: '2',
+};
+
+export const COIN = {
+  FIVE_HUNDRED: 500,
+  A_HUNDRED: 100,
+  FIFTY: 50,
+  TEN: 10,
 };

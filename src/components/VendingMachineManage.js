@@ -1,16 +1,14 @@
 import { $, ID } from '../utils/dom.js';
 import { vendingMachineManageMenuTemplate } from '../utils/templates.js';
-import { RULES, ERROR_MSG, LS_KEY } from '../utils/constants.js';
-
-const LS_KEY_CHARGES = LS_KEY.VENDING_MACHINE_MANAGE_CHARGES;
+import { RULES, ERROR_MSG, LS_KEY, COIN } from '../utils/constants.js';
 
 export default class VendingMachineManage {
   constructor() {
     this.charges = [
-      { coinType: 500, quantity: 0 },
-      { coinType: 100, quantity: 0 },
-      { coinType: 50, quantity: 0 },
-      { coinType: 10, quantity: 0 },
+      { coinType: COIN.FIVE_HUNDRED, quantity: 0 },
+      { coinType: COIN.A_HUNDRED, quantity: 0 },
+      { coinType: COIN.FIFTY, quantity: 0 },
+      { coinType: COIN.TEN, quantity: 0 },
     ];
     this.init();
   }
@@ -30,7 +28,7 @@ export default class VendingMachineManage {
   };
 
   loadCharges = () => {
-    const loadedCharges = localStorage.getItem(LS_KEY_CHARGES);
+    const loadedCharges = localStorage.getItem(LS_KEY.VENDING_MACHINE_MANAGE_CHARGES);
     if (!loadedCharges) {
       return;
     }
@@ -49,13 +47,13 @@ export default class VendingMachineManage {
 
   paintLoadedCharges = () => {
     this.charges.map(({ coinType, quantity }) => {
-      if (coinType === 500)
+      if (coinType === COIN.FIVE_HUNDRED)
         $(`#${ID.VENDING_MACHINE_COIN_500_QUANTITY}`).innerHTML = `${quantity}개`;
-      if (coinType === 100)
+      if (coinType === COIN.A_HUNDRED)
         $(`#${ID.VENDING_MACHINE_COIN_100_QUANTITY}`).innerHTML = `${quantity}개`;
-      if (coinType === 50)
+      if (coinType === COIN.FIFTY)
         $(`#${ID.VENDING_MACHINE_COIN_50_QUANTITY}`).innerHTML = `${quantity}개`;
-      if (coinType === 10)
+      if (coinType === COIN.TEN)
         $(`#${ID.VENDING_MACHINE_COIN_10_QUANTITY}`).innerHTML = `${quantity}개`;
     });
   };
@@ -87,10 +85,8 @@ export default class VendingMachineManage {
   };
 
   saveCharge = (chargeInput) => {
-    // do the logic
-    const coinTypes = [500, 100, 50, 10];
+    const coinTypes = [COIN.FIVE_HUNDRED, COIN.A_HUNDRED, COIN.FIFTY, COIN.TEN];
     const randomCoinType = MissionUtils.Random.pickNumberInList(coinTypes);
-    console.log('randomCoinType is ' + randomCoinType);
     for (let i = coinTypes.indexOf(randomCoinType); i < coinTypes.length; i++) {
       if (chargeInput <= 0) {
         break;
@@ -108,7 +104,10 @@ export default class VendingMachineManage {
         obj.quantity += quantity;
       }
     });
-    localStorage.setItem(LS_KEY_CHARGES, JSON.stringify(this.charges));
+    localStorage.setItem(
+      LS_KEY.VENDING_MACHINE_MANAGE_CHARGES,
+      JSON.stringify(this.charges)
+    );
   };
 
   clearInputs = () => {

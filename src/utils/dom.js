@@ -1,14 +1,29 @@
 export const $ = (selector) => document.querySelector(selector);
+
 export const createDiv = (id) => {
   const $div = document.createElement('div');
   $div.id = id;
   return $div;
 };
+
 export const createBtn = (id, value) => {
   const $btn = document.createElement('button');
   $btn.id = id;
   $btn.innerHTML = value;
   return $btn;
+};
+
+export const createTRow = (className) => {
+  const $tr = document.createElement('tr');
+  $tr.classList.add(className);
+  return $tr;
+};
+
+export const createTData = (className, value) => {
+  const $td = document.createElement('td');
+  $td.classList.add(className);
+  $td.innerHTML = value;
+  return $td;
 };
 
 export const ID = {
@@ -56,6 +71,7 @@ export const CLASS = {
 
   // product purchase
   PRODUCT_PURCHASE_ITEM: 'product-purchase-item',
+  PURCHASE_TD: 'purchase-td',
   PURCHASE_BTN: 'purchase-button',
   PRODUCT_PURCHASE_NAME: 'product-purchase-name',
   PRODUCT_PURCHASE_PRICE: 'product-purchase-price',
