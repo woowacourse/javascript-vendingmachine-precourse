@@ -28,8 +28,8 @@ export const productPurchaseValidator = (currentSum) => {
   const $purchaseButton = $('.purchase-button');
   let isValid = false;
 
-  if (currentSum <= 0) {
-    alert('사용가능한 금액이 없습니다. 금액을 투입해 주세요.');
+  if (currentSum < 1) {
+    alert(VALIDATION.PURCHASE.HOLIING_UNDER_0);
     $chargeAmoun.innerHTML = NUMBER.ZERO;
     $purchaseButton.disabled = true;
     isValid;

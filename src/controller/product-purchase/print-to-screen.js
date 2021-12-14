@@ -38,7 +38,6 @@ export const printProductItemsToPurchaseToScreen = () => {
 };
 
 // Purchase items
-
 export const manageDataAttributes = () => {
   const $productName = $('.product-purchase-name');
   const $productPrice = $('.product-purchase-price');
@@ -54,7 +53,7 @@ export const manageDataAttributes = () => {
   }
 };
 
-const printDifference = () => {
+export const printDifference = () => {
   const currentSum = getCurrentSum();
   const $chargedAmount = $('#charge-amount');
   $chargedAmount.innerHTML = `${currentSum}`;
@@ -89,8 +88,6 @@ const handlePurchaseButton = (target) => {
 export const manageProductListAfterPuchased = () => {
   const $purchaseBtns = document.querySelectorAll('.purchase-button');
 
-  console.log($purchaseBtns);
-
   $purchaseBtns.forEach((button) =>
     button.addEventListener('click', (event) => {
       handlePurchaseButton(event.target);
@@ -108,9 +105,8 @@ const getCurrentQuantity = (targetProduct) => {
 };
 
 //Returning coins
-
 export const printReturnedCoins = () => {
-  const coinList = JSON.parse(localStorage.getItem('coinList'));
+  const coinList = JSON.parse(localStorage.getItem(VENDING_MACHINE.COINLIST));
   const randomCoinAmount = returnChangesinCoins(getCurrentSum(), coinList);
   const $vendingMachinereturn500Coin = $('#coin-500-quantity');
   const $vendingMachinereturn100Coin = $('#coin-100-quantity');

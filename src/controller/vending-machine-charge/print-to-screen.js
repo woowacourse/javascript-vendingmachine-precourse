@@ -27,12 +27,10 @@ export const printAmountOfCoinToScreen = () => {
   const $vendingMachine100Coin = $('#vending-machine-coin-100-quantity');
   const $vendingMachine50Coin = $('#vending-machine-coin-50-quantity');
   const $vendingMachine10Coin = $('#vending-machine-coin-10-quantity');
-  const coinList = JSON.parse(localStorage.getItem('coinList'));
+  const coinList = JSON.parse(localStorage.getItem(VENDING_MACHINE.COINLIST));
 
   $vendingMachine500Coin.innerHTML = `${coinList[COIN_LIST[0]]}개`;
   $vendingMachine100Coin.innerHTML = `${coinList[COIN_LIST[1]]}개`;
   $vendingMachine50Coin.innerHTML = `${coinList[COIN_LIST[2]]}개`;
   $vendingMachine10Coin.innerHTML = `${coinList[COIN_LIST[3]]}개`;
 };
-
-// 새로고침

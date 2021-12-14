@@ -9,7 +9,6 @@ import {
   PRODUCT,
   SELECTOR,
 } from '../common/constants/constants.js';
-import { getItemsFromStorage } from '../local-storage.js/product-detail.js';
 
 const insertToHTML = () => {
   const $app = $('#app');
@@ -38,6 +37,7 @@ export const createProductListTable = () => {
     break;
   }
 };
+
 // 초기 탭 디스플레이 세팅
 const switchTab = () => {
   const $header = $('.header');
@@ -54,8 +54,4 @@ const switchTab = () => {
 export const initHTML = () => {
   insertToHTML();
   switchTab();
-};
-
-export const getDatasFromStorage = () => {
-  getItemsFromStorage();
 };
