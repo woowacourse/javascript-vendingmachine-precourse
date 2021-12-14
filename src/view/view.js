@@ -121,7 +121,7 @@ export default class View {
       $product.innerHTML = `${coin}개`;
       sum += coin * COIN[idx];
     });
-
+    console.log(document.querySelector("#vending-machine-coin-100-quantity"));
     $amount.innerHTML = sum;
   }
 
@@ -142,7 +142,7 @@ export default class View {
         `
 	      <td data-product-name="${product.name}" class="product-purchase-name">${product.name}</td>
 	      <td data-product-price="${product.price}" class="product-purchase-price">${product.price}</td>
-	      <td data-product-quantity="${product.quantity}" class="product-purchase-quantitiy">${product.quantity}</td>
+	      <td data-product-quantity="${product.quantity}" class="product-purchase-quantity">${product.quantity}</td>
 	      <button class="purchase-button">구매하기</button>
         </tr>
         `,
