@@ -10,7 +10,6 @@ const showWithID = (id) => {
 
 const createElement = (tag, innerHTML, id, className) => {
   const $newElement = document.createElement(tag);
-
   if (innerHTML !== EMPTY) {
     $newElement.innerHTML = innerHTML;
   }

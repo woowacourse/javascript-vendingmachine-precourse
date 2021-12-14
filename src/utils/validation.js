@@ -15,7 +15,6 @@ const isValidName = (input) => {
 
 const isVaildPrice = (input) => {
   const result = parseInt(trim(input), 10);
-
   if (typeof result === "number" && result >= 100 && result % 10 === 0) {
     return true;
   }
@@ -25,7 +24,6 @@ const isVaildPrice = (input) => {
 
 const isValidQuantity = (input) => {
   const result = parseInt(trim(input), 10);
-
   if (typeof result === "number" && result > 0) {
     return true;
   }
@@ -35,7 +33,6 @@ const isValidQuantity = (input) => {
 
 const isValidCoin = (input) => {
   const result = parseInt(trim(input), 10);
-
   if (typeof result === "number" && result >= 10 && result % 10 === 0) {
     return true;
   }

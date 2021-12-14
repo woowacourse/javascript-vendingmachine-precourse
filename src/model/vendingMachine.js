@@ -34,7 +34,6 @@ export default class VendingMachine {
 
   makeRandomChange(charged) {
     let zero = charged;
-
     while (zero > 0) {
       const pickRandomCoin = MissionUtils.Random.pickNumberInList(COIN);
       if (zero - pickRandomCoin >= 0) {
