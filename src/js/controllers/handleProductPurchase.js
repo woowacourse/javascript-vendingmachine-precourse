@@ -5,7 +5,7 @@ import { resetChargeInput, renderProducts, renderInputMoney, renderCountCharge }
 import { updateProductQuantity, updateAmount, calculateCharge } from '../models/productPurchaseModel.js';
 import alertMessage from '../views/alertMessage.js';
 
-function HandleProductPurchase() {
+export default function HandleProductPurchase() {
   this.inputMoney = 0;
 
   this.init = () => {
@@ -81,8 +81,9 @@ function HandleProductPurchase() {
   $('#coin-return-button').addEventListener('click', () => {
     if (store.getLocalStorage('coins')) {
       renderCountCharge(calculateCharge(this.inputMoney));
-      renderInputMoney();
+
       this.inputMoney = store.getLocalStorage('inputMoney');
+      renderInputMoney();
       return;
     }
     alertMessage(ERROR.NO_MONEY);
@@ -90,5 +91,3 @@ function HandleProductPurchase() {
 
   this.init();
 }
-
-export default HandleProductPurchase;
