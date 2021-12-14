@@ -8,11 +8,11 @@ class VendingMachineManageController {
     this.view = view;
 
     if (currentTabMenu === 'vending-machine-manage-menu') {
-      this.showScreen();
+      this.initScreen();
     }
   }
 
-  showScreen() {
+  initScreen() {
     const tabMenu = this.vendingMachine.getLocalStorage();
     this.view.showVendingMachineManageScreen(tabMenu['vending_machine_manage_menu']);
 
@@ -28,69 +28,59 @@ class VendingMachineManageController {
   }
 
   initEventListener() {
-    this.triggerVendingMachineChargeSubmitEvent();
+    this.triggerVendingMachineChargeFormSubmitEvent();
   }
 
-  initVendingMachineChargeInputValue() {
-    this.$vending_machine_charge_input.value = '';
-  }
-
-  render(currentTabMenu) {
+  showScreen(currentTabMenu) {
     if (currentTabMenu === this.vendingMachine.getCurrentTabMenu()) {
       return;
     }
 
     this.vendingMachine.setCurrentTabMenu(currentTabMenu);
-    this.showScreen();
+    this.initScreen();
   }
 
-  renderVendingMachineChargeLocalStorage(vendingMachineChargeNumber) {
-    const tabMenu = this.vendingMachine.getLocalStorage();
-    const coinList = getRandomCoinList(vendingMachineChargeNumber);
+  initChargeInputValue() {
+    this.$vending_machine_charge_input.value = '';
+  }
 
-    tabMenu['vending_machine_manage_menu']['chargeAmount'] += vendingMachineChargeNumber;
-    Object.keys(coinList).forEach((coin) => {
-      tabMenu['vending_machine_manage_menu']['coinList'][coin] += coinList[coin];
+  vendingMachineChargeSubmitLogic(chargeInput) {
+    const tabMenu = this.vendingMachine.getLocalStorage();
+    const chargeNumber = parseInt(chargeInput, 10);
+
+    this.changeLocalStorageManageMenuValue(tabMenu, chargeNumber);
+    this.renderManageMenuContent(tabMenu);
+  }
+
+  changeLocalStorageManageMenuValue(tabMenu, chargeNumber) {
+    const randomCoinList = getRandomCoinList(chargeNumber);
+
+    tabMenu['vending_machine_manage_menu']['chargeAmount'] += chargeNumber;
+
+    Object.keys(randomCoinList).forEach((coinKey) => {
+      tabMenu['vending_machine_manage_menu']['coinList'][coinKey] += randomCoinList[coinKey];
     });
 
     this.vendingMachine.setLocalStorage(tabMenu);
   }
 
-  renderVendingMachineCharge(vendingMachineChargeInput) {
-    const tabMenu = this.vendingMachine.getLocalStorage();
-    const vendingMachineChargeNumber = parseInt(vendingMachineChargeInput, 10);
+  renderManageMenuContent(tabMenu) {
+    const { coinList, chargeAmount } = tabMenu['vending_machine_manage_menu'];
 
-    this.renderVendingMachineChargeLocalStorage(vendingMachineChargeNumber);
-
-    this.$vending_machine_coin_list.innerHTML = getVendingMachineCoinListTemplate(
-      tabMenu['vending_machine_manage_menu']['coinList']
-    );
-
-    this.$vending_machine_charge_amount.innerText =
-      tabMenu['vending_machine_manage_menu']['chargeAmount'];
+    this.$vending_machine_charge_amount.innerText = chargeAmount;
+    this.$vending_machine_coin_list.innerHTML = getVendingMachineCoinListTemplate(coinList);
   }
 
-  initVendingMachineChargeInputValue() {
-    this.$vending_machine_charge_input.value = '';
-  }
-
-  triggerVendingMachineChargeSubmitEvent() {
+  triggerVendingMachineChargeFormSubmitEvent() {
     this.$vending_machine_charge_form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const vendingMachineChargeInput = this.$vending_machine_charge_input.value;
+      const chargeInput = this.$vending_machine_charge_input.value;
 
-      if (isValidVendingMachineChargeData(vendingMachineChargeInput)) {
-        this.initVendingMachineChargeInputValue();
-        this.renderVendingMachineCharge(vendingMachineChargeInput);
+      if (isValidVendingMachineChargeData(chargeInput)) {
+        this.initChargeInputValue();
+        this.vendingMachineChargeSubmitLogic(chargeInput);
       }
-    });
-  }
-
-  triggerTabMenuClickEvent() {
-    this.$vending_machine_manage_menu.addEventListener('click', (e) => {
-      const currentTabMenu = e.target.id;
-      this.render(currentTabMenu);
     });
   }
 }

@@ -7,11 +7,11 @@ class ProductAddController {
     this.view = view;
 
     if (currentTabMenu === 'product-add-menu') {
-      this.showScreen();
+      this.initScreen();
     }
   }
 
-  showScreen() {
+  initScreen() {
     const tabMenu = this.vendingMachine.getLocalStorage();
     this.view.showProductAddScreen(tabMenu['product_add_menu']);
 
@@ -28,7 +28,34 @@ class ProductAddController {
   }
 
   initEventListener() {
-    this.triggerProductAddSubmitEvent();
+    this.triggerProductAddFormSubmitEvent();
+  }
+
+  showScreen(currentTabMenu) {
+    if (currentTabMenu === this.vendingMachine.getCurrentTabMenu()) {
+      return;
+    }
+
+    this.vendingMachine.setCurrentTabMenu(currentTabMenu);
+    this.initScreen();
+  }
+
+  productAddSubmitLogic(name, price, quantity) {
+    const tabMenu = this.vendingMachine.getLocalStorage();
+
+    this.changeLocalStorageProductAddMenuValue(tabMenu, name, price, quantity);
+    this.renderProductAddMenuContent(tabMenu);
+  }
+
+  changeLocalStorageProductAddMenuValue = (tabMenu, name, price, quantity) => {
+    tabMenu['product_add_menu'] = [...tabMenu['product_add_menu'], { name, price, quantity }];
+
+    this.vendingMachine.setLocalStorage(tabMenu);
+  };
+
+  renderProductAddMenuContent(tabMenu) {
+    const productManageListTemplate = getProductMangeListTemplate(tabMenu['product_add_menu']);
+    this.$product_status_table.innerHTML = productManageListTemplate;
   }
 
   initProductAddInputValue() {
@@ -37,48 +64,18 @@ class ProductAddController {
     this.$product_quantity_input.value = '';
   }
 
-  renderProductManageList(productNameInput, productPriceInput, productQuantityInput) {
-    const tabMenu = this.vendingMachine.getLocalStorage();
-
-    tabMenu['product_add_menu'] = [
-      ...tabMenu['product_add_menu'],
-      { name: productNameInput, price: productPriceInput, quantity: productQuantityInput },
-    ];
-
-    const productManageListText = getProductMangeListTemplate(tabMenu['product_add_menu']);
-
-    this.$product_status_table.innerHTML = productManageListText;
-    this.vendingMachine.setLocalStorage(tabMenu);
-  }
-
-  render(currentTabMenu) {
-    if (currentTabMenu === this.vendingMachine.getCurrentTabMenu()) {
-      return;
-    }
-
-    this.vendingMachine.setCurrentTabMenu(currentTabMenu);
-    this.showScreen();
-  }
-
-  triggerProductAddSubmitEvent() {
+  triggerProductAddFormSubmitEvent() {
     this.$product_add_form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const productNameInput = this.$product_name_input.value;
-      const productPriceInput = this.$product_price_input.value;
-      const productQuantityInput = this.$product_quantity_input.value;
+      const productName = this.$product_name_input.value;
+      const productPrice = this.$product_price_input.value;
+      const productQuantity = this.$product_quantity_input.value;
 
-      if (isValidProductAddData(productNameInput, productPriceInput, productQuantityInput)) {
+      if (isValidProductAddData(productName, productPrice, productQuantity)) {
         this.initProductAddInputValue();
-        this.renderProductManageList(productNameInput, productPriceInput, productQuantityInput);
+        this.productAddSubmitLogic(productName, productPrice, productQuantity);
       }
-    });
-  }
-
-  triggerTabMenuClickEvent() {
-    this.$product_add_menu.addEventListener('click', (e) => {
-      const currentTabMenu = e.target.id;
-      this.render(currentTabMenu);
     });
   }
 }

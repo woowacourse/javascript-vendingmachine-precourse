@@ -8,24 +8,26 @@ class VendingMachineController {
   constructor() {
     this.vendingMachine = new VendingMachine();
     this.view = new View();
+    this.getCurrentTabMenu = this.vendingMachine.getCurrentTabMenu();
+
     this.init();
 
     this.productAddController = new ProductAddController(
       this.vendingMachine,
       this.view,
-      this.vendingMachine.getCurrentTabMenu()
+      this.getCurrentTabMenu
     );
 
     this.vendingMachineManageController = new VendingMachineManageController(
       this.vendingMachine,
       this.view,
-      this.vendingMachine.getCurrentTabMenu()
+      this.getCurrentTabMenu
     );
 
     this.productPurchaseController = new ProductPurchaseController(
       this.vendingMachine,
       this.view,
-      this.vendingMachine.getCurrentTabMenu()
+      this.getCurrentTabMenu
     );
   }
 
@@ -42,15 +44,15 @@ class VendingMachineController {
 
   triggerTabMenuClickEvent() {
     this.$product_purchase_menu.addEventListener('click', () => {
-      this.productPurchaseController.render('product-purchase-menu');
+      this.productPurchaseController.showScreen('product-purchase-menu');
     });
 
     this.$vending_machine_manage_menu.addEventListener('click', () => {
-      this.vendingMachineManageController.render('vending-machine-manage-menu');
+      this.vendingMachineManageController.showScreen('vending-machine-manage-menu');
     });
 
     this.$product_add_menu.addEventListener('click', () => {
-      this.productAddController.render('product-add-menu');
+      this.productAddController.showScreen('product-add-menu');
     });
   }
 }

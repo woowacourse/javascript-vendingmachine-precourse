@@ -8,11 +8,11 @@ class ProductPurchaseController {
     this.view = view;
 
     if (currentTabMenu === 'product-purchase-menu') {
-      this.showScreen();
+      this.initScreen();
     }
   }
 
-  showScreen() {
+  initScreen() {
     const tabMenu = this.vendingMachine.getLocalStorage();
     this.view.showProductPurchaseScreen(
       tabMenu['product_add_menu'],
@@ -39,136 +39,163 @@ class ProductPurchaseController {
   }
 
   initEventListener() {
-    this.triggerChargeSubmitEvent();
-    this.triggerPurchaseClickEvent();
-    this.triggerCoinReturnClickEvent();
+    this.triggerChargeFormSubmitEvent();
+    this.triggerPurchaseButtonClickEvent();
+    this.triggerCoinReturnButtonClickEvent();
   }
 
-  purchaseItem(name, price, idx) {
-    const tabMenu = this.vendingMachine.getLocalStorage();
-    const purchaseItemIdx = tabMenu['product_add_menu'].findIndex((item) => item.name === name);
-
-    if (tabMenu['product_add_menu'][purchaseItemIdx].quantity - 1 < 0) {
-      alert('해당 물품이 품절이 되어, 구매할 수 없습니다');
-      return;
-    }
-    if (tabMenu['product_purchase_menu']['chargeAmount'] - price < 0) {
-      alert('투입한 금액이 부족하여, 해당 물품을 구매할 수 없습니다');
-      return;
-    }
-
-    tabMenu['product_add_menu'][purchaseItemIdx].quantity -= 1;
-    tabMenu['product_purchase_menu']['chargeAmount'] -= price;
-
-    this.$charge_amount.innerText = tabMenu['product_purchase_menu']['chargeAmount'];
-
-    const productPurchaseQuantity = this.$product_purchase_quantities[idx];
-    productPurchaseQuantity.innerText = tabMenu['product_add_menu'][purchaseItemIdx].quantity;
-
-    this.vendingMachine.setLocalStorage(tabMenu);
-  }
-
-  getCoinReturnList() {
-    const tabMenu = this.vendingMachine.getLocalStorage();
-    let { chargeAmount } = tabMenu['product_purchase_menu'];
-    const { coinList } = tabMenu['vending_machine_manage_menu'];
-
-    const coinReturnList = { 500: 0, 100: 0, 50: 0, 10: 0 };
-
-    const descendingKeys = Object.keys(coinList)
-      .map((coin) => parseInt(coin, 10))
-      .sort((a, b) => b - a);
-
-    for (let i = 0; i < descendingKeys.length; i++) {
-      let maxNumber = Math.floor(chargeAmount / descendingKeys[i]);
-      maxNumber =
-        maxNumber < coinList[descendingKeys[i].toString()]
-          ? maxNumber
-          : coinList[descendingKeys[i].toString()];
-
-      tabMenu['vending_machine_manage_menu']['coinList'][descendingKeys[i].toString()] -= maxNumber;
-      chargeAmount -= maxNumber * descendingKeys[i];
-      tabMenu['vending_machine_manage_menu']['chargeAmount'] -= maxNumber * descendingKeys[i];
-      tabMenu['product_purchase_menu']['chargeAmount'] -= maxNumber * descendingKeys[i];
-      coinReturnList[descendingKeys[i].toString()] += maxNumber;
-    }
-
-    tabMenu['product_purchase_menu']['coinList'] = coinReturnList;
-
-    this.$charge_amount.innerText = tabMenu['product_purchase_menu']['chargeAmount'];
-    this.$coin_return_table.innerHTML = getCoinReturnListTemplate(
-      tabMenu['product_purchase_menu']['coinList']
-    );
-
-    this.vendingMachine.setLocalStorage(tabMenu);
-    this.renderVendingMachineChargeLocalStorage(chargeAmount);
-
-    return coinReturnList;
-  }
-
-  render(currentTabMenu) {
+  showScreen(currentTabMenu) {
     if (currentTabMenu == this.vendingMachine.getCurrentTabMenu()) {
       return;
     }
 
     this.vendingMachine.setCurrentTabMenu(currentTabMenu);
-    this.showScreen();
+    this.initScreen();
   }
 
-  renderCharge(chargeInput) {
-    const chargeNumber = parseInt(chargeInput, 10);
+  chargeSubmitLogic(chargeInput) {
     const tabMenu = this.vendingMachine.getLocalStorage();
+    const chargeNumber = parseInt(chargeInput, 10);
+
+    this.changeLocalStorageChargeAmountValue(tabMenu, chargeNumber);
+    this.renderChargeValue(tabMenu);
+  }
+
+  changeLocalStorageChargeAmountValue = (tabMenu, chargeNumber) => {
     tabMenu['product_purchase_menu']['chargeAmount'] += chargeNumber;
 
+    this.vendingMachine.setLocalStorage(tabMenu);
+  };
+
+  renderChargeValue = (tabMenu) => {
     this.$charge_amount.innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+  };
 
-    this.vendingMachine.setLocalStorage(tabMenu);
-  }
+  getPurchaseProductIdx = (tabMenu, name) => {
+    return tabMenu['product_add_menu'].findIndex((product) => product.name === name);
+  };
 
-  renderVendingMachineChargeLocalStorage(vendingMachineChargeNumber) {
+  isValidProductPurchase = (tabMenu, purchaseProductIdx, price) => {
+    if (tabMenu['product_add_menu'][purchaseProductIdx].quantity - 1 < 0) {
+      alert('해당 물품이 품절이 되어, 구매할 수 없습니다');
+      return false;
+    }
+
+    if (tabMenu['product_purchase_menu']['chargeAmount'] - price < 0) {
+      alert('투입한 금액이 부족하여, 해당 물품을 구매할 수 없습니다');
+      return false;
+    }
+
+    return true;
+  };
+
+  purchaseProductLogic(idx, name, price) {
     const tabMenu = this.vendingMachine.getLocalStorage();
-    const coinList = getRandomCoinList(vendingMachineChargeNumber);
+    const purchaseProductIdx = this.getPurchaseProductIdx(tabMenu, name);
 
-    tabMenu['vending_machine_manage_menu']['chargeAmount'] += vendingMachineChargeNumber;
-    Object.keys(coinList).forEach((coin) => {
-      tabMenu['vending_machine_manage_menu']['coinList'][coin] += coinList[coin];
+    if (this.isValidProductPurchase(tabMenu, purchaseProductIdx, price)) {
+      this.changeLocalStorageValue(tabMenu, purchaseProductIdx, price);
+      this.renderProductPurchaseContent(idx, tabMenu, purchaseProductIdx);
+    }
+  }
+
+  changeLocalStorageValue = (tabMenu, purchaseProductIdx, price) => {
+    tabMenu['product_add_menu'][purchaseProductIdx].quantity -= 1;
+    tabMenu['product_purchase_menu']['chargeAmount'] -= price;
+
+    this.vendingMachine.setLocalStorage(tabMenu);
+  };
+
+  renderProductPurchaseContent = (idx, tabMenu, purchaseProductIdx) => {
+    this.$charge_amount.innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+    this.$product_purchase_quantities[idx].innerText =
+      tabMenu['product_add_menu'][purchaseProductIdx].quantity;
+  };
+
+  descendingSort(coinList) {
+    return Object.keys(coinList)
+      .map((coin) => parseInt(coin, 10))
+      .sort((a, b) => b - a);
+  }
+
+  getReturnCoin(chargeAmount, descendingKey, coinList) {
+    let returnCoin = Math.floor(chargeAmount / descendingKey);
+
+    returnCoin =
+      returnCoin < coinList[descendingKeys + ''] ? returnCoin : coinList[descendingKey + ''];
+
+    return returnCoin;
+  }
+
+  changeTabMenuContent(tabMenu, returnCoin, descendingKey) {
+    tabMenu['vending_machine_manage_menu']['coinList'][descendingKey + ''] -= returnCoin;
+    tabMenu['vending_machine_manage_menu']['chargeAmount'] -= returnCoin * descendingKey;
+    tabMenu['product_purchase_menu']['chargeAmount'] -= returnCoin * descendingKey;
+  }
+
+  coinReturnLogic() {
+    const tabMenu = this.vendingMachine.getLocalStorage();
+    const { coinList } = tabMenu['vending_machine_manage_menu'];
+    const descendingKeys = this.descendingSort(coinList);
+    const coinReturnList = { 500: 0, 100: 0, 50: 0, 10: 0 };
+    let chargeAmount = tabMenu['product_purchase_menu']['chargeAmount'];
+
+    for (let i = 0; i < descendingKeys.length; i++) {
+      const returnCoin = this.getReturnCoin(chargeAmount, this.descendingKeys[i], coinList);
+      this.changeTabMenuContent(tabMenu, returnCoin, descendingKeys[i]);
+      chargeAmount -= returnCoin * descendingKeys[i];
+      coinReturnList[descendingKeys[i] + ''] += returnCoin;
+    }
+    tabMenu['product_purchase_menu']['coinList'] = coinReturnList;
+    this.renderReturnCoinLogicContent(tabMenu);
+    this.leftChargeAmountLogic(tabMenu, chargeAmount);
+  }
+
+  renderReturnCoinLogicContent = (tabMenu) => {
+    this.$charge_amount.innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+    this.$coin_return_table.innerHTML = getCoinReturnListTemplate(
+      tabMenu['product_purchase_menu']['coinList']
+    );
+  };
+
+  leftChargeAmountLogic(tabMenu, leftChargeAmount) {
+    const coinList = getRandomCoinList(leftChargeAmount);
+
+    tabMenu['vending_machine_manage_menu']['chargeAmount'] += leftChargeAmount;
+
+    Object.keys(coinList).forEach((coinKey) => {
+      tabMenu['vending_machine_manage_menu']['coinList'][coinKey] += coinList[coinKey];
     });
 
     this.vendingMachine.setLocalStorage(tabMenu);
   }
 
-  triggerCoinReturnClickEvent() {
+  triggerCoinReturnButtonClickEvent() {
     this.$coin_return_button.addEventListener('click', () => {
-      this.getCoinReturnList();
+      this.coinReturnLogic();
     });
   }
 
-  triggerPurchaseClickEvent() {
+  triggerPurchaseButtonClickEvent() {
     for (let idx = 0; idx < this.$purchase_buttons.length; idx++) {
       this.$purchase_buttons[idx].addEventListener('click', () => {
         const name = this.$product_purchase_names[idx].dataset.productName;
         const price = this.$product_purchase_prices[idx].dataset.productPrice;
 
-        this.purchaseItem(name, parseInt(price, 10), idx);
+        this.purchaseProductLogic(idx, name, parseInt(price, 10));
       });
     }
   }
 
-  triggerChargeSubmitEvent() {
+  triggerChargeFormSubmitEvent() {
     this.$charge_form.addEventListener('submit', (e) => {
       e.preventDefault();
+
       const chargeInput = this.$charge_input.value;
 
       if (isValidChargeData(chargeInput)) {
-        this.renderCharge(chargeInput);
+        this.chargeSubmitLogic(chargeInput);
       }
-    });
-  }
-
-  triggerTabMenuClickEvent() {
-    this.$product_purchase_menu.addEventListener('click', (e) => {
-      const currentTabMenu = e.target.id;
-      this.render(currentTabMenu);
     });
   }
 }
