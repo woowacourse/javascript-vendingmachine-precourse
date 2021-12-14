@@ -1,11 +1,10 @@
 import { COINS } from '../constants/index.js';
 
-const coinToIdx = {
-    500: 0,
-    100: 1,
-    50: 2,
-    10: 3,
-};
+const coinToIdx = COINS.reduce((m, coin, idx) => {
+    const ret = m;
+    ret[coin] = idx;
+    return m;
+}, {});
 
 const getPickCoinList = (amount) => COINS.filter((coin) => amount >= coin);
 
