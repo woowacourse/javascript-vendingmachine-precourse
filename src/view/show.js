@@ -9,6 +9,7 @@ import {
   PRODUCT,
   SELECTOR,
 } from '../common/constants/constants.js';
+import { getItemsFromStorage } from '../local-storage.js/product-detail.js';
 
 const insertToHTML = () => {
   const $app = $('#app');
@@ -53,4 +54,8 @@ const switchTab = () => {
 export const initHTML = () => {
   insertToHTML();
   switchTab();
+};
+
+export const getDatasFromStorage = () => {
+  getItemsFromStorage();
 };
