@@ -66,6 +66,9 @@ export default function ProductPurchaseMenuView() {
 
   this.onClickReturnCoinButton = (e) => {
     e.preventDefault();
+    vendingMachine.charge = getLocalStorage(STORAGE_KEY.CHARGE);
+    vendingMachine.coin = getLocalStorage(STORAGE_KEY.COIN);
+
     if (!canReturn(vendingMachine.charge, vendingMachine.insertMoney)) {
       alertReturnErrorMessage(
         vendingMachine.charge,
