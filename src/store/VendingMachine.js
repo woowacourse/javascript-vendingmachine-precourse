@@ -44,7 +44,7 @@ export default class VendingMachine {
 
     if (loadRechargedCoin !== null) {
       loadRechargedCoin.forEach((_, index) => {
-        this.rechargedCoin[index].amount = loadRechargedCoin[index].amount;
+        this.rechargedCoin[index].count = loadRechargedCoin[index].count;
       });
       this.convertRechargedCoinCountNullToZero();
     }
@@ -79,7 +79,7 @@ export default class VendingMachine {
 
     if (loadReturnedCoin !== null) {
       loadReturnedCoin.forEach((_, index) => {
-        this.returnedCoin[index].amount = loadReturnedCoin[index].amount;
+        this.returnedCoin[index].count = loadReturnedCoin[index].count;
       });
       this.convertedRetrunedCoinCountNullToZero();
     }
