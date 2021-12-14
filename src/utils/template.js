@@ -1,6 +1,7 @@
 import NUMBER from '../constants/number.js';
 import { STRING } from '../constants/constants.js';
 import { INDEX } from '../constants/constants.js';
+import { tableStyle, tableCellStyle } from './style.js';
 
 export const headerTemplate = () => {
   return `
@@ -17,9 +18,9 @@ export const headerTemplate = () => {
 export const productTemplate = ({ name, price, quantity }) => {
   return `
     <tr class="product-manage-item">
-      <th class="product-manage-name">${name}</th>
-      <th class="product-manage-price">${price}</th>
-      <th class="product-manage-quantity">${quantity}</th>
+      <td style="${tableCellStyle}" class="product-manage-name">${name}</td>
+      <td style="${tableCellStyle}" class="product-manage-price">${price}</td>
+      <td style="${tableCellStyle}" class="product-manage-quantity">${quantity}</td>
     </tr>
   `;
 };
@@ -36,12 +37,12 @@ export const addTabTemplate = (products, inputs) => {
       <button id="product-add-button">추가하기</button>
     </form>
     <h2>상품 현황</h2>
-    <table>
+    <table style="${tableStyle}">
       <thead>
         <tr>
-          <th>상품명</th>
-          <th>가격</th>
-          <th>수량</th>
+          <th style="${tableCellStyle}">상품명</th>
+          <th style="${tableCellStyle}">가격</th>
+          <th style="${tableCellStyle}">수량</th>
         </tr>
       </thead>
       <tbody>
@@ -69,31 +70,37 @@ export const manageTabTemplate = (chargeAmount, coinsAmountArray, chargeInput) =
     </div>
     <div>
       <h2>자판기가 보유한 동전</h2>
-      <table>
+      <table style="${tableStyle}">
         <thead>
           <tr>
-            <th>동전</th>
-            <th>개수</th>
+            <th style="${tableCellStyle}">동전</th>
+            <th style="${tableCellStyle}">개수</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th>500원</th>
-            <th id="vending-machine-coin-500-quantity">${
-              coinsAmountArray[INDEX.FIVE_HUNDRED]
-            }개</th>
+            <td style="${tableCellStyle}">500원</td>
+            <td style="${tableCellStyle}" id="vending-machine-coin-500-quantity">${
+    coinsAmountArray[INDEX.FIVE_HUNDRED]
+  }개</td>
           </tr>
           <tr>
-            <th>100원</th>
-            <th id="vending-machine-coin-100-quantity">${coinsAmountArray[INDEX.HUNDRED]}개</th>
+            <td style="${tableCellStyle}">100원</td>
+            <td style="${tableCellStyle}" id="vending-machine-coin-100-quantity">${
+    coinsAmountArray[INDEX.HUNDRED]
+  }개</td>
           </tr>
           <tr>
-            <th>50원</th>
-            <th id="vending-machine-coin-50-quantity">${coinsAmountArray[INDEX.FIFTY]}개</th>
+            <td style="${tableCellStyle}">50원</td>
+            <td style="${tableCellStyle}" id="vending-machine-coin-50-quantity">${
+    coinsAmountArray[INDEX.FIFTY]
+  }개</td>
           </tr>
           <tr>
-            <th>10원</th>
-            <th id="vending-machine-coin-10-quantity">${coinsAmountArray[INDEX.TEN]}개</th>
+            <td style="${tableCellStyle}">10원</td>
+            <td style="${tableCellStyle}" id="vending-machine-coin-10-quantity">${
+    coinsAmountArray[INDEX.TEN]
+  }개</td>
           </tr>
         </tbody>
       </table>
@@ -116,13 +123,13 @@ export const purchaseTabTemplate = (products, inputChargeAmount, chargeInput) =>
     <br />
     <div>
       <h2>구매할 수 있는 상품 현황</h2>
-      <table>
+      <table style="${tableStyle}">
         <thead>
           <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>수량</th>
-            <th>구매</th>
+            <th style="${tableCellStyle}">상품명</th>
+            <th style="${tableCellStyle}">가격</th>
+            <th style="${tableCellStyle}">수량</th>
+            <th style="${tableCellStyle}">구매</th>
           </tr>
         </thead>
         <tbody>
@@ -130,10 +137,10 @@ export const purchaseTabTemplate = (products, inputChargeAmount, chargeInput) =>
             .map(({ name, price, quantity }) => {
               return `
               <tr class="product-purchase-item">
-                <th class="product-purchase-name" data-product-name="${name}">${name}</th>
-                <th class="product-purchase-price" data-product-price="${price}">${price}</th>
-                <th class="product-purchase-quantity" data-product-quantity="${quantity}">${quantity}</th>
-                <th><button class="purchase-button">구매하기</button></th>
+                <td style="${tableCellStyle}" class="product-purchase-name" data-product-name="${name}">${name}</td>
+                <td style="${tableCellStyle}" class="product-purchase-price" data-product-price="${price}">${price}</td>
+                <td style="${tableCellStyle}" class="product-purchase-quantity" data-product-quantity="${quantity}">${quantity}</td>
+                <td style="${tableCellStyle}"><button class="purchase-button">구매하기</button></td>
               </tr>
             `;
             })
@@ -144,29 +151,29 @@ export const purchaseTabTemplate = (products, inputChargeAmount, chargeInput) =>
     <div>
       <h2>잔돈</h2>
       <button id="coin-return-button">반환하기</button>
-      <table>
+      <table style="${tableStyle}">
         <thead>
           <tr>
-            <th>동전</th>
-            <th>개수</th>
+            <th style="${tableCellStyle}">동전</th>
+            <th style="${tableCellStyle}">개수</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th>500원</th>
-            <th id="coin-500-quantity">${NUMBER.ZERO}개</th>
+            <td style="${tableCellStyle}">500원</td>
+            <td style="${tableCellStyle}" id="coin-500-quantity">${NUMBER.ZERO}개</td>
           </tr>
           <tr>
-            <th>100원</th>
-            <th id="coin-100-quantity">${NUMBER.ZERO}개</th>
+            <td style="${tableCellStyle}">100원</td>
+            <td style="${tableCellStyle}" id="coin-100-quantity">${NUMBER.ZERO}개</td>
           </tr>
           <tr>
-            <th>50원</th>
-            <th id="coin-50-quantity">${NUMBER.ZERO}개</th>
+            <td style="${tableCellStyle}">50원</td>
+            <td style="${tableCellStyle}" id="coin-50-quantity">${NUMBER.ZERO}개</td>
           </tr>
           <tr>
-            <th>10원</th>
-            <th id="coin-10-quantity">${NUMBER.ZERO}개</th>
+            <td style="${tableCellStyle}">10원</td>
+            <td style="${tableCellStyle}" id="coin-10-quantity">${NUMBER.ZERO}개</td>
           </tr>
         </tbody>
       </table>
