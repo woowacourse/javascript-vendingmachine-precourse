@@ -47,9 +47,9 @@ export default class TabProductAdd {
 
   renderInputs() {
     this.addTitle = new Title(TITLE.PRODUCT_ADD_TITLE);
-    this.nameInput = new Input(ID.PRODUCT_NAME_INPUT, PLACEHOLDER.NAME, INPUT_TYPE.TEXT);
-    this.priceInput = new Input(ID.PRODUCT_PRICE_INPUT, PLACEHOLDER.PRICE, INPUT_TYPE.NUMBER);
-    this.quantityInput = new Input(ID.PRODUCT_QUANTITY_INPUT, PLACEHOLDER.QUANTITY, INPUT_TYPE.NUMBER);
+    this.nameInput = new Input(ID.NAME_INPUT, PLACEHOLDER.NAME, INPUT_TYPE.TEXT);
+    this.priceInput = new Input(ID.PRICE_INPUT, PLACEHOLDER.PRICE, INPUT_TYPE.NUMBER);
+    this.quantityInput = new Input(ID.QUANTITY_INPUT, PLACEHOLDER.QUANTITY, INPUT_TYPE.NUMBER);
     this.addButton = new Button(ID.PRODUCT_ADD_BUTTON, TITLE.PRODUCT_ADD_BUTTON);
 
     this.$root.appendChild(this.addTitle.getTarget());
