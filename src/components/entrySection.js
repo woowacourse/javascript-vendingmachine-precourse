@@ -41,7 +41,7 @@ export default class EntrySection extends Component {
 
   getCurrentMoneyAmountSpan(moneyInfo) {
     return `<span id=${moneyInfo.id}>${moneyInfo.type}한 금액: ${
-      moneyInfo.value ? moneyInfo.value : ""
+      moneyInfo.value !== undefined ? moneyInfo.value : ""
     }</span>`;
   }
 }
