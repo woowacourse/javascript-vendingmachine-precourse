@@ -24,9 +24,37 @@ export default class VendingMachine {
         this.chargedMoney += parseInt(chargeAmount, 10);
     }
 
+    updateTotalMoney(totalAmount) {
+        this.totalInputMoney += parseInt(totalAmount, 10);
+    }
+
     updateTotalChanges(newChanges) {
         for(let key in this.totalChanges) {
             this.totalChanges[key] += newChanges[key];
         }
+    }
+
+    decreaseOneTotalChanges(coin) {
+        this.totalChanges[coin] -= 1;
+    }
+
+    increaseOneInputChanges(coin) {
+        this.inputChanges[coin] += 1;
+    }
+
+    decreaseChargedMoney(amount) {
+        this.chargedMoney -= amount;
+    }
+
+    decreaseInputMoney(amount) {
+        this.totalInputMoney -= amount;
+    }
+
+    decreaseQuantity(rowIndex) {
+        this.productList[rowIndex].quantity -= 1;
+    }
+
+    initializeInputChanges() {
+        this.inputChanges = this.generateChangesObject();
     }
 };
