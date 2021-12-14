@@ -1,10 +1,10 @@
-import { drawPage } from './drawPage.js';
-import { useTabButton } from './useTabButton.js';
-import { addProductList } from './addProductList.js';
-import { addVendingMachineCharge } from './addVendingMachineCharge.js';
-import { purchaseProduct } from './purchaseProduct.js';
+import { printPage } from './print/printPage.js';
+import { useTabButton } from './util/useTabButton.js';
+import { addProductList } from './productAdd/addProductList.js';
+import { addVendingMachineCharge } from './vendingMachineManage/addVendingMachineCharge.js';
+import { purchaseProduct } from './productPurchase/purchaseProduct.js';
 
-drawPage();
+printPage();
 
 function gameStart() {
     document.addEventListener('click', function (e) { useTabButton(e); })

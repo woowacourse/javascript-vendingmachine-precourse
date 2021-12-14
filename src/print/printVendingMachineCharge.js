@@ -1,4 +1,4 @@
-import { GAME } from './product.js';
+import { GAME } from '../util/constant.js';
 
 //자판기 보유금액 출력
 export function printVendingMachineChargeAmount() {
@@ -13,8 +13,9 @@ export function printVendingMachineChargeTable() {
     const $vendingMachineCoin50Quantity = document.querySelector('#vending-machine-coin-50-quantity');
     const $vendingMachineCoin10Quantity = document.querySelector('#vending-machine-coin-10-quantity');
 
-    $vendingMachineCoin500Quantity.innerHTML = GAME.VENDING_MACHINE_CHARGE_ARRAY[0];
-    $vendingMachineCoin100Quantity.innerHTML = GAME.VENDING_MACHINE_CHARGE_ARRAY[1];
-    $vendingMachineCoin50Quantity.innerHTML = GAME.VENDING_MACHINE_CHARGE_ARRAY[2];
-    $vendingMachineCoin10Quantity.innerHTML = GAME.VENDING_MACHINE_CHARGE_ARRAY[3];
+    $vendingMachineCoin500Quantity.innerHTML = `${GAME.VENDING_MACHINE_CHARGE_ARRAY[0]}개`;
+    $vendingMachineCoin100Quantity.innerHTML = `${GAME.VENDING_MACHINE_CHARGE_ARRAY[1]}개`;
+    $vendingMachineCoin50Quantity.innerHTML = `${GAME.VENDING_MACHINE_CHARGE_ARRAY[2]}개`;
+    $vendingMachineCoin10Quantity.innerHTML = `${GAME.VENDING_MACHINE_CHARGE_ARRAY[3]}개`;
 }
+

@@ -1,4 +1,4 @@
-import { PRODUCT, GAME } from './product.js';
+import { PRODUCT, GAME } from './constant.js';
 
 export function makeProduct($productNameInputValue, $productPriceInputValue, $productQuantityInputValue) {
     //클래스 생성

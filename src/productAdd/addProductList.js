@@ -1,13 +1,8 @@
 import { checkProductValid } from './checkProductValid.js';
-import { makeProduct } from './makeProduct.js';
-import { addProductAddTable, addProductPurchaseTable } from './addProductListTable.js';
-
-//입력창 비우기
-function resetProductAddInputs($productNameInput, $productPriceInput, $productQuantityInput) {
-    $productNameInput.value = '';
-    $productPriceInput.value = '';
-    $productQuantityInput.value = '';
-}
+import { makeProduct } from '../util/makeProduct.js';
+import { addProductAddTable } from '../print/printProductAdd.js';
+import { cleanInputValue } from '../print/cleanInputValue.js'
+import { addProductPurchaseTable } from '../print/printProductPurchase.js'
 
 //상품추가하기 버튼 클릭시 테이블에 추가하기
 export function addProductList() {
@@ -17,12 +12,11 @@ export function addProductList() {
 
     if (checkProductValid($productNameInput, $productPriceInput, $productQuantityInput)) {
         //객체 생성
-
         makeProduct($productNameInput.value, $productPriceInput.value, $productQuantityInput.value);
 
         //상품관리와 상품구매에 출력
         addProductAddTable();
         addProductPurchaseTable();
     }
-    resetProductAddInputs($productNameInput, $productPriceInput, $productQuantityInput);
+    cleanInputValue($productNameInput, $productPriceInput, $productQuantityInput);
 }

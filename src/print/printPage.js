@@ -1,4 +1,4 @@
-export function drawPage() {
+export function printPage() {
     const $app = document.querySelector('#app');
 
     $app.innerHTML += `<h1>🥤자판기🥤</h1>
@@ -77,19 +77,19 @@ export function drawPage() {
                         </tr>
                         <tr>
                             <td>500원</td>
-                            <td class="coin-500-quantity"></td>
+                            <td id="coin-500-quantity"></td>
                         </tr>
                         <tr>
                             <td>100원</td>
-                            <td class="coin-100-quantity"></td>
+                            <td id="coin-100-quantity"></td>
                         </tr>
                         <tr>
                             <td>50원</td>
-                            <td class="coin-50-quantity"></td>
+                            <td id="coin-50-quantity"></td>
                         </tr>
                         <tr>
                             <td>10원</td>
-                            <td class="coin-10-quantity"></td>
+                            <td id="coin-10-quantity"></td>
                         </tr>
                     </table>
                     </div>`;
