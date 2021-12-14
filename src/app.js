@@ -1,5 +1,6 @@
 import Component from './essential/component.js';
 import Header from './components/header.js';
+import ProductAdd from './components/product-add/index.js';
 
 const CONTENT = `
   <header></header>
@@ -30,6 +31,7 @@ export default class App extends Component {
 
     switch (this.$state.currMenu) {
       case 0:
+        new ProductAdd($main);
         break;
       case 1:
         break;
