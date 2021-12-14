@@ -5,6 +5,7 @@ export const initCoinMenu = () => {
   const coinAddButton = document.getElementById('vending-machine-charge-button');
   coinAddButton.addEventListener('click', () => addCoins());
   updateCoinTableRow();
+  updateHoldingAmount();
 };
 
 const updateCoinTableRow = () => {
@@ -30,6 +31,7 @@ const addCoins = () => {
   }
   saveCoinsToLocalStorage(vendingMachineCoins);
   updateCoinTableRow();
+  updateHoldingAmount();
 };
 
 const getRandomCoins = () => {
@@ -37,7 +39,6 @@ const getRandomCoins = () => {
 
   let price = 0;
   let coins = { 500: 0, 100: 0, 50: 0, 10: 0 };
-
   if (isCoinInputValid(chargeInput)) {
     while (chargeInput !== price) {
       const coin = MissionUtils.Random.pickNumberInList(COINS);
@@ -75,4 +76,13 @@ const isCoinInputMulOfTen = (chargeInput) => {
     return false;
   }
   return true;
+};
+
+const updateHoldingAmount = () => {
+  let vendingMachineCoins = getCoinsFromLocalStorage();
+  let sum = 0;
+  for (let i of COINS) {
+    sum += Number(vendingMachineCoins[i]) * i;
+  }
+  document.getElementById('vending-machine-charge-amount').innerText = `${sum} 원`;
 };
