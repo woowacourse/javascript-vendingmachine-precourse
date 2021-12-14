@@ -13,3 +13,11 @@ export const loadDataFromStorage = (key) => {
   }
   return loadedData;
 };
+
+export const setDataOnSessionStorage = (key, data) => {
+  sessionStorage.setItem(key, JSON.stringify(data));
+};
+
+export const loadDataFromSessionStorage = (key) => {
+  return JSON.parse(sessionStorage.getItem(key));
+};

@@ -1,4 +1,9 @@
-import { setDataOnStorage, loadDataFromStorage } from '../utils/storage.js';
+import {
+  setDataOnStorage,
+  loadDataFromStorage,
+  setDataOnSessionStorage,
+  loadDataFromSessionStorage,
+} from '../utils/storage.js';
 import { STRING, TAB } from '../constants/constants.js';
 import NUMBER from '../constants/number.js';
 import { defaultProducts, defaultAddTabInput, defaultCoins } from './data.js';
@@ -57,13 +62,13 @@ export default class AppModel {
   }
 
   loadCurrentTab() {
-    return loadDataFromStorage(STRING.CURRENT_TAB);
+    return loadDataFromSessionStorage(STRING.CURRENT_TAB);
   }
 
   setCurrentTab(tab) {
     this.currentTab = tab;
 
-    setDataOnStorage(STRING.CURRENT_TAB, this.currentTab);
+    setDataOnSessionStorage(STRING.CURRENT_TAB, this.currentTab);
   }
 
   setManageTabInput(value) {
