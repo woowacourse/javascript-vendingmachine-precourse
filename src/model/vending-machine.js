@@ -26,9 +26,10 @@ export default class VendingMachine {
   }
 
   initMenu() {
-    this.items = JSON.parse(localStorage.getItem('items')).map(
-      (item) => new Item(...Object.values(item))
-    );
+    const savedMenu = JSON.parse(localStorage.getItem('items'));
+    if (savedMenu) {
+      this.items = savedMenu.map((item) => new Item(...Object.values(item)));
+    }
   }
 
   addMenu({ name, price, quantity }) {
@@ -80,7 +81,7 @@ export default class VendingMachine {
     this.items = this.items.filter((item) => item.quantity !== 0);
   }
 
-  get change() {
+  caculateChange() {
     const changeArr = [];
     this.coins.forEach((coin) => {
       const max = Math.floor(this.inputMoney / coin.kinds);
@@ -91,7 +92,11 @@ export default class VendingMachine {
       changeArr.push(change.obj);
     });
     localStorage.setItem('coins', JSON.stringify(this.coins));
-    return changeArr;
+    this.changeArr = changeArr;
+  }
+
+  get change() {
+    return this.changeArr;
   }
 
   get totalMoney() {

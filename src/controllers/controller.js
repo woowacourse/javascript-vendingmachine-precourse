@@ -111,7 +111,7 @@ export default class Controller {
   }
 
   returnChange = () => {
-    const { change } = this.model;
-    this.view.updateChange(this.model.totalMoney, change);
+    this.model.caculateChange();
+    this.view.updateChange(this.model.totalMoney, this.model.change);
   };
 }

@@ -25,7 +25,7 @@ export default class CoinStatus {
   createTable() {
     this.$table = createElement('table');
     this.$table.classList.add(CLASS.PRODUCT.MANAGE_ITEM);
-    this.$table.appendChild(createTr(TABLE_TEXT, TABLE_TEXT.AMOUNT));
+    this.$table.appendChild(createTr(TABLE_TEXT.COIN, TABLE_TEXT.AMOUNT));
     this.$table.style.border = TD.BORDER;
     this.$table.style.borderCollapse = TABLE.COLLAPSE;
     this.buildTable();
