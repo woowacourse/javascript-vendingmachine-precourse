@@ -10,13 +10,23 @@ export default class VendingMachine {
         this.totalInputMoney = parseInt(getDataInLocalStorage('totalInputMoney'), 10) || 0;
     }
 
-    addProductList(product) {
-        this.productList.push(product);
-    }
-
     generateChangesObject() {
         const result = {};
         moneyList.forEach(coin => result[coin] = 0);
         return result;
+    }
+
+    addProductList(product) {
+        this.productList.push(product);
+    }
+
+    updateChargedMoney(chargeAmount) {
+        this.chargedMoney += parseInt(chargeAmount, 10);
+    }
+
+    updateTotalChanges(newChanges) {
+        for(let key in this.totalChanges) {
+            this.totalChanges[key] += newChanges[key];
+        }
     }
 };
