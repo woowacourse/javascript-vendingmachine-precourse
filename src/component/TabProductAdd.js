@@ -47,15 +47,15 @@ export default class TabProductAdd {
 
   renderInputs() {
     this.addTitle = new Title(TITLE.PRODUCT_ADD_TITLE);
-    this.name = new Input(ID.PRODUCT_NAME_INPUT, PLACEHOLDER.NAME, INPUT_TYPE.TEXT);
-    this.price = new Input(ID.PRODUCT_PRICE_INPUT, PLACEHOLDER.PRICE, INPUT_TYPE.NUMBER);
-    this.quantity = new Input(ID.PRODUCT_QUANTITY_INPUT, PLACEHOLDER.QUANTITY, INPUT_TYPE.NUMBER);
+    this.nameInput = new Input(ID.PRODUCT_NAME_INPUT, PLACEHOLDER.NAME, INPUT_TYPE.TEXT);
+    this.priceInput = new Input(ID.PRODUCT_PRICE_INPUT, PLACEHOLDER.PRICE, INPUT_TYPE.NUMBER);
+    this.quantityInput = new Input(ID.PRODUCT_QUANTITY_INPUT, PLACEHOLDER.QUANTITY, INPUT_TYPE.NUMBER);
     this.addButton = new Button(ID.PRODUCT_ADD_BUTTON, TITLE.PRODUCT_ADD_BUTTON);
 
     this.$root.appendChild(this.addTitle.getTarget());
-    this.$root.appendChild(this.name.getTarget());
-    this.$root.appendChild(this.price.getTarget());
-    this.$root.appendChild(this.quantity.getTarget());
+    this.$root.appendChild(this.nameInput.getTarget());
+    this.$root.appendChild(this.priceInput.getTarget());
+    this.$root.appendChild(this.quantityInput.getTarget());
     this.$root.appendChild(this.addButton.getTarget());
   }
 
@@ -90,9 +90,9 @@ export default class TabProductAdd {
     const { addProduct } = this.props;
 
     this.addButton.getTarget().addEventListener(EVENT.CLICK, () => {
-      const nameValue = this.name.getTarget().value;
-      const priceValue = this.price.getTarget().value;
-      const quantityValue = this.quantity.getTarget().value;
+      const nameValue = this.nameInput.getTarget().value;
+      const priceValue = this.priceInput.getTarget().value;
+      const quantityValue = this.quantityInput.getTarget().value;
 
       if (isValidProductAdd([nameValue, priceValue, quantityValue])) {
         addProduct(nameValue, priceValue, quantityValue);
