@@ -12,35 +12,35 @@
 .
 ├── index.html
 ├── assets
-│   └── index.css
+│　　└── index.css
 └── src
-    ├── index.js
-    ├── app.js
-    ├── components
-    │   ├── header.js
-    │   ├── product-add
-    │   │   ├── index.js
-    │   │   ├── header.js
-    │   │   └── table.js
-    │   ├── vending-machine-manage
-    │   │   ├── header.js
-    │   │   ├── index.js
-    │   │   └── stored.js
-    │   └── product-purchase
-    │       ├── changes.js
-    │       ├── header.js
-    │       ├── index.js
-    │       ├── inserted.js
-    │       └── products.js
-    ├── essential
-    │   └── component.js
-    ├── model
-    │   └── product.js
-    └── utils
-        ├── constants.js
-        ├── storage.js
-        ├── style.js
-        └── validator.js
+　　├── index.js
+　　├── app.js
+　　├── components
+　　│　　├── header.js
+　　│　　├── product-add
+　　│　　│   ├── index.js
+　　│　　│   ├── header.js
+　　│　　│   └── table.js
+　　│　　├── vending-machine-manage
+　　│　　│   ├── header.js
+　　│　　│   ├── index.js
+　　│　　│   └── stored.js
+　　│　　└── product-purchase
+　　│　　　　├── changes.js
+　　│　　　　├── header.js
+　　│　　　　├── index.js
+　　│　　　　├── inserted.js
+　　│　　　　└── products.js
+　　├── essential
+　　│　　└── component.js
+　　├── model
+　　│　　└── product.js
+　　└── utils
+　　　　├── constants.js
+　　　　├── storage.js
+　　　　├── style.js
+　　　　└── validator.js
 
 ---
 
