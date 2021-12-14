@@ -11,8 +11,8 @@ export default class VendingMachine {
     this.coins = new VendingMachineCoins();
   }
 
-  addProduct(name, price, quality) {
-    this.products.addItem(name, price, quality);
+  addProduct(name, price, quantity) {
+    this.products.addItem(name, price, quantity);
   }
 
   purchaseProduct(name) {

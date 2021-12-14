@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import VendingMachine from "../class/vendingMachine.js";
 import Component from "../common/component.js";
 import AddMenuContainer from "./addMenuContainer.js";
@@ -101,7 +102,13 @@ export default class App extends Component {
     const name = document.getElementById("product-name-input").value;
     const price = document.getElementById("product-price-input").value;
     const quantity = document.getElementById("product-quantity-input").value;
-    this.$vendingMachine.addProduct(name, price, quantity);
+
+    if (!this.isValidAddProductInput(name, price, quantity)) {
+      alert("Not a valid input");
+      return;
+    }
+
+    this.$vendingMachine.addProduct(name, parseInt(price), parseInt(quantity));
     this.setState({
       products: this.$vendingMachine.getProducts(),
     });
@@ -111,7 +118,13 @@ export default class App extends Component {
     const amount = document.getElementById(
       "vending-machine-charge-input"
     ).value;
-    this.$vendingMachine.addVendingMachineCoins(amount);
+
+    if (!this.isValidMoney(amount, 10)) {
+      alert("Not a valid input");
+      return;
+    }
+
+    this.$vendingMachine.addVendingMachineCoins(parseInt(amount));
     this.setState({
       coins: this.$vendingMachine.getVendingMachineCoins(),
     });
@@ -119,7 +132,13 @@ export default class App extends Component {
 
   onClickAddUserMoney() {
     const amount = document.getElementById("charge-input").value;
-    this.$vendingMachine.chargeUserMoney(parseInt(amount, 10));
+
+    if (!this.isValidMoney(amount, 10)) {
+      alert("Not a valid input");
+      return;
+    }
+
+    this.$vendingMachine.chargeUserMoney(parseInt(amount));
     this.setState({
       userMoney: this.$vendingMachine.getRemainingUserMoney(),
     });
@@ -140,5 +159,24 @@ export default class App extends Component {
       coins: this.$vendingMachine.getVendingMachineCoins(),
       userMoney: this.$vendingMachine.getRemainingUserMoney(),
     });
+  }
+
+  isValidAddProductInput(name, price, quantity) {
+    return (
+      name !== "" &&
+      this.isValidNumber(quantity) &&
+      this.isValidMoney(price, 100)
+    );
+  }
+
+  isValidNumber(numStr) {
+    return (
+      !Number.isNaN(numStr) && !numStr.includes("e") && parseInt(numStr) > 0
+    );
+  }
+
+  isValidMoney(numStr, minPrice) {
+    const num = parseInt(numStr);
+    return this.isValidNumber(numStr) && num % 10 === 0 && num >= minPrice;
   }
 }
