@@ -39,7 +39,8 @@ export default class Validation {
     return true;
   }
 
-  checkPurchasePossible(productPrice, insertedMoney) {
-    return productPrice <= insertedMoney;
+  checkPurchasePossible(productPrice, productQuantity, insertedMoney) {
+    return productQuantity > 0 && productPrice <= insertedMoney;
   }
+
 }

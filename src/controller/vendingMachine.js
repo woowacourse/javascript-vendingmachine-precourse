@@ -26,15 +26,16 @@ export class VendingMachine {
 
   purchase(productName, view) {
     const price = this.productList.getProductPrice(productName);
+    const quantity = this.productList.getProductQuantity(productName);
     const insertedMoney = this.moneyBank.insertedMoney;
-    const isValid = this.valid.checkPurchasePossible(price, insertedMoney);
+    const isValid = this.valid.checkPurchasePossible(price, quantity, insertedMoney);
     if(isValid) {
       this.productList.removeProduct(productName);
       this.moneyBank.useMoney(price);
       view.showProductListAll(this.productList.products);
       this.showInsertedMoney(view);
     } else {
-      alert('금액이 부족합니다.');
+      alert('구매할 수 없습니다.');
     }
   }
 }
