@@ -48,6 +48,10 @@ export default class VendingMachine {
     return this.userMoney.getAmount();
   }
 
+  getVendingMachineCoins() {
+    return this.convertCoinObjToCoinList(this.coins.getCoins());
+  }
+
   getChange() {
     const changedCoins = this.coins.removeCoins(this.userMoney.getAmount());
     const changedSum = Object.keys(changedCoins).reduce(
@@ -55,6 +59,10 @@ export default class VendingMachine {
       0
     );
     this.userMoney.decreaseAmount(changedSum);
-    return coinTypes.map((coin) => [coin, changedCoins[coin]]);
+    return this.convertCoinObjToCoinList(changedCoins);
+  }
+
+  convertCoinObjToCoinList(coinObj) {
+    return coinTypes.map((coin) => [coin, coinObj[coin]]);
   }
 }
