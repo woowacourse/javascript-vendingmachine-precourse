@@ -6,10 +6,8 @@ import { defaultProducts, defaultAddTabInput, defaultCoins } from './data.js';
 export default class AppModel {
   constructor() {
     this.products = this.loadProducts() || defaultProducts();
-    this.chargeAmount = this.loadChargeAmount() || NUMBER.ZERO;
     this.coins = this.loadCoins() || defaultCoins();
     this.inputChargeAmount = this.loadInputChargeAmount() || NUMBER.ZERO;
-
     this.addTabInput = defaultAddTabInput();
     this.manageTabInput = STRING.EMPTY;
   }
@@ -28,20 +26,6 @@ export default class AppModel {
     this.addTabInput[key] = value;
   }
 
-  setChargeAmount(amount) {
-    this.chargeAmount = this.chargeAmount > 0 ? this.getAddedChargeAmount(amount) : amount;
-
-    setDataOnStorage(STRING.CHARGE_AMOUNT, this.chargeAmount);
-  }
-
-  getAddedChargeAmount(amount) {
-    return this.chargeAmount + amount;
-  }
-
-  loadChargeAmount() {
-    return loadDataFromStorage(STRING.CHARGE_AMOUNT);
-  }
-
   loadCoins() {
     return loadDataFromStorage(STRING.COINS);
   }
@@ -56,6 +40,14 @@ export default class AppModel {
 
   setCoins() {
     setDataOnStorage(STRING.COINS, this.coins);
+  }
+
+  getTotalCoinValue() {
+    return this.coins.reduce((acc, { unit, amount }) => {
+      console.log(acc, unit, amount);
+      acc += unit * amount;
+      return acc;
+    }, NUMBER.ZERO);
   }
 
   getCoinsAmountArray() {

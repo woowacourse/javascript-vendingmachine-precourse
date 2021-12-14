@@ -14,7 +14,7 @@ export default class ManageController {
     this.manageView.init();
 
     this.manageView.renderManageTab(
-      this.appModel.chargeAmount,
+      this.appModel.getTotalCoinValue(),
       this.appModel.getCoinsAmountArray(),
       this.appModel.manageTabInput
     );
@@ -33,9 +33,8 @@ export default class ManageController {
     const chargeAmount = this.manageView.$chargeInput.value;
 
     if (isValidChargeAmount(chargeAmount)) {
-      this.appModel.setChargeAmount(Number(chargeAmount));
-      this.manageView.renderChargeAmount(this.appModel.chargeAmount);
       this.createRandomCoins(chargeAmount);
+      this.manageView.renderChargeAmount(this.appModel.getTotalCoinValue());
       this.appModel.setCoins();
       return this.manageView.renderCoins(this.appModel.coins);
     }
