@@ -36,24 +36,22 @@ export default class CoinManageView {
 
   bindChargeButtonEvent() {
     const chargeButton = document.getElementById(COIN_MANAGE.CHARGE_BUTTON.ID);
-    chargeButton.addEventListener("click", () => this.handleClickEvent());
-  }
-
-  handleClickEvent() {
-    this.coinStore.charge(Number(this.input.value));
-    this.loadTotalCoin();
-    this.loadCoinToHave();
+    chargeButton.addEventListener("click", () => {
+      this.coinStore.charge(this.input.value);
+      this.loadTotalCoin();
+      this.loadCoinToHave();
+    });
   }
 
   loadTotalCoin() {
     this.coinToHave = document.getElementById(COIN_MANAGE.TEXT.PRINT_AMOUNT_ID);
-    const totalCoin = this.coinStore.getTotalCoin() || "";
+    const totalCoin = this.coinStore.getTotalCoin();
     this.coinToHave.innerText = totalCoin;
   }
 
   loadCoinToHave() {
     const currentCoinToHave = this.coinStore.getCurrentCoinToHave();
-    if (currentCoinToHave.length !== 0) {
+    if (Object.keys(currentCoinToHave).length !== 0) {
       COIN_MANAGE.COIN_TO_USE.forEach(coin => {
         const coinKey = coin.QUANTITY_ID.match(/\d+/g).pop();
         const coinAmountArea = document.getElementById(coin.QUANTITY_ID);

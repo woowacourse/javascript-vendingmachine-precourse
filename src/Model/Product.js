@@ -18,8 +18,7 @@ export default class Product {
 
   addNewProduct(newProduct) {
     const [name, price, quantity] = newProduct;
-    const currentProductList = this.getProductData();
-    const updateProductList = [...currentProductList, new Product(name, price, quantity)];
+    const updateProductList = [...this.getProductData(), new Product(name, price, quantity)];
     this.setProductData(updateProductList);
   }
 
