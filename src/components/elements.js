@@ -80,6 +80,14 @@ export const Table = (id) => {
   return table;
 };
 
+export const TableWithHead = (id, heads) => {
+  const table = Table(id);
+
+  TableHead(table, heads);
+
+  return table;
+};
+
 export const TableHead = (table, titles) => {
   titles.forEach((title) => {
     const th = document.createElement('th');
