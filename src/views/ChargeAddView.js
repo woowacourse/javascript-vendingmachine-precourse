@@ -16,6 +16,7 @@ export default class ChargeAddView extends ChargeAddController {
       chargeAddValiate(addCoin) 
       ? (this.validAddCoin = addCoin, this.renderCharge(), this.getChargeCoin(), this.renderRandomCoin())
       : "";
+      this.validAddCoin = 0;
     })
   }
 
