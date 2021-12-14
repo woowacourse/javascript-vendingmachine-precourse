@@ -22,12 +22,8 @@ class ChangesCharge extends Component {
     this.$charge.onSubmit = ({ amount }) => {
       VendingMachineStore.instance.chargeChanges(amount);
       this.$charge.resetInputs();
-      this.$status.update();
+      this.$status.render();
     };
-  }
-
-  update() {
-    this.$status.update();
   }
 }
 

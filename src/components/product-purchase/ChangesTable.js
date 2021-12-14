@@ -41,10 +41,9 @@ class ChangesTable extends Component {
     return $tableRow;
   }
 
-  update() {
+  beforeRender() {
     this.$tableRows = this.state.dataset.map(ChangesTable.#tableRowComponent);
     this.children = [...this.$tableHead, ...this.$tableRows];
-    this.render();
   }
 }
 

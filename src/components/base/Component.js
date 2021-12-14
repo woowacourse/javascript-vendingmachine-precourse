@@ -10,8 +10,8 @@ class Component {
 
   constructor($element, props) {
     this.$element = $element;
-
     this.children = [];
+    this.#state = {};
 
     Object.entries(props || {}).forEach(([key, value]) => {
       this.$element[key] = value;
@@ -26,19 +26,23 @@ class Component {
 
   setState(newStateParams) {
     this.#state = { ...this.#state, ...newStateParams };
-    this.update();
+    this.render();
     this.onStateChanged?.(newStateParams);
   }
 
   render() {
+    this.beforeRender();
     this.$element.innerHTML = '';
     this.children.forEach((child) => {
       this.$element.appendChild(child.$element);
       child.render();
     });
+    this.afterRender();
   }
 
-  update() {}
+  beforeRender() {}
+
+  afterRender() {}
 }
 
 export default Component;

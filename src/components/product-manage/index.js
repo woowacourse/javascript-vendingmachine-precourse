@@ -22,12 +22,8 @@ class ProductManage extends Component {
     this.$append.onSubmit = (product) => {
       VendingMachineStore.instance.addProduct(product);
       this.$append.resetInputs();
-      this.$status.update();
+      this.$status.render();
     };
-  }
-
-  update() {
-    this.$status.update();
   }
 }
 

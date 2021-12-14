@@ -74,13 +74,12 @@ class ProductPurchaseTable extends Component {
     return $tableRow;
   }
 
-  update() {
+  beforeRender() {
     this.$tableRows = this.state.dataset.map(
       ProductPurchaseTable.#tableRowComponent
     );
     this.children = [...this.$tableHead, ...this.$tableRows];
     this.setEvent();
-    this.render();
   }
 }
 

@@ -46,10 +46,6 @@ class App extends Component {
       window.location.reload();
     });
   }
-
-  update() {
-    this.$machine.update();
-  }
 }
 
 export default App;

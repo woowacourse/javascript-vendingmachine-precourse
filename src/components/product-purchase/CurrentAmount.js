@@ -23,10 +23,9 @@ class CurrentAmount extends Component {
     this.setEvent();
   }
 
-  update() {
+  beforeRender() {
     this.$amount = new Label('span', this.state.amount, amountProp);
     this.children = [this.$label, this.$amount];
-    this.render();
   }
 }
 

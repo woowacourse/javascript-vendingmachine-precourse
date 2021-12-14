@@ -32,11 +32,9 @@ class Machine extends Component {
     }[this.state.currentMenu];
   }
 
-  update() {
+  beforeRender() {
     // 완전갱신
-    this.#currentMenuView.update();
     this.children = [this.#currentMenuView];
-    this.render();
   }
 }
 

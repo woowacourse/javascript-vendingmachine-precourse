@@ -30,20 +30,13 @@ class ProductPurchase extends Component {
       this.$returnChanges,
     ];
     this.setEvent();
+    this.#updateCurrentAmount(); // TODO: 삭제 필요
   }
 
   #updateCurrentAmount() {
     this.$currentAmount.setState({
       amount: VendingMachineStore.instance.user.amount,
     });
-  }
-
-  #updateProductStatus() {
-    this.$productStatus.update();
-  }
-
-  #updateReturnChanges() {
-    this.$returnChanges.update();
   }
 
   setEvent() {
@@ -56,20 +49,14 @@ class ProductPurchase extends Component {
     this.$productStatus.$table.onPurchase = (idx) => {
       VendingMachineStore.instance.buyProduct(idx);
       this.#updateCurrentAmount();
-      this.#updateProductStatus();
+      this.$productStatus.render();
     };
 
     this.$returnChanges.onReturn = () => {
       VendingMachineStore.instance.returnChanges();
       this.#updateCurrentAmount();
-      this.#updateReturnChanges();
+      this.$returnChanges.render();
     };
-  }
-
-  update() {
-    this.#updateCurrentAmount();
-    this.#updateProductStatus();
-    this.#updateReturnChanges();
   }
 }
 

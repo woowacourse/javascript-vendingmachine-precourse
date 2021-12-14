@@ -27,7 +27,6 @@ class ReturnChanges extends Component {
     this.$table = new ChangesTable();
     this.children = [this.$title, this.$button, this.$table];
     this.setEvent();
-    this.update();
   }
 
   setEvent() {
@@ -36,7 +35,7 @@ class ReturnChanges extends Component {
     });
   }
 
-  update() {
+  beforeRender() {
     const coins = VendingMachineStore.instance.user.returnedCoinStorage.items;
     this.$table.setState({ dataset: coins });
   }
