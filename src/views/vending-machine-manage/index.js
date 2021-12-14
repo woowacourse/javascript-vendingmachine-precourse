@@ -5,7 +5,7 @@ import VendingMachineManageTableView from './vending-machine-manage-table-view.j
 
 class VendingMachineManageView {
   static template = `
-    <div id="${ELEMENT_IDS.VENDING_MACHINE_MANAGE_PANE}"></div>
+    <div id="${ELEMENT_IDS.VENDING_MACHINE_MANAGE.PANE}"></div>
   `;
 
   constructor($container) {

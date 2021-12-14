@@ -1,32 +1,65 @@
 export const ELEMENT_IDS = Object.freeze({
   APP: 'app',
-  PRODUCT_ADD_MENU: 'product-add-menu',
-  PRODUCT_ADD_PANE: 'product-add-pane',
-  PRODUCT_ADD_FORM: 'product-add-form',
-  PRODUCT_ADD_TABLE: 'product-add-table',
-  PRODUCT_NAME_INPUT: 'product-name-input',
-  PRODUCT_PRICE_INPUT: 'product-price-input',
-  PRODUCT_QUANTITY_INPUT: 'product-quantity-input',
-  PRODUCT_ADD_BUTTON: 'product-add-button',
-  VENDING_MACHINE_MANAGE_MENU: 'vending-machine-manage-menu',
-  VENDING_MACHINE_MANAGE_PANE: 'vending-machine-manage-pane',
-  VENDING_MACHINE_MANAGE_FORM: 'vending-machine-manage-form',
-  VENDING_MACHINE_MANAGE_TABLE: 'vending-machine-manage-table',
-  VENDING_MACHINE_CHARGE_INPUT: 'vending-machine-charge-input',
-  VENDING_MACHINE_CHARGE_BUTTON: 'vending-machine-charge-button',
-  VENDING_MACHINE_CHARGE_AMOUNT: 'vending-machine-charge-amount',
-  PRODUCT_PURCHASE_MENU: 'product-purchase-menu',
-  PRODUCT_PURCHASE_PANE: 'product-purchase-pane',
-  VENDING_MACHINE_COIN_500_QUANTITY: 'vending-machine-coin-500-quantity',
-  VENDING_MACHINE_COIN_100_QUANTITY: 'vending-machine-coin-100-quantity',
-  VENDING_MACHINE_COIN_50_QUANTITY: 'vending-machine-coin-50-quantity',
-  VENDING_MACHINE_COIN_10_QUANTITY: 'vending-machine-coin-10-quantity',
+  PRODUCT_ADD: {
+    MENU: 'product-add-menu',
+    PANE: 'product-add-pane',
+    FORM: 'product-add-form',
+    TABLE: 'product-add-table',
+    NAME_INPUT: 'product-name-input',
+    PRICE_INPUT: 'product-price-input',
+    QUANTITY_INPUT: 'product-quantity-input',
+    ADD_BUTTON: 'product-add-button',
+  },
+  VENDING_MACHINE_MANAGE: {
+    MENU: 'vending-machine-manage-menu',
+    PANE: 'vending-machine-manage-pane',
+    FORM: 'vending-machine-manage-form',
+    TABLE: 'vending-machine-manage-table',
+    CHARGE_INPUT: 'vending-machine-charge-input',
+    CHARGE_BUTTON: 'vending-machine-charge-button',
+    CHARGE_AMOUNT: 'vending-machine-charge-amount',
+    COIN_500_QUANTITY: 'vending-machine-coin-500-quantity',
+    COIN_100_QUANTITY: 'vending-machine-coin-100-quantity',
+    COIN_50_QUANTITY: 'vending-machine-coin-50-quantity',
+    COIN_10_QUANTITY: 'vending-machine-coin-10-quantity',
+  },
+  PRODUCT_PURCHASE: {
+    MENU: 'product-purchase-menu',
+    PANE: 'product-purchase-pane',
+    FORM: 'product-purchase-form',
+    TABLE: 'product-purchase-table',
+    CHARGE_INPUT: 'charge-input',
+    CHARGE_BUTTON: 'charge-button',
+    CHARGE_AMOUNT: 'charge-amount',
+    COIN_RETURN_BUTTON: 'coin-return-button',
+    COIN_500_QUANTITY: 'coin-500-quantity',
+    COIN_100_QUANTITY: 'coin-100-quantity',
+    COIN_50_QUANTITY: 'coin-50-quantity',
+    COIN_10_QUANTITY: 'coin-10-quantity',
+  },
 });
 
 export const ELEMENT_CLASSES = Object.freeze({
   TAB_MENU: 'tab-menu',
   TAB_CONTENT: 'tab-content',
-  PRODUCT_MANAGE_ITEM: 'product-manage-item',
+  PRODUCT_ADD: {
+    ITEM: 'product-manage-item',
+  },
+  PRODUCT_PURCHASE: {
+    ITEM: 'product-purchase-item',
+    PURCHASE_BUTTON: 'purchase-button',
+    ITEM_NAME: 'product-purchase-name',
+    ITEM_PRICE: 'product-purchase-price',
+    ITEM_QUANTITY: 'product-purchase-quantity',
+  },
+});
+
+export const ELEMENT_DATA_ATTRIBUTES = Object.freeze({
+  PRODUCT_PURCHASE: {
+    ITEM_NAME: 'data-product-name',
+    ITEM_PRICE: 'data-product-price',
+    ITEM_QUANTITY: 'data-product-quantity',
+  },
 });
 
 export const LOCAL_STORAGE_KEY = 'vending-machine-data';
@@ -43,6 +76,9 @@ export const VALIDATION_MESSAGES = {
   },
   VENDING_MACHINE_MANAGE: {
     MONEY: `최소 ${PRODUCT_PRICE_UNIT}원단위만 입력 가능합니다`,
+  },
+  PURCHASE_PRODUCT: {
+    MONEY: `최소 ${PRODUCT_PRICE_UNIT}원단위만 투입 가능합니다`,
   },
 };
 

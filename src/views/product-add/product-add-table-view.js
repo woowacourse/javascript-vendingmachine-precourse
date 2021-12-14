@@ -7,7 +7,7 @@ class ProductAddTableView extends Observer {
     <div class="component">
       <h2>상품 현황</h2>
       <div class="row">
-        <table id="${ELEMENT_IDS.PRODUCT_ADD_TABLE}">
+        <table id="${ELEMENT_IDS.PRODUCT_ADD.TABLE}">
           <thead>
             <tr>
               <th>상품명</th>
@@ -33,7 +33,7 @@ class ProductAddTableView extends Observer {
   };
 
   constructor($container) {
-    super(ELEMENT_IDS.PRODUCT_ADD_TABLE);
+    super(ELEMENT_IDS.PRODUCT_ADD.TABLE);
     this.$container = $container;
   }
 
@@ -57,7 +57,7 @@ class ProductAddTableView extends Observer {
 
   renderProductItems() {
     const { productItems } = this.model;
-    const $tableBody = document.querySelector(`#${ELEMENT_IDS.PRODUCT_ADD_TABLE} tbody`);
+    const $tableBody = document.querySelector(`#${ELEMENT_IDS.PRODUCT_ADD.TABLE} tbody`);
     $tableBody.replaceChildren();
     productItems.forEach((item) => {
       const $row = htmlToElement(ProductAddTableView.productTemplate(item));

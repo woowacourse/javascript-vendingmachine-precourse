@@ -11,6 +11,8 @@ class VendingMachineSharedModel extends Observable {
 
   assetCoins = { ...INITIAL_COINS };
 
+  chargeMoney = 0;
+
   constructor() {
     if (VendingMachineSharedModel.instance) {
       return VendingMachineSharedModel.instance;
@@ -58,22 +60,17 @@ class VendingMachineSharedModel extends Observable {
     this.assetCoins = newCoins;
   }
 
-  setInitialData() {
-    this.activeTabPaneId = ELEMENT_IDS.VENDING_MACHINE_MANAGE_PANE;
-    this.productItems = [];
-    this.assetCoins = { ...INITIAL_COINS };
+  addChargeMoney(money) {
+    this.chargeMoney += money;
   }
 
   loadDataFromLocalStorage() {
     const json = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (json === null) {
-      this.setInitialData();
-      return;
-    }
     const data = JSON.parse(json);
-    this.activeTabPaneId = data.activeTabPaneId;
-    this.productItems = data.productItems;
-    this.assetCoins = data.assetCoins;
+    this.activeTabPaneId = (data && data.activeTabPaneId) || ELEMENT_IDS.PRODUCT_ADD_PANE;
+    this.productItems = (data && data.productItems) || [];
+    this.assetCoins = (data && data.assetCoins) || { ...INITIAL_COINS };
+    this.chargeMoney = (data && data.chargeMoney) || 0;
   }
 
   saveDataToLocalStorage() {
@@ -81,6 +78,7 @@ class VendingMachineSharedModel extends Observable {
       activeTabPaneId: this.activeTabPaneId,
       productItems: this.productItems,
       assetCoins: this.assetCoins,
+      chargeMoney: this.chargeMoney,
     };
     const json = JSON.stringify(data);
     window.localStorage.setItem(LOCAL_STORAGE_KEY, json);

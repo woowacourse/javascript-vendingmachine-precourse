@@ -1,10 +1,5 @@
-import {
-  VALIDATION_MESSAGES,
-  MIN_PRODUCT_PRICE,
-  PRODUCT_PRICE_UNIT,
-  ELEMENT_CLASSES,
-} from '../constants.js';
-import { isEmptyString, isNaturalNum, moneyToCoin } from '../utils.js';
+import { VALIDATION_MESSAGES, PRODUCT_PRICE_UNIT, ELEMENT_CLASSES } from '../constants.js';
+import { isEmptyString, isNaturalNum } from '../utils.js';
 import VendingMachineSharedModel from '../models/vending-machine-shared-model.js';
 import VendingMachineManageView from '../views/vending-machine-manage/index.js';
 

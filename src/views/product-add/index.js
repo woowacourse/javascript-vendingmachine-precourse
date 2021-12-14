@@ -5,7 +5,7 @@ import ProductAddTableView from './product-add-table-view.js';
 
 class ProductAddView {
   static template = `
-    <div id="${ELEMENT_IDS.PRODUCT_ADD_PANE}"></div>
+    <div id="${ELEMENT_IDS.PRODUCT_ADD.PANE}"></div>
   `;
 
   constructor($container) {

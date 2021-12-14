@@ -3,6 +3,7 @@ import { ELEMENT_CLASSES, ELEMENT_IDS } from '../constants.js';
 import Observer from '../abstracts/observer.js';
 import ProductAddController from '../controllers/product-add-controller.js';
 import VendingMachineManageController from '../controllers/vending-machine-manage-controller.js';
+import ProductPurchaseController from '../controllers/product-purchase-controller.js';
 
 class TabContentView extends Observer {
   static template = `<div class="${ELEMENT_CLASSES.TAB_CONTENT}"></div>`;
@@ -39,10 +40,13 @@ class TabContentView extends Observer {
     this.activeController.mountView();
   }
 
-  createTabPaneContollerById = (id) => {
-    const { VENDING_MACHINE_MANAGE_PANE } = ELEMENT_IDS;
-    if (id === VENDING_MACHINE_MANAGE_PANE) {
+  createTabPaneContollerById(id) {
+    const { VENDING_MACHINE_MANAGE, PRODUCT_PURCHASE } = ELEMENT_IDS;
+    if (id === VENDING_MACHINE_MANAGE.PANE) {
       return new VendingMachineManageController();
+    }
+    if (id === PRODUCT_PURCHASE.PANE) {
+      return new ProductPurchaseController();
     }
     return new ProductAddController();
   }

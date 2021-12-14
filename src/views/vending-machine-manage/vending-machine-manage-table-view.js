@@ -3,47 +3,37 @@ import { ELEMENT_IDS } from '../../constants.js';
 import { htmlToElement } from '../../utils.js';
 
 class VendingMachineManageTableView extends Observer {
-  static template = `
-    <div class="component">
-      <h2>자판기가 보유한 동전</h2>
-      <div class="row">
-        <table id="${ELEMENT_IDS.VENDING_MACHINE_MANAGE_TABLE}">
-          <thead>
-            <tr>
-              <th>동전</th>
-              <th>개수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>500원</td>
-              <td id="${ELEMENT_IDS.VENDING_MACHINE_COIN_500_QUANTITY}"></td>
-            </tr>
-            <tr>
-              <td>100원</td>
-              <td id="${ELEMENT_IDS.VENDING_MACHINE_COIN_100_QUANTITY}"></td>
-            </tr>
-            <tr>
-              <td>50원</td>
-              <td id="${ELEMENT_IDS.VENDING_MACHINE_COIN_50_QUANTITY}"></td>
-            </tr>
-            <tr>
-              <td>10원</td>
-              <td id="${ELEMENT_IDS.VENDING_MACHINE_COIN_10_QUANTITY}"></td>
-            </tr>
-          </tbody>
-        </table>
+  // eslint-disable-next-line max-lines-per-function
+  static template = () => {
+    const { TABLE, COIN_500_QUANTITY, COIN_100_QUANTITY, COIN_50_QUANTITY, COIN_10_QUANTITY } =
+      ELEMENT_IDS.VENDING_MACHINE_MANAGE;
+    return `
+      <div class="component">
+        <h2>자판기가 보유한 동전</h2>
+        <div class="row">
+          <table id="${TABLE}">
+            <thead>
+              <tr><th>동전</th><th>개수</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>500원</td><td id="${COIN_500_QUANTITY}"></td></tr>
+              <tr><td>100원</td><td id="${COIN_100_QUANTITY}"></td></tr>
+              <tr><td>50원</td><td id="${COIN_50_QUANTITY}"></td></tr>
+              <tr><td>10원</td><td id="${COIN_10_QUANTITY}"></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  `;
+    `;
+  };
 
   constructor($container) {
-    super(ELEMENT_IDS.PRODUCT_ADD_TABLE);
+    super(ELEMENT_IDS.VENDING_MACHINE_MANAGE.TABLE);
     this.$container = $container;
   }
 
   mount() {
-    this.$view = htmlToElement(VendingMachineManageTableView.template);
+    this.$view = htmlToElement(VendingMachineManageTableView.template());
     this.$container.appendChild(this.$view);
     this.bindingElements();
     this.registerObserver();
@@ -62,16 +52,12 @@ class VendingMachineManageTableView extends Observer {
   }
 
   bindingElements() {
-    const {
-      VENDING_MACHINE_COIN_500_QUANTITY,
-      VENDING_MACHINE_COIN_100_QUANTITY,
-      VENDING_MACHINE_COIN_50_QUANTITY,
-      VENDING_MACHINE_COIN_10_QUANTITY,
-    } = ELEMENT_IDS;
-    this.$c500 = document.querySelector(`#${VENDING_MACHINE_COIN_500_QUANTITY}`);
-    this.$c100 = document.querySelector(`#${VENDING_MACHINE_COIN_100_QUANTITY}`);
-    this.$c50 = document.querySelector(`#${VENDING_MACHINE_COIN_50_QUANTITY}`);
-    this.$c10 = document.querySelector(`#${VENDING_MACHINE_COIN_10_QUANTITY}`);
+    const { COIN_500_QUANTITY, COIN_100_QUANTITY, COIN_50_QUANTITY, COIN_10_QUANTITY } =
+      ELEMENT_IDS.VENDING_MACHINE_MANAGE;
+    this.$c500 = document.querySelector(`#${COIN_500_QUANTITY}`);
+    this.$c100 = document.querySelector(`#${COIN_100_QUANTITY}`);
+    this.$c50 = document.querySelector(`#${COIN_50_QUANTITY}`);
+    this.$c10 = document.querySelector(`#${COIN_10_QUANTITY}`);
   }
 
   render() {
