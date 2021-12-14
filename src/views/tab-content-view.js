@@ -1,5 +1,5 @@
 import { htmlToElement } from '../utils.js';
-import { ELEMENT_CLASSES } from '../constants.js';
+import { ELEMENT_CLASSES, ELEMENT_IDS } from '../constants.js';
 import Observer from '../abstracts/observer.js';
 import ProductAddController from '../controllers/product-add-controller.js';
 import VendingMachineManageController from '../controllers/vending-machine-manage-controller.js';
@@ -40,7 +40,11 @@ class TabContentView extends Observer {
   }
 
   createTabPaneContollerById = (id) => {
-    return new VendingMachineManageController();
+    const { VENDING_MACHINE_MANAGE_PANE } = ELEMENT_IDS;
+    if (id === VENDING_MACHINE_MANAGE_PANE) {
+      return new VendingMachineManageController();
+    }
+    return new ProductAddController();
   }
 
   notify() {

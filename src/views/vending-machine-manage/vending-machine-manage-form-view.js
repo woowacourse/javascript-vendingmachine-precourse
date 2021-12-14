@@ -28,15 +28,18 @@ class VendingMachineManageFormView extends Observer {
     this.$container.appendChild(this.$view);
     this.bindingElements();
     this.registerObserver();
+    this.render();
     return this;
   }
 
   unmount() {
+    this.mounted = false;
     this.$chargeInput = null;
     this.$chargeButton = null;
     this.$chargeAmount = null;
     this.unregisterObserver();
     this.$container.removeChild(this.$view);
+    this.$view = null;
   }
 
   bindingElements() {
@@ -47,12 +50,19 @@ class VendingMachineManageFormView extends Observer {
     this.$chargeAmount = document.querySelector(`#${VENDING_MACHINE_CHARGE_AMOUNT}`);
   }
 
+  render() {
+    this.renderMoney();
+  }
+
   renderMoney() {
     const { assetCoins } = this.model;
     this.$chargeAmount.innerHTML = coinToMoney(assetCoins);
   }
 
   notify() {
+    if (this.$view === null) {
+      return;
+    }
     this.renderMoney();
   }
 }

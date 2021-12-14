@@ -33,6 +33,7 @@ class ProductAddFormView {
     this.$quantityInput = null;
     this.$addButton = null;
     this.$container.removeChild(this.$view);
+    this.$view = null;
   }
 
   bindingElements() {

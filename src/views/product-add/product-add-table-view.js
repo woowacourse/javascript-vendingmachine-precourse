@@ -41,12 +41,18 @@ class ProductAddTableView extends Observer {
     this.$view = htmlToElement(ProductAddTableView.template);
     this.$container.appendChild(this.$view);
     this.registerObserver();
+    this.render();
     return this;
   }
 
   unmount() {
     this.unregisterObserver();
     this.$container.removeChild(this.$view);
+    this.$view = null;
+  }
+
+  render() {
+    this.renderProductItems();
   }
 
   renderProductItems() {
@@ -60,6 +66,9 @@ class ProductAddTableView extends Observer {
   }
 
   notify() {
+    if (this.$view === null) {
+      return;
+    }
     this.renderProductItems();
   }
 }

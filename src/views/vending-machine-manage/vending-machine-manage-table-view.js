@@ -47,6 +47,7 @@ class VendingMachineManageTableView extends Observer {
     this.$container.appendChild(this.$view);
     this.bindingElements();
     this.registerObserver();
+    this.render();
     return this;
   }
 
@@ -57,6 +58,7 @@ class VendingMachineManageTableView extends Observer {
     this.$c10 = null;
     this.unregisterObserver();
     this.$container.removeChild(this.$view);
+    this.$view = null;
   }
 
   bindingElements() {
@@ -72,6 +74,10 @@ class VendingMachineManageTableView extends Observer {
     this.$c10 = document.querySelector(`#${VENDING_MACHINE_COIN_10_QUANTITY}`);
   }
 
+  render() {
+    this.renderCoins();
+  }
+
   renderCoins() {
     const { assetCoins } = this.model;
     this.$c500.innerHTML = `${assetCoins[500]}개`;
@@ -81,6 +87,9 @@ class VendingMachineManageTableView extends Observer {
   }
 
   notify() {
+    if (this.$view === null) {
+      return;
+    }
     this.renderCoins();
   }
 }
