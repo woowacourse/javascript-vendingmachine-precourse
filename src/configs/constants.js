@@ -30,4 +30,5 @@ export const TAB = {
 export const EXCEPTIONS = {
   OUT_OF_STOCK: new Error('재고가 없습니다.'),
   NO_SUCH_ITEM: new Error('아이템 조회에 실패했습니다.'),
+  NOT_ENOUGH_MONEY: new Error('금액이 부족합니다.'),
 };

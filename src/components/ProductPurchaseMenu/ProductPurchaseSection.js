@@ -40,21 +40,14 @@ export default class ProductPurchaseSection extends Component {
 
   setEvent() {
     this.addEvent('click', '.purchase-button', (e) => {
-      const { productPrice } = e.target
-        .closest('tr')
-        .querySelector('.product-purchase-price').dataset;
       const { productId } = e.target.closest('tr').dataset;
-      const { chargedAmount } = this.state;
       const id = Number(productId);
-      const price = Number(productPrice);
 
-      if (price > chargedAmount) {
-        alert(`not enough money`);
-
-        return;
+      try {
+        this.props.purchase(id);
+      } catch ({ message }) {
+        alert(message);
       }
-
-      this.props.purchase(id);
     });
   }
 }
