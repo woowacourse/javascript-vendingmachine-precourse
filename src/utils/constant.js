@@ -26,8 +26,8 @@ export const PLACEHOLDER = {
   PRICE: '가격',
   PRODUCT_QUANTITY: '수량',
   CHARGE_COIN: '자판기가 보유할 금액',
-  INSERT_COIN: '투입할 금액'
-}
+  INSERT_COIN: '투입할 금액',
+};
 
 export const ID = {
   INPUT_PRODUCT_NAME: 'product-name-input',
@@ -61,14 +61,13 @@ export const CLASS = {
   PURCHASE_NAME: 'product-purchase-name',
   PURCHASE_PRICE: 'product-purchase-price',
   PURCHASE_QUANTITY: 'product-purchase-quantity',
-  
 };
 
 export const DATASET = {
   PRODUCT_NAME: 'productName',
   PRODUCT_PRICE: 'productPrice',
   PRODUCT_QUANTITY: 'productQuantity',
-}
+};
 
 export const TEXT = {
   ADD: '추가하기',
@@ -93,5 +92,5 @@ export const LABEL = {
 };
 
 export const ERROR = {
-  MANAGEINPUT: '입력한 값이 올바르지 않습니다'
-}
+  MANAGEINPUT: '입력한 값이 올바르지 않습니다',
+};

@@ -1,7 +1,4 @@
-import Button from "./button.js";
-import ButtonById from "./buttonById.js";
+import Button from './button.js';
+import ButtonById from './buttonById.js';
 
-export {
-  Button,
-  ButtonById
-};
+export { Button, ButtonById };

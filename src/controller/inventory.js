@@ -8,8 +8,8 @@ export class Inventory {
   }
 
   addProduct(product) {
-    const isValid = this.valid.checkManageInput(product)
-    if(isValid) {
+    const isValid = this.valid.checkManageInput(product);
+    if (isValid) {
       this.productList.addProduct(product);
     } else {
       alert(ERROR.MANAGEINPUT);

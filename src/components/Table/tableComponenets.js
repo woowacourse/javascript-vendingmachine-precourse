@@ -9,15 +9,4 @@ import TdById from './tdById.js';
 import TdByClassNameAndDataset from './tdByClassNameAndDataset.js';
 import TdButtonClassName from './tdButtonClassName.js';
 
-export {
-    Table,
-    Theadbody,
-    Th,
-    Tr,
-    Td,
-    TrByClassName,
-    TdByClassName,
-    TdById,
-    TdByClassNameAndDataset,
-    TdButtonClassName
-};
+export { Table, Theadbody, Th, Tr, Td, TrByClassName, TdByClassName, TdById, TdByClassNameAndDataset, TdButtonClassName };

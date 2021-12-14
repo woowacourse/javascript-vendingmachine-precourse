@@ -1,4 +1,4 @@
-import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS, ID} from '../utils/constant.js';
+import { SUBTITLE, LABEL, MARGIN, TEXT, PLACEHOLDER, CLASS, ID } from '../utils/constant.js';
 import { Subtitle, InputById, ButtonById, Table, Th, Tr, TdByClassName, TrByClassName, Theadbody } from '../components/compoenents.js';
 
 export default class ManagePage {
@@ -14,20 +14,16 @@ export default class ManagePage {
 
   setUIText() {
     this.inputPrice.setAttribute('type', 'number');
-    this.inputPrice.setAttribute('min',100);
-    this.inputPrice.setAttribute('step',10);
+    this.inputPrice.setAttribute('min', 100);
+    this.inputPrice.setAttribute('step', 10);
   }
 
   setTable() {
-    const tr = Tr([
-      Th(LABEL.PRODUCT_NAME),
-      Th(LABEL.PRICE),
-      Th(LABEL.QUANTITY_PRODUCT)
-    ]);
+    const tr = Tr([Th(LABEL.PRODUCT_NAME), Th(LABEL.PRICE), Th(LABEL.QUANTITY_PRODUCT)]);
     const thead = Theadbody([tr]);
     this.table.appendChild(thead);
   }
-  
+
   setUI(page) {
     this.setUIText();
     this.setTable();
@@ -40,23 +36,23 @@ export default class ManagePage {
       this.inputQuantity,
       this.buttonAdd,
       Subtitle(SUBTITLE.CURRENT_PRODUCT),
-      this.table
+      this.table,
     );
   }
 
   buttonHandler() {
-    this.buttonAdd.addEventListener('click', (e) => {
+    this.buttonAdd.addEventListener('click', e => {
       e.preventDefault();
       const name = this.inputName.value;
       const price = this.inputPrice.value;
       const quantity = this.inputQuantity.value;
       this.controller.addProduct(name, price, quantity);
-    })
+    });
   }
-  
+
   showProductListAll(products) {
-    if(products.length > 0) {
-      for(let i = 0; i < products.length; i += 1) {
+    if (products.length > 0) {
+      for (let i = 0; i < products.length; i += 1) {
         this.attachNewProduct(products[i]);
       }
     }
@@ -69,11 +65,14 @@ export default class ManagePage {
   }
 
   attachNewProduct(product) {
-    const productTr = TrByClassName([
-      TdByClassName(product.name,CLASS.PRODUCT_NAME),
-      TdByClassName(product.price,CLASS.PRODUCT_PRICE),
-      TdByClassName(product.quantity,CLASS.PRODUCT_QUANTITY)
-    ],CLASS.PRODUCT_ITEM);
+    const productTr = TrByClassName(
+      [
+        TdByClassName(product.name, CLASS.PRODUCT_NAME),
+        TdByClassName(product.price, CLASS.PRODUCT_PRICE),
+        TdByClassName(product.quantity, CLASS.PRODUCT_QUANTITY),
+      ],
+      CLASS.PRODUCT_ITEM,
+    );
     this.tbody.appendChild(productTr);
   }
 }

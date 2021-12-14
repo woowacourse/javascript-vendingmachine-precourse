@@ -1,4 +1,4 @@
-import Validation from "../utils/validation.js";
+import Validation from '../utils/validation.js';
 
 export class VendingMachine {
   constructor(moneyBank, productList) {
@@ -9,7 +9,7 @@ export class VendingMachine {
 
   insertMoney(money) {
     const isValid = this.valid.checkMoneyInput(money);
-    if(isValid) {
+    if (isValid) {
       this.moneyBank.insertMoney(money);
     } else {
       alert('잘못된 금액 값입니다.');
@@ -23,9 +23,9 @@ export class VendingMachine {
   purchase(productName, view) {
     const price = this.productList.getProductPrice(productName);
     const quantity = this.productList.getProductQuantity(productName);
-    const insertedMoney = this.moneyBank.insertedMoney;
+    const { insertedMoney } = this.moneyBank;
     const isValid = this.valid.checkPurchasePossible(price, quantity, insertedMoney);
-    if(isValid) {
+    if (isValid) {
       this.productList.removeProduct(productName);
       this.moneyBank.useInsertedMoney(price);
       view.showProductListAll(this.productList.products);
@@ -35,7 +35,7 @@ export class VendingMachine {
     }
   }
 
-  returnMoney(money,view) {
+  returnMoney(money, view) {
     const returnCoins = this.moneyBank.returnCoins(money);
     view.showReturnCoins(returnCoins);
   }

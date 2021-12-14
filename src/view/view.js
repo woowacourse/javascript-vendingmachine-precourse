@@ -5,28 +5,22 @@ import ManagePage from './manage.js';
 import ChargePage from './charge.js';
 import PurchasePage from './purchase.js';
 
-
 export default class View {
   constructor(controller) {
     this.app = $('#app');
     this.manageTab = ButtonById(TAB.TEXT_PRODUCT_MANAGE, TAB.ID_PRODUCT_MANAGE);
     this.chargeTab = ButtonById(TAB.TEXT_CHARGE, TAB.ID_CHARGE);
-    this.purchaseTab =ButtonById(TAB.TEXT_PURCHASE, TAB.ID_PURCHASE);
+    this.purchaseTab = ButtonById(TAB.TEXT_PURCHASE, TAB.ID_PURCHASE);
     this.managePageDiv = Div();
-    this.chargePageDiv =  Div();
-    this.purchasePageDiv =  Div();
+    this.chargePageDiv = Div();
+    this.purchasePageDiv = Div();
     this.managePage = new ManagePage(controller);
     this.chargePage = new ChargePage(controller);
     this.purchasePage = new PurchasePage(controller);
   }
 
   setBasicUI(products) {
-    this.app.append(
-      Title(TITLE),
-      this.manageTab,
-      this.chargeTab,
-      this.purchaseTab,
-    )
+    this.app.append(Title(TITLE), this.manageTab, this.chargeTab, this.purchaseTab);
     this.initPages(products);
     this.setAllPage();
     this.hideAllPage();
@@ -77,11 +71,11 @@ export default class View {
   }
 
   showChargePage() {
-    this.chargePageDiv.style.display ='block';
+    this.chargePageDiv.style.display = 'block';
   }
 
   showPurchasePage() {
-    this.purchasePageDiv.style.display ='block';
+    this.purchasePageDiv.style.display = 'block';
   }
 
   manageTabHandler() {
