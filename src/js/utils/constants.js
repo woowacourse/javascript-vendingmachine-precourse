@@ -6,6 +6,11 @@ export const STORAGE_NAME = {
   USER_AMOUNT: 'user',
 };
 
+export const AMOUNT_ID = {
+  MACHINE: '#vending-machine-charge-amount',
+  USER: '#charge-amount',
+};
+
 export const STANDARD = {
   PRICE_MINIMUM: 100,
   DIVIDE_NUMBER: 10,

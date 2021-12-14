@@ -1,14 +1,18 @@
-import { COIN_UNITS, ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
+import {
+  COIN_UNITS,
+  ERROR_MESSAGE,
+  STANDARD,
+  STORAGE_NAME,
+  AMOUNT_ID,
+} from '../../utils/constants.js';
 import { $ } from '../../utils/querySelector.js';
 import { isValidInputAmount } from '../../utils/validation.js';
-import { showCurrentAmount, initProductPurchaseList } from '../../view/view.js';
+import { showCurrentAmount } from '../../view/view.js';
 import { getLocalStorage, setLocalStorage } from '../../utils/storage.js';
-import { productPurchaseTemplate } from './productPurchaseTemplate.js';
 
 let currentAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT)
   ? Number(getLocalStorage(STORAGE_NAME.USER_AMOUNT))
   : STANDARD.CURRENT_MONEY;
-const chargeAmountId = '#charge-amount';
 
 const resetProductItemStorage = (name) => {
   const productItems = getLocalStorage(STORAGE_NAME.PRODUCT).map((item) => {
@@ -59,7 +63,7 @@ const makeReturnedCoinsView = (unit, storedQuantity) => {
   return 0;
 };
 
-const handleCoinReturnClick = () => {
+export const handleCoinReturnClick = () => {
   const storedCoins = getLocalStorage(STORAGE_NAME.COIN);
   $('#coin-return-result').innerHTML = '';
   // eslint-disable-next-line no-restricted-syntax
@@ -68,12 +72,12 @@ const handleCoinReturnClick = () => {
     storedCoins[unit] -= removedQuantity;
   }
 
-  showCurrentAmount(chargeAmountId, currentAmount);
+  showCurrentAmount(AMOUNT_ID.USER, currentAmount);
   setLocalStorage(STORAGE_NAME.COIN, storedCoins);
   setLocalStorage(STORAGE_NAME.USER_AMOUNT, currentAmount);
 };
 
-const handlePurchaseButtonClick = (event) => {
+export const handlePurchaseButtonClick = (event) => {
   const target = event.target.parentElement.parentElement;
   const name = target.childNodes[1].dataset.productName;
   const price = target.childNodes[3].dataset.productPrice;
@@ -83,12 +87,12 @@ const handlePurchaseButtonClick = (event) => {
   }
 
   subtractPriceAndQuantity(target, price);
-  showCurrentAmount(chargeAmountId, currentAmount);
+  showCurrentAmount(AMOUNT_ID.USER, currentAmount);
   resetProductItemStorage(name);
   setLocalStorage(STORAGE_NAME.USER_AMOUNT, currentAmount);
 };
 
-const handleChargeInput = (event) => {
+export const handleChargeInput = (event) => {
   event.preventDefault();
   const chargeInput = Number($('#charge-input').value);
 
@@ -97,30 +101,6 @@ const handleChargeInput = (event) => {
   }
 
   currentAmount += chargeInput;
-  showCurrentAmount(chargeAmountId, currentAmount);
+  showCurrentAmount(AMOUNT_ID.USER, currentAmount);
   setLocalStorage(STORAGE_NAME.USER_AMOUNT, currentAmount);
-};
-
-const initProductPurchaseMenu = (storedProductList, storedUserAmount) => {
-  if (storedProductList) {
-    initProductPurchaseList(storedProductList);
-  }
-  if (storedUserAmount) {
-    showCurrentAmount(chargeAmountId, storedUserAmount);
-  }
-};
-
-export const showProductPurchaseMenu = () => {
-  $('#app-container').innerHTML = productPurchaseTemplate;
-  const storedProductList = getLocalStorage(STORAGE_NAME.PRODUCT);
-  const storedUserAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT);
-
-  initProductPurchaseMenu(storedProductList, storedUserAmount);
-
-  const $productPurchaseItems = document.querySelectorAll('.product-purchase-item');
-  $productPurchaseItems.forEach((item) =>
-    item.addEventListener('click', handlePurchaseButtonClick),
-  );
-  $('form').addEventListener('submit', handleChargeInput);
-  $('#coin-return-button').addEventListener('click', handleCoinReturnClick);
 };
