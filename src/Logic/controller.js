@@ -1,9 +1,8 @@
-import { COIN_VALUE } from '../constants.js';
-import Product from './product.js'
+import Product from '../Model/product.js'
 import * as validator from './validator.js';
 import { getStorage, updateStorage } from '../utils/storage.js';
 import * as coinUtil from "../utils/coin.js";
-import * as displayer from './display.js';
+import * as displayer from '../View/display.js';
 
 export default class Controller {
     addProduct(name, price, quantity){

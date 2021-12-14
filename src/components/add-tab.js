@@ -13,25 +13,22 @@ const createAddGoodsElement = (addTab) => {
     addTab.append(inputs);
 }
 
-const createGoodsStatusElement = (addTab) => {
-    addTab.append(elementCreator('h3', null, '상품 현황'));
-    
-    const table = elementCreator('table', ADD_TAB_ID.PRODUCT_TABLE, null);
-    const tableRow = document.createElement('tr');
-
-    const nameHeader = elementCreator('th', null, '상품명');
-    const priceHeader = elementCreator('th', null, '가격');
-    const quantityHeader = elementCreator('th', null, '수량');
-    
-    tableRow.append(nameHeader, priceHeader, quantityHeader);
-    table.append(tableRow);
-    addTab.append(table);
+const createGoodsStatusElement = () => {
+    return `<h3>상품현황</h3>
+        <table id=${ADD_TAB_ID.PRODUCT_TABLE}>
+            <tr>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량<th/>
+            </tr>
+        </table>
+    `
 }
 
 export default () => {
     const addTab = document.createElement('div');
     createAddGoodsElement(addTab);
-    createGoodsStatusElement(addTab);
+    addTab.insertAdjacentHTML('beforeend', createGoodsStatusElement());
 
     return addTab;
 }
