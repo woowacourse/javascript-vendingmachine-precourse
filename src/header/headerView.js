@@ -1,5 +1,6 @@
 import { HEADER_TITLE, BUTTONS_INFO } from './headerViewInfo.js';
 import { $ } from '../utils/common.js';
+import { APP_ID, MAIN_ID } from '../utils/constants.js';
 
 export default class HeaderView {
   constructor() {
@@ -7,14 +8,14 @@ export default class HeaderView {
   }
 
   render() {
-    $('#app').innerHTML = this.template();
+    $(APP_ID).innerHTML = this.template();
   }
 
   template() {
     return `
        <h2>🥤${HEADER_TITLE}🥤</h2>
        ${this.makeButtons()}
-       <div id="main"></div>
+       <div id=${MAIN_ID}></div>
     `;
   }
 
