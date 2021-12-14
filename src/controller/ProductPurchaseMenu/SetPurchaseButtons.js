@@ -30,7 +30,7 @@ export default class SetPurchaseButtons {
       this.render.purchaseTemplate($targetName, $targetPrice, $targetQuantity);
       this.localStorageProductAddMenu = this.localStorageProductAddMenu.replace(
         TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity),
-        TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity - NUMBER.ONE)
+        TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, Number($targetQuantity.textContent))
       );
     }
   };
