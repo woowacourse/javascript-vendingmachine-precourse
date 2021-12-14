@@ -16,3 +16,15 @@ export const saveCoinsToLocalStorage = (key, target) => {
 export const getCoinsFromLocalStorage = (key) => {
   return JSON.parse(localStorage.getItem(key)) || {};
 };
+
+export const saveMoneyToLocalStorage = (key, target) => {
+  localStorage.setItem(key, JSON.stringify(target));
+};
+
+export const getMoneyFromLocalStorage = (key) => {
+  return JSON.parse(localStorage.getItem(key)) || '0';
+};
+
+export const saveProductsToLocalStorage = (key, targets) => {
+  localStorage.setItem(key, JSON.stringify(targets));
+};
