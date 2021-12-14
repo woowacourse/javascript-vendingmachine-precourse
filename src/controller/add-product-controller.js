@@ -1,10 +1,9 @@
-import AddProductView from '../view/add-product-view.js';
 import { setDataInLocalStorage } from './localstorage-controller.js';
 
 export default class AddProductController {
-    constructor(machine) {
+    constructor(machine, view) {
         this.machine = machine;
-        this.view = new AddProductView;
+        this.view = view;
     }
 
     addProduct() {
