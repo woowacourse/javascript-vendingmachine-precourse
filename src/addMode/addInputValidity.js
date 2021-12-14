@@ -8,9 +8,8 @@ function itemNameValidity(itemName) {
   return true;
 }
 function itemPriceValidity(itemPrice) {
-  if (itemPrice < 0) {
-    alert('상품의 금액은 0원 이상이여야 합니다.');
-
+  if (itemPrice / 100 < 0) {
+    alert('상품의 금액은 100원 이상이여야 합니다.')
   }
   else if (itemPrice % 10 > 0) {
     alert('상품은 10원단위를 기준으로 합니다.');
