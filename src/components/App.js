@@ -21,7 +21,6 @@ class App extends Component {
     this.$title = new Label('h2', '🥤자판기🥤');
     this.$restartButton = new Button('새로 시작');
     this.$machine = new Machine(MENUS.PRODUCT_MANAGE);
-    this.setEvent();
 
     this.children = [
       this.$tabs,
@@ -29,6 +28,8 @@ class App extends Component {
       this.$restartButton,
       this.$machine,
     ];
+
+    this.setEvent();
   }
 
   setEvent() {

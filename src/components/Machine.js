@@ -18,10 +18,11 @@ class Machine extends Component {
     this.$productManage = new ProductManage();
     this.$changesCharge = new ChangesCharge();
     this.$productPurchase = new ProductPurchase();
-
-    this.setState({ currentMenu: initMenu });
-    this.setEvent();
     this.children = [this.#currentMenuView];
+
+    this.state.currentMenu = initMenu;
+
+    this.setEvent();
   }
 
   get #currentMenuView() {

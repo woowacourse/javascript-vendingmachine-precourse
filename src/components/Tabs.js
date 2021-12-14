@@ -14,15 +14,15 @@ class Tabs extends Component {
 
   constructor(initTab) {
     super($tag('div'));
-    this.setState({ currentTab: initTab });
 
     this.$tabButtons = mapObject(menuIdRecord, ([menu, id]) => [
       menu,
       new Button(menu, { id }),
     ]);
-
-    this.setEvent();
     this.children = Object.values(this.$tabButtons);
+
+    this.state.currentTab = initTab;
+    this.setEvent();
   }
 
   setEvent() {
