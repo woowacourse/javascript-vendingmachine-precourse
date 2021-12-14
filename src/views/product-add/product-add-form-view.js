@@ -21,10 +21,18 @@ class ProductAddFormView {
   }
 
   mount() {
-    const $form = htmlToElement(ProductAddFormView.template);
-    this.$container.appendChild($form);
+    this.$view = htmlToElement(ProductAddFormView.template);
+    this.$container.appendChild(this.$view);
     this.bindingElements();
     return this;
+  }
+
+  unmount() {
+    this.$nameInput = null;
+    this.$priceInput = null;
+    this.$quantityInput = null;
+    this.$addButton = null;
+    this.$container.removeChild(this.$view);
   }
 
   bindingElements() {

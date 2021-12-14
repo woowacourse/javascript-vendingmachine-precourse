@@ -2,6 +2,7 @@ import { htmlToElement } from '../utils.js';
 import { ELEMENT_CLASSES } from '../constants.js';
 import Observer from '../abstracts/observer.js';
 import ProductAddController from '../controllers/product-add-controller.js';
+import VendingMachineManageController from '../controllers/vending-machine-manage-controller.js';
 
 class TabContentView extends Observer {
   static template = `<div class="${ELEMENT_CLASSES.TAB_CONTENT}"></div>`;
@@ -39,7 +40,7 @@ class TabContentView extends Observer {
   }
 
   createTabPaneContollerById = (id) => {
-    return new ProductAddController();
+    return new VendingMachineManageController();
   }
 
   notify() {

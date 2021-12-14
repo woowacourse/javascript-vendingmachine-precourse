@@ -38,20 +38,15 @@ class ProductAddTableView extends Observer {
   }
 
   mount() {
-    const $tabMenu = htmlToElement(ProductAddTableView.template);
-    this.$container.appendChild($tabMenu);
-    this.bindingElements();
-    this.registerObserver(this);
+    this.$view = htmlToElement(ProductAddTableView.template);
+    this.$container.appendChild(this.$view);
+    this.registerObserver();
     return this;
   }
 
-  bindingElements() {
-    const { PRODUCT_NAME_INPUT, PRODUCT_PRICE_INPUT, PRODUCT_QUANTITY_INPUT, PRODUCT_ADD_BUTTON } =
-      ELEMENT_IDS;
-    this.$nameInput = document.querySelector(`#${PRODUCT_NAME_INPUT}`);
-    this.$priceInput = document.querySelector(`#${PRODUCT_PRICE_INPUT}`);
-    this.$quantityInput = document.querySelector(`#${PRODUCT_QUANTITY_INPUT}`);
-    this.$addButton = document.querySelector(`#${PRODUCT_ADD_BUTTON}`);
+  unmount() {
+    this.unregisterObserver();
+    this.$container.removeChild(this.$view);
   }
 
   renderProductItems() {

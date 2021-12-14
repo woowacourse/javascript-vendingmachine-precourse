@@ -15,26 +15,21 @@ class ProductAddController {
 
   mountView() {
     const $tabContent = document.querySelector(`.${ELEMENT_CLASSES.TAB_CONTENT}`);
-    this.view = new ProductAddView($tabContent).mount();
+    this.$view = new ProductAddView($tabContent).mount();
     this.registerEventListener();
   }
 
   unmountView() {
-    this.view.unmount();
-    this.removeEventListener();
+    this.$view.unmount();
   }
 
   registerEventListener() {
-    const { $addButton } = this.view.form;
+    const { $addButton } = this.$view.$form;
     $addButton.addEventListener('click', () => this.handleSubmitProductItem());
   }
 
-  removeEventListener() {
-    this.view.form.$addButton = null;
-  }
-
   handleSubmitProductItem() {
-    const { $nameInput, $priceInput, $quantityInput } = this.view.form;
+    const { $nameInput, $priceInput, $quantityInput } = this.$view.$form;
     const values = [$nameInput.value, $priceInput.value, $quantityInput.value].map((v) => v.trim());
     const [name, priceString, quantityString] = values;
     const { isValid, message } = this.isValid(name, priceString, quantityString);

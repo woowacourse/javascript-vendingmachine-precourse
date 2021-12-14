@@ -13,25 +13,25 @@ class ProductAddView {
   }
 
   mount() {
-    const $pane = htmlToElement(ProductAddView.template);
-    this.$container.appendChild($pane);
-    this.mountChildViews($pane);
+    this.$view = htmlToElement(ProductAddView.template);
+    this.$container.appendChild(this.$view);
+    this.mountChildViews(this.$view);
     return this;
   }
 
-  mountChildViews($pane) {
-    this.form = new ProductAddFormView($pane).mount();
-    this.table = new ProductAddTableView($pane).mount();
+  mountChildViews() {
+    this.$form = new ProductAddFormView(this.$view).mount();
+    this.$table = new ProductAddTableView(this.$view).mount();
   }
 
   unmount() {
     this.unmountChildViews();
-    this.$container.replaceChildren();
+    this.$container.removeChild(this.$view);
   }
 
   unmountChildViews() {
-    this.form.unmount();
-    this.table.unmount();
+    this.$form.unmount();
+    this.$table.unmount();
   }
 }
 

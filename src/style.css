@@ -42,3 +42,7 @@ table th {
   padding-bottom: 12px;
   text-align: center;
 }
+
+#vending-machine-manage-form {
+  margin-bottom: 10px;
+}

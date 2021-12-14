@@ -1,5 +1,6 @@
 import Observable from '../abstracts/observable.js';
-import { ELEMENT_IDS, LOCAL_STORAGE_KEY } from '../constants.js';
+import { ELEMENT_IDS, LOCAL_STORAGE_KEY, INITIAL_COINS } from '../constants.js';
+import { moneyToCoin } from '../utils.js';
 
 class VendingMachineSharedModel extends Observable {
   static instance = null;
@@ -7,6 +8,8 @@ class VendingMachineSharedModel extends Observable {
   activeTabPaneId = '';
 
   productItems = [];
+
+  assetCoins = { ...INITIAL_COINS };
 
   constructor() {
     if (VendingMachineSharedModel.instance) {
@@ -46,22 +49,38 @@ class VendingMachineSharedModel extends Observable {
     this.productItems = [...productItems, newItem];
   }
 
+  addMoney(money) {
+    const coins = moneyToCoin(money);
+    const newCoins = Object.keys(this.assetCoins).reduce((acc, cur) => {
+      acc[cur] = coins[cur] + this.assetCoins[cur];
+      return acc;
+    }, {});
+    this.assetCoins = newCoins;
+  }
+
+  setInitialData() {
+    this.activeTabPaneId = ELEMENT_IDS.VENDING_MACHINE_MANAGE_PANE;
+    this.productItems = [];
+    this.assetCoins = { ...INITIAL_COINS };
+  }
+
   loadDataFromLocalStorage() {
     const json = window.localStorage.getItem(LOCAL_STORAGE_KEY);
     if (json === null) {
-      this.activeTabPaneId = ELEMENT_IDS.PRODUCT_ADD_PANE;
-      this.productItems = [];
+      this.setInitialData();
       return;
     }
     const data = JSON.parse(json);
     this.activeTabPaneId = data.activeTabPaneId;
     this.productItems = data.productItems;
+    this.assetCoins = data.assetCoins;
   }
 
   saveDataToLocalStorage() {
     const data = {
       activeTabPaneId: this.activeTabPaneId,
       productItems: this.productItems,
+      assetCoins: this.assetCoins,
     };
     const json = JSON.stringify(data);
     window.localStorage.setItem(LOCAL_STORAGE_KEY, json);
