@@ -23,7 +23,7 @@ export default class VendingMachineApp {
       case BUTTONS_INFO.PRODUCT_ADD.ID:
         this.productAddComponent.render();
         return;
-      case BUTTONS_INFO.VENDING_MACHINE_MANAGE.id:
+      case BUTTONS_INFO.VENDING_MACHINE_MANAGE.ID:
         this.vendingMachineComponent.render();
         return;
     }

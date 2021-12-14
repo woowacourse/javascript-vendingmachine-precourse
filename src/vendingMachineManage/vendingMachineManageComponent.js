@@ -12,6 +12,7 @@ export default class VendingMachineManageComponent {
   render() {
     this.vendingMachineManageView.render();
     this.configureButton();
+    this.renderAmountText();
   }
 
   configureButton() {
@@ -23,6 +24,8 @@ export default class VendingMachineManageComponent {
 
     if (ValidateUtils.checkInputAmount(inputCoin)) {
       this.saveRamdomCoins(inputCoin);
+      this.renderAmountText();
+      this.vendingMachineManageView.showCoinCount();
     }
   };
 
@@ -54,5 +57,10 @@ export default class VendingMachineManageComponent {
     }, 0);
 
     return totalAmount;
+  }
+
+  renderAmountText() {
+    const amount = this.calculateAmount();
+    this.vendingMachineManageView.showAmountText(amount);
   }
 }

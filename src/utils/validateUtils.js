@@ -1,4 +1,4 @@
-import { ERROR, MIN_PRICE, MIN_QUANTITY, TEN } from '../utils/constants.js';
+import { ERROR, MIN_PRICE, MIN_QUANTITY, ZERO, TEN } from '../utils/constants.js';
 
 export default class ValidateUtils {
   static checkInputName(name) {
