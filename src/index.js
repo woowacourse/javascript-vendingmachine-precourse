@@ -9,6 +9,7 @@ function addProduct() {
     
     if(isCorrectProductInputs(name, price, quantity)) {
         productList.push({ name, price, quantity });
+        setDataInLocalStorage('productList', JSON.stringify(productList));
         renderAddedProductList(productList);
     }
     else {
@@ -49,6 +50,7 @@ function chargeMoney() {
 
 function getTotalChargedMoney(chargeAmount) {
     chargedMoney += parseInt(chargeAmount, 10);
+    setDataInLocalStorage('chargedMoney', chargedMoney);
 }
 
 function getTotalChanges(chargeAmount) {
@@ -56,6 +58,7 @@ function getTotalChanges(chargeAmount) {
     for(let key in totalChanges) {
         totalChanges[key] += newChanges[key];
     }
+    setDataInLocalStorage('totalChanges', JSON.stringify(totalChanges));
 }
 
 function generateChangeObject() {
@@ -109,6 +112,7 @@ function putMoney() {
 
 function getTotalInputMoney(money) {
     totalInputMoney += parseInt(money, 10);
+    setDataInLocalStorage('totalInputMoney', totalInputMoney);
 }
 
 function renderInputMoney(money) {
@@ -118,18 +122,28 @@ function renderInputMoney(money) {
 //
 function purchaseProduct(target) {
     const currentRow = target.parentElement.parentElement;
-    let quantity = parseInt(currentRow.children[2].dataset?.productQuantity, 10);
+    const quantity = parseInt(currentRow.children[2].dataset?.productQuantity, 10);
     const price = parseInt(currentRow.children[1].dataset?.productPrice, 10);
     
     if(canBuyProduct(price, quantity)) {
-        totalInputMoney -= price;
-        quantity -= 1;
-        renderDecreaseQuantity(currentRow.children[2], quantity);
+        decreaseInputMoney(price);
+        decreaseQuantity(currentRow.rowIndex - 2);
+        renderDecreaseQuantity(currentRow.children[2], quantity - 1);
         renderInputMoney(totalInputMoney);
     }
     else {
         alert("더이상 구매할 수 없습니다.");
     }
+}
+
+function decreaseInputMoney(amount) {
+    totalInputMoney -= amount;
+    setDataInLocalStorage('totalInputMoney', totalInputMoney);
+}
+
+function decreaseQuantity(rowIndex) {
+    productList[rowIndex].quantity -= 1;
+    setDataInLocalStorage('productList', JSON.stringify(productList));
 }
 
 function canBuyProduct(price, quantity) {
@@ -157,12 +171,25 @@ function calculateMinimumChanges() {
             inputChanges[coin] += 1;
         }
     })
+    setDataInLocalStorage('chargedMoney', chargedMoney);
+    setDataInLocalStorage('totalInputMoney', totalInputMoney);
+    setDataInLocalStorage('totalChanges', JSON.stringify(totalChanges));
+    setDataInLocalStorage('inputChanges', JSON.stringify(inputChanges));
 }
 
 function renderChanges(changes) {
     moneyList
         .forEach(coin => 
             document.querySelector(`#coin-${coin}-quantity`).textContent = `${changes[coin]}개`);
+}
+
+// 
+function setDataInLocalStorage(name, data) {
+    window.localStorage.setItem(name, data);
+}
+
+function getDataInLocalStorage(name) {
+    return window.localStorage.getItem(name);
 }
 
 //
@@ -228,11 +255,11 @@ const app = document.querySelector("#app");
 fetchHtmlView('tab.html').then(view => app.innerHTML = view);
 
 // variables
-let productList = [{name: 'as', price: '1000', quantity: '1'}];
-let chargedMoney = 0;
-const totalChanges = generateChangeObject();
-const inputChanges = generateChangeObject();
-let totalInputMoney = 0;
+let productList = JSON.parse(getDataInLocalStorage('productList')) || [];
+let chargedMoney = parseInt(getDataInLocalStorage('chargedMoney'), 10) || 0;
+const totalChanges = JSON.parse(getDataInLocalStorage('totalChanges')) || generateChangeObject();
+const inputChanges = JSON.parse(getDataInLocalStorage('inputChanges')) || generateChangeObject();
+let totalInputMoney = parseInt(getDataInLocalStorage('totalInputMoney'), 10) || 0;
 
 app.addEventListener('click', function(e) {
     e.preventDefault();
