@@ -72,7 +72,12 @@ class ProductPurchaseController {
   }
 
   onClickCoinReturnButton() {
-    const returnCoins = this.getChange();
+    const { returnCoins, chargeAmount, coins } = Coin.computeReturnCoins(
+      this.$model.getChargeAmount(),
+      this.$model.getCoins()
+    );
+
+    this.executeUpdateModelAfterReturnCoins(Coin.getCoinsAmount(returnCoins), chargeAmount, coins);
     this.$view.mainView.renderCharge(
       this.$model.getChargeAmount(),
       this.$model.getChargeInputsValue()
@@ -80,19 +85,13 @@ class ProductPurchaseController {
     this.$view.mainView.renderReturnCoins(returnCoins);
   }
 
-  getChange() {
-    const { returnCoins, chargeAmount, coins } = Coin.computeReturnCoins(
-      this.$model.getChargeAmount(),
-      this.$model.getCoins()
-    );
-
+  executeUpdateModelAfterReturnCoins(returnCoinsAmount, chargeAmount, coins) {
     const newVendingMachineChargeAmount =
-      this.$model.getVendingMachineChargeAmount() - Coin.getCoinsAmount(returnCoins);
+      this.$model.getVendingMachineChargeAmount() - returnCoinsAmount;
 
     this.$model.setVendingMachineChargeAmount(newVendingMachineChargeAmount);
     this.$model.setChargeAmount(chargeAmount);
     this.$model.setCoins(coins);
-    return returnCoins;
   }
 
   purchaseProduct(productId) {
