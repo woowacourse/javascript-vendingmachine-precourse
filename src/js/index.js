@@ -1,5 +1,5 @@
 import { $ } from './utils/querySelector.js';
-import { initScreenTemplate } from './utils/initScreenTemplate.js';
+import { initScreenTemplate } from './view/initScreenTemplate.js';
 import { vendingMachineMenuEvent } from './components/menu.js';
 
 const initScreen = () => {
