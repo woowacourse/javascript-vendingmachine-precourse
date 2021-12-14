@@ -123,7 +123,7 @@ function getTotalInputMoney(money) {
 }
 
 function renderInputMoney(money) {
-    document.querySelector("#charge-amount").textContent = `투입한 금액: ${money}`;
+    document.querySelector("#charge-amount").textContent = money;
 }
 
 //
