@@ -1,5 +1,6 @@
 import { productManagementEvent, productPurchaseEvent, changeChargeEvent } from "../controllers/menu.js";
-import { clickProductAddButton } from "./addProduct.js"
+import { clickProductAddButton } from "./addProduct.js";
+import { clickChargeButton } from "./chargeChanges.js";
 
 export function initialEvent() {
   menuEvent();
@@ -18,6 +19,8 @@ export function menuEvent() {
 
 export function clickEvents() {
   const $productAddButton = document.getElementById("product-add-button");
+  const $vendingMachineChargeButton = document.getElementById("vending-machine-charge-button");
 
   $productAddButton.addEventListener("click", clickProductAddButton);
+  $vendingMachineChargeButton.addEventListener("click", clickChargeButton);
 }
