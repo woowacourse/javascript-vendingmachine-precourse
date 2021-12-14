@@ -1,7 +1,8 @@
 import ProductPurchaseView from './productPurchaseView.js';
 import ValidateUtils from '../utils/validateUtils.js';
 import { $ } from '../utils/common.js';
-import { BUTTON, INPUT } from './productPurchaseViewInfo.js';
+import { BUTTON, INPUT, PURCHASE_TABLE } from './productPurchaseViewInfo.js';
+import { ERROR } from '../utils/constants.js';
 
 export default class productPurchaseComponent {
   constructor() {
@@ -25,7 +26,38 @@ export default class productPurchaseComponent {
     }
   };
 
-  onClickPurchaseButton = (event) => {};
+  onClickPurchaseButton = (event) => {
+    const [name, price, quantity] = this.getSelectedProductData(event);
+
+    if (this.checkAvailablePurchase(price, quantity)) {
+    }
+  };
+
+  getSelectedProductData(event) {
+    const bodyItem = PURCHASE_TABLE.BODY.ITEM;
+
+    const nameTd = event.path[2].getElementsByClassName(bodyItem.NAME.CLASS);
+    const priceTd = event.path[2].getElementsByClassName(bodyItem.PRICE.CLASS);
+    const quantityTd = event.path[2].getElementsByClassName(bodyItem.QUANTITY.CLASS);
+
+    const name = nameTd[0].parentNode.dataset.productName;
+    const price = Number(priceTd[0].parentNode.dataset.productPrice);
+    const quantity = Number(quantityTd[0].parentNode.dataset.productQuantity);
+
+    return [name, price, quantity];
+  }
+
+  checkAvailablePurchase(price, qunatity) {
+    if (this.chargeMoney < price) {
+      alert(ERROR.CANT_PURCHASE);
+      return false;
+    }
+    if (0 >= qunatity) {
+      alert(ERROR.NO_QUANTITY);
+      return false;
+    }
+    return true;
+  }
 
   onClickChagesButton = () => {};
 }

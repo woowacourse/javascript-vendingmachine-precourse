@@ -28,7 +28,7 @@ export const CHARGE_AMOUNT = {
   TEXT: '투입한 금액: ',
 };
 
-export const PUCHASE_TABLE = {
+export const PURCHASE_TABLE = {
   HEADER: ['상품명', '가격', '수량', '구매'],
   BODY: {
     CLASS: 'product-purchase-item',

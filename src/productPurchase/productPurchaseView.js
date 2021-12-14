@@ -8,7 +8,7 @@ import {
   INPUT,
   BUTTON,
   CHARGE_AMOUNT,
-  PUCHASE_TABLE,
+  PURCHASE_TABLE,
   CHANGES_TABLE,
 } from './productPurchaseViewInfo.js';
 
@@ -62,7 +62,7 @@ export default class productPurchaseView {
 
   makePurchaseTableHeader() {
     let header = '';
-    PUCHASE_TABLE.HEADER.forEach((item) => {
+    PURCHASE_TABLE.HEADER.forEach((item) => {
       header += `<th>${item}</th>`;
     });
     return header;
@@ -74,7 +74,7 @@ export default class productPurchaseView {
 
     data.forEach((item) => {
       body += `
-        <tr class=${PUCHASE_TABLE.BODY.CLASS}>
+        <tr class=${PURCHASE_TABLE.BODY.CLASS}>
           ${this.purchaseTableBodyTemplate(item)}
         </tr>
       `;
@@ -83,7 +83,7 @@ export default class productPurchaseView {
   }
 
   purchaseTableBodyTemplate(item) {
-    const bodyItemInfo = PUCHASE_TABLE.BODY.ITEM;
+    const bodyItemInfo = PURCHASE_TABLE.BODY.ITEM;
     return `
       <td ${bodyItemInfo.NAME.DATA}=${item.name}>
         <span class=${bodyItemInfo.NAME.CLASS} >${item.name}</span>
@@ -100,7 +100,7 @@ export default class productPurchaseView {
 
   updatePurchaseTableQuantity() {
     const data = LocalStorageUtils.getProductAddItem();
-    const bodyItemInfo = PUCHASE_TABLE.BODY.ITEM;
+    const bodyItemInfo = PURCHASE_TABLE.BODY.ITEM;
     const quantityTds = document.querySelectorAll(`.${bodyItemInfo.QUANTITY.CLASS}`);
     data.forEach((item, index) => {
       quantityTds[index].innerText = item.quantity;
