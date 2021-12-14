@@ -4,7 +4,7 @@ import Input from './core/Input.js';
 import Button from './core/Button.js';
 import ProductStatusTable from './core/ProductStatusTable.js';
 import { isValidProductAdd } from '../utils/validation.js';
-import { TAB_ID } from '../constant/dataset.js';
+import TAB_ID from '../constant/dataset.js';
 import { EVENT, INPUT_TYPE } from '../constant/dom.js';
 import { ID, CLASS } from '../constant/selector.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';

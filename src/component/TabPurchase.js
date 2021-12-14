@@ -7,7 +7,7 @@ import ProductPurchaseTable from './core/ProductPurchaseTable.js';
 import CoinTable from './core/CoinTable.js';
 import AmountView from './core/AmountView.js';
 import { isValidRecharge, canBePurchase, canBeReturn } from '../utils/validation.js';
-import { TAB_ID } from '../constant/dataset.js';
+import TAB_ID from '../constant/dataset.js';
 import { ID, CLASS } from '../constant/selector.js';
 import { EVENT, INPUT_TYPE } from '../constant/dom.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';

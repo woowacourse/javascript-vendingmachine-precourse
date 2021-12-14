@@ -1,5 +1,5 @@
 /* eslint-disable no-constructor-return */
-import { TAB_ID } from '../constant/dataset.js';
+import TAB_ID from '../constant/dataset.js';
 import { saveToStorage, loadFromStorage } from '../utils/localStorage.js';
 import STORAGE from '../constant/storage.js';
 

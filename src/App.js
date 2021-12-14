@@ -1,7 +1,7 @@
 import Navigator from './store/Navigator.js';
 import Header from './component/Header.js';
 import TabContainer from './component/TabContainer.js';
-import { TAB_ID } from './constant/dataset.js';
+import TAB_ID from './constant/dataset.js';
 import { ID } from './constant/selector.js';
 
 export default class App {

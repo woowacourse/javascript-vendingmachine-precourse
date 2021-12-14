@@ -5,7 +5,7 @@ import Button from './core/Button.js';
 import CoinTable from './core/CoinTable.js';
 import AmountView from './core/AmountView.js';
 import { isValidRecharge } from '../utils/validation.js';
-import { TAB_ID } from '../constant/dataset.js';
+import TAB_ID from '../constant/dataset.js';
 import { EVENT, INPUT_TYPE } from '../constant/dom.js';
 import { ID } from '../constant/selector.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
