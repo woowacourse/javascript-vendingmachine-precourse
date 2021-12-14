@@ -1,4 +1,4 @@
-import { TAB } from '../constants.js';
+import { TAB } from '../../lib/constants.js';
 import ProductAddController from '../controllers/ProductAddController.js';
 import ProductPurchaseController from '../controllers/ProductPurchaseController.js';
 import VendingMachineManageController from '../controllers/VendingMachineManageController.js';
@@ -54,7 +54,8 @@ class VendingMachineController {
   executeRenderVendingMachineManageMenu() {
     this.$view.renderVendingMachineManageMenu(
       this.$model.getVendingMachineChargeInputsValue(),
-      this.$model.getCoins()
+      this.$model.getCoins(),
+      this.$model.getVendingMachineChargeAmount()
     );
     this.$vendingMachineManageController.registerEventHandler();
   }

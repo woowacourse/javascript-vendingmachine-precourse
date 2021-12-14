@@ -1,5 +1,5 @@
+import { DOM, TAB } from '../../lib/constants.js';
 import { $ } from '../../lib/utils.js';
-import { DOM, TAB } from '../constants.js';
 import ProductAddView from './ProductAddView.js';
 import ProductPurchaseView from './ProductPurchaseView.js';
 import VendingMachineManageView from './VendingMachineManageView.js';
@@ -30,11 +30,16 @@ class VendingMachineView {
     this.mainView = new ProductAddView($(DOM.MAIN_SECTION), productAddInputsValue, productList);
   }
 
-  renderVendingMachineManageMenu(vendingMachineChargeInputsValue, coins) {
+  renderVendingMachineManageMenu(
+    vendingMachineChargeInputsValue,
+    coins,
+    vendingMachineChargeAmount
+  ) {
     this.mainView = new VendingMachineManageView(
       $(DOM.MAIN_SECTION),
       vendingMachineChargeInputsValue,
-      coins
+      coins,
+      vendingMachineChargeAmount
     );
   }
 

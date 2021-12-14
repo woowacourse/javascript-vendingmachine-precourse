@@ -1,25 +1,33 @@
-import { FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN } from '../../lib/constants.js';
+import {
+  DOM,
+  FIFTY,
+  FIVE_HUNDRED,
+  ONE_HUNDRED,
+  TEN,
+  VENDING_MACHINE_CHARGE_AMOUNT_TEXT,
+} from '../../lib/constants.js';
 import { $ } from '../../lib/utils.js';
-import { DOM } from '../constants.js';
 
 class VendingMachineManageView {
-  constructor(mainSection, vendingMachineChargeInputsValue, coins) {
+  constructor(mainSection, vendingMachineChargeInputsValue, coins, chargeAmount) {
     this.$app = mainSection;
-    this.renderVendingMachineManageMenu(vendingMachineChargeInputsValue, coins);
+    this.renderVendingMachineManageMenu(vendingMachineChargeInputsValue, coins, chargeAmount);
   }
 
-  renderVendingMachineManageMenu(vendingMachineChargeInputsValue, coins) {
+  renderVendingMachineManageMenu(vendingMachineChargeInputsValue, coins, chargeAmount) {
     this.$app.innerHTML = this.generateVendingMachineManageMenuTemplate(
       vendingMachineChargeInputsValue,
-      coins
+      coins,
+      chargeAmount
     );
   }
 
-  generateVendingMachineManageMenuTemplate(vendingMachineChargeInputsValue, coins) {
+  generateVendingMachineManageMenuTemplate(vendingMachineChargeInputsValue, coins, chargeAmount) {
     const inputSectionTemplate = this.createVendingMachineChargeInputSectionTemplate(
       vendingMachineChargeInputsValue
     );
-    const chargeAmountSectionTemplate = this.createVendingMachineChargeAmountSectionTemplate();
+    const chargeAmountSectionTemplate =
+      this.createVendingMachineChargeAmountSectionTemplate(chargeAmount);
     const coinQauntitySectionTemplate = this.createVendingMachineCoinQauntitySectionTemplate(coins);
 
     return `${inputSectionTemplate}${chargeAmountSectionTemplate}${coinQauntitySectionTemplate}`;
@@ -36,8 +44,10 @@ class VendingMachineManageView {
           </form>`;
   }
 
-  createVendingMachineChargeAmountSectionTemplate() {
-    return `<section id="${DOM.VENDING_MACHINE_CHARGE_AMOUNT}">`;
+  createVendingMachineChargeAmountSectionTemplate(chargeAmount) {
+    return `${VENDING_MACHINE_CHARGE_AMOUNT_TEXT}<span id="${DOM.VENDING_MACHINE_CHARGE_AMOUNT}">${
+      chargeAmount === 0 ? '' : chargeAmount
+    }</span>`;
   }
 
   createVendingMachineCoinQauntitySectionTemplate(coins) {
@@ -51,7 +61,8 @@ class VendingMachineManageView {
           </table>`;
   }
 
-  renderCoins(coins, vendingMachineChargeInputsValue) {
+  renderCoins(coins, vendingMachineChargeInputsValue, vendingMachineCharge) {
+    $(DOM.VENDING_MACHINE_CHARGE_AMOUNT).textContent = vendingMachineCharge;
     $(DOM.VENDING_MACHINE_CHARGE_INPUT).value =
       vendingMachineChargeInputsValue[DOM.VENDING_MACHINE_CHARGE_INPUT];
     $(DOM.VENDING_MACHINE_COIN_500_QUANTITY).textContent = `${coins[FIVE_HUNDRED]}개`;
