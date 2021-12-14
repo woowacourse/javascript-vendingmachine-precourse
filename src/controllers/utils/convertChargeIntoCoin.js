@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { default as DB } from '../../model/database.js';
-import { STORAGE } from '../../constants/constants.js';
+import { STORAGE, COIN_ARRAY, COIN_TYPE } from '../../constants/constants.js';
 
 const convertChargeIntoCoin = charge => {
   const coinWallet = DB.load(STORAGE.COIN.NAME);
@@ -16,10 +16,10 @@ const updateCoinWallet = (charge, coinWallet) => {
   };
 
   while (charge > 0) {
-    if (charge >= 500) addRandomCoin([500, 100, 50, 10]);
-    if (charge >= 100) addRandomCoin([100, 50, 10]);
-    if (charge >= 50) addRandomCoin([50, 10]);
-    if (charge >= 10) addRandomCoin([10]);
+    if (charge >= COIN_TYPE[500]) addRandomCoin(COIN_ARRAY[500]);
+    if (charge >= COIN_TYPE[100]) addRandomCoin(COIN_ARRAY[100]);
+    if (charge >= COIN_TYPE[50]) addRandomCoin(COIN_ARRAY[50]);
+    if (charge >= COIN_TYPE[10]) addRandomCoin(COIN_ARRAY[10]);
   }
 
   return coinWallet;

@@ -18,7 +18,7 @@ const calculateReturnCoins = () => {
 const useGreedyArgorithm = (charge, wallet, emptyWallet) => {
   const data = { charge, wallet, emptyWallet };
 
-  COIN_ARRAY.forEach(coinType => tryCaseByCoinType(coinType, data));
+  COIN_ARRAY[500].forEach(coinType => tryCaseByCoinType(coinType, data));
 
   return [data.wallet, data.emptyWallet];
 };

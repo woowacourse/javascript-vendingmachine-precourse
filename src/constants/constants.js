@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export const REGEX = {
   IS_INCLUDE_SPACE: /\s/g,
   HAS_SPECIAL: /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/g,
@@ -19,7 +20,19 @@ export const STORAGE = {
   },
 };
 
-export const COIN_ARRAY = [500, 100, 50, 10];
+export const COIN_TYPE = Object.freeze({
+  500: 500,
+  100: 100,
+  50: 50,
+  10: 10,
+});
+
+export const COIN_ARRAY = Object.freeze({
+  500: [500, 100, 50, 10],
+  100: [100, 50, 10],
+  50: [50, 10],
+  10: [10],
+});
 
 export const WORD = {
   INPUT: 'INPUT',
