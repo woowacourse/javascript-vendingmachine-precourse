@@ -85,7 +85,7 @@ export const MESSAGE = {
 };
 
 export const REDUCER_RESULT = {
-  SUCCESS: (data = null) => {
+  SUCCESS: data => {
     return { SUCCESS: true, data, error: null };
   },
   FAIL: error => {
