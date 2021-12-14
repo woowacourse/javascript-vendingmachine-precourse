@@ -89,3 +89,75 @@
   - 반환된 잔돈 정보
   - 보유한 잔돈 금액
   - 자판기가 보유한 잔돈 정보
+
+## 🗂 프로젝트 구조
+```bash
+├─docs
+│  └─README.md
+│  
+├─images 
+│  ├─beverage_icon.png
+│  ├─test_result.png
+│  ├─vendingmachine_coin.gif
+│  ├─vendingmachine_inventory.gif
+│  └─vendingmachine_purchase.gif
+│
+├─src
+│  ├─component
+│  │  ├─core
+│  │  │  ├─AmountView.js
+│  │  │  ├─Button.js
+│  │  │  ├─CoinTable.js
+│  │  │  ├─Input.js
+│  │  │  ├─ProductPurchaseTable.js
+│  │  │  ├─ProductStatusTable.js
+│  │  │  ├─Tab.js
+│  │  │  ├─Table.js
+│  │  │  └─Title.js
+│  │  │
+│  │  ├─Header.js
+│  │  ├─TabContainer.js
+│  │  ├─TabMachineManage.js
+│  │  ├─TabProductAdd.js
+│  │  ├─TabProductAdd.js
+│  │  └─TabPurchase.js
+│  │
+│  ├─constant
+│  │  ├─coin.js
+│  │  ├─dataset.js
+│  │  ├─dom.js
+│  │  ├─error.js
+│  │  ├─selector.js
+│  │  ├─storage.js
+│  │  └─text.js
+│  │
+│  ├─model
+│  │  ├─Coin.js
+│  │  └─Product.js
+│  │
+│  ├─store
+│  │  ├─Navigator.js
+│  │  └─VendingMachine.js
+│  │
+│  ├─utils
+│  │  ├─localStorage.js
+│  │  └─validation.js
+│  │
+│  ├─App.js
+│  │
+│  └─index.js
+│
+├─test
+│  └─app.spec.js
+│
+├─.eslintrc.json 
+├─.gitignore
+├─.npmrc
+├─.prettierrc.json
+├─cypress.json
+├─index.html
+├─LICENSE
+├─package-lock.json
+├─package.json
+└─README.md
+```
