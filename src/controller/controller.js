@@ -15,12 +15,13 @@ export default class Controller {
 
   init() {
     this.onClickTabBtn();
-    this.onClickAddProduct(); // 상품 관리 탭 - 추가하기 버튼 클릭 시
+    this.onClickAddProduct();
     this.onClickChargeBtn(); // 잔돈 충전 탭 - 충전하기 버튼 클릭 시
     this.onClickPayBtn(); // 상품 구매 탭 - 투입하기 버튼 클릭 시
     this.onClickReturn(); // 상품 구매 탭 - 반환하기 버튼 클릭 시
   }
 
+  // 3가지 탭 메뉴 클릭 이벤트
   onClickTabBtn() {
     const { $manageTabBtn, $chargeTabBtn, $purchaseTabBtn } = this.view.buttons;
 
@@ -48,6 +49,7 @@ export default class Controller {
     });
   }
 
+  // 상품 관리 탭 - 추가하기 버튼 클릭 시
   onClickAddProduct() {
     const { $addProductBtn } = this.view.buttons;
     const { $addName, $addPrice, $addQuantity } = this.view.inputs;
