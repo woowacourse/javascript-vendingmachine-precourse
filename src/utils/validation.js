@@ -1,3 +1,5 @@
+import { ERROR } from "./constants.js";
+
 const trim = (input) => {
   return input.trim();
 };
@@ -41,4 +43,25 @@ const isValidCoin = (input) => {
   return false;
 };
 
-export { trim, isValidName, isVaildPrice, isValidQuantity, isValidCoin };
+const isValidProduct = (name, price, quantity) => {
+  if (!isValidName(name)) {
+    return ERROR.PRODUCT_NAME;
+  }
+  if (!isVaildPrice(price)) {
+    return ERROR.PRODUCT_PRICE;
+  }
+  if (!isValidQuantity(quantity)) {
+    return ERROR.PRODUCT_QUANTITY;
+  }
+
+  return true;
+};
+
+export {
+  trim,
+  isValidName,
+  isVaildPrice,
+  isValidQuantity,
+  isValidCoin,
+  isValidProduct,
+};

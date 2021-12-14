@@ -2,10 +2,10 @@ import View from "../view/view.js";
 import VendingMachine from "../model/vendingMachine.js";
 import {
   isVaildPrice,
-  isValidName,
-  isValidQuantity,
   isValidCoin,
+  isValidProduct,
 } from "../utils/validation.js";
+import { ERROR } from "../utils/constants.js";
 
 export default class Controller {
   constructor() {
@@ -57,12 +57,13 @@ export default class Controller {
 
     $addProductBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      if (
-        !isValidName($addName.value) ||
-        !isVaildPrice($addPrice.value) ||
-        !isValidQuantity($addQuantity.value)
-      ) {
-        alert("다시 입력하세요.");
+      const isValid = isValidProduct(
+        $addName.value,
+        $addPrice.value,
+        $addQuantity.value
+      );
+      if (isValid !== true) {
+        alert(isValid);
         return;
       }
       this.vendingMachine.addProduct(
@@ -81,7 +82,7 @@ export default class Controller {
 
     $chargeBtn.addEventListener("click", () => {
       if (!isValidCoin($chargeCoin.value)) {
-        alert("다시 입력하세요.");
+        alert(ERROR.CHARGE);
         return;
       }
       this.vendingMachine.makeRandomChange(parseInt($chargeCoin.value, 10));
@@ -96,7 +97,7 @@ export default class Controller {
 
     $payBtn.addEventListener("click", () => {
       if (!isVaildPrice($buyMoney.value)) {
-        alert("다시 입력하세요.");
+        alert(ERROR.PAY);
         return;
       }
       this.vendingMachine.getMoney(parseInt($buyMoney.value, 10));
@@ -129,7 +130,7 @@ export default class Controller {
           this.view.renderUserMoney(this.vendingMachine.userMoney);
           return;
         }
-        alert("살 수 없습니다.");
+        alert(ERROR.BUY);
       });
     });
   }
