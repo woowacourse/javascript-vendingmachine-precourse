@@ -37,6 +37,9 @@ export const VALIDATION = {
     NONE: '투입할 금액을 입력해 주세요.',
     MULTIPLE_OF_10: '투입할 금액은 10의 배수만 입력이 가능합니다.',
   },
+  PURCHASE: {
+    HOLIING_UNDER_0: '사용가능한 금액이 없습니다. 금액을 투입해 주세요.',
+  },
 };
 
 export const COIN_LIST = [500, 100, 50, 10];
@@ -57,6 +60,7 @@ export const USER = {
 
 export const VENDING_MACHINE = {
   CHARGED: 'vendingMachineChargedAmount',
+  COINLIST: 'coinList',
   INSERTED: '투입한 금액: ',
   WON: '원',
   HOLDING_AMOUNT: '보유금액: ',
