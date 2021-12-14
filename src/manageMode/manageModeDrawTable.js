@@ -17,20 +17,21 @@ function addTableHead() {
   return thead;
 }
 function drawItemInTable(coinList) {
-  const coinUnit = [500,100,50,10]
-  for (let i = 0; i < coinList.length; i++){
+  const coinUnit = [500, 100, 50, 10];
+  for (let i = 0; i < Object.keys(coinUnit).length; i++){
     const tr = document.createElement("tr");
     tr.className = "product-manage-item";
     const td = document.createElement("td");
     let unitTd = td.cloneNode(true);
     unitTd.innerText = `${coinUnit[i]}원`;
     let countTd = td.cloneNode(true);
-    countTd.innerText = `${coinList[i]}개`;
+    countTd.innerText = `${coinList[i].count}개`;
+    countTd.id = `vending-machine-coin-${coinUnit[i]}-quantity`;
     tr.append(unitTd, countTd);
     $("#product-table").appendChild(tr);
   }
 }
-export default function AddModeDrawTable() {
+export default function ManageModeDrawTable() {
   $('#content').append(addTable());
   const table = $("#product-table");
   while (table.firstChild) {
@@ -38,5 +39,6 @@ export default function AddModeDrawTable() {
   }
   table.appendChild(addTableHead());
   const coinList = JSON.parse(localStorage.getItem('coinList'));
+  console.log(coinList);
   drawItemInTable(coinList);
 } 
