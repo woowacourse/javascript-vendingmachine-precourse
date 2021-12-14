@@ -1,7 +1,7 @@
 import Component from "../common/component.js";
 import EntrySection from "./entrySection.js";
-import Table from "./table.js";
 import PurchaseTable from "./purchaseTable.js";
+import CoinTable from "./coinTable.js";
 
 export default class PurchaseMenuContainer extends Component {
   template() {
@@ -45,7 +45,7 @@ export default class PurchaseMenuContainer extends Component {
       tableContents: this.$props.menuItems,
     });
 
-    new Table($coinTableSelector, {
+    new CoinTable($coinTableSelector, {
       title: "잔돈",
       tableHeaders: ["동전", "개수"],
       tableContents: this.$props.change,
@@ -53,6 +53,7 @@ export default class PurchaseMenuContainer extends Component {
         id: "coin-return-button",
         value: "반환하기",
       },
+      getQuantityId: (amount) => `coin-${amount}-quantity`,
     });
   }
 }

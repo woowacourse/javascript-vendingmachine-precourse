@@ -1,6 +1,6 @@
 import Component from "../common/component.js";
+import CoinTable from "./coinTable.js";
 import EntrySection from "./entrySection.js";
-import Table from "./table.js";
 
 export default class CoinManageMenuContainer extends Component {
   template() {
@@ -41,10 +41,11 @@ export default class CoinManageMenuContainer extends Component {
       },
     });
 
-    new Table($tableSelector, {
+    new CoinTable($tableSelector, {
       title: "자판기가 보유한 동전",
       tableHeaders: ["동전", "개수"],
       tableContents: this.$props.coins,
+      getQuantityId: (amount) => `vending-machine-coin-${amount}-quantity`,
     });
   }
 }

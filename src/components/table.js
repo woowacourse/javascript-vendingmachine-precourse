@@ -26,8 +26,15 @@ export default class Table extends Component {
   getTableRow(tableRow) {
     const classStr = this.$props.tableRowClass ? this.$props.tableRowClass : "";
     return `<tr class=${classStr}>${tableRow
-      .map((entry) => `<td>${entry}</td>`)
+      .map((entry, index) => this.getSingleEntry(entry, index))
       .join("")}</tr>`;
+  }
+
+  getSingleEntry(entry, index) {
+    const classStr = this.$props.tableEntryClass
+      ? this.$props.tableEntryClass[index]
+      : "";
+    return `<td class=${classStr}>${entry}</td>`;
   }
 
   getOptionalButton() {
