@@ -2,6 +2,7 @@ import PurchaseView from '../../view/purchase/purchaseView.js';
 import { isValidChargeAmount, isValidPurchase } from '../../utils/validator.js';
 import { showError } from '../../utils/error.js';
 import { STRING } from '../../constants/constants.js';
+import { exchangeWithCoins } from './exchange.js';
 
 export default class PurchaseController {
   constructor(appModel) {
@@ -25,6 +26,7 @@ export default class PurchaseController {
     this.purchaseView.$$purchaseItem.forEach((element) =>
       element.addEventListener('click', this.handlePurchase.bind(this))
     );
+    this.purchaseView.$coinReturnButton.addEventListener('click', this.handleReturn.bind(this));
   }
 
   handleInputCharge(e) {
@@ -33,14 +35,16 @@ export default class PurchaseController {
     const inputChargeAmount = this.purchaseView.$chargeInput.value;
 
     if (isValidChargeAmount(inputChargeAmount)) {
-      this.appModel.setInputChargeAmount(Number(inputChargeAmount));
-      this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
-      return console.log(inputChargeAmount);
+      this.addChargeAmount(inputChargeAmount);
+      return this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
     }
 
-    showError();
+    return showError();
+  }
 
-    console.log(inputChargeAmount);
+  addChargeAmount(inputChargeAmount) {
+    this.appModel.addInputChargeAmount(Number(inputChargeAmount));
+    this.appModel.setInputChargeAmount(this.appModel.inputChargeAmount);
   }
 
   handlePurchase(e) {
@@ -71,5 +75,18 @@ export default class PurchaseController {
     const { productQuantity } = this.purchaseView.$productQuantityColumn.dataset;
 
     return { productName, productPrice, productQuantity };
+  }
+
+  handleReturn(e) {
+    e.preventDefault();
+    const { returnedCoins, remainedInputChargeAmount } = exchangeWithCoins(
+      this.appModel.inputChargeAmount,
+      this.appModel
+    );
+
+    this.appModel.setInputChargeAmount(remainedInputChargeAmount);
+    this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
+
+    // this.purchaseView.renderReturnedCoins(returnedCoins);
   }
 }

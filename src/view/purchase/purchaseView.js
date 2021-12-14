@@ -1,6 +1,6 @@
 import { $, $$ } from '../../utils/DOMhelper.js';
 import { purchaseTabTemplate } from '../template.js';
-import { STRING } from '../../constants/constants.js';
+import { INDEX, STRING } from '../../constants/constants.js';
 
 export default class PurchaseView {
   init() {
@@ -17,6 +17,10 @@ export default class PurchaseView {
     this.$inputChargeAmount = $('#charge-amount');
     this.$coinReturnButton = $('#coin-return-button');
     this.$$purchaseItem = $$('.product-purchase-item');
+    this.$coin500Quantity = $('#coin-500-quantity');
+    this.$coin100Quantity = $('#coin-100-quantity');
+    this.$coin50Quantity = $('#coin-50-quantity');
+    this.$coin10Quantity = $('#coin-10-quantity');
   }
 
   renderInputChargeAmount(amount) {
@@ -32,5 +36,14 @@ export default class PurchaseView {
   renderProductQuantity(changedQuantity) {
     this.$productQuantityColumn.innerText = changedQuantity;
     this.$productQuantityColumn.setAttribute('data-product-quantity', changedQuantity);
+  }
+
+  renderReturnedCoins(returnedCoins) {
+    returnedCoins.forEach((amount, idx) => {
+      if (idx === INDEX.FIVE_HUNDRED) this.$coin500Quantity.innerText = `${amount}개`;
+      if (idx === INDEX.HUNDRED) this.$coin100Quantity.innerText = `${amount}개`;
+      if (idx === INDEX.FIFTY) this.$coin50Quantity.innerText = `${amount}개`;
+      if (idx === INDEX.TEN) this.$coin10Quantity.innerText = `${amount}개`;
+    });
   }
 }
