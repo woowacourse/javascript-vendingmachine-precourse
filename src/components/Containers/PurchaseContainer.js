@@ -1,4 +1,15 @@
-import {CLASS, ID, STORAGE_KEY, TABLE_HEADER, TABLE_MENU} from '../../utils/constants.js';
+import {
+  CLASS,
+  ID,
+  NUM_10,
+  NUM_100,
+  NUM_50,
+  NUM_500,
+  STORAGE_KEY,
+  TABLE_HEADER,
+  TABLE_MENU,
+  ZERO
+} from '../../utils/constants.js';
 import {createInputElement, createTable} from '../../utils/domUtil.js';
 import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
 import {isValidPurchaseInput, isValidPurchaseProduct} from '../../utils/validation.js';
@@ -64,10 +75,10 @@ export default class PurchaseContainer extends Component {
   }
 
   printCoinQuantity(coins) {
-    this.$target.querySelector(`#${ID.COIN_500_QUANTITY}`).innerText = `${coins['500'] ? coins['500'] : '0'}개`;
-    this.$target.querySelector(`#${ID.COIN_100_QUANTITY}`).innerText = `${coins['100'] ? coins['100'] : '0'}개`;
-    this.$target.querySelector(`#${ID.COIN_50_QUANTITY}`).innerText = `${coins['50'] ? coins['50'] : '0'}개`;
-    this.$target.querySelector(`#${ID.COIN_10_QUANTITY}`).innerText = `${coins['10'] ? coins['10'] : '0'}개`;
+    this.$target.querySelector(`#${ID.COIN_500_QUANTITY}`).innerText = `${coins[NUM_500] ? coins[NUM_500] : ZERO}개`;
+    this.$target.querySelector(`#${ID.COIN_100_QUANTITY}`).innerText = `${coins[NUM_100] ? coins[NUM_100] : ZERO}개`;
+    this.$target.querySelector(`#${ID.COIN_50_QUANTITY}`).innerText = `${coins[NUM_50] ? coins[NUM_50] : ZERO}개`;
+    this.$target.querySelector(`#${ID.COIN_10_QUANTITY}`).innerText = `${coins[NUM_10] ? coins[NUM_10] : ZERO}개`;
   }
 
   purchaseChargeFormClickHandler() {
