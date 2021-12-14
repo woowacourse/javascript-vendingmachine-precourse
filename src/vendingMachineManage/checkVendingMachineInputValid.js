@@ -1,7 +1,6 @@
 import { checkValidBlank, checkInputNumberValid } from '../checkValid/checkInputValid.js';
 import { ERROR_MESSAGE } from '../util/constant.js';
 
-//잔돈 입력값 유효성 검사
 export function checkVendingMachineChargeInputValid() {
     const $vendingMachineChargeInput = document.querySelector('#vending-machine-charge-input');
     if (!checkValidBlank($vendingMachineChargeInput)) {

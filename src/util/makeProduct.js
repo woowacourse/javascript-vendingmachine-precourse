@@ -1,7 +1,6 @@
 import { PRODUCT, GAME } from './constant.js';
 
 export function makeProduct($productNameInputValue, $productPriceInputValue, $productQuantityInputValue) {
-    //클래스 생성
     let product = $productNameInputValue;
     product = new PRODUCT($productNameInputValue, Number($productPriceInputValue), Number($productQuantityInputValue));
     GAME.PRODUCTS.push(product);

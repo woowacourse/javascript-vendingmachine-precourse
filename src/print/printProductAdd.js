@@ -1,6 +1,5 @@
 import { GAME } from '../util/constant.js';
 
-//상품관리 테이블에 추가
 export function addProductAddTable() {
     const $productAddTable = document.querySelector('#product-add-table');
     $productAddTable.innerHTML = '';
