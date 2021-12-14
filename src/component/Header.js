@@ -1,4 +1,5 @@
-import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE, EVENT } from '../constant/dom.js';
+import { ID } from '../constant/selector.js';
 import { TITLE } from '../constant/text.js';
 
 export default class Header {
@@ -27,9 +28,9 @@ export default class Header {
   templateMenuButtons() {
     this.$menus = document.createElement(TAG.TAG_DIV);
 
-    this.appendButton(SELECTOR.ID_PRODUCT_ADD_MENU, TITLE.PRODUCT_ADD_MENU);
-    this.appendButton(SELECTOR.ID_MACHINE_MANAGE_MENU, TITLE.MACHINE_MANAGE_MENU);
-    this.appendButton(SELECTOR.ID_PURCHASE_MENU, TITLE.PURCHASE_MENU);
+    this.appendButton(ID.PRODUCT_ADD_MENU, TITLE.PRODUCT_ADD_MENU);
+    this.appendButton(ID.MACHINE_MANAGE_MENU, TITLE.MACHINE_MANAGE_MENU);
+    this.appendButton(ID.PURCHASE_MENU, TITLE.PURCHASE_MENU);
 
     return this.$menus;
   }

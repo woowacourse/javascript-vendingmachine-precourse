@@ -7,16 +7,17 @@ import CoinTable from './core/CoinTable.js';
 import AmountView from './core/AmountView.js';
 import { isValidRecharge } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { ID } from '../constant/selector.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 import { COIN } from '../constant/coin.js';
 
 const COIN_TABLE_COLUMN = [COLUMN.COIN, COLUMN.COUNT];
 const COIN_TABLE_IDS = {
-  [COIN.COIN_500]: SELECTOR.ID_MACHINE_COINT_500_QUANTITY,
-  [COIN.COIN_100]: SELECTOR.ID_MACHINE_COINT_100_QUANTITY,
-  [COIN.COIN_50]: SELECTOR.ID_MACHINE_COINT_50_QUANTITY,
-  [COIN.COIN_10]: SELECTOR.ID_MACHINE_COINT_10_QUANTITY,
+  [COIN.COIN_500]: ID.MACHINE_COIN_500_QUANTITY,
+  [COIN.COIN_100]: ID.MACHINE_COIN_100_QUANTITY,
+  [COIN.COIN_50]: ID.MACHINE_COIN_50_QUANTITY,
+  [COIN.COIN_10]: ID.MACHINE_COIN_10_QUANTITY,
 };
 
 export default class TabMachineManage {
@@ -35,7 +36,7 @@ export default class TabMachineManage {
 
   createRootElement() {
     const $div = document.createElement(TAG.TAG_DIV);
-    $div.setAttribute(DOM_ATTRIBUTE.ID, SELECTOR.ID_MACHINE_MANAGE_TAB);
+    $div.setAttribute(DOM_ATTRIBUTE.ID, ID.MACHINE_MANAGE_TAB);
     $div.setAttribute(DOM_ATTRIBUTE.ID, TAB_ID.TAB_MACHINE_MANAGE);
 
     this.$parent.appendChild($div);
@@ -49,10 +50,10 @@ export default class TabMachineManage {
 
   renderInput() {
     this.chargingTitle = new Title(TITLE.RECHARGE_COIN);
-    this.coinInput = new Input(SELECTOR.ID_MACHINE_CHARGE_INPUT, PLACEHOLDER.COIN, INPUT_TYPE.NUMBER);
-    this.coinSubmit = new Button(SELECTOR.ID_MACHINE_CHARGE_BUTTON, TITLE.RECHARGE_COIN_BUTTON);
+    this.coinInput = new Input(ID.MACHINE_CHARGE_INPUT, PLACEHOLDER.COIN, INPUT_TYPE.NUMBER);
+    this.coinSubmit = new Button(ID.MACHINE_CHARGE_BUTTON, TITLE.RECHARGE_COIN_BUTTON);
     this.chargedAmount = new AmountView(
-      SELECTOR.ID_MACHINE_CHARGE_AMOUNT,
+      ID.MACHINE_CHARGE_AMOUNT,
       TITLE.RECHARGE_COIN_AMOUNT,
       this.vendingMcahine.getRechargedCoinAmount()
     );

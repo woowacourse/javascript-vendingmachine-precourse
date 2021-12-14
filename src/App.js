@@ -2,7 +2,7 @@ import Navigator from './store/Navigator.js';
 import Header from './component/Header.js';
 import TabContainer from './component/TabContainer.js';
 import { TAB_ID } from './constant/dataset.js';
-import { SELECTOR } from './constant/dom.js';
+import { ID } from './constant/selector.js';
 
 export default class App {
   constructor($target) {
@@ -18,11 +18,11 @@ export default class App {
   }
 
   changeFocusedTab(buttonId) {
-    if (buttonId === SELECTOR.ID_PRODUCT_ADD_MENU) {
+    if (buttonId === ID.PRODUCT_ADD_MENU) {
       this.navigator.navigateTo(TAB_ID.TAB_PRODUCT_ADD);
-    } else if (buttonId === SELECTOR.ID_MACHINE_MANAGE_MENU) {
+    } else if (buttonId === ID.MACHINE_MANAGE_MENU) {
       this.navigator.navigateTo(TAB_ID.TAB_MACHINE_MANAGE);
-    } else if (buttonId === SELECTOR.ID_PURCHASE_MENU) {
+    } else if (buttonId === ID.PURCHASE_MENU) {
       this.navigator.navigateTo(TAB_ID.TAB_PURCHASE);
     }
 

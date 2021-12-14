@@ -1,5 +1,5 @@
 import Table from './Table.js';
-import { SELECTOR } from '../../constant/dom.js';
+import { CLASS } from '../../constant/selector.js';
 
 export default class ProductPurchaseTable extends Table {
   renderBody(productList) {
@@ -10,7 +10,7 @@ export default class ProductPurchaseTable extends Table {
     const { classes } = this.props;
     return `
       ${productList.map((product) => `
-        <tr class="${SELECTOR.CLASS_PRODUCT_PURCHASE_ITEM}">
+        <tr class="${CLASS.PRODUCT_PURCHASE_ITEM}">
           <td class="${classes[0]}" data-product-name="${product.getName()}">${product.getName()}</td>
           <td class="${classes[1]}" data-product-price="${product.getPrice()}">${product.getPrice()}</td>
           <td class="${classes[2]}" data-product-quantity="${product.getQuantity()}">${product.getQuantity()}</td>

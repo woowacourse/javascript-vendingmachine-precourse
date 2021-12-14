@@ -6,7 +6,8 @@ import Button from './core/Button.js';
 import ProductStatusTable from './core/ProductStatusTable.js';
 import { isValidProductAdd } from '../utils/validation.js';
 import { TAB_ID } from '../constant/dataset.js';
-import { TAG, DOM_ATTRIBUTE, SELECTOR, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { TAG, DOM_ATTRIBUTE, EVENT, INPUT_TYPE } from '../constant/dom.js';
+import { ID, CLASS } from '../constant/selector.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 
 const PRODUCT_LIST_COLUM = [COLUMN.NAME, COLUMN.PRICE, COLUMN.QUANTITY];
@@ -27,7 +28,7 @@ export default class TabProductAdd {
 
   createRootElement() {
     const $div = document.createElement(TAG.TAG_DIV);
-    $div.setAttribute(DOM_ATTRIBUTE.ID, SELECTOR.ID_PRODUCT_ADD_TAB);
+    $div.setAttribute(DOM_ATTRIBUTE.ID, ID.PRODUCT_ADD_TAB);
     $div.setAttribute(DOM_ATTRIBUTE.DATA_TAB_ID, TAB_ID.TAB_PRODUCT_ADD);
 
     this.$parent.appendChild($div);
@@ -41,10 +42,10 @@ export default class TabProductAdd {
 
   renderInputs() {
     this.addTitle = new Title(TITLE.PRODUCT_ADD_TITLE);
-    this.name = new Input(SELECTOR.ID_PRODUCT_NAME_INPUT, PLACEHOLDER.NAME, INPUT_TYPE.TEXT);
-    this.price = new Input(SELECTOR.ID_PRODUCT_PRICE_INPUT, PLACEHOLDER.PRICE, INPUT_TYPE.NUMBER);
-    this.quantity = new Input(SELECTOR.ID_PRODUCT_QUANTITY_INPUT, PLACEHOLDER.QUANTITY, INPUT_TYPE.NUMBER);
-    this.addButton = new Button(SELECTOR.ID_PRODUCT_ADD_BUTTON, TITLE.PRODUCT_ADD_BUTTON);
+    this.name = new Input(ID.PRODUCT_NAME_INPUT, PLACEHOLDER.NAME, INPUT_TYPE.TEXT);
+    this.price = new Input(ID.PRODUCT_PRICE_INPUT, PLACEHOLDER.PRICE, INPUT_TYPE.NUMBER);
+    this.quantity = new Input(ID.PRODUCT_QUANTITY_INPUT, PLACEHOLDER.QUANTITY, INPUT_TYPE.NUMBER);
+    this.addButton = new Button(ID.PRODUCT_ADD_BUTTON, TITLE.PRODUCT_ADD_BUTTON);
 
     this.$root.appendChild(this.addTitle.getTarget());
     this.$root.appendChild(this.name.getTarget());
@@ -58,9 +59,9 @@ export default class TabProductAdd {
     this.listTable = new ProductStatusTable({
       columns: PRODUCT_LIST_COLUM,
       classes: [
-        SELECTOR.CLASS_PRODUCT_MANAGE_NAME,
-        SELECTOR.CLASS_PRODUCT_MANAGE_PRICE,
-        SELECTOR.CLASS_PRODUCT_MANAGE_QUANTITY,
+        CLASS.PRODUCT_MANAGE_NAME,
+        CLASS.PRODUCT_MANAGE_PRICE,
+        CLASS.PRODUCT_MANAGE_QUANTITY,
       ],
       initialData: this.vendingMachine.getProductList(),
     });
