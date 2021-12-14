@@ -7,9 +7,9 @@ export const printItemsToScreen = () => {
   const $itemPrice = $('.product-manage-price');
   const $itemQuantity = $('.product-manage-quantity');
 
-  for (let i = 0; i < productListArray.length; i++) {
-    $itemName.innerHTML = productListArray[i].name;
-    $itemPrice.innerHTML = productListArray[i].price;
-    $itemQuantity.innerHTML = productListArray[i].quantity;
+  for (const item of productListArray) {
+    $itemName.innerHTML = item.name;
+    $itemPrice.innerHTML = item.price;
+    $itemQuantity.innerHTML = item.quantity;
   }
 };

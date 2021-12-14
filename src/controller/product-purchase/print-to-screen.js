@@ -23,7 +23,7 @@ export const printInsertedMoney = () => {
   return sum;
 };
 
-// print purchase items to screen
+// print purchasable items to screen
 export const printProductItemsToPurchaseToScreen = () => {
   const productPurchseListArray = JSON.parse(
     localStorage.getItem(PRODUCT.LIST)

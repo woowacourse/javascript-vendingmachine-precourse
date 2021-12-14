@@ -33,5 +33,4 @@ export const printAmountOfCoinToScreen = () => {
   $vendingMachine10Coin.innerHTML = `${coinList[COIN_LIST[3]]}개`;
 };
 
-// 전역으로 설정시 새로고침해도 보이고, 버튼이벤트 안 설정시 이벤트가 작동해야지 보인다.
-//즉 , 전역변수 설정 하거나 없이도 새로고침했을때 나타날 수 있는 방법 고민
+// 새로고침
