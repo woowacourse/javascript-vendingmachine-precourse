@@ -55,11 +55,16 @@ export function productPurchaseView() {
       <h3>금액 투입</h3>
       <input id="charge-input" type="number" placeholder="투입할 금액" />
       <button id="charge-button">투입하기</button>
-      <div id="charge-amount-div"></div>
-
+      <div id="charge-amount-div">투입한 금액:
+        <div id="charge-amount"></div>
+      </div>
       <h3>구매할 수 있는 상품 현황</h3>
-      <table id="able-buy-product-table"></table>
-      
+      <table id="product-purchase-item-table">
+        <th>상품명</th>
+        <th>가격</th>
+        <th>수량</th>
+        <th>구매</th>
+      </table>
       <h3>잔돈</h3>
       <button id="coin-return-button">반환하기</button>
       <table id="return-coin-table"></table>
@@ -97,19 +102,44 @@ export function showCurrentChanges() {
   <th>개수</th>
   <tr>
     <td>500원</td>
-    <td class="vending-machine-coin-500-quantity">${state.changes.fiveHundred}</td>
+    <td class="vending-machine-coin-500-quantity">${state.changes.fiveHundred}개</td>
   </tr>
   <tr>
     <td>100원</td>
-    <td class="vending-machine-coin-100-quantity">${state.changes.hundred}</td>
+    <td class="vending-machine-coin-100-quantity">${state.changes.hundred}개</td>
   </tr>
   <tr>
     <td>50원</td>
-    <td class="vending-machine-coin-50-quantity">${state.changes.fifty}</td>
+    <td class="vending-machine-coin-50-quantity">${state.changes.fifty}개</td>
   </tr>
   <tr>
     <td>10원</td>
-    <td class="vending-machine-coin-10-quantity">${state.changes.ten}</td>
+    <td class="vending-machine-coin-10-quantity">${state.changes.ten}개</td>
   </tr>
 `;
+}
+
+export function showPurchaseView() {
+  const $productPurchaseItemTable = document.getElementById("product-purchase-item-table");
+  const $chargeAmount = document.getElementById("charge-amount");
+  
+  $chargeAmount.innerText = `${state.inputMoney}`;
+  
+  $productPurchaseItemTable.innerHTML = `
+  <th>상품명</th>
+  <th>가격</th>
+  <th>수량</th>
+  <th>구매</th>
+  `;
+
+  state.productList.map((item, index) => {
+    $productPurchaseItemTable.innerHTML += `
+    <tr class="product-purchase-item">
+      <td class="product-purchase-name" data-product-name=${item.name}>${item.name}</td>
+      <td class="product-purchase-price" data-product-price=${item.price}>${item.price}</td>
+      <td class="product-purchase-quantity" data-product-quantity=${item.quantity}>${item.quantity}</td>
+      <td><button class="purchase-button">구매하기</button></td>
+    </tr>
+  `;
+  })
 }
