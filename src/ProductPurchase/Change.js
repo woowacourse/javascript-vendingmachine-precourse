@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import createCoinListTable from '../ChangeCharge/CreateTable.js';
+import { createCoinListTable } from '../ChangeCharge/CreateTable.js';
 import { BUTTON, HEADER } from '../common/constants.js';
 import {
   createButton,

@@ -6,7 +6,7 @@ import { BUTTON, PRODUCT } from '../common/constants.js';
 import {
   createClassButton,
   createTable,
-  createTableClassData,
+  createTableClassDatasetData,
   createTableClassRow,
   createTableData,
   createTableHeader,
@@ -43,16 +43,16 @@ function createPurchasableTableHeaderRow() {
 
 function createDatas(values) {
   const datas = [];
-  datas.push(['product-purchase-name', values[0]]);
-  datas.push(['product-purchase-price', values[1]]);
-  datas.push(['product-purchase-quantity', values[2]]);
+  datas.push(['product-purchase-name', 'data-product-name', values[0]]);
+  datas.push(['product-purchase-price', 'data-product-price', values[1]]);
+  datas.push(['product-purchase-quantity', 'data-product-quantity', values[2]]);
 
   return datas;
 }
 
 function createPurchasableTableData(data) {
-  const [cla, innerText] = data;
-  const purchasableTableData = createTableClassData(cla, innerText);
+  const [cla, dataset, value] = data;
+  const purchasableTableData = createTableClassDatasetData(cla, dataset, value);
 
   return purchasableTableData;
 }

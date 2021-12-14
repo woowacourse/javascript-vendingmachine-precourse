@@ -98,3 +98,13 @@ export function createTableClassData(cla, innerText) {
 
   return td;
 }
+
+export function createTableClassDatasetData(cla, dataset, value) {
+  const td = document.createElement('td');
+  td.setAttribute('class', cla);
+  td.setAttribute(dataset, value);
+  td.innerText = value;
+  setTableStyle(td);
+
+  return td;
+}

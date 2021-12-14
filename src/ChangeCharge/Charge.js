@@ -6,6 +6,7 @@ import {
   checkAmountInputValidation,
   onInvalidInputSubmit,
 } from './CheckValidation.js';
+import { createCoinTable, setCoinToLocalStorage } from './CreateTable.js';
 
 export function addAmountHaveToLocalStorage(input) {
   let amountHave = 0;
@@ -28,10 +29,10 @@ function onValidInputSubmit() {
   const vendingMachineChargeInput = $('vending-machine-charge-input').value;
   addAmountHaveToLocalStorage(vendingMachineChargeInput);
   setAmountHave();
+  createCoinTable();
 }
 
-function onCoinChargeClick(event) {
-  event.preventDefault();
+function onCoinChargeClick() {
   const inputValidation = checkAmountInputValidation();
 
   if (!inputValidation) {

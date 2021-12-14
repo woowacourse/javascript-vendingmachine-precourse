@@ -16,7 +16,7 @@ function createAmountInputDiv() {
   amountInputDiv.setAttribute('id', 'amount-input-div');
   amountInputDiv.append(AMOUNT.INPUT);
   const amountInput = createAmountInput();
-  amountInputDiv.append(amountInput.textContent);
+  amountInputDiv.append(amountInput);
 
   return amountInputDiv;
 }

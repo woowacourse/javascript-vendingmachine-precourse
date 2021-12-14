@@ -7,7 +7,7 @@ import {
 import { $app } from '../common/elements.js';
 
 import createCoinChargeForm from './CreateForm.js';
-import createCoinListTable from './CreateTable.js';
+import { createCoinTable } from './CreateTable.js';
 
 function createChangeChargeDiv() {
   const id = 'change-charge-div';
@@ -47,7 +47,7 @@ function createCoinCharge() {
 function createCoinList() {
   const coinListDiv = createDiv();
   const coinListHeader = createHeader(HEADER.COIN_LIST);
-  const coinListTable = createCoinListTable();
+  const coinListTable = createCoinTable();
   coinListDiv.append(coinListHeader, coinListTable);
 
   return coinListDiv;
