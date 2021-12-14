@@ -5,6 +5,11 @@ import { createElement, createTr, createTrByClass } from '../../../utils/dom-uti
 
 export default class ProductStatus {
   constructor() {
+    this.classList = [
+      CLASS.PRODUCT.MANGAE_NAME,
+      CLASS.PRODUCT.MANAGE_PRICE,
+      CLASS.PRODUCT.MANAGE_QUANTITY,
+    ];
     this.create();
     this.appendChildren();
   }
@@ -29,25 +34,15 @@ export default class ProductStatus {
 
   render(menu) {
     this.createTable();
-    const classList = [
-      CLASS.PRODUCT.MANGAE_NAME,
-      CLASS.PRODUCT.MANAGE_PRICE,
-      CLASS.PRODUCT.MANAGE_QUANTITY,
-    ];
     menu.forEach((item) => {
-      const $tr = createTrByClass(classList, ...item);
+      const $tr = createTrByClass(this.classList, ...item);
       this.$table.appendChild($tr);
     });
     this.$container.replaceChild(this.$table, this.$container.lastElementChild);
   }
 
   addItem(item) {
-    const classList = [
-      CLASS.PRODUCT.MANGAE_NAME,
-      CLASS.PRODUCT.MANAGE_PRICE,
-      CLASS.PRODUCT.MANAGE_QUANTITY,
-    ];
-    const $tr = createTrByClass(classList, ...Object.values(item));
+    const $tr = createTrByClass(this.classList, ...Object.values(item));
     this.$table.appendChild($tr);
   }
 
