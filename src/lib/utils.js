@@ -4,12 +4,15 @@ export const $ = (id) => document.getElementById(id);
 export const hasSomeEmptyString = (strArray) => {
   return strArray.some((str) => str.length === 0);
 };
+
 export const isNumberStringIsNegative = (str) => {
   return Number(str) < 0;
 };
+
 export const isNumberStringNotDivideBy10 = (str) => {
   return Number(str) % 10 !== 0;
 };
+
 export const getRandomNumber = () => {
   return Number.parseInt(Math.random() * ID_NUMBER_RANGE.MAX, 10);
 };
@@ -33,9 +36,11 @@ export const isValidProduct = (inputsValue) => {
 export const isUndefinedProduct = (product) => {
   return product === undefined;
 };
+
 export const isSoldOutProduct = (product) => {
   return product.quantity === 0;
 };
+
 export const isNotEnoughMoney = (product, chargeAmount) => {
   return product.price > chargeAmount;
 };
@@ -52,6 +57,7 @@ export const isCanBuyProduct = (product, chargeAmount) => {
   }
   return true;
 };
+
 export const isValidCharge = (inputsValue, id) => {
   if (isNumberStringIsNegative(inputsValue[id])) {
     throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_IS_NEGATIVE_NUMBER);
@@ -61,6 +67,7 @@ export const isValidCharge = (inputsValue, id) => {
   }
   return true;
 };
+
 export const isValidChargeAmount = (chargeAmount) => {
   if (isNumberStringIsNegative(chargeAmount)) {
     throw new Error(ERROR_MESSAGE.VENDING_MACHINE_ERROR_CHARGE_IS_NEGATIVE_NUMBER);
@@ -70,6 +77,7 @@ export const isValidChargeAmount = (chargeAmount) => {
   }
   return true;
 };
+
 export const isPurchaseButton = (el) => {
   return el.className === DOM.PURCHASE_BUTTON_CLASSNAME;
 };
@@ -86,9 +94,11 @@ export const isCoinValueLessThanChargeAmount = (coin, chargeAmount) => coin <= c
 export const isPossibleRandomCoin = (charge, randomCoin) => {
   return charge - randomCoin >= 0;
 };
+
 export const isChargeIsGreatherThanZero = (charge) => {
   return charge > 0;
 };
+
 export const isNotFindMostBiggestCoin = (mostBiggestCoin) => {
   return mostBiggestCoin === undefined;
 };
