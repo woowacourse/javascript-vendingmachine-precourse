@@ -162,3 +162,10 @@
 - `localStorage`를 이용하여, 새로고침하더라도 가장 최근에 작업한 정보들을 불러올 수 있도록 한다.
 
 # 👍 결과
+<img src="https://github.com/prefer2/javascript-vendingmachine-precourse/blob/prefer2/docs/result.gif?raw=true"/>
+
+## local storage 및 기존 탭의 상태가 유지
+<img src="https://github.com/prefer2/javascript-vendingmachine-precourse/blob/prefer2/docs/localstorage.gif?raw=true"/>
+
+## 예외 값 입력
+<img src="https://github.com/prefer2/javascript-vendingmachine-precourse/blob/prefer2/docs/exception.gif?raw=true"/>
