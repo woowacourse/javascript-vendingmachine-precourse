@@ -58,3 +58,14 @@ export const isValidChargeAmount = (amount) => {
 
   return true;
 };
+
+export const isValidPurchase = (inputChargeAmount, product) => {
+  const { productPrice, productQuantity } = product;
+
+  if (!isOverGivenNum(inputChargeAmount, productPrice))
+    return setErrorMessage(ERROR_MESSAGE.NOT_ENOUGH_CHARGE);
+  if (!isOverGivenNum(productQuantity, NUMBER.ONE))
+    return setErrorMessage(ERROR_MESSAGE.NOT_ENOUGH_QUANTITY);
+
+  return true;
+};

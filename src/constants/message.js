@@ -10,4 +10,6 @@ export const ERROR_MESSAGE = {
   NOT_OVER_ONE: '1이상의 숫자를 입력해주세요',
   NOT_DIVIDED_BY_TEN_PRICE: '10원으로 나누어 떨어지는 가격을 입력해주세요',
   NOT_DIVIDED_BY_TEN: '10으로 나누어 떨어지는 숫자를 입력해주세요',
+  NOT_ENOUGH_CHARGE: '보유하신 금액으로 해당 상품을 구매하실 수 없습니다',
+  NOT_ENOUGH_QUANTITY: '해당 상품은 품절이므로 구매하실 수 없습니다',
 };

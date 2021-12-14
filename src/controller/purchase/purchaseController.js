@@ -1,8 +1,7 @@
 import PurchaseView from '../../view/purchase/purchaseView.js';
-import { isValidChargeAmount } from '../../utils/validator.js';
+import { isValidChargeAmount, isValidPurchase } from '../../utils/validator.js';
 import { showError } from '../../utils/error.js';
 import { STRING } from '../../constants/constants.js';
-import { $ } from '../../utils/DOMhelper.js';
 
 export default class PurchaseController {
   constructor(appModel) {
@@ -47,14 +46,30 @@ export default class PurchaseController {
   handlePurchase(e) {
     if (e.target.type === STRING.SUBMIT) {
       this.purchaseView.selectProductTableRowDOM(e.target);
-      const { productName } = this.purchaseView.$productNameColumn.dataset;
-      const { productPrice } = this.purchaseView.$productPriceColumn.dataset;
 
-      const changedQuantity = this.appModel.decreaseProductQuantity(productName);
-      this.purchaseView.renderProductQuantity(changedQuantity);
+      const selectedProduct = this.getSelectedProduct();
 
-      this.appModel.decreaseInputChargeAmount(productPrice);
-      this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
+      if (isValidPurchase(this.appModel.inputChargeAmount, selectedProduct)) {
+        return this.purchase(selectedProduct);
+      }
+
+      return showError();
     }
+  }
+
+  purchase({ productName, productPrice }) {
+    const changedQuantity = this.appModel.decreaseProductQuantity(productName);
+    this.purchaseView.renderProductQuantity(changedQuantity);
+
+    this.appModel.decreaseInputChargeAmount(productPrice);
+    this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
+  }
+
+  getSelectedProduct() {
+    const { productName } = this.purchaseView.$productNameColumn.dataset;
+    const { productPrice } = this.purchaseView.$productPriceColumn.dataset;
+    const { productQuantity } = this.purchaseView.$productQuantityColumn.dataset;
+
+    return { productName, productPrice, productQuantity };
   }
 }
