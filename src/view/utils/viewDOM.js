@@ -7,9 +7,9 @@ const COMMON_VIEW = `
 
 const MANAGE_VIEW = `
   <h2>상품 추가하기</h2>
-  <input placeholder="상품명" id="product-name-input"/>
-  <input placeholder="가격" id="product-price-input"/>
-  <input placeholder="수량" id="product-quantity-input"/>
+  <input type="text" placeholder="상품명" id="product-name-input"/>
+  <input type="number" placeholder="가격" id="product-price-input"/>
+  <input type="number" placeholder="수량" id="product-quantity-input"/>
   <button id="product-add-button">추가하기</button>
   <h2>상품 현황</h2>
 
@@ -20,7 +20,7 @@ const MANAGE_VIEW = `
 
 const CHARGE_VIEW = `
   <h2>자판기 동전 충전하기</h2>
-  <input placeholder="자판기가 보유할 금액" id="vending-machine-charge-input"/>
+  <input type="number" placeholder="자판기가 보유할 금액" id="vending-machine-charge-input"/>
   <button id="vending-machine-charge-button">충전하기</button>
   <br>
   <text> 보유 금액: </text>
@@ -45,7 +45,7 @@ const CHARGE_VIEW = `
 
 const PURCHASE_VIEW = `
   <h2>금액 투입</h2>
-  <input placeholder="투입할 금액" id="charge-input"/> 
+  <input type="number" placeholder="투입할 금액" id="charge-input"/> 
   <button id="charge-button">투입하기</button> 
   <br>
   <text> 투입한 금액: </text>
