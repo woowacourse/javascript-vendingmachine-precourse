@@ -3,7 +3,7 @@ export default class ProductManager {
     this.products = products;
   }
 
-  createProduct(name, price, quantity) {
+  create(name, price, quantity) {
     return {
       name: name,
       price: price,
@@ -11,24 +11,24 @@ export default class ProductManager {
     };
   }
 
-  addProduct(name, price, quantity) {
-    const product = this.createProduct(name, price, quantity);
+  add(name, price, quantity) {
+    const product = this.create(name, price, quantity);
     this.products.push(product);
   }
 
-  deleteProduct(index) {
+  delete(index) {
     this.products.splice(index, 1);
   }
 
   removeQuantity(index) {
     if (this.products[index].quantity === 0) {
-      this.deleteProduct(index);
+      this.delete(index);
     }
 
     this.products[index].quantity -= 1;
   }
 
-  purchaseProduct(name) {
+  purchase(name) {
     for (let i in this.products) {
       if (this.products[i].name === name) {
         this.removeQuantity(i);
