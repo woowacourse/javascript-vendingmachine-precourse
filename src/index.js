@@ -153,21 +153,25 @@ function renderDecreaseQuantity(quantityCell, quantity) {
 }
 
 function returnMoney() {
-    const changes = calculateMinimumChanges();
-    console.log(changes);
+    calculateMinimumChanges();
+    renderChanges(inputChanges);
 }
 
 function calculateMinimumChanges() {
-    const result = generateChangeObject();
     moneyList.forEach(coin => {
         while(coin <= totalInputMoney) {
             if(totalChanges[coin] < 1) break;
             totalInputMoney -= coin;
             totalChanges[coin] -= 1;
-            result[coin] += 1;
+            inputChanges[coin] += 1;
         }
     })
-    return result;
+}
+
+function renderChanges(changes) {
+    moneyList
+        .forEach(coin => 
+            document.querySelector(`#coin-${coin}-quantity`).textContent = `${changes[coin]}개`);
 }
 
 //
@@ -214,6 +218,7 @@ fetchHtmlView('tab.html').then(view => app.innerHTML = view);
 let productList = [{name: 'as', price: '1000', quantity: '1'}];
 let chargedMoney = 0;
 const totalChanges = generateChangeObject();
+const inputChanges = generateChangeObject();
 let totalInputMoney = 0;
 
 app.addEventListener('click', function(e) {
