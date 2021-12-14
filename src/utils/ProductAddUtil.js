@@ -29,6 +29,9 @@ export default class ProductAddUtil {
 
   getCurrentProduct() {
     const current = this.storage.product;
+    if (current == null) {
+      return;
+    }
     this.addProductAddTable(current.name, current.price, current.quantity);
     this.addProductPurchaseTable(current.name, current.price, current.quantity);
   }

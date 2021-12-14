@@ -67,6 +67,7 @@ export default class ProductPurchaseUtil {
       this.machineUtil.setCoinTable(this.reverseArr(returnVal.arr));
       this.machineUtil.setCoinAmount(-(this.coinAmount - returnVal.coin));
       this.renderCoinAmount(returnVal.coin);
+      this.machineUtil.setLocalStorage(this.machineUtil.originCoin, this.machineUtil.coinAmount);
     });
   }
 

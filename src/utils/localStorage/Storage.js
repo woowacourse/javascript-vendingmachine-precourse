@@ -54,7 +54,11 @@ export default class Storage {
 
   updateProduct(addProduct) {
     const originProduct = this.product; // 가장 최근 작업이었던 것.
-    console.log(localStorage);
+    if (originProduct == null) {
+      this.setProduct(addProduct);
+      return;
+    }
+
     console.log(originProduct);
     console.log(addProduct);
     if (originProduct.name == addProduct.name) {
@@ -62,5 +66,14 @@ export default class Storage {
     }
 
     this.setProduct(addProduct);
+  }
+
+  updateMachineCoin(addCoin) {
+    const originCoin = this.vendingMachinCoin;
+
+    console.log(originCoin);
+    console.log(addCoin);
+
+    this.setMachineCoin(addCoin);
   }
 }
