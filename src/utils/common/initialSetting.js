@@ -1,6 +1,5 @@
 import { TABS } from '../../constants/constants.js';
 import { renderProducts } from '../addProduct/renderProducts.js';
-import { store } from './store.js';
 
 export const initialSetting = (state, tab) => {
   if (!state.change.amount) state.change.amount = 0;

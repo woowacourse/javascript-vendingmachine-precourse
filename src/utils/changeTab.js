@@ -8,6 +8,7 @@ import { inputUserMoney } from './purchaseProduct/inputUserMoney.js';
 import { purchaseProduct } from './purchaseProduct/purchaseProduct.js';
 import { returnChange } from './purchaseProduct/returnChange.js';
 import { resetChange } from './purchaseProduct/resetChange.js';
+import { addProduct } from './addProduct/addProduct.js';
 
 export const changeTab = async (e, tab, state) => {
   const tabName = e.target.dataset.tabName;
@@ -16,6 +17,11 @@ export const changeTab = async (e, tab, state) => {
 
   if (tab === ADD_MENU_TAB) {
     renderProducts(state);
+
+    $('#product-add-button').addEventListener('click', e => {
+      e.preventDefault();
+      addProduct(state);
+    });
     return;
   }
 
