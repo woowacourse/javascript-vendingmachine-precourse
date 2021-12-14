@@ -22,8 +22,8 @@
     "no-continue": "off",
     "import/extensions": "off",
     "prefer-template": "off",
+    "prefer-destructuring": "off",
     "max-depth": ["error", 2],
-    //"max-lines-per-function": ["error", 15],
     "eol-last": ["error", "always"]
   }
 }

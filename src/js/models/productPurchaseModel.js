@@ -1,87 +1,60 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
+import { PRICE } from '../utils/constants.js';
 
-const calculatefiveHundred = (change, hasCoin) => {
-  const needCount = Math.floor(change / 500);
-  if (needCount > hasCoin.fiveHundred) {
-    change -= 500 * hasCoin.fiveHundred; // 잔돈 계산
-    hasCoin.amount -= 500 * hasCoin.fiveHundred;
-    $('#coin-500-quantity').innerText = `${hasCoin.fiveHundred}개`;
-    hasCoin.fiveHundred = 0;
-    store.setLocalStorage('coins', hasCoin);
-  } else if (needCount <= hasCoin.fiveHundred) {
-    change -= 500 * needCount;
-    hasCoin.amount -= 500 * needCount;
-    $('#coin-500-quantity').innerText = `${needCount}개`;
-    hasCoin.fiveHundred -= needCount;
-    store.setLocalStorage('coins', hasCoin);
-  }
-  return change;
+const getAmount = (coinKinds, countCharge) => {
+  let amount = 0;
+  countCharge.forEach((count, idx) => {
+    amount += count * coinKinds[idx];
+  });
+  return amount;
 };
 
-const calculateOneHundred = (change, hasCoin) => {
-  const needCount = Math.floor(change / 100);
-  if (needCount > hasCoin.oneHundred) {
-    change -= 100 * hasCoin.oneHundred; // 잔돈 계산
-    hasCoin.amount -= 100 * hasCoin.oneHundred;
-    $('#coin-100-quantity').innerText = `${hasCoin.oneHundred}개`;
-    hasCoin.oneHundred = 0;
-    store.setLocalStorage('coins', hasCoin);
-  } else if (needCount <= hasCoin.oneHundred) {
-    change -= 100 * needCount;
-    hasCoin.amount -= 100 * needCount;
-    $('#coin-100-quantity').innerText = `${needCount}개`;
-    hasCoin.oneHundred -= needCount;
-    store.setLocalStorage('coins', hasCoin);
-  }
-  return change;
+const setCoinsLocal = (coinAmount, countCharge, coinKinds) => {
+  const hasCoin = store.getLocalStorage('coins');
+
+  hasCoin.amount -= getAmount(coinKinds, countCharge);
+  hasCoin.fiveHundred = coinAmount[0];
+  hasCoin.oneHundred = coinAmount[1];
+  hasCoin.fifty = coinAmount[2];
+  hasCoin.ten = coinAmount[3];
+
+  store.setLocalStorage('coins', hasCoin);
 };
 
-const calculateFifty = (change, hasCoin) => {
-  const needCount = Math.floor(change / 50);
-  if (needCount > hasCoin.fifty) {
-    change -= 50 * hasCoin.fifty; // 잔돈 계산
-    hasCoin.amount -= 50 * hasCoin.fifty;
-    $('#coin-50-quantity').innerText = `${hasCoin.fifty}개`;
-    hasCoin.fifty = 0;
-    store.setLocalStorage('coins', hasCoin);
-  } else if (needCount <= hasCoin.fifty) {
-    change -= 50 * needCount;
-    hasCoin.amount -= 50 * needCount;
-    $('#coin-50-quantity').innerText = `${needCount}개`;
-    hasCoin.fifty -= needCount;
-    store.setLocalStorage('coins', hasCoin);
-  }
-  return change;
+const renderCountCharge = (coinKinds, countCharge) => {
+  coinKinds.forEach((coin, idx) => {
+    $(`#coin-${coin}-quantity`).innerText = `${countCharge[idx]}개`;
+  });
 };
 
-const calculateTen = (change, hasCoin) => {
-  const needCount = Math.floor(change / 10);
-  if (needCount > hasCoin.ten) {
-    change -= 10 * hasCoin.ten; // 잔돈 계산
-    hasCoin.amount -= 10 * hasCoin.ten;
-    $('#coin-10-quantity').innerText = `${hasCoin.ten}개`;
-    hasCoin.ten = 0;
-    store.setLocalStorage('coins', hasCoin);
-  } else if (needCount <= hasCoin.ten) {
-    change -= 10 * needCount;
-    hasCoin.amount -= 10 * needCount;
-    $('#coin-10-quantity').innerText = `${needCount}개`;
-    hasCoin.ten -= needCount;
-    store.setLocalStorage('coins', hasCoin);
-  }
+const calculateCharge = change => {
+  const hasCoin = store.getLocalStorage('coins');
+  const coinAmount = [hasCoin.fiveHundred, hasCoin.oneHundred, hasCoin.fifty, hasCoin.ten];
+  const coinKinds = [PRICE.FIVE_HUNDRED_WON, PRICE.ONE_HUNDRED_WON, PRICE.FIFTY_WON, PRICE.TEN_WON];
+  const countCharge = [0, 0, 0, 0];
+
+  coinKinds.forEach((coin, idx) => {
+    const needCount = Math.floor(change / coin);
+    let returnCount;
+    if (needCount > coinAmount[idx]) {
+      returnCount = coinAmount[idx];
+      coinAmount[idx] = 0;
+    } else if (needCount <= coinAmount[idx]) {
+      returnCount = needCount;
+      coinAmount[idx] -= needCount;
+    }
+    change -= coin * returnCount;
+    countCharge[idx] = returnCount;
+  });
+  setCoinsLocal(coinAmount, countCharge, coinKinds);
+  renderCountCharge(coinKinds, countCharge);
   return change;
 };
 
 export const getChange = () => {
   let change = Number($('#charge-amount').innerText);
-  const hasCoin = store.getLocalStorage('coins');
-
-  change = calculatefiveHundred(change, hasCoin);
-  change = calculateOneHundred(change, hasCoin);
-  change = calculateFifty(change, hasCoin);
-  change = calculateTen(change, hasCoin);
-
+  change = calculateCharge(change);
   return change;
 };
 

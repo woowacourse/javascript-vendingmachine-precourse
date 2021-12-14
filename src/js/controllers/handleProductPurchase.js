@@ -52,7 +52,6 @@ function HandleProductPurchase() {
     return true;
   };
 
-  // (1) 금액 투입 기능
   $('#charge-button').addEventListener('click', e => {
     e.preventDefault();
     const chargeInput = $('#charge-input').value;
@@ -65,7 +64,6 @@ function HandleProductPurchase() {
     resetChargeInput();
   });
 
-  // (2) 상품을 구매하는 기능 구현
   $('#product-purchase-list').addEventListener('click', e => {
     if (e.target.className === 'purchase-button') {
       const productPrice = Number(e.target.closest('.product-purchase-item').querySelector('.product-purchase-price').innerText);
@@ -80,7 +78,6 @@ function HandleProductPurchase() {
     }
   });
 
-  // (3) 잔돈을 반환하는 기능
   $('#coin-return-button').addEventListener('click', () => {
     this.inputMoney = getChange();
     store.setLocalStorage('inputMoney', this.inputMoney);
