@@ -1,10 +1,10 @@
-import { renderProductAdd, renderProductConfirm } from '../view/index.mjs';
+import { renderProductAddPage, renderProductStatusTable } from '../view/index.mjs';
 import { Product } from '../model/Product.mjs';
 import { products, addProduct } from '../model/products.mjs';
 
 function renderProductAddTab() {
   document.querySelector('main').remove();
-  renderProductAdd(products);
+  renderProductAddPage(products);
 }
 
 export function productAddEvent() {
@@ -21,6 +21,6 @@ export function productAddEvent() {
     const quantity = document.querySelector('#product-quantity-input').value;
 
     addProduct(new Product(name, price, quantity));
-    renderProductConfirm(products);
+    renderProductStatusTable();
   });
 }

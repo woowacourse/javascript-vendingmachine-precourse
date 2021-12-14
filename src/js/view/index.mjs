@@ -1,5 +1,5 @@
 export { renderHeader } from './renderHeader.mjs';
-export { renderProductAdd, renderProductConfirm } from './renderProductAdd.mjs';
+export { renderProductAddPage, renderProductStatusTable } from './renderProductAdd.mjs';
 export {
   renderVendingMachineManage,
   renderVendingMachineChargeAmount,

@@ -1,8 +1,6 @@
-import { products } from '../model/products.mjs';
-
 const $fragment = new DocumentFragment();
 
-function productAdd() {
+function renderProductAddWrap() {
   const $productAddWrap = document.createElement('section');
   $productAddWrap.id = 'product-add-wrap';
 
@@ -18,9 +16,8 @@ function productAdd() {
   $fragment.appendChild($productAddWrap);
 }
 
-function productStatus() {
+function renderProductStatusWrap() {
   const $productStatusWrap = document.createElement('section');
-  $productStatusWrap.id = 'product-status-wrap';
 
   $productStatusWrap.innerHTML = `
     <h2>상품 현황</h2>
@@ -30,38 +27,44 @@ function productStatus() {
         <th>가격</th>
         <th>수량</th>
       </thead>
-      <tbody id="product-status">
+      <tbody id="tbody-product-status">
       </tbody>
     </table>
   `;
   $fragment.appendChild($productStatusWrap);
 }
 
-export function renderProductAdd(products) {
-  const $app = document.querySelector('#app');
-  const $main = document.createElement('main');
-  $main.id = 'productAddWrap';
+function renderProductStatusTable() {
+  const productStatus = JSON.parse(localStorage.getItem('products'));
+  const $productStatusTable = document.querySelector('#tbody-product-status');
 
-  productAdd();
-  productStatus();
-  $main.appendChild($fragment);
-  $app.appendChild($main);
-
-  renderProductConfirm(products);
-}
-
-export function renderProductConfirm(products) {
-  const $productStatus = document.querySelector('#product-status');
-
-  if (!products) return;
-  $productStatus.innerHTML = products
-    .map(product => {
-      return `
-      <tr class="product-manage-item">
-        <td class="product-manage-name">${product.name}</td>
-        <td class="product-manage-price">${product.price}</td>
-        <td class="product-manage-quantity">${product.quantity}</td>
-      </tr>`;
-    })
+  if (!productStatus) return;
+  $productStatusTable.innerHTML = productStatus
+    .map(
+      product => `
+        <tr class="product-manage-item">
+          <td class="product-manage-name">${product.name}</td>
+          <td class="product-manage-price">${product.price}</td>
+          <td class="product-manage-quantity">${product.quantity}</td>
+        </tr>`
+    )
     .join('');
 }
+
+function renderProductAddPageInit() {
+  const $app = document.querySelector('#app');
+  const $main = document.createElement('main');
+  $main.id = 'product-add-wrap';
+
+  renderProductAddWrap();
+  renderProductStatusWrap();
+  $main.appendChild($fragment);
+  $app.appendChild($main);
+  renderProductStatusTable();
+}
+
+function renderProductAddPage() {
+  renderProductAddPageInit();
+}
+
+export { renderProductStatusTable, renderProductAddPage };
