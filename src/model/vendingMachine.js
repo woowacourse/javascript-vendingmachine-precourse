@@ -38,9 +38,8 @@ export default class VendingMachine {
 
     COIN.map((coin, idx) => {
       if (zero / coin > 0) {
-        const randomQuantity = MissionUtils.Random.pickNumberInRange(
-          0,
-          parseInt(zero / coin, 10)
+        const randomQuantity = MissionUtils.Random.pickNumberInList(
+          this.makeArray(parseInt(zero / coin, 10))
         );
         zero -= randomQuantity * coin;
         this.ownChange[idx] += randomQuantity;
@@ -48,6 +47,10 @@ export default class VendingMachine {
     });
     this.ownChange[COIN.length - 1] += zero / 10;
     setOwnChange(this.ownChange);
+  }
+
+  makeArray(max) {
+    return Array.from({ length: max + 1 }, (v, i) => i);
   }
 
   getMoney(money) {
