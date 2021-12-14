@@ -13,8 +13,6 @@ export default class Component {
     this.setUp();
   }
 
-  initDom() {}
-
   bindEvents() {}
 
   initState() {}
@@ -27,7 +25,6 @@ export default class Component {
 
   setUp() {
     this.initState();
-    this.initDom();
     this.initChildren();
     this.mount();
     storeObserver(
@@ -50,10 +47,6 @@ export default class Component {
 
   returnRoot() {
     return this.$container;
-  }
-
-  returnHTML() {
-    return this.$container.outerHTML;
   }
 
   renderChildren() {
