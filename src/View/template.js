@@ -13,7 +13,7 @@ export const makeElement = ({ tag, id, innerText, type, placeholder, className, 
   return element;
 };
 
-export const makeTableForm = (theadText, tableBodyId) => {
+export const makeTableForm = (theadText, tableBodyId = "") => {
   const tableArea = makeElement({ tag: "table" });
   const tableHead = makeElement({ tag: "thead" });
   theadText.forEach(tableHeadText => {
@@ -25,7 +25,7 @@ export const makeTableForm = (theadText, tableBodyId) => {
   return tableArea;
 };
 
-export const makeTableRow = (elements, rowClass, button = "", dataSet = "") => {
+export const makeTableRow = (elements, rowClass = "", button = "", dataSet = "") => {
   const tr = makeElement({ tag: "tr", className: rowClass });
   elements.forEach((rowData, index) => {
     const element = makeElement({

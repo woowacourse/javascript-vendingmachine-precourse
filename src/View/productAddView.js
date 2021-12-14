@@ -11,8 +11,8 @@ export default class ProductAddView {
 
   render() {
     clearArea(this.container);
-    this.renderInputForm(this.container);
-    this.renderProductTable(this.container);
+    this.renderInputForm();
+    this.renderProductTable();
     this.bindInputs();
     this.bindAddProductEvent();
   }
