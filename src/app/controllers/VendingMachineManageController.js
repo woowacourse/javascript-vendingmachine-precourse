@@ -1,5 +1,5 @@
 import { DATA_MODEL_KEYS, DOM } from '../../lib/constants.js';
-import { $, isValidCharge } from '../../lib/utils.js';
+import { $, isValidChargeAmount } from '../../lib/utils.js';
 import Coin from '../../modules/coin.js';
 import { defaultValueGenerators } from '../model/index.js';
 
@@ -30,20 +30,26 @@ class VendingMachineManageController {
 
   onSubmitVendingMachineChargeForm(e) {
     e.preventDefault();
+    this.executeAddChargeProcess();
+  }
+
+  executeAddChargeProcess() {
+    const newChargeAmount = Number(
+      this.$model.getVendingMachineChargeInputValueByInputId(DOM.VENDING_MACHINE_CHARGE_INPUT)
+    );
     try {
-      this.submitSuccess();
+      if (isValidChargeAmount(newChargeAmount)) {
+        const newCoins = Coin.getRandomCoins(newChargeAmount);
+        this.$model.addChargeAmount(newChargeAmount, DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE);
+        this.executeAddCoinsProcess(newCoins);
+      }
     } catch (error) {
       alert(error);
     }
   }
 
-  submitSuccess() {
-    this.addCoins();
-    const inputValue = Number(
-      this.$model.getVendingMachineChargeInputValueByInputId(DOM.VENDING_MACHINE_CHARGE_INPUT)
-    );
-    const newVendingMachineCharge = this.combineCurrentVendingMachineChargeAndNewCharge(inputValue);
-    this.$model.setVendingMachineChargeAmount(newVendingMachineCharge);
+  executeAddCoinsProcess(newCoins) {
+    this.$model.addCoins(newCoins);
     this.$model.setVendingMachineChargeInputsValue(() =>
       defaultValueGenerators[DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE_INPUTS_VALUE]()
     );
@@ -52,37 +58,6 @@ class VendingMachineManageController {
       this.$model.getVendingMachineChargeInputsValue(),
       this.$model.getVendingMachineChargeAmount()
     );
-  }
-
-  addCoins() {
-    const vendingMachineInputsValue = this.$model.getVendingMachineChargeInputsValue();
-    const vendingMachineChargeInputValue = this.$model.getVendingMachineChargeInputValueByInputId(
-      DOM.VENDING_MACHINE_CHARGE_INPUT
-    );
-    /** 캡슐화 완료 */
-    if (isValidCharge(vendingMachineInputsValue, DOM.VENDING_MACHINE_CHARGE_INPUT)) {
-      const newCoins = this.getNewCoins(Number(vendingMachineChargeInputValue));
-      this.$model.setCoins(this.combineCurrentCoinsAndNewCoins(this.$model.getCoins(), newCoins));
-    }
-  }
-
-  combineCurrentCoinsAndNewCoins(currentCoins, newCoins) {
-    const combinedCoins = {};
-    Object.keys(currentCoins).forEach((key) => {
-      combinedCoins[key] = currentCoins[key] + newCoins[key];
-    });
-
-    return combinedCoins;
-  }
-
-  combineCurrentVendingMachineChargeAndNewCharge(newCharge) {
-    const currentCharge = Number(this.$model.getVendingMachineChargeAmount());
-    return currentCharge + newCharge;
-  }
-
-  /** coin 모듈로 뺀다? */
-  getNewCoins(charge) {
-    return Coin.getRandomCoins(charge);
   }
 }
 export default VendingMachineManageController;

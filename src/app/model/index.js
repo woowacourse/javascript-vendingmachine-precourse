@@ -45,10 +45,11 @@ class VendingMachineModel {
   initDataModel() {
     Object.values(DATA_MODEL_KEYS).forEach((KEY) => {
       const defaultValueGenerator = defaultValueGenerators[KEY];
-      const value = this.hasPreviousDataInDataModel(KEY)
+      const defaultValue = this.hasPreviousDataInDataModel(KEY)
         ? this.dataModel[KEY]
         : defaultValueGenerator();
-      this.setDataModelPropertyValue(KEY, value);
+
+      this.setDataModelPropertyValue(KEY, defaultValue);
     });
   }
 
@@ -113,6 +114,10 @@ class VendingMachineModel {
     return this.dataModel;
   }
 
+  getDataModelByProperty(KEY) {
+    return this.dataModel[KEY];
+  }
+
   getTab() {
     return this.dataModel[DATA_MODEL_KEYS.TAB];
   }
@@ -167,6 +172,21 @@ class VendingMachineModel {
       targetProduct: this.dataModel[DATA_MODEL_KEYS.PRODUCT_LIST][position],
       position,
     };
+  }
+
+  addChargeAmount(newChargeAmount, KEY) {
+    const currentChargeAmount = this.getDataModelByProperty(KEY);
+    this.setDataModelPropertyValue(KEY, currentChargeAmount + newChargeAmount);
+  }
+
+  addCoins(newCoins) {
+    const currentCoins = this.getCoins();
+    const combinedCoins = {};
+    Object.keys(currentCoins).forEach((key) => {
+      combinedCoins[key] = currentCoins[key] + newCoins[key];
+    });
+
+    this.setCoins(combinedCoins);
   }
 }
 export default VendingMachineModel;
