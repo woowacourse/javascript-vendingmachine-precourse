@@ -16,9 +16,9 @@ export default class Controller {
   init() {
     this.onClickTabBtn();
     this.onClickAddProduct();
-    this.onClickChargeBtn(); // 잔돈 충전 탭 - 충전하기 버튼 클릭 시
-    this.onClickPayBtn(); // 상품 구매 탭 - 투입하기 버튼 클릭 시
-    this.onClickReturn(); // 상품 구매 탭 - 반환하기 버튼 클릭 시
+    this.onClickChargeBtn();
+    this.onClickPayBtn();
+    this.onClickReturn();
   }
 
   // 3가지 탭 메뉴 클릭 이벤트
@@ -43,6 +43,7 @@ export default class Controller {
       this.view.renderReturn(this.vendingMachine);
       this.view.renderUserMoney(this.vendingMachine.userMoney);
       this.view.renderProductTable(this.vendingMachine.productList);
+
       if (this.vendingMachine.productList.length > 0) {
         this.onClickPurchase();
       }
@@ -73,9 +74,11 @@ export default class Controller {
     });
   }
 
+  // 잔돈 충전 탭 - 충전하기 버튼 클릭 시
   onClickChargeBtn() {
     const { $chargeBtn } = this.view.buttons;
     const { $chargeCoin } = this.view.inputs;
+
     $chargeBtn.addEventListener("click", () => {
       if (!isValidCoin($chargeCoin.value)) {
         alert("다시 입력하세요.");
@@ -86,6 +89,7 @@ export default class Controller {
     });
   }
 
+  // 상품 구매 탭 - 투입하기 버튼 클릭 시
   onClickPayBtn() {
     const { $payBtn } = this.view.buttons;
     const { $buyMoney } = this.view.inputs;
@@ -100,8 +104,10 @@ export default class Controller {
     });
   }
 
+  // 상품 구매 탭 - 반환하기 버튼 클릭 시
   onClickReturn() {
     const { $coinReturnBtn } = this.view.buttons;
+
     $coinReturnBtn.addEventListener("click", () => {
       this.vendingMachine.returnChange();
       this.view.renderReturn(this.vendingMachine);
@@ -109,6 +115,7 @@ export default class Controller {
     });
   }
 
+  // 상품 구매 탭 - 구매하기 버튼 클릭 시
   onClickPurchase() {
     document.querySelectorAll(".purchase-button").forEach((item) => {
       item.addEventListener("click", (e) => {
