@@ -111,13 +111,16 @@ let totalInputMoney = 0;
 function putMoney() {
     const inputAmount = document.querySelector("#charge-input").value;
     if(isCorrectChargeMoney(inputAmount)) {
-        totalInputMoney += parseInt(inputAmount, 10);
-        // document.querySelector("#charge-amount").textContent = `투입한 금액: ${totalInputMoney}`;
+        getTotalInputMoney(inputAmount);
         renderInputMoney(totalInputMoney);
     }
     else {
         console.log('nono');
     }
+}
+
+function getTotalInputMoney(money) {
+    totalInputMoney += parseInt(money, 10);
 }
 
 function renderInputMoney(money) {
