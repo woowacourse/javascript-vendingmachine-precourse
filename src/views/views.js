@@ -102,19 +102,19 @@ export function showCurrentChanges() {
   <th>개수</th>
   <tr>
     <td>500원</td>
-    <td class="vending-machine-coin-500-quantity">${state.changes.fiveHundred}개</td>
+    <td id="vending-machine-coin-500-quantity">${state.changes.fiveHundred}개</td>
   </tr>
   <tr>
     <td>100원</td>
-    <td class="vending-machine-coin-100-quantity">${state.changes.hundred}개</td>
+    <td id="vending-machine-coin-100-quantity">${state.changes.hundred}개</td>
   </tr>
   <tr>
     <td>50원</td>
-    <td class="vending-machine-coin-50-quantity">${state.changes.fifty}개</td>
+    <td id="vending-machine-coin-50-quantity">${state.changes.fifty}개</td>
   </tr>
   <tr>
     <td>10원</td>
-    <td class="vending-machine-coin-10-quantity">${state.changes.ten}개</td>
+    <td id="vending-machine-coin-10-quantity">${state.changes.ten}개</td>
   </tr>
 `;
 }

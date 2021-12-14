@@ -10,6 +10,10 @@ export function clickProductAddButton(e) {
   const $productPriceInput = document.getElementById("product-price-input")
   const $productQuantityInput = document.getElementById("product-quantity-input")
 
+  if($productPriceInput.value % 10 !== 0) {
+    alert("10의 배수 단위로만 설정할 수 있습니다.");
+  }
+  else {
   const newProduct = {
     name: $productNameInput.value,
     price: $productPriceInput.value,
@@ -21,4 +25,5 @@ export function clickProductAddButton(e) {
   
   updateState();
   rendering();
+}
 }
