@@ -1,6 +1,6 @@
 import { getInputValueById } from "../../utils/inputValue.js";
 import { isValidMoney } from "../common/checkMoneyInput.js";
-import { getMoneyCustomer } from "../../utils/getSetItems.js";
+import { getMoneyCustomer } from "../../models/getSetItems.js";
 import { addMoneyCustomer } from "./data/chargeCustomerDataController.js";
 import { purchaseProduct } from "./data/purchaseDataController.js";
 import { returnCoins } from "./data/returnCoinsDataController.js";

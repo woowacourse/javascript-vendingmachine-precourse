@@ -2,7 +2,7 @@ import { COIN_TYPES } from "../../../utils/constants.js";
 import {
   getCoinsInMachine,
   setCoinsInMachine,
-} from "../../../utils/getSetItems.js";
+} from "../../../models/getSetItems.js";
 
 // 동전을 랜덤으로 뽑아 가능하다면 반환
 const availableRandomCoin = money => {

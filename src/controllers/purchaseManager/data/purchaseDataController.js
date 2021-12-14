@@ -2,7 +2,7 @@ import {
   getProducts,
   setMoneyCustomer,
   setProducts,
-} from "../../../utils/getSetItems.js";
+} from "../../../models/getSetItems.js";
 
 // 상품 구매
 const purchaseProduct = (name, price, money) => {

@@ -1,5 +1,5 @@
 import { onClickPurchaseButton } from "../../../controllers/purchaseManager/eventHandlers.js";
-import { getProducts } from "../../../utils/getSetItems.js";
+import { getProducts } from "../../../models/getSetItems.js";
 import { convertHyphenToSpace } from "../../../utils/productNameConverter.js";
 
 // 상품을 테이블에 삽입

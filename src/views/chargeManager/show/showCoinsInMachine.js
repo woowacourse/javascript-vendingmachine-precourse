@@ -1,6 +1,6 @@
 import { COIN_TYPES } from "../../../utils/constants.js";
 import { insertCoinTypeToTable } from "../../common/insertCoinTypeToTable.js";
-import { getCoinsInMachine } from "../../../utils/getSetItems.js";
+import { getCoinsInMachine } from "../../../models/getSetItems.js";
 
 // 동전 테이블에 동전 종류 삽입
 const insertCoinTypesToTable = $table => {
