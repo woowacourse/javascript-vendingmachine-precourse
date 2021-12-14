@@ -55,3 +55,7 @@
     -   그리디하게 제일 값이 큰 동전부터 채워서 반환하기
     -   반환된 동전 값만큼 투입 금액과 보유 동전 목록을 차감하고
         차감된 투입 금액과 자판기 보유 동전 목록을 `localStorage`에 업데이트
+
+## 프로젝트 구조
+![image](https://user-images.githubusercontent.com/38878617/145949612-6c9bdcf5-54da-4e7c-8650-c3e0fe2f41ce.PNG)
+
