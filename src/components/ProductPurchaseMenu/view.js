@@ -1,4 +1,4 @@
-import { $ } from '../../utils/dom.js';
+import { $, initInput } from '../../utils/dom.js';
 import { ID, CLASS } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import { STORAGE_KEY } from '../../constants/storageKey.js';
@@ -50,6 +50,7 @@ export default function ProductPurchaseMenuView() {
 
     vendingMachine.addInsertMoney(parseInt(addMoneyInput.value));
     this.renderInsertMoney();
+    initInput(addMoneyInput);
   };
 
   this.onClickPurchaseProductButton = (e) => {
