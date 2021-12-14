@@ -108,7 +108,7 @@ export default class ProductPurchaseView {
   bindInsertButtonEvent() {
     const insertButton = document.getElementById(PURCHASE_MANAGE.INSERT_BUTTON.ID);
     insertButton.addEventListener("click", () => {
-      this.coinStore.insert(Number(this.insertCoinInput.value));
+      this.coinStore.insert(this.insertCoinInput.value);
       this.loadUserCoin();
     });
   }
@@ -124,8 +124,9 @@ export default class ProductPurchaseView {
   }
 
   handleClickReturnButtonEvent() {
+    if (this.coinStore.hasCharge(this.insertAmountArea.innerText) === false) return;
     const [returnCoin, currentCharge] = this.vendingMachineCoinStore.returnCharge(
-      Number(this.insertAmountArea.innerText)
+      this.insertAmountArea.innerText
     );
     this.coinStore.setCurrenCoinToHave(currentCharge);
     this.loadUserCoin();

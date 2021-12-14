@@ -1,4 +1,4 @@
-import { LACK_OF_COIN } from "../constant/alertMessage.js";
+import { LACK_OF_COIN, NO_RETURN_COIN } from "../constant/alertMessage.js";
 import { USER_COIN } from "../constant/vendingMachine.js";
 import Coin from "./Coin.js";
 
@@ -29,8 +29,9 @@ export default class UserCoin extends Coin {
   }
 
   insert(coinToInput) {
-    if (super.checkValid(coinToInput)) {
-      this.save(coinToInput);
+    const coin = Number(coinToInput);
+    if (super.checkValid(coin)) {
+      this.save(coin);
     }
   }
 
@@ -49,5 +50,12 @@ export default class UserCoin extends Coin {
   pay(productPrice) {
     const updateCoin = this.getCurrentCoinToHave() - productPrice;
     super.setCoinData(this.key, updateCoin);
+  }
+
+  hasCharge(currentCoin) {
+    if (Number(currentCoin) === 0) {
+      return alert(NO_RETURN_COIN);
+    }
+    return true;
   }
 }
