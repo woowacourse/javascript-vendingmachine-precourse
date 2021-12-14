@@ -10,7 +10,7 @@ export default function productsTable(products) {
         <th class="${PRODUCT_MANAGEMENT.CLASS.PRODUCT_MANAGE_PRICE}">가격</th>
         <th class="${PRODUCT_MANAGEMENT.CLASS.PRODUCT_MANAGE_QUANTITY}">수량</th>
     </tr>
-    ${products.map(product => displayProducts(product))}
+    ${products.map(product => displayProducts(product)).join('')}
     </table>
     <br>
     `;
