@@ -38,4 +38,8 @@ export default class Validation {
     }
     return true;
   }
+
+  checkPurchasePossible(productPrice, insertedMoney) {
+    return productPrice <= insertedMoney;
+  }
 }
