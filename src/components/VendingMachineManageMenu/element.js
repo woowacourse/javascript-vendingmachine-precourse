@@ -1,17 +1,16 @@
 import { ID } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import {
+  SubTitle,
   Form,
   Input,
+  Span,
+  SpanWithId,
   ButtonWithId,
-  Table,
-  TableHead,
-  TableRow,
-  TableData,
-  TableDataWithId,
 } from '../elements.js';
+import { createCoinTable } from '../coinTable.js';
 
-export const createAddCoinForm = (event) => {
+const createAddCoinForm = (event) => {
   const addCoinForm = Form();
   const addCoinInput = Input(
     ID.VENDING_MACHINE_CHARGE_INPUT,
@@ -29,28 +28,26 @@ export const createAddCoinForm = (event) => {
   return addCoinForm;
 };
 
-const createCoinRow = (coin, id) => {
-  const tableRow = TableRow();
-  const coinNameData = TableData(coin);
-  const coinQuantityData = TableDataWithId('', id);
+export const coinAddForm = (event) => {
+  const coinAddSubTitle = SubTitle(MACHINE.SUBTITLE.ADD_COIN);
+  const coinAddForm = createAddCoinForm(event);
 
-  tableRow.append(coinNameData, coinQuantityData);
-
-  return tableRow;
+  return [coinAddSubTitle, coinAddForm];
 };
 
-export const createCoinTable = () => {
-  const coinTable = Table();
+export const chargeAmountSpan = () => {
+  const haveAmountSpan = Span(MACHINE.TEXT.HAVE_AMOUNT);
+  const chargeAmountSpan = SpanWithId('', ID.VENDING_MACHINE_CHARGE_AMOUNT);
 
-  TableHead(coinTable, MACHINE.TABLE.COIN_HEADS);
-  MACHINE.COIN.forEach((coin, index) => {
-    const tableRow = createCoinRow(
-      `${coin}${MACHINE.WON}`,
-      ID.VENDING_MACHINE_COIN[index]
-    );
+  return [haveAmountSpan, chargeAmountSpan];
+};
 
-    coinTable.append(tableRow);
-  });
+export const coinTable = () => {
+  const haveCoinSubTitle = SubTitle(MACHINE.SUBTITLE.HAVE_COIN);
+  const coinTable = createCoinTable(
+    ID.MACHINE_COIN_TABLE,
+    ID.VENDING_MACHINE_COIN
+  );
 
-  return coinTable;
+  return [haveCoinSubTitle, coinTable];
 };
