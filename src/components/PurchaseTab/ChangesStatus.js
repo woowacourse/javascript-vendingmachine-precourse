@@ -18,7 +18,7 @@ export default class ChangesStatus extends Component {
   }
 
   onClickReturnButton({ id }) {
-    if (id !== 'coin-return-button') return;
+    if (id !== PURCHASE_ELEMENT.RETURN_BUTTON) return;
     const { chargedMoney } = this.getGlobalState();
     const { SUCCESS, error, data } = ChangeStore.dispatch(
       spendChanges(chargedMoney)

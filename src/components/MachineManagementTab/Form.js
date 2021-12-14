@@ -30,6 +30,6 @@ export default class Form extends Component {
       <h3>자판기 동전 충전하기</h3>
       <input id=${MACHINE_ELEMENT.CHARGE_INPUT} type="number" placeholder="자판기가 보유할 금액" required/>
       <button id=${MACHINE_ELEMENT.CHARGE_BUTTON}>충전하기</button>
-      `;
+    `;
   }
 }

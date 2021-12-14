@@ -18,6 +18,6 @@ export default class CoinStatus extends Component {
           </tr>
           ${coinStatusTemplate(coins)}
       </table>
-      `;
+    `;
   }
 }

@@ -10,10 +10,6 @@ export default class Product {
     return { name, price, quantity };
   }
 
-  hasEnoughQuantity(requiredQuantity) {
-    return this.quantity >= requiredQuantity;
-  }
-
   changePrice(price) {
     this.price = price;
   }
