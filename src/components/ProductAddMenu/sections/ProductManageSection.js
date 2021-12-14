@@ -1,6 +1,6 @@
-import Component from '../../core/Component.js';
+import Component from '../../../core/Component.js';
 
-export default class ProductManageTable extends Component {
+export default class ProductManageSection extends Component {
   setup() {
     const { items } = this.props;
     this.state = { items };

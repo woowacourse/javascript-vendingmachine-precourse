@@ -1,5 +1,5 @@
 import Component from '../../core/Component.js';
-import ChargeCoinSection from './ChargeCoinSection.js';
+import ChargeCoinSection from './sections/ChargeCoinSection.js';
 import ChargedCoinSection from './ChargedCoinSection.js';
 import $ from '../../utils/helpers.js';
 

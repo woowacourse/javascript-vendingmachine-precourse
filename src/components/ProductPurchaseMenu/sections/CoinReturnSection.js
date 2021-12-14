@@ -1,4 +1,4 @@
-import Component from '../../core/Component.js';
+import Component from '../../../core/Component.js';
 
 export default class CoinReturnSection extends Component {
   setup() {
@@ -27,9 +27,12 @@ export default class CoinReturnSection extends Component {
   }
 
   setEvent() {
-    // TODO: 동전이 없을 경우 예외 처리, 잔돈 반환 후 동전 상태 저장, 다른 탭에 갔다 왔을 때 잔돈 상태 유지
     this.addEvent('click', '#coin-return-button', () => {
-      this.props.returnChange();
+      try {
+        this.props.returnChange();
+      } catch ({ message }) {
+        alert(message);
+      }
     });
   }
 }

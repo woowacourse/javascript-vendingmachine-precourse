@@ -1,6 +1,5 @@
-import Component from '../../core/Component.js';
-import { isValidChargeAmount } from '../../utils/validations.js';
-import $ from '../../utils/helpers.js';
+import Component from '../../../core/Component.js';
+import $ from '../../../utils/helpers.js';
 
 export default class ChargeSection extends Component {
   setup() {
@@ -33,15 +32,14 @@ export default class ChargeSection extends Component {
 
   setEvent() {
     this.addEvent('click', '#charge-button', () => {
+      const { charge } = this.props;
       const chargingAmount = $('#charge-input').valueAsNumber;
 
-      if (!isValidChargeAmount(chargingAmount)) {
-        alert('error');
-
-        return;
+      try {
+        charge(chargingAmount);
+      } catch ({ message }) {
+        alert(message);
       }
-
-      this.props.charge(chargingAmount);
     });
   }
 }

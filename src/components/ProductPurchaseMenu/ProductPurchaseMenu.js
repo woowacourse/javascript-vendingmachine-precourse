@@ -1,7 +1,7 @@
 import Component from '../../core/Component.js';
-import ChargeSection from './ChargeSection.js';
-import CoinReturnSection from './CoinReturnSection.js';
-import ProductPurchaseSection from './ProductPurchaseSection.js';
+import ChargeSection from './sections/ChargeSection.js';
+import CoinReturnSection from './sections/CoinReturnSection.js';
+import ProductPurchaseSection from './sections/ProductPurchaseSection.js';
 import $ from '../../utils/helpers.js';
 
 export default class ProductPurchaseMenu extends Component {

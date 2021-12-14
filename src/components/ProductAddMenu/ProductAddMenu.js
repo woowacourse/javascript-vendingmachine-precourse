@@ -1,6 +1,6 @@
 import Component from '../../core/Component.js';
-import ProductAddSection from './ProductAddSection.js';
-import ProductManageTable from './ProductManageTable.js';
+import ProductAddSection from './sections/ProductAddSection.js';
+import ProductManageSection from './sections/ProductManageSection.js';
 import $ from '../../utils/helpers.js';
 
 export default class ProductAddMenu extends Component {
@@ -14,6 +14,6 @@ export default class ProductAddMenu extends Component {
   mounted() {
     const { items, addItem } = this.props;
     new ProductAddSection($('#product-add-section'), { addItem });
-    new ProductManageTable($('#product-manage-table'), { items });
+    new ProductManageSection($('#product-manage-table'), { items });
   }
 }

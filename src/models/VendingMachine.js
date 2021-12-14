@@ -4,6 +4,8 @@ import Coins from './Coins.js';
 import VendingMachineCoins from './VendingMachineCoins.js';
 import ChargedAmount from './ChargedAmount.js';
 import tc from '../core/utils/tc.js';
+import { isValidItem, isValidChargeAmount } from '../utils/validations.js';
+import { EXCEPTIONS } from '../configs/constants.js';
 
 export default class VendingMachine {
   constructor(store, { items, coins, chargedAmount }, _ = tc(store, Store)) {
@@ -23,20 +25,32 @@ export default class VendingMachine {
     _1 = tc(price, 'number'),
     _2 = (quantity, 'number')
   ) {
+    if (!isValidItem(name, price, quantity)) {
+      throw EXCEPTIONS.WRONG_ITEM;
+    }
+
     const result = this.store.insert({ name, price, quantity });
     this.items.insert(result.id, name, price, quantity);
 
     return this;
   }
 
-  refillCoins(chargeAmount, _ = tc(chargeAmount, 'number')) {
-    this.coins.refill(chargeAmount);
+  refillCoins(amount, _ = tc(amount, 'number')) {
+    if (!isValidChargeAmount(amount)) {
+      throw EXCEPTIONS.WRONG_CHARGE_AMOUNT;
+    }
+
+    this.coins.refill(amount);
     this.store.updateCoins(this.coins.toObject());
 
     return this;
   }
 
   charge(amount, _ = tc(amount, 'number')) {
+    if (!isValidChargeAmount(amount)) {
+      throw EXCEPTIONS.WRONG_CHARGE_AMOUNT;
+    }
+
     this.store.updateCharge(this.chargedAmount.amount + amount);
     this.chargedAmount.charge(amount);
 

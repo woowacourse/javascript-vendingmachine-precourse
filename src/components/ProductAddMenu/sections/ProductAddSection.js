@@ -1,6 +1,5 @@
-import Component from '../../core/Component.js';
-import { isValidItem } from '../../utils/validations.js';
-import $ from '../../utils/helpers.js';
+import Component from '../../../core/Component.js';
+import $ from '../../../utils/helpers.js';
 
 export default class ProductAddSection extends Component {
   template() {
@@ -21,13 +20,11 @@ export default class ProductAddSection extends Component {
       const price = $('#product-price-input').valueAsNumber;
       const quantity = $('#product-quantity-input').valueAsNumber;
 
-      if (!isValidItem(name, price, quantity)) {
-        alert('error');
-
-        return;
+      try {
+        this.props.addItem(name, price, quantity);
+      } catch ({ message }) {
+        alert(message);
       }
-
-      this.props.addItem(name, price, quantity);
     });
   }
 }
