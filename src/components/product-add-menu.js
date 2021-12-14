@@ -12,7 +12,7 @@ const productAddMenu = {
     </section><br />
     <section>
       <h3>상품 현황</h3>
-      <table>
+      <table id="product-add-table">
         <thead>
           <tr>
             <th class="product-manage-name">상품명</th>

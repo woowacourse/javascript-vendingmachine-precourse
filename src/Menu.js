@@ -1,23 +1,28 @@
 import ProductAddMenuView from "./views/ProductAddMenuView.js";
-import VendingMachineManageMenu from "./views/VendingMachineManageMenuView.js";
-import ProductPurchaseMenu from "./views/ProductPurchaseMenuView.js";
+import VendingMachineManageMenuView from "./views/VendingMachineManageMenuView.js";
+import ProductPurchaseMenuView from "./views/ProductPurchaseMenuView.js";
+import ProductAddMenuController from "./controller/ProductAddMenuController.js";
+import { getData, setData } from "./utils/localStorage.js";
 
 export default class Menu {
   constructor() {
-    this.productAddMenu = new ProductAddMenuView();
-    this.vendingMachineManageMenu = new VendingMachineManageMenu();
-    this.productPurchaseMenu = new ProductPurchaseMenu();
+    this.productAddMenuView = new ProductAddMenuView();
+    this.vendingMachineManageMenuView = new VendingMachineManageMenuView();
+    this.productPurchaseMenuView = new ProductPurchaseMenuView();
+
+    this.ProductAddMenuController = new ProductAddMenuController();
   }
 
   productAddMenuInitialize() {
-    this.productAddMenu.render();
+    this.productAddMenuView.render(getData("products"));
+    this.ProductAddMenuController.initialize();
   }
 
   vendingMachineManageMenuInitialize() {
-    this.vendingMachineManageMenu.render();
+    this.vendingMachineManageMenuView.render();
   }
 
   productPurchaseMenuInitialize() {
-    this.productPurchaseMenu.render();
+    this.productPurchaseMenuView.render();
   }
 }
