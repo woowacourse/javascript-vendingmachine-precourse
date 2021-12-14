@@ -7,7 +7,7 @@ import {
 import { $app } from '../common/elements.js';
 
 import createProductAddForm from './CreateForm.js';
-import createProductListTable from './CreateTable.js';
+import { createProductListTable } from './CreateTable.js';
 
 function createProductManageDiv() {
   const id = 'product-manage-div';

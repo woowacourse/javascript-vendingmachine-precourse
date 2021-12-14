@@ -49,6 +49,14 @@ export function createButton(id, innerText) {
   return button;
 }
 
+export function createClassButton(cla, innerText) {
+  const button = document.createElement('button');
+  button.setAttribute('class', cla);
+  button.innerText = innerText;
+
+  return button;
+}
+
 export function createTable(id) {
   const table = document.createElement('table');
   table.setAttribute('id', id);

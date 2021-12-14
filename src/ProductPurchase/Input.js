@@ -8,6 +8,8 @@ import {
   checkAmountInputValidation,
   onInvalidInputSubmit,
 } from './CheckValidation.js';
+import createPurchasableListTable from './CreatePurchasableTable.js';
+import { updatePurchasableToLocalStorage } from './Purchasable.js';
 
 function addAmountInputToLocalStorage(input) {
   let amountInput = 0;
@@ -32,6 +34,8 @@ function onValidInputSubmit() {
   setAmountInput();
   addAmountHaveToLocalStorage(inputInput);
   setAmountHave();
+  updatePurchasableToLocalStorage();
+  createPurchasableListTable();
 }
 
 function onMoneyInputClick(event) {

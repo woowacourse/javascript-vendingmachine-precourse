@@ -22,7 +22,7 @@ function createProductTableHeaderRow() {
   return productTableHeaderRow;
 }
 
-function getProductsFromLocalStorage() {
+export function getProductsFromLocalStorage() {
   let products = [];
 
   if (localStorage.getItem('상품 현황')) {
@@ -44,7 +44,7 @@ function setProductTableBody(productListTable) {
   });
 }
 
-export default function createProductListTable() {
+export function createProductListTable() {
   const productListTable = createTable('product-list-table');
   const productTableHeaderRow = createProductTableHeaderRow();
   productListTable.append(productTableHeaderRow);
