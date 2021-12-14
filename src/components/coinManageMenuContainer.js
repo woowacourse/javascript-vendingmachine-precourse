@@ -42,8 +42,4 @@ export default class CoinManageMenuContainer extends Component {
       tableHeaders: ["동전", "개수"],
     });
   }
-
-  setEvent() {
-    this.$target.addEventListener("click", this.$props.onClickButton);
-  }
 }

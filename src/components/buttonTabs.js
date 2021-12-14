@@ -7,11 +7,7 @@ export default class ButtonTabs extends Component {
       .join("");
   }
 
-  setEvent() {
-    this.$target.addEventListener("click", this.$props.onClickCallback);
-  }
-
   getSingleButtonItem(buttonName, buttonId) {
-    return `<button id=${buttonId}>${buttonName}</button>`;
+    return `<button class="tab" id=${buttonId}>${buttonName}</button>`;
   }
 }

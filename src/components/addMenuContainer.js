@@ -37,8 +37,4 @@ export default class AddMenuContainer extends Component {
       tableContents: this.$props.menuItems,
     });
   }
-
-  setEvent() {
-    this.$target.addEventListener("click", this.$props.onClickButton);
-  }
 }
