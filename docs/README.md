@@ -9,6 +9,7 @@
 ---
 
 ## 프로젝트 구조
+```
 .  
 ├── index.html  
 ├── assets  
@@ -41,6 +42,7 @@
 　　　　├── storage.js                      // localStorage 관련 기능  
 　　　　├── style.js                        // css 적용하기 위해 만듦  
 　　　　└── validator.js                    // 유효성 검사 기능 모아놓은 곳  
+```
 
 ---
 
