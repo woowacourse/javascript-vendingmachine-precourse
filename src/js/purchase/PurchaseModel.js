@@ -11,6 +11,13 @@ export default class PurchaseModel {
     return this.chargedMoney;
   };
 
+  getReturnedTotalMoney = (returnedCoins) => {
+    return Object.entries(returnedCoins).reduce(
+      (sum, [coin, quantity]) => sum + coin * quantity,
+      0
+    );
+  };
+
   chargeMoney = (money) => {
     checkValidChargeMoney(money);
 
@@ -25,8 +32,10 @@ export default class PurchaseModel {
     setLocalStorage(LOCAL_STORAGE_KEY.CHARGE_MONEY, this.chargedMoney);
   };
 
-  reset = () => {
-    this.chargedMoney = 0;
+  decreaseChargedMoney = (returnedCoins) => {
+    const returnedTotalMoney = this.getReturnedTotalMoney(returnedCoins);
+
+    this.chargedMoney -= returnedTotalMoney;
     setLocalStorage(LOCAL_STORAGE_KEY.CHARGE_MONEY, this.chargedMoney);
   };
 }

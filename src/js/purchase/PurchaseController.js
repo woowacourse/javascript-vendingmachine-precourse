@@ -69,9 +69,7 @@ export default class PurchaseController {
 
     const remainingMoney = this.model.getChargedMoney();
 
-    this.coinStorage.return(remainingMoney);
-    this.model.reset();
-    this.updatePage();
+    this.return(remainingMoney);
   };
 
   buy = ({ name, price, quantity }) => {
@@ -80,8 +78,17 @@ export default class PurchaseController {
     this.updatePage();
   };
 
+  return = (remainingMoney) => {
+    const returnedCoins = this.coinStorage.model.returnChanges(remainingMoney);
+
+    this.model.decreaseChargedMoney(returnedCoins);
+    this.coinStorage.view.renderReturnedCoinAmount(returnedCoins);
+    this.updatePage();
+  };
+
   updatePage = () => {
     const products = this.product.model.getProducts();
+
     this.view.renderChargedAmount(this.$chargeAmount, this.model.getChargedMoney());
     this.view.renderPurchaseTable(this.$purchaseTableBody, products);
   };
