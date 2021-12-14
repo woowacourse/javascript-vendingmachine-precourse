@@ -40,63 +40,63 @@
 - [x] 투입 금액 localStorage에 저장
 - [x] 구매할 수 있는 상품 현황 UI template 작성
 - [x] localStorage에서 불러온 상품 현황 띄우기
-- [ ] 구매 버튼 클릭 시, 투입 금액 처리하기
-- [ ] 구매 버튼 클릭 시, 상품 수량 처리하기
-- [ ] 투입 금액보다 상품이 비싼지 검증
-- [ ] 상품 개수가 0인지 검증
-- [ ] 잔돈 반환하기
+- [x] 구매 버튼 클릭 시, 투입 금액 처리하기
+- [x] 구매 버튼 클릭 시, 상품 수량 처리하기
+- [x] 투입 금액보다 상품이 비싼지 검증
+- [x] 상품 개수가 0인지 검증
+- [x] 잔돈 반환하기
 
 # 프로그래밍 요구 사항
 
 ## 탭 메뉴 버튼
 
-- [ ] 상품 구매 탭으로 이동하는 메뉴 버튼 **id**는 product-purchase-menu이다.
-- [ ] 잔돈 충전탭으로 이동하는 메뉴 버튼 **id**는 vending-machine-manage-menu이다.
-- [ ] 상품 관리탭으로 이동하는 메뉴 버튼 **id**는 product-add-menu이다.
+- [x] 상품 구매 탭으로 이동하는 메뉴 버튼 **id**는 product-purchase-menu이다.
+- [x] 잔돈 충전탭으로 이동하는 메뉴 버튼 **id**는 vending-machine-manage-menu이다.
+- [x] 상품 관리탭으로 이동하는 메뉴 버튼 **id**는 product-add-menu이다.
 
 ## 상품 관리(추가) 메뉴
 
-- [ ] 상품 추가 입력 폼의 상품명 입력 요소의 **id**는 product-name-input이다.
-- [ ] 상품 추가 입력 폼의 상품 가격 입력 요소의 **id**는 product-price-input이다.
-- [ ] 상품 추가 입력 폼의 수량 입력 요소의 **id**는 product-quantity-input이다.
-- [ ] 상품 추가하기 버튼 요소의 **id**는 product-add-button이다.
+- [x] 상품 추가 입력 폼의 상품명 입력 요소의 **id**는 product-name-input이다.
+- [x] 상품 추가 입력 폼의 상품 가격 입력 요소의 **id**는 product-price-input이다.
+- [x] 상품 추가 입력 폼의 수량 입력 요소의 **id**는 product-quantity-input이다.
+- [x] 상품 추가하기 버튼 요소의 **id**는 product-add-button이다.
 
 ### 추가한 각 상품 요소의 class명은 product-manage-item이며, 하위에 아래 요소들을 갖는다.
 
-- [ ] 상품명에 해당하는 요소의 **class**명은 product-manage-name이다.
-- [ ] 가격에 해당하는 요소의 **class**명은 product-manage-price이다.
-- [ ] 수량에 해당하는 요소의 **class**명은 product-manage-quantity이다.
+- [x] 상품명에 해당하는 요소의 **class**명은 product-manage-name이다.
+- [x] 가격에 해당하는 요소의 **class**명은 product-manage-price이다.
+- [x] 수량에 해당하는 요소의 **class**명은 product-manage-quantity이다.
 
 ## 잔돈 충전 (자판기 보유 동전) 메뉴
 
-- [ ] 자판기가 보유할 금액을 충전할 요소의 **id**는 vending-machine-charge-input이다.
-- [ ] 충전하기 버튼에 해당하는 요소의 **id**는 vending-machine-charge-button이다.
-- [ ] 충전된 금액을 확인하는 요소의 **id**는 vending-machine-charge-amount 이다.
-- [ ] 보유한 각 동전의 개수에 해당하는 요소의 **id**는 다음과 같다.
-- [ ] 500원: vending-machine-coin-500-quantity
-- [ ] 100원: vending-machine-coin-100-quantity
-- [ ] 50원: vending-machine-coin-50-quantity
-- [ ] 10원: vending-machine-coin-10-quantity
+- [x] 자판기가 보유할 금액을 충전할 요소의 **id**는 vending-machine-charge-input이다.
+- [x] 충전하기 버튼에 해당하는 요소의 **id**는 vending-machine-charge-button이다.
+- [x] 충전된 금액을 확인하는 요소의 **id**는 vending-machine-charge-amount 이다.
+- [x] 보유한 각 동전의 개수에 해당하는 요소의 **id**는 다음과 같다.
+- [x] 500원: vending-machine-coin-500-quantity
+- [x] 100원: vending-machine-coin-100-quantity
+- [x] 50원: vending-machine-coin-50-quantity
+- [x] 10원: vending-machine-coin-10-quantity
 
 ## 상품 구매 메뉴
 
-- [ ] 투입 금액 입력 요소의 **id**는 charge-input이다.
-- [ ] 투입하기 버튼 요소의 **id**는 charge-button이다.
-- [ ] 투입한 금액을 확인하는 요소의 **id**는 charge-amount이다.
-- [ ] 반환하기 버튼 요소의 **id**는 coin-return-button이다.
-- [ ] 반환된 각 동전의 개수에 해당하는 요소의 **id**는 다음과 같다.
-- [ ] 500원: coin-500-quantity
-- [ ] 100원: coin-100-quantity
-- [ ] 50원: coin-50-quantity
-- [ ] 10원: coin-10-quantity
+- [x] 투입 금액 입력 요소의 **id**는 charge-input이다.
+- [x] 투입하기 버튼 요소의 **id**는 charge-button이다.
+- [x] 투입한 금액을 확인하는 요소의 **id**는 charge-amount이다.
+- [x] 반환하기 버튼 요소의 **id**는 coin-return-button이다.
+- [x] 반환된 각 동전의 개수에 해당하는 요소의 **id**는 다음과 같다.
+- [x] 500원: coin-500-quantity
+- [x] 100원: coin-100-quantity
+- [x] 50원: coin-50-quantity
+- [x] 10원: coin-10-quantity
 
 ### 각 상품 요소의 class명은 product-purchase-item이고, 하위에 아래 요소들을 갖는다.
 
-- [ ] 구매 버튼에 해당하는 요소의 **class**명은 purchase-button이다.
-- [ ] 상품명에 해당하는 요소의 **class**명은 product-purchase-name이다.
-- [ ] 가격에 해당하는 요소의 **class**명은 product-purchase-price이다.
-- [ ] 수량에 해당하는 요소의 **class**명은 product-purchase-quantity이다.
+- [x] 구매 버튼에 해당하는 요소의 **class**명은 purchase-button이다.
+- [x] 상품명에 해당하는 요소의 **class**명은 product-purchase-name이다.
+- [x] 가격에 해당하는 요소의 **class**명은 product-purchase-price이다.
+- [x] 수량에 해당하는 요소의 **class**명은 product-purchase-quantity이다.
 
-- [ ] 상품명은 **dataset** 속성을 사용하고 data-product-name 형식으로 저장한다.
-- [ ] 가격은 **dataset** 속성을 사용하고 data-product-price 형식으로 저장한다.
-- [ ] 수량은 **dataset** 속성을 사용하고 data-product-quantity 형식으로 저장한다.
+- [x] 상품명은 **dataset** 속성을 사용하고 data-product-name 형식으로 저장한다.
+- [x] 가격은 **dataset** 속성을 사용하고 data-product-price 형식으로 저장한다.
+- [x] 수량은 **dataset** 속성을 사용하고 data-product-quantity 형식으로 저장한다.
