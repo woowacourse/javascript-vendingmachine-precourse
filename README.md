@@ -45,6 +45,7 @@
 - machine.js 에서 validate (에러 검증) 함수들 분리하기 ✔️
 - machine.js 에서 display(화면 보여주는 기능) 함수들 분리하기 ✔️
 - 처음 앱이 시작할 때, localStorage를 조회하여 탭 마다 자판기 이전 상태 보여주기 ✔️
+- 잔돈충전 탭, 상품금액 탭 잔돈 반환 시, 보유금액 변경하기
 - displayProductPurchaseTab 이벤트 리스너 분리하기
 
 
