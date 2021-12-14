@@ -9,7 +9,7 @@ import {
   PRODUCT,
 } from "./constant/vendingMachine.js";
 import ProductAddView from "./View/productAddView.js";
-import CoinManageView from "./View/coinMangeView.js";
+import CoinManageView from "./View/coinManageView.js";
 import ProductPurchaseView from "./View/productPurchaseView.js";
 
 class VendingMachine {
