@@ -1,4 +1,5 @@
 import { fixedMenu, productAddMenu, coinChargeMenu, productPurchaseMenu } from './dom.js';
+import { initProductTable } from './Menu/productAddMenu.js';
 
 export default class View {
   constructor() {
@@ -13,6 +14,7 @@ export default class View {
   showProductAddMenu() {
     this.clearMenu();
     document.getElementById('container').insertAdjacentHTML('afterbegin', productAddMenu);
+    initProductTable();
   }
 
   showCoinChargeMenu() {
