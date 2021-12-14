@@ -94,7 +94,7 @@ function generateRandomChanges() {
 function renderTotalChanges(changes) {
     moneyList
         .forEach(coin => 
-            document.querySelector(`#vending-machine-coin-${coin}-quantity`).textContent = changes[coin]);
+            document.querySelector(`#vending-machine-coin-${coin}-quantity`).textContent = `${changes[coin]}개`);
 }
 
 function renderChargedMoney(money) {
@@ -150,6 +150,24 @@ function canBuyProduct(price, quantity) {
 function renderDecreaseQuantity(quantityCell, quantity) {
     quantityCell.dataset.productQuantity = quantity.toString();
     quantityCell.textContent = quantity.toString();
+}
+
+function returnMoney() {
+    const changes = calculateMinimumChanges();
+    console.log(changes);
+}
+
+function calculateMinimumChanges() {
+    const result = generateChangeObject();
+    moneyList.forEach(coin => {
+        while(coin <= totalInputMoney) {
+            if(totalChanges[coin] < 1) break;
+            totalInputMoney -= coin;
+            totalChanges[coin] -= 1;
+            result[coin] += 1;
+        }
+    })
+    return result;
 }
 
 //
@@ -208,11 +226,12 @@ app.addEventListener('click', function(e) {
         "product-add-button"() { addProduct(); },
         "vending-machine-charge-button"() { chargeMoney(); },
         "charge-button"() { putMoney(); },
+        "coin-return-button"() { returnMoney(); },
     };
     const classHandlers = {
         "purchase-button"() { purchaseProduct(e.target); },
     };
 
     if(Object.keys(idHandlers).includes(e.target.id)) idHandlers[e.target.id]();
-    if(Object.keys(classHandlers).includes(e.target.className)) classHandlers[e.target.className]();
+    else if(Object.keys(classHandlers).includes(e.target.className)) classHandlers[e.target.className]();
 });
