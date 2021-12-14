@@ -8,6 +8,12 @@ export default class CoinStatus {
   constructor() {
     this.content = [];
     this.sort = kindsOfCoins.map((kind) => `${kind}${CURRENCY}`);
+    this.idList = [
+      ID.VENDING_MACHINE.COIN_QUANTITY.FIVE_HUNDREDS,
+      ID.VENDING_MACHINE.COIN_QUANTITY.ONE_HUNDRED,
+      ID.VENDING_MACHINE.COIN_QUANTITY.FIFTY,
+      ID.VENDING_MACHINE.COIN_QUANTITY.TEN,
+    ];
     this.create();
     this.createTable();
     this.appendChildren();
@@ -32,15 +38,9 @@ export default class CoinStatus {
   }
 
   buildTable() {
-    const idList = [
-      ID.VENDING_MACHINE.COIN_QUANTITY.FIVE_HUNDREDS,
-      ID.VENDING_MACHINE.COIN_QUANTITY.ONE_HUNDRED,
-      ID.VENDING_MACHINE.COIN_QUANTITY.FIFTY,
-      ID.VENDING_MACHINE.COIN_QUANTITY.TEN,
-    ];
     this.sort.forEach((item, idx) => {
       const $tr = createTr(item, 0);
-      $tr.lastElementChild.id = idList[idx];
+      $tr.lastElementChild.id = this.idList[idx];
       this.content.push($tr.lastElementChild);
       this.$table.appendChild($tr);
     });
