@@ -1,5 +1,12 @@
 export const COIN_LIST = [500, 100, 50, 10];
 
+export const BLANK_COIN_OBJECT = {
+  500: 0,
+  100: 0,
+  50: 0,
+  10: 0,
+};
+
 export const USER_INPUT_ALERT = {
   blankNameError: '상품명이 비어있습니다.',
   over100Error: '금액은 100원 이상으로 입력해주세요.',

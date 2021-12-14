@@ -1,21 +1,13 @@
-import { COIN_LIST, EXCEPTION_ALERT } from '../utils/constant.js';
+import { BLANK_COIN_OBJECT, COIN_LIST, EXCEPTION_ALERT } from '../utils/constant.js';
+import { getLocalStorage, setLocalStorage } from '../utils/localStorage.js';
 
 export class VendingMachineModel {
-  products = JSON.parse(localStorage.getItem('products')) || [];
-  machineCoins = JSON.parse(localStorage.getItem('machineCoins')) || {
-    500: 0,
-    100: 0,
-    50: 0,
-    10: 0,
-  };
-  machineChargeAmount = Number(JSON.parse(localStorage.getItem('machineCharge'))) || 0;
-  totalInsertedMoney = Number(JSON.parse(localStorage.getItem('totalInsertedMoney'))) || 0;
-  changeCoins = JSON.parse(localStorage.getItem('changeCoins')) || {
-    500: 0,
-    100: 0,
-    50: 0,
-    10: 0,
-  };
+  products = getLocalStorage('products', []);
+  machineCoins = getLocalStorage('machineCoins', BLANK_COIN_OBJECT);
+
+  machineChargeAmount = Number(getLocalStorage('machineCharge', 0));
+  totalInsertedMoney = Number(getLocalStorage('totalInsertedMoney', 0));
+  changeCoins = getLocalStorage('changeCoins', BLANK_COIN_OBJECT);
 
   addProduct(productName, price, quantity) {
     for (let i = 0; i < this.products.length; i++) {
@@ -35,17 +27,17 @@ export class VendingMachineModel {
 
   addExistingProduct(index, quantity) {
     this.products[index].quantity += quantity;
-    localStorage.setItem('products', JSON.stringify(this.products));
+    setLocalStorage('products', this.products);
   }
 
   addNewProduct(productName, price, quantity) {
     this.products = [...this.products, { productName, price, quantity }];
-    localStorage.setItem('products', JSON.stringify(this.products));
+    setLocalStorage('products', this.products);
   }
 
   addChargeMoney(chargeMoney) {
     this.machineChargeAmount += chargeMoney;
-    localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
+    setLocalStorage('machineCharge', this.machineCharge);
     return this.machineChargeAmount;
   }
 
@@ -57,7 +49,7 @@ export class VendingMachineModel {
         this.machineCoins[randomCoin]++;
       }
     }
-    localStorage.setItem('machineCoins', JSON.stringify(this.machineCoins));
+    setLocalStorage('machineCoins', this.machineCoins);
     return this.machineCoins;
   }
 
@@ -76,7 +68,7 @@ export class VendingMachineModel {
         return false;
       }
       this.minusQuantityByCondition(product, index);
-      localStorage.setItem('products', JSON.stringify(this.products));
+      setLocalStorage('products', this.products);
       return true;
     });
   }
@@ -91,7 +83,7 @@ export class VendingMachineModel {
 
   addInsertedMoney(insertedMoney) {
     this.totalInsertedMoney += insertedMoney;
-    localStorage.setItem('totalInsertedMoney', JSON.stringify(this.totalInsertedMoney));
+    setLocalStorage('totalInsertedMoney', this.totalInsertedMoney);
     return this.totalInsertedMoney;
   }
 
@@ -148,9 +140,9 @@ export class VendingMachineModel {
   }
 
   storageUpdateWhenReturnCoin() {
-    localStorage.setItem('totalInsertedMoney', JSON.stringify(this.totalInsertedMoney));
-    localStorage.setItem('machineCharge', JSON.stringify(this.machineChargeAmount));
-    localStorage.setItem('machineCoins', JSON.stringify(this.machineCoins));
-    localStorage.setItem('changeCoins', JSON.stringify(this.changeCoins));
+    setLocalStorage('totalInsertedMoney', this.totalInsertedMoney);
+    setLocalStorage('machineCharge', this.machineCharge);
+    setLocalStorage('machineCoins', this.machineCoins);
+    setLocalStorage('changeCoins', this.changeCoins);
   }
 }
