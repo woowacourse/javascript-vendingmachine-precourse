@@ -7,7 +7,7 @@ export const ERROR = {
   QUANTITY_TOO_LOW: '수량은 1개 이상 입력되어야합니다. 다시 입력하세요❗️',
   CHARGE_BLANK: '충전금액을 입력하세요❗️',
   CHARGE_TOO_LOW: '0원 이상을 투입하세요❗️',
-  CHARGE_LEAST_TEN: '상품 가격은 10원 이상을 입력해야합니다❗️',
+  CHARGE_LEAST_TEN: '충전 금액은 10원 이상을 입력해야합니다❗️',
   CHARGE_SHOULD_DIVIDED_INTO_TEN: '10원으로 나누어지지 않습니다❗️',
   PRODUCT_IS_EXPENSIVE: '현재 넣은 금액보다 상품의 가격이 더 높습니다. 돈을 더 넣으세요❗️',
   PRODUCT_EMPTY: '상품이 없습니다❗️',
