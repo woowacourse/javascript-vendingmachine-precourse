@@ -2,6 +2,7 @@ import { default as DB } from '../../model/database.js';
 import { default as UT } from '../../utils/utils.js';
 import { default as DOM } from '../../utils/DOMUtils.js';
 import { STORAGE, COIN_ARRAY } from '../../constants/constants.js';
+import { ERROR } from '../../constants/errors.js';
 
 const calculateReturnCoins = () => {
   const charge = DB.load(STORAGE.CHARGE.NAME);
@@ -10,6 +11,7 @@ const calculateReturnCoins = () => {
 
   const [deductedWallet, returnCoinWallet] = useGreedyArgorithm(charge, wallet, emptyWallet);
 
+  if (!isEmptyWallet(returnCoinWallet)) return;
   manageChargeToPurchaseProduct(returnCoinWallet, charge);
 
   manageReturnCoins(deductedWallet, returnCoinWallet);
@@ -39,6 +41,12 @@ const isChargeBiggerThanCoin = (data, coinType) => {
 
 const isAvailable = (data, coinType) => {
   return data.wallet[STORAGE.COIN.NAME + coinType] > 0;
+};
+
+const isEmptyWallet = returnCoinWallet => {
+  if (UT.isZero(UT.calculateToCharge(returnCoinWallet))) return alert(ERROR.RETURN_COIN);
+
+  return true;
 };
 
 const manageChargeToPurchaseProduct = (returnCoinWallet, charge) => {

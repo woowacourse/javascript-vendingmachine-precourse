@@ -22,4 +22,5 @@ export const ERROR = {
 
   CHARGE_IS_ZERO: '투입한 금액이 0원이라 잔돈을 반환할 수 없습니다.',
   COINS_ARE_ZERO: '자판기가 보유한 잔돈이 없습니다.',
+  RETURN_COIN: '자판기가 반환할 수 있는 잔돈이 없습니다.',
 };
