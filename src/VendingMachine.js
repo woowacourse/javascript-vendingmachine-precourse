@@ -14,7 +14,7 @@ export default class VendingMachine {
       this.menu.vendingMachineManageMenuInitialize();
     });
     this.view.productPurchaseMenuBtn.addEventListener("click", () => {
-      console.log("상품구매");
+      this.menu.productPurchaseMenuInitialize();
     });
   }
 
