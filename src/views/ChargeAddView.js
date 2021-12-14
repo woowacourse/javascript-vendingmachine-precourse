@@ -22,10 +22,9 @@ export default class ChargeAddView extends ChargeAddController {
 
   renderCharge() {
     const $chargeWrap = document.querySelector('#vending-machine-charge-amount');
-    this.localTotalCharge && !this.validAddCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
+    !this.validAddCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
     !this.localTotalCharge && this.validAddCoin ? $chargeWrap.innerText = this.validAddCoin : "";
     this.localTotalCharge && this.validAddCoin ? $chargeWrap.innerText = (Number(this.validAddCoin) + Number(this.localTotalCharge)) : "";
-    !this.localTotalCharge && !this.validAddCoin ? $chargeWrap.innerText = this.localTotalCharge : "";
   }
 
   renderRandomCoin() {
