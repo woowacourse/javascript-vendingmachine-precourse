@@ -36,6 +36,7 @@ function onValidInputSubmit() {
   setAmountHave();
   updatePurchasableToLocalStorage();
   createPurchasableListTable();
+  window.location.reload();
 }
 
 function onMoneyInputClick(event) {

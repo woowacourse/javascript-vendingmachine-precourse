@@ -14,6 +14,7 @@ import {
 } from '../common/CreateElement.js';
 import { $ } from '../common/elements.js';
 
+import onProductPurchaseClick from './Purchase.js';
 import { getPurchasableFromLocalStorage } from './Purchasable.js';
 
 function createPurchasableTableHeaders() {
@@ -76,6 +77,7 @@ function createPurchasableTableButtonData() {
   const purchasableTableButtonData = createTableData('');
   const productPurchaseButton = createProductPurchaseButton();
   purchasableTableButtonData.append(productPurchaseButton);
+  purchasableTableButtonData.addEventListener('click', onProductPurchaseClick);
 
   return purchasableTableButtonData;
 }
