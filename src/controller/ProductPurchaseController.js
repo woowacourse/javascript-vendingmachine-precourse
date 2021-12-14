@@ -1,4 +1,3 @@
-import { $id } from '../utils/dom.js';
 import { getRandomCoinList } from '../utils/getRandomCoinList.js';
 import { getCoinReturnListTemplate } from '../utils/template.js';
 import { isValidChargeData } from '../utils/validation/productPurchaseValidation.js';
@@ -25,11 +24,11 @@ class ProductPurchaseController {
   }
 
   initDOM() {
-    this.$charge_amount = $id('charge-amount');
-    this.$coin_return_table = $id('coin-return-table');
-    this.$coin_return_button = $id('coin-return-button');
-    this.$charge_form = $id('charge-form');
-    this.$charge_input = $id('charge-input');
+    this.$charge_amount = document.getElementById('charge-amount');
+    this.$coin_return_table = document.getElementById('coin-return-table');
+    this.$coin_return_button = document.getElementById('coin-return-button');
+    this.$charge_form = document.getElementById('charge-form');
+    this.$charge_input = document.getElementById('charge-input');
 
     this.$product_purchase_quantities = document.getElementsByClassName(
       'product-purchase-quantity'

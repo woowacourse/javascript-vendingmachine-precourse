@@ -30,7 +30,6 @@ class VendingMachineController {
   }
 
   init() {
-    this.view.showTabMenuScreen();
     this.initDOM();
     this.triggerTabMenuClickEvent();
   }

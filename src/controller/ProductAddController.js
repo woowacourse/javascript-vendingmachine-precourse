@@ -1,4 +1,3 @@
-import { $id } from '../utils/dom.js';
 import { productManageItemTemplate } from '../utils/template.js';
 import { isValidProductAddData } from '../utils/validation/productAddValidation.js';
 
@@ -21,11 +20,11 @@ class ProductAddController {
   }
 
   initDOM() {
-    this.$product_name_input = $id('product-name-input');
-    this.$product_price_input = $id('product-price-input');
-    this.$product_quantity_input = $id('product-quantity-input');
-    this.$product_status_table = $id('product-status-table');
-    this.$product_add_form = $id('product-add-form');
+    this.$product_name_input = document.getElementById('product-name-input');
+    this.$product_price_input = document.getElementById('product-price-input');
+    this.$product_quantity_input = document.getElementById('product-quantity-input');
+    this.$product_status_table = document.getElementById('product-status-table');
+    this.$product_add_form = document.getElementById('product-add-form');
   }
 
   initEventListener() {

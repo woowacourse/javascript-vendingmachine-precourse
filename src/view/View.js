@@ -1,5 +1,4 @@
 import { TAB_MENUS_TEXT } from '../utils/constants.js';
-import { $id } from '../utils/dom.js';
 import {
   getProduceAddText,
   getVendingMachineManageText,
@@ -13,22 +12,29 @@ class View {
 
   init() {
     this.$app = document.getElementById('app');
+
+    this.showTabMenuScreen();
+    this.initDOM();
   }
 
   showTabMenuScreen() {
     this.$app.innerHTML = TAB_MENUS_TEXT;
   }
 
+  initDOM() {
+    this.$content = document.getElementById('content');
+  }
+
   showProductAddScreen(productAddMenu) {
-    $id('content').innerHTML = getProduceAddText(productAddMenu);
+    this.$content.innerHTML = getProduceAddText(productAddMenu);
   }
 
   showVendingMachineManageScreen(vendingMachineManageMenu) {
-    $id('content').innerHTML = getVendingMachineManageText(vendingMachineManageMenu);
+    this.$content.innerHTML = getVendingMachineManageText(vendingMachineManageMenu);
   }
 
   showProductPurchaseScreen(productAddMenu, productPurchaseMenu) {
-    $id('content').innerHTML = getProductPurchaseText(productAddMenu, productPurchaseMenu);
+    this.$content.innerHTML = getProductPurchaseText(productAddMenu, productPurchaseMenu);
   }
 }
 

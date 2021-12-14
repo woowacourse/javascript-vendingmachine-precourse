@@ -1,4 +1,3 @@
-import { $id } from '../utils/dom.js';
 import { getRandomCoinList } from '../utils/getRandomCoinList.js';
 import { getVendingMachineCoinListTemplate } from '../utils/template.js';
 import { isValidVendingMachineChargeData } from '../utils/validation/vendingMachineManageValidation.js';
@@ -22,10 +21,10 @@ class VendingMachineManageController {
   }
 
   initDOM() {
-    this.$vending_machine_charge_input = $id('vending-machine-charge-input');
-    this.$vending_machine_coin_list = $id('vending-machine-coin-list');
-    this.$vending_machine_charge_amount = $id('vending-machine-charge-amount');
-    this.$vending_machine_charge_form = $id('vending-machine-charge-form');
+    this.$vending_machine_charge_input = document.getElementById('vending-machine-charge-input');
+    this.$vending_machine_coin_list = document.getElementById('vending-machine-coin-list');
+    this.$vending_machine_charge_amount = document.getElementById('vending-machine-charge-amount');
+    this.$vending_machine_charge_form = document.getElementById('vending-machine-charge-form');
   }
 
   initEventListener() {
