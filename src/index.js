@@ -1,3 +1,4 @@
+import { $ } from './utils/dom.js';
 import { ID } from './constants/selector.js';
 import { Container } from './components/elements.js';
 import ProductAddMenuView from './components/ProductAddMenu/view.js';
@@ -18,5 +19,5 @@ export default function App(app) {
   };
 }
 
-const vendingMachine = new App(document.querySelector(`#${ID.APP}`));
+const vendingMachine = new App($(`#${ID.APP}`));
 vendingMachine.render();

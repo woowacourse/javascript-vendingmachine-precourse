@@ -1,3 +1,4 @@
+import { $ } from '../../utils/dom.js';
 import { ID } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import { Container, Title } from '../elements.js';
@@ -22,7 +23,7 @@ export default function HeaderView() {
   };
 
   this.initMenuViewContainer = () => {
-    const menuViewContainer = document.querySelector(`#${ID.MENU_VIEW}`);
+    const menuViewContainer = $(`#${ID.MENU_VIEW}`);
 
     menuViewContainer.innerHTML = '';
   };
@@ -44,7 +45,7 @@ export default function HeaderView() {
   };
 
   this.render = () => {
-    const container = document.querySelector(`#${ID.APP}`);
+    const container = $(`#${ID.APP}`);
 
     container.append(this.header());
   };
