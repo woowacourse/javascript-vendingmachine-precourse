@@ -24,7 +24,6 @@ export default function VendingMachineManageView() {
     e.preventDefault();
     const chargeInput = $(`#${ID.VENDING_MACHINE_CHARGE_INPUT}`);
     const charge = chargeInput.value;
-    f;
 
     if (!isValidCharge(charge)) {
       alertChargeErrorMessage(charge);
