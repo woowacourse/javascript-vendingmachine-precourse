@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import Navigator from '../store/Navigator.js';
 import VendingMachine from '../store/VendingMachine.js';
 import Title from './core/Title.js';
