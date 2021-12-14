@@ -19,6 +19,16 @@ export const getProductQuantityValue = () => {
   return $productQuantityValue;
 };
 
+export const clearProdcutManageInput = () => {
+  const $productNameInpt = $('#product-name-input');
+  const $productPriceInput = $('#product-price-input');
+  const $productQuantityInput = $('#product-quantity-input');
+
+  $productNameInpt.value = '';
+  $productPriceInput.value = '';
+  $productQuantityInput.value = '';
+};
+
 const productNameValidator = (productNameValue) => {
   let isValid = false;
 
@@ -86,6 +96,7 @@ export const bindProductValidator = (
     isValid = true;
   } else {
     isValid;
+    clearProdcutManageInput();
   }
   return isValid;
 };
