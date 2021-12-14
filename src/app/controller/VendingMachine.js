@@ -23,45 +23,24 @@ export default class VendingMachine {
     }
 
     triggerConvertTapEvent() {
-        this.triggerClickInventoryTapEvent();
-        this.triggerClickCoinTapEvent();
-        this.triggerClickPurchaseTapEvent();
-    }
-
-    triggerClickInventoryTapEvent() {
         this.vendingSkeleton
             .getInvetoryTap()
-            .addEventListener(
-                'click',
-                this.getConvertTapEventListener(this[TAP.inventory.name], TAP.inventory.name),
-            );
-    }
-
-    triggerClickCoinTapEvent() {
+            .addEventListener('click', this.getConvertTapEventListener(TAP.inventory.name));
         this.vendingSkeleton
             .getCoinTap()
-            .addEventListener(
-                'click',
-                this.getConvertTapEventListener(this[TAP.coin.name], TAP.coin.name),
-            );
-    }
-
-    triggerClickPurchaseTapEvent() {
+            .addEventListener('click', this.getConvertTapEventListener(TAP.coin.name));
         this.vendingSkeleton
             .getPurchaseTap()
-            .addEventListener(
-                'click',
-                this.getConvertTapEventListener(this[TAP.purchase.name], TAP.purchase.name),
-            );
+            .addEventListener('click', this.getConvertTapEventListener(TAP.purchase.name));
     }
 
-    getConvertTapEventListener(showTap, tapName) {
+    getConvertTapEventListener(tapName) {
         return () => {
             if (getTap() !== tapName) {
                 this.inventory.hideTap();
                 this.chargeCoin.hideTap();
                 this.purchase.hideTap();
-                showTap.render();
+                this[tapName].render();
                 setTap(tapName);
             }
         };
