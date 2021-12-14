@@ -52,23 +52,16 @@ export default class ProductPurchaseView extends ProductPurchaseController {
   setReutrnEvent() {
     const $chargeReturnButton = document.querySelector('#coin-return-button');
     $chargeReturnButton.addEventListener('click', () => {
-      this.checkRandomCoin() 
-      ? this.returnCharge()
+      this.getRandomCoin();
+      this.localRandomCoin.find(coin => coin !== NUMBER.ZERO)
+      ? this.getReturnCharge()
       : alert(ERROR_MESSAGE.NOCOIN_IN_MACHINE);
       this.getRandomCoin();
-      this.localRandomCoin && this.localRandomCoin.find(coin => coin !== NUMBER.ZERO) ? NOTHING : alert("잔돈이 부족합니다");
     })
   }
 
-  checkRandomCoin() {
-    const localRandonCoin = JSON.parse(localStorage.getItem("RANDOM_COIN"));
-
-    return localRandonCoin;
-  }
   
   renderChargeResult() {
-    console.log(this.localProductList)
-    console.log(this.chargeResult)
     !this.localReturnCharge && this.chargeResult ? renderCharge(this.chargeResult) : NOTHING;
     this.localReturnCharge && renderCharge(this.localReturnCharge);
     this.renderMoney();

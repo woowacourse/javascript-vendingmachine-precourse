@@ -45,9 +45,8 @@ export default class ProductPurchaseController {
     this.setInsertMoney();
   }
 
-  returnCharge() {
+  getReturnCharge() {
     this.chargeResult = this.purchaseModel.getMinCharge();
-    console.log(this.chargeResult)
     this.setInsertMoney();
     this.renderChargeResult();
   }

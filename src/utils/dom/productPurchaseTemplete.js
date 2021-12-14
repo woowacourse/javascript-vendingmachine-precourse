@@ -60,7 +60,6 @@ export function renderAblePurchaseProductList(product) {
 }
 
 export function renderCharge(charge) {
-  console.log(charge)
   const contain500Coin = document.querySelector('#coin-500-quantity');
   const contain100Coin = document.querySelector('#coin-100-quantity');
   const contain50Coin = document.querySelector('#coin-50-quantity');
