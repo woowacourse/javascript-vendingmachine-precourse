@@ -8,22 +8,23 @@
 
 1. **상품 관리**
    - 상품명, 가격, 수량을 입력받아 상품 추가 기능
+     - 기존에 등록된 상품과 중복되는 상품명, 사용자에게 `alert`창 출력 후 재입력 받음
      - 가격이 10원으로 나누어 떨어지지 않을 경우, 사용자에게 `alert`창 출력 후 재입력 받음
      - 하나라도 입력하지 않은 경우, 해당 빈 칸을 입력받기 위해 `alert`창 출력
      - 수량이 0 이하인경우, 1 이상의 숫자를 입력받기 위해 `alert`창 출력
-   - `localStorage.setItem('상품명' , JSON.stringify([상품 가격, 상품 수량]))`
+   - `localStorage.setItem('상품 키' , JSON.stringify({name : 상품 이름, price : 상품 가격, quantity: 상품 수량}))`
 2. **잔돈 충전**
    - 입력 요소에서 충전할 금액 입력받기
    - 충전하기 버튼 submit 기능
    - 금액만큼의 동전 무작위 생성
      - 금액은 저장되며, 누적 충전이 가능함
      - 충전할 때 마다 동전 무작위 생성 후 합산
-   - `localStorage.setItem('잔돈 금액' , '충전한 잔돈')`
+   - `localStorage.setItem('잔돈 키' , JSON.stringify({coin : 잔돈 금액, coin500: 500원 개수, coin100: 100원 개수, coin50: 50원 개수, coin10: 10원 개수}))`
 3. **상품 구매**
    - 입력 요소에서 충전할 금액 입력받기
    - 투입하기 버튼 submit 기능 (돈 충전)
      - 금액이 10원으로 나누어 떨어지지 않을 경우, 사용자에게 `alert`창 출력 후 재입력 받음
-     - `localStorage.setItem('충전 금액' , '충전한 금액')`
+     - `localStorage.setItem('충전 금액 키' ,JSON.stringify({purchase: 충전 금액})`
    - 충전한 금액으로 상품 구매 기능
      - 투입한 금액 : 충전 금액 - 상품 가격
      - 구매할 수 있는 상품 현황 : 해당 상품의 수량 - 1 출력
@@ -36,8 +37,8 @@
      - 반환할 잔돈이 없는 경우, 사용자에게 `alert`창 출력
      - 잔돈을 반환할 수 없는 경우 (자판기 보유 금액 < 잔돈)
        - 반환할 수 있는 금액 (자판기 보유 금액)만 반환한다.
-     - `localStorage.setItem('잔돈 금액' , '충전한 잔돈')` → 잔돈 금액 변경
+     - localStorage updateItem → 잔돈 금액 변경
 4. **새로고침 시**
-   - 최근의 상품들 `JSON.parse(localStorage.getItem('상품명'))` 으로 불러와 목록 출력
-   - 잔돈 금액 `localStorage.getItem('잔돈 금액')`
-   - 충전 금액 `localStorage.getItem('충전 금액')`
+   - 최근의 상품들 `JSON.parse(localStorage.getItem('상품 키'))` 으로 불러와 목록 출력
+   - 잔돈 정보 `localStorage.getItem('잔돈 키')`
+   - 충전 금액 `localStorage.getItem('충전 금액 키')`
