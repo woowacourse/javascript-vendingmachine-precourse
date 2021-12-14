@@ -229,7 +229,7 @@ export default class VendingMachine {
     return this.rechargedMoneyAmount;
   }
 
-  getRetrunedCoin() {
+  getReturnedCoin() {
     return this.returnedCoin.map((coin) => [coin.type, coin.count]);
   }
 }
