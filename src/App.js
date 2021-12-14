@@ -3,7 +3,7 @@ import Router from './core/Router.js';
 import NavBar from './components/NavBar/NavBar.js';
 import ProductAddMenu from './components/ProductAddMenu/ProductAddMenu.js';
 import ProductPurchaseMenu from './components/ProductPurchaseMenu/ProductPurchaseMenu.js';
-import VendingMachineManageMenu from './components/VendingMachineMenu/VendingMachineManageMenu.js';
+import VendingMachineManageMenu from './components/VendingMachineManageMenu/VendingMachineManageMenu.js';
 
 import VendingMachine from './models/VendingMachine.js';
 import $ from './helpers.js';
