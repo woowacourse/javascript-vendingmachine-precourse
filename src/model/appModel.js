@@ -5,7 +5,7 @@ import {
   loadDataFromSessionStorage,
 } from '../utils/storage.js';
 import { STRING, TAB, NUMBER } from '../constants/constants.js';
-import { defaultProducts, defaultAddTabInput, defaultCoins } from './data.js';
+import { defaultProducts, defaultAddTabInput, defaultCoins } from '../utils/data.js';
 
 export default class AppModel {
   constructor() {

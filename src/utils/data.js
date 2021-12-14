@@ -1,5 +1,5 @@
 import { STRING, COIN_UNIT, NUMBER } from '../constants/constants.js';
-import Coin from './coin.js';
+import Coin from '../model/coin.js';
 
 export const defaultProducts = () => {
   return [];
