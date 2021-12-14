@@ -22,8 +22,6 @@ export const defaultValueGenerators = {
     [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
   }),
 
-  [`${DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE}`]: () => 0,
-
   [`${DATA_MODEL_KEYS.COINS}`]: () => Coin.getDefaultCoins(),
 
   [`${DATA_MODEL_KEYS.CHARGE_INPUTS_VALUE}`]: () => ({
@@ -105,10 +103,6 @@ class VendingMachineModel {
     this.setDataModelPropertyValue(DATA_MODEL_KEYS.PRODUCT_LIST, newProductList);
   }
 
-  setVendingMachineChargeAmount(newVendingMachineCharge) {
-    this.setDataModelPropertyValue(DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE, newVendingMachineCharge);
-  }
-
   getDataModel() {
     return this.dataModel;
   }
@@ -137,10 +131,6 @@ class VendingMachineModel {
   getChargeInputValueById(id) {
     const inputsValue = this.getChargeInputsValue();
     return inputsValue[id];
-  }
-
-  getVendingMachineChargeAmount() {
-    return this.dataModel[DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE];
   }
 
   getVendingMachineChargeInputsValue() {
@@ -186,6 +176,10 @@ class VendingMachineModel {
     });
 
     this.setCoins(combinedCoins);
+  }
+
+  getVendingMachineChargeAmount() {
+    return Coin.getCoinsAmount(this.getCoins());
   }
 }
 export default VendingMachineModel;

@@ -102,7 +102,6 @@ export const DATA_MODEL_KEYS = Object.freeze({
   PRODUCT_LIST: 'productList',
 
   VENDING_MACHINE_CHARGE_INPUTS_VALUE: 'vendingMachineChargeInputsValue',
-  VENDING_MACHINE_CHARGE: 'vendingMachineCharge',
   COINS: 'coins',
 
   CHARGE_INPUTS_VALUE: 'chargeInputsValue',

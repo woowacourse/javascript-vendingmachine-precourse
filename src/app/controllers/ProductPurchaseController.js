@@ -86,10 +86,6 @@ class ProductPurchaseController {
   }
 
   executeUpdateModelAfterReturnCoins(returnCoinsAmount, chargeAmount, coins) {
-    const newVendingMachineChargeAmount =
-      this.$model.getVendingMachineChargeAmount() - returnCoinsAmount;
-
-    this.$model.setVendingMachineChargeAmount(newVendingMachineChargeAmount);
     this.$model.setChargeAmount(chargeAmount);
     this.$model.setCoins(coins);
   }
