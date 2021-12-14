@@ -2,7 +2,7 @@ import { $, paintTemplate, clearInputs, ID } from '../utils/dom.js';
 import { vendingMachineManageMenuTemplate } from '../utils/templates.js';
 import { ERROR_MSG, LS_KEY, COIN, CHARGE_INIT } from '../utils/constants.js';
 import {
-  load,
+  loadCharges,
   isSmallerThanMinUnit,
   cannotBeDividedByMinUnit,
 } from '../utils/controller.js';
@@ -15,7 +15,7 @@ export default class VendingMachineManage {
 
   init = () => {
     paintTemplate(vendingMachineManageMenuTemplate);
-    this.charges = load(LS_KEY.VENDING_MACHINE_MANAGE_CHARGES);
+    this.charges = loadCharges(LS_KEY.VENDING_MACHINE_MANAGE_CHARGES);
 
     this.paintHoldingAmount();
     this.paintLoadedCharges();

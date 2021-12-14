@@ -1,9 +1,23 @@
-import { RULES } from './constants.js';
+import { RULES, COIN } from './constants.js';
 
 export const load = (LS_KEY) => {
   const loaded = localStorage.getItem(LS_KEY);
   if (!loaded) {
     return [];
+  }
+  const parsed = JSON.parse(loaded);
+  return parsed;
+};
+
+export const loadCharges = (LS_KEY) => {
+  const loaded = localStorage.getItem(LS_KEY);
+  if (!loaded) {
+    return [
+      { coinType: COIN.FIVE_HUNDRED, quantity: 0 },
+      { coinType: COIN.A_HUNDRED, quantity: 0 },
+      { coinType: COIN.FIFTY, quantity: 0 },
+      { coinType: COIN.TEN, quantity: 0 },
+    ];
   }
   const parsed = JSON.parse(loaded);
   return parsed;
