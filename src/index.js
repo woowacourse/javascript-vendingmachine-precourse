@@ -176,12 +176,10 @@ let totalInputMoney = 0;
 app.addEventListener('click', function(e) {
     e.preventDefault();
 
-    const handlers = {
+    const idHandlers = {
         "product-add-menu"() { onTabClick('product_manage.html', 1); },
         "vending-machine-manage-menu"() { onTabClick('machine_charge.html', 2); },
-        "product-purchase-menu"() { 
-            onTabClick('product_purchase.html', 3);
-        },
+        "product-purchase-menu"() { onTabClick('product_purchase.html', 3); },
         "product-add-button"() { addProduct(); },
         "vending-machine-charge-button"() { chargeMoney(); },
         "charge-button"() { putMoney(); },
