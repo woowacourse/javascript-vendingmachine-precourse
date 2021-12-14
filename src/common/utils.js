@@ -16,21 +16,21 @@ export const getRandomCoinsAmongList = (money) => {
     money -= coin; // 빼준 coin number ++
     coinList[coin]++;
   }
-  console.log(coinList);
+
   return coinList;
 };
 
 export const returnChangesinCoins = (money, coinList) => {
   const exchangeCoin = { 500: 0, 100: 0, 50: 0, 10: 0 };
-  const changesList = [500, 100, 50, 10];
+  const changesList = COIN_LIST;
 
   for (const coin of changesList) {
     for (let idx = 0; idx < coinList[coin]; idx++) {
-      if (money - coin < 0) break;
+      if (money - coin < NUMBER.ZERO) break;
       money -= coin;
       exchangeCoin[coin]++;
     }
   }
-  console.log(exchangeCoin);
+
   return exchangeCoin;
 };

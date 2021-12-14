@@ -88,6 +88,7 @@ export const bindProductValidator = (
   productQuantityValue
 ) => {
   let isValid = false;
+
   if (
     productNameValidator(productNameValue) === true &&
     productPriceValidator(productPriceValue) === true &&
@@ -98,5 +99,6 @@ export const bindProductValidator = (
     isValid;
     clearProdcutManageInput();
   }
+
   return isValid;
 };
