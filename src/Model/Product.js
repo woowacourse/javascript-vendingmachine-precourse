@@ -60,7 +60,7 @@ export default class Product {
 
   changeTableRowFormat(productClass, { name, price, quantity }) {
     const newProductData = [name, price, quantity].map((value, key) => ({
-      text: value,
+      text: String(value),
       class: productClass[key],
     }));
     return newProductData;
