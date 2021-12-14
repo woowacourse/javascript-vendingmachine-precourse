@@ -26,6 +26,7 @@ class ReturnChanges extends Component {
     this.$button = new Button('반환하기', buttonProp);
     this.$table = new ChangesTable();
     this.children = [this.$title, this.$button, this.$table];
+
     this.setEvent();
   }
 
@@ -33,11 +34,11 @@ class ReturnChanges extends Component {
     this.$button.setOnClick(() => {
       this.onReturn?.();
     });
-  }
 
-  beforeRender() {
-    const coins = VendingMachineStore.instance.user.returnedCoinStorage.items;
-    this.$table.setState({ dataset: coins });
+    VendingMachineStore.instance.user.observe(() => {
+      const coins = VendingMachineStore.instance.user.returnedCoinStorage.items;
+      this.$table.setState({ dataset: coins });
+    });
   }
 }
 

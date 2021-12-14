@@ -1,4 +1,5 @@
 import { ELEMENT_ID } from '../../constants/index.js';
+import VendingMachineStore from '../../store/vendingMachineStore.js';
 import { $tag } from '../../utils/index.js';
 import Component from '../base/Component.js';
 import Label from '../base/Label.js';
@@ -21,6 +22,14 @@ class CurrentAmount extends Component {
     this.children = [this.$label, this.$amount];
 
     this.setEvent();
+  }
+
+  setEvent() {
+    VendingMachineStore.instance.user.observe(() => {
+      this.setState({
+        amount: VendingMachineStore.instance.user.amount,
+      });
+    });
   }
 
   beforeRender() {
