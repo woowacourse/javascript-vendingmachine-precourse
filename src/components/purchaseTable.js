@@ -2,7 +2,7 @@ import Table from "./table.js";
 
 export default class PurchaseTable extends Table {
   getTableHeader() {
-    return [...this.$props.tableHeaders, "구매"]
+    return this.$props.tableHeaders
       .map((header) => `<th>${header}</th>`)
       .join("");
   }
@@ -10,11 +10,11 @@ export default class PurchaseTable extends Table {
   getTableRow(item) {
     const [name, price, quantity] = item;
     return `
-      <tr>
-        <td data-product-name=${name}>${name}</td>
-        <td data-product-price=${price}>${price}</td>
-        <td data-product-quantity=${quantity}>${quantity}</td>
-        <td><button class="purchase-button">구매하기</button></td>
+      <tr id="product-purchase-item">
+        <td class="product-purchase-name" data-product-name=${name}>${name}</td>
+        <td class="product-purchase-price" data-product-price=${price}>${price}</td>
+        <td class="product-purchase-quantity" data-product-quantity=${quantity}>${quantity}</td>
+        <td><button class="purchase-button" data-product-name=${name}>구매하기</button></td>
       </tr>`;
   }
 }

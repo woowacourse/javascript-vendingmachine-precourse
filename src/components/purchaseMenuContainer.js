@@ -24,31 +24,31 @@ export default class PurchaseMenuContainer extends Component {
       inputInfo: [
         {
           type: "number",
-          id: "vending-machine-charge-input",
+          id: "charge-input",
           placeholder: "투입할 금액",
         },
       ],
       buttonInfo: {
-        id: "vending-machine-charge-button",
+        id: "charge-button",
         value: "충전하기",
-        callBack: () => alert("it worked"),
       },
       moneyInfo: {
-        id: "vending-machine-charge-amount",
+        id: "charge-amount",
         type: "투입",
+        value: this.$props.userMoney,
       },
     });
 
     new PurchaseTable($menuTableSelector, {
       title: "구매할 수 있는 상품 현황",
-      tableHeaders: ["상품명", "가격", "수량"],
+      tableHeaders: ["상품명", "가격", "수량", "구매"],
       tableContents: this.$props.menuItems,
     });
 
     new Table($coinTableSelector, {
       title: "잔돈",
       tableHeaders: ["동전", "개수"],
-      tableContents: this.$props.remainingCoins,
+      tableContents: this.$props.change,
       buttonInfo: {
         id: "coin-return-button",
         value: "반환하기",
