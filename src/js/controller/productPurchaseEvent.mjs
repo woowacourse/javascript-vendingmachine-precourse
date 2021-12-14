@@ -56,6 +56,41 @@ function purchase() {
   });
 }
 
+// 반환하기 버튼 클릭
+function coinReturn() {
+  window.addEventListener('click', e => {
+    if (e.target !== document.querySelector('#coin-return-button')) return;
+    // 투입한 금액 500원을
+    // while문으로 돌리면서 500_WON -> 100_WON -> 50_WON -> 10_WON 개수만큼 계속차감.
+    // while문을 돌면서 투입한 금액이 0원이 됬거나 10_WON까지 개수가 0개면 끝
+
+    // 끝났을 때 잔돈 동전들 렌더링, 투입한 금액에 남은 금액 렌더링
+
+    let chargeMoney = localStorage.getItem('charge-input'); // 500원
+    let amountOfCoins = JSON.parse(localStorage.getItem('amount-of-coins'));
+
+    let coinsType = ['500_WON', '100_WON', '50_WON', '10_WON'];
+    let moneys = [500, 100, 50, 10];
+
+    let flag = false;
+    for (let i = 0; i < coinsType.length; i++) {
+      if (flag) break;
+
+      while (amountOfCoins[coinsType[i]] > 0) {
+        chargeMoney -= moneys[i];
+        amountOfCoins[coinsType[i]]--;
+        if (chargeMoney < 0) {
+          flag = true;
+        }
+      }
+    }
+    console.log(amountOfCoins, chargeMoney);
+    localStorage.setItem('amount-of-coins', JSON.stringify(amountOfCoins));
+    localStorage.setItem('charge-input', chargeMoney);
+    renderChargedMoney();
+  });
+}
+
 export function productPurchaseEvent() {
   const $productPurchaseMenu = document.querySelector('#product-purchase-menu');
   $productPurchaseMenu.addEventListener('click', renderProductPurchaseTab);
@@ -75,5 +110,6 @@ export function productPurchaseEvent() {
   });
 
   renderProductPurchaseStatus();
+  coinReturn();
   purchase();
 }
