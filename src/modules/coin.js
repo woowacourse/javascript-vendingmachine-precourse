@@ -1,5 +1,11 @@
 import { COINS_KEY_ARRAY, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN } from '../lib/constants.js';
-import { isCoinGreatherThanZero, isCoinValueLessThanChargeAmount } from '../lib/utils.js';
+import {
+  isChargeIsGreatherThanZero,
+  isCoinGreatherThanZero,
+  isCoinValueLessThanChargeAmount,
+  isNotFindMostBiggestCoin,
+  isPossibleRandomCoin,
+} from '../lib/utils.js';
 
 class Coin {
   static getDefaultCoins() {
@@ -8,13 +14,13 @@ class Coin {
 
   static getRandomCoins(charge) {
     let tempCharge = charge;
+    const randomCoins = this.getDefaultCoins();
 
-    const randomCoins = Coin.getDefaultCoins();
-    while (tempCharge !== 0) {
+    while (isChargeIsGreatherThanZero(tempCharge)) {
       const randomCoin = window.MissionUtils.Random.pickNumberInList(COINS_KEY_ARRAY);
 
-      if (tempCharge - randomCoin >= 0) {
-        randomCoins[`${randomCoin}`] = randomCoins[`${randomCoin}`] + 1;
+      if (isPossibleRandomCoin(tempCharge, randomCoin)) {
+        randomCoins[randomCoin] = randomCoins[randomCoin] + 1;
         tempCharge -= randomCoin;
       }
     }
@@ -22,9 +28,10 @@ class Coin {
     return randomCoins;
   }
 
+  /** 동전들의 총합을 구합니다 */
   static getCoinsAmount(coins) {
     return Object.keys(coins)
-      .map((KEY) => Coin.getCoinAmount(coins[KEY], KEY))
+      .map((KEY) => this.getCoinAmount(coins[KEY], KEY))
       .reduce((aCoin, bCoin) => aCoin + bCoin);
   }
 
@@ -32,7 +39,8 @@ class Coin {
     return quantity * Number(KEY);
   }
 
-  static mostBiggestCoinOfRemainCoin(coins, chargeAmount) {
+  /** 남은 코인들 중 0개가 아니면서 chargeAmount보다 작은 코인을 찾습니다 */
+  static findMostBiggestCoinOfRemainCoin(coins, chargeAmount) {
     return COINS_KEY_ARRAY.find(
       (KEY) =>
         isCoinGreatherThanZero(coins[KEY]) &&
@@ -46,17 +54,17 @@ class Coin {
     return tempChargeAmount - mostBiggestCoin;
   }
 
+  /** 반환되는 코인들을 계산하여 리턴합니다. */
   static computeReturnCoin(chargeAmount, coins) {
     let tempChargeAmount = chargeAmount;
     const tempCoins = { ...coins };
-    const returnCoins = Coin.getDefaultCoins();
-    while (tempChargeAmount !== 0) {
-      const mostBiggestCoin = Coin.mostBiggestCoinOfRemainCoin(tempCoins, tempChargeAmount);
-
-      if (mostBiggestCoin === undefined) {
+    const returnCoins = this.getDefaultCoins();
+    while (isChargeIsGreatherThanZero(tempChargeAmount)) {
+      const mostBiggestCoin = this.findMostBiggestCoinOfRemainCoin(tempCoins, tempChargeAmount);
+      if (isNotFindMostBiggestCoin(mostBiggestCoin)) {
         break;
       }
-      tempChargeAmount = Coin.returnCoin(returnCoins, tempCoins, tempChargeAmount, mostBiggestCoin);
+      tempChargeAmount = this.returnCoin(returnCoins, tempCoins, tempChargeAmount, mostBiggestCoin);
     }
     return { returnCoins, chargeAmount: tempChargeAmount, coins: tempCoins };
   }
