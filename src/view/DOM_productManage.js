@@ -6,7 +6,7 @@ export const initProductManage = () => {
   const isExist = document.querySelector(`#${MENU_BUTTON.PRODUCT_MANAGE}-area`);
 
   if(isExist === null) {
-    //area id는 vending-machine-manage-menu-area
+    //area id는 product-add-menu-area
     //DOM 생성 후 하나의 단위로 묶기 위함
     const area = createDiv(`${MENU_BUTTON.PRODUCT_MANAGE}-area`);
 

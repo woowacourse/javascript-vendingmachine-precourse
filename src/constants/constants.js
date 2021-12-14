@@ -2,7 +2,7 @@ export const MENU_BUTTON = {
   ALL: "menu-button-area",
   BUY_PRODUCT: "product-purchase-menu",
   CHANGE_MANAGE:"vending-machine-manage-menu",
-  PRODUCT_MANAGE: "vending-machine-manage-menu",
+  PRODUCT_MANAGE: "product-add-menu",
 };
 
 export const PRODUCT_MANAGE = {
@@ -84,4 +84,12 @@ export const UNIT = {
   COIN_100: "100원",
   COIN_50: "50원",
   COIN_10: "10원",
+  HAVE: "보유 금액:",
 };
+
+export const COINS = [
+  ["500원", " "],
+  ["100원", " "],
+  ["50원", " "],
+  ["10원", " "],
+]

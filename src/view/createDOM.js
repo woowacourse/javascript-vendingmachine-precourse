@@ -33,14 +33,14 @@ export const createTd = (className, valueArr) => {
   const table = document.querySelector(`.${className}`);
   const tr = document.createElement("tr");
   
-  const td = valueArr.map((val) => {
+  valueArr.forEach((val) => {
     const items = document.createElement("td");
     items.innerHTML = val;
     
-    return items;
+    tr.appendChild(items);
   });
 
-  tr.appendChild(td);
+  console.log(table)
   table.appendChild(tr);
 };
 
