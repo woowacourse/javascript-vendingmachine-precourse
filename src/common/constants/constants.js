@@ -48,12 +48,15 @@ export const NUMBER = {
 
 export const PRODUCT = {
   LIST: 'productList',
-  MONEY: 'moneyChargedAmount',
-  CHARGED: 'chargedAmount',
+};
+
+export const USER = {
+  CHARGED: 'userChargedAmount',
+  REMAIN_MONEY: 'remainMoney',
 };
 
 export const VENDING_MACHINE = {
-  AMOUNT: 'moneyChargedAmount',
+  CHARGED: 'vendingMachineChargedAmount',
   INSERTED: '투입한 금액: ',
   WON: '원',
   HOLDING_AMOUNT: '보유금액: ',
