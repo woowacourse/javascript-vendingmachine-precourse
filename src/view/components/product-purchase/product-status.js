@@ -11,6 +11,12 @@ import {
 
 export default class ProductStatus {
   constructor() {
+    this.classList = [
+      CLASS.PURCHASE.NAME,
+      CLASS.PURCHASE.PRICE,
+      CLASS.PURCHASE.QUANTITY,
+      CLASS.PURCHASE.BUY_BUTTON,
+    ];
     this.create();
     this.appendChildren();
   }
@@ -35,17 +41,11 @@ export default class ProductStatus {
 
   render(menu) {
     this.createTable();
-    const classList = [
-      CLASS.PURCHASE.NAME,
-      CLASS.PURCHASE.PRICE,
-      CLASS.PURCHASE.QUANTITY,
-      CLASS.PURCHASE.BUY_BUTTON,
-    ];
     const dataset = Object.values(DATASET);
     menu.forEach((item) => {
-      let $tr = createTrByClass(classList, ...item);
+      let $tr = createTrByClass(this.classList, ...item);
       $tr = includeTrData($tr, dataset);
-      const $td = createTrIncludesButton(classList[3], item[0], '구매하기');
+      const $td = createTrIncludesButton(this.classList[3], item[0], '구매하기');
       $tr.appendChild($td);
       this.$table.appendChild($tr);
     });
@@ -53,12 +53,7 @@ export default class ProductStatus {
   }
 
   addItem(item) {
-    const classList = [
-      CLASS.PRODUCT.MANGAE_NAME,
-      CLASS.PRODUCT.MANAGE_PRICE,
-      CLASS.PRODUCT.MANAGE_QUANTITY,
-    ];
-    const $tr = createTrByClass(classList, ...Object.values(item));
+    const $tr = createTrByClass(this.classList, ...Object.values(item));
     this.$table.appendChild($tr);
   }
 
