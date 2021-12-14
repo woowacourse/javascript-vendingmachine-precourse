@@ -1,6 +1,6 @@
 import { setDataInLocalStorage } from './localstorage-controller.js';
 import { fetchHtmlView } from '../fetch.js';
-import { WRONG_PRODUCT } from '../constants.js';
+import { MANAGE_HTML, PRODUCT_LIST, PRODUCT_NAME_INPUT, PRODUCT_QUANTITY_INPUT, PROUCT_PRICE_INPUT, WRONG_PRODUCT } from '../constants.js';
 
 export default class AddProductController {
     constructor(machine, view) {
@@ -9,19 +9,19 @@ export default class AddProductController {
     }
 
     onTabClick() {
-        fetchHtmlView('product_manage.html')
+        fetchHtmlView(MANAGE_HTML)
             .then(html => this.view.renderView(html, this.machine.productList))
             .catch(err => alert(err));
     }
 
     addProduct() {
-        const name = document.querySelector("#product-name-input").value;
-        const price = document.querySelector("#product-price-input").value;
-        const quantity = document.querySelector("#product-quantity-input").value;
+        const name = document.querySelector(PRODUCT_NAME_INPUT).value;
+        const price = document.querySelector(PROUCT_PRICE_INPUT).value;
+        const quantity = document.querySelector(PRODUCT_QUANTITY_INPUT).value;
         
         if(this.isCorrectProductInputs(name, price, quantity)) {
             this.machine.addProductList({ name, price, quantity });
-            setDataInLocalStorage('productList', JSON.stringify(this.machine.productList));
+            setDataInLocalStorage(PRODUCT_LIST, JSON.stringify(this.machine.productList));
             this.view.renderAddedProductList(this.machine.productList);
         }
         else {

@@ -1,5 +1,5 @@
 import { setDataInLocalStorage } from './localstorage-controller.js';
-import { moneyList, WRONG_MONEY_INPUT } from '../constants.js';
+import { CHARGED_CHANGES, CHARGE_HTML, CHARGE_INPUT, moneyList, VM_CHARGE_INPUT, WRONG_MONEY_INPUT } from '../constants.js';
 import { fetchHtmlView } from '../fetch.js';
 
 export default class ChargeMachineController {
@@ -9,13 +9,13 @@ export default class ChargeMachineController {
     }
 
     onTabClick() {
-        fetchHtmlView('machine_charge.html')
+        fetchHtmlView(CHARGE_HTML)
             .then(html => this.view.renderView(html, this.machine.chargedMoney, this.machine.chargedChanges))
             .catch(err => alert(err));
     }
 
     chargeMoney() {
-        const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
+        const chargeAmount = document.querySelector(VM_CHARGE_INPUT).value;
         if(this.isCorrectChargeMoney(chargeAmount)) {
             this.getTotalChanges(chargeAmount);
             this.getTotalChargedMoney(chargeAmount);
@@ -29,13 +29,13 @@ export default class ChargeMachineController {
     
     getTotalChargedMoney(chargeAmount) {
         this.machine.increaseChargedMoney(chargeAmount);
-        setDataInLocalStorage('chargedMoney', this.machine.chargedMoney);
+        setDataInLocalStorage(CHARGE_INPUT, this.machine.chargedMoney);
     }
     
     getTotalChanges(chargeAmount) {
         const newChanges = this.getNewChanges(chargeAmount);
         this.machine.updateChargedChanges(newChanges);
-        setDataInLocalStorage('chargedChanges', JSON.stringify(this.machine.chargedChanges));
+        setDataInLocalStorage(CHARGED_CHANGES, JSON.stringify(this.machine.chargedChanges));
     }
     
     getNewChanges(newChargeAmount) {
