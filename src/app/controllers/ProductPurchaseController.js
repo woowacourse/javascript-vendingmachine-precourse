@@ -1,7 +1,7 @@
-import { $ } from '../../lib/utils.js';
+import { DATA_MODEL_KEYS, DOM, ERROR_MESSAGE } from '../../lib/constants.js';
+import { $, isPurchaseButton, isValidCharge } from '../../lib/utils.js';
 import Coin from '../../modules/coin.js';
-import { DOM, ERROR_MESSAGE, INPUTS_DEFAULT_VALUE } from '../constants.js';
-import VendingMachineUtil from '../util.js';
+import { defaultValueGenerators } from '../model/index.js';
 
 class ProductPurchaseController {
   constructor({ view, model }) {
@@ -20,7 +20,7 @@ class ProductPurchaseController {
   }
 
   onClickProductPurchaseListTable(e) {
-    if (VendingMachineUtil.isPurchaseButton(e.target)) {
+    if (isPurchaseButton(e.target)) {
       const {
         target: { dataset },
       } = e;
@@ -47,10 +47,11 @@ class ProductPurchaseController {
 
   onSubmitChargeForm(e) {
     e.preventDefault();
-
     try {
       this.addCharge();
-      this.$model.setChargeInputsValue(() => INPUTS_DEFAULT_VALUE.CHARGE);
+      this.$model.setChargeInputsValue(() =>
+        defaultValueGenerators[DATA_MODEL_KEYS.CHARGE_INPUTS_VALUE]()
+      );
       this.$view.mainView.renderCharge(
         this.$model.getChargeAmount(),
         this.$model.getChargeInputsValue()
@@ -75,6 +76,11 @@ class ProductPurchaseController {
       this.$model.getChargeAmount(),
       this.$model.getCoins()
     );
+
+    const newVendingMachineChargeAmount =
+      this.$model.getVendingMachineChargeAmount() - Coin.getCoinsAmount(returnCoins);
+
+    this.$model.setVendingMachineChargeAmount(newVendingMachineChargeAmount);
     this.$model.setChargeAmount(chargeAmount);
     this.$model.setCoins(coins);
     return returnCoins;
@@ -104,7 +110,7 @@ class ProductPurchaseController {
   }
 
   addCharge() {
-    if (VendingMachineUtil.isValidCharge(this.$model.getChargeInputsValue(), DOM.CHARGE_INPUT)) {
+    if (isValidCharge(this.$model.getChargeInputsValue(), DOM.CHARGE_INPUT)) {
       const newChargeAmount =
         this.$model.getChargeAmount() +
         Number(this.$model.getChargeInputValueById(DOM.CHARGE_INPUT));

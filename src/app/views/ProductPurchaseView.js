@@ -1,10 +1,14 @@
-import { FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN } from '../../lib/constants.js';
-import { $ } from '../../lib/utils.js';
 import {
   CHANGE_COIN_TABLE_HEADER,
+  CHARGE_AMOUNT_TEXT,
+  DOM,
+  FIFTY,
+  FIVE_HUNDRED,
+  ONE_HUNDRED,
   PRODUCT_PURCHASE_LIST_TABLE_HEADER_TEMPLATE,
-} from '../../template/constants.js';
-import { CHARGE_AMOUNT_TEXT, DOM } from '../constants.js';
+  TEN,
+} from '../../lib/constants.js';
+import { $ } from '../../lib/utils.js';
 
 class ProductPurchaseView {
   constructor(mainSection, chargeInputsValue, chargeAmount, productList) {

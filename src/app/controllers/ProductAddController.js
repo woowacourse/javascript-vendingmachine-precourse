@@ -1,6 +1,6 @@
-import { $ } from '../../lib/utils.js';
-import { DOM, INPUTS_DEFAULT_VALUE } from '../constants.js';
-import VendingMachineUtil from '../util.js';
+import { DATA_MODEL_KEYS, DOM, PRODUCT_ID_LENGTH } from '../../lib/constants.js';
+import { $, getRandomNumber, isNotDuplicatedId, isValidProduct } from '../../lib/utils.js';
+import { defaultValueGenerators } from '../model/index.js';
 
 class ProductAddController {
   constructor({ view, model }) {
@@ -24,7 +24,9 @@ class ProductAddController {
     e.preventDefault();
     try {
       this.addProduct();
-      this.$model.setProductAddInputsValue(() => INPUTS_DEFAULT_VALUE.PRODUCT_ADD);
+      this.$model.setProductAddInputsValue(() =>
+        defaultValueGenerators[DATA_MODEL_KEYS.PRODUCT_ADD_INPUTS_VALUE]()
+      );
       this.$view.mainView.renderProductAdd(
         this.$model.getProductList(),
         this.$model.getProductAddInputsValue()
@@ -35,15 +37,28 @@ class ProductAddController {
   }
 
   addProduct() {
-    if (VendingMachineUtil.isValidProduct(this.$model.getProductAddInputsValue())) {
+    if (isValidProduct(this.$model.getProductAddInputsValue())) {
       const newProduct = {
-        id: VendingMachineUtil.generateProductId(this.$model.getProductList()),
+        id: this.generateProductId(this.$model.getProductList()),
         name: this.$model.getProductAddInputValueById(DOM.PRODUCT_NAME_INPUT),
         price: Number(this.$model.getProductAddInputValueById(DOM.PRODUCT_PRICE_INPUT)),
         quantity: Number(this.$model.getProductAddInputValueById(DOM.PRODUCT_QUANTITY_INPUT)),
       };
       this.$model.setProductList([...this.$model.getProductList(), newProduct]);
     }
+  }
+
+  generateProductId(productList) {
+    while (true) {
+      const randomProductId = this.generateRandomProductId();
+      if (isNotDuplicatedId(productList, randomProductId)) {
+        return randomProductId;
+      }
+    }
+  }
+
+  generateRandomProductId() {
+    return [...new Array(PRODUCT_ID_LENGTH)].map(() => getRandomNumber()).join('');
   }
 }
 export default ProductAddController;

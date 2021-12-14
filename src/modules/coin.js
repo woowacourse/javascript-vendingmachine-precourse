@@ -1,11 +1,15 @@
-import { COINS_KEY_ARRAY } from '../lib/constants.js';
-import { getInitilizeCoins } from '../lib/utils.js';
+import { COINS_KEY_ARRAY, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN } from '../lib/constants.js';
+import { isCoinGreatherThanZero, isCoinValueLessThanChargeAmount } from '../lib/utils.js';
 
 class Coin {
+  static getDefaultCoins() {
+    return { [`${FIVE_HUNDRED}`]: 0, [`${ONE_HUNDRED}`]: 0, [`${FIFTY}`]: 0, [`${TEN}`]: 0 };
+  }
+
   static getRandomCoins(charge) {
     let tempCharge = charge;
 
-    const randomCoins = getInitilizeCoins();
+    const randomCoins = Coin.getDefaultCoins();
     while (tempCharge !== 0) {
       const randomCoin = window.MissionUtils.Random.pickNumberInList(COINS_KEY_ARRAY);
 
@@ -20,16 +24,20 @@ class Coin {
 
   static getCoinsAmount(coins) {
     return Object.keys(coins)
-      .map((KEY) => Coin.getCoinAmount(KEY))
+      .map((KEY) => Coin.getCoinAmount(coins[KEY], KEY))
       .reduce((aCoin, bCoin) => aCoin + bCoin);
   }
 
-  static getCoinAmount(KEY) {
-    return this.coins[KEY] * Number(KEY);
+  static getCoinAmount(quantity, KEY) {
+    return quantity * Number(KEY);
   }
 
-  static mostBiggestCoinRemainCoin(coins, check) {
-    return COINS_KEY_ARRAY.find((KEY) => coins[KEY] !== 0 && check >= Number(KEY));
+  static mostBiggestCoinOfRemainCoin(coins, chargeAmount) {
+    return COINS_KEY_ARRAY.find(
+      (KEY) =>
+        isCoinGreatherThanZero(coins[KEY]) &&
+        isCoinValueLessThanChargeAmount(Number(KEY), chargeAmount)
+    );
   }
 
   static returnCoin(returnCoins, tempCoins, tempChargeAmount, mostBiggestCoin) {
@@ -41,14 +49,13 @@ class Coin {
   static computeReturnCoin(chargeAmount, coins) {
     let tempChargeAmount = chargeAmount;
     const tempCoins = { ...coins };
-    const returnCoins = getInitilizeCoins();
+    const returnCoins = Coin.getDefaultCoins();
     while (tempChargeAmount !== 0) {
-      const mostBiggestCoin = Coin.mostBiggestCoinRemainCoin(tempCoins, tempChargeAmount);
+      const mostBiggestCoin = Coin.mostBiggestCoinOfRemainCoin(tempCoins, tempChargeAmount);
 
       if (mostBiggestCoin === undefined) {
         break;
       }
-
       tempChargeAmount = Coin.returnCoin(returnCoins, tempCoins, tempChargeAmount, mostBiggestCoin);
     }
     return { returnCoins, chargeAmount: tempChargeAmount, coins: tempCoins };
