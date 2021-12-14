@@ -1,5 +1,6 @@
 import ManageProductModel from '../models/ManageProductModel.js';
 import PurchaseProductModel from '../models/PurchaseProductModel.js';
+import ChargeCoinModel from '../models/ChargeCoinModel.js';
 import {
   ELEMENT_CLASS,
   ELEMENT_ID,
@@ -8,9 +9,10 @@ import {
   EVENT_TYPE,
   PLACEHOLDER,
   PRODUCT,
+  CHARGE,
+  COINS,
 } from '../utils/constants.js';
 import { $ } from '../utils/dom.js';
-import ChargeCoinView from './ChargeCoinView.js';
 import View from './View.js';
 
 const PurchaseProductView = { ...View };
@@ -80,12 +82,28 @@ PurchaseProductView.productsTemplate = function () {
 };
 
 PurchaseProductView.coinsTemplate = function () {
-  return (
-    `
+  return `
       <h3>잔돈</h3>
       <button id="coin-return-button">반환하기</button>
-      ` + ChargeCoinView.tableTemplate()
-  );
+      <table class="${ELEMENT_CLASS.COINS_TABLE} ${ELEMENT_CLASS.TABLE_COMMON}">
+    <thead> 
+      <tr>
+        <th>${CHARGE.COIN}</th>
+        <th>${CHARGE.COUNT}</th>
+      <tr/>
+    </thead>
+    <tbody>
+      ${COINS.map(
+        (coin) =>
+          `<tr>
+          <td>${coin}${CHARGE.WON}</td>
+          <td id=${ELEMENT_ID.COIN_QUANTITY(coin)}>${ChargeCoinModel.getReturnedCoins()[coin]}${
+            CHARGE.UNIT
+          }</td>
+        </tr>`,
+      ).join('')}
+    </tbody>
+  </table>`;
 };
 
 PurchaseProductView.bindClick = function () {

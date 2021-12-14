@@ -91,6 +91,7 @@ export default {
   },
   onReturnCoins() {
     const leftUserMoney = PurchaseProductModel.total();
+    ChargeCoinModel.resetReturnedCoins();
     ChargeCoinModel.return(leftUserMoney);
     PurchaseProductModel.reset();
     PurchaseProductView.render();

@@ -77,6 +77,7 @@ export const ALERT = {
   NOT_ENOUGH_QUANTITY: '수량이 부족합니다.',
   NOT_ENOUGH_MONEY: '돈이 부족합니다.',
   SAME_NAME_PRODUCT_EXIST: '같은 이름의 상품이 있습니다.',
+  NOT_EVERY_COINS_RETURNED: '잔돈이 부족하여 모든 돈이 반환되지는 못했습니다.',
 };
 
 export const COINS = [500, 100, 50, 10];
