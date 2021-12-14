@@ -7,7 +7,6 @@ import { initProductManageScreen } from '../../view/view.js';
 const setProductItemsStorage = (productData) => {
   const storedProductItems = getLocalStorage(STORAGE_NAME.PRODUCT);
   storedProductItems.push(productData);
-
   setLocalStorage(STORAGE_NAME.PRODUCT, storedProductItems);
 };
 

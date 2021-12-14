@@ -1,11 +1,5 @@
-import { $ } from './utils/querySelector.js';
-import { initScreenTemplate } from './view/initScreenTemplate.js';
+import { initScreen } from './view/init/initScreen.js';
 import { vendingMachineMenuEvent } from './components/menu.js';
-
-const initScreen = () => {
-  document.head.innerHTML += `<link rel="stylesheet" href="src/css/index.css">`;
-  $('#app').innerHTML = initScreenTemplate;
-};
 
 export default function vendingMachineApp() {
   initScreen();
