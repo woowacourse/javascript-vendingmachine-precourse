@@ -2,7 +2,7 @@ import Component from '../../core/Component.js';
 import ChargeSection from './ChargeSection.js';
 import CoinReturnSection from './CoinReturnSection.js';
 import ProductPurchaseSection from './ProductPurchaseSection.js';
-import $ from '../../helpers.js';
+import $ from '../../utils/helpers.js';
 
 export default class ProductPurchaseMenu extends Component {
   template() {

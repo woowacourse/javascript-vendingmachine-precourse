@@ -1,6 +1,6 @@
 import Component from '../../core/Component.js';
 import isValidChargeAmount from '../../utils/isValidChargeAmount.js';
-import $ from '../../helpers.js';
+import $ from '../../utils/helpers.js';
 
 export default class ChargeCoinSection extends Component {
   setup() {

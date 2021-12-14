@@ -1,6 +1,6 @@
 import Component from '../../core/Component.js';
 import isValidItem from '../../utils/isValidItem.js';
-import $ from '../../helpers.js';
+import $ from '../../utils/helpers.js';
 
 export default class ProductAddSection extends Component {
   template() {

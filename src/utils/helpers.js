@@ -1,4 +1,4 @@
-import tc from './core/utils/tc.js';
+import tc from '../core/utils/tc.js';
 
 // querySelector wrapper
 export default function $(selector, scope, _ = tc(selector, 'string')) {

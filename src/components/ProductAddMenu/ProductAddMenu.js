@@ -1,7 +1,7 @@
 import Component from '../../core/Component.js';
 import ProductAddSection from './ProductAddSection.js';
 import ProductManageTable from './ProductManageTable.js';
-import $ from '../../helpers.js';
+import $ from '../../utils/helpers.js';
 
 export default class ProductAddMenu extends Component {
   template() {

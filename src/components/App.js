@@ -1,13 +1,13 @@
-import Component from './core/Component.js';
-import Router from './core/Router.js';
-import NavBar from './components/NavBar/NavBar.js';
-import ProductAddMenu from './components/ProductAddMenu/ProductAddMenu.js';
-import ProductPurchaseMenu from './components/ProductPurchaseMenu/ProductPurchaseMenu.js';
-import VendingMachineManageMenu from './components/VendingMachineManageMenu/VendingMachineManageMenu.js';
+import Component from '../core/Component.js';
+import Router from '../core/Router.js';
+import NavBar from './NavBar/NavBar.js';
+import ProductAddMenu from './ProductAddMenu/ProductAddMenu.js';
+import ProductPurchaseMenu from './ProductPurchaseMenu/ProductPurchaseMenu.js';
+import VendingMachineManageMenu from './VendingMachineManageMenu/VendingMachineManageMenu.js';
 
-import VendingMachine from './models/VendingMachine.js';
-import $ from './helpers.js';
-import tc from './core/utils/tc.js';
+import VendingMachine from '../models/VendingMachine.js';
+import $ from '../utils/helpers.js';
+import tc from '../core/utils/tc.js';
 
 export default class App extends Component {
   setup() {
@@ -21,8 +21,6 @@ export default class App extends Component {
     });
 
     this.state = { currentTab, vendingMachine };
-
-    console.log('data loaded', this.state);
   }
 
   template() {

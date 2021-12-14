@@ -12,9 +12,10 @@
  */
 const tc = (target, type) => {
   if (typeof type == 'string') {
-    if (typeof target != type) throw `invalid type: ${target} is not ${type}`;
+    if (typeof target != type)
+      throw new Error(`invalid type: ${target} is not ${type}`);
   } else if (!(target instanceof type))
-    throw `invalid type: ${target} is not ${type}`;
+    throw new Error(`invalid type: ${target} is not ${type}`);
 
   return target;
 };

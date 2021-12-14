@@ -17,7 +17,7 @@ export default class Item {
   // TODO: 예외 처리 수정
   purchase() {
     if (this.quantity <= 0) {
-      throw 'out of stock';
+      throw new Error('out of stock');
     }
 
     this.quantity -= 1;

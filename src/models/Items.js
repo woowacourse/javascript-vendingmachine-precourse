@@ -14,7 +14,7 @@ export default class Items {
     const item = this.items.get(id);
 
     if (!item) {
-      throw 'no such item';
+      throw new Error('no such item');
     }
 
     return item;
