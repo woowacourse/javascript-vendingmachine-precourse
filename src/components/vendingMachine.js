@@ -19,6 +19,19 @@ function VendingMachine() {
     setLocalStorage(STORAGE_KEY.PRODUCT, this.products);
   };
 
+  this.addProductQuantity = (name, quantity) => {
+    const product = this.products.find((product) => product.name === name);
+
+    if (!product) {
+      return;
+    }
+
+    product.quantity += Number(quantity);
+    setLocalStorage(STORAGE_KEY.PRODUCT, this.products);
+
+    return product.quantity;
+  };
+
   this.addCharge = (charge) => {
     this.charge += charge;
     setLocalStorage(STORAGE_KEY.CHARGE, this.charge);

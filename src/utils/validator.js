@@ -53,6 +53,18 @@ const haveInsertMoney = (money) => {
   return money > MACHINE.RULE.ZERO;
 };
 
+const isSameName = (products, inputName) => {
+  return products.find((product) => product.name === inputName.trim());
+};
+
+const isSamePrice = (products, inputPrice) => {
+  return products.find((product) => product.price === Number(inputPrice));
+};
+
+export const existAlready = (products, inputName, inputPrice) => {
+  return isSameName(products, inputName) && isSamePrice(products, inputPrice);
+};
+
 export const isValidProduct = (name, price, quantity) => {
   return (
     isValidProductName(name) &&

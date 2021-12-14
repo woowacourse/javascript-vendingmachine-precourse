@@ -11,6 +11,7 @@ import Product from '../product.js';
 import { vendingMachine } from '../vendingMachine.js';
 import {
   alertProductErrorMessage,
+  existAlready,
   isValidProduct,
 } from '../../utils/validator.js';
 import { getLocalStorage } from '../store.js';
@@ -39,12 +40,35 @@ export default function ProductAddMenuView() {
       alertProductErrorMessage(...productValue);
       return;
     }
+    if (
+      existAlready(vendingMachine.products, productValue[0], productValue[1])
+    ) {
+      this.updateProductQuantity(productValue[0], productValue[2]);
+      initInput(...productInput);
+      return;
+    }
 
     const product = new Product(...productValue);
 
     vendingMachine.addProduct(product);
     this.renderProduct(product.getProduct());
     initInput(...productInput);
+  };
+
+  this.updateProductQuantity = (inputName, inputQuantity) => {
+    const quantity = vendingMachine.addProductQuantity(
+      inputName,
+      inputQuantity
+    );
+    const productNames = document.querySelectorAll(
+      `.${CLASS.PRODUCT_MANAGE[0]}`
+    );
+    const sameName = Array.from(productNames).find(
+      (name) => name.innerHTML === inputName
+    );
+    const currentQuantity = sameName.parentNode.childNodes[2];
+
+    currentQuantity.innerHTML = quantity;
   };
 
   this.renderProduct = (product) => {
