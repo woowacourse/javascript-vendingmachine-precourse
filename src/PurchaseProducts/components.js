@@ -89,6 +89,8 @@ const createProperty = function createProductPropertyObject(
     ['class', `${CLASS_PURCHASE_PREFIX}${type}`],
     [`${DATA_PRODUCT_PREFIX}${type}`, value],
   ]);
+
+  if (type === 'price') return { attributes, value: `${value}원`, width };
   return { attributes, value, width };
 };
 
@@ -98,7 +100,7 @@ export const createProductObjects = function createProductPropertyObjectSet(
 ) {
   return [
     createProperty('name', name, `${VAL_COLUMN_SIZE * 2}px`),
-    createProperty('price', `${property.price}원`, `${VAL_COLUMN_SIZE}px`),
+    createProperty('price', property.price, `${VAL_COLUMN_SIZE}px`),
     createProperty('quantity', property.quantity, `${VAL_COLUMN_SIZE}px`),
   ];
 };
