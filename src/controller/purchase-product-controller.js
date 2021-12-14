@@ -59,7 +59,8 @@ export default class PurchaseProductController {
     
     calculateMinimumChanges() {
         this.machine.initializeInputChanges();
-        moneyList.forEach(coin => {
+        moneyList.sort((a, b) => b - a)
+            .forEach(coin => {
             while(coin <= this.machine.inputMoney) {
                 if(this.machine.chargedChanges[coin] < 1) break;
                 this.machine.decreaseInputMoney(coin);
