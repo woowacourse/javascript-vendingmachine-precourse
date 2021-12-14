@@ -39,7 +39,7 @@ export const coinChargeTemplate = `
   </div>
 `;
 
-export const haveCoinTemplate = (unit, quantity) => `
+export const vendingMachineCoinTemplate = (unit, quantity) => `
   <tr>
     <td>${unit}원</td>
     <td id="vending-machine-coin-${unit}-quantity">${quantity}개</td>
