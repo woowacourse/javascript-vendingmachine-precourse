@@ -11,7 +11,7 @@ export const STORAGE = {
   },
   COIN: {
     NAME: 'coin',
-    INIT: { coin500: 0, coin100: 0, coin50: 0, coin10: 0 },
+    INIT: Object.freeze({ coin500: 0, coin100: 0, coin50: 0, coin10: 0 }),
   },
   CHARGE: {
     NAME: 'charge',

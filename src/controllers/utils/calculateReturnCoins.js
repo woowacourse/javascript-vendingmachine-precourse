@@ -6,7 +6,7 @@ import { STORAGE, COIN_ARRAY } from '../../constants/constants.js';
 const calculateReturnCoins = () => {
   const charge = DB.load(STORAGE.CHARGE.NAME);
   const wallet = DB.load(STORAGE.COIN.NAME);
-  const emptyWallet = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
+  const emptyWallet = { ...STORAGE.COIN.INIT };
 
   const [deductedWallet, returnCoinWallet] = useGreedyArgorithm(charge, wallet, emptyWallet);
 
