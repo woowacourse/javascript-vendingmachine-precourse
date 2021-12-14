@@ -87,6 +87,6 @@ export default class PurchaseController {
     this.appModel.setInputChargeAmount(remainedInputChargeAmount);
     this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
 
-    // this.purchaseView.renderReturnedCoins(returnedCoins);
+    this.purchaseView.renderReturnedCoins(returnedCoins);
   }
 }
