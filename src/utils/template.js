@@ -64,7 +64,7 @@ export const manageTabTemplate = (chargeAmount, coinsAmountArray, chargeInput) =
       <button id="vending-machine-charge-button">충전하기</button>
     </form>
     <div>
-      보유금액: <span id="vending-machine-charge-amount">${chargeAmount}원</span>
+      보유금액: <span id="vending-machine-charge-amount">${chargeAmount}</span>원
     </div>
     <div>
       <h2>자판기가 보유한 동전</h2>
@@ -116,7 +116,7 @@ export const purchaseTabTemplate = (products, inputChargeAmount, chargeInput) =>
       <button id="charge-button">투입하기</button>
     </form>
     <div>
-      투입한 금액: <span id="charge-amount">${inputChargeAmount}원</span>
+      투입한 금액: <span id="charge-amount">${inputChargeAmount}</span>원
     </div>
     <br />
     <div>
