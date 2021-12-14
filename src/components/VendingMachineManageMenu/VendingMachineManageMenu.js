@@ -16,7 +16,7 @@ export default class VendingMachineManageMenu extends Component {
     `;
   }
 
-  mounted() {
+  afterMount() {
     const { coins, refill } = this.props;
     new ChargeCoinSection($('#charge-coin-section'), { coins, refill });
     new ChargedCoinSection($('#charged-coin-section'), { coins });

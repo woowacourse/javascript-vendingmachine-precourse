@@ -11,7 +11,7 @@ export default class ProductAddMenu extends Component {
     `;
   }
 
-  mounted() {
+  afterMount() {
     const { items, addItem } = this.props;
     new ProductAddSection($('#product-add-section'), { addItem });
     new ProductManageSection($('#product-manage-table'), { items });

@@ -13,7 +13,7 @@ export default class ProductPurchaseMenu extends Component {
     `;
   }
 
-  mounted() {
+  afterMount() {
     const {
       chargedAmount,
       items,

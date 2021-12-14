@@ -9,7 +9,7 @@ export default class Component {
 
   setup() {}
 
-  mounted() {}
+  afterMount() {}
 
   template() {
     return '';
@@ -17,7 +17,7 @@ export default class Component {
 
   render() {
     this.$target.innerHTML = this.template();
-    this.mounted();
+    this.afterMount();
   }
 
   setState(newState) {

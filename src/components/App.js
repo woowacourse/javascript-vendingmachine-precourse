@@ -34,7 +34,7 @@ export default class App extends Component {
     `;
   }
 
-  mounted() {
+  afterMount() {
     const { navigate, addItem, refill, charge, purchase, returnChange } = this;
     const { currentTab, vendingMachine } = this.state;
 
