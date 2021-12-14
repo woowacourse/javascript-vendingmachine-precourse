@@ -133,8 +133,10 @@ function purchaseProduct(target) {
     const price = parseInt(currentRow.children[1].dataset?.productPrice, 10);
     
     if(canBuyProduct(price, quantity)) {
+        totalInputMoney -= price;
         quantity -= 1;
         renderDecreaseQuantity(currentRow.children[2], quantity);
+        renderInputMoney(totalInputMoney);
     }
     else {
         alert("더이상 구매할 수 없습니다.");
