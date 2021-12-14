@@ -1,4 +1,5 @@
 import { DOM, LOCAL_STORAGE, EVENT, TEMPLATE, ERROR_MESSAGE, NUMBER, STRING, COIN } from '../utils/constant.js';
+import SetPurchaseButtons from './SetPurchaseButtons.js';
 
 export default class CheckCoinReturn {
   constructor(render, coins, product, vendingMachine) {
@@ -8,56 +9,13 @@ export default class CheckCoinReturn {
     this.vendingMachine = vendingMachine;
   }
 
-  reRenderPurchaseChargeAmount = (productPrice) => {
-    if (!this.vendingMachine.decreaseChargeAmount(productPrice)) {
-      this.render.alertMessage(ERROR_MESSAGE.NOT_ENOUGH_AMOUNT);
-
-      return false;
-    }
-
-    this.render.chargeInputTemplate(TEMPLATE.CHARGE_INPUT(this.vendingMachine.getChargeAmount()));
-
-    return true;
-  };
-
-  isOutOfStock = (productName, productPrice, productQuantity, $targetName, $targetPrice, $targetQuantity) => {
-    if (productQuantity <= NUMBER.ZERO) {
-      this.render.alertMessage(ERROR_MESSAGE.OUT_OF_STOCK);
-
-      return;
-    }
-
-    if (this.reRenderPurchaseChargeAmount(productPrice)) {
-      this.render.purchaseTemplate($targetName, $targetPrice, $targetQuantity);
-      this.localStorageProductAddMenu = this.localStorageProductAddMenu.replace(
-        TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity),
-        TEMPLATE.PRODUCT_MANAGE_QUANTITY(productName, productQuantity - NUMBER.ONE)
-      );
-    }
-  };
-
-  isTargetName = (information, $targetName, $targetPrice, $targetQuantity) => {
-    const [productName, productPrice, productQuantity] = information;
-    if ($targetName.textContent === productName) {
-      this.isOutOfStock(productName, productPrice, productQuantity, $targetName, $targetPrice, $targetQuantity);
-    }
-  };
-
-  reRenderProductAddMenu = ($targetName, $targetPrice, $targetQuantity) => {
-    this.localStorageProductAddMenu = localStorage.getItem(LOCAL_STORAGE.PRODUCT_ADD_MENU);
-    this.product.getProductsInformation().forEach((information) => {
-      this.isTargetName(information, $targetName, $targetPrice, $targetQuantity);
-    });
-
-    localStorage.setItem(LOCAL_STORAGE.PRODUCT_ADD_MENU, this.localStorageProductAddMenu);
-  };
-
   onClickPurchaseButton = ($purchaseButton) => {
     $purchaseButton.addEventListener(EVENT.CLICK, (event) => {
       const $targetQuantity = event.target.parentElement.previousElementSibling;
       const $targetPrice = $targetQuantity.previousElementSibling;
       const $targetName = $targetPrice.previousElementSibling;
-      this.reRenderProductAddMenu($targetName, $targetPrice, $targetQuantity);
+      const setPurchaseButtons = new SetPurchaseButtons(this.render, this.vendingMachine, this.product);
+      setPurchaseButtons.reRenderProductAddMenu($targetName, $targetPrice, $targetQuantity);
     });
   };
 
