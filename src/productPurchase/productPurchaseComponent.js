@@ -31,6 +31,9 @@ export default class productPurchaseComponent {
     const [name, price, quantity] = this.getSelectedProductData(event);
 
     if (this.checkAvailablePurchase(price, quantity)) {
+      this.subtractQuantity(name, price);
+      this.productPurchaseView.updatePurchaseTableQuantity();
+      this.productPurchaseView.showAmountText(this.chargeMoney);
     }
   };
 
@@ -75,6 +78,10 @@ export default class productPurchaseComponent {
   onClickChagesButton = () => {
     let data = LocalStorageUtils.getMachineManageTableItem();
     const [newData, changesCoins] = this.calculateChanges(data);
+
+    LocalStorageUtils.setMachineManageTableItem(newData);
+    this.productPurchaseView.updateChangesTableCount(changesCoins);
+    this.clearInputMoney();
   };
 
   calculateChanges(data) {
@@ -102,5 +109,15 @@ export default class productPurchaseComponent {
       changesCoin += 1;
     }
     return [remain, count, changesCoin];
+  }
+
+  clearInputMoney() {
+    this.chargeMoney = 0;
+    this.productPurchaseView.showAmountText(0);
+  }
+
+  render() {
+    this.productPurchaseView.render();
+    this.configureButtons();
   }
 }

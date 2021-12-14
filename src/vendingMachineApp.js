@@ -28,7 +28,7 @@ export default class VendingMachineApp {
       case BUTTONS_INFO.VENDING_MACHINE_MANAGE.ID:
         this.vendingMachineComponent.render();
         return;
-      case buttonsInfo.productPurchase.id:
+      case BUTTONS_INFO.PRODUCT_PURCHASE.ID:
         this.productPurchaseComponent.render();
         return;
     }
