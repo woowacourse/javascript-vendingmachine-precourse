@@ -1,4 +1,4 @@
-import VendingMachineView from './vendingMachineView.js';
+import VendingMachineView from './view/vendingMachineView.js';
 import ManageTab from './tab/manageTab.js';
 import BuyProductTab from './tab/buyProductTab.js';
 import ChangeChargeTab from './tab/changeChargeTab.js';

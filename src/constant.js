@@ -66,19 +66,19 @@ export const BUY_TEMPLATE = `<div id="product-purchase-content" class="hide">
     </tr>
     <tr>
         <td>500원</td>
-        <td>coin-500-quantity</td>
+        <td id="coin-500-quantity"></td>
     </tr>
     <tr>
         <td>100원</td>
-        <td>coin-100-quantity</td>
+        <td id= "coin-100-quantity"></td>
     </tr>
     <tr>
         <td>50원</td>
-        <td>coin-50-quantity</td>
+        <td id="coin-50-quantity"></td>
     </tr>
     <tr>
         <td>10원</td>
-        <td>coin-10-quantity</td>
+        <td id="coin-10-quantity"></td>
     </tr>
 </table>
 </div>`;
