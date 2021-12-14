@@ -18,6 +18,11 @@ function chargeInput() {
   $fragment.appendChild($chargeInputWrap);
 }
 
+export function renderChargedMoney() {
+  const chargeAmount = document.querySelector('#charge-amount');
+  chargeAmount.textContent = localStorage.getItem('charge-input');
+}
+
 function purchaseItems() {
   const $purchaseItemsWrap = document.createElement('section');
   $purchaseItemsWrap.id = 'purchaseItemsWrap';

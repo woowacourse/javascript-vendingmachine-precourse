@@ -5,4 +5,8 @@ export {
   renderVendingMachineChargeAmount,
   renderAmountCoins
 } from './renderVendingMachineManage.mjs';
-export { renderProductPurchase, renderProductPurchaseStatus } from './renderProductPurchase.mjs';
+export {
+  renderProductPurchase,
+  renderProductPurchaseStatus,
+  renderChargedMoney
+} from './renderProductPurchase.mjs';

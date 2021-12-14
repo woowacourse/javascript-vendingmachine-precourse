@@ -1,4 +1,4 @@
-import { renderProductPurchase, renderProductPurchaseStatus } from '../view/index.mjs';
+import { renderProductPurchase, renderProductPurchaseStatus, renderChargedMoney } from '../view/index.mjs';
 import { products } from '../model/products.mjs';
 
 /*
@@ -20,6 +20,7 @@ import { products } from '../model/products.mjs';
   - 금액은 10원으로 나누어 떨어지는 금액만 투입할 수 있다.
   - 자판기가 보유한 금액은 {금액}원 형식으로 나타낸다.
 */
+
 function renderProductPurchaseTab() {
   document.querySelector('main').remove();
   renderProductPurchase(products);
@@ -28,6 +29,20 @@ function renderProductPurchaseTab() {
 export function productPurchaseEvent() {
   const $productPurchaseMenu = document.querySelector('#product-purchase-menu');
   $productPurchaseMenu.addEventListener('click', renderProductPurchaseTab);
+
+  window.addEventListener('click', e => {
+    if (e.target !== document.querySelector('#charge-button')) return;
+
+    e.preventDefault();
+    let money = document.querySelector('#charge-input').value;
+
+    if (localStorage.getItem('charge-input')) {
+      money = Number(localStorage.getItem('charge-input')) + Number(money);
+    }
+    localStorage.setItem('charge-input', money);
+
+    renderChargedMoney();
+  });
 
   renderProductPurchaseStatus();
 }
