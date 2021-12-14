@@ -11,7 +11,6 @@ export const header = `<div class="header">
 </div>`;
 
 // Main
-
 export const productMangeMenu = `<div class="product-add-menu">
 <div>
   <h4>상품 추가하기</h4>
@@ -152,6 +151,7 @@ export const productPurchaseMenu = `<div class="product-purchase-menu">
 </div>
 </div>`;
 
+// Table
 export const productListTable = `<tr class="product-manage-item">
 <td class="product-manage-name"></td>
 <td class="product-manage-price"></td>

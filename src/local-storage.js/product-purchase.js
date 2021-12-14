@@ -1,4 +1,3 @@
-import { USER } from '../common/constants/constants.js';
 import {
   getCurrentSum,
   updateSum,
@@ -12,5 +11,6 @@ export const saveUserChargedMoneyToStorage = (moneyChargeInputValue) => {
   }
 
   const newChargedAmount = prevChargedAmount + moneyChargeInputValue;
+
   updateSum(newChargedAmount);
 };

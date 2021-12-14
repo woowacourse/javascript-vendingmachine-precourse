@@ -3,7 +3,7 @@ import { $ } from '../common/dom/templates.js';
 import { saveItemsToStorage } from '../local-storage.js/product-detail.js';
 import { saveUserChargedMoneyToStorage } from '../local-storage.js/product-purchase.js';
 import {
-  saveCharegedAmountToStorage,
+  saveChargedAmountToStorage,
   saveRandomAmountOfCoins,
 } from '../local-storage.js/vending-machine-manage.js';
 import { createProductListTable } from '../view/show.js';
@@ -85,8 +85,7 @@ const handleMoneyChargeTab = () => {
 
 const handleMoneyChargeButton = () => {
   if (machineChargeInputValidator(machineChargeInputValue())) {
-    // 스펠링 교정
-    saveCharegedAmountToStorage(machineChargeInputValue());
+    saveChargedAmountToStorage(machineChargeInputValue());
     printChargedAmountToScreen();
     saveRandomAmountOfCoins();
     printAmountOfCoinToScreen();
@@ -133,7 +132,6 @@ const initPurchaseTab = () => {
   $moneyChargeButton.addEventListener('click', (event) => {
     event.preventDefault();
     handleUserChargeButton();
-    // validation
   });
   $coinReturnButton.addEventListener('click', printReturnedCoins);
 };
