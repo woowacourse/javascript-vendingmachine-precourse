@@ -7,7 +7,7 @@ export const initCoinMenu = () => {
 };
 
 const updateCoinTableRow = () => {
-  const coins = getCoinsFromLocalStorage('coin');
+  const coins = getCoinsFromLocalStorage();
   for (let key in coins) {
     let price = key;
     let quantity = coins[key];
@@ -18,7 +18,7 @@ const updateCoinTableRow = () => {
 };
 
 const addCoins = () => {
-  let vendingMachineCoins = getCoinsFromLocalStorage('coin');
+  let vendingMachineCoins = getCoinsFromLocalStorage();
   let newCoin = getRandomCoins();
   for (let key in newCoin) {
     if (isNaN(vendingMachineCoins[key])) {
@@ -27,7 +27,7 @@ const addCoins = () => {
       vendingMachineCoins[key] += newCoin[key];
     }
   }
-  saveCoinsToLocalStorage('coin', vendingMachineCoins);
+  saveCoinsToLocalStorage(vendingMachineCoins);
   updateCoinTableRow();
 };
 

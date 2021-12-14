@@ -6,7 +6,7 @@ export const initProductTable = () => {
   productAddButton.addEventListener('click', () => addNewProductTableRow());
 
   const table = document.getElementById('product-table');
-  const products = getProductsFromLocalStorage('product');
+  const products = getProductsFromLocalStorage();
   for (let product of products) {
     table.insertAdjacentHTML('beforeend', productTableRow(product));
   }
@@ -21,7 +21,7 @@ const addNewProductTableRow = () => {
 
   if (isInputValid(product)) {
     table.insertAdjacentHTML('beforeend', productTableRow(product));
-    saveProductToLocalStorage('product', product);
+    saveProductToLocalStorage(product);
   }
 };
 
@@ -50,7 +50,7 @@ const isInputValid = (product) => {
 };
 
 const productNameValid = (name) => {
-  const productsExist = getProductsFromLocalStorage('product');
+  const productsExist = getProductsFromLocalStorage();
   for (let product of productsExist) {
     if (name === product.name) {
       return false;

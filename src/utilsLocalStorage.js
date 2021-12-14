@@ -1,30 +1,30 @@
-export const saveProductToLocalStorage = (key, target) => {
-  let targets = getProductsFromLocalStorage(key);
+export const saveProductToLocalStorage = (target) => {
+  let targets = getProductsFromLocalStorage('product');
 
   targets.push(target);
-  localStorage.setItem(key, JSON.stringify(targets));
+  localStorage.setItem('product', JSON.stringify(targets));
 };
 
-export const getProductsFromLocalStorage = (key) => {
-  return JSON.parse(localStorage.getItem(key)) || [];
+export const getProductsFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('product')) || [];
 };
 
-export const saveCoinsToLocalStorage = (key, target) => {
-  localStorage.setItem(key, JSON.stringify(target));
+export const saveCoinsToLocalStorage = (target) => {
+  localStorage.setItem('coin', JSON.stringify(target));
 };
 
-export const getCoinsFromLocalStorage = (key) => {
-  return JSON.parse(localStorage.getItem(key)) || {};
+export const getCoinsFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('coin')) || {};
 };
 
-export const saveMoneyToLocalStorage = (key, target) => {
-  localStorage.setItem(key, JSON.stringify(target));
+export const saveMoneyToLocalStorage = (target) => {
+  localStorage.setItem('money', JSON.stringify(target));
 };
 
-export const getMoneyFromLocalStorage = (key) => {
-  return JSON.parse(localStorage.getItem(key)) || '0';
+export const getMoneyFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('money')) || '0';
 };
 
-export const saveProductsToLocalStorage = (key, targets) => {
-  localStorage.setItem(key, JSON.stringify(targets));
+export const saveProductsToLocalStorage = (targets) => {
+  localStorage.setItem('product', JSON.stringify(targets));
 };

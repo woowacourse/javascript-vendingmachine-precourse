@@ -19,16 +19,16 @@ export const initPurchaseMenu = () => {
 };
 
 const initMoney = () => {
-  const money = getMoneyFromLocalStorage('money');
+  const money = getMoneyFromLocalStorage();
   document.getElementById('charge-amount').innerText = Number(money);
 };
 
 const chargeMoney = () => {
   const chargeInput = document.getElementById('charge-input').value;
-  const money = getMoneyFromLocalStorage('money');
+  const money = getMoneyFromLocalStorage();
   if (isChargeInputValid(chargeInput)) {
     document.getElementById('charge-amount').innerText = Number(money) + Number(chargeInput);
-    saveMoneyToLocalStorage('money', Number(money) + Number(chargeInput));
+    saveMoneyToLocalStorage(Number(money) + Number(chargeInput));
   }
 };
 
@@ -41,7 +41,7 @@ const isChargeInputValid = (chargeInput) => {
 };
 
 const initProductTable = () => {
-  const products = getProductsFromLocalStorage('product');
+  const products = getProductsFromLocalStorage();
   const table = document.getElementById('product-purchase-table');
   for (let product of products) {
     table.insertAdjacentHTML('beforeend', productTableRow(product));
@@ -66,7 +66,7 @@ const initPurchaseButtons = () => {
 };
 
 const purchaseProduct = (element) => {
-  const products = getProductsFromLocalStorage('product');
+  const products = getProductsFromLocalStorage();
   const name = element.childNodes[1].innerText;
   const index = findProductIndex(products, name);
 
@@ -74,16 +74,16 @@ const purchaseProduct = (element) => {
   const price = product.price;
   const quantity = product.quantity;
 
-  const money = getMoneyFromLocalStorage('money');
+  const money = getMoneyFromLocalStorage();
   const moneyAfterBuy = Number(money) - Number(price);
 
   if (isMoneyEnough(moneyAfterBuy)) {
     if (isQuantityEnough(quantity)) {
       document.getElementById('charge-amount').innerText = moneyAfterBuy;
-      saveMoneyToLocalStorage('money', Number(money) - Number(price));
+      saveMoneyToLocalStorage(Number(money) - Number(price));
       product.quantity = quantity - 1;
       element.childNodes[5].innerText -= 1;
-      saveProductsToLocalStorage('product', products);
+      saveProductsToLocalStorage(products);
     }
   }
 };
@@ -113,8 +113,8 @@ const isQuantityEnough = (quantity) => {
 };
 
 const returnMoney = () => {
-  let money = getMoneyFromLocalStorage('money');
-  const coins = getCoinsFromLocalStorage('coin');
+  let money = getMoneyFromLocalStorage();
+  const coins = getCoinsFromLocalStorage();
   let answer = { 500: 0, 100: 0, 50: 0, 10: 0 };
 
   for (let i of [500, 100, 50, 10]) {
@@ -127,12 +127,12 @@ const returnMoney = () => {
   for (let i of [500, 100, 50, 10]) {
     answer[i] = coins[i] - answer[i];
   }
-  saveCoinsToLocalStorage('coin', answer);
-  saveMoneyToLocalStorage('money', money);
+  saveCoinsToLocalStorage(answer);
+  saveMoneyToLocalStorage(money);
 };
 
 const findNumberOfCoin = (money, coinPrice) => {
-  const coins = getCoinsFromLocalStorage('coin');
+  const coins = getCoinsFromLocalStorage();
   if (parseInt(money / coinPrice) < coins[coinPrice]) {
     return parseInt(money / coinPrice);
   } else {
