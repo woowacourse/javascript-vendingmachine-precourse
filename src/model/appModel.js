@@ -8,6 +8,7 @@ export default class AppModel {
     this.products = this.loadProducts() || defaultProducts();
     this.chargeAmount = this.loadChargeAmount() || NUMBER.ZERO;
     this.coins = this.loadCoins() || defaultCoins();
+    this.inputChargeAmount = this.loadInputChargeAmount() || NUMBER.ZERO;
 
     this.addTabInput = defaultAddTabInput();
     this.manageTabInput = STRING.EMPTY;
@@ -15,10 +16,6 @@ export default class AppModel {
 
   loadProducts() {
     return loadDataFromStorage(STRING.PRODUCTS);
-  }
-
-  setProducts(products) {
-    this.products = products;
   }
 
   addProduct(product) {
@@ -68,4 +65,19 @@ export default class AppModel {
   setManageTabInput(value) {
     this.manageTabInput = value;
   }
+
+  loadInputChargeAmount() {
+    return loadDataFromStorage(STRING.INPUT_CHARGE_AMOUNT);
+  }
+
+  setInputChargeAmount(amount) {
+    // this.inputChargeAmount =
+    //   this.inputChargeAmount > 0 ? this.getAddedInputChargeAmount(amount) : amount;
+
+    setDataOnStorage(STRING.INPUT_CHARGE_AMOUNT, this.inputChargeAmount);
+  }
+
+  // getAddedInputChargeAmount(amount) {
+  //   return this.inputChargeAmount + amount;
+  // }
 }

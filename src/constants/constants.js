@@ -2,6 +2,7 @@ export const STRING = {
   PRODUCTS: 'products',
   CHARGE_AMOUNT: 'chargeAmount',
   COINS: 'coins',
+  INPUT_CHARGE_AMOUNT: 'inputChargeAmount',
   EMPTY: '',
 };
 

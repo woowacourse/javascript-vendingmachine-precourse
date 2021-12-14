@@ -6,8 +6,8 @@ export default class PurchaseView {
     this.$main = $('main');
   }
 
-  renderPurchaseTab(products) {
-    this.$main.innerHTML = purchaseTabTemplate(products);
+  renderPurchaseTab(products, inputChargeAmount) {
+    this.$main.innerHTML = purchaseTabTemplate(products, inputChargeAmount);
   }
 
   selectPurchaseTabDOM() {
@@ -16,5 +16,9 @@ export default class PurchaseView {
     this.$inputChargeAmount = $('#charge-amount');
     this.$coinReturnButton = $('#coin-return-button');
     this.$purchaseItem = $('.product-purchase-item');
+  }
+
+  renderInputChargeAmount(amount) {
+    this.$inputChargeAmount.innerText = `${amount}원`;
   }
 }

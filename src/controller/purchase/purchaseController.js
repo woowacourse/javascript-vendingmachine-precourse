@@ -11,7 +11,7 @@ export default class PurchaseController {
   init() {
     this.purchaseView.init();
 
-    this.purchaseView.renderPurchaseTab(this.appModel.products);
+    this.purchaseView.renderPurchaseTab(this.appModel.products, this.appModel.inputChargeAmount);
     this.purchaseView.selectPurchaseTabDOM();
     this.attachPurchaseTabEvents();
   }
@@ -26,14 +26,16 @@ export default class PurchaseController {
   handleInputCharge(e) {
     e.preventDefault();
 
-    const chargeInput = this.purchaseView.$chargeInput.value;
+    const inputChargeAmount = this.purchaseView.$chargeInput.value;
 
-    if (isValidChargeAmount(chargeInput)) {
-      return console.log(chargeInput);
+    if (isValidChargeAmount(inputChargeAmount)) {
+      this.appModel.setInputChargeAmount(Number(inputChargeAmount));
+      this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
+      return console.log(inputChargeAmount);
     }
 
     showError();
 
-    console.log(chargeInput);
+    console.log(inputChargeAmount);
   }
 }

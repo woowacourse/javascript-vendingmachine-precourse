@@ -101,8 +101,8 @@ export const manageTabTemplate = (chargeAmount, coinsAmountArray, chargeInput) =
   `;
 };
 
-export const purchaseTabTemplate = (products) => {
-  console.log(products);
+export const purchaseTabTemplate = (products, inputChargeAmount) => {
+  console.log(inputChargeAmount);
   return `
     <h2>금액 투입</h2>
     <form id="charge-input-form">
@@ -110,7 +110,7 @@ export const purchaseTabTemplate = (products) => {
       <button id="charge-button">투입하기</button>
     </form>
     <div>
-      투입한 금액: <span id="charge-amount">${NUMBER.ZERO}원</span>
+      투입한 금액: <span id="charge-amount">${inputChargeAmount}원</span>
     </div>
     <br />
     <div>
