@@ -1,4 +1,4 @@
-import {CLASS, ID, STORAGE_KEY, TABLE_MENU} from '../../utils/constants.js';
+import {CLASS, ID, STORAGE_KEY, TABLE_HEADER, TABLE_MENU} from '../../utils/constants.js';
 import {createInputElement, createTable} from '../../utils/domUtil.js';
 import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
 import {isValidPurchaseInput, isValidPurchaseProduct} from '../../utils/validation.js';
@@ -56,15 +56,11 @@ export default class PurchaseContainer extends Component {
   }
 
   printProductTable() {
-    const ths = ['상품명', '가격', '수량', '구매'];
-
-    return createTable(TABLE_MENU.PURCHASE, ths, this.$state.products);
+    return createTable(TABLE_MENU.PURCHASE, TABLE_HEADER.PURCHASE, this.$state.products);
   }
 
   printChargeTable() {
-    const ths = ['동전', '개수'];
-
-    return createTable(TABLE_MENU.PURCHASE_CHARGE, ths);
+    return createTable(TABLE_MENU.PURCHASE_CHARGE, TABLE_HEADER.CHARGE);
   }
 
   printCoinQuantity(coins) {
@@ -130,9 +126,7 @@ export default class PurchaseContainer extends Component {
 
   saveReturnCoinResultInStroage() {
     setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, this.$state.vendingMachineAmount);
-
     setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, this.$state.vendingMachineCoins);
-
     setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
   }
 

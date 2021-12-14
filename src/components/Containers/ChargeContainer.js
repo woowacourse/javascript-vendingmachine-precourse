@@ -1,4 +1,4 @@
-import {ID, STORAGE_KEY, TABLE_MENU} from '../../utils/constants.js';
+import {ID, STORAGE_KEY, TABLE_HEADER, TABLE_MENU} from '../../utils/constants.js';
 import {createInputElement, createTable} from '../../utils/domUtil.js';
 import {getLocalStorage, setLocalStorage} from '../../utils/localStorage.js';
 import {isValidChargeInput} from '../../utils/validation.js';
@@ -59,9 +59,7 @@ export default class ChargeContainer extends Component {
   }
 
   printChargeTable() {
-    const ths = ['동전', '개수'];
-
-    return createTable(TABLE_MENU.VENDING_MACHINE_CHARGE, ths);
+    return createTable(TABLE_MENU.VENDING_MACHINE_CHARGE, TABLE_HEADER.CHARGE);
   }
 
   printCoinQuantity(coins) {

@@ -80,3 +80,9 @@ export const TABLE_MENU = Object.freeze({
   PURCHASE: 'purchase',
   PURCHASE_CHARGE: 'purchase_charge'
 });
+
+export const TABLE_HEADER = Object.freeze({
+  PRODUCT_MANAGE: ['상품명', '가격', '수량'],
+  CHARGE: ['동전', '개수'],
+  PURCHASE: ['상품명', '가격', '수량', '구매']
+});
