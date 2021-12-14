@@ -4,6 +4,8 @@
 <h1 align="middle">자판기</h1>
 
 ## 🎯 구현할 기능 목록
+> **bold**는 추가한 사항
+
 ### 0. `eslint` 적용
 - `airbnb` 컨벤션 적용
 - `MissionUtils`에서 발생하는 `no-undef` 의 예외처리
@@ -25,7 +27,7 @@
 - 유효성 검사
     - 상품가격은 10의 배수이며 100 이상의 양의 정수
     - 수량은 1이상의 양의 정수
-    - 상품명, 가격, 수량은 공백이 아니어야 함
+    - **상품명, 가격, 수량은 공백이 없야 함**
     - **중복된 상품명 등록 불가**
 - `localStorage`를 갱신
     - 상품 추가시 상품에 대한 정보 갱신
@@ -37,7 +39,7 @@
     - 추가 충전 금액 또한 동전을 무작위로 생성하며, 기존 동전들에 더함
 - 유효성 검사
     - 충전 금액은 1이상의 양의 정수여야 함
-    - 충전 금액이 공백이 아니어야 함
+    - **충전 금액이 공백이 없어야 함**
 - `localStorage`에 저장된 자판기가 보유한 금액과 동전 수를 출력
 
 ### 5. 상품 구매 탭
@@ -46,7 +48,7 @@
 - 반환하기를 클릭시 `localStorage` 내 충전 금액을 가능한 만큼 최소 동전으로 반환
 - 유효성 검사
     - 투입한 금액은 10의 배수이며, 양의 정수
-    - 투입한 금액이 공백이 아니어야 함
+    - **투입한 금액이 공백이 없어야 함**
     - 구매한 상품이 충전 금액보다 크면 안됨
     - **수량이 0인 상품은 제거**
 
@@ -60,18 +62,17 @@
 │   └── README.md
 └── src
     ├── controller
-    │   ├── index.js // 상단 탭 이벤트 초기화
-    │   ├── productAdd.js // 상품 추가 로직
-    │   ├── purchase.js // 상품 구매, 잔돈 반환 로직
-    │   ├── utils.js // 판별함수, localstorage 관련 로직 모임
-    │   └── vending.js // 자판기 동전 추기 로직
+    │   ├── index.js // 중앙 컨트롤러
+    │   ├── addTab.js // 상품 추가 탭 컨트롤러
+    │   ├── purchaseTab.js // 상품 구매 탭 컨트롤러
+    │   ├── utils.js // 판별함수, alert message 관련 함수 모음
+    │   └── vendingTab.js // 잔돈 충전 탭 컨트롤러
     ├── model
     │   ├── constants.js // 상수 모음
-    │   ├── dom.js // html template
-    │   ├── product.js // 상품 클래스
-    │   └── vendingMachine.js // vending machine 클래스
+    │   ├── template.js // html template
+    │   └── index.js // 모델
     ├── view
-    │   └── index.js // ui로직 함수 모음
+    │   └── index.js // ui로직, 
     └── index.js //초기 선언
 ```
 
