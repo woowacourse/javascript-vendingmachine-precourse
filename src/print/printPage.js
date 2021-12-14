@@ -25,7 +25,8 @@ export function printPage() {
     $app.innerHTML += `<div id="vending-machine-manage-content" class="hide">
                     <h3>자판기 동전 충전하기</h3>
                     <input id="vending-machine-charge-input" type="number"><button id="vending-machine-charge-button">충전하기</button>
-                    <p id="vending-machine-charge-amount">보유금액: </p>
+                    <br>
+                    보유금액: <p id="vending-machine-charge-amount"></p>
                     <br>
                     <h3>자판기가 보유한 동전</h3>
                     <table id="vending-machine-charge-table" border="1">
@@ -55,7 +56,8 @@ export function printPage() {
     $app.innerHTML += `<div id="product-purchase-content" class="hide">
                     <h3>금액 투입</h3>
                     <input id="charge-input" type="number"><button id="charge-button">투입하기</button>
-                    <p id="charge-amount">투입한 금액: </p>
+                    <br>
+                    투입한 금액: <p id="charge-amount"></p>
                     <br>
                     <h3>구매할 수 있는 상품 현황</h3>
                     <table border="1">

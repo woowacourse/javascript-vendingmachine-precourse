@@ -15,7 +15,7 @@ export function addProductPurchaseTable() {
 
 export function printChargeAmount() {
     const $chargeAmount = document.querySelector('#charge-amount');
-    $chargeAmount.innerHTML = `투입한 금액: ${GAME.CUSTOMER_CHARGE_TOTAL}`;
+    $chargeAmount.innerHTML = GAME.CUSTOMER_CHARGE_TOTAL;
 }
 
 export function printCoinReturnTable() {

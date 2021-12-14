@@ -2,7 +2,7 @@ import { GAME } from '../util/constant.js';
 
 export function printVendingMachineChargeAmount() {
     const $vendingMachineChargeAmount = document.querySelector('#vending-machine-charge-amount');
-    $vendingMachineChargeAmount.innerHTML = `보유금액: ${GAME.VENDING_MACHINE_CHARGE_TOTAL}`;
+    $vendingMachineChargeAmount.innerHTML = GAME.VENDING_MACHINE_CHARGE_TOTAL;
 }
 
 export function printVendingMachineChargeTable() {
