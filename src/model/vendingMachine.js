@@ -23,21 +23,22 @@ export default class VendingMachine {
       setProductList(this.productList);
       return;
     }
-    this.productList.map((product) => {
+    this.productList.forEach((product, idx) => {
       if (product.name === name) {
-        product.price = price;
-        product.quantity += quantity;
+        this.productList[idx].price = price;
+        this.productList[idx].quantity += quantity;
         setProductList(this.productList);
-        return false;
       }
     });
   }
 
   makeRandomChange(charged) {
-    while (charged > 0) {
+    let zero = charged;
+
+    while (zero > 0) {
       const pickRandomCoin = MissionUtils.Random.pickNumberInList(COIN);
-      if (charged - pickRandomCoin >= 0) {
-        charged -= pickRandomCoin;
+      if (zero - pickRandomCoin >= 0) {
+        zero -= pickRandomCoin;
         this.updateOwnChange(pickRandomCoin);
       }
     }
@@ -59,33 +60,31 @@ export default class VendingMachine {
 
   returnChange() {
     let zero = this.userMoney;
-    this.ownChange.map((el, idx) => {
+    this.ownChange.forEach((el, idx) => {
       const canUse = Math.min(el, parseInt(zero / COIN[idx], 10));
       this.ownChange[idx] -= canUse;
       this.returnMoney[idx] = canUse;
       zero -= canUse * COIN[idx];
     });
     this.userMoney = zero;
+
     setOwnChange(this.ownChange);
-    // getOwnChange(this.ownChange);
     setUserMoney(this.userMoney);
-    // getUserMoney(this.userMoney);
   }
 
   buyProduct(name) {
     let isAvailable = false;
-    this.productList.map((product) => {
+    this.productList.forEach((product, idx) => {
       if (
         product.name === name &&
         product.price <= this.userMoney &&
         product.quantity >= 1
       ) {
-        product.quantity -= 1;
+        this.productList[idx].quantity -= 1;
         this.userMoney -= product.price;
         isAvailable = true;
         setProductList(this.productList);
         setUserMoney(this.userMoney);
-        return false;
       }
     });
 
