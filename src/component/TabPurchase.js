@@ -15,6 +15,12 @@ import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 import { COIN } from '../constant/coin.js';
 
 const PRODUCT_TABLE_COLUMN = [COLUMN.NAME, COLUMN.PURCHASE, COLUMN.QUANTITY, COLUMN.PURCHASE];
+const PRODUCT_TABLE_CLASS = [
+  CLASS.PRODUCT_PURCHASE_NAME,
+  CLASS.PRODUCT_PURCHASE_PRICE,
+  CLASS.PRODUCT_PURCHASE_QUANTITY,
+  CLASS.PRODUCT_PURCHASE_BUTTON,
+];
 const COIN_TABLE_COLUMN = [COLUMN.COIN, COLUMN.COUNT];
 const COIN_TABLE_IDS = {
   [COIN.COIN_500]: ID.COIN_500_QUANTITY,
@@ -80,12 +86,7 @@ export default class TabPurchase {
     this.productListTitle = new Title(TITLE.PURCHASABLE_PRODUCT_LIST);
     this.productListTable = new ProductPurchaseTable({
       columns: PRODUCT_TABLE_COLUMN,
-      classes: [
-        CLASS.PRODUCT_PURCHASE_NAME,
-        CLASS.PRODUCT_PURCHASE_PRICE,
-        CLASS.PRODUCT_PURCHASE_QUANTITY,
-        CLASS.PRODUCT_PURCHASE_BUTTON,
-      ],
+      classes: PRODUCT_TABLE_CLASS,
       initialData: this.vendingMachine.getProductList(),
     });
     this.$root.appendChild(this.productListTitle.getTarget());
