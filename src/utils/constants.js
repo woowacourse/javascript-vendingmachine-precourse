@@ -5,4 +5,3 @@ export const STORAGE_CHANGES_KEY = 'CHANGES';
 export const STORAGE_REMAINS_KEY = 'REMAINS';
 
 export const INVALID_PRODUCT_INPUT = '입력 값이 올바른지 확인해주세요.';
-export const INVALID_CHARGE_INPUT = '올바른 금액을 입력해주세요.';
