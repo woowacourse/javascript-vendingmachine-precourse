@@ -43,7 +43,13 @@ export default class VendingMachineManageMenuController {
 
   saveCoins(newAmount) {
     const coinArray = getRandomCoinArray(newAmount);
-    console.log(coinArray);
+    const postData = getData("coins");
+    postData.coin10Quantity += coinArray[0];
+    postData.coin50Quantity += coinArray[1];
+    postData.coin100Quantity += coinArray[2];
+    postData.coin500Quantity += coinArray[3];
+    setData("coins", postData);
+    this.vendingMachineManageMenuView.render(getData("coins"));
   }
 }
 
