@@ -132,14 +132,22 @@ function purchaseProduct(target) {
     let quantity = parseInt(currentRow.children[2].dataset?.productQuantity, 10);
     const price = parseInt(currentRow.children[1].dataset?.productPrice, 10);
     
-    if(totalInputMoney >= price && quantity > 0) {
+    if(canBuyProduct(price, quantity)) {
         quantity -= 1;
-        currentRow.children[2].dataset.productQuantity = quantity.toString();
-        currentRow.children[2].textContent = quantity.toString();
+        renderDecreaseQuantity(currentRow.children[2], quantity);
     }
     else {
         alert("더이상 구매할 수 없습니다.");
     }
+}
+
+function canBuyProduct(price, quantity) {
+    return totalInputMoney >= price && quantity > 0;
+}
+
+function renderDecreaseQuantity(quantityCell, quantity) {
+    quantityCell.dataset.productQuantity = quantity.toString();
+    quantityCell.textContent = quantity.toString();
 }
 
 //
