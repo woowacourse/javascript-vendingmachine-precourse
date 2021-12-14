@@ -1,6 +1,6 @@
 import { $ } from '../../utils/querySelector.js';
-import { COIN_UNITS, ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
-import { isDivideByTen } from '../../utils/validation.js';
+import { COIN_UNITS, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
+import { isValidCoinCharge } from '../../utils/validation.js';
 import { showConvertedCoins, coinChargeTemplate } from './coinChargeTemplate.js';
 import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
 import { showCurrentAmount } from '../../view/view.js';
@@ -34,8 +34,8 @@ const handleCoinChargeSubmit = (event) => {
   let chargedCoin = Number($('#vending-machine-charge-input').value);
   const storedChargeCoins = getLocalStorage(STORAGE_NAME.COIN);
 
-  if (isDivideByTen(chargedCoin)) {
-    return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
+  if (!isValidCoinCharge(chargedCoin)) {
+    return;
   }
 
   convertAmountIntoCoins(chargedCoin);

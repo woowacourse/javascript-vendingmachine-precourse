@@ -51,3 +51,13 @@ export const isValidProductValue = (productData) => {
   if (!isValidProductPrice(price)) return false;
   return true;
 };
+
+export const isValidCoinCharge = (chargedCoin) => {
+  if (isNegativeNumber(chargedCoin)) {
+    return alert(COUNT_TOO_SMALL);
+  }
+  if (isDivideByTen(chargedCoin)) {
+    return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
+  }
+  return true;
+};
