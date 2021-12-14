@@ -1,5 +1,5 @@
 export default function Product(name, price, quantity) {
-  this.name = name;
+  this.name = name.trim();
   this.price = Number(price);
   this.quantity = Number(quantity);
 
