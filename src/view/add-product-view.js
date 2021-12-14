@@ -1,4 +1,8 @@
 export default class AddProductView {
+    renderView(view, productList) {
+        document.querySelector("#tab-content").innerHTML = view;
+        this.renderAddedProductList(productList);
+    }
 
     renderAddedProductList(products) {
         const productTable = document.querySelector("table");

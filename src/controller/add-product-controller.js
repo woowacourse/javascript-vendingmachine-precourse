@@ -1,9 +1,16 @@
 import { setDataInLocalStorage } from './localstorage-controller.js';
+import { fetchHtmlView } from '../fetch.js';
 
 export default class AddProductController {
     constructor(machine, view) {
         this.machine = machine;
         this.view = view;
+    }
+
+    onTabClick() {
+        fetchHtmlView('product_manage.html')
+            .then(html => this.view.renderView(html, this.machine.productList))
+            .catch(err => alert(err));
     }
 
     addProduct() {

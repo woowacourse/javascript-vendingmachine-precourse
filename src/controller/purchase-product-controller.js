@@ -1,10 +1,17 @@
 import { setDataInLocalStorage } from './localstorage-controller.js';
 import { moneyList } from '../constants.js';
+import { fetchHtmlView } from '../fetch.js';
 
 export default class PurchaseProductController {
     constructor(machine, view) {
         this.machine = machine;
         this.view = view;
+    }
+
+    onTabClick() {
+        fetchHtmlView('product_purchase.html')
+            .then(html => this.view.renderView(html, this.machine.inputMoney, this.machine.productList, this.machine.inputChanges))
+            .catch(err => alert(err));
     }
 
     putMoney() {

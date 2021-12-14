@@ -1,10 +1,17 @@
 import { setDataInLocalStorage } from './localstorage-controller.js';
 import { moneyList } from '../constants.js';
+import { fetchHtmlView } from '../fetch.js';
 
 export default class ChargeMachineController {
     constructor(machine, view) {
         this.machine = machine;
         this.view = view;
+    }
+
+    onTabClick() {
+        fetchHtmlView('machine_charge.html')
+            .then(html => this.view.renderView(html, this.machine.chargedMoney, this.machine.chargedChanges))
+            .catch(err => alert(err));
     }
 
     chargeMoney() {

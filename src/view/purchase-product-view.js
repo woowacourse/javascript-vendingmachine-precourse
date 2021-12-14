@@ -1,6 +1,14 @@
 import { moneyList } from '../constants.js';
 
 export default class PurchaseProductView {
+
+    renderView(view, inputMoney, productList, inputChanges) {
+        document.querySelector("#tab-content").innerHTML = view;
+        this.renderInputMoney(inputMoney);
+        this.renderProductList(productList);
+        this.renderChanges(inputChanges);
+    }
+
     renderInputMoney(money) {
         document.querySelector("#charge-amount").textContent = money;
     }
