@@ -120,13 +120,13 @@
 │       │   ├── handleVendingMachine.js  // 메뉴 ‘잔돈 충전’을 클릭했을 때 실행하는 로직 
 │       │   └── handleProductPurchase.js // 메뉴 ‘상품 구매’를 클릭했을 때 실행하는 로직 
 │       ├── models                       // 데이터를 관리하는 역할 (views에 접근하지 않음)
-│       │   ├── productAddModel.js       // HandleProductAdd.js에서 호출하는 model
-│       │   ├── vendingMachineModel.js   // HandleVendingMachine.js에서 호출하는 model
-│       │   └── productPurchaseModel.js  // HandleProductPurchase.js에서 호출하는 model
+│       │   ├── productAddModel.js       // handleProductAdd.js에서 호출하는 model
+│       │   ├── vendingMachineModel.js   // handleVendingMachine.js에서 호출하는 model
+│       │   └── productPurchaseModel.js  // handleProductPurchase.js에서 호출하는 model
 │       ├── views                        // 화면을 관리하는 역할 (models에 접근하지 않음)
-│       │   ├── productAddView.js        // HandleProductAdd.js에서 호출하는 view
-│       │   ├── vendingMachineView.js    // HandleVendingMachine.js에서 호출하는 view
-│       │   ├── productPurchaseView.js   // HandleProductPurchase.js에서 호출하는 view
+│       │   ├── productAddView.js        // handleProductAdd.js에서 호출하는 view
+│       │   ├── vendingMachineView.js    // handleVendingMachine.js에서 호출하는 view
+│       │   ├── productPurchaseView.js   // handleProductPurchase.js에서 호출하는 view
 │       │   ├── renderInitHTML.js        // 초기 화면을 구성하는 html 
 │       │   ├── renderCSS.js             // html에 css를 적용하여 화면을 꾸며주는 로직 
 │       │   └── alertMessage.js          // alert 창을 통해 에러 메시지를 출력하는 로직 
