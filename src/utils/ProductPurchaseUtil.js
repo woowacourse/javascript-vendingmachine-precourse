@@ -14,10 +14,20 @@ export default class ProductPurchaseUtil {
     this.addPurchaseCoin();
     this.addReturnCoin();
     this.getCoin();
+    this.getCurrentCoin();
   }
 
   getCoin() {
     this.coinAmount = Number(this.productPurchase.amount.dataset.amount);
+  }
+
+  getCurrentCoin() {
+    const current = this.storage.purchaseCoin;
+    if (current == null) {
+      return;
+    }
+    console.log(current);
+    this.updateCoinAmount(current.purchaseCoin);
   }
 
   getPurchaseCoin(input) {
@@ -40,8 +50,8 @@ export default class ProductPurchaseUtil {
 
   updateCoinAmount(coin) {
     this.coinAmount += coin;
+    this.storage.updatePurchaseCoin({ purchaseCoin: this.coinAmount });
     this.renderCoinAmount(this.coinAmount);
-    this.start = true;
   }
 
   renderCoinAmount(coinAmount) {
@@ -67,6 +77,7 @@ export default class ProductPurchaseUtil {
       this.machineUtil.setCoinTable(this.reverseArr(returnVal.arr));
       this.machineUtil.setCoinAmount(-(this.coinAmount - returnVal.coin));
       this.renderCoinAmount(returnVal.coin);
+      this.storage.updatePurchaseCoin({ purchaseCoin: returnVal.coin });
       this.machineUtil.setLocalStorage(this.machineUtil.originCoin, this.machineUtil.coinAmount);
     });
   }

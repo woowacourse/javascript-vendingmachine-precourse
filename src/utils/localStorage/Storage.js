@@ -76,4 +76,13 @@ export default class Storage {
 
     this.setMachineCoin(addCoin);
   }
+
+  updatePurchaseCoin(addCoin) {
+    const originCoin = this.purchaseCoin;
+
+    console.log(originCoin);
+    console.log(addCoin);
+
+    this.setPurchaseCoin(addCoin);
+  }
 }

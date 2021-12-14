@@ -34,6 +34,7 @@ export default class PurchaseBtnHandler {
     this.getCoinAmount();
     if (checkPurchasePrice(this.coinAmount, price) && checkPurchaseQuantity(quantity)) {
       this.coinAmount -= price;
+      this.storage.updatePurchaseCoin({ purchaseCoin: this.coinAmount });
       this.renderCoinAmount(this.coinAmount);
       quantity -= 1;
       element.innerHTML = quantity;
