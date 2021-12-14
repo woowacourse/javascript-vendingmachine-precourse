@@ -29,3 +29,10 @@ export const COIN = {
   FIFTY: 50,
   TEN: 10,
 };
+
+export const CHARGE_INIT = [
+  { coinType: COIN.FIVE_HUNDRED, quantity: 0 },
+  { coinType: COIN.A_HUNDRED, quantity: 0 },
+  { coinType: COIN.FIFTY, quantity: 0 },
+  { coinType: COIN.TEN, quantity: 0 },
+];

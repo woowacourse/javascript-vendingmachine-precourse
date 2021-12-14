@@ -1,6 +1,20 @@
-import { $, createTRow, createTData, ID, CLASS } from '../utils/dom.js';
+import {
+  $,
+  paintTemplate,
+  createTRow,
+  createTData,
+  clearInputs,
+  ID,
+  CLASS,
+} from '../utils/dom.js';
 import { productAddMenuTemplate } from '../utils/templates.js';
-import { RULES, ERROR_MSG, LS_KEY } from '../utils/constants.js';
+import { ERROR_MSG, LS_KEY } from '../utils/constants.js';
+import {
+  load,
+  isSmallerThanMinPrice,
+  cannotBeDividedByMinUnit,
+  isSmallerThanMinQuantity,
+} from '../utils/controller.js';
 
 export default class ProductAdd {
   constructor() {
@@ -9,24 +23,11 @@ export default class ProductAdd {
   }
 
   init = () => {
-    this.paintTemplate();
-    this.loadProducts();
+    paintTemplate(productAddMenuTemplate);
+    this.products = load(LS_KEY.PRODUCT_ADD_PRODUCTS);
+
     this.paintLoadedProducts();
     $('form').addEventListener('submit', this.handleProductAddSubmit);
-  };
-
-  paintTemplate = () => {
-    $(`#${ID.PAGE_CONTENT}`).innerHTML = productAddMenuTemplate();
-  };
-
-  loadProducts = () => {
-    const loadedProducts = localStorage.getItem(LS_KEY.PRODUCT_ADD_PRODUCTS);
-    if (!loadedProducts) {
-      return;
-    }
-    const parsedProducts = JSON.parse(loadedProducts);
-    this.products = parsedProducts;
-    return;
   };
 
   paintLoadedProducts = () => {
@@ -35,11 +36,13 @@ export default class ProductAdd {
 
   handleProductAddSubmit = (e) => {
     e.preventDefault();
-    const name = $(`#${ID.PRODUCT_NAME_INPUT}`).value,
-      price = parseInt($(`#${ID.PRODUCT_PRICE_INPUT}`).value),
-      quantity = parseInt($(`#${ID.PRODUCT_QUANTITY_INPUT}`).value);
-
-    const isValid = this.validateInputs(name, price, quantity);
+    const $nameInput = $(`#${ID.PRODUCT_NAME_INPUT}`),
+      $priceInput = $(`#${ID.PRODUCT_PRICE_INPUT}`),
+      $quantityInput = $(`#${ID.PRODUCT_QUANTITY_INPUT}`);
+    const name = $nameInput.value,
+      price = parseInt($priceInput.value),
+      quantity = parseInt($quantityInput.value);
+    const isValid = this.validateInputs(price, quantity);
     if (!isValid) {
       alert(ERROR_MSG.PRODUCT_ADD);
     }
@@ -47,18 +50,18 @@ export default class ProductAdd {
       const newProduct = this.createProduct(name, price, quantity);
       this.paintProduct(newProduct);
       this.saveProduct(newProduct);
-      this.clearInputs();
+      clearInputs([$nameInput, $priceInput, $quantityInput]);
     }
   };
 
-  validateInputs = (name, price, quantity) => {
-    if (price < RULES.MIN_PRICE) {
+  validateInputs = (price, quantity) => {
+    if (isSmallerThanMinPrice(price)) {
       return false;
     }
-    if (price % RULES.MIN_PRICE_UNIT) {
+    if (cannotBeDividedByMinUnit(price)) {
       return false;
     }
-    if (quantity < RULES.MIN_QUANTITY) {
+    if (isSmallerThanMinQuantity(quantity)) {
       return false;
     }
     return true;
@@ -87,16 +90,9 @@ export default class ProductAdd {
       CLASS.PRODUCT_MANAGE_QUANTITY,
       product.quantity
     );
-
     $newTableRow.appendChild($newTableData__name);
     $newTableRow.appendChild($newTableData__price);
     $newTableRow.appendChild($newTableData__quantity);
     $table.appendChild($newTableRow);
-  };
-
-  clearInputs = () => {
-    $(`#${ID.PRODUCT_NAME_INPUT}`).value = '';
-    $(`#${ID.PRODUCT_PRICE_INPUT}`).value = '';
-    $(`#${ID.PRODUCT_QUANTITY_INPUT}`).value = '';
   };
 }

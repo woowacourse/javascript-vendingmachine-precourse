@@ -1,5 +1,9 @@
 export const $ = (selector) => document.querySelector(selector);
 
+export const paintTemplate = (template) => {
+  $(`#${ID.PAGE_CONTENT}`).innerHTML = template();
+};
+
 export const createDiv = (id) => {
   const $div = document.createElement('div');
   $div.id = id;
@@ -26,8 +30,12 @@ export const createTData = (className, value) => {
   return $td;
 };
 
+export const clearInputs = (elements) => {
+  elements.map((el) => (el.value = ''));
+};
+
 export const ID = {
-  // page
+  // when initializing vending machine
   PAGE_CONTENT: 'page-content-container',
 
   // menu bar

@@ -1,40 +1,26 @@
-import { $, ID } from '../utils/dom.js';
+import { $, paintTemplate, clearInputs, ID } from '../utils/dom.js';
 import { vendingMachineManageMenuTemplate } from '../utils/templates.js';
-import { RULES, ERROR_MSG, LS_KEY, COIN } from '../utils/constants.js';
+import { ERROR_MSG, LS_KEY, COIN, CHARGE_INIT } from '../utils/constants.js';
+import {
+  load,
+  isSmallerThanMinUnit,
+  cannotBeDividedByMinUnit,
+} from '../utils/controller.js';
 
 export default class VendingMachineManage {
   constructor() {
-    this.charges = [
-      { coinType: COIN.FIVE_HUNDRED, quantity: 0 },
-      { coinType: COIN.A_HUNDRED, quantity: 0 },
-      { coinType: COIN.FIFTY, quantity: 0 },
-      { coinType: COIN.TEN, quantity: 0 },
-    ];
+    this.charges = CHARGE_INIT;
     this.init();
   }
 
   init = () => {
-    this.paintTemplate();
-    this.loadCharges();
+    paintTemplate(vendingMachineManageMenuTemplate);
+    this.charges = load(LS_KEY.VENDING_MACHINE_MANAGE_CHARGES);
 
     this.paintHoldingAmount();
     this.paintLoadedCharges();
 
     $('form').addEventListener('submit', this.handleVendingMachineChargeSubmit);
-  };
-
-  paintTemplate = () => {
-    $(`#${ID.PAGE_CONTENT}`).innerHTML = vendingMachineManageMenuTemplate();
-  };
-
-  loadCharges = () => {
-    const loadedCharges = localStorage.getItem(LS_KEY.VENDING_MACHINE_MANAGE_CHARGES);
-    if (!loadedCharges) {
-      return;
-    }
-    const parsedCharges = JSON.parse(loadedCharges);
-    this.charges = parsedCharges;
-    return;
   };
 
   paintHoldingAmount = () => {
@@ -60,7 +46,8 @@ export default class VendingMachineManage {
 
   handleVendingMachineChargeSubmit = (e) => {
     e.preventDefault();
-    const chargeInput = parseInt($(`#${ID.VENDING_MACHINE_CHARGE_INPUT}`).value);
+    const $chargeInput = $(`#${ID.VENDING_MACHINE_CHARGE_INPUT}`);
+    const chargeInput = parseInt($chargeInput.value);
 
     const isValid = this.validateCharge(chargeInput);
     if (!isValid) {
@@ -70,15 +57,15 @@ export default class VendingMachineManage {
       this.saveCharge(chargeInput);
       this.paintHoldingAmount();
       this.paintLoadedCharges();
-      this.clearInputs();
+      clearInputs([$chargeInput]);
     }
   };
 
   validateCharge = (chargeInput) => {
-    if (chargeInput < RULES.MIN_PRICE_UNIT) {
+    if (isSmallerThanMinUnit(chargeInput)) {
       return false;
     }
-    if (chargeInput % RULES.MIN_PRICE_UNIT) {
+    if (cannotBeDividedByMinUnit(chargeInput)) {
       return false;
     }
     return true;
@@ -108,9 +95,5 @@ export default class VendingMachineManage {
       LS_KEY.VENDING_MACHINE_MANAGE_CHARGES,
       JSON.stringify(this.charges)
     );
-  };
-
-  clearInputs = () => {
-    $(`#${ID.VENDING_MACHINE_CHARGE_INPUT}`).value = '';
   };
 }
