@@ -26,11 +26,13 @@ export default class ProductPurchaseModel {
   }
 
   setPurchaseProduct(selectProduct) {
+    console.log("실행")
     const localProductList = JSON.parse(localStorage.getItem("PRODUCT_LIST"));
     let localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));
     localProductList.map(product => product[0] === selectProduct[0] 
       ? (product[2] = (Number(product[2])-1), localTotalInsertMoney -= Number(product[1])) 
       : "" );
+    localProductList.forEach((product, i) => product[2] === 0 ? localProductList.splice(i, 1): "");
     localStorage.setItem("PRODUCT_LIST", JSON.stringify(localProductList));
     localStorage.setItem("INSERT_MONEY", JSON.stringify(localTotalInsertMoney));
   }

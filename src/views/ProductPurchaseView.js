@@ -32,7 +32,7 @@ export default class ProductPurchaseView extends ProductPurchaseController {
     const $produtAblePurchaseWrap = document.querySelector('#product-purchase-wrap');
     $produtAblePurchaseWrap.innerHTML = "";
     this.purchaseProductResult
-    ? this.purchaseProductResult.map(v => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(v)))
+    ? this.purchaseProductResult.map(productInfo => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(productInfo)))
     : this.localProductList.map(v => $produtAblePurchaseWrap.append(renderAblePurchaseProductList(v)));
   }
 
