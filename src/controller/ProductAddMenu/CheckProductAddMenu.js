@@ -1,5 +1,5 @@
 import SetProductAdd from './SetProductAdd.js';
-import { DOM, LOCAL_STORAGE, EVENT } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE, EVENT } from '../../utils/constant.js';
 
 export default class CheckProductAddMenu {
   constructor(render, product) {

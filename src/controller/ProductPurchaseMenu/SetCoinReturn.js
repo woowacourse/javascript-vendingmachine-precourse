@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE, TEMPLATE, NUMBER, STRING, COIN } from '../utils/constant.js';
+import { LOCAL_STORAGE, TEMPLATE, NUMBER, STRING, COIN } from '../../utils/constant.js';
 
 export default class SetCoinReturn {
   constructor(render, coins, vendingMachine) {

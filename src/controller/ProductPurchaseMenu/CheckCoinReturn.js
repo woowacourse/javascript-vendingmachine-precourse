@@ -1,4 +1,4 @@
-import { DOM, EVENT, ERROR_MESSAGE, NUMBER } from '../utils/constant.js';
+import { DOM, EVENT, ERROR_MESSAGE, NUMBER } from '../../utils/constant.js';
 import SetCoinReturn from './SetCoinReturn.js';
 import SetPurchaseButtons from './SetPurchaseButtons.js';
 

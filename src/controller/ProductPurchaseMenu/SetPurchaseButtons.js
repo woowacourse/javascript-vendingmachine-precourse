@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE, TEMPLATE, ERROR_MESSAGE, NUMBER } from '../utils/constant.js';
+import { LOCAL_STORAGE, TEMPLATE, ERROR_MESSAGE, NUMBER } from '../../utils/constant.js';
 
 export default class SetPurchaseButtons {
   constructor(render, vendingMachine, product) {

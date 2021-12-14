@@ -1,5 +1,5 @@
-import { DOM, TEMPLATE } from '../utils/constant.js';
-import ValidationInputCoin from '../model/ValidationInputCoin.js';
+import { DOM, TEMPLATE } from '../../utils/constant.js';
+import ValidationInputCoin from '../../model/ValidationInputCoin.js';
 
 export default class SetVendingMachinePurchase {
   constructor(render, vendingMachine) {

@@ -1,6 +1,6 @@
-import CheckProductAddMenu from './CheckProductAddMenu.js';
-import CheckVendingMachineManageMenu from './CheckVendingMachineManageMenu.js';
-import CheckProductPurchaseMenu from './CheckProductPurchaseMenu.js';
+import CheckProductAddMenu from './ProductAddMenu/CheckProductAddMenu.js';
+import CheckVendingMachineManageMenu from './VendingMachineChargeMenu/CheckVendingMachineManageMenu.js';
+import CheckProductPurchaseMenu from './ProductPurchaseMenu/CheckProductPurchaseMenu.js';
 
 export default class CheckEventTarget {
   constructor(render, coins, product, vendingMachine) {

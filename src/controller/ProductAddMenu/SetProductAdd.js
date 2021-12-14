@@ -1,5 +1,5 @@
-import ProductAdd from '../model/ProductAdd.js';
-import { DOM } from '../utils/constant.js';
+import ProductAdd from '../../model/ProductAdd.js';
+import { DOM } from '../../utils/constant.js';
 
 export default class SetProductAdd {
   constructor(render, product) {

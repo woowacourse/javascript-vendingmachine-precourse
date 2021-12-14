@@ -1,4 +1,4 @@
-import { DOM, LOCAL_STORAGE } from '../utils/constant.js';
+import { DOM, LOCAL_STORAGE } from '../../utils/constant.js';
 
 export default class SetLocalStorage {
   constructor(coins, product, vendingMachine) {
