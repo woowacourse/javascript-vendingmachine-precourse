@@ -105,12 +105,12 @@ export const purchaseTabTemplate = (products) => {
   console.log(products);
   return `
     <h2>금액 투입</h2>
-    <div>
+    <form id="charge-input-form">
       <input id="charge-input" type="number" />
       <button id="charge-button">투입하기</button>
-      <div>
-        투입한 금액: <span id="charge-amount">${NUMBER.ZERO}원</span>
-      </div>
+    </form>
+    <div>
+      투입한 금액: <span id="charge-amount">${NUMBER.ZERO}원</span>
     </div>
     <br />
     <div>

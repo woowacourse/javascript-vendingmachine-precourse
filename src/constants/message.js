@@ -3,7 +3,7 @@ export const ERROR_MESSAGE = {
   DUPLICATED_PRODUCT_NAME: '중복되지 않는 상품명을 기입해주세요',
   EMPTY_PRODUCT_PRICE: '가격을 입력해주세요',
   EMPTY_PRODUCT_QUANTITY: '수량을 입력해주세요',
-  EMPTY_CHARGE_AMOUNT: '충전 금액을 입력해주세요',
+  EMPTY_CHARGE_AMOUNT: '금액을 입력해주세요',
   NOT_NUMBER: '숫자 형식으로 입력해주세요',
   NOT_OVER_HUNDRED: '100원이상의 가격을 입력해주세요',
   NOT_OVER_TEN: '10이상의 숫자를 입력해주세요',

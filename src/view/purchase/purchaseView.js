@@ -9,4 +9,12 @@ export default class PurchaseView {
   renderPurchaseTab(products) {
     this.$main.innerHTML = purchaseTabTemplate(products);
   }
+
+  selectPurchaseTabDOM() {
+    this.$chargeInput = $('#charge-input');
+    this.$chargeInputForm = $('#charge-input-form');
+    this.$inputChargeAmount = $('#charge-amount');
+    this.$coinReturnButton = $('#coin-return-button');
+    this.$purchaseItem = $('.product-purchase-item');
+  }
 }
