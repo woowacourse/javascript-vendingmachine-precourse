@@ -2,7 +2,6 @@ import { fetchHtmlView } from './fetch.js';
 import { moneyList } from './constants.js';
 
 //
-let productList = [];
 function addProduct() {
     const name = document.querySelector("#product-name-input").value;
     const price = document.querySelector("#product-price-input").value;
@@ -130,12 +129,37 @@ function renderInputMoney(money) {
     document.querySelector("#charge-amount").textContent = `투입한 금액: ${money}`;
 }
 
+function renderProductList(products) {
+    const productTable = document.querySelector("table");
+    products.forEach(product => {
+        const {name, price, quantity} = product;
+        const newProductRow = document.createElement("tr");
+        newProductRow.className = "product-purchase-item";
+        newProductRow.innerHTML = `<td class="product-purchase-name" data-product-name="${name}">${name}</td>
+                                    <td class="product-purchase-price" data-prouct-price="${price}">${price}</td>
+                                    <td class="product-purchase-quantity" data-product-quantity="${quantity}">${quantity}</td>
+                                    <td><button class="purchase-button">구매하기</button></td>`;
+        productTable.appendChild(newProductRow);
+    });
+}
+
 
 //
 
-function onTabClick(fileName) {
+function onTabClick(fileName, tabId) {
     fetchHtmlView(fileName)
-        .then(view => document.querySelector("#tab-content").innerHTML = view)
+        .then(view => {
+            document.querySelector("#tab-content").innerHTML = view;
+            switch(tabId) {
+                case 1: 
+                    break;
+                case 2: break;
+                case 3:
+                    renderProductList(productList);
+                    break;
+                default: break;
+            }
+        })
         .catch(err => alert(err));
 }
 
@@ -148,9 +172,11 @@ app.addEventListener('click', function(e) {
     e.preventDefault();
 
     const handlers = {
-        "product-add-menu"() { onTabClick('product_manage.html'); },
-        "vending-machine-manage-menu"() { onTabClick('machine_charge.html'); },
-        "product-purchase-menu"() { onTabClick('product_purchase.html'); },
+        "product-add-menu"() { onTabClick('product_manage.html', 1); },
+        "vending-machine-manage-menu"() { onTabClick('machine_charge.html', 2); },
+        "product-purchase-menu"() { 
+            onTabClick('product_purchase.html', 3);
+        },
         "product-add-button"() { addProduct(); },
         "vending-machine-charge-button"() { chargeMoney(); },
         "charge-button"() { putMoney(); },
