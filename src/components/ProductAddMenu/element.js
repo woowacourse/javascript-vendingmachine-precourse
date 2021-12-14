@@ -1,17 +1,16 @@
 import { ID } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import {
+  SubTitle,
   Form,
   Input,
   ButtonWithId,
-  Table,
-  TableHead,
+  TableWithHead,
   TableRowWithClassName,
   TableDataWithClassName,
 } from '../elements.js';
 
-export const createProductForm = (event) => {
-  const productForm = Form();
+const createProductInput = () => {
   const productNameInput = Input(
     ID.PRODUCT_NAME_INPUT,
     'text',
@@ -27,35 +26,48 @@ export const createProductForm = (event) => {
     'number',
     MACHINE.INPUT.PRODUCT_QUANTITY
   );
+
+  return [productNameInput, productPriceInput, productQuantityInput];
+};
+
+const createProductForm = (event) => {
+  const productForm = Form();
+  const productInput = createProductInput();
   const addButton = ButtonWithId(
     MACHINE.BUTTON.ADD_PRODUCT,
     ID.PRODUCT_ADD_BUTTON,
     event
   );
 
-  productForm.append(
-    productNameInput,
-    productPriceInput,
-    productQuantityInput,
-    addButton
-  );
+  productForm.append(...productInput, addButton);
 
   return productForm;
 };
 
+export const productAddForm = (event) => {
+  const addProductSubTitle = SubTitle(MACHINE.SUBTITLE.ADD_PRODUCT);
+  const productForm = createProductForm(event);
+
+  return [addProductSubTitle, productForm];
+};
+
+export const productStatusTable = () => {
+  const productStatusSubTitle = SubTitle(MACHINE.SUBTITLE.PRODUCT_STATUS);
+  const productTable = TableWithHead(
+    ID.PRODUCT_TABLE,
+    MACHINE.TABLE.PRODUCT_HEADS
+  );
+
+  return [productStatusSubTitle, productTable];
+};
+
 export const createProductRow = (datas, trClassName, tdClassNames) => {
   const tr = TableRowWithClassName(trClassName);
+
   datas.forEach((data, index) => {
     const td = TableDataWithClassName(data, tdClassNames[index]);
     tr.append(td);
   });
 
   return tr;
-};
-
-export const createProductTable = () => {
-  const productTable = Table(ID.PRODUCT_TABLE);
-  TableHead(productTable, MACHINE.TABLE.PRODUCT_HEADS);
-
-  return productTable;
 };
