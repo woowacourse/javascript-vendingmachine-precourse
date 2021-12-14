@@ -31,7 +31,6 @@ export const productPurchaseValidator = (currentSum) => {
   if (currentSum < 1) {
     alert(VALIDATION.PURCHASE.HOLIING_UNDER_0);
     $chargeAmoun.innerHTML = NUMBER.ZERO;
-    $purchaseButton.disabled = true;
     isValid;
   } else {
     isValid = true;
