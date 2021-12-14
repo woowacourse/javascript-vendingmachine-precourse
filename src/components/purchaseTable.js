@@ -8,11 +8,12 @@ export default class PurchaseTable extends Table {
   }
 
   getTableRow(item) {
+    const [name, price, quantity] = item;
     return `
       <tr>
-        <td data-product-name=${item.name}>${item.name}</td>
-        <td data-product-price=${item.price}>${item.price}</td>
-        <td data-product-quantity=${item.quantity}>${item.quantity}</td>
+        <td data-product-name=${name}>${name}</td>
+        <td data-product-price=${price}>${price}</td>
+        <td data-product-quantity=${quantity}>${quantity}</td>
         <td><button class="purchase-button">구매하기</button></td>
       </tr>`;
   }

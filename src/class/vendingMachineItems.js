@@ -12,7 +12,7 @@ export default class VendingMachineItems {
   }
 
   getItemObject(name) {
-    return { name, price: this.items[name][0], quantity: this.items[name][1] };
+    return [name, this.items[name][0], this.items[name][1]];
   }
 
   getPrice(name) {
