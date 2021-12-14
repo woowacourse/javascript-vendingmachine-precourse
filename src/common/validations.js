@@ -111,3 +111,16 @@ export const isValidateInput = (targets, items) =>
     array.splice(1);
     return result;
   }, []);
+
+/**
+ * 반환된 잔돈이 존재하는지 확인합니다.
+ *
+ * @param {object[]} changes
+ * @returns
+ */
+export const hasChangesCoin = changes => {
+  const result = [...new Set(changes.map(({ count }) => count))];
+  if (isEquals(result.length, 1) && isEquals(result[ZERO], ZERO))
+    return setErrorMessage('hasNoReturnCoin');
+  return true;
+};

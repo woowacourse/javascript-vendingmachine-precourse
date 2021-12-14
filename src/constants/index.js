@@ -34,6 +34,7 @@ export const ERROR_MESSAGES = Object.freeze({
   InDivisibleError: `은(는) ${DIVIDE_CHARGING}으로 나누어 떨어져야 합니다.`,
   isSoldOutError: `은(는) 재고가 없어 구매하실 수 없습니다.`,
   isExpensiveError: `은(는) 현재 투입된 금액으로 구매하실 수 없습니다.`,
+  hasNoReturnCoin: `자판기의 잔돈으로는 반환받을 수 없습니다.`,
 });
 
 export const CHARGE_UNIT = [500, 100, 50, 10];
