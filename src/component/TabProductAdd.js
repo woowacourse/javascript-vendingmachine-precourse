@@ -10,7 +10,12 @@ import { TAG, DOM_ATTRIBUTE, EVENT, INPUT_TYPE } from '../constant/dom.js';
 import { ID, CLASS } from '../constant/selector.js';
 import { TITLE, PLACEHOLDER, COLUMN } from '../constant/text.js';
 
-const PRODUCT_LIST_COLUM = [COLUMN.NAME, COLUMN.PRICE, COLUMN.QUANTITY];
+const PRODUCT_TABLE_COLUM = [COLUMN.NAME, COLUMN.PRICE, COLUMN.QUANTITY];
+const PRODUCT_TABLE_CLASS = [
+  CLASS.PRODUCT_MANAGE_NAME,
+  CLASS.PRODUCT_MANAGE_PRICE,
+  CLASS.PRODUCT_MANAGE_QUANTITY,
+];
 
 export default class TabProductAdd {
   constructor($parent, props) {
@@ -57,12 +62,8 @@ export default class TabProductAdd {
   renderTable() {
     this.listTitle = new Title(TITLE.PRODUCT_LIST);
     this.listTable = new ProductStatusTable({
-      columns: PRODUCT_LIST_COLUM,
-      classes: [
-        CLASS.PRODUCT_MANAGE_NAME,
-        CLASS.PRODUCT_MANAGE_PRICE,
-        CLASS.PRODUCT_MANAGE_QUANTITY,
-      ],
+      columns: PRODUCT_TABLE_COLUM,
+      classes: PRODUCT_TABLE_CLASS,
       initialData: this.vendingMachine.getProductList(),
     });
     this.$root.appendChild(this.listTitle.getTarget());
