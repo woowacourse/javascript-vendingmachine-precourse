@@ -1,8 +1,8 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import { ERROR, CHARGE, PRICE } from '../utils/constants.js';
-import { resetChargeInput, renderProducts, renderInputMoney } from '../views/productPurchaseView.js';
-import { getChange, updateProductQuantity, updateAmount } from '../models/productPurchaseModel.js';
+import { resetChargeInput, renderProducts, renderInputMoney, renderCountCharge } from '../views/productPurchaseView.js';
+import { updateProductQuantity, updateAmount, calculateCharge } from '../models/productPurchaseModel.js';
 import alertMessage from '../views/alertMessage.js';
 
 function HandleProductPurchase() {
@@ -80,9 +80,9 @@ function HandleProductPurchase() {
 
   $('#coin-return-button').addEventListener('click', () => {
     if (store.getLocalStorage('coins')) {
-      this.inputMoney = getChange();
-      store.setLocalStorage('inputMoney', this.inputMoney);
+      renderCountCharge(calculateCharge(this.inputMoney));
       renderInputMoney();
+      this.inputMoney = store.getLocalStorage('inputMoney');
       return;
     }
     alertMessage(ERROR.NO_MONEY);

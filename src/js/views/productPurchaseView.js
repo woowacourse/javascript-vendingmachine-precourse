@@ -1,5 +1,6 @@
 import $ from '../utils/dom.js';
 import store from '../utils/store.js';
+import { PRICE } from '../utils/constants.js';
 
 export const resetChargeInput = () => {
   $('#charge-input').value = '';
@@ -23,4 +24,11 @@ export const renderProducts = () => {
 
 export const renderInputMoney = () => {
   $('#charge-amount').innerHTML = store.getLocalStorage('inputMoney');
+};
+
+export const renderCountCharge = countCharge => {
+  const coinKinds = [PRICE.FIVE_HUNDRED_WON, PRICE.ONE_HUNDRED_WON, PRICE.FIFTY_WON, PRICE.TEN_WON];
+  coinKinds.forEach((coin, idx) => {
+    $(`#coin-${coin}-quantity`).innerText = `${countCharge[idx]}개`;
+  });
 };
