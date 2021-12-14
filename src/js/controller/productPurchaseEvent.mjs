@@ -26,6 +26,10 @@ function renderProductPurchaseTab() {
   renderProductPurchase(products);
 }
 
+function addPurchaseMoney() {
+  window.addEventListener('click', e => {});
+}
+
 export function productPurchaseEvent() {
   const $productPurchaseMenu = document.querySelector('#product-purchase-menu');
   $productPurchaseMenu.addEventListener('click', renderProductPurchaseTab);

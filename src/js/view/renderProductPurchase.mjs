@@ -92,6 +92,7 @@ export function renderProductPurchase(products) {
   $app.appendChild($main);
 
   renderProductPurchaseStatus(products);
+  renderChargedMoney();
 }
 
 export function renderProductPurchaseStatus(products) {
