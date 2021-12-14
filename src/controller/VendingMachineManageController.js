@@ -1,5 +1,5 @@
 import { getRandomCoinList } from '../utils/getRandomCoinList.js';
-import { getVendingMachineCoinListTemplate } from '../utils/template.js';
+import { getVendingMachineCoinListTemplate } from '../utils/template/vendingMachineManageTemplate.js';
 import { isValidVendingMachineChargeData } from '../utils/validation/vendingMachineManageValidation.js';
 
 class VendingMachineManageController {

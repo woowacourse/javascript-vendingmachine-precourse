@@ -1,5 +1,5 @@
 import { getRandomCoinList } from '../utils/getRandomCoinList.js';
-import { getCoinReturnListTemplate } from '../utils/template.js';
+import { getCoinReturnListTemplate } from '../utils/template/productPurchaseTemplate.js';
 import { isValidChargeData } from '../utils/validation/productPurchaseValidation.js';
 
 class ProductPurchaseController {

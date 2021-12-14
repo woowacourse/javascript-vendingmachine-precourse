@@ -1,4 +1,4 @@
-import { productManageItemTemplate } from '../utils/template.js';
+import { getProductMangeListTemplate } from '../utils/template/productAddTemplate.js';
 import { isValidProductAddData } from '../utils/validation/productAddValidation.js';
 
 class ProductAddController {
@@ -45,14 +45,9 @@ class ProductAddController {
       { name: productNameInput, price: productPriceInput, quantity: productQuantityInput },
     ];
 
-    const productManageListText =
-      ` <tr><th>상품명</th><th>가격</th><th>수량</th></tr>` +
-      tabMenu['product_add_menu']
-        .map((item) => productManageItemTemplate(item.name, item.price, item.quantity))
-        .join('');
+    const productManageListText = getProductMangeListTemplate(tabMenu['product_add_menu']);
 
     this.$product_status_table.innerHTML = productManageListText;
-
     this.vendingMachine.setLocalStorage(tabMenu);
   }
 
@@ -74,8 +69,8 @@ class ProductAddController {
       const productQuantityInput = this.$product_quantity_input.value;
 
       if (isValidProductAddData(productNameInput, productPriceInput, productQuantityInput)) {
-        this.renderProductManageList(productNameInput, productPriceInput, productQuantityInput);
         this.initProductAddInputValue();
+        this.renderProductManageList(productNameInput, productPriceInput, productQuantityInput);
       }
     });
   }
