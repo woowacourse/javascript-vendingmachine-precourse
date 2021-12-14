@@ -10,7 +10,9 @@ function checkNumberCondition(userinputnumber) {
     showAlertMsg(ALERT_MSG[PRICE_ERROR]);
     isTrue = false;
   }
-  isTrue = checkDividTenError(userinputnumber);
+  if (isTrue) {
+    isTrue = checkDividTenError(userinputnumber);
+  }
   return isTrue;
 }
 
