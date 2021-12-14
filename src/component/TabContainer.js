@@ -1,7 +1,7 @@
 import VendingMachine from '../store/VendingMachine.js';
-import TabProductAdd from '../component/TabProductAdd.js';
-import TabMachineManage from '../component/TabMachineManage.js';
-import TabPurchase from '../component/TabPurchase.js';
+import TabProductAdd from './TabProductAdd.js';
+import TabMachineManage from './TabMachineManage.js';
+import TabPurchase from './TabPurchase.js';
 
 export default class TabContainer {
   constructor($target) {

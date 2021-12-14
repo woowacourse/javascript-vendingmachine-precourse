@@ -1,6 +1,6 @@
 import Navigator from './store/Navigator.js';
 import Header from './component/Header.js';
-import TabContainer from './container/TabContainer.js';
+import TabContainer from './component/TabContainer.js';
 import { TAB_ID } from './constant/dataset.js';
 import { SELECTOR } from './constant/dom.js';
 
