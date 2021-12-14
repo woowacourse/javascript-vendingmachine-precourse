@@ -92,17 +92,21 @@ export class VendingMachineModel {
   }
 
   returnCoin() {
-    if (!this.isEnoughCoins()) {
-      this.returnAllMachineCoin();
-    } else {
-      this.returnTotalInsertedMoney();
-    }
+    this.returnCoinByCondition();
     this.storageUpdateWhenReturnCoin();
     return this.changeCoins;
   }
 
   isEnoughCoins() {
     return this.totalInsertedMoney <= this.machineChargeAmount;
+  }
+
+  returnCoinByCondition() {
+    if (!this.isEnoughCoins()) {
+      this.returnAllMachineCoin();
+      return;
+    }
+    this.returnTotalInsertedMoney();
   }
 
   returnAllMachineCoin() {
