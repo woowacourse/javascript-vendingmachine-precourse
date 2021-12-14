@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../constants.js';
+import { ERROR_MESSAGE, STYLE_DISPLAY } from '../constants.js';
 import { emit, on } from '../utils/index.js';
 
 export default class View {
@@ -12,7 +12,7 @@ export default class View {
   }
 
   hide() {
-    this.element.style.display = 'none';
+    this.element.style.display = STYLE_DISPLAY.NONE;
     return this;
   }
 

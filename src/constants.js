@@ -5,7 +5,22 @@ export const ERROR_MESSAGE = {
   INCORRECT_TEN_DIGITS: '10의 자리 숫자로 입력해주세요.',
   NOT_ENOUGH_MONEY: '금액이 부족합니다.',
   MORE_THAN_ONE_HUNDRED: '최소 충전 금액이 100원 이상입니다.',
+  DUPLICATE_PRODUCT_NAME: '이미 등록된 상품이 있습니다.',
 };
+
+export const NUMBER_FALLS_BY_TEN = 10;
+export const MINIMUM_PRODUCT_PRICE = 100;
+
+export const STYLE_DISPLAY = {
+  BLOCK: 'block',
+  INLINE_BLOCK: 'inline-block',
+  NONE: 'none',
+}
+
+export const EVENT_LISTENER_TYPE = {
+  CLICK: 'click',
+  DOM_CONTENT_LOADED: 'DOMContentLoaded',
+}
 
 export const COIN_LIST = {
   FIVE_HUNDRED: 500,

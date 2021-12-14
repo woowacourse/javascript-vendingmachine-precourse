@@ -5,8 +5,11 @@ import ProductManagementView from './views/ProductManagementView.js';
 import ChargingChangeView from './views/ChargingChangeView.js';
 import PurchasingProductView from './views/PurchasingProductView.js';
 import TabView from './views/TabView.js';
+import { EVENT_LISTENER_TYPE } from './constants.js';
+import { on } from './utils/index.js';
 
-document.addEventListener('DOMContentLoaded', main);
+on(document, EVENT_LISTENER_TYPE.DOM_CONTENT_LOADED, main);
+
 function main() {
   new InitialElementsView();
 

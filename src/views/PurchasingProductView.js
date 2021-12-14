@@ -1,4 +1,9 @@
-import { COIN_LIST, CUSTOM_EVENT_NAME, SELECTOR } from '../constants.js';
+import {
+  COIN_LIST,
+  CUSTOM_EVENT_NAME,
+  EVENT_LISTENER_TYPE,
+  SELECTOR,
+} from '../constants.js';
 import { on, qs, qsAll } from '../utils/index.js';
 import {
   checkNumberLessThanZero,
@@ -41,15 +46,16 @@ export default class PurchasingProductView extends View {
     const quantities = qsAll(`.${SELECTOR.PURCHASE_ITEM_QUANTITY}`);
 
     buttons.forEach((button, index) => {
-      on(button, 'click', () =>
+      on(button, EVENT_LISTENER_TYPE.CLICK, () =>
         this.handlePurchse(names, prices, quantities, index),
       );
     });
-    on(this.vendingMachineChargeButton, 'click', () =>
+    on(this.vendingMachineChargeButton, EVENT_LISTENER_TYPE.CLICK, () =>
       this.handleChargePuttedMoney(),
     );
-
-    on(this.coinReturnButton, 'click', () => this.handleReturnExchanges());
+    on(this.coinReturnButton, EVENT_LISTENER_TYPE.CLICK, () =>
+      this.handleReturnExchanges(),
+    );
   }
 
   handleReturnExchanges() {

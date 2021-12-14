@@ -1,4 +1,8 @@
-import { CUSTOM_EVENT_NAME, SELECTOR } from '../constants.js';
+import {
+  CUSTOM_EVENT_NAME,
+  EVENT_LISTENER_TYPE,
+  SELECTOR,
+} from '../constants.js';
 import { on, qs } from '../utils/index.js';
 import {
   checkLengthLessThanZero,
@@ -33,7 +37,9 @@ export default class ProductManagementView extends View {
   }
 
   bindEvents() {
-    on(this.productAddButton, 'click', () => this.handleProductAddButton());
+    on(this.productAddButton, EVENT_LISTENER_TYPE.CLICK, () =>
+      this.handleProductAddButton(),
+    );
   }
 
   handleProductAddButton() {

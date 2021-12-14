@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "../constants.js";
+import { ERROR_MESSAGE, MINIMUM_PRODUCT_PRICE, NUMBER_FALLS_BY_TEN } from "../constants.js";
 
 export function checkNumberLessThanZero(value) {
   if (Number.isNaN(value) || value <= 0) {
@@ -17,7 +17,7 @@ export function checkLengthLessThanZero(value) {
 }
 
 export function checkTenDigits(value) {
-  if (value % 10 !== 0) {
+  if (value % NUMBER_FALLS_BY_TEN !== 0) {
     alert(ERROR_MESSAGE.INCORRECT_TEN_DIGITS);
     return false;
   }
@@ -38,14 +38,14 @@ export function checkDuplicationName(productList, product) {
   ).length;
 
   if (isDuplicatedName) {
-    alert('이미 등록된 상품이 있습니다.');
+    alert(ERROR_MESSAGE.DUPLICATE_PRODUCT_NAME);
     return true;
   }
   return false;
 }
 
 export function checkMoreThanOneHundred(value) {
-  if (Number.isNaN(value) || value < 100) {
+  if (Number.isNaN(value) || value < MINIMUM_PRODUCT_PRICE) {
     alert(ERROR_MESSAGE.MORE_THAN_ONE_HUNDRED);
     return true;
   }

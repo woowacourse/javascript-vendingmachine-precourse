@@ -55,10 +55,10 @@ export default class Store {
   getChangeListTotal() {
     const changeList = this.getChangeList();
     return (
-      changeList[COIN_LIST.FIVE_HUNDRED] * 500 +
-      changeList[COIN_LIST.ONE_HUNDRED] * 100 +
-      changeList[COIN_LIST.FIFTY] * 50 +
-      changeList[COIN_LIST.TEN] * 10
+      changeList[COIN_LIST.FIVE_HUNDRED] * COIN_LIST.FIVE_HUNDRED +
+      changeList[COIN_LIST.ONE_HUNDRED] * COIN_LIST.ONE_HUNDRED +
+      changeList[COIN_LIST.FIFTY] * COIN_LIST.FIFTY +
+      changeList[COIN_LIST.TEN] * COIN_LIST.TEN
     );
   }
 

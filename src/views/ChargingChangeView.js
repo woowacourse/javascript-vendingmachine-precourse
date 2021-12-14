@@ -1,6 +1,7 @@
 import {
   COIN_LIST,
   CUSTOM_EVENT_NAME,
+  EVENT_LISTENER_TYPE,
   INITIAL_COIN_LIST,
   SELECTOR,
 } from '../constants.js';
@@ -36,7 +37,7 @@ export default class ChargingChangeView extends View {
   }
 
   bindEvents() {
-    on(this.vendingMachineChargeButton, 'click', () =>
+    on(this.vendingMachineChargeButton, EVENT_LISTENER_TYPE.CLICK, () =>
       this.handleVendingMachineChargeButton(),
     );
   }
@@ -80,7 +81,9 @@ class Template {
   }
 
   getCoinList([data, total]) {
-    return `<span>보유 금액: ${total === undefined ? '' : total}</span>
+    return `<span>보유 금액: ${
+      total === undefined ? '' : total
+    }</span>
       <h3>자판기가 보유한 동전</h3>
       <table>
         <thead id="${SELECTOR.VENDING_MACHINE_CHARGE_AMOUNT}">
