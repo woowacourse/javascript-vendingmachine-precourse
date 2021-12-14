@@ -1,5 +1,3 @@
-import { $ } from '../../utils/querySelector.js';
-
 export const coinChargeTemplate = `
   <div>
     <h3>자판기 동전 충전하기</h3>
@@ -41,14 +39,9 @@ export const coinChargeTemplate = `
   </div>
 `;
 
-const haveCoinTemplate = (unit, quantity) => `
+export const haveCoinTemplate = (unit, quantity) => `
   <tr>
     <td>${unit}원</td>
     <td id="vending-machine-coin-${unit}-quantity">${quantity}개</td>
   </tr>
 `;
-
-export const addConvertedCoins = (unit, quantity) => {
-  const haveCoin = haveCoinTemplate(unit, quantity);
-  $('#vending-machine-coin-list').insertAdjacentHTML('afterbegin', haveCoin);
-};

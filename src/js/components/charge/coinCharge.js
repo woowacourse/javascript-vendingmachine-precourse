@@ -3,11 +3,12 @@ import { AMOUNT_ID, COIN_UNITS, STORAGE_NAME } from '../../utils/constants.js';
 import { isValidInputAmount } from '../../utils/validation.js';
 import { showConvertedCoins } from '../../view/coinCharge.js';
 import { getLocalStorage, setLocalStorage } from '../../utils/storage.js';
-import { showCurrentAmount } from '../../view/view.js';
+import { showCurrentAmount } from '../../view/currentAmount.js';
 import { calculationCurrentAmount } from '../../utils/calculation.js';
 
 const convertAmountIntoCoins = (convertedCoins, amount) => {
   let remainAmount = amount;
+
   while (remainAmount > 0) {
     // eslint-disable-next-line no-loop-func
     const coinUnit = COIN_UNITS.filter((coin) => coin <= remainAmount);

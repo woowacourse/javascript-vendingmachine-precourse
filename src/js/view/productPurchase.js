@@ -1,13 +1,23 @@
 import { $ } from '../utils/querySelector.js';
 import { getLocalStorage } from '../utils/storage.js';
 import { AMOUNT_ID, STORAGE_NAME } from '../utils/constants.js';
-import { productPurchaseTemplate } from '../components/purchase/productPurchaseTemplate.js';
-import { showCurrentAmount, initProductPurchaseList } from './view.js';
+import {
+  productPurchaseTemplate,
+  purchaseAbleListTemplate,
+} from '../components/purchase/productPurchaseTemplate.js';
+import { showCurrentAmount } from './currentAmount.js';
 import {
   handleChargeInput,
   handlePurchaseButtonClick,
   handleCoinReturnClick,
 } from '../components/purchase/productPurchase.js';
+
+const initProductPurchaseList = (storedProductItems) => {
+  storedProductItems.forEach((item) => {
+    const productItem = purchaseAbleListTemplate(item);
+    $('#product-purchase-list').insertAdjacentHTML('beforeend', productItem);
+  });
+};
 
 const initProductPurchaseMenu = (storedProductList, storedUserAmount) => {
   if (storedProductList) {

@@ -1,10 +1,15 @@
 import { $ } from '../utils/querySelector.js';
 import { getLocalStorage } from '../utils/storage.js';
 import { AMOUNT_ID, STORAGE_NAME } from '../utils/constants.js';
-import { coinChargeTemplate, addConvertedCoins } from '../components/charge/coinChargeTemplate.js';
+import { coinChargeTemplate, haveCoinTemplate } from '../components/charge/coinChargeTemplate.js';
 import { calculationCurrentAmount } from '../utils/calculation.js';
 import { handleCoinChargeSubmit } from '../components/charge/coinCharge.js';
-import { showCurrentAmount } from './view.js';
+import { showCurrentAmount } from './currentAmount.js';
+
+const addConvertedCoins = (unit, quantity) => {
+  const haveCoin = haveCoinTemplate(unit, quantity);
+  $('#vending-machine-coin-list').insertAdjacentHTML('afterbegin', haveCoin);
+};
 
 export const showConvertedCoins = (convertedCoins) => {
   $('#vending-machine-coin-list').innerHTML = '';

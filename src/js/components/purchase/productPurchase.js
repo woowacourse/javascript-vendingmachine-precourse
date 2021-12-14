@@ -7,7 +7,7 @@ import {
 } from '../../utils/constants.js';
 import { $ } from '../../utils/querySelector.js';
 import { isValidInputAmount } from '../../utils/validation.js';
-import { showCurrentAmount } from '../../view/view.js';
+import { showCurrentAmount } from '../../view/currentAmount.js';
 import { getLocalStorage, setLocalStorage } from '../../utils/storage.js';
 
 let currentAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT)

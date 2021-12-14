@@ -2,7 +2,7 @@ import { $ } from '../../utils/querySelector.js';
 import { STORAGE_NAME } from '../../utils/constants.js';
 import { isValidProductValue } from '../../utils/validation.js';
 import { setLocalStorage, getLocalStorage } from '../../utils/storage.js';
-import { initProductManageScreen } from '../../view/view.js';
+import { addProductList } from '../../view/productManage.js';
 
 const setProductItemsStorage = (productData) => {
   const storedProductItems = getLocalStorage(STORAGE_NAME.PRODUCT);
@@ -22,6 +22,6 @@ export const handleProductMenuSubmit = (event) => {
     return;
   }
 
-  initProductManageScreen(Array(productData));
+  addProductList(Array(productData));
   setProductItemsStorage(productData);
 };
