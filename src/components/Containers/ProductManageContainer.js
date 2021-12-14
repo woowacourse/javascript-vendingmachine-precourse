@@ -10,7 +10,6 @@ export default class ProductManageContainer extends Component {
   }
 
   mounted() {
-    this.$state = {products: getLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [])};
     this.$target.querySelector(`#${ID.PRODUCT_MANAGE_TABLE_CONTAINER}`).innerHTML = this.printProductTable();
   }
 
@@ -36,8 +35,8 @@ export default class ProductManageContainer extends Component {
       const price = this.$target.querySelector(`#${ID.PRODUCT_PRICE_INPUT}`).value;
       const quantity = this.$target.querySelector(`#${ID.PRODUCT_QUANTITY_INPUT}`).value;
       if (isValidProductInput(name, price, quantity)) {
-        setLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, [...this.$state.products, {name, price, quantity}]);
         this.setState({products: [...this.$state.products, {name, price, quantity}]});
+        this.saveProductsInStroage();
         this.setEvent();
       }
     });
@@ -58,5 +57,9 @@ export default class ProductManageContainer extends Component {
     const ths = ['상품명', '가격', '수량'];
 
     return createTable(TABLE_MENU.PRODUCT_MANAGE, ths, this.$state.products);
+  }
+
+  saveProductsInStroage() {
+    setLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, this.$state.products);
   }
 }

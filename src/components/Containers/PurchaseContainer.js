@@ -82,7 +82,7 @@ export default class PurchaseContainer extends Component {
       const purchaseAmountValue = Number.parseInt(this.$target.querySelector(`#${ID.CHARGE_INPUT}`).value, 10);
       if (isValidPurchaseInput(purchaseAmountValue)) {
         this.setState({purchaseAmount: this.$state.purchaseAmount + purchaseAmountValue});
-        setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
+        this.saveChargedPurchaseAmountResultInStorage();
         this.setEvent();
       }
     });
@@ -96,8 +96,7 @@ export default class PurchaseContainer extends Component {
       if (isValidPurchaseProduct(this.$state.purchaseAmount, price, quantity)) {
         this.$state.products[index].quantity = this.$state.products[index].quantity - 1;
         this.setState({purchaseAmount: this.$state.purchaseAmount - price});
-        setLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, this.$state.products);
-        setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
+        this.savePurchaseResultInStorage();
         this.setEvent();
       }
     });
@@ -140,6 +139,15 @@ export default class PurchaseContainer extends Component {
 
     setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, this.$state.vendingMachineCoins);
 
+    setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
+  }
+
+  savePurchaseResultInStorage() {
+    setLocalStorage(STORAGE_KEY.PRODUCT_MANAGE, this.$state.products);
+    setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
+  }
+
+  saveChargedPurchaseAmountResultInStorage() {
     setLocalStorage(STORAGE_KEY.PURCHASE_CHARGE_AMOUNT, this.$state.purchaseAmount);
   }
 }

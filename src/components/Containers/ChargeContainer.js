@@ -13,10 +13,6 @@ export default class ChargeContainer extends Component {
   }
 
   mounted() {
-    this.$state = {
-      coins: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, {}),
-      amount: getLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, 0)
-    };
     this.$target.querySelector(`#vending-machine-table-container`).innerHTML = this.printChargeTable();
     if (this.$state.amount) {
       this.printCoinQuantity(this.$state.coins);
@@ -47,10 +43,8 @@ export default class ChargeContainer extends Component {
 
       if (isValidChargeInput(amountValue)) {
         this.charge(amountValue);
-        setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, this.$state.coins);
-        setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, amountValue);
-
         this.setState({amount: this.$state.amount + amountValue});
+        this.saveChargedResultInStroage();
         this.setEvent();
       }
     });
@@ -100,5 +94,10 @@ export default class ChargeContainer extends Component {
         amount = restCharge;
       }
     }
+  }
+
+  saveChargedResultInStroage() {
+    setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_COIN, this.$state.coins);
+    setLocalStorage(STORAGE_KEY.VENDING_MACHINE_CHARGE_AMOUNT, this.$state.amount);
   }
 }
