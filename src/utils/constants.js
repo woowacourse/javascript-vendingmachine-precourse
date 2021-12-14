@@ -92,3 +92,8 @@ export const REDUCER_RESULT = {
     return { SUCCESS: false, error };
   },
 };
+
+export const EVENT_TYPE = {
+  SUBMIT: 'submit',
+  CLICK: 'click',
+};

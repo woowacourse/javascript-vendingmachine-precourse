@@ -2,12 +2,17 @@ import Component from '../../core/Component.js';
 import { $, resetForm } from '../../utils/dom.js';
 import { chargeMoney } from '../../actions/user.js';
 import { isValidChargingMoney } from '../../utils/validations.js';
-import { MESSAGE, SELECTOR, PURCHASE_ELEMENT } from '../../utils/constants.js';
+import {
+  MESSAGE,
+  SELECTOR,
+  PURCHASE_ELEMENT,
+  EVENT_TYPE,
+} from '../../utils/constants.js';
 import UserStore from '../../stores/UserStore.js';
 
 export default class Form extends Component {
   bindEvents() {
-    this.appendRootEvents('submit', () => this.onSubmit());
+    this.appendRootEvents(EVENT_TYPE.SUBMIT, () => this.onSubmit());
   }
 
   onSubmit() {

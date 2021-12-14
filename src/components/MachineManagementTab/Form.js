@@ -1,6 +1,11 @@
 import Component from '../../core/Component.js';
 import { $, resetForm } from '../../utils/dom.js';
-import { MESSAGE, MACHINE_ELEMENT, SELECTOR } from '../../utils/constants.js';
+import {
+  MESSAGE,
+  MACHINE_ELEMENT,
+  SELECTOR,
+  EVENT_TYPE,
+} from '../../utils/constants.js';
 import { isValidChanges } from '../../utils/validations.js';
 import { parseNumberInput } from '../../utils/input.js';
 import { chargeChanges } from '../../actions/changes.js';
@@ -8,7 +13,7 @@ import ChangesStore from '../../stores/ChangesStore.js';
 
 export default class Form extends Component {
   bindEvents() {
-    this.appendRootEvents('submit', () => this.onSubmit());
+    this.appendRootEvents(EVENT_TYPE.SUBMIT, () => this.onSubmit());
   }
 
   onSubmit() {

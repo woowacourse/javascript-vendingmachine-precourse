@@ -1,9 +1,11 @@
 import Component from '../core/Component.js';
-import { MENU_TYPE, MENU_ELEMENT } from '../utils/constants.js';
+import { MENU_TYPE, MENU_ELEMENT, EVENT_TYPE } from '../utils/constants.js';
 
 export default class Header extends Component {
   bindEvents() {
-    this.appendRootEvents('click', ({ target }) => this.onClick(target));
+    this.appendRootEvents(EVENT_TYPE.CLICK, ({ target }) =>
+      this.onClick(target)
+    );
   }
 
   onClick({ id }) {

@@ -1,7 +1,7 @@
 import Component from '../../core/Component.js';
 import UserStore from '../../stores/UserStore.js';
 import ChangeStore from '../../stores/ChangesStore.js';
-import { PURCHASE_ELEMENT } from '../../utils/constants.js';
+import { PURCHASE_ELEMENT, EVENT_TYPE } from '../../utils/constants.js';
 import { returnChanges } from '../../actions/user.js';
 import { spendChanges } from '../../actions/changes.js';
 import { changeStatusTemplate } from '../../templates/Purchase.js';
@@ -12,7 +12,7 @@ export default class ChangesStatus extends Component {
   }
 
   bindEvents() {
-    this.appendRootEvents('click', ({ target }) =>
+    this.appendRootEvents(EVENT_TYPE.CLICK, ({ target }) =>
       this.onClickReturnButton(target)
     );
   }

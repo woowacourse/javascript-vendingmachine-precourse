@@ -1,5 +1,6 @@
 import { storeObserver } from './Store.js';
 import { $ } from '../utils/dom.js';
+import { EVENT_TYPE } from '../utils/constants.js';
 import { isObjectEmpty } from '../utils/general.js';
 
 export default class Component {
@@ -87,7 +88,7 @@ export default class Component {
 
   appendRootEvents(type, handler) {
     this.$container.addEventListener(type, event => {
-      if (type === 'submit') event.preventDefault();
+      if (type === EVENT_TYPE.SUBMIT) event.preventDefault();
       handler(event);
     });
   }

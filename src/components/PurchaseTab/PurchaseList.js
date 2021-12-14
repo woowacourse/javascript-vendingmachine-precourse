@@ -1,6 +1,7 @@
 import Component from '../../core/Component.js';
 import UserStore from '../../stores/UserStore.js';
 import ProductStore from '../../stores/ProductStore.js';
+import { EVENT_TYPE } from '../../utils/constants.js';
 import { spendMoney } from '../../actions/user.js';
 import { sellProduct } from '../../actions/product.js';
 import { getProductInformations } from '../../utils/dom.js';
@@ -15,7 +16,9 @@ export default class PurchaseList extends Component {
   }
 
   bindEvents() {
-    this.appendRootEvents('click', event => this.onClickPurchaseButton(event));
+    this.appendRootEvents(EVENT_TYPE.CLICK, event =>
+      this.onClickPurchaseButton(event)
+    );
   }
 
   onClickPurchaseButton({ target }) {
