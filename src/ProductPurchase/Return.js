@@ -35,6 +35,16 @@ function createCoinCounts() {
   return coins;
 }
 
+function setChangeCoinToLocalStorage() {
+  const coins = createCoinCounts();
+  const counts = [];
+
+  coins.forEach((coin) => {
+    counts.push(coin.textContent);
+  });
+  localStorage.setItem('잔돈', JSON.stringify(counts));
+}
+
 export default function onReturnClick() {
   const changeCoinTable = $('change-coin-table');
   const coins = createCoinCounts();
@@ -43,4 +53,6 @@ export default function onReturnClick() {
     const countCell = changeCoinTable.rows[i + 1].cells[1];
     countCell.innerText = coins[i].textContent;
   }
+
+  setChangeCoinToLocalStorage();
 }

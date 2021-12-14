@@ -18,12 +18,27 @@ function createReturnButton() {
   return returnButton;
 }
 
+function createChangeCoinTable() {
+  const changeCoinTable = createCoinListTable();
+  changeCoinTable.setAttribute('id', 'change-coin-table');
+
+  if (localStorage.getItem('잔돈')) {
+    const counts = JSON.parse(localStorage.getItem('잔돈'));
+
+    for (let i = 0; i < 4; i += 1) {
+      const countCell = changeCoinTable.rows[i + 1].cells[1];
+      countCell.innerText = counts[i];
+    }
+  }
+
+  return changeCoinTable;
+}
+
 export default function createChange() {
   const changeDiv = createDiv();
   const changeHeader = createHeader(HEADER.CHANGE);
   const returnButton = createReturnButton();
-  const changeCoinTable = createCoinListTable();
-  changeCoinTable.setAttribute('id', 'change-coin-table');
+  const changeCoinTable = createChangeCoinTable();
   changeDiv.append(changeHeader, returnButton, changeCoinTable);
 
   return changeDiv;
