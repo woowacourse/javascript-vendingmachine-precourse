@@ -124,36 +124,36 @@ coding convention은 [NHN FE 개발랩](https://ui.toast.com/fe-guide/ko_CODING-
 
 ## 8. 리팩토링, 코드수정
 
-    🖊 VendingMachineModel의 데이터는 함수를 통해서만 접근하고, 수정한다.
+    ✅ refactor : VendingMachineModel의 데이터는 함수를 통해서만 접근하고, 수정한다.
 
-    🖊 로컬스토리지 스토어를 단일 스토어로 유지하기 위해 store 모듈을 만들어 객체를 export 한다.
+    ✅ refactor : 로컬스토리지 스토어를 단일 스토어로 유지하기 위해 store 모듈을 만들어 객체를 export 한다.
 
-    🖊 코드가 길어지는 함수를 보기 좋게 분리
+    ✅ refactor : 코드가 길어지는 함수를 보기 좋게 분리
 
-    🖊 렌더링 부분의 하드코딩 -> 상수 또는 함수로 수정
+    ✅ refactor : 렌더링 부분의 하드코딩 -> 상수 또는 함수로 수정
 
-    🖊 뷰를 메인뷰 - 세개의 뷰로 구성한다. (하나의 뷰로 구성하자니 코드 길이가 너무 길어져 유지보수가 힘들다.)
+    ✅ refactor : 뷰를 메인뷰 - 세개의 뷰로 구성한다. (하나의 뷰로 구성하자니 코드 길이가 너무 길어져 유지보수가 힘들다.)
 
-    🖊 컨트롤러를 메인컨트롤러 - 세개의 컨트롤러로 구성한다.
+    ✅ refactor : 컨트롤러를 메인컨트롤러 - 세개의 컨트롤러로 구성한다.
 
-    🖊 폴더구조에 맞게 모델 모듈을 옮김
+    ✅ refactor : 폴더구조에 맞게 모델 모듈을 옮김
 
-    🖊 Mission.Random.pickNumberInRange를 사용할 수 없어 Math.random으로 아이디 숫자 제너레이터를 구현한다
+    ✅ refactor : Mission.Random.pickNumberInRange를 사용할 수 없어 Math.random으로 아이디 숫자 제너레이터를 구현한다
 
-    🖊 마크업 룰을 지킨다. chargeAmount는 #charge-amount로 감싸져야 하며, 동전은 {}개로 표시한다.
+    ✅ refactor : 마크업 룰을 지킨다. chargeAmount는 #charge-amount로 감싸져야 하며, 동전은 {}개로 표시한다.
 
-    🖊 상수 객체는 변하지 않아야 하므로 Object.freeze() 한다.
+    ✅ refactor : 상수 객체는 변하지 않아야 하므로 Object.freeze() 한다.
 
-    🖊 게임에서 쓰이는 상수, 유틸 함수로 분리 - 코인 초깃 값 수정
+    ✅ refactor : 게임에서 쓰이는 상수, 유틸 함수로 분리 - 코인 초깃 값 수정
 
-    🖊 게임에서 쓰이는 상수, 유틸 함수 - 범용적 상수 함수 - 템플릿 상수, 유틸 함수를 하나의 파일로 합친다
+    ✅ refactor : 게임에서 쓰이는 상수, 유틸 함수 - 범용적 상수 함수 - 템플릿 상수, 유틸 함수를 하나의 파일로 합친다
 
-    🖊 데이터 모델을 처음 초기화할 때 로컬스토리지에 들어있는 값에 따라 초기화되는데, 이 초기화 로직을 수정한다.
+    ✅ refactor : 데이터 모델을 처음 초기화할 때 로컬스토리지에 들어있는 값에 따라 초기화되는데, 이 초기화 로직을 수정한다.
         - 로컬스토리지에 들어있는 값이 온전하지 못하다면, 에러가 발생할 수 있다. (필요한 프로퍼티가 사라져 있다면)
 
-    🖊 코인에서 사용되는 조건문을 유틸 함수로 변경
+    ✅ refactor : 코인에서 사용되는 조건문을 유틸 함수로 변경
 
-    🖊 불필요한 멤버는 삭제한다. vendingMachineChargeAmount는 coins를 통해 계산해낼 수 있으므로 삭제한다
+    ✅ refactor : 불필요한 멤버는 삭제한다. vendingMachineChargeAmount는 coins를 통해 계산해낼 수 있으므로 삭제한다
 
         - 하나의 정보를 표현하는데, 두 개의 멤버로 관리하고 있으므로 예기치 못한 결과가 발생할 수 있다고 생각함
         - coins는 변했는데 vendingMachineChargeAmount는 변하지 않았다면? 모두 자판기가 갖고 있는 돈이라는 정보를 표현하는데, 서로 다른 값이 되어버린다.
