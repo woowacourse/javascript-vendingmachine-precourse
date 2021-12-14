@@ -1,6 +1,7 @@
 import { pushMenuObject, getMenuObject, getMenuObjectKey } from './setMenuObject.js';
 import { pushProductObject } from './productAdd.js';
 import { checkPrice, checkQuantity } from './checkProductInputValue.js';
+import { displayInventory } from './displayProductInventory.js';
 
 export const $productAdd = document.querySelector('#product-add');
 export const $vendingMachineManage = document.querySelector('#vending-machine-manage');
@@ -12,6 +13,7 @@ export const $productNameInput = document.querySelector('#product-name-input');
 export const $productPriceInput = document.querySelector('#product-price-input');
 export const $productQuantityInput = document.querySelector('#product-quantity-input');
 export const $productAddButton = document.querySelector('#product-add-button');
+export const $productInventoryTable = document.querySelector('#product-inventory-table');
 
 $productAddMenu.addEventListener('click', (e) => {
   e.preventDefault();
@@ -38,6 +40,7 @@ $productAddButton.addEventListener('click', (e) => {
   const productQuantity = $productQuantityInput.value;
   if (!checkPrice(productPrice) || !checkQuantity(productQuantity)) return;
   pushProductObject(productName, productPrice, productQuantity);
+  displayInventory();
 });
 
 export const displayDiv = () => {
