@@ -1,7 +1,7 @@
 import { STORAGE_NAME } from '../../utils/constants.js';
 import { $ } from '../../utils/querySelector.js';
 import { isValidProductValue } from '../../utils/validation.js';
-import { setLocalStorage, getLocalStorage } from '../storage/storage.js';
+import { setLocalStorage, getLocalStorage } from '../../utils/storage.js';
 import { productManageTemplate } from './manageTemplate.js';
 import { initProductManageScreen } from '../../view/view.js';
 

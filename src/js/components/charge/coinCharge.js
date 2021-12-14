@@ -2,7 +2,7 @@ import { $ } from '../../utils/querySelector.js';
 import { COIN_UNITS, STANDARD, STORAGE_NAME } from '../../utils/constants.js';
 import { isValidInputAmount } from '../../utils/validation.js';
 import { showConvertedCoins, coinChargeTemplate } from './coinChargeTemplate.js';
-import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
+import { getLocalStorage, setLocalStorage } from '../../utils/storage.js';
 import { showCurrentAmount } from '../../view/view.js';
 
 let convertedCoins = { 500: 0, 100: 0, 50: 0, 10: 0 };

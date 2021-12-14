@@ -2,7 +2,7 @@ import { COIN_UNITS, ERROR_MESSAGE, STANDARD, STORAGE_NAME } from '../../utils/c
 import { $ } from '../../utils/querySelector.js';
 import { isValidInputAmount } from '../../utils/validation.js';
 import { showCurrentAmount, initProductPurchaseList } from '../../view/view.js';
-import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
+import { getLocalStorage, setLocalStorage } from '../../utils/storage.js';
 import { productPurchaseTemplate } from './productPurchaseTemplate.js';
 
 let currentAmount = getLocalStorage(STORAGE_NAME.USER_AMOUNT)

@@ -1,4 +1,4 @@
-import { getLocalStorage } from '../components/storage/storage.js';
+import { getLocalStorage } from './storage.js';
 import { ERROR_MESSAGE, STANDARD, STORAGE_NAME } from './constants.js';
 
 const { CANNOT_BE_BLANK, LESS_THAN_STANDARD, NOT_DIVIDE_BY_TEN, COUNT_TOO_SMALL, CAN_NOT_OVERLAP } =

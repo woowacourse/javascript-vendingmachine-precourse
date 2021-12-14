@@ -1,4 +1,4 @@
-import { STORAGE_NAME } from '../../utils/constants.js';
+import { STORAGE_NAME } from './constants.js';
 
 export const getLocalStorage = (name) => {
   const storedContent = localStorage.getItem(name);
