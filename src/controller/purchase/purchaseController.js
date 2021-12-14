@@ -13,7 +13,11 @@ export default class PurchaseController {
   init() {
     this.purchaseView.init();
 
-    this.purchaseView.renderPurchaseTab(this.appModel.products, this.appModel.inputChargeAmount);
+    this.purchaseView.renderPurchaseTab(
+      this.appModel.products,
+      this.appModel.inputChargeAmount,
+      this.appModel.purchaseTabInput
+    );
     this.purchaseView.selectPurchaseTabDOM();
     this.attachPurchaseTabEvents();
   }
@@ -27,6 +31,7 @@ export default class PurchaseController {
       element.addEventListener('click', this.handlePurchase.bind(this))
     );
     this.purchaseView.$coinReturnButton.addEventListener('click', this.handleReturn.bind(this));
+    this.purchaseView.$chargeInput.addEventListener('input', this.handleInputChange.bind(this));
   }
 
   handleInputCharge(e) {
@@ -88,5 +93,11 @@ export default class PurchaseController {
     this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
 
     this.purchaseView.renderReturnedCoins(returnedCoins);
+  }
+
+  handleInputChange(e) {
+    const { value } = e.target;
+
+    this.appModel.setPurchaseTabInput(value);
   }
 }

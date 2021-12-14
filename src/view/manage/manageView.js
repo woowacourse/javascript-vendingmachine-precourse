@@ -23,13 +23,13 @@ export default class ManageView {
   }
 
   renderChargeAmount(chargeAmount) {
-    this.$chargeAmount.innerText = `${chargeAmount}원`;
+    this.$chargeAmount.innerText = `${chargeAmount}`;
   }
 
   renderCoins(coins) {
     return coins.forEach(({ unit, amount }) => {
       const targetDOM = this.getCoinDOM(unit);
-      console.log(targetDOM, unit, amount);
+
       targetDOM.innerHTML = `${amount}개`;
     });
   }

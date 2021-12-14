@@ -7,8 +7,8 @@ export default class PurchaseView {
     this.$main = $('main');
   }
 
-  renderPurchaseTab(products, inputChargeAmount) {
-    this.$main.innerHTML = purchaseTabTemplate(products, inputChargeAmount);
+  renderPurchaseTab(products, inputChargeAmount, chargeInput) {
+    this.$main.innerHTML = purchaseTabTemplate(products, inputChargeAmount, chargeInput);
   }
 
   selectPurchaseTabDOM() {
@@ -24,7 +24,7 @@ export default class PurchaseView {
   }
 
   renderInputChargeAmount(amount) {
-    this.$inputChargeAmount.innerText = `${amount}원`;
+    this.$inputChargeAmount.innerText = `${amount}`;
   }
 
   selectProductTableRowDOM(target) {

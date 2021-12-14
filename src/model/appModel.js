@@ -8,8 +8,10 @@ export default class AppModel {
     this.products = this.loadProducts() || defaultProducts();
     this.coins = this.loadCoins() || defaultCoins();
     this.inputChargeAmount = this.loadInputChargeAmount() || NUMBER.ZERO;
+
     this.addTabInput = defaultAddTabInput();
     this.manageTabInput = STRING.EMPTY;
+    this.purchaseTabInput = STRING.EMPTY;
   }
 
   loadProducts() {
@@ -44,7 +46,6 @@ export default class AppModel {
 
   getTotalCoinValue() {
     return this.coins.reduce((acc, { unit, amount }) => {
-      console.log(acc, unit, amount);
       acc += unit * amount;
       return acc;
     }, NUMBER.ZERO);
@@ -88,5 +89,9 @@ export default class AppModel {
     this.inputChargeAmount -= amount;
 
     setDataOnStorage(STRING.INPUT_CHARGE_AMOUNT, this.inputChargeAmount);
+  }
+
+  setPurchaseTabInput(value) {
+    this.purchaseTabInput = value;
   }
 }
