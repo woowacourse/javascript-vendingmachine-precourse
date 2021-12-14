@@ -59,3 +59,11 @@ export const createText = (textValue) => {
 
   return text;
 };
+
+export const createPtag = (textValue, id) => {
+  const text = document.createElement("p");
+  text.setAttribute("id", id);
+  text.innerHTML = textValue;
+
+  return text;
+};

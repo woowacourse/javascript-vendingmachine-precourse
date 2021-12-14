@@ -69,8 +69,9 @@ export const TITLE = {
   ADD_CHARGE: "자판기 동전 충전하기",
   STORE_CHARGE: "자판기가 보유한 동전",
   SET_MONEY: "금액 투입",
+  SET_MONEY_TEXT: "투입할 금액",
   CAN_BUY_LIST: "구매할 수 있는 상품 현황",
-  CHARGE: "잔돈"
+  CHARGE: "잔돈",
 };
 
 export const UNIT = {

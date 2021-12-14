@@ -1,5 +1,5 @@
-import { TITLE, UNIT, PRODUCT_MANAGE, PRODUCT_PURCHASE_TABLE, MENU_BUTTON, COINS } from "../constants/constants.js";
-import { setDOM, createButton, createInput, createTable, createText, createDiv, createTd } from "./createDOM.js";
+import { TITLE, UNIT, CHARGE_MANAGE, PRODUCT_PURCHASE_TABLE, MENU_BUTTON, COINS } from "../constants/constants.js";
+import { setDOM, createButton, createPtag, createInput, createTable, createText, createDiv, createTd } from "./createDOM.js";
 
 export const initChargeManage = () => {
   const tableTD = [UNIT.COIN, UNIT.QUANTITY];
@@ -7,9 +7,10 @@ export const initChargeManage = () => {
   const area = createDiv(`${MENU_BUTTON.CHANGE_MANAGE}-area`);
 
   area.appendChild(createText(TITLE.ADD_CHARGE));
-  area.appendChild(createInput(PRODUCT_MANAGE.NAME_ID, "text", TITLE.STORE_CHARGE));
-  area.appendChild(createButton(PRODUCT_MANAGE.ADD_BUTTON_ID,"충전하기"));
-  area.appendChild(createText(UNIT.HAVE));
+  area.appendChild(createInput(CHARGE_MANAGE.INPUT_ID, "text", TITLE.STORE_CHARGE));
+  area.appendChild(createButton(CHARGE_MANAGE.BUTTON_ID,"충전하기"));
+  area.appendChild(createPtag(UNIT.HAVE, "coin-text"));
+  area.appendChild(createPtag("", "have-coin"));
 
   area.appendChild(createText(TITLE.STORE_CHARGE));
   area.appendChild(createTable(PRODUCT_PURCHASE_TABLE.CLASS, tableTD));
