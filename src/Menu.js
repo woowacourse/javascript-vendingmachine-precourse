@@ -12,7 +12,7 @@ export default class Menu {
     this.productPurchaseMenuView = new ProductPurchaseMenuView();
 
     this.ProductAddMenuController = new ProductAddMenuController();
-    this.VendingMachineManageMenuController =
+    this.vendingMachineManageMenuController =
       new VendingMachineManageMenuController();
   }
 
@@ -23,6 +23,7 @@ export default class Menu {
 
   vendingMachineManageMenuInitialize() {
     this.vendingMachineManageMenuView.render(getData("coins"));
+    this.vendingMachineManageMenuController.initialize();
   }
 
   productPurchaseMenuInitialize() {
