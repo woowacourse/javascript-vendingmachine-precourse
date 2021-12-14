@@ -6,7 +6,6 @@ export default class ProductManageSection extends Component {
     this.state = { items };
   }
 
-  // TODO: 아이템 목록 직접 접근 안하게 수정
   template() {
     return `
       <h3>상품 현황</h3>

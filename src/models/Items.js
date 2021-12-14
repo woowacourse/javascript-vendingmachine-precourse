@@ -1,5 +1,5 @@
 import Item from './Item.js';
-import { EXCEPTIONS } from '../configs/constants.js';
+import { ERROR } from '../configs/constants.js';
 
 export default class Items {
   constructor(items) {
@@ -14,7 +14,7 @@ export default class Items {
     const item = this.items.get(id);
 
     if (!item) {
-      throw EXCEPTIONS.NO_SUCH_ITEM;
+      throw new Error(ERROR.NO_SUCH_ITEM);
     }
 
     return item;

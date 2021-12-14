@@ -2,8 +2,6 @@ import Items from './Items.js';
 import Coins from './Coins.js';
 import VendingMachineCoins from './VendingMachineCoins.js';
 import ChargedAmount from './ChargedAmount.js';
-import { isValidItem, isValidChargeAmount } from '../utils/validations.js';
-import { EXCEPTIONS } from '../configs/constants.js';
 
 export default class VendingMachine {
   constructor(store, { items, coins, chargedAmount }) {
@@ -14,7 +12,6 @@ export default class VendingMachine {
     this.returnedCoins = new Coins();
   }
 
-  // TODO: 예외 처리
   addItem(name, price, quantity) {
     const duplicatedItems = this.items.findByName(name);
 
@@ -51,7 +48,6 @@ export default class VendingMachine {
     return this;
   }
 
-  // TODO: 데이터 흐름 수정
   purchase(id) {
     const item = this.items.findById(id);
 
@@ -69,7 +65,6 @@ export default class VendingMachine {
     return this;
   }
 
-  // amount 직접 접근 안 하도록 수정t
   returnChange() {
     const { change, amount } = this.coins.returnChange(
       this.chargedAmount.amount

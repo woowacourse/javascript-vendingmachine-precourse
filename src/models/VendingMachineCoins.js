@@ -20,8 +20,6 @@ export default class VendingMachineCoins extends Coins {
     return coins;
   }
 
-  // TODO: refill과 returnChange 클래스 분리
-  // TODO: 예외 처리
   refill(chargeAmount) {
     const newCoins = VendingMachineCoins.convertToRandomCoins(chargeAmount);
 

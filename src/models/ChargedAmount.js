@@ -1,4 +1,4 @@
-import { EXCEPTIONS } from '../configs/constants.js';
+import { ERROR } from '../configs/constants.js';
 
 export default class ChargedAmount {
   constructor(amount) {
@@ -9,14 +9,13 @@ export default class ChargedAmount {
     return price <= this.amount;
   }
 
-  // TODO: 예외 처리
   charge(amount) {
     this.amount += amount;
   }
 
   purchase(price) {
     if (!this.isPurchasable(price)) {
-      throw EXCEPTIONS.NOT_ENOUGH_MONEY;
+      throw new Error(ERROR.NOT_ENOUGH_MONEY);
     }
 
     this.amount -= price;

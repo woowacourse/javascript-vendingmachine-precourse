@@ -4,6 +4,7 @@ import {
   PRODUCT_PRICE_RANGE,
   PRODUCT_QUNATITY_RANGE,
   CHARGE_AMOUNT_RANGE,
+  ERROR,
 } from '../configs/constants.js';
 
 const isSafeRange = (value, { MIN, MAX }) => value >= MIN && value <= MAX;
@@ -33,7 +34,7 @@ export const isValidChargeAmount = (chargeAmount) =>
 
 export const validateItem = (name, price, quantity) => {
   if (!isValidItem(name, price, quantity)) {
-    alert('error');
+    alert(ERROR.WRONG_ITEM);
 
     return false;
   }
@@ -43,7 +44,7 @@ export const validateItem = (name, price, quantity) => {
 
 export const validateChargeAmount = (chargeAmount) => {
   if (!isValidChargeAmount(chargeAmount)) {
-    alert('error');
+    alert(ERROR.WRONG_CHARGE_AMOUNT);
 
     return false;
   }
@@ -53,7 +54,7 @@ export const validateChargeAmount = (chargeAmount) => {
 
 export const validatePurchasable = (chargedAmount, price) => {
   if (!isPurchasable(chargedAmount, price)) {
-    alert('error');
+    alert(ERROR.NOT_ENOUGH_MONEY);
 
     return false;
   }

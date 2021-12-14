@@ -1,4 +1,4 @@
-import { EXCEPTIONS } from '../configs/constants.js';
+import { ERROR } from '../configs/constants.js';
 
 export default class Item {
   constructor(name, price, quantity) {
@@ -11,10 +11,9 @@ export default class Item {
     return this.quantity <= 0;
   }
 
-  // TODO: 예외 처리 수정
   purchase() {
     if (this.isOutOfStock()) {
-      throw EXCEPTIONS.OUT_OF_STOCK;
+      throw new Error(ERROR.OUT_OF_STOCK);
     }
 
     this.quantity -= 1;
