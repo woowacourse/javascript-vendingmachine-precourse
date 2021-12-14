@@ -1,7 +1,7 @@
 import $ from './utils/dom.js';
-import HandleProductAdd from './controllers/HandleProductAdd.js';
-import HandleVendingMachine from './controllers/HandleVendingMachine.js';
-import HandleProductPurchase from './controllers/HandleProductPurchase.js';
+import HandleProductAdd from './controllers/handleProductAdd.js';
+import HandleVendingMachine from './controllers/handleVendingMachine.js';
+import HandleProductPurchase from './controllers/handleProductPurchase.js';
 import renderCSS from './views/renderCSS.js';
 import { renderNavbar, renderProductAdd, renderVendingMachine, renderProductPurchase } from './views/renderInitHTML.js';
 
