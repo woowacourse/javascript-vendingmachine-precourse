@@ -3,6 +3,7 @@ import { loadButton } from "./view/DOM_load.js";
 import { initProductManage, showProductManage, hideProductManage } from "./view/DOM_productManage.js";
 import { initChargeManage, showChargeManage, hideChargeManage } from "./view/DOM_chargeManage.js";
 import { hideBuyProduct, initBuyProduct, showBuyProduct } from "./view/DOM_buyProducts.js";
+import ProductManage from "./controller/productManage.js";
 
 class VandingMachine {
   constructor() {
@@ -42,3 +43,4 @@ class VandingMachine {
 }
 
 new VandingMachine();
+new ProductManage();

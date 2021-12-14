@@ -29,12 +29,13 @@ export const createTable = (className, headValue) => {
   return table;
 };
 
-export const createTd = (className, valueArr) => {
+export const createTd = (className, itemClass, valueArr) => {
   const table = document.querySelector(`.${className}`);
   const tr = document.createElement("tr");
   
-  valueArr.forEach((val) => {
+  valueArr.forEach((val, index) => {
     const items = document.createElement("td");
+    items.setAttribute("class", itemClass[index]);
     items.innerHTML = val;
     
     tr.appendChild(items);

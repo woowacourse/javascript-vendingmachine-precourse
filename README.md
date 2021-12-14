@@ -134,8 +134,8 @@
 
   <b>constants.js</b>
 
-  - [ ] 각 요구사항에 맞는 DOM ID Setting
-  - [ ] 각 탭에 맞는 안내 사항 (상품명,가격,수량 등) 문구 Setting
+  - [x] 각 요구사항에 맞는 DOM ID Setting
+  - [x] 각 탭에 맞는 안내 사항 (상품명,가격,수량 등) 문구 Setting
 
   <br/>
 
@@ -155,24 +155,24 @@
 
   <b>DOM_chargeManage.js</b>
 
-  - [ ] 자판기 동전 충전하기, 자판기가 보유한 동전 text 추가
-  - [ ] 자판기 동전 충전 input, button 요소 추가
-  - [ ] 보유 금액 text 추가
-  - [ ] 자판기가 보유한 동전 table 추가 
+  - [x] 자판기 동전 충전하기, 자판기가 보유한 동전 text 추가
+  - [x] 자판기 동전 충전 input, button 요소 추가
+  - [x] 보유 금액 text 추가
+  - [x] 자판기가 보유한 동전 table 추가 
 
   <b>DOM_productManage .js</b>
 
-  - [ ] 상품 추가하기, 상품 현황 text 추가
-  - [ ] 상품 추가하기 input, button 추가
-  - [ ] 상품 현황 table 추가
+  - [x] 상품 추가하기, 상품 현황 text 추가
+  - [x] 상품 추가하기 input, button 추가
+  - [x] 상품 현황 table 추가
 
   <b>DOM_buyProducts .js</b>
 
-  - [ ] 금액 투입, 구매할 수 있는 상품 현황, 잔돈 text 추가
-  - [ ] 금액 투입 input, button 추가
-  - [ ] 투입한 금액 text 추가
-  - [ ] 구매할 수 있는 상품 현황 table 추가
-  - [ ] 잔돈 button, table 추가
+  - [x] 금액 투입, 구매할 수 있는 상품 현황, 잔돈 text 추가
+  - [x] 금액 투입 input, button 추가
+  - [x] 투입한 금액 text 추가
+  - [x] 구매할 수 있는 상품 현황 table 추가
+  - [x] 잔돈 button, table 추가
 
   <b>DOM_load.js</b>
 

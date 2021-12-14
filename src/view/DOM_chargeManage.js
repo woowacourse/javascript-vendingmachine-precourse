@@ -14,8 +14,6 @@ export const initChargeManage = () => {
 
   area.appendChild(createText(TITLE.STORE_CHARGE));
   area.appendChild(createTable(PRODUCT_PURCHASE_TABLE.CLASS, tableTD));
-        
-  //COINS.forEach((coinUnit) => createTd(PRODUCT_PURCHASE_TABLE.CLASS, coinUnit));
 
   setDOM(area); 
   hideChargeManage();
@@ -24,9 +22,19 @@ export const initChargeManage = () => {
 export const showChargeManage = () => {
   const area = document.querySelector(`#${MENU_BUTTON.CHANGE_MANAGE}-area`);
   area.style.display = "block";
+  getCoin();
 };
 
 export const hideChargeManage = () => {
   const area = document.querySelector(`#${MENU_BUTTON.CHANGE_MANAGE}-area`);
   area.style.display = "none";
 };
+
+
+export const getCoin = () => {
+  const isExist = document.querySelector(`.${PRODUCT_PURCHASE_TABLE.CLASS}`);
+  
+  if(isExist === null) {
+    COINS.forEach((coinUnit) => createTd(PRODUCT_PURCHASE_TABLE.CLASS, coinUnit));
+  }
+}
