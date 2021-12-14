@@ -9,7 +9,7 @@
 
 <body>
   <div id="app">
-    <h1>자판기</h1>
+    <h1>🥤자판기🥤</h1>
     <div class="button">
       <button id="product-purchase-menu">상품 구매</button>
       <button id="vending-machine-manage-menu">잔돈 충전</button>
@@ -18,9 +18,9 @@
     <div id="product-add">
       <form>
         <h2>상품 추가하기</h2>
-        <input type="text" id="product-name-input" />
-        <input type="number" id="product-price-input" />
-        <input type="number" id="product-quantity-input" />
+        <input type="text" id="product-name-input" placeholder="상품명" />
+        <input type="number" id="product-price-input" placeholder="가격" />
+        <input type="number" id="product-quantity-input" placeholder="수량" />
         <button id="product-add-button">추가하기</button>
       </form>
       <div class="product-manage-item">
@@ -29,17 +29,16 @@
           <th>상품명</th>
           <th>가격</th>
           <th>수량</th>
-          <th>구매</th>
           <tr>
 
           </tr>
         </table>
       </div>
     </div>
-    <div id="vending-machine">
+    <div id="vending-machine-manage">
       <form>
         <h2>자판기 동전 충전하기</h2>
-        <input type="number" id="vending-machine-charge-input" />
+        <input type="number" id="vending-machine-charge-input" placeholder="투입할 금액" />
         <button id="vending-machine-charge-button">충전하기</button>
       </form>
       <div>보유 금액 : <span id="vending-machine-charge-amount"></span></div>
@@ -70,7 +69,7 @@
     <div id="purchase-menue">
       <form>
         <h2>금액 투입</h2>
-        <input type="number" id="charge-input" />
+        <input type="number" id="charge-input" placeholder="투입할 금액" />
         <button id="charge-button">투입하기</button>
       </form>
       <div>투입한 금액 : <span id="charge-amount"></span></div>
