@@ -19,4 +19,22 @@ export class VendingMachine {
   showInsertedMoney(view) {
     view.showInsertedMoney(this.moneyBank.insertedMoney);
   }
+
+  returnMoney(money) {
+    console.log(money);
+  }
+
+  purchase(productName, view) {
+    const price = this.productList.getProductPrice(productName);
+    const insertedMoney = this.moneyBank.insertedMoney;
+    const isValid = this.valid.checkPurchasePossible(price, insertedMoney);
+    if(isValid) {
+      this.productList.removeProduct(productName);
+      this.moneyBank.useMoney(price);
+      view.showProductListAll(this.productList.products);
+      this.showInsertedMoney(view);
+    } else {
+      alert('금액이 부족합니다.');
+    }
+  }
 }

@@ -34,4 +34,12 @@ export class Controller {
     this.vendingMachine.insertMoney(money);
     this.vendingMachine.showInsertedMoney(this.view.purchasePage);
   }
+
+  returnMoney(money) {
+    this.vendingMachine.returnMoney(money);
+  }
+
+  purchase(productName) {
+    this.vendingMachine.purchase(productName, this.view.purchasePage);
+  }
 }

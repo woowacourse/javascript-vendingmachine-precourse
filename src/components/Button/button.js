@@ -1,9 +1,8 @@
 import { MARGIN } from "../../utils/constant.js";
 
-const Button = (text, id) => {
+const Button = (text) => {
     const button = document.createElement('button');
     button.innerText = text;
-    button.setAttribute('id',id);
     button.style.margin = MARGIN;
     return button;
 }

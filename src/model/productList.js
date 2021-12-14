@@ -5,11 +5,11 @@ export default class ProductList {
     this.products = [];
   }
 
-  findIndex(product) {
+  findIndex(productName) {
     let index = -1;
     let count = 0;
     this.products.forEach(element => {
-      const compareResult = element.name.localeCompare(product.name);
+      const compareResult = element.name.localeCompare(productName);
       if(compareResult === 0) {
         index = count;
       }
@@ -19,7 +19,7 @@ export default class ProductList {
   }
 
   addProduct(product) {
-    const index = this.findIndex(product);
+    const index = this.findIndex(product.name);
     if(index === -1) {
       this.products.push(product);
       localStorage.setItem(`product-${product.name}`, `${product.price}-${product.quantity}`);
@@ -32,14 +32,13 @@ export default class ProductList {
     }
   }
 
-  removeProduct(product) {
-    const index = this.findIndex(product);  
+  removeProduct(productName) {
+    const index = this.findIndex(productName);  
     if( index === -1) {
       alert('해당 상품은 없습니다.');//상수화 필요 
     } else {
-      let quantity = Number(this.products[index].quantity);
-      quantity -= Number(product.quantity);
-      localStorage.setItem(`product-${product.name}`, `${product.price}-${quantity}`);
+      this.products[index].quantity -= 1;
+      localStorage.setItem(`product-${productName}`, `${this.products[index].price}-${this.products[index].quantity}`);
       this.updateProducts()
     }  
   }
@@ -64,5 +63,15 @@ export default class ProductList {
 
   isProduct(key) {
     return key.includes('product-');
+  }
+
+  getProductPrice(productName) {
+    const index = this.findIndex(productName);
+    return this.products[index].price;
+  }
+
+  getProductQuantity(productName) {
+    const index = this.findIndex(productName);
+    return this.products[index].quantity;
   }
 }

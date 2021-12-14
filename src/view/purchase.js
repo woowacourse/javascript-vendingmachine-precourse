@@ -11,8 +11,10 @@ import {
   ButtonById,
   TdById,
   Td,
-  TdByClassNameAndDataset
+  TdByClassNameAndDataset,
+  TdButtonClassName
 } from '../components/compoenents.js';
+import { $ } from '../utils/selector.js';
 
 export default class PurchasePage {
   constructor(controller) {
@@ -75,7 +77,7 @@ export default class PurchasePage {
   returnButtonHandler() {
     this.buttonReturn.addEventListener('click', (e) => {
       e.preventDefault();
-      // this.controller.insertMoney(this.inputCoin.value);
+      this.controller.returnMoney(localStorage.getItem('insertedMoney'));
     })
   }
 
@@ -84,12 +86,13 @@ export default class PurchasePage {
   }
 
   showProductListAll(products) {
+    this.cleantable();
     if(products.length > 0) {
       for(let i = 0; i < products.length; i += 1) {
         this.attachProduct(products[i]);
       }
+      this.tableCurrent.appendChild(this.tbody);
     }
-    this.tableCurrent.appendChild(this.tbody);
   }
 
   cleantable() {
@@ -101,7 +104,8 @@ export default class PurchasePage {
     const productTr = TrByClassName([
       TdByClassNameAndDataset(product.name,CLASS.PURCHASE_NAME, DATASET.PRODUCT_NAME),
       TdByClassNameAndDataset(product.price,CLASS.PURCHASE_PRICE, DATASET.PRODUCT_PRICE),
-      TdByClassNameAndDataset(product.quantity,CLASS.PURCHASE_QUANTITY, DATASET.PRODUCT_QUANTITY)
+      TdByClassNameAndDataset(product.quantity,CLASS.PURCHASE_QUANTITY, DATASET.PRODUCT_QUANTITY),
+      TdButtonClassName(CLASS.PURCHASE_BUTTON, product.name, this.controller)
     ],CLASS.PURCHASE_ITEM);
     this.tbody.appendChild(productTr);
   }

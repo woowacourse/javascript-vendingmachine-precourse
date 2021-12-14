@@ -4,7 +4,7 @@ import { Input, InputById } from './Input/inputComponents.js';
 import Div from './Div/div.js';
 import { P, PById } from './P/pComponents.js';
 import { Button, ButtonById } from './Button/buttonComponents.js';
-import { Table, Theadbody, Th, Tr, Td, TrByClassName, TdByClassName, TdById, TdByClassNameAndDataset } from './Table/tableComponenets.js';
+import { Table, Theadbody, Th, Tr, Td, TrByClassName, TdByClassName, TdById, TdByClassNameAndDataset, TdButtonClassName } from './Table/tableComponenets.js';
 
 export {
     Title,
@@ -24,5 +24,6 @@ export {
     TrByClassName,
     TdByClassName,
     TdById,
-    TdByClassNameAndDataset
+    TdByClassNameAndDataset,
+    TdButtonClassName
 };

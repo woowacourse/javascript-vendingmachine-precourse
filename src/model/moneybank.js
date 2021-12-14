@@ -65,4 +65,9 @@ export default class MoneyBank {
     this.insertedMoney += Number(money);
     localStorage.setItem('insertedMoney',this.insertedMoney);
   }
+
+  useMoney(productPrice) {
+    this.insertedMoney -= Number(productPrice);
+    localStorage.setItem('insertedMoney', this.insertedMoney);
+  }
 }
