@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Table from './Table.js';
 import { CLASS } from '../../constant/selector.js';
 
