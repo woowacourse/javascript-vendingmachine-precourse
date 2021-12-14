@@ -39,8 +39,8 @@ export default class VendingMachineManageTemplate {
     this.coinChargingForm.innerHTML =
       '<input type="text" placeholder="자판기가 보유할 금액" id="vending-machine-charge-input" /><button type="submit" id="vending-machine-charge-button">충전하기</button>';
     this.amountParagraph = document.createElement('p');
-    this.amountParagraph.id = 'vending-machine-charge-amount';
-    this.amountParagraph.textContent = '보유금액: ';
+    this.amountParagraph.innerHTML =
+      '보유금액: <span id="vending-machine-charge-amount" />';
   }
 
   makeCoinTableTemplate() {
@@ -81,7 +81,10 @@ export default class VendingMachineManageTemplate {
 
   coinInsert(inputCoin) {
     const totalCost = this.coin.additionalInputCoin(inputCoin);
-    this.amountParagraph.textContent = `보유금액: ${totalCost}`;
+    const chargeAmount = document.getElementById(
+      'vending-machine-charge-amount'
+    );
+    chargeAmount.textContent = `${totalCost}`;
   }
 
   insertCoinTableData() {

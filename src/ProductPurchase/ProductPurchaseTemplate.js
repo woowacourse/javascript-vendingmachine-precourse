@@ -52,13 +52,12 @@ export default class ProductPurcahseTemplate {
     this.spendMoneyForm = document.createElement('form');
     this.spendMoneyForm.innerHTML =
       '<input type="text" placeholder="투입할 금액" id="charge-input" /><button type="submit" id="charge-button">투입하기</button>';
-    this.spendMoneyParagraph = document.createElement('p');
-    this.spendMoneyParagraph.id = 'charge-amount';
-    this.spendMoneyParagraph.textContent = '투입한 금액: ';
+    const spendMoneyParagraph = document.createElement('p');
+    spendMoneyParagraph.innerHTML = '투입한 금액: <span id="charge-amount" />';
     this.spendMoney.append(
       this.spendMoneyTitle,
       this.spendMoneyForm,
-      this.spendMoneyParagraph
+      spendMoneyParagraph
     );
   }
 
@@ -72,7 +71,8 @@ export default class ProductPurcahseTemplate {
 
   chargeInsert(inputCharge) {
     const totalChageCost = this.product.additionalInputCharge(inputCharge);
-    this.spendMoneyParagraph.textContent = `투입한 금액: ${totalChageCost}`;
+    const chargeAmount = document.getElementById('charge-amount');
+    chargeAmount.textContent = totalChageCost;
   }
 
   makeProductStatusTemplate() {
