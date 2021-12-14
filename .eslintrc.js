@@ -17,7 +17,7 @@ module.exports = {
     'max-depth': ['error', 2],
     'prettier/prettier': 'error',
     'class-methods-use-this': 'off',
-    'max-lines-per-function': ['error', 15],
+    'max-lines-per-function': ['error', 17],
     'no-constructor-return': 'off',
   },
   plugins: ['prettier'],

@@ -1,7 +1,12 @@
-import VendingMachineSharedModel from '../models/vendingMachineSharedModel.js';
-import ProductAddView from '../views/productAddView.js';
+import VendingMachineSharedModel from '../models/vending-machine-shared-model.js';
+import ProductAddView from '../views/product-add/index.js';
 import { isEmptyString, isNaturalNum } from '../utils.js';
-import { VALIDATION_MESSAGES, MIN_PRODUCT_PRICE, PRODUCT_PRICE_UNIT } from '../constants.js';
+import {
+  VALIDATION_MESSAGES,
+  MIN_PRODUCT_PRICE,
+  PRODUCT_PRICE_UNIT,
+  ELEMENT_CLASSES,
+} from '../constants.js';
 
 class ProductAddController {
   constructor() {
@@ -9,7 +14,8 @@ class ProductAddController {
   }
 
   mountView() {
-    this.view = new ProductAddView();
+    const $tabContent = document.querySelector(`.${ELEMENT_CLASSES.TAB_CONTENT}`);
+    this.view = new ProductAddView($tabContent).mount();
     this.registerEventListener();
   }
 
@@ -19,17 +25,18 @@ class ProductAddController {
   }
 
   registerEventListener() {
-    this.view.$addButton.addEventListener('click', () => this.handleSubmitProductItem());
+    const { $addButton } = this.view.form;
+    $addButton.addEventListener('click', () => this.handleSubmitProductItem());
   }
 
   removeEventListener() {
-    this.view.$addButton = null;
+    this.view.form.$addButton = null;
   }
 
   handleSubmitProductItem() {
-    const name = this.view.$nameInput.value.trim();
-    const priceString = this.view.$priceInput.value.trim();
-    const quantityString = this.view.$quantityInput.value.trim();
+    const { $nameInput, $priceInput, $quantityInput } = this.view.form;
+    const values = [$nameInput.value, $priceInput.value, $quantityInput.value].map((v) => v.trim());
+    const [name, priceString, quantityString] = values;
     const { isValid, message } = this.isValid(name, priceString, quantityString);
     if (isValid) {
       this.model.addProductItem({

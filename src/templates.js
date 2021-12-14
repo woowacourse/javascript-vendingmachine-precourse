@@ -34,7 +34,7 @@ export const productAddTabPaneTemplate = `
   <div id="${ELEMENT_IDS.PRODUCT_ADD_PANE}">
     <h2>상품 추가하기</h2>
     <div class="row">
-      <form>
+      <form id="${ELEMENT_IDS.PRODUCT_ADD_FORM}">
         <input type="text" placeholder="상품명" id="${ELEMENT_IDS.PRODUCT_NAME_INPUT}">
         <input type="number" placeholder="가격" id="${ELEMENT_IDS.PRODUCT_PRICE_INPUT}">
         <input type="number" placeholder="수량" id="${ELEMENT_IDS.PRODUCT_QUANTITY_INPUT}">
@@ -67,3 +67,47 @@ export const productManageItemTemplate = ({ name, price, quantity }) => {
     </tr>
   `;
 };
+
+export const vendingMachineManageTabPaneTemplate = `
+  <div id="${ELEMENT_IDS.VENDING_MACHINE_MANAGE_PANE}">
+    <h2>자판기 동전 충전하기</h2>
+    <div class="row">
+      <form>
+        <input type="text" placeholder="자판기가 보유할 금액" id="${ELEMENT_IDS.VENDING_MACHINE_CHARGE_INPUT}">
+        <button type="button" id="${ELEMENT_IDS.VENDING_MACHINE_CHARGE_BUTTON}">충전하기</button>
+      </form>
+      <div>
+        보유 금액: <span id="${ELEMENT_IDS.VENDING_MACHINE_CHARGE_AMOUNT}"></span>
+      </div>
+    </div>
+    <h2>자판기가 보유한 동전</h2>
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>동전</th>
+            <th>개수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>500원</td>
+            <td class="${ELEMENT_IDS.VENDING_MACHINE_COIN_500_QUANTITY}"></td>
+          </tr>
+          <tr>
+            <td>100원</td>
+            <td class="${ELEMENT_IDS.VENDING_MACHINE_COIN_100_QUANTITY}"></td>
+          </tr>
+          <tr>
+            <td>50원</td>
+            <td class="${ELEMENT_IDS.VENDING_MACHINE_COIN_50_QUANTITY}"></td>
+          </tr>
+          <tr>
+            <td>10원</td>
+            <td class="${ELEMENT_IDS.VENDING_MACHINE_COIN_10_QUANTITY}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+`;

@@ -17,3 +17,7 @@ export const isNaturalNum = (numString) => {
 export const isEmptyString = (str) => {
   return !str.trim();
 };
+
+export const wrappedHtml = (html) => {
+  return `<div>${html}</div>`;
+};
