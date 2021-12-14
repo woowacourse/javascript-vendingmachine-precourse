@@ -23,7 +23,6 @@ export default class VendingTab {
   makeRandomCoinQuantity(inputValue) {
     const amountArray = COIN_ARRAY.map(x => x * 0);
     let totalPrice = 0;
-
     while (inputValue !== totalPrice) {
       const coin = MissionUtils.Random.pickNumberInList(COIN_ARRAY);
       if (totalPrice + coin <= inputValue) {

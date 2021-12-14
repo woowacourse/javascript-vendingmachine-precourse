@@ -84,16 +84,20 @@ export default class PurchaseTab {
     return validation.isInputNumberValid(chargeInput) && validation.isMultipleOf10(chargeInput);
   }
 
+  chargeByExistence(charge, chargeInput) {
+    if (charge || charge === 0) {
+      charge += parseInt(chargeInput.value);
+    } else if (charge === null) {
+      charge = parseInt(chargeInput.value);
+    }
+    this.model.setCharge(charge);
+  }
+
   chargeMoney() {
     const chargeInput = $(SELECTOR.chargeInput);
-    let charge = this.model.getCharge();
+    const charge = this.model.getCharge();
     if (this.isChargeInputValid(chargeInput)) {
-      if (charge || charge === 0) {
-        charge += parseInt(chargeInput.value);
-      } else if (charge === null) {
-        charge = parseInt(chargeInput.value);
-      }
-      this.model.setCharge(charge);
+      this.chargeByExistence(charge, chargeInput);
       this.initChargeDom();
     }
   }
