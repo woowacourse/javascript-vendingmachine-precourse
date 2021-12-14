@@ -1,6 +1,6 @@
 import NUMBER from '../../constants/number.js';
 import { $ } from '../../utils/DOMhelper.js';
-import { manageTabTemplate } from '../template.js';
+import { manageTabTemplate } from '../../utils/template.js';
 
 export default class ManageView {
   init() {

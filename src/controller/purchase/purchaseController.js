@@ -2,7 +2,7 @@ import PurchaseView from '../../view/purchase/purchaseView.js';
 import { isValidChargeAmount, isValidPurchase } from '../../utils/validator.js';
 import { showError } from '../../utils/error.js';
 import { STRING } from '../../constants/constants.js';
-import { exchangeWithCoins } from './exchange.js';
+import { exchangeWithCoins } from '../../utils/exchange.js';
 
 export default class PurchaseController {
   constructor(appModel) {

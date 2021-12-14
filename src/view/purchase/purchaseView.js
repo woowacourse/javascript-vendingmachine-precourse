@@ -1,5 +1,5 @@
 import { $, $$ } from '../../utils/DOMhelper.js';
-import { purchaseTabTemplate } from '../template.js';
+import { purchaseTabTemplate } from '../../utils/template.js';
 import { INDEX, STRING } from '../../constants/constants.js';
 
 export default class PurchaseView {

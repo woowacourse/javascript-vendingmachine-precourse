@@ -1,5 +1,5 @@
 import { $ } from '../../utils/DOMhelper.js';
-import { addTabTemplate, productTemplate } from '../template.js';
+import { addTabTemplate, productTemplate } from '../../utils/template.js';
 
 export default class AddView {
   init() {

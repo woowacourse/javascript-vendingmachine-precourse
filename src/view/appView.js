@@ -1,5 +1,5 @@
 import { $ } from '../utils/DOMhelper.js';
-import { headerTemplate } from './template.js';
+import { headerTemplate } from '../utils/template.js';
 
 export default class AppView {
   constructor() {
