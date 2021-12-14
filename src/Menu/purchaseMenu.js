@@ -4,10 +4,14 @@ import {
   getCoinsFromLocalStorage,
   saveMoneyToLocalStorage,
   getMoneyFromLocalStorage,
-  saveProductToLocalStorage,
   saveProductsToLocalStorage,
 } from '../utilsLocalStorage.js';
-import { COINS, MONEY_INPUT_UINT, PURCHASE_PRODUCT_MIN_QUANTITY, PURCHASE_MONEY_MIN } from '../Class/consts.js';
+import {
+  COINS,
+  MONEY_INPUT_UINT as MONEY_INPUT_UNIT,
+  PURCHASE_PRODUCT_MIN_QUANTITY,
+  PURCHASE_MONEY_MIN,
+} from '../Class/consts.js';
 
 export const initPurchaseMenu = () => {
   const chargeButton = document.getElementById('charge-button');
@@ -34,7 +38,7 @@ const chargeMoney = () => {
 };
 
 const isChargeInputValid = (chargeInput) => {
-  if (chargeInput % MONEY_INPUT_UINT !== 0) {
+  if (chargeInput % MONEY_INPUT_UNIT !== 0) {
     alert('invalid chargeInput');
     return false;
   }
@@ -73,23 +77,16 @@ const initPurchaseButtons = () => {
 const purchaseProduct = (element) => {
   const products = getProductsFromLocalStorage();
   const name = element.childNodes[1].innerText;
-  const index = findProductIndex(products, name);
-
-  const product = products[index];
-  const price = product.price;
-  const quantity = product.quantity;
+  const product = products[findProductIndex(products, name)];
 
   const money = getMoneyFromLocalStorage();
-  const moneyAfterBuy = Number(money) - Number(price);
-
-  if (isMoneyEnough(moneyAfterBuy)) {
-    if (isQuantityEnough(quantity)) {
-      document.getElementById('charge-amount').innerText = moneyAfterBuy;
-      saveMoneyToLocalStorage(Number(money) - Number(price));
-      product.quantity = quantity - 1;
-      element.childNodes[5].innerText -= 1;
-      saveProductsToLocalStorage(products);
-    }
+  const moneyAfterBuy = Number(money) - Number(product.price);
+  if (isPurchasePossible(product)) {
+    document.getElementById('charge-amount').innerText = moneyAfterBuy;
+    saveMoneyToLocalStorage(moneyAfterBuy);
+    product.quantity -= 1;
+    element.childNodes[5].innerText -= 1;
+    saveProductsToLocalStorage(products);
   }
 };
 
@@ -99,6 +96,18 @@ const findProductIndex = (products, name) => {
       return i;
     }
   }
+};
+
+const isPurchasePossible = (product) => {
+  const money = getMoneyFromLocalStorage();
+  const moneyAfterBuy = Number(money) - Number(product.price);
+  if (!isMoneyEnough(moneyAfterBuy)) {
+    return false;
+  }
+  if (!isQuantityEnough(product.quantity)) {
+    return false;
+  }
+  return true;
 };
 
 const isMoneyEnough = (money) => {
