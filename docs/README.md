@@ -57,5 +57,130 @@
         차감된 투입 금액과 자판기 보유 동전 목록을 `localStorage`에 업데이트
 
 ## 프로젝트 구조
+
 ![image](https://user-images.githubusercontent.com/38878617/145949612-6c9bdcf5-54da-4e7c-8650-c3e0fe2f41ce.PNG)
 
+## 디렉터리 구조
+
+```
+C:.
+|   index.js
+|
+\---app
+    |   index.js
+    |
+    +---asset
+    |   +---components
+    |   |   |   index.js
+    |   |   |
+    |   |   +---BeverageIcon
+    |   |   |       index.js
+    |   |   |       Style.js
+    |   |   |
+    |   |   +---Button
+    |   |   |       ButtonByClassName.js
+    |   |   |       ButtonById.js
+    |   |   |       index.js
+    |   |   |
+    |   |   +---Cell
+    |   |   |       CellByClassName.js
+    |   |   |       CellByClassNameAndDataset.js
+    |   |   |       CellById.js
+    |   |   |       index.js
+    |   |   |       Style.js
+    |   |   |
+    |   |   +---CoinTable
+    |   |   |       index.js
+    |   |   |
+    |   |   +---Input
+    |   |   |       index.js
+    |   |   |       InputNumber.js
+    |   |   |       InputText.js
+    |   |   |       Style.js
+    |   |   |
+    |   |   +---MainTitle
+    |   |   |       index.js
+    |   |   |       Style.js
+    |   |   |
+    |   |   +---Row
+    |   |   |       CoinRow.js
+    |   |   |       index.js
+    |   |   |       InventoryBodyRow.js
+    |   |   |       InventoryHeadRow.js
+    |   |   |       PurchaseBodyRow.js
+    |   |   |       PurchaseHeadRow.js
+    |   |   |       RowByClassName.js
+    |   |   |
+    |   |   +---Span
+    |   |   |       index.js
+    |   |   |
+    |   |   +---SubmitForm
+    |   |   |       index.js
+    |   |   |
+    |   |   +---SubTitle
+    |   |   |       index.js
+    |   |   |       Style.js
+    |   |   |
+    |   |   \---Table
+    |   |           index.js
+    |   |           Style.js
+    |   |
+    |   +---constants
+    |   |       BEVERAGE_ICON_PATH.js
+    |   |       BUTTON.js
+    |   |       CHANGE_COIN_ID.js
+    |   |       COINS.js
+    |   |       COIN_ID.js
+    |   |       ERROR_MSG.js
+    |   |       GUIDE.js
+    |   |       index.js
+    |   |       INPUT_ID.js
+    |   |       INPUT_ITEM.js
+    |   |       INPUT_NUMBER_RULE.js
+    |   |       STORAGE_KEY.js
+    |   |       SUB_TITLE_TEXT.js
+    |   |       TABLE_CELL_CLASS_NAME.js
+    |   |       TABLE_CELL_DATASET.js
+    |   |       TABLE_ROW_CLASS_NAME.js
+    |   |       TABLE_TITLE.js
+    |   |       TAP.js
+    |   |       UNIT.js
+    |   |       VENDING_MACHINE_TITLE.js
+    |   |
+    |   +---util
+    |   |       calcCoinAmount.js
+    |   |       getDistributedCoinGreedily.js
+    |   |       getDistributedCoinRandomly.js
+    |   |       getEnableChargeAmount.js
+    |   |       index.js
+    |   |
+    |   \---validation
+    |           checkChargeAmount.js
+    |           checkInputAmount.js
+    |           checkProductName.js
+    |           checkProductPrice.js
+    |           checkProductQuantity.js
+    |           common.js
+    |           index.js
+    |
+    +---controller
+    |       ChargeCoin.js
+    |       Inventory.js
+    |       Purchase.js
+    |       VendingMachine.js
+    |
+    +---localStorage
+    |       coin.js
+    |       common.js
+    |       index.js
+    |       inputAmount.js
+    |       inventory.js
+    |       tap.js
+    |
+    \---view
+            ChargeCoinTap.js
+            InventoryTap.js
+            PurchaseTap.js
+            Tap.js
+            VendingSkeleton.js
+```
