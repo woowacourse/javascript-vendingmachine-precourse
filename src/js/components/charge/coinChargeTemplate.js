@@ -56,7 +56,7 @@ const addConvertedCoins = (unit, quantity) => {
 export const showConvertedCoins = (convertedCoins) => {
   $('#vending-machine-coin-list').innerHTML = '';
 
-  // eslint-disable-next-line guard-for-in
+  // eslint-disable-next-line no-restricted-syntax
   for (const unit in convertedCoins) {
     addConvertedCoins(unit, convertedCoins[unit]);
   }

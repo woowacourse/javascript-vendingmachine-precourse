@@ -21,6 +21,15 @@ const convertAmountIntoCoins = (amount) => {
   }
 };
 
+const showCurrentMachineAmount = (storedChargeCoins) => {
+  let currentCoin = STANDARD.CURRENT_MONEY;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const unit in storedChargeCoins) {
+    currentCoin += storedChargeCoins[unit] * unit;
+  }
+  showCurrentAmount(vendingMachineChargeAmountId, currentCoin);
+};
+
 const handleCoinChargeSubmit = (event) => {
   event.preventDefault();
   const chargedCoin = Number($('#vending-machine-charge-input').value);
@@ -39,14 +48,12 @@ const handleCoinChargeSubmit = (event) => {
 
 export const showManageMenu = () => {
   $('#app-container').innerHTML = coinChargeTemplate;
-  const storedCharge = getLocalStorage(STORAGE_NAME.COIN);
-  const storedAmount = getLocalStorage(STORAGE_NAME.MACHINE_AMOUNT);
+  const storedChargeCoins = getLocalStorage(STORAGE_NAME.COIN);
 
-  if (storedCharge.length !== 0) {
-    currentAmount = Number(storedAmount);
-    convertedCoins = storedCharge;
-    showConvertedCoins(storedCharge);
-    showCurrentAmount(vendingMachineChargeAmountId, storedAmount);
+  if (storedChargeCoins.length !== 0) {
+    convertedCoins = storedChargeCoins;
+    showConvertedCoins(storedChargeCoins);
+    showCurrentMachineAmount(storedChargeCoins);
   }
 
   $('form').addEventListener('submit', handleCoinChargeSubmit);
