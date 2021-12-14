@@ -28,8 +28,7 @@ export default class ChangeInput {
   }
 
   chargeMoney(money) {
-    this.$holdingSpan = createElement('span', `${money}${CURRENCY}`);
-    this.$holdingContainer.replaceChild(this.$holdingSpan, this.$holdingContainer.lastElementChild);
+    this.$holdingSpan.textContent = `${money}${CURRENCY}`;
   }
 
   get component() {
