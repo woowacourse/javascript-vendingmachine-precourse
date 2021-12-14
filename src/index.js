@@ -115,7 +115,7 @@ function putMoney() {
         renderInputMoney(totalInputMoney);
     }
     else {
-        console.log('nono');
+        alert("옳바른 형식이 아닙니다. 10의 배수로 입력해주세요.");
     }
 }
 
