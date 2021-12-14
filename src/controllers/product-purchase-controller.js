@@ -7,7 +7,7 @@ import {
   COIN_UNITS,
   INITIAL_COINS,
 } from '../constants.js';
-import { isEmptyString, isNaturalNum } from '../utils.js';
+import { isEmptyString, isNaturalNum, resetInputs } from '../utils.js';
 import VendingMachineSharedModel from '../models/vending-machine-shared-model.js';
 import ProductPurchaseView from '../views/product-purchase/index.js';
 import Observer from '../abstracts/observer.js';
@@ -47,6 +47,7 @@ class ProductPurchaseController extends Observer {
   handleSubmitMoney() {
     const { $chargeInput } = this.$view.$form;
     const moneyString = $chargeInput.value.trim();
+    resetInputs([$chargeInput]);
     const { isValid, message } = this.isValidMoney(moneyString);
     if (isValid) {
       const money = parseInt(moneyString, 10);

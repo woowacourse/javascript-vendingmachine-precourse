@@ -1,5 +1,5 @@
 import { VALIDATION_MESSAGES, PRODUCT_PRICE_UNIT, ELEMENT_CLASSES } from '../constants.js';
-import { isEmptyString, isNaturalNum } from '../utils.js';
+import { isEmptyString, isNaturalNum, resetInputs } from '../utils.js';
 import VendingMachineSharedModel from '../models/vending-machine-shared-model.js';
 import VendingMachineManageView from '../views/vending-machine-manage/index.js';
 
@@ -26,6 +26,7 @@ class VendingMachineManageController {
   handleSubmitMoney() {
     const { $chargeInput } = this.$view.$form;
     const moneyString = $chargeInput.value.trim();
+    resetInputs([$chargeInput]);
     const { isValid, message } = this.isValidMoney(moneyString);
     if (isValid) {
       const money = parseInt(moneyString, 10);

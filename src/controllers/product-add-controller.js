@@ -1,6 +1,6 @@
 import VendingMachineSharedModel from '../models/vending-machine-shared-model.js';
 import ProductAddView from '../views/product-add/index.js';
-import { isEmptyString, isNaturalNum } from '../utils.js';
+import { isEmptyString, isNaturalNum, resetInputs } from '../utils.js';
 import {
   VALIDATION_MESSAGES,
   MIN_PRODUCT_PRICE,
@@ -39,6 +39,7 @@ class ProductAddController {
         price: parseInt(priceString, 10),
         quantity: parseInt(quantityString, 10),
       });
+      resetInputs([$nameInput, $priceInput, $quantityInput]);
       return;
     }
     alert(message);

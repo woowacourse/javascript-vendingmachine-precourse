@@ -1,4 +1,4 @@
-import { COIN_UNITS, INITIAL_COINS } from './constants.js'
+import { COIN_UNITS, INITIAL_COINS } from './constants.js';
 
 export const htmlToElement = (html) => {
   const template = document.createElement('template');
@@ -44,4 +44,10 @@ export const moneyToCoin = (money) => {
     }
   }
   return coins;
+};
+
+export const resetInputs = ($inputs) => {
+  $inputs.forEach(($input) => {
+    $input.value = '';
+  });
 };
