@@ -1,4 +1,9 @@
-import { renderProductPurchase, renderProductPurchaseStatus, renderChargedMoney } from '../view/index.mjs';
+import {
+  renderProductPurchase,
+  renderProductPurchaseStatus,
+  renderChargedMoney,
+  renderReturnCoins
+} from '../view/index.mjs';
 import { products } from '../model/products.mjs';
 
 /*
@@ -72,6 +77,7 @@ function coinReturn() {
 
     let coinsType = ['500_WON', '100_WON', '50_WON', '10_WON'];
     let moneys = [500, 100, 50, 10];
+    let returnCoin = new Array(4).fill(0);
 
     let flag = false;
     for (let i = 0; i < coinsType.length; i++) {
@@ -81,6 +87,7 @@ function coinReturn() {
         chargeMoney -= moneys[i];
         vendingMachineChargeAmount -= moneys[i];
         amountOfCoins[coinsType[i]]--;
+        returnCoin[i]++;
 
         if (chargeMoney < 0) {
           flag = true;
@@ -91,7 +98,9 @@ function coinReturn() {
     localStorage.setItem('amount-of-coins', JSON.stringify(amountOfCoins));
     localStorage.setItem('charge-input', chargeMoney);
     localStorage.setItem('vending-machine-charge-amount', vendingMachineChargeAmount);
+    localStorage.setItem('returnCoin', returnCoin);
     renderChargedMoney();
+    renderReturnCoins();
   });
 }
 

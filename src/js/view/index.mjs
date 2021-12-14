@@ -8,5 +8,6 @@ export {
 export {
   renderProductPurchase,
   renderProductPurchaseStatus,
-  renderChargedMoney
+  renderChargedMoney,
+  renderReturnCoins
 } from './renderProductPurchase.mjs';

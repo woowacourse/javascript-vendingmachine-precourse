@@ -93,6 +93,7 @@ export function renderProductPurchase(products) {
 
   renderProductPurchaseStatus(products);
   renderChargedMoney();
+  renderReturnCoins();
 }
 
 export function renderProductPurchaseStatus(products) {
@@ -110,4 +111,21 @@ export function renderProductPurchaseStatus(products) {
       </tr>`;
     })
     .join('');
+}
+
+export function renderReturnCoins() {
+  // 로컬스토리지에서 반환해주는 코인들을 표시한다.
+
+  const returnCoin = localStorage.getItem('returnCoin').split(',');
+
+  const coins = [
+    document.querySelector('#coin-500-quantity'),
+    document.querySelector('#coin-100-quantity'),
+    document.querySelector('#coin-50-quantity'),
+    document.querySelector('#coin-10-quantity')
+  ];
+
+  returnCoin.forEach((coin, i) => {
+    coins[i].textContent = `${coin}개`;
+  });
 }
