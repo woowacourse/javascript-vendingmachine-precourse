@@ -1,5 +1,5 @@
 import { CLASS, ID } from '../../../constant/attributes.js';
-import { CURRENCY, kindsOfCoins } from '../../../constant/constant.js';
+import { CURRENCY, kindsOfCoins, TABLE_TEXT } from '../../../constant/constant.js';
 import { TABLE, TD } from '../../../constant/style.js';
 import { PURCHASE } from '../../../constant/text.js';
 import { createElement, createTr } from '../../../utils/dom-utils.js';
@@ -26,7 +26,7 @@ export default class ChangeStatus {
   createTable() {
     this.$table = createElement('table');
     this.$table.classList.add(CLASS.PRODUCT.MANAGE_ITEM);
-    this.$table.appendChild(createTr('동전', '개수'));
+    this.$table.appendChild(createTr(TABLE_TEXT.COIN, TABLE_TEXT.AMOUNT));
     this.$table.style.border = TD.BORDER;
     this.$table.style.borderCollapse = TABLE.COLLAPSE;
     this.buildTable();
