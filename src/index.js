@@ -2,6 +2,7 @@ import { fetchHtmlView } from './fetch.js';
 import { moneyList } from './constants.js';
 
 //
+let productList = [];
 function addProduct() {
     const name = document.querySelector("#product-name-input").value;
     const price = document.querySelector("#product-price-input").value;
@@ -148,19 +149,21 @@ function renderProductList(products) {
 
 function onTabClick(fileName, tabId) {
     fetchHtmlView(fileName)
-        .then(view => {
-            document.querySelector("#tab-content").innerHTML = view;
-            switch(tabId) {
-                case 1: 
-                    break;
-                case 2: break;
-                case 3:
-                    renderProductList(productList);
-                    break;
-                default: break;
-            }
-        })
+        .then(view => renderView(view, tabId))
         .catch(err => alert(err));
+}
+
+function renderView(view, tabId) {
+    document.querySelector("#tab-content").innerHTML = view;
+    switch(tabId) {
+        case 1: 
+            break;
+        case 2: break;
+        case 3:
+            renderProductList(productList);
+            break;
+        default: break;
+    }
 }
 
 // DOM
