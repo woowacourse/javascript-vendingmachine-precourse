@@ -1,71 +1,35 @@
-import { COIN_ARR, MACHINE_MANAGE, ZERO } from '../constants.js';
+import { COIN_ARR, COIN_UNIT, MACHINE_MANAGE, ZERO } from '../constants.js';
 import * as func from './elementfunc.js';
 
-function setTableBody10(tbody) {
-  let table10Row = document.createElement('tr');
-  func.createTh(table10Row, MACHINE_MANAGE.COIN_10);
-  let heading_2 = document.createElement('th');
-  func.appendId(heading_2, 'vending-machine-coin-10-quantity');
-  heading_2.innerHTML = ZERO + '개';
-
-  table10Row.appendChild(heading_2);
-  tbody.appendChild(table10Row);
-}
-
-function setTableBody50(tbody) {
-  let table50Row = document.createElement('tr');
-  func.createTh(table50Row, MACHINE_MANAGE.COIN_50);
-  let heading_2 = document.createElement('th');
-  func.appendId(heading_2, 'vending-machine-coin-50-quantity');
-  heading_2.innerHTML = ZERO + '개';
-
-  table50Row.appendChild(heading_2);
-  tbody.appendChild(table50Row);
-}
-
-function setTableBody100(tbody) {
-  let table100Row = document.createElement('tr');
-  func.createTh(table100Row, MACHINE_MANAGE.COIN_100);
-  let heading_2 = document.createElement('th');
-  func.appendId(heading_2, 'vending-machine-coin-100-quantity');
-  heading_2.innerHTML = ZERO + '개';
-
-  table100Row.appendChild(heading_2);
-  tbody.appendChild(table100Row);
-}
-
-function setTableBody500(tbody) {
-  let table500Row = document.createElement('tr');
-
-  func.createTh(table500Row, MACHINE_MANAGE.COIN_500);
-  let heading_2 = document.createElement('th');
-  func.appendId(heading_2, 'vending-machine-coin-500-quantity');
-  heading_2.innerHTML = ZERO + '개';
-  table500Row.appendChild(heading_2);
-
-  tbody.appendChild(table500Row);
-}
-
-// function setTableBody(tbody) {
-//   let tableRow = document.createElement('tr');
-//   console.log(COIN_ARR);
-//   for (let c of COIN_ARR) {
-//     console.log(c);
-//     func.createTh(tableRow, MACHINE_MANAGE.${COIN_c});
-//     let heading_2 = document.createElement('th');
-//     func.appendId(heading_2, `vending-machine-coin-${c}-quantity`);
-//     heading_2.innerHTML = ZERO + '개';
-//     tableRow.appendChild(heading_2);
-
-//     tbody.appendChild(tableRow);
-//   }
-// }
-
 function setTableBody(tbody) {
-  setTableBody500(tbody);
-  setTableBody100(tbody);
-  setTableBody50(tbody);
-  setTableBody10(tbody);
+  const textArr = [
+    MACHINE_MANAGE.COIN_500,
+    MACHINE_MANAGE.COIN_100,
+    MACHINE_MANAGE.COIN_50,
+    MACHINE_MANAGE.COIN_10,
+  ];
+
+  const idArr = [
+    'vending-machine-coin-500-quantity',
+    'vending-machine-coin-100-quantity',
+    'vending-machine-coin-50-quantity',
+    'vending-machine-coin-10-quantity',
+  ];
+  setTableRow(textArr, idArr, tbody);
+}
+
+function setTableRow(textArr, idArr, tbody) {
+  textArr.forEach((text, idx) => {
+    let tableRow = document.createElement('tr');
+    func.createTh(tableRow, text);
+
+    let heading_2 = document.createElement('th');
+    func.appendId(heading_2, idArr[idx]);
+    heading_2.innerHTML = ZERO + COIN_UNIT;
+
+    tableRow.appendChild(heading_2);
+    tbody.appendChild(tableRow);
+  });
 }
 
 function setTableStyle(table, thead, tbody) {
@@ -88,7 +52,7 @@ function setTable(vendingMachineDiv) {
   let table = document.createElement('table');
   let thead = document.createElement('thead');
   let tbody = document.createElement('tbody');
-  func.appendId(table, 'vending-machine-charge-amount');
+
   table.appendChild(thead);
   table.appendChild(tbody);
 

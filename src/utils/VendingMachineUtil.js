@@ -1,4 +1,4 @@
-import { ALERT, COIN_ARR, MACHINE_MANAGE } from '../constants.js';
+import { ALERT, COIN_ARR, MACHINE_MANAGE, ZERO } from '../constants.js';
 import VendingMachine from '../elements/VendingMachine.js';
 import Storage from './localStorage/Storage.js';
 import { checkCoin } from './validators/checkInput.js';
@@ -57,6 +57,9 @@ export default class VendingMachineUtil {
 
   setRandomCoin(coin) {
     let coinIndexArr = [0, 0, 0, 0];
+    if (coin == null) {
+      return;
+    }
     while (true) {
       let unit = MissionUtils.Random.pickNumberInList(COIN_ARR);
       let idx = COIN_ARR.indexOf(unit);
@@ -65,7 +68,7 @@ export default class VendingMachineUtil {
         coinIndexArr[idx] += 1;
       }
 
-      if (coin == 0) {
+      if (coin == ZERO) {
         break;
       }
     }
@@ -90,6 +93,7 @@ export default class VendingMachineUtil {
     };
 
     this.storage.updateMachineCoin(coin);
+    this.renderCoinAmount(coinAmount);
   }
 
   mergeCoin(coinIndexArr) {

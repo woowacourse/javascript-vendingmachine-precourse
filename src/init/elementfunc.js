@@ -1,3 +1,39 @@
+export function createTag(tag, id, text) {
+  const element = document.createElement(`${tag}`);
+  appendId(element, id);
+  appendText(element, text);
+
+  return element;
+}
+
+export function createTable(bodyID, thArr) {
+  let table = document.createElement('table');
+  let thead = document.createElement('thead');
+  let tbody = document.createElement('tbody');
+  tbody.setAttribute('id', bodyID);
+  table.appendChild(thead);
+  table.appendChild(tbody);
+
+  let tableRow = document.createElement('tr');
+  for (let th of thArr) {
+    createTh(tableRow, th);
+  }
+  thead.appendChild(tableRow);
+
+  appendTableStyle(table);
+  appendTheadStyle(thead);
+  appendTheadStyle(tbody);
+
+  return table;
+}
+
+export function createTh(tableRow, text) {
+  let head = document.createElement('th');
+  head.innerHTML = text;
+
+  tableRow.appendChild(head);
+}
+
 export function appendText(element, text) {
   const textNode = document.createTextNode(text);
   element.appendChild(textNode);
@@ -65,13 +101,6 @@ export function createBtnClass(element, text, className) {
   appendText(btn, text);
 
   element.appendChild(btn);
-}
-
-export function createTh(tableRow, text) {
-  let head = document.createElement('th');
-  head.innerHTML = text;
-
-  tableRow.appendChild(head);
 }
 
 export function createBtnClassDataset(element, text, className, datasetKey, datasetVal) {

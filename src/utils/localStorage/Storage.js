@@ -17,6 +17,9 @@ function removeData(key) {
 
 function getProduct() {
   const product = getData(KEY.PRODUCT);
+  if (product.quantity == 0) {
+    return;
+  }
   return product;
 }
 
@@ -59,8 +62,6 @@ export default class Storage {
       return;
     }
 
-    console.log(originProduct);
-    console.log(addProduct);
     if (originProduct.name == addProduct.name) {
       removeData(KEY.PRODUCT);
     }
@@ -71,17 +72,11 @@ export default class Storage {
   updateMachineCoin(addCoin) {
     const originCoin = this.vendingMachinCoin;
 
-    console.log(originCoin);
-    console.log(addCoin);
-
     this.setMachineCoin(addCoin);
   }
 
   updatePurchaseCoin(addCoin) {
     const originCoin = this.purchaseCoin;
-
-    console.log(originCoin);
-    console.log(addCoin);
 
     this.setPurchaseCoin(addCoin);
   }

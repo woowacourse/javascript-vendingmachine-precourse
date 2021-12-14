@@ -69,6 +69,7 @@ export const KEY = {
   PURCHASE_COIN: '투입금액',
 };
 
+export const COIN_UNIT = '개';
 export const NULL = '';
 export const ZERO = 0;
 export const DIVIDE_CHARGE = 10;

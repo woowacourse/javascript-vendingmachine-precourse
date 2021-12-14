@@ -1,25 +1,18 @@
 import { TAB_MENU } from '../constants.js';
-import { appendText, appendId } from './elementfunc.js';
-
-function setTapBtnName(productAdd, vendingMachineManage, productPurchase) {
-  appendText(productAdd, TAB_MENU.PRODUCT_ADD);
-  appendText(vendingMachineManage, TAB_MENU.MACHINE_MANAGE);
-  appendText(productPurchase, TAB_MENU.PRODUCT_PURCHASE);
-}
-
-function setTapBtnId(productAdd, vendingMachineManage, productPurchase) {
-  appendId(productAdd, 'product-add-menu');
-  appendId(vendingMachineManage, 'vending-machine-manage-menu');
-  appendId(productPurchase, 'product-purchase-menu');
-}
+import { appendId, createTag } from './elementfunc.js';
 
 function createTapBtn(tapMenuDiv) {
-  const productAddMenu = document.createElement('button');
-  const vendingMachineManageMenu = document.createElement('button');
-  const productPurchaseMenu = document.createElement('button');
-
-  setTapBtnId(productAddMenu, vendingMachineManageMenu, productPurchaseMenu);
-  setTapBtnName(productAddMenu, vendingMachineManageMenu, productPurchaseMenu);
+  const productAddMenu = createTag('button', 'product-add-menu', TAB_MENU.PRODUCT_ADD);
+  const vendingMachineManageMenu = createTag(
+    'button',
+    'vending-machine-manage-menu',
+    TAB_MENU.MACHINE_MANAGE,
+  );
+  const productPurchaseMenu = createTag(
+    'button',
+    'product-purchase-menu',
+    TAB_MENU.PRODUCT_PURCHASE,
+  );
 
   tapMenuDiv.appendChild(productAddMenu);
   tapMenuDiv.appendChild(vendingMachineManageMenu);
