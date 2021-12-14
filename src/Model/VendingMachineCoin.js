@@ -1,5 +1,6 @@
 import Coin from "./Coin.js";
 import { VENDING_MACHINE_COIN } from "../constant/vendingMachine.js";
+import { MACHINE_NO_COIN } from "../constant/alertMessage.js";
 
 export default class VendingMachineCoin extends Coin {
   constructor() {
@@ -65,5 +66,11 @@ export default class VendingMachineCoin extends Coin {
     });
     this.setCoinData(this.key, currentCoinToHave);
     return [returnTemplate, haveToReturnCoin];
+  }
+
+  checkEmpty(currentCharge) {
+    if (currentCharge) {
+      alert(MACHINE_NO_COIN);
+    }
   }
 }

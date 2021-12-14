@@ -128,9 +128,10 @@ export default class ProductPurchaseView {
     const [returnCoin, currentCharge] = this.vendingMachineCoinStore.returnCharge(
       this.insertAmountArea.innerText
     );
+    this.vendingMachineCoinStore.checkEmpty(currentCharge);
     this.coinStore.setCurrenCoinToHave(currentCharge);
-    this.loadUserCoin();
     this.coinStore.saveReturnLog(returnCoin);
+    this.loadUserCoin();
     this.loadReturnCoinAmount();
   }
 

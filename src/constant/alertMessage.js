@@ -14,3 +14,4 @@ export const LACK_OF_COIN = `돈이 부족합니다.`;
 // 상품구매
 export const SOLD_OUT = `해당 제품은 매진되었습니다.`;
 export const NO_RETURN_COIN = `반환될 동전이 없습니다. 돈을 다 쓰셨습니다.`;
+export const MACHINE_NO_COIN = `자판기에 동전이 없습니다. 관리자 연락처로 전화주세요.`;
