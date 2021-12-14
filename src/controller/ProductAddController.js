@@ -8,20 +8,34 @@ class ProductAddController {
     this.view = view;
 
     if (currentTabMenu === 'product-add-menu') {
-      this.init();
+      this.showScreen();
     }
   }
 
-  init() {
+  showScreen() {
     const tabMenu = this.vendingMachine.getLocalStorage();
     this.view.showProductAddScreen(tabMenu['product_add_menu']);
+
+    this.initDOM();
+    this.initEventListener();
+  }
+
+  initDOM() {
+    this.$product_name_input = $id('product-name-input');
+    this.$product_price_input = $id('product-price-input');
+    this.$product_quantity_input = $id('product-quantity-input');
+    this.$product_status_table = $id('product-status-table');
+    this.$product_add_form = $id('product-add-form');
+  }
+
+  initEventListener() {
     this.triggerProductAddSubmitEvent();
   }
 
   initProductAddInputValue() {
-    $id('product-name-input').value = '';
-    $id('product-price-input').value = '';
-    $id('product-quantity-input').value = '';
+    this.$product_name_input.value = '';
+    this.$product_price_input.value = '';
+    this.$product_quantity_input.value = '';
   }
 
   renderProductManageList(productNameInput, productPriceInput, productQuantityInput) {
@@ -38,7 +52,7 @@ class ProductAddController {
         .map((item) => productManageItemTemplate(item.name, item.price, item.quantity))
         .join('');
 
-    $id('product-status-table').innerHTML = productManageListText;
+    this.$product_status_table.innerHTML = productManageListText;
 
     this.vendingMachine.setLocalStorage(tabMenu);
   }
@@ -49,23 +63,16 @@ class ProductAddController {
     }
 
     this.vendingMachine.setCurrentTabMenu(currentTabMenu);
-    this.renderCurrentTabMenu();
-  }
-
-  renderCurrentTabMenu() {
-    const tabMenu = this.vendingMachine.getLocalStorage();
-
-    this.view.showProductAddScreen(tabMenu['product_add_menu']);
-    this.triggerProductAddSubmitEvent();
+    this.showScreen();
   }
 
   triggerProductAddSubmitEvent() {
-    $id('product-add-form').addEventListener('submit', (e) => {
+    this.$product_add_form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const productNameInput = $id('product-name-input').value;
-      const productPriceInput = $id('product-price-input').value;
-      const productQuantityInput = $id('product-quantity-input').value;
+      const productNameInput = this.$product_name_input.value;
+      const productPriceInput = this.$product_price_input.value;
+      const productQuantityInput = this.$product_quantity_input.value;
 
       if (isValidProductAddData(productNameInput, productPriceInput, productQuantityInput)) {
         this.renderProductManageList(productNameInput, productPriceInput, productQuantityInput);

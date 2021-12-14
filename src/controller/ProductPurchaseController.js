@@ -9,17 +9,37 @@ class ProductPurchaseController {
     this.view = view;
 
     if (currentTabMenu === 'product-purchase-menu') {
-      this.init();
+      this.showScreen();
     }
   }
 
-  init() {
+  showScreen() {
     const tabMenu = this.vendingMachine.getLocalStorage();
     this.view.showProductPurchaseScreen(
       tabMenu['product_add_menu'],
       tabMenu['product_purchase_menu']
     );
 
+    this.initDOM();
+    this.initEventListener();
+  }
+
+  initDOM() {
+    this.$charge_amount = $id('charge-amount');
+    this.$coin_return_table = $id('coin-return-table');
+    this.$coin_return_button = $id('coin-return-button');
+    this.$charge_form = $id('charge-form');
+    this.$charge_input = $id('charge-input');
+
+    this.$product_purchase_quantities = document.getElementsByClassName(
+      'product-purchase-quantity'
+    );
+    this.$product_purchase_names = document.getElementsByClassName('product-purchase-name');
+    this.$product_purchase_prices = document.getElementsByClassName('product-purchase-price');
+    this.$purchase_buttons = document.getElementsByClassName('purchase-button');
+  }
+
+  initEventListener() {
     this.triggerChargeSubmitEvent();
     this.triggerPurchaseClickEvent();
     this.triggerCoinReturnClickEvent();
@@ -41,11 +61,9 @@ class ProductPurchaseController {
     tabMenu['product_add_menu'][purchaseItemIdx].quantity -= 1;
     tabMenu['product_purchase_menu']['chargeAmount'] -= price;
 
-    $id('charge-amount').innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+    this.$charge_amount.innerText = tabMenu['product_purchase_menu']['chargeAmount'];
 
-    const productPurchaseQuantity = document.getElementsByClassName('product-purchase-quantity')[
-      idx
-    ];
+    const productPurchaseQuantity = this.$product_purchase_quantities[idx];
     productPurchaseQuantity.innerText = tabMenu['product_add_menu'][purchaseItemIdx].quantity;
 
     this.vendingMachine.setLocalStorage(tabMenu);
@@ -78,8 +96,8 @@ class ProductPurchaseController {
 
     tabMenu['product_purchase_menu']['coinList'] = coinReturnList;
 
-    $id('charge-amount').innerText = tabMenu['product_purchase_menu']['chargeAmount'];
-    $id('coin-return-table').innerHTML = getCoinReturnListTemplate(
+    this.$charge_amount.innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+    this.$coin_return_table.innerHTML = getCoinReturnListTemplate(
       tabMenu['product_purchase_menu']['coinList']
     );
 
@@ -95,7 +113,7 @@ class ProductPurchaseController {
     }
 
     this.vendingMachine.setCurrentTabMenu(currentTabMenu);
-    this.renderCurrentTabMenu(currentTabMenu);
+    this.showScreen();
   }
 
   renderCharge(chargeInput) {
@@ -103,7 +121,7 @@ class ProductPurchaseController {
     const tabMenu = this.vendingMachine.getLocalStorage();
     tabMenu['product_purchase_menu']['chargeAmount'] += chargeNumber;
 
-    $id('charge-amount').innerText = tabMenu['product_purchase_menu']['chargeAmount'];
+    this.$charge_amount.innerText = tabMenu['product_purchase_menu']['chargeAmount'];
 
     this.vendingMachine.setLocalStorage(tabMenu);
   }
@@ -120,33 +138,17 @@ class ProductPurchaseController {
     this.vendingMachine.setLocalStorage(tabMenu);
   }
 
-  renderCurrentTabMenu() {
-    const tabMenu = this.vendingMachine.getLocalStorage();
-
-    this.view.showProductPurchaseScreen(
-      tabMenu['product_add_menu'],
-      tabMenu['product_purchase_menu']
-    );
-    this.triggerChargeSubmitEvent();
-    this.triggerPurchaseClickEvent();
-    this.triggerCoinReturnClickEvent();
-  }
-
   triggerCoinReturnClickEvent() {
-    $id('coin-return-button').addEventListener('click', () => {
+    this.$coin_return_button.addEventListener('click', () => {
       this.getCoinReturnList();
     });
   }
 
   triggerPurchaseClickEvent() {
-    const $purchaseButtons = document.getElementsByClassName('purchase-button');
-
-    for (let idx = 0; idx < $purchaseButtons.length; idx++) {
-      $purchaseButtons[idx].addEventListener('click', (e) => {
-        const name =
-          document.getElementsByClassName('product-purchase-name')[idx].dataset.productName;
-        const price =
-          document.getElementsByClassName('product-purchase-price')[idx].dataset.productPrice;
+    for (let idx = 0; idx < this.$purchase_buttons.length; idx++) {
+      this.$purchase_buttons[idx].addEventListener('click', () => {
+        const name = this.$product_purchase_names[idx].dataset.productName;
+        const price = this.$product_purchase_prices[idx].dataset.productPrice;
 
         this.purchaseItem(name, parseInt(price, 10), idx);
       });
@@ -154,9 +156,9 @@ class ProductPurchaseController {
   }
 
   triggerChargeSubmitEvent() {
-    $id('charge-form').addEventListener('submit', (e) => {
+    this.$charge_form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const chargeInput = $id('charge-input').value;
+      const chargeInput = this.$charge_input.value;
 
       if (isValidCharge(chargeInput)) {
         this.renderCharge(chargeInput);

@@ -9,17 +9,31 @@ class VendingMachineManageController {
     this.view = view;
 
     if (currentTabMenu === 'vending-machine-manage-menu') {
-      this.init();
+      this.showScreen();
     }
   }
-  init() {
+
+  showScreen() {
     const tabMenu = this.vendingMachine.getLocalStorage();
     this.view.showVendingMachineManageScreen(tabMenu['vending_machine_manage_menu']);
+
+    this.initDOM();
+    this.initEventListener();
+  }
+
+  initDOM() {
+    this.$vending_machine_charge_input = $id('vending-machine-charge-input');
+    this.$vending_machine_coin_list = $id('vending-machine-coin-list');
+    this.$vending_machine_charge_amount = $id('vending-machine-charge-amount');
+    this.$vending_machine_charge_form = $id('vending-machine-charge-form');
+  }
+
+  initEventListener() {
     this.triggerVendingMachineChargeSubmitEvent();
   }
 
   initVendingMachineChargeInputValue() {
-    $id('vending-machine-charge-input').value = '';
+    this.$vending_machine_charge_input.value = '';
   }
 
   render(currentTabMenu) {
@@ -28,7 +42,7 @@ class VendingMachineManageController {
     }
 
     this.vendingMachine.setCurrentTabMenu(currentTabMenu);
-    this.renderCurrentTabMenu();
+    this.showScreen();
   }
 
   renderVendingMachineChargeLocalStorage(vendingMachineChargeNumber) {
@@ -49,30 +63,23 @@ class VendingMachineManageController {
 
     this.renderVendingMachineChargeLocalStorage(vendingMachineChargeNumber);
 
-    $id('vending-machine-coin-list').innerHTML = getVendingMachineCoinListTemplate(
+    this.$vending_machine_coin_list.innerHTML = getVendingMachineCoinListTemplate(
       tabMenu['vending_machine_manage_menu']['coinList']
     );
 
-    $id('vending-machine-charge-amount').innerText =
+    this.$vending_machine_charge_amount.innerText =
       tabMenu['vending_machine_manage_menu']['chargeAmount'];
   }
 
-  renderCurrentTabMenu() {
-    const tabMenu = this.vendingMachine.getLocalStorage();
-
-    this.view.showVendingMachineManageScreen(tabMenu['vending_machine_manage_menu']);
-    this.triggerVendingMachineChargeSubmitEvent();
-  }
-
   initVendingMachineChargeInputValue() {
-    $id('vending-machine-charge-input').value = '';
+    this.$vending_machine_charge_input.value = '';
   }
 
   triggerVendingMachineChargeSubmitEvent() {
-    $id('vending-machine-charge-form').addEventListener('submit', (e) => {
+    this.$vending_machine_charge_form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const vendingMachineChargeInput = $id('vending-machine-charge-input').value;
+      const vendingMachineChargeInput = this.$vending_machine_charge_input.value;
 
       if (isValidVendingMachineCharge(vendingMachineChargeInput)) {
         this.initVendingMachineChargeInputValue();
