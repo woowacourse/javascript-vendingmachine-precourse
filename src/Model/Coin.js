@@ -12,13 +12,16 @@ export default class Coin {
 
   checkValid(targetCoin) {
     if (targetCoin === 0) {
-      return alert(NOT_EMPTY);
-    }
-    if (!isDivideTen(targetCoin)) {
-      return alert(COIN_NOT_DIVIDE_10);
+      alert(NOT_EMPTY);
+      return false;
     }
     if (targetCoin < 10) {
-      return alert(LESS_THAN_10);
+      alert(LESS_THAN_10);
+      return false;
+    }
+    if (!isDivideTen(targetCoin)) {
+      alert(COIN_NOT_DIVIDE_10);
+      return false;
     }
     return true;
   }

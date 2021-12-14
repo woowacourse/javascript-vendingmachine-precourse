@@ -11,8 +11,9 @@ export default class VendingMachineCoin extends Coin {
   }
 
   charge(coinToInput) {
-    if (super.checkValid(coinToInput)) {
-      this.saveInsertCoin(this.makeRandomCoin(coinToInput));
+    const coin = Number(coinToInput);
+    if (super.checkValid(coin)) {
+      this.saveInsertCoin(this.makeRandomCoin(coin));
     }
   }
 
@@ -31,7 +32,7 @@ export default class VendingMachineCoin extends Coin {
   saveInsertCoin(newCoinList) {
     const currentCoinList = this.getCurrentCoinToHave();
     const updateCoinList = { ...newCoinList };
-    if (currentCoinList) {
+    if (Object.keys(currentCoinList).length !== 0) {
       for (const coin in currentCoinList) {
         updateCoinList[coin] += currentCoinList[coin];
       }
@@ -42,8 +43,10 @@ export default class VendingMachineCoin extends Coin {
   getTotalCoin() {
     const currentCoinList = this.getCurrentCoinToHave();
     let totalCoin = 0;
-    for (const [coin, number] of Object.entries(currentCoinList)) {
-      totalCoin += coin * number;
+    if (Object.keys(currentCoinList).length !== 0) {
+      for (const [coin, number] of Object.entries(currentCoinList)) {
+        totalCoin += coin * number;
+      }
     }
     return totalCoin;
   }
@@ -70,7 +73,7 @@ export default class VendingMachineCoin extends Coin {
 
   checkEmpty(currentCharge) {
     if (currentCharge) {
-      alert(MACHINE_NO_COIN);
+      return alert(MACHINE_NO_COIN);
     }
   }
 }
