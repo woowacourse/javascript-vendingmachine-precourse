@@ -109,7 +109,9 @@ function isCorrectChargeMoney(money) {
 //
 function putMoney() {
     const inputAmount = document.querySelector("#charge-input").value;
-    if(isCorrectChargeMoney(inputAmount)) console.log('yea');
+    if(isCorrectChargeMoney(inputAmount)) {
+        document.querySelector("#charge-amount").textContent = `투입한 금액: ${inputAmount}`;
+    }
     else {
         console.log('nono');
     }
