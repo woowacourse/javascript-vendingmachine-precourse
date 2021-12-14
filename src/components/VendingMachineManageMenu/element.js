@@ -7,8 +7,8 @@ import {
   Span,
   SpanWithId,
   ButtonWithId,
-} from '../elements.js';
-import { createCoinTable } from '../coinTable.js';
+} from '../Element/elements.js';
+import { createCoinTable } from '../Element/coinTable.js';
 
 const createAddCoinForm = (event) => {
   const addCoinForm = Form();

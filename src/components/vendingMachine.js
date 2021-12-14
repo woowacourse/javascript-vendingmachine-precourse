@@ -1,7 +1,7 @@
 import { MACHINE } from '../constants/machine.js';
 import { STORAGE_KEY } from '../constants/storageKey.js';
 import { setLocalStorage } from './store.js';
-import { alertPurchaseErrorMessage, canPurchase } from './validator.js';
+import { alertPurchaseErrorMessage, canPurchase } from '../utils/validator.js';
 
 function VendingMachine() {
   this.products = [];

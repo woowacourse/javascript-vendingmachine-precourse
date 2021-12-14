@@ -2,10 +2,13 @@ import { $, initInput } from '../../utils/dom.js';
 import { ID } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import { STORAGE_KEY } from '../../constants/storageKey.js';
-import { Container } from '../elements.js';
+import { Container } from '../Element/elements.js';
 import { chargeAmountSpan, coinAddForm, coinTable } from './element.js';
 import { vendingMachine } from '../vendingMachine.js';
-import { alertChargeErrorMessage, isValidCharge } from '../validator.js';
+import {
+  alertChargeErrorMessage,
+  isValidCharge,
+} from '../../utils/validator.js';
 import { getLocalStorage } from '../store.js';
 
 export default function VendingMachineManageView() {

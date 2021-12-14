@@ -1,6 +1,6 @@
 import { $ } from './utils/dom.js';
 import { ID } from './constants/selector.js';
-import { Container } from './components/elements.js';
+import { Container } from './components/Element/elements.js';
 import ProductAddMenuView from './components/ProductAddMenu/view.js';
 import VendingMachineManageView from './components/VendingMachineManageMenu/view.js';
 import ProductPurchaseMenuView from './components/ProductPurchaseMenu/view.js';

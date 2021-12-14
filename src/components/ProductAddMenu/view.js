@@ -1,7 +1,7 @@
 import { $, initInput } from '../../utils/dom.js';
 import { ID, CLASS } from '../../constants/selector.js';
 import { STORAGE_KEY } from '../../constants/storageKey.js';
-import { Container } from '../elements.js';
+import { Container } from '../Element/elements.js';
 import {
   productAddForm,
   productStatusTable,
@@ -9,7 +9,10 @@ import {
 } from './element.js';
 import Product from '../product.js';
 import { vendingMachine } from '../vendingMachine.js';
-import { alertProductErrorMessage, isValidProduct } from '../validator.js';
+import {
+  alertProductErrorMessage,
+  isValidProduct,
+} from '../../utils/validator.js';
 import { getLocalStorage } from '../store.js';
 
 export default function ProductAddMenuView() {

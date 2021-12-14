@@ -2,7 +2,7 @@ import { $ } from '../../utils/dom.js';
 import { ID, CLASS } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import { STORAGE_KEY } from '../../constants/storageKey.js';
-import { Container } from '../elements.js';
+import { Container } from '../Element/elements.js';
 import {
   moneyAddForm,
   userMoneySpan,
@@ -16,7 +16,7 @@ import {
   alertReturnErrorMessage,
   canReturn,
   isValidCharge,
-} from '../validator.js';
+} from '../../utils/validator.js';
 import { getLocalStorage } from '../store.js';
 
 export default function ProductPurchaseMenuView() {

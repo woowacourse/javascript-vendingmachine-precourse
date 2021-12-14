@@ -12,8 +12,8 @@ import {
   TableHead,
   TableRowWithClassName,
   TableDataWithClassName,
-} from '../elements.js';
-import { createCoinTable } from '../coinTable.js';
+} from '../Element/elements.js';
+import { createCoinTable } from '../Element/coinTable.js';
 
 const createMoneyAddForm = (event) => {
   const addMoneyForm = Form();

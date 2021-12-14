@@ -5,7 +5,7 @@ import {
   TableData,
   TableDataWithId,
 } from './elements.js';
-import { MACHINE } from '../constants/machine.js';
+import { MACHINE } from '../../constants/machine.js';
 
 const createCoinRow = (coin, id) => {
   const tableRow = TableRow();
