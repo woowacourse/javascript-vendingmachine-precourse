@@ -22,10 +22,10 @@ function renderView(view, tabId) {
             break;
         case 2: 
             chargeMachineView.renderChargedMoney(vendingMachine.chargedMoney);
-            chargeMachineView.renderTotalChanges(vendingMachine.totalChanges);
+            chargeMachineView.renderTotalChanges(vendingMachine.chargedChanges);
             break;
         case 3:
-            purchaseProductView.renderInputMoney(vendingMachine.totalInputMoney);
+            purchaseProductView.renderInputMoney(vendingMachine.inputMoney);
             purchaseProductView.renderProductList(vendingMachine.productList);
             purchaseProductView.renderChanges(vendingMachine.inputChanges);
             break;

@@ -12,7 +12,7 @@ export default class ChargeMachineController {
         if(this.isCorrectChargeMoney(chargeAmount)) {
             this.getTotalChanges(chargeAmount);
             this.getTotalChargedMoney(chargeAmount);
-            this.view.renderTotalChanges(this.machine.totalChanges);
+            this.view.renderTotalChanges(this.machine.chargedChanges);
             this.view.renderChargedMoney(this.machine.chargedMoney);
         }
         else { 
@@ -21,14 +21,14 @@ export default class ChargeMachineController {
     }
     
     getTotalChargedMoney(chargeAmount) {
-        this.machine.updateChargedMoney(chargeAmount);
+        this.machine.increaseChargedMoney(chargeAmount);
         setDataInLocalStorage('chargedMoney', this.machine.chargedMoney);
     }
     
     getTotalChanges(chargeAmount) {
         const newChanges = this.getNewChanges(chargeAmount);
-        this.machine.updateTotalChanges(newChanges);
-        setDataInLocalStorage('totalChanges', JSON.stringify(this.machine.totalChanges));
+        this.machine.updateChargedChanges(newChanges);
+        setDataInLocalStorage('chargedChanges', JSON.stringify(this.machine.chargedChanges));
     }
     
     getNewChanges(newChargeAmount) {

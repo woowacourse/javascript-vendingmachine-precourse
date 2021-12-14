@@ -11,7 +11,7 @@ export default class PurchaseProductController {
         const inputAmount = document.querySelector("#charge-input").value;
         if(this.isCorrectChargedMoney(inputAmount)) {
             this.getTotalInputMoney(inputAmount);
-            this.view.renderInputMoney(this.machine.totalInputMoney);
+            this.view.renderInputMoney(this.machine.inputMoney);
         }
         else {
             alert("옳바른 형식이 아닙니다. 10의 배수로 입력해주세요.");
@@ -23,8 +23,8 @@ export default class PurchaseProductController {
     }
     
     getTotalInputMoney(money) {
-        this.machine.updateTotalMoney(money);
-        setDataInLocalStorage('totalInputMoney', this.machine.totalInputMoney);
+        this.machine.increaseInputMoney(money);
+        setDataInLocalStorage('inputMoney', this.machine.inputMoney);
     }
     
     purchaseProduct(target) {
@@ -34,11 +34,13 @@ export default class PurchaseProductController {
         
         if(this.canBuyProduct(price, quantity)) {
             this.machine.decreaseInputMoney(price);
-            setDataInLocalStorage('totalInputMoney', this.machine.totalInputMoney);
+            setDataInLocalStorage('inputMoney', this.machine.inputMoney);
+
             this.machine.decreaseQuantity(currentRow.rowIndex - 2);
             setDataInLocalStorage('productList', JSON.stringify(this.machine.productList));
+
             this.view.renderDecreaseQuantity(currentRow.children[2], quantity - 1);
-            this.view.renderInputMoney(this.machine.totalInputMoney);
+            this.view.renderInputMoney(this.machine.inputMoney);
         }
         else {
             alert("더이상 구매할 수 없습니다.");
@@ -46,29 +48,29 @@ export default class PurchaseProductController {
     }
     
     canBuyProduct(price, quantity) {
-        return this.machine.totalInputMoney >= price && quantity > 0;
+        return this.machine.inputMoney >= price && quantity > 0;
     }
     
     returnMoney() {
         this.calculateMinimumChanges();
         this.view.renderChanges(this.machine.inputChanges);
-        this.view.renderInputMoney(this.machine.totalInputMoney);
+        this.view.renderInputMoney(this.machine.inputMoney);
     }
     
     calculateMinimumChanges() {
         this.machine.initializeInputChanges();
         moneyList.forEach(coin => {
-            while(coin <= this.machine.totalInputMoney) {
-                if(this.machine.totalChanges[coin] < 1) break;
+            while(coin <= this.machine.inputMoney) {
+                if(this.machine.chargedChanges[coin] < 1) break;
                 this.machine.decreaseInputMoney(coin);
                 this.machine.decreaseChargedMoney(coin);
-                this.machine.decreaseOneTotalChanges(coin);
+                this.machine.decreaseOneChargedChanges(coin);
                 this.machine.increaseOneInputChanges(coin);
             }
         })
         setDataInLocalStorage('chargedMoney', this.machine.chargedMoney);
-        setDataInLocalStorage('totalInputMoney', this.machine.totalInputMoney);
-        setDataInLocalStorage('totalChanges', JSON.stringify(this.machine.totalChanges));
+        setDataInLocalStorage('inputMoney', this.machine.inputMoney);
+        setDataInLocalStorage('chargedChanges', JSON.stringify(this.machine.chargedChanges));
         setDataInLocalStorage('inputChanges', JSON.stringify(this.machine.inputChanges));
     }
 };

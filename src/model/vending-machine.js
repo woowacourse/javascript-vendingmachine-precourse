@@ -5,9 +5,9 @@ export default class VendingMachine {
     constructor() {
         this.productList = JSON.parse(getDataInLocalStorage('productList')) || [];
         this.chargedMoney = parseInt(getDataInLocalStorage('chargedMoney'), 10) || 0;
-        this.totalChanges = JSON.parse(getDataInLocalStorage('totalChanges')) || this.generateChangesObject();
+        this.chargedChanges = JSON.parse(getDataInLocalStorage('chargedChanges')) || this.generateChangesObject();
         this.inputChanges = JSON.parse(getDataInLocalStorage('inputChanges')) || this.generateChangesObject();
-        this.totalInputMoney = parseInt(getDataInLocalStorage('totalInputMoney'), 10) || 0;
+        this.inputMoney = parseInt(getDataInLocalStorage('inputMoney'), 10) || 0;
     }
 
     generateChangesObject() {
@@ -20,22 +20,22 @@ export default class VendingMachine {
         this.productList.push(product);
     }
 
-    updateChargedMoney(chargeAmount) {
+    increaseChargedMoney(chargeAmount) {
         this.chargedMoney += parseInt(chargeAmount, 10);
     }
 
-    updateTotalMoney(totalAmount) {
-        this.totalInputMoney += parseInt(totalAmount, 10);
+    increaseInputMoney(totalAmount) {
+        this.inputMoney += parseInt(totalAmount, 10);
     }
 
-    updateTotalChanges(newChanges) {
-        for(let key in this.totalChanges) {
-            this.totalChanges[key] += newChanges[key];
+    updateChargedChanges(newChanges) {
+        for(let key in this.chargedChanges) {
+            this.chargedChanges[key] += newChanges[key];
         }
     }
 
-    decreaseOneTotalChanges(coin) {
-        this.totalChanges[coin] -= 1;
+    decreaseOneChargedChanges(coin) {
+        this.chargedChanges[coin] -= 1;
     }
 
     increaseOneInputChanges(coin) {
@@ -47,7 +47,7 @@ export default class VendingMachine {
     }
 
     decreaseInputMoney(amount) {
-        this.totalInputMoney -= amount;
+        this.inputMoney -= amount;
     }
 
     decreaseQuantity(rowIndex) {
