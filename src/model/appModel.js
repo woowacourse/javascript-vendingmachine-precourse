@@ -71,13 +71,13 @@ export default class AppModel {
   }
 
   setInputChargeAmount(amount) {
-    // this.inputChargeAmount =
-    //   this.inputChargeAmount > 0 ? this.getAddedInputChargeAmount(amount) : amount;
+    this.inputChargeAmount =
+      this.inputChargeAmount > 0 ? this.getAddedInputChargeAmount(amount) : amount;
 
     setDataOnStorage(STRING.INPUT_CHARGE_AMOUNT, this.inputChargeAmount);
   }
 
-  // getAddedInputChargeAmount(amount) {
-  //   return this.inputChargeAmount + amount;
-  // }
+  getAddedInputChargeAmount(amount) {
+    return this.inputChargeAmount + amount;
+  }
 }
