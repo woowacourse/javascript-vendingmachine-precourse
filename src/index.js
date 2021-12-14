@@ -107,6 +107,13 @@ function isCorrectChargeMoney(money) {
 }
 
 //
+function putMoney() {
+    const inputAmount = document.querySelector("#charge-input").value;
+    console.log(inputAmount);
+}
+
+
+//
 
 function onTabClick(fileName) {
     fetchHtmlView(fileName)
@@ -126,8 +133,9 @@ app.addEventListener('click', function(e) {
         "product-add-menu"() { onTabClick('product_manage.html'); },
         "vending-machine-manage-menu"() { onTabClick('machine_charge.html'); },
         "product-purchase-menu"() { onTabClick('product_purchase.html'); },
-        "product-add-button"() { addProduct() },
-        "vending-machine-charge-button"() { chargeMoney() },
+        "product-add-button"() { addProduct(); },
+        "vending-machine-charge-button"() { chargeMoney(); },
+        "charge-button"() { putMoney(); },
     };
     if(Object.keys(handlers).includes(e.target.id)) handlers[e.target.id]();
 });
