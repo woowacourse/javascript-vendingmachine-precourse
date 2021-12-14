@@ -4,14 +4,14 @@ class Component {
 
   $children;
 
-  #state;
+  state;
 
   onStateChanged;
 
   constructor($element, props) {
     this.$element = $element;
     this.children = [];
-    this.#state = {};
+    this.state = {};
 
     Object.entries(props || {}).forEach(([key, value]) => {
       this.$element[key] = value;
@@ -20,12 +20,8 @@ class Component {
 
   setEvent() {}
 
-  get state() {
-    return this.#state;
-  }
-
   setState(newStateParams) {
-    this.#state = { ...this.#state, ...newStateParams };
+    this.state = { ...this.state, ...newStateParams };
     this.render();
     this.onStateChanged?.(newStateParams);
   }
