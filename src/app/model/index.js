@@ -1,54 +1,59 @@
-import { PLAIN_TEXT } from '../../lib/constants.js';
-import { getInitilizeCoins } from '../../lib/utils.js';
+import {
+  DATA_MODEL_KEYS,
+  DOM,
+  LOCALSTORAGE_DATA_MODEL_KEY,
+  PLAIN_TEXT,
+  TAB,
+} from '../../lib/constants.js';
+import Coin from '../../modules/coin.js';
 import store from '../../modules/store.js';
-import { DATA_MODEL_KEYS, DOM, LOCALSTORAGE_DATA_MODEL_KEY, TAB } from '../constants.js';
+export const defaultValueGenerators = {
+  [`${DATA_MODEL_KEYS.TAB}`]: () => TAB.PRODUCT_ADD_MENU,
 
+  [`${DATA_MODEL_KEYS.PRODUCT_ADD_INPUTS_VALUE}`]: () => ({
+    [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
+    [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
+    [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
+  }),
+
+  [`${DATA_MODEL_KEYS.PRODUCT_LIST}`]: () => [],
+
+  [`${DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE_INPUTS_VALUE}`]: () => ({
+    [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
+  }),
+
+  [`${DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE}`]: () => 0,
+
+  [`${DATA_MODEL_KEYS.COINS}`]: () => Coin.getDefaultCoins(),
+
+  [`${DATA_MODEL_KEYS.CHARGE_INPUTS_VALUE}`]: () => ({
+    [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
+  }),
+
+  [`${DATA_MODEL_KEYS.CHARGE_AMOUNT}`]: () => 0,
+};
 class VendingMachineModel {
   constructor() {
-    const prevValue = store.getLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY);
-    if (prevValue) {
-      this.setDataModel(prevValue);
-    } else {
-      this.dataModel = {};
-      this.initDataModel();
-      this.initProductAddModel();
-      this.initVendingMachineChargeModel();
-      this.initProductPurchaseModel();
-    }
+    this.setDataModel(store.getLocalStorage(LOCALSTORAGE_DATA_MODEL_KEY));
+    this.initDataModel();
+  }
+
+  hasPreviousDataInDataModel(KEY) {
+    return KEY in this.dataModel;
   }
 
   initDataModel() {
-    this.setTab(TAB.PRODUCT_ADD_MENU);
-  }
-
-  initProductAddModel() {
-    this.setProductAddInputsValue((prev) => ({
-      ...prev,
-      [`${DOM.PRODUCT_NAME_INPUT}`]: PLAIN_TEXT,
-      [`${DOM.PRODUCT_PRICE_INPUT}`]: PLAIN_TEXT,
-      [`${DOM.PRODUCT_QUANTITY_INPUT}`]: PLAIN_TEXT,
-    }));
-    this.setProductList([]);
-  }
-
-  initVendingMachineChargeModel() {
-    this.setVendingMachineChargeInputsValue((prev) => ({
-      ...prev,
-      [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
-    }));
-    this.setCoins(getInitilizeCoins());
-  }
-
-  initProductPurchaseModel() {
-    this.setChargeInputsValue((prev) => ({
-      ...prev,
-      [`${DOM.CHARGE_INPUT}`]: PLAIN_TEXT,
-    }));
-    this.setChargeAmount(0);
+    Object.values(DATA_MODEL_KEYS).forEach((KEY) => {
+      const defaultValueGenerator = defaultValueGenerators[KEY];
+      const value = this.hasPreviousDataInDataModel(KEY)
+        ? this.dataModel[KEY]
+        : defaultValueGenerator();
+      this.setDataModelPropertyValue(KEY, value);
+    });
   }
 
   setDataModel(value) {
-    this.dataModel = value;
+    this.dataModel = value ? value : {};
   }
 
   setDataModelPropertyValue(KEY, VALUE) {
@@ -94,7 +99,13 @@ class VendingMachineModel {
   }
 
   setProductInProductList({ newProduct, position }) {
-    this.dataModel[DATA_MODEL_KEYS.PRODUCT_LIST][position] = newProduct;
+    const newProductList = [...this.getProductList()];
+    newProductList[position] = newProduct;
+    this.setDataModelPropertyValue(DATA_MODEL_KEYS.PRODUCT_LIST, newProductList);
+  }
+
+  setVendingMachineChargeAmount(newVendingMachineCharge) {
+    this.setDataModelPropertyValue(DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE, newVendingMachineCharge);
   }
 
   /** getter */
@@ -122,6 +133,10 @@ class VendingMachineModel {
   getChargeInputValueById(id) {
     const inputsValue = this.getChargeInputsValue();
     return inputsValue[id];
+  }
+
+  getVendingMachineChargeAmount() {
+    return this.dataModel[DATA_MODEL_KEYS.VENDING_MACHINE_CHARGE];
   }
 
   getVendingMachineChargeInputsValue() {
