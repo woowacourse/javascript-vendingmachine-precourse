@@ -14,15 +14,15 @@ class ProductManage extends Component {
 
     this.$append = new ProductAppend();
     this.$status = new ProductStatus();
-    this.setEvent();
     this.children = [this.$append, this.$status];
+
+    this.setEvent();
   }
 
   setEvent() {
     this.$append.onSubmit = (product) => {
       VendingMachineStore.instance.addProduct(product);
       this.$append.resetInputs();
-      this.$status.render();
     };
   }
 }

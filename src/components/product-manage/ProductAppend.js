@@ -42,8 +42,9 @@ class ProductAppend extends Component {
     this.$submit = new Button('추가하기', {
       id: ELEMENT_ID.PRODUCT_MANAGE_ADD_BUTTON,
     });
-    this.setEvent();
     this.children = [this.$title, ...this.$inputs, this.$submit];
+
+    this.setEvent();
   }
 
   resetInputs() {

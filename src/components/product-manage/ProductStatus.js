@@ -15,11 +15,15 @@ class ProductStatus extends Component {
     this.$title = new Label('h3', '상품 현황');
     this.$table = new ProductTable();
     this.children = [this.$title, this.$table];
+
+    this.setEvent();
   }
 
-  beforeRender() {
-    const products = VendingMachineStore.instance.productStorage.items;
-    this.$table.setState({ dataset: products });
+  setEvent() {
+    VendingMachineStore.instance.productStorage.observe(() => {
+      const products = VendingMachineStore.instance.productStorage.items;
+      this.$table.setState({ dataset: products });
+    });
   }
 }
 

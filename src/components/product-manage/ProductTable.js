@@ -49,7 +49,8 @@ class ProductTable extends Component {
   }
 
   beforeRender() {
-    this.$tableRows = this.state.dataset.map(ProductTable.#tableRowComponent);
+    this.$tableRows =
+      this.state.dataset?.map(ProductTable.#tableRowComponent) || [];
     this.children = [...this.$tableHead, ...this.$tableRows];
   }
 }
