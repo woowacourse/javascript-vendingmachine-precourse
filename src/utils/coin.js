@@ -27,3 +27,12 @@ export const generateOnlyValues = () => {
 
         return coinValues;
     }
+
+export const getTotal = (coins) => {
+    let total = 0
+    for(let key in COIN_VALUE){
+        total += coins[key] * COIN_VALUE[key];
+    }
+
+    return total;
+}

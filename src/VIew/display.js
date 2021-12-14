@@ -13,11 +13,12 @@ export const displayProductAddTab= (product)=>{
 }
 
 export const displayPossessCoins= (item)=>{
-    let total = 0;
     for(let key in item.coins){
         document.getElementById(COIN_TABLE_ID[key]).innerHTML = `${item.coins[key]}개`;
-        total += item.coins[key] * COIN_VALUE[key];
     }
+}
+
+export const displayPossessTotal= (total)=>{
     document.getElementById(MANAGE_TAB_ID.AMOUNT_SPAN_VALUE).innerHTML = total;
 }
 

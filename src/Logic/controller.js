@@ -28,6 +28,7 @@ export default class Controller {
             this.getRandomCoins(money, item);
             updateStorage(item);
             displayer.displayPossessCoins(item);
+            displayer.displayPossessTotal(coinUtil.getTotal(item.coins));
         }
     }
 
