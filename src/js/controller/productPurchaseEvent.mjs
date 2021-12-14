@@ -68,6 +68,7 @@ function coinReturn() {
 
     let chargeMoney = localStorage.getItem('charge-input'); // 500원
     let amountOfCoins = JSON.parse(localStorage.getItem('amount-of-coins'));
+    let vendingMachineChargeAmount = localStorage.getItem('vending-machine-charge-amount');
 
     let coinsType = ['500_WON', '100_WON', '50_WON', '10_WON'];
     let moneys = [500, 100, 50, 10];
@@ -78,7 +79,9 @@ function coinReturn() {
 
       while (amountOfCoins[coinsType[i]] > 0) {
         chargeMoney -= moneys[i];
+        vendingMachineChargeAmount -= moneys[i];
         amountOfCoins[coinsType[i]]--;
+
         if (chargeMoney < 0) {
           flag = true;
         }
@@ -87,6 +90,7 @@ function coinReturn() {
     console.log(amountOfCoins, chargeMoney);
     localStorage.setItem('amount-of-coins', JSON.stringify(amountOfCoins));
     localStorage.setItem('charge-input', chargeMoney);
+    localStorage.setItem('vending-machine-charge-amount', vendingMachineChargeAmount);
     renderChargedMoney();
   });
 }
