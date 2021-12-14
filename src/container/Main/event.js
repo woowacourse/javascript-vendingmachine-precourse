@@ -1,5 +1,5 @@
-import { clearInput, getChildInput, isEquals } from '../../common/helper.js';
-import { isValidateInput, purchaseValidate } from '../../common/validations.js';
+import { clearInput, getChildInput, isEmpty, isEquals } from '../../common/helper.js';
+import { hasChangesCoin, isValidateInput, purchaseValidate } from '../../common/validations.js';
 import {
   CHARGE_AMOUNT,
   MACHINE_MANAGE,
@@ -74,12 +74,13 @@ export function tableButtonEvent({ target }) {
  */
 export function divButtonEvent({ target }) {
   if (!target.matches('#coin-return-button')) return;
-
   const purchaseMenu = getPurchaseMenu(this.$storage);
   const [machineChanges, changes, leftChanges] = coinExchange(
     purchaseMenu[CHARGE_AMOUNT],
     getMachineManage(this.$storage),
   );
+
+  if (isEmpty(hasChangesCoin(changes))) return;
 
   this.$storage.produce(
     { [MACHINE_MANAGE]: machineChanges },

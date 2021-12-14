@@ -105,27 +105,39 @@ export const applyProduct = (element, tabData) => {
 };
 
 /**
+ * 재귀함수로 잔돈을 교환합니다.
+ *
+ * @param {*} changes
+ * @param {*} index
+ * @param {*} charges
+ * @param {*} items
+ * @returns
+ */
+const exchange = (changes, index, charges, items) => {
+  let leftChanges = changes;
+  const manageItems = [...charges];
+  const purchaseItems = [...items];
+
+  if (leftChanges <= ZERO || index >= charges.length)
+    return [manageItems, purchaseItems, leftChanges];
+
+  const { description, count } = manageItems[index];
+  const leftChangesCount = getChangesCount(count, leftChanges, +description);
+
+  if (leftChangesCount <= ZERO) return exchange(leftChanges, index + 1, manageItems, purchaseItems);
+
+  leftChanges -= +description * leftChangesCount;
+  manageItems[index] = { ...manageItems[index], count: count - leftChangesCount };
+  purchaseItems[index] = { ...purchaseItems[index], count: leftChangesCount };
+  return exchange(leftChanges, index, manageItems, purchaseItems);
+};
+
+/**
  * 탐욕법을 적용하여 잔돈을 교환합니다.
  *
  * @param {number} changes
  * @param {object[]} charges
  * @returns
  */
-export const coinExchange = (changes, charges) => {
-  const manageItems = [...charges];
-  let leftChanges = changes;
-  let index = ZERO;
-  const purchaseItems = DEFAULT_VALUES[MACHINE_MANAGE];
-  while (leftChanges > ZERO && index < charges.length) {
-    const { description, count } = manageItems[index];
-    const changesCount = getChangesCount(count, leftChanges, +description);
-    if (changesCount <= ZERO) index += 1;
-    else {
-      leftChanges -= +description * changesCount;
-      manageItems[index] = { ...manageItems[index], count: count - changesCount };
-      purchaseItems[index] = { ...purchaseItems[index], count: changesCount };
-    }
-  }
-
-  return [manageItems, purchaseItems, leftChanges];
-};
+export const coinExchange = (changes, charges) =>
+  exchange(changes, 0, charges, DEFAULT_VALUES[MACHINE_MANAGE]);

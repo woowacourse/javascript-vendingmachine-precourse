@@ -127,112 +127,6 @@
 
 </div>
 
-<br>
-
-### ✂️ 리팩토링과 트러블 슈팅
-- [x] 현재 Main 컴포넌트가 가지는 비즈니스 로직이 너무 밀집 되어 있습니다. 이를 분리하기 위해 최상위 App 컴포넌트에 초기화를 담당하게 합니다.
-  > [**🗃Refactor: App 초기화 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/be45afe6de2b8a39373a21d0564402365b3cb58b)
-
-<br>
-
-- [x] Main 컴포넌트의 비즈니스 로직을 공통화하고, helper 함수 파일에 분리합니다. validation은 유효성 검사를 담당하므로 이를 적극 활용합니다.
-
-    > [**🗃Refactor: Main 컴포넌트 리팩토링**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/27550f6c9b225a494dc4e06874252c507440d876)
-
-<br>
-
-- [x] 구현한 Storage는 기본적으로 Array 형태의 Item을 저장하기 적합합니다. 그러나 상품 구매 탭의 `투입 금액`으로 인해 하드코딩과 각 로직이 추상화되지 않은 상태입니다. 이를 수정합니다.
-  
-    > [**🗃Refactor: Storage 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/37d1c95654bcd86066b3ec5b2fdc4f1e2d457bb1)
-  
-  - ~~이벤트 모듈은 성질 상 컴포넌트에 주입되는 형태이므로 common 디렉토리가 아닌 event 디렉토리로 독립시킵니다.~~
-    
-    > [**✂️Rename: Event 모듈 이동**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/cd6358f463364b29e21d29611855b432dd685335)
-
-<br>
-
-- [x] 구조적인 부분, 중첩되는 함수를 다시 한 번 수정합니다.
-
-    > [**🗃Refactor: 함수 분리 및 개선**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d53434f191586ec69404d67d476dcf9a203fc7de)
-
-<br>
-
-- [x] 렌더링을 담당하는 부분이 중복되어 나타나고 있습니다.
-  ```js
-  // App.js
-  mount() {
-    new Header('header', this.$props);
-    new Main('main', this.$props);
-
-    this.$storage.subscribe((component, tabData) => {
-      this.$props = {
-        ...this.$props,
-        component,
-        tabData,
-      };
-      new Header('header', this.$props);
-      new Main('main', this.$props);
-    });
-  }
-  ```
-  - 교체 후
-    ```js
-    // Component.js
-    constructor(selector, props) {
-      this.$element = $(selector);
-      this.$props = props;
-      this.$storage = Storage;
-      this.$storage.subscribe(this.render.bind(this));
-
-      this.initialized();
-      this.render();
-      this.setEvents();
-    }
-    ```
-    > [**🗃Refactor: 함수 분리 및 개선**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d53434f191586ec69404d67d476dcf9a203fc7de)
-
-<br>
-
-- [x] UI를 담당하는 컴포넌트의 길이가 난해하여 이를 모듈로 분리합니다.
-
-    > [**🗃Refactor: 프레젠테이션 컴포넌트 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d8b188c4f8041b2cb754522db8992e2a337b11c2)
-
-<br>
-
-- [x] 옵저버 패턴을 구체화하고 이벤트 모듈을 삭제합니다. 모듈에서 관리하는 이벤트는 각 컴포넌트에서 엘리먼트에 바인딩하여 이벤트 위임을 구현하는 것으로 처리합니다.
-
-    > [**🗃Refactor: 모듈 의존성 제거**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/8726e544f216ec4b047dc0e85504822117ff7eaf)
-
-<br>
-
-- [x] 컨테이너 컴포넌트를 수정하여 이벤트와 메인 컴포넌트에 집중된 비즈니스 로직을 명확히 분리합니다.
-
-    > [**🗃Refactor: 함수 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7ed63a8d0cc6a366eb02b6fddf9dd2e09ff0483d)
-
-    > [**🗃Refactor: 컨테이너 컴포넌트 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/f2a2ca54572f5426bf38716e9a36bea78e6d8ddd)
-
-    > [**🗃Refactor: 컨테이너 컴포넌트 함수 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/6bc2d4d1802617c2d1f269376a4ba17a093756be)
-
-<br>
-
-- [x] 정적 CSS 파일을 제거하고 JS에 주입(CSS in JS)합니다.
-
-    > [**🎆Style: 프레젠테이션 컴포넌트 CSS in JS**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/79ead19e72140a30ec4bef6a56e55a5db7fb3090)
-
-<br>
-
-- [x] App의 동작을 구체화합니다. 기본 값에 대한 세팅을 App 컴포넌트에 위임하고, 기본 값은 상수로서 관리합니다.
-
-    > [**✒️Feat: Default 값 상수화**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7159c1d065b84309f74e5c3fedbcc540c35be5d7)
-
-    > [**✒️Feat: App 세팅**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7887e4fc1e45871684e6820e532c842997577a86)
-
-<br>
-
-- [x] 불필요하게 중복되는 로직을 함수로 분리하여 처리합니다.
-
-    > [**✒️Feat: Storage produce 메서드 추가**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/c36f90a541583f1bf1fba940bb40e3c9b678a17f)
-
 <hr>
 <br>
 
@@ -472,6 +366,124 @@
 - [**✒️Feat: 상품 구매 탭 구현 1**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/6eca61a098e9aef164cee0d507639e3753aa54bb)
 - [**✒️Feat: 상품 구매 탭 구현 2**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/18a37bdd4e51dc751ed004f0b8b4308dee98e89d)
 - [**🗃Refactor: 이벤트 모듈 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/f019a335a74147e7165f8db9a78fd5e2d46426a1)
+
+<br>
+
+## ✂️ 리팩토링과 트러블 슈팅
+- [x] 현재 Main 컴포넌트가 가지는 비즈니스 로직이 너무 밀집 되어 있습니다. 이를 분리하기 위해 최상위 App 컴포넌트에 초기화를 담당하게 합니다.
+  > [**🗃Refactor: App 초기화 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/be45afe6de2b8a39373a21d0564402365b3cb58b)
+
+<br>
+
+- [x] Main 컴포넌트의 비즈니스 로직을 공통화하고, helper 함수 파일에 분리합니다. validation은 유효성 검사를 담당하므로 이를 적극 활용합니다.
+
+    > [**🗃Refactor: Main 컴포넌트 리팩토링**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/27550f6c9b225a494dc4e06874252c507440d876)
+
+<br>
+
+- [x] 구현한 Storage는 기본적으로 Array 형태의 Item을 저장하기 적합합니다. 그러나 상품 구매 탭의 `투입 금액`으로 인해 하드코딩과 각 로직이 추상화되지 않은 상태입니다. 이를 수정합니다.
+  
+    > [**🗃Refactor: Storage 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/37d1c95654bcd86066b3ec5b2fdc4f1e2d457bb1)
+  
+  - ~~이벤트 모듈은 성질 상 컴포넌트에 주입되는 형태이므로 common 디렉토리가 아닌 event 디렉토리로 독립시킵니다.~~
+    
+    > [**✂️Rename: Event 모듈 이동**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/cd6358f463364b29e21d29611855b432dd685335)
+
+<br>
+
+- [x] 구조적인 부분, 중첩되는 함수를 다시 한 번 수정합니다.
+
+    > [**🗃Refactor: 함수 분리 및 개선**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d53434f191586ec69404d67d476dcf9a203fc7de)
+
+<br>
+
+- [x] 렌더링을 담당하는 부분이 중복되어 나타나고 있습니다.
+  ```js
+  // App.js
+  mount() {
+    new Header('header', this.$props);
+    new Main('main', this.$props);
+
+    this.$storage.subscribe((component, tabData) => {
+      this.$props = {
+        ...this.$props,
+        component,
+        tabData,
+      };
+      new Header('header', this.$props);
+      new Main('main', this.$props);
+    });
+  }
+  ```
+  - 교체 후
+    ```js
+    // Component.js
+    constructor(selector, props) {
+      this.$element = $(selector);
+      this.$props = props;
+      this.$storage = Storage;
+      this.$storage.subscribe(this.render.bind(this));
+
+      this.initialized();
+      this.render();
+      this.setEvents();
+    }
+    ```
+    > [**🗃Refactor: 함수 분리 및 개선**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d53434f191586ec69404d67d476dcf9a203fc7de)
+
+<br>
+
+- [x] UI를 담당하는 컴포넌트의 길이가 난해하여 이를 모듈로 분리합니다.
+
+    > [**🗃Refactor: 프레젠테이션 컴포넌트 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/d8b188c4f8041b2cb754522db8992e2a337b11c2)
+
+<br>
+
+- [x] 옵저버 패턴을 구체화하고 이벤트 모듈을 삭제합니다. 모듈에서 관리하는 이벤트는 각 컴포넌트에서 엘리먼트에 바인딩하여 이벤트 위임을 구현하는 것으로 처리합니다.
+
+    > [**🗃Refactor: 모듈 의존성 제거**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/8726e544f216ec4b047dc0e85504822117ff7eaf)
+
+<br>
+
+- [x] 컨테이너 컴포넌트를 수정하여 이벤트와 메인 컴포넌트에 집중된 비즈니스 로직을 명확히 분리합니다.
+
+    > [**🗃Refactor: 함수 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7ed63a8d0cc6a366eb02b6fddf9dd2e09ff0483d)
+
+    > [**🗃Refactor: 컨테이너 컴포넌트 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/f2a2ca54572f5426bf38716e9a36bea78e6d8ddd)
+
+    > [**🗃Refactor: 컨테이너 컴포넌트 함수 수정**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/6bc2d4d1802617c2d1f269376a4ba17a093756be)
+
+<br>
+
+- [x] 정적 CSS 파일을 제거하고 JS에 주입(CSS in JS)합니다.
+
+    > [**🎆Style: 프레젠테이션 컴포넌트 CSS in JS**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/79ead19e72140a30ec4bef6a56e55a5db7fb3090)
+
+<br>
+
+- [x] App의 동작을 구체화합니다. 기본 값에 대한 세팅을 App 컴포넌트에 위임하고, 기본 값은 상수로서 관리합니다.
+
+    > [**✒️Feat: Default 값 상수화**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7159c1d065b84309f74e5c3fedbcc540c35be5d7)
+
+    > [**✒️Feat: App 세팅**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/7887e4fc1e45871684e6820e532c842997577a86)
+
+<br>
+
+- [x] 불필요하게 중복되는 로직을 함수로 분리하여 처리합니다.
+
+    > [**✒️Feat: Storage produce 메서드 추가**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/c36f90a541583f1bf1fba940bb40e3c9b678a17f)
+
+<br>
+
+- [x] else 문을 삭제하고 잔돈을 반환하는 기능을 재귀함수로 수정합니다.
+
+    > [**🗃Refactor: 잔돈 반환 기능 고도화**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/76024d6ba5a4cd1ec9b38befcb38e9ce1c5cd570)
+
+<br>
+
+- [x] 상품 구매 탭의 잔돈 반환 기능과 연계된 기능을 수정합니다.
+
+    > [**✒️Feat: 상품 구매 탭 선택 시 기능 추가**](https://github.com/InSeong-So/javascript-vendingmachine-precourse/commit/51ae360f939d37e13e826abbd5c862da94c5e1ea)
 
 <hr>
 <br>
