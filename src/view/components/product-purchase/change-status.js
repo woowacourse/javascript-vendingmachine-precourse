@@ -8,6 +8,12 @@ export default class ChangeStatus {
   constructor() {
     this.content = [];
     this.sort = kindsOfCoins.map((kind) => `${kind}${CURRENCY}`);
+    this.idList = [
+      ID.CHANGE.COIN_QUANTITY.FIVE_HUNDREDS,
+      ID.CHANGE.COIN_QUANTITY.ONE_HUNDRED,
+      ID.CHANGE.COIN_QUANTITY.FIFTY,
+      ID.CHANGE.COIN_QUANTITY.TEN,
+    ];
     this.create();
     this.createTable();
     this.appendChildren();
@@ -33,15 +39,9 @@ export default class ChangeStatus {
   }
 
   buildTable() {
-    const idList = [
-      ID.CHANGE.COIN_QUANTITY.FIVE_HUNDREDS,
-      ID.CHANGE.COIN_QUANTITY.ONE_HUNDRED,
-      ID.CHANGE.COIN_QUANTITY.FIFTY,
-      ID.CHANGE.COIN_QUANTITY.TEN,
-    ];
     this.sort.forEach((item, idx) => {
       const $tr = createTr(item, 0);
-      $tr.lastElementChild.id = idList[idx];
+      $tr.lastElementChild.id = this.idList[idx];
       this.content.push($tr.lastElementChild);
       this.$table.appendChild($tr);
     });
