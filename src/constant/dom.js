@@ -11,15 +11,6 @@ export const TAG = Object.freeze({
   TAG_TD: 'td',
 });
 
-export const DOM_TITLE = Object.freeze({
-  HEADER_TITLE: '🥤자판기🥤',
-  PURCHASE_MENU_TITLE: '상품 구매',
-  MACHINE_MANAGE_MENU_TITLE: '잔돈 충전',
-  PRODUCT_ADD_MENU_TITLE: '상품 관리',
-  PRODUCT_ADD_TITLE: '상품 추가하기',
-  PRODUCT_ADD_BUTTON: '추가하기',
-});
-
 export const DOM_ATTRIBUTE = Object.freeze({
   ID: 'id',
   DATA_TAB_ID: 'data-tab-id',
