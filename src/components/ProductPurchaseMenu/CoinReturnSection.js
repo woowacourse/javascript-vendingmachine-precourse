@@ -3,35 +3,25 @@ import Component from '../../core/Component.js';
 export default class CoinReturnSection extends Component {
   setup() {
     const { returnedCoins } = this.props;
-    this.state = { returnedCoins: returnedCoins.toObject() };
+    this.state = { returnedCoins };
   }
 
   template() {
     const { returnedCoins } = this.state;
+    const row = (key) => `
+    <tr>
+      <td>${key}원</td>
+      <td id='coin-${key}-quantity'>${returnedCoins.map.get(key)}개</td>
+    </tr>
+    `;
 
-    // TODO: returnedCoins 목록 직접 접근 안하게 수정
     return `
       <h3>잔돈</h3>
       <button type='submit' id='coin-return-button'>반환하기</button>
       <table>
         <th>동전</th>
         <th>개수</th>
-        <tr>
-          <td>500원</td>
-          <td id='coin-500-quantity'>${returnedCoins['500']}개</td>
-        </tr>
-        <tr>
-          <td>100원</td>
-          <td id='coin-100-quantity'>${returnedCoins['100']}개</td>
-        </tr>
-        <tr>
-          <td>50원</td>
-          <td id='coin-50-quantity'>${returnedCoins['50']}개</td>
-        </tr>
-        <tr>
-          <td>10원</td>
-          <td id='coin-10-quantity'>${returnedCoins['10']}개</td>
-        </tr>
+        ${returnedCoins.getKeys().reduce((acc, key) => `${acc}${row(key)}`, '')}
       </table>
     `;
   }

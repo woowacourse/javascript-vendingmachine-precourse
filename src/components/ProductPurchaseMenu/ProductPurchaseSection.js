@@ -8,8 +8,18 @@ export default class ProductPurchaseSection extends Component {
 
   template() {
     const { items } = this.state;
+    const row = (id, name, price, quantity) => `
+        <tr
+          class='product-purchase-item'
+          data-product-id='${id}'
+        >
+          <td class='product-purchase-name' data-product-name='${name}'>${name}</td>
+          <td class='product-purchase-price' data-product-price='${price}'>${price}</td>
+          <td class='product-purchase-quantity' data-product-quantity='${quantity}'>${quantity}</td>
+          <td><button class='purchase-button'>구매하기</button></td>
+        </tr>
+    `;
 
-    // TODO: item 목록 직접 접근 안하게 수정
     return `
       <h3>구매할 수 있는 상품 현황</h3>
       <table>
@@ -18,21 +28,12 @@ export default class ProductPurchaseSection extends Component {
         <th>수량</th>
         <th>구매</th>
         ${[...items.items.entries()]
-          .filter(([id, item]) => item.quantity > 0)
-          .map(([id, item]) => {
-            return `
-            <tr
-              class='product-purchase-item'
-              data-product-id='${id}'
-            >
-              <td class='product-purchase-name' data-product-name='${item.name}'>${item.name}</td>
-              <td class='product-purchase-price' data-product-price='${item.price}'>${item.price}</td>
-              <td class='product-purchase-quantity' data-product-quantity='${item.quantity}'>${item.quantity}</td>
-              <td><button class='purchase-button'>구매하기</button></td>
-            </tr>
-          `;
-          })
-          .join('')}
+          .filter((item) => item[1].quantity > 0)
+          .reduce(
+            (acc, [id, { name, price, quantity }]) =>
+              `${acc}${row(id, name, price, quantity)}`,
+            ''
+          )}
       </table>
     `;
   }

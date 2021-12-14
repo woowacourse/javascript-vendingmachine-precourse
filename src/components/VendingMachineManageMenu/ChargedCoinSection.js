@@ -14,27 +14,21 @@ export default class ChargedCoinSection extends Component {
       <table>
         <th>동전</th>
         <th>개수</th>
-        <tr>
-          <td>500원</td>
-          <td id='vending-machine-coin-500-quantity'>${coins.map.get(
-            500
-          )}개</td>
-        </tr>
-        <tr>
-          <td>100원</td>
-          <td id='vending-machine-coin-100-quantity'>${coins.map.get(
-            100
-          )}개</td>
-        </tr>
-        <tr>
-          <td>50원</td>
-          <td id='vending-machine-coin-50-quantity'>${coins.map.get(50)}개</td>
-        </tr>
-        <tr>
-          <td>10원</td>
-          <td id='vending-machine-coin-10-quantity'>${coins.map.get(10)}개</td>
-        </tr>
+        ${coins.getKeys().reduce((acc, key) => `${acc}${this.row(key)}`, '')}
       </table>
+    `;
+  }
+
+  row(key) {
+    const { coins } = this.state;
+
+    return `
+      <tr>
+        <td>${key}원</td>
+        <td id='vending-machine-coin-${key}-quantity'>${coins.map.get(
+      key
+    )}개</td>
+      </tr>
     `;
   }
 }
