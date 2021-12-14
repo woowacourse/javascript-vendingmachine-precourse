@@ -28,4 +28,20 @@ export default class ValidateUtils {
     }
     return true;
   }
+
+  static checkInputAmount(amount) {
+    if (!amount) {
+      alert(ERROR.NO_AMOUNT);
+      return false;
+    }
+    if (amount % TEN) {
+      alert(ERROR.CANT_PLACE);
+      return false;
+    }
+    if (ZERO >= amount) {
+      alert(ERROR.MIN_AMOUNT);
+      return false;
+    }
+    return true;
+  }
 }
