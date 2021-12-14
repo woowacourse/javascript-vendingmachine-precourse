@@ -48,10 +48,10 @@ export const productPurchaseTemplete = `
 export function renderAblePurchaseProductList(product) {
   const divFragment = document.createElement('tr');
     divFragment.innerHTML = `
-      <td  style="border: 1px solid black" data-product-name="${product[0]}">${product[0]}</td>
-      <td  style="border: 1px solid black" data-product-price="${product[1]}">${product[1]}</td>
-      <td  style="border: 1px solid black" data-product-quantity="${product[2]}">${product[2]}</td>
-      <td  style="border: 1px solid black"><button class="purchase-button">구매하기</button></td>
+      <td class="product-purchase-name" style="border: 1px solid black" data-product-name="${product[0]}">${product[0]}</td>
+      <td class="product-purchase-price" style="border: 1px solid black" data-product-price="${product[1]}">${product[1]}</td>
+      <td class="product-purchase-quantity" style="border: 1px solid black" data-product-quantity="${product[2]}">${product[2]}</td>
+      <td style="border: 1px solid black"><button class="purchase-button">구매하기</button></td>
     `;
 
   return divFragment;
