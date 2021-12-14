@@ -1,4 +1,4 @@
-import ProductPurcahseTemplate from './ProductPurchase/ProductPurchaseTemplate.js';
+import ProductPurchase from './ProductPurchase/ProductPurchase.js';
 import VendingMachineManageTemplate from './VendingMachineManage/VendingMachineManageTemplate.js';
 import ProductAddTemplate from './ProductAdd/ProductAddTemplate.js';
 
@@ -37,7 +37,7 @@ export default class VendingMachine {
   makeContentsHTML() {
     this.productAdd = new ProductAddTemplate();
     this.vendingMachineManage = new VendingMachineManageTemplate();
-    this.productPurchase = new ProductPurcahseTemplate();
+    this.productPurchase = new ProductPurchase();
     this.productAddScreen = this.productAdd.updateScreen();
     this.vendingMachineManageScreen = this.vendingMachineManage.updateScreen();
     this.productPurchaseScreen = this.productPurchase.updateScreen();
