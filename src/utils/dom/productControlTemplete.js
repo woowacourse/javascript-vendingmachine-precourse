@@ -20,9 +20,9 @@ export const productControlTemplete =  `
 
 export function renderProductList(product) {
   const divFragment = document.createElement('tr');
-  divFragment.innerHTML =  `<td style="border: 1px solid black">${product[0]}</td>
-    <td  style="border: 1px solid black">${product[1]}</td>
-    <td style="border: 1px solid black">${product[2]}</td>`;
+  divFragment.innerHTML = `<td class="product-manage-name" style="border: 1px solid black">${product[0]}</td>
+    <td class="product-manage-price" style="border: 1px solid black">${product[1]}</td>
+    <td class="product-manage-quantity" style="border: 1px solid black">${product[2]}</td>`;
   
   return divFragment;
 }
