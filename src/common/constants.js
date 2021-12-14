@@ -37,6 +37,10 @@ export const COIN = {
   WON_100: '100원',
   WON_50: '50원',
   WON_10: '10원',
+  FIVE_HUN: 500,
+  HUN: 100,
+  FIVE_TEN: 50,
+  TEN: 10,
 };
 
 export const BUTTON = {
