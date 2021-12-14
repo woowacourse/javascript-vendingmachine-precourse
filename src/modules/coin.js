@@ -55,7 +55,7 @@ class Coin {
   }
 
   /** 반환되는 코인들을 계산하여 리턴합니다. */
-  static computeReturnCoin(chargeAmount, coins) {
+  static computeReturnCoins(chargeAmount, coins) {
     let tempChargeAmount = chargeAmount;
     const tempCoins = { ...coins };
     const returnCoins = this.getDefaultCoins();
