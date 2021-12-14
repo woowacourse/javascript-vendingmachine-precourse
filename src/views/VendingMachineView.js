@@ -1,3 +1,5 @@
+import { $style } from "../constant.js";
+
 export default class VendingMachineView {
   constructor() {
     this.app = document.querySelector("#app");
@@ -7,6 +9,12 @@ export default class VendingMachineView {
     this.renderTitle();
     this.renderContainer();
     this.renderMenu();
+    this.renderSytle();
+  }
+
+  renderSytle() {
+    const head = document.querySelector("head");
+    head.innerHTML = $style;
   }
 
   renderTitle() {

@@ -1,4 +1,5 @@
 import VendingMachineView from "./views/VendingMachineView.js";
+import Menu from "./Menu.js";
 
 export default class VendingMachine {
   constructor() {
@@ -7,7 +8,7 @@ export default class VendingMachine {
 
   setMenuClickEvent() {
     this.view.productAddMenuBtn.addEventListener("click", () => {
-      console.log("상품관리");
+      this.menu.initialize();
     });
     this.view.vendingMachineManageMenuBtn.addEventListener("click", () => {
       console.log("잔돈충전");
@@ -17,8 +18,13 @@ export default class VendingMachine {
     });
   }
 
+  initMenu() {
+    this.menu = new Menu();
+  }
+
   initialize() {
     this.view.render();
     this.setMenuClickEvent();
+    this.initMenu();
   }
 }
