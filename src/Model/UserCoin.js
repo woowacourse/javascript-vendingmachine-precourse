@@ -6,10 +6,26 @@ export default class UserCoin extends Coin {
   constructor() {
     super();
     this.key = USER_COIN;
+    this.returnLogKey = "returnLog";
   }
 
   getCurrentCoinToHave() {
     return Number(super.getCoinData(this.key));
+  }
+
+  getReturnLog() {
+    return super.getCoinData(this.returnLogKey);
+  }
+
+  saveReturnLog(returnCoin) {
+    if (!super.getCoinData(this.returnLogKey)) {
+      super.setCoinData(this.returnLogKey, {});
+    }
+    super.setCoinData(this.returnLogKey, returnCoin);
+  }
+
+  setCurrenCoinToHave(currentCoin) {
+    return super.setCoinData(this.key, currentCoin);
   }
 
   insert(coinToInput) {

@@ -59,7 +59,7 @@ export const PURCHASE_MANAGE = {
   ],
   DATA_SET: ["data-product-name", "data-product-price", "data-product-quantity"],
   CHARGE: "잔돈",
-  CHARGE_BUTTON: { TEXT: "반환하기", ID: "coin-return-button" },
+  RETURN_BUTTON: { TEXT: "반환하기", ID: "coin-return-button" },
   COIN_TO_USE: [
     { TEXT: "500원", QUANTITY_ID: "coin-500-quantity" },
     { TEXT: "100원", QUANTITY_ID: "coin-100-quantity" },

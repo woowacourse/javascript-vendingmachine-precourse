@@ -1,8 +1,8 @@
-import { LACK_OF_COIN } from "../constant/alertMessage.js";
 import { PURCHASE_MANAGE } from "../constant/vendingMachine.js";
 import Product from "../Model/Product.js";
 import UserCoin from "../Model/UserCoin.js";
 import { clearArea } from "../Model/utils.js";
+import VendingMachineCoin from "../Model/VendingMachineCoin.js";
 import {
   makeElement,
   makeInputNumberFormToPrint,
@@ -16,16 +16,18 @@ export default class ProductPurchaseView {
     this.container = container;
     this.product = new Product();
     this.coinStore = new UserCoin();
+    this.vendingMachineCoinStore = new VendingMachineCoin();
   }
 
   render() {
     clearArea(this.container);
     this.renderInsertCoinInput();
     this.renderProductTableToBuy();
-    // this.renderCoinReturnTable();
+    this.renderCoinReturnTable();
     this.bindDomElement();
     this.bindEvent();
     this.loadUserCoin();
+    this.loadReturnCoinAmount();
   }
 
   renderInsertCoinInput() {
@@ -75,15 +77,32 @@ export default class ProductPurchaseView {
     });
   }
 
+  renderCoinReturnTable() {
+    const coinReturnTableTitle = makeElement({
+      tag: "h3",
+      innerText: PURCHASE_MANAGE.CHARGE,
+    });
+    const returnButton = makeElement({
+      tag: "button",
+      type: "button",
+      innerText: PURCHASE_MANAGE.RETURN_BUTTON.TEXT,
+      id: PURCHASE_MANAGE.RETURN_BUTTON.ID,
+    });
+    this.container.append(coinReturnTableTitle, returnButton);
+    renderCoinTable(this.container, "coin-return-table-body", PURCHASE_MANAGE.COIN_TO_USE);
+  }
+
   bindEvent() {
     this.bindInsertButtonEvent();
     this.bindPurchaseButtonEvent();
+    this.bindReturnButtonEvent();
   }
 
   bindDomElement() {
     this.insertCoinInput = document.getElementById(PURCHASE_MANAGE.INPUT.ID);
     this.insertAmountArea = document.getElementById(PURCHASE_MANAGE.TEXT.PRINT_AMOUNT_ID);
     this.purchaseButtons = document.querySelectorAll(`.${PURCHASE_MANAGE.PURCHASE_BUTTON.CLASS}`);
+    this.returnButton = document.getElementById(PURCHASE_MANAGE.RETURN_BUTTON.ID);
   }
 
   bindInsertButtonEvent() {
@@ -98,6 +117,31 @@ export default class ProductPurchaseView {
     this.purchaseButtons.forEach(purchaseButton =>
       purchaseButton.addEventListener("click", e => this.handleClickPurchaseButton(e))
     );
+  }
+
+  bindReturnButtonEvent() {
+    this.returnButton.addEventListener("click", () => this.handleClickReturnButtonEvent());
+  }
+
+  handleClickReturnButtonEvent() {
+    const [returnCoin, currentCharge] = this.vendingMachineCoinStore.returnCharge(
+      Number(this.insertAmountArea.innerText)
+    );
+    this.coinStore.setCurrenCoinToHave(currentCharge);
+    this.loadUserCoin();
+    this.coinStore.saveReturnLog(returnCoin);
+    this.loadReturnCoinAmount();
+  }
+
+  loadReturnCoinAmount() {
+    const returnCoin = this.coinStore.getReturnLog() || undefined;
+    if (returnCoin === undefined) return;
+
+    PURCHASE_MANAGE.COIN_TO_USE.forEach(coin => {
+      const coinKey = coin.QUANTITY_ID.match(/\d+/g).pop();
+      const coinAmountArea = document.getElementById(coin.QUANTITY_ID);
+      coinAmountArea.innerText = `${returnCoin[coinKey]}개`;
+    });
   }
 
   handleClickPurchaseButton(event) {
@@ -120,18 +164,3 @@ export default class ProductPurchaseView {
     this.insertAmountArea.innerText = totalCoinToInsert;
   }
 }
-
-// const renderCoinReturnTable = container => {
-//   const coinReturnTableTitle = makeElement({
-//     tag: "h3",
-//     innerText: PURCHASE_MANAGE.CHARGE,
-//   });
-//   const returnButton = makeElement({
-//     tag: "button",
-//     innerText: PURCHASE_MANAGE.CHARGE_BUTTON.TEXT,
-//     id: PURCHASE_MANAGE.CHARGE_BUTTON.ID,
-//     type: "button",
-//   });
-//   container.append(coinReturnTableTitle, returnButton);
-//   renderCoinTable(container, "coin-return-table-body", PURCHASE_MANAGE.COIN_TO_USE);
-// };

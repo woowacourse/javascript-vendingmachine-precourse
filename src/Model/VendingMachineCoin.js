@@ -50,4 +50,20 @@ export default class VendingMachineCoin extends Coin {
   getCurrentCoinToHave() {
     return super.getCoinData(this.key);
   }
+
+  returnCharge(coinToReturn) {
+    const returnTemplate = { ...this.coinTemplate };
+    const currentCoinToHave = this.getCurrentCoinToHave();
+    let haveToReturnCoin = coinToReturn;
+
+    this.useCoinArray.forEach(coin => {
+      while (currentCoinToHave[coin] && haveToReturnCoin - coin >= 0) {
+        returnTemplate[coin] += 1;
+        haveToReturnCoin -= coin;
+        currentCoinToHave[coin] -= 1;
+      }
+    });
+    this.setCoinData(this.key, currentCoinToHave);
+    return [returnTemplate, haveToReturnCoin];
+  }
 }
