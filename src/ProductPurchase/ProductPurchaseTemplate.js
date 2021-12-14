@@ -8,20 +8,22 @@ export default class ProductPurcahseTemplate {
     this.productPurchaseScreen = document.createElement('div');
     this.app.append(this.productPurchaseScreen);
     this.product = new Product();
+    this.coin = new Coin();
     this.makeBasicTemplate();
   }
 
   makeBasicTemplate() {
     this.spendMoney = document.createElement('div');
     this.productStatusDiv = document.createElement('div');
-    this.smallChange = document.createElement('div');
+    this.coinReturnDiv = document.createElement('div');
     this.productPurchaseScreen.append(
       this.spendMoney,
       this.productStatusDiv,
-      this.smallChange
+      this.coinReturnDiv
     );
     this.makeSpendMoneyTemplate();
     this.makeProductStatusTemplate();
+    this.makeCoinReturnTemplate();
     this.connectEvent();
   }
 
@@ -32,6 +34,8 @@ export default class ProductPurcahseTemplate {
     if (purchaseButton != null) {
       this.connectPurchaseEvent(purchaseButton);
     }
+    document.getElementById('coin-return-button').onclick =
+      this.coinReturn.bind(this);
   }
 
   connectPurchaseEvent(purchaseButton) {
@@ -105,9 +109,66 @@ export default class ProductPurcahseTemplate {
     });
   }
 
+  makeCoinReturnTemplate() {
+    this.coinReturnTitle = document.createElement('h2');
+    this.coinReturnTitle.innerText = '잔돈';
+    this.coinReturnButton = document.createElement('button');
+    this.coinReturnButton.id = 'coin-return-button';
+    this.coinReturnButton.innerText = '반환하기';
+    this.coinReturnTable = document.createElement('table');
+    this.coinReturnDiv.append(
+      this.coinReturnTitle,
+      this.coinReturnButton,
+      this.coinReturnTable
+    );
+    this.makeCoinReturnTableElement();
+  }
+
+  makeCoinReturnTableElement() {
+    this.coinReturnTableHead = document.createElement('thead');
+    this.coinReturnTableHead.innerHTML = '<tr><th>동전</th><th>개수</th></tr>';
+    this.coinReturnTableBody = document.createElement('tbody');
+    this.coinReturnTable.append(
+      this.coinReturnTableHead,
+      this.coinReturnTableBody
+    );
+    this.makeCoinReturnTableBody();
+  }
+
+  makeCoinReturnTableBody() {
+    this.coinReturnTableBody.innerHTML = '';
+    const coin500Class = document.createElement('tr');
+    coin500Class.innerHTML = '<td>500원</td><td id="coin-500-quantity"></td>';
+    const coin100Class = document.createElement('tr');
+    coin100Class.innerHTML = '<td>100원</td><td id="coin-100-quantity"></td>';
+    const coin50Class = document.createElement('tr');
+    coin50Class.innerHTML = '<td>50원</td><td id="coin-50-quantity"></td>';
+    const coin10Class = document.createElement('tr');
+    coin10Class.innerHTML = '<td>10원</td><td id="coin-10-quantity"></td>';
+    this.coinReturnTableBody.append(
+      coin500Class,
+      coin100Class,
+      coin50Class,
+      coin10Class
+    );
+  }
+
   purchaseProduct(e, index) {
     this.product.purchaseProduct(index);
     this.update();
+  }
+
+  coinReturn(e) {
+    e.preventDefault();
+    const chargeCost = this.product.getChargeCost();
+    const returnCoinList = this.coin.returnCoin(chargeCost);
+    this.coin.getCoinList().forEach((coinValue) => {
+      document.getElementById(
+        `coin-${coinValue}-quantity`
+      ).innerHTML = `${returnCoinList[coinValue]}개`;
+    });
+    this.product.setChargeCost(returnCoinList['charge']);
+    this.chargeInsert(0);
   }
 
   update() {

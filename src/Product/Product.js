@@ -35,6 +35,14 @@ export default class Product {
     }
   }
 
+  setChargeCost(changedChargeCost) {
+    this.chargeCost = changedChargeCost;
+  }
+
+  getChargeCost() {
+    return this.chargeCost;
+  }
+
   getProduct() {
     return this.currentProducts;
   }

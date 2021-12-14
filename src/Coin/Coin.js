@@ -10,6 +10,7 @@ export default class Coin {
       50: 0,
       10: 0,
     };
+    this.coinList = [500, 100, 50, 10];
     Coin.instance = this;
   }
 
@@ -23,17 +24,38 @@ export default class Coin {
     let changeToCoinCost = inputCoin;
     while (true) {
       if (changeToCoinCost == 0) break;
-      let coin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+      let coin = MissionUtils.Random.pickNumberInList(this.coinList);
       if (changeToCoinCost < coin) continue;
       changeToCoinCost -= coin;
-      if (coin == 500) this.currentCoin[500] += 1;
-      if (coin == 100) this.currentCoin[100] += 1;
-      if (coin == 50) this.currentCoin[50] += 1;
-      if (coin == 10) this.currentCoin[10] += 1;
+      this.currentCoin[coin] += 1;
     }
+  }
+
+  returnCoin(chargeCoin) {
+    let returnCoin = chargeCoin;
+    let returnCoinList = {};
+    this.coinList.forEach((coin) => {
+      returnCoinList[coin] = this.calcCoinCount(returnCoin, coin);
+      this.currentCoin[coin] -= returnCoinList[coin];
+      returnCoin -= returnCoinList[coin] * coin;
+    });
+    returnCoinList['charge'] = returnCoin;
+    return returnCoinList;
+  }
+
+  calcCoinCount(returnCoin, coin) {
+    let calcCoin = parseInt(returnCoin / coin, 10);
+    if (calcCoin <= this.currentCoin[coin]) {
+      return calcCoin;
+    }
+    return this.currentCoin[coin];
   }
 
   getCoin() {
     return this.currentCoin;
+  }
+
+  getCoinList() {
+    return this.coinList;
   }
 }
