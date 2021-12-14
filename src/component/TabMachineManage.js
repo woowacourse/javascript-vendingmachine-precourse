@@ -37,7 +37,7 @@ export default class TabMachineManage {
   createRootElement() {
     const $div = document.createElement(TAG.TAG_DIV);
     $div.setAttribute(DOM_ATTRIBUTE.ID, ID.MACHINE_MANAGE_TAB);
-    $div.setAttribute(DOM_ATTRIBUTE.ID, TAB_ID.TAB_MACHINE_MANAGE);
+    $div.setAttribute(DOM_ATTRIBUTE.DATA_TAB_ID, TAB_ID.TAB_MACHINE_MANAGE);
 
     this.$parent.appendChild($div);
     this.$root = $div;
