@@ -37,6 +37,7 @@
 - 잔돈을 반환하는 기능 구현 ✔️
   - 현재 보유한 최소 개수의 동전으로 잔돈을 돌려주는 기능 구현 ✔️
   - 반환된 잔돈을 화면에 보여준다. ✔️
+  - 잔돈 반환 시, 화면에서 '투입한 금액'과 잔돈 충전 탭의 '보유 금액'을 변경한다. ✔️
 
 ## Refactor 목록
 - <del>machine.js getRandomReturn, getRandomCoin 중복되는 부분 함수 만들기</del>
@@ -44,8 +45,7 @@
 - index.js 에서 탭 버튼 화면 분리하기 ✔️
 - machine.js 에서 validate (에러 검증) 함수들 분리하기 ✔️
 - machine.js 에서 display(화면 보여주는 기능) 함수들 분리하기 ✔️
-- 처음 앱이 시작할 때, localStorage를 조회하여 탭 마다 자판기 이전 상태 보여주기 ✔️
-- 잔돈충전 탭, 상품금액 탭 잔돈 반환 시, 보유금액 변경하기
+- 처음 앱이 시작할 때, localStorage를 조회하여 탭 마다 자판기 이전 상태 보여주기 ✔️ 
 - displayProductPurchaseTab 이벤트 리스너 분리하기
 
 

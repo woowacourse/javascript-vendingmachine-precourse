@@ -74,6 +74,8 @@ export default class Controller {
 
         displayer.displayReturnedCoins(coins);
         displayer.displayRemainCoins(item);
+        displayer.displayInputCoin(item.input);
+        displayer.displayPossessTotal(coinUtil.getTotal(item.coins));
     }
 
     getCoinReturn(item){
