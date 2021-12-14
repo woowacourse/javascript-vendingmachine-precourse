@@ -2,6 +2,7 @@ import Component from './essential/component.js';
 import Header from './components/header.js';
 import ProductAdd from './components/product-add/index.js';
 import VendingMachineManage from './components/vending-machine-manage/index.js';
+import ProductPurchase from './components/product-purchase/index.js';
 
 const CONTENT = `
   <header></header>
@@ -38,6 +39,7 @@ export default class App extends Component {
         new VendingMachineManage($main);
         break;
       case 2:
+        new ProductPurchase($main);
         break;
     }
   }
