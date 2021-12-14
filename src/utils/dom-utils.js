@@ -70,5 +70,6 @@ export function createTrIncludesButton(cls, id, text) {
   $button.classList.add(cls);
   $button.dataset.id = id;
   $td.appendChild($button);
-  return $td;
+
+  return styleTd($td);
 }
