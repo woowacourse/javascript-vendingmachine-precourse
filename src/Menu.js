@@ -3,6 +3,7 @@ import VendingMachineManageMenuView from "./views/VendingMachineManageMenuView.j
 import ProductPurchaseMenuView from "./views/ProductPurchaseMenuView.js";
 import ProductAddMenuController from "./controller/ProductAddMenuController.js";
 import VendingMachineManageMenuController from "./controller/VendingMachineManageMenuController.js";
+import ProductPurchaseMenuController from "./controller/ProductPurchaseMenuController.js";
 import { getData, setData } from "./utils/localStorage.js";
 
 export default class Menu {
@@ -14,6 +15,7 @@ export default class Menu {
     this.ProductAddMenuController = new ProductAddMenuController();
     this.vendingMachineManageMenuController =
       new VendingMachineManageMenuController();
+    this.productPurchaseMenuController = new ProductPurchaseMenuController();
   }
 
   productAddMenuInitialize() {
@@ -28,5 +30,6 @@ export default class Menu {
 
   productPurchaseMenuInitialize() {
     this.productPurchaseMenuView.render(getData("products"), getData("money"));
+    this.productPurchaseMenuController.initialize();
   }
 }
