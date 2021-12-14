@@ -24,11 +24,7 @@ const printValue = (value) => {
 };
 
 const printCount = (value) => {
-  let print = "";
-  if (+value > 0) {
-    print = `${value}개`;
-  }
-  return print;
+  return `${value}개`;
 };
 
 const checkEmpty = (value) => value.trim().length > 0;

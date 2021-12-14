@@ -1,6 +1,4 @@
-import createElement from "./createElement.js";
-
-export default function createDiv(id, text) {
-  const div = createElement("div", id, text);
+export default function createDiv() {
+  const div = document.createElement("div");
   return div;
 }

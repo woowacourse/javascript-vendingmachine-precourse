@@ -21,6 +21,7 @@ const TEXT = {
   COIN_DONE: "보유 금액: ",
   PURCHASE_WILL: "투입할 금액",
   PURCHASE_DONE: "투입한 금액: ",
+  COIN_TYPE: [500, 100, 50, 10],
 };
 
 const BUTTON = {

@@ -1,6 +1,6 @@
 const VANDING_MACHINE_MENU = {
   PRODUCT_ADD: "product-add-menu",
-  MANAGE: "vending-machine-manage-menu",
+  COIN: "vending-machine-manage-menu",
   PURCHASE: "product-purchase-menu",
 };
 
@@ -18,7 +18,6 @@ const ADD_PRODUCT = {
 const CHARGE_COIN = {
   INPUT: "vending-machine-charge-input",
   BUTTON: "vending-machine-charge-button",
-  DIV: "vending-machine-present-amount",
   AMOUNT: "vending-machine-charge-amount",
   QUANTITY: [
     "vending-machine-coin-500-quantity",
@@ -31,7 +30,6 @@ const CHARGE_COIN = {
 const PURCHASE = {
   INPUT: "charge-input",
   ADD: "charge-button",
-  DIV: "charge-input-sum",
   AMOUNT: "charge-amount",
   RETURN: "coin-return-button",
   ITEM: "product-purchase-item",

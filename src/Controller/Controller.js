@@ -22,6 +22,7 @@ export default class Controller {
     this.view.bindMoneyAdd(this.moneyAddHandler);
     this.view.bindPurchaseProduct(this.purchaseProductHandler);
     this.view.bindReturnCoin(this.returnCoinHandler);
+
     this.view.displayProductAdd(this.model.product);
     this.view.displayChargeCoin(this.model.coin);
     this.view.displayProductPurchase(this.model.product, this.model.money);
