@@ -3,7 +3,7 @@ import * as validator from './validator.js';
 import { getStorage, updateStorage } from '../utils/storage.js';
 import * as coinUtil from "../utils/coin.js";
 import * as displayer from '../View/display.js';
-import { COIN_VALUE } from '../constants.js';
+import { COIN_VALUE, PURCHASE_TAB_CLASS } from '../constants.js';
 
 export default class Controller {
     addProduct(name, price, quantity){
@@ -13,12 +13,23 @@ export default class Controller {
         const item = getStorage();
         if(validator.checkAddProduct(name, price, quantity, item.products)){
             const product = new Product(name, price, quantity, item.productId++);
-            displayer.displayProductAddTab(product);
-            displayer.displayProductPurchaseTab(product, this);
             item.products.push(product);
-
             updateStorage(item);
+
+            displayer.displayProductAddTab(product);
+            displayer.displayProductPurchaseTab(product);
+            this.addProductEventListener(product);
         }
+    }
+
+    addProductEventListener(product){
+        const element = document.getElementById(product.id);
+        element.addEventListener('click', e=> {
+            e.preventDefault();
+            if(e.target.className == PURCHASE_TAB_CLASS.PURCHASE_BUTTON){
+                this.buyProduct(product);
+            }
+        })
     }
 
     addCoin(money){

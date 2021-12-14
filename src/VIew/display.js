@@ -22,7 +22,7 @@ export const displayPossessTotal= (total)=>{
     document.getElementById(MANAGE_TAB_ID.AMOUNT_SPAN_VALUE).innerHTML = total;
 }
 
-export const displayProductPurchaseTab= (product, controller) =>{
+export const displayProductPurchaseTab= (product) =>{
     const tr = `<tr id= ${product.id} class= ${PURCHASE_TAB_CLASS.PURCHASE_ITEM}>
                     <td class=${PURCHASE_TAB_CLASS.PRODUCT_NAME} 
                         ${PURCHASE_TAB_DATASET.PRODUCT_NAME}=${product.name}>${product.name}</td>
@@ -36,13 +36,6 @@ export const displayProductPurchaseTab= (product, controller) =>{
                 </tr>
                 `
     document.getElementById(PURCHASE_TAB_ID.PRODUCT_TABLE).insertAdjacentHTML('beforeend',tr);
-    const trId = document.getElementById(product.id);
-    trId.addEventListener('click', e=> {
-        e.preventDefault();
-        if(e.target.className == PURCHASE_TAB_CLASS.PURCHASE_BUTTON){
-            controller.buyProduct(product);
-        }
-    })
 }
 
 export const displayInputCoin=(input)=>{
