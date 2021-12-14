@@ -16,5 +16,6 @@ module.exports = {
     ],
     "import/extensions": ["error", "ignorePackages", { js: "always" }],
     "no-alert": "off",
+    "prefer-destructuring": ["error", { object: false, array: false }],
   },
 };

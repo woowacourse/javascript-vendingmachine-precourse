@@ -63,4 +63,18 @@ const PURCHASE_VIEW = `
   </table>
   `;
 
-export { COMMON_VIEW, MANAGE_VIEW, CHARGE_VIEW, PURCHASE_VIEW };
+const TABLE_HEADER = {
+  PURCHASE: "<th>상품명</th><th>가격</th><th>수량</th><th>구매</th>",
+  MANAGE: "<th>상품명</th><th>가격</th><th>수량</th>",
+};
+
+const TABS = ["manage-tab", "charge-tab", "purchase-tab"];
+
+export {
+  COMMON_VIEW,
+  MANAGE_VIEW,
+  CHARGE_VIEW,
+  PURCHASE_VIEW,
+  TABLE_HEADER,
+  TABS,
+};

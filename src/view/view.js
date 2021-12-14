@@ -3,6 +3,8 @@ import {
   MANAGE_VIEW,
   CHARGE_VIEW,
   PURCHASE_VIEW,
+  TABLE_HEADER,
+  TABS,
 } from "./utils/viewDOM.js";
 import { createElement, hideWithID, showWithID } from "./utils/handleDOM.js";
 import { COIN, EMPTY } from "../utils/constants.js";
@@ -18,17 +20,17 @@ export default class View {
     this.chargeTabRender();
     this.purchaseTabRender();
 
-    this.tab = ["manage-tab", "charge-tab", "purchase-tab"];
+    this.tab = TABS;
     this.buttons = this.getButtons();
     this.inputs = this.getInputs();
 
-    hideWithID("manage-tab");
-    hideWithID("charge-tab");
-    hideWithID("purchase-tab");
+    hideWithID(TABS[0]);
+    hideWithID(TABS[1]);
+    hideWithID(TABS[2]);
   }
 
   showSelectedID(tabId) {
-    this.tab.map((id) => {
+    this.tab.forEach((id) => {
       if (tabId === id) {
         showWithID(id);
       } else {
@@ -46,7 +48,7 @@ export default class View {
     const $manageTab = document.createElement("div");
     const $app = document.getElementById("app");
 
-    $manageTab.id = "manage-tab";
+    $manageTab.id = TABS[0];
     $manageTab.innerHTML = MANAGE_VIEW;
     $app.after($manageTab);
   }
@@ -55,7 +57,7 @@ export default class View {
     const $chargeTab = document.createElement("div");
     const $app = document.getElementById("app");
 
-    $chargeTab.id = "charge-tab";
+    $chargeTab.id = TABS[1];
     $chargeTab.innerHTML = CHARGE_VIEW;
     $app.after($chargeTab);
   }
@@ -64,7 +66,7 @@ export default class View {
     const $purchaseTab = document.createElement("div");
     const $app = document.getElementById("app");
 
-    $purchaseTab.id = "purchase-tab";
+    $purchaseTab.id = TABS[2];
     $purchaseTab.innerHTML = PURCHASE_VIEW;
     $app.after($purchaseTab);
   }
@@ -91,11 +93,11 @@ export default class View {
     };
   }
 
-  // 상품관리탭
+  // 상품 관리 탭 렌더링
   renderManageTab(productList) {
     const $tablePosition = document.getElementById("product-manage-item-first");
-    $tablePosition.innerHTML = "<th>상품명</th><th>가격</th><th>수량</th>";
-    productList.map((product) => {
+    $tablePosition.innerHTML = TABLE_HEADER.MANAGE;
+    productList.forEach((product) => {
       const $proudct = createElement(
         "tr",
         `
@@ -110,33 +112,34 @@ export default class View {
     });
   }
 
-  // 잔돈충전탭
+  // 잔돈 충전 탭 렌더링
   renderChargeTab(ownChange) {
     const $amount = document.getElementById("vending-machine-charge-amount");
     let sum = 0;
-    ownChange.map((coin, idx) => {
+
+    ownChange.forEach((coin, idx) => {
       const $product = document.getElementById(
         `vending-machine-coin-${COIN[idx]}-quantity`
       );
       $product.innerHTML = `${coin}개`;
       sum += coin * COIN[idx];
     });
-    console.log(document.querySelector("#vending-machine-coin-100-quantity"));
+
     $amount.innerHTML = sum;
   }
 
+  // 상품 구매 탭 보유 금액 렌더링
   renderUserMoney(userMoney) {
     const $amount = document.getElementById("charge-amount");
     $amount.innerHTML = userMoney;
   }
 
-  // 상품 구매 탭에서의 동적 렌더링
+  // 상품 구매 탭 표 렌더링
   renderProductTable(productList) {
     const $tablePosition = document.getElementById("product-purchase");
-    $tablePosition.innerHTML =
-      "<th>상품명</th><th>가격</th><th>수량</th><th>구매</th>";
+    $tablePosition.innerHTML = TABLE_HEADER.PURCHASE;
 
-    productList.map((product, idx) => {
+    productList.forEach((product) => {
       const $product = createElement(
         "tr",
         `
@@ -153,10 +156,11 @@ export default class View {
     });
   }
 
+  // 상품 구매 탭 잔돈 표 렌더링
   renderReturn(vendingMachine) {
-    const { userMoney, returnMoney } = vendingMachine;
+    const { returnMoney } = vendingMachine;
 
-    returnMoney.map((coin, idx) => {
+    returnMoney.forEach((coin, idx) => {
       const $getChange = document.getElementById(`coin-${COIN[idx]}-quantity`);
       $getChange.innerHTML = `${coin}개`;
     });
