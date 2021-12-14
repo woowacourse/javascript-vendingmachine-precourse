@@ -40,8 +40,7 @@ export default class PurchaseTable extends Component {
     const { purchase } = this.$props;
 
     this.addEvent('click', '.purchase-button', ({ target }) => {
-      const name = target.dataset.productName;
-      purchase(name);
+      purchase(target.dataset.productName);
     });
   }
 }
