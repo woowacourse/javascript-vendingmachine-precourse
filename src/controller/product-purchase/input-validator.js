@@ -1,4 +1,4 @@
-import { VALIDATION } from '../../common/constants/constants.js';
+import { VALIDATION, NUMBER } from '../../common/constants/constants.js';
 import { $ } from '../../common/dom/templates.js';
 
 export const moneyChargeInputValue = () => {
@@ -8,7 +8,6 @@ export const moneyChargeInputValue = () => {
 };
 
 export const moneyChargeInputValidator = (moneyChargeInputValue) => {
-  console.log(moneyChargeInputValue);
   let isValid = false;
 
   if (moneyChargeInputValue < 1) {
@@ -16,6 +15,23 @@ export const moneyChargeInputValidator = (moneyChargeInputValue) => {
     isValid;
   } else if (moneyChargeInputValue % 10 !== 0) {
     alert(VALIDATION.CHARGE.MULTIPLE_OF_10);
+    isValid;
+  } else {
+    isValid = true;
+  }
+
+  return isValid;
+};
+
+export const productPurchaseValidator = (currentSum) => {
+  const $chargeAmoun = $('#charge-amount');
+  const $purchaseButton = $('.purchase-button');
+  let isValid = false;
+
+  if (currentSum <= 0) {
+    alert('사용가능한 금액이 없습니다. 금액을 투입해 주세요.');
+    $chargeAmoun.innerHTML = NUMBER.ZERO;
+    $purchaseButton.disabled = true;
     isValid;
   } else {
     isValid = true;

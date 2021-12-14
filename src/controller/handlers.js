@@ -90,7 +90,6 @@ const handleMoneyChargeButton = () => {
     printChargedAmountToScreen();
     saveRandomAmountOfCoins();
     printAmountOfCoinToScreen();
-
     manageDataAttributes();
     manageProductListAfterPuchased();
   }
@@ -128,10 +127,13 @@ const initPurchaseTab = () => {
   const $moneyChargeButton = $('#charge-button');
   const $coinReturnButton = $('#coin-return-button');
 
-  $productPurchaseTabButton.addEventListener('click', handlePurchaseTab);
+  $productPurchaseTabButton.addEventListener('click', () => {
+    handlePurchaseTab();
+  });
   $moneyChargeButton.addEventListener('click', (event) => {
     event.preventDefault();
     handleUserChargeButton();
+    // validation
   });
   $coinReturnButton.addEventListener('click', printReturnedCoins);
 };

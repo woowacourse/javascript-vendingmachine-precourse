@@ -6,6 +6,7 @@ import {
 } from '../../common/constants/constants.js';
 import { $ } from '../../common/dom/templates.js';
 import { returnChangesinCoins } from '../../common/utils.js';
+import { productPurchaseValidator } from './input-validator.js';
 
 export const getCurrentSum = () => {
   const currentChargedSum = JSON.parse(localStorage.getItem(USER.REMAIN_MONEY));
@@ -82,6 +83,7 @@ const handlePurchaseButton = (target) => {
 
   let newSum = currentSum - targetProduct.price;
   updateSum(newSum);
+  productPurchaseValidator(currentSum);
 };
 
 export const manageProductListAfterPuchased = () => {
