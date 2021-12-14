@@ -7,13 +7,11 @@ import ChargeMachineView from './view/charge-machine-view.js';
 import ChargeMachineController from './controller/charge-machine-controller.js';
 import PurchaseProductView from './view/purchase-product-view.js';
 import PurchaseProductController from './controller/purchase-product-controller.js';
-import EventController from './controller/event-controller.js';
 
 // DOM
 const app = document.querySelector("#app");
 // init
 fetchHtmlView('tab.html').then(view => app.innerHTML = view);
-
 
 const vendingMachine = new VendingMachine();
 
@@ -25,9 +23,6 @@ const chargeMachineController = new ChargeMachineController(vendingMachine, char
 
 const purchaseProductView = new PurchaseProductView();
 const purchaseProductController = new PurchaseProductController(vendingMachine, purchaseProductView);
-
-// const eventHandler = new EventController(app, addProductController, chargeMachineController, purchaseProductController);
-// eventHandler.eventListener();
 
 app.addEventListener('click', function(e) {
     e.preventDefault();

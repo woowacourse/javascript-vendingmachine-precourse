@@ -1,5 +1,5 @@
 import { setDataInLocalStorage } from './localstorage-controller.js';
-import { moneyList } from '../constants.js';
+import { CANNOT_BUY, moneyList, WRONG_MONEY_INPUT } from '../constants.js';
 import { fetchHtmlView } from '../fetch.js';
 
 export default class PurchaseProductController {
@@ -21,7 +21,7 @@ export default class PurchaseProductController {
             this.view.renderInputMoney(this.machine.inputMoney);
         }
         else {
-            alert("옳바른 형식이 아닙니다. 10의 배수로 입력해주세요.");
+            alert(WRONG_MONEY_INPUT);
         }
     }
 
@@ -50,7 +50,7 @@ export default class PurchaseProductController {
             this.view.renderInputMoney(this.machine.inputMoney);
         }
         else {
-            alert("더이상 구매할 수 없습니다.");
+            alert(CANNOT_BUY);
         }
     }
     

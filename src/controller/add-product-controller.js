@@ -1,5 +1,6 @@
 import { setDataInLocalStorage } from './localstorage-controller.js';
 import { fetchHtmlView } from '../fetch.js';
+import { WRONG_PRODUCT } from '../constants.js';
 
 export default class AddProductController {
     constructor(machine, view) {
@@ -24,7 +25,7 @@ export default class AddProductController {
             this.view.renderAddedProductList(this.machine.productList);
         }
         else {
-            alert("옳바른 형식이 아닙니다. 상품명: 1자 이상, 가격: 100원 이상 10 배수, 수량: 1 이상");
+            alert(WRONG_PRODUCT);
         }
     }
     

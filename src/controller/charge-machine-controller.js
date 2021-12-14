@@ -1,5 +1,5 @@
 import { setDataInLocalStorage } from './localstorage-controller.js';
-import { moneyList } from '../constants.js';
+import { moneyList, WRONG_MONEY_INPUT } from '../constants.js';
 import { fetchHtmlView } from '../fetch.js';
 
 export default class ChargeMachineController {
@@ -23,7 +23,7 @@ export default class ChargeMachineController {
             this.view.renderChargedMoney(this.machine.chargedMoney);
         }
         else { 
-            alert("옳바른 형식이 아닙니다. 10의 배수로 입력해주세요.");
+            alert(WRONG_MONEY_INPUT);
         }
     }
     
