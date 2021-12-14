@@ -62,20 +62,21 @@ export default class ChargeModel {
   randomCharge() {
     let chargeAmount = this.getChargeInput();
     const coins = { coin500: 0, coin100: 0, coin50: 0, coin10: 0 };
-    const valueToKey = {
-      500: 'coin500',
-      100: 'coni100',
-      50: 'coin50',
-      10: 'coin10',
-    };
     while (chargeAmount > 0) {
       const coin = MissionUtils.Random.pickNumberInList(CHARGE_RULES.coinList);
       if (coin <= chargeAmount) {
         chargeAmount -= coin;
-        coins[valueToKey[coin]] += 1;
+        coins[this.changeValueToKey(coin)] += 1;
       }
     }
     this.addCoinStorage(coins);
+  }
+
+  changeValueToKey(value) {
+    if (value === 500) return 'coin500';
+    if (value === 100) return 'coin100';
+    if (value === 50) return 'coin50';
+    return 'coin10';
   }
 
   addCoinStorage(chargeCoins) {

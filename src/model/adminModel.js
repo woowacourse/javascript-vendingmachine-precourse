@@ -96,7 +96,7 @@ export default class AdminModel {
   isDifferentProductName() {
     const productStorage = this.getProductStorage();
     const inputProductName = this.productNameEl.value.trim();
-    for (let i = 0; i < productStorage.length; i += 1) {
+    for (let i = 0; i < productStorage?.length; i += 1) {
       const { name } = productStorage[i];
       if (name === inputProductName) {
         alert(ADMIN_ERR.sameProduct);
