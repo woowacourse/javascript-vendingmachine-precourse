@@ -1,5 +1,5 @@
-import { COINS, coinType } from '../model/VendingMachine.mjs';
-
+import { coinType } from '../model/VendingMachine.mjs';
+import { makeRowCell } from './common/makeRowCell.mjs';
 const $fragment = new DocumentFragment();
 
 function renderChargeInputWrap() {
@@ -18,16 +18,6 @@ function renderChargeInputWrap() {
   $fragment.appendChild($chargeInputWrap);
 }
 
-function makeRowCell() {
-  return COINS.map(coin => {
-    return `
-     <tr>
-       <td>${coin}원</td>
-       <td><span id="vending-machine-coin-${coin}-quantity"></span></td>
-     </tr>`;
-  });
-}
-
 function renderAmountCoinsWrap() {
   const $amountOfCoins = document.createElement('section');
   $amountOfCoins.id = 'amountOfCoinsWrap';
@@ -40,7 +30,7 @@ function renderAmountCoinsWrap() {
         <th>개수</th>
       </thead>
       <tbody>
-      ${makeRowCell().join('')}
+      ${makeRowCell('vending-machine-').join('')}
       </tbody>
     </table>
   `;

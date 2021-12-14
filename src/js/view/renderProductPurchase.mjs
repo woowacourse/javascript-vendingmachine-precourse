@@ -1,4 +1,5 @@
-import { products } from '../model/setProducts.mjs';
+import { makeRowCell } from './common/makeRowCell.mjs';
+import { COINS } from '../model/VendingMachine.mjs';
 
 const $fragment = new DocumentFragment();
 
@@ -57,22 +58,7 @@ function quantityPerCoins() {
         <th>개수</th>
       </thead>
       <tbody>
-        <tr>
-          <td>500원</td>
-          <td><span id="coin-500-quantity"></span></td>
-        </tr>
-        <tr>
-          <td>100원</td>
-          <td><span id="coin-100-quantity"></span></td>
-        </tr>
-        <tr>
-          <td>50원</td>
-          <td><span id="coin-50-quantity"></span></td>
-        </tr>
-        <tr>
-          <td>10원</td>
-          <td><span id="coin-10-quantity"></span></td>
-        </tr>
+        ${makeRowCell().join('')}
       </tbody>
     </table>
   `;
@@ -104,26 +90,20 @@ export function renderProductPurchaseStatus(products) {
     .map(product => {
       return `
         <tr class="product-purchase-item">
-        <td><span class="product-purchase-name" data-product-name="${product.name}">${product.name}</span></td>
-        <td><span class="product-purchase-price" data-product-price="${product.price}">${product.price}</span></td>
-        <td><span class="product-purchase-quantity" data-product-quantity="${product.quantity}">${product.quantity}</span></td>
-        <td><button class="purchase-button">구매하기</button></td>
-      </tr>`;
+          <td class="product-purchase-name" data-product-name="${product.name}">${product.name}</td>
+          <td class="product-purchase-price" data-product-price="${product.price}">${product.price}</td>
+          <td class="product-purchase-quantity" data-product-quantity="${product.quantity}">${product.quantity}</td>
+          <td><button class="purchase-button">구매하기</button></td>
+        </tr>`;
     })
     .join('');
 }
 
 export function renderReturnCoins() {
-  // 로컬스토리지에서 반환해주는 코인들을 표시한다.
-
+  if (!localStorage.getItem('returnCoin')) return;
   const returnCoin = localStorage.getItem('returnCoin').split(',');
 
-  const coins = [
-    document.querySelector('#coin-500-quantity'),
-    document.querySelector('#coin-100-quantity'),
-    document.querySelector('#coin-50-quantity'),
-    document.querySelector('#coin-10-quantity')
-  ];
+  const coins = COINS.map(coin => document.querySelector(`#coin-${coin}-quantity`));
 
   returnCoin.forEach((coin, i) => {
     coins[i].textContent = `${coin}개`;

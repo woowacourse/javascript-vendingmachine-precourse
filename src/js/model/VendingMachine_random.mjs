@@ -34,10 +34,14 @@ export class VendingMachine {
     localStorage.setItem('vending-machine-charge-amount', this._money);
   }
 
+  getRandomArray(money, moneyType) {
+    return Array.from({ length: Math.ceil(money / coinType[`type${moneyType}`]) }, (_, i) => i);
+  }
+
   setLocalStorageAmountOfCoins(money, moneyType) {
-    let coin = Math.floor(money / moneyType);
-    this._amountOfCoins[`${moneyType}_WON`] += coin;
-    remainCharge = remainCharge - coinType[`type${moneyType}`] * coin;
+    let randomCoin = MissionUtils.Random.pickNumberInList(this.getRandomArray(money, moneyType));
+    this._amountOfCoins[`${moneyType}_WON`] += randomCoin;
+    remainCharge = remainCharge - coinType[`type${moneyType}`] * randomCoin;
   }
 
   getAmountOfCoins(money) {
@@ -54,13 +58,6 @@ export class VendingMachine {
     remainCharge = 0;
 
     localStorage.setItem('amount-of-coins', JSON.stringify(this._amountOfCoins));
-  }
-
-  setProductPurchaseMoney(money) {
-    if (localStorage.getItem('charge-input')) {
-      money = Number(localStorage.getItem('charge-input')) + Number(money);
-    }
-    localStorage.setItem('charge-input', money);
   }
 }
 
