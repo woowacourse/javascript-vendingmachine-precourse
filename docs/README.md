@@ -19,13 +19,13 @@
 　　├── components  
 　　│　　├── header.js  
 　　│　　├── product-add  
-　　│　　│   ├── index.js  
-　　│　　│   ├── header.js  
-　　│　　│   └── table.js  
+　　│　　│　　├── index.js  
+　　│　　│　　├── header.js  
+　　│　　│　　└── table.js  
 　　│　　├── vending-machine-manage  
-　　│　　│   ├── header.js  
-　　│　　│   ├── index.js  
-　　│　　│   └── stored.js  
+　　│　　│　　├── header.js  
+　　│　　│　　├── index.js  
+　　│　　│　　└── stored.js  
 　　│　　└── product-purchase  
 　　│　　　　├── changes.js  
 　　│　　　　├── header.js  
