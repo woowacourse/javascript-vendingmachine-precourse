@@ -1,5 +1,7 @@
 import ProductAddView from './productAddView.js';
-import { BUTTON } from './productAddViewInfo.js';
+import ValidateUtils from '../utils/validateUtils.js';
+import { BUTTON, INPUT } from './productAddViewInfo.js';
+import { $ } from '../utils/common.js';
 
 export default class ProductAddComponent {
   constructor() {
@@ -20,9 +22,17 @@ export default class ProductAddComponent {
 
   createInputDataObject() {
     return {
-      name: $(`#${inputInfo.productNameInput.id}`).value,
-      price: Number($(`#${inputInfo.productPriceInput.id}`).value),
-      quantity: Number($(`#${inputInfo.productQuantityInput.id}`).value),
+      name: $(`#${INPUT.NAME.ID}`).value,
+      price: Number($(`#${INPUT.PRICE.ID}`).value),
+      quantity: Number($(`#${INPUT.QUANTITY.ID}`).value),
     };
+  }
+
+  checkValidation(inputData) {
+    return (
+      ValidateUtils.checkInputName(inputData.name) &&
+      ValidateUtils.checkInputPrice(inputData.price) &&
+      ValidateUtils.checkInputQuantity(inputData.quantity)
+    );
   }
 }
