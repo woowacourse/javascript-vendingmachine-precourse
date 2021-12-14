@@ -62,19 +62,29 @@ class VendingMachineStore {
     this.user.notify();
   }
 
+  #appendNewProduct(product) {
+    this.productStorage.appendItem({ ...product });
+  }
+
+  #mergeProduct(idx, product) {
+    const { price, count } = product;
+    const prevProduct = this.productStorage.getItem(idx);
+
+    this.productStorage.setItem(idx, {
+      ...prevProduct,
+      price,
+      count: prevProduct.count + count,
+    });
+  }
+
   addProduct(product) {
-    const { name, price, count } = product;
+    const { name } = product;
     const prevIdx = this.productStorage.findIdxByName(name);
 
-    if (prevIdx !== -1) {
-      const prevProduct = this.productStorage.getItem(prevIdx);
-      this.productStorage.setItem(prevIdx, {
-        ...prevProduct,
-        price,
-        count: prevProduct.count + count,
-      });
+    if (prevIdx === -1) {
+      this.#appendNewProduct(product);
     } else {
-      this.productStorage.appendItem({ ...product });
+      this.#mergeProduct(prevIdx, product);
     }
 
     this.#effectOnProductStorage();
