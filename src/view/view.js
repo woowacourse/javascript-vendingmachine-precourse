@@ -20,12 +20,6 @@ export default class View {
     this.purchasePage = new PurchasePage(controller);
   }
 
-  setAllPage() {
-    this.app.appendChild(this.managePageDiv);
-    this.app.appendChild(this.chargePageDiv);
-    this.app.appendChild(this.purchasePageDiv);
-  }
-
   setBasicUI(products) {
     this.app.append(
       Title(TITLE),
@@ -35,12 +29,23 @@ export default class View {
     )
     this.initPages(products);
     this.setAllPage();
+    this.hideAllPage();
+    this.showManagePage();
+    this.manageTabHandler();
+    this.chargeTabHandler();
+    this.purchaseTabHandler();
   }
 
   initPages(products) {
     this.getManagePage(products);
     this.getChargePage();
     this.getPurchasePage(products);
+  }
+
+  setAllPage() {
+    this.app.appendChild(this.managePageDiv);
+    this.app.appendChild(this.chargePageDiv);
+    this.app.appendChild(this.purchasePageDiv);
   }
 
   getManagePage(products) {
@@ -62,12 +67,44 @@ export default class View {
   }
 
   hideAllPage() {
-    this.managePage.style.display = 'none';
-    this.chargePage.style.display = 'none';
-    this.purchasePage.style.display = 'node';
+    this.managePageDiv.style.display = 'none';
+    this.chargePageDiv.style.display = 'none';
+    this.purchasePageDiv.style.display = 'none';
   }
 
-  showSelectedPage(id) {
-    $(`#${id}`).style.display = 'block';
+  showManagePage() {
+    this.managePageDiv.style.display = 'block';
+  }
+
+  showChargePage() {
+    this.chargePageDiv.style.display ='block';
+  }
+
+  showPurchasePage() {
+    this.purchasePageDiv.style.display ='block';
+  }
+
+  manageTabHandler() {
+    this.manageTab.addEventListener('click', e => {
+      e.preventDefault();
+      this.hideAllPage();
+      this.showManagePage();
+    });
+  }
+
+  chargeTabHandler() {
+    this.chargeTab.addEventListener('click', e => {
+      e.preventDefault();
+      this.hideAllPage();
+      this.showChargePage();
+    });
+  }
+
+  purchaseTabHandler() {
+    this.purchaseTab.addEventListener('click', e => {
+      e.preventDefault();
+      this.hideAllPage();
+      this.showPurchasePage();
+    });
   }
 }

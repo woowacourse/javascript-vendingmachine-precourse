@@ -37,7 +37,6 @@ export class VendingMachine {
 
   returnMoney(money,view) {
     const returnCoins = this.moneyBank.returnCoins(money);
-    console.log(returnCoins);
     view.showReturnCoins(returnCoins);
   }
 }

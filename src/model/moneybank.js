@@ -86,14 +86,17 @@ export default class MoneyBank {
     this.useMoney(money);
     const returnCoins = [0,0,0,0];
     let leftMoney = money;
+    console.log(this.coins);
     for(let i = 3; i >=0 ; i -= 1) {
       while(leftMoney >= this.coins[i].value && this.coins[i].quantity !== 0) {
+        console.log(this.coins[i].value, leftMoney, this.coins[i].quantity);
         this.coins[i].quantity -= 1;
         leftMoney -= this.coins[i].value;
         returnCoins[i] += 1;
       }
       localStorage.setItem(this.coins[i].value,this.coins[i].quantity);
     }
+    console.log(returnCoins);
     return returnCoins;
   }
 
