@@ -1,6 +1,7 @@
 import { ELEMENT_IDS } from '../../constants.js';
 import { htmlToElement } from '../../utils.js';
 import ProductPurchaseFormView from './product-purchase-form-view.js';
+import ProductPurchaseTableView from './product-purchase-table-view.js';
 
 class ProductPurchaseView {
   static template = `
@@ -11,15 +12,16 @@ class ProductPurchaseView {
     this.$container = $container;
   }
 
-  mount() {
+  mount(handleClickPurchaseButton) {
     this.$view = htmlToElement(ProductPurchaseView.template);
     this.$container.appendChild(this.$view);
-    this.mountChildViews();
+    this.mountChildViews(handleClickPurchaseButton);
     return this;
   }
 
   mountChildViews() {
     this.$form = new ProductPurchaseFormView(this.$view).mount();
+    this.$table = new ProductPurchaseTableView(this.$view).mount();
   }
 
   unmount() {
@@ -29,6 +31,7 @@ class ProductPurchaseView {
 
   unmountChildViews() {
     this.$form.unmount();
+    this.$table.unmount();
   }
 }
 

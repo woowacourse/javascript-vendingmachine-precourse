@@ -88,3 +88,8 @@ export const INITIAL_COINS = COIN_UNITS.reduce((acc, cur) => {
   acc[cur] = 0;
   return acc;
 }, {});
+
+export const PURCHASE_MESSAGE = {
+  NO_STOCK: '재고가 부족합니다',
+  NEED_MORE_MONEY: '돈이 부족합니다',
+};

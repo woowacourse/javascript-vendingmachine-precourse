@@ -64,6 +64,17 @@ class VendingMachineSharedModel extends Observable {
     this.chargeMoney += money;
   }
 
+  purchaseProduct(name, price) {
+    const productItems = this.productItems.map((item) => {
+      if (item.name === name && item.price === price) {
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+    this.productItems = productItems;
+    this.chargeMoney -= price;
+  }
+
   loadDataFromLocalStorage() {
     const json = window.localStorage.getItem(LOCAL_STORAGE_KEY);
     const data = JSON.parse(json);
