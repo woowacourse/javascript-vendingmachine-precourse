@@ -1,5 +1,10 @@
-import { getProductPurchaseText, TAB_MENUS_TEXT } from '../utils/constants.js';
-import { getProduceAddText, getVendingMachineManageText } from '../utils/template.js';
+import { TAB_MENUS_TEXT } from '../utils/constants.js';
+import { $id } from '../utils/dom.js';
+import {
+  getProduceAddText,
+  getVendingMachineManageText,
+  getProductPurchaseText,
+} from '../utils/template.js';
 
 class View {
   constructor() {
@@ -14,16 +19,16 @@ class View {
     this.$app.innerHTML = TAB_MENUS_TEXT;
   }
 
-  showProductAddScreen(tabMenu) {
-    document.querySelector('main').innerHTML = getProduceAddText(tabMenu);
+  showProductAddScreen(productAddMenu) {
+    $id('content').innerHTML = getProduceAddText(productAddMenu);
   }
 
-  showVendingMachineManageScreen(tabMenu) {
-    document.querySelector('main').innerHTML = getVendingMachineManageText(tabMenu);
+  showVendingMachineManageScreen(vendingMachineManageMenu) {
+    $id('content').innerHTML = getVendingMachineManageText(vendingMachineManageMenu);
   }
 
-  showProductPurchaseScreen(tabMenu) {
-    document.querySelector('main').innerHTML = getProductPurchaseText(tabMenu);
+  showProductPurchaseScreen(productAddMenu, productPurchaseMenu) {
+    $id('content').innerHTML = getProductPurchaseText(productAddMenu, productPurchaseMenu);
   }
 }
 
