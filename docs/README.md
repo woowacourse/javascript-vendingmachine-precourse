@@ -15,33 +15,33 @@
 ├── assets  
 │　　└── index.css  
 └── src  
-　　├── index.js                             // 시작점  
-　　├── app.js                               // 유저가 선택한 메뉴를 생성함  
-　　├── components                           // 메뉴들을 컴포넌트화  
-　　│　　├── header.js                       // 유저가 메뉴를 선택할 수 있는 인터페이스 제공  
+　　├── index.js                       // 시작점  
+　　├── app.js                         // 유저가 선택한 메뉴를 생성함  
+　　├── components                     // 메뉴들을 컴포넌트화  
+　　│　　├── header.js                 // 유저가 메뉴를 선택할 수 있는 인터페이스 제공  
 　　│　　├── product-add  
-　　│　　│　　├── index.js                   // 상품관리 메뉴 컴포넌트  
-　　│　　│　　├── header.js                  // 상품관리 내 상품추가  
-　　│　　│　　└── table.js                   // 상품관리 내 상품현황  
+　　│　　│　　├── index.js             // 상품관리 메뉴 컴포넌트  
+　　│　　│　　├── header.js            // 상품관리 내 상품추가 컴포넌트  
+　　│　　│　　└── table.js             // 상품관리 내 상품현황 컴포넌트  
 　　│　　├── vending-machine-manage  
-　　│　　│　　├── index.js                   // 잔돈충전 메뉴 컴포넌트  
-　　│　　│　　├── header.js                  // 잔돈충전 내 충전하기  
-　　│　　│　　└── stored.js                  // 잔돈충전 내 보유한 동전  
+　　│　　│　　├── index.js             // 잔돈충전 메뉴 컴포넌트  
+　　│　　│　　├── header.js            // 잔돈충전 내 충전하기 컴포넌트  
+　　│　　│　　└── stored.js            // 잔돈충전 내 보유한 동전 컴포넌트  
 　　│　　└── product-purchase  
-　　│　　　　├── index.js                    // 상품구매 메뉴 컴포넌트  
-　　│　　　　├── header.js                   // 상품구매 내 금액 투입  
-　　│　　　　├── inserted.js                 // 상품구매 내 투입한 금액 컴포넌트  
-　　│　　　　├── products.js                 // 상품구매 내 구매가능 상품현황  
-　　│　　　　└── changes.js                  // 상품구매 내 잔돈 반환  
+　　│　　　　├── index.js              // 상품구매 메뉴 컴포넌트  
+　　│　　　　├── header.js             // 상품구매 내 금액 투입 컴포넌트  
+　　│　　　　├── inserted.js           // 상품구매 내 투입한 금액 컴포넌트  
+　　│　　　　├── products.js           // 상품구매 내 구매가능 상품현황 컴포넌트  
+　　│　　　　└── changes.js            // 상품구매 내 잔돈 반환 컴포넌트  
 　　├── essential  
-　　│　　└── component.js                   // 컴포넌트 추상화 클래스  
+　　│　　└── component.js             // 컴포넌트 추상화 클래스  
 　　├── model  
-　　│　　└── product.js                     // 상품 추상화 클래스  
+　　│　　└── product.js               // 상품 추상화 클래스  
 　　└── utils  
-　　　　├── constants.js                    // 상수를 모아놓은 곳  
-　　　　├── storage.js                      // localStorage 관련 기능  
-　　　　├── style.js                        // css 적용하기 위해 만듦  
-　　　　└── validator.js                    // 유효성 검사 기능 모아놓은 곳  
+　　　　├── constants.js              // 상수를 모아놓은 곳  
+　　　　├── storage.js                // localStorage 관련 기능  
+　　　　├── style.js                  // css 적용하기 위해 만듦  
+　　　　└── validator.js              // 유효성 검사 기능 모아놓은 곳  
 ```
 
 ---
