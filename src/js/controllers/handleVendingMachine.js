@@ -5,7 +5,7 @@ import { Coin, chargeMoney } from '../models/vendingMachineModel.js';
 import { resetChargeInput, renderChargeMoney } from '../views/vendingMachineView.js';
 import alertMessage from '../views/alertMessage.js';
 
-function HandleVendingMachine() {
+export default function HandleVendingMachine() {
   this.coins = new Coin();
 
   this.init = () => {
@@ -45,5 +45,3 @@ function HandleVendingMachine() {
 
   this.init();
 }
-
-export default HandleVendingMachine;

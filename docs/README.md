@@ -84,7 +84,8 @@
 - [x] (페이지에서) 목록 다시 확인 
 - [x] 주석 삭제 
 - [x] 디버깅 console.log 없는지 확인
-- [ ] npm run test 
+- [x] model, view의 역할 
+- [x] npm run test 
 
 # 추가
 - [ ] 삭제 

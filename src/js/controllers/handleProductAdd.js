@@ -5,7 +5,7 @@ import { renderProduct, resetProductInput } from '../views/productAddView.js';
 import Product from '../models/productAddModel.js';
 import alertMessage from '../views/alertMessage.js';
 
-function HandleProductAdd() {
+export default function HandleProductAdd() {
   this.products = [];
 
   this.init = () => {
@@ -68,5 +68,3 @@ function HandleProductAdd() {
 
   this.init();
 }
-
-export default HandleProductAdd;

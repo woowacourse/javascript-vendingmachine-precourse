@@ -1,4 +1,3 @@
-import $ from '../utils/dom.js';
 import store from '../utils/store.js';
 import { PRICE } from '../utils/constants.js';
 
