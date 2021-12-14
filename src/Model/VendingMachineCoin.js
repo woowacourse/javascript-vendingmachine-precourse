@@ -5,18 +5,20 @@ export default class VendingMachineCoin extends Coin {
   constructor() {
     super();
     this.key = VENDING_MACHINE_COIN;
+    this.coinTemplate = { 500: 0, 100: 0, 50: 0, 10: 0 };
+    this.useCoinArray = [500, 100, 50, 10];
   }
 
   charge(coinToInput) {
     if (super.checkValid(coinToInput)) {
-      this.save(this.makeRandomCoin(coinToInput));
+      this.saveInsertCoin(this.makeRandomCoin(coinToInput));
     }
   }
 
   makeRandomCoin(totalMoney) {
-    const coinToHave = { 500: 0, 100: 0, 50: 0, 10: 0 };
+    const coinToHave = { ...this.coinTemplate };
     while (totalMoney) {
-      const randomCoin = MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+      const randomCoin = MissionUtils.Random.pickNumberInList(this.useCoinArray);
       if (totalMoney - randomCoin >= 0) {
         coinToHave[randomCoin] += 1;
         totalMoney -= randomCoin;
@@ -25,14 +27,15 @@ export default class VendingMachineCoin extends Coin {
     return coinToHave;
   }
 
-  save(newCoinList) {
+  saveInsertCoin(newCoinList) {
     const currentCoinList = this.getCurrentCoinToHave();
+    const updateCoinList = { ...newCoinList };
     if (currentCoinList) {
       for (const coin in currentCoinList) {
-        newCoinList[coin] += currentCoinList[coin];
+        updateCoinList[coin] += currentCoinList[coin];
       }
     }
-    super.setCoinData(this.key, newCoinList);
+    super.setCoinData(this.key, updateCoinList);
   }
 
   getTotalCoin() {

@@ -28,12 +28,6 @@ export default class CoinManageView {
     this.input = document.getElementById(COIN_MANAGE.INPUT.ID);
   }
 
-  loadTotalCoin() {
-    this.coinToHave = document.getElementById(COIN_MANAGE.TEXT.PRINT_AMOUNT_ID);
-    const totalCoin = this.coinStore.getTotalCoin() || 0;
-    this.coinToHave.innerText = totalCoin;
-  }
-
   renderHaveCoinTable() {
     const tableTitle = makeElement({ tag: "h3", innerText: COIN_MANAGE.CURRENT_COIN_AMOUNT });
     this.container.appendChild(tableTitle);
@@ -51,12 +45,20 @@ export default class CoinManageView {
     this.loadCoinToHave();
   }
 
+  loadTotalCoin() {
+    this.coinToHave = document.getElementById(COIN_MANAGE.TEXT.PRINT_AMOUNT_ID);
+    const totalCoin = this.coinStore.getTotalCoin() || "";
+    this.coinToHave.innerText = totalCoin;
+  }
+
   loadCoinToHave() {
     const currentCoinToHave = this.coinStore.getCurrentCoinToHave();
-    COIN_MANAGE.COIN_TO_USE.forEach(coin => {
-      const coinKey = coin.QUANTITY_ID.match(/\d+/g).pop();
-      const coinAmountArea = document.getElementById(coin.QUANTITY_ID);
-      coinAmountArea.innerText = `${currentCoinToHave[coinKey]}개`;
-    });
+    if (currentCoinToHave.length !== 0) {
+      COIN_MANAGE.COIN_TO_USE.forEach(coin => {
+        const coinKey = coin.QUANTITY_ID.match(/\d+/g).pop();
+        const coinAmountArea = document.getElementById(coin.QUANTITY_ID);
+        coinAmountArea.innerText = `${currentCoinToHave[coinKey]}개`;
+      });
+    }
   }
 }
