@@ -389,6 +389,6 @@
   ---
 # 리팩토링
 
-- 상수화 (DOM,TABS, Error Message)
-- 예시 화면과 같은 View 제공
-- 예시와 같게 동작하는 css 파일 적용
+- [x] 상수화 (DOM,TABS, Error Message)
+- [x] 예시 화면과 최대한 같은 View 제공
+- [x] 예시와 같게 동작하는 css 파일 적용
