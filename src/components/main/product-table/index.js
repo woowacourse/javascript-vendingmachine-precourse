@@ -19,7 +19,6 @@ export default class ProductTable extends Component {
   }
 
   getTableRows(data) {
-    console.log(data);
     return `
       ${data
         .map(

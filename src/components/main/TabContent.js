@@ -28,11 +28,10 @@ export default class TabContent extends Component {
         return new ProductAddTab($target, { stock });
 
       case ID.MCHNE_MANAGE:
-        console.log(chargedCoins);
         return new MachineManageTab($target, { chargedCoins });
 
       case ID.PRDCT_PURCHASE:
-        return new ProductPurchaseTab($target, { stock });
+        return new ProductPurchaseTab($target, { stock, chargedCoins });
     }
   }
 }
