@@ -1,4 +1,4 @@
-import Coin from '../Coin/Coin.js';
+import Coin from '../Model/Coin.js';
 import CoinInputCheck from './CoinInputCheck.js';
 import VendingMachineManageTemplate from './VendingMachineManageTemplate.js';
 

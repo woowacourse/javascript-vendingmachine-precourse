@@ -1,6 +1,6 @@
 import ProductAddTemplate from './ProductAddTemplate.js';
 import ProductAddInputCheck from './ProductAddInputCheck.js';
-import Product from '../Product/Product.js';
+import Product from '../Model/Product.js';
 
 export default class ProductAdd {
   constructor() {

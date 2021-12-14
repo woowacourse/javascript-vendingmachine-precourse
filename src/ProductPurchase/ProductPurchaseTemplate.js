@@ -1,4 +1,4 @@
-import Coin from '../Coin/Coin.js';
+import Coin from '../Model/Coin.js';
 
 export default class ProductPurcahseTemplate {
   constructor() {

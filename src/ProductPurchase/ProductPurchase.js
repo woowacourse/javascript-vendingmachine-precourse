@@ -1,6 +1,6 @@
-import Coin from '../Coin/Coin.js';
+import Coin from '../Model/Coin.js';
 import CoinInputCheck from '../VendingMachineManage/CoinInputCheck.js';
-import Product from '../Product/Product.js';
+import Product from '../Model/Product.js';
 import ProductPurcahseTemplate from './productPurchaseTemplate.js';
 
 export default class ProductPurchase {
