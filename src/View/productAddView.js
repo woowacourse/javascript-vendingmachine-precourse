@@ -78,7 +78,7 @@ export default class ProductAddView {
 
   getNewProductData() {
     const inputs = [this.productNameInput, this.productPriceInput, this.productQuantityInput];
-    const newProduct = inputs.map(input => input.value);
+    const newProduct = inputs.map(input => input.value.replace(/\s*/g, ""));
     clearInputValue(inputs);
     return newProduct;
   }
