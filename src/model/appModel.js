@@ -1,5 +1,5 @@
 import { setDataOnStorage, loadDataFromStorage } from '../utils/storage.js';
-import { STRING } from '../constants/constants.js';
+import { STRING, TAB } from '../constants/constants.js';
 import NUMBER from '../constants/number.js';
 import { defaultProducts, defaultAddTabInput, defaultCoins } from './data.js';
 
@@ -8,6 +8,7 @@ export default class AppModel {
     this.products = this.loadProducts() || defaultProducts();
     this.coins = this.loadCoins() || defaultCoins();
     this.inputChargeAmount = this.loadInputChargeAmount() || NUMBER.ZERO;
+    this.currentTab = this.loadCurrentTab() || TAB.ADD;
 
     this.addTabInput = defaultAddTabInput();
     this.manageTabInput = STRING.EMPTY;
@@ -53,6 +54,16 @@ export default class AppModel {
 
   getCoinsAmountArray() {
     return this.coins.map((coin) => coin.amount);
+  }
+
+  loadCurrentTab() {
+    return loadDataFromStorage(STRING.CURRENT_TAB);
+  }
+
+  setCurrentTab(tab) {
+    this.currentTab = tab;
+
+    setDataOnStorage(STRING.CURRENT_TAB, this.currentTab);
   }
 
   setManageTabInput(value) {

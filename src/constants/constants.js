@@ -3,12 +3,11 @@ export const STRING = {
   CHARGE_AMOUNT: 'chargeAmount',
   COINS: 'coins',
   INPUT_CHARGE_AMOUNT: 'inputChargeAmount',
+  CURRENT_TAB: 'currentTab',
   EMPTY: '',
   SUBMIT: 'submit',
   TR: 'tr',
 };
-
-export const DATASET_STRING = {};
 
 const NUMBER = {
   ZERO: 0,
@@ -27,4 +26,10 @@ export const INDEX = {
   HUNDRED: 1,
   FIFTY: 2,
   TEN: 3,
+};
+
+export const TAB = {
+  ADD: 'add',
+  MANAGE: 'manage',
+  PURCHASE: 'purchase',
 };

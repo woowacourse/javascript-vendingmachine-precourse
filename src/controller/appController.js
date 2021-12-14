@@ -3,6 +3,7 @@ import AddController from './add/addController.js';
 import ManageController from './manage/manageController.js';
 import PurchaseController from './purchase/purchaseController.js';
 import AppModel from '../model/appModel.js';
+import { TAB } from '../constants/constants.js';
 
 export default class AppController {
   constructor() {
@@ -21,7 +22,13 @@ export default class AppController {
     this.appView.selectHeaderDOM();
     this.attachHeaderEvents();
 
-    this.purchaseController.init();
+    this.initController(this.appModel.currentTab);
+  }
+
+  initController(currentTab) {
+    if (currentTab === TAB.MANAGE) return this.manageController.init();
+    if (currentTab === TAB.PURCHASE) return this.purchaseController.init();
+    return this.addController.init();
   }
 
   attachHeaderEvents() {
@@ -40,17 +47,20 @@ export default class AppController {
     e.preventDefault();
 
     this.manageController.init();
+    this.appModel.setCurrentTab(TAB.MANAGE);
   }
 
   handleChangeToAddTab(e) {
     e.preventDefault();
 
     this.addController.init();
+    this.appModel.setCurrentTab(TAB.ADD);
   }
 
   handleChangeToPurchaseTab(e) {
     e.preventDefault();
 
     this.purchaseController.init();
+    this.appModel.setCurrentTab(TAB.PURCHASE);
   }
 }
