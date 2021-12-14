@@ -6,3 +6,5 @@ export const COIN = Object.freeze({
 });
 
 export const COIN_ARRAY = [500, 100, 50, 10];
+
+export const ONE_COIN = 1;

@@ -4,7 +4,7 @@ import Product from '../model/Product.js';
 import Coin from '../model/Coin.js';
 import { saveToStorage, loadFromStorage } from '../utils/localStorage.js';
 import STORAGE from '../constant/storage.js';
-import { COIN, COIN_ARRAY } from '../constant/coin.js';
+import { COIN, COIN_ARRAY, ONE_COIN } from '../constant/coin.js';
 
 let instance = null;
 
@@ -120,8 +120,7 @@ export default class VendingMachine {
       const pickedCoin = this.pickRandomCoin();
 
       if (amount + pickedCoin <= totalAmount) {
-        const index = this.findCoinIndex(pickedCoin);
-        this.rechargedCoin[index].increaseCount(1);
+        this.increaseCoinCountByOne(pickedCoin);
         amount += pickedCoin;
       }
     }
@@ -136,6 +135,11 @@ export default class VendingMachine {
         coin.resetCountToZero();
       }
     });
+  }
+
+  increaseCoinCountByOne(pickedCoin) {
+    const index = this.findCoinIndex(pickedCoin);
+    this.rechargedCoin[index].increaseCount(ONE_COIN);
   }
 
   findCoinIndex(pickedCoin) {
