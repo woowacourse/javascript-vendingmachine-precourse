@@ -1,8 +1,10 @@
 export const constantsInit = () => {
   Object.entries(ELEMENT_ID).forEach(([key, value]) => (ELEMENT_SID[key] = `#${value}`));
   Object.entries(ELEMENT_CLASS).forEach(([key, value]) => (ELEMENT_SCLASS[key] = `.${value}`));
+  Object.freeze(ELEMENT_SID);
+  Object.freeze(ELEMENT_SCLASS);
 };
-export const ELEMENT_ID = {
+export const ELEMENT_ID = Object.freeze({
   APP: 'app',
   TAB_VIEW: 'tab-view',
   RESULT_VIEW: 'result-view',
@@ -25,9 +27,9 @@ export const ELEMENT_ID = {
   COIN_QUANTITY(coin) {
     return `vending-machine-coin-${coin}-quantity`;
   },
-};
+});
 export const ELEMENT_SID = {};
-export const ELEMENT_CLASS = {
+export const ELEMENT_CLASS = Object.freeze({
   PRODUCT_MANAGE_ITEM: 'product-manage-item',
   PRODUCT_MANAGE_NAME: 'product-manage-name',
   PRODUCT_MANAGE_PRICE: 'product-manage-price',
@@ -41,31 +43,32 @@ export const ELEMENT_CLASS = {
   VENDING_MACHINE_TABLE: 'vending-machine-table',
   PRODUCTS_TABLE: 'products-table',
   COINS_TABLE: 'coins-table',
-};
+});
 export const ELEMENT_SCLASS = {};
-export const EVENT_TYPE = {
+export const EVENT_TYPE = Object.freeze({
   CHANGE_TAB: 'changeTab',
   ADD_PRODUCT: 'addProduct',
   CHARGE_COIN: 'chargeCoin',
   CHARGE_MONEY: 'chargeMoney',
   PURCHASE_ITEM: 'purchaseItem',
   RETURN_COINS: 'returnCoins',
-};
-export const TAB = {
+});
+export const TAB = Object.freeze({
   MANAGE_PRODUCT: '상품 관리',
   CHARGE_CHANGE: '잔돈 충전',
   PURCHASE_PRODUCT: '상품 구매',
-};
-export const PRODUCT = {
+});
+export const PRODUCT = Object.freeze({
   NAME: '상품명',
   PRICE: '가격',
   QUANTITY: '수량',
   BUY: '구매',
-};
-export const PLACEHOLDER = {
+});
+export const PLACEHOLDER = Object.freeze({
   CHARGE_AMOUNT: '투입할 금액',
-};
-export const ALERT = {
+  MONEY_FOR_CHARGE_COINS: '자판기가 보유할 금액',
+});
+export const ALERT = Object.freeze({
   EMPTY_PRODUCT_NAME: '상품 이름을 입력해주세요.',
   EMPTY_PRODUCT_PRICE: '상품 가격을 입력해주세요.',
   EMPTY_PRODUCT_QUANTITY: '상품 개수를 입력해주세요.',
@@ -78,11 +81,11 @@ export const ALERT = {
   NOT_ENOUGH_MONEY: '돈이 부족합니다.',
   SAME_NAME_PRODUCT_EXIST: '같은 이름의 상품이 있습니다.',
   NOT_EVERY_COINS_RETURNED: '잔돈이 부족하여 모든 돈이 반환되지는 못했습니다.',
-};
+});
 
-export const COINS = [500, 100, 50, 10];
+export const COINS = Object.freeze([500, 100, 50, 10]);
 
-export const CHARGE = {
+export const CHARGE = Object.freeze({
   COIN: '동전',
   COUNT: '개수',
   COIN_500: '500',
@@ -91,16 +94,16 @@ export const CHARGE = {
   COIN_10: '10',
   WON: '원',
   UNIT: '개',
-};
-export const COINS_INIT_OBJECT = {
+});
+export const COINS_INIT_OBJECT = Object.freeze({
   500: 0,
   100: 0,
   50: 0,
   10: 0,
-};
+});
 
-export const LOCALSTORAGE = {
+export const LOCALSTORAGE = Object.freeze({
   INPUT_MONEY: 'inputMoney',
   COINS: 'coins',
   PRODUCTS: 'products',
-};
+});
