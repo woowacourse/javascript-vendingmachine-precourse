@@ -4,70 +4,8 @@ import { moneyList } from './constants.js';
 import VendingMachine from './model/vending-machine.js';
 import AddProductController from './controller/add-product-controller.js';
 import AddProductView from './view/add-product-view.js';
-
-//
-function chargeMoney() {
-    const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
-    if(isCorrectChargeMoney(chargeAmount)) {
-        getTotalChanges(chargeAmount);
-        getTotalChargedMoney(chargeAmount);
-        renderTotalChanges(totalChanges);
-        renderChargedMoney(chargedMoney);
-    }
-    else { 
-        alert("옳바른 형식이 아닙니다. 10의 배수로 입력해주세요.");
-    }
-}
-
-function getTotalChargedMoney(chargeAmount) {
-    chargedMoney += parseInt(chargeAmount, 10);
-    setDataInLocalStorage('chargedMoney', chargedMoney);
-}
-
-function getTotalChanges(chargeAmount) {
-    const newChanges = getNewChanges(chargeAmount);
-    for(let key in totalChanges) {
-        totalChanges[key] += newChanges[key];
-    }
-    setDataInLocalStorage('totalChanges', JSON.stringify(totalChanges));
-}
-
-function generateChangeObject() {
-    const result = {};
-    moneyList.forEach(coin => result[coin] = 0);
-    return result;
-}
-
-function getNewChanges(newChargeAmount) {
-    const result = generateChangeObject();
-    while(newChargeAmount) {
-        const coin = generateRandomChanges();
-        if(newChargeAmount >= coin) {
-            result[coin] += 1;
-            newChargeAmount -= coin;
-        }
-    }
-    return result;
-}
-
-function generateRandomChanges() {
-    return MissionUtils.Random.pickNumberInList(moneyList);
-}
-
-function renderTotalChanges(changes) {
-    moneyList
-        .forEach(coin => 
-            document.querySelector(`#vending-machine-coin-${coin}-quantity`).textContent = `${changes[coin]}개`);
-}
-
-function renderChargedMoney(money) {
-    const moneyResult = document.querySelector("#vending-machine-charge-amount");
-    moneyResult.textContent = money;
-}
-
-function isCorrectChargeMoney(money) {
-    return Number(money) > 0 && Number(money) % 10 === 0;
-}
+import ChargeMachineView from './view/charge-machine-view.js';
+import ChargeMachineController from './controller/charge-marchine-controller.js';
 
 //
 function putMoney() {
@@ -179,20 +117,6 @@ function renderProductList(products) {
     });
 }
 
-// function renderAddedProductList(products) {
-//     const productTable = document.querySelector("table");
-//     productTable.innerHTML = '';
-//     products.forEach(product => {
-//         const {name, price, quantity} = product;
-//         const newProductRow = document.createElement("tr");
-//         newProductRow.className = "product-manage-item";
-//         newProductRow.innerHTML = `<td class="product-manage-name">${name}</td>
-//                                     <td class="product-manage-price">${price}</td>
-//                                     <td class="product-manage-quantity">${quantity}</td>`;
-//         productTable.appendChild(newProductRow);
-//     });
-// }
-
 function onTabClick(fileName, tabId) {
     fetchHtmlView(fileName)
         .then(view => renderView(view, tabId))
@@ -206,8 +130,8 @@ function renderView(view, tabId) {
             addProuctView.renderAddedProductList(vendingMachine.productList);
             break;
         case 2: 
-            renderChargedMoney(chargedMoney);
-            renderTotalChanges(totalChanges);
+            chargeMachineView.renderChargedMoney(vendingMachine.chargedMoney);
+            chargeMachineView.renderTotalChanges(vendingMachine.totalChanges);
             break;
         case 3:
             renderInputMoney(totalInputMoney);
@@ -227,14 +151,18 @@ fetchHtmlView('tab.html').then(view => app.innerHTML = view);
 
 // variables
 // let productList = JSON.parse(getDataInLocalStorage('productList')) || [];
-let chargedMoney = parseInt(getDataInLocalStorage('chargedMoney'), 10) || 0;
-const totalChanges = JSON.parse(getDataInLocalStorage('totalChanges')) || generateChangeObject();
-const inputChanges = JSON.parse(getDataInLocalStorage('inputChanges')) || generateChangeObject();
-let totalInputMoney = parseInt(getDataInLocalStorage('totalInputMoney'), 10) || 0;
+// let chargedMoney = parseInt(getDataInLocalStorage('chargedMoney'), 10) || 0;
+// const totalChanges = JSON.parse(getDataInLocalStorage('totalChanges')) || generateChangeObject();
+// const inputChanges = JSON.parse(getDataInLocalStorage('inputChanges')) || generateChangeObject();
+// let totalInputMoney = parseInt(getDataInLocalStorage('totalInputMoney'), 10) || 0;
 
 const vendingMachine = new VendingMachine();
-const addProductController = new AddProductController(vendingMachine);
+
 const addProuctView = new AddProductView();
+const addProductController = new AddProductController(vendingMachine, addProuctView);
+
+const chargeMachineView = new ChargeMachineView();
+const chargeMachineController = new ChargeMachineController(vendingMachine, chargeMachineView);
 
 app.addEventListener('click', function(e) {
     e.preventDefault();
@@ -244,7 +172,7 @@ app.addEventListener('click', function(e) {
         "vending-machine-manage-menu"() { onTabClick('machine_charge.html', 2); },
         "product-purchase-menu"() { onTabClick('product_purchase.html', 3); },
         "product-add-button"() { addProductController.addProduct(); },
-        "vending-machine-charge-button"() { chargeMoney(); },
+        "vending-machine-charge-button"() { chargeMachineController.chargeMoney(); },
         "charge-button"() { putMoney(); },
         "coin-return-button"() { returnMoney(); },
     };
