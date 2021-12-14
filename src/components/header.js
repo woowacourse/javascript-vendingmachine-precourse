@@ -2,6 +2,7 @@ import $ from '../util/domSelector.js';
 import header from '../templates/header.js';
 import { HEADER } from '../constants/selector.js';
 import ProductManagement from '../routes/productManagement.js';
+import ChangeCharge from '../routes/changeCharge.js';
 
 export default class Header {
   constructor($target) {
@@ -15,7 +16,7 @@ export default class Header {
     });
 
     $(`#${HEADER.VENDING_MACHINE_MANAGE_MENU}`).addEventListener('click', () => {
-      console.log('COIN_MENU');
+      new ChangeCharge();
     });
 
     $(`#${HEADER.PRODUCT_PURCHASE_MENU}`).addEventListener('click', () => {

@@ -19,3 +19,15 @@ export const PRODUCT_MANAGEMENT = {
     PRODUCT_MANAGE_QUANTITY: 'product-manage-quantity',
   },
 };
+
+export const CHANGE_CHARGE = {
+  ID: {
+    CHARGE_INPUT: 'vending-machine-charge-input',
+    CHARGE_BUTTON: 'vending-machine-charge-button',
+    CHARGE_AMOUNT: 'vending-machine-charge-amount',
+    COIN_500_QUANTITY: 'vending-machine-coin-500-quantity',
+    COIN_100_QUANTITY: 'vending-machine-coin-100-quantity',
+    COIN_50_QUANTITY: 'vending-machine-coin-50-quantity',
+    COIN_10_QUANTITY: 'vending-machine-coin-10-quantity',
+  },
+};
