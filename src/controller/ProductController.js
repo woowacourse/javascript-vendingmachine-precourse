@@ -8,9 +8,6 @@ export class ProductController {
 
   loadLocalStorage() {
     const products = this.model.products;
-    if (products.length === 0) {
-      return;
-    }
     this.coreView.productView.showProduct(products);
   }
 

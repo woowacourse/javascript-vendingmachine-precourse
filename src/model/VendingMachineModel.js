@@ -77,8 +77,9 @@ export class VendingMachineModel {
       }
       if (Number(product.quantity) === 1) {
         this.products.splice(index, 1);
+      } else {
+        product.quantity--;
       }
-      product.quantity--;
       localStorage.setItem('products', JSON.stringify(this.products));
       return true;
     });
