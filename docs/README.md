@@ -4,6 +4,12 @@
 
 <br>
 
+## 데모사이트
+
+[데모사이트](https://vendingmachine-samssong.netlify.app/)에 오셔서 직접 자판기를 조작해보세요😀
+
+<br>
+
 ## 구현해야할 기능 목록
 
 ### 1) 공통
