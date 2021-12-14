@@ -1,5 +1,6 @@
 import { getData, setData } from "../utils/localStorage.js";
 import VendingMachineManageMenuView from "../views/VendingMachineManageMenuView.js";
+import { getRandomCoinArray } from "../utils/random.js";
 
 export default class VendingMachineManageMenuController {
   constructor() {
@@ -27,11 +28,22 @@ export default class VendingMachineManageMenuController {
       "#vending-machine-charge-input"
     );
     const newAmount = Number(vendingMachineChargeInput.value);
+    this.saveAmount(newAmount);
+    this.saveCoins(newAmount);
+    this.initialize();
+  }
+
+  saveAmount(newAmount) {
     const amount = this.coins.amount + newAmount;
     const postData = getData("coins");
     postData.amount = amount;
     setData("coins", postData);
     this.vendingMachineManageMenuView.render(getData("coins"));
+  }
+
+  saveCoins(newAmount) {
+    const coinArray = getRandomCoinArray(newAmount);
+    console.log(coinArray);
   }
 }
 
