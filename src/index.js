@@ -2,7 +2,6 @@ import { fetchHtmlView } from './fetch.js';
 import { moneyList } from './constants.js';
 
 //
-let productList = [];
 function addProduct() {
     const name = document.querySelector("#product-name-input").value;
     const price = document.querySelector("#product-price-input").value;
@@ -46,8 +45,6 @@ function isCorrectQuantity(quantity) {
 
 
 //
-let chargedMoney = 0;
-const totalChanges = generateChangeObject();
 function chargeMoney() {
     const chargeAmount = document.querySelector("#vending-machine-charge-input").value;
     if(isCorrectChargeMoney(chargeAmount)) {
@@ -110,7 +107,6 @@ function isCorrectChargeMoney(money) {
 }
 
 //
-let totalInputMoney = 0;
 function putMoney() {
     const inputAmount = document.querySelector("#charge-input").value;
     if(isCorrectChargeMoney(inputAmount)) {
@@ -170,6 +166,12 @@ function renderView(view, tabId) {
 const app = document.querySelector("#app");
 // init
 fetchHtmlView('tab.html').then(view => app.innerHTML = view);
+
+// variables
+let productList = [];
+let chargedMoney = 0;
+const totalChanges = generateChangeObject();
+let totalInputMoney = 0;
 
 app.addEventListener('click', function(e) {
     e.preventDefault();
