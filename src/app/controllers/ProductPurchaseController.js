@@ -1,7 +1,7 @@
-import { DOM, ERROR_MESSAGE, INPUTS_DEFAULT_VALUE } from '../../lib/constants.js';
 import { $ } from '../../lib/utils.js';
 import Coin from '../../modules/coin.js';
-import VendingMachineUtil from '../vendingMachineUtil.js';
+import { DOM, ERROR_MESSAGE, INPUTS_DEFAULT_VALUE } from '../constants.js';
+import VendingMachineUtil from '../util.js';
 
 class ProductPurchaseController {
   constructor({ view, model }) {

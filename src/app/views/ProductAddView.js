@@ -1,6 +1,6 @@
-import { DOM } from '../../lib/constants.js';
 import { $ } from '../../lib/utils.js';
 import { PRODUCT_LIST_TABLE_HEADER_TEMPLATE } from '../../template/constants.js';
+import { DOM } from '../constants.js';
 
 class ProductAddView {
   constructor(mainSection, productAddInputsValue, productList) {

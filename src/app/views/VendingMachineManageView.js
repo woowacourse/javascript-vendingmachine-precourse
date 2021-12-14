@@ -1,5 +1,6 @@
-import { DOM, FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN } from '../../lib/constants.js';
+import { FIFTY, FIVE_HUNDRED, ONE_HUNDRED, TEN } from '../../lib/constants.js';
 import { $ } from '../../lib/utils.js';
+import { DOM } from '../constants.js';
 
 class VendingMachineManageView {
   constructor(mainSection, vendingMachineChargeInputsValue, coins) {

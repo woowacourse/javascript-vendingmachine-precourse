@@ -1,4 +1,4 @@
-import { TAB } from '../../lib/constants.js';
+import { TAB } from '../constants.js';
 import ProductAddController from '../controllers/ProductAddController.js';
 import ProductPurchaseController from '../controllers/ProductPurchaseController.js';
 import VendingMachineManageController from '../controllers/VendingMachineManageController.js';

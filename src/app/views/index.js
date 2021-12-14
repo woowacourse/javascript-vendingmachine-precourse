@@ -1,5 +1,5 @@
-import { TAB, DOM } from '../../lib/constants.js';
 import { $ } from '../../lib/utils.js';
+import { DOM, TAB } from '../constants.js';
 import ProductAddView from './ProductAddView.js';
 import ProductPurchaseView from './ProductPurchaseView.js';
 import VendingMachineManageView from './VendingMachineManageView.js';

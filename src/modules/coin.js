@@ -1,10 +1,11 @@
-import { COINS_DEFAULT_VALUE, COINS_KEY_ARRAY, COIN_KEYS } from '../lib/constants.js';
+import { COINS_KEY_ARRAY } from '../lib/constants.js';
+import { getInitilizeCoins } from '../lib/utils.js';
 
 class Coin {
   static getRandomCoins(charge) {
     let tempCharge = charge;
 
-    const randomCoins = COINS_DEFAULT_VALUE;
+    const randomCoins = getInitilizeCoins();
     while (tempCharge !== 0) {
       const randomCoin = window.MissionUtils.Random.pickNumberInList(COINS_KEY_ARRAY);
 
@@ -28,7 +29,7 @@ class Coin {
   }
 
   static mostBiggestCoinRemainCoin(coins, check) {
-    return COIN_KEYS.find((KEY) => coins[KEY] !== 0 && check >= Number(KEY));
+    return COINS_KEY_ARRAY.find((KEY) => coins[KEY] !== 0 && check >= Number(KEY));
   }
 
   static returnCoin(returnCoins, tempCoins, tempChargeAmount, mostBiggestCoin) {
@@ -40,7 +41,7 @@ class Coin {
   static computeReturnCoin(chargeAmount, coins) {
     let tempChargeAmount = chargeAmount;
     const tempCoins = { ...coins };
-    const returnCoins = COINS_DEFAULT_VALUE;
+    const returnCoins = getInitilizeCoins();
     while (tempChargeAmount !== 0) {
       const mostBiggestCoin = Coin.mostBiggestCoinRemainCoin(tempCoins, tempChargeAmount);
 

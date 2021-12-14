@@ -1,6 +1,6 @@
-import { DOM, INPUTS_DEFAULT_VALUE } from '../../lib/constants.js';
 import { $ } from '../../lib/utils.js';
-import VendingMachineUtil from '../vendingMachineUtil.js';
+import { DOM, INPUTS_DEFAULT_VALUE } from '../constants.js';
+import VendingMachineUtil from '../util.js';
 
 class ProductAddController {
   constructor({ view, model }) {

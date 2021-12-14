@@ -1,15 +1,7 @@
-import {
-  DATA_MODEL_KEYS,
-  DOM,
-  FIFTY,
-  FIVE_HUNDRED,
-  LOCALSTORAGE_DATA_MODEL_KEY,
-  ONE_HUNDRED,
-  PLAIN_TEXT,
-  TAB,
-  TEN,
-} from '../../lib/constants.js';
+import { PLAIN_TEXT } from '../../lib/constants.js';
+import { getInitilizeCoins } from '../../lib/utils.js';
 import store from '../../modules/store.js';
+import { DATA_MODEL_KEYS, DOM, LOCALSTORAGE_DATA_MODEL_KEY, TAB } from '../constants.js';
 
 class VendingMachineModel {
   constructor() {
@@ -44,12 +36,7 @@ class VendingMachineModel {
       ...prev,
       [`${DOM.VENDING_MACHINE_CHARGE_INPUT}`]: PLAIN_TEXT,
     }));
-    this.setCoins({
-      [`${FIVE_HUNDRED}`]: 0,
-      [`${ONE_HUNDRED}`]: 0,
-      [`${FIFTY}`]: 0,
-      [`${TEN}`]: 0,
-    });
+    this.setCoins(getInitilizeCoins());
   }
 
   initProductPurchaseModel() {

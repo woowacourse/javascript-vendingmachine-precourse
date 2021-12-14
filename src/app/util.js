@@ -1,4 +1,4 @@
-import { DOM, ERROR_MESSAGE, PRODUCT_ID_LENGTH } from '../lib/constants.js';
+import { DOM, ERROR_MESSAGE } from './constants.js';
 import {
   getRandomNumber,
   hasSomeEmptyString,
@@ -6,6 +6,7 @@ import {
   isNumberStringNotDivideBy10,
 } from '../lib/utils.js';
 import Coin from '../modules/coin.js';
+import { PRODUCT_ID_LENGTH } from '../lib/constants.js';
 
 /** Util */
 class VendingMachineUtil {
