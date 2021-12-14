@@ -33,8 +33,9 @@ class Charge extends Component {
     this.$title = new Label('h3', '자판기 동전 추가하기');
     this.$input = new Input(inputProp);
     this.$submit = new Button('충전하기', submitProp);
-    this.setEvent();
     this.children = [this.$title, this.$input, this.$submit];
+
+    this.setEvent();
   }
 
   resetInputs() {

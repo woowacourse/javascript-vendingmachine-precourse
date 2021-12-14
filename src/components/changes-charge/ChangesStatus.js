@@ -17,15 +17,19 @@ class ChangesStatus extends Component {
     this.$title = new Label('h3', '자판기가 보유한 동전');
     this.$table = new ChangesTable();
     this.children = [this.$currentChanges, this.$title, this.$table];
+
+    this.setEvent();
   }
 
-  beforeRender() {
-    const coins = VendingMachineStore.instance.coinStorage.items;
-    const totalAmount =
-      VendingMachineStore.instance.coinStorage.getTotalAmount();
+  setEvent() {
+    VendingMachineStore.instance.coinStorage.observe(() => {
+      const coins = VendingMachineStore.instance.coinStorage.items;
+      const totalAmount =
+        VendingMachineStore.instance.coinStorage.getTotalAmount();
 
-    this.$table.setState({ dataset: coins });
-    this.$currentChanges.setState({ amount: totalAmount });
+      this.$table.setState({ dataset: coins });
+      this.$currentChanges.setState({ amount: totalAmount });
+    });
   }
 }
 

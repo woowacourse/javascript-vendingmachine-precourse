@@ -11,18 +11,18 @@ class ChangesCharge extends Component {
 
   constructor() {
     super($tag('div'));
+
     this.$charge = new Charge();
     this.$status = new ChangesStatus();
+    this.children = [this.$charge, this.$status];
 
     this.setEvent();
-    this.children = [this.$charge, this.$status];
   }
 
   setEvent() {
     this.$charge.onSubmit = ({ amount }) => {
       VendingMachineStore.instance.chargeChanges(amount);
       this.$charge.resetInputs();
-      this.$status.render();
     };
   }
 }
