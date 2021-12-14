@@ -15,7 +15,7 @@ export default class HeaderView {
     return `
        <h2>🥤${HEADER_TITLE}🥤</h2>
        ${this.makeButtons()}
-       <div id=${MAIN_ID}></div>
+       <div id="main"></div>
     `;
   }
 

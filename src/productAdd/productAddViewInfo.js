@@ -25,6 +25,7 @@ export const BUTTON = {
 };
 
 export const TABLE = {
+  ID: '#table',
   HEADER: ['상품명', '가격', '수량'],
   BODY: {
     CLASS: 'product-manage-item',

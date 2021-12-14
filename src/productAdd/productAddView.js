@@ -20,7 +20,7 @@ export default class ProductAddView {
       <button id=${BUTTON.ID}>${BUTTON.TEXT}</button>
       <br><br>
       <h3>${STATUS_TITLE}</h3>
-      <table border="1px"></table>
+      <table border="1px" id="table"></table>
     `;
   }
 
@@ -39,7 +39,7 @@ export default class ProductAddView {
   }
 
   makeTable() {
-    $('table').innerHTML = `
+    $(TABLE.ID).innerHTML = `
       <tr>
         ${this.makeTableHeader()}
       </tr>
