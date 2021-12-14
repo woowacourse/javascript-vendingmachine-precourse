@@ -55,4 +55,8 @@ export default class PurchaseMenuContainer extends Component {
       },
     });
   }
+
+  setEvent() {
+    this.$target.addEventListener("click", this.$props.onClickButton);
+  }
 }

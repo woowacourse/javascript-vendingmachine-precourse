@@ -34,6 +34,11 @@ export default class AddMenuContainer extends Component {
     new Table($tableSelector, {
       title: "상품 현황",
       tableHeaders: ["상품명", "가격", "수량"],
+      tableContents: this.$props.menuItems,
     });
+  }
+
+  setEvent() {
+    this.$target.addEventListener("click", this.$props.onClickButton);
   }
 }
