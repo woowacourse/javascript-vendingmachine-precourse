@@ -84,10 +84,6 @@ export const MINIMUM_PRICE_INPUT = 100;
 export const MINIMUM_CHARGE_INPUT = 10;
 export const MINIMUM_QUANTITY_INPUT = 1;
 
-export const INDEX_500 = 0;
-export const INDEX_100 = 1;
-export const INDEX_50 = 2;
-export const INDEX_10 = 3;
 export const COIN_VALUE_500 = 500;
 export const COIN_VALUE_100 = 100;
 export const COIN_VALUE_50 = 50;

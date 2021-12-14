@@ -1,8 +1,4 @@
 import {
-  INDEX_500,
-  INDEX_100,
-  INDEX_50,
-  INDEX_10,
   COIN_VALUE_500,
   COIN_VALUE_100,
   COIN_VALUE_50,
@@ -71,24 +67,21 @@ export default class Coins {
   }
 
   template() {
-    return `
-      <tr align="center" bgcolor="white" height="40">
-        <td align="center" width="62">${TITLE_500}</td> 
-        <td id="${CHARGE_500_QUANTITY_ID}" align="center" width="62">${this.coins[INDEX_500]}개</td>
-      </tr>
-      <tr align="center" bgcolor="white" height="40">
-        <td align="center" width="62">${TITLE_100}</td> 
-        <td id="${CHARGE_100_QUANTITY_ID}" align="center" width="62">${this.coins[INDEX_100]}개</td>
-      </tr>
-      <tr align="center" bgcolor="white" height="40">
-        <td align="center" width="62">${TITLE_50}</td> 
-        <td id="${CHARGE_50_QUANTITY_ID}" align="center" width="62">${this.coins[INDEX_50]}개</td>
-      </tr>
-      <tr align="center" bgcolor="white" height="40">
-        <td align="center" width="62">${TITLE_10}</td> 
-        <td id="${CHARGE_10_QUANTITY_ID}" align="center" width="62">${this.coins[INDEX_10]}개</td>
-      </tr>
-    `;
+    const ids = [
+      CHARGE_500_QUANTITY_ID,
+      CHARGE_100_QUANTITY_ID,
+      CHARGE_50_QUANTITY_ID,
+      CHARGE_10_QUANTITY_ID,
+    ];
+    const title = [TITLE_500, TITLE_100, TITLE_50, TITLE_10];
+    return (
+      ids.map((id, index) => `
+        <tr align="center" bgcolor="white" height="40">
+          <td align="center" width="62">${title[index]}</td> 
+          <td id="${id}" align="center" width="62">${this.coins[index]}개</td>
+        </tr>
+      `).join('')
+    );
   }
 
   render(dom) {
