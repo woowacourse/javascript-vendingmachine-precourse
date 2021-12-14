@@ -34,12 +34,17 @@ export default class CoinManageMenuContainer extends Component {
       moneyInfo: {
         id: "vending-machine-charge-amount",
         type: "보유",
+        value: this.$props.coins.reduce(
+          (sum, coin) => sum + coin[0] * coin[1],
+          0
+        ),
       },
     });
 
     new Table($tableSelector, {
       title: "자판기가 보유한 동전",
       tableHeaders: ["동전", "개수"],
+      tableContents: this.$props.coins,
     });
   }
 }
