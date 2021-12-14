@@ -2,13 +2,13 @@ import Component from '../../core/Component.js';
 
 export default class TabMenu extends Component {
   template() {
-    const { tabData } = this.$props;
+    const { tabItems } = this.$props;
 
     return `
       <h1>🥤자판기🥤</h1>
       <nav style="height: 35px">
         <ul style="list-style: none; padding: 0px;">
-          ${tabData
+          ${tabItems
             .map(
               ({ seq, id, title }) => `
                 <li data-seq="${seq}" style="float: left; margin-right: 15px;">

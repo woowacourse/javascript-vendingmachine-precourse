@@ -19,7 +19,7 @@ export default class MachineChargeForm extends Component {
   }
 
   setEvent() {
-    const { charge, apply } = this.$props;
+    const { chargeMachine } = this.$props;
 
     this.addEvent('click', '#vending-machine-charge-button', () => {
       let { value: remain } = this.$target.querySelector('#vending-machine-charge-input');
@@ -28,11 +28,9 @@ export default class MachineChargeForm extends Component {
         const randomUnit = pickNumberInList(COINS);
         if (remain - randomUnit >= 0) {
           remain -= randomUnit;
-          charge(randomUnit, 1);
+          chargeMachine(randomUnit, 1);
         }
       }
-
-      apply();
     });
   }
 }

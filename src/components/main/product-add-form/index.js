@@ -15,8 +15,7 @@ export default class ProductAddForm extends Component {
 
   setEvent() {
     const { addProduct } = this.$props;
-
-    this.addEvent('click', '#product-add-button', ({ target }) => {
+    this.addEvent('click', '#product-add-button', () => {
       const $name = this.$target.querySelector('#product-name-input');
       const $price = this.$target.querySelector('#product-price-input');
       const $quantity = this.$target.querySelector('#product-quantity-input');
@@ -25,6 +24,7 @@ export default class ProductAddForm extends Component {
         price: $price.value,
         quantity: $quantity.value,
       };
+
       addProduct(item);
     });
   }

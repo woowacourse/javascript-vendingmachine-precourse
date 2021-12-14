@@ -2,9 +2,9 @@ import Component from '../../../core/Component.js';
 
 export default class CoinTable extends Component {
   template() {
-    const { chargedCoins, title } = this.$props;
+    const { coins, description } = this.$props;
     return `
-      <h3>${title}</h3>
+      <h3>${description}</h3>
       <table>
         <thead>
           <tr>
@@ -13,7 +13,7 @@ export default class CoinTable extends Component {
           </tr>
         </thead>
         <tbody>
-          ${chargedCoins
+          ${coins
             .map(
               ({ unit, count }) => `
             <tr>

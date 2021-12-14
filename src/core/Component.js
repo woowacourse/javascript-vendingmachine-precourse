@@ -25,6 +25,7 @@ export default class Component {
 
   setState(newState) {
     this.$state = { ...this.$state, ...newState };
+    localStorage.setItem('state', JSON.stringify(this.$state));
     this.render();
   }
 

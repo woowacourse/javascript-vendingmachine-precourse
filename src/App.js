@@ -5,15 +5,24 @@ import TabContent from './components/main/TabContent.js';
 
 export default class App extends Component {
   setup() {
+    if (!localStorage.getItem('state')) this.init();
+    else this.getLocalStorageState();
+  }
+
+  init() {
     this.$state = {
-      tabData: TABS.map(({ id, title }, index) => ({ seq: index, id, title })),
-      stock: [
-        { name: '사이다', price: 200, quantity: 20 },
-        { name: '콜라', price: 300, quantity: 20 },
-        { name: '과자', price: 300, quantity: 0 },
-      ],
-      chargedCoins: COINS.map(unit => ({ unit, count: 0 })),
+      curTab: ID.PRDCT_ADD,
+      tabItems: TABS.map(({ id, title }, index) => ({ seq: index, id, title })),
+      tabData: {
+        stock: [],
+        chargedCoins: COINS.map(unit => ({ unit, count: 0 })),
+        userMoney: 0,
+      },
     };
+  }
+
+  getLocalStorageState() {
+    this.$state = JSON.parse(localStorage.getItem('state'));
   }
 
   template() {
@@ -24,29 +33,121 @@ export default class App extends Component {
   }
 
   mounted() {
-    const { changeTab } = this;
-    const { tabData, stock, chargedCoins } = this.$state;
+    const { changeTab, addProduct, chargeMachine, chargeUserMoney, purchase, returnChange } = this;
+    const { curTab, tabItems, tabData } = this.$state;
     const $header = this.$target.querySelector('[data-component="tab-menu"]');
     const $main = this.$target.querySelector('[data-component="tab-content"]');
 
     new TabMenu($header, {
-      tabData,
+      tabItems,
       changeTab: changeTab.bind(this),
     });
     new TabContent($main, {
-      stock,
-      chargedCoins,
-      tabID: ID.PRDCT_ADD,
+      tabID: curTab,
+      tabData,
+      addProduct: addProduct.bind(this),
+      chargeMachine: chargeMachine.bind(this),
+      chargeUserMoney: chargeUserMoney.bind(this),
+      purchase: purchase.bind(this),
+      returnChange: returnChange.bind(this),
     });
   }
 
   changeTab(seq) {
-    const { stock, chargedCoins } = this.$state;
-    const $main = this.$target.querySelector('[data-component="tab-content"]');
-    const tabData = [...this.$state.tabData];
-    const index = tabData.findIndex(v => v.seq === seq);
-    const tabID = tabData[index].id;
+    const tabItems = [...this.$state.tabItems];
+    const index = tabItems.findIndex(v => v.seq === seq);
+    const tabID = tabItems[index].id;
 
-    new TabContent($main, { tabID, stock, chargedCoins });
+    this.setState({ curTab: tabID });
+  }
+
+  addProduct({ name, price, quantity }) {
+    const { tabData } = this.$state;
+
+    this.setState({
+      tabData: { ...tabData, stock: [...tabData.stock, { name, price, quantity }] },
+    });
+  }
+
+  chargeMachine(unit, count) {
+    const { tabData } = this.$state;
+    const index = tabData.chargedCoins.findIndex(v => v.unit === unit);
+    const acc = tabData.chargedCoins[index].count;
+    let copied = [...tabData.chargedCoins];
+    copied[index].count = acc + count;
+
+    this.setState({
+      tabData: {
+        ...tabData,
+        chargedCoins: [...copied],
+      },
+    });
+  }
+
+  // ProductPurchaseTab
+  chargeUserMoney(amount) {
+    const { tabData } = this.$state;
+
+    this.setState({
+      tabData: {
+        ...tabData,
+        userMoney: tabData.userMoney + Number(amount),
+      },
+    });
+  }
+
+  purchase(name) {
+    const { tabData } = this.$state;
+    const { stock, userMoney } = tabData;
+    const index = stock.findIndex(v => v.name == name);
+    const { price, quantity } = stock[index];
+
+    if (userMoney < price || quantity <= 0) {
+      return;
+    }
+
+    let copied = [...stock];
+    copied[index].quantity -= 1;
+
+    this.setState({
+      tabData: {
+        ...tabData,
+        userMoney: userMoney - price,
+        stock: [...copied],
+      },
+    });
+  }
+
+  returnChange() {
+    const { tabData } = this.$state;
+    const { userMoney, chargedCoins } = tabData;
+    const changes = [...chargedCoins];
+    const sortedCoinUnit = COINS.sort((a, b) => b - a);
+
+    let remainChange = userMoney;
+
+    for (let unit of sortedCoinUnit) {
+      const count = remainChange / unit;
+
+      if (count > 0 && this.hasMachineEnoughChange(unit, count)) {
+        const index = changes.findIndex(v => v.unit === unit);
+        changes[index].count -= count;
+        remainChange %= unit;
+      }
+    }
+
+    this.setState({
+      tabData: {
+        ...tabData,
+        userMoney: remainChange,
+        chargedCoins: [...changes],
+      },
+    });
+  }
+
+  hasMachineEnoughChange(unit, count) {
+    const { chargedCoins } = this.$state.tabData;
+    const index = chargedCoins.findIndex(v => v.unit === unit);
+    return chargedCoins[index].count >= count;
   }
 }

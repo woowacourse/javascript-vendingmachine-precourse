@@ -3,12 +3,6 @@ import ProductAddForm from '../product-add-form/index.js';
 import ProductTable from '../product-table/index.js';
 
 export default class ProductAddTab extends Component {
-  setup() {
-    this.$state = {
-      stock: this.$props.stock,
-    };
-  }
-
   template() {
     return `
         <div data-component="product-add-form"></div>
@@ -18,18 +12,11 @@ export default class ProductAddTab extends Component {
   }
 
   mounted() {
-    const { addProduct } = this;
-    const { stock } = this.$state;
+    const { tabData, addProduct } = this.$props;
     const $form = this.$target.querySelector('[data-component="product-add-form"]');
     const $table = this.$target.querySelector('[data-component="product-table"]');
 
-    new ProductAddForm($form, { addProduct: addProduct.bind(this) });
-    new ProductTable($table, { stock });
-  }
-
-  addProduct({ name, price, quantity }) {
-    const { stock } = this.$state;
-    stock.push({ name, price, quantity });
-    this.setState({ stock });
+    new ProductAddForm($form, { addProduct });
+    new ProductTable($table, { tabData });
   }
 }

@@ -2,7 +2,7 @@ import Component from '../../../core/Component.js';
 
 export default class ProductTable extends Component {
   template() {
-    const { stock } = this.$props;
+    const { tabData } = this.$props;
     return `
       <h3>상품 현황</h3>
       <table>
@@ -13,7 +13,7 @@ export default class ProductTable extends Component {
             <th>수량</th>
           </tr>
         </thead>
-        <tbody>${this.getTableRows(stock)}</tbody>
+        <tbody>${this.getTableRows(tabData.stock)}</tbody>
       </table>
     `;
   }

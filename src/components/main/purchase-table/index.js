@@ -2,7 +2,7 @@ import Component from '../../../core/Component.js';
 
 export default class PurchaseTable extends Component {
   template() {
-    const { stock } = this.$props;
+    const { stock } = this.$props.tabData;
     return `
       <h3>구매할 수 있는 상품 현황</h3>
       <table>
