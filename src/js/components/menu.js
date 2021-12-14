@@ -1,7 +1,7 @@
 import { $ } from '../utils/querySelector.js';
-import { showProductAddMenu } from './manage/productAddMenu.js';
+import { showProductAddMenu } from '../view/productManage.js';
 import { showManageMenu } from './charge/coinCharge.js';
-import { showProductPurchaseMenu } from './purchase/productPurchase.js';
+import { showProductPurchaseMenu } from '../view/productPurchase.js';
 
 export const vendingMachineMenuEvent = () => {
   $('#product-add-menu').addEventListener('click', showProductAddMenu);
