@@ -18,12 +18,10 @@ export default class ProductPurchaseUtil {
 
   getCoin() {
     this.coinAmount = Number(this.productPurchase.amount.dataset.amount);
-    console.log(this.coinAmount);
   }
 
   getCurrentCoin() {
     const current = this.storage.purchaseCoin;
-    console.log(current);
     if (current.purchaseCoin == null) {
       this.getCoin();
       return;

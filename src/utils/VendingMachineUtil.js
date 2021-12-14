@@ -19,7 +19,6 @@ export default class VendingMachineUtil {
 
   getCurrentCoin() {
     const current = this.storage.vendingMachinCoin;
-    console.log(current);
     if (current.coin == null) {
       this.getCoin();
       return;
@@ -63,10 +62,8 @@ export default class VendingMachineUtil {
   setRandomCoin(coin) {
     let remainCoin = coin;
     let coinIndexArr = [0, 0, 0, 0];
-
     while (remainCoin > ZERO) {
-      const unit = MissionUtils.Random.pickNumberInList(COIN_ARR);
-
+      let unit = MissionUtils.Random.pickNumberInList(COIN_ARR);
       if (unit <= remainCoin) {
         let idx = COIN_ARR.indexOf(unit);
         remainCoin -= unit;

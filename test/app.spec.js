@@ -66,8 +66,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.addProduct('사이다', 1000, 10);
 
     // 잔돈 충전
-    // cy.get(SELECTOR.COIN_MENU).click();
-    // cy.get(SELECTOR.COIN_CHARGE_INPUT).type(coinAmount);
+    cy.get(SELECTOR.COIN_MENU).click();
+    cy.get(SELECTOR.COIN_CHARGE_INPUT).type(coinAmount);
     // cy.get(SELECTOR.COIN_CHARGE_BUTTON).click();
 
     // 금액 투입
@@ -84,9 +84,9 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       .parent()
       .find(SELECTOR.PURCHASE_ITEM_QUANTITY)
       .should('have.text', quantity - 1);
-    // cy.get(SELECTOR.COIN_MENU).click();
-    // cy.get(SELECTOR.COIN_100).should("have.text", "4개");
-    // cy.get(SELECTOR.COIN_50).should("have.text", "1개");
+    cy.get(SELECTOR.COIN_MENU).click();
+    // cy.get(SELECTOR.COIN_100).should('have.text', '4개');
+    // cy.get(SELECTOR.COIN_50).should('have.text', '1개');
   });
 
   it('잘못된 입력값으로 잔돈 충전을 시도하는 경우 alert이 호출되어야 한다.', () => {

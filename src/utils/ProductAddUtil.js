@@ -29,7 +29,6 @@ export default class ProductAddUtil {
 
   getCurrentProduct() {
     const current = this.storage.product;
-    console.log(current);
     if (current.quantity == ZERO) {
       return;
     }

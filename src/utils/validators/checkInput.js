@@ -41,7 +41,6 @@ function nameIsDuplicate(productName) {
 
 // 가격이 0원 초과, 10으로 나누어 떨어지는지
 export function checkProductPrice(productPrice) {
-  console.log(productPrice);
   let allowProductPrice = false;
   if (productPrice >= MINIMUN_PRICE && productPrice % DIVIDE_CHARGE == ZERO) {
     allowProductPrice = true;
@@ -51,7 +50,6 @@ export function checkProductPrice(productPrice) {
 }
 
 export function checkProductQuantity(productQuantity) {
-  console.log(productQuantity);
   let allowProductQuantity = false;
   if (productQuantity > 0) {
     allowProductQuantity = true;
@@ -61,7 +59,6 @@ export function checkProductQuantity(productQuantity) {
 }
 
 export function checkCoin(coin) {
-  console.log(coin);
   let allowCoin = false;
   if (coin >= MINIMUM_CHARGE && coin % DIVIDE_CHARGE == ZERO) {
     allowCoin = true;
@@ -71,7 +68,6 @@ export function checkCoin(coin) {
 }
 
 export function checkPurchaseCoin(coin) {
-  console.log(coin);
   let allowCoin = false;
   if (coin >= MINIMUM_CHARGE && coin % DIVIDE_CHARGE == ZERO) {
     allowCoin = true;

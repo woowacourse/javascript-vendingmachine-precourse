@@ -13,8 +13,7 @@ export default function returnCoin(originCoin, coin) {
       returnCoinArr[idx] += 1;
     }
   });
-  console.log(returnCoinArr);
-  console.log(coin);
+
   return {
     arr: returnCoinArr,
     coin: coin,
