@@ -1,3 +1,4 @@
+import { PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_QUANTITY, STANDARD_NUMBER } from '../constants.js';
 import { isEmpty, isInValidInteger, isNotDividedBy10, isSameOrLessZero } from './common.js';
 
 const isContainsBlank = (productNameInput) => {
@@ -9,23 +10,25 @@ const isNumberType = (productNameInput) => {
 };
 
 const isSmallerThan100 = (inputValue) => {
-  return inputValue < 100;
+  return inputValue < STANDARD_NUMBER.MIN_PRICE;
+};
+
+const showErrorMessage = (message) => {
+  alert(message);
+  return true;
 };
 
 const isInValidProductName = (productNameInput) => {
   if (isEmpty(productNameInput)) {
-    alert('상품명을 입력해주세요.  ex) 사이다');
-    return true;
+    return showErrorMessage(PRODUCT_NAME.EMPTY_ERROR_MESSAGE);
   }
 
   if (isContainsBlank(productNameInput)) {
-    alert('공백이 아닌 상품명을 입력해주세요.  ex) 사이다');
-    return true;
+    return showErrorMessage(PRODUCT_NAME.BLANK_ERROR_MESSAGE);
   }
 
   if (isNumberType(productNameInput)) {
-    alert('숫자 타입이 아닌 상품명을 입력해주세요.  ex) 사이다');
-    return true;
+    return showErrorMessage(PRODUCT_NAME.TYPE_ERROR_MESSAGE);
   }
 
   return false;
@@ -33,23 +36,19 @@ const isInValidProductName = (productNameInput) => {
 
 const isInValidProductPrice = (productPriceInput) => {
   if (isEmpty(productPriceInput)) {
-    alert('상품의 가격을 입력해주세요.  ex) 1500');
-    return true;
+    return showErrorMessage(PRODUCT_PRICE.EMPTY_ERROR_MESSAGE);
   }
 
   if (isInValidInteger(productPriceInput)) {
-    alert('상품의 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.  ex)1500');
-    return true;
+    return showErrorMessage(PRODUCT_PRICE.TYPE_ERROR_MESSAGE);
   }
 
   if (isSmallerThan100(productPriceInput)) {
-    alert('상품의 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.  ex)1500');
-    return true;
+    return showErrorMessage(PRODUCT_PRICE.RANGE_ERROR_MESSAGE);
   }
 
   if (isNotDividedBy10(productPriceInput)) {
-    alert('상품의 가격은 100원부터 시작하며, 10원으로 나누어 떨어져야 합니다.  ex)1500');
-    return true;
+    return showErrorMessage(PRODUCT_PRICE.DIVIDED_ERROR_MESSAGE);
   }
 
   return false;
@@ -57,18 +56,15 @@ const isInValidProductPrice = (productPriceInput) => {
 
 const isInValidQuantityInput = (productQuantityInput) => {
   if (isEmpty(productQuantityInput)) {
-    alert('상품의 수량을 입력해주세요.  ex) 20');
-    return true;
+    return showErrorMessage(PRODUCT_QUANTITY.EMPTY_ERROR_MESSAGE);
   }
 
   if (isInValidInteger(productQuantityInput)) {
-    alert('소수 값이 아닌 상품의 수량을 입력해주세요.  ex) 20');
-    return true;
+    return showErrorMessage(PRODUCT_QUANTITY.TYPE_ERROR_MESSAGE);
   }
 
   if (isSameOrLessZero(productQuantityInput)) {
-    alert('0보다 큰 상품의 수량을 입력해주세요.  ex) 20');
-    return true;
+    return showErrorMessage(PRODUCT_QUANTITY.RANGE_ERROR_MESSAGE);
   }
 
   return false;

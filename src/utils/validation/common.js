@@ -1,3 +1,5 @@
+import { STANDARD_NUMBER } from '../constants.js';
+
 export const isEmpty = (inputValue) => {
   return inputValue === '';
 };
@@ -7,9 +9,9 @@ export const isInValidInteger = (inputValue) => {
 };
 
 export const isSameOrLessZero = (inputValue) => {
-  return inputValue <= 0;
+  return inputValue <= STANDARD_NUMBER.ZERO;
 };
 
 export const isNotDividedBy10 = (inputValue) => {
-  return inputValue % 10 !== 0;
+  return inputValue % STANDARD_NUMBER.DIVISOR !== 0;
 };

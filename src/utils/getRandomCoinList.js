@@ -1,5 +1,7 @@
+import { COIN_LIST } from './constants.js';
+
 const getRandomCoin = () => {
-  return MissionUtils.Random.pickNumberInList([500, 100, 50, 10]);
+  return MissionUtils.Random.pickNumberInList(COIN_LIST);
 };
 
 export const getRandomCoinList = (chargeInputValue) => {

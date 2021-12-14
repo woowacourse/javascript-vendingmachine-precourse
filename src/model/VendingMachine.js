@@ -1,9 +1,10 @@
 import store from '../store/index.js';
+import { ID } from '../utils/constants.js';
 
 class VendingMachine {
   constructor() {
     this.tabMenu = {
-      currentTabMenu: 'product-add-menu',
+      currentTabMenu: ID.PRODUCT_ADD_MENU,
       product_add_menu: [],
       vending_machine_manage_menu: {
         chargeAmount: 0,

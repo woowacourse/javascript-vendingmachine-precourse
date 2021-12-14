@@ -1,4 +1,5 @@
-import { TAB_MENUS_TEXT } from '../utils/constants.js';
+import { ID } from '../utils/constants.js';
+import { TAB_MENUS_TEXT } from '../utils/template/common.js';
 import { getProduceAddTemplate } from '../utils/template/productAddTemplate.js';
 import { getProductPurchaseTemplate } from '../utils/template/productPurchaseTemplate.js';
 import { getVendingMachineManageTemplate } from '../utils/template/vendingMachineManageTemplate.js';
@@ -9,7 +10,7 @@ class View {
   }
 
   init() {
-    this.$app = document.getElementById('app');
+    this.$app = document.getElementById(ID.APP);
 
     this.showTabMenuScreen();
     this.initDOM();
@@ -20,7 +21,7 @@ class View {
   }
 
   initDOM() {
-    this.$content = document.getElementById('content');
+    this.$content = document.getElementById(ID.CONTENT);
   }
 
   showProductAddScreen(productAddMenu) {

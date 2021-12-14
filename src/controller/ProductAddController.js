@@ -1,3 +1,4 @@
+import { ID, TAB_MENU } from '../utils/constants.js';
 import { getProductMangeListTemplate } from '../utils/template/productAddTemplate.js';
 import { isValidProductAddData } from '../utils/validation/productAddValidation.js';
 
@@ -6,25 +7,25 @@ class ProductAddController {
     this.vendingMachine = vendingMachine;
     this.view = view;
 
-    if (currentTabMenu === 'product-add-menu') {
+    if (currentTabMenu === ID.PRODUCT_ADD_MENU) {
       this.initScreen();
     }
   }
 
   initScreen() {
     const tabMenu = this.vendingMachine.getLocalStorage();
-    this.view.showProductAddScreen(tabMenu['product_add_menu']);
+    this.view.showProductAddScreen(tabMenu[TAB_MENU.PRODUCT_ADD_MENU]);
 
     this.initDOM();
     this.initEventListener();
   }
 
   initDOM() {
-    this.$product_name_input = document.getElementById('product-name-input');
-    this.$product_price_input = document.getElementById('product-price-input');
-    this.$product_quantity_input = document.getElementById('product-quantity-input');
-    this.$product_status_table = document.getElementById('product-status-table');
-    this.$product_add_form = document.getElementById('product-add-form');
+    this.$product_name_input = document.getElementById(ID.PRODUCT_NAME_INPUT);
+    this.$product_price_input = document.getElementById(ID.PRODUCT_PRICE_INPUT);
+    this.$product_quantity_input = document.getElementById(ID.PRODUCT_QUANTITY_INPUT);
+    this.$product_status_table = document.getElementById(ID.PRODUCT_STATUS_TABLE);
+    this.$product_add_form = document.getElementById(ID.PRODUCT_ADD_FORM);
   }
 
   initEventListener() {
@@ -48,13 +49,18 @@ class ProductAddController {
   }
 
   changeLocalStorageProductAddMenuValue = (tabMenu, name, price, quantity) => {
-    tabMenu['product_add_menu'] = [...tabMenu['product_add_menu'], { name, price, quantity }];
+    tabMenu[TAB_MENU.PRODUCT_ADD_MENU] = [
+      ...tabMenu[TAB_MENU.PRODUCT_ADD_MENU],
+      { name, price, quantity },
+    ];
 
     this.vendingMachine.setLocalStorage(tabMenu);
   };
 
   renderProductAddMenuContent(tabMenu) {
-    const productManageListTemplate = getProductMangeListTemplate(tabMenu['product_add_menu']);
+    const productManageListTemplate = getProductMangeListTemplate(
+      tabMenu[TAB_MENU.PRODUCT_ADD_MENU]
+    );
     this.$product_status_table.innerHTML = productManageListTemplate;
   }
 

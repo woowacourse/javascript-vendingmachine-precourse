@@ -1,4 +1,5 @@
 import VendingMachine from '../model/VendingMachine.js';
+import { ID } from '../utils/constants.js';
 import View from '../view/View.js';
 import ProductAddController from './ProductAddController.js';
 import ProductPurchaseController from './ProductPurchaseController.js';
@@ -37,22 +38,22 @@ class VendingMachineController {
   }
 
   initDOM() {
-    this.$product_purchase_menu = document.getElementById('product-purchase-menu');
-    this.$vending_machine_manage_menu = document.getElementById('vending-machine-manage-menu');
-    this.$product_add_menu = document.getElementById('product-add-menu');
+    this.$product_purchase_menu = document.getElementById(ID.PRODUCT_PURCHASE_MENU);
+    this.$vending_machine_manage_menu = document.getElementById(ID.VENDING_MACHINE_MANAGE_MENU);
+    this.$product_add_menu = document.getElementById(ID.PRODUCT_ADD_MENU);
   }
 
   triggerTabMenuClickEvent() {
     this.$product_purchase_menu.addEventListener('click', () => {
-      this.productPurchaseController.showScreen('product-purchase-menu');
+      this.productPurchaseController.showScreen(ID.PRODUCT_PURCHASE_MENU);
     });
 
     this.$vending_machine_manage_menu.addEventListener('click', () => {
-      this.vendingMachineManageController.showScreen('vending-machine-manage-menu');
+      this.vendingMachineManageController.showScreen(ID.VENDING_MACHINE_MANAGE_MENU);
     });
 
     this.$product_add_menu.addEventListener('click', () => {
-      this.productAddController.showScreen('product-add-menu');
+      this.productAddController.showScreen(ID.PRODUCT_ADD_MENU);
     });
   }
 }
