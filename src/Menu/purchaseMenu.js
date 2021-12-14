@@ -28,7 +28,7 @@ const chargeMoney = () => {
   const chargeInput = document.getElementById('charge-input').value;
   const money = getMoneyFromLocalStorage();
   if (isChargeInputValid(chargeInput)) {
-    document.getElementById('charge-amount').innerText = Number(money) + Number(chargeInput);
+    updateMoney(Number(money) + Number(chargeInput));
     saveMoneyToLocalStorage(Number(money) + Number(chargeInput));
   }
 };
@@ -39,6 +39,10 @@ const isChargeInputValid = (chargeInput) => {
     return false;
   }
   return true;
+};
+
+const updateMoney = (money) => {
+  document.getElementById('charge-amount').innerText = money;
 };
 
 const initProductTable = () => {
@@ -130,6 +134,7 @@ const returnMoney = () => {
   }
   saveCoinsToLocalStorage(answer);
   saveMoneyToLocalStorage(money);
+  updateMoney(money);
 };
 
 const findNumberOfCoin = (money, coinPrice) => {
