@@ -2,25 +2,22 @@ import {
   VENDING_MACHINE,
   PRODUCT,
   COIN_LIST,
+  USER,
 } from '../../common/constants/constants.js';
 import { $ } from '../../common/dom/templates.js';
 import { returnChangesinCoins } from '../../common/utils.js';
 
+export const getCurrentSum = () => {
+  const currentChargedSum = JSON.parse(localStorage.getItem(USER.REMAIN_MONEY));
+
+  return currentChargedSum;
+};
+
 export const printInsertedMoney = () => {
-  const moneychargedAmountList = JSON.parse(
-    localStorage.getItem(VENDING_MACHINE.AMOUNT)
-  );
+  const currentSum = getCurrentSum();
   const $currentMoney = $('#charge-amount');
-  let amountArray = [];
-  let sum = 0;
 
-  for (let i = 0; i < moneychargedAmountList.length; i++) {
-    amountArray.push(moneychargedAmountList[i].value);
-  }
-  sum = amountArray.reduce((a, b) => a + b);
-  $currentMoney.innerHTML = `${VENDING_MACHINE.INSERTED} ${sum} ${VENDING_MACHINE.WON}`;
-
-  return sum;
+  $currentMoney.innerHTML = `${VENDING_MACHINE.INSERTED} ${currentSum} ${VENDING_MACHINE.WON}`;
 };
 
 // print purchasable items to screen
@@ -56,68 +53,64 @@ export const manageDataAttributes = () => {
   }
 };
 
-// // 구매하기 버튼 클릭시 구매한 상품 (price, quantitiy) 각 -1 값 출력
-// export const manageProductListAfterPuchased = () => {
-//   const productListArray = JSON.parse(localStorage.getItem(PRODUCT.LIST));
-//   const $productQuantity = $('.product-purchase-quantity');
-//   const $purchaseBtn = $('.purchase-button');
+const printDifference = () => {
+  const currentSum = getCurrentSum();
+  const $chargedAmount = $('#charge-amount');
+  $chargedAmount.innerHTML = `${currentSum}`;
+};
 
-//   $purchaseBtn.addEventListener('click', (event) => {
-//     const sum = printInsertedMoney();
-//     for (const item of productListArray) {
-//       if (event.target.getAttribute('data-purchase-button') === item.name) {
-//         $productQuantity.innerHTML--;
-//         $productQuantity.setAttribute(
-//           'data-product-quantity',
-//           parseInt($productQuantity.innerHTML, 10)
-//         );
-//       }
-//     }
-//     manageDifference(sum);
-//   });
-// };
+export const updateSum = (newSum) => {
+  localStorage.setItem(USER.REMAIN_MONEY, JSON.stringify(newSum));
+  printDifference();
+};
 
-// const getCurrentQuantity = (targetProduct) => {
-//   console.log(targetProduct);
+const handlePurchaseButton = (target) => {
+  const targetQuantity = getCurrentQuantity(target);
+  const currentSum = getCurrentSum();
 
-//   const parent = targetProduct.parentNode.parentNode;
+  targetQuantity.innerHTML--;
+  targetQuantity.setAttribute(
+    'data-product-quantity',
+    parseInt(targetQuantity.innerHTML, 10)
+  );
 
-//   const targetProductQuantity = parent
-//     .querySelector('.product-purchase-quantity')
-//     .getAttribute('data-product-quantity');
+  const productListArray = JSON.parse(localStorage.getItem(PRODUCT.LIST));
 
-//   console.log(targetProductQuantity);
-//   return targetProductQuantity;
-// };
-// // 차이 가격 각 행마다 나올수 있게
-// export const manageDifference = (sum) => {
-//   const productListArray = JSON.parse(localStorage.getItem(PRODUCT.LIST));
-//   const $chargedAmount = $('#charge-amount');
-//   const $tabelBody = $('#purchase-table-body');
-//   // console.log($tabelBody);
-//   $tabelBody.addEventListener('click', (event) => {
-//     if (event.target.className !== 'purchase-button') return;
+  const targetProduct = productListArray.find(
+    (product) => product.name === target.getAttribute('data-purchase-button')
+  );
 
-//     for (const item of productListArray) {
-//       if (event.target.getAttribute('data-purchase-button') === item.name) {
-//         // 차이금액 (보유금액 - (기존 수량 - 현재 수량 ) * 상품 가격)
-//         sum -=
-//           (parseInt(item.quantity, 10) - getCurrentQuantity(event.target)) *
-//           parseInt(item.price, 10);
+  let newSum = currentSum - targetProduct.price;
+  updateSum(newSum);
+};
 
-//         $chargedAmount.innerHTML = `${VENDING_MACHINE.INSERTED} ${sum} ${VENDING_MACHINE.WON}`;
-//       }
-//     }
+export const manageProductListAfterPuchased = () => {
+  const $purchaseBtns = document.querySelectorAll('.purchase-button');
 
-//     return sum;
-//   });
-// };
+  console.log($purchaseBtns);
+
+  $purchaseBtns.forEach((button) =>
+    button.addEventListener('click', (event) => {
+      handlePurchaseButton(event.target);
+    })
+  );
+};
+
+const getCurrentQuantity = (targetProduct) => {
+  const parent = targetProduct.parentNode.parentNode;
+  const targetProductQuantity = parent.querySelector(
+    '.product-purchase-quantity'
+  );
+
+  return targetProductQuantity;
+};
 
 //Returning coins
 
 export const printReturnedCoins = () => {
   const coinList = JSON.parse(localStorage.getItem('coinList'));
   const randomCoinAmount = returnChangesinCoins(32490, coinList);
+  // 코인값 가져오기
 
   const $vendingMachinereturn500Coin = $('#coin-500-quantity');
   const $vendingMachinereturn100Coin = $('#coin-100-quantity');

@@ -13,7 +13,7 @@ export const getRandomCoinsAmongList = (money) => {
     const coin = getRandomCoins();
     if (money - coin < NUMBER.ZERO) continue;
 
-    money -= coin; // 빼준 coin number ++
+    money -= coin;
     coinList[coin]++;
   }
 

@@ -5,7 +5,9 @@ import {
 import { $ } from '../../common/dom/templates.js';
 
 export const printChargedAmountToScreen = () => {
-  const chargedAmountList = JSON.parse(localStorage.getItem('chargedAmount'));
+  const chargedAmountList = JSON.parse(
+    localStorage.getItem(VENDING_MACHINE.CHARGED)
+  );
   const $currentMachineMoney = $('#vending-machine-charge-amount');
   let amountArray = [];
   let sum = 0;
@@ -26,7 +28,7 @@ export const printAmountOfCoinToScreen = () => {
   const $vendingMachine50Coin = $('#vending-machine-coin-50-quantity');
   const $vendingMachine10Coin = $('#vending-machine-coin-10-quantity');
   const coinList = JSON.parse(localStorage.getItem('coinList'));
-  console.log(coinList);
+
   $vendingMachine500Coin.innerHTML = `${coinList[COIN_LIST[0]]}개`;
   $vendingMachine100Coin.innerHTML = `${coinList[COIN_LIST[1]]}개`;
   $vendingMachine50Coin.innerHTML = `${coinList[COIN_LIST[2]]}개`;

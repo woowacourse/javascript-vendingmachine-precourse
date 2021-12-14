@@ -37,7 +37,7 @@ export const createProductListTable = () => {
     break;
   }
 };
-
+// 초기 탭 디스플레이 세팅
 const switchTab = () => {
   const $header = $('.header');
   const $productManager = $('.product-add-menu');

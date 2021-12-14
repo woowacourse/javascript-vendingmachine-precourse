@@ -1,7 +1,7 @@
 import { DISPLAY } from '../common/constants/constants.js';
 import { $ } from '../common/dom/templates.js';
 import { saveItemsToStorage } from '../local-storage.js/product-detail.js';
-import { saveAmountOfMoneyToStorage } from '../local-storage.js/product-purchase.js';
+import { saveUserChargedMoneyToStorage } from '../local-storage.js/product-purchase.js';
 import {
   saveCharegedAmountToStorage,
   saveRandomAmountOfCoins,
@@ -20,6 +20,7 @@ import {
 } from './product-purchase/input-validator.js';
 import {
   manageDataAttributes,
+  manageProductListAfterPuchased,
   printInsertedMoney,
   printProductItemsToPurchaseToScreen,
   printReturnedCoins,
@@ -33,113 +34,114 @@ import {
   printChargedAmountToScreen,
 } from './vending-machine-charge/print-to-screen.js';
 
-// Display Related
-const productManageButtonEvent = () => {
-  const $productAddTabButton = $('#product-add-menu');
+const handleProductManageTab = () => {
+  const $app = $('#app');
+  const appNodes = $app.childNodes;
 
-  $productAddTabButton.addEventListener('click', () => {
-    const $app = $('#app');
-    const appNodes = $app.childNodes;
+  appNodes[1].style.display = DISPLAY.BLOCK;
+  appNodes[2].style.display = DISPLAY.NONE;
+  appNodes[3].style.display = DISPLAY.NONE;
+};
 
-    appNodes[1].style.display = DISPLAY.BLOCK;
-    appNodes[2].style.display = DISPLAY.NONE;
-    appNodes[3].style.display = DISPLAY.NONE;
+const handleProductAddButton = () => {
+  // 유효성 검사 통과 시,
+  // 로컬 스토리지에 값 저장
+  // 현재 탭 view와 다른 탭 view에 적용
+  if (
+    bindProductValidator(
+      getProductNameValue(),
+      getProductPriceValue(),
+      getProductQuantityValue()
+    )
+  ) {
+    saveItemsToStorage(
+      getProductNameValue(),
+      getProductPriceValue(),
+      getProductQuantityValue()
+    );
+    createProductListTable();
+    printItemsToScreen();
+    printProductItemsToPurchaseToScreen();
+    manageDataAttributes();
+  }
+};
+
+const initProductManageTab = () => {
+  const $productManageTab = $('#product-add-menu');
+  const $productAddButton = $('#product-add-button');
+
+  $productManageTab.addEventListener('click', handleProductManageTab);
+  $productAddButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    handleProductAddButton();
   });
 };
-const VendingManageButtonEvent = () => {
+
+const handleMoneyChargeTab = () => {
+  const $app = $('#app');
+  const appNodes = $app.childNodes;
+
+  appNodes[1].style.display = DISPLAY.NONE;
+  appNodes[2].style.display = DISPLAY.BLOCK;
+  appNodes[3].style.display = DISPLAY.NONE;
+};
+
+const handleMoneyChargeButton = () => {
+  if (machineChargeInputValidator(machineChargeInputValue())) {
+    // 스펠링 틀림
+    saveCharegedAmountToStorage(machineChargeInputValue());
+    printChargedAmountToScreen();
+    saveRandomAmountOfCoins();
+    printAmountOfCoinToScreen();
+
+    manageDataAttributes();
+    manageProductListAfterPuchased();
+    // calculateDifference();
+  }
+};
+
+const initMoneyChargeTab = () => {
   const $vendingMachineTabButton = $('#vending-machine-manage-menu');
+  const $machineChargeButton = $('#vending-machine-charge-button');
 
-  $vendingMachineTabButton.addEventListener('click', () => {
-    const $app = $('#app');
-    const appNodes = $app.childNodes;
-
-    appNodes[1].style.display = DISPLAY.NONE;
-    appNodes[2].style.display = DISPLAY.BLOCK;
-    appNodes[3].style.display = DISPLAY.NONE;
+  $vendingMachineTabButton.addEventListener('click', handleMoneyChargeTab);
+  $machineChargeButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    handleMoneyChargeButton();
   });
 };
-const productPurchaseButtonEvent = () => {
+
+const handlePurchaseTab = () => {
+  const $app = $('#app');
+  const appNodes = $app.childNodes;
+
+  appNodes[1].style.display = DISPLAY.NONE;
+  appNodes[2].style.display = DISPLAY.NONE;
+  appNodes[3].style.display = DISPLAY.BLOCK;
+};
+
+const handleUserChargeButton = () => {
+  if (moneyChargeInputValidator(moneyChargeInputValue())) {
+    saveUserChargedMoneyToStorage(moneyChargeInputValue());
+    printInsertedMoney();
+  }
+};
+
+const initPurchaseTab = () => {
   const $productPurchaseTabButton = $('#product-purchase-menu');
+  const $moneyChargeButton = $('#charge-button');
+  const $coinReturnButton = $('#coin-return-button');
 
-  $productPurchaseTabButton.addEventListener('click', () => {
-    const $app = $('#app');
-    const appNodes = $app.childNodes;
-
-    appNodes[1].style.display = DISPLAY.NONE;
-    appNodes[2].style.display = DISPLAY.NONE;
-    appNodes[3].style.display = DISPLAY.BLOCK;
+  $productPurchaseTabButton.addEventListener('click', handlePurchaseTab);
+  $moneyChargeButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    handleUserChargeButton();
   });
+  $coinReturnButton.addEventListener('click', printReturnedCoins);
 };
 
 export const bindDisplayEvent = () => {
-  productManageButtonEvent();
-  VendingManageButtonEvent();
-  productPurchaseButtonEvent();
-};
-
-// Product Manage Tab Related
-
-export const productAddButtonEvent = () => {
-  const $productAddButton = $('#product-add-button');
-
-  $productAddButton.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    if (
-      bindProductValidator(
-        getProductNameValue(),
-        getProductPriceValue(),
-        getProductQuantityValue()
-      )
-    ) {
-      saveItemsToStorage(
-        getProductNameValue(),
-        getProductPriceValue(),
-        getProductQuantityValue()
-      );
-      createProductListTable();
-      printItemsToScreen();
-      printProductItemsToPurchaseToScreen();
-      manageDataAttributes();
-    }
-  });
-};
-
-// Vending Machine Charge Tab Related
-
-export const VendingMachineChargeButtonEvent = () => {
-  const $machineChargeButton = $('#vending-machine-charge-button');
-
-  $machineChargeButton.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    if (machineChargeInputValidator(machineChargeInputValue())) {
-      saveCharegedAmountToStorage(machineChargeInputValue());
-      printChargedAmountToScreen();
-      saveRandomAmountOfCoins();
-      printAmountOfCoinToScreen();
-    }
-  });
-};
-
-// Product Purchase Tab Related
-export const moneyChargeButtonEvent = () => {
-  const $moneyChargeButton = $('#charge-button');
-
-  $moneyChargeButton.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    if (moneyChargeInputValidator(moneyChargeInputValue())) {
-      saveAmountOfMoneyToStorage(moneyChargeInputValue());
-      printInsertedMoney();
-    }
-  });
-
-  // Coin Return
-
-  const $coinReturnButton = $('#coin-return-button');
-
-  $coinReturnButton.addEventListener('click', () => {
-    printReturnedCoins();
-  });
+  initProductManageTab();
+  initMoneyChargeTab();
+  initPurchaseTab();
 };

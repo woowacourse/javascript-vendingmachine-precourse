@@ -1,17 +1,16 @@
-import { PRODUCT } from '../common/constants/constants.js';
+import { USER } from '../common/constants/constants.js';
+import {
+  getCurrentSum,
+  updateSum,
+} from '../controller/product-purchase/print-to-screen.js';
 
-export const saveAmountOfMoneyToStorage = (moneyChargeInputValue) => {
-  let moneychargedAmount = {}; // 추가할 값
+export const saveUserChargedMoneyToStorage = (moneyChargeInputValue) => {
+  let prevChargedAmount = getCurrentSum();
 
-  moneychargedAmount.value = moneyChargeInputValue;
-
-  // localStorage 저장된 값을 분해해서
-  let prevChargedAmount = JSON.parse(localStorage.getItem(PRODUCT.MONEY));
   if (prevChargedAmount === null) {
-    prevChargedAmount = [];
+    prevChargedAmount = 0;
   }
 
-  let finalChargedAmountList = prevChargedAmount.concat(moneychargedAmount);
-
-  localStorage.setItem(PRODUCT.MONEY, JSON.stringify(finalChargedAmountList));
+  const newChargedAmount = prevChargedAmount + moneyChargeInputValue;
+  updateSum(newChargedAmount);
 };
