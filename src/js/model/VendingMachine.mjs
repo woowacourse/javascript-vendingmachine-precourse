@@ -1,6 +1,6 @@
 const MONEY = 0;
 export const COINS = [500, 100, 50, 10];
-const AMOUNT_OF_COINS = {
+export const AMOUNT_OF_COINS = {
   '500_WON': 0,
   '100_WON': 0,
   '50_WON': 0,

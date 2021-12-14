@@ -29,12 +29,12 @@ export function productAddPriceValidate(price) {
 }
 
 // 잔돈충전 페이지 ---------------------------------------
-function vendingMachineCheckMoney(money) {
+function high10CheckMoney(money) {
   return money > 0 && money % 10 === 0;
 }
 
-export function vendingMachineMoneyValidate(money) {
-  if (!vendingMachineCheckMoney(money)) {
+export function high10MoneyValidate(money) {
+  if (!high10CheckMoney(money)) {
     warningAlert('10원 이상 10원 단위로 입력해주세요.');
     return false;
   }

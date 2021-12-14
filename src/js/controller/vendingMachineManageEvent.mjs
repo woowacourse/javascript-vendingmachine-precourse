@@ -4,7 +4,7 @@ import {
   renderAmountCoins
 } from '../view/index.mjs';
 
-import { vendingMachineMoneyValidate } from './util/validate.mjs';
+import { high10MoneyValidate } from './util/validate.mjs';
 
 import { vendingMachine } from '../model/VendingMachine.mjs';
 
@@ -23,7 +23,7 @@ function vendingMachineCoinQuantity() {
 function addCoinButton() {
   let chargeMoney = document.querySelector('#vending-machine-charge-input').value;
 
-  if (!vendingMachineMoneyValidate(chargeMoney)) return;
+  if (!high10MoneyValidate(chargeMoney)) return;
   vendingMachine.sumMoney(chargeMoney);
 
   renderVendingMachineChargeAmount();
