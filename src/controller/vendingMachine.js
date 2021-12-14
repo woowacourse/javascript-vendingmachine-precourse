@@ -19,7 +19,7 @@ export default class VendingMachine {
     this.view = new VendingMachineView(data[0]);
     this.tabMenu = new TabMenuController();
     this.createModels(data);
-    this.renderInitPage();
+    this.initPage();
     this.setEvent();
   }
 
@@ -28,7 +28,7 @@ export default class VendingMachine {
     this.coin = new CoinStatus(data[1], data[2]);
   }
 
-  renderInitPage() {
+  initPage() {
     this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
     this.view.renderProducts(PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE, this.tabMenu.purchaseMenu.purchaseItemTemplate);
     this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coin.getAmount());
@@ -45,11 +45,11 @@ export default class VendingMachine {
   handleFormEvent(e) {
     e.preventDefault();
     if (e.target.id === PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_ADD_BUTTON) {
-      this.handleAddMenu();
+      this.addMenu();
     } else if (e.target.id === COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_BUTTON) {
-      this.handleChargeCoin();
+      this.chargeCoin();
     } else if (e.target.id === PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_BUTTON) {
-      this.handleClientChargeMoney();
+      this.clientChargeMoney();
     }
 
     setLocalStorage(this.products.products, this.coin.money, this.coin.clientMoney);
@@ -78,14 +78,13 @@ export default class VendingMachine {
       return;
     }
 
-    const balance = this.changeModel.returnChange(this.coin.clientMoney, this.coin.getAmount());
-    this.coin.clientMoney = balance;
+    this.coin.clientMoney = this.changeModel.returnChange(this.coin.clientMoney, this.coin.getAmount());
 
-    this.renderAfterReturnStatus();
+    this.setAfterReturnPage();
     setLocalStorage(this.products.products, this.coin.money, this.coin.clientMoney);
   }
 
-  renderAfterReturnStatus() {
+  setAfterReturnPage() {
     this.view.renderCoinStatus(PURCHASE_MENU.RETURN_TABLE_SELECTOR, this.changeModel.change);
     this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coin.money);
     this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coin.getAmount());
@@ -106,7 +105,7 @@ export default class VendingMachine {
     this.products.add(name, price, quantity);
   }
 
-  submitChargeInput(inputSelector, model) {
+  submitChargeInput(inputSelector, coin) {
     const money = $(`#${inputSelector}`).value;
     const errorMessage = getNotValidMoneyErrorMessage(money);
 
@@ -115,22 +114,22 @@ export default class VendingMachine {
       return;
     }
 
-    model.putMoney(money);
+    coin.putMoney(money);
   }
 
-  handleAddMenu() {
+  addMenu() {
     this.submitProduct();
     this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
     this.view.renderProducts(PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE, this.tabMenu.purchaseMenu.purchaseItemTemplate);
   }
 
-  handleChargeCoin() {
+  chargeCoin() {
     this.submitChargeInput(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_INPUT, this.coin);
     this.view.renderChargeAmount(COIN_MENU.INPUT_SELECTOR.COIN_CHARGE_AMOUNT, this.coin.getAmount());
     this.view.renderCoinStatus(COIN_MENU.TABLE_SELECTOR, this.coin.money);
   }
 
-  handleClientChargeMoney() {
+  clientChargeMoney() {
     this.coin.clientMoney += Number($(`#${PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_INPUT}`).value);
     this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.coin.clientMoney);
   }
