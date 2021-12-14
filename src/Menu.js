@@ -1,11 +1,17 @@
 import ProductAddMenuView from "./views/ProductAddMenuView.js";
+import VendingMachineManageMenu from "./views/VendingMachineManageMenuView.js";
 
 export default class Menu {
   constructor() {
-    this.view = new ProductAddMenuView();
+    this.productAddMenu = new ProductAddMenuView();
+    this.vendingMachineManageMenu = new VendingMachineManageMenu();
   }
 
-  initialize() {
-    this.view.render();
+  productAddMenuInitialize() {
+    this.productAddMenu.render();
+  }
+
+  vendingMachineManageMenuInitialize() {
+    this.vendingMachineManageMenu.render();
   }
 }

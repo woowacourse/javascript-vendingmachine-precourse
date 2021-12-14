@@ -8,10 +8,10 @@ export default class VendingMachine {
 
   setMenuClickEvent() {
     this.view.productAddMenuBtn.addEventListener("click", () => {
-      this.menu.initialize();
+      this.menu.productAddMenuInitialize();
     });
     this.view.vendingMachineManageMenuBtn.addEventListener("click", () => {
-      console.log("잔돈충전");
+      this.menu.vendingMachineManageMenuInitialize();
     });
     this.view.productPurchaseMenuBtn.addEventListener("click", () => {
       console.log("상품구매");
