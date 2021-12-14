@@ -61,7 +61,12 @@ export default class PurchaseController {
     );
     if (productQuantityEl.innerHTML === '0') {
       alert(PURCHASE_ERR.noQuantity);
-    } else if (chargeMoneyStorage >= productPriceEl.innerHTML) {
+    } else if (chargeMoneyStorage < productPriceEl.innerHTML) {
+      alert(PURCHASE_ERR.shortMoney);
+    } else if (
+      chargeMoneyStorage >= productPriceEl.innerHTML &&
+      productQuantityEl.innerHTML !== '0'
+    ) {
       purchaseObject.setChargeMoneyStorage(
         chargeMoneyStorage - productPriceEl.innerHTML,
       );
@@ -69,8 +74,6 @@ export default class PurchaseController {
       productQuantityEl.dataset.productQuantity = productQuantityEl.innerHTML;
       PurchaseView.updateChargeInput(purchaseObject);
       this.setProductStorage(productEl);
-    } else {
-      alert(PURCHASE_ERR.shortMoney);
     }
   }
 
