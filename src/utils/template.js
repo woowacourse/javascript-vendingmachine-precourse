@@ -1,6 +1,4 @@
-import NUMBER from '../constants/number.js';
-import { STRING } from '../constants/constants.js';
-import { INDEX } from '../constants/constants.js';
+import { STRING, NUMBER, INDEX } from '../constants/constants.js';
 import { tableStyle, tableCellStyle } from './style.js';
 
 export const headerTemplate = () => {

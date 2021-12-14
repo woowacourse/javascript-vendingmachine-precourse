@@ -1,4 +1,4 @@
-import NUMBER from '../../constants/number.js';
+import { NUMBER } from '../../constants/constants.js';
 import { $ } from '../../utils/DOMhelper.js';
 import { manageTabTemplate } from '../../utils/template.js';
 

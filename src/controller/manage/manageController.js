@@ -1,8 +1,7 @@
 import { showError } from '../../utils/error.js';
 import ManageView from '../../view/manage/manageView.js';
 import { isValidChargeAmount } from '../../utils/validator.js';
-import { COIN_UNIT } from '../../constants/constants.js';
-import NUMBER from '../../constants/number.js';
+import { COIN_UNIT, NUMBER } from '../../constants/constants.js';
 
 export default class ManageController {
   constructor(appModel) {

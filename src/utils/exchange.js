@@ -1,5 +1,4 @@
-import NUMBER from '../constants/number.js';
-import { COIN_UNIT } from '../constants/constants.js';
+import { COIN_UNIT, NUMBER } from '../constants/constants.js';
 
 const getExchangeResult = (amountForCoinExchange, appModel) => {
   const returnedCoins = COIN_UNIT.map((unit) => {

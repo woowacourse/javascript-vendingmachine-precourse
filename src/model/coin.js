@@ -1,4 +1,4 @@
-import NUMBER from '../constants/number.js';
+import { NUMBER } from '../constants/constants.js';
 
 export default class Coin {
   constructor(unit, amount) {

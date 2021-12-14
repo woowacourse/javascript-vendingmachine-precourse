@@ -1,6 +1,5 @@
 import { setErrorMessage } from './error.js';
-import { ERROR_MESSAGE } from '../constants/message.js';
-import NUMBER from '../constants/number.js';
+import { NUMBER, ERROR_MESSAGE } from '../constants/constants.js';
 
 const isEmpty = (value) => {
   return value.trim() === '';

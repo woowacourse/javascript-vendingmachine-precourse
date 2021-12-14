@@ -1,5 +1,4 @@
-import { STRING, COIN_UNIT } from '../constants/constants.js';
-import NUMBER from '../constants/number.js';
+import { STRING, COIN_UNIT, NUMBER } from '../constants/constants.js';
 import Coin from './coin.js';
 
 export const defaultProducts = () => {
