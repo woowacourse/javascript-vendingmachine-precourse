@@ -1,5 +1,7 @@
 import { getLocalStorageItem, setLocalStorageItem } from "./localStorageController.js"
-import { PRODUCT_KEY } from "../constants/constants.js"
+import { PRODUCT_KEY } from "../constants/constants.js";
+import { showProductList } from "../views/views.js";
+import { updateState } from "../models/state.js";
 
 export function clickProductAddButton(e) {
   e.preventDefault();
@@ -16,4 +18,7 @@ export function clickProductAddButton(e) {
 
   if(productList === null) setLocalStorageItem(PRODUCT_KEY,[newProduct]);
   else setLocalStorageItem(PRODUCT_KEY,[...productList, newProduct]);
+  
+  updateState();
+  showProductList();
 }

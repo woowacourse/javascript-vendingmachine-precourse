@@ -1,3 +1,5 @@
+import { state } from "../models/state.js";
+
 const $app = document.getElementById("app");
 
 export function initialViews() {
@@ -20,9 +22,12 @@ export function productManagementView() {
       <input id="product-price-input" type="number" placeholder="가격" />
       <input id="product-quantity-input" type="number" placeholder="수량" />
       <button id="product-add-button">추가하기</button>
-      
       <h3>상품 현황</h3>
-      <table id="product-table"></table>
+      <table id="product-table">
+      <th>상품명</th>
+      <th>가격</th>
+      <th>수량</th>
+      </table>
     </div>
   `;
 }
@@ -59,4 +64,23 @@ export function productPurchaseView() {
       <table id="return-coin-table"></table>
     </div>
   `;
+}
+
+export function showProductList() {
+  const $productTable = document.getElementById("product-table");
+  $productTable.innerHTML = `
+    <th>상품명</th>
+    <th>가격</th>
+    <th>수량</th>`
+  ;
+  
+  state.productList.map((item, index) => {
+    $productTable.innerHTML += `
+    <tr class="product-manage-name">
+      <td class="product-manage-name">${item.name}</td>
+      <td class="product-manage-price">${item.price}</td>
+      <td class="product-manage-quantity">${item.quantity}</td>
+    </tr>
+  `;
+  })
 }
