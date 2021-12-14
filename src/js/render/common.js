@@ -35,43 +35,44 @@ export const renderMain = () => {
 };
 
 export const renderFormTypes = formConstants => {
-  // prettier-ignore
-  $('main').innerHTML += 
-    `<h2>${formConstants.TITLE}</h2><form id=${formConstants.FORM_ID}></form>`;
+  $(
+    'main',
+  ).innerHTML += `<h2>${formConstants.TITLE}</h2><form id=${formConstants.FORM_ID}></form>`;
 
   for (let i = 0; i < formConstants.INPUT_IDS.length; i++) {
-    // prettier-ignore
-    $(`#${formConstants.FORM_ID}`).innerHTML += 
-      `<input id=${formConstants.INPUT_IDS[i]} placeholder="${formConstants.INPUT_PLACEHOLDERS[i]}"> </input>`;
+    $(
+      `#${formConstants.FORM_ID}`,
+    ).innerHTML += `<input id=${formConstants.INPUT_IDS[i]} placeholder="${formConstants.INPUT_PLACEHOLDERS[i]}"> </input>`;
   }
-  // prettier-ignore
-  $(`#${formConstants.FORM_ID}`).innerHTML += 
-    `<button id=${formConstants.BUTTON_ID}>${formConstants.BUTTON_VALUE}</button>`;
+  $(
+    `#${formConstants.FORM_ID}`,
+  ).innerHTML += `<button id=${formConstants.BUTTON_ID}>${formConstants.BUTTON_VALUE}</button>`;
   $('main').innerHTML += `<span id='amountSpan'></span>`;
 };
 
 export const renderTableTypes = tableConstants => {
-  // prettier-ignore
-  $('main').innerHTML += 
-    `<h2>${tableConstants.TITLE}</h2>`
+  $('main').innerHTML += `<h2>${tableConstants.TITLE}</h2>`;
+
   if (tableConstants.TITLE === '잔돈') {
     $('main').innerHTML += `<button id='coin-return-button'>반환하기</button>`;
   }
-  // prettier-ignore
-  $('main').innerHTML +=
-    `<table><thead id='${tableConstants.THEAD_ID}'><tr></tr></thead><tbody id='${tableConstants.TBODY_ID}'></tbody></table>`;
-  // prettier-ignore
-  for (let i=0; i<tableConstants.TH_IDS.length; i++){
-      $(`#${tableConstants.THEAD_ID}`).firstChild.innerHTML +=
-      `<th class='table-item' id=${tableConstants.TH_IDS[i]}>${tableConstants.TH_VALUE[i]}</th>`
-    }
+  $(
+    'main',
+  ).innerHTML += `<table><thead id='${tableConstants.THEAD_ID}'><tr></tr></thead><tbody id='${tableConstants.TBODY_ID}'></tbody></table>`;
+
+  for (let i = 0; i < tableConstants.TH_IDS.length; i++) {
+    $(
+      `#${tableConstants.THEAD_ID}`,
+    ).firstChild.innerHTML += `<th class='table-item' id=${tableConstants.TH_IDS[i]}>${tableConstants.TH_VALUE[i]}</th>`;
+  }
 };
 
 export const renderAmountSpan = (spanConstants, dataToImport, e) => {
   const spanValue = getSpanValue(dataToImport, e);
-  // prettier-ignore
-  $('#amountSpan').innerHTML = 
-  `<p>${spanConstants.P_VALUE}: <span id="${spanConstants.SPAN_ID}">${spanValue}</span>원</p>`;
+
+  $(
+    '#amountSpan',
+  ).innerHTML = `<p>${spanConstants.P_VALUE}: <span id="${spanConstants.SPAN_ID}">${spanValue}</span>원</p>`;
 };
 
 export const renderCoinsItems = itemConstants => {

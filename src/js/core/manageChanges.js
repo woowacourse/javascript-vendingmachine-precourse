@@ -1,7 +1,12 @@
-// prettier-ignore
-import { getRandomCoinsList, reflectCoinsToLocalStorage } from './manageCoins.js';
-// prettier-ignore
-import {stringConstants, chargeChangesSpanConstants, changesCoinItemsConstants } from '../constant/string.js';
+import {
+  getRandomCoinsList,
+  reflectCoinsToLocalStorage,
+} from './manageCoins.js';
+import {
+  stringConstants,
+  chargeChangesSpanConstants,
+  changesCoinItemsConstants,
+} from '../constant/string.js';
 import { $ } from '../util/dom.js';
 import { check } from '../util/checkValue.js';
 import { store } from '../store/store.js';

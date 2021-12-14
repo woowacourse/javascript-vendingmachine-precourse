@@ -1,5 +1,7 @@
 // prettier-ignore
 import { DECIMAL, NUM, MIN_MENU_PRICE, MIN_MENU_QUANTITY } from '../constant/constant.js';
+import { localStorageConstants } from '../constant/localstorage.js';
+import { store } from '../store/store.js';
 
 export const check = {
   menuCorrect(menuTemplate) {
@@ -9,11 +11,13 @@ export const check = {
       check.menuQuantity(menuTemplate.quantity)
     );
   },
+
   menuName(menuName) {
     return (
       check.inputValueBlank(menuName) || check.menuNameDuplication(menuName)
     );
   },
+
   menuPrice(menuPrice) {
     return (
       check.inputValueBlank(menuPrice) ||
@@ -22,6 +26,7 @@ export const check = {
       check.inputValueDivideTen(menuPrice)
     );
   },
+
   menuQuantity(menuQuantity) {
     return (
       check.inputValueBlank(menuQuantity) ||
@@ -29,17 +34,20 @@ export const check = {
       check.inputValueRange(menuQuantity, MIN_MENU_QUANTITY)
     );
   },
+
   menuNameDuplication(inputValue) {
-    let items = JSON.parse(localStorage.getItem('menu'));
-    for (let item in items) {
-      if (items[item].name === inputValue) {
+    let menus = store.getItem(localStorageConstants.MENU);
+    for (let menu in menus) {
+      if (menus[menu].name === inputValue) {
         return true;
       }
     }
   },
+
   inputValueBlank(inputValue) {
     return inputValue === '';
   },
+
   inputValueNotNum(inputValue) {
     const inputValueToArray = inputValue.split('');
     let checkNum = inputValueToArray.filter(x =>
@@ -47,9 +55,11 @@ export const check = {
     );
     return !(checkNum.length === inputValueToArray.length);
   },
+
   inputValueRange(inputValue, minValue) {
     return parseInt(inputValue, 10) < minValue;
   },
+
   inputValueDivideTen(inputValue) {
     return parseInt(inputValue, 10) % 10 !== 0;
   },
