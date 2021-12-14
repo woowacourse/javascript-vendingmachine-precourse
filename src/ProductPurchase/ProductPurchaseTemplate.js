@@ -104,7 +104,7 @@ export default class ProductPurcahseTemplate {
     productStatus.forEach((product) => {
       const productClass = document.createElement('tr');
       productClass.className = 'product-purchase-item';
-      productClass.innerHTML = `<td class="product-purchase-name">${product.name}</td><td class="product-purchase-price">${product.price}</td><td class="product-purchase-quantity">${product.quantity}</td><td><button type="button" class="purchase-button">구입하기</button></td>`;
+      productClass.innerHTML = `<td class="product-purchase-name" data-product-name=${product.name}>${product.name}</td><td class="product-purchase-price" data-product-price=${product.price}>${product.price}</td><td class="product-purchase-quantity" data-product-quantity=${product.quantity}>${product.quantity}</td><td><button type="button" class="purchase-button">구입하기</button></td>`;
       this.productStatusTableBody.append(productClass);
     });
   }
