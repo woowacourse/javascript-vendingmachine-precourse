@@ -24,21 +24,27 @@ export default class Controller {
   // 3가지 탭 메뉴 클릭 이벤트
   onClickTabBtn() {
     const { $manageTabBtn, $chargeTabBtn, $purchaseTabBtn } = this.view.buttons;
+    this.onManageBtn($manageTabBtn);
+    this.onChargeBtn($chargeTabBtn);
+    this.onClickPurchaseBtn($purchaseTabBtn);
+  }
 
-    $manageTabBtn.addEventListener("click", (e) => {
-      e.preventDefault();
+  onManageBtn(btn) {
+    btn.addEventListener("click", () => {
       this.view.showSelectedID("manage-tab");
       this.view.renderManageTab(this.vendingMachine.productList);
     });
+  }
 
-    $chargeTabBtn.addEventListener("click", (e) => {
-      e.preventDefault();
+  onChargeBtn(btn) {
+    btn.addEventListener("click", () => {
       this.view.showSelectedID("charge-tab");
       this.view.renderChargeTab(this.vendingMachine.ownChange);
     });
+  }
 
-    $purchaseTabBtn.addEventListener("click", (e) => {
-      e.preventDefault();
+  onClickPurchaseBtn(btn) {
+    btn.addEventListener("click", () => {
       this.view.showSelectedID("purchase-tab");
       this.view.renderReturn(this.vendingMachine);
       this.view.renderUserMoney(this.vendingMachine.userMoney);
@@ -55,8 +61,7 @@ export default class Controller {
     const { $addProductBtn } = this.view.buttons;
     const { $addName, $addPrice, $addQuantity } = this.view.inputs;
 
-    $addProductBtn.addEventListener("click", (e) => {
-      e.preventDefault();
+    $addProductBtn.addEventListener("click", () => {
       const isValid = isValidProduct(
         $addName.value,
         $addPrice.value,
@@ -85,6 +90,7 @@ export default class Controller {
         alert(ERROR.CHARGE);
         return;
       }
+
       this.vendingMachine.makeRandomChange(parseInt($chargeCoin.value, 10));
       this.view.renderChargeTab(this.vendingMachine.ownChange);
     });
@@ -100,6 +106,7 @@ export default class Controller {
         alert(ERROR.PAY);
         return;
       }
+
       this.vendingMachine.getMoney(parseInt($buyMoney.value, 10));
       this.view.renderUserMoney(this.vendingMachine.userMoney);
     });
