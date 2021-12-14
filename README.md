@@ -185,9 +185,9 @@
 
   <b>chargeManage.js (잔돈관리)</b>
 
-  - [ ] localStroage에서 등록된 잔돈 불러오기
-  - [ ] DOM 초기화 하기 
-  - [ ] 충전하기 버튼 이벤트 함수
+  - [X] localStroage에서 등록된 잔돈 불러오기
+  - [X] DOM 초기화 하기 
+  - [X] 충전하기 버튼 이벤트 함수
 
   <b>productManage.js (상품관리)</b>
 
