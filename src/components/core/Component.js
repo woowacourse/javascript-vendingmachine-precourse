@@ -29,8 +29,12 @@ export default class Component {
   }
 
   addEvent(eventType, selector, handler) {
-    const eventTarget = this.$target.querySelector(selector);
+    const children = [...this.$target.querySelectorAll(selector)];
 
-    eventTarget.addEventListener(eventType, handler);
+    const isTarget = (target) => children.includes(target) || target.closest(selector);
+    this.$target.addEventListener(eventType, (event) => {
+      if (!isTarget(event.target)) return;
+      handler(event);
+    });
   }
 }
