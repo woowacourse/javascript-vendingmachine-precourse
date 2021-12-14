@@ -1,9 +1,10 @@
 import Component from '../../../core/Component.js';
+import { validatePurchasable } from '../../../utils/validations.js';
 
 export default class ProductPurchaseSection extends Component {
   setup() {
-    const { items } = this.props;
-    this.state = { items };
+    const { items, chargedAmount } = this.props;
+    this.state = { items, chargedAmount };
   }
 
   template() {
@@ -39,15 +40,17 @@ export default class ProductPurchaseSection extends Component {
   }
 
   setEvent() {
-    this.addEvent('click', '.purchase-button', (e) => {
-      const { productId } = e.target.closest('tr').dataset;
-      const id = Number(productId);
+    this.addEvent('click', '.purchase-button', ({ target }) => {
+      const tr = target.closest('tr');
+      const { productId } = tr.dataset;
+      const { productPrice } = tr.querySelector(
+        '.product-purchase-price'
+      ).dataset;
 
-      try {
-        this.props.purchase(id);
-      } catch ({ message }) {
-        alert(message);
-      }
+      if (!validatePurchasable(this.state.chargedAmount, Number(productPrice)))
+        return;
+
+      this.props.purchase(Number(productId));
     });
   }
 }

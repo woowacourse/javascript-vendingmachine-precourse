@@ -1,5 +1,6 @@
 import Component from '../../../core/Component.js';
 import $ from '../../../utils/helpers.js';
+import { validateItem } from '../../../utils/validations.js';
 
 export default class ProductAddSection extends Component {
   template() {
@@ -20,11 +21,9 @@ export default class ProductAddSection extends Component {
       const price = $('#product-price-input').valueAsNumber;
       const quantity = $('#product-quantity-input').valueAsNumber;
 
-      try {
-        this.props.addItem(name, price, quantity);
-      } catch ({ message }) {
-        alert(message);
-      }
+      if (!validateItem(name, price, quantity)) return;
+
+      this.props.addItem(name, price, quantity);
     });
   }
 }

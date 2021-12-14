@@ -26,6 +26,7 @@ export default class ProductPurchaseMenu extends Component {
     new ChargeSection($('#charge-section'), { chargedAmount, charge });
     new ProductPurchaseSection($('#product-purchase-section'), {
       items,
+      chargedAmount,
       purchase,
     });
     new CoinReturnSection($('#coin-return-section'), {

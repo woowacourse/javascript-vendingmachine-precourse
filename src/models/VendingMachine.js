@@ -16,10 +16,6 @@ export default class VendingMachine {
 
   // TODO: 예외 처리
   addItem(name, price, quantity) {
-    if (!isValidItem(name, price, quantity)) {
-      throw EXCEPTIONS.WRONG_ITEM;
-    }
-
     const duplicatedItems = this.items.findByName(name);
 
     if (duplicatedItems.length >= 1) {
@@ -42,10 +38,6 @@ export default class VendingMachine {
   }
 
   refillCoins(amount) {
-    if (!isValidChargeAmount(amount)) {
-      throw EXCEPTIONS.WRONG_CHARGE_AMOUNT;
-    }
-
     this.coins.refill(amount);
     this.store.updateCoins(this.coins.toObject());
 
@@ -53,10 +45,6 @@ export default class VendingMachine {
   }
 
   charge(amount) {
-    if (!isValidChargeAmount(amount)) {
-      throw EXCEPTIONS.WRONG_CHARGE_AMOUNT;
-    }
-
     this.store.updateCharge(this.chargedAmount.amount + amount);
     this.chargedAmount.charge(amount);
 

@@ -1,5 +1,6 @@
 import Component from '../../../core/Component.js';
 import $ from '../../../utils/helpers.js';
+import { validateChargeAmount } from '../../../utils/validations.js';
 
 export default class ChargeCoinSection extends Component {
   setup() {
@@ -38,11 +39,9 @@ export default class ChargeCoinSection extends Component {
     this.addEvent('click', '#vending-machine-charge-button', () => {
       const chargeAmount = $('#vending-machine-charge-input').valueAsNumber;
 
-      try {
-        this.props.refill(chargeAmount);
-      } catch ({ message }) {
-        alert(message);
-      }
+      if (!validateChargeAmount(chargeAmount)) return;
+
+      this.props.refill(chargeAmount);
     });
   }
 }

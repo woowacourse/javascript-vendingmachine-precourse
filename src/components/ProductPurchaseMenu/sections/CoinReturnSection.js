@@ -28,11 +28,7 @@ export default class CoinReturnSection extends Component {
 
   setEvent() {
     this.addEvent('click', '#coin-return-button', () => {
-      try {
-        this.props.returnChange();
-      } catch ({ message }) {
-        alert(message);
-      }
+      this.props.returnChange();
     });
   }
 }

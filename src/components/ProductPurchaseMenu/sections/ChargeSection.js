@@ -1,5 +1,6 @@
 import Component from '../../../core/Component.js';
 import $ from '../../../utils/helpers.js';
+import { validateChargeAmount } from '../../../utils/validations.js';
 
 export default class ChargeSection extends Component {
   setup() {
@@ -35,11 +36,9 @@ export default class ChargeSection extends Component {
       const { charge } = this.props;
       const chargingAmount = $('#charge-input').valueAsNumber;
 
-      try {
-        charge(chargingAmount);
-      } catch ({ message }) {
-        alert(message);
-      }
+      if (!validateChargeAmount(chargingAmount)) return;
+
+      charge(chargingAmount);
     });
   }
 }
