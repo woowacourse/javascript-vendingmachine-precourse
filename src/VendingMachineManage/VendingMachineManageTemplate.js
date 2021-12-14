@@ -1,10 +1,10 @@
 import Coin from '../Coin/Coin.js';
-import CoinInputCheck from './CoinInputCheck.js';
 
 export default class VendingMachineManageTemplate {
   constructor() {
     this.app = document.getElementById('app');
     this.vendingMachineManageScreen = document.createElement('div');
+    this.vendingMachineManageScreen.id = 'vending-machine-manage-screen';
     this.app.append(this.vendingMachineManageScreen);
     this.coin = new Coin();
     this.makeBasicTemplate();
@@ -22,40 +22,34 @@ export default class VendingMachineManageTemplate {
   }
 
   makeCoinCharginTemplate() {
-    this.makeCoinCharginElement();
-    this.coinCharging.append(
-      this.coinChargingTitle,
-      this.coinChargingForm,
-      this.amountParagraph
-    );
-    document.getElementById('vending-machine-charge-button').onclick =
-      this.submitCoinInput.bind(this);
-  }
-
-  makeCoinCharginElement() {
-    this.coinChargingTitle = document.createElement('h2');
-    this.coinChargingTitle.innerText = '자판기 동전 충전하기';
-    this.coinChargingForm = document.createElement('form');
-    this.coinChargingForm.innerHTML =
+    const coinChargingTitle = document.createElement('h2');
+    coinChargingTitle.innerText = '자판기 동전 충전하기';
+    const coinChargingForm = document.createElement('form');
+    coinChargingForm.innerHTML =
       '<input type="text" placeholder="자판기가 보유할 금액" id="vending-machine-charge-input" /><button type="submit" id="vending-machine-charge-button">충전하기</button>';
-    this.amountParagraph = document.createElement('p');
-    this.amountParagraph.innerHTML =
+    const amountParagraph = document.createElement('p');
+    amountParagraph.innerHTML =
       '보유금액: <span id="vending-machine-charge-amount" />';
+    this.coinCharging.append(
+      coinChargingTitle,
+      coinChargingForm,
+      amountParagraph
+    );
   }
 
   makeCoinTableTemplate() {
-    this.coinTableTitle = document.createElement('h2');
-    this.coinTableTitle.innerText = '자판기가 보유한 동전';
+    const coinTableTitle = document.createElement('h2');
+    coinTableTitle.innerText = '자판기가 보유한 동전';
     this.coinTable = document.createElement('table');
-    this.coinTableDiv.append(this.coinTableTitle, this.coinTable);
+    this.coinTableDiv.append(coinTableTitle, this.coinTable);
     this.makeCoinTableElement();
   }
 
   makeCoinTableElement() {
-    this.coinTableHead = document.createElement('thead');
-    this.coinTableHead.innerHTML = '<tr><th>동전</th><th>개수</th></tr>';
+    const coinTableHead = document.createElement('thead');
+    coinTableHead.innerHTML = '<tr><th>동전</th><th>개수</th></tr>';
     this.coinTableBody = document.createElement('tbody');
-    this.coinTable.append(this.coinTableHead, this.coinTableBody);
+    this.coinTable.append(coinTableHead, this.coinTableBody);
     this.makeCoinTableBody();
   }
 
@@ -66,43 +60,5 @@ export default class VendingMachineManageTemplate {
       coinClass.innerHTML = `<td>${coinValue}원</td><td id="vending-machine-coin-${coinValue}-quantity"></td>`;
       this.coinTableBody.append(coinClass);
     });
-  }
-
-  submitCoinInput(e) {
-    e.preventDefault();
-    const inputCoin = document.getElementById(
-      'vending-machine-charge-input'
-    ).value;
-    if (CoinInputCheck(inputCoin)) {
-      this.coinInsert(Number(inputCoin));
-      this.insertCoinTableData();
-    }
-  }
-
-  coinInsert(inputCoin) {
-    const totalCost = this.coin.additionalInputCoin(inputCoin);
-    const chargeAmount = document.getElementById(
-      'vending-machine-charge-amount'
-    );
-    chargeAmount.textContent = `${totalCost}`;
-  }
-
-  insertCoinTableData() {
-    const currentCoin = this.coin.getCoin();
-    this.coin.getCoinList().forEach((coinValue) => {
-      document.getElementById(
-        `vending-machine-coin-${coinValue}-quantity`
-      ).innerHTML = `${currentCoin[coinValue]}개`;
-    });
-  }
-
-  update() {
-    this.coinInsert(0);
-    this.insertCoinTableData();
-  }
-
-  updateScreen() {
-    this.update();
-    return this.vendingMachineManageScreen;
   }
 }
