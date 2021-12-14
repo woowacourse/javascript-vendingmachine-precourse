@@ -82,4 +82,37 @@
 
 <br/>
 
+- ### 폴더 구조
+
+  ```
+  src
+  ┣ controller
+  ┃ ┣ ProductAddController.js
+  ┃ ┣ ProductPurchaseController.js
+  ┃ ┣ VendingMachineController.js
+  ┃ ┗ VendingMachineManageController.js
+  ┣ css
+  ┃ ┗ style.css
+  ┣ model
+  ┃ ┗ VenndingMachine.js
+  ┣ store
+  ┃ ┗ index.js
+  ┣ utils
+  ┃ ┣ template
+  ┃ ┃  ┣ common.js
+  ┃ ┃  ┣ productAddTemplate.js
+  ┃ ┃  ┣ productPurchaseTemplate.js
+  ┃ ┃  ┗ vendingMachineManageTemplate.js
+  ┃ ┣ validation  
+  ┃ ┃  ┣ common.js
+  ┃ ┃  ┣ productAddValidation.js
+  ┃ ┃  ┣ productPurchaseValidation.js
+  ┃ ┃  ┗ vendingMachineManageValidation.js 
+  ┃ ┣ constants.js
+  ┃ ┗ getRandomCoinList.js
+  ┣ view
+  ┃ ┗ View.js
+  ┗ index.js
+  ```
+
 
