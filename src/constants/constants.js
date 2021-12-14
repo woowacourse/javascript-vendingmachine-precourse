@@ -4,7 +4,11 @@ export const STRING = {
   COINS: 'coins',
   INPUT_CHARGE_AMOUNT: 'inputChargeAmount',
   EMPTY: '',
+  SUBMIT: 'submit',
+  TR: 'tr',
 };
+
+export const DATASET_STRING = {};
 
 const NUMBER = {
   ZERO: 0,

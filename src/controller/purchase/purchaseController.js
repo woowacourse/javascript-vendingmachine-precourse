@@ -1,6 +1,8 @@
 import PurchaseView from '../../view/purchase/purchaseView.js';
 import { isValidChargeAmount } from '../../utils/validator.js';
 import { showError } from '../../utils/error.js';
+import { STRING } from '../../constants/constants.js';
+import { $ } from '../../utils/DOMhelper.js';
 
 export default class PurchaseController {
   constructor(appModel) {
@@ -21,6 +23,9 @@ export default class PurchaseController {
       'submit',
       this.handleInputCharge.bind(this)
     );
+    this.purchaseView.$$purchaseItem.forEach((element) =>
+      element.addEventListener('click', this.handlePurchase.bind(this))
+    );
   }
 
   handleInputCharge(e) {
@@ -37,5 +42,19 @@ export default class PurchaseController {
     showError();
 
     console.log(inputChargeAmount);
+  }
+
+  handlePurchase(e) {
+    if (e.target.type === STRING.SUBMIT) {
+      this.purchaseView.selectProductTableRowDOM(e.target);
+      const { productName } = this.purchaseView.$productNameColumn.dataset;
+      const { productPrice } = this.purchaseView.$productPriceColumn.dataset;
+
+      const changedQuantity = this.appModel.decreaseProductQuantity(productName);
+      this.purchaseView.renderProductQuantity(changedQuantity);
+
+      this.appModel.decreaseInputChargeAmount(productPrice);
+      this.purchaseView.renderInputChargeAmount(this.appModel.inputChargeAmount);
+    }
   }
 }

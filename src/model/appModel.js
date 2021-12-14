@@ -80,4 +80,22 @@ export default class AppModel {
   getAddedInputChargeAmount(amount) {
     return this.inputChargeAmount + amount;
   }
+
+  decreaseProductQuantity(name) {
+    const targetProduct = this.products.filter((product) => {
+      return product.name === name;
+    })[0];
+
+    targetProduct.quantity -= 1;
+
+    setDataOnStorage(STRING.PRODUCTS, this.products);
+
+    return targetProduct.quantity;
+  }
+
+  decreaseInputChargeAmount(amount) {
+    this.inputChargeAmount -= amount;
+
+    setDataOnStorage(STRING.INPUT_CHARGE_AMOUNT, this.inputChargeAmount);
+  }
 }
