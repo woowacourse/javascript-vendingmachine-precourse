@@ -1,10 +1,17 @@
+/* eslint-disable radix */
 export default class ChargedMoney {
   constructor() {
-    this.amount = 0;
+    this.amount = this.retrieveSaved();
+  }
+
+  retrieveSaved() {
+    const retrieved = localStorage.getItem("userMoney");
+    return retrieved === null ? 0 : parseInt(retrieved);
   }
 
   setAmount(money) {
     this.amount = Math.max(0, money);
+    localStorage.setItem("userMoney", this.amount);
   }
 
   getAmount() {
@@ -12,11 +19,10 @@ export default class ChargedMoney {
   }
 
   decreaseAmount(money) {
-    this.amount -= money;
-    this.amount = Math.max(0, this.amount);
+    this.setAmount(this.amount - money);
   }
 
   incrementAmount(money) {
-    this.amount += money;
+    this.setAmount(this.getAmount() + money);
   }
 }

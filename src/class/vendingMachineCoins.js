@@ -8,9 +8,20 @@ export default class VendingMachineCoins {
   }
 
   initCoins() {
+    const saved = localStorage.getItem("vendingMachineCoins");
+    if (saved !== null) {
+      this.coins = JSON.parse(saved);
+      return;
+    }
+
     coinTypes.forEach((coin) => {
       this.coins[coin] = 0;
     });
+    this.saveCoins();
+  }
+
+  saveCoins() {
+    localStorage.setItem("vendingMachineCoins", JSON.stringify(this.coins));
   }
 
   addCoins(amount) {
@@ -22,6 +33,7 @@ export default class VendingMachineCoins {
         chargeAmount -= randCoin;
       }
     }
+    this.saveCoins();
   }
 
   removeCoins(amount) {
@@ -36,6 +48,7 @@ export default class VendingMachineCoins {
       this.coins[coinTypes[i]] -= coinCount;
       currAmount -= coinCount * coinTypes[i];
     }
+    this.saveCoins();
     return changeCoins;
   }
 

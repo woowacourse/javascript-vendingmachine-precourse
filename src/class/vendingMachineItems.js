@@ -1,6 +1,15 @@
 export default class VendingMachineItems {
   constructor() {
-    this.items = [];
+    this.items = this.retrieveSaved();
+  }
+
+  retrieveSaved() {
+    const saved = localStorage.getItem("vendingMachineItems");
+    return saved !== null ? JSON.parse(saved) : [];
+  }
+
+  saveItems() {
+    localStorage.setItem("vendingMachineItems", JSON.stringify(this.items));
   }
 
   addItem(name, price, quantity) {
@@ -10,6 +19,7 @@ export default class VendingMachineItems {
     } else {
       this.items[itemIndex] = [name, price, quantity];
     }
+    this.saveItems();
   }
 
   #getItemIndexByName(name) {
@@ -34,6 +44,7 @@ export default class VendingMachineItems {
     const itemIndex = this.#getItemIndexByName(name);
     if (itemIndex !== -1 && this.items[itemIndex][2] > 0) {
       this.items[itemIndex][2] -= 1;
+      this.saveItems();
     }
   }
 }
