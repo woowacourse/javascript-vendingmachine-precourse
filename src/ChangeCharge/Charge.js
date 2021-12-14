@@ -7,7 +7,7 @@ import {
   onInvalidInputSubmit,
 } from './CheckValidation.js';
 
-function addAmountHaveToLocalStorage(input) {
+export function addAmountHaveToLocalStorage(input) {
   let amountHave = 0;
 
   if (localStorage.getItem('보유 금액')) {
@@ -18,7 +18,7 @@ function addAmountHaveToLocalStorage(input) {
   localStorage.setItem('보유 금액', amountHave);
 }
 
-function setAmountHave() {
+export function setAmountHave() {
   const amountHaveDiv = $('amount-have-div');
   const amountHave = localStorage.getItem('보유 금액');
   amountHaveDiv.lastChild.textContent = amountHave;
@@ -41,7 +41,7 @@ function onCoinChargeClick(event) {
   }
 }
 
-export default function setCoinChargeClick() {
+export function setCoinChargeClick() {
   $('vending-machine-charge-button').addEventListener(
     'click',
     onCoinChargeClick

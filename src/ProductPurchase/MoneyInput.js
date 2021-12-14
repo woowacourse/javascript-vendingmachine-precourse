@@ -6,16 +6,17 @@ import createMoneyInputForm from './CreateForm.js';
 function createAmountInput() {
   const amountInput = createDiv();
   amountInput.setAttribute('id', 'charge-amount');
-  amountInput.innerText = '';
+  amountInput.textContent = localStorage.getItem('투입한 금액');
 
   return amountInput;
 }
 
 function createAmountInputDiv() {
   const amountInputDiv = createDiv();
-  amountInputDiv.innerHTML = AMOUNT.INPUT;
+  amountInputDiv.setAttribute('id', 'amount-input-div');
+  amountInputDiv.append(AMOUNT.INPUT);
   const amountInput = createAmountInput();
-  amountInputDiv.innerHTML += amountInput.innerText;
+  amountInputDiv.append(amountInput.textContent);
 
   return amountInputDiv;
 }
