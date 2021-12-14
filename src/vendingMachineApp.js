@@ -3,12 +3,14 @@ import { $ } from './utils/common.js';
 import HeaderView from './header/headerView.js';
 import ProductAddComponent from './productAdd/productAddComponent.js';
 import VendingMachineManageComponent from './vendingMachineManage/vendingMachineManageComponent.js';
+import ProductPurchaseComponent from './productPurchase/productPurchaseComponent.js';
 
 export default class VendingMachineApp {
   constructor() {
     this.headerView = new HeaderView();
     this.productAddComponent = new ProductAddComponent();
     this.vendingMachineComponent = new VendingMachineManageComponent();
+    this.productPurchaseComponent = new ProductPurchaseComponent();
     this.configureButtons();
   }
 
@@ -25,6 +27,9 @@ export default class VendingMachineApp {
         return;
       case BUTTONS_INFO.VENDING_MACHINE_MANAGE.ID:
         this.vendingMachineComponent.render();
+        return;
+      case buttonsInfo.productPurchase.id:
+        this.productPurchaseComponent.render();
         return;
     }
   };
