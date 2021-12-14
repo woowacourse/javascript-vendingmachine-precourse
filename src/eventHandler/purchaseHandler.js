@@ -28,7 +28,9 @@ function onBuy(event, vendingMachine) {
     quantity: $productNode[PRODUCT_NODE_QUANTITY_INDEX].dataset.productQuantity,
   };
 
-  vendingMachine.sellProduct(productToBuy, $productNode);
+  if (vendingMachine.sellProduct(productToBuy, $productNode)) {
+    $productNode[PRODUCT_NODE_QUANTITY_INDEX].dataset.productQuantity = productToBuy.quantity - 1;
+  }
 }
 
 function buyButtonHandler(vendingMachine) {
