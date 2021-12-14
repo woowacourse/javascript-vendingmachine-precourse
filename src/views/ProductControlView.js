@@ -14,16 +14,16 @@ export default class ProductControlView extends ProductControlController {
       e.preventDefault();
       this.product = [...this.proudctControlField.querySelectorAll('input')].map(v => v.value);
       [...this.proudctControlField.querySelectorAll('input')].map(v => v.value = "");
-      productAddValiate(this.product) && this.renderProduct();
+      productAddValiate(this.product) &&  this.getProductList(this.product);
     });
   }
 
   renderProduct() {
     const $productListWrap = document.querySelector('#product-control-wrap');
-    this.localProductList && this.product.length === 0 ? this.localProductList.map(v => $productListWrap.append(renderProductList(v))) : "";
-    this.localProductList && this.product.length > 0 ? $productListWrap.append(renderProductList(this.product)) : "";
+    $productListWrap.innerHTML = "";
+    this.localProductList && this.product.length === 0 ? this.localProductList.map(v => $productListWrap.append(renderProductList(v))) : "",
+    this.localProductList && this.product.length > 0 ? this.localProductList.map(v => $productListWrap.append(renderProductList(v))) : "",
     !this.localProductList && this.product.length > 0 ? $productListWrap.append(renderProductList(this.product)) : "";
-    this.getProductList(this.product);
   }
 
 }

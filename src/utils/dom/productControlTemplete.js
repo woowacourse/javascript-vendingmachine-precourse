@@ -9,17 +9,18 @@ export const productControlTemplete =  `
   <h2>상품 현황</h2>
   <table style="border: 1px solid black">
     <tbody id="product-control-wrap">
-      <td class="product-manage-name" style="border: 1px solid black">상품명</td>
-      <td class="product-manage-price" style="border: 1px solid black">가격</td>
-      <td class="product-manage-quantity" style="border: 1px solid black">수량</td>
+      <thead>
+        <td class="product-manage-name" style="border: 1px solid black">상품명</td>
+        <td class="product-manage-price" style="border: 1px solid black">가격</td>
+        <td class="product-manage-quantity" style="border: 1px solid black">수량</td>
+      </thead>
     </tbody>
   </table>
 `;
 
 export function renderProductList(product) {
   const divFragment = document.createElement('tr');
-  divFragment.innerHTML = 
-  `<td style="border: 1px solid black">${product[0]}</td>
+  divFragment.innerHTML =  `<td style="border: 1px solid black">${product[0]}</td>
     <td  style="border: 1px solid black">${product[1]}</td>
     <td style="border: 1px solid black">${product[2]}</td>`;
   

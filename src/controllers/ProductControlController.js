@@ -10,20 +10,22 @@ export default class ProductControlController {
     this.render();
     this.setEvent();
     this.setProductList();
-    this.renderProduct();
   }
 
   renderProductControl () {
     this.proudctControlField.style = ("display: block");
     this.controlModel;
+    this.getProductList();
   }
 
-  getProductList(product) {
-    product.length > 0 && this.controlModel.setLoacalProductList([product]);
+  getProductList() {
+    this.product.length > 0 && this.controlModel.setLoacalProductList([this.product]);
+    this.setProductList()
   }
 
   setProductList() {
     this.localProductList = this.controlModel.getLoacalProductList();
+    this.renderProduct();
   }
 
 }
