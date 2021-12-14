@@ -24,6 +24,7 @@ export default class Controller {
   // 3가지 탭 메뉴 클릭 이벤트
   onClickTabBtn() {
     const { $manageTabBtn, $chargeTabBtn, $purchaseTabBtn } = this.view.buttons;
+
     this.onManageBtn($manageTabBtn);
     this.onChargeBtn($chargeTabBtn);
     this.onClickPurchaseBtn($purchaseTabBtn);
