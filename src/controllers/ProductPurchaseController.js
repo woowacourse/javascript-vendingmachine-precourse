@@ -49,7 +49,7 @@ export default class ProductPurchaseController {
     this.purchaseProductResult = this.purchaseModel.getPurchaseResult();
     this.puchaseMoneyResult = this.purchaseModel.getPuchaseMoneyResult();
     this.renderLocalPurchase()
-    this.renderMoney();
+    this.setInsertMoney();
   }
 
   returnCharge() {
