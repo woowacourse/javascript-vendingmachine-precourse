@@ -8,6 +8,8 @@ export const ERROR_MESSAGE = {
 
 export const NUMBER = {
   ZERO: 0,
+  FIRST: 1,
+  SECOND: 2,
 };
 
 export const COIN = {

@@ -3,6 +3,7 @@ import header from '../templates/header.js';
 import { HEADER } from '../constants/selector.js';
 import ProductManagement from '../routes/productManagement.js';
 import ChangeCharge from '../routes/changeCharge.js';
+import PurchaseProduct from '../routes/purchaseProduct.js';
 
 export default class Header {
   constructor($target) {
@@ -20,7 +21,7 @@ export default class Header {
     });
 
     $(`#${HEADER.PRODUCT_PURCHASE_MENU}`).addEventListener('click', () => {
-      console.log('PURCHASE_MENU');
+      new PurchaseProduct();
     });
   }
 

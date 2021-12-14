@@ -31,3 +31,28 @@ export const CHANGE_CHARGE = {
     COIN_10_QUANTITY: 'vending-machine-coin-10-quantity',
   },
 };
+
+export const PRODUCT_PURCHASE = {
+  ID: {
+    CHARGE_INPUT: 'charge-input',
+    CHARGE_BUTTON: 'charge-button',
+    CHARGE_AMOUNT: 'charge-amount',
+    RETURN_BUTTON: 'coin-return-button',
+    COIN_500_QUANTITY: 'coin-500-quantity',
+    COIN_100_QUANTITY: 'coin-100-quantity',
+    COIN_50_QUANTITY: 'coin-50-quantity',
+    COIN_10_QUANTITY: 'coin-10-quantity',
+  },
+  CLASS: {
+    PURCHASE_ITEM: 'product-purchase-item',
+    PURCHASE_BUTTON: 'purchase-button',
+    PURCHASE_NAME: 'product-purchase-name',
+    PURCHASE_PRICE: 'product-purchase-price',
+    PURCHASE_QUANTITY: 'product-purchase-quantity',
+  },
+  DATA_SET: {
+    DATA_PRODUCT_NAME: 'data-product-name',
+    DATA_PRODUCT_PRICE: 'data-product-price',
+    DATA_PRODUCT_QUANTITY: 'data-product-quantity',
+  },
+};
