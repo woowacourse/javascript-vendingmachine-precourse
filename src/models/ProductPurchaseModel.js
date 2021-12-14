@@ -28,18 +28,27 @@ export default class ProductPurchaseModel {
   setPurchaseProduct(selectProduct) {
     const localProductList = JSON.parse(localStorage.getItem("PRODUCT_LIST"));
     let localTotalInsertMoney = JSON.parse(localStorage.getItem("INSERT_MONEY"));
+    let checkInsertPriceResult = this.checkInsertPrice(localTotalInsertMoney, localProductList, selectProduct);
+    if (checkInsertPriceResult) {
+      localProductList.map(product => product[0] === selectProduct[0] 
+        ? (product[2] = (Number(product[2])-1), localTotalInsertMoney -= Number(product[1])) 
+        : "" );
+      localProductList.forEach((product, i) => product[2] === 0 ? localProductList.splice(i, 1): "");
+      localStorage.setItem("PRODUCT_LIST", JSON.stringify(localProductList));
+      localStorage.setItem("INSERT_MONEY", JSON.stringify(localTotalInsertMoney));
+    }
+  }
 
-    // localProductList.map(product => product[0] === selectProduct[0]
-    //   ? console.log(product[1])
-    //   : ""
-    //   )
+  checkInsertPrice(localTotalInsertMoney, localProductList, selectProduct) {
+    let result = true;
+    localProductList.map(product => product[0] === selectProduct[0]
+      ? product[1] > localTotalInsertMoney
+        ? (alert("투입 금액보다 바싼 상품은 구매할 수 없습니다"), result = false)
+        : ""
+      : ""
+    );
 
-    localProductList.map(product => product[0] === selectProduct[0] 
-      ? (product[2] = (Number(product[2])-1), localTotalInsertMoney -= Number(product[1])) 
-      : "" );
-    localProductList.forEach((product, i) => product[2] === 0 ? localProductList.splice(i, 1): "");
-    localStorage.setItem("PRODUCT_LIST", JSON.stringify(localProductList));
-    localStorage.setItem("INSERT_MONEY", JSON.stringify(localTotalInsertMoney));
+    return result;
   }
 
   getPurchaseResult() {
