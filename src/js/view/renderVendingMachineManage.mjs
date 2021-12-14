@@ -70,7 +70,7 @@ export function renderVendingMachineChargeAmount() {
   vendingMachineChargeAmount.textContent = localStorage.getItem('vending-machine-charge-amount');
 }
 
-export function renderVendingMachineManage() {
+export function renderVendingMachineManagePage() {
   const $app = document.querySelector('#app');
   const $main = document.createElement('main');
   $main.id = 'vendingMachineManageWrap';

@@ -1,5 +1,5 @@
-export let MONEY = 0;
-const NUMBER_OF_COINS = {
+const MONEY = 0;
+const AMOUNT_OF_COINS = {
   '500_WON': 0,
   '100_WON': 0,
   '50_WON': 0,
@@ -7,57 +7,51 @@ const NUMBER_OF_COINS = {
 };
 
 export class VendingMachine {
-  constructor(money) {
-    this._money = Number(money);
-    this._numberOfCoins = NUMBER_OF_COINS;
-    this.randomCoins();
-    localStorage.setItem('vending-machine-charge-amount', this._money);
+  constructor() {
+    this._money = MONEY;
+    this._amountOfCoins = AMOUNT_OF_COINS;
   }
 
-  chargeMoney(money) {
+  sumMoney(money) {
     this._money += Number(money);
+    this.setLocalStorage(Number(money));
+  }
+
+  setLocalStorage(money) {
+    if (localStorage.getItem('vending-machine-charge-amount')) {
+      this._money = Number(localStorage.getItem('vending-machine-charge-amount')) + money;
+    }
     localStorage.setItem('vending-machine-charge-amount', this._money);
   }
 
-  randomCoins() {
-    // 500, 100, 50, 10원 랜덤으로 개수 생성되다가 this.money 가격과 같으면 NUMBER_OF_COINS에 개수 반영
-    let maxNumberOf500Coins = Math.ceil(this._money / 500);
-    let maxNumberOf100Coins = Math.ceil(this._money / 100);
-    let maxNumberOf50Coins = Math.ceil(this._money / 50);
-    let maxNumberOf10Coins = Math.ceil(this._money / 10);
-    // console.log(maxNumberOf500Coins, maxNumberOf100Coins, maxNumberOf50Coins, maxNumberOf10Coins);
-    let remain = this._money;
-
-    let Array500 = Array.from({ length: maxNumberOf500Coins }, (v, i) => i);
-    let Array100 = Array.from({ length: maxNumberOf100Coins }, (v, i) => i);
-    let Array50 = Array.from({ length: maxNumberOf50Coins }, (v, i) => i);
-    let Array10 = Array.from({ length: maxNumberOf10Coins }, (v, i) => i);
-
-    let { numberOf500Coins, numberOf100Coins, numberOf50Coins, numberOf10Coins } = this._numberOfCoins;
-
-    while (remain > 0) {
-      let random500coins = 500 * MissionUtils.Random.pickNumberInList(Array500);
-      let random100coins = 100 * MissionUtils.Random.pickNumberInList(Array100);
-      let random50coins = 50 * MissionUtils.Random.pickNumberInList(Array50);
-      let random10coins = 10 * MissionUtils.Random.pickNumberInList(Array10);
-      // console.log(random500coins, random100coins, random50coins, random10coins);
-
-      numberOf500Coins = this._money / random500coins === Infinity ? 0 : this._money / random500coins;
-      remain = this._money % random500coins;
-
-      numberOf100Coins = Math.floor(remain / random100coins);
-      remain = remain % random100coins;
-
-      numberOf50Coins = Math.floor(remain / random50coins);
-      remain = remain % random50coins;
-
-      numberOf10Coins = remain / random10coins || 0;
-      remain = remain % random10coins;
+  getAmountOfCoins(money) {
+    if (localStorage.getItem('amount-of-coins')) {
+      this._amountOfCoins = JSON.parse(localStorage.getItem('amount-of-coins'));
     }
-    // console.log(numberOf500Coins, numberOf100Coins, numberOf50Coins, numberOf10Coins);
-  }
+    const Array500 = Array.from({ length: money / 500 + 1 }, (_, i) => i);
+    let randomNum500 = MissionUtils.Random.pickNumberInList(Array500);
+    this._amountOfCoins['500_WON'] += randomNum500;
+    let remainCharge = money - 500 * randomNum500;
 
-  get numberOfCoins() {
-    return this._numberOfCoins;
+    const Array100 = Array.from({ length: remainCharge / 100 + 1 }, (_, i) => i);
+
+    let randomNum100 = MissionUtils.Random.pickNumberInList(Array100);
+    this._amountOfCoins['100_WON'] += randomNum100;
+    remainCharge = remainCharge - 100 * randomNum100;
+
+    const Array50 = Array.from({ length: remainCharge / 50 + 1 }, (_, i) => i);
+
+    let randomNum50 = MissionUtils.Random.pickNumberInList(Array50);
+    this._amountOfCoins['50_WON'] += randomNum50;
+    remainCharge = remainCharge - 50 * randomNum50;
+
+    const Array10 = Array.from({ length: remainCharge / 10 + 1 }, (_, i) => i);
+
+    this._amountOfCoins['10_WON'] += remainCharge / 10;
+    remainCharge = 0;
+
+    localStorage.setItem('amount-of-coins', JSON.stringify(this._amountOfCoins));
   }
 }
+
+export const vendingMachine = new VendingMachine();

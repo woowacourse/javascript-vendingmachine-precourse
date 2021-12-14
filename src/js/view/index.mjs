@@ -1,7 +1,7 @@
 export { renderHeader } from './renderHeader.mjs';
 export { renderProductAddPage, renderProductStatusTable } from './renderProductAdd.mjs';
 export {
-  renderVendingMachineManage,
+  renderVendingMachineManagePage,
   renderVendingMachineChargeAmount,
   renderAmountCoins
 } from './renderVendingMachineManage.mjs';

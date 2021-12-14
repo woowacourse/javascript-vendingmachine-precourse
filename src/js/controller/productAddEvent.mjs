@@ -8,7 +8,7 @@ function initProductAddPage() {
   renderProductAddPage();
 }
 
-function productAddButton(e) {
+function productAddButton() {
   const name = document.querySelector('#product-name-input').value;
   const price = document.querySelector('#product-price-input').value;
   const quantity = document.querySelector('#product-quantity-input').value;
@@ -25,6 +25,6 @@ export function productAddEvent() {
   $productAddMenu.addEventListener('click', initProductAddPage);
   window.addEventListener('click', e => {
     if (e.target !== document.querySelector('#product-add-button')) return;
-    productAddButton(e);
+    productAddButton();
   });
 }
