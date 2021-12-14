@@ -37,7 +37,7 @@ function addPurchaseMoney() {
 
 function purchase() {
   window.addEventListener('click', e => {
-    if (e.target !== document.querySelector('.purchase-button')) return;
+    if (!e.target.classList.contains('purchase-button')) return;
     const productName = e.target.closest('.product-purchase-item').children[0].innerText;
     let setProducts = products.map(product => {
       if (product.name === productName) {
