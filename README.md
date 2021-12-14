@@ -1,3 +1,57 @@
+## 구현할 기능
+
+### 0) 기본 내용 표시
+
+- 내용 표시
+  - title, 3가지 모드 buttons 추가
+
+### 1) 상품 관리
+
+- 내용 표시
+  - 상품 추가에 관련된 title, input list, button 추가
+  - 상품 현황에 관련된 title, table 추가
+- 최초 상품 목록은 빈 상태
+- 상품 조건 검사
+  - 상품 가격은 100원부터 시작
+  - 상품 가격은 10원 단위로 나누어 떨어져야 함.
+- table에 상품 추가
+  - 상품명, 가격, 개수, 구매하기 버튼 추가
+
+### 2) 잔돈 충전
+
+- 내용 표시
+  - 동전 충전에 관련된 title, input, button, p(보유금액) cnrk
+  - 보유 동전에 관련된 title, table 추가
+- 최초 자판기 보유 금액 0원, 동전 0개
+- 충전시
+  - 조건 검사
+    - 금액이 입력되었는가
+    - 금액이 10원이상 단위인가
+  - 보유 금액에 추가
+  - 보유 동전 table에 추가
+    - 기존 동전 개수 + 새롭게 추가하는 금액의 동전 개수
+
+### 3) 상품 구매
+
+- 내용 표시
+  - 금액 투입에 관련된 title, input, button, p(투입 금액) 추가
+  - 상품 현황 table은 채워진 상태로 추가
+  - 잔돈에 관련된 title, button, table 추가
+- 최초 충전 금액 0원, 반환된 동전 개수 0개
+- 금액 투입시
+  - 투입 금액 조건 검사
+    - 금액이 입력 되었는가?
+    - 금액이 10원 이상 단위인가?
+- 상품 구매시
+  - 조건 검사
+    - 투입금액이 클릭된 상품의 가격 이상인가?
+  - 수량 감소
+  - 투입금액 감소
+- 잔돈 반환 시
+  - 투입 금액에 맞춰 동전 개수 table 내용 추가
+
+---
+
 <p align="middle" >
   <img width="200px;" src="https://github.com/woowacourse/javascript-vendingmachine-precourse/blob/main/images/beverage_icon.png?raw=true"/>
 </p>
@@ -9,9 +63,10 @@
 - 세 개의 요구사항을 만족하기 위해 노력한다. 특히 기능을 구현하기 전에 기능 목록을 만들고, 기능 단위로 커밋 하는 방식으로 진행한다.
 - 기능 요구사항에 기재되지 않은 내용은 스스로 판단하여 구현한다.
 
-
 ## 🎯 기능 요구 사항
+
 반환되는 동전이 최소한이 되는 자판기를 구현한다.
+
 ### 1) 공통
 
 상단에 `탭`메뉴가 존재하며 각 탭에 따라 적절한 기능을 수행한다.
@@ -67,19 +122,23 @@
 ### 💻 실행 결과 예시
 
 #### 상품 관리
+
 <img src="./images/vendingmachine_inventory.gif" width="400" />
 
-#### 잔돈 충전 
+#### 잔돈 충전
+
 <img src="./images/vendingmachine_coin.gif" width="400" />
 
 #### 상품 구매 및 잔돈 반환
+
 <img src="./images/vendingmachine_purchase.gif" width="400" />
 
 ---
 
 ## ✅ 프로그래밍 요구 사항
 
-### DOM 선택자 
+### DOM 선택자
+
 각 요소에 아래와 같은 선택자를 반드시 지정한다.
 
 **탭 메뉴 버튼**
@@ -105,10 +164,10 @@
 - `충전하기` 버튼에 해당하는 요소의 id는 `vending-machine-charge-button`이다.
 - 충전된 금액을 확인하는 요소의 id는 `vending-machine-charge-amount` 이다.
 - 보유한 각 동전의 개수에 해당하는 요소의 id는 다음과 같다.
-    - 500원: `vending-machine-coin-500-quantity`
-    - 100원: `vending-machine-coin-100-quantity`
-    - 50원: `vending-machine-coin-50-quantity`
-    - 10원: `vending-machine-coin-10-quantity`
+  - 500원: `vending-machine-coin-500-quantity`
+  - 100원: `vending-machine-coin-100-quantity`
+  - 50원: `vending-machine-coin-50-quantity`
+  - 10원: `vending-machine-coin-10-quantity`
 
 **상품 구매 메뉴**
 
@@ -130,10 +189,10 @@
   - 가격은 `dataset` 속성을 사용하고 `data-product-price` 형식으로 저장한다.
   - 수량은 `dataset` 속성을 사용하고 `data-product-quantity` 형식으로 저장한다.
 
-
 ---
 
 ### 라이브러리
+
 - 잔돈을 무작위로 생성하는 기능은 [`MissionUtils` 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)의 `Random.pickNumberInList`를 사용해 구한다.
   - `MissionUtils` 라이브러리 스크립트는 `index.html`에 이미 포함되어 전역 객체에 추가되어 있으므로, 따로 `import` 하지 않아도 구현 코드 어디에서든 사용할 수 있다.
 
@@ -165,39 +224,43 @@
 ---
 
 ## 📝 과제 진행 요구사항
+
 - 미션은 [javascript-vendingmachine-precourse](https://github.com/woowacourse/javascript-vendingmachine-precourse/) 저장소를 Fork/Clone해 시작한다.
 - **기능을 구현하기 전에 javascript-vendingmachine-precourse/docs/README.md 파일에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위**로 추가한다.
-   - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
+  - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고한다.
 
 ## ✉️ 미션 제출 방법
 
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-   - GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해 제출한다.
+  - GitHub을 활용한 제출 방법은 [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 를 참고해 제출한다.
 - GitHub에 미션을 제출한 후 [우아한테크코스 지원 플랫폼](https://apply.techcourse.co.kr) 에 접속하여 프리코스 과제를 제출한다.
-   - 자세한 방법은 [링크](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 를 참고한다.
-   - **Pull Request만 보내고, 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
-
+  - 자세한 방법은 [링크](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 를 참고한다.
+  - **Pull Request만 보내고, 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
 
 ### 🚨 과제 제출 전 체크리스트 - 0점 방지를 위한 주의사항
+
 - 요구사항에 명시된 출력값 형식을 지키지 않을 경우 기능 구현을 모두 정상적으로 했더라도 0점으로 처리된다.
 - 기능 구현을 완료한 뒤 아래 가이드에 따라 테스트를 실행했을 때 모든 테스트가 성공하는 지 확인한다. **테스트가 실패할 경우 0점으로 처리되므로, 반드시 확인 후 제출한다.**
 
 ### ✔️ 테스트 실행 가이드
-- 테스트 실행에 필요한 패키지 설치를 위해 `Node.js` 버전 `14` 이상이 필요하다. 
-- 다음 명령어를 입력해 패키지를 설치한다.     
+
+- 테스트 실행에 필요한 패키지 설치를 위해 `Node.js` 버전 `14` 이상이 필요하다.
+- 다음 명령어를 입력해 패키지를 설치한다.
+
 ```bash
 // {폴더 경로}/javascript-vendingmachine-precourse/ 에서
 npm install
-```     
+```
 
 - 설치가 완료되었다면, 다음 명령어를 입력해 테스트를 실행한다.
+
 ```bash
 // {폴더 경로}/javascript-vendingmachine-precourse/ 에서
 npm run test
 ```
 
-- 아래와 같은 화면이 나오며 모든 테스트가 pass한다면 성공! 
+- 아래와 같은 화면이 나오며 모든 테스트가 pass한다면 성공!
 
 ![테스트 결과](./images/test_result.png)
