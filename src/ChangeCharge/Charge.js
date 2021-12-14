@@ -7,11 +7,38 @@ import {
   onInvalidInputSubmit,
 } from './CheckValidation.js';
 
+function addAmountHaveToLocalStorage(input) {
+  let amountHave = 0;
+
+  if (localStorage.getItem('보유 금액')) {
+    amountHave = localStorage.getItem('보유 금액');
+  }
+
+  amountHave = amountHave * 1 + input * 1;
+  localStorage.setItem('보유 금액', amountHave);
+}
+
+function setAmountHave() {
+  const amountHaveDiv = $('amount-have-div');
+  const amountHave = localStorage.getItem('보유 금액');
+  amountHaveDiv.lastChild.textContent = amountHave;
+}
+
+function onValidInputSubmit() {
+  const vendingMachineChargeInput = $('vending-machine-charge-input').value;
+  addAmountHaveToLocalStorage(vendingMachineChargeInput);
+  setAmountHave();
+}
+
 function onCoinChargeClick(event) {
   event.preventDefault();
   const inputValidation = checkAmountInputValidation();
 
-  if (!inputValidation) onInvalidInputSubmit();
+  if (!inputValidation) {
+    onInvalidInputSubmit();
+  } else {
+    onValidInputSubmit();
+  }
 }
 
 export default function setCoinChargeClick() {

@@ -19,16 +19,17 @@ function createChangeChargeDiv() {
 function createAmountHave() {
   const amountHave = createDiv();
   amountHave.setAttribute('id', 'vending-machine-charge-amount');
-  amountHave.innerText = '';
+  amountHave.textContent = localStorage.getItem('보유 금액');
 
   return amountHave;
 }
 
 function createAmountHaveDiv() {
   const amountHaveDiv = createDiv();
-  amountHaveDiv.innerHTML = AMOUNT.HAVE;
+  amountHaveDiv.setAttribute('id', 'amount-have-div');
+  amountHaveDiv.append(AMOUNT.HAVE);
   const amountHave = createAmountHave();
-  amountHaveDiv.innerHTML += amountHave.innerText;
+  amountHaveDiv.append(amountHave.textContent);
 
   return amountHaveDiv;
 }
