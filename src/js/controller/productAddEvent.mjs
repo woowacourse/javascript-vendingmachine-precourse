@@ -13,7 +13,6 @@ function productAddButton(e) {
   const price = document.querySelector('#product-price-input').value;
   const quantity = document.querySelector('#product-quantity-input').value;
 
-  if (e.target !== document.querySelector('#product-add-button')) return;
   if (!inputValidate(name, price, quantity)) return;
   if (!priceValidate(price)) return;
 
@@ -24,5 +23,8 @@ function productAddButton(e) {
 export function productAddEvent() {
   const $productAddMenu = document.querySelector('#product-add-menu');
   $productAddMenu.addEventListener('click', initProductAddPage);
-  window.addEventListener('click', e => productAddButton(e));
+  window.addEventListener('click', e => {
+    if (e.target !== document.querySelector('#product-add-button')) return;
+    productAddButton(e);
+  });
 }
