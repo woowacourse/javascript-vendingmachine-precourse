@@ -1,5 +1,6 @@
 import ProductPurchaseView from './productPurchaseView.js';
 import ValidateUtils from '../utils/validateUtils.js';
+import LocalStorageUtils from '../utils/localStorageUtils.js';
 import { $ } from '../utils/common.js';
 import { BUTTON, INPUT, PURCHASE_TABLE } from './productPurchaseViewInfo.js';
 import { ERROR } from '../utils/constants.js';
@@ -57,6 +58,18 @@ export default class productPurchaseComponent {
       return false;
     }
     return true;
+  }
+
+  subtractQuantity(name, price) {
+    let data = LocalStorageUtils.getProductAddItem();
+    data.find((item) => {
+      if (item.name === name && item.price === price) {
+        item.quantity -= 1;
+        this.chargeMoney -= price;
+        return true;
+      }
+    });
+    LocalStorageUtils.setProductAddItem(data);
   }
 
   onClickChagesButton = () => {};
