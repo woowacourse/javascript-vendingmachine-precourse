@@ -1,6 +1,6 @@
 import { COIN_LIST, NUMBER } from './constants/constants.js';
 
-export const getRandomCoins = () => {
+const getRandomCoins = () => {
   const randomCoin = MissionUtils.Random.pickNumberInList(COIN_LIST);
 
   return randomCoin;
