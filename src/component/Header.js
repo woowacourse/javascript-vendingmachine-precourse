@@ -1,4 +1,5 @@
-import { TAG, DOM_ATTRIBUTE, EVENT } from '../constant/dom.js';
+import Button from './core/Button.js';
+import { TAG, EVENT } from '../constant/dom.js';
 import { ID } from '../constant/selector.js';
 import { TITLE } from '../constant/text.js';
 
@@ -36,11 +37,9 @@ export default class Header {
   }
 
   appendButton(targetId, targetText) {
-    const $menuButton = document.createElement(TAG.TAG_BUTTON);
-    $menuButton.setAttribute(DOM_ATTRIBUTE.ID, targetId);
-    $menuButton.innerText = targetText;
+    const $menuButton = new Button(targetId, targetText);
 
-    this.$menus.appendChild($menuButton);
+    this.$menus.appendChild($menuButton.getTarget());
   }
 
   setEvent() {
