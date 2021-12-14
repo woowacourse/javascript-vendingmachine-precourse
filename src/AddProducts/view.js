@@ -27,6 +27,7 @@ export default class AddProducts {
     this.section = this.createAddProductTab();
     this.DOMs = {};
     this.handleDOMs();
+    this.addAllProductRows();
   }
 
   createAddProductTab() {
@@ -86,7 +87,6 @@ export default class AddProducts {
     this.addDOM('price', ID_PRODUCT_PRICE_INPUT);
     this.addDOM('quantity', ID_PRODUCT_QUANTITY_INPUT);
     this.addDOM('table', ID_PRODUCT_ADD_STATUS);
-    this.addAllProductRows();
   }
 
   clearForm() {

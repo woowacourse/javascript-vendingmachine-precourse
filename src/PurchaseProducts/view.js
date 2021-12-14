@@ -51,6 +51,7 @@ export default class PurchaseProducts {
     this.section = this.purchaseProductsTab();
     this.DOMs = {};
     this.handleDOMs();
+    this.updateTotalAmount();
     this.addAllPurchaseRows();
   }
 
@@ -76,7 +77,6 @@ export default class PurchaseProducts {
     this.addDOM(STRING_COIN_50, ID_RETURN_COIN_50_QUANTITY);
     this.addDOM(STRING_COIN_10, ID_RETURN_COIN_10_QUANTITY);
     this.addDOM('table', ID_PURCHASE_PRODUCT_STATUS);
-    this.updateTotalAmount();
   }
 
   addDOM(key, id) {

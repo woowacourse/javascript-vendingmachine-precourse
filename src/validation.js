@@ -57,6 +57,5 @@ export const hasEnoughInsert = function checkForEnoughMoneyOnPurchase(
   price,
   insert,
 ) {
-  console.log(price, insert);
   return price <= insert;
 };
