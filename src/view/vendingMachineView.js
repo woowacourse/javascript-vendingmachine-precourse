@@ -1,5 +1,4 @@
-import { PURCHASE_MENU } from './data/elementData.js';
-import { $ } from './utils/domElementTool.js';
+import { $ } from '../utils/domElementTool.js';
 
 export default class VendingMachineView {
   constructor(products) {

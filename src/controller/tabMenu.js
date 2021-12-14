@@ -1,5 +1,5 @@
 import { $App } from '../data/domElement.js';
-import { TABMENU } from '../data/elementData.js';
+import { TABMENU } from '../data/selector.js';
 import { HEADER } from '../data/template.js';
 import TabMenu from '../components/tabMenu.js';
 import ProductMenu from '../components/pages/producMenu.js';

@@ -1,4 +1,4 @@
-export default class MoneyStatus {
+export default class CoinStatus {
   constructor(money, clientMoney) {
     this.money = money;
     this.clientMoney = clientMoney;

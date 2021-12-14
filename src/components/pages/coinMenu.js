@@ -1,4 +1,4 @@
-import { COIN_MENU } from '../../data/elementData.js';
+import { COIN_MENU } from '../../data/selector.js';
 
 export default class CoinMenu {
   constructor() {

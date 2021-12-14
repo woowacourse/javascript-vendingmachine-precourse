@@ -1,4 +1,4 @@
-import { PRODUCT_MENU } from '../../data/elementData.js';
+import { PRODUCT_MENU } from '../../data/selector.js';
 
 export default class ProductMenu {
   constructor() {

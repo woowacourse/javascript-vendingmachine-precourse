@@ -1,4 +1,4 @@
-import { TABMENU } from '../data/elementData.js';
+import { TABMENU } from '../data/selector.js';
 
 export default class TabMenu {
   constructor() {

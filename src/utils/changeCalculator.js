@@ -1,4 +1,4 @@
-export default class changeCalculator {
+export default class ChangeCalculator {
   constructor(vendingMachineMoney) {
     this.money = vendingMachineMoney;
     this.change = {

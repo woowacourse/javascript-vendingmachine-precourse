@@ -1,13 +1,13 @@
 import { $, $$ } from '../utils/domElementTool.js';
-import { COIN_MENU, PRODUCT_MENU, PURCHASE_MENU } from '../data/elementData.js';
+import { COIN_MENU, PRODUCT_MENU, PURCHASE_MENU } from '../data/selector.js';
 import { getErrorMessage, getNotValidMoneyErrorMessage, getHasNoReturnErrorMessage } from './getErrorMessage.js';
 import { showAlert } from '../utils/showAlert.js';
 import { setLocalStorage, getLocalStorage } from '../utils/localStorage.js';
-import TabMenuController from './tabMenuController.js';
+import TabMenuController from './tabMenu.js';
 import ProductManager from '../model/product.js';
-import VendingMachineView from '../vendingMachineView.js';
-import MoneyStatus from '../model/moneyStatus.js';
-import changeCalculator from '../utils/changeCalculator.js';
+import VendingMachineView from '../view/vendingMachineView.js';
+import CoinStatus from '../model/coinStatus.js';
+import ChangeCalculator from '../utils/changeCalculator.js';
 
 export default class VendingMachine {
   constructor() {
@@ -24,8 +24,8 @@ export default class VendingMachine {
   }
 
   createModels(data) {
-    this.productModel = new ProductManager(data[0]);
-    this.coinModel = new MoneyStatus(data[1], data[2]);
+    this.productMdoel = new ProductManager(data[0]);
+    this.coinModel = new CoinStatus(data[1], data[2]);
   }
 
   renderInitPage() {
@@ -52,25 +52,25 @@ export default class VendingMachine {
       this.handleClientChargeMoney();
     }
 
-    setLocalStorage(this.productModel.products, this.coinModel.money, this.coinModel.clientMoney);
+    setLocalStorage(this.productMdoel.products, this.coinModel.money, this.coinModel.clientMoney);
   }
 
   handlePurchaseEvent(e) {
     if (e.target.className === PURCHASE_MENU.PURCHASE_ITEM_BUTTON) {
       const name = e.target.parentNode.parentNode.childNodes[1].getAttribute(PURCHASE_MENU.DATASET.PRODUCT_NAME);
-      const price = this.productModel.purchaseProduct(name);
+      const price = this.productMdoel.purchaseProduct(name);
 
       this.coinModel.clientMoney -= price;
 
       this.view.renderChargeAmount(PURCHASE_MENU.INPUT_SELECTOR.PURCHASE_CHARGE_AMOUNT, this.coinModel.clientMoney);
       this.view.renderProducts(PURCHASE_MENU.PRODUCT_TABLE_SELECTOR.TABLE, this.tabMenu.purchaseMenu.purchaseItemTemplate);
       this.view.renderProducts(PRODUCT_MENU.TABLE_SELECTOR.TABLE, this.tabMenu.productMenu.productItemTemplate);
-      setLocalStorage(this.productModel.products, this.coinModel.money, this.coinModel.clientMoney);
+      setLocalStorage(this.productMdoel.products, this.coinModel.money, this.coinModel.clientMoney);
     }
   }
 
   handleReturnChangeEvent() {
-    this.changeModel = new changeCalculator(this.coinModel.money);
+    this.changeModel = new ChangeCalculator(this.coinModel.money);
     const errorMessage = getHasNoReturnErrorMessage(this.coinModel.clientMoney);
 
     if (errorMessage) {
@@ -82,7 +82,7 @@ export default class VendingMachine {
     this.coinModel.clientMoney = balance;
 
     this.renderAfterReturnStatus();
-    setLocalStorage(this.productModel.products, this.coinModel.money, this.coinModel.clientMoney);
+    setLocalStorage(this.productMdoel.products, this.coinModel.money, this.coinModel.clientMoney);
   }
 
   renderAfterReturnStatus() {
@@ -96,14 +96,14 @@ export default class VendingMachine {
     const name = $(`#${PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_NAME_INPUT}`).value;
     const price = Number($(`#${PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_PRICE_INPUT}`).value);
     const quantity = Number($(`#${PRODUCT_MENU.INPUT_SELECTOR.PRODUCT_QUANTITY_INPUT}`).value);
-    const errorMessage = getErrorMessage(this.productModel.products, name, price);
+    const errorMessage = getErrorMessage(this.productMdoel.products, name, price);
 
     if (errorMessage) {
       showAlert(errorMessage);
       return;
     }
 
-    this.productModel.addProduct(name, price, quantity);
+    this.productMdoel.addProduct(name, price, quantity);
   }
 
   submitChargeInput(inputSelector, model) {
