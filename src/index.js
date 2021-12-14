@@ -9,22 +9,11 @@ function addProduct() {
     
     if(isCorrectProductInputs(name, price, quantity)) {
         productList.push({ name, price, quantity });
-        renderNewProduct(name, price, quantity);
+        renderAddedProductList(productList);
     }
     else {
         alert("옳바른 형식이 아닙니다. 상품명: 1자 이상, 가격: 100원 이상 10 배수, 수량: 1 이상");
     }
-}
-
-function renderNewProduct(name, price, quantity) {
-    const productTable = document.querySelector("table");
-    const newProduct = document.createElement("tr");
-
-    newProduct.className = "product-manage-item";
-    newProduct.innerHTML = `<td class="product-manage-name">${name}</td>
-                            <td class="product-manage-price">${price}</td>
-                            <td class="product-manage-quantity">${quantity}</td>`;
-    productTable.appendChild(newProduct);
 }
 
 function isCorrectProductInputs(name, price, quantity) {
@@ -191,6 +180,20 @@ function renderProductList(products) {
     });
 }
 
+function renderAddedProductList(products) {
+    const productTable = document.querySelector("table");
+    productTable.innerHTML = '';
+    products.forEach(product => {
+        const {name, price, quantity} = product;
+        const newProductRow = document.createElement("tr");
+        newProductRow.className = "product-manage-item";
+        newProductRow.innerHTML = `<td class="product-manage-name">${name}</td>
+                                    <td class="product-manage-price">${price}</td>
+                                    <td class="product-manage-quantity">${quantity}</td>`;
+        productTable.appendChild(newProductRow);
+    });
+}
+
 function onTabClick(fileName, tabId) {
     fetchHtmlView(fileName)
         .then(view => renderView(view, tabId))
@@ -201,12 +204,20 @@ function renderView(view, tabId) {
     document.querySelector("#tab-content").innerHTML = view;
     switch(tabId) {
         case 1: 
+            renderAddedProductList(productList);
             break;
-        case 2: break;
+        case 2: 
+            renderChargedMoney(chargedMoney);
+            renderTotalChanges(totalChanges);
+            break;
         case 3:
+            renderInputMoney(totalInputMoney);
             renderProductList(productList);
+            renderChanges(inputChanges);
             break;
-        default: break;
+        default: 
+            alert(`일치하는 탭이 없습니다. ${tabId}`);
+            break;
     }
 }
 
