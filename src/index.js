@@ -1,11 +1,13 @@
 import { MENU_BUTTON } from "./constants/constants.js";
 import { loadButton } from "./view/DOM_load.js";
-import { initProductManage } from "./view/DOM_productManage.js";
-import { initChargeManage } from "./view/DOM_chargeManage.js";
+import { initProductManage, showProductManage, hideProductManage } from "./view/DOM_productManage.js";
+import { initChargeManage, showChargeManage, hideChargeManage } from "./view/DOM_chargeManage.js";
 
 class VandingMachine {
   constructor() {
     loadButton();
+    initProductManage();
+    initChargeManage();
     this.initEventListener();
   }
 
@@ -16,12 +18,14 @@ class VandingMachine {
 
     $buyProduct.addEventListener('click', e => {
       e.preventDefault();
-      initProductManage();
+      showProductManage();
+      hideChargeManage();
     });
 
     $chargeManage.addEventListener('click', e => {
       e.preventDefault();
-      initChargeManage();
+      showChargeManage();
+      hideProductManage();
     });
 
     $productManage.addEventListener('click', e => {
