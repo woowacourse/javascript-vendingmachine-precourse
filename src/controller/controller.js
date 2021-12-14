@@ -128,7 +128,7 @@ export default class Controller {
   onClickPurchase() {
     document.querySelectorAll(".purchase-button").forEach((item) => {
       item.addEventListener("click", (e) => {
-        const parent = e.target.parentNode;
+        const parent = e.target.parentNode.parentNode;
         const name = parent.children[0].dataset.productName;
         const quantity = parent.children[2];
 

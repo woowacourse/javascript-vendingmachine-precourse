@@ -145,7 +145,7 @@ export default class View {
         `<td data-product-name="${product.name}" class="product-purchase-name">${product.name}</td>
 	      <td data-product-price="${product.price}" class="product-purchase-price">${product.price}</td>
 	      <td data-product-quantity="${product.quantity}" class="product-purchase-quantity">${product.quantity}</td>
-	      <button class="purchase-button">구매하기</button>`,
+	      <td><button class="purchase-button">구매하기</button></td>`,
         EMPTY,
         "product-purchase-item"
       );
