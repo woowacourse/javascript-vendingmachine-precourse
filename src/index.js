@@ -13,7 +13,7 @@ if(checkStorage()){
     updateStorage(vendingMachine);
 };
 
-render(vendingMachine);
-
 const controller = new Controller();
+render(vendingMachine, controller);
 createEventListeners(controller);
+

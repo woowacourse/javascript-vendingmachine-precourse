@@ -19,7 +19,7 @@ const createGoodsStatusElement = () => {
             <tr>
                 <th>상품명</th>
                 <th>가격</th>
-                <th>수량<th/>
+                <th>수량</th>
             </tr>
         </table>
     `
