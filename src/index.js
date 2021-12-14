@@ -1,6 +1,6 @@
 import $ from './utils/common/selector.js';
 import { store } from './utils/common/store.js';
-import { changeTab } from './utils/changeTab.js';
+import { changeTab } from './utils/common/changeTab.js';
 import { renderTabs } from './utils/common/renderTabs.js';
 import { addProduct } from './utils/addProduct/addProduct.js';
 import { initialSetting } from './utils/common/initialSetting.js';

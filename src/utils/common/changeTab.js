@@ -1,14 +1,14 @@
-import $ from './common/selector.js';
-import { TABS } from '../constants/constants.js';
-import { renderProducts } from './addProduct/renderProducts.js';
-import { renderChange } from './inputChange/renderChange.js';
-import { inputChange } from './inputChange/inputChange.js';
-import { renderPurchaseProduct } from './purchaseProduct/renderPurchaseProduct.js';
-import { inputUserMoney } from './purchaseProduct/inputUserMoney.js';
-import { purchaseProduct } from './purchaseProduct/purchaseProduct.js';
-import { returnChange } from './purchaseProduct/returnChange.js';
-import { resetChange } from './purchaseProduct/resetChange.js';
-import { addProduct } from './addProduct/addProduct.js';
+import $ from './selector.js';
+import { TABS } from '../../constants/constants.js';
+import { renderProducts } from '../addProduct/renderProducts.js';
+import { renderChange } from '../inputChange/renderChange.js';
+import { inputChange } from '../inputChange/inputChange.js';
+import { renderPurchaseProduct } from '../purchaseProduct/renderPurchaseProduct.js';
+import { inputUserMoney } from '../purchaseProduct/inputUserMoney.js';
+import { purchaseProduct } from '../purchaseProduct/purchaseProduct.js';
+import { returnChange } from '../purchaseProduct/returnChange.js';
+import { resetChange } from '../purchaseProduct/resetChange.js';
+import { addProduct } from '../addProduct/addProduct.js';
 
 export const changeTab = async (e, tab, state) => {
   const tabName = e.target.dataset.tabName;
