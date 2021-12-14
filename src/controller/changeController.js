@@ -11,7 +11,7 @@ class ChangeController {
   }
 
   chargeCoin() {
-    let changeInput = this.view.getInput();
+    const changeInput = this.view.getInput();
     if (ChangeValidator.isInvalidChangeInput(changeInput)) {
       return;
     }
@@ -21,7 +21,7 @@ class ChangeController {
 
   randomCharge(changeInput) {
     while (changeInput >= COIN.MIN_VALUE) {
-      let pickedCoin = pickRandomCoin();
+      const pickedCoin = pickRandomCoin();
       if (changeInput >= pickedCoin) {
         reservedChange[`coin${pickedCoin}`] += COIN.ADD_1;
         changeInput -= pickedCoin;
