@@ -1,29 +1,39 @@
 export default class VendingMachineItems {
   constructor() {
-    this.items = {};
+    this.items = [];
   }
 
   addItem(name, price, quantity) {
-    this.items[name] = [price, quantity];
+    const itemIndex = this.#getItemIndexByName(name);
+    if (itemIndex === -1) {
+      this.items.push([name, price, quantity]);
+    } else {
+      this.items[itemIndex] = [name, price, quantity];
+    }
+  }
+
+  #getItemIndexByName(name) {
+    return this.items.findIndex((item) => item[0] === name);
   }
 
   getItemsList() {
-    return Object.keys(this.items).map((name) => this.getItemObject(name));
-  }
-
-  getItemObject(name) {
-    return [name, this.items[name][0], this.items[name][1]];
+    return this.items;
   }
 
   getPrice(name) {
-    return this.items[name][0];
+    const itemIndex = this.#getItemIndexByName(name);
+    return itemIndex !== -1 ? this.items[itemIndex][1] : -1;
   }
 
   getQuantity(name) {
-    return this.items[name][1];
+    const itemIndex = this.#getItemIndexByName(name);
+    return itemIndex !== -1 ? this.items[itemIndex][2] : -1;
   }
 
   purchaseItem(name) {
-    if (name in this.items && this.items[name][1] > 0) this.items[name][1] -= 1;
+    const itemIndex = this.#getItemIndexByName(name);
+    if (itemIndex !== -1 && this.items[itemIndex][2] > 0) {
+      this.items[itemIndex][2] -= 1;
+    }
   }
 }
