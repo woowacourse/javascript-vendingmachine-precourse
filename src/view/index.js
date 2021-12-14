@@ -11,7 +11,12 @@ export default class View {
   constructor() {
     this.$app = $('app');
     this.showHeaderTab();
+    this.setContainer();
     this.showAddTab();
+  }
+
+  setContainer() {
+    this.$container = $('container');
   }
 
   showHeaderTab() {
@@ -19,22 +24,22 @@ export default class View {
   }
 
   clearContainer() {
-    $('container').innerHTML = '';
+    this.$container.innerHTML = '';
   }
 
   showAddTab() {
     this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', productAddTab);
+    this.$container.insertAdjacentHTML('afterbegin', productAddTab);
   }
 
   showVendingTab() {
     this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', vendingMachineManageTab);
+    this.$container.insertAdjacentHTML('afterbegin', vendingMachineManageTab);
   }
 
   showPurchaseTab() {
     this.clearContainer();
-    $('container').insertAdjacentHTML('afterbegin', productPurchaseTab);
+    this.$container.insertAdjacentHTML('afterbegin', productPurchaseTab);
   }
 
   addTableHeader(table, headerForm) {
