@@ -9,3 +9,5 @@ export const clearInputValue = inputs => {
 };
 
 export const isDivideTen = number => number % 10 === 0;
+
+export const isEmpty = value => value === "";

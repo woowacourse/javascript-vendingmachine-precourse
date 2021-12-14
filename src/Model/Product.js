@@ -1,13 +1,15 @@
 import {
   DUPLICATE_NAME,
   EMPTY_NAME,
+  EMPTY_PRICE,
+  EMPTY_QUANTITY,
   IN_AVAILABLE_QUANTITY,
   LESS_THAN_100,
   NOT_DIVIDE_10,
   SOLD_OUT,
 } from "../constant/alertMessage.js";
 import { PRODUCT } from "../constant/vendingMachine.js";
-import { isDivideTen } from "./utils.js";
+import { isDivideTen, isEmpty } from "./utils.js";
 
 export default class Product {
   constructor(name, price, quantity) {
@@ -24,13 +26,11 @@ export default class Product {
 
   checkValidNewProductData(productData) {
     const [name, price, quantity] = productData;
-    return (
-      this.checkName(name) && this.checkPrice(Number(price)) && this.checkQuantity(Number(quantity))
-    );
+    return this.checkName(name) && this.checkPrice(price) && this.checkQuantity(quantity);
   }
 
   checkName(name) {
-    if (name === "") {
+    if (isEmpty(name)) {
       return alert(EMPTY_NAME);
     }
     const productList = this.getProductData().map(product => product.name);
@@ -42,6 +42,9 @@ export default class Product {
   }
 
   checkPrice(price) {
+    if (isEmpty(price)) {
+      return alert(EMPTY_PRICE);
+    }
     if (!isDivideTen(price)) {
       return alert(NOT_DIVIDE_10);
     }
@@ -52,6 +55,9 @@ export default class Product {
   }
 
   checkQuantity(quantity) {
+    if (isEmpty(quantity)) {
+      return alert(EMPTY_QUANTITY);
+    }
     if (quantity <= 0) {
       return alert(IN_AVAILABLE_QUANTITY);
     }
