@@ -9,4 +9,10 @@ export default class Header extends Component {
         <input type="button" class="menuBtns" id="product-purchase-menu" data-curr-menu="2" value="상품 구매" />
     `;
   }
+
+  setEvent() {
+    this.addEvent('click', '.menuBtns', ({ target }) => {
+      this.$props.selectMenu(Number(target.dataset.currMenu));
+    });
+  }
 }
