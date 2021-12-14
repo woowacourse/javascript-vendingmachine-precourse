@@ -16,6 +16,7 @@ class ChangeController {
       return;
     }
     this.randomCharge(changeInput);
+    store.setLocalStorage('reservedChange', reservedChange);
     this.view.render();
   }
 
@@ -27,7 +28,6 @@ class ChangeController {
         changeInput -= pickedCoin;
       }
     }
-    store.setLocalStorage('reservedChange', reservedChange);
   }
 
   bindEvent() {
