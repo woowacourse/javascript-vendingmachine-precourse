@@ -1,4 +1,6 @@
 import Component from './essential/component.js';
+import { initStorageIfNull } from './utils/storage.js';
+import * as CONSTANTS from './utils/constants.js';
 import Header from './components/header.js';
 import ProductAdd from './components/product-add/index.js';
 import VendingMachineManage from './components/vending-machine-manage/index.js';
@@ -11,6 +13,7 @@ const CONTENT = `
 
 export default class App extends Component {
   setup() {
+    this.initAllStorageIfNull();
     this.$state = {
       currMenu: 0,
     };
@@ -42,6 +45,13 @@ export default class App extends Component {
         new ProductPurchase($main);
         break;
     }
+  }
+
+  initAllStorageIfNull() {
+    initStorageIfNull(CONSTANTS.STORAGE_PRODUCTS_KEY, []);
+    initStorageIfNull(CONSTANTS.STORAGE_CHANGES_KEY, { 500: 0, 100: 0, 50: 0, 10: 0 });
+    initStorageIfNull(CONSTANTS.STORAGE_REMAINS_KEY, 0);
+    initStorageIfNull(CONSTANTS.STORAGE_INSERTED_KEY, 0);
   }
 
   selectMenu(currMenu) {
