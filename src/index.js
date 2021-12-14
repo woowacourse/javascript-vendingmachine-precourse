@@ -1,4 +1,5 @@
 import { $ } from './dom.js';
+import VendingMachine from './vendingMachine/vendingMachine.js';
 export class Buying{
   drawMainTitle() {
     let h1 = document.createElement('h1');
@@ -34,6 +35,8 @@ export class Buying{
     this.drawMainTitle();
     this.drawModeButtons();
     this.drawContentBox();
+    const machine = new VendingMachine();
+    console.log(machine);
   }
 }
 const buying = new Buying();
