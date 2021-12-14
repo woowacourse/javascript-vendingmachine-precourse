@@ -79,7 +79,6 @@ export default class PurchaseContainer extends Component {
       if (isValidPurchaseInput(purchaseAmountValue)) {
         this.setState({purchaseAmount: this.$state.purchaseAmount + purchaseAmountValue});
         this.saveChargedPurchaseAmountResultInStorage();
-        this.setEvent();
       }
     });
   }
@@ -101,7 +100,6 @@ export default class PurchaseContainer extends Component {
       this.returnCoin(this.$state.purchaseAmount, this.$state.vendingMachineCoins);
 
       this.printCoinQuantity(this.$state.returnCoins);
-      this.setEvent();
     });
   }
 
