@@ -5,7 +5,6 @@ import { showConvertedCoins, coinChargeTemplate } from './coinChargeTemplate.js'
 import { getLocalStorage, setLocalStorage } from '../storage/storage.js';
 import { showCurrentAmount } from '../../view/view.js';
 
-let currentAmount = STANDARD.CURRENT_MONEY;
 let convertedCoins = { 500: 0, 100: 0, 50: 0, 10: 0 };
 const vendingMachineChargeAmountId = '#vending-machine-charge-amount';
 
@@ -21,27 +20,27 @@ const convertAmountIntoCoins = (amount) => {
   }
 };
 
-const showCurrentMachineAmount = (storedChargeCoins) => {
-  let currentCoin = STANDARD.CURRENT_MONEY;
+const calculationCurrentAmount = (storedChargeCoins) => {
+  let currentAmount = STANDARD.CURRENT_MONEY;
   // eslint-disable-next-line no-restricted-syntax
   for (const unit in storedChargeCoins) {
-    currentCoin += storedChargeCoins[unit] * unit;
+    currentAmount += storedChargeCoins[unit] * unit;
   }
-  showCurrentAmount(vendingMachineChargeAmountId, currentCoin);
+  return currentAmount;
 };
 
 const handleCoinChargeSubmit = (event) => {
   event.preventDefault();
-  const chargedCoin = Number($('#vending-machine-charge-input').value);
+  let chargedCoin = Number($('#vending-machine-charge-input').value);
+  const storedChargeCoins = getLocalStorage(STORAGE_NAME.COIN);
 
   if (isDivideByTen(chargedCoin)) {
     return alert(ERROR_MESSAGE.NOT_DIVIDE_BY_TEN);
   }
 
-  currentAmount += chargedCoin;
-  showCurrentAmount(vendingMachineChargeAmountId, currentAmount);
-  setLocalStorage(STORAGE_NAME.MACHINE_AMOUNT, currentAmount);
   convertAmountIntoCoins(chargedCoin);
+  chargedCoin += calculationCurrentAmount(storedChargeCoins);
+  showCurrentAmount(vendingMachineChargeAmountId, chargedCoin);
   showConvertedCoins(convertedCoins);
   setLocalStorage(STORAGE_NAME.COIN, convertedCoins);
 };
@@ -53,7 +52,8 @@ export const showManageMenu = () => {
   if (storedChargeCoins.length !== 0) {
     convertedCoins = storedChargeCoins;
     showConvertedCoins(storedChargeCoins);
-    showCurrentMachineAmount(storedChargeCoins);
+    const currentAmount = calculationCurrentAmount(storedChargeCoins);
+    showCurrentAmount(vendingMachineChargeAmountId, currentAmount);
   }
 
   $('form').addEventListener('submit', handleCoinChargeSubmit);

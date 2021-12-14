@@ -2,7 +2,6 @@ export const COIN_UNITS = [500, 100, 50, 10];
 
 export const STORAGE_NAME = {
   PRODUCT: 'product',
-  MACHINE_AMOUNT: 'machine',
   COIN: 'coin',
   USER_AMOUNT: 'user',
 };
