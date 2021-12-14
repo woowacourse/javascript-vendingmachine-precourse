@@ -23,6 +23,23 @@ const initMoney = () => {
   document.getElementById('charge-amount').innerText = Number(money);
 };
 
+const chargeMoney = () => {
+  const chargeInput = document.getElementById('charge-input').value;
+  const money = getMoneyFromLocalStorage('money');
+  if (isChargeInputValid(chargeInput)) {
+    document.getElementById('charge-amount').innerText = Number(money) + Number(chargeInput);
+    saveMoneyToLocalStorage('money', Number(money) + Number(chargeInput));
+  }
+};
+
+const isChargeInputValid = (chargeInput) => {
+  if (chargeInput % 10 !== 0) {
+    alert('invalid chargeInput');
+    return false;
+  }
+  return true;
+};
+
 const initProductTable = () => {
   const products = getProductsFromLocalStorage('product');
   const table = document.getElementById('product-purchase-table');
