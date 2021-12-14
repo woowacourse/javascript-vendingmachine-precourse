@@ -1,18 +1,14 @@
+import { $ } from '../../utils/dom.js';
 import { ID, CLASS } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import { STORAGE_KEY } from '../../constants/storageKey.js';
+import { Container } from '../elements.js';
 import {
-  Container,
-  SubTitle,
-  Span,
-  SpanWithId,
-  ButtonWithId,
-} from '../elements.js';
-import {
-  createAddMoneyForm,
-  createProductPurchaseTable,
-  createProductPurchaseRow,
-  createCoinTable,
+  moneyAddForm,
+  userMoneySpan,
+  productTable,
+  coinTable,
+  createProductRow,
 } from './element.js';
 import { vendingMachine } from '../vendingMachine.js';
 import {
@@ -21,34 +17,23 @@ import {
   canReturn,
   isValidCharge,
 } from '../validator.js';
+import { getLocalStorage } from '../store.js';
 
 export default function ProductPurchaseMenuView() {
   this.productPurchaseMenu = () => {
     const container = Container(ID.PRODUCT_PURCHASE_VIEW);
-    const addMoneySubTitle = SubTitle(MACHINE.SUBTITLE.INSERT_MONEY);
-    const productSubTitle = SubTitle(MACHINE.SUBTITLE.PRODUCT_PURCHASE_STATUS);
-    const changeSubTitle = SubTitle(MACHINE.SUBTITLE.CHANGE);
-    const addMoneyForm = createAddMoneyForm(this.onClickAddMoneyButton);
-    const insertSpan = Span(MACHINE.TEXT.USER_MONEY);
-    const moneySpan = SpanWithId('', ID.CHARGE_AMOUNT);
-    const productPurchaseTable = createProductPurchaseTable();
-    const coinTable = createCoinTable();
-    const returnButton = ButtonWithId(
-      MACHINE.BUTTON.RETURN,
-      ID.COIN_RETURN_BUTTON,
-      this.onClickReturnCoinButton
+    const form = moneyAddForm(this.onClickAddMoneyButton);
+    const moneySpan = userMoneySpan();
+    const productPurchaseTable = productTable(
+      this.onClickPurchaseProductButton
     );
+    const returnCoinTable = coinTable(this.onClickReturnCoinButton);
 
     container.append(
-      addMoneySubTitle,
-      addMoneyForm,
-      insertSpan,
-      moneySpan,
-      productSubTitle,
-      productPurchaseTable,
-      changeSubTitle,
-      returnButton,
-      coinTable
+      ...form,
+      ...moneySpan,
+      ...productPurchaseTable,
+      ...returnCoinTable
     );
 
     return container;
@@ -56,7 +41,7 @@ export default function ProductPurchaseMenuView() {
 
   this.onClickAddMoneyButton = (e) => {
     e.preventDefault();
-    const addMoneyInput = document.querySelector(`#${ID.CHARGE_INPUT}`);
+    const addMoneyInput = $(`#${ID.CHARGE_INPUT}`);
 
     if (!isValidCharge(addMoneyInput.value)) {
       alertChargeErrorMessage(addMoneyInput.value);
@@ -65,15 +50,6 @@ export default function ProductPurchaseMenuView() {
 
     vendingMachine.addInsertMoney(parseInt(addMoneyInput.value));
     this.renderInsertMoney();
-  };
-
-  this.renderProductQuantity = (name, quantityData) => {
-    const product = vendingMachine.products.find(
-      (product) => product.name === name
-    );
-
-    quantityData.innerHTML = product.quantity;
-    quantityData.dataset.productQuantity = product.quantity;
   };
 
   this.onClickPurchaseProductButton = (e) => {
@@ -94,7 +70,6 @@ export default function ProductPurchaseMenuView() {
         vendingMachine.charge,
         vendingMachine.insertMoney
       );
-
       return;
     }
 
@@ -104,23 +79,15 @@ export default function ProductPurchaseMenuView() {
     this.renderReturnCoin(returnCoinCount);
   };
 
-  this.renderReturnCoin = (counts) => {
-    counts.forEach((count, index) => {
-      const coinData = document.querySelector(`#${ID.RETURN_COIN[index]}`);
-
-      coinData.innerHTML = `${count}${MACHINE.COUNT}`;
-    });
-  };
-
   this.renderInsertMoney = () => {
-    const moneySpan = document.querySelector(`#${ID.CHARGE_AMOUNT}`);
+    const moneySpan = $(`#${ID.CHARGE_AMOUNT}`);
 
     moneySpan.innerHTML = `${vendingMachine.insertMoney}${MACHINE.WON}`;
   };
 
-  this.renderProductPurchase = (product) => {
-    const table = document.querySelector(`#${ID.PRODUCT_PURCHASE_TABLE}`);
-    const productRow = createProductPurchaseRow(
+  this.renderProduct = (product) => {
+    const table = $(`#${ID.PRODUCT_PURCHASE_TABLE}`);
+    const productRow = createProductRow(
       product,
       CLASS.PRODUCT_PURCHASE_ITEM,
       CLASS.PRODUCT_PURCHASE,
@@ -130,14 +97,20 @@ export default function ProductPurchaseMenuView() {
     table.append(productRow);
   };
 
-  this.renderProducts = (products) => {
-    const productArray = products.map((product) => [
-      product.name,
-      product.price,
-      product.quantity,
-    ]);
-    productArray.forEach((product) => {
-      this.renderProductPurchase(product);
+  this.renderProductQuantity = (name, quantityData) => {
+    const product = vendingMachine.products.find(
+      (product) => product.name === name
+    );
+
+    quantityData.innerHTML = product.quantity;
+    quantityData.dataset.productQuantity = product.quantity;
+  };
+
+  this.renderReturnCoin = (counts) => {
+    counts.forEach((count, index) => {
+      const coinData = $(`#${ID.RETURN_COIN[index]}`);
+
+      coinData.innerHTML = `${count}${MACHINE.COUNT}`;
     });
   };
 
@@ -150,17 +123,27 @@ export default function ProductPurchaseMenuView() {
     this.renderInsertMoney();
   };
 
+  this.initProducts = (products) => {
+    const productArray = products.map((product) => [
+      product.name,
+      product.price,
+      product.quantity,
+    ]);
+
+    productArray.forEach((product) => {
+      this.renderProduct(product);
+    });
+  };
+
   this.initProductTable = () => {
-    if (JSON.parse(localStorage.getItem(STORAGE_KEY.PRODUCT))) {
-      vendingMachine.products = JSON.parse(
-        localStorage.getItem(STORAGE_KEY.PRODUCT)
-      );
+    if (getLocalStorage(STORAGE_KEY.PRODUCT)) {
+      vendingMachine.products = getLocalStorage(STORAGE_KEY.PRODUCT);
     }
-    this.renderProducts(vendingMachine.products);
+    this.initProducts(vendingMachine.products);
   };
 
   this.render = () => {
-    const container = document.querySelector(`#${ID.MENU_VIEW}`);
+    const container = $(`#${ID.MENU_VIEW}`);
 
     container.append(this.productPurchaseMenu());
     this.initInsertMoney();

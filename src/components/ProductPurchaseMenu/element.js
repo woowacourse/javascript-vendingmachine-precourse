@@ -1,20 +1,21 @@
 import { ID, CLASS, DATASET } from '../../constants/selector.js';
 import { MACHINE } from '../../constants/machine.js';
 import {
+  SubTitle,
   Form,
   Input,
+  Span,
+  SpanWithId,
   ButtonWithId,
   ButtonWithClassName,
   Table,
   TableHead,
-  TableRow,
   TableRowWithClassName,
-  TableData,
-  TableDataWithId,
   TableDataWithClassName,
 } from '../elements.js';
+import { createCoinTable } from '../coinTable.js';
 
-export const createAddMoneyForm = (event) => {
+const createMoneyAddForm = (event) => {
   const addMoneyForm = Form();
   const addMoneyInput = Input(
     ID.CHARGE_INPUT,
@@ -32,12 +33,48 @@ export const createAddMoneyForm = (event) => {
   return addMoneyForm;
 };
 
-export const createProductPurchaseRow = (
-  datas,
-  trClassName,
-  tdClassNames,
-  event
-) => {
+const createProductTable = () => {
+  const productPurchaseTable = Table(ID.PRODUCT_PURCHASE_TABLE);
+
+  TableHead(productPurchaseTable, MACHINE.TABLE.PRODUCT_PURCHASE_HEADS);
+
+  return productPurchaseTable;
+};
+
+export const moneyAddForm = (event) => {
+  const moneyAddSubTitle = SubTitle(MACHINE.SUBTITLE.INSERT_MONEY);
+  const moneyAddForm = createMoneyAddForm(event);
+
+  return [moneyAddSubTitle, moneyAddForm];
+};
+
+export const userMoneySpan = () => {
+  const insertSpan = Span(MACHINE.TEXT.USER_MONEY);
+  const moneySpan = SpanWithId('', ID.CHARGE_AMOUNT);
+
+  return [insertSpan, moneySpan];
+};
+
+export const productTable = () => {
+  const productSubTitle = SubTitle(MACHINE.SUBTITLE.PRODUCT_PURCHASE_STATUS);
+  const productTable = createProductTable();
+
+  return [productSubTitle, productTable];
+};
+
+export const coinTable = (event) => {
+  const changeSubTitle = SubTitle(MACHINE.SUBTITLE.CHANGE);
+  const returnButton = ButtonWithId(
+    MACHINE.BUTTON.RETURN,
+    ID.COIN_RETURN_BUTTON,
+    event
+  );
+  const coinTable = createCoinTable(ID.RETURN_COIN_TABLE, ID.RETURN_COIN);
+
+  return [changeSubTitle, returnButton, coinTable];
+};
+
+export const createProductRow = (datas, trClassName, tdClassNames, event) => {
   const tr = TableRowWithClassName(trClassName);
   const purchaseButton = ButtonWithClassName(
     MACHINE.BUTTON.PURCHASE,
@@ -53,37 +90,4 @@ export const createProductPurchaseRow = (
   tr.append(purchaseButton);
 
   return tr;
-};
-
-export const createProductPurchaseTable = () => {
-  const productPurchaseTable = Table(ID.PRODUCT_PURCHASE_TABLE);
-  TableHead(productPurchaseTable, MACHINE.TABLE.PRODUCT_PURCHASE_HEADS);
-
-  return productPurchaseTable;
-};
-
-const createCoinRow = (coin, id) => {
-  const tableRow = TableRow();
-  const coinNameData = TableData(coin);
-  const coinQuantityData = TableDataWithId('', id);
-
-  tableRow.append(coinNameData, coinQuantityData);
-
-  return tableRow;
-};
-
-export const createCoinTable = () => {
-  const coinTable = Table();
-
-  TableHead(coinTable, MACHINE.TABLE.COIN_HEADS);
-  MACHINE.COIN.forEach((coin, index) => {
-    const tableRow = createCoinRow(
-      `${coin}${MACHINE.WON}`,
-      ID.RETURN_COIN[index]
-    );
-
-    coinTable.append(tableRow);
-  });
-
-  return coinTable;
 };
