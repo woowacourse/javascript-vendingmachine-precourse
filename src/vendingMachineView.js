@@ -3,7 +3,6 @@ export const $app = document.getElementById('app');
 export default class VendingMachineView {
   constructor() {
     this.$app = $app;
-    this.render();
   }
 
   render() {

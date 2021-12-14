@@ -1,3 +1,4 @@
 import VendingMachine from './vendingMachine.js';
 
-new VendingMachine();
+const vendingMachine = new VendingMachine();
+vendingMachine.init();
