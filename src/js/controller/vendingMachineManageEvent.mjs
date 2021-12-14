@@ -4,6 +4,8 @@ import {
   renderAmountCoins
 } from '../view/index.mjs';
 
+import { vendingMachineMoneyValidate } from './util/validate.mjs';
+
 import { vendingMachine } from '../model/VendingMachine.mjs';
 
 function initVendingMachineManagePage() {
@@ -20,9 +22,12 @@ function vendingMachineCoinQuantity() {
 
 function addCoinButton() {
   let chargeMoney = document.querySelector('#vending-machine-charge-input').value;
+
+  if (!vendingMachineMoneyValidate(chargeMoney)) return;
   vendingMachine.sumMoney(chargeMoney);
 
   renderVendingMachineChargeAmount();
+  vendingMachineCoinQuantity();
 }
 
 export function vendingMachineManageEvent() {
@@ -32,6 +37,5 @@ export function vendingMachineManageEvent() {
   window.addEventListener('click', e => {
     if (e.target !== document.querySelector('#vending-machine-charge-button')) return;
     addCoinButton();
-    vendingMachineCoinQuantity();
   });
 }

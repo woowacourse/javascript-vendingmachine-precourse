@@ -1,7 +1,7 @@
 import { renderProductAddPage, renderProductStatusTable } from '../view/index.mjs';
 import { Product } from '../model/Product.mjs';
 import { addProduct } from '../model/setProducts.mjs';
-import { inputValidate, priceValidate } from './util/validate.mjs';
+import { productAddInputValidate, productAddPriceValidate } from './util/validate.mjs';
 
 function initProductAddPage() {
   document.querySelector('main').remove();
@@ -13,8 +13,8 @@ function productAddButton() {
   const price = document.querySelector('#product-price-input').value;
   const quantity = document.querySelector('#product-quantity-input').value;
 
-  if (!inputValidate(name, price, quantity)) return;
-  if (!priceValidate(price)) return;
+  if (!productAddInputValidate(name, price, quantity)) return;
+  if (!productAddPriceValidate(price)) return;
 
   addProduct(new Product(name, price, quantity));
   renderProductStatusTable();
