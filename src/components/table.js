@@ -24,7 +24,10 @@ export default class Table extends Component {
   }
 
   getTableRow(tableRow) {
-    return `<tr>${tableRow.map((entry) => `<td>${entry}</td>`).join("")}</tr>`;
+    const classStr = this.$props.tableRowClass ? this.$props.tableRowClass : "";
+    return `<tr class=${classStr}>${tableRow
+      .map((entry) => `<td>${entry}</td>`)
+      .join("")}</tr>`;
   }
 
   getOptionalButton() {
@@ -32,13 +35,5 @@ export default class Table extends Component {
 
     if (buttonInfo === undefined) return "";
     return `<button id=${buttonInfo.id}>${buttonInfo.value}</button>`;
-  }
-
-  setEvent() {
-    const { buttonInfo } = this.$props;
-    if (buttonInfo !== undefined) {
-      const buttonSelector = this.$target.querySelector(`#${buttonInfo.id}`);
-      buttonSelector.addEventListener("click", buttonInfo.callBack);
-    }
   }
 }
