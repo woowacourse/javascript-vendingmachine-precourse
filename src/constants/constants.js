@@ -16,6 +16,7 @@ export const ADMIN_ERR = {
   name: '공백을 제외한 1글자 이상의 상품명을 입력해주세요.',
   price: '100원 이상, 10원으로 나누어지는 상품 금액을 입력해주세요',
   quantity: '1개 이상의 상품 수량을 입력해주세요',
+  sameProduct: '이미 같은 상품의 이름이 존재합니다!',
 };
 
 export const ADMIN_RULES = {

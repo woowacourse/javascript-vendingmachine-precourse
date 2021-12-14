@@ -93,11 +93,25 @@ export default class AdminModel {
     return true;
   }
 
+  isDifferentProductName() {
+    const productStorage = this.getProductStorage();
+    const inputProductName = this.productNameEl.value.trim();
+    for (let i = 0; i < productStorage.length; i += 1) {
+      const { name } = productStorage[i];
+      if (name === inputProductName) {
+        alert(ADMIN_ERR.sameProduct);
+        return false;
+      }
+    }
+    return true;
+  }
+
   isValidProductAdd() {
     if (
       this.isValidProductName() &&
       this.isValidProductPrice() &&
-      this.isValidProductQuantity()
+      this.isValidProductQuantity() &&
+      this.isDifferentProductName()
     ) {
       return true;
     }
