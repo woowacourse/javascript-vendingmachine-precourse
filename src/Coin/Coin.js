@@ -40,6 +40,7 @@ export default class Coin {
       returnCoin -= returnCoinList[coin] * coin;
     });
     returnCoinList['charge'] = returnCoin;
+    this.amountCost -= chargeCoin - returnCoin;
     return returnCoinList;
   }
 

@@ -61,7 +61,6 @@ export default class VendingMachineManageTemplate {
 
   makeCoinTableBody() {
     this.coinTableBody.innerHTML = '';
-    console.log(this.coin.getCoinList());
     this.coin.getCoinList().forEach((coinValue) => {
       const coinClass = document.createElement('tr');
       coinClass.innerHTML = `<td>${coinValue}원</td><td id="vending-machine-coin-${coinValue}-quantity"></td>`;
