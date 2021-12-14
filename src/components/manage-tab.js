@@ -1,49 +1,49 @@
-import { elementCreator } from "../utils/dom.js"
-import { COIN_TABLE_ID, MANAGE_TAB_ID } from "../constants.js";
+import {elementCreator} from '../utils/dom.js';
+import {COIN_TABLE_ID, MANAGE_TAB_ID} from '../constants.js';
 
 const createCoinTable = () => {
-    return `<tbody><tr><td>500원</td><td id=${COIN_TABLE_ID.FIRST}></td></tr>
+  return `<tbody><tr><td>500원</td><td id=${COIN_TABLE_ID.FIRST}></td></tr>
             <tr><td>100원</td><td id=${COIN_TABLE_ID.SECOND}></td></tr>
             <tr><td>50원</td><td id=${COIN_TABLE_ID.THIRD}></td></tr>
             <tr><td>10원</td><td id=${COIN_TABLE_ID.LAST}></td></tr>
-            </tbody>`
-}
+            </tbody>`;
+};
 
 const createChargeCoinElement = (manageTab) => {
-    manageTab.append(elementCreator('h3', null, '자판기 동전 충전하기'));
-    const chargeSpan = elementCreator('div', MANAGE_TAB_ID.CHARGE_DIV, null);
-    chargeSpan.append(
-        elementCreator('input', MANAGE_TAB_ID.CHARGE_INPUT, null),
-        elementCreator('button', MANAGE_TAB_ID.CHARGE_BUTTON, '충전하기')
-    );
-    manageTab.append(
-        chargeSpan,
-        elementCreator('span', MANAGE_TAB_ID.AMOUNT_SPAN, '보유 금액: '),
-        elementCreator('span', MANAGE_TAB_ID.AMOUNT_SPAN_VALUE, null)
-    );
-}
+  manageTab.append(elementCreator('h3', null, '자판기 동전 충전하기'));
+  const chargeSpan = elementCreator('div', MANAGE_TAB_ID.CHARGE_DIV, null);
+  chargeSpan.append(
+      elementCreator('input', MANAGE_TAB_ID.CHARGE_INPUT, null),
+      elementCreator('button', MANAGE_TAB_ID.CHARGE_BUTTON, '충전하기'),
+  );
+  manageTab.append(
+      chargeSpan,
+      elementCreator('span', MANAGE_TAB_ID.AMOUNT_SPAN, '보유 금액: '),
+      elementCreator('span', MANAGE_TAB_ID.AMOUNT_SPAN_VALUE, null),
+  );
+};
 
 const createCoinViewElement = (manageTab) => {
-    manageTab.append(elementCreator('h3', null, '자판기가 보유한 동전'));
-    const coinTable = document.createElement('table');
-    const tableHead = document.createElement('thead');
-    const tableRow = document.createElement('tr');
-    tableRow.append(
-        elementCreator('th', null, '동전'),
-        elementCreator('th', null, '개수'),
-    )
+  manageTab.append(elementCreator('h3', null, '자판기가 보유한 동전'));
+  const coinTable = document.createElement('table');
+  const tableHead = document.createElement('thead');
+  const tableRow = document.createElement('tr');
+  tableRow.append(
+      elementCreator('th', null, '동전'),
+      elementCreator('th', null, '개수'),
+  );
 
-    tableHead.append(tableRow);
-    coinTable.append(tableHead);
+  tableHead.append(tableRow);
+  coinTable.append(tableHead);
 
-    coinTable.insertAdjacentHTML('beforeend',createCoinTable());
-    manageTab.append(coinTable);
-}
+  coinTable.insertAdjacentHTML('beforeend', createCoinTable());
+  manageTab.append(coinTable);
+};
 
 export default () => {
-    const manageTab = document.createElement('div');
-    createChargeCoinElement(manageTab);
-    createCoinViewElement(manageTab);
+  const manageTab = document.createElement('div');
+  createChargeCoinElement(manageTab);
+  createCoinViewElement(manageTab);
 
-    return manageTab;
-}
+  return manageTab;
+};
