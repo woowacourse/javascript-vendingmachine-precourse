@@ -6,6 +6,7 @@ import {
   PURCHASE_MANAGE,
   VENDING_MACHINE_COIN,
   USER_COIN,
+  PRODUCT,
 } from "./constant/vendingMachine.js";
 import ProductAddView from "./View/productAddView.js";
 import CoinManageView from "./View/coinMangeView.js";
@@ -26,9 +27,9 @@ class VendingMachine {
   }
 
   setLocalStorage() {
-    this.setData("Product", []);
-    this.setData(VENDING_MACHINE_COIN, []);
-    this.setData(USER_COIN, []);
+    this.setData(PRODUCT, []);
+    this.setData(VENDING_MACHINE_COIN, {});
+    this.setData(USER_COIN, 0);
   }
 
   setData(key, value) {
