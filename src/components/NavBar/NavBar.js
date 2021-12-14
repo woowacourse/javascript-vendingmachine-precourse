@@ -1,4 +1,5 @@
 import Component from '../../core/Component.js';
+import { TAB } from '../../configs/constants.js';
 import tc from '../../core/utils/tc.js';
 
 export default class NavBar extends Component {
@@ -19,8 +20,11 @@ export default class NavBar extends Component {
   }
 
   setEvent() {
-    this.addRoute('#product-add-menu', '/add');
-    this.addRoute('#vending-machine-manage-menu', '/manage');
-    this.addRoute('#product-purchase-menu', '/purchase');
+    this.addRoute('#product-add-menu', TAB.PRODUCT_ADD_MENU);
+    this.addRoute(
+      '#vending-machine-manage-menu',
+      TAB.VENDING_MACHINE_MANAGE_MENU
+    );
+    this.addRoute('#product-purchase-menu', TAB.PRODUCT_PURCHASE_MENU);
   }
 }

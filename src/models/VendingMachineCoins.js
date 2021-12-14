@@ -2,6 +2,7 @@
 
 import Coins from './Coins.js';
 import tc from '../core/utils/tc.js';
+import { COINAGE } from '../configs/constants.js';
 
 export default class VendingMachineCoins extends Coins {
   static convertToRandomCoins(
@@ -12,9 +13,7 @@ export default class VendingMachineCoins extends Coins {
     const coins = new Coins();
 
     while (remain > 0) {
-      const randomCoin = MissionUtils.Random.pickNumberInList([
-        500, 100, 50, 10,
-      ]);
+      const randomCoin = MissionUtils.Random.pickNumberInList(COINAGE);
 
       if (remain - randomCoin >= 0) {
         remain -= randomCoin;
@@ -38,7 +37,6 @@ export default class VendingMachineCoins extends Coins {
     const divisor = this.getKeys().sort((a, b) => a - b);
     let remain = amount;
 
-    // TODO: array 비어있는 여부 조사 좀더 좋은 방법 찾기, 타입체크도 리팩터링
     while (remain > 0 && divisor.length > 0) {
       const div = divisor.pop();
       const coinAmount = Math.min(

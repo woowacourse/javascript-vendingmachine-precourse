@@ -1,5 +1,5 @@
 import Component from '../../core/Component.js';
-import isValidChargeAmount from '../../utils/isValidChargeAmount.js';
+import { isValidChargeAmount } from '../../utils/validations.js';
 import $ from '../../utils/helpers.js';
 
 export default class ChargeSection extends Component {
@@ -14,8 +14,18 @@ export default class ChargeSection extends Component {
     return `
       <h3>금액 투입</h3>
       <form>
-        <input type='number' placeholder='투입할 금액' id='charge-input'></input>
-        <button type='submit' id='charge-button'>투입하기</button
+        <input
+          type='number'
+          placeholder='투입할 금액'
+          id='charge-input'
+        >
+        </input>
+        <button
+          type='submit'
+          id='charge-button'
+        >
+          투입하기
+        </button>
       </form>
       <p>투입한 금액: <span id='charge-amount'>${chargedAmount.toString()}</span></p>
     `;

@@ -1,11 +1,9 @@
+import { COINAGE, EMPTY_COINS } from '../configs/constants.js';
 import tc from '../core/utils/tc.js';
 
 export default class Coins {
-  constructor(
-    coins = { '500': 0, '100': 0, '50': 0, '10': 0 },
-    _ = tc(coins, 'object')
-  ) {
-    this.keys = [500, 100, 50, 10];
+  constructor(coins = EMPTY_COINS, _ = tc(coins, 'object')) {
+    this.keys = COINAGE;
     this.map = new Map();
     this.keys.forEach((key) => this.map.set(key, coins[key]));
   }
@@ -31,11 +29,11 @@ export default class Coins {
   }
 
   toObject() {
-    return {
-      '500': this.map.get(500),
-      '100': this.map.get(100),
-      '50': this.map.get(50),
-      '10': this.map.get(10),
-    };
+    const object = {};
+    this.keys.forEach((key) => {
+      object[key.toString()] = this.map.get(key);
+    });
+
+    return object;
   }
 }

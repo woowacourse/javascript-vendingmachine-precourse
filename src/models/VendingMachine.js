@@ -5,8 +5,6 @@ import VendingMachineCoins from './VendingMachineCoins.js';
 import ChargedAmount from './ChargedAmount.js';
 import tc from '../core/utils/tc.js';
 
-// TODO: Coins 클래스 상속
-// TODO: 객체 컨테이너 자료구조를 Set으로 변경
 export default class VendingMachine {
   constructor(store, { items, coins, chargedAmount }, _ = tc(store, Store)) {
     this.store = store;

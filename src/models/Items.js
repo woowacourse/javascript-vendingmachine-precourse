@@ -1,5 +1,6 @@
 import Item from './Item.js';
 import tc from '../core/utils/tc.js';
+import { EXCEPTIONS } from '../configs/constants.js';
 
 export default class Items {
   constructor(items, _ = tc(items, 'object')) {
@@ -14,7 +15,7 @@ export default class Items {
     const item = this.items.get(id);
 
     if (!item) {
-      throw new Error('no such item');
+      throw EXCEPTIONS.NO_SUCH_ITEM;
     }
 
     return item;

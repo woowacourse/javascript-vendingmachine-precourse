@@ -1,5 +1,5 @@
 import Component from '../../core/Component.js';
-import isValidItem from '../../utils/isValidItem.js';
+import { isValidItem } from '../../utils/validations.js';
 import $ from '../../utils/helpers.js';
 
 export default class ProductAddSection extends Component {

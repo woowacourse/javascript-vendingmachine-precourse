@@ -1,6 +1,6 @@
 import tc from '../core/utils/tc.js';
 import Item from '../models/Item.js';
-import INIT_DATA from './initData.js';
+import { INIT_DATA } from '../configs/constants.js';
 
 export default class Store {
   constructor(name, _ = tc(name, 'string')) {

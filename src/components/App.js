@@ -4,16 +4,16 @@ import NavBar from './NavBar/NavBar.js';
 import ProductAddMenu from './ProductAddMenu/ProductAddMenu.js';
 import ProductPurchaseMenu from './ProductPurchaseMenu/ProductPurchaseMenu.js';
 import VendingMachineManageMenu from './VendingMachineManageMenu/VendingMachineManageMenu.js';
-
 import VendingMachine from '../models/VendingMachine.js';
 import $ from '../utils/helpers.js';
 import tc from '../core/utils/tc.js';
+import { TAB } from '../configs/constants.js';
 
 export default class App extends Component {
   setup() {
     const { store } = this.props;
     const { items, coins, chargedAmount } = store.getLocalStorage();
-    const currentTab = '/add';
+    const currentTab = TAB.PRODUCT_ADD_MENU;
     const vendingMachine = new VendingMachine(store, {
       items,
       coins,
@@ -28,9 +28,9 @@ export default class App extends Component {
       <h1>🥤자판기🥤</h1>
       <nav id='nav-bar'></nav>
       <div id='router'>
-        <div id='product-add-tab' data-path='/add'></div>
-        <div id='product-purchase-tab' data-path='/purchase'></div>
-        <div id='vending-machine-manage-tab' data-path='/manage'></div>
+        <div id='product-add-tab' data-path=${TAB.PRODUCT_ADD_MENU}></div>
+        <div id='product-purchase-tab' data-path=${TAB.PRODUCT_PURCHASE_MENU}></div>
+        <div id='vending-machine-manage-tab' data-path=${TAB.VENDING_MACHINE_MANAGE_MENU}></div>
       </div>
     `;
   }

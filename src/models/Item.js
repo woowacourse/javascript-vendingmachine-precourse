@@ -1,4 +1,5 @@
 import tc from '../core/utils/tc.js';
+import { EXCEPTIONS } from '../configs/constants.js';
 
 export default class Item {
   constructor(
@@ -14,10 +15,14 @@ export default class Item {
     this.quantity = quantity;
   }
 
+  isOutOfStock() {
+    return this.quantity <= 0;
+  }
+
   // TODO: 예외 처리 수정
   purchase() {
-    if (this.quantity <= 0) {
-      throw new Error('out of stock');
+    if (this.isOutOfStock()) {
+      throw EXCEPTIONS.OUT_OF_STOCK;
     }
 
     this.quantity -= 1;
