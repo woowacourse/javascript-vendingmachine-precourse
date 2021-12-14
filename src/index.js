@@ -88,7 +88,7 @@ function renderTotalChanges(changes) {
 
 function renderChargedMoney(money) {
     const moneyResult = document.querySelector("#vending-machine-charge-amount");
-    moneyResult.textContent = `보유 금액: ${money}원`;
+    moneyResult.textContent = money;
 }
 
 function isCorrectChargeMoney(money) {
