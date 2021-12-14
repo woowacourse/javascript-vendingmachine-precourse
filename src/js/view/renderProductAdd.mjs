@@ -60,6 +60,7 @@ function renderProductAddPageInit() {
   renderProductStatusWrap();
   $main.appendChild($fragment);
   $app.appendChild($main);
+
   renderProductStatusTable();
 }
 

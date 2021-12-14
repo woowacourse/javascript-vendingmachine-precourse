@@ -1,6 +1,8 @@
+import { COINS, coinType } from '../model/VendingMachine.mjs';
+
 const $fragment = new DocumentFragment();
 
-function chargeInput() {
+function renderChargeInputWrap() {
   const $chargeInputWrap = document.createElement('section');
   $chargeInputWrap.id = 'chargeInputWrap';
 
@@ -16,7 +18,17 @@ function chargeInput() {
   $fragment.appendChild($chargeInputWrap);
 }
 
-function amount() {
+function makeRowCell() {
+  return COINS.map(coin => {
+    return `
+     <tr>
+       <td>${coin}원</td>
+       <td><span id="vending-machine-coin-${coin}-quantity"></span></td>
+     </tr>`;
+  });
+}
+
+function renderAmountCoinsWrap() {
   const $amountOfCoins = document.createElement('section');
   $amountOfCoins.id = 'amountOfCoinsWrap';
 
@@ -28,57 +40,48 @@ function amount() {
         <th>개수</th>
       </thead>
       <tbody>
-        <tr>
-          <td>500원</td>
-          <td><span id="vending-machine-coin-500-quantity"></span></td>
-        </tr>
-        <tr>
-          <td>100원</td>
-          <td><span id="vending-machine-coin-100-quantity"></span></td>
-        </tr>
-        <tr>
-          <td>50원</td>
-          <td><span id="vending-machine-coin-50-quantity"></span></td>
-        </tr>
-        <tr>
-          <td>10원</td>
-          <td><span id="vending-machine-coin-10-quantity"></span></td>
-        </tr>
+      ${makeRowCell().join('')}
       </tbody>
     </table>
   `;
   $fragment.appendChild($amountOfCoins);
 }
 
-export function renderAmountCoins() {
-  if (localStorage.getItem('amount-of-coins')) {
-    const amountOfCoins = JSON.parse(localStorage.getItem('amount-of-coins'));
-    const vendingMachineCoin_500Quantity = document.querySelector('#vending-machine-coin-500-quantity');
-    const vendingMachineCoin_100Quantity = document.querySelector('#vending-machine-coin-100-quantity');
-    const vendingMachineCoin_50Quantity = document.querySelector('#vending-machine-coin-50-quantity');
-    const vendingMachineCoin_10Quantity = document.querySelector('#vending-machine-coin-10-quantity');
+function makeAmountOfCoinsText(moneyType) {
+  const amountOfCoins = JSON.parse(localStorage.getItem('amount-of-coins'));
+  let coin = document.querySelector(`#vending-machine-coin-${moneyType}-quantity`);
+  coin.textContent = amountOfCoins[`${moneyType}_WON`] + '개';
+}
 
-    vendingMachineCoin_500Quantity.textContent = amountOfCoins['500_WON'];
-    vendingMachineCoin_100Quantity.textContent = amountOfCoins['100_WON'];
-    vendingMachineCoin_50Quantity.textContent = amountOfCoins['50_WON'];
-    vendingMachineCoin_10Quantity.textContent = amountOfCoins['10_WON'];
+function renderAmountCoins() {
+  if (!localStorage.getItem('amount-of-coins')) return;
+
+  for (let moneyType of Object.values(coinType)) {
+    makeAmountOfCoinsText(moneyType);
   }
 }
 
-export function renderVendingMachineChargeAmount() {
+function renderVendingMachineChargeAmount() {
   const vendingMachineChargeAmount = document.querySelector('#vending-machine-charge-amount');
   vendingMachineChargeAmount.textContent = localStorage.getItem('vending-machine-charge-amount');
 }
 
-export function renderVendingMachineManagePage() {
+function renderProductAddPageInit() {
   const $app = document.querySelector('#app');
   const $main = document.createElement('main');
   $main.id = 'vendingMachineManageWrap';
 
-  chargeInput();
-  amount();
+  renderChargeInputWrap();
+  renderAmountCoinsWrap();
   $main.appendChild($fragment);
   $app.appendChild($main);
-  renderAmountCoins();
+
   renderVendingMachineChargeAmount();
+  renderAmountCoins();
 }
+
+function renderVendingMachineManagePage() {
+  renderProductAddPageInit();
+}
+
+export { renderVendingMachineChargeAmount, renderAmountCoins, renderVendingMachineManagePage };
