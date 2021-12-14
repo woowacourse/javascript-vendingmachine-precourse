@@ -5,7 +5,7 @@ export const purchaseTemplates = {
     return `
       <input id="charge-input" type="number" placeholder="투입할 금액" />
       <button id="charge-button">투입하기</button>
-      <h4 id="charge-amount">투입한 금액: ${money}</h4>
+      <h4 id="charge-amount">투입한 금액: ${money}원</h4>
     `;
   },
 
@@ -42,6 +42,7 @@ export const purchaseTemplates = {
     return `
     <h3>잔돈</h3>
     <button id="coin-return-button">반환하기</button>
+    <button id="refresh-change">잔돈 초기화</button>
      <table style='margin-top: 20px; width: 30%;'}>
       <thead>
         <tr>

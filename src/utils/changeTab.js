@@ -7,6 +7,7 @@ import { renderPurchaseProduct } from './purchaseProduct/renderPurchaseProduct.j
 import { inputUserMoney } from './purchaseProduct/inputUserMoney.js';
 import { purchaseProduct } from './purchaseProduct/purchaseProduct.js';
 import { returnChange } from './purchaseProduct/returnChange.js';
+import { resetChange } from './purchaseProduct/resetChange.js';
 
 export const changeTab = async (e, tab, state) => {
   const tabName = e.target.dataset.tabName;
@@ -46,6 +47,12 @@ export const changeTab = async (e, tab, state) => {
       e.preventDefault();
       returnChange(state);
     });
+
+    $('#refresh-change').addEventListener('click', e => {
+      e.preventDefault();
+      resetChange(state);
+    });
+
     return;
   }
 };

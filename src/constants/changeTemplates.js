@@ -5,7 +5,7 @@ export const changeTemplates = {
     return `
       <input id="vending-machine-charge-input" type="number" placeholder="잔돈 충전" />   
       <button id="vending-machine-charge-button">충전하기</button>
-      <h4 id="vending-machine-charge-amount">보유 금액: ${money}</h4>
+      <h4 id="vending-machine-charge-amount">보유 금액: ${money}원</h4>
     `;
   },
 

@@ -1,10 +1,15 @@
 import { store } from '../common/store.js';
 import { renderPurchaseProduct } from './renderPurchaseProduct.js';
-import { COINS } from '../../constants/constants.js';
+import { COINS, ERROR_MSG } from '../../constants/constants.js';
 
 export const returnChange = state => {
   let amount = state.change.amount;
   let charge = state.purchase.input;
+
+  if (!amount) {
+    alert(ERROR_MSG.INSUFFICIENT_CASH);
+    return;
+  }
 
   let i = 0;
   while ((amount || charge) && i <= 3) {
