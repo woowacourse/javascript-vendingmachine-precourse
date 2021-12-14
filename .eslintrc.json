@@ -21,6 +21,7 @@
     "no-new": "off",
     "newline-before-return": 2,
     "class-methods-use-this": "off",
-    "no-console": "warn"
+    "no-console": "error",
+    "no-cond-assign": ["error", "except-parens"]
   }
 }
