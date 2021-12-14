@@ -22,7 +22,8 @@ const CHARGE_VIEW = `
   <h2>자판기 동전 충전하기</h2>
   <input placeholder="자판기가 보유할 금액" id="vending-machine-charge-input"/>
   <button id="vending-machine-charge-button">충전하기</button>
-  <div> 보유 금액: </div>
+  <br>
+  <text> 보유 금액: </text>
   <text id="vending-machine-charge-amount"></text>
   <h2>자판기가 보유한 동전</h2>
   <table id="random-coin">
@@ -45,8 +46,9 @@ const CHARGE_VIEW = `
 const PURCHASE_VIEW = `
   <h2>금액 투입</h2>
   <input placeholder="투입할 금액" id="charge-input"/> 
-  <button id="charge-button">투입하기</button>
-  <p> 투입한 금액: </p>
+  <button id="charge-button">투입하기</button> 
+  <br>
+  <text> 투입한 금액: </text>
   <text id="charge-amount"></text>
   <h2>구매할 수 있는 상품 현황</h2>
   <table id="product-purchase">
