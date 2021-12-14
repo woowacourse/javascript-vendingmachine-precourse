@@ -12,10 +12,9 @@ export default class CoinReturn extends Component {
   }
 
   mounted() {
-    const { userMoney, chargedCoins } = this.$props.tabData;
+    const { chargedCoins } = this.$props.tabData;
     const $coinTable = this.$target.querySelector('[data-component="coin-return-table"]');
-    let coins = userMoney == 0 ? COINS.map(unit => ({ unit, count: 0 })) : chargedCoins;
-    new CoinTable($coinTable, { coins, description: '' });
+    new CoinTable($coinTable, { coins: chargedCoins, description: '' });
   }
 
   setEvent() {

@@ -10,7 +10,7 @@ export default class PurchaseChargeForm extends Component {
         <input type="number" id="charge-input" placeholder="투입할 금액" />
         <button id="charge-button">투입하기</button>
       </form>
-      <p>투입한 금액: <span id="charge-amount">${userMoney}원</span></p>
+      <p>투입한 금액: <span id="charge-amount">${userMoney}</span>원</p>
     `;
   }
 

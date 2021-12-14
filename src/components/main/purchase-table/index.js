@@ -28,7 +28,7 @@ export default class PurchaseTable extends Component {
                 <td data-product-name=${name} class="product-purchase-name">${name}</td>
                 <td data-product-price=${price} class="product-purchase-price">${price}</td>
                 <td data-product-quantity=${quantity} class="product-purchase-quantity">${quantity}</td>
-                <td><button data-product-name=${name} class="purchase-button">구매하기</button></td>
+                <td><button data-product-name-button=${name} class="purchase-button">구매하기</button></td>
               </tr>
             `
         )
@@ -40,7 +40,7 @@ export default class PurchaseTable extends Component {
     const { purchase } = this.$props;
 
     this.addEvent('click', '.purchase-button', ({ target }) => {
-      purchase(target.dataset.productName);
+      purchase(target.dataset.productNameButton);
     });
   }
 }

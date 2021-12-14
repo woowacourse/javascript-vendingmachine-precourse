@@ -21,14 +21,7 @@ export default class TabContent extends Component {
   }
 
   getDataComponent($target, tabID) {
-    const {
-      tabData,
-      addProduct,
-      chargeMachine,
-      chargeUserMoney,
-      purchase,
-      returnChange,
-    } = this.$props;
+    const { tabData, addProduct, chargeMachine, chargeUserMoney, purchase, returnChange } = this.$props;
 
     switch (tabID) {
       case ID.PRDCT_ADD:

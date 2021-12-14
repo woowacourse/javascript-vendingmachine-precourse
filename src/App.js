@@ -1,5 +1,5 @@
 import { TABS, ID, COINS } from './constants/index.js';
-import { isValidProduct } from './validations/index.js';
+import { isValidProduct, isValidChargeInput } from './validations/index.js';
 import Component from './core/Component.js';
 import TabMenu from './components/header/TabMenu.js';
 import TabContent from './components/main/TabContent.js';
@@ -93,6 +93,10 @@ export default class App extends Component {
   chargeUserMoney(amount) {
     const { tabData } = this.$state;
 
+    if (!isValidChargeInput(amount)) {
+      return;
+    }
+
     this.setState({
       tabData: {
         ...tabData,
@@ -108,6 +112,7 @@ export default class App extends Component {
     const { price, quantity } = stock[index];
 
     if (userMoney < price || quantity <= 0) {
+      alert('돈을 먼저 투입해주세요');
       return;
     }
 
@@ -122,7 +127,12 @@ export default class App extends Component {
   returnChange() {
     const { tabData } = this.$state;
     const { userMoney, chargedCoins } = tabData;
-    const [remainChange, changes] = this.computeChange(userMoney, chargedCoins);
+    let [remainChange, changes] = this.computeChange(userMoney, chargedCoins);
+
+    if (!this.hasEnoughMoney(userMoney, chargedCoins)) {
+      remainChange = 0;
+      changes = COINS.map(unit => ({ unit, count: 0 }));
+    }
 
     this.setState({
       tabData: { ...tabData, userMoney: remainChange, chargedCoins: [...changes] },
@@ -136,7 +146,7 @@ export default class App extends Component {
 
     for (let unit of sortedCoinUnit) {
       const count = Math.floor(remainChange / unit);
-      if (count > 0 && this.hasMachineEnoughChange(unit, count)) {
+      if (count > 0 && this.hasEnoughCoin(unit, count)) {
         const index = changes.findIndex(v => v.unit === unit);
         changes[index].count -= count;
         remainChange %= unit;
@@ -146,7 +156,11 @@ export default class App extends Component {
     return [remainChange, [...changes]];
   }
 
-  hasMachineEnoughChange(unit, count) {
+  hasEnoughMoney(userMoney, chargedCoins) {
+    return userMoney <= chargedCoins.reduce((acc, { unit, count }) => acc + unit * count, 0);
+  }
+
+  hasEnoughCoin(unit, count) {
     const { chargedCoins } = this.$state.tabData;
     const index = chargedCoins.findIndex(v => v.unit === unit);
     return chargedCoins[index].count >= count;

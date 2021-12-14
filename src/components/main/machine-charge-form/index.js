@@ -1,5 +1,6 @@
 import Component from '../../../core/Component.js';
 import { COINS } from '../../../constants/index.js';
+import { isValidChargeInput } from '../../../validations/index.js';
 
 const { pickNumberInList } = MissionUtils.Random;
 
@@ -23,6 +24,10 @@ export default class MachineChargeForm extends Component {
 
     this.addEvent('click', '#vending-machine-charge-button', () => {
       let { value: remain } = this.$target.querySelector('#vending-machine-charge-input');
+
+      if (!isValidChargeInput(remain)) {
+        return;
+      }
 
       while (remain > 0) {
         const randomUnit = pickNumberInList(COINS);
