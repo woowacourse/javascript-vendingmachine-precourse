@@ -43,7 +43,7 @@ export default function VendingMachineManageView() {
   this.renderCharge = () => {
     const chargeAmountSpan = $(`#${ID.VENDING_MACHINE_CHARGE_AMOUNT}`);
 
-    chargeAmountSpan.innerHTML = `${vendingMachine.charge}${MACHINE.WON}`;
+    chargeAmountSpan.innerHTML = `${vendingMachine.charge}`;
   };
 
   this.renderCoin = () => {

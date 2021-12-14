@@ -82,7 +82,7 @@ export default function ProductPurchaseMenuView() {
   this.renderInsertMoney = () => {
     const moneySpan = $(`#${ID.CHARGE_AMOUNT}`);
 
-    moneySpan.innerHTML = `${vendingMachine.insertMoney}${MACHINE.WON}`;
+    moneySpan.innerHTML = `${vendingMachine.insertMoney}`;
   };
 
   this.renderProduct = (product) => {
