@@ -43,6 +43,7 @@ table th {
   text-align: center;
 }
 
-#vending-machine-manage-form {
+#vending-machine-manage-form,
+#product-purchase-form {
   margin-bottom: 10px;
 }
