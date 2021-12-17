@@ -28,6 +28,8 @@ module.exports = {
         'no-plusplus': 'off',
         'max-depth': ['error', 2],
         'max-lines-per-function': ['error', 15],
+        'no-restricted-syntax': 'off',
+        'no-continue': 'off',
         'no-alert': 'off',
         'max-len': 'off',
         'import/extensions': 'off',
