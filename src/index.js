@@ -1,14 +1,18 @@
-import { domSelector } from './common/index.js';
-import App from './components/App.js';
-import Store from './store/index.js';
+import { $ } from './common/utils.js';
+import { defaultStatus } from './constants/index.js';
+import { addEventType, watch } from './eventBus/index.js';
+import App from './routes/App.js';
+import { createStore, subscribe } from './store/index.js';
 
-class VendingMachine {
-    constructor() {
-        this.target = domSelector('#app');
-        this.app = new App(this.target);
+(function () {
+    createStore(defaultStatus);
 
-        Store.setTriggerStateChange(() => this.app.render());
-    }
-}
+    const rootComponent = new App('#app', { key: 'COMMON' });
 
-export default new VendingMachine();
+    subscribe(() => rootComponent.render());
+
+    watch($('#app'));
+    addEventType('click', 'change', 'submit');
+
+    rootComponent.render();
+})();
