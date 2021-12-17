@@ -38,7 +38,7 @@ export default Object.freeze({
     [ROUTE_KEY[1]]: {
         ID: {
             CHARGE_INPUT: 'vending-machine-charge-input',
-            CHARGE_BUTTON: 'vending-machine-charge-butto',
+            CHARGE_BUTTON: 'vending-machine-charge-button',
             CHARGE_AMOUNT: 'vending-machine-charge-amount',
             COIN: [
                 'vending-machine-coin-500-quantity',
