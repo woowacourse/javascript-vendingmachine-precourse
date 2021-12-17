@@ -2,7 +2,10 @@ import { ROUTE_KEY } from './index.js';
 import resources from './resources.js';
 import selectors from './selectors.js';
 
-const purchaseKey = 'PURCHASE_PRODUCT';
+const purchaseSelector = selectors.PURCHASE_PRODUCT;
+const purchaseResource = resources.PURCHASE_PRODUCT;
+const chargeCoinIDs = selectors.CHARGE_MONEY.ID.COIN;
+const exchangeCoinIDs = selectors.PURCHASE_PRODUCT.ID.COIN;
 
 export default Object.freeze({
     [ROUTE_KEY[0]]: {
@@ -15,7 +18,11 @@ export default Object.freeze({
     [ROUTE_KEY[1]]: {
         COLUMNS: [
             { label: '동전', key: 'label' },
-            { label: '개수', key: 'count' },
+            {
+                label: '개수',
+                key: 'count',
+                render: (rowData, idx) => `<span id="${chargeCoinIDs[idx]}">${rowData.count}</span>`,
+            },
         ],
     },
     [ROUTE_KEY[2]]: {
@@ -28,16 +35,20 @@ export default Object.freeze({
                 key: 'purchase',
                 render: (rowData, idx) => `
                     <button
-                        class="${selectors[purchaseKey].CLASS.PURCHASE_BUTTON}"
-                        ${selectors.COMMON.EVENT_DATA_KEY}="${selectors[purchaseKey].EVENT_KEY.PURCHASE_BUTTON}"
+                        class="${purchaseSelector.CLASS.PURCHASE_BUTTON}"
+                        ${selectors.COMMON.EVENT_DATA_KEY}="${purchaseSelector.EVENT_KEY.PURCHASE_BUTTON}"
                         data-idx="${idx}"
-                    >${resources[purchaseKey].BUTTON.PURCHASE}</button>
+                    >${purchaseResource.BUTTON.PURCHASE}</button>
                 `,
             },
         ],
         COIN_COLUMNS: [
             { label: '동전', key: 'label' },
-            { label: '개수', key: 'count' },
+            {
+                label: '개수',
+                key: 'count',
+                render: (rowData, idx) => `<span id="${exchangeCoinIDs[idx]}">${rowData.count}</span>`,
+            },
         ],
     },
 });

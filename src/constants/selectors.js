@@ -40,10 +40,12 @@ export default Object.freeze({
             CHARGE_INPUT: 'vending-machine-charge-input',
             CHARGE_BUTTON: 'vending-machine-charge-butto',
             CHARGE_AMOUNT: 'vending-machine-charge-amount',
-            COIN500: 'vending-machine-coin-500-quantity',
-            COIN100: 'vending-machine-coin-100-quantity',
-            COIN50: 'vending-machine-coin-50-quantity',
-            COIN10: 'vending-machine-coin-10-quantity',
+            COIN: [
+                'vending-machine-coin-500-quantity',
+                'vending-machine-coin-100-quantity',
+                'vending-machine-coin-50-quantity',
+                'vending-machine-coin-10-quantity',
+            ],
             TABLE_VIEW: `${ROUTE_KEY[1]}-table-view`,
         },
         EVENT_KEY: {
@@ -60,10 +62,7 @@ export default Object.freeze({
             CHARGE_AMOUNT: 'charge-amount',
 
             COIN_RETURN_BUTTON: 'coin-return-button',
-            COIN500: 'coin-500-quantity',
-            COIN100: 'coin-100-quantity',
-            COIN50: 'coin-50-quantity',
-            COIN10: 'coin-10-quantity',
+            COIN: ['coin-500-quantity', 'coin-100-quantity', 'coin-50-quantity', 'coin-10-quantity'],
 
             PRODUCT_TABLE_VIEW: `${ROUTE_KEY[2]}-product-table-view`,
             COIN_TABLE_VIEW: `${ROUTE_KEY[2]}-coin-table-view`,
