@@ -13,6 +13,7 @@ export default class ChargeMoney extends Component {
 
         this.productTable = new Table(`#${this.selectors.ID.PRODUCT_TABLE_VIEW}`);
         this.coinTable = new Table(`#${this.selectors.ID.COIN_TABLE_VIEW}`);
+        this.delegateEvent();
     }
 
     willmount() {
@@ -26,7 +27,6 @@ export default class ChargeMoney extends Component {
         this.setTableConfig();
         this.productTable.render();
         this.coinTable.render();
-        this.delegateEvent();
     }
 
     setTableConfig() {
@@ -55,7 +55,7 @@ export default class ChargeMoney extends Component {
         const charged = Number(ev.target[this.selectors.NAME.CHARGE].value);
 
         if (!isPositiveNumber(charged) || !isDivisibleTen(charged)) setError(this.errorMessage.CHARGE_INPUT);
-        setState('chargeMoney', this.chargeMoney + charged);
+        else setState('chargeMoney', this.chargeMoney + charged);
     }
 
     onPurchase(ev) {

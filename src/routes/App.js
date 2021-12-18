@@ -14,6 +14,7 @@ export default class App extends Component {
             ...item,
             Component: new Components[idx](`#${this.selectors.ID.TARGET}`, { key: item.key }),
         }));
+        this.delegateEvent();
     }
 
     willmount() {
@@ -22,7 +23,6 @@ export default class App extends Component {
 
     mount() {
         this.route[this.tabIdx].Component.render();
-        this.delegateEvent();
     }
 
     delegateEvent() {

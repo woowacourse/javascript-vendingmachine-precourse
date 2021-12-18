@@ -12,6 +12,7 @@ export default class ChargeMoney extends Component {
         this.errorMessage = this.resources.ERROR_MESSAGE;
 
         this.table = new Table(`#${this.selectors.ID.TABLE_VIEW}`);
+        this.delegateEvent();
     }
 
     willmount() {
@@ -28,7 +29,6 @@ export default class ChargeMoney extends Component {
         });
 
         this.table.render();
-        this.delegateEvent();
     }
 
     delegateEvent() {
