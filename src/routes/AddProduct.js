@@ -10,6 +10,7 @@ export default class AddProduct extends Component {
         this.errorMessage = this.resources.ERROR_MESSAGE;
 
         this.table = new Table(`#${this.selectors.ID.TABLE_VIEW}`);
+        this.delegateEvent();
     }
 
     willmount() {
@@ -23,11 +24,10 @@ export default class AddProduct extends Component {
         });
 
         this.table.render();
-        this.delegateEvent();
     }
 
     delegateEvent() {
-        setEvent('click', this.selectors.EVENT_KEY.FORM, this.onSubmit.bind(this));
+        setEvent('submit', this.selectors.EVENT_KEY.FORM, this.onSubmit.bind(this));
     }
 
     onSubmit(ev) {
