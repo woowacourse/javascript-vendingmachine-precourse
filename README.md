@@ -3,6 +3,9 @@
 </p>
 <h1 align="middle">자판기</h1>
 
+### 배포주소
+https://skdms3030.github.io/javascript-vendingmachine-precourse/
+
 ## 🔍 진행방식
 
 - 미션은 **기능 요구사항, 프로그래밍 요구사항, 과제 진행 요구사항** 세 가지로 구성되어 있다.
